@@ -3,6 +3,7 @@ import { Moment } from "moment";
 import { Languages, NeedId, Role, ThemeId, User } from "src/typegoose";
 import { Request as ExpressRequest, Response as ExpressResponse } from "express";
 import { DocumentType } from "@typegoose/typegoose";
+import { ageType, frenchLevel, justificatifType, priceDetails, publicType } from "./newInterface";
 
 export type Modify<T, R> = Omit<T, keyof R> & R;
 
@@ -72,6 +73,25 @@ export interface AudienceAge {
   contentTitle: "Plus de ** ans" | "De ** à ** ans" | "Moins de ** ans";
   bottomValue: number | string;
   topValue: number | string;
+}
+
+export interface Metadatas {
+  location?: string[];
+  frenchLevel?: frenchLevel[];
+  important?: string;
+  age?: {
+    type: ageType;
+    ages: number[];
+  };
+  price?: {
+    value: number;
+    details?: priceDetails;
+  }
+  duration?: string;
+  public?: publicType;
+  titreSejourRequired?: boolean;
+  acteNaissanceRequired?: boolean;
+  justificatif?: justificatifType;
 }
 
 export interface DispositifContent {

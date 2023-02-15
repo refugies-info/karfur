@@ -1,60 +1,60 @@
 import logger from "../../../logger";
 import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
-
-import { celebrate, Joi, Segments } from "celebrate";
 import { map } from "lodash/fp";
-import { omit } from "lodash";
-import { Languages } from "src/typegoose";
-import { RequestFromClient, Res } from "src/types/interface";
+import omit from "lodash/omit";
+import pick from "lodash/pick";
+import { Languages } from "../../../typegoose";
+import { GetDispositifsRequest } from "../../../controllers/dispositifController";
+import { Id, Metadatas, Picture, ResponseWithData } from "../../../types/interface";
 
-const validator = celebrate({
-  [Segments.BODY]: Joi.object({
-    query: Joi.object().required(),
-    locale: Joi.string(),
-    limit: Joi.number(),
-    sort: Joi.string()
-  })
-});
+export interface GetDispositifsResponse {
+  _id: Id;
+  titreInformatif?: string;
+  titreMarque?: string;
+  abstract?: string;
+  typeContenu: string;
+  status: string;
+  theme?: Id;
+  secondaryThemes?: Id[];
+  needs: Id[];
+  metadatas: Metadatas;
+  created_at?: Date;
+  publishedAt?: Date;
+  lastModificationDate?: Date;
+  nbMots: number;
+  nbVues: number;
+  mainSponsor?: {
+    nom: string;
+    picture: Picture
+  }
+}
 
-export const handler = async (req: RequestFromClient<{ query: any }>, res: Res) => {
+export const getDispositifs = async (query: GetDispositifsRequest): ResponseWithData<GetDispositifsResponse[]> => {
   logger.info("[getDispositifs] called");
-  let { query, locale, limit, sort } = req.body;
-  locale = (locale || "fr") as Languages;
+  const { type, locale, limit, sort } = query;
 
-  return getDispositifArray(query, {}, "", limit, sort)
-    .then(
-      map((dispositif) => ({
+  const selectedLocale = (locale || "fr") as Languages;
+  const dbQuery: any = { status: "Actif" };
+  if (type) dbQuery.typeContenu = type;
+
+  return getDispositifArray(dbQuery, {
+    lastModificationDate: 1,
+    mainSponsor: 1,
+    needs: 1
+  }, "mainSponsor", limit, sort)
+    .then(map((dispositif) => {
+      //@ts-ignore FIXME : type populate mainSponsor
+      const resDisp: GetDispositifsResponse = {
+        _id: dispositif._id,
+        ...pick(dispositif.translations[selectedLocale].content, ["titreInformatif", "titreMarque", "abstract", "mainSponsor.nom", "mainSponsor.picture"]),
+        metadatas: { ...dispositif.metadatas, ...dispositif.translations[selectedLocale].metadatas },
         ...omit(dispositif, ["translations"]),
-        traduction: dispositif.translations[locale]
-      }))
-    )
-    .then((result) =>
-      res.status(200).json({
-        text: "Succès",
-        data: result
-      })
-    )
-    .catch((error) => {
-      logger.error("[getDispositifs] error while getting dispositifs", {
-        error: error.message
-      });
-      switch (error) {
-        case 500:
-          res.status(500).json({
-            text: "Erreur interne"
-          });
-          break;
-        case 404:
-          res.status(404).json({
-            text: "Pas de résultat"
-          });
-          break;
-        default:
-          res.status(500).json({
-            text: "Erreur interne"
-          });
       }
-    });
+      return resDisp
+    }))
+    .then((result) => ({
+      text: "success",
+      data: result
+    }))
 };
 
-export default [validator, handler];

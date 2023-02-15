@@ -1,9 +1,8 @@
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
-import { SearchDispositif } from "types/interface";
 import { getDispositifInfos } from "../getDispositifInfos";
-import { Id } from "api-types";
+import { GetDispositifsResponse, Id } from "api-types";
 
-export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected: Id[], needs: Id[], withSecondaryTheme: boolean) => {
+export const filterByThemeOrNeed = (dispositif: GetDispositifsResponse, themesSelected: Id[], needs: Id[], withSecondaryTheme: boolean) => {
   if (themesSelected.length === 0 && needs.length === 0) return true;
   if (dispositif.needs) {
     for (const need of dispositif.needs) { // return true if dispositif has need
@@ -22,11 +21,11 @@ export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected
   return false;
 };
 
-export const filterByLocations = (dispositif: SearchDispositif, departments: string[]) => {
+export const filterByLocations = (dispositif: GetDispositifsResponse, departments: string[]) => {
   if (departments.length === 0) return true;
-  const location = getDispositifInfos(dispositif, "location");
-  if (!location?.departments) return false;
-  for (const dep of location?.departments) {
+  const location = dispositif.metadatas.location;
+  if (!location) return false;
+  for (const dep of location) {
     if (departments.includes(dep.split(" - ")[1]) || dep === "All") {
       return true;
     }
@@ -41,7 +40,7 @@ const filterAgeValues = {
   "+25": [25, 99]
 }
 
-export const filterByAge = (dispositif: SearchDispositif, ageFilters: AgeOptions[]) => {
+export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
   if (ageFilters.length === 0) return true;
   const audienceAge = dispositif.audienceAge[0];
   if (!audienceAge.bottomValue || !audienceAge.topValue) return true;
@@ -61,7 +60,7 @@ const filterFrenchLevelValues = {
   "c": []
 }
 
-export const filterByFrenchLevel = (dispositif: SearchDispositif, frenchLevelFilters: FrenchOptions[]) => {
+export const filterByFrenchLevel = (dispositif: GetDispositifsResponse, frenchLevelFilters: FrenchOptions[]) => {
   if (frenchLevelFilters.length === 0) return true;
   const frenchLevels = dispositif.niveauFrancais;
   if (!frenchLevels || frenchLevels.length === 0) return true;
@@ -83,7 +82,7 @@ export const filterByFrenchLevel = (dispositif: SearchDispositif, frenchLevelFil
   return false;
 };
 
-export const filterByLanguage = (dispositif: SearchDispositif, languageFilters: string[]) => {
+export const filterByLanguage = (dispositif: GetDispositifsResponse, languageFilters: string[]) => {
   if (languageFilters.length === 0) return true;
   for (const ln of languageFilters) {
     if (dispositif.avancement?.[ln]) {

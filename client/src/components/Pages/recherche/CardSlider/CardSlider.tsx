@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cls } from "lib/classname";
 import { Button } from "reactstrap";
-import { ContentType, SearchDispositif } from "types/interface";
+import { ContentType } from "types/interface";
 import useRTL from "hooks/useRTL";
 import DemarcheCard from "components/UI/DemarcheCard";
 import DispositifCard from "components/UI/DispositifCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./CardSlider.module.scss";
+import { GetDispositifsResponse } from "api-types";
 
 interface Props {
-  cards: SearchDispositif[];
+  cards: GetDispositifsResponse[];
   type: ContentType;
 }
 

@@ -46,7 +46,7 @@ describe("[Saga] User", () => {
         .next()
         .call(API.isAuth)
         .next(true)
-        .call(API.get_user_info)
+        .call(API.getUser)
         .next({ data: { data: { ...testUser, structures: [new ObjectId("testObjectId")] } } })
         .put(setUserActionCreator({ ...testUser, structures: [new ObjectId("testObjectId")] }))
         .next()
@@ -72,7 +72,7 @@ describe("[Saga] User", () => {
         .next()
         .call(API.isAuth)
         .next(true)
-        .call(API.get_user_info)
+        .call(API.getUser)
         .next({ data: { data: testUser } })
         .put(setUserActionCreator(testUser))
         .next()
@@ -93,7 +93,7 @@ describe("[Saga] User", () => {
         .next()
         .call(API.isAuth)
         .next(true)
-        .call(API.get_user_info)
+        .call(API.getUser)
         .next({ data: { data: { ...testUser, structures: [new ObjectId("testObjectId")] } } })
         .put(setUserActionCreator({ ...testUser, structures: [new ObjectId("testObjectId")] }))
         .next()
@@ -123,14 +123,14 @@ describe("[Saga] User", () => {
         .isDone();
     });
 
-    it("should call api.isAuth, api.get_user_info and dispatch set user action with null payload if api.get_user_info throws an error", () => {
+    it("should call api.isAuth, api.getUser and dispatch set user action with null payload if api.getUser throws an error", () => {
       testSaga(fetchUser, { type: FETCH_USER, payload: undefined })
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER))
         .next()
         .call(API.isAuth)
         .next(true)
-        .call(API.get_user_info)
+        .call(API.getUser)
         .throw(new Error("test"))
         .put(setUserActionCreator(null))
         .next()

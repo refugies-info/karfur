@@ -26,7 +26,7 @@ export function* fetchUser(
     yield put(startLoading(LoadingStatusKey.FETCH_USER));
     const isAuth = yield call(API.isAuth);
     if (isAuth) {
-      const data = yield call(API.get_user_info);
+      const data = yield call(API.getUser);
       const user = data.data.data;
       yield put(setUserActionCreator(user));
       if (user.structures && user.structures.length > 0) {

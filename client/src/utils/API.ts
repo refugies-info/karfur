@@ -5,10 +5,7 @@ import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
 import {
-  AdminOption,
   APIResponse,
-  DispositifFacets,
-  DispositifStatistics,
   IDispositif,
   NbDispositifsByRegion,
   StructureFacets,
@@ -44,7 +41,12 @@ import {
   DownloadAppRequest,
   ContentLinkRequest,
   SendNotificationsRequest,
-  TtsRequest
+  TtsRequest,
+  GetUserInfoResponse,
+  GetStatisticsRequest,
+  GetStatisticsResponse,
+  GetDispositifsRequest,
+  GetDispositifsResponse
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -151,15 +153,9 @@ const API = {
     const headers = getHeaders();
     return instance.post("/user/set_user_info", user, { headers });
   },
-  get_user_info: () => {
+  getUser: (): Promise<APIResponse<GetUserInfoResponse>> => {
     const headers = getHeaders();
-    return instance.post(
-      "/user/get_user_info",
-      {},
-      {
-        headers
-      }
-    );
+    return instance.get("/user/get_user_info", { headers });
   },
   updateUser: (query: any) => {
     const headers = getHeaders();
@@ -256,8 +252,8 @@ const API = {
     const headers = getHeaders();
     return instance.get(`/dispositifs/getDispositifsWithTranslationAvancement?locale=${locale}`, { headers });
   },
-  getDispositifs: (params: any) => {
-    return instance.post("/dispositifs/getDispositifs", params);
+  getDispositifs: (query: GetDispositifsRequest): Promise<APIResponse<GetDispositifsResponse[]>> => {
+    return instance.get("/dispositifs", { params: query });
   },
   getAllDispositifs: () => instance.get("/dispositifs/getAllDispositifs"),
   getNbDispositifsByRegion: (): Promise<Response<NbDispositifsByRegion>> => {
@@ -269,8 +265,9 @@ const API = {
       headers
     });
   },
-  getDispositifsStatistics: (facets?: DispositifFacets[]): Promise<Response<DispositifStatistics>> => {
-    return instance.get("/dispositifs/statistics", { params: { facets } });
+  getDispositifsStatistics: (query: GetStatisticsRequest): Promise<APIResponse<GetStatisticsResponse>> => {
+    const headers = getHeaders();
+    return instance.get("/dispositifs/statistics", { params: query, headers });
   },
   /* TODO: support all dispositif properties */
   updateDispositif: (id: ObjectId, query: { webOnly: boolean }) => {

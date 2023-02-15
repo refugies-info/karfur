@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "reactstrap";
-import { ObjectId } from "mongodb";
 import { cls } from "lib/classname";
 import useFavorites from "hooks/useFavorites";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./FavoriteButton.module.scss";
+import { Id } from "api-types";
 
 interface Props {
-  contentId: ObjectId;
+  contentId: Id;
   className?: string;
 }
 

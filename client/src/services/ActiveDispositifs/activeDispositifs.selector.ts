@@ -1,5 +1,5 @@
 import { RootState } from "../rootReducer";
-import { SearchDispositif } from "../../types/interface";
+import { GetDispositifsResponse } from "api-types";
 
-export const activeDispositifsSelector = (state: RootState): SearchDispositif[] =>
+export const activeDispositifsSelector = (state: RootState): GetDispositifsResponse[] =>
   state.activeDispositifs;

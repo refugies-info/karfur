@@ -4,10 +4,10 @@ import {
   UPDATE_DISPOSITIF_REACTION,
 } from "./activeDispositifs.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { SearchDispositif } from "../../types/interface";
 import { ObjectId } from "mongodb";
+import { GetDispositifsResponse } from "api-types";
 
-export const setActiveDispositifsActionsCreator = (value: SearchDispositif[]) =>
+export const setActiveDispositifsActionsCreator = (value: GetDispositifsResponse[]) =>
   action(SET_ACTIVE_DISPOSITIFS, value);
 
 export const fetchActiveDispositifsActionsCreator = () =>

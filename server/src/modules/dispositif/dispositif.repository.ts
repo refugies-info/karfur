@@ -14,7 +14,7 @@ export const getDispositifArray = async (
   populate: string = "",
   limit: number = 0,
   sort: any = {}
-): Promise<Dispositif[]> => {
+) => {
   const neededFields: DispositifFieldsRequest = {
     translations: 1,
     theme: 1,
@@ -30,7 +30,7 @@ export const getDispositifArray = async (
     ...extraFields
   };
 
-  return await DispositifModel.find(query, neededFields).sort(sort).limit(limit).lean().populate(populate);
+  return DispositifModel.find(query, neededFields).sort(sort).limit(limit).lean().populate(populate);
 };
 
 export const updateDispositifInDB = async (

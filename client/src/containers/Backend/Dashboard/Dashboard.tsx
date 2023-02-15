@@ -10,11 +10,12 @@ import { NoGeolocModal } from "./NoGeolocModal";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import styles from "./Dashboard.module.scss";
-import { RegionFigures, DispositifStatistics } from "types/interface";
+import { RegionFigures } from "types/interface";
 import { ObjectId } from "mongodb";
 import { colors } from "colors";
 import { Spinner } from "reactstrap";
 import { themesSelector } from "services/Themes/themes.selectors";
+import { GetStatisticsResponse } from "api-types";
 
 moment.locale("fr");
 const formatter = new Intl.NumberFormat();
@@ -41,7 +42,7 @@ const Dashboard = (props: Props) => {
   const [figuresByRegion, setFiguresByRegion] = useState<RegionFigures[]>([]);
   const [showNoGeolocModal, setShowNoGeolocModal] = useState(false);
   const [dispositifsWithoutGeoloc, setDispositifsWithoutGeoloc] = useState<ObjectId[]>([]);
-  const [statistics, setStatistics] = useState<DispositifStatistics | null>(null);
+  const [statistics, setStatistics] = useState<GetStatisticsResponse | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [notificationsActive, setNotificationsActive] = useState<boolean | null>(null);
   const themes = useSelector(themesSelector);
@@ -71,7 +72,7 @@ const Dashboard = (props: Props) => {
           setFiguresByRegion(data.data.data.regionFigures);
           setDispositifsWithoutGeoloc(data.data.data.dispositifsWithoutGeoloc);
         }),
-        API.getDispositifsStatistics(["nbMercis", "nbVues", "nbVuesMobile"]).then((data) => {
+        API.getDispositifsStatistics({ facets: ["nbMercis", "nbVues", "nbVuesMobile"] }).then((data) => {
           setStatistics(data.data.data);
         }),
         API.getAdminOption(ACTIVES_NOTIFICATIONS).then((data) => {
