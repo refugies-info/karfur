@@ -1,9 +1,18 @@
-import { Dispositif, DispositifId, DispositifModel, UserId } from "src/typegoose";
+import { Dispositif, DispositifId, DispositifModel, UserId } from "../../typegoose";
+import { Id, Picture } from "../../types/interface";
 
-export const getDispositifsFromDB = async (needFields: Object): Promise<Dispositif[]> =>
-  await DispositifModel.find({}, needFields)
-    .populate("mainSponsor creatorId theme secondaryThemes")
-    .populate("lastModificationAuthor publishedAtAuthor", "username");
+export const getDispositifsFromDB = async () =>
+  await DispositifModel.find({}).populate<{
+    mainSponsor: { _id: Id, nom: string, status: string, picture: Picture },
+    creatorId: { _id: Id, username: string, picture: Picture, email: string },
+    lastModificationAuthor: { _id: Id, username: string },
+    publishedAtAuthor: { _id: Id, username: string },
+  }>([
+    { path: "mainSponsor", select: "_id nom status picture" },
+    { path: "creatorId", select: "_id username picture email" },
+    { path: "lastModificationAuthor", select: "_id username" },
+    { path: "publishedAtAuthor", select: "_id username" },
+  ]).lean();
 
 type DispositifKeys = keyof Dispositif;
 type DispositifFieldsRequest = Partial<Record<DispositifKeys, number>>;
@@ -45,16 +54,17 @@ export const updateDispositifInDB = async (
 export const getActiveDispositifsFromDBWithoutPopulate = (needFields: Object) =>
   DispositifModel.find({ status: "Actif", typeContenu: "dispositif" }, needFields);
 
-export const getAllContentsFromDB = async () =>
-  await DispositifModel.find({}, { audienceAge: 1, contenu: 1, typeContenu: 1, status: 1 });
-
-export const getAllDemarchesFromDB = async () => await DispositifModel.find({ typeContenu: "demarche" }, { _id: 1 });
-
-export const removeAudienceAgeInDB = async (dispositifId: DispositifId) =>
-  await DispositifModel.update({ _id: dispositifId }, { $unset: { audienceAge: "" } });
-
-export const removeVariantesInDB = async (dispositifId: DispositifId) =>
-  await DispositifModel.update({ _id: dispositifId }, { $unset: { variantes: "" } });
+// TODO: delete
+// export const getAllContentsFromDB = async () =>
+//   await DispositifModel.find({}, { audienceAge: 1, contenu: 1, typeContenu: 1, status: 1 });
+//
+// export const getAllDemarchesFromDB = async () => await DispositifModel.find({ typeContenu: "demarche" }, { _id: 1 });
+//
+// export const removeAudienceAgeInDB = async (dispositifId: DispositifId) =>
+//   await DispositifModel.update({ _id: dispositifId }, { $unset: { audienceAge: "" } });
+//
+// export const removeVariantesInDB = async (dispositifId: DispositifId) =>
+//   await DispositifModel.update({ _id: dispositifId }, { $unset: { variantes: "" } });
 
 export const getDraftDispositifs = () =>
   DispositifModel.find(

@@ -46,7 +46,8 @@ export const getDispositifs = async (query: GetDispositifsRequest): ResponseWith
       //@ts-ignore FIXME : type populate mainSponsor
       const resDisp: GetDispositifsResponse = {
         _id: dispositif._id,
-        ...pick(dispositif.translations[selectedLocale].content, ["titreInformatif", "titreMarque", "abstract", "mainSponsor.nom", "mainSponsor.picture"]),
+        ...pick(dispositif.translations[selectedLocale].content, ["titreInformatif", "titreMarque", "abstract"]),
+        ...pick(dispositif, ["mainSponsor.nom", "mainSponsor.picture"]),
         metadatas: { ...dispositif.metadatas, ...dispositif.translations[selectedLocale].metadatas },
         ...omit(dispositif, ["translations"]),
       }

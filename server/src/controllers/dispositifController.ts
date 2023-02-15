@@ -40,7 +40,6 @@ const router = express.Router();
 // @ts-ignore FIXME
 router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif);
 router.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);
-router.post("/get_dispositif", dispositif.get_dispositif);
 router.post("/count_dispositifs", dispositif.count_dispositifs);
 // @ts-ignore FIXME
 router.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus);

@@ -8,6 +8,7 @@ import {
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { ObjectId } from "mongoose";
 
+// TODO: delete
 interface Dispositif {
   _id: ObjectId;
   audienceAge: undefined | AudienceAge[];
@@ -75,8 +76,8 @@ const computeNewAudienceAge = (dispositif: {
 const computeModifiedDemarche = (dispositif: Dispositif) => {
   const infocards =
     dispositif.contenu &&
-    dispositif.contenu[1] &&
-    dispositif.contenu[1].children
+      dispositif.contenu[1] &&
+      dispositif.contenu[1].children
       ? dispositif.contenu[1].children
       : [];
 

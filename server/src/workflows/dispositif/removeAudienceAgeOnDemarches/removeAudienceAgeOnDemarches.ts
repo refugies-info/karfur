@@ -5,7 +5,7 @@ import {
   removeAudienceAgeInDB,
 } from "../../../modules/dispositif/dispositif.repository";
 import { asyncForEach } from "../../../libs/asyncForEach";
-
+// TODO: delete
 export const removeAudienceAgeOnDemarches = async (_: any, res: Res) => {
   try {
     logger.info("[removeAudienceAgeOnDemarches]");
