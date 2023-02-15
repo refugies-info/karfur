@@ -46,7 +46,9 @@ import {
   GetStatisticsRequest,
   GetStatisticsResponse,
   GetDispositifsRequest,
-  GetDispositifsResponse
+  GetDispositifsResponse,
+  GetAllStructuresResponse,
+  GetAllDispositifsResponse
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -255,7 +257,10 @@ const API = {
   getDispositifs: (query: GetDispositifsRequest): Promise<APIResponse<GetDispositifsResponse[]>> => {
     return instance.get("/dispositifs", { params: query });
   },
-  getAllDispositifs: () => instance.get("/dispositifs/getAllDispositifs"),
+  getAllDispositifs: (): Promise<APIResponse<GetAllDispositifsResponse>> => {
+    const headers = getHeaders();
+    return instance.get("/dispositifs/all", { headers })
+  },
   getNbDispositifsByRegion: (): Promise<Response<NbDispositifsByRegion>> => {
     return instance.get("/dispositifs/getNbDispositifsByRegion");
   },
@@ -332,7 +337,10 @@ const API = {
   getActiveStructures: () => {
     return instance.get("/structures/getActiveStructures");
   },
-  getAllStructures: () => instance.get("/structures/getAllStructures"),
+  getAllStructures: (): Promise<APIResponse<GetAllStructuresResponse>> => {
+    const headers = getHeaders();
+    return instance.get("/structures/all", { headers })
+  },
   getStructuresStatistics: (facets?: StructureFacets[]): Promise<Response<StructuresStatistics>> => {
     return instance.get("/structures/statistics", { params: { facets } });
   },

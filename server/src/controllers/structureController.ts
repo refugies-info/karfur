@@ -3,12 +3,13 @@ import {
   Get,
   Route,
   Request,
-  Query
+  Query,
+  Security
 } from "tsoa";
 import express, { Request as ExRequest } from "express";
 const router = express.Router();
 const checkToken = require("./account/checkToken");
-import { getAllStructures } from "../workflows/structure/getAllStructures";
+import { getAllStructures, GetAllStructuresResponse } from "../workflows/structure/getAllStructures";
 import { getStructureById, StructureById } from "../workflows/structure/getStructureById";
 import { getActiveStructures, GetActiveStructuresResponse } from "../workflows/structure/getActiveStructures";
 import { createStructure } from "../workflows/structure/createStructure";
@@ -19,7 +20,6 @@ import { ResponseWithData } from "../types/interface";
 
 /* TODO: use tsoa */
 
-router.get("/getAllStructures", getAllStructures);
 router.post("/createStructure", checkToken.check, createStructure);
 router.post("/updateStructure", checkToken.check, updateStructure);
 router.post("/modifyUserRoleInStructure", checkToken.check, modifyUserRoleInStructure);
@@ -29,6 +29,14 @@ export { router };
 
 @Route("structures")
 export class StructureController extends Controller {
+
+  @Security({
+    jwt: ["admin"],
+  })
+  @Get("/all")
+  public async getAll(): ResponseWithData<GetAllStructuresResponse[]> {
+    return getAllStructures();
+  }
 
   @Get("/getStructureById")
   public async getStructure(
