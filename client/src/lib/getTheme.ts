@@ -1,5 +1,4 @@
-import { GetThemeResponse } from "api-types";
-import { ObjectId } from "mongodb";
+import { GetThemeResponse, Id } from "api-types";
 
 const defaultTheme: GetThemeResponse = {
   _id: "id",
@@ -61,10 +60,11 @@ const defaultTheme: GetThemeResponse = {
   active: true,
 }
 
-export const getTheme = (id: ObjectId, allThemes: GetThemeResponse[]) => {
+export const getTheme = (id: Id | undefined, allThemes: GetThemeResponse[]) => {
+  if (!id) return defaultTheme;
   return allThemes.find(theme => theme._id === id) || defaultTheme;
 }
 
-export const getThemes = (ids: ObjectId[], allThemes: GetThemeResponse[]) => {
+export const getThemes = (ids: Id[], allThemes: GetThemeResponse[]) => {
   return ids.map(id => allThemes.find(theme => theme._id === id) || defaultTheme);
 }

@@ -6,10 +6,10 @@ import { GetAdminOptionResponse } from "../server/src/workflows/adminOption/getA
 import { PostAdminOptionResponse } from "../server/src/workflows/adminOption/postAdminOptions";
 
 // dispositifs
-import {
-  GetDispositifResponse,
-  InfoSections
-} from "../server/src/workflows/dispositif/getContentById";
+import { GetDispositifsRequest, GetStatisticsRequest } from "../server/src/controllers/dispositifController";
+import { GetDispositifResponse, InfoSections } from "../server/src/workflows/dispositif/getContentById";
+import { GetDispositifsResponse } from "../server/src/workflows/dispositif/getDispositifs";
+import { GetStatisticsResponse } from "../server/src/workflows/dispositif/getStatistics";
 
 // images
 import { PostImageResponse } from "../server/src/workflows/images/postImages";
@@ -50,6 +50,9 @@ import { PatchThemeResponse } from "../server/src/workflows/themes/patchTheme";
 // tts
 import { TtsRequest } from "../server/src/controllers/ttsController";
 
+// user
+import { GetUserInfoResponse } from "../server/src/controllers/userController";
+
 // widgets
 import { WidgetRequest } from "../server/src/controllers/widgetController";
 import { GetWidgetResponse } from "../server/src/workflows/widget/getWidgets";
@@ -68,7 +71,11 @@ export type {
   PostAdminOptionResponse,
 
   // dispositifs
+  GetStatisticsRequest,
+  GetDispositifsRequest,
   GetDispositifResponse,
+  GetDispositifsResponse,
+  GetStatisticsResponse,
 
   // images
   PostImageResponse,
@@ -103,6 +110,9 @@ export type {
 
   // tts
   TtsRequest,
+
+  // user
+  GetUserInfoResponse,
 
   // widgets
   WidgetRequest,

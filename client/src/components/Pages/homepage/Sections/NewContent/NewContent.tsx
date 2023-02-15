@@ -3,18 +3,18 @@ import { Button, Container } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { cls } from "lib/classname";
-import { SearchDispositif } from "types/interface";
 import { getPath } from "routes";
 import CardSlider from "components/Pages/recherche/CardSlider";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./NewContent.module.scss";
+import { GetDispositifsResponse } from "api-types";
 
 interface Props {
   nbDemarches: number;
   nbDispositifs: number;
   nbStructures: number;
-  demarches: SearchDispositif[];
-  dispositifs: SearchDispositif[];
+  demarches: GetDispositifsResponse[];
+  dispositifs: GetDispositifsResponse[];
 }
 
 const NewContent = (props: Props) => {

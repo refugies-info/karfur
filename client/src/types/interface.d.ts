@@ -478,22 +478,6 @@ export interface NbDispositifsByRegion {
   dispositifsWithoutGeoloc: ObjectId[];
 }
 
-export type DispositifFacets =
-  | "nbMercis"
-  | "nbVues"
-  | "nbVuesMobile"
-  | "nbDispositifs"
-  | "nbDemarches"
-  | "nbUpdatedRecently";
-export interface DispositifStatistics {
-  nbMercis?: number;
-  nbVues?: number;
-  nbVuesMobile?: number;
-  nbDispositifs?: number;
-  nbDemarches?: number;
-  nbUpdatedRecently?: number;
-}
-
 export type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
 export interface StructuresStatistics {
   nbStructures?: number;

@@ -18,16 +18,15 @@ import {
   setError,
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
+import { APIResponse } from "types/interface";
+import { GetDispositifsResponse } from "api-types";
 
 export function* fetchActiveDispositifs(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
 
     const langue = yield select(languei18nSelector);
-    const data = yield call(API.getDispositifs, {
-      query: { status: "Actif" },
-      locale: langue,
-    });
+    const data: APIResponse<GetDispositifsResponse[]> = yield call(API.getDispositifs, { locale: langue });
 
     yield put(setActiveDispositifsActionsCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));

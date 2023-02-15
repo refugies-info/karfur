@@ -1,9 +1,9 @@
+import { GetDispositifsResponse } from "api-types";
 import { HOME_MAX_SHOWN_DEMARCHES, HOME_MAX_SHOWN_DISPOSITIFS } from "components/Pages/recherche/HomeSearch/HomeSearch";
 import { MAX_SHOWN_DEMARCHES, MAX_SHOWN_DISPOSITIFS } from "components/Pages/recherche/SearchResults/SearchResults";
 import { Results } from "services/SearchResults/searchResults.reducer";
-import { SearchDispositif } from "types/interface";
 
-const getSearchDispositifs = (dispositifs: SearchDispositif[], max: number): SearchDispositif[] => {
+const getSearchDispositifs = (dispositifs: GetDispositifsResponse[], max: number): GetDispositifsResponse[] => {
   //@ts-ignore - see comment below
   return [
     ...dispositifs.slice(0, max),

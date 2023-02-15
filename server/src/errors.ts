@@ -13,9 +13,9 @@ export class MustBePopulatedError extends Error {
   }
 }
 
-export class AuthenticationError extends Error {}
+export class AuthenticationError extends Error { }
 
-export class NotFoundError extends Error {}
+export class NotFoundError extends Error { }
 
 export class InvalidRequestError extends Error {
   code: string | undefined;
@@ -36,7 +36,7 @@ export class InvalidRequestError extends Error {
  */
 export const serverErrorHandler = (err: unknown, req: Request, res: Response, next: NextFunction): Response | void => {
   // eslint-disable-next-line no-console
-  console.error("serverErrorHandler", err);
+  console.error("[serverErrorHandler] Path:", req.path, "Error:", err);
   if (err instanceof ValidateError) {
     return res.status(422).json({
       message: "Validation Failed",

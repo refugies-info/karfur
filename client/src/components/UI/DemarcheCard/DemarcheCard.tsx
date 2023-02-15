@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
-import { SearchDispositif } from "types/interface";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getTheme, getThemes } from "lib/getTheme";
 import { cls } from "lib/classname";
@@ -15,6 +14,7 @@ import FavoriteButton from "components/UI/FavoriteButton";
 import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DemarcheCard.module.scss";
+import { GetDispositifsResponse } from "api-types";
 
 const ONE_DAY_MS = 86400000;
 
@@ -31,7 +31,7 @@ const DemarcheLink = styled.a<DemarcheLinkProps>`
 `;
 
 interface Props {
-  demarche: SearchDispositif;
+  demarche: GetDispositifsResponse;
   targetBlank?: boolean;
 }
 
@@ -81,7 +81,7 @@ const DemarcheCard = (props: Props) => {
         <h3
           className={styles.title}
           style={{ color: colors.color100 }}
-          dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif }}
+          dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif || "" }}
         />
         <div className={styles.themes}>
           {demarcheThemes.map((theme, i) => (

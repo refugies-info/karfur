@@ -1,6 +1,6 @@
 import { SortOptions } from "data/searchFilters";
-import { SearchDispositif } from "types/interface";
 import get from "lodash/get";
+import { GetDispositifsResponse } from "api-types";
 
 const sortOptionsValues = {
   "date": "publishedAt",
@@ -8,7 +8,7 @@ const sortOptionsValues = {
   "theme": "theme"
 }
 
-export const sortDispositifs = (dispA: SearchDispositif, dispB: SearchDispositif, sortOption: SortOptions, hasSearch: boolean) => {
+export const sortDispositifs = (dispA: GetDispositifsResponse, dispB: GetDispositifsResponse, sortOption: SortOptions, hasSearch: boolean) => {
   if (hasSearch) return 0; // if algolia search, do not sort and use algolia order
   const sortKey = sortOptionsValues[sortOption];
   const valA = get(dispA, sortKey);

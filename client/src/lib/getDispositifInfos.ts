@@ -1,4 +1,4 @@
-import { SearchDispositif } from "types/interface";
+import { GetDispositifsResponse } from "api-types";
 
 type InfoType = "duration" | "location" | "price";
 
@@ -15,9 +15,6 @@ const getItemTitle = (info: InfoType) => {
   }
 }
 
-export const getDispositifInfos = (dispositif: SearchDispositif, info: InfoType) => {
-  const itemTitle = getItemTitle(info);
-  return (dispositif.contenu[1].children || []).find(
-    (infocard) => infocard.title === itemTitle
-  );
+export const getDispositifInfos = (dispositif: GetDispositifsResponse, info: InfoType) => {
+  return dispositif.metadatas[info];
 }
