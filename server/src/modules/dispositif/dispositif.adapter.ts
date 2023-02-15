@@ -139,38 +139,6 @@ export const removeUselessContent = (dispositifArray: Dispositif[]): Partial<Dis
   //   return { ...dispositif, contenu: simplifiedContent, mainSponsor: simplifiedMainSponsor };
 };
 
-export const countDispositifMercis = (dispositifs: Partial<Dispositif>[]) =>
-  dispositifs.map((dispositif) => {
-    const nbMercis = (dispositif.merci || []).length;
-    delete dispositif.merci;
-
-    return {
-      ...dispositif,
-      nbMercis: nbMercis
-    };
-  });
-
-export const adaptDispositifMainSponsorAndCreatorId = (dispositifs: Dispositif[]) =>
-  dispositifs.map((dispositif) => ({
-    ...dispositif,
-    mainSponsor: dispositif.getMainSponsor()
-      ? {
-          _id: dispositif.getMainSponsor()._id,
-          nom: dispositif.getMainSponsor().nom,
-          status: dispositif.getMainSponsor().status,
-          picture: dispositif.getMainSponsor().picture
-        }
-      : "",
-    creatorId: dispositif.getCreator()
-      ? {
-          username: dispositif.getCreator().username,
-          picture: dispositif.getCreator().picture,
-          _id: dispositif.getCreator()._id,
-          email: dispositif.getCreator().email
-        }
-      : null
-  }));
-
 interface Result {
   _id: DispositifId;
   department: string;
