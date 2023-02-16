@@ -77,7 +77,6 @@ RegisterRoutes(app);
 
 const userController = require(__dirname + "/controllers/userController");
 const translateController = require(__dirname + "/controllers/translateController");
-const languesController = require(__dirname + "/controllers/languesController");
 const traductionController = require(__dirname + "/controllers/traductionController");
 const dispositifController = require(__dirname + "/controllers/dispositifController");
 const structureController = require(__dirname + "/controllers/structureController");
@@ -85,7 +84,6 @@ const structureController = require(__dirname + "/controllers/structureControlle
 app.enable("strict routing");
 app.use("/user", userController.router);
 app.use("/translate", translateController);
-app.use("/langues", languesController);
 app.use("/traduction", traductionController.router);
 app.use("/dispositifs", dispositifController.router);
 app.use("/structures", structureController.router);

@@ -30,10 +30,10 @@ export class Langue extends Base {
   public i18nCode!: string;
 
   @prop({ default: 0 })
-  public avancement: Number;
+  public avancement: number;
 
   @prop({ default: 0 })
-  public avancementTrad: Number;
+  public avancementTrad: number;
 
   // FIXME dépendance circulaire
   // Utiliser => https://typegoose.github.io/typegoose/docs/api/virtuals/#why-is-my-virtual-not-included-in-the-output ?

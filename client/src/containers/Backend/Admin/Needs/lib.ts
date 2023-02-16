@@ -1,8 +1,8 @@
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";
-import { Language, SimplifiedDispositif } from "types/interface";
-import { Id } from "api-types";
+import { SimplifiedDispositif } from "types/interface";
+import { GetLanguagesResponse, Id } from "api-types";
 
 // TODO: move function
 export const prepareDeleteContrib = (
@@ -53,7 +53,7 @@ export const prepareDeleteContrib = (
   });
 };
 
-export const isThemeTitleOk = (title: Record<string, string>, languages: Language[]) => {
+export const isThemeTitleOk = (title: Record<string, string>, languages: GetLanguagesResponse[]) => {
   const emptyLn = languages.filter(ln => !title[ln.i18nCode]);
   return emptyLn.length > 0;
 }

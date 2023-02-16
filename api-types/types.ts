@@ -17,6 +17,9 @@ import { GetUserContributionsResponse } from "../server/src/workflows/dispositif
 // images
 import { PostImageResponse } from "../server/src/workflows/images/postImages";
 
+// langues
+import { GetLanguagesResponse } from "../server/src/workflows/langues/getLanguages";
+
 // logs
 import { GetLogResponse } from "../server/src/workflows/log/getLogs";
 
@@ -94,6 +97,9 @@ export type {
 
   // images
   PostImageResponse,
+
+  // langues
+  GetLanguagesResponse,
 
   // logs
   GetLogResponse,

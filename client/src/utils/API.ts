@@ -55,7 +55,8 @@ import {
   UserFavoritesRequest,
   GetStructureResponse,
   GetStructureStatisticsResponse,
-  GetStructureStatisticsRequest
+  GetStructureStatisticsRequest,
+  GetLanguagesResponse
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -450,12 +451,10 @@ const API = {
     return instance.get("/traduction/statistics", { params: { facets } });
   },
 
-  // Langues
-  get_langues: (query: any, sort: string, populate: string) => {
-    const headers = getHeaders();
-    return instance.post("/langues/get_langues", { query: query, sort: sort, populate: populate }, { headers });
+  // langues
+  getLanguages: (): Promise<APIResponse<GetLanguagesResponse>> => {
+    return instance.get("/langues")
   },
-  getLanguages: () => instance.get("/langues/getLanguages"),
 
   // Misc
   postImage: (query: any): Promise<APIResponse<PostImageResponse>> => {

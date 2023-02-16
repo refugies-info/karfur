@@ -1,26 +1,29 @@
-import { Res } from "../../../types/interface";
+import { Id, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
+import pick from "lodash/pick";
 
-export const getLanguages = async (req: {}, res: Res) => {
-  try {
-    logger.info("[getLanguages] received");
-    const activeLanguages = await getActiveLanguagesFromDB();
-    const result = activeLanguages.map((langue) => {
-      if (langue.avancementTrad && langue.avancementTrad > 1) {
-        langue.avancementTrad = 1;
-        return langue;
-      }
+export interface GetLanguagesResponse {
+  _id: Id,
+  langueFr: string;
+  langueLoc?: string;
+  langueCode?: string;
+  i18nCode: string;
+  avancement: number;
+  avancementTrad: number;
+}
 
-      return langue;
-    });
+export const getLanguages = async (): ResponseWithData<GetLanguagesResponse[]> => {
+  logger.info("[getLanguages] received");
+  const activeLanguages = await getActiveLanguagesFromDB();
 
-    return res.status(200).json({
-      text: "Succès",
-      data: result,
-    });
-  } catch (error) {
-    logger.error("[getLanguages] error", { error: error.message });
-    return res.status(500).json({ text: "Erreur interne" });
+  const result: GetLanguagesResponse[] = activeLanguages.map(ln => ({
+    ...pick(ln, ["_id", "langueFr", "langueLoc", "langueCode", "i18nCode", "avancement"]),
+    avancementTrad: ln.avancementTrad > 1 ? 1 : ln.avancementTrad
+  }))
+
+  return {
+    text: "success",
+    data: result,
   }
 };

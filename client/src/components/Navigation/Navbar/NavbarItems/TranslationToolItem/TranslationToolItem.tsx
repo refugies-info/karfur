@@ -5,13 +5,12 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { getPath, PathNames } from "routes";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
-import { Language } from "types/interface";
 
 const TranslationToolItem = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const currentLanguage = activatedLanguages.find((ln: Language) => ln.i18nCode === router.locale) || null;
+  const currentLanguage = activatedLanguages.find((ln) => ln.i18nCode === router.locale) || null;
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
