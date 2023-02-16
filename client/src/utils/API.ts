@@ -48,7 +48,13 @@ import {
   GetDispositifsRequest,
   GetDispositifsResponse,
   GetAllStructuresResponse,
-  GetAllDispositifsResponse
+  GetAllDispositifsResponse,
+  CountDispositifsRequest,
+  GetCountDispositifsResponse,
+  AdminCommentsRequest,
+  GetUserContributionsResponse,
+  GetUserFavoritesResponse,
+  UserFavoritesRequest
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -169,15 +175,13 @@ const API = {
     const headers = getHeaders();
     return instance.delete(`/user/${query}`, { headers });
   },
-  getUserFavoritesInLocale: (locale: string) => {
+  getUserFavorites: (query: UserFavoritesRequest): Promise<APIResponse<GetUserFavoritesResponse>> => {
     const headers = getHeaders();
-    return instance.get(`/user/getUserFavoritesInLocale?locale=${locale}`, {
-      headers
-    });
+    return instance.get(`/user/favorites?locale=${query.locale}`, { headers });
   },
-  getUserContributions: () => {
+  getUserContributions: (): Promise<APIResponse<GetUserContributionsResponse>> => {
     const headers = getHeaders();
-    return instance.get("/dispositifs/getUserContributions", { headers });
+    return instance.get("/dispositifs/user-contributions", { headers });
   },
   updateUserFavorites: (query: { dispositifId: ObjectId | null; type: string }) => {
     const headers = getHeaders();
@@ -214,11 +218,9 @@ const API = {
     const headers = getHeaders();
     return instance.get(`/dispositifs/${id}?locale=${locale}`, { headers });
   },
-  count_dispositifs: (query: any): Promise<AxiosResponse<number>> => {
+  countDispositifs: (query: CountDispositifsRequest): Promise<APIResponse<GetCountDispositifsResponse>> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/count_dispositifs", query, {
-      headers
-    });
+    return instance.get("/dispositifs/count", { params: query, headers });
   },
   updateDispositifReactions: (query: any) => {
     const headers = getHeaders();
@@ -244,11 +246,9 @@ const API = {
       headers
     });
   },
-  updateDispositifAdminComments: (query: any) => {
+  updateDispositifAdminComments: (id: string, body: AdminCommentsRequest) => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/updateDispositifAdminComments", query, {
-      headers
-    });
+    return instance.patch(`/dispositifs/${id}/admin-comments`, body, { headers });
   },
   getDispositifsWithTranslationAvancement: (locale: string) => {
     const headers = getHeaders();

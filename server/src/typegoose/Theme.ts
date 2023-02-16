@@ -25,7 +25,7 @@ export class Theme extends Base {
   @prop()
   public short: Record<string, string>;
 
-  @prop()
+  @prop({ _id: false })
   public colors: ThemeColors;
 
   @prop({
@@ -34,19 +34,19 @@ export class Theme extends Base {
   })
   public position!: number;
 
-  @prop()
+  @prop({ _id: false })
   public icon?: ImageSchema;
 
-  @prop()
+  @prop({ _id: false })
   public banner?: ImageSchema;
 
-  @prop()
+  @prop({ _id: false })
   public appBanner?: ImageSchema;
 
-  @prop()
+  @prop({ _id: false })
   public appImage?: ImageSchema;
 
-  @prop()
+  @prop({ _id: false })
   public shareImage?: ImageSchema;
 
   @prop()

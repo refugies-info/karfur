@@ -6,11 +6,13 @@ import { GetAdminOptionResponse } from "../server/src/workflows/adminOption/getA
 import { PostAdminOptionResponse } from "../server/src/workflows/adminOption/postAdminOptions";
 
 // dispositifs
-import { GetDispositifsRequest, GetStatisticsRequest } from "../server/src/controllers/dispositifController";
+import { GetDispositifsRequest, GetStatisticsRequest, CountDispositifsRequest, AdminCommentsRequest } from "../server/src/controllers/dispositifController";
 import { GetDispositifResponse, InfoSections } from "../server/src/workflows/dispositif/getContentById";
 import { GetDispositifsResponse } from "../server/src/workflows/dispositif/getDispositifs";
 import { GetStatisticsResponse } from "../server/src/workflows/dispositif/getStatistics";
 import { GetAllDispositifsResponse } from "../server/src/workflows/dispositif/getAllDispositifs";
+import { GetCountDispositifsResponse } from "../server/src/workflows/dispositif/getCountDispositifs";
+import { GetUserContributionsResponse } from "../server/src/workflows/dispositif/getUserContributions";
 
 // images
 import { PostImageResponse } from "../server/src/workflows/images/postImages";
@@ -55,7 +57,8 @@ import { PatchThemeResponse } from "../server/src/workflows/themes/patchTheme";
 import { TtsRequest } from "../server/src/controllers/ttsController";
 
 // user
-import { GetUserInfoResponse } from "../server/src/controllers/userController";
+import { GetUserInfoResponse, UserFavoritesRequest } from "../server/src/controllers/userController";
+import { GetUserFavoritesResponse } from "../server/src/workflows/users/getUserFavoritesInLocale";
 
 // widgets
 import { WidgetRequest } from "../server/src/controllers/widgetController";
@@ -81,6 +84,10 @@ export type {
   GetDispositifsResponse,
   GetStatisticsResponse,
   GetAllDispositifsResponse,
+  CountDispositifsRequest,
+  GetCountDispositifsResponse,
+  AdminCommentsRequest,
+  GetUserContributionsResponse,
 
   // images
   PostImageResponse,
@@ -121,6 +128,8 @@ export type {
 
   // user
   GetUserInfoResponse,
+  UserFavoritesRequest,
+  GetUserFavoritesResponse,
 
   // widgets
   WidgetRequest,

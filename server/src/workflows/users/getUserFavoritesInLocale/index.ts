@@ -1,1 +1,1 @@
-export { getUserFavoritesInLocale } from "./getUserFavoritesInLocale";
+export * from "./getUserFavoritesInLocale";

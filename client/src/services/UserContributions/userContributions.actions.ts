@@ -5,13 +5,13 @@ import {
   DELETE_DISPOSITIF,
 } from "./userContributions.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { IUserContribution } from "../../types/interface";
 import { ObjectId } from "mongodb";
+import { GetUserContributionsResponse } from "api-types";
 
 export const fetchUserContributionsActionCreator = () =>
   action(FETCH_USER_CONTRIBUTIONS);
 
-export const setUserContributionsActionCreator = (value: IUserContribution[]) =>
+export const setUserContributionsActionCreator = (value: GetUserContributionsResponse[]) =>
   action(SET_USER_CONTRIBUTIONS, value);
 
 export const updateUserContributionsActionCreator = (value: {
