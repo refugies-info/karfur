@@ -28,7 +28,7 @@ import { LogList } from "../../Logs/LogList";
 import styles from "./ContentDetailsModal.module.scss";
 import { StatusRow } from "../../sharedComponents/StatusRow";
 import { NotesInput } from "../../sharedComponents/NotesInput";
-import { GetLogResponse, Id } from "api-types";
+import { AdminCommentsRequest, GetLogResponse, Id } from "api-types";
 
 interface Props {
   show: boolean;
@@ -100,29 +100,20 @@ export const ContentDetailsModal = (props: Props) => {
         return;
       }
 
-      const queryDispositif = {
-        query: {
-          dispositifId: dispositif._id,
-          [property]: newStatus
-        }
-      };
-
       if (property === "status") {
-        await API.updateDispositifStatus(queryDispositif);
+        await API.updateDispositifStatus({ dispositifId: dispositif._id, status: newStatus });
       } else {
-        await API.updateDispositifAdminComments(queryDispositif);
+        const body: AdminCommentsRequest = {
+          [property]: newStatus
+        };
+        await API.updateDispositifAdminComments(dispositif._id.toString(), body);
       }
       updateDispositifsStore(dispositif._id, { [property]: newStatus });
     }
   };
   const saveAdminComments = async () => {
     if (!dispositif) return;
-    await API.updateDispositifAdminComments({
-      query: {
-        dispositifId: dispositif._id,
-        adminComments
-      }
-    });
+    await API.updateDispositifAdminComments(dispositif._id.toString(), { adminComments });
     setAdminCommentsSaved(true);
     updateDispositifsStore(dispositif._id, { adminComments: adminComments });
   };

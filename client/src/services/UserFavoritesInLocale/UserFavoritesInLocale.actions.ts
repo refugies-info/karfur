@@ -5,13 +5,13 @@ import {
   TOGGLE_USER_FAVORITES_MODAL,
 } from "./UserFavoritesInLocale.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { SearchDispositif } from "../../types/interface";
 import { ObjectId } from "mongodb";
+import { GetUserFavoritesResponse } from "api-types";
 
 export const fetchUserFavoritesActionCreator = (value: string) =>
   action(FETCH_USER_FAVORITES, value);
 
-export const setUserFavoritesActionCreator = (value: SearchDispositif[]) =>
+export const setUserFavoritesActionCreator = (value: GetUserFavoritesResponse[]) =>
   action(SET_USER_FAVORITES, value);
 
 export const updateUserFavoritesActionCreator = (value: {

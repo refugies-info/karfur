@@ -112,9 +112,4 @@ async function get_dispositif(req: Request, res: Res) {
   }
 }
 
-const count_dispositifs = (req: Request, res: Res) =>
-  DispositifModel.count(req.body)
-    .then((count) => res.status(200).json(count))
-    .catch(() => res.status(404).json({ text: "Pas de résultat" }));
-
-export { add_dispositif_infocards, count_dispositifs, get_dispositif };
+export { add_dispositif_infocards, get_dispositif };

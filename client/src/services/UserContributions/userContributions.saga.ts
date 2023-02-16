@@ -16,12 +16,14 @@ import {
   deleteDispositifActionCreator,
   fetchUserContributionsActionCreator,
 } from "./userContributions.actions";
+import { APIResponse } from "types/interface";
+import { GetUserContributionsResponse } from "api-types";
 
 export function* fetchUserContributions(): SagaIterator {
   try {
     logger.info("[fetchUserContributions] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
-    const data = yield call(API.getUserContributions);
+    const data: APIResponse<GetUserContributionsResponse[]> = yield call(API.getUserContributions);
     yield put(setUserContributionsActionCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
   } catch (error) {

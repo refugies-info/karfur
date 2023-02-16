@@ -5,7 +5,10 @@ import {
   Path,
   Query,
   Security,
-  Queries
+  Queries,
+  Patch,
+  Body,
+  Request
 } from "tsoa";
 
 import express from "express";
@@ -30,8 +33,10 @@ import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispo
 import { getContentById, GetDispositifResponse } from "../workflows/dispositif/getContentById";
 import { getStatistics, GetStatisticsResponse } from "../workflows/dispositif/getStatistics";
 import updateDispositif from "../workflows/dispositif/updateDispositif";
-import { ResponseWithData } from "../types/interface";
+import { Response, ResponseWithData } from "../types/interface";
 import { Languages } from "../typegoose";
+import { getCountDispositifs, GetCountDispositifsResponse } from "../workflows/dispositif/getCountDispositifs";
+import { GetUserContributionsResponse } from "../workflows/dispositif/getUserContributions/getUserContributions";
 
 const router = express.Router();
 
@@ -40,13 +45,11 @@ const router = express.Router();
 // @ts-ignore FIXME
 router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif);
 router.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);
-router.post("/count_dispositifs", dispositif.count_dispositifs);
 // @ts-ignore FIXME
 router.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus);
 // @ts-ignore FIXME
 router.post("/modifyDispositifMainSponsor", checkToken.check, modifyDispositifMainSponsor);
 // @ts-ignore FIXME
-router.post("/updateDispositifAdminComments", checkToken.check, updateDispositifAdminComments);
 router.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
 router.post("/updateNbVuesOrFavoritesOnContent", updateNbVuesOrFavoritesOnContent);
 // @ts-ignore FIXME
@@ -67,6 +70,12 @@ export { router };
 
 type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
 
+export interface CountDispositifsRequest {
+  type: "dispositif" | "demarche"; // TODO: type
+  publishedOnly: boolean
+  themeId?: string;
+}
+
 export interface GetDispositifsRequest {
   type?: "dispositif" | "demarche"; // TODO: type
   locale: string
@@ -75,6 +84,12 @@ export interface GetDispositifsRequest {
 }
 export interface GetStatisticsRequest {
   facets?: Facets[]
+}
+
+export interface AdminCommentsRequest {
+  adminComments?: string;
+  adminProgressionStatus?: string;
+  adminPercentageProgressionStatus?: string;
 }
 
 @Route("dispositifs")
@@ -99,6 +114,40 @@ export class DispositifController extends Controller {
     @Queries() query: GetStatisticsRequest
   ): ResponseWithData<GetStatisticsResponse> {
     return getStatistics(query);
+  }
+
+  @Security({
+    jwt: ["admin"],
+  })
+  @Get("/count")
+  public async getCount(
+    @Queries() query: CountDispositifsRequest
+  ): ResponseWithData<GetCountDispositifsResponse> {
+    return getCountDispositifs(query);
+  }
+
+  @Security({
+    fromSite: [],
+    jwt: [],
+  })
+  @Get("/user-contributions")
+  public async getUserContributions(
+    @Request() request: express.Request
+  ): ResponseWithData<GetUserContributionsResponse[]> {
+    return getUserContributions(request.userId);
+  }
+
+  @Security({
+    fromSite: [],
+    jwt: ["admin"],
+  })
+  @Patch("/{id}/admin-comments")
+  public async updateAdminComments(
+    @Path() id: string,
+    @Body() body: AdminCommentsRequest,
+    @Request() request: express.Request
+  ): Response {
+    return updateDispositifAdminComments(id, body, request.userId);
   }
 
   // keep in last position to make sure /xyz routes are catched before

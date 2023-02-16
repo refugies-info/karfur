@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import { Moment } from "moment";
 import { AxiosResponse } from "axios";
-import { Id } from "api-types";
+import { GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
 
 export type APIResponse<T = {}> = AxiosResponse<{
   text: "success" | "error",
@@ -266,7 +266,7 @@ export interface Structure {
   created_at: Moment;
   createur: ObjectId;
   // eslint-disable-next-line no-use-before-define
-  dispositifsAssocies: ObjectId[] | SearchDispositif[];
+  dispositifsAssocies: ObjectId[] | GetDispositifsResponse[];
   link: string;
   mail_contact: string;
   mail_generique: string;

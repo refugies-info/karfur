@@ -1,9 +1,10 @@
+import { GetUserContributionsResponse } from "api-types";
 import { ObjectId } from "mongodb";
-import { IUserContribution, SearchDispositif, UserStructure } from "../../../types/interface";
+import { SearchDispositif, UserStructure } from "../../../types/interface";
 import { FormattedUserContribution } from "./types";
 
 export const formatContributions = (
-  userContributions: IUserContribution[],
+  userContributions: GetUserContributionsResponse[],
   userStructureContributions: SearchDispositif[],
   userStructure: UserStructure | null,
   userId: ObjectId | undefined
@@ -17,7 +18,7 @@ export const formatContributions = (
       "En attente",
       "Rejeté structure",
       "En attente non prioritaire",
-    ].includes(dispositif.status) ? "Moi" : dispositif.mainSponsor;
+    ].includes(dispositif.status) ? "Moi" : dispositif.mainSponsor.nom;
     return formattedContribs.push({
       ...dispositif,
       responsabilite,

@@ -1,5 +1,5 @@
 import express from "express";
-import { Controller, Request, Get, Post, Body, Route, Security } from "tsoa";
+import { Controller, Request, Get, Post, Body, Route, Security, Queries } from "tsoa";
 import { pick } from "lodash";
 
 const account = require("./account/lib");
@@ -11,7 +11,7 @@ import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
 import changePassword from "../workflows/users/changePassword";
 import { setNewPassword } from "../workflows/users/setNewPassword";
-import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
+import { getUserFavoritesInLocale, GetUserFavoritesResponse } from "../workflows/users/getUserFavoritesInLocale";
 import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
 import deleteUser from "../workflows/users/deleteUser/deleteUser";
 import { LangueId } from "../typegoose";
@@ -35,7 +35,6 @@ router.get("/getFiguresOnUsers", getFiguresOnUsers);
 router.get("/getAllUsers", checkToken.check, getAllUsers);
 router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
 router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
-router.get("/getUserFavoritesInLocale", checkToken.check, getUserFavoritesInLocale);
 router.post("/updateUserFavorites", checkToken.check, updateUserFavorites);
 // @ts-ignore FIXME
 router.delete("/:id", checkToken.check, checkToken.getRoles, deleteUser);
@@ -65,8 +64,21 @@ export interface GetUserInfoResponse {
   username: string;
 }
 
+export interface UserFavoritesRequest {
+  locale: string
+}
+
 @Route("user")
 export class UserController extends Controller {
+  @Security("jwt")
+  @Get("/favorites")
+  public async getUserFavorites(
+    @Request() request: IRequest,
+    @Queries() query: UserFavoritesRequest
+  ): ResponseWithData<GetUserFavoritesResponse[]> {
+    return getUserFavoritesInLocale(request.user, query)
+  }
+
   @Post("/selected_languages")
   @Security("jwt")
   public async selectedLanguages(@Request() request: IRequest, @Body() body: SelectedLanguagesRequest) {
