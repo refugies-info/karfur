@@ -75,6 +75,12 @@ export interface AudienceAge {
   topValue: number | string;
 }
 
+export interface Picture {
+  imgId: string | null;
+  public_id: string | null;
+  secure_url: string | null;
+}
+
 export interface Metadatas {
   location?: string[];
   frenchLevel?: frenchLevel[];
@@ -92,6 +98,28 @@ export interface Metadatas {
   titreSejourRequired?: boolean;
   acteNaissanceRequired?: boolean;
   justificatif?: justificatifType;
+}
+
+export interface SimpleDispositif {
+  _id: Id;
+  titreInformatif?: string;
+  titreMarque?: string;
+  abstract?: string;
+  typeContenu: string;
+  status: string;
+  theme?: Id;
+  secondaryThemes?: Id[];
+  needs: Id[];
+  metadatas: Metadatas;
+  created_at?: Date;
+  publishedAt?: Date;
+  lastModificationDate?: Date;
+  nbMots: number;
+  nbVues: number;
+  mainSponsor?: {
+    nom: string;
+    picture: Picture
+  }
 }
 
 export interface DispositifContent {
@@ -119,12 +147,6 @@ export interface DispositifContent {
   contentBody?: string;
   ageTitle?: string;
   noContent?: boolean;
-}
-
-export interface Picture {
-  imgId: string | null;
-  public_id: string | null;
-  secure_url: string | null;
 }
 
 // Themes

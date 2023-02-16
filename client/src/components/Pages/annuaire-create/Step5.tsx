@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { Input } from "reactstrap";
 import { Structure } from "types/interface";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { GetStructureResponse } from "api-types";
 
 interface Props {
-  structure: Structure | null;
+  structure: GetStructureResponse | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }
@@ -61,16 +62,13 @@ const Title = styled.div`
 const RemainingCaracters = styled.div`
   margin-top: 8px;
   align-self: flex-end;
-  color: ${(props: {caractersRemaining: boolean}) => (props.caractersRemaining ? "#4CAF50" : "red")};
+  color: ${(props: { caractersRemaining: boolean }) => (props.caractersRemaining ? "#4CAF50" : "red")};
 `;
 
 const NB_CARACTERS_MAX = 1000;
 export const Step5 = (props: Props) => {
   const [showHelp, setShowHelp] = useState(true);
-  const nbCaracters =
-    props.structure && props.structure.description
-      ? props.structure.description.length
-      : 0;
+  const nbCaracters = props.structure && props.structure.description ? props.structure.description.length : 0;
 
   const nbCaractersRemaining = NB_CARACTERS_MAX - nbCaracters;
 
@@ -80,7 +78,7 @@ export const Step5 = (props: Props) => {
       props.setHasModifications(true);
       return props.setStructure({
         ...props.structure,
-        [e.target.id]: e.target.value,
+        [e.target.id]: e.target.value
       });
     }
   };
@@ -93,8 +91,7 @@ export const Step5 = (props: Props) => {
           </IconContainer>
           <HelpHeader>Comment ça marche ?</HelpHeader>
           <HelpDescription>
-            Rédigez un court paragraphe pour décrire votre structure : missions,
-            valeurs, services, etc.
+            Rédigez un court paragraphe pour décrire votre structure : missions, valeurs, services, etc.
           </HelpDescription>
         </HelpContainer>
       ) : (

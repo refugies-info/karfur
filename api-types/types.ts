@@ -46,6 +46,7 @@ import {
 
 // structures
 import { GetAllStructuresResponse } from "../server/src/workflows/structure/getAllStructures";
+import { GetStructureResponse } from "../server/src/workflows/structure/getStructureById";
 
 // themes
 import { ThemeRequest } from "../server/src/controllers/themeController";
@@ -116,6 +117,7 @@ export type {
 
   // structures
   GetAllStructuresResponse,
+  GetStructureResponse,
 
   // themes
   ThemeRequest,

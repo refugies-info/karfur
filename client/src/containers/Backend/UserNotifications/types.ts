@@ -1,15 +1,14 @@
-import { Moment } from "moment";
-import { ObjectId } from "mongodb";
+import { Id } from "api-types";
 
 export interface FormattedNotification {
   type: "reaction" | "annuaire" | "new content";
   read: boolean;
   link?: string;
   username?: string;
-  createdAt?: Moment;
+  createdAt?: Date;
   suggestionId?: string;
   text?: string;
   title?: string;
-  dispositifId?: ObjectId;
+  dispositifId?: Id;
   typeContenu?: "dispositif" | "demarche";
 }

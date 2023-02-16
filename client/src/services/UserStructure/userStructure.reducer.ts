@@ -1,8 +1,8 @@
 import { createReducer } from "typesafe-actions";
 import { UserStructureActions } from "./userStructure.actions";
-import { UserStructure } from "../../types/interface";
+import { GetStructureResponse } from "api-types";
 
-export type UserStructureState = UserStructure | null;
+export type UserStructureState = GetStructureResponse | null;
 
 const initialUserStructureState: UserStructureState = null;
 

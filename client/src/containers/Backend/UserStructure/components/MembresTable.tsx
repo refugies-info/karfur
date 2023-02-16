@@ -7,9 +7,9 @@ import marioProfile from "assets/mario-profile.jpg";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 // import "./MembresTable.scss";
-import { ObjectId } from "mongodb";
 import moment from "moment";
 import "moment/locale/fr";
+import { GetStructureResponse, Id } from "api-types";
 
 moment.locale("fr");
 const RowContainer = styled.div`
@@ -41,12 +41,12 @@ const DateContainer = styled.div`
   max-width: 190px;
 `;
 interface Props {
-  membres: UserStructureMembre[];
-  userId: ObjectId;
+  membres: GetStructureResponse["membres"];
+  userId: Id;
   isUserAuthorizedToAddMembers: boolean;
   toggleEditMemberModal: () => void;
   setSelectedUser: (user: null | UserStructureMembre) => void;
-  deleteUserFromStructure: (arg: ObjectId) => void;
+  deleteUserFromStructure: (arg: Id) => void;
 }
 
 const headers = ["Nom", "Role", "Dernière connexion", "Ajouté le"];

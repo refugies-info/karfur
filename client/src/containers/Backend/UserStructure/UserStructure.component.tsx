@@ -15,6 +15,7 @@ import { colors } from "colors";
 import { userSelector } from "services/User/user.selectors";
 import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
+import { Id } from "api-types";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;
@@ -65,7 +66,7 @@ export const UserStructureComponent = (props: Props) => {
 
   const membres = useSelector(userStructureMembresSelector);
 
-  const addUserInStructure = (userId: ObjectId) => {
+  const addUserInStructure = (userId: Id) => {
     if (!userStructure) return;
     dispatch(
       updateUserStructureActionCreator({
@@ -75,7 +76,7 @@ export const UserStructureComponent = (props: Props) => {
     );
   };
 
-  const modifyRole = (userId: ObjectId, role: "contributeur" | "administrateur") => {
+  const modifyRole = (userId: Id, role: "contributeur" | "administrateur") => {
     if (!userStructure) return;
 
     dispatch(
@@ -91,7 +92,7 @@ export const UserStructureComponent = (props: Props) => {
     );
   };
 
-  const deleteUserFromStructure = (userId: ObjectId) => {
+  const deleteUserFromStructure = (userId: Id) => {
     if (!userStructure) return;
 
     Swal.fire({
@@ -140,17 +141,17 @@ export const UserStructureComponent = (props: Props) => {
     );
 
   const membresToDisplay = membres.sort((a, b) => {
-    if (a._id === user.userId) return -1;
-    if (b._id === user.userId) return 1;
+    if (a.userId === user.userId) return -1;
+    if (b.userId === user.userId) return 1;
     return -1;
   });
 
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
       <UserStructureDetails
-        picture={userStructure.picture}
+        picture={userStructure.picture || null}
         name={userStructure.nom}
-        acronyme={userStructure.acronyme}
+        acronyme={userStructure.acronyme || ""}
         membres={membresToDisplay}
         // @ts-ignore
         userId={user.userId}

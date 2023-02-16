@@ -54,7 +54,8 @@ import {
   AdminCommentsRequest,
   GetUserContributionsResponse,
   GetUserFavoritesResponse,
-  UserFavoritesRequest
+  UserFavoritesRequest,
+  GetStructureResponse
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -317,22 +318,9 @@ const API = {
       headers
     });
   },
-  getStructureById: (
-    id: string,
-    withDisposAssocies: boolean,
-    localeOfLocalizedDispositifsAssocies: string,
-    withMembres: boolean
-  ) => {
+  getStructureById: (id: string, locale: string): Promise<APIResponse<GetStructureResponse>> => {
     const headers = getHeaders();
-    return instance.get("/structures/getStructureById", {
-      params: {
-        id,
-        withDisposAssocies,
-        localeOfLocalizedDispositifsAssocies,
-        withMembres
-      },
-      headers
-    });
+    return instance.get(`/structures/${id}?locale=${locale}`, { headers });
   },
   getActiveStructures: () => {
     return instance.get("/structures/getActiveStructures");
