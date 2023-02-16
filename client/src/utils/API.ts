@@ -8,8 +8,6 @@ import {
   APIResponse,
   IDispositif,
   NbDispositifsByRegion,
-  StructureFacets,
-  StructuresStatistics,
   TranslationFacets,
   TranslationStatistics,
   User,
@@ -55,7 +53,9 @@ import {
   GetUserContributionsResponse,
   GetUserFavoritesResponse,
   UserFavoritesRequest,
-  GetStructureResponse
+  GetStructureResponse,
+  GetStructureStatisticsResponse,
+  GetStructureStatisticsRequest
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -329,8 +329,8 @@ const API = {
     const headers = getHeaders();
     return instance.get("/structures/all", { headers })
   },
-  getStructuresStatistics: (facets?: StructureFacets[]): Promise<Response<StructuresStatistics>> => {
-    return instance.get("/structures/statistics", { params: { facets } });
+  getStructuresStatistics: (query: GetStructureStatisticsRequest): Promise<APIResponse<GetStructureStatisticsResponse>> => {
+    return instance.get("/structures/statistics", { params: query });
   },
 
   // Needs
