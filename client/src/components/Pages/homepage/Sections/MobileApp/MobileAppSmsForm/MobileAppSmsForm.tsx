@@ -4,19 +4,19 @@ import { useTranslation } from "next-i18next";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import { isValidPhone } from "lib/validateFields";
-import { Language } from "types/interface";
 import { languei18nSelector, allLanguesSelector } from "services/Langue/langue.selectors";
 import Input from "components/UI/Input";
 import FButton from "components/UI/FButton";
 import LanguageDropdown from "../LanguageDropdown";
 import styles from "./MobileAppSmsForm.module.scss";
+import { GetLanguagesResponse } from "api-types";
 
 const MobileAppSmsForm = () => {
   const { t } = useTranslation();
 
   const [phone, setPhone] = useState("");
   const [phoneError, setPhoneError] = useState("");
-  const [languageSelected, setLanguageSelected] = useState<Language | undefined>(undefined);
+  const [languageSelected, setLanguageSelected] = useState<GetLanguagesResponse | undefined>(undefined);
   const languages = useSelector(allLanguesSelector);
   const locale = useSelector(languei18nSelector);
   // auto select language
@@ -26,7 +26,7 @@ const MobileAppSmsForm = () => {
       if (currentLocale) setLanguageSelected(currentLocale);
     }
   }, [languages, locale]);
-  const onSelectItem = (language: Language) => setLanguageSelected(language);
+  const onSelectItem = (language: GetLanguagesResponse) => setLanguageSelected(language);
 
   const sendSMS = (e: any) => {
     setPhoneError("");

@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import { cls } from "lib/classname";
-import { Language } from "types/interface";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./LanguageDropdown.module.scss";
+import { GetLanguagesResponse } from "api-types";
 
 interface Props {
-  languageSelected: Language | undefined;
-  onSelectItem: (ln: Language) => void;
+  languageSelected: GetLanguagesResponse | undefined;
+  onSelectItem: (ln: GetLanguagesResponse) => void;
 }
 
 const LanguageDropdown = (props: Props) => {
@@ -19,7 +19,7 @@ const LanguageDropdown = (props: Props) => {
   const languages = useSelector(allLanguesSelector);
   const [open, setOpen] = useState(false);
 
-  const onClickItem = (language: Language) => {
+  const onClickItem = (language: GetLanguagesResponse) => {
     onSelectItem(language);
     setOpen(false);
   };

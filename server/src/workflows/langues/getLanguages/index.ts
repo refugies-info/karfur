@@ -1,1 +1,1 @@
-export { getLanguages } from "./getLanguages";
+export * from "./getLanguages";

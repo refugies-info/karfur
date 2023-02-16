@@ -71,13 +71,13 @@ export const UserStructureDetails = (props: Props) => {
     return placeholder;
   };
 
-  const userWithRole = props.membres.filter((membre) => membre._id === props.userId);
+  const userWithRole = props.membres.filter((membre) => membre.userId === props.userId);
 
   const isUserAuthorizedToAddMembers = checkIfUserIsAuthorizedToAddMembers(props.isAdmin, userWithRole);
 
   const formattedMembres = formatRoles(props.membres);
   const membres = formattedMembres.filter((membre) => membre.mainRole !== "Exclus");
-  const isMember = props.membres.find((el) => el._id === props.userId) ? true : false;
+  const isMember = props.membres.find((el) => el.userId === props.userId) ? true : false;
 
   return (
     <MainContainer className={styles.container}>

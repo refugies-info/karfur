@@ -6,7 +6,7 @@ import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { userSelector } from "services/User/user.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { Language, UserLanguage } from "types/interface";
+import { UserLanguage } from "types/interface";
 import { saveUserActionCreator } from "services/User/user.actions";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
@@ -15,6 +15,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import styles from "./TranslationLanguagesChoiceModal.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
+import { GetLanguagesResponse } from "api-types";
 
 const Header = styled.div`
   font-weight: bold;
@@ -77,7 +78,7 @@ interface Props extends RouteComponentProps {
   toggle: () => void;
 }
 
-const LangueItem = (props: { langue: Language; isSelected: boolean; onClick: () => void }) => (
+const LangueItem = (props: { langue: GetLanguagesResponse; isSelected: boolean; onClick: () => void }) => (
   <LangueItemContainer isSelected={props.isSelected} onClick={props.onClick}>
     <div
       style={{
@@ -142,7 +143,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
       </Modal>
     );
 
-  const handleCheck = (langue: Language) => {
+  const handleCheck = (langue: GetLanguagesResponse) => {
     const isLangueSelected = !!selectedLangues.find((selectedLangue) => selectedLangue._id === langue._id);
 
     if (isLangueSelected) {
@@ -151,12 +152,11 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
 
     if (!isLangueSelected) {
       const newSelectedLangue: UserLanguage = {
-        //@ts-ignore
-        _id: langue._id,
+        _id: langue._id.toString(),
         i18nCode: langue.i18nCode,
-        langueCode: langue.langueCode,
+        langueCode: langue.langueCode || "",
         langueFr: langue.langueFr,
-        langueLoc: langue.langueLoc
+        langueLoc: langue.langueLoc || ""
       };
       setSelectedLangues([...selectedLangues, newSelectedLangue]);
     }

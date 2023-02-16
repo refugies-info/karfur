@@ -3,13 +3,13 @@ import { useTranslation } from "next-i18next";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
 import { Event } from "lib/tracking";
-import { Language } from "types/interface";
 import styles from "./LanguagetoReadModal.module.scss";
+import { GetLanguagesResponse } from "api-types";
 
 interface Props {
   show: boolean;
   toggle: any;
-  languages: Language[];
+  languages: GetLanguagesResponse[];
   changeLanguage: any;
 }
 

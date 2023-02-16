@@ -149,15 +149,6 @@ export interface Role {
   nomPublique: string;
 }
 
-export interface Language {
-  langueFr: string;
-  langueLoc: string;
-  langueCode: string;
-  i18nCode: string;
-  _id?: ObjectId;
-  avancement: number;
-  avancementTrad?: number;
-}
 
 export interface UserLanguage {
   langueFr: string;

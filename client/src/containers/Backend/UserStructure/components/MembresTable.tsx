@@ -65,7 +65,7 @@ export const MembresTable = (props: Props) => (
         const secureUrl =
           element && element.picture && element.picture.secure_url ? element.picture.secure_url : marioProfile;
 
-        const isUser = props.userId.toString() === element._id.toString();
+        const isUser = props.userId.toString() === element.userId;
         return (
           <tr key={key} className="membres-table">
             <td className="align-middle">
@@ -81,9 +81,7 @@ export const MembresTable = (props: Props) => (
                 <UserName isUser={isUser}>{element.username}</UserName>
               </RowContainer>
             </td>
-            <td className="align-middle">
-              <RoleContainer isUser={isUser}>{element.mainRole}</RoleContainer>
-            </td>
+            <td className="align-middle">{/* <RoleContainer isUser={isUser}>{element.mainRole}</RoleContainer> */}</td>
 
             <td className="align-middle">
               <DateContainer isUser={isUser}>
@@ -103,16 +101,17 @@ export const MembresTable = (props: Props) => (
               <td className="align-middle">
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <EditButtonWithoutNavigation
-                    data-test-id={"test_see_" + element._id}
+                    data-test-id={"test_see_" + element.userId}
                     onClick={() => {
+                      //@ts-ignore FIXME comment on gère ça ?
                       props.setSelectedUser(element);
                       props.toggleEditMemberModal();
                     }}
                   />
                   <DeleteButton
-                    data-test-id={"test_delete_" + element._id}
+                    data-test-id={"test_delete_" + element.userId}
                     disabled={false}
-                    onClick={() => props.deleteUserFromStructure(element._id)}
+                    onClick={() => props.deleteUserFromStructure(element.userId)}
                   />
                 </div>
               </td>

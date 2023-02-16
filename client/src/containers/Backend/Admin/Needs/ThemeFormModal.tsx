@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Language, Picture } from "types/interface";
+import { Picture } from "types/interface";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,7 @@ import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toArray } from "lodash";
 // import { isThemeTitleOk } from "./lib";
 import { allThemesSelector } from "services/Themes/themes.selectors";
-import { GetThemeResponse, ThemeRequest } from "api-types";
+import { GetLanguagesResponse, GetThemeResponse, ThemeRequest } from "api-types";
 
 interface Props {
   show: boolean;
@@ -53,7 +53,7 @@ export const ThemeFormModal = (props: Props) => {
   const [shareImage, setShareImage] = useState<Picture | undefined>(props.selectedTheme?.shareImage || undefined);
   const [icon, setIcon] = useState<Picture | undefined>(props.selectedTheme?.icon || undefined);
 
-  const [selectedLanguageModal, setSelectedLanguageModal] = useState<Language | null>(null);
+  const [selectedLanguageModal, setSelectedLanguageModal] = useState<GetLanguagesResponse | null>(null);
 
   const needs = useSelector(needsSelector);
   const languages = useSelector(allLanguesSelector);
