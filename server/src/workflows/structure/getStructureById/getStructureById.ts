@@ -10,6 +10,20 @@ import map from "lodash/fp/map";
 import omit from "lodash/omit";
 import pick from "lodash/pick";
 
+interface DetailedOpeningHours {
+  day: string;
+  from0?: string;
+  to0?: string;
+  from1?: string;
+  to1?: string;
+}
+
+interface OpeningHours {
+  details: DetailedOpeningHours[];
+  noPublic: boolean;
+  precisions?: string;
+}
+
 interface Member {
   username: string;
   picture: Picture;
@@ -46,7 +60,7 @@ export interface GetStructureResponse {
   phonesPublic?: string[];
   mailsPublic?: string[];
   adressPublic?: string;
-  // openingHours?: OpeningHours;
+  openingHours?: OpeningHours;
   onlyWithRdv?: Boolean;
   description?: string;
   hasResponsibleSeenNotification?: Boolean;

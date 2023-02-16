@@ -22,14 +22,14 @@ import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { StructuresStatistics, TranslationStatistics } from "types/interface";
+import { TranslationStatistics } from "types/interface";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import commonStyles from "scss/components/staticPages.module.scss";
-import { GetDispositifsResponse, GetStatisticsResponse } from "api-types";
+import { GetDispositifsResponse, GetStatisticsResponse, GetStructureStatisticsResponse } from "api-types";
 
 interface Props {
   contentStatistics: GetStatisticsResponse;
-  structuresStatistics: StructuresStatistics;
+  structuresStatistics: GetStructureStatisticsResponse;
   translationStatistics: TranslationStatistics;
   demarches: GetDispositifsResponse[];
   dispositifs: GetDispositifsResponse[];
@@ -102,8 +102,9 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
       facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"]
     })
   ).data.data;
-  const structuresStatistics = (await API.getStructuresStatistics(["nbStructures", "nbCDA", "nbStructureAdmins"])).data
-    .data;
+  const structuresStatistics = (
+    await API.getStructuresStatistics({ facets: ["nbStructures", "nbCDA", "nbStructureAdmins"] })
+  ).data.data;
   const translationStatistics = (await API.getTranslationStatistics(["nbTranslators", "nbRedactors"])).data.data;
 
   const demarches = (

@@ -5,7 +5,8 @@ import {
   Request,
   Query,
   Security,
-  Path
+  Path,
+  Queries
 } from "tsoa";
 import express, { Request as ExRequest } from "express";
 const router = express.Router();
@@ -16,7 +17,7 @@ import { getActiveStructures, GetActiveStructuresResponse } from "../workflows/s
 import { createStructure } from "../workflows/structure/createStructure";
 import { updateStructure } from "../workflows/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
-import getStatistics from "../workflows/structure/getStatistics";
+import { getStatistics, GetStructureStatisticsResponse } from "../workflows/structure/getStatistics";
 import { ResponseWithData } from "../types/interface";
 
 /* TODO: use tsoa */
@@ -24,9 +25,13 @@ import { ResponseWithData } from "../types/interface";
 router.post("/createStructure", checkToken.check, createStructure);
 router.post("/updateStructure", checkToken.check, updateStructure);
 router.post("/modifyUserRoleInStructure", checkToken.check, modifyUserRoleInStructure);
-router.get("/statistics", getStatistics);
 
 export { router };
+
+type Facets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
+export interface GetStructureStatisticsRequest {
+  facets?: Facets[]
+}
 
 @Route("structures")
 export class StructureController extends Controller {
@@ -42,6 +47,13 @@ export class StructureController extends Controller {
   @Get("/getActiveStructures")
   public async getStructures(): ResponseWithData<GetActiveStructuresResponse> {
     return getActiveStructures();
+  }
+
+  @Get("/statistics")
+  public async getStructuresStatistics(
+    @Queries() query: GetStructureStatisticsRequest
+  ): ResponseWithData<GetStructureStatisticsResponse> {
+    return getStatistics(query);
   }
 
   @Security({

@@ -478,13 +478,6 @@ export interface NbDispositifsByRegion {
   dispositifsWithoutGeoloc: ObjectId[];
 }
 
-export type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
-export interface StructuresStatistics {
-  nbStructures?: number;
-  nbCDA?: number;
-  nbStructureAdmins?: number;
-}
-
 export type TranslationFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
 export interface TranslationStatistics {
   nbTranslators?: number;
