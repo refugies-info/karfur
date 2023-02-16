@@ -3,10 +3,10 @@ import {
   FETCH_SELECTED_STRUCTURE,
   UPDATE_SELECTED_STRUCTURE
 } from "./selectedStructure.actionTypes";
-import { Structure } from "../../types/interface";
 import { action, ActionType } from "typesafe-actions";
+import { GetStructureResponse } from "api-types";
 
-export const setSelectedStructureActionCreator = (value: Structure | null) =>
+export const setSelectedStructureActionCreator = (value: GetStructureResponse | null) =>
   action(SET_SELECTED_STRUCTURE, value);
 
 export const fetchSelectedStructureActionCreator = (value: {

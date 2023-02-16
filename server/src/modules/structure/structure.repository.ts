@@ -11,9 +11,9 @@ export const getStructureFromDB = async (
     .then((structure) =>
       withDispositifsAssocies
         ? structure.populate({
-            path: "dispositifsAssocies",
-            populate: { path: "theme secondaryThemes mainSponsor" }
-          })
+          path: "dispositifsAssocies",
+          populate: { path: "theme secondaryThemes mainSponsor" }
+        })
         : structure
     )
     .then((structure) => structure.toObject() as Structure)
@@ -22,30 +22,30 @@ export const getStructureFromDB = async (
       throw e;
     });
 
-export const getStructure = getStructureFromDB;
+export const getStructureById = (id: string) => StructureModel.findOne({ _id: id });
 
 type Query = { status: "Actif" } | {};
 type NeededFields =
   | {
-      nom: number;
-      acronyme: number;
-      picture: number;
-      structureTypes: number;
-      departments: number;
-    }
+    nom: number;
+    acronyme: number;
+    picture: number;
+    structureTypes: number;
+    departments: number;
+  }
   | {
-      nom: number;
-      acronyme: number;
-      status: number;
-      picture: number;
-      createur: number;
-      dispositifsAssocies: number;
-      created_at: number;
-      membres: number;
-      adminComments: number;
-      adminProgressionStatus: number;
-      adminPercentageProgressionStatus: number;
-    }
+    nom: number;
+    acronyme: number;
+    status: number;
+    picture: number;
+    createur: number;
+    dispositifsAssocies: number;
+    created_at: number;
+    membres: number;
+    adminComments: number;
+    adminProgressionStatus: number;
+    adminPercentageProgressionStatus: number;
+  }
   | { membres: 1 };
 
 export const getStructuresFromDB = async (

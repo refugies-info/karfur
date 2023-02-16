@@ -6,6 +6,7 @@ import FButton from "components/UI/FButton/FButton";
 import { structureTypes } from "data/structureTypes";
 import { CustomDropDown } from "./CustomDropdown";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { GetStructureResponse } from "api-types";
 
 const Title = styled.div`
   font-weight: bold;
@@ -47,7 +48,7 @@ const DeleteIconContainer = styled.div`
 `;
 
 interface Props {
-  structure: Structure | null;
+  structure: GetStructureResponse | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }

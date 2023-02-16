@@ -5,7 +5,7 @@ import {
 } from "./activeDispositifs.actionTypes";
 import { ActionType, action } from "typesafe-actions";
 import { ObjectId } from "mongodb";
-import { GetDispositifsResponse } from "api-types";
+import { GetDispositifsResponse, Id } from "api-types";
 
 export const setActiveDispositifsActionsCreator = (value: GetDispositifsResponse[]) =>
   action(SET_ACTIVE_DISPOSITIFS, value);
@@ -15,12 +15,12 @@ export const fetchActiveDispositifsActionsCreator = () =>
 
 export const updateDispositifReactionActionCreator = (value: {
   dispositif: {
-    dispositifId: ObjectId;
+    dispositifId: Id;
     suggestionId: string;
     fieldName: "suggestions" | "suggestions.$.read";
     type: "remove" | "read";
   };
-  structureId: ObjectId;
+  structureId: Id;
 }) => action(UPDATE_DISPOSITIF_REACTION, value);
 
 const actions = {

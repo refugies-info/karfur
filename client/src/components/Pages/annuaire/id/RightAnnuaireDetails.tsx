@@ -6,6 +6,7 @@ import { ObjectId } from "mongodb";
 import DispositifCard from "components/UI/DispositifCard";
 import DemarcheCard from "components/UI/DemarcheCard";
 import styles from "./RightAnnuaireDetails.module.scss";
+import { GetDispositifsResponse, Id } from "api-types";
 
 // on firefox behaviour is strange with overflow, we have to add an empty container to have margin
 const BottomContainer = styled.div`
@@ -16,13 +17,12 @@ const BottomContainer = styled.div`
 `;
 
 interface Props {
-  dispositifsAssocies: ObjectId[] | SearchDispositif[];
+  dispositifsAssocies: GetDispositifsResponse[];
 }
 
 export const RightAnnuaireDetails = (props: Props) => {
-  // @ts-ignore
   const activeDispositifsAssocies = (props.dispositifsAssocies || []).filter(
-    (dispositif: SearchDispositif) => dispositif.status === "Actif"
+    (dispositif) => dispositif.status === "Actif"
   );
   const nbActiveDispositifs = activeDispositifsAssocies.length;
   const { t } = useTranslation();
@@ -43,7 +43,7 @@ export const RightAnnuaireDetails = (props: Props) => {
           </>
         )}
         {nbActiveDispositifs > 0 &&
-          activeDispositifsAssocies.map((dispositif: SearchDispositif) => (
+          activeDispositifsAssocies.map((dispositif) => (
             <div key={dispositif._id.toString()} className={styles.card}>
               {dispositif.typeContenu === "demarche" ? (
                 <DemarcheCard demarche={dispositif} />

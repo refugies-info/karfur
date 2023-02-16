@@ -4,13 +4,14 @@ import {
   Route,
   Request,
   Query,
-  Security
+  Security,
+  Path
 } from "tsoa";
 import express, { Request as ExRequest } from "express";
 const router = express.Router();
 const checkToken = require("./account/checkToken");
 import { getAllStructures, GetAllStructuresResponse } from "../workflows/structure/getAllStructures";
-import { getStructureById, StructureById } from "../workflows/structure/getStructureById";
+import { getStructureById, GetStructureResponse } from "../workflows/structure/getStructureById";
 import { getActiveStructures, GetActiveStructuresResponse } from "../workflows/structure/getActiveStructures";
 import { createStructure } from "../workflows/structure/createStructure";
 import { updateStructure } from "../workflows/structure/updateStructure";
@@ -38,20 +39,21 @@ export class StructureController extends Controller {
     return getAllStructures();
   }
 
-  @Get("/getStructureById")
-  public async getStructure(
-    @Query() id: string,
-    @Query() withDisposAssocies: boolean,
-    @Query() localeOfLocalizedDispositifsAssocies: string,
-    @Query() withMembres: boolean,
-    @Request() request: ExRequest
-  ): ResponseWithData<StructureById> {
-    return getStructureById(id, withDisposAssocies, localeOfLocalizedDispositifsAssocies, withMembres, request.user);
-  }
-
   @Get("/getActiveStructures")
   public async getStructures(): ResponseWithData<GetActiveStructuresResponse> {
     return getActiveStructures();
+  }
+
+  @Security({
+    jwt: ["optional"],
+  })
+  @Get("{id}")
+  public async getStructure(
+    @Path() id: string,
+    @Query() locale: string,
+    @Request() request: ExRequest
+  ): ResponseWithData<GetStructureResponse> {
+    return getStructureById(id, locale, request.user);
   }
 }
 

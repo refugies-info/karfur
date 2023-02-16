@@ -7,6 +7,7 @@ import PlaceholderLogo from "assets/Placeholder_logo.png";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Image from "next/image";
+import { GetStructureResponse } from "api-types";
 
 const Title = styled.div`
   font-weight: bold;
@@ -55,7 +56,7 @@ const FileInput = styled(Input)`
 `;
 
 interface Props {
-  structure: Structure | null;
+  structure: GetStructureResponse | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }
@@ -136,7 +137,7 @@ export const Step1 = (props: Props) => {
           {secureUrl ? (
             <Image
               src={secureUrl}
-              alt={props.structure ? props.structure.acronyme : ""}
+              alt={props.structure?.acronyme || ""}
               width={200}
               height={200}
               style={{ objectFit: "contain" }}

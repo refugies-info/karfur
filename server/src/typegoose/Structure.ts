@@ -9,31 +9,31 @@ export class Membre {
   @prop({ required: true })
   public userId!: Ref<User, UserId>;
   @prop({ required: true, type: () => [String] })
-  public roles!: String[];
+  public roles!: string[];
   @prop({ required: true })
   public added_at!: Date;
 }
 
 class DetailedOpeningHours {
   @prop({ required: true })
-  public day!: String;
+  public day!: string;
   @prop()
-  public from0?: String;
+  public from0?: string;
   @prop()
-  public to0?: String;
+  public to0?: string;
   @prop()
-  public from1?: String;
+  public from1?: string;
   @prop()
-  public to1?: String;
+  public to1?: string;
 }
 
 class OpeningHours {
   @prop({ required: true, type: () => [DetailedOpeningHours] })
   public details!: DetailedOpeningHours[];
   @prop({ required: true })
-  public noPublic!: Boolean;
+  public noPublic!: boolean;
   @prop()
-  public precisions?: String;
+  public precisions?: string;
 }
 
 @modelOptions({ schemaOptions: { collection: "structures", timestamps: { createdAt: "created_at" } } })
@@ -46,32 +46,32 @@ export class Structure extends Base {
   @prop({ required: true, ref: () => User })
   public administrateur!: Ref<User>;
   @prop()
-  public adresse?: String;
+  public adresse?: string;
   @prop()
-  public authorBelongs?: Boolean;
+  public authorBelongs?: boolean;
   @prop()
-  public contact?: String;
+  public contact?: string;
   @prop({ required: true, ref: () => User })
   public createur!: Ref<User>;
   @prop({ ref: () => Dispositif })
   public dispositifsAssocies?: Ref<Dispositif>[];
   @prop()
-  public link?: String;
+  public link?: string;
   @prop()
-  public mail_contact?: String;
+  public mail_contact?: string;
   @prop()
-  public mail_generique?: String;
+  public mail_generique?: string;
   @prop({ required: true })
   public nom!: string;
   @prop()
-  public phone_contact?: String;
+  public phone_contact?: string;
   @prop()
-  public siren?: String;
+  public siren?: string;
   @prop()
-  public siret?: String;
+  public siret?: string;
   // FIXME typage => Actif | En attente | Supprimé [| ...]
   @prop()
-  public status?: String;
+  public status?: string;
   @prop({ type: () => ImageSchema })
   public picture?: ImageSchema;
   @prop({ default: [], type: () => [String] })
@@ -85,31 +85,31 @@ export class Structure extends Base {
   @prop()
   public twitter?: string;
   @prop({ default: [], type: () => [String] })
-  public activities?: String[];
+  public activities?: string[];
   @prop({ default: [], type: () => [String] })
   public departments?: string[];
   @prop({ default: [], type: () => [String] })
-  public phonesPublic?: String[];
+  public phonesPublic?: string[];
   @prop({ default: [], type: () => [String] })
-  public mailsPublic?: String[];
+  public mailsPublic?: string[];
   @prop()
-  public adressPublic?: String;
+  public adressPublic?: string;
   @prop({ type: () => OpeningHours })
   public openingHours?: OpeningHours;
   @prop()
-  public onlyWithRdv?: Boolean;
+  public onlyWithRdv?: boolean;
   @prop()
-  public description?: String;
+  public description?: string;
   @prop()
-  public hasResponsibleSeenNotification?: Boolean;
+  public hasResponsibleSeenNotification?: boolean;
   @prop({ type: () => [String] })
-  public disposAssociesLocalisation?: String[];
+  public disposAssociesLocalisation?: string[];
   @prop()
-  public adminComments?: String;
+  public adminComments?: string;
   @prop()
-  public adminProgressionStatus?: String;
+  public adminProgressionStatus?: string;
   @prop()
-  public adminPercentageProgressionStatus: String;
+  public adminPercentageProgressionStatus: string;
 
   public getDispositifsAssocies(): Dispositif[] {
     if (!this.dispositifsAssocies) return [];

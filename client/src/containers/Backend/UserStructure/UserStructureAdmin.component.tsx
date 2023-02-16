@@ -4,10 +4,9 @@ import { UserStructureLoading } from "./components/UserStructureLoading";
 import { UserStructureDetails } from "./components/UserStructureDetails";
 import { colors } from "colors";
 import { userSelector } from "services/User/user.selectors";
-import { ObjectId } from "mongodb";
 import API from "utils/API";
-import { UserStructure } from "types/interface";
 import Swal from "sweetalert2";
+import { GetStructureResponse, Id } from "api-types";
 
 declare const window: Window;
 
@@ -17,7 +16,7 @@ export interface Props {
 }
 
 export const UserStructureAdminComponent = (props: Props) => {
-  const [structure, setStructure] = useState<null | UserStructure>(null);
+  const [structure, setStructure] = useState<null | GetStructureResponse>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [reload, setReload] = useState(false);
 
@@ -36,7 +35,7 @@ export const UserStructureAdminComponent = (props: Props) => {
     const loadStructure = async () => {
       if (structureId) {
         setIsLoading(true);
-        const data = await API.getStructureById(structureId, true, "fr", true);
+        const data = await API.getStructureById(structureId, "fr");
         setStructure(data.data.data);
         setIsLoading(false);
       }
@@ -48,7 +47,7 @@ export const UserStructureAdminComponent = (props: Props) => {
 
   const membres = structure ? structure.membres : [];
 
-  const addUserInStructure = async (userId: ObjectId) => {
+  const addUserInStructure = async (userId: Id) => {
     if (!structure) return;
     const query = {
       membreId: userId,
@@ -62,7 +61,7 @@ export const UserStructureAdminComponent = (props: Props) => {
     toggleReload();
   };
 
-  const modifyRole = async (userId: ObjectId, role: "contributeur" | "administrateur") => {
+  const modifyRole = async (userId: Id, role: "contributeur" | "administrateur") => {
     if (!structure) return;
     const query = {
       membreId: userId,
@@ -76,7 +75,7 @@ export const UserStructureAdminComponent = (props: Props) => {
     toggleReload();
   };
 
-  const deleteUserFromStructure = async (userId: ObjectId) => {
+  const deleteUserFromStructure = async (userId: Id) => {
     if (!structure) return;
 
     Swal.fire({
@@ -111,11 +110,10 @@ export const UserStructureAdminComponent = (props: Props) => {
 
   return (
     <UserStructureDetails
-      picture={structure.picture}
+      picture={structure.picture || null}
       name={structure.nom}
-      acronyme={structure.acronyme}
+      acronyme={structure.acronyme || ""}
       membres={membres}
-      // @ts-ignore
       userId={user.userId}
       structureId={structure._id}
       addUserInStructure={addUserInStructure}

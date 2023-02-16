@@ -1,12 +1,11 @@
-import { GetUserContributionsResponse } from "api-types";
+import { GetDispositifsResponse, GetStructureResponse, GetUserContributionsResponse } from "api-types";
 import { ObjectId } from "mongodb";
-import { SearchDispositif, UserStructure } from "../../../types/interface";
 import { FormattedUserContribution } from "./types";
 
 export const formatContributions = (
   userContributions: GetUserContributionsResponse[],
-  userStructureContributions: SearchDispositif[],
-  userStructure: UserStructure | null,
+  userStructureContributions: GetDispositifsResponse[],
+  userStructure: GetStructureResponse | null,
   userId: ObjectId | undefined
 ): FormattedUserContribution[] => {
   let formattedContribs: FormattedUserContribution[] = [];
@@ -28,7 +27,7 @@ export const formatContributions = (
 
   // dispositif of structures of user
   const isResponsableOfStructure = (userStructure?.membres || [])
-    .find(m => m._id === userId)?.roles.includes("administrateur") || false;
+    .find(m => m.userId === userId?.toString())?.roles.includes("administrateur") || false;
   userStructureContributions
     .filter((dispositif) => {
       if ( // do not show dispositif with these status
@@ -49,15 +48,19 @@ export const formatContributions = (
     })
     .forEach((dispositif) => {
       return formattedContribs.push({
-        titreInformatif: dispositif.titreInformatif,
-        titreMarque: dispositif.titreMarque,
+        titreInformatif: dispositif.titreInformatif || "",
+        titreMarque: dispositif.titreMarque || "",
         typeContenu: dispositif.typeContenu,
+        //@ts-ignore FIXME
         nbMercis: dispositif.nbMercis || 0,
         nbVues: dispositif.nbVues,
         _id: dispositif._id,
         status: dispositif.status,
         responsabilite: userStructure?.nom || "",
-        isAuthorizedToDelete: isResponsableOfStructure
+        isAuthorizedToDelete: isResponsableOfStructure,
+        mainSponsor: {
+          nom: userStructure?.nom || ""
+        }
       });
     });
 

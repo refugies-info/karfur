@@ -1,17 +1,13 @@
 import { RootState } from "../rootReducer";
-import {
-  UserStructure,
-  SearchDispositif,
-  UserStructureMembre,
-} from "../../types/interface";
 import { areDispositifsAssociesPopulate } from "../../types/typeGuards";
+import { GetDispositifsResponse, GetStructureResponse } from "api-types";
 
-export const userStructureSelector = (state: RootState): UserStructure | null =>
+export const userStructureSelector = (state: RootState): GetStructureResponse | null =>
   state.userStructure;
 
 export const userStructureDisposAssociesSelector = (
   state: RootState
-): SearchDispositif[] => {
+): GetDispositifsResponse[] => {
   if (!state.userStructure) return [];
   if (areDispositifsAssociesPopulate(state.userStructure.dispositifsAssocies)) {
     return state.userStructure.dispositifsAssocies;
@@ -31,5 +27,5 @@ export const userStructureNameSelector = (state: RootState): string | null =>
 
 export const userStructureMembresSelector = (
   state: RootState
-): UserStructureMembre[] =>
+): GetStructureResponse["membres"] =>
   state.userStructure ? state.userStructure.membres : [];
