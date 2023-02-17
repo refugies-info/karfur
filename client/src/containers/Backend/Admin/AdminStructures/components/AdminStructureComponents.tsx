@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Responsable } from "types/interface";
 import React from "react";
 import Image from "next/image";
 import marioProfile from "assets/mario-profile.jpg";
 import FButton from "components/UI/FButton/FButton";
 import styles from "./AdminStructureComponents.module.scss";
+import { GetAllStructuresResponse } from "api-types";
 
 export const RowContainer = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ export const StructureName = styled.div`
 `;
 
 interface Props {
-  responsable: Responsable | null;
+  responsable: GetAllStructuresResponse["responsable"] | null;
   canClickOnRespo: boolean;
   toggleModal?: () => void;
   onUserNameClick?: () => void;

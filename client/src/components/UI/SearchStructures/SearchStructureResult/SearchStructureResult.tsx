@@ -1,16 +1,16 @@
+import { GetAllStructuresResponse } from "api-types";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import { StyledStatusContainer } from "containers/Backend/Admin/sharedComponents/SubComponents";
 import Image from "next/image";
-import { SimplifiedStructureForAdmin, Structure } from "types/interface";
 
 import styles from "../SearchStructures.module.scss";
 
 export interface SearchStructureResultProps {
-  onClick: (structure: SimplifiedStructureForAdmin | Structure) => void;
+  onClick: (structure: GetAllStructuresResponse) => void;
   query: string;
   selected: boolean;
-  structure: SimplifiedStructureForAdmin | Structure;
+  structure: GetAllStructuresResponse;
 }
 
 const SearchStructureResult = ({ query, selected, structure, onClick }: SearchStructureResultProps) => {

@@ -1,85 +1,53 @@
 import logger from "../../../logger";
-import { RequestFromClient, Res } from "../../../types/interface";
 import {
   updateDispositifInDB,
   getDispositifByIdWithMainSponsor
 } from "../../../modules/dispositif/dispositif.repository";
 import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
-import {
-  checkRequestIsFromSite,
-  checkIfUserIsAdmin,
-  checkUserIsAuthorizedToDeleteDispositif
-} from "../../../libs/checkAuthorizations";
+import { checkUserIsAuthorizedToDeleteDispositif } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
 import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
-import { Dispositif, DispositifId } from "src/typegoose";
+import { Dispositif, User } from "../../../typegoose";
+import { DispositifStatusRequest } from "../../../controllers/dispositifController";
+import { Response } from "../../../types/interface";
+import { AuthenticationError } from "../../../errors";
 
-interface QueryUpdate {
-  dispositifId: DispositifId;
-  status: Dispositif["status"];
-}
+export const updateDispositifStatus = async (id: string, body: DispositifStatusRequest, user: User): Response => {
+  logger.info("[updateDispositifStatus]", { id, body });
+  await log(id, body.status, user._id);
 
-export const updateDispositifStatus = async (req: RequestFromClient<QueryUpdate>, res: Res) => {
-  try {
-    checkRequestIsFromSite(req.fromSite);
-
-    if (!req.body || !req.body.query) {
-      throw new Error("INVALID_REQUEST");
-    }
-
-    const { dispositifId, status } = req.body.query;
-    logger.info("[updateDispositifStatus]", { dispositifId, status });
-    let newDispositif;
-
-    await log(dispositifId, status, req.userId);
-
-    if (status === "Actif") {
-      checkIfUserIsAdmin(req.user);
-      await publishDispositif(dispositifId, req.userId);
-
-      return res.status(200).json({ text: "OK" });
-    }
-
-    if (status === "Supprimé") {
-      const neededFields = {
-        creatorId: 1,
-        mainSponsor: 1,
-        status: 1,
-        typeContenu: 1,
-        contenu: 1
-      };
-
-      const dispositif = await getDispositifByIdWithMainSponsor(dispositifId, neededFields);
-      checkUserIsAuthorizedToDeleteDispositif(dispositif, req.userId);
-
-      await addOrUpdateDispositifInContenusAirtable(
-        dispositif.translations.fr.content.titreInformatif,
-        dispositif.translations.fr.content.titreMarque,
-        dispositif._id,
-        [],
-        dispositif.typeContenu,
-        null,
-        getDispositifDepartments(dispositif),
-        true
-      );
-    }
-
-    newDispositif = { status };
-    await updateDispositifInDB(dispositifId, newDispositif);
-    return res.status(200).json({ text: "OK" });
-  } catch (error) {
-    logger.error("[updateDispositifStatus] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_AUTHORIZED":
-        return res.status(404).json({ text: "Non authorisé" });
-
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
+  if (body.status === "Actif") {
+    if (!user.isAdmin()) throw new AuthenticationError("You cannot publish a dispositif");
+    await publishDispositif(id, user._id);
+    return { text: "success" };
   }
+
+  if (body.status === "Supprimé") {
+    const neededFields = {
+      creatorId: 1,
+      mainSponsor: 1,
+      status: 1,
+      typeContenu: 1,
+      contenu: 1
+    };
+
+    const dispositif = await getDispositifByIdWithMainSponsor(id, neededFields);
+    checkUserIsAuthorizedToDeleteDispositif(dispositif, user);
+
+    await addOrUpdateDispositifInContenusAirtable(
+      dispositif.translations.fr.content.titreInformatif,
+      dispositif.translations.fr.content.titreMarque,
+      dispositif._id,
+      [],
+      dispositif.typeContenu,
+      null,
+      getDispositifDepartments(dispositif),
+      true
+    );
+  }
+
+  const newDispositif: Partial<Dispositif> = { status: body.status };
+  await updateDispositifInDB(id, newDispositif);
+  return { text: "success" };
 };

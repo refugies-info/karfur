@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-import { SearchDispositif } from "types/interface";
-import { ObjectId } from "mongodb";
 import DispositifCard from "components/UI/DispositifCard";
 import DemarcheCard from "components/UI/DemarcheCard";
 import styles from "./RightAnnuaireDetails.module.scss";

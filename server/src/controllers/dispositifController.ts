@@ -95,6 +95,10 @@ export interface MainSponsorRequest {
   sponsorId: string;
 }
 
+export interface DispositifStatusRequest {
+  status: "Actif" | "Supprimé" | "Brouillon" | "En attente" | "En attente admin" | "En attente non prioritaire"; // TODO: type
+}
+
 export interface AddViewsRequest {
   types: ViewsType[]
 }
@@ -181,6 +185,19 @@ export class DispositifController extends Controller {
     @Request() request: express.Request
   ): Response {
     return modifyDispositifMainSponsor(id, body, request.userId);
+  }
+
+  @Security({
+    fromSite: [],
+    jwt: [],
+  })
+  @Patch("/{id}/status")
+  public async updateStatus(
+    @Path() id: string,
+    @Body() body: DispositifStatusRequest,
+    @Request() request: express.Request
+  ): Response {
+    return updateDispositifStatus(id, body, request.user);
   }
 
   // keep in last position to make sure /xyz routes are catched before

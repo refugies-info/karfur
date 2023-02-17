@@ -12,8 +12,15 @@ export const getUsersById = async (ids: UserId[], neededFields: NeededFields) =>
 export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string, number> = {}) =>
   UserModel.find(filter, neededFields);
 
-export const getAllUsersFromDB = async (neededFields: Record<string, number>, populate: string = "roles structures") =>
-  UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields).populate(populate);
+export const getAllUsersFromDB = async (neededFields: Record<string, number>, forAdmin: boolean = false) =>
+  !forAdmin ? UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields) :
+    UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields).populate<{
+      selectedLanguages: { langueCode: string, langueFr: string }[]
+    }>([
+      { path: "selectedLanguages", select: "langueCode langueFr" },
+      { path: "roles" },
+      { path: "structures" }
+    ]);
 
 export const updateUserInDB = async (id: UserId, modifiedUser: any) =>
   UserModel.findOneAndUpdate({ _id: id }, modifiedUser, {

@@ -54,6 +54,7 @@ export interface Theme {
   created_at?: Moment;
 }
 
+// TODO : delete
 export interface SimplifiedStructure {
   _id: ObjectId;
   acronyme: string;
@@ -65,14 +66,6 @@ export interface SimplifiedStructure {
   disposAssociesLocalisation?: string[];
 }
 
-export interface UiObject {
-  accordion: boolean;
-  addDropdown: boolean;
-  cardDropdown: boolean;
-  isHover: boolean;
-  varianteSelected: boolean;
-  children: any;
-}
 
 export interface SimplifiedUser {
   username: string;
@@ -107,6 +100,7 @@ export interface SimplifiedMainSponsor {
   status: string;
   picture: Picture | null;
 }
+/* TODO : delete
 export interface SimplifiedDispositif {
   titreInformatif: string;
   titreMarque?: string;
@@ -141,7 +135,7 @@ export interface SimplifiedDispositif {
   nbVues: number;
   themesSelectedByAuthor?: boolean;
   webOnly?: boolean;
-}
+} */
 
 export interface Role {
   _id: ObjectId;
@@ -158,7 +152,7 @@ export interface UserLanguage {
   _id: string;
 }
 
-export interface DispositifPinned {
+interface DispositifPinned {
   _id: string;
   datePin: Moment;
 }
@@ -192,6 +186,7 @@ export interface User {
   _id: ObjectId;
 }
 
+// TODO : delete
 export interface DispositifContent {
   type?: string;
   title?: string;
@@ -289,30 +284,7 @@ export interface AudienceAge {
   bottomValue: number | string;
   topValue: number | string;
 }
-export interface SearchDispositif {
-  _id: ObjectId;
-  titreInformatif: string;
-  titreMarque: string;
-  abstract: string;
-  audienceAge: AudienceAge[];
-  avancement: Record<string, number>;
-  contenu: DispositifContent[];
-  created_at: Moment;
-  mainSponsor: SimplifiedMainSponsor;
-  nbMots: number;
-  niveauFrancais?: string[];
-  needs: ObjectId[];
-  theme: ObjectId;
-  status: string;
-  secondaryThemes: ObjectId[];
-  typeContenu: "dispositif" | "demarche";
-  suggestions?: any[];
-  nbMercis?: number;
-  lastModificationDate?: number;
-  nbVues: number;
-  lastModificationDate?: number;
-  publishedAt?: number;
-}
+
 export interface IDispositif {
   _id: ObjectId;
   abstract: string;
@@ -389,39 +361,6 @@ interface SimplifiedDispositifAssocie {
   secondaryThemes: Theme[];
   abstract: string;
   status: string;
-}
-
-export interface Responsable {
-  _id: ObjectId;
-  username: string;
-  picture: Picture;
-  email: string;
-}
-
-// export enum StructureStatus {
-//   ACTIF = "Actif",
-//   SUPPRIME = "Supprimé",
-//   EN_ATTENTE = "En attente"
-// }
-export type StructureStatusType = "Actif" | "En attente" | "Supprimé";
-
-export interface SimplifiedStructureForAdmin {
-  _id: ObjectId;
-  nom: string;
-  acronyme: string;
-  status: StructureStatusType;
-  picture: Picture;
-  nbMembres: number;
-  created_at: Moment;
-  createur: null | Responsable;
-  responsable: null | Responsable;
-  membres: Membre[];
-  dispositifsIds: ObjectId[];
-  createur: null | SimplifiedCreator;
-  nbFiches: number;
-  adminComments?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
 }
 
 export interface IUserContribution {
@@ -511,6 +450,7 @@ export type ContentStatus = {
   order: number;
 } & Status;
 
+type StructureStatusType = "Actif" | "En attente" | "Supprimé";
 export type StructureStatus = {
   storedStatus: StructureStatusType;
   order: number;

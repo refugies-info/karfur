@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Event, Indicators, SimplifiedUser } from "types/interface";
+import { Event, Indicators } from "types/interface";
 import Image from "next/image";
 import { Spinner, Row, Col } from "reactstrap";
 import moment from "moment";
@@ -10,7 +10,6 @@ import { allUsersSelector, userSelector } from "services/AllUsers/allUsers.selec
 import FInput from "components/UI/FInput/FInput";
 import { RoleCheckBox, LangueDetail } from "../ components/AdminUsersComponents";
 import FButton from "components/UI/FButton/FButton";
-import { ObjectId } from "mongodb";
 import API from "utils/API";
 import { setAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import Swal from "sweetalert2";
@@ -24,7 +23,7 @@ import { NotesInput } from "../../sharedComponents/NotesInput";
 import { LogList } from "../../Logs/LogList";
 import { StructureButton } from "../../sharedComponents/StructureButton";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
-import { GetLogResponse, Id } from "api-types";
+import { GetAllUsersResponse, GetLogResponse, Id } from "api-types";
 
 moment.locale("fr");
 
@@ -90,7 +89,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     }
   }, [userFromStore, currentId, selectedUserId, updateLogs]);
 
-  const updateUserStore = (userId: ObjectId, user: Partial<SimplifiedUser>) => {
+  const updateUserStore = (userId: Id, user: Partial<GetAllUsersResponse>) => {
     const users = [...allUsers];
     let newUser = users.find((u) => u._id === userId);
     if (newUser) newUser = { ...newUser, ...user };
@@ -353,8 +352,8 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
               <div className="mt-4">
                 <Label>Langues de traduction activées</Label>
                 <div>
-                  {(userFromStore.langues || []).map((langue) => (
-                    <LangueDetail key={langue.langueCode} langue={langue} />
+                  {(userFromStore.selectedLanguages || []).map((langue, i) => (
+                    <LangueDetail key={i} langue={langue} />
                   ))}
                 </div>
               </div>

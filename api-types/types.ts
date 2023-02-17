@@ -6,7 +6,7 @@ import { GetAdminOptionResponse } from "../server/src/workflows/adminOption/getA
 import { PostAdminOptionResponse } from "../server/src/workflows/adminOption/postAdminOptions";
 
 // dispositifs
-import { GetDispositifsRequest, GetStatisticsRequest, CountDispositifsRequest, AdminCommentsRequest, AddViewsRequest, MainSponsorRequest } from "../server/src/controllers/dispositifController";
+import { GetDispositifsRequest, GetStatisticsRequest, CountDispositifsRequest, AdminCommentsRequest, AddViewsRequest, MainSponsorRequest, DispositifStatusRequest } from "../server/src/controllers/dispositifController";
 import { GetDispositifResponse, InfoSections } from "../server/src/workflows/dispositif/getContentById";
 import { GetDispositifsResponse } from "../server/src/workflows/dispositif/getDispositifs";
 import { GetStatisticsResponse } from "../server/src/workflows/dispositif/getStatistics";
@@ -52,6 +52,7 @@ import { GetStructureStatisticsRequest } from "../server/src/controllers/structu
 import { GetAllStructuresResponse } from "../server/src/workflows/structure/getAllStructures";
 import { GetStructureResponse } from "../server/src/workflows/structure/getStructureById";
 import { GetStructureStatisticsResponse } from "../server/src/workflows/structure/getStatistics";
+import { GetActiveStructuresResponse } from "../server/src/workflows/structure/getActiveStructures";
 
 // themes
 import { ThemeRequest } from "../server/src/controllers/themeController";
@@ -65,6 +66,8 @@ import { TtsRequest } from "../server/src/controllers/ttsController";
 // user
 import { GetUserInfoResponse, UserFavoritesRequest } from "../server/src/controllers/userController";
 import { GetUserFavoritesResponse } from "../server/src/workflows/users/getUserFavoritesInLocale";
+import { GetActiveUsersResponse } from "../server/src/workflows/users/getActiveUsers";
+import { GetAllUsersResponse } from "../server/src/workflows/users/getAllUsers";
 
 // widgets
 import { WidgetRequest } from "../server/src/controllers/widgetController";
@@ -96,6 +99,7 @@ export type {
   GetUserContributionsResponse,
   AddViewsRequest,
   MainSponsorRequest,
+  DispositifStatusRequest,
 
   // images
   PostImageResponse,
@@ -130,6 +134,7 @@ export type {
   GetStructureResponse,
   GetStructureStatisticsRequest,
   GetStructureStatisticsResponse,
+  GetActiveStructuresResponse,
 
   // themes
   ThemeRequest,
@@ -144,6 +149,8 @@ export type {
   GetUserInfoResponse,
   UserFavoritesRequest,
   GetUserFavoritesResponse,
+  GetActiveUsersResponse,
+  GetAllUsersResponse,
 
   // widgets
   WidgetRequest,

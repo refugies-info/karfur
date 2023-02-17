@@ -4,10 +4,10 @@ import FButton from "components/UI/FButton/FButton";
 import styled from "styled-components";
 import { colors } from "colors";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
+import { fetchActiveUsersActionCreator } from "services/ActiveUsers/activeUsers.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { activeUsersSelector } from "services/ActiveUsers/activeUsers.selector";
 import { SimplifiedUser } from "types/interface";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { ObjectId } from "mongodb";
@@ -53,7 +53,7 @@ const AddMemberModal = (props: Props) => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAllUsersActionsCreator());
+    dispatch(fetchActiveUsersActionCreator());
   }, []);
 
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS));

@@ -5,10 +5,9 @@ import SearchBar from "components/UI/SearchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
 import FButton from "components/UI/FButton/FButton";
 import { SimplifiedUser } from "types/interface";
-import { ObjectId } from "mongodb";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
@@ -63,7 +62,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
 
   const structureFromStore = useSelector(structureSelector(props.selectedStructureId));
 
-  const activeUsers = useSelector(activeUsersSelector);
+  const activeUsers = useSelector(allActiveUsersSelector);
 
   const onValidate = async () => {
     try {

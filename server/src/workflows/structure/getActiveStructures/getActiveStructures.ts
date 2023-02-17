@@ -1,10 +1,10 @@
-import { ResponseWithData } from "../../../types/interface";
+import { Id, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
-import { ImageSchema, StructureId } from "../../../typegoose";
+import { ImageSchema } from "../../../typegoose";
 
-interface ActiveStructure {
-  _id: StructureId;
+export interface GetActiveStructuresResponse {
+  _id: Id;
   nom: string;
   acronyme?: string;
   picture?: ImageSchema;
@@ -13,9 +13,7 @@ interface ActiveStructure {
   disposAssociesLocalisation?: string[];
 }
 
-export type GetActiveStructuresResponse = ActiveStructure[];
-
-export const getActiveStructures = async (): ResponseWithData<GetActiveStructuresResponse> => {
+export const getActiveStructures = async (): ResponseWithData<GetActiveStructuresResponse[]> => {
 
   logger.info("[getActiveStructures] get structures ");
   const structures = await getStructuresFromDB(
@@ -31,9 +29,9 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
   );
   logger.info("[getActiveStructures] structures fetched");
 
-  let newStructures: ActiveStructure[] = [];
+  let newStructures: GetActiveStructuresResponse[] = [];
   structures.map((item) => {
-    let newStructure: ActiveStructure = {
+    let newStructure: GetActiveStructuresResponse = {
       _id: item._id,
       nom: item.nom,
       acronyme: item.acronyme,

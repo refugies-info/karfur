@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Col, Input, Row } from "reactstrap";
-import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
 import { cls } from "lib/classname";
 import FButton from "components/UI/FButton/FButton";
 import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import API from "utils/API";
@@ -54,7 +53,7 @@ export const ImprovementsMailModal = (props: Props) => {
     updateLogs();
   }, [updateLogs]);
 
-  const users = useSelector(activeUsersSelector);
+  const users = useSelector(allActiveUsersSelector);
   const structures = useSelector(allStructuresSelector);
 
   const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
@@ -84,7 +83,6 @@ export const ImprovementsMailModal = (props: Props) => {
     );
   }
 
-  // eslint-disable-next-line
   const usersToDisplay = getUsersToSendMail(
     dispositif.status,
     dispositif.creatorId,
