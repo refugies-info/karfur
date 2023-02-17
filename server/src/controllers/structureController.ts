@@ -28,9 +28,9 @@ router.post("/modifyUserRoleInStructure", checkToken.check, modifyUserRoleInStru
 
 export { router };
 
-type Facets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
+type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
 export interface GetStructureStatisticsRequest {
-  facets?: Facets[]
+  facets?: StructureFacets[]
 }
 
 @Route("structures")

@@ -28,10 +28,7 @@ if (isInBrowser()) {
 
 export const updateNbViews = (dispositif: IDispositif) => {
   if (dispositif.status === "Actif") {
-    const nbVues = dispositif.nbVues ? dispositif.nbVues + 1 : 1;
-    return API.updateNbVuesOrFavoritesOnContent({
-      query: { id: dispositif._id, nbVues },
-    });
+    return API.addDispositifViews(dispositif._id.toString(), { types: ["web"] });
   }
   return null;
 }

@@ -56,7 +56,8 @@ import {
   GetStructureResponse,
   GetStructureStatisticsResponse,
   GetStructureStatisticsRequest,
-  GetLanguagesResponse
+  GetLanguagesResponse,
+  AddViewsRequest
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -266,11 +267,9 @@ const API = {
   getNbDispositifsByRegion: (): Promise<Response<NbDispositifsByRegion>> => {
     return instance.get("/dispositifs/getNbDispositifsByRegion");
   },
-  updateNbVuesOrFavoritesOnContent: (params: any) => {
+  addDispositifViews: (id: string, body: AddViewsRequest) => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/updateNbVuesOrFavoritesOnContent", params, {
-      headers
-    });
+    return instance.post(`/dispositifs/${id}/view`, body, { headers });
   },
   getDispositifsStatistics: (query: GetStatisticsRequest): Promise<APIResponse<GetStatisticsResponse>> => {
     const headers = getHeaders();

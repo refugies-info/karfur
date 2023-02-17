@@ -1,4 +1,4 @@
-import { FilterQuery } from "mongoose";
+import { FilterQuery, UpdateQuery } from "mongoose";
 import { Dispositif, DispositifId, DispositifModel, UserId } from "../../typegoose";
 import { Id, Picture } from "../../types/interface";
 
@@ -57,6 +57,14 @@ export const updateDispositifInDB = async (
     upsert: true,
     new: true
   }).populate("theme secondaryThemes");
+
+export const incrementDispositifViews = async (id: string, properties: ("nbFavoritesMobile" | "nbVues" | "nbVuesMobile")[]) => {
+  const query: UpdateQuery<Dispositif> = { $inc: {} };
+  for (const prop of properties) {
+    query.$inc[prop] = 1
+  }
+  return DispositifModel.findOneAndUpdate({ id }, query);
+}
 
 export const getActiveDispositifsFromDBWithoutPopulate = (needFields: Object) =>
   DispositifModel.find({ status: "Actif", typeContenu: "dispositif" }, needFields);
