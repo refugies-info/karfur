@@ -45,7 +45,7 @@ export class StructureController extends Controller {
   }
 
   @Get("/getActiveStructures")
-  public async getStructures(): ResponseWithData<GetActiveStructuresResponse> {
+  public async getStructures(): ResponseWithData<GetActiveStructuresResponse[]> {
     return getActiveStructures();
   }
 

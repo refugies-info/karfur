@@ -52,22 +52,16 @@ import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModa
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 import { needsSelector } from "services/Needs/needs.selectors";
 import styles from "./AdminContenu.module.scss";
-import { ContentStatusType, SimplifiedDispositif } from "types/interface";
-import { ObjectId } from "mongodb";
+import { ContentStatusType } from "types/interface";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
-import { Id } from "api-types";
+import { GetAllDispositifsResponse, Id } from "api-types";
 
 moment.locale("fr");
 
 const normalize = (value: string) => {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-};
-
-const getDispositif = (dispositifs: SimplifiedDispositif[], id: Id | null) => {
-  if (!id) return null;
-  return dispositifs.find((d) => d._id && d._id.toString() === id.toString()) || null;
 };
 
 export const AdminContenu = () => {
@@ -159,12 +153,12 @@ export const AdminContenu = () => {
     );
   }
 
-  const getNbDispositifsByStatus = (dispositifsToDisplay: SimplifiedDispositif[], status: string) =>
+  const getNbDispositifsByStatus = (dispositifsToDisplay: GetAllDispositifsResponse[], status: string) =>
     dispositifsToDisplay && dispositifsToDisplay.length > 0
       ? dispositifsToDisplay.filter((dispo) => dispo.status === status).length
       : 0;
 
-  const filterAndSortDispositifs = (dispositifs: SimplifiedDispositif[]) => {
+  const filterAndSortDispositifs = (dispositifs: GetAllDispositifsResponse[]) => {
     const dispositifsFilteredBySearch = !!search
       ? dispositifs.filter(
           (dispo) =>
@@ -284,9 +278,8 @@ export const AdminContenu = () => {
   };
   const handleChange = (e: any) => setSearch(e.target.value);
 
-  const publishDispositif = async (dispositif: SimplifiedDispositif, status = "Actif", disabled: boolean) => {
+  const publishDispositif = async (dispositif: GetAllDispositifsResponse, disabled: boolean) => {
     if (disabled) return;
-    const newDispositif = { status: status, dispositifId: dispositif._id };
     let question: any = { value: true };
     const link = `/${dispositif.typeContenu}/${dispositif._id}`;
 
@@ -309,7 +302,7 @@ export const AdminContenu = () => {
 
     if (question.value) {
       try {
-        await API.updateDispositifStatus({ query: newDispositif });
+        await API.updateDispositifStatus(dispositif._id, { status: "Actif" });
 
         Swal.fire({
           title: "Yay...",
@@ -331,7 +324,7 @@ export const AdminContenu = () => {
     }
   };
 
-  const checkIfNeedsAreCompatibleWithTags = (element: SimplifiedDispositif) => {
+  const checkIfNeedsAreCompatibleWithTags = (element: GetAllDispositifsResponse) => {
     if (allNeeds.length === 0) {
       return false;
     }
@@ -344,7 +337,7 @@ export const AdminContenu = () => {
     });
 
     const uniqueNeedsTheme = [...new Set(formattedNeedsTheme)];
-    const uniqueThemes = [element.theme, ...element.secondaryThemes].map((theme) => theme.name.fr);
+    const uniqueThemes = [element.theme, ...(element.secondaryThemes || [])];
 
     return uniqueNeedsTheme.sort().join(",") === uniqueThemes.sort().join(",");
   };
@@ -468,7 +461,7 @@ export const AdminContenu = () => {
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />
                       <ValidateButton
-                        onClick={() => publishDispositif(element, "Actif", validationDisabled)}
+                        onClick={() => publishDispositif(element, validationDisabled)}
                         disabled={validationDisabled}
                       />
                       <DeleteButton

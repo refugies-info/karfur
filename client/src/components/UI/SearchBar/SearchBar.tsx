@@ -13,9 +13,10 @@ import { removeAccents } from "lib";
 
 import { colors } from "colors";
 import Image from "next/image";
-import { SimplifiedStructure, SimplifiedUser } from "types/interface";
+import { SimplifiedUser } from "types/interface";
+import { GetActiveUsersResponse, GetAllUsersResponse } from "api-types";
 
-type Suggestion = SimplifiedStructure | SimplifiedUser;
+type Suggestion = SimplifiedUser;
 
 const NoResultContainer = styled.div`
   display: flex;
@@ -36,14 +37,14 @@ const NoResultTextContainer = styled.div`
 `;
 
 interface Props {
-  array?: SimplifiedStructure[] | SimplifiedUser[];
+  array?: GetAllUsersResponse[] | GetActiveUsersResponse[];
   structures?: boolean;
   users?: boolean;
   loupe?: boolean;
   className?: string;
   placeholder?: string;
   createNewCta?: string;
-  selectItem: (s: SimplifiedStructure | SimplifiedUser) => void;
+  selectItem: (s: SimplifiedUser) => void;
   handleChangeValueEntered?: (val: any) => void;
   toggleModal?: (name: any) => void;
 }
@@ -85,18 +86,8 @@ const SearchBar = (props: Props) => {
     const regex = new RegExp(".*?" + escapedValue + ".*", "i");
     if (!props.array) return [];
     //@ts-ignore
-    return props.array.filter((child: Suggestion) => {
-      if ("username" in child) {
-        // User
-        return regex.test(removeAccents(child.username)) || regex.test(removeAccents(child.email));
-      }
-      return (
-        // Structure
-        regex.test(child.acronyme) ||
-        regex.test(removeAccents(child.nom)) ||
-        //@ts-ignore
-        child.createNew
-      );
+    return props.array.filter((child) => {
+      return regex.test(removeAccents(child.username)) || regex.test(removeAccents(child.email));
     });
   };
 

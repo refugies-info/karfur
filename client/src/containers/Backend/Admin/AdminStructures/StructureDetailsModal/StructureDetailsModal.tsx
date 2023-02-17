@@ -97,13 +97,12 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   }, [structure, currentId, selectedStructureId, updateLogs]);
 
   const updateStructuresStore = (
-    structureId: ObjectId,
+    structureId: Id,
     property: "adminComments" | "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "nom",
     value: string
   ) => {
     const structures = [...allStructures];
     const newStructure = structures.find((s) => s._id === structureId);
-    // @ts-ignore
     if (newStructure) newStructure[property] = value;
     dispatch(setAllStructuresActionCreator(structures));
     updateLogs();

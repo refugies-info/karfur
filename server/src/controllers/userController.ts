@@ -1,11 +1,12 @@
-import express from "express";
 import { Controller, Request, Get, Post, Body, Route, Security, Queries } from "tsoa";
 import { pick } from "lodash";
 
 const account = require("./account/lib");
 const checkToken = require("./account/checkToken");
+import express, { Request as ExRequest } from "express";
 import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
-import { getAllUsers } from "../workflows/users/getAllUsers";
+import { getAllUsers, GetAllUsersResponse } from "../workflows/users/getAllUsers";
+import { getActiveUsers, GetActiveUsersResponse } from "../workflows/users/getActiveUsers";
 import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
@@ -32,7 +33,6 @@ router.post("/reset_password", checkToken.getRoles, account.reset_password);
 router.post("/set_new_password", checkToken.getRoles, setNewPassword);
 // @ts-ignore FIXME
 router.get("/getFiguresOnUsers", getFiguresOnUsers);
-router.get("/getAllUsers", checkToken.check, getAllUsers);
 router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
 router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
 router.post("/updateUserFavorites", checkToken.check, updateUserFavorites);
@@ -70,6 +70,23 @@ export interface UserFavoritesRequest {
 
 @Route("user")
 export class UserController extends Controller {
+
+  @Security("jwt")
+  @Get("/actives")
+  public async get(
+    @Request() request: ExRequest
+  ): ResponseWithData<GetActiveUsersResponse[]> {
+    return getActiveUsers(request.user);
+  }
+
+  @Security({
+    jwt: ["admin"],
+  })
+  @Get("/all")
+  public async getAll(): ResponseWithData<GetAllUsersResponse[]> {
+    return getAllUsers();
+  }
+
   @Security("jwt")
   @Get("/favorites")
   public async getUserFavorites(

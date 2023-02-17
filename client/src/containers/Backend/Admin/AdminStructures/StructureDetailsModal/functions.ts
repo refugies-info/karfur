@@ -1,12 +1,12 @@
+import { GetAllDispositifsResponse, Id } from "api-types";
 import { Moment } from "moment";
-import { ObjectId } from "mongodb";
-import { SimplifiedCreator, SimplifiedDispositif } from "types/interface";
+import { SimplifiedCreator } from "types/interface";
 
 export type Dispositif = {
   titreInformatif: string;
   creator: SimplifiedCreator | null;
   created_at: Moment;
-  _id: ObjectId;
+  _id: Id;
   status: string;
   color: string;
   color30: string;
@@ -14,8 +14,8 @@ export type Dispositif = {
 };
 
 export const getDispositifsWithAllInformationRequired = (
-  dispositifsIds: ObjectId[],
-  allDispositifs: SimplifiedDispositif[]
+  dispositifsIds: Id[],
+  allDispositifs: GetAllDispositifsResponse[]
 ): Dispositif[] => {
   let dispositifsWithAllInformation: Dispositif[] = [];
   dispositifsIds.forEach((dispositifId, index) => {
@@ -24,8 +24,7 @@ export const getDispositifsWithAllInformationRequired = (
     );
     if (simplifiedDispositif) {
       let element = {
-        //@ts-ignore
-        titreInformatif: simplifiedDispositif.titreInformatif.fr || simplifiedDispositif.titreInformatif,
+        titreInformatif: simplifiedDispositif.titreInformatif,
         creator: simplifiedDispositif.creatorId,
         created_at: simplifiedDispositif.created_at,
         _id: simplifiedDispositif._id,

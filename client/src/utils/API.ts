@@ -58,7 +58,11 @@ import {
   GetStructureStatisticsRequest,
   GetLanguagesResponse,
   AddViewsRequest,
-  MainSponsorRequest
+  MainSponsorRequest,
+  DispositifStatusRequest,
+  GetActiveStructuresResponse,
+  GetActiveUsersResponse,
+  GetAllUsersResponse
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -175,7 +179,7 @@ const API = {
       headers
     });
   },
-  deleteUser: (query: ObjectId) => {
+  deleteUser: (query: Id) => {
     const headers = getHeaders();
     return instance.delete(`/user/${query}`, { headers });
   },
@@ -200,9 +204,13 @@ const API = {
     const headers = getHeaders();
     return instance.post("/user/get_users", params, { headers });
   },
-  getAllUsers: () => {
+  getActiveUsers: (): Promise<APIResponse<GetActiveUsersResponse[]>> => {
     const headers = getHeaders();
-    return instance.get("/user/getAllUsers", { headers });
+    return instance.get("/user/actives", { headers });
+  },
+  getAllUsers: (): Promise<APIResponse<GetAllUsersResponse[]>> => {
+    const headers = getHeaders();
+    return instance.get("/user/all", { headers });
   },
 
   // Dispositif
@@ -226,11 +234,9 @@ const API = {
       headers
     });
   },
-  updateDispositifStatus: (query: any) => {
+  updateDispositifStatus: (id: Id, body: DispositifStatusRequest) => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/updateDispositifStatus", query, {
-      headers
-    });
+    return instance.patch(`/dispositifs/${id}/status`, body, { headers });
   },
   updateDispositifTagsOrNeeds: (query: any) => {
     const headers = getHeaders();
@@ -240,7 +246,7 @@ const API = {
   },
   updateDispositifMainSponsor: (id: string, body: MainSponsorRequest) => {
     const headers = getHeaders();
-    return instance.post(`/dispositifs/${id}/main-sponsor`, body, { headers });
+    return instance.patch(`/dispositifs/${id}/main-sponsor`, body, { headers });
   },
   updateDispositifAdminComments: (id: string, body: AdminCommentsRequest) => {
     const headers = getHeaders();
@@ -253,7 +259,7 @@ const API = {
   getDispositifs: (query: GetDispositifsRequest): Promise<APIResponse<GetDispositifsResponse[]>> => {
     return instance.get("/dispositifs", { params: query });
   },
-  getAllDispositifs: (): Promise<APIResponse<GetAllDispositifsResponse>> => {
+  getAllDispositifs: (): Promise<APIResponse<GetAllDispositifsResponse[]>> => {
     const headers = getHeaders();
     return instance.get("/dispositifs/all", { headers })
   },
@@ -269,7 +275,7 @@ const API = {
     return instance.get("/dispositifs/statistics", { params: query, headers });
   },
   /* TODO: support all dispositif properties */
-  updateDispositif: (id: ObjectId, query: { webOnly: boolean }) => {
+  updateDispositif: (id: Id, query: { webOnly: boolean }) => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}`, query, { headers });
   },
@@ -315,10 +321,10 @@ const API = {
     const headers = getHeaders();
     return instance.get(`/structures/${id}?locale=${locale}`, { headers });
   },
-  getActiveStructures: () => {
+  getActiveStructures: (): Promise<APIResponse<GetActiveStructuresResponse[]>> => {
     return instance.get("/structures/getActiveStructures");
   },
-  getAllStructures: (): Promise<APIResponse<GetAllStructuresResponse>> => {
+  getAllStructures: (): Promise<APIResponse<GetAllStructuresResponse[]>> => {
     const headers = getHeaders();
     return instance.get("/structures/all", { headers })
   },

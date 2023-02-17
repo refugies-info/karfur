@@ -27,7 +27,7 @@ import moment from "moment";
 import "moment/locale/fr";
 import { headers, correspondingStatus } from "./data";
 import { RowContainer, StructureName, ResponsableComponent } from "./components/AdminStructureComponents";
-import { SimplifiedStructureForAdmin, Responsable, StructureStatusType } from "types/interface";
+import { StructureStatusType } from "types/interface";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/UI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
@@ -40,7 +40,7 @@ import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { Id } from "api-types";
+import { GetAllStructuresResponse, Id } from "api-types";
 
 moment.locale("fr");
 
@@ -162,7 +162,7 @@ export const AdminStructures = () => {
     toggleContentDetailsModal();
   };
 
-  const filterAndSortStructures = (structures: SimplifiedStructureForAdmin[]) => {
+  const filterAndSortStructures = (structures: GetAllStructuresResponse[]) => {
     const structuresFilteredBySearch = !!search
       ? structures.filter(
           (structure) =>
@@ -184,54 +184,52 @@ export const AdminStructures = () => {
         structuresForCount: structuresFilteredBySearch
       };
 
-    const structuresToDisplay = filteredStructures.sort(
-      (a: SimplifiedStructureForAdmin, b: SimplifiedStructureForAdmin) => {
-        // @ts-ignore
-        const orderColumn: "nom" | "status" | "nbMembres" | "responsable" | "nbFiches" | "created_at" =
-          sortedHeader.orderColumn;
+    const structuresToDisplay = filteredStructures.sort((a: GetAllStructuresResponse, b: GetAllStructuresResponse) => {
+      // @ts-ignore
+      const orderColumn: "nom" | "status" | "nbMembres" | "responsable" | "nbFiches" | "created_at" =
+        sortedHeader.orderColumn;
 
-        if (orderColumn === "nbMembres") {
-          if (a[orderColumn] > b[orderColumn]) return sortedHeader.sens === "up" ? 1 : -1;
-          return sortedHeader.sens === "up" ? -1 : 1;
-        }
-
-        if (orderColumn === "nbFiches") {
-          const nbFichesA = a.nbFiches;
-          const nbFichesB = b.nbFiches;
-
-          if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
-          return sortedHeader.sens === "up" ? -1 : 1;
-        }
-
-        if (orderColumn === "responsable") {
-          const respoA = a.responsable && a.responsable.username ? a.responsable.username.toLowerCase() : "";
-          const respoB = b.responsable && b.responsable.username ? b.responsable.username.toLowerCase() : "";
-
-          if (respoA > respoB) return sortedHeader.sens === "up" ? 1 : -1;
-          return sortedHeader.sens === "up" ? -1 : 1;
-        }
-
-        if (orderColumn === "created_at") {
-          if (moment(a.created_at).diff(moment(b.created_at)) > 0) return sortedHeader.sens === "up" ? 1 : -1;
-          return sortedHeader.sens === "up" ? -1 : 1;
-        }
-
-        const valueA = a[orderColumn] ? a[orderColumn].toLowerCase() : "";
-        const valueAWithoutAccent = valueA.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        const valueB = b[orderColumn] ? b[orderColumn].toLowerCase() : "";
-        const valueBWithoutAccent = valueB.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        if (valueAWithoutAccent > valueBWithoutAccent) return sortedHeader.sens === "up" ? 1 : -1;
-
+      if (orderColumn === "nbMembres") {
+        if (a[orderColumn] > b[orderColumn]) return sortedHeader.sens === "up" ? 1 : -1;
         return sortedHeader.sens === "up" ? -1 : 1;
       }
-    );
+
+      if (orderColumn === "nbFiches") {
+        const nbFichesA = a.nbFiches;
+        const nbFichesB = b.nbFiches;
+
+        if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
+        return sortedHeader.sens === "up" ? -1 : 1;
+      }
+
+      if (orderColumn === "responsable") {
+        const respoA = a.responsable && a.responsable.username ? a.responsable.username.toLowerCase() : "";
+        const respoB = b.responsable && b.responsable.username ? b.responsable.username.toLowerCase() : "";
+
+        if (respoA > respoB) return sortedHeader.sens === "up" ? 1 : -1;
+        return sortedHeader.sens === "up" ? -1 : 1;
+      }
+
+      if (orderColumn === "created_at") {
+        if (moment(a.created_at).diff(moment(b.created_at)) > 0) return sortedHeader.sens === "up" ? 1 : -1;
+        return sortedHeader.sens === "up" ? -1 : 1;
+      }
+
+      const valueA = a[orderColumn] ? a[orderColumn].toLowerCase() : "";
+      const valueAWithoutAccent = valueA.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const valueB = b[orderColumn] ? b[orderColumn].toLowerCase() : "";
+      const valueBWithoutAccent = valueB.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (valueAWithoutAccent > valueBWithoutAccent) return sortedHeader.sens === "up" ? 1 : -1;
+
+      return sortedHeader.sens === "up" ? -1 : 1;
+    });
     return {
       structuresToDisplay,
       structuresForCount: structuresFilteredBySearch
     };
   };
 
-  const getNbStructuresByStatus = (structures: SimplifiedStructureForAdmin[], status: string) =>
+  const getNbStructuresByStatus = (structures: GetAllStructuresResponse[], status: string) =>
     structures && structures.length > 0 ? structures.filter((structure) => structure.status === status).length : 0;
 
   const { structuresToDisplay, structuresForCount } = filterAndSortStructures(structures);

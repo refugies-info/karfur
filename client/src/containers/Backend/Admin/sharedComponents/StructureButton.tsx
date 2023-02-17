@@ -5,9 +5,10 @@ import { StyledStatus } from "./SubComponents";
 import { cls } from "lib/classname";
 import noStructure from "assets/noStructure.png";
 import styles from "../Admin.module.scss";
+import { GetAllDispositifsResponse } from "api-types";
 
 export const StructureButton = (props: {
-  sponsor: SimplifiedMainSponsor | SimplifiedStructure | null;
+  sponsor: GetAllDispositifsResponse["mainSponsor"] | null;
   onClick: () => void;
   additionnalProp: "status" | "role";
 }) => {

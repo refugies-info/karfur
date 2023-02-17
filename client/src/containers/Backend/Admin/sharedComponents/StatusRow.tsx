@@ -1,16 +1,11 @@
 import { statusCompare } from "lib/statusCompare";
-import {
-  ContentStatus,
-  ProgressionStatus,
-  SimplifiedDispositif,
-  SimplifiedStructureForAdmin,
-  StructureStatus
-} from "types/interface";
+import { ContentStatus, ProgressionStatus, StructureStatus } from "types/interface";
 import { Label, StyledStatus } from "./SubComponents";
 import styles from "./StatusRow.module.scss";
+import { GetAllDispositifsResponse, GetAllStructuresResponse } from "api-types";
 
 interface Props {
-  element: SimplifiedDispositif | SimplifiedStructureForAdmin;
+  element: GetAllDispositifsResponse | GetAllStructuresResponse;
   status: ContentStatus[] | StructureStatus[];
   publicationStatus: ProgressionStatus[];
   progressionStatus: ProgressionStatus[];

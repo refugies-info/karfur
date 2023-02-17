@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ChangeEventHandler, useCallback, useMemo, useState } from "react";
 import { Row } from "reactstrap";
 import styled from "styled-components";
-import { SimplifiedStructureForAdmin, Structure } from "types/interface";
+import { Structure } from "types/interface";
 
 import NoResultImage from "assets/no_results.svg";
 import FButton from "../FButton";
@@ -12,12 +12,13 @@ import { useTranslation } from "react-i18next";
 
 import styles from "./SearchStructures.module.scss";
 import SearchStructureResult from "./SearchStructureResult";
+import { GetAllStructuresResponse } from "api-types";
 
 export interface SearchStructuresProps {
-  onChange: (structure: SimplifiedStructureForAdmin | Structure | null) => void;
+  onChange: (structure: GetAllStructuresResponse | null) => void;
   onClickCreateStructure: Function;
-  selectedStructure: SimplifiedStructureForAdmin | Partial<Structure> | null;
-  structures: Array<SimplifiedStructureForAdmin | Structure>;
+  selectedStructure: Partial<GetAllStructuresResponse> | null;
+  structures: Array<GetAllStructuresResponse>;
 }
 
 const NoResultContainer = styled.div`
@@ -62,10 +63,7 @@ const SearchStructures = ({
     if (escapedValue === "") return [];
 
     const regex = new RegExp(".*?" + escapedValue + ".*", "i");
-    return structures.filter(
-      (structure: SimplifiedStructureForAdmin | Structure) =>
-        regex.test(structure.acronyme) || regex.test(removeAccents(structure.nom))
-    );
+    return structures.filter((structure) => regex.test(structure.acronyme) || regex.test(removeAccents(structure.nom)));
   }, [needle, structures]);
 
   return (

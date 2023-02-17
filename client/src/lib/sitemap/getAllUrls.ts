@@ -1,4 +1,4 @@
-import { Id } from "api-types";
+import { GetActiveStructuresResponse, Id } from "api-types";
 import { getPath, PathNames } from "routes";
 import { Structure } from "types/interface";
 import API from "utils/API";
@@ -46,7 +46,7 @@ export const getAllUrls = async (type: string, locale: string): Promise<string[]
     case "structures":
       const structures = await API.getActiveStructures();
       return structures.data.data
-        .map((s: Structure) => getUrl("/annuaire/[id]", locale, s._id));
+        .map((s: GetActiveStructuresResponse) => getUrl("/annuaire/[id]", locale, s._id));
 
     // PAGES
     case "pages":

@@ -1,11 +1,38 @@
-import { ResponseWithData } from "../../../types/interface.js";
+import { Id, Picture, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
 import { getUsersById } from "../../../modules/users/users.repository";
 import { Dispositif, DispositifId, Structure, User, UserId } from "../../../typegoose";
 
-export interface GetAllStructuresResponse {
+type StructureStatusType = "Actif" | "En attente" | "Supprimé";
+interface Responsable {
+  _id: Id;
+  username: string;
+  picture: Picture;
+  email: string;
+}
 
+interface Membre {
+  userId: Id;
+  roles: string[];
+}
+
+export interface GetAllStructuresResponse {
+  _id: Id;
+  nom: string;
+  acronyme: string;
+  status: string;
+  picture: Picture;
+  nbMembres: number;
+  created_at: Date;
+  createur: null | Responsable;
+  responsable: null | Responsable;
+  membres: Membre[];
+  dispositifsIds: Id[];
+  nbFiches: number;
+  adminComments?: string;
+  adminProgressionStatus?: string;
+  adminPercentageProgressionStatus?: string;
 }
 
 export const getAllStructures = async (): ResponseWithData<GetAllStructuresResponse[]> => {

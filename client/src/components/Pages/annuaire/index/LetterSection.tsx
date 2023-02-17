@@ -2,16 +2,16 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { ObjectId } from "mongodb";
-import { Picture, SimplifiedStructure } from "types/interface";
+import { Picture } from "types/interface";
 import placeholder from "assets/no_results_alt.svg";
 import styles from "./LetterSection.module.scss";
 import { getPath } from "routes";
+import { GetActiveStructuresResponse, Id } from "api-types";
 interface StructureCardProps {
   nom: string;
   acronyme: string;
   picture: Picture | null;
-  id: ObjectId;
+  id: Id;
 }
 const StructureCard = (props: StructureCardProps) => {
   const router = useRouter();
@@ -52,7 +52,7 @@ const StructureCard = (props: StructureCardProps) => {
 };
 
 interface Props {
-  structures: SimplifiedStructure[];
+  structures: GetActiveStructuresResponse[];
 }
 export const LetterSection = (props: Props) => {
   return (
@@ -74,7 +74,7 @@ export const LetterSection = (props: Props) => {
             key={"structure_" + key}
             nom={structure.nom}
             picture={structure.picture || null}
-            acronyme={structure.acronyme}
+            acronyme={structure.acronyme || ""}
             id={structure._id}
           />
         </div>

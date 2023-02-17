@@ -3,7 +3,8 @@ import SearchBar from "components/UI/SearchBar/SearchBar";
 import React from "react";
 import styled from "styled-components";
 import { colors } from "colors";
-import { Responsable, SimplifiedUser } from "types/interface";
+import { SimplifiedUser } from "types/interface";
+import { GetAllStructuresResponse, GetAllUsersResponse } from "api-types";
 
 const ModifyLink = styled.div`
   font-weight: bold;
@@ -19,9 +20,9 @@ const SelectedUser = styled.div`
 
 interface Props {
   isLoading: boolean;
-  activeUsers: SimplifiedUser[];
+  activeUsers: GetAllUsersResponse[];
   onSelectItem: (data: SimplifiedUser) => void;
-  responsable: Responsable | null;
+  responsable: GetAllStructuresResponse["responsable"] | null;
   removeRespo: () => void;
 }
 export const ChooseResponsableComponent = (props: Props) => {
@@ -34,7 +35,6 @@ export const ChooseResponsableComponent = (props: Props) => {
         className="search-bar inner-addon right-addon"
         placeholder="Rechercher un utilisateur"
         array={props.activeUsers}
-        //@ts-ignore
         selectItem={props.onSelectItem}
       />
     );

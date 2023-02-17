@@ -2,19 +2,19 @@ import { correspondingStatus } from "../data";
 import {
   SimplifiedCreator,
   SimplifiedMainSponsor,
-  SimplifiedStructureForAdmin,
   SimplifiedUser,
 } from "../../../../../types/interface";
+import { GetAllStructuresResponse } from "api-types";
 
 export const getUsersToSendMail = (
   status: string,
   creatorId: SimplifiedCreator | null,
   mainSponsor: null | SimplifiedMainSponsor,
   users: SimplifiedUser[],
-  structures: SimplifiedStructureForAdmin[]
+  structures: GetAllStructuresResponse[]
 ) => {
   if (status === "En attente" && creatorId) {
-    return [{...creatorId, roles: ["Créateur"]}];
+    return [{ ...creatorId, roles: ["Créateur"] }];
   }
 
   if (["En attente admin", "Accepté structure"].includes(status)) {
