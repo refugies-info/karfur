@@ -6,7 +6,7 @@ import { GetAdminOptionResponse } from "../server/src/workflows/adminOption/getA
 import { PostAdminOptionResponse } from "../server/src/workflows/adminOption/postAdminOptions";
 
 // dispositifs
-import { GetDispositifsRequest, GetStatisticsRequest, CountDispositifsRequest, AdminCommentsRequest, AddViewsRequest } from "../server/src/controllers/dispositifController";
+import { GetDispositifsRequest, GetStatisticsRequest, CountDispositifsRequest, AdminCommentsRequest, AddViewsRequest, MainSponsorRequest } from "../server/src/controllers/dispositifController";
 import { GetDispositifResponse, InfoSections } from "../server/src/workflows/dispositif/getContentById";
 import { GetDispositifsResponse } from "../server/src/workflows/dispositif/getDispositifs";
 import { GetStatisticsResponse } from "../server/src/workflows/dispositif/getStatistics";
@@ -95,6 +95,7 @@ export type {
   AdminCommentsRequest,
   GetUserContributionsResponse,
   AddViewsRequest,
+  MainSponsorRequest,
 
   // images
   PostImageResponse,

@@ -405,7 +405,6 @@ export const AdminStructures = () => {
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
         dispositifId={selectedContentId}
-        dispositifStatus={selectedContentStatus}
       />
     </div>
   );

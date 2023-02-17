@@ -450,7 +450,6 @@ export const AdminUsers = () => {
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
         dispositifId={selectedContentId}
-        dispositifStatus={selectedContentStatus}
       />
     </div>
   );

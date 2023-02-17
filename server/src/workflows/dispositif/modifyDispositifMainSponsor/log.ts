@@ -1,4 +1,5 @@
-import { Dispositif, DispositifId, Id, StructureId, UserId } from "src/typegoose";
+import { Dispositif, DispositifId, Id as ObjectId, StructureId } from "src/typegoose";
+import { Id } from "../../../types/interface";
 import logger from "../../../logger";
 import { addLog } from "../../../modules/logs/logs.service";
 
@@ -6,7 +7,7 @@ export const log = async (
   oldDispositif: Dispositif,
   dispositifId: DispositifId,
   sponsorId: StructureId,
-  authorId: UserId
+  authorId: Id
 ) => {
   try {
     if (oldDispositif.mainSponsor && oldDispositif.mainSponsor !== sponsorId) {
@@ -15,14 +16,14 @@ export const log = async (
         "Structure",
         "Fiche supprimée de cette structure et nouvelle structure attribuée : {{dynamic}}",
         {
-          dynamicId: new Id(sponsorId),
+          dynamicId: new ObjectId(sponsorId),
           model_dynamic: "Structure",
           link: {
             id: dispositifId,
             model_link: "Dispositif",
             next: "ModalContenu"
           },
-          author: authorId
+          author: new ObjectId(authorId.toString())
         }
       );
       await addLog(
@@ -37,7 +38,7 @@ export const log = async (
             model_link: "Dispositif",
             next: "ModalContenu"
           },
-          author: authorId
+          author: new ObjectId(authorId.toString())
         }
       );
     }
@@ -50,7 +51,7 @@ export const log = async (
           model_link: "Dispositif",
           next: "ModalContenu"
         },
-        author: authorId
+        author: new ObjectId(authorId.toString())
       });
     }
     if (oldDispositif.mainSponsor && !sponsorId) {
@@ -66,7 +67,7 @@ export const log = async (
             model_link: "Dispositif",
             next: "ModalContenu"
           },
-          author: authorId
+          author: new ObjectId(authorId.toString())
         }
       );
     }
@@ -78,7 +79,7 @@ export const log = async (
         model_link: "Structure",
         next: "ModalStructure"
       },
-      author: authorId
+      author: new ObjectId(authorId.toString())
     });
   } catch (e) {
     logger.error("[modifyDispositifMainSponsor] log error", e);
