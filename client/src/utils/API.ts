@@ -212,12 +212,6 @@ const API = {
       headers
     });
   },
-  add_dispositif_infocards: (query: any) => {
-    const headers = getHeaders();
-    return instance.post("/dispositifs/add_dispositif_infocards", query, {
-      headers
-    });
-  },
   getDispositif: (id: string, locale: string): Promise<APIResponse<GetDispositifResponse>> => {
     const headers = getHeaders();
     return instance.get(`/dispositifs/${id}?locale=${locale}`, { headers });
