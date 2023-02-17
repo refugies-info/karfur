@@ -8,7 +8,8 @@ import {
   Queries,
   Patch,
   Body,
-  Request
+  Request,
+  Post
 } from "tsoa";
 
 import express from "express";
@@ -51,7 +52,6 @@ router.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus)
 router.post("/modifyDispositifMainSponsor", checkToken.check, modifyDispositifMainSponsor);
 // @ts-ignore FIXME
 router.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
-router.post("/updateNbVuesOrFavoritesOnContent", updateNbVuesOrFavoritesOnContent);
 // @ts-ignore FIXME
 router.post("/updateDispositifReactions", checkToken.getId, updateDispositifReactions);
 router.get("/getUserContributions", checkToken.check, getUserContributions);
@@ -68,6 +68,7 @@ router.patch("/:id", checkToken.check, updateDispositif);
 
 export { router };
 
+type ViewsType = "web" | "mobile" | "favorite";
 type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
 
 export interface CountDispositifsRequest {
@@ -91,6 +92,11 @@ export interface AdminCommentsRequest {
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus?: string;
 }
+
+export interface AddViewsRequest {
+  types: ViewsType[]
+}
+
 
 @Route("dispositifs")
 export class DispositifController extends Controller {
@@ -135,6 +141,17 @@ export class DispositifController extends Controller {
     @Request() request: express.Request
   ): ResponseWithData<GetUserContributionsResponse[]> {
     return getUserContributions(request.userId);
+  }
+
+  @Security({
+    fromSite: [],
+  })
+  @Post("/{id}/views")
+  public async addViewOrFavorite(
+    @Path() id: string,
+    @Body() types: AddViewsRequest
+  ): Response {
+    return updateNbVuesOrFavoritesOnContent(id, types);
   }
 
   @Security({
