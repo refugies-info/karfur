@@ -57,7 +57,8 @@ import {
   GetStructureStatisticsResponse,
   GetStructureStatisticsRequest,
   GetLanguagesResponse,
-  AddViewsRequest
+  AddViewsRequest,
+  MainSponsorRequest
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -243,11 +244,9 @@ const API = {
       headers
     });
   },
-  modifyDispositifMainSponsor: (query: any) => {
+  updateDispositifMainSponsor: (id: string, body: MainSponsorRequest) => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/modifyDispositifMainSponsor", query, {
-      headers
-    });
+    return instance.post(`/dispositifs/${id}/main-sponsor`, body, { headers });
   },
   updateDispositifAdminComments: (id: string, body: AdminCommentsRequest) => {
     const headers = getHeaders();

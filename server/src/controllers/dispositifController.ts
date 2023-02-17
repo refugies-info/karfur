@@ -93,6 +93,10 @@ export interface AdminCommentsRequest {
   adminPercentageProgressionStatus?: string;
 }
 
+export interface MainSponsorRequest {
+  sponsorId: string;
+}
+
 export interface AddViewsRequest {
   types: ViewsType[]
 }
@@ -151,6 +155,7 @@ export class DispositifController extends Controller {
     @Path() id: string,
     @Body() types: AddViewsRequest
   ): Response {
+    // TODO: change in app
     return updateNbVuesOrFavoritesOnContent(id, types);
   }
 
@@ -165,6 +170,19 @@ export class DispositifController extends Controller {
     @Request() request: express.Request
   ): Response {
     return updateDispositifAdminComments(id, body, request.userId);
+  }
+
+  @Security({
+    fromSite: [],
+    jwt: ["admin"],
+  })
+  @Patch("/{id}/main-sponsor")
+  public async updateMainSponsor(
+    @Path() id: string,
+    @Body() body: MainSponsorRequest,
+    @Request() request: express.Request
+  ): Response {
+    return modifyDispositifMainSponsor(id, body, request.userId);
   }
 
   // keep in last position to make sure /xyz routes are catched before

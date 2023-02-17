@@ -22,7 +22,6 @@ interface Props {
   show: boolean;
   toggle: () => void;
   dispositifId: Id | null;
-  dispositifStatus: string | null;
 }
 
 const Content = styled.div`
@@ -77,12 +76,8 @@ export const ChangeStructureModal = (props: Props) => {
   };
   const validateStructureChange = () => {
     if (selectedStructure && props.dispositifId) {
-      API.modifyDispositifMainSponsor({
-        query: {
-          dispositifId: props.dispositifId,
-          sponsorId: selectedStructure._id,
-          status: props.dispositifStatus
-        }
+      API.updateDispositifMainSponsor(props.dispositifId.toString(), {
+        sponsorId: selectedStructure._id.toString()
       })
         .then(() => {
           Swal.fire({

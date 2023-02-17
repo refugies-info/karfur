@@ -520,7 +520,6 @@ export const AdminContenu = () => {
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
         dispositifId={selectedContentId}
-        dispositifStatus={getDispositif(dispositifs, selectedContentId)?.status || null}
       />
 
       {selectedStructureId && (
