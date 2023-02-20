@@ -1,6 +1,6 @@
 import { celebrate, Joi, Segments } from "celebrate";
 import logger from "../../../logger";
-import { getAllUsersFromDB } from "../../../modules/users/users.repository";
+import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
 import { getNbWordsTranslated } from "../../../modules/traductions/traductions.repository";
 import { Res, RequestFromClient } from "../../../types/interface";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
@@ -40,18 +40,19 @@ export const handler = async (req: RequestFromClient<Query>, res: Res) => {
     const data: Statistics = {};
 
     const languages = await getActiveLanguagesFromDB();
-    const users = await getAllUsersFromDB({ roles: 1, last_connected: 1, selectedLanguages: 1 }, "roles");
+    //@ts-ignore FIXME
+    const users: User[] = await getAllUsersForAdminFromDB({ roles: 1, last_connected: 1, selectedLanguages: 1 });
 
     // nbTranslators
     let translators: User[] = [];
     if (noFacet || facets.includes("nbTranslators") || facets.includes("nbActiveTranslators")) {
-      translators = users.filter((x: any) => (x.roles || []).some((role: any) => role.nom === "Trad"));
+      translators = users.filter((x) => (x.roles || []).some((role: any) => role.nom === "Trad"));
       data.nbTranslators = translators.length;
     }
 
     // nbRedactors
     if (noFacet || facets.includes("nbRedactors")) {
-      const redactors = users.filter((x: any) => (x.roles || []).some((role: any) => role.nom === "Contrib"));
+      const redactors = users.filter((x) => (x.roles || []).some((role: any) => role.nom === "Contrib"));
       data.nbRedactors = redactors.length;
     }
 

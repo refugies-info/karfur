@@ -215,9 +215,9 @@ export const AdminStructures = () => {
         return sortedHeader.sens === "up" ? -1 : 1;
       }
 
-      const valueA = a[orderColumn] ? a[orderColumn].toLowerCase() : "";
+      const valueA = a[orderColumn]?.toLowerCase() || "";
       const valueAWithoutAccent = valueA.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      const valueB = b[orderColumn] ? b[orderColumn].toLowerCase() : "";
+      const valueB = b[orderColumn]?.toLowerCase() || "";
       const valueBWithoutAccent = valueB.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       if (valueAWithoutAccent > valueBWithoutAccent) return sortedHeader.sens === "up" ? 1 : -1;
 
@@ -311,7 +311,7 @@ export const AdminStructures = () => {
                   </RowContainer>
                 </td>
                 <td className="align-middle" onClick={() => setSelectedStructureIdAndToggleModal(element._id)}>
-                  <StyledStatus text={element.status} textToDisplay={element.status} />
+                  <StyledStatus text={element.status || ""} textToDisplay={element.status} />
                 </td>
                 <td
                   className="align-middle cursor-pointer"

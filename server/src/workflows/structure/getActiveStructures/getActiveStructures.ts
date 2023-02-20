@@ -1,6 +1,6 @@
 import { Id, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
-import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
+import { getStructuresWithDispos } from "../../../modules/structure/structure.repository";
 import { ImageSchema } from "../../../typegoose";
 
 export interface GetActiveStructuresResponse {
@@ -16,7 +16,7 @@ export interface GetActiveStructuresResponse {
 export const getActiveStructures = async (): ResponseWithData<GetActiveStructuresResponse[]> => {
 
   logger.info("[getActiveStructures] get structures ");
-  const structures = await getStructuresFromDB(
+  const structures = await getStructuresWithDispos(
     { status: "Actif" },
     {
       nom: 1,
@@ -24,8 +24,7 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
       picture: 1,
       structureTypes: 1,
       departments: 1
-    },
-    true
+    }
   );
   logger.info("[getActiveStructures] structures fetched");
 
