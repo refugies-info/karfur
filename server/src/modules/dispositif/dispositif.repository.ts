@@ -1,6 +1,8 @@
+import { omit, pick } from "lodash";
+import { map } from "lodash/fp";
 import { FilterQuery, UpdateQuery } from "mongoose";
-import { Dispositif, DispositifId, DispositifModel, UserId } from "../../typegoose";
-import { Id, Picture } from "../../types/interface";
+import { Dispositif, DispositifId, DispositifModel, Languages, UserId } from "../../typegoose";
+import { Id, Picture, SimpleDispositif } from "../../types/interface";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({}).populate<{
@@ -47,6 +49,28 @@ export const getDispositifArray = async (
     .populate<{ mainSponsor: { _id: Id, nom: string, picture: Picture } }>({ path: "mainSponsor", select: "_id nom picture" })
     .lean()
     .populate(populate);
+};
+
+export const getSimpleDispositifs = async (
+  query: FilterQuery<Dispositif>,
+  locale: Languages,
+  limit: number = 0,
+  sort: any = {},
+) => {
+  return getDispositifArray(query, {
+    lastModificationDate: 1,
+    mainSponsor: 1,
+    needs: 1
+  }, "", limit, sort)
+    .then(map((dispositif) => {
+      const resDisp: SimpleDispositif = {
+        _id: dispositif._id,
+        ...pick(dispositif.translations[locale].content, ["titreInformatif", "titreMarque", "abstract"]),
+        metadatas: { ...dispositif.metadatas, ...dispositif.translations[locale].metadatas },
+        ...omit(dispositif, ["translations"]),
+      }
+      return resDisp
+    }))
 };
 
 export const updateDispositifInDB = async (

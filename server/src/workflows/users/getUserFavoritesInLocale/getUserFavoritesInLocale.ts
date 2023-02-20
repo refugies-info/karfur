@@ -1,12 +1,9 @@
 import logger from "../../../logger";
-import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
+import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
 import { Dispositif, Languages, User } from "../../../typegoose";
 import { UserFavoritesRequest } from "../../../controllers/userController";
 import { ResponseWithData, SimpleDispositif } from "../../../types/interface";
 import { FilterQuery } from "mongoose";
-import map from "lodash/fp/map";
-import omit from "lodash/omit";
-import pick from "lodash/pick";
 
 export type GetUserFavoritesResponse = SimpleDispositif;
 
@@ -26,20 +23,8 @@ export const getUserFavoritesInLocale = async (user: User, query: UserFavoritesR
 
   const selectedLocale = (query.locale || "fr") as Languages;
   const dbQuery: FilterQuery<Dispositif> = { status: "Actif", _id: { $in: favorites.map(f => f._id) } };
-  const result = await getDispositifArray(dbQuery, {
-    lastModificationDate: 1,
-    mainSponsor: 1,
-    needs: 1
-  }, "")
-    .then(map((dispositif) => {
-      const resDisp: GetUserFavoritesResponse = {
-        _id: dispositif._id,
-        ...pick(dispositif.translations[selectedLocale].content, ["titreInformatif", "titreMarque", "abstract"]),
-        metadatas: { ...dispositif.metadatas, ...dispositif.translations[selectedLocale].metadatas },
-        ...omit(dispositif, ["translations"]),
-      }
-      return resDisp
-    }))
+  const result = await getSimpleDispositifs(dbQuery, selectedLocale);
+
 
   return { text: "success", data: result };
 };
