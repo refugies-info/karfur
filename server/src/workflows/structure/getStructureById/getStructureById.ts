@@ -1,4 +1,4 @@
-import { Picture, ResponseWithData, SimpleDispositif, Id } from "../../../types/interface";
+import { Picture, ResponseWithData, SimpleDispositif, Id, StructureMember } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructureById as getStructure } from "../../../modules/structure/structure.repository";
 import { getUserById } from "../../../modules/users/users.repository";
@@ -22,15 +22,6 @@ interface OpeningHours {
   details: DetailedOpeningHours[];
   noPublic: boolean;
   precisions?: string;
-}
-
-interface Member {
-  username: string;
-  picture: Picture;
-  last_connected: Date;
-  roles: string[];
-  added_at: Date;
-  userId: string;
 }
 
 export interface GetStructureResponse {
@@ -69,7 +60,7 @@ export interface GetStructureResponse {
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus: string;
 
-  membres: Member[];
+  membres: StructureMember[];
   dispositifsAssocies: SimpleDispositif[];
 }
 
@@ -80,13 +71,14 @@ const getMembers = async (structure: Structure) => {
   const members = await Promise.all(
     structureMembres.map((membre) =>
       getUserById(membre.userId.toString(), neededFields).then((user) => {
-        const res: Member = {
+        const res: StructureMember = {
           username: user.username,
           picture: user.picture,
           last_connected: user.last_connected,
           roles: membre.roles,
           added_at: membre.added_at,
-          userId: membre.userId.toString()
+          userId: membre.userId.toString(),
+          mainRole: "" // TODO: what here?
         }
         return res;
       }))

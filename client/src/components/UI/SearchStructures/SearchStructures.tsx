@@ -2,7 +2,6 @@ import Image from "next/image";
 import { ChangeEventHandler, useCallback, useMemo, useState } from "react";
 import { Row } from "reactstrap";
 import styled from "styled-components";
-import { Structure } from "types/interface";
 
 import NoResultImage from "assets/no_results.svg";
 import FButton from "../FButton";

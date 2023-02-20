@@ -158,6 +158,7 @@ export interface OpeningHours {
   noPublic: boolean;
   precisions?: string;
 }
+// TODO: delete
 export interface Structure {
   _id: ObjectId;
   membres: Membre[];
@@ -244,18 +245,6 @@ export interface IDispositif {
   webOnly?: boolean;
 }
 
-export interface UserStructureMembre {
-  _id: ObjectId;
-  roles: string[];
-  picture?: Picture;
-  username: string;
-  last_connected?: Moment;
-  added_at?: Moment;
-  mainRole?: string;
-}
-export interface UserStructure extends Structure {
-  membres: UserStructureMembre[];
-}
 export interface Translation {
   _id?: ObjectId;
   initialText?: object;

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Input, Spinner } from "reactstrap";
 import FInput from "components/UI/FInput/FInput";
-import { Structure } from "types/interface";
 import PlaceholderLogo from "assets/Placeholder_logo.png";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
