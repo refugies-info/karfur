@@ -1,6 +1,5 @@
 import { GetActiveStructuresResponse, Id } from "api-types";
 import { getPath, PathNames } from "routes";
-import { Structure } from "types/interface";
 import API from "utils/API";
 
 const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL;

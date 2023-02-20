@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MainContainer, StructurePictureContainer, StructureContainer } from "./SubComponents";
 import Image from "next/image";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
-import { Picture, UserStructureMembre } from "types/interface";
+import { Picture } from "types/interface";
 import placeholder from "assets/no_results_alt.svg";
 import styled from "styled-components";
 import FButton from "components/UI/FButton/FButton";
@@ -13,7 +13,7 @@ import styles from "./UserStructureDetails.module.scss";
 import Link from "next/link";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
-import { GetStructureResponse, Id } from "api-types";
+import { GetStructureResponse, Id, StructureMember } from "api-types";
 
 const StructureName = styled.div`
   font-weight: bold;
@@ -64,7 +64,7 @@ export const UserStructureDetails = (props: Props) => {
   const [showEditMemberModal, setShowEditMemberModal] = useState(false);
   const toggleEditMemberModal = () => setShowEditMemberModal(!showEditMemberModal);
 
-  const [selectedUser, setSelectedUser] = useState<null | UserStructureMembre>(null);
+  const [selectedUser, setSelectedUser] = useState<null | StructureMember>(null);
 
   const getSecureUrl = (picture: Picture | null) => {
     if (picture && picture.secure_url) return picture.secure_url;

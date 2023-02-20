@@ -14,7 +14,6 @@ import { DayHoursPrecisions } from "./DayHoursPrecisions";
 import { NoActivity } from "./NoActivity";
 
 import { activities } from "data/activities";
-import { Structure } from "types/interface";
 import { getPath } from "routes";
 
 import styles from "./MiddleAnnuaireDetails.module.scss";

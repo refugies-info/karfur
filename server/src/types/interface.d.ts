@@ -103,6 +103,16 @@ export interface SimpleUser {
   roles?: string[];
 }
 
+export interface StructureMember {
+  userId: string;
+  username: string;
+  picture: Picture;
+  last_connected: Date;
+  roles: string[];
+  added_at: Date;
+  mainRole: string;
+}
+
 export interface Metadatas {
   location?: string[];
   frenchLevel?: frenchLevel[];

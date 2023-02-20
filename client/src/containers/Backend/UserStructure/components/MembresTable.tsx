@@ -1,7 +1,6 @@
 import { Table } from "reactstrap";
 import React from "react";
 import Image from "next/image";
-import { UserStructureMembre } from "../../../../types/interface";
 import { EditButtonWithoutNavigation, DeleteButton } from "../../Admin/sharedComponents/SubComponents";
 import marioProfile from "assets/mario-profile.jpg";
 import styled from "styled-components";
@@ -9,7 +8,7 @@ import { colors } from "../../../../colors";
 // import "./MembresTable.scss";
 import moment from "moment";
 import "moment/locale/fr";
-import { GetStructureResponse, Id } from "api-types";
+import { GetStructureResponse, Id, StructureMember } from "api-types";
 
 moment.locale("fr");
 const RowContainer = styled.div`
@@ -45,7 +44,7 @@ interface Props {
   userId: Id;
   isUserAuthorizedToAddMembers: boolean;
   toggleEditMemberModal: () => void;
-  setSelectedUser: (user: null | UserStructureMembre) => void;
+  setSelectedUser: (user: null | StructureMember) => void;
   deleteUserFromStructure: (arg: Id) => void;
 }
 
@@ -103,7 +102,6 @@ export const MembresTable = (props: Props) => (
                   <EditButtonWithoutNavigation
                     data-test-id={"test_see_" + element.userId}
                     onClick={() => {
-                      //@ts-ignore FIXME comment on gère ça ?
                       props.setSelectedUser(element);
                       props.toggleEditMemberModal();
                     }}

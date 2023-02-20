@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Input } from "reactstrap";
-import { DetailedOpeningHours, Structure } from "types/interface";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FInput from "components/UI/FInput/FInput";
 import { days } from "data/days";
@@ -333,10 +332,9 @@ export const Step4 = (props: Props) => {
     if (!props.structure.openingHours.details) return [{ day }];
 
     const isDayInOpeningHours =
-      props.structure.openingHours.details.filter((element: DetailedOpeningHours) => element.day === day).length > 0;
+      props.structure.openingHours.details.filter((element) => element.day === day).length > 0;
 
-    if (isDayInOpeningHours)
-      return props.structure.openingHours.details.filter((element: DetailedOpeningHours) => element.day !== day);
+    if (isDayInOpeningHours) return props.structure.openingHours.details.filter((element) => element.day !== day);
 
     return props.structure.openingHours.details.concat([{ day }]);
   };

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { jsUcfirst } from "lib";
 import groupBy from "lodash/groupBy";
-import { Structure } from "types/interface";
 import { activities } from "data/activities";
 import { ActivityCard } from "./ActivityCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
