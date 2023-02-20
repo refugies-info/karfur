@@ -1,9 +1,9 @@
 import logger from "../../../logger";
 import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { log } from "./log";
-import { Dispositif } from "src/typegoose";
-import { AdminCommentsRequest } from "src/controllers/dispositifController";
-import { Response } from "src/types/interface";
+import { Dispositif } from "../../../typegoose";
+import { AdminCommentsRequest } from "../../../controllers/dispositifController";
+import { Response } from "../../../types/interface";
 
 export const updateDispositifAdminComments = async (id: string, body: AdminCommentsRequest, userId: any): Response => {
 
