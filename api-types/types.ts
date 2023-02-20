@@ -1,4 +1,4 @@
-import { Id, TranslatedText } from "../server/src/types/interface";
+import { Id, TranslatedText, UserStructure, ContentStructure, SimpleUser } from "../server/src/types/interface";
 
 // adminOptions
 import { AdminOptionRequest } from "../server/src/controllers/AdminOptionController";
@@ -80,6 +80,9 @@ export type {
   Id,
   InfoSections,
   TranslatedText,
+  UserStructure,
+  ContentStructure,
+  SimpleUser,
 
   // adminOptions
   AdminOptionRequest,

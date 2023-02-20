@@ -54,89 +54,6 @@ export interface Theme {
   created_at?: Moment;
 }
 
-// TODO : delete
-export interface SimplifiedStructure {
-  _id: ObjectId;
-  acronyme: string;
-  nom: string;
-  structureTypes?: string[];
-  departments?: string[];
-  picture: Picture | null;
-  role?: string[];
-  disposAssociesLocalisation?: string[];
-}
-
-
-export interface SimplifiedUser {
-  username: string;
-  picture: Picture;
-  status: string;
-  _id: ObjectId;
-  created_at?: Moment;
-  roles?: string[];
-  email: string;
-  phone?: string;
-  langues?: { langueCode: string; langueFr: string }[];
-  structures?: SimplifiedStructure[];
-  nbStructures?: number;
-  threeMonthsIndicator?: Indicator;
-  sixMonthsIndicator?: Indicator;
-  twelveMonthsIndicator?: Indicator;
-  totalIndicator?: Indicator;
-  adminComments?: string;
-}
-
-export interface SimplifiedCreator {
-  username: string;
-  picture: Picture | undefined;
-  _id: ObjectId;
-  email: string | undefined;
-  roles?: string[];
-}
-
-export interface SimplifiedMainSponsor {
-  _id: ObjectId;
-  nom: string;
-  status: string;
-  picture: Picture | null;
-}
-/* TODO : delete
-export interface SimplifiedDispositif {
-  titreInformatif: string;
-  titreMarque?: string;
-  updatedAt: Moment;
-  status: string;
-  typeContenu: string;
-  created_at: Moment;
-  publishedAt?: Moment;
-  publishedAtAuthor?: {
-    _id: ObjectId;
-    username: string;
-  };
-  _id: ObjectId;
-  mainSponsor: null | SimplifiedMainSponsor;
-  creatorId: SimplifiedCreator | null;
-  adminComments?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
-  lastAdminUpdate?: Moment;
-  lastReminderMailSentToUpdateContentDate?: Moment;
-  draftReminderMailSentDate?: Moment;
-  draftSecondReminderMailSentDate?: Moment;
-  lastModificationDate?: Moment;
-  lastModificationAuthor?: {
-    _id: ObjectId;
-    username: string;
-  };
-  needs?: Id[];
-  theme: Theme;
-  secondaryThemes: Theme[];
-  nbMercis: number;
-  nbVues: number;
-  themesSelectedByAuthor?: boolean;
-  webOnly?: boolean;
-} */
-
 export interface Role {
   _id: ObjectId;
   nom: string;
@@ -351,27 +268,6 @@ export interface Translation {
   type?: string;
   validatorId?: ObjectId;
   isExpert?: boolean;
-}
-
-interface SimplifiedDispositifAssocie {
-  titreInformatif: string;
-  titreMarque: string;
-  _id: ObjectId;
-  theme: Theme;
-  secondaryThemes: Theme[];
-  abstract: string;
-  status: string;
-}
-
-export interface IUserContribution {
-  _id: ObjectId;
-  typeContenu: "dispositif" | "demarche";
-  titreInformatif: string;
-  titreMarque: string;
-  mainSponsor: string | null;
-  nbMercis: number;
-  nbVues: number;
-  status: string;
 }
 
 export type TranslationStatus = "À traduire" | "En attente" | "Validée" | "À revoir";

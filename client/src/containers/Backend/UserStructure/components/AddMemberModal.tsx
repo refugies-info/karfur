@@ -8,11 +8,10 @@ import { fetchActiveUsersActionCreator } from "services/ActiveUsers/activeUsers.
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "services/ActiveUsers/activeUsers.selector";
-import { SimplifiedUser } from "types/interface";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { ObjectId } from "mongodb";
 import { CustomUserSearchBar } from "components/Backend/CustomUserSearchBar";
 import styles from "./MemberModal.module.scss";
+import { GetActiveUsersResponse, Id } from "api-types";
 
 const Title = styled.div`
   font-weight: normal;
@@ -43,13 +42,13 @@ const InformationContainer = styled.div`
 interface Props {
   show: boolean;
   toggle: () => void;
-  addUserInStructure: (arg: ObjectId) => void;
+  addUserInStructure: (arg: Id) => void;
 }
 
 const AddMemberModal = (props: Props) => {
-  const [selectedUser, setSelectedUser] = useState<SimplifiedUser | null>(null);
+  const [selectedUser, setSelectedUser] = useState<GetActiveUsersResponse | null>(null);
 
-  const onSelectItem = (data: SimplifiedUser | null) => setSelectedUser(data);
+  const onSelectItem = (data: GetActiveUsersResponse | null) => setSelectedUser(data);
 
   const dispatch = useDispatch();
   useEffect(() => {

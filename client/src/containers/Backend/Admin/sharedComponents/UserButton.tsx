@@ -1,15 +1,14 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
 import { Link } from "react-router-dom";
-import { SimplifiedCreator } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
 import styles from "../Admin.module.scss";
 import { cls } from "lib/classname";
 import { StyledStatus } from "./SubComponents";
-import { GetAllStructuresResponse } from "api-types";
+import { SimpleUser } from "api-types";
 
 export const UserButton = (props: {
-  user?: GetAllStructuresResponse["responsable"] | SimplifiedCreator | null;
+  user?: SimpleUser | null;
   onClick?: () => void;
   link?: any;
   condensed?: boolean;

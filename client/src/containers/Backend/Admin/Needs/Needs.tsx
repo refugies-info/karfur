@@ -116,7 +116,7 @@ export const Needs = () => {
   const dispositifsIds = dispositifs
     .filter((disp) => currentNeed && disp.needs?.includes(currentNeed))
     .map((d) => d._id);
-  const dispositifsToDisplay = getDispositifsWithAllInformationRequired(dispositifsIds || [], dispositifs);
+  const dispositifsToDisplay = getDispositifsWithAllInformationRequired(dispositifsIds || [], dispositifs, themes);
 
   return (
     <Container fluid>
