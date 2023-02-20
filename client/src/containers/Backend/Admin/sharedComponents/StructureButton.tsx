@@ -1,22 +1,21 @@
 import React from "react";
 import Image from "next/image";
-import { SimplifiedMainSponsor, SimplifiedStructure } from "types/interface";
 import { StyledStatus } from "./SubComponents";
 import { cls } from "lib/classname";
 import noStructure from "assets/noStructure.png";
 import styles from "../Admin.module.scss";
-import { GetAllDispositifsResponse } from "api-types";
+import { ContentStructure, UserStructure } from "api-types";
 
 export const StructureButton = (props: {
-  sponsor: GetAllDispositifsResponse["mainSponsor"] | null;
+  sponsor: UserStructure | ContentStructure | null;
   onClick: () => void;
   additionnalProp: "status" | "role";
 }) => {
   const additionnalProp = props.additionnalProp || "status";
   const propsToDisplay =
     additionnalProp === "status"
-      ? (props.sponsor as SimplifiedMainSponsor).status || ""
-      : (props.sponsor as SimplifiedStructure)?.role?.[0] || "";
+      ? (props.sponsor as ContentStructure).status || ""
+      : (props.sponsor as UserStructure)?.role?.[0] || "";
 
   return (
     <div className={styles.details_button} onClick={props.onClick}>

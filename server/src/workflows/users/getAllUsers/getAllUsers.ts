@@ -1,15 +1,8 @@
 import pick from "lodash/pick";
 import { getAllUsersFromDB } from "../../../modules/users/users.repository";
 import { Structure, UserId } from "../../../typegoose";
-import { Id, Picture, ResponseWithData } from "../../../types/interface";
+import { Id, Picture, ResponseWithData, UserStructure } from "../../../types/interface";
 import logger from "../../../logger";
-
-interface UserStructure {
-  _id: Id,
-  nom: string,
-  picture: Picture,
-  role: string[]
-}
 
 export interface GetAllUsersResponse {
   _id: Id;

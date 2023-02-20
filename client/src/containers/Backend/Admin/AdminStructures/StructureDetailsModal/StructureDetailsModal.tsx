@@ -30,6 +30,7 @@ import { useRouter } from "next/router";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { useToggle } from "react-use";
 import { GetLogResponse, Id } from "api-types";
+import { allThemesSelector } from "services/Themes/themes.selectors";
 
 moment.locale("fr");
 
@@ -78,6 +79,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
 
   const allStructures = useSelector(allStructuresSelector);
   const allDispositifs = useSelector(allDispositifsSelector);
+  const allThemes = useSelector(allThemesSelector);
 
   const updateLogs = useCallback(() => {
     if (selectedStructureId) {
@@ -168,7 +170,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   const secureUrl = structure?.picture?.secure_url;
   const dispositifsWithAllInformation = getDispositifsWithAllInformationRequired(
     structure?.dispositifsIds || [],
-    allDispositifs
+    allDispositifs,
+    allThemes
   );
 
   if (structure) {

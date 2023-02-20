@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { SimplifiedUser } from "types/interface";
-import { ObjectId } from "mongodb";
 import FInput from "components/UI/FInput";
 import { UserDetail } from "components/Backend/UserDetail";
 import { removeAccents } from "lib";
 import styles from "./CustomUserSearchBar.module.scss";
+import { GetActiveUsersResponse, Id } from "api-types";
 
 interface Props {
-  dataArray: SimplifiedUser[];
-  onSelectItem: (data: SimplifiedUser | null) => void;
-  selectedItemId: ObjectId | null;
+  dataArray: GetActiveUsersResponse[];
+  onSelectItem: (data: GetActiveUsersResponse | null) => void;
+  selectedItemId: Id | null;
 }
 
-const filterUser = (data: SimplifiedUser[], search: string) => {
+const filterUser = (data: GetActiveUsersResponse[], search: string) => {
   return data.filter(
     (element) =>
       element.username &&

@@ -3,8 +3,7 @@ import SearchBar from "components/UI/SearchBar/SearchBar";
 import React from "react";
 import styled from "styled-components";
 import { colors } from "colors";
-import { SimplifiedUser } from "types/interface";
-import { GetAllStructuresResponse, GetAllUsersResponse } from "api-types";
+import { GetActiveUsersResponse, GetAllStructuresResponse, GetAllUsersResponse } from "api-types";
 
 const ModifyLink = styled.div`
   font-weight: bold;
@@ -21,7 +20,7 @@ const SelectedUser = styled.div`
 interface Props {
   isLoading: boolean;
   activeUsers: GetAllUsersResponse[];
-  onSelectItem: (data: SimplifiedUser) => void;
+  onSelectItem: (data: GetAllUsersResponse | GetActiveUsersResponse) => void;
   responsable: GetAllStructuresResponse["responsable"] | null;
   removeRespo: () => void;
 }

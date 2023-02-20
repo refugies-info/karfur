@@ -13,10 +13,9 @@ import { removeAccents } from "lib";
 
 import { colors } from "colors";
 import Image from "next/image";
-import { SimplifiedUser } from "types/interface";
 import { GetActiveUsersResponse, GetAllUsersResponse } from "api-types";
 
-type Suggestion = SimplifiedUser;
+type Suggestion = GetActiveUsersResponse;
 
 const NoResultContainer = styled.div`
   display: flex;
@@ -44,7 +43,7 @@ interface Props {
   className?: string;
   placeholder?: string;
   createNewCta?: string;
-  selectItem: (s: SimplifiedUser) => void;
+  selectItem: (s: GetActiveUsersResponse | GetAllUsersResponse) => void;
   handleChangeValueEntered?: (val: any) => void;
   toggleModal?: (name: any) => void;
 }

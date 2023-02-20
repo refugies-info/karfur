@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Event, Picture, SimplifiedUser } from "types/interface";
+import { Event, Picture } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
 import Image from "next/image";
 import FInput from "components/UI/FInput/FInput";
@@ -24,7 +24,7 @@ import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStru
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import styles from "./NewStructureModal.module.scss";
-import { GetAllStructuresResponse } from "api-types";
+import { GetActiveUsersResponse, GetAllStructuresResponse, GetAllUsersResponse } from "api-types";
 
 moment.locale("fr");
 
@@ -194,7 +194,16 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
     setStructure({ ...structure, [e.target.id]: e.target.value });
   };
 
-  const onSelectItem = (data: SimplifiedUser) => setStructure({ ...structure, responsable: data });
+  const onSelectItem = (data: GetAllUsersResponse | GetActiveUsersResponse) =>
+    setStructure({
+      ...structure,
+      responsable: {
+        _id: data._id,
+        picture: data.picture,
+        username: data.username,
+        email: data.email
+      }
+    });
 
   const secureUrl = structure && structure.picture && structure.picture.secure_url;
 

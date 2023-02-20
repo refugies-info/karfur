@@ -81,6 +81,28 @@ export interface Picture {
   secure_url: string | null;
 }
 
+export interface ContentStructure {
+  _id: Id;
+  nom: string;
+  picture: Picture;
+  status: string;
+}
+
+export interface UserStructure {
+  _id: Id;
+  nom: string;
+  picture: Picture;
+  role: string[];
+}
+
+export interface SimpleUser {
+  _id: Id;
+  username: string;
+  picture: Picture | undefined;
+  email: string | undefined;
+  roles?: string[];
+}
+
 export interface Metadatas {
   location?: string[];
   frenchLevel?: frenchLevel[];

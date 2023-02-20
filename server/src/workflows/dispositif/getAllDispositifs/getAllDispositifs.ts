@@ -1,5 +1,5 @@
 import logger from "../../../logger";
-import { Id, Picture, ResponseWithData } from "../../../types/interface";
+import { ContentStructure, Id, ResponseWithData, SimpleUser } from "../../../types/interface";
 import { getDispositifsFromDB } from "../../../modules/dispositif/dispositif.repository";
 import pick from "lodash/pick";
 
@@ -7,18 +7,7 @@ type Author = {
   _id: Id;
   username: string;
 }
-type Creator = {
-  _id: Id;
-  username: string;
-  picture: Picture;
-  email: string;
-}
-type Sponsor = {
-  _id: Id;
-  nom: string;
-  picture: Picture;
-  status: string;
-}
+
 export interface GetAllDispositifsResponse {
   _id: Id;
   titreInformatif: string;
@@ -44,10 +33,10 @@ export interface GetAllDispositifsResponse {
   draftSecondReminderMailSentDate?: Date;
   lastReminderMailSentToUpdateContentDate?: Date;
   lastModificationAuthor: Author;
-  mainSponsor: Sponsor;
+  mainSponsor: ContentStructure;
   themesSelectedByAuthor: boolean
   webOnly: boolean;
-  creatorId: Creator;
+  creatorId: SimpleUser;
 }
 
 export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsResponse[]> => {

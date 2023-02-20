@@ -25,7 +25,7 @@ import { RowContainer, StructureName } from "../AdminStructures/components/Admin
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import { SimplifiedUser, UserStatusType } from "types/interface";
+import { UserStatusType } from "types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";

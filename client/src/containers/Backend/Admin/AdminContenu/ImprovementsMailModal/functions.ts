@@ -1,18 +1,13 @@
 import { correspondingStatus } from "../data";
-import {
-  SimplifiedCreator,
-  SimplifiedMainSponsor,
-  SimplifiedUser,
-} from "../../../../../types/interface";
-import { GetAllStructuresResponse } from "api-types";
+import { ContentStructure, GetAllStructuresResponse, GetAllUsersResponse, SimpleUser } from "api-types";
 
 export const getUsersToSendMail = (
   status: string,
-  creatorId: SimplifiedCreator | null,
-  mainSponsor: null | SimplifiedMainSponsor,
-  users: SimplifiedUser[],
+  creatorId: SimpleUser | null,
+  mainSponsor: ContentStructure | null,
+  users: GetAllUsersResponse[],
   structures: GetAllStructuresResponse[]
-) => {
+): SimpleUser[] => {
   if (status === "En attente" && creatorId) {
     return [{ ...creatorId, roles: ["Créateur"] }];
   }
@@ -30,7 +25,7 @@ export const getUsersToSendMail = (
 
     if (!structure.membres) return [];
 
-    let result: SimplifiedCreator[] = [];
+    let result: SimpleUser[] = [];
 
     structure.membres.forEach((membre) => {
       const membreId = membre.userId;
