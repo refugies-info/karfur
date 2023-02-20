@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import SEO from "components/Seo";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
+import SEO from "components/Seo";
 import { Metadatas, Accordions, Map, Header, Sponsors, Contributors } from "components/Pages/dispositif";
+import RichTextInput from "components/Pages/dispositif/RichTextInput";
 
 interface Props {}
 
@@ -23,7 +24,7 @@ const Dispositif = (props: Props) => {
         image={theme?.shareImage.secure_url}
       />
       <Header dispositif={dispositif} theme={theme} secondaryThemes={secondaryThemes} />
-      <div dangerouslySetInnerHTML={{ __html: dispositif.what }}></div>
+      <RichTextInput id="what" value={dispositif.what} />
       <Metadatas metadatas={dispositif.metadatas} />
       {dispositif.typeContenu === "dispositif" ? (
         <div>

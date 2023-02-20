@@ -26,28 +26,21 @@ import { updateDispositifReactions } from "../workflows/dispositif/updateDisposi
 import { getUserContributions } from "../workflows/dispositif/getUserContributions";
 import { getDispositifsWithTranslationAvancement } from "../workflows/dispositif/getDispositifsWithTranslationAvancement";
 import { exportFiches } from "../workflows/dispositif/exportFiches";
-import { addDispositif } from "../workflows/dispositif/addDispositif";
 import { exportDispositifsGeolocalisation } from "../workflows/dispositif/exportDispositifsGeolocalisation";
 import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
 import { getContentById, GetDispositifResponse } from "../workflows/dispositif/getContentById";
 import { getStatistics, GetStatisticsResponse } from "../workflows/dispositif/getStatistics";
-import updateDispositif from "../workflows/dispositif/updateDispositif";
-import { Response, ResponseWithData } from "../types/interface";
+import { InfoSection, Metadatas, Response, ResponseWithData } from "../types/interface";
 import { Languages } from "../typegoose";
 import { getCountDispositifs, GetCountDispositifsResponse } from "../workflows/dispositif/getCountDispositifs";
 import { GetUserContributionsResponse } from "../workflows/dispositif/getUserContributions/getUserContributions";
+import { updateDispositifProperties } from "../workflows/dispositif/updateDispositifProperties";
+import { updateDispositif } from "../workflows/dispositif/updateDispositif";
 
 const router = express.Router();
 
 /* TODO: use tsoa */
-
-// @ts-ignore FIXME
-router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif);
-// @ts-ignore FIXME
-router.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus);
-// @ts-ignore FIXME
-router.post("/modifyDispositifMainSponsor", checkToken.check, modifyDispositifMainSponsor);
 // @ts-ignore FIXME
 router.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
 // @ts-ignore FIXME
@@ -60,9 +53,6 @@ router.post("/exportDispositifsGeolocalisation", exportDispositifsGeolocalisatio
 router.get("/getContentsForApp", getContentsForApp);
 // @ts-ignore FIXME
 router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
-// router.get("/getContentById", getContentById);
-// @ts-ignore FIXME
-router.patch("/:id", checkToken.check, updateDispositif);
 
 export { router };
 
@@ -101,6 +91,26 @@ export interface DispositifStatusRequest {
 
 export interface AddViewsRequest {
   types: ViewsType[]
+}
+
+export interface UpdateDispositifPropertiesRequest {
+  webOnly: boolean;
+}
+
+export interface UpdateDispositifRequest {
+  titreInformatif?: string;
+  titreMarque?: string;
+  abstract?: string;
+  what?: string;
+  why?: { [key: string]: InfoSection };
+  how?: { [key: string]: InfoSection };
+  next?: { [key: string]: InfoSection };
+  mainSponsor?: string;
+  theme?: string;
+  secondaryThemes?: string[];
+  // sponsors?: (Sponsor | SponsorDB)[];
+  metadatas?: Metadatas;
+  // map: Poi[];
 }
 
 
@@ -189,6 +199,18 @@ export class DispositifController extends Controller {
 
   @Security({
     fromSite: [],
+    jwt: ["admin"],
+  })
+  @Patch("/{id}/properties")
+  public async updateProperties(
+    @Path() id: string,
+    @Body() body: UpdateDispositifPropertiesRequest
+  ): Response {
+    return updateDispositifProperties(id, body);
+  }
+
+  @Security({
+    fromSite: [],
     jwt: [],
   })
   @Patch("/{id}/status")
@@ -198,6 +220,19 @@ export class DispositifController extends Controller {
     @Request() request: express.Request
   ): Response {
     return updateDispositifStatus(id, body, request.user);
+  }
+
+  @Security({
+    fromSite: [],
+    jwt: [],
+  })
+  @Patch("/{id}")
+  public async update(
+    @Path() id: string,
+    @Body() body: UpdateDispositifRequest,
+    @Request() request: express.Request
+  ): Response {
+    return updateDispositif(id, body, request.user);
   }
 
   // keep in last position to make sure /xyz routes are catched before

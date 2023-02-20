@@ -81,6 +81,12 @@ export interface Picture {
   secure_url: string | null;
 }
 
+interface InfoSection {
+  title: string;
+  text: string;
+}
+export type InfoSections = Record<string, InfoSection>;
+
 export interface ContentStructure {
   _id: Id;
   nom: string;

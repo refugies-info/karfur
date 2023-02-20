@@ -61,7 +61,9 @@ import {
   DispositifStatusRequest,
   GetActiveStructuresResponse,
   GetActiveUsersResponse,
-  GetAllUsersResponse
+  GetAllUsersResponse,
+  UpdateDispositifPropertiesRequest,
+  UpdateDispositifRequest
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -213,12 +215,6 @@ const API = {
   },
 
   // Dispositif
-  addDispositif: (query: any) => { // TODO previously IDispositif
-    const headers = getHeaders();
-    return instance.post("/dispositifs/addDispositif", query, {
-      headers
-    });
-  },
   getDispositif: (id: string, locale: string): Promise<APIResponse<GetDispositifResponse>> => {
     const headers = getHeaders();
     return instance.get(`/dispositifs/${id}?locale=${locale}`, { headers });
@@ -273,10 +269,13 @@ const API = {
     const headers = getHeaders();
     return instance.get("/dispositifs/statistics", { params: query, headers });
   },
-  /* TODO: support all dispositif properties */
-  updateDispositif: (id: Id, query: { webOnly: boolean }) => {
+  updateDispositifProperties: (id: Id, body: UpdateDispositifPropertiesRequest) => {
     const headers = getHeaders();
-    return instance.patch(`/dispositifs/${id}`, query, { headers });
+    return instance.patch(`/dispositifs/${id}/properties`, body, { headers });
+  },
+  updateDispositif: (id: Id, body: UpdateDispositifRequest) => {
+    const headers = getHeaders();
+    return instance.patch(`/dispositifs/${id}`, body, { headers });
   },
 
   // Mail

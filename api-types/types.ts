@@ -1,4 +1,4 @@
-import { Id, TranslatedText, UserStructure, ContentStructure, SimpleUser, StructureMember } from "../server/src/types/interface";
+import { Id, TranslatedText, UserStructure, ContentStructure, SimpleUser, StructureMember, InfoSections } from "../server/src/types/interface";
 
 // adminOptions
 import { AdminOptionRequest } from "../server/src/controllers/AdminOptionController";
@@ -6,8 +6,8 @@ import { GetAdminOptionResponse } from "../server/src/workflows/adminOption/getA
 import { PostAdminOptionResponse } from "../server/src/workflows/adminOption/postAdminOptions";
 
 // dispositifs
-import { GetDispositifsRequest, GetStatisticsRequest, CountDispositifsRequest, AdminCommentsRequest, AddViewsRequest, MainSponsorRequest, DispositifStatusRequest } from "../server/src/controllers/dispositifController";
-import { GetDispositifResponse, InfoSections } from "../server/src/workflows/dispositif/getContentById";
+import { GetDispositifsRequest, GetStatisticsRequest, CountDispositifsRequest, AdminCommentsRequest, AddViewsRequest, MainSponsorRequest, DispositifStatusRequest, UpdateDispositifPropertiesRequest, UpdateDispositifRequest } from "../server/src/controllers/dispositifController";
+import { GetDispositifResponse } from "../server/src/workflows/dispositif/getContentById";
 import { GetDispositifsResponse } from "../server/src/workflows/dispositif/getDispositifs";
 import { GetStatisticsResponse } from "../server/src/workflows/dispositif/getStatistics";
 import { GetAllDispositifsResponse } from "../server/src/workflows/dispositif/getAllDispositifs";
@@ -104,6 +104,8 @@ export type {
   AddViewsRequest,
   MainSponsorRequest,
   DispositifStatusRequest,
+  UpdateDispositifPropertiesRequest,
+  UpdateDispositifRequest,
 
   // images
   PostImageResponse,
