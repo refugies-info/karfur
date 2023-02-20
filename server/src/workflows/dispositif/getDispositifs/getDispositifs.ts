@@ -1,8 +1,5 @@
 import logger from "../../../logger";
-import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
-import { map } from "lodash/fp";
-import omit from "lodash/omit";
-import pick from "lodash/pick";
+import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
 import { Dispositif, Languages } from "../../../typegoose";
 import { GetDispositifsRequest } from "../../../controllers/dispositifController";
 import { ResponseWithData, SimpleDispositif } from "../../../types/interface";
@@ -18,24 +15,10 @@ export const getDispositifs = async (query: GetDispositifsRequest): ResponseWith
   const dbQuery: FilterQuery<Dispositif> = { status: "Actif" };
   if (type) dbQuery.typeContenu = type;
 
-  /* TODO: factorize this (also in 2 other files) */
-  return getDispositifArray(dbQuery, {
-    lastModificationDate: 1,
-    mainSponsor: 1,
-    needs: 1
-  }, "", limit, sort)
-    .then(map((dispositif) => {
-      const resDisp: GetDispositifsResponse = {
-        _id: dispositif._id,
-        ...pick(dispositif.translations[selectedLocale].content, ["titreInformatif", "titreMarque", "abstract"]),
-        metadatas: { ...dispositif.metadatas, ...dispositif.translations[selectedLocale].metadatas },
-        ...omit(dispositif, ["translations"]),
-      }
-      return resDisp
-    }))
-    .then((result) => ({
-      text: "success",
-      data: result
-    }))
+  const result = await getSimpleDispositifs(dbQuery, selectedLocale, limit, sort);
+  return {
+    text: "success",
+    data: result
+  }
 };
 

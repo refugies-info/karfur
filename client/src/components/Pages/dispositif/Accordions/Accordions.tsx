@@ -11,18 +11,30 @@ interface Props {
 }
 
 const Accordions = ({ content, sectionKey }: Props) => {
-  if (!content) return <></>;
   return (
     <section>
       <p className="h2">{getSectionTitle(sectionKey)}</p>
-      {Object.entries(content).map((section) => (
-        <div key={section[0]}>
-          <h2 className={styles.title}>
-            <TextInput id={`${sectionKey}.${section[0]}.title`} value={section[1].title} />
-          </h2>
-          <RichTextInput id={`${sectionKey}.${section[0]}.text`} value={section[1].text} />
-        </div>
-      ))}
+      {content ? (
+        <>
+          {Object.entries(content).map((section) => (
+            <div key={section[0]}>
+              <h2 className={styles.title}>
+                <TextInput id={`${sectionKey}.${section[0]}.title`} value={section[1].title} />
+              </h2>
+              <RichTextInput id={`${sectionKey}.${section[0]}.text`} value={section[1].text} />
+            </div>
+          ))}
+        </>
+      ) : (
+        <>
+          <div>
+            <h2 className={styles.title}>
+              <TextInput id={`${sectionKey}.a.title`} value={""} />
+            </h2>
+            <RichTextInput id={`${sectionKey}.a.text`} value={""} />
+          </div>
+        </>
+      )}
     </section>
   );
 };

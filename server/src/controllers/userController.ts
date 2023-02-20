@@ -76,7 +76,7 @@ export class UserController extends Controller {
   public async get(
     @Request() request: ExRequest
   ): ResponseWithData<GetActiveUsersResponse[]> {
-    return getActiveUsers(request.user);
+    return getActiveUsers(request.userData);
   }
 
   @Security({
@@ -93,13 +93,13 @@ export class UserController extends Controller {
     @Request() request: IRequest,
     @Queries() query: UserFavoritesRequest
   ): ResponseWithData<GetUserFavoritesResponse[]> {
-    return getUserFavoritesInLocale(request.user, query)
+    return getUserFavoritesInLocale(request.userData, query)
   }
 
   @Post("/selected_languages")
   @Security("jwt")
   public async selectedLanguages(@Request() request: IRequest, @Body() body: SelectedLanguagesRequest) {
-    return setSelectedLanguages(request.user, body.selectedLanguages).then(() => ({ text: "success" }));
+    return setSelectedLanguages(request.userData, body.selectedLanguages).then(() => ({ text: "success" }));
   }
 
   @Get("/get_user_info") // TODO: change name
@@ -107,7 +107,7 @@ export class UserController extends Controller {
   public async getUserInfo(@Request() request: IRequest): ResponseWithData<GetUserInfoResponse> {
     return {
       text: "success",
-      data: pick(request.user.toObject(), [
+      data: pick(request.userData.toObject(), [
         "structures",
         "_id",
         "roles",

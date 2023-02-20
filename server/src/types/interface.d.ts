@@ -13,7 +13,8 @@ declare global {
       fromSite?: boolean; // TODO: delete
       fromPostman?: boolean; // TODO: delete
       roles?: Role[]; // TODO: delete? (get it in the workflow)
-      user?: DocumentType<User>;
+      user?: DocumentType<User>; // returns true, conflicts?
+      userData?: DocumentType<User>;
       userId?: typeof User._id;
     }
   }
@@ -80,6 +81,12 @@ export interface Picture {
   public_id: string | null;
   secure_url: string | null;
 }
+
+interface InfoSection {
+  title: string;
+  text: string;
+}
+export type InfoSections = Record<string, InfoSection>;
 
 export interface ContentStructure {
   _id: Id;

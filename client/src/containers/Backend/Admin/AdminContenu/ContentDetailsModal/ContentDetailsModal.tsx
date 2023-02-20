@@ -141,7 +141,7 @@ export const ContentDetailsModal = (props: Props) => {
 
   const toggleWebOnly = async () => {
     if (!dispositif?._id) return;
-    await API.updateDispositif(dispositif._id, { webOnly: !dispositif.webOnly });
+    await API.updateDispositifProperties(dispositif._id, { webOnly: !dispositif.webOnly });
     updateDispositifsStore(dispositif._id, { webOnly: !dispositif.webOnly });
   };
 

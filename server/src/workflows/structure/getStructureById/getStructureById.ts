@@ -1,14 +1,12 @@
+import { FilterQuery } from "mongoose";
+import omit from "lodash/omit";
 import { Picture, ResponseWithData, SimpleDispositif, Id, StructureMember } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructureById as getStructure } from "../../../modules/structure/structure.repository";
 import { getUserById } from "../../../modules/users/users.repository";
 import { Dispositif, Languages, Structure, User } from "../../../typegoose";
-import { NotFoundError } from "src/errors";
-import { FilterQuery } from "mongoose";
-import { getDispositifArray } from "src/modules/dispositif/dispositif.repository";
-import map from "lodash/fp/map";
-import omit from "lodash/omit";
-import pick from "lodash/pick";
+import { NotFoundError } from "../../../errors";
+import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
 
 interface DetailedOpeningHours {
   day: string;
@@ -98,10 +96,10 @@ export const getStructureById = async (
 
   // members
   const isAdmin = !!(user ? user.isAdmin() : false);
-  const isMember = !!(user.id
+  const isMember = !!(user._id
     ? (structure.membres || []).find((m) => {
       if (!m.userId) return false;
-      return m.userId.toString() === user.id;
+      return m.userId.toString() === user._id.toString();
     })
     : false);
   const shouldIncludeMembers = (isAdmin || isMember);
@@ -114,22 +112,7 @@ export const getStructureById = async (
     mainSponsor: structure._id
   };
 
-  const structureDispositifs = await getDispositifArray(dbQuery, {
-    lastModificationDate: 1,
-    mainSponsor: 1,
-    needs: 1
-  })
-    .then(map((dispositif) => {
-      const resDisp = {
-        _id: dispositif._id,
-        ...pick(dispositif.translations[selectedLocale].content, ["titreInformatif", "titreMarque", "abstract"]),
-        metadatas: { ...dispositif.metadatas, ...dispositif.translations[selectedLocale].metadatas },
-        ...omit(dispositif, ["translations"]),
-      }
-      return resDisp
-    }))
-
-
+  const structureDispositifs = await getSimpleDispositifs(dbQuery, selectedLocale);
   const result = {
     ...omit(structure, ["membres", "dispositifsAssocies"]),
     membres: structureMembers,

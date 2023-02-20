@@ -114,9 +114,9 @@ export class Metadatas {
   public frenchLevel?: frenchLevel[];
   @prop()
   public important?: string;
-  @prop()
+  @prop({ _id: false })
   public age?: Age;
-  @prop()
+  @prop({ _id: false })
   public price?: Price;
   @prop()
   public duration?: string;
@@ -232,7 +232,7 @@ export class Dispositif extends Base {
 
   @prop()
   public translations!: Record<Languages, TranslationContent>;
-  @prop()
+  @prop({ _id: false })
   public metadatas: Metadatas;
   @prop()
   public map: Poi[];
