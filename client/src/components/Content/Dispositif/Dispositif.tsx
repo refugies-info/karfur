@@ -8,7 +8,7 @@ import { Metadatas, Accordions, Map, Header, Sponsors, Contributors } from "comp
 
 interface Props {}
 
-const NewDispositif = (props: Props) => {
+const Dispositif = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
@@ -44,4 +44,4 @@ const NewDispositif = (props: Props) => {
   );
 };
 
-export default NewDispositif;
+export default Dispositif;

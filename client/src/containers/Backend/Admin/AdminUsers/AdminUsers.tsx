@@ -24,7 +24,7 @@ import { TabHeader, FilterButton } from "../sharedComponents/SubComponents";
 import { RowContainer, StructureName } from "../AdminStructures/components/AdminStructureComponents";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
-import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import CustomSearchBar from "components/UI/CustomSeachBar";
 import { UserStatusType } from "types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";

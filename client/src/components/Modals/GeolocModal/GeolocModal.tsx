@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { filtres } from "data/dispositif";
+import { departments as dataDepartments } from "data/departments";
 import FButton from "components/UI/FButton/FButton";
 import { CustomDropDown } from "components/Pages/annuaire-create/CustomDropdown";
 import { CustomCheckBox } from "components/Pages/annuaire-create/CustomCheckBox";
@@ -35,7 +35,7 @@ const GeolocModal = (props: Props) => {
     if (e.target.value === "") {
       return setDepartments([]);
     }
-    const departmentsDataFiltered = filtres.departmentsData.filter((department) =>
+    const departmentsDataFiltered = dataDepartments.filter((department) =>
       selectedDepartments ? !selectedDepartments.includes(department) : false
     );
 

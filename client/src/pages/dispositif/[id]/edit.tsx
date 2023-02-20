@@ -1,4 +1,4 @@
-import NewDispositif from "components/Frontend/Dispositif/NewDispositif";
+import Dispositif from "components/Content/Dispositif";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -25,7 +25,7 @@ const DispositifPage = (props: Props) => {
     <PageContext.Provider value={{ mode: "edit" }}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <NewDispositif />
+          <Dispositif />
           <button type="submit">Enregistrer</button>
         </form>
       </FormProvider>

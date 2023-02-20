@@ -1,5 +1,4 @@
 import BookmarkedModal from "./BookmarkedModal/BookmarkedModal";
-import DispositifValidateModal from "./DispositifValidateModal/DispositifValidateModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
 import ReactionModal from "./ReactionModal/ReactionModal";
 import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
@@ -18,7 +17,6 @@ import { ShareContentOnMobileModal } from "./ShareContentOnMobileModal/ShareCont
 export {
   BookmarkedModal,
   DispositifCreateModal,
-  DispositifValidateModal,
   LanguageModal,
   ReactionModal,
   ReactionLectureModal,

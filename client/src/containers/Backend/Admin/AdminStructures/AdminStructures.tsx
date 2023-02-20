@@ -28,7 +28,7 @@ import "moment/locale/fr";
 import { headers, correspondingStatus } from "./data";
 import { RowContainer, StructureName, ResponsableComponent } from "./components/AdminStructureComponents";
 import { StructureStatusType } from "types/interface";
-import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import CustomSearchBar from "components/UI/CustomSeachBar";
 import FButton from "components/UI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
