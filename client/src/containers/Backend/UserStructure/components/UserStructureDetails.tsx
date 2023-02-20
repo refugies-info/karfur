@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { MainContainer, StructurePictureContainer, StructureContainer } from "./SubComponents";
 import Image from "next/image";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
-import { Picture, UserStructureMembre } from "types/interface";
+import { Picture } from "types/interface";
 import placeholder from "assets/no_results_alt.svg";
 import styled from "styled-components";
 import FButton from "components/UI/FButton/FButton";
 import { MembresTable } from "./MembresTable";
-import { ObjectId } from "mongodb";
 import AddMemberModal from "./AddMemberModal";
 import EditMemberModal from "./EditMemberModal";
 import styles from "./UserStructureDetails.module.scss";
 import Link from "next/link";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
+import { GetStructureResponse, Id, StructureMember } from "api-types";
 
 const StructureName = styled.div`
   font-weight: bold;
@@ -32,16 +32,16 @@ interface Props {
   picture: Picture | null;
   acronyme: string;
   name: string;
-  membres: UserStructureMembre[];
-  userId: ObjectId;
-  structureId: ObjectId;
-  addUserInStructure: (arg: ObjectId) => void;
+  membres: GetStructureResponse["membres"];
+  userId: Id;
+  structureId: Id;
+  addUserInStructure: (arg: Id) => void;
   isAdmin: boolean;
-  modifyRole: (arg: ObjectId, role: "contributeur" | "administrateur") => void;
-  deleteUserFromStructure: (arg: ObjectId) => void;
+  modifyRole: (arg: Id, role: "contributeur" | "administrateur") => void;
+  deleteUserFromStructure: (arg: Id) => void;
 }
 
-const checkIfUserIsAuthorizedToAddMembers = (isAdmin: boolean, userWithRole: UserStructureMembre[]) => {
+const checkIfUserIsAuthorizedToAddMembers = (isAdmin: boolean, userWithRole: GetStructureResponse["membres"]) => {
   if (isAdmin) return true;
 
   if (userWithRole.length > 0 && userWithRole[0].roles && userWithRole[0].roles.length > 0)
@@ -49,7 +49,7 @@ const checkIfUserIsAuthorizedToAddMembers = (isAdmin: boolean, userWithRole: Use
   return false;
 };
 
-const formatRoles = (membres: UserStructureMembre[]) =>
+const formatRoles = (membres: GetStructureResponse["membres"]) =>
   membres.map((membre) => {
     if (membre.roles.includes("administrateur")) return { ...membre, mainRole: "Responsable" };
     if (membre.roles.includes("contributeur")) return { ...membre, mainRole: "Rédacteur" };
@@ -64,20 +64,20 @@ export const UserStructureDetails = (props: Props) => {
   const [showEditMemberModal, setShowEditMemberModal] = useState(false);
   const toggleEditMemberModal = () => setShowEditMemberModal(!showEditMemberModal);
 
-  const [selectedUser, setSelectedUser] = useState<null | UserStructureMembre>(null);
+  const [selectedUser, setSelectedUser] = useState<null | StructureMember>(null);
 
   const getSecureUrl = (picture: Picture | null) => {
     if (picture && picture.secure_url) return picture.secure_url;
     return placeholder;
   };
 
-  const userWithRole = props.membres.filter((membre) => membre._id === props.userId);
+  const userWithRole = props.membres.filter((membre) => membre.userId === props.userId);
 
   const isUserAuthorizedToAddMembers = checkIfUserIsAuthorizedToAddMembers(props.isAdmin, userWithRole);
 
   const formattedMembres = formatRoles(props.membres);
   const membres = formattedMembres.filter((membre) => membre.mainRole !== "Exclus");
-  const isMember = props.membres.find((el) => el._id === props.userId) ? true : false;
+  const isMember = props.membres.find((el) => el.userId === props.userId) ? true : false;
 
   return (
     <MainContainer className={styles.container}>

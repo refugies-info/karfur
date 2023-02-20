@@ -1,17 +1,18 @@
-import express from "express";
-import { Controller, Request, Get, Post, Body, Route, Security } from "tsoa";
+import { Controller, Request, Get, Post, Body, Route, Security, Queries } from "tsoa";
 import { pick } from "lodash";
 
 const account = require("./account/lib");
 const checkToken = require("./account/checkToken");
+import express, { Request as ExRequest } from "express";
 import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
-import { getAllUsers } from "../workflows/users/getAllUsers";
+import { getAllUsers, GetAllUsersResponse } from "../workflows/users/getAllUsers";
+import { getActiveUsers, GetActiveUsersResponse } from "../workflows/users/getActiveUsers";
 import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
 import changePassword from "../workflows/users/changePassword";
 import { setNewPassword } from "../workflows/users/setNewPassword";
-import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
+import { getUserFavoritesInLocale, GetUserFavoritesResponse } from "../workflows/users/getUserFavoritesInLocale";
 import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
 import deleteUser from "../workflows/users/deleteUser/deleteUser";
 import { LangueId } from "../typegoose";
@@ -32,10 +33,8 @@ router.post("/reset_password", checkToken.getRoles, account.reset_password);
 router.post("/set_new_password", checkToken.getRoles, setNewPassword);
 // @ts-ignore FIXME
 router.get("/getFiguresOnUsers", getFiguresOnUsers);
-router.get("/getAllUsers", checkToken.check, getAllUsers);
 router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
 router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
-router.get("/getUserFavoritesInLocale", checkToken.check, getUserFavoritesInLocale);
 router.post("/updateUserFavorites", checkToken.check, updateUserFavorites);
 // @ts-ignore FIXME
 router.delete("/:id", checkToken.check, checkToken.getRoles, deleteUser);
@@ -65,8 +64,38 @@ export interface GetUserInfoResponse {
   username: string;
 }
 
+export interface UserFavoritesRequest {
+  locale: string
+}
+
 @Route("user")
 export class UserController extends Controller {
+
+  @Security("jwt")
+  @Get("/actives")
+  public async get(
+    @Request() request: ExRequest
+  ): ResponseWithData<GetActiveUsersResponse[]> {
+    return getActiveUsers(request.user);
+  }
+
+  @Security({
+    jwt: ["admin"],
+  })
+  @Get("/all")
+  public async getAll(): ResponseWithData<GetAllUsersResponse[]> {
+    return getAllUsers();
+  }
+
+  @Security("jwt")
+  @Get("/favorites")
+  public async getUserFavorites(
+    @Request() request: IRequest,
+    @Queries() query: UserFavoritesRequest
+  ): ResponseWithData<GetUserFavoritesResponse[]> {
+    return getUserFavoritesInLocale(request.user, query)
+  }
+
   @Post("/selected_languages")
   @Security("jwt")
   public async selectedLanguages(@Request() request: IRequest, @Body() body: SelectedLanguagesRequest) {

@@ -1,12 +1,11 @@
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";
-import { Language, SimplifiedDispositif } from "types/interface";
-import { Id } from "api-types";
+import { GetAllDispositifsResponse, GetLanguagesResponse, Id } from "api-types";
 
 // TODO: move function
 export const prepareDeleteContrib = (
-  allDispositifs: SimplifiedDispositif[],
+  allDispositifs: GetAllDispositifsResponse[],
   setAllDispositifsActionsCreator: any,
   dispatch: any,
   dispositifId: Id | null
@@ -21,13 +20,8 @@ export const prepareDeleteContrib = (
     confirmButtonText: "Oui, le supprimer",
     cancelButtonText: "Annuler",
   }).then((result) => {
-    if (result.value) {
-      const newDispositif = {
-        dispositifId: dispositifId,
-        status: "Supprimé",
-      };
-
-      return API.updateDispositifStatus({ query: newDispositif })
+    if (result.value && dispositifId) {
+      return API.updateDispositifStatus(dispositifId, { status: "Supprimé" })
         .then(() => {
           Swal.fire({
             title: "Yay...",
@@ -53,7 +47,7 @@ export const prepareDeleteContrib = (
   });
 };
 
-export const isThemeTitleOk = (title: Record<string, string>, languages: Language[]) => {
+export const isThemeTitleOk = (title: Record<string, string>, languages: GetLanguagesResponse[]) => {
   const emptyLn = languages.filter(ln => !title[ln.i18nCode]);
   return emptyLn.length > 0;
 }

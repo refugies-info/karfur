@@ -13,9 +13,8 @@ import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import { themesSelector } from "services/Themes/themes.selectors";
 import AdminThemeButton from "components/UI/AdminThemeButton";
 import AdminNeedButton from "components/UI/AdminNeedButton";
-import { SimplifiedDispositif } from "types/interface";
 import { cls } from "lib/classname";
-import { GetNeedResponse, Id } from "api-types";
+import { GetAllDispositifsResponse, GetNeedResponse, Id } from "api-types";
 
 interface Props {
   show: boolean;
@@ -23,9 +22,12 @@ interface Props {
   dispositifId: Id | null;
 }
 
-const getThemes = (dispositif: SimplifiedDispositif | null) => {
+const getThemes = (dispositif: GetAllDispositifsResponse | null): Id[] => {
   if (!dispositif) return [];
-  return [dispositif.theme._id, ...dispositif.secondaryThemes.map((t) => t._id)];
+  const res = [];
+  if (dispositif.theme) res.push(dispositif.theme);
+  if (dispositif.secondaryThemes) res.push(...dispositif.secondaryThemes);
+  return res;
 };
 
 const getNeed = (needId: Id, allNeeds: GetNeedResponse[]) => {
@@ -44,7 +46,7 @@ export const NeedsChoiceModal = (props: Props) => {
   );
   const [selectedNeeds, setSelectedNeeds] = useState<Id[]>(dispositif?.needs || []);
   const [selectedThemes, setSelectedThemes] = useState<Id[]>(getThemes(dispositif));
-  const [primaryTheme, setPrimaryTheme] = useState<Id | undefined>(dispositif?.theme._id);
+  const [primaryTheme, setPrimaryTheme] = useState<Id | undefined>(dispositif?.theme);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const [currentTheme, setCurrentTheme] = useState<Id | null>(null);
@@ -55,7 +57,7 @@ export const NeedsChoiceModal = (props: Props) => {
       if (dispositif.needs && dispositif.needs.length > 0) {
         setSelectedNeeds(dispositif.needs);
       }
-      setPrimaryTheme(dispositif.theme._id);
+      setPrimaryTheme(dispositif.theme);
       setSelectedThemes(getThemes(dispositif));
     }
   }, [dispositif]);

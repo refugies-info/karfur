@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Event, Picture, Responsable, SimplifiedUser } from "types/interface";
+import { Event, Picture } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
 import Image from "next/image";
 import FInput from "components/UI/FInput/FInput";
@@ -17,13 +17,14 @@ import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
 import { ChooseResponsableComponent } from "./ChooseResponsableComponent";
 import { colors } from "colors";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import styles from "./NewStructureModal.module.scss";
+import { GetActiveUsersResponse, GetAllStructuresResponse, GetAllUsersResponse } from "api-types";
 
 moment.locale("fr");
 
@@ -78,7 +79,7 @@ interface InitialStructure {
   contact: string;
   phone_contact: string;
   mail_contact: string;
-  responsable?: null | Responsable;
+  responsable?: null | GetAllStructuresResponse["responsable"];
   nom: string;
 }
 
@@ -104,7 +105,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
 
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS));
 
-  const activeUsers = useSelector(activeUsersSelector);
+  const activeUsers = useSelector(allActiveUsersSelector);
 
   const toggle = () => {
     setStructure(initialStructure);
@@ -193,7 +194,16 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
     setStructure({ ...structure, [e.target.id]: e.target.value });
   };
 
-  const onSelectItem = (data: SimplifiedUser) => setStructure({ ...structure, responsable: data });
+  const onSelectItem = (data: GetAllUsersResponse | GetActiveUsersResponse) =>
+    setStructure({
+      ...structure,
+      responsable: {
+        _id: data._id,
+        picture: data.picture,
+        username: data.username,
+        email: data.email
+      }
+    });
 
   const secureUrl = structure && structure.picture && structure.picture.secure_url;
 

@@ -1,7 +1,9 @@
-import { Language, AvailableLanguageI18nCode } from "types/interface";
+import { GetLanguagesResponse } from "api-types";
+import { AvailableLanguageI18nCode } from "types/interface";
 
-export const activatedLanguages: Language[] = [
+export const activatedLanguages: GetLanguagesResponse[] = [
   {
+    _id: "",
     langueFr: "Français",
     langueLoc: "Français",
     langueCode: "fr",
@@ -10,6 +12,7 @@ export const activatedLanguages: Language[] = [
     avancementTrad: 0,
   },
   {
+    _id: "",
     langueFr: "Ukrainien",
     langueLoc: "Українська",
     langueCode: "ua",
@@ -18,6 +21,7 @@ export const activatedLanguages: Language[] = [
     avancementTrad: 0,
   },
   {
+    _id: "",
     langueFr: "Pachto",
     langueLoc: "پښتو",
     langueCode: "af",
@@ -26,6 +30,7 @@ export const activatedLanguages: Language[] = [
     avancementTrad: 0,
   },
   {
+    _id: "",
     langueFr: "Anglais",
     langueLoc: "English",
     langueCode: "gb",
@@ -34,6 +39,7 @@ export const activatedLanguages: Language[] = [
     avancementTrad: 0,
   },
   {
+    _id: "",
     langueFr: "Persan/Dari",
     langueLoc: "فارسی/ دری",
     langueCode: "ir",
@@ -42,6 +48,7 @@ export const activatedLanguages: Language[] = [
     avancementTrad: 0,
   },
   {
+    _id: "",
     langueFr: "Tigrinya",
     langueLoc: "ትግርኛ",
     langueCode: "er",
@@ -50,6 +57,7 @@ export const activatedLanguages: Language[] = [
     avancementTrad: 0,
   },
   {
+    _id: "",
     langueFr: "Russe",
     langueLoc: "Русский",
     langueCode: "ru",
@@ -58,6 +66,7 @@ export const activatedLanguages: Language[] = [
     avancementTrad: 0,
   },
   {
+    _id: "",
     langueFr: "Arabe",
     langueLoc: "العربية",
     langueCode: "sa",

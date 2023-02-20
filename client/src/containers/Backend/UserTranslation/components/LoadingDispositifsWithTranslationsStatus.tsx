@@ -5,7 +5,7 @@ import { FilterButton, TypeContenuFilterButton } from "./SubComponents";
 import FButton from "../../../../components/UI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
-import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import CustomSearchBar from "components/UI/CustomSeachBar";
 
 const RowContainer = styled.div`
   display: flex;

@@ -1,15 +1,36 @@
-import { ResponseWithData } from "../../../types/interface.js";
+import { Id, Picture, ResponseWithData, SimpleUser } from "../../../types/interface";
 import logger from "../../../logger";
-import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
+import { getStructuresWithDispos } from "../../../modules/structure/structure.repository";
 import { getUsersById } from "../../../modules/users/users.repository";
-import { Dispositif, DispositifId, Structure, User, UserId } from "../../../typegoose";
+import { UserId } from "../../../typegoose";
+import pick from "lodash/pick";
+
+// type StructureStatusType = "Actif" | "En attente" | "Supprimé";
+interface Membre {
+  userId: Id;
+  roles: string[];
+}
 
 export interface GetAllStructuresResponse {
-
+  _id: Id;
+  nom: string;
+  acronyme?: string;
+  status?: string;
+  picture?: Picture;
+  nbMembres: number;
+  created_at?: Date;
+  createur: null | SimpleUser;
+  responsable: null | SimpleUser;
+  membres: Membre[];
+  dispositifsIds: Id[];
+  nbFiches: number;
+  adminComments?: string;
+  adminProgressionStatus?: string;
+  adminPercentageProgressionStatus?: string;
 }
 
 export const getAllStructures = async (): ResponseWithData<GetAllStructuresResponse[]> => {
-  logger.info("[getAllStructures] get structures ");
+  logger.info("[getAllStructures] received");
   const neededFields = {
     nom: 1,
     acronyme: 1,
@@ -23,44 +44,50 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
     adminProgressionStatus: 1,
     adminPercentageProgressionStatus: 1
   };
-  logger.info("[getAllStructures] structures fetched");
 
-  /* FIXME RangeError
-  const structures = await getStructuresFromDB({}, neededFields, true);
-  const simplifiedStructures = structures.map((structure) => {
-    const jsonStructure = structure.toJSON() as Structure;
-    const nbMembres = jsonStructure.membres?.length || 0;
-    const responsablesArray = jsonStructure.membres
-      ? jsonStructure.membres.filter((user) => user.roles && user.userId && user.roles.includes("administrateur"))
+  const structures = await getStructuresWithDispos({}, neededFields);
+
+  const simplifiedStructures: (Omit<GetAllStructuresResponse, "responsable"> & { responsable: Id | null })[] = structures.map((structure) => {
+    const nbMembres = structure.membres?.length || 0;
+    const dispositifsIds = structure.dispositifsAssocies.map((d) => d._id);
+    const dispositifsAssocies = structure.dispositifsAssocies.filter((d) => d.status && !["Supprimé", "Brouillon"].includes(d.status));
+    const nbFiches = dispositifsAssocies.length;
+    const responsablesArray = structure.membres
+      ? structure.membres.filter((user) => user.roles && user.userId && user.roles.includes("administrateur"))
       : [];
     const responsableId = responsablesArray.length > 0 ? responsablesArray[0].userId : null;
 
-    const dispositifsIds: DispositifId[] = jsonStructure.dispositifsAssocies.map(
-      (dispositif: DispositifId | Dispositif) => (dispositif as Dispositif)._id
-    );
-
-    const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter((dispo: any) => {
-      return dispo.status && !["Supprimé", "Brouillon"].includes(dispo.status);
-    });
-    const nbFiches = dispositifsAssocies.length;
-
-    delete jsonStructure.dispositifsAssocies;
     return {
-      ...jsonStructure,
+      _id: structure._id,
+      nom: structure.nom || "",
+      membres: structure.membres || [],
+      createur: structure.createur || null,
       nbMembres,
-      responsable: responsableId,
       nbFiches,
-      dispositifsIds
+      dispositifsIds,
+      responsable: responsableId?.toString() || null,
+      ...pick(structure, [
+        "nom",
+        "acronyme",
+        "status",
+        "picture",
+        "created_at",
+        "adminComments",
+        "adminProgressionStatus",
+        "adminPercentageProgressionStatus",
+      ]),
     };
   });
-  const neededFieldsUser = { _id: 1, username: 1, picture: 1, email: 1 };
-  const data: any = [];
+
+  const data: GetAllStructuresResponse[] = [];
+  // for performances purposes, get all responsables at once
   const responsablesIDs = simplifiedStructures.map((structure) => structure.responsable).filter((_) => !!_);
   if (responsablesIDs.length) {
-    const responsables: Record<string, User> = await getUsersById(responsablesIDs as UserId[], neededFieldsUser).then(
-      (users) => users.reduce((acc: { [key: string]: any }, user) => ({ ...acc, [user._id.toString()]: user }), {})
+    const responsables: Record<string, SimpleUser> = await getUsersById(responsablesIDs as UserId[], { _id: 1, username: 1, picture: 1, email: 1 }).then(
+      (users) => users.reduce((acc: { [key: string]: SimpleUser }, user) => ({ ...acc, [user._id.toString()]: user }), {})
     );
 
+    // and rebuild structures with responsable informations
     simplifiedStructures.map((structure) => {
       if (structure.responsable) {
         const responsable = responsables[structure.responsable.toString()];
@@ -70,7 +97,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
     });
   } else {
     simplifiedStructures.map((structure) => data.push({ ...structure, responsable: null }));
-  } */
+  }
 
-  return { text: "success", data: [] };
+  return { text: "success", data };
 };

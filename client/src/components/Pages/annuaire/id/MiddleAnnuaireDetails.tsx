@@ -14,15 +14,14 @@ import { DayHoursPrecisions } from "./DayHoursPrecisions";
 import { NoActivity } from "./NoActivity";
 
 import { activities } from "data/activities";
-import { Structure } from "types/interface";
 import { getPath } from "routes";
 
 import styles from "./MiddleAnnuaireDetails.module.scss";
 import { themesSelector } from "services/Themes/themes.selectors";
-import { GetThemeResponse } from "api-types";
+import { GetStructureResponse, GetThemeResponse } from "api-types";
 
 interface Props {
-  structure: Structure | null;
+  structure: GetStructureResponse | null;
   isLoading: boolean;
   isMember: boolean;
 }
@@ -90,7 +89,7 @@ const getActivityDetails = (activity: string, themes: GetThemeResponse[]) => {
   return { theme: correspondingTheme[0], image: correspondingActivity[0].image };
 };
 
-const sortStructureActivities = (structure: Structure | null, themes: GetThemeResponse[]) => {
+const sortStructureActivities = (structure: GetStructureResponse | null, themes: GetThemeResponse[]) => {
   let structureActivities: { title: string; themeName: string }[] = [];
   if (structure && structure.activities) {
     structure.activities.forEach((element) => {

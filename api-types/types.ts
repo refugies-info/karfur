@@ -1,4 +1,4 @@
-import { Id, TranslatedText } from "../server/src/types/interface";
+import { Id, TranslatedText, UserStructure, ContentStructure, SimpleUser, StructureMember } from "../server/src/types/interface";
 
 // adminOptions
 import { AdminOptionRequest } from "../server/src/controllers/AdminOptionController";
@@ -6,14 +6,19 @@ import { GetAdminOptionResponse } from "../server/src/workflows/adminOption/getA
 import { PostAdminOptionResponse } from "../server/src/workflows/adminOption/postAdminOptions";
 
 // dispositifs
-import { GetDispositifsRequest, GetStatisticsRequest } from "../server/src/controllers/dispositifController";
+import { GetDispositifsRequest, GetStatisticsRequest, CountDispositifsRequest, AdminCommentsRequest, AddViewsRequest, MainSponsorRequest, DispositifStatusRequest } from "../server/src/controllers/dispositifController";
 import { GetDispositifResponse, InfoSections } from "../server/src/workflows/dispositif/getContentById";
 import { GetDispositifsResponse } from "../server/src/workflows/dispositif/getDispositifs";
 import { GetStatisticsResponse } from "../server/src/workflows/dispositif/getStatistics";
 import { GetAllDispositifsResponse } from "../server/src/workflows/dispositif/getAllDispositifs";
+import { GetCountDispositifsResponse } from "../server/src/workflows/dispositif/getCountDispositifs";
+import { GetUserContributionsResponse } from "../server/src/workflows/dispositif/getUserContributions";
 
 // images
 import { PostImageResponse } from "../server/src/workflows/images/postImages";
+
+// langues
+import { GetLanguagesResponse } from "../server/src/workflows/langues/getLanguages";
 
 // logs
 import { GetLogResponse } from "../server/src/workflows/log/getLogs";
@@ -43,7 +48,11 @@ import {
 } from "../server/src/controllers/smsController";
 
 // structures
+import { GetStructureStatisticsRequest } from "../server/src/controllers/structureController";
 import { GetAllStructuresResponse } from "../server/src/workflows/structure/getAllStructures";
+import { GetStructureResponse } from "../server/src/workflows/structure/getStructureById";
+import { GetStructureStatisticsResponse } from "../server/src/workflows/structure/getStatistics";
+import { GetActiveStructuresResponse } from "../server/src/workflows/structure/getActiveStructures";
 
 // themes
 import { ThemeRequest } from "../server/src/controllers/themeController";
@@ -55,7 +64,10 @@ import { PatchThemeResponse } from "../server/src/workflows/themes/patchTheme";
 import { TtsRequest } from "../server/src/controllers/ttsController";
 
 // user
-import { GetUserInfoResponse } from "../server/src/controllers/userController";
+import { GetUserInfoResponse, UserFavoritesRequest } from "../server/src/controllers/userController";
+import { GetUserFavoritesResponse } from "../server/src/workflows/users/getUserFavoritesInLocale";
+import { GetActiveUsersResponse } from "../server/src/workflows/users/getActiveUsers";
+import { GetAllUsersResponse } from "../server/src/workflows/users/getAllUsers";
 
 // widgets
 import { WidgetRequest } from "../server/src/controllers/widgetController";
@@ -68,6 +80,10 @@ export type {
   Id,
   InfoSections,
   TranslatedText,
+  UserStructure,
+  ContentStructure,
+  SimpleUser,
+  StructureMember,
 
   // adminOptions
   AdminOptionRequest,
@@ -81,9 +97,19 @@ export type {
   GetDispositifsResponse,
   GetStatisticsResponse,
   GetAllDispositifsResponse,
+  CountDispositifsRequest,
+  GetCountDispositifsResponse,
+  AdminCommentsRequest,
+  GetUserContributionsResponse,
+  AddViewsRequest,
+  MainSponsorRequest,
+  DispositifStatusRequest,
 
   // images
   PostImageResponse,
+
+  // langues
+  GetLanguagesResponse,
 
   // logs
   GetLogResponse,
@@ -109,6 +135,10 @@ export type {
 
   // structures
   GetAllStructuresResponse,
+  GetStructureResponse,
+  GetStructureStatisticsRequest,
+  GetStructureStatisticsResponse,
+  GetActiveStructuresResponse,
 
   // themes
   ThemeRequest,
@@ -121,6 +151,10 @@ export type {
 
   // user
   GetUserInfoResponse,
+  UserFavoritesRequest,
+  GetUserFavoritesResponse,
+  GetActiveUsersResponse,
+  GetAllUsersResponse,
 
   // widgets
   WidgetRequest,

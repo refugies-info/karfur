@@ -1,4 +1,4 @@
-import NewDispositif from "components/Frontend/Dispositif/NewDispositif";
+import Dispositif from "components/Content/Dispositif";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -15,7 +15,7 @@ interface Props {
 const DispositifPage = (props: Props) => {
   return (
     <PageContext.Provider value={{ mode: "view" }}>
-      <NewDispositif />
+      <Dispositif />
     </PageContext.Provider>
   );
 };

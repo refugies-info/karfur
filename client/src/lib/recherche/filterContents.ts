@@ -1,5 +1,4 @@
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
-import { getDispositifInfos } from "../getDispositifInfos";
 import { GetDispositifsResponse, Id } from "api-types";
 
 export const filterByThemeOrNeed = (dispositif: GetDispositifsResponse, themesSelected: Id[], needs: Id[], withSecondaryTheme: boolean) => {

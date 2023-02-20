@@ -50,20 +50,22 @@ const Dashboard = (props: Props) => {
   useEffect(() => {
     if (props.visible && !loaded) {
       const promises = [
-        API.count_dispositifs({
-          typeContenu: { $ne: "demarche" }
-        }).then((data) => setNbDispositifs(data.data)),
-        API.count_dispositifs({
-          typeContenu: { $ne: "demarche" },
-          status: "Actif"
-        }).then((data) => setNbDispositifsActifs(data.data)),
-        API.count_dispositifs({
-          typeContenu: "demarche"
-        }).then((data) => setNbDemarches(data.data)),
-        API.count_dispositifs({
-          typeContenu: "demarche",
-          status: "Actif"
-        }).then((data) => setNbDemarchesActives(data.data)),
+        API.countDispositifs({
+          type: "dispositif",
+          publishedOnly: false
+        }).then((data) => setNbDispositifs(data.data.data.count)),
+        API.countDispositifs({
+          type: "dispositif",
+          publishedOnly: true
+        }).then((data) => setNbDispositifsActifs(data.data.data.count)),
+        API.countDispositifs({
+          type: "demarche",
+          publishedOnly: false
+        }).then((data) => setNbDemarches(data.data.data.count)),
+        API.countDispositifs({
+          type: "demarche",
+          publishedOnly: true
+        }).then((data) => setNbDemarchesActives(data.data.data.count)),
         API.getFiguresOnUsers().then((data) => {
           setNbContributors(data.data.data.nbContributors);
           setNbTraductors(data.data.data.nbTraductors);
@@ -83,24 +85,24 @@ const Dashboard = (props: Props) => {
 
       for (const theme of themes) {
         promises.push(
-          API.count_dispositifs({
-            theme: theme._id,
-            status: "Actif",
-            typeContenu: "dispositif"
+          API.countDispositifs({
+            themeId: theme._id.toString(),
+            publishedOnly: true,
+            type: "dispositif"
           }).then((data) => {
             setNbDispositifsByTheme((prev) => ({
               ...prev,
-              [theme.name.fr]: data.data
+              [theme.name.fr]: data.data.data.count
             }));
           }),
-          API.count_dispositifs({
-            theme: theme._id,
-            status: "Actif",
-            typeContenu: "demarche"
+          API.countDispositifs({
+            themeId: theme._id.toString(),
+            publishedOnly: true,
+            type: "demarche"
           }).then((data) => {
             setNbDemarchesByTheme((prev) => ({
               ...prev,
-              [theme.name.fr]: data.data
+              [theme.name.fr]: data.data.data.count
             }));
           })
         );

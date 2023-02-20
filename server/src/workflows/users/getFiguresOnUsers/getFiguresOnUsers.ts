@@ -1,7 +1,7 @@
-import logger from "src/logger";
-import { UserModel } from "src/typegoose";
-import { User, UserStatus } from "src/typegoose/User";
-import { Res } from "src/types/interface";
+import logger from "../../../logger";
+import { UserModel } from "../../../typegoose";
+import { User, UserStatus } from "../../../typegoose/User";
+import { Res } from "../../../types/interface";
 
 export const getFiguresOnUsers = async (req: Request, res: Res) => {
   try {

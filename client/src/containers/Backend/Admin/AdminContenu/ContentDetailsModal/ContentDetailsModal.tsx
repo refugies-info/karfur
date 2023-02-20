@@ -5,11 +5,9 @@ import { useHistory } from "react-router-dom";
 import cloneDeep from "lodash/cloneDeep";
 import moment from "moment";
 import "moment/locale/fr";
-import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
 import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData, publicationData } from "../data";
-import { SimplifiedDispositif } from "types/interface";
 import { colors } from "colors";
 import { allDispositifsSelector, dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import API from "utils/API";
@@ -28,7 +26,7 @@ import { LogList } from "../../Logs/LogList";
 import styles from "./ContentDetailsModal.module.scss";
 import { StatusRow } from "../../sharedComponents/StatusRow";
 import { NotesInput } from "../../sharedComponents/NotesInput";
-import { GetLogResponse, Id } from "api-types";
+import { AdminCommentsRequest, GetAllDispositifsResponse, GetLogResponse, Id } from "api-types";
 
 interface Props {
   show: boolean;
@@ -77,7 +75,7 @@ export const ContentDetailsModal = (props: Props) => {
     }
   }, [dispositif, currentId, selectedDispositifId, updateLogs]);
 
-  const updateDispositifsStore = (dispositifId: ObjectId, data: Partial<SimplifiedDispositif>) => {
+  const updateDispositifsStore = (dispositifId: Id, data: Partial<GetAllDispositifsResponse>) => {
     const dispositifs = cloneDeep(allDispositifs);
     const newDispositifs = dispositifs.map((d) => (d._id === dispositifId ? { ...d, ...data } : d));
     dispatch(setAllDispositifsActionsCreator(newDispositifs));
@@ -100,29 +98,21 @@ export const ContentDetailsModal = (props: Props) => {
         return;
       }
 
-      const queryDispositif = {
-        query: {
-          dispositifId: dispositif._id,
-          [property]: newStatus
-        }
-      };
-
       if (property === "status") {
-        await API.updateDispositifStatus(queryDispositif);
+        //@ts-ignore FIXME type status
+        await API.updateDispositifStatus(dispositif._id, { status: newStatus });
       } else {
-        await API.updateDispositifAdminComments(queryDispositif);
+        const body: AdminCommentsRequest = {
+          [property]: newStatus
+        };
+        await API.updateDispositifAdminComments(dispositif._id.toString(), body);
       }
       updateDispositifsStore(dispositif._id, { [property]: newStatus });
     }
   };
   const saveAdminComments = async () => {
     if (!dispositif) return;
-    await API.updateDispositifAdminComments({
-      query: {
-        dispositifId: dispositif._id,
-        adminComments
-      }
-    });
+    await API.updateDispositifAdminComments(dispositif._id.toString(), { adminComments });
     setAdminCommentsSaved(true);
     updateDispositifsStore(dispositif._id, { adminComments: adminComments });
   };

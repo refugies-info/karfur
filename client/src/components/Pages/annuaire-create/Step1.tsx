@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Input, Spinner } from "reactstrap";
 import FInput from "components/UI/FInput/FInput";
-import { Structure } from "types/interface";
 import PlaceholderLogo from "assets/Placeholder_logo.png";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Image from "next/image";
+import { GetStructureResponse } from "api-types";
 
 const Title = styled.div`
   font-weight: bold;
@@ -55,7 +55,7 @@ const FileInput = styled(Input)`
 `;
 
 interface Props {
-  structure: Structure | null;
+  structure: GetStructureResponse | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }
@@ -136,7 +136,7 @@ export const Step1 = (props: Props) => {
           {secureUrl ? (
             <Image
               src={secureUrl}
-              alt={props.structure ? props.structure.acronyme : ""}
+              alt={props.structure?.acronyme || ""}
               width={200}
               height={200}
               style={{ objectFit: "contain" }}

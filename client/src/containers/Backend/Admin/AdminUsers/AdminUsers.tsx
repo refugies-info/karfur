@@ -19,13 +19,13 @@ import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
 import { TabHeader, FilterButton } from "../sharedComponents/SubComponents";
 import { RowContainer, StructureName } from "../AdminStructures/components/AdminStructureComponents";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
-import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import { SimplifiedUser, UserStatusType } from "types/interface";
+import CustomSearchBar from "components/UI/CustomSeachBar";
+import { UserStatusType } from "types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
@@ -43,7 +43,7 @@ import styles from "./AdminUsers.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { Id } from "api-types";
+import { GetAllUsersResponse, Id } from "api-types";
 
 moment.locale("fr");
 
@@ -138,7 +138,7 @@ export const AdminUsers = () => {
     toggleStructureDetailsModal();
   };
 
-  const users = useSelector(activeUsersSelector);
+  const users = useSelector(allActiveUsersSelector);
   const dispositifs = useSelector(allDispositifsSelector);
 
   const reorder = (element: { name: string; order: string }) => {
@@ -153,7 +153,7 @@ export const AdminUsers = () => {
       });
     }
   };
-  const filterAndSortUsers = (users: SimplifiedUser[]) => {
+  const filterAndSortUsers = (users: GetAllUsersResponse[]) => {
     const usersFilteredBySearch = !!search
       ? users.filter(
           (user) =>
@@ -163,7 +163,7 @@ export const AdminUsers = () => {
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
                 .includes(removeAccents(search.toLowerCase()))) ||
-            user.email.includes(search)
+            user.email?.includes(search)
         )
       : users;
 
@@ -175,7 +175,9 @@ export const AdminUsers = () => {
     } else if (filter === "Experts") {
       filteredUsers = usersFilteredBySearch.filter((user) => (user.roles || []).includes("ExpertTrad"));
     } else if (filter === "Traducteurs") {
-      filteredUsers = usersFilteredBySearch.filter((user) => user.langues && user.langues.length > 0);
+      filteredUsers = usersFilteredBySearch.filter(
+        (user) => user.selectedLanguages && user.selectedLanguages.length > 0
+      );
     } else if (filter === "Rédacteurs") {
       filteredUsers = usersFilteredBySearch.filter((user) => (user.roles || []).includes("Rédacteur"));
     } else if (filter === "Multi-structure") {
@@ -188,7 +190,7 @@ export const AdminUsers = () => {
         usersForCount: usersFilteredBySearch
       };
 
-    const usersToDisplay = filteredUsers.sort((a: SimplifiedUser, b: SimplifiedUser) => {
+    const usersToDisplay = filteredUsers.sort((a: GetAllUsersResponse, b: GetAllUsersResponse) => {
       // @ts-ignore
       const orderColumn: "pseudo" | "email" | "structure" | "created_at" = sortedHeader.orderColumn;
 
@@ -245,7 +247,7 @@ export const AdminUsers = () => {
     }
   };
 
-  const getNbUsersByStatus = (users: SimplifiedUser[], status: string) => {
+  const getNbUsersByStatus = (users: GetAllUsersResponse[], status: string) => {
     if (status === "Admin") {
       return users.filter((user) => (user.roles || []).includes("Admin")).length;
     }
@@ -256,7 +258,7 @@ export const AdminUsers = () => {
       return users.filter((user) => (user.roles || []).includes("ExpertTrad")).length;
     }
     if (status === "Traducteurs") {
-      return users.filter((user) => user.langues && user.langues.length > 0).length;
+      return users.filter((user) => user.selectedLanguages && user.selectedLanguages.length > 0).length;
     }
     if (status === "Rédacteurs") {
       return users.filter((user) => (user.roles || []).includes("Rédacteur")).length;
@@ -374,8 +376,8 @@ export const AdminUsers = () => {
                   </td>
                   <td className="align-middle" onClick={() => setSelectedUserIdAndToggleModal(element._id)}>
                     <div className={styles.item_container}>
-                      {(element.langues || []).map((langue) => (
-                        <LangueFlag langue={langue.langueCode} key={langue.langueCode} />
+                      {(element.selectedLanguages || []).map((langue) => (
+                        <LangueFlag langue={langue.langueFr} key={langue.langueCode} />
                       ))}
                     </div>
                   </td>
@@ -450,7 +452,6 @@ export const AdminUsers = () => {
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
         dispositifId={selectedContentId}
-        dispositifStatus={selectedContentStatus}
       />
     </div>
   );

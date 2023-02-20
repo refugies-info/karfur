@@ -1,6 +1,8 @@
 import logger from "../../logger";
 import { asyncForEach } from "../../libs/asyncForEach";
-import { DispositifId, Structure, StructureId, StructureModel, UserId } from "src/typegoose";
+import { DispositifId, Structure, StructureId, StructureModel, UserId } from "../../typegoose";
+import { Id, Picture } from "../../types/interface";
+import { FilterQuery, ProjectionFields } from "mongoose";
 
 export const getStructureFromDB = async (
   id: StructureId,
@@ -11,9 +13,9 @@ export const getStructureFromDB = async (
     .then((structure) =>
       withDispositifsAssocies
         ? structure.populate({
-            path: "dispositifsAssocies",
-            populate: { path: "theme secondaryThemes mainSponsor" }
-          })
+          path: "dispositifsAssocies",
+          populate: { path: "theme secondaryThemes mainSponsor" }
+        })
         : structure
     )
     .then((structure) => structure.toObject() as Structure)
@@ -22,47 +24,30 @@ export const getStructureFromDB = async (
       throw e;
     });
 
-export const getStructure = getStructureFromDB;
-
-type Query = { status: "Actif" } | {};
-type NeededFields =
-  | {
-      nom: number;
-      acronyme: number;
-      picture: number;
-      structureTypes: number;
-      departments: number;
-    }
-  | {
-      nom: number;
-      acronyme: number;
-      status: number;
-      picture: number;
-      createur: number;
-      dispositifsAssocies: number;
-      created_at: number;
-      membres: number;
-      adminComments: number;
-      adminProgressionStatus: number;
-      adminPercentageProgressionStatus: number;
-    }
-  | { membres: 1 };
+export const getStructureById = (id: string) => StructureModel.findOne({ _id: id });
 
 export const getStructuresFromDB = async (
-  query: Query,
-  neededFields: NeededFields,
-  withDispositifsAssocies: boolean
+  query: FilterQuery<Structure>,
+  neededFields: ProjectionFields<Structure>,
 ) => {
-  logger.info("[getStructuresFromDB] start");
-  if (!withDispositifsAssocies) {
-    logger.info("[getStructuresFromDB] without dispositifs associes");
-    return await StructureModel.find(query, neededFields);
-  }
-  logger.info("[getStructuresFromDB] with dispositifs associes");
-  return await StructureModel.find(query, neededFields)
-    .populate("dispositifsAssocies", "_id status")
-    .populate("createur", "username email picture");
-};
+  logger.info("[getStructuresFromDB] without dispositifs associes");
+  return StructureModel.find(query, neededFields);
+}
+
+export const getStructuresWithDispos = async (
+  query: FilterQuery<Structure>,
+  neededFields: ProjectionFields<Structure>,
+) => {
+  logger.info("[getStructuresWithDispos] with dispositifs associes");
+  return StructureModel.find(query, neededFields)
+    .populate<{
+      dispositifsAssocies: { _id: Id, status: string }[],
+      createur: { _id: Id, username: string, email: string, picture: Picture | null }
+    }>([
+      { path: "dispositifsAssocies", select: "_id status" },
+      { path: "createur", select: "_id username email picture" },
+    ])
+}
 
 export const updateAssociatedDispositifsInStructure = async (dispositifId: DispositifId, structureId: StructureId) => {
   logger.info("[updateAssociatedDispositifsInStructure] updating", {

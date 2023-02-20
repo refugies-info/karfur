@@ -1,9 +1,9 @@
 import { createReducer } from "typesafe-actions";
 import { UserFavoritesActions } from "./UserFavoritesInLocale.actions";
-import { SearchDispositif } from "../../types/interface";
+import { GetUserFavoritesResponse } from "api-types";
 
 export type UserFavoritesState = {
-  favorites: SearchDispositif[],
+  favorites: GetUserFavoritesResponse[],
   showFavoriteModal: boolean
 };
 

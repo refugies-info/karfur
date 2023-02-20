@@ -6,10 +6,7 @@ import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
 import {
   APIResponse,
-  IDispositif,
   NbDispositifsByRegion,
-  StructureFacets,
-  StructuresStatistics,
   TranslationFacets,
   TranslationStatistics,
   User,
@@ -48,7 +45,23 @@ import {
   GetDispositifsRequest,
   GetDispositifsResponse,
   GetAllStructuresResponse,
-  GetAllDispositifsResponse
+  GetAllDispositifsResponse,
+  CountDispositifsRequest,
+  GetCountDispositifsResponse,
+  AdminCommentsRequest,
+  GetUserContributionsResponse,
+  GetUserFavoritesResponse,
+  UserFavoritesRequest,
+  GetStructureResponse,
+  GetStructureStatisticsResponse,
+  GetStructureStatisticsRequest,
+  GetLanguagesResponse,
+  AddViewsRequest,
+  MainSponsorRequest,
+  DispositifStatusRequest,
+  GetActiveStructuresResponse,
+  GetActiveUsersResponse,
+  GetAllUsersResponse
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -165,19 +178,17 @@ const API = {
       headers
     });
   },
-  deleteUser: (query: ObjectId) => {
+  deleteUser: (query: Id) => {
     const headers = getHeaders();
     return instance.delete(`/user/${query}`, { headers });
   },
-  getUserFavoritesInLocale: (locale: string) => {
+  getUserFavorites: (query: UserFavoritesRequest): Promise<APIResponse<GetUserFavoritesResponse>> => {
     const headers = getHeaders();
-    return instance.get(`/user/getUserFavoritesInLocale?locale=${locale}`, {
-      headers
-    });
+    return instance.get(`/user/favorites?locale=${query.locale}`, { headers });
   },
-  getUserContributions: () => {
+  getUserContributions: (): Promise<APIResponse<GetUserContributionsResponse>> => {
     const headers = getHeaders();
-    return instance.get("/dispositifs/getUserContributions", { headers });
+    return instance.get("/dispositifs/user-contributions", { headers });
   },
   updateUserFavorites: (query: { dispositifId: ObjectId | null; type: string }) => {
     const headers = getHeaders();
@@ -192,21 +203,19 @@ const API = {
     const headers = getHeaders();
     return instance.post("/user/get_users", params, { headers });
   },
-  getAllUsers: () => {
+  getActiveUsers: (): Promise<APIResponse<GetActiveUsersResponse[]>> => {
     const headers = getHeaders();
-    return instance.get("/user/getAllUsers", { headers });
+    return instance.get("/user/actives", { headers });
+  },
+  getAllUsers: (): Promise<APIResponse<GetAllUsersResponse[]>> => {
+    const headers = getHeaders();
+    return instance.get("/user/all", { headers });
   },
 
   // Dispositif
-  addDispositif: (query: Partial<IDispositif>) => {
+  addDispositif: (query: any) => { // TODO previously IDispositif
     const headers = getHeaders();
     return instance.post("/dispositifs/addDispositif", query, {
-      headers
-    });
-  },
-  add_dispositif_infocards: (query: any) => {
-    const headers = getHeaders();
-    return instance.post("/dispositifs/add_dispositif_infocards", query, {
       headers
     });
   },
@@ -214,11 +223,9 @@ const API = {
     const headers = getHeaders();
     return instance.get(`/dispositifs/${id}?locale=${locale}`, { headers });
   },
-  count_dispositifs: (query: any): Promise<AxiosResponse<number>> => {
+  countDispositifs: (query: CountDispositifsRequest): Promise<APIResponse<GetCountDispositifsResponse>> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/count_dispositifs", query, {
-      headers
-    });
+    return instance.get("/dispositifs/count", { params: query, headers });
   },
   updateDispositifReactions: (query: any) => {
     const headers = getHeaders();
@@ -226,11 +233,9 @@ const API = {
       headers
     });
   },
-  updateDispositifStatus: (query: any) => {
+  updateDispositifStatus: (id: Id, body: DispositifStatusRequest) => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/updateDispositifStatus", query, {
-      headers
-    });
+    return instance.patch(`/dispositifs/${id}/status`, body, { headers });
   },
   updateDispositifTagsOrNeeds: (query: any) => {
     const headers = getHeaders();
@@ -238,17 +243,13 @@ const API = {
       headers
     });
   },
-  modifyDispositifMainSponsor: (query: any) => {
+  updateDispositifMainSponsor: (id: string, body: MainSponsorRequest) => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/modifyDispositifMainSponsor", query, {
-      headers
-    });
+    return instance.patch(`/dispositifs/${id}/main-sponsor`, body, { headers });
   },
-  updateDispositifAdminComments: (query: any) => {
+  updateDispositifAdminComments: (id: string, body: AdminCommentsRequest) => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/updateDispositifAdminComments", query, {
-      headers
-    });
+    return instance.patch(`/dispositifs/${id}/admin-comments`, body, { headers });
   },
   getDispositifsWithTranslationAvancement: (locale: string) => {
     const headers = getHeaders();
@@ -257,25 +258,23 @@ const API = {
   getDispositifs: (query: GetDispositifsRequest): Promise<APIResponse<GetDispositifsResponse[]>> => {
     return instance.get("/dispositifs", { params: query });
   },
-  getAllDispositifs: (): Promise<APIResponse<GetAllDispositifsResponse>> => {
+  getAllDispositifs: (): Promise<APIResponse<GetAllDispositifsResponse[]>> => {
     const headers = getHeaders();
     return instance.get("/dispositifs/all", { headers })
   },
   getNbDispositifsByRegion: (): Promise<Response<NbDispositifsByRegion>> => {
     return instance.get("/dispositifs/getNbDispositifsByRegion");
   },
-  updateNbVuesOrFavoritesOnContent: (params: any) => {
+  addDispositifViews: (id: string, body: AddViewsRequest) => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/updateNbVuesOrFavoritesOnContent", params, {
-      headers
-    });
+    return instance.post(`/dispositifs/${id}/view`, body, { headers });
   },
   getDispositifsStatistics: (query: GetStatisticsRequest): Promise<APIResponse<GetStatisticsResponse>> => {
     const headers = getHeaders();
     return instance.get("/dispositifs/statistics", { params: query, headers });
   },
   /* TODO: support all dispositif properties */
-  updateDispositif: (id: ObjectId, query: { webOnly: boolean }) => {
+  updateDispositif: (id: Id, query: { webOnly: boolean }) => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}`, query, { headers });
   },
@@ -317,32 +316,19 @@ const API = {
       headers
     });
   },
-  getStructureById: (
-    id: string,
-    withDisposAssocies: boolean,
-    localeOfLocalizedDispositifsAssocies: string,
-    withMembres: boolean
-  ) => {
+  getStructureById: (id: string, locale: string): Promise<APIResponse<GetStructureResponse>> => {
     const headers = getHeaders();
-    return instance.get("/structures/getStructureById", {
-      params: {
-        id,
-        withDisposAssocies,
-        localeOfLocalizedDispositifsAssocies,
-        withMembres
-      },
-      headers
-    });
+    return instance.get(`/structures/${id}?locale=${locale}`, { headers });
   },
-  getActiveStructures: () => {
+  getActiveStructures: (): Promise<APIResponse<GetActiveStructuresResponse[]>> => {
     return instance.get("/structures/getActiveStructures");
   },
-  getAllStructures: (): Promise<APIResponse<GetAllStructuresResponse>> => {
+  getAllStructures: (): Promise<APIResponse<GetAllStructuresResponse[]>> => {
     const headers = getHeaders();
     return instance.get("/structures/all", { headers })
   },
-  getStructuresStatistics: (facets?: StructureFacets[]): Promise<Response<StructuresStatistics>> => {
-    return instance.get("/structures/statistics", { params: { facets } });
+  getStructuresStatistics: (query: GetStructureStatisticsRequest): Promise<APIResponse<GetStructureStatisticsResponse>> => {
+    return instance.get("/structures/statistics", { params: query });
   },
 
   // Needs
@@ -462,12 +448,10 @@ const API = {
     return instance.get("/traduction/statistics", { params: { facets } });
   },
 
-  // Langues
-  get_langues: (query: any, sort: string, populate: string) => {
-    const headers = getHeaders();
-    return instance.post("/langues/get_langues", { query: query, sort: sort, populate: populate }, { headers });
+  // langues
+  getLanguages: (): Promise<APIResponse<GetLanguagesResponse>> => {
+    return instance.get("/langues")
   },
-  getLanguages: () => instance.get("/langues/getLanguages"),
 
   // Misc
   postImage: (query: any): Promise<APIResponse<PostImageResponse>> => {

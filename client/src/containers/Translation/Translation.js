@@ -7,8 +7,8 @@ import get from "lodash/get";
 import produce from "immer";
 
 import API from "../../utils/API";
-import Dispositif from "components/Frontend/Dispositif/Dispositif";
-import { menu } from "data/dispositif";
+import Dispositif from "components/Content/Dispositif";
+// import { menu } from "data/dispositif";
 import { fetchTranslationsActionCreator, addTradActionCreator } from "../../services/Translation/translation.actions";
 import { withRouter } from "react-router-dom";
 import {
@@ -17,6 +17,7 @@ import {
 } from "services/SelectedDispositif/selectedDispositif.actions";
 import isInBrowser from "lib/isInBrowser";
 
+let menu = {};
 let last_target = null;
 let letter_pressed = null;
 

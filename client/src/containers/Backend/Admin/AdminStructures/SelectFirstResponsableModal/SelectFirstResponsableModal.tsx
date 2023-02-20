@@ -5,10 +5,8 @@ import SearchBar from "components/UI/SearchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
 import FButton from "components/UI/FButton/FButton";
-import { SimplifiedUser } from "types/interface";
-import { ObjectId } from "mongodb";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
@@ -16,7 +14,7 @@ import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions"
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { colors } from "colors";
 import styles from "./SelectFirstResponsableModal.module.scss";
-import { Id } from "api-types";
+import { Id, SimpleUser } from "api-types";
 
 const ModifyLink = styled.div`
   font-weight: bold;
@@ -56,14 +54,14 @@ interface Props {
   selectedStructureId: Id | null;
 }
 export const SelectFirstResponsableModal = (props: Props) => {
-  const [selectedUser, setSelectedUser] = useState<SimplifiedUser | null>(null);
+  const [selectedUser, setSelectedUser] = useState<SimpleUser | null>(null);
 
   const dispatch = useDispatch();
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES));
 
   const structureFromStore = useSelector(structureSelector(props.selectedStructureId));
 
-  const activeUsers = useSelector(activeUsersSelector);
+  const activeUsers = useSelector(allActiveUsersSelector);
 
   const onValidate = async () => {
     try {
@@ -98,7 +96,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
     }
   };
 
-  const onSelectItem = (data: SimplifiedUser) => setSelectedUser(data);
+  const onSelectItem = (data: SimpleUser) => setSelectedUser(data);
 
   if (isLoading || !props.selectedStructureId)
     return (

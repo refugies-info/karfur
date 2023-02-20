@@ -3,11 +3,10 @@ import { Modal } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
 import Image from "next/image";
 import styled from "styled-components";
-import { UserStructureMembre } from "types/interface";
-import { ObjectId } from "mongodb";
 import marioProfile from "assets/mario-profile.jpg";
 import { Role } from "./Role";
 import styles from "./MemberModal.module.scss";
+import { Id, StructureMember } from "api-types";
 
 const Title = styled.div`
   font-weight: normal;
@@ -39,8 +38,8 @@ const UserName = styled.div`
 interface Props {
   show: boolean;
   toggle: () => void;
-  modifyRole: (arg: ObjectId, role: "contributeur" | "administrateur") => void;
-  selectedUser: UserStructureMembre | null;
+  modifyRole: (arg: Id, role: "contributeur" | "administrateur") => void;
+  selectedUser: StructureMember | null;
 }
 
 const EditMemberModal = (props: Props) => {
@@ -49,7 +48,7 @@ const EditMemberModal = (props: Props) => {
   const modifyRole = () => {
     if (!props.selectedUser || !selectedRole) return;
     const formattedRole = selectedRole === "Responsable" ? "administrateur" : "contributeur";
-    props.modifyRole(props.selectedUser._id, formattedRole);
+    props.modifyRole(props.selectedUser.userId, formattedRole);
   };
 
   const secureUrl =

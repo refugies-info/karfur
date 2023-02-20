@@ -3,51 +3,31 @@ import { getDispositifArray } from "../../../modules/dispositif/dispositif.repos
 import { map } from "lodash/fp";
 import omit from "lodash/omit";
 import pick from "lodash/pick";
-import { Languages } from "../../../typegoose";
+import { Dispositif, Languages } from "../../../typegoose";
 import { GetDispositifsRequest } from "../../../controllers/dispositifController";
-import { Id, Metadatas, Picture, ResponseWithData } from "../../../types/interface";
+import { ResponseWithData, SimpleDispositif } from "../../../types/interface";
+import { FilterQuery } from "mongoose";
 
-export interface GetDispositifsResponse {
-  _id: Id;
-  titreInformatif?: string;
-  titreMarque?: string;
-  abstract?: string;
-  typeContenu: string;
-  status: string;
-  theme?: Id;
-  secondaryThemes?: Id[];
-  needs: Id[];
-  metadatas: Metadatas;
-  created_at?: Date;
-  publishedAt?: Date;
-  lastModificationDate?: Date;
-  nbMots: number;
-  nbVues: number;
-  mainSponsor?: {
-    nom: string;
-    picture: Picture
-  }
-}
+export type GetDispositifsResponse = SimpleDispositif;
 
 export const getDispositifs = async (query: GetDispositifsRequest): ResponseWithData<GetDispositifsResponse[]> => {
   logger.info("[getDispositifs] called");
   const { type, locale, limit, sort } = query;
 
   const selectedLocale = (locale || "fr") as Languages;
-  const dbQuery: any = { status: "Actif" };
+  const dbQuery: FilterQuery<Dispositif> = { status: "Actif" };
   if (type) dbQuery.typeContenu = type;
 
+  /* TODO: factorize this (also in 2 other files) */
   return getDispositifArray(dbQuery, {
     lastModificationDate: 1,
     mainSponsor: 1,
     needs: 1
-  }, "mainSponsor", limit, sort)
+  }, "", limit, sort)
     .then(map((dispositif) => {
-      //@ts-ignore FIXME : type populate mainSponsor
       const resDisp: GetDispositifsResponse = {
         _id: dispositif._id,
         ...pick(dispositif.translations[selectedLocale].content, ["titreInformatif", "titreMarque", "abstract"]),
-        ...pick(dispositif, ["mainSponsor.nom", "mainSponsor.picture"]),
         metadatas: { ...dispositif.metadatas, ...dispositif.translations[selectedLocale].metadatas },
         ...omit(dispositif, ["translations"]),
       }

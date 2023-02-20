@@ -1,3 +1,4 @@
+import { FilterQuery, UpdateQuery } from "mongoose";
 import { Dispositif, DispositifId, DispositifModel, UserId } from "../../typegoose";
 import { Id, Picture } from "../../types/interface";
 
@@ -18,7 +19,7 @@ type DispositifKeys = keyof Dispositif;
 type DispositifFieldsRequest = Partial<Record<DispositifKeys, number>>;
 
 export const getDispositifArray = async (
-  query: any,
+  query: FilterQuery<Dispositif>,
   extraFields: DispositifFieldsRequest = {},
   populate: string = "",
   limit: number = 0,
@@ -39,7 +40,13 @@ export const getDispositifArray = async (
     ...extraFields
   };
 
-  return DispositifModel.find(query, neededFields).sort(sort).limit(limit).lean().populate(populate);
+  return DispositifModel
+    .find(query, neededFields)
+    .sort(sort)
+    .limit(limit)
+    .populate<{ mainSponsor: { _id: Id, nom: string, picture: Picture } }>({ path: "mainSponsor", select: "_id nom picture" })
+    .lean()
+    .populate(populate);
 };
 
 export const updateDispositifInDB = async (
@@ -50,6 +57,14 @@ export const updateDispositifInDB = async (
     upsert: true,
     new: true
   }).populate("theme secondaryThemes");
+
+export const incrementDispositifViews = async (id: string, properties: ("nbFavoritesMobile" | "nbVues" | "nbVuesMobile")[]) => {
+  const query: UpdateQuery<Dispositif> = { $inc: {} };
+  for (const prop of properties) {
+    query.$inc[prop] = 1
+  }
+  return DispositifModel.findOneAndUpdate({ id }, query);
+}
 
 export const getActiveDispositifsFromDBWithoutPopulate = (needFields: Object) =>
   DispositifModel.find({ status: "Actif", typeContenu: "dispositif" }, needFields);
@@ -92,7 +107,7 @@ export const getDispositifById = async (
 ) => DispositifModel.findById(id, neededFields).populate(populate);
 
 export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) =>
-  await DispositifModel.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate("mainSponsor");
+  await DispositifModel.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate<{ mainSponsor: { nom: string } }>("mainSponsor", "nom");
 
 export const getDispositifByIdWithMainSponsor = async (
   id: DispositifId,
@@ -182,7 +197,7 @@ export const getNbUpdatedRecently = async (date: Date) => {
   });
 };
 
-export const getCountDispositifs = async (query: any) => DispositifModel.count(query);
+export const getCountDispositifs = async (query: FilterQuery<Dispositif>) => DispositifModel.count(query);
 
 export const deleteNeedFromDispositifs = async (needId: string) => {
   return DispositifModel.updateMany({ needs: needId }, { $pull: { needs: needId } });

@@ -1,10 +1,10 @@
-import { ResponseWithData } from "../../../types/interface";
+import { Id, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
-import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
-import { ImageSchema, StructureId } from "../../../typegoose";
+import { getStructuresWithDispos } from "../../../modules/structure/structure.repository";
+import { ImageSchema } from "../../../typegoose";
 
-interface ActiveStructure {
-  _id: StructureId;
+export interface GetActiveStructuresResponse {
+  _id: Id;
   nom: string;
   acronyme?: string;
   picture?: ImageSchema;
@@ -13,12 +13,10 @@ interface ActiveStructure {
   disposAssociesLocalisation?: string[];
 }
 
-export type GetActiveStructuresResponse = ActiveStructure[];
-
-export const getActiveStructures = async (): ResponseWithData<GetActiveStructuresResponse> => {
+export const getActiveStructures = async (): ResponseWithData<GetActiveStructuresResponse[]> => {
 
   logger.info("[getActiveStructures] get structures ");
-  const structures = await getStructuresFromDB(
+  const structures = await getStructuresWithDispos(
     { status: "Actif" },
     {
       nom: 1,
@@ -26,14 +24,13 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
       picture: 1,
       structureTypes: 1,
       departments: 1
-    },
-    true
+    }
   );
   logger.info("[getActiveStructures] structures fetched");
 
-  let newStructures: ActiveStructure[] = [];
+  let newStructures: GetActiveStructuresResponse[] = [];
   structures.map((item) => {
-    let newStructure: ActiveStructure = {
+    let newStructure: GetActiveStructuresResponse = {
       _id: item._id,
       nom: item.nom,
       acronyme: item.acronyme,
@@ -45,7 +42,7 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
     if (item.dispositifsAssocies && item.dispositifsAssocies.length) {
       item.dispositifsAssocies.map((el: any) => {
         if (el.contenu && el.contenu[1] && el.contenu[1].children && el.contenu[1].children.length) {
-          const geolocInfocard = el.contenu[1].children.find((infocard: any) => infocard.title === "Zone d'action");
+          const geolocInfocard = el.contenu[1].children.find((infocard: any) => infocard.title === "Zone d'action"); /* TODO: update with metadatas */
           if (geolocInfocard && geolocInfocard.departments) {
             for (var i = 0; i < geolocInfocard.departments.length; i++) {
               if (!newStructure.disposAssociesLocalisation.includes(geolocInfocard.departments[i])) {

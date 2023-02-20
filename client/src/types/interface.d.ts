@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import { Moment } from "moment";
 import { AxiosResponse } from "axios";
-import { Id } from "api-types";
+import { GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
 
 export type APIResponse<T = {}> = AxiosResponse<{
   text: "success" | "error",
@@ -23,125 +23,7 @@ export interface Picture {
   public_id: string | null;
   secure_url: string | null;
 }
-
 type iconName = "house" | "search" | "message" | "menu" | "tag" | "";
-export interface Theme {
-  _id: ObjectId;
-  name: {
-    fr: string;
-    [key: string]: string;
-  };
-  short: {
-    fr: string;
-    [key: string]: string;
-  };
-  colors: {
-    color100: string;
-    color80: string;
-    color60: string;
-    color40: string;
-    color30: string;
-  };
-  position: number;
-  icon: Picture;
-  banner: Picture;
-  appBanner: Picture;
-  appImage: Picture;
-  shareImage: Picture;
-  notificationEmoji: string;
-  adminComments: string;
-  active: boolean;
-  created_at?: Moment;
-}
-
-export interface SimplifiedStructure {
-  _id: ObjectId;
-  acronyme: string;
-  nom: string;
-  structureTypes?: string[];
-  departments?: string[];
-  picture: Picture | null;
-  role?: string[];
-  disposAssociesLocalisation?: string[];
-}
-
-export interface UiObject {
-  accordion: boolean;
-  addDropdown: boolean;
-  cardDropdown: boolean;
-  isHover: boolean;
-  varianteSelected: boolean;
-  children: any;
-}
-
-export interface SimplifiedUser {
-  username: string;
-  picture: Picture;
-  status: string;
-  _id: ObjectId;
-  created_at?: Moment;
-  roles?: string[];
-  email: string;
-  phone?: string;
-  langues?: { langueCode: string; langueFr: string }[];
-  structures?: SimplifiedStructure[];
-  nbStructures?: number;
-  threeMonthsIndicator?: Indicator;
-  sixMonthsIndicator?: Indicator;
-  twelveMonthsIndicator?: Indicator;
-  totalIndicator?: Indicator;
-  adminComments?: string;
-}
-
-export interface SimplifiedCreator {
-  username: string;
-  picture: Picture | undefined;
-  _id: ObjectId;
-  email: string | undefined;
-  roles?: string[];
-}
-
-export interface SimplifiedMainSponsor {
-  _id: ObjectId;
-  nom: string;
-  status: string;
-  picture: Picture | null;
-}
-export interface SimplifiedDispositif {
-  titreInformatif: string;
-  titreMarque?: string;
-  updatedAt: Moment;
-  status: string;
-  typeContenu: string;
-  created_at: Moment;
-  publishedAt?: Moment;
-  publishedAtAuthor?: {
-    _id: ObjectId;
-    username: string;
-  };
-  _id: ObjectId;
-  mainSponsor: null | SimplifiedMainSponsor;
-  creatorId: SimplifiedCreator | null;
-  adminComments?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
-  lastAdminUpdate?: Moment;
-  lastReminderMailSentToUpdateContentDate?: Moment;
-  draftReminderMailSentDate?: Moment;
-  draftSecondReminderMailSentDate?: Moment;
-  lastModificationDate?: Moment;
-  lastModificationAuthor?: {
-    _id: ObjectId;
-    username: string;
-  };
-  needs?: Id[];
-  theme: Theme;
-  secondaryThemes: Theme[];
-  nbMercis: number;
-  nbVues: number;
-  themesSelectedByAuthor?: boolean;
-  webOnly?: boolean;
-}
 
 export interface Role {
   _id: ObjectId;
@@ -149,15 +31,6 @@ export interface Role {
   nomPublique: string;
 }
 
-export interface Language {
-  langueFr: string;
-  langueLoc: string;
-  langueCode: string;
-  i18nCode: string;
-  _id?: ObjectId;
-  avancement: number;
-  avancementTrad?: number;
-}
 
 export interface UserLanguage {
   langueFr: string;
@@ -167,7 +40,7 @@ export interface UserLanguage {
   _id: string;
 }
 
-export interface DispositifPinned {
+interface DispositifPinned {
   _id: string;
   datePin: Moment;
 }
@@ -201,48 +74,6 @@ export interface User {
   _id: ObjectId;
 }
 
-export interface DispositifContent {
-  type?: string;
-  title?: string;
-  content?: string | null;
-  editable?: boolean;
-  children?: DispositifContent[];
-  placeholder?: string;
-  tutoriel?: Record<string, string>;
-  target?: string;
-  contentTitle?: string;
-  isFakeContent?: boolean;
-  titleIcon?: string;
-  typeIcon?: string;
-  bottomValue?: number;
-  topValue?: number;
-  free?: boolean;
-  price?: number;
-  footerHref?: string;
-  footerIcon?: string;
-  footer?: string;
-  niveaux?: string[];
-  departments?: string[];
-  contentBody?: string;
-  ageTitle?: string;
-  noContent?: boolean;
-  editorState?: any;
-  isMapLoaded?: boolean;
-  papiers?: any[];
-  duree?: string;
-  delai?: string;
-  timeStepDuree?: string;
-  timeStepDelai?: string;
-  tooltipFooter?: string;
-  option?: any;
-  markers?: any[];
-}
-
-interface Membre {
-  userId: ObjectId;
-  roles: string[];
-}
-
 export interface DetailedOpeningHours {
   day: string;
   from0?: string;
@@ -255,127 +86,7 @@ export interface OpeningHours {
   noPublic: boolean;
   precisions?: string;
 }
-export interface Structure {
-  _id: ObjectId;
-  membres: Membre[];
-  acronyme: string;
-  administrateur: ObjectId;
-  adresse: string;
-  authorBelongs: boolean;
-  contact: string;
-  created_at: Moment;
-  createur: ObjectId;
-  // eslint-disable-next-line no-use-before-define
-  dispositifsAssocies: ObjectId[] | SearchDispositif[];
-  link: string;
-  mail_contact: string;
-  mail_generique: string;
-  nom: string;
-  phone_contact: string;
-  siren: string;
-  siret: string;
-  status: string;
-  updatedAt: Moment;
-  picture: Picture | null;
-  structureTypes?: string[];
-  websites?: string[];
-  facebook?: string;
-  linkedin?: string;
-  twitter?: string;
-  activities?: string[];
-  departments?: string[];
-  phonesPublic?: string[];
-  adressPublic?: string;
-  openingHours?: OpeningHours;
-  onlyWithRdv?: boolean;
-  description?: string;
-  hasResponsibleSeenNotification?: boolean;
-  mailsPublic?: string[];
-}
 
-export interface AudienceAge {
-  contentTitle: "Plus de ** ans" | "De ** à ** ans" | "Moins de ** ans";
-  bottomValue: number | string;
-  topValue: number | string;
-}
-export interface SearchDispositif {
-  _id: ObjectId;
-  titreInformatif: string;
-  titreMarque: string;
-  abstract: string;
-  audienceAge: AudienceAge[];
-  avancement: Record<string, number>;
-  contenu: DispositifContent[];
-  created_at: Moment;
-  mainSponsor: SimplifiedMainSponsor;
-  nbMots: number;
-  niveauFrancais?: string[];
-  needs: ObjectId[];
-  theme: ObjectId;
-  status: string;
-  secondaryThemes: ObjectId[];
-  typeContenu: "dispositif" | "demarche";
-  suggestions?: any[];
-  nbMercis?: number;
-  lastModificationDate?: number;
-  nbVues: number;
-  lastModificationDate?: number;
-  publishedAt?: number;
-}
-export interface IDispositif {
-  _id: ObjectId;
-  abstract: string;
-  audience: string[];
-  audienceAge: AudienceAge[];
-  autoSave: boolean;
-  avancement: Record<string, number>;
-  bravo: {
-    createdAt: Moment;
-    keyValue: number;
-    subkey: number;
-    suggestionId: string;
-  }[];
-  contact: string;
-  contenu: DispositifContent[];
-  created_at: Moment;
-  creatorId: User;
-  externalLink: string;
-  mainSponsor: Structure;
-  merci: { createdAt: Moment; keyValue: number; subkey: null | number }[];
-  nbMots: number;
-  niveauFrancais?: string[];
-  participants: User[];
-  signalements: any[];
-  sponsors: Structure[];
-  needs: ObjectId[];
-  status: string;
-  suggestions: any[];
-  theme: Theme;
-  secondaryThemes: Theme[];
-  titreInformatif: string;
-  titreMarque: string;
-  typeContenu: "dispositif" | "demarche";
-  updatedAt: Moment;
-  nbVues: number;
-  nbMercis: number;
-  timeSpent?: number;
-  lastModificationDate?: number;
-  publishedAt?: number;
-  webOnly?: boolean;
-}
-
-export interface UserStructureMembre {
-  _id: ObjectId;
-  roles: string[];
-  picture?: Picture;
-  username: string;
-  last_connected?: Moment;
-  added_at?: Moment;
-  mainRole?: string;
-}
-export interface UserStructure extends Structure {
-  membres: UserStructureMembre[];
-}
 export interface Translation {
   _id?: ObjectId;
   initialText?: object;
@@ -388,60 +99,6 @@ export interface Translation {
   type?: string;
   validatorId?: ObjectId;
   isExpert?: boolean;
-}
-
-interface SimplifiedDispositifAssocie {
-  titreInformatif: string;
-  titreMarque: string;
-  _id: ObjectId;
-  theme: Theme;
-  secondaryThemes: Theme[];
-  abstract: string;
-  status: string;
-}
-
-export interface Responsable {
-  _id: ObjectId;
-  username: string;
-  picture: Picture;
-  email: string;
-}
-
-// export enum StructureStatus {
-//   ACTIF = "Actif",
-//   SUPPRIME = "Supprimé",
-//   EN_ATTENTE = "En attente"
-// }
-export type StructureStatusType = "Actif" | "En attente" | "Supprimé";
-
-export interface SimplifiedStructureForAdmin {
-  _id: ObjectId;
-  nom: string;
-  acronyme: string;
-  status: StructureStatusType;
-  picture: Picture;
-  nbMembres: number;
-  created_at: Moment;
-  createur: null | Responsable;
-  responsable: null | Responsable;
-  membres: Membre[];
-  dispositifsIds: ObjectId[];
-  createur: null | SimplifiedCreator;
-  nbFiches: number;
-  adminComments?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
-}
-
-export interface IUserContribution {
-  _id: ObjectId;
-  typeContenu: "dispositif" | "demarche";
-  titreInformatif: string;
-  titreMarque: string;
-  mainSponsor: string | null;
-  nbMercis: number;
-  nbVues: number;
-  status: string;
 }
 
 export type TranslationStatus = "À traduire" | "En attente" | "Validée" | "À revoir";
@@ -478,13 +135,6 @@ export interface NbDispositifsByRegion {
   dispositifsWithoutGeoloc: ObjectId[];
 }
 
-export type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
-export interface StructuresStatistics {
-  nbStructures?: number;
-  nbCDA?: number;
-  nbStructureAdmins?: number;
-}
-
 export type TranslationFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
 export interface TranslationStatistics {
   nbTranslators?: number;
@@ -499,13 +149,6 @@ export interface TranslationStatistics {
 export type AvailableLanguageI18nCode = "fr" | "en" | "ps" | "ar" | "ti" | "ru" | "uk" | "fa";
 
 export type ContentType = "dispositif" | "demarche";
-
-export interface AdminOption {
-  _id: ObjectId;
-  key: string;
-  value: any;
-  created_at: Moment;
-}
 
 export type Status = {
   displayedStatus: string;
@@ -527,6 +170,7 @@ export type ContentStatus = {
   order: number;
 } & Status;
 
+type StructureStatusType = "Actif" | "En attente" | "Supprimé";
 export type StructureStatus = {
   storedStatus: StructureStatusType;
   order: number;

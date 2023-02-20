@@ -20,6 +20,9 @@ import { userStructureSelector } from "./userStructure.selectors";
 import { userSelector } from "../User/user.selectors";
 import Router from "next/router";
 import { setUserRoleInStructureActionCreator } from "../User/user.actions";
+import { APIResponse } from "types/interface";
+import { GetStructureResponse } from "api-types";
+import { UserState } from "services/User/user.reducer";
 
 export function* fetchUserStructure(
   action: ReturnType<typeof fetchUserStructureActionCreator>
@@ -29,19 +32,13 @@ export function* fetchUserStructure(
     logger.info("[fetchUserStructure] fetching user structure");
     const { structureId, shouldRedirect } = action.payload;
     if (!structureId) return;
-    const data = yield call(
-      API.getStructureById,
-      structureId.toString(),
-      true,
-      "fr",
-      true
-    );
+    const data: APIResponse<GetStructureResponse> = yield call(API.getStructureById, structureId.toString(), "fr");
     yield put(setUserStructureActionCreator(data.data.data));
-    const user = yield select(userSelector);
+    const user: UserState = yield select(userSelector);
     const userId = user.userId;
     const structureMembers = data.data.data ? data.data.data.membres : [];
     const userInStructure = structureMembers.filter(
-      (member: any) => member._id === userId
+      (member) => member.userId === userId
     );
     const userRoles =
       userInStructure.length > 0 ? userInStructure[0].roles : [];
@@ -74,10 +71,10 @@ export function* updateUserStructure(
     const { modifyMembres, data } = action.payload;
     let structureId;
     if (!modifyMembres) {
-      const structure = yield select(userStructureSelector);
+      const structure: GetStructureResponse = yield select(userStructureSelector);
       structureId = structure._id;
       // we don't want to update membres because they are formatted
-      delete structure.membres;
+      // FIXME delete structure.membres;
       if (!structure) {
         logger.info("[updateUserStructure] no structure to update");
         return;

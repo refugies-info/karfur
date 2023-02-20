@@ -39,21 +39,21 @@ export class Need extends Base {
   /**
    * Translations
    */
-  @prop()
+  @prop({ _id: false })
   public fr!: NeedTranslation;
-  @prop()
+  @prop({ _id: false })
   public ar!: NeedTranslation;
-  @prop()
+  @prop({ _id: false })
   public en!: NeedTranslation;
-  @prop()
+  @prop({ _id: false })
   public ru!: NeedTranslation;
-  @prop()
+  @prop({ _id: false })
   public fa!: NeedTranslation;
-  @prop()
+  @prop({ _id: false })
   public ti!: NeedTranslation;
-  @prop()
+  @prop({ _id: false })
   public ps!: NeedTranslation;
-  @prop()
+  @prop({ _id: false })
   public uk!: NeedTranslation;
 }
 

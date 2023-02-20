@@ -82,7 +82,7 @@ export class User extends Base {
   public reset_password_expires?: Date;
 
   @prop()
-  public adminComments?: String;
+  public adminComments?: string;
 
   @prop()
   public created_at?: Date;
@@ -129,8 +129,8 @@ export class User extends Base {
 
     return this.roles && this.roles.length > 0
       ? this.roles
-          .filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad")
-          .map((role) => role.nom.toString())
+        .filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad")
+        .map((role) => role.nom.toString())
       : [];
   }
 

@@ -108,7 +108,7 @@ const ThemeDropdown = (props: Props) => {
 
           const themeId = dispositif.theme;
           if (!themeId) continue;
-          newNbDispositifsByTheme[themeId] = (newNbDispositifsByTheme[themeId] || 0) + 1;
+          newNbDispositifsByTheme[themeId.toString()] = (newNbDispositifsByTheme[themeId.toString()] || 0) + 1;
           for (const theme of dispositif.secondaryThemes || []) {
             newNbDispositifsByTheme[theme.toString()] = (newNbDispositifsByTheme[theme.toString()] || 0) + 1;
           }

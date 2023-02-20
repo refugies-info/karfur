@@ -4,18 +4,20 @@ import {
   Route,
   Request,
   Query,
-  Security
+  Security,
+  Path,
+  Queries
 } from "tsoa";
 import express, { Request as ExRequest } from "express";
 const router = express.Router();
 const checkToken = require("./account/checkToken");
 import { getAllStructures, GetAllStructuresResponse } from "../workflows/structure/getAllStructures";
-import { getStructureById, StructureById } from "../workflows/structure/getStructureById";
+import { getStructureById, GetStructureResponse } from "../workflows/structure/getStructureById";
 import { getActiveStructures, GetActiveStructuresResponse } from "../workflows/structure/getActiveStructures";
 import { createStructure } from "../workflows/structure/createStructure";
 import { updateStructure } from "../workflows/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
-import getStatistics from "../workflows/structure/getStatistics";
+import { getStatistics, GetStructureStatisticsResponse } from "../workflows/structure/getStatistics";
 import { ResponseWithData } from "../types/interface";
 
 /* TODO: use tsoa */
@@ -23,9 +25,13 @@ import { ResponseWithData } from "../types/interface";
 router.post("/createStructure", checkToken.check, createStructure);
 router.post("/updateStructure", checkToken.check, updateStructure);
 router.post("/modifyUserRoleInStructure", checkToken.check, modifyUserRoleInStructure);
-router.get("/statistics", getStatistics);
 
 export { router };
+
+type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
+export interface GetStructureStatisticsRequest {
+  facets?: StructureFacets[]
+}
 
 @Route("structures")
 export class StructureController extends Controller {
@@ -38,20 +44,28 @@ export class StructureController extends Controller {
     return getAllStructures();
   }
 
-  @Get("/getStructureById")
-  public async getStructure(
-    @Query() id: string,
-    @Query() withDisposAssocies: boolean,
-    @Query() localeOfLocalizedDispositifsAssocies: string,
-    @Query() withMembres: boolean,
-    @Request() request: ExRequest
-  ): ResponseWithData<StructureById> {
-    return getStructureById(id, withDisposAssocies, localeOfLocalizedDispositifsAssocies, withMembres, request.user);
+  @Get("/getActiveStructures")
+  public async getStructures(): ResponseWithData<GetActiveStructuresResponse[]> {
+    return getActiveStructures();
   }
 
-  @Get("/getActiveStructures")
-  public async getStructures(): ResponseWithData<GetActiveStructuresResponse> {
-    return getActiveStructures();
+  @Get("/statistics")
+  public async getStructuresStatistics(
+    @Queries() query: GetStructureStatisticsRequest
+  ): ResponseWithData<GetStructureStatisticsResponse> {
+    return getStatistics(query);
+  }
+
+  @Security({
+    jwt: ["optional"],
+  })
+  @Get("{id}")
+  public async getStructure(
+    @Path() id: string,
+    @Query() locale: string,
+    @Request() request: ExRequest
+  ): ResponseWithData<GetStructureResponse> {
+    return getStructureById(id, locale, request.user);
   }
 }
 

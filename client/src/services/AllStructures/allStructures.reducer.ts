@@ -1,8 +1,8 @@
-import { SimplifiedStructureForAdmin } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { AllStructuresActions } from "./allStructures.actions";
+import { GetAllStructuresResponse } from "api-types";
 
-export type AllStructuresState = SimplifiedStructureForAdmin[];
+export type AllStructuresState = GetAllStructuresResponse[];
 
 export const initialAllStructuresState: AllStructuresState = [];
 

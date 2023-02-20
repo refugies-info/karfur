@@ -3,10 +3,10 @@ import {
   FETCH_ALL_STRUCTURES,
 } from "./allStructures.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { SimplifiedStructureForAdmin } from "../../types/interface";
+import { GetAllStructuresResponse } from "api-types";
 
 export const setAllStructuresActionCreator = (
-  value: SimplifiedStructureForAdmin[]
+  value: GetAllStructuresResponse[]
 ) => action(SET_ALL_STRUCTURES, value);
 
 export const fetchAllStructuresActionsCreator = () =>

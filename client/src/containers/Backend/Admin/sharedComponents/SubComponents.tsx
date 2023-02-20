@@ -1,17 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { ObjectId } from "mongodb";
 import { limitNbCaracters } from "lib";
 import { correspondingStatus, progressionData, publicationData } from "../AdminContenu/data";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-import moment, { Moment } from "moment";
+import moment from "moment";
 import styles from "../Admin.module.scss";
-interface SimplifiedStructure {
-  _id: ObjectId;
-  status: string;
-  nom: string;
-}
+import { GetAllDispositifsResponse, Id } from "api-types";
+
 const Container = styled.div`
   font-weight: normal;
   font-size: 12px;
@@ -60,7 +56,7 @@ const StructureContainer = styled.div`
 `;
 
 const getStructureNameAndStatus = (
-  sponsor: SimplifiedStructure | null
+  sponsor: GetAllDispositifsResponse["mainSponsor"] | null
 ): { structureName: string; statusColor: string } => {
   const red = colors.error;
   const orange = colors.orange;
@@ -86,7 +82,7 @@ const StructureName = styled.div`
   max-width: 280px;
 `;
 
-export const Structure = (props: { sponsor: SimplifiedStructure | null }) => {
+export const Structure = (props: { sponsor: GetAllDispositifsResponse["mainSponsor"] | null }) => {
   const { sponsor } = props;
   const { structureName, statusColor } = getStructureNameAndStatus(sponsor);
   return (
@@ -280,7 +276,7 @@ export const TabHeader = (props: {
   </StyledTabHeader>
 );
 
-export const Date = (props: { date: Moment | undefined; author?: { _id: ObjectId; username: string } }) => (
+export const Date = (props: { date: Date | undefined; author?: { _id: Id; username: string } }) => (
   <p className={styles.text}>
     {!props.date ? (
       "Non disponible"

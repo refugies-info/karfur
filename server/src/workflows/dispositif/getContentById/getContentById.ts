@@ -42,6 +42,7 @@ interface Poi {
 export type InfoSections = Record<string, InfoSection>;
 
 export type GetDispositifResponse = {
+  _id: Id;
   titreInformatif: string;
   titreMarque: string;
   abstract: string;
@@ -97,6 +98,7 @@ export const getContentById = async (id: string, locale: Languages): ResponseWit
 
   const dispositifObject = dispositif.toObject();
   const response: GetDispositifResponse = {
+    _id: dispositifObject._id,
     ...dispositifObject.translations[dataLanguage].content,
     metadatas: { ...dispositifObject.metadatas, ...dispositifObject.translations[dataLanguage].metadatas },
     ...pick(dispositif, ["typeContenu", "status", "mainSponsor", "theme", "secondaryThemes", "needs", "sponsors", "participants", "merci", "map"])

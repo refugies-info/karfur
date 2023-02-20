@@ -1,13 +1,13 @@
 import { cls } from "lib/classname";
-import { Language } from "types/interface";
 import FilterButton from "components/UI/FilterButton";
 import LanguageText from "components/UI/Language";
 import parentStyles from "../Widgets.module.scss";
+import { GetLanguagesResponse } from "api-types";
 
 interface Props {
   selectedLanguages: string[];
   setSelectedLanguages: (callback: any) => void;
-  languages: Language[];
+  languages: GetLanguagesResponse[];
 }
 
 export const LanguageInput = (props: Props) => {
