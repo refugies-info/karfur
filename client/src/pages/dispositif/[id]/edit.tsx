@@ -7,10 +7,11 @@ import { fetchUserActionCreator } from "services/User/user.actions";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { useForm, FormProvider } from "react-hook-form";
-import { logger } from "logger";
 import PageContext from "utils/pageContext";
 import { useSelector } from "react-redux";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
+import { UpdateDispositifRequest } from "api-types";
+import { getDefaultValue, submitForm } from "lib/dispositifForm";
 
 interface Props {
   history: string[];
@@ -18,8 +19,8 @@ interface Props {
 
 const DispositifPage = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
-  const methods = useForm({ defaultValues: dispositif });
-  const onSubmit = (data: any) => logger.info(data);
+  const methods = useForm<UpdateDispositifRequest>({ defaultValues: getDefaultValue(dispositif) });
+  const onSubmit = (data: UpdateDispositifRequest) => submitForm(dispositif._id, data);
 
   return (
     <PageContext.Provider value={{ mode: "edit" }}>

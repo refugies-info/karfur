@@ -1,14 +1,9 @@
-import { Id, Metadatas, Picture, ResponseWithData } from "../../../types/interface";
+import { Id, InfoSections, Metadatas, Picture, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { NotFoundError } from "../../../errors";
 import { Languages } from "../../../typegoose";
 import pick from "lodash/pick";
-
-interface InfoSection {
-  title: string;
-  text: string;
-}
 
 interface Sponsor {
   name: string;
@@ -39,7 +34,6 @@ interface Poi {
   phone?: string;
 }
 
-export type InfoSections = Record<string, InfoSection>;
 
 export type GetDispositifResponse = {
   _id: Id;
