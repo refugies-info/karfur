@@ -3,8 +3,8 @@ import moment from "moment";
 import logger from "../../logger";
 import { departmentRegionCorrespondency } from "./data";
 import { isTitreInformatifObject } from "../../types/typeguards";
-import { Dispositif, DispositifId, UserId } from "src/typegoose";
-import { RefactorTodoError } from "src/errors";
+import { Dispositif, DispositifId, UserId } from "../../typegoose";
+import { RefactorTodoError } from "../../errors";
 
 export const filterDispositifsForDraftReminders = (
   dispositifs: Dispositif[],
