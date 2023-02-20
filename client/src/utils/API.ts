@@ -6,7 +6,6 @@ import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
 import {
   APIResponse,
-  IDispositif,
   NbDispositifsByRegion,
   TranslationFacets,
   TranslationStatistics,
@@ -214,7 +213,7 @@ const API = {
   },
 
   // Dispositif
-  addDispositif: (query: Partial<IDispositif>) => {
+  addDispositif: (query: any) => { // TODO previously IDispositif
     const headers = getHeaders();
     return instance.post("/dispositifs/addDispositif", query, {
       headers

@@ -39,7 +39,7 @@ import {
   TabHeader,
   ColoredRound
 } from "../sharedComponents/SubComponents";
-import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import CustomSearchBar from "components/UI/CustomSeachBar";
 import FButton from "components/UI/FButton/FButton";
 import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
 import { ContentDetailsModal } from "./ContentDetailsModal/ContentDetailsModal";

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "reactstrap";
-import { ContentType, Theme } from "types/interface";
+import { ContentType } from "types/interface";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { saveWidgetActionCreator } from "services/Widgets/widgets.actions";
 import FButton from "components/UI/FButton";
