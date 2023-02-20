@@ -6,7 +6,18 @@ import { GetAdminOptionResponse } from "../server/src/workflows/adminOption/getA
 import { PostAdminOptionResponse } from "../server/src/workflows/adminOption/postAdminOptions";
 
 // dispositifs
-import { GetDispositifsRequest, GetStatisticsRequest, CountDispositifsRequest, AdminCommentsRequest, AddViewsRequest, MainSponsorRequest, DispositifStatusRequest, UpdateDispositifPropertiesRequest, UpdateDispositifRequest } from "../server/src/controllers/dispositifController";
+import {
+  GetDispositifsRequest,
+  GetStatisticsRequest,
+  CountDispositifsRequest,
+  AdminCommentsRequest,
+  AddViewsRequest,
+  MainSponsorRequest,
+  DispositifStatusRequest,
+  UpdateDispositifPropertiesRequest,
+  UpdateDispositifRequest,
+  CreateDispositifRequest
+} from "../server/src/controllers/dispositifController";
 import { GetDispositifResponse } from "../server/src/workflows/dispositif/getContentById";
 import { GetDispositifsResponse } from "../server/src/workflows/dispositif/getDispositifs";
 import { GetStatisticsResponse } from "../server/src/workflows/dispositif/getStatistics";
@@ -106,6 +117,7 @@ export type {
   DispositifStatusRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
+  CreateDispositifRequest,
 
   // images
   PostImageResponse,

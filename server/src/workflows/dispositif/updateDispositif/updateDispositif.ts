@@ -4,6 +4,7 @@ import { UpdateDispositifRequest } from "../../../controllers/dispositifControll
 import { Response } from "../../../types/interface";
 import { Dispositif, Id, User } from "../../../typegoose";
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
+import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
   // content
@@ -35,8 +36,12 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
 export const updateDispositif = async (id: string, body: UpdateDispositifRequest, user: User): Response => {
   logger.info("[updateDispositif] received", { id, body, user: user._id });
 
-  const oldDispositif = await getDispositifById(id, { typeContenu: 1, translations: 1 });
+  const oldDispositif = await getDispositifById(id, { typeContenu: 1, translations: 1, mainSponsor: 1 }, "mainSponsor");
+  checkUserIsAuthorizedToModifyDispositif(oldDispositif, user);
+
   const editedDispositif: Partial<Dispositif> = {
+    lastModificationAuthor: user._id,
+    themesSelectedByAuthor: !user.isAdmin(),
     translations: oldDispositif.translations
   };
 
@@ -47,6 +52,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
   if (body.metadatas) editedDispositif.metadatas = body.metadatas;
 
   await updateDispositifInDB(id, editedDispositif);
+  // await log(dispositif, originalDispositif, req.user._id);
 
   return { text: "success" };
 };

@@ -6,6 +6,7 @@ import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
+  setError,
 } from "../LoadingStatus/loadingStatus.actions";
 import { GET_THEMES, SAVE_THEME, CREATE_THEME, DELETE_THEME } from "./themes.actionTypes";
 import {
@@ -34,7 +35,7 @@ export function* fetchThemes(): SagaIterator {
       error: message,
     });
     yield put(setThemesActionCreator([]));
-    yield put(finishLoading(LoadingStatusKey.FETCH_THEMES));
+    yield put(setError(LoadingStatusKey.FETCH_THEMES, "Error while fetching"));
   }
 }
 

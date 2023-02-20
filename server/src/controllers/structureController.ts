@@ -65,7 +65,7 @@ export class StructureController extends Controller {
     @Query() locale: string,
     @Request() request: ExRequest
   ): ResponseWithData<GetStructureResponse> {
-    return getStructureById(id, locale, request.user);
+    return getStructureById(id, locale, request.userData);
   }
 }
 

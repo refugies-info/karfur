@@ -13,7 +13,8 @@ declare global {
       fromSite?: boolean; // TODO: delete
       fromPostman?: boolean; // TODO: delete
       roles?: Role[]; // TODO: delete? (get it in the workflow)
-      user?: DocumentType<User>;
+      user?: DocumentType<User>; // returns true, conflicts?
+      userData?: DocumentType<User>;
       userId?: typeof User._id;
     }
   }
