@@ -1,5 +1,5 @@
 import pick from "lodash/pick";
-import { GetDispositifResponse, Id, UpdateDispositifRequest } from "api-types";
+import { CreateDispositifRequest, GetDispositifResponse, Id, UpdateDispositifRequest } from "api-types";
 import { logger } from "logger";
 import API from "utils/API";
 
@@ -14,7 +14,12 @@ export const getDefaultValue = (dispositif: GetDispositifResponse): UpdateDispos
   return defaultValues;
 }
 
-export const submitForm = (id: Id, data: UpdateDispositifRequest) => {
-  logger.info("[save dispositif]", data);
+export const submitUpdateForm = (id: Id, data: UpdateDispositifRequest) => {
+  logger.info("[update dispositif]", data);
   return API.updateDispositif(id, data);
+}
+
+export const submitCreateForm = (data: CreateDispositifRequest) => {
+  logger.info("[create dispositif]", data);
+  return API.createDispositif(data);
 }

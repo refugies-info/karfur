@@ -1,6 +1,7 @@
+import { CreateDispositifRequest } from "api-types";
 import Dispositif from "components/Content/Dispositif";
+import { submitCreateForm } from "lib/dispositifForm";
 import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
-import { logger } from "logger";
 import { FormProvider, useForm } from "react-hook-form";
 import PageContext from "utils/pageContext";
 
@@ -9,14 +10,14 @@ interface Props {
 }
 
 const DemarchePage = (props: Props) => {
-  const methods = useForm({ defaultValues: {} });
-  const onSubmit = (data: any) => logger.info(data);
+  const methods = useForm<CreateDispositifRequest>({ defaultValues: { typeContenu: "demarche" } });
+  const onSubmit = (data: CreateDispositifRequest) => submitCreateForm(data);
 
   return (
     <PageContext.Provider value={{ mode: "edit" }}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <Dispositif />
+          <Dispositif typeContenu="demarche" />
           <button type="submit">Enregistrer</button>
         </form>
       </FormProvider>

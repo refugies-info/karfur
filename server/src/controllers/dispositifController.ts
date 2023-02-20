@@ -12,7 +12,7 @@ import {
   Post
 } from "tsoa";
 
-import express from "express";
+import express, { Request as ExRequest } from "express";
 import * as checkToken from "./account/checkToken";
 
 import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
@@ -37,6 +37,7 @@ import { getCountDispositifs, GetCountDispositifsResponse } from "../workflows/d
 import { GetUserContributionsResponse } from "../workflows/dispositif/getUserContributions/getUserContributions";
 import { updateDispositifProperties } from "../workflows/dispositif/updateDispositifProperties";
 import { updateDispositif } from "../workflows/dispositif/updateDispositif";
+import { createDispositif } from "../workflows/dispositif/createDispositif";
 
 const router = express.Router();
 
@@ -97,7 +98,7 @@ export interface UpdateDispositifPropertiesRequest {
   webOnly: boolean;
 }
 
-export interface UpdateDispositifRequest {
+interface DispositifRequest {
   titreInformatif?: string;
   titreMarque?: string;
   abstract?: string;
@@ -112,6 +113,10 @@ export interface UpdateDispositifRequest {
   metadatas?: Metadatas;
   // map: Poi[];
 }
+export interface UpdateDispositifRequest extends DispositifRequest { }
+export interface CreateDispositifRequest extends DispositifRequest {
+  typeContenu: "dispositif" | "demarche";
+}
 
 
 @Route("dispositifs")
@@ -122,6 +127,19 @@ export class DispositifController extends Controller {
   ): ResponseWithData<GetDispositifsResponse[]> {
     return getDispositifs(query);
   }
+
+  @Security({
+    fromSite: [],
+    jwt: [],
+  })
+  @Post("/")
+  public async createDispositif(
+    @Body() body: CreateDispositifRequest,
+    @Request() request: express.Request
+  ): Response {
+    return createDispositif(body, request.userId);
+  }
+
 
   @Security({
     jwt: ["admin"],
@@ -219,7 +237,7 @@ export class DispositifController extends Controller {
     @Body() body: DispositifStatusRequest,
     @Request() request: express.Request
   ): Response {
-    return updateDispositifStatus(id, body, request.user);
+    return updateDispositifStatus(id, body, request.userData);
   }
 
   @Security({
@@ -230,9 +248,9 @@ export class DispositifController extends Controller {
   public async update(
     @Path() id: string,
     @Body() body: UpdateDispositifRequest,
-    @Request() request: express.Request
+    @Request() request: ExRequest
   ): Response {
-    return updateDispositif(id, body, request.user);
+    return updateDispositif(id, body, request.userData);
   }
 
   // keep in last position to make sure /xyz routes are catched before

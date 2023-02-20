@@ -11,7 +11,7 @@ import PageContext from "utils/pageContext";
 import { useSelector } from "react-redux";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { UpdateDispositifRequest } from "api-types";
-import { getDefaultValue, submitForm } from "lib/dispositifForm";
+import { getDefaultValue, submitUpdateForm } from "lib/dispositifForm";
 
 interface Props {
   history: string[];
@@ -20,7 +20,7 @@ interface Props {
 const DispositifPage = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const methods = useForm<UpdateDispositifRequest>({ defaultValues: getDefaultValue(dispositif) });
-  const onSubmit = (data: UpdateDispositifRequest) => submitForm(dispositif._id, data);
+  const onSubmit = (data: UpdateDispositifRequest) => submitUpdateForm(dispositif._id, data);
 
   return (
     <PageContext.Provider value={{ mode: "edit" }}>

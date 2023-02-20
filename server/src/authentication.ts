@@ -43,6 +43,7 @@ export function expressAuthentication(request: Request, securityName: string, ro
         .then((user) => {
           if (!user) reject(new AuthenticationError("No user found"));
           request.userId = user._id;
+          request.userData = user;
 
           if (roles.length > 0 && !optionalAuthentication) {
             if (roles?.includes("admin") && !user.isAdmin()) {

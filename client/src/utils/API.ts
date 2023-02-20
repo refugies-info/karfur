@@ -63,7 +63,8 @@ import {
   GetActiveUsersResponse,
   GetAllUsersResponse,
   UpdateDispositifPropertiesRequest,
-  UpdateDispositifRequest
+  UpdateDispositifRequest,
+  CreateDispositifRequest
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -276,6 +277,10 @@ const API = {
   updateDispositif: (id: Id, body: UpdateDispositifRequest) => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}`, body, { headers });
+  },
+  createDispositif: (body: CreateDispositifRequest) => {
+    const headers = getHeaders();
+    return instance.post("/dispositifs", body, { headers });
   },
 
   // Mail

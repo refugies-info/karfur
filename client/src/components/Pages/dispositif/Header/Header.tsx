@@ -3,7 +3,8 @@ import { GetDispositifResponse, GetThemeResponse } from "api-types";
 import TextInput from "../TextInput";
 
 interface Props {
-  dispositif: GetDispositifResponse;
+  dispositif: GetDispositifResponse | null;
+  typeContenu: string;
   theme: GetThemeResponse | null;
   secondaryThemes: GetThemeResponse[];
 }
@@ -12,10 +13,10 @@ const Accordions = (props: Props) => {
   return (
     <header>
       <h1>
-        <TextInput id="titreInformatif" value={props.dispositif.titreInformatif} />
-        {props.dispositif.typeContenu === "dispositif" && (
+        <TextInput id="titreInformatif" value={props.dispositif?.titreInformatif || ""} />
+        {props.typeContenu === "dispositif" && (
           <>
-            avec <TextInput id="titreMarque" value={props.dispositif.titreMarque} />
+            avec <TextInput id="titreMarque" value={props.dispositif?.titreMarque || ""} />
           </>
         )}
       </h1>

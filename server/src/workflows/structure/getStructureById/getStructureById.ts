@@ -98,10 +98,10 @@ export const getStructureById = async (
 
   // members
   const isAdmin = !!(user ? user.isAdmin() : false);
-  const isMember = !!(user.id
+  const isMember = !!(user._id
     ? (structure.membres || []).find((m) => {
       if (!m.userId) return false;
-      return m.userId.toString() === user.id;
+      return m.userId.toString() === user._id.toString();
     })
     : false);
   const shouldIncludeMembers = (isAdmin || isMember);
