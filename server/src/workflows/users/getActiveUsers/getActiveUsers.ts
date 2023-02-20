@@ -1,8 +1,8 @@
 import { getAllUsersFromDB } from "../../../modules/users/users.repository";
-import { User } from "src/typegoose";
-import { Id, Picture, ResponseWithData } from "src/types/interface";
-import logger from "src/logger";
-import { AuthenticationError } from "src/errors";
+import { User } from "../../../typegoose";
+import { Id, Picture, ResponseWithData } from "../../../types/interface";
+import logger from "../../../logger";
+import { AuthenticationError } from "../../../errors";
 
 export interface GetActiveUsersResponse {
   _id: Id;

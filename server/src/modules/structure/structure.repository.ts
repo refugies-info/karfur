@@ -1,7 +1,7 @@
 import logger from "../../logger";
 import { asyncForEach } from "../../libs/asyncForEach";
-import { DispositifId, Structure, StructureId, StructureModel, UserId } from "src/typegoose";
-import { Id, Picture } from "src/types/interface";
+import { DispositifId, Structure, StructureId, StructureModel, UserId } from "../../typegoose";
+import { Id, Picture } from "../../types/interface";
 import { FilterQuery, ProjectionFields } from "mongoose";
 
 export const getStructureFromDB = async (
