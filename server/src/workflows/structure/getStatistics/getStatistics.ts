@@ -25,13 +25,13 @@ export const getStatistics = async (query: GetStructureStatisticsRequest): Respo
 
   // nbCDA
   if (noFacet || facets.includes("nbCDA")) {
-    const cda = await getStructuresFromDB({ nom: "Comité de la Démarche Accessible" }, { membres: 1 }, false);
+    const cda = await getStructuresFromDB({ nom: "Comité de la Démarche Accessible" }, { membres: 1 });
     data.nbCDA = cda[0].membres.length;
   }
 
   // nbStructureAdmins
   if (noFacet || facets.includes("nbStructureAdmins")) {
-    const structures = await getStructuresFromDB({ status: "Actif" }, { membres: 1 }, false);
+    const structures = await getStructuresFromDB({ status: "Actif" }, { membres: 1 });
     const structureAdmins = findAllRespo(structures);
     data.nbStructureAdmins = structureAdmins.length;
   }

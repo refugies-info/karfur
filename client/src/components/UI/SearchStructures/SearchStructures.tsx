@@ -62,7 +62,9 @@ const SearchStructures = ({
     if (escapedValue === "") return [];
 
     const regex = new RegExp(".*?" + escapedValue + ".*", "i");
-    return structures.filter((structure) => regex.test(structure.acronyme) || regex.test(removeAccents(structure.nom)));
+    return structures.filter(
+      (structure) => regex.test(structure.acronyme || "") || regex.test(removeAccents(structure.nom))
+    );
   }, [needle, structures]);
 
   return (

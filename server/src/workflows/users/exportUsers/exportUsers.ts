@@ -1,7 +1,6 @@
 import { Res, RequestFromClient } from "../../../types/interface";
 import logger from "../../../logger";
-import { getAllUsersFromDB } from "../../../modules/users/users.repository";
-import { adaptUsers } from "../getAllUsers/getAllUsers";
+import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
 import { ObjectId } from "mongoose";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
@@ -106,13 +105,12 @@ export const exportUsers = async (req: RequestFromClient<{}>, res: Res) => {
       last_connected: 1
     };
 
-    const users = await getAllUsersFromDB(neededFields);
-    const adaptedUsers = adaptUsers(users, "admin");
+    const users = await getAllUsersForAdminFromDB(neededFields);
     let usersToExport: { fields: UserToExport }[] = [];
-    await asyncForEach(adaptedUsers, async (user) => {
+    await asyncForEach(users, async (user) => {
       logger.info(`[exportUsers] get indicators user ${user._id}`);
       const totalIndicator = await computeGlobalIndicator(user._id.toString());
-      // @ts-ignore
+      // @ts-ignore TODO: test this
       const formattedUser = formatUser({ ...user, totalIndicator });
       usersToExport.push(formattedUser);
 
@@ -126,7 +124,7 @@ export const exportUsers = async (req: RequestFromClient<{}>, res: Res) => {
       exportUsersInAirtable(usersToExport);
     }
 
-    logger.info(`[exportUsers] successfully launched export of ${adaptedUsers.length} users`);
+    logger.info(`[exportUsers] successfully launched export of ${users.length} users`);
 
     return res.status(200).json({
       text: "OK"

@@ -1,5 +1,5 @@
 import pick from "lodash/pick";
-import { getAllUsersFromDB } from "../../../modules/users/users.repository";
+import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
 import { Structure, UserId } from "../../../typegoose";
 import { Id, Picture, ResponseWithData, UserStructure } from "../../../types/interface";
 import logger from "../../../logger";
@@ -69,7 +69,7 @@ export const getAllUsers = async (): ResponseWithData<GetAllUsersResponse[]> => 
     adminComments: 1
   };
 
-  const users = await getAllUsersFromDB(neededFields, true);
+  const users = await getAllUsersForAdminFromDB(neededFields);
 
   const result = users.map(user => {
     const plateformeRoles = user.getPlateformeRoles();

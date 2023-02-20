@@ -38,7 +38,7 @@ class OpeningHours {
 
 @modelOptions({ schemaOptions: { collection: "structures", timestamps: { createdAt: "created_at" } } })
 export class Structure extends Base {
-  @prop({ type: () => [Membre] })
+  @prop({ type: () => [Membre], _id: false })
   public membres?: Membre[];
 
   @prop()
@@ -72,7 +72,7 @@ export class Structure extends Base {
   // FIXME typage => Actif | En attente | Supprimé [| ...]
   @prop()
   public status?: string;
-  @prop({ type: () => ImageSchema })
+  @prop({ type: () => ImageSchema, _id: false })
   public picture?: ImageSchema;
   @prop({ default: [], type: () => [String] })
   public structureTypes?: string[];
