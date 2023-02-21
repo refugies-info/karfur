@@ -19,6 +19,7 @@ import { setSelectedLanguages } from "../workflows";
 import { Id, IRequest, Picture, Response, ResponseWithData } from "../types/interface";
 import { addUserFavorite } from "../workflows/users/addUserFavorite";
 import { deleteUserFavorites } from "../workflows/users/deleteUserFavorites";
+import { resetPassword, ResetPasswordResponse } from "../workflows/users/resetPassword";
 // import { UserStatus } from "../typegoose/User";
 
 /* TODO: use tsoa */
@@ -27,7 +28,6 @@ const router = express.Router();
 router.post("/login", checkToken.getId, checkToken.getRoles, login);
 router.post("/checkUserExists", account.checkUserExists);
 router.post("/get_users", checkToken.getId, account.get_users);
-router.post("/reset_password", checkToken.getRoles, account.reset_password);
 router.post("/set_new_password", checkToken.getRoles, setNewPassword);
 router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
 router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
@@ -81,6 +81,10 @@ export interface UpdatePasswordRequest {
   newPassword: string;
 }
 
+export interface ResetPasswordRequest {
+  username: string;
+}
+
 @Route("user")
 export class UserController extends Controller {
 
@@ -106,6 +110,13 @@ export class UserController extends Controller {
   @Get("/statistics")
   public async getStatistics(): ResponseWithData<GetUserStatisticsResponse> {
     return getFiguresOnUsers();
+  }
+
+  @Post("/password/reset")
+  public async resetPassword(
+    @Body() body: ResetPasswordRequest
+  ): ResponseWithData<ResetPasswordResponse> {
+    return resetPassword(body)
   }
 
   @Security("jwt")

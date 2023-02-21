@@ -67,6 +67,8 @@ import {
   GetUserStatisticsResponse,
   UpdatePasswordResponse,
   UpdatePasswordRequest,
+  ResetPasswordRequest,
+  ResetPasswordResponse,
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -145,11 +147,9 @@ const API = {
     const headers = getHeaders();
     return instance.patch(`/user/${id}/password`, body, { headers });
   },
-  reset_password: (query: { username: string }) => {
+  resetPassword: (body: ResetPasswordRequest): Promise<APIResponse<ResetPasswordResponse>> => {
     const headers = getHeaders();
-    return instance.post("/user/reset_password", query, {
-      headers,
-    });
+    return instance.post("/user/password/reset", body, { headers });
   },
   set_new_password: (query: { newPassword: string; reset_password_token: string }) => {
     const headers = getHeaders();

@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import {
   fetchLanguesActionCreator,
   toggleLangueActionCreator,
-  toggleLangueModalActionCreator
+  toggleLangueModalActionCreator,
 } from "services/Langue/langue.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -94,10 +94,10 @@ const Login = () => {
   };
 
   const resetPassword = () => {
-    API.reset_password({ username })
+    API.resetPassword({ username })
       .then((data) => {
         setResetPasswordPossible(true);
-        setEmail(data.data.data);
+        setEmail(data.data.data.email);
       })
       .catch((e) => {
         if (e.response.status === 403) {
@@ -112,10 +112,10 @@ const Login = () => {
     router.push(
       {
         pathname: getPath(pathname as PathNames, lng),
-        query
+        query,
       },
       undefined,
-      { locale: lng }
+      { locale: lng },
     );
 
     if (showLangModal) {
@@ -141,7 +141,7 @@ const Login = () => {
       password,
       code,
       email,
-      phone
+      phone,
     };
     API.login(user)
       .then((data) => {
@@ -151,7 +151,7 @@ const Login = () => {
           title: "Yay...",
           text: t("Authentification réussie !", "Authentification réussie !"),
           icon: "success",
-          timer: 1500
+          timer: 1500,
         }).then(() => {
           const { query } = router;
           if (query.redirect) {
@@ -204,7 +204,7 @@ const Login = () => {
           title: "Oops...",
           text: "Aucun nom d'utilisateur n'est renseigné !",
           icon: "error",
-          timer: 1500
+          timer: 1500,
         });
         return;
       }
@@ -225,7 +225,7 @@ const Login = () => {
           title: "Oops...",
           text: "Aucun mot de passe n'est renseigné !",
           icon: "error",
-          timer: 1500
+          timer: 1500,
         });
         return;
       }
@@ -354,7 +354,7 @@ const Login = () => {
       <div className={styles.container}>
         <div
           style={{
-            paddingTop: step === 1 && newHasStructureWithoutPhoneOrEmail ? 40 : 100
+            paddingTop: step === 1 && newHasStructureWithoutPhoneOrEmail ? 40 : 100,
           }}
         >
           <div className={styles.header}>
@@ -388,7 +388,7 @@ const Login = () => {
                 {t(
                   // @ts-ignore FIXME
                   "Login.Lien réinitialisation",
-                  "Un lien de réinitialisation a été envoyé à "
+                  "Un lien de réinitialisation a été envoyé à ",
                 ) +
                   getHashedEmail() +
                   "."}
@@ -398,7 +398,7 @@ const Login = () => {
                   fontWeight: "bold",
                   fontSize: "16px",
                   lineHeight: "20px",
-                  marginBottom: "64px"
+                  marginBottom: "64px",
                 }}
               >
                 {t("Login.Réinitialisation texte", "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?")}

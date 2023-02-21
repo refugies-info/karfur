@@ -25,7 +25,7 @@ export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>)
     { path: "structures" }
   ]);
 
-export const updateUserInDB = async (id: UserId, modifiedUser: any) =>
+export const updateUserInDB = async (id: UserId, modifiedUser: Partial<User>) =>
   UserModel.findOneAndUpdate({ _id: id }, modifiedUser, {
     upsert: true,
     new: true,
