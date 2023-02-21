@@ -13,8 +13,7 @@ declare global {
       fromSite?: boolean; // TODO: delete
       fromPostman?: boolean; // TODO: delete
       roles?: Role[]; // TODO: delete? (get it in the workflow)
-      user?: DocumentType<User>; // returns true, conflicts?
-      userData?: DocumentType<User>;
+      user?: DocumentType<User>;
       userId?: typeof User._id;
     }
   }
@@ -27,16 +26,16 @@ export type ExcludeMethods<T> = Pick<T, { [K in keyof T]: T[K] extends Function 
 // https://stackoverflow.com/questions/41980195/recursive-partialt-in-typescript
 type RecursivePartial<T> = {
   [P in keyof T]?: T[P] extends (infer U)[]
-    ? RecursivePartial<U>[]
-    : T[P] extends object
-    ? RecursivePartial<T[P]>
-    : T[P];
+  ? RecursivePartial<U>[]
+  : T[P] extends object
+  ? RecursivePartial<T[P]>
+  : T[P];
 };
 
-export interface Request extends ExpressRequest {}
+export interface Request extends ExpressRequest { }
 // Exposed to avoid Request name conflict
-export interface IRequest extends Request {}
-export interface Res extends ExpressResponse {}
+export interface IRequest extends Request { }
+export interface Res extends ExpressResponse { }
 // export interface Response<CustomResponse = any> extends ExpressResponse<{ text?: string; data?: CustomResponse }> {}
 
 type ResponseText = "success" | "error";

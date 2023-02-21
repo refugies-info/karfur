@@ -28,8 +28,8 @@ export class ThemeController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Post("/")
   public async post(@Body() body: ThemeRequest): ResponseWithData<PostThemeResponse> {
@@ -37,8 +37,8 @@ export class ThemeController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Patch("{id}")
   public async patch(@Path() id: string, @Body() body: Partial<ThemeRequest>): ResponseWithData<PatchThemeResponse> {
@@ -46,8 +46,8 @@ export class ThemeController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Delete("{id}")
   public async delete(@Path() id: string): Response {

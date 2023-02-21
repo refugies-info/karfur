@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Patch, Body, Delete, Route, Path, Security, Request } from "tsoa";
 import * as express from "express";
+
 import { getWidgets, GetWidgetResponse } from "../workflows/widget/getWidgets";
 import { postWidgets, PostWidgetResponse } from "../workflows/widget/postWidgets";
 import { patchWidget, PatchWidgetResponse } from "../workflows/widget/patchWidget";
@@ -17,8 +18,8 @@ export interface WidgetRequest {
 @Route("widgets")
 export class WidgetController extends Controller {
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Get("/")
   public async get(): ResponseWithData<GetWidgetResponse[]> {
@@ -26,8 +27,8 @@ export class WidgetController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Post("/")
   public async post(@Body() body: WidgetRequest, @Request() request: IRequest): ResponseWithData<PostWidgetResponse> {
@@ -35,8 +36,8 @@ export class WidgetController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Patch("{id}")
   public async patch(
@@ -48,8 +49,8 @@ export class WidgetController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Delete("{id}")
   public async delete(@Path() id: string): Response {

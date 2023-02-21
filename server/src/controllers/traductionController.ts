@@ -123,8 +123,8 @@ export class TranslationController extends Controller {
    * Get an automatic translation proposal
    */
   @Security({
-    fromSite: [],
     jwt: [], // ["trad", "tradExpert"],
+    fromSite: [],
   })
   @Post("/translate")
   public translate(@Body() body: TranslateRequest): ResponseWithData<string> {

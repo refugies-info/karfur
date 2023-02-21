@@ -17,7 +17,7 @@ import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
 import deleteUser from "../workflows/users/deleteUser/deleteUser";
 import { LangueId } from "../typegoose";
 import { setSelectedLanguages } from "../workflows";
-import { Id, IRequest, ResponseWithData } from "../types/interface";
+import { Id, IRequest, Picture, Response, ResponseWithData } from "../types/interface";
 // import { UserStatus } from "../typegoose/User";
 
 /* TODO: use tsoa */
@@ -56,12 +56,14 @@ export interface GetUserInfoResponse {
   _id: Id;
   contributions: string[];
   email: string;
-  roles: { _id: string; nom: string; nomPublic: string };
+  phone: string;
+  roles: { _id: string; nom: string; nomPublic: string }[];
   selectedLanguages: string[];
   status: "Actif" | "Exclu"; // FIXME : UserStatus does not work with tsoa
   structures: string[];
   traductionsFaites: string[];
   username: string;
+  picture?: Picture;
 }
 
 export interface UserFavoritesRequest {
@@ -76,7 +78,7 @@ export class UserController extends Controller {
   public async get(
     @Request() request: ExRequest
   ): ResponseWithData<GetActiveUsersResponse[]> {
-    return getActiveUsers(request.userData);
+    return getActiveUsers(request.user);
   }
 
   @Security({
@@ -93,13 +95,13 @@ export class UserController extends Controller {
     @Request() request: IRequest,
     @Queries() query: UserFavoritesRequest
   ): ResponseWithData<GetUserFavoritesResponse[]> {
-    return getUserFavoritesInLocale(request.userData, query)
+    return getUserFavoritesInLocale(request.user, query)
   }
 
   @Post("/selected_languages")
   @Security("jwt")
-  public async selectedLanguages(@Request() request: IRequest, @Body() body: SelectedLanguagesRequest) {
-    return setSelectedLanguages(request.userData, body.selectedLanguages).then(() => ({ text: "success" }));
+  public async selectedLanguages(@Request() request: IRequest, @Body() body: SelectedLanguagesRequest): Response {
+    return setSelectedLanguages(request.user, body.selectedLanguages).then(() => ({ text: "success" }));
   }
 
   @Get("/get_user_info") // TODO: change name
@@ -107,7 +109,7 @@ export class UserController extends Controller {
   public async getUserInfo(@Request() request: IRequest): ResponseWithData<GetUserInfoResponse> {
     return {
       text: "success",
-      data: pick(request.userData.toObject(), [
+      data: pick(request.user.toObject(), [
         "structures",
         "_id",
         "roles",
@@ -116,6 +118,8 @@ export class UserController extends Controller {
         "username",
         "status",
         "email",
+        "phone",
+        "picture",
         "selectedLanguages",
       ]),
     };

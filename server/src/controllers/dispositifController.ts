@@ -1,20 +1,7 @@
-import {
-  Controller,
-  Get,
-  Route,
-  Path,
-  Query,
-  Security,
-  Queries,
-  Patch,
-  Body,
-  Request,
-  Post
-} from "tsoa";
-
+import { Controller, Get, Route, Path, Query, Security, Queries, Patch, Body, Request, Post } from "tsoa";
 import express, { Request as ExRequest } from "express";
-import * as checkToken from "./account/checkToken";
 
+import * as checkToken from "./account/checkToken";
 import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
 import { getDispositifs, GetDispositifsResponse } from "../workflows/dispositif/getDispositifs";
 import { getAllDispositifs, GetAllDispositifsResponse } from "../workflows/dispositif/getAllDispositifs";
@@ -129,8 +116,8 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: [],
+    fromSite: [],
   })
   @Post("/")
   public async createDispositif(
@@ -167,8 +154,8 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: [],
+    fromSite: [],
   })
   @Get("/user-contributions")
   public async getUserContributions(
@@ -190,8 +177,8 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Patch("/{id}/admin-comments")
   public async updateAdminComments(
@@ -203,8 +190,8 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Patch("/{id}/main-sponsor")
   public async updateMainSponsor(
@@ -216,8 +203,8 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Patch("/{id}/properties")
   public async updateProperties(
@@ -228,8 +215,8 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: [],
+    fromSite: [],
   })
   @Patch("/{id}/status")
   public async updateStatus(
@@ -237,12 +224,12 @@ export class DispositifController extends Controller {
     @Body() body: DispositifStatusRequest,
     @Request() request: express.Request
   ): Response {
-    return updateDispositifStatus(id, body, request.userData);
+    return updateDispositifStatus(id, body, request.user);
   }
 
   @Security({
-    fromSite: [],
     jwt: [],
+    fromSite: [],
   })
   @Patch("/{id}")
   public async update(
@@ -250,7 +237,7 @@ export class DispositifController extends Controller {
     @Body() body: UpdateDispositifRequest,
     @Request() request: ExRequest
   ): Response {
-    return updateDispositif(id, body, request.userData);
+    return updateDispositif(id, body, request.user);
   }
 
   // keep in last position to make sure /xyz routes are catched before
