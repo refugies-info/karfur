@@ -148,8 +148,10 @@ const API = {
     return instance.patch(`/user/${id}/password`, body, { headers });
   },
   resetPassword: (body: ResetPasswordRequest): Promise<APIResponse<ResetPasswordResponse>> => {
-    const headers = getHeaders();
-    return instance.post("/user/password/reset", body, { headers });
+    return instance.post("/user/password/reset", body);
+  },
+  checkResetToken: (token: String): Promise<APIResponse> => {
+    return instance.get(`/user/password/reset?token=${token}`);
   },
   set_new_password: (query: { newPassword: string; reset_password_token: string }) => {
     const headers = getHeaders();
@@ -202,10 +204,6 @@ const API = {
   getUsersStatistics: (): Promise<APIResponse<GetUserStatisticsResponse>> => {
     const headers = getHeaders();
     return instance.get("/user/statistics", { headers });
-  },
-  get_users: (params = {}) => {
-    const headers = getHeaders();
-    return instance.post("/user/get_users", params, { headers });
   },
   getActiveUsers: (): Promise<APIResponse<GetActiveUsersResponse[]>> => {
     const headers = getHeaders();

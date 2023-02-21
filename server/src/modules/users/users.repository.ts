@@ -5,8 +5,14 @@ import { Favorite, UserId, UserStatus } from "../../typegoose/User";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
 
+// find one
 export const getUserById = async (id: UserId, neededFields: NeededFields) => UserModel.findById(id, neededFields);
 
+export const getUserByUsernameFromDB = (username: string) => UserModel.findOne({ username });
+
+export const getUserFromDB = (query: FilterQuery<User>) => UserModel.findOne(query);
+
+// find many
 export const getUsersById = async (ids: UserId[], neededFields: NeededFields) =>
   UserModel.find({ _id: { $in: ids } }, neededFields);
 
@@ -25,6 +31,7 @@ export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>)
     { path: "structures" }
   ]);
 
+// update
 export const updateUserInDB = async (id: UserId, modifiedUser: Partial<User>) =>
   UserModel.findOneAndUpdate({ _id: id }, modifiedUser, {
     upsert: true,
@@ -63,8 +70,6 @@ export const removeStructureOfUserInDB = (userId: UserId, structureId: Structure
       },
     },
   );
-
-export const getUserByUsernameFromDB = (username: string) => UserModel.findOne({ username });
 
 export const createUser = (user: {
   username: string;

@@ -1,4 +1,4 @@
-import { Controller, Request, Get, Post, Put, Body, Delete, Route, Security, Queries, Path, Patch } from "tsoa";
+import { Controller, Request, Get, Post, Put, Body, Delete, Route, Security, Queries, Path, Patch, Query } from "tsoa";
 import { pick } from "lodash";
 
 const account = require("./account/lib");
@@ -20,16 +20,16 @@ import { Id, IRequest, Picture, Response, ResponseWithData } from "../types/inte
 import { addUserFavorite } from "../workflows/users/addUserFavorite";
 import { deleteUserFavorites } from "../workflows/users/deleteUserFavorites";
 import { resetPassword, ResetPasswordResponse } from "../workflows/users/resetPassword";
+import { checkResetToken } from "src/workflows/users/checkResetToken";
 // import { UserStatus } from "../typegoose/User";
 
 /* TODO: use tsoa */
 const router = express.Router();
 
-router.post("/login", checkToken.getId, checkToken.getRoles, login);
+router.post("/login", checkToken.getId, checkToken.getRoles, login); // login exception manager
+router.post("/set_new_password", checkToken.getRoles, setNewPassword); // login exception manager
+router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser); // login exception manager
 router.post("/checkUserExists", account.checkUserExists);
-router.post("/get_users", checkToken.getId, account.get_users);
-router.post("/set_new_password", checkToken.getRoles, setNewPassword);
-router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
 router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
 
 export { router };
@@ -90,59 +90,47 @@ export class UserController extends Controller {
 
   @Security("jwt")
   @Get("/actives")
-  public async get(
-    @Request() request: ExRequest
-  ): ResponseWithData<GetActiveUsersResponse[]> {
+  public async get(@Request() request: ExRequest): ResponseWithData<GetActiveUsersResponse[]> {
     return getActiveUsers(request.user);
   }
 
-  @Security({
-    jwt: ["admin"],
-  })
+  @Security({ jwt: ["admin"] })
   @Get("/all")
   public async getAll(): ResponseWithData<GetAllUsersResponse[]> {
     return getAllUsers();
   }
 
-  @Security({
-    jwt: ["admin"],
-  })
+  @Security({ jwt: ["admin"] })
   @Get("/statistics")
   public async getStatistics(): ResponseWithData<GetUserStatisticsResponse> {
     return getFiguresOnUsers();
   }
 
+  @Get("/password/reset")
+  public async checkResetToken(@Query() token: string): Response {
+    return checkResetToken(token)
+  }
+
   @Post("/password/reset")
-  public async resetPassword(
-    @Body() body: ResetPasswordRequest
-  ): ResponseWithData<ResetPasswordResponse> {
+  public async resetPassword(@Body() body: ResetPasswordRequest): ResponseWithData<ResetPasswordResponse> {
     return resetPassword(body)
   }
 
   @Security("jwt")
   @Get("/favorites")
-  public async getUserFavorites(
-    @Request() request: IRequest,
-    @Queries() query: UserFavoritesRequest
-  ): ResponseWithData<GetUserFavoritesResponse[]> {
+  public async getUserFavorites(@Request() request: IRequest, @Queries() query: UserFavoritesRequest): ResponseWithData<GetUserFavoritesResponse[]> {
     return getUserFavoritesInLocale(request.user, query)
   }
 
   @Security("jwt")
   @Put("/favorites")
-  public async addUserFavorite(
-    @Request() request: ExRequest,
-    @Body() body: AddUserFavorite,
-  ): Response {
+  public async addUserFavorite(@Request() request: ExRequest, @Body() body: AddUserFavorite): Response {
     return addUserFavorite(request.user, body);
   }
 
   @Security("jwt")
   @Delete("/favorites")
-  public async deleteUserFavorites(
-    @Request() request: ExRequest,
-    @Queries() query: DeleteUserFavorite,
-  ): Response {
+  public async deleteUserFavorites(@Request() request: ExRequest, @Queries() query: DeleteUserFavorite): Response {
     return deleteUserFavorites(request.user, query);
   }
 
@@ -174,25 +162,14 @@ export class UserController extends Controller {
     };
   }
 
-  @Security({
-    jwt: [],
-    fromSite: []
-  })
+  @Security({ jwt: [], fromSite: [] })
   @Patch("/{id}/password")
-  public async updatePassword(
-    @Path() id: string,
-    @Request() request: ExRequest,
-    @Body() body: UpdatePasswordRequest,
-  ): ResponseWithData<UpdatePasswordResponse> {
+  public async updatePassword(@Path() id: string, @Request() request: ExRequest, @Body() body: UpdatePasswordRequest): ResponseWithData<UpdatePasswordResponse> {
     return changePassword(id, body, request.user);
   }
 
-
   @Delete("/{id}")
-  @Security({
-    jwt: ["admin"],
-    fromSite: []
-  })
+  @Security({ jwt: ["admin"], fromSite: [] })
   public async deleteUser(@Path() id: string): Response {
     return deleteUser(id);
   }
