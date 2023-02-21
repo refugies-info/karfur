@@ -10,9 +10,8 @@ import API from "utils/API";
 import { cls } from "lib/classname";
 import styles from "./TagsModal.module.scss";
 import checkStyles from "scss/components/checkbox.module.scss";
-import { User } from "types/interface";
 import ThemeIcon from "components/UI/ThemeIcon";
-import { GetThemeResponse, Id } from "api-types";
+import { GetThemeResponse, GetUserInfoResponse, Id } from "api-types";
 
 const Step = ({ ...props }) => {
   return (
@@ -50,7 +49,7 @@ interface Props {
   validate: (theme: GetThemeResponse | null, secondaryThemes: GetThemeResponse[]) => void;
   allThemes: GetThemeResponse[];
   toggleTutorielModal: any;
-  user: User | null;
+  user: GetUserInfoResponse | null;
   dispositifId: string;
 }
 

@@ -39,13 +39,15 @@ export class AppUsersController extends Controller {
     return updateAppUser(appUid, body);
   }
 
-  @Get("/notification_settings") /* TODO: udpate case */ public async notificationSettings(
+  @Get("/notification_settings") /* TODO: udpate case */
+  public async notificationSettings(
     @Header("x-app-uid") appUid: Uid,
   ): ResponseWithData<GetNotificationsSettings> {
     return getNotificationsSettings(appUid);
   }
 
-  @Post("/notification_settings") /* TODO: udpate case */ public async update(
+  @Post("/notification_settings") /* TODO: udpate case */
+  public async update(
     @Header("x-app-uid") appUid: Uid,
     @Body() body: NotificationSettingsRequest,
   ): ResponseWithData<PostNotificationsSettings> {

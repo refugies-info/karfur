@@ -17,6 +17,8 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
 import { AxiosError } from "axios";
+import { APIResponse } from "types/interface";
+import { GetUserInfoResponse } from "api-types";
 
 export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
@@ -26,7 +28,7 @@ export function* fetchUser(
     yield put(startLoading(LoadingStatusKey.FETCH_USER));
     const isAuth = yield call(API.isAuth);
     if (isAuth) {
-      const data = yield call(API.getUser);
+      const data: APIResponse<GetUserInfoResponse> = yield call(API.getUser);
       const user = data.data.data;
       yield put(setUserActionCreator(user));
       if (user.structures && user.structures.length > 0) {

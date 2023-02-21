@@ -16,9 +16,9 @@ import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/Di
 import { useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
 import { sortData } from "./functions";
-import { User } from "types/interface";
 import styles from "scss/components/adminTable.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
+import { GetUserInfoResponse } from "api-types";
 
 moment.locale("fr");
 
@@ -31,7 +31,7 @@ interface Props {
   languei18nCode: string;
   setElementToTranslate: any;
   toggleCompleteProfilModal: () => void;
-  user: User | null;
+  user: GetUserInfoResponse | null;
 }
 
 const TableContainer = styled.div`

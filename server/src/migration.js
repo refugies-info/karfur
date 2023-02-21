@@ -702,7 +702,26 @@ const adaptUserSelectedLanguages = async (usersColl) => {
     // });
     await usersColl.updateOne(
       { _id: user._id },
-      { $set: { selectedLanguages: (user.selectedLanguages || []).map((language) => language._id) } }
+      { $set: { selectedLanguages: (user.selectedLanguages || []).map((language) => language._id) } }, // TODO: new ObjectId(language._id) ?
+    );
+  }
+};
+
+const adaptUserFavorites = async (usersColl) => {
+  const users = await usersColl.find({}).toArray();
+
+  for (const user of users) {
+    await usersColl.updateOne(
+      { _id: user._id },
+      {
+        $set: {
+          favorites: (user.cookies?.dispositifsPinned || []).map((fav) => ({
+            dispositifId: new ObjectId(fav._id),
+            created_at: fav.datePin ? new Date(fav.datePin) : new Date(),
+          })),
+        },
+        $unset: { cookies: "" },
+      },
     );
   }
 };
@@ -743,6 +762,7 @@ async function main() {
 
   console.log("Adaptation des utilisateurs");
   await adaptUserSelectedLanguages(usersColl);
+  await adaptUserFavorites(usersColl);
   console.log("FIN Adaptation des utilisateurs");
 
   console.log("C'est tout bon !");

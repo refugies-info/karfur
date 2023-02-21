@@ -1,18 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
-import { User } from "types/interface";
 import API from "utils/API";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { useCallback, useEffect, useState } from "react";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { toggleUserFavoritesModalActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
-import { Id } from "api-types";
+import { GetUserInfoResponse, Id } from "api-types";
 
-const isContentFavorite = (userDetails: User | null, id: Id) => {
-  if ((userDetails?.cookies?.dispositifsPinned || []).length === 0) return false;
-  return !!userDetails?.cookies?.dispositifsPinned
-    ?.filter(c => c)
-    .map(c => c._id).includes(id.toString());
+const isContentFavorite = (userDetails: GetUserInfoResponse | null, id: Id) => {
+  if ((userDetails?.favorites || []).length === 0) return false;
+  return !!(userDetails?.favorites || []).find(c => c.dispositifId === id);
 }
 
 const useFavorites = (contentId: Id) => {
@@ -28,20 +24,7 @@ const useFavorites = (contentId: Id) => {
   const addToFavorites = useCallback(() => {
     if (API.isAuth() && userDetails) {
       if (isFavorite) return;
-      const currentDispositifsPinned = userDetails.cookies?.dispositifsPinned || [];
-      const newUserCookies = {
-        _id: userDetails._id,
-        cookies: { ...(userDetails.cookies || {}) },
-      };
-      newUserCookies.cookies.dispositifsPinned = [
-        ...currentDispositifsPinned,
-        {
-          _id: contentId.toString(),
-          datePin: moment()
-        }
-      ];
-
-      API.set_user_info(newUserCookies).then(() => {
+      API.addUserFavorite({ dispositifId: contentId.toString() }).then(() => {
         dispatch(fetchUserActionCreator());
         dispatch(toggleUserFavoritesModalActionCreator(true));
       });

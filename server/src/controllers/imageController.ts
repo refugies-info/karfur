@@ -1,13 +1,8 @@
+import { Controller, Post, Route, Security, Request } from "tsoa";
+import * as express from "express";
+
 import { ResponseWithData } from "../types/interface";
 import { postImages, PostImageResponse } from "../workflows/images/postImages";
-import {
-  Controller,
-  Post,
-  Route,
-  Security,
-  Request
-} from "tsoa";
-import * as express from "express";
 
 
 @Route("images")

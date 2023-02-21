@@ -7,10 +7,10 @@ import { filterData } from "./functions";
 import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import CustomSearchBar from "components/UI/CustomSeachBar";
-import { User } from "types/interface";
+import { useLanguages } from "hooks";
 import useRouterLocale from "hooks/useRouterLocale";
 import { Link } from "react-router-dom";
-import { useLanguages } from "hooks";
+import { GetUserInfoResponse } from "api-types";
 
 interface Props {
   history: any;
@@ -24,7 +24,7 @@ interface Props {
   nbWords: number;
   timeSpent: number;
   setElementToTranslate: any;
-  user: User | null;
+  user: GetUserInfoResponse | null;
   getLangueId: any;
   toggleNeedsModal: () => void;
   isOneNeedNonTranslated: boolean;
@@ -109,7 +109,7 @@ export const TranslationsAvancement = (props: Props) => {
       <RowContainer>
         <Row>
           {userTradLanguages.map((langue) => (
-            <div key={langue}>
+            <div key={langue.toString()}>
               <Link
                 data-test-id={`test-langue-${langue}`}
                 onClick={(e) => navigateToLanguage(e, getLanguage(langue).i18nCode)}

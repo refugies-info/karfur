@@ -1,12 +1,11 @@
-import { GetDispositifsResponse, GetStructureResponse, GetUserContributionsResponse } from "api-types";
-import { ObjectId } from "mongodb";
+import { GetDispositifsResponse, GetStructureResponse, GetUserContributionsResponse, Id } from "api-types";
 import { FormattedUserContribution } from "./types";
 
 export const formatContributions = (
   userContributions: GetUserContributionsResponse[],
   userStructureContributions: GetDispositifsResponse[],
   userStructure: GetStructureResponse | null,
-  userId: ObjectId | undefined
+  userId: Id | undefined
 ): FormattedUserContribution[] => {
   let formattedContribs: FormattedUserContribution[] = [];
 

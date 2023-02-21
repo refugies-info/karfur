@@ -15,6 +15,15 @@ export enum UserStatus {
 }
 // export type UserStatus = typeof USER_STATUS_ACTIVE | typeof USER_STATUS_DELETED;
 
+
+export class Favorite {
+  @prop({ ref: () => Dispositif })
+  public dispositifId: Ref<Dispositif>;
+  @prop()
+  public created_at: Date;
+}
+
+
 @modelOptions({ schemaOptions: { collection: "users", timestamps: { createdAt: "created_at" } } })
 export class User extends Base {
   @prop({ unique: true, required: true, lowercase: true, trim: true })
@@ -32,7 +41,7 @@ export class User extends Base {
   @prop()
   public description: string;
 
-  @prop()
+  @prop({ _id: false })
   public picture?: ImageSchema;
 
   @prop({ ref: () => Role })
@@ -60,11 +69,8 @@ export class User extends Base {
   @prop({ type: String })
   public status?: UserStatus;
 
-  // TODO Revoir cette propriété !
-  // parkourData ?
-  // dispositifsPinned ? (contient une copie du dispo !!)
   @prop()
-  public cookies?: Object;
+  public favorites?: Favorite[];
 
   @prop({ ref: () => Structure })
   public structures?: Ref<Structure>[];

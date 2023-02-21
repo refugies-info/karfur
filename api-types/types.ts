@@ -47,7 +47,6 @@ import {
   UpdatePositionsRequest
 } from "../server/src/controllers/needController";
 import { GetNeedResponse } from "../server/src/workflows/needs/getNeeds";
-import { PatchNeedResponse } from "../server/src/workflows/needs/patchNeed";
 import { UpdatePositionsNeedResponse } from "../server/src/workflows/needs/updatePositions";
 
 // notifications
@@ -75,7 +74,7 @@ import { PatchThemeResponse } from "../server/src/workflows/themes/patchTheme";
 import { TtsRequest } from "../server/src/controllers/ttsController";
 
 // user
-import { GetUserInfoResponse, UserFavoritesRequest } from "../server/src/controllers/userController";
+import { GetUserInfoResponse, UserFavoritesRequest, AddUserFavorite, DeleteUserFavorite } from "../server/src/controllers/userController";
 import { GetUserFavoritesResponse } from "../server/src/workflows/users/getUserFavoritesInLocale";
 import { GetActiveUsersResponse } from "../server/src/workflows/users/getActiveUsers";
 import { GetAllUsersResponse } from "../server/src/workflows/users/getAllUsers";
@@ -137,7 +136,6 @@ export type {
   NeedRequest,
   UpdatePositionsRequest,
   GetNeedResponse,
-  PatchNeedResponse,
   UpdatePositionsNeedResponse,
 
   // notifications
@@ -169,6 +167,8 @@ export type {
   GetUserFavoritesResponse,
   GetActiveUsersResponse,
   GetAllUsersResponse,
+  AddUserFavorite,
+  DeleteUserFavorite,
 
   // widgets
   WidgetRequest,

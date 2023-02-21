@@ -4,7 +4,12 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { APIResponse, NbDispositifsByRegion, TranslationFacets, TranslationStatistics, User } from "types/interface";
+import {
+  APIResponse,
+  NbDispositifsByRegion,
+  TranslationFacets,
+  TranslationStatistics,
+} from "types/interface";
 import { ObjectId } from "mongodb";
 import {
   Id,
@@ -18,7 +23,6 @@ import {
   SubscriptionRequest,
   AddContactRequest,
   GetNeedResponse,
-  PatchNeedResponse,
   UpdatePositionsNeedResponse,
   NeedRequest,
   UpdatePositionsRequest,
@@ -59,6 +63,8 @@ import {
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
   CreateDispositifRequest,
+  AddUserFavorite,
+  DeleteUserFavorite,
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -133,7 +139,7 @@ const API = {
       headers,
     });
   },
-  changePassword: (query: { userId: string | ObjectId; currentPassword: string; newPassword: string }) => {
+  changePassword: (query: { userId: Id; currentPassword: string; newPassword: string }) => {
     const headers = getHeaders();
     return instance.post("/user/changePassword", query, {
       headers,
@@ -161,10 +167,6 @@ const API = {
   },
 
   // User
-  set_user_info: (user: Partial<User>) => {
-    const headers = getHeaders();
-    return instance.post("/user/set_user_info", user, { headers });
-  },
   getUser: (): Promise<APIResponse<GetUserInfoResponse>> => {
     const headers = getHeaders();
     return instance.get("/user/get_user_info", { headers });
@@ -179,17 +181,21 @@ const API = {
     const headers = getHeaders();
     return instance.delete(`/user/${query}`, { headers });
   },
-  getUserFavorites: (query: UserFavoritesRequest): Promise<APIResponse<GetUserFavoritesResponse>> => {
-    const headers = getHeaders();
-    return instance.get(`/user/favorites?locale=${query.locale}`, { headers });
-  },
   getUserContributions: (): Promise<APIResponse<GetUserContributionsResponse>> => {
     const headers = getHeaders();
     return instance.get("/dispositifs/user-contributions", { headers });
   },
-  updateUserFavorites: (query: { dispositifId: ObjectId | null; type: string }) => {
+  getUserFavorites: (query: UserFavoritesRequest): Promise<APIResponse<GetUserFavoritesResponse>> => {
     const headers = getHeaders();
-    return instance.post("/user/updateUserFavorites", query, { headers });
+    return instance.get(`/user/favorites?locale=${query.locale}`, { headers });
+  },
+  addUserFavorite: (body: AddUserFavorite): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.put("/user/favorites", body, { headers });
+  },
+  deleteUserFavorites: (query: DeleteUserFavorite): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.delete("/user/favorites", { params: query, headers });
   },
 
   // Users
@@ -339,7 +345,7 @@ const API = {
     const headers = getHeaders();
     return instance.post("/needs", body, { headers });
   },
-  patchNeed: (id: Id, body: Partial<NeedRequest>): Promise<APIResponse<PatchNeedResponse>> => {
+  patchNeed: (id: Id, body: Partial<NeedRequest>): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/needs/${id}`, body, { headers });
   },

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import { Spinner, Input } from "reactstrap";
 import { userDetailsSelector } from "services/User/user.selectors";
-import { User, Event } from "types/interface";
+import { Event } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
 import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";
@@ -23,6 +23,7 @@ import { colors } from "colors";
 import styles from "./UserProfile.module.scss";
 import { useTranslation } from "next-i18next";
 import { isValidPhone } from "lib/validateFields";
+import { GetUserInfoResponse } from "api-types";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -99,7 +100,8 @@ const RowContainer = styled.div`
   flex-direction: row;
 `;
 
-const getUserImage = (user: User) => (user.picture && user.picture.secure_url ? user.picture.secure_url : marioProfile);
+const getUserImage = (user: GetUserInfoResponse) =>
+  user.picture && user.picture.secure_url ? user.picture.secure_url : marioProfile;
 
 interface Props {
   title: string;
@@ -233,7 +235,7 @@ export const UserProfile = (props: Props) => {
               public_id: imgData.public_id,
               imgId: imgData.imgId
             },
-            _id: user._id
+            _id: user._id.toString()
           },
           type: "modify-my-details"
         })
@@ -249,7 +251,7 @@ export const UserProfile = (props: Props) => {
       if (!user) return;
       dispatch(
         saveUserActionCreator({
-          user: { email, _id: user._id },
+          user: { email, _id: user._id.toString() },
           type: "modify-my-details"
         })
       );
@@ -289,7 +291,7 @@ export const UserProfile = (props: Props) => {
     if (!user) return;
     dispatch(
       saveUserActionCreator({
-        user: { phone, code, _id: user._id },
+        user: { phone, code, _id: user._id.toString() },
         type: "modify-my-details"
       })
     );

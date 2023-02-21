@@ -1,6 +1,7 @@
 import { FilterQuery, Types } from "mongoose";
-import { LangueId, StructureId, User, UserModel } from "src/typegoose";
-import { UserId, UserStatus } from "src/typegoose/User";
+import { Id } from "../../types/interface";
+import { LangueId, StructureId, User, UserModel } from "../../typegoose";
+import { Favorite, UserId, UserStatus } from "../../typegoose/User";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
 
@@ -80,4 +81,23 @@ export const addRoleAndContribToUser = (userId: Types.ObjectId, roleId: Types.Ob
       $addToSet: { roles: roleId, contributions: contribId },
     },
     { new: true },
+  );
+
+// Favorites
+export const addFavoriteInDB = (userId: UserId, favorite: Favorite) =>
+  UserModel.updateOne(
+    { _id: userId },
+    {
+      $addToSet: {
+        favorites: favorite,
+      },
+    },
+  );
+
+export const removeFavoriteFromDB = (userId: UserId, dispositifId: Id) =>
+  UserModel.updateOne(
+    { _id: userId },
+    {
+      $pull: { favorites: { dispositifId: dispositifId } }
+    },
   );
