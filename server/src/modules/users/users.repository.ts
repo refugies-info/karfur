@@ -1,12 +1,12 @@
 import { FilterQuery, Types } from "mongoose";
 import { Id } from "../../types/interface";
-import { LangueId, StructureId, User, UserModel } from "../../typegoose";
+import { LangueId, Role, Structure, StructureId, User, UserModel } from "../../typegoose";
 import { Favorite, UserId, UserStatus } from "../../typegoose/User";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
 
 // find one
-export const getUserById = async (id: UserId, neededFields: NeededFields) => UserModel.findById(id, neededFields);
+export const getUserById = async (id: Id, neededFields: NeededFields) => UserModel.findById(id, neededFields);
 
 export const getUserByUsernameFromDB = (username: string) => UserModel.findOne({ username });
 
@@ -24,7 +24,9 @@ export const getAllUsersFromDB = async (neededFields: FilterQuery<User>, populat
 
 export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>) =>
   UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields).populate<{
-    selectedLanguages: { langueCode: string, langueFr: string }[]
+    selectedLanguages: { langueCode: string, langueFr: string }[],
+    roles: Role[],
+    structures: (Structure & { _id: Id })[],
   }>([
     { path: "selectedLanguages", select: "langueCode langueFr" },
     { path: "roles" },
@@ -32,7 +34,7 @@ export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>)
   ]);
 
 // update
-export const updateUserInDB = async (id: UserId, modifiedUser: Partial<User>) =>
+export const updateUserInDB = async (id: Id, modifiedUser: any) => // FIXME in updateUser
   UserModel.findOneAndUpdate({ _id: id }, modifiedUser, {
     upsert: true,
     new: true,

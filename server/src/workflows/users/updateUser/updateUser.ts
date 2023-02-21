@@ -1,6 +1,5 @@
-import { Types } from "mongoose";
 import logger from "../../../logger";
-import { RequestFromClient, Res, Picture, SelectedLanguage } from "../../../types/interface";
+import { RequestFromClient, Res, Picture, SelectedLanguage, Id } from "../../../types/interface";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
@@ -11,8 +10,8 @@ import { loginExceptionsManager } from "../login/login.exceptions.manager";
 import { log } from "./log";
 
 export interface User {
-  _id: Types.ObjectId;
-  roles: string[];
+  _id: Id;
+  roles: Id[];
   email?: string;
   phone?: string;
   code?: string;

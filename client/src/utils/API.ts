@@ -392,7 +392,7 @@ const API = {
   // Export
   exportUsers: () => {
     const headers = getHeaders();
-    return instance.post("/user/exportUsers", {}, { headers });
+    return instance.post("/user/export", {}, { headers });
   },
   exportFiches: () => {
     const headers = getHeaders();

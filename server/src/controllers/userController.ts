@@ -29,7 +29,6 @@ const router = express.Router();
 router.post("/login", checkToken.getId, checkToken.getRoles, login); // login exception manager
 router.post("/set_new_password", checkToken.getRoles, setNewPassword); // login exception manager
 router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser); // login exception manager
-router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
 
 export { router };
 
@@ -136,6 +135,12 @@ export class UserController extends Controller {
   @Delete("/favorites")
   public async deleteUserFavorites(@Request() request: ExRequest, @Queries() query: DeleteUserFavorite): Response {
     return deleteUserFavorites(request.user, query);
+  }
+
+  @Post("/export")
+  @Security({ jwt: ["admin"] })
+  public async exportUsers(): Response {
+    return exportUsers();
   }
 
   @Post("/selected_languages")
