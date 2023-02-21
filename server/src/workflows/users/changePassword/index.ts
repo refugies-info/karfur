@@ -1,2 +1,1 @@
-import changePassword from "./changePassword";
-export default changePassword;
+export * from "./changePassword";

@@ -1,6 +1,5 @@
 import { GetThemeResponse, Id } from "api-types";
 import { cls } from "lib/classname";
-import { ObjectId } from "mongodb";
 import Image from "next/image";
 import React from "react";
 import EVAIcon from "../EVAIcon/EVAIcon";
@@ -24,7 +23,7 @@ const AdminThemeButton = (props: Props) => (
     style={{
       background: `linear-gradient(90deg, ${props.theme.colors.color80} 25%, ${props.theme.colors.color100} 100%)`,
       boxShadow: props.opened ? `0 0 4px 3px ${props.theme.colors.color30}, inset white 0 0 0 1px` : "none",
-      opacity: props.theme.active ? 1 : 0.4
+      opacity: props.theme.active ? 1 : 0.4,
     }}
   >
     <div className={styles.image}>

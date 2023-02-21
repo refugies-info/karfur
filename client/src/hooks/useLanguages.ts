@@ -1,3 +1,4 @@
+import { GetLanguagesResponse, Id } from "api-types";
 import { keyBy } from "lodash";
 import { useSelector } from "react-redux";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
@@ -7,7 +8,7 @@ const useLanguages = () => {
   const langues = useSelector(allLanguesSelector);
   const userTradLanguages = useSelector(userSelectedLanguageSelector);
   const languageById = keyBy(langues, (langue) => langue._id);
-  const getLanguage = (id: string) => languageById[id];
+  const getLanguage = (id: Id): GetLanguagesResponse => languageById[id.toString()] as GetLanguagesResponse;
 
   return { langues, getLanguage, userTradLanguages };
 };

@@ -4,8 +4,12 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { APIResponse, NbDispositifsByRegion, TranslationFacets, TranslationStatistics, User } from "types/interface";
-import { ObjectId } from "mongodb";
+import {
+  APIResponse,
+  NbDispositifsByRegion,
+  TranslationFacets,
+  TranslationStatistics,
+} from "types/interface";
 import {
   Id,
   PostAdminOptionResponse,
@@ -18,7 +22,6 @@ import {
   SubscriptionRequest,
   AddContactRequest,
   GetNeedResponse,
-  PatchNeedResponse,
   UpdatePositionsNeedResponse,
   NeedRequest,
   UpdatePositionsRequest,
@@ -59,6 +62,18 @@ import {
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
   CreateDispositifRequest,
+  AddUserFavorite,
+  DeleteUserFavorite,
+  GetUserStatisticsResponse,
+  UpdatePasswordResponse,
+  UpdatePasswordRequest,
+  ResetPasswordRequest,
+  ResetPasswordResponse,
+  LoginRequest,
+  LoginResponse,
+  NewPasswordRequest,
+  NewPasswordResponse,
+  UpdateUserRequest,
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -123,33 +138,26 @@ const getHeaders = () => {
 
 const API = {
   // Auth
-  login: (user: { username: string; password: string; email: string; code?: string; phone?: string }) => {
+  login: (body: LoginRequest): Promise<APIResponse<LoginResponse>> => {
     const headers = getHeaders();
-    return instance.post("/user/login", user, { headers });
+    return instance.post("/user/login", body, { headers });
   },
-  checkUserExists: (query: { username: string }) => {
-    const headers = getHeaders();
-    return instance.post("/user/checkUserExists", query, {
-      headers,
-    });
+  checkUserExists: (username: string): Promise<APIResponse> => {
+    return instance.get(`/user/exists?username=${username}`);
   },
-  changePassword: (query: { userId: string | ObjectId; currentPassword: string; newPassword: string }) => {
+  updatePassword: (id: Id, body: UpdatePasswordRequest): Promise<APIResponse<UpdatePasswordResponse>> => {
     const headers = getHeaders();
-    return instance.post("/user/changePassword", query, {
-      headers,
-    });
+    return instance.patch(`/user/${id}/password`, body, { headers });
   },
-  reset_password: (query: { username: string }) => {
-    const headers = getHeaders();
-    return instance.post("/user/reset_password", query, {
-      headers,
-    });
+  resetPassword: (body: ResetPasswordRequest): Promise<APIResponse<ResetPasswordResponse>> => {
+    return instance.post("/user/password/reset", body);
   },
-  set_new_password: (query: { newPassword: string; reset_password_token: string }) => {
+  checkResetToken: (token: String): Promise<APIResponse> => {
+    return instance.get(`/user/password/reset?token=${token}`);
+  },
+  setNewPassword: (body: NewPasswordRequest): Promise<APIResponse<NewPasswordResponse>> => {
     const headers = getHeaders();
-    return instance.post("/user/set_new_password", query, {
-      headers,
-    });
+    return instance.post("/user/password/new", body, { headers });
   },
   isAuth: () => {
     if (!isInBrowser()) return false;
@@ -161,44 +169,39 @@ const API = {
   },
 
   // User
-  set_user_info: (user: Partial<User>) => {
-    const headers = getHeaders();
-    return instance.post("/user/set_user_info", user, { headers });
-  },
   getUser: (): Promise<APIResponse<GetUserInfoResponse>> => {
     const headers = getHeaders();
     return instance.get("/user/get_user_info", { headers });
   },
-  updateUser: (query: any) => {
+  updateUser: (id: Id, body: UpdateUserRequest): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/user/updateUser", query, {
-      headers,
-    });
+    return instance.patch(`/user/${id}`, body, { headers });
   },
-  deleteUser: (query: Id) => {
+  deleteUser: (query: Id): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.delete(`/user/${query}`, { headers });
-  },
-  getUserFavorites: (query: UserFavoritesRequest): Promise<APIResponse<GetUserFavoritesResponse>> => {
-    const headers = getHeaders();
-    return instance.get(`/user/favorites?locale=${query.locale}`, { headers });
   },
   getUserContributions: (): Promise<APIResponse<GetUserContributionsResponse>> => {
     const headers = getHeaders();
     return instance.get("/dispositifs/user-contributions", { headers });
   },
-  updateUserFavorites: (query: { dispositifId: ObjectId | null; type: string }) => {
+  getUserFavorites: (query: UserFavoritesRequest): Promise<APIResponse<GetUserFavoritesResponse>> => {
     const headers = getHeaders();
-    return instance.post("/user/updateUserFavorites", query, { headers });
+    return instance.get(`/user/favorites?locale=${query.locale}`, { headers });
+  },
+  addUserFavorite: (body: AddUserFavorite): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.put("/user/favorites", body, { headers });
+  },
+  deleteUserFavorites: (query: DeleteUserFavorite): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.delete("/user/favorites", { params: query, headers });
   },
 
   // Users
-  getFiguresOnUsers: () => {
-    return instance.get("/user/getFiguresOnUsers");
-  },
-  get_users: (params = {}) => {
+  getUsersStatistics: (): Promise<APIResponse<GetUserStatisticsResponse>> => {
     const headers = getHeaders();
-    return instance.post("/user/get_users", params, { headers });
+    return instance.get("/user/statistics", { headers });
   },
   getActiveUsers: (): Promise<APIResponse<GetActiveUsersResponse[]>> => {
     const headers = getHeaders();
@@ -224,7 +227,7 @@ const API = {
       headers,
     });
   },
-  updateDispositifStatus: (id: Id, body: DispositifStatusRequest) => {
+  updateDispositifStatus: (id: Id, body: DispositifStatusRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/status`, body, { headers });
   },
@@ -234,11 +237,11 @@ const API = {
       headers,
     });
   },
-  updateDispositifMainSponsor: (id: string, body: MainSponsorRequest) => {
+  updateDispositifMainSponsor: (id: string, body: MainSponsorRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/main-sponsor`, body, { headers });
   },
-  updateDispositifAdminComments: (id: string, body: AdminCommentsRequest) => {
+  updateDispositifAdminComments: (id: string, body: AdminCommentsRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/admin-comments`, body, { headers });
   },
@@ -256,7 +259,7 @@ const API = {
   getNbDispositifsByRegion: (): Promise<Response<NbDispositifsByRegion>> => {
     return instance.get("/dispositifs/getNbDispositifsByRegion");
   },
-  addDispositifViews: (id: string, body: AddViewsRequest) => {
+  addDispositifViews: (id: string, body: AddViewsRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.post(`/dispositifs/${id}/view`, body, { headers });
   },
@@ -264,15 +267,15 @@ const API = {
     const headers = getHeaders();
     return instance.get("/dispositifs/statistics", { params: query, headers });
   },
-  updateDispositifProperties: (id: Id, body: UpdateDispositifPropertiesRequest) => {
+  updateDispositifProperties: (id: Id, body: UpdateDispositifPropertiesRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/properties`, body, { headers });
   },
-  updateDispositif: (id: Id, body: UpdateDispositifRequest) => {
+  updateDispositif: (id: Id, body: UpdateDispositifRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}`, body, { headers });
   },
-  createDispositif: (body: CreateDispositifRequest) => {
+  createDispositif: (body: CreateDispositifRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.post("/dispositifs", body, { headers });
   },
@@ -284,13 +287,13 @@ const API = {
       headers,
     });
   },
-  sendSubscriptionReminderMail: (body: SubscriptionRequest) => {
+  sendSubscriptionReminderMail: (body: SubscriptionRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.post("/mail/sendSubscriptionReminderMail", body, {
       headers,
     });
   },
-  contacts: (body: AddContactRequest) => {
+  contacts: (body: AddContactRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.post("/mail/contacts", body, { headers });
   },
@@ -335,11 +338,11 @@ const API = {
   getNeeds: (): Promise<APIResponse<GetNeedResponse>> => {
     return instance.get("/needs");
   },
-  postNeeds: (body: NeedRequest) => {
+  postNeeds: (body: NeedRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.post("/needs", body, { headers });
   },
-  patchNeed: (id: Id, body: Partial<NeedRequest>): Promise<APIResponse<PatchNeedResponse>> => {
+  patchNeed: (id: Id, body: Partial<NeedRequest>): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/needs/${id}`, body, { headers });
   },
@@ -347,7 +350,7 @@ const API = {
     const headers = getHeaders();
     return instance.post("/needs/positions", body, { headers });
   },
-  deleteNeed: (query: Id) => {
+  deleteNeed: (query: Id): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.delete(`/needs/${query}`, { headers });
   },
@@ -364,7 +367,7 @@ const API = {
     const headers = getHeaders();
     return instance.patch(`/themes/${id}`, body, { headers });
   },
-  deleteTheme: (query: Id) => {
+  deleteTheme: (query: Id): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.delete(`/themes/${query}`, { headers });
   },
@@ -382,15 +385,15 @@ const API = {
     const headers = getHeaders();
     return instance.patch(`/widgets/${id}`, body, { headers });
   },
-  deleteWidget: (query: Id) => {
+  deleteWidget: (query: Id): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.delete(`/widgets/${query}`, { headers });
   },
 
   // Export
-  exportUsers: () => {
+  exportUsers: (): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/user/exportUsers", {}, { headers });
+    return instance.post("/user/export", {}, { headers });
   },
   exportFiches: () => {
     const headers = getHeaders();
@@ -479,9 +482,9 @@ const API = {
     return instance.post("/images", query, { headers });
   },
   // Logs
-  logs: (objectId: Id): Promise<APIResponse<GetLogResponse[]>> => {
+  logs: (id: Id): Promise<APIResponse<GetLogResponse[]>> => {
     const headers = getHeaders();
-    return instance.get(`/logs?id=${objectId}`, { headers });
+    return instance.get(`/logs?id=${id}`, { headers });
   },
 
   // Notifications
@@ -513,7 +516,9 @@ const API = {
   cancel_tts_subscription: () => cancel && cancel(),
 
   // sms
-  smsDownloadApp: (body: DownloadAppRequest) => instance.post("/sms/download-app", body),
+  smsDownloadApp: (body: DownloadAppRequest): Promise<APIResponse> => {
+    return instance.post("/sms/download-app", body)
+  },
   smsContentLink: (body: ContentLinkRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.post("/sms/content-link", body, { headers });

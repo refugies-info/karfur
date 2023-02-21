@@ -1,33 +1,25 @@
-import logger from "../../../logger";
-import { UserModel } from "../../../typegoose";
-import { User, UserStatus } from "../../../typegoose/User";
-import { Res } from "../../../types/interface";
+import { User } from "../../../typegoose/User";
+import { ResponseWithData } from "../../../types/interface";
+import { getAllUsersFromDB } from "../../../modules/users/users.repository";
 
-export const getFiguresOnUsers = async (req: Request, res: Res) => {
-  try {
-    // TO DO IN REPO
-    const users = await UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, { roles: 1 }).populate("roles");
-    const nbContributors = users.filter((user: User) => user.hasRole("Contrib")).length;
-    const nbTraductors = users.filter((user: User) => user.hasRole("Trad") || user.hasRole("ExpertTrad")).length;
-    const nbExperts = users.filter((user: User) => user.hasRole("ExpertTrad")).length;
+export interface GetUserStatisticsResponse {
+  nbContributors: number;
+  nbTraductors: number;
+  nbExperts: number;
+}
 
-    res.status(200).json({
-      data: {
-        nbContributors,
-        nbTraductors,
-        nbExperts,
-      },
-    });
-  } catch (error) {
-    logger.error("[getFiguresOnUsers] error while getting users", {
-      error: error.message,
-    });
-    res.status(200).json({
-      data: {
-        nbContributors: 0,
-        nbTraductors: 0,
-        nbExperts: 0,
-      },
-    });
+export const getFiguresOnUsers = async (): ResponseWithData<GetUserStatisticsResponse> => {
+  const users = await getAllUsersFromDB({ roles: 1 }, "roles");
+  const nbContributors = users.filter((user: User) => user.hasRole("Contrib")).length;
+  const nbTraductors = users.filter((user: User) => user.hasRole("Trad") || user.hasRole("ExpertTrad")).length;
+  const nbExperts = users.filter((user: User) => user.hasRole("ExpertTrad")).length;
+
+  return {
+    text: "success",
+    data: {
+      nbContributors,
+      nbTraductors,
+      nbExperts,
+    }
   }
 };

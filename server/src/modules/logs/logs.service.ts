@@ -1,5 +1,6 @@
 import { Types } from "mongoose";
 import { DispositifId, LangueId, Log, StructureId, UserId } from "src/typegoose";
+import { Id } from "src/types/interface";
 import { createLog } from "./logs.repository";
 
 export type optionsType = {
@@ -10,25 +11,25 @@ export type optionsType = {
     id: UserId | DispositifId | StructureId;
     model_link: "User" | "Dispositif" | "Structure";
     next:
-      | "ModalContenu"
-      | "ModalStructure"
-      | "ModalUser"
-      | "ModalReaction"
-      | "ModalImprovements"
-      | "ModalNeeds"
-      | "PageAnnuaire";
+    | "ModalContenu"
+    | "ModalStructure"
+    | "ModalUser"
+    | "ModalReaction"
+    | "ModalImprovements"
+    | "ModalNeeds"
+    | "PageAnnuaire";
   };
 };
 
 export const addLog = (
-  id: UserId | DispositifId | StructureId,
+  id: UserId | DispositifId | StructureId | Id,
   type: "User" | "Dispositif" | "Structure",
   text: string,
   options?: optionsType
 ) => {
   // @ts-ignore FIXME
   const log: Log = {
-    objectId: new Types.ObjectId(id),
+    objectId: new Types.ObjectId(id.toString()),
     model_object: type,
     text,
     ...(options || {})

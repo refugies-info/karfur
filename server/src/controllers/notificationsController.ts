@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body, Route, Security, Header, Request } from "tsoa";
 import * as express from "express";
+
 import { getNotifications, GetNotificationResponse } from "../workflows/notifications/getNotifications";
 import { markAsSeen } from "../workflows/notifications/markAsSeen";
 import { sendNotifications } from "../workflows/notifications/sendNotifications";

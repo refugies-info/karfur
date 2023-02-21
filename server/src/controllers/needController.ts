@@ -1,10 +1,11 @@
-import { Route, Controller, Post, Body, Delete, Path, Security } from "tsoa";
+import { Route, Controller, Post, Body, Delete, Path, Security, Get } from "tsoa";
 
 import { postNeeds } from "../workflows/needs/postNeeds";
 import { deleteNeed } from "../workflows/needs/deleteNeed";
 import { addView } from "../workflows/needs/addView";
 import { updatePositions, UpdatePositionsNeedResponse } from "../workflows/needs/updatePositions";
 import { Picture, Response, ResponseWithData } from "../types/interface";
+import { getNeeds, GetNeedResponse } from "../workflows/needs/getNeeds";
 
 export interface NeedRequest {
   fr: {
@@ -22,6 +23,12 @@ export interface UpdatePositionsRequest {
 
 @Route("needs")
 export class NeedController extends Controller {
+
+  @Get("/")
+  public async get(): ResponseWithData<GetNeedResponse[]> {
+    return getNeeds();
+  }
+
   @Security({
     jwt: ["admin"],
     fromSite: [],

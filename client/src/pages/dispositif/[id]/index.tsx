@@ -28,7 +28,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     });
     store.dispatch(action);
     store.dispatch(fetchThemesActionCreator());
-    // store.dispatch(fetchUserActionCreator());
+    store.dispatch(fetchUserActionCreator());
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   }

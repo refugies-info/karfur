@@ -1,5 +1,4 @@
 import { Id } from "api-types";
-import { ObjectId } from "mongodb";
 import { NextRouter } from "next/router";
 import { ContentStatusType, StructureStatusType, UserStatusType } from "types/interface";
 
@@ -85,12 +84,9 @@ export const getInitialFilters = (router: NextRouter, currentTab: TabQuery) => {
 
     return {
       filter: filterQuery,
-      //@ts-ignore
-      selectedUserId: router.query.userId as ObjectId || null,
-      //@ts-ignore
-      selectedDispositifId: router.query.contentId as ObjectId || null,
-      //@ts-ignore
-      selectedStructureId: router.query.structureId as ObjectId || null,
+      selectedUserId: router.query.userId as Id || null,
+      selectedDispositifId: router.query.contentId as Id || null,
+      selectedStructureId: router.query.structureId as Id || null,
     }
   }
 
@@ -105,12 +101,9 @@ export const getInitialFilters = (router: NextRouter, currentTab: TabQuery) => {
 
       return {
         filter: filterQuery,
-        //@ts-ignore
-        selectedUserId: savedQuery.get("userId") as ObjectId || null,
-        //@ts-ignore
-        selectedDispositifId: savedQuery.get("contentId") as ObjectId || null,
-        //@ts-ignore
-        selectedStructureId: savedQuery.get("structureId") as ObjectId || null,
+        selectedUserId: savedQuery.get("userId") as Id || null,
+        selectedDispositifId: savedQuery.get("contentId") as Id || null,
+        selectedStructureId: savedQuery.get("structureId") as Id || null,
       }
     }
     return DEFAULT_FILTERS;

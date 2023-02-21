@@ -1,30 +1,40 @@
 import { FilterQuery, Types } from "mongoose";
-import { LangueId, StructureId, User, UserModel } from "src/typegoose";
-import { UserId, UserStatus } from "src/typegoose/User";
+import { Id } from "../../types/interface";
+import { LangueId, Role, Structure, StructureId, User, UserModel } from "../../typegoose";
+import { Favorite, UserId, UserStatus } from "../../typegoose/User";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
 
-export const getUserById = async (id: UserId, neededFields: NeededFields) => UserModel.findById(id, neededFields);
+// find one
+export const getUserById = async (id: Id, neededFields: NeededFields) => UserModel.findById(id, neededFields);
 
+export const getUserByUsernameFromDB = (username: string) => UserModel.findOne({ username });
+
+export const getUserFromDB = (query: FilterQuery<User>) => UserModel.findOne(query);
+
+// find many
 export const getUsersById = async (ids: UserId[], neededFields: NeededFields) =>
   UserModel.find({ _id: { $in: ids } }, neededFields);
 
 export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string, number> = {}) =>
   UserModel.find(filter, neededFields);
 
-export const getAllUsersFromDB = async (neededFields: FilterQuery<User>) =>
-  UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields)
+export const getAllUsersFromDB = async (neededFields: FilterQuery<User>, populate: string = "") =>
+  UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields).populate(populate)
 
 export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>) =>
   UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields).populate<{
-    selectedLanguages: { langueCode: string, langueFr: string }[]
+    selectedLanguages: { langueCode: string, langueFr: string }[],
+    roles: Role[],
+    structures: (Structure & { _id: Id })[],
   }>([
     { path: "selectedLanguages", select: "langueCode langueFr" },
     { path: "roles" },
     { path: "structures" }
   ]);
 
-export const updateUserInDB = async (id: UserId, modifiedUser: any) =>
+// update
+export const updateUserInDB = async (id: Id, modifiedUser: any) => // FIXME in updateUser
   UserModel.findOneAndUpdate({ _id: id }, modifiedUser, {
     upsert: true,
     new: true,
@@ -63,8 +73,6 @@ export const removeStructureOfUserInDB = (userId: UserId, structureId: Structure
     },
   );
 
-export const getUserByUsernameFromDB = (username: string) => UserModel.findOne({ username });
-
 export const createUser = (user: {
   username: string;
   password: string;
@@ -80,4 +88,23 @@ export const addRoleAndContribToUser = (userId: Types.ObjectId, roleId: Types.Ob
       $addToSet: { roles: roleId, contributions: contribId },
     },
     { new: true },
+  );
+
+// Favorites
+export const addFavoriteInDB = (userId: UserId, favorite: Favorite) =>
+  UserModel.updateOne(
+    { _id: userId },
+    {
+      $addToSet: {
+        favorites: favorite,
+      },
+    },
+  );
+
+export const removeFavoriteFromDB = (userId: UserId, dispositifId: Id) =>
+  UserModel.updateOne(
+    { _id: userId },
+    {
+      $pull: { favorites: { dispositifId: dispositifId } }
+    },
   );

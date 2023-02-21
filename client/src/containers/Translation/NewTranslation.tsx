@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { useAsync, useAsyncFn, useNumber } from "react-use";
 import { GetDispositifResponse } from "api-types";
 import API from "utils/API";
-import NewDispositif from "components/Frontend/Dispositif/NewDispositif";
+import Dispositif from "components/Content/Dispositif";
 import { setSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 import { useDispatch } from "react-redux";
 import PageContext from "utils/pageContext";
@@ -301,7 +301,7 @@ const NewTranslation = () => {
             />
           </div>
           <div style={{ flex: 3 }}>
-            <NewDispositif />
+            <Dispositif />
           </div>
         </div>
       </div>

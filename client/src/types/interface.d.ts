@@ -1,9 +1,7 @@
-import { ObjectId } from "mongodb";
-import { Moment } from "moment";
 import { AxiosResponse } from "axios";
 import { GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
 
-export type APIResponse<T = {}> = AxiosResponse<{
+export type APIResponse<T = null> = AxiosResponse<{
   text: "success" | "error";
   data: T;
 }>;
@@ -13,7 +11,7 @@ export interface Event {
 }
 
 export interface Indicator {
-  _id: ObjectId;
+  _id: Id;
   wordsCount: number;
   timeSpent: number;
 }
@@ -24,55 +22,6 @@ export interface Picture {
   secure_url: string | null;
 }
 type iconName = "house" | "search" | "message" | "menu" | "tag" | "";
-
-export interface Role {
-  _id: ObjectId;
-  nom: string;
-  nomPublique: string;
-}
-
-export interface UserLanguage {
-  langueFr: string;
-  langueLoc: string;
-  langueCode: string;
-  i18nCode: string;
-  _id: string;
-}
-
-interface DispositifPinned {
-  _id: string;
-  datePin: Moment;
-}
-
-export interface User {
-  username: string;
-  email?: string;
-  phone?: string;
-  code?: string;
-  description?: string;
-  objectifTemps?: number;
-  objectifMots?: number;
-  picture?: Picture;
-  roles?: Role[];
-  selectedLanguages?: string[];
-  notifyObjectifs?: boolean;
-  objectifTempsContrib?: number;
-  objectifMotsContrib?: number;
-  notifyObjectifsContrib?: boolean;
-  traductionsFaites?: ObjectId[];
-  contributions?: ObjectId[];
-  noteTraduction?: number;
-  status?: string;
-  cookies?: {
-    dispositifsPinned?: DispositifPinned[];
-  };
-  structures?: ObjectId[];
-  last_connected?: Moment;
-  updatedAt: Moment;
-  created_at: Moment;
-  _id: ObjectId;
-}
-
 export interface DetailedOpeningHours {
   day: string;
   from0?: string;
@@ -87,16 +36,16 @@ export interface OpeningHours {
 }
 
 export interface Translation {
-  _id?: ObjectId;
+  _id?: Id;
   initialText?: object;
   translatedText?: object;
   langueCible?: string;
-  articleId?: ObjectId;
+  articleId?: Id;
   timeSpent?: string;
   isStructure?: boolean;
   avancement?: number;
   type?: string;
-  validatorId?: ObjectId;
+  validatorId?: Id;
   isExpert?: boolean;
 }
 
@@ -131,7 +80,7 @@ export interface RegionFigures {
 }
 export interface NbDispositifsByRegion {
   regionFigures: RegionFigures[];
-  dispositifsWithoutGeoloc: ObjectId[];
+  dispositifsWithoutGeoloc: Id[];
 }
 
 export type TranslationFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";

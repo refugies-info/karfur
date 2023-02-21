@@ -2,7 +2,6 @@ import { Controller, Post, Body, Route, Security } from "tsoa";
 
 import { downloadApp } from "../workflows/sms/downloadApp";
 import { contentLink } from "../workflows/sms/contentLink";
-
 import { Response } from "../types/interface";
 
 export interface DownloadAppRequest {
@@ -16,7 +15,7 @@ export interface ContentLinkRequest {
   url: string;
 }
 
-// @Route("sms")
+@Route("sms")
 export class SmsController extends Controller {
   @Post("/download-app")
   public async downloadApp(@Body() body: DownloadAppRequest): Response {

@@ -6,7 +6,6 @@ import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { userSelector } from "services/User/user.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { UserLanguage } from "types/interface";
 import { saveUserActionCreator } from "services/User/user.actions";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
@@ -15,7 +14,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import styles from "./TranslationLanguagesChoiceModal.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse, Id } from "api-types";
 import { useLanguages } from "hooks";
 
 const Header = styled.div`
@@ -101,7 +100,7 @@ const LangueItem = (props: { langue: GetLanguagesResponse; isSelected: boolean; 
 );
 
 const TranslationLanguagesChoiceModalComponent = (props: Props) => {
-  const [selectedLangues, setSelectedLangues] = useState<UserLanguage["_id"][]>([]);
+  const [selectedLangues, setSelectedLangues] = useState<Id[]>([]);
 
   const { langues } = useLanguages();
   const user = useSelector(userSelector);
@@ -152,7 +151,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     }
 
     if (!isLangueSelected) {
-      const newSelectedLangue: UserLanguage = {
+      const newSelectedLangue = {
         _id: langue._id.toString(),
         i18nCode: langue.i18nCode,
         langueCode: langue.langueCode || "",
@@ -168,12 +167,11 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   const onValidate = () => {
     if (!user || !user.user) return;
     dispatch(
-      saveUserActionCreator({
+      saveUserActionCreator(user.user._id, {
         user: {
           selectedLanguages: selectedLangues,
-          _id: user.user._id,
         },
-        type: "modify-my-details",
+        action: "modify-my-details",
       }),
     );
 

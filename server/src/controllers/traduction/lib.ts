@@ -148,7 +148,7 @@ async function add_tradForReview(req: RequestFromClientWithBody<AddTraductionFor
   //   });
 }
 
-interface GetTraductionForReviewRequest {}
+interface GetTraductionForReviewRequest { }
 type GetTraductionForReviewResponse = Traductions[];
 
 //We retrieve the list of translations
@@ -259,10 +259,15 @@ export const computeIndicator = async (userId: string, start: Date, end: Date) =
   ]);
 };
 
-export const computeGlobalIndicator = async (userId: string) => {
+export interface GlobalIndicator {
+  _id: null;
+  wordsCount: number;
+  timeSpent: number;
+}
+export const computeGlobalIndicator = async (userId: string): Promise<GlobalIndicator[]> => {
   logger.info("[computeGlobalIndicator] received for userId", userId);
 
-  return await IndicatorModel.aggregate([
+  return IndicatorModel.aggregate<GlobalIndicator>([
     {
       $match: {
         userId: new mongoose.Types.ObjectId(userId)

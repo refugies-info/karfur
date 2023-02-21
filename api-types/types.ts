@@ -47,7 +47,6 @@ import {
   UpdatePositionsRequest
 } from "../server/src/controllers/needController";
 import { GetNeedResponse } from "../server/src/workflows/needs/getNeeds";
-import { PatchNeedResponse } from "../server/src/workflows/needs/patchNeed";
 import { UpdatePositionsNeedResponse } from "../server/src/workflows/needs/updatePositions";
 
 // notifications
@@ -75,10 +74,25 @@ import { PatchThemeResponse } from "../server/src/workflows/themes/patchTheme";
 import { TtsRequest } from "../server/src/controllers/ttsController";
 
 // user
-import { GetUserInfoResponse, UserFavoritesRequest } from "../server/src/controllers/userController";
+import {
+  GetUserInfoResponse,
+  UserFavoritesRequest,
+  AddUserFavorite,
+  DeleteUserFavorite,
+  UpdatePasswordRequest,
+  ResetPasswordRequest,
+  LoginRequest,
+  NewPasswordRequest,
+  UpdateUserRequest
+} from "../server/src/controllers/userController";
 import { GetUserFavoritesResponse } from "../server/src/workflows/users/getUserFavoritesInLocale";
 import { GetActiveUsersResponse } from "../server/src/workflows/users/getActiveUsers";
 import { GetAllUsersResponse } from "../server/src/workflows/users/getAllUsers";
+import { GetUserStatisticsResponse } from "../server/src/workflows/users/getFiguresOnUsers";
+import { UpdatePasswordResponse } from "../server/src/workflows/users/changePassword";
+import { ResetPasswordResponse } from "../server/src/workflows/users/resetPassword";
+import { LoginResponse } from "../server/src/workflows/users/login";
+import { NewPasswordResponse } from "../server/src/workflows/users/setNewPassword";
 
 // widgets
 import { WidgetRequest } from "../server/src/controllers/widgetController";
@@ -137,7 +151,6 @@ export type {
   NeedRequest,
   UpdatePositionsRequest,
   GetNeedResponse,
-  PatchNeedResponse,
   UpdatePositionsNeedResponse,
 
   // notifications
@@ -169,6 +182,18 @@ export type {
   GetUserFavoritesResponse,
   GetActiveUsersResponse,
   GetAllUsersResponse,
+  AddUserFavorite,
+  DeleteUserFavorite,
+  GetUserStatisticsResponse,
+  UpdatePasswordRequest,
+  UpdatePasswordResponse,
+  ResetPasswordRequest,
+  ResetPasswordResponse,
+  LoginRequest,
+  LoginResponse,
+  NewPasswordRequest,
+  NewPasswordResponse,
+  UpdateUserRequest,
 
   // widgets
   WidgetRequest,

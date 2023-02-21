@@ -75,13 +75,11 @@ app.use(function (req, _, next) {
 // Setup routes
 RegisterRoutes(app);
 
-const userController = require(__dirname + "/controllers/userController");
 const traductionController = require(__dirname + "/controllers/traductionController");
 const dispositifController = require(__dirname + "/controllers/dispositifController");
 const structureController = require(__dirname + "/controllers/structureController");
 
 app.enable("strict routing");
-app.use("/user", userController.router);
 app.use("/traduction", traductionController.router);
 app.use("/dispositifs", dispositifController.router);
 app.use("/structures", structureController.router);

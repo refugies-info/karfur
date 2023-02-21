@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ObjectId } from "mongodb";
 import { Col, Row, Container } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -26,7 +25,7 @@ import {
   StyledHeader,
   StyledHeaderInner,
   StyledSort,
-  StyledTitle
+  StyledTitle,
 } from "../sharedComponents/StyledAdmin";
 import { GetNeedResponse, GetThemeResponse, Id } from "api-types";
 
@@ -93,7 +92,7 @@ export const Needs = () => {
             return a.position < b.position ? -1 : 1;
           }
           return 0;
-        })
+        }),
     ];
     setDisplayedNeeds(newNeeds);
   }, [currentTheme, allNeeds]);

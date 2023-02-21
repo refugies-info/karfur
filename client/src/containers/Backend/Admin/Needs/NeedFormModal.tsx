@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createNeedActionCreator, deleteNeedActionCreator, saveNeedActionCreator } from "services/Needs/needs.actions";
 import { DetailsModal } from "../sharedComponents/DetailsModal";
 import { Label } from "../sharedComponents/SubComponents";
-import { ObjectId } from "mongodb";
 import styles from "./NeedFormModal.module.scss";
 import { Col, Row } from "reactstrap";
 import { themesSelector } from "services/Themes/themes.selectors";
@@ -40,7 +39,7 @@ export const NeedFormModal = (props: Props) => {
   const associatedDispositifs = useMemo(() => {
     if (!props.selectedNeed) return [];
     return dispositifs.filter((disp) =>
-      props.selectedNeed ? (disp.needs || []).includes(props.selectedNeed._id) : false
+      props.selectedNeed ? (disp.needs || []).includes(props.selectedNeed._id) : false,
     );
   }, [props.selectedNeed, dispositifs]);
 
@@ -72,11 +71,11 @@ export const NeedFormModal = (props: Props) => {
     const need: NeedRequest = {
       fr: {
         text: name,
-        subtitle: subtitle
+        subtitle: subtitle,
       },
       theme: themeSelected?.toString() || undefined,
       image: image || undefined,
-      adminComments: notes
+      adminComments: notes,
     };
     if (props.selectedNeed) {
       // edition
@@ -99,7 +98,7 @@ export const NeedFormModal = (props: Props) => {
         confirmButtonColor: colors.rouge,
         cancelButtonColor: colors.vert,
         confirmButtonText: "Oui, le supprimer",
-        cancelButtonText: "Annuler"
+        cancelButtonText: "Annuler",
       }).then((res) => {
         if (res.value && props.selectedNeed) {
           dispatch(deleteNeedActionCreator(props.selectedNeed._id));

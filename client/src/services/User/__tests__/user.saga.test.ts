@@ -8,7 +8,7 @@ import { testUser } from "../../../__fixtures__/user";
 import { startLoading, LoadingStatusKey, finishLoading } from "../../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
 import mockRouter from "next-router-mock";
-import { ObjectId } from "mongodb";
+
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("[Saga] User", () => {
@@ -47,12 +47,12 @@ describe("[Saga] User", () => {
         .call(API.isAuth)
         .next(true)
         .call(API.getUser)
-        .next({ data: { data: { ...testUser, structures: [new ObjectId("testObjectId")] } } })
-        .put(setUserActionCreator({ ...testUser, structures: [new ObjectId("testObjectId")] }))
+        .next({ data: { data: { ...testUser, structures: ["testObjectId"] } } })
+        .put(setUserActionCreator({ ...testUser, structures: ["testObjectId"] }))
         .next()
         .put(
           fetchUserStructureActionCreator({
-            structureId: new ObjectId("746573744f626a6563744964"),
+            structureId: "746573744f626a6563744964",
             shouldRedirect: false
           })
         )
@@ -94,12 +94,12 @@ describe("[Saga] User", () => {
         .call(API.isAuth)
         .next(true)
         .call(API.getUser)
-        .next({ data: { data: { ...testUser, structures: [new ObjectId("testObjectId")] } } })
-        .put(setUserActionCreator({ ...testUser, structures: [new ObjectId("testObjectId")] }))
+        .next({ data: { data: { ...testUser, structures: ["testObjectId"] } } })
+        .put(setUserActionCreator({ ...testUser, structures: ["testObjectId"] }))
         .next()
         .put(
           fetchUserStructureActionCreator({
-            structureId: new ObjectId("746573744f626a6563744964"),
+            structureId: "746573744f626a6563744964",
             shouldRedirect: false
           })
         )

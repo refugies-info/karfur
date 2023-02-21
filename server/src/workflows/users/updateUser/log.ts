@@ -1,9 +1,10 @@
 import { Types } from "mongoose";
-import { User } from "src/typegoose";
+import { UpdateUserRequest } from "../../../controllers/userController";
+import { User } from "../../../typegoose";
 import { addLog, optionsType } from "../../../modules/logs/logs.service";
-import { User as UserUpdate } from "./updateUser";
+import { Id } from "src/types/interface";
 
-export const log = async (user: UserUpdate, userFromDb: User, authorId: Types.ObjectId) => {
+export const log = async (id: Id, user: UpdateUserRequest["user"], userFromDb: User, authorId: Types.ObjectId) => {
   const logOptions: optionsType = {
     author: authorId,
     link: {
@@ -14,18 +15,18 @@ export const log = async (user: UserUpdate, userFromDb: User, authorId: Types.Ob
   };
 
   if (userFromDb.phone && user.phone !== userFromDb.phone) {
-    await addLog(user._id, "User", "Modification du numéro de téléphone", logOptions);
+    await addLog(id, "User", "Modification du numéro de téléphone", logOptions);
   }
   if (user.phone && !userFromDb.phone) {
-    await addLog(user._id, "User", "Ajout du numéro de téléphone", logOptions);
+    await addLog(id, "User", "Ajout du numéro de téléphone", logOptions);
   }
   if (!userFromDb.email && user.email) {
-    await addLog(user._id, "User", "Ajout de l’adresse mail", logOptions);
+    await addLog(id, "User", "Ajout de l’adresse mail", logOptions);
   }
   if (userFromDb.email && user.email !== userFromDb.email) {
-    await addLog(user._id, "User", "Modification de l’adresse mail", logOptions);
+    await addLog(id, "User", "Modification de l’adresse mail", logOptions);
   }
   if (user.username !== userFromDb.username) {
-    await addLog(user._id, "User", "Modification du pseudo par", logOptions);
+    await addLog(id, "User", "Modification du pseudo par", logOptions);
   }
 };

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FormattedUserContribution } from "../types";
 import { TypeContenu, Responsabilite, ContribStyledStatus, StatutHeader } from "./SubComponents";
 import { Title, DeleteButton, SeeButtonWithoutNavigation } from "../../Admin/sharedComponents/SubComponents";
-import { ObjectId } from "mongodb";
 import styles from "scss/components/adminTable.module.scss";
 import { Id } from "api-types";
 

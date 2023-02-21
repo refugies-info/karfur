@@ -24,8 +24,8 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
 
   // metadatas
   const metadatas: TranslationContent["metadatas"] = {}
-  if (body.metadatas.important) metadatas.important = body.metadatas.important;
-  if (body.metadatas.duration) metadatas.duration = body.metadatas.duration;
+  if (body.metadatas?.important) metadatas.important = body.metadatas.important;
+  if (body.metadatas?.duration) metadatas.duration = body.metadatas.duration;
 
   return {
     content,

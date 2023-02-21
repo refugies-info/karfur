@@ -17,7 +17,7 @@ import {
   UPDATE_USER_FAVORITES,
 } from "./UserFavoritesInLocale.actionTypes";
 import { APIResponse } from "types/interface";
-import { GetUserFavoritesResponse } from "api-types";
+import { DeleteUserFavorite, GetUserFavoritesResponse } from "api-types";
 
 export function* fetchUserFavorites(
   action: ReturnType<typeof fetchUserFavoritesActionCreator>
@@ -41,10 +41,10 @@ export function* updateUserFavorites(
   try {
     logger.info("[updateUserFavorites] saga", { data: action.payload });
     yield put(startLoading(LoadingStatusKey.UPDATE_USER_FAVORITES));
-    yield call(API.updateUserFavorites, {
-      dispositifId: action.payload.dispositifId || null,
-      type: action.payload.type,
-    });
+    const params: DeleteUserFavorite = {};
+    if (action.payload.type === "remove-all") params.all = true;
+    if (action.payload.dispositifId) params.dispositifId = action.payload.dispositifId.toString();
+    yield call(API.deleteUserFavorites, params);
     yield put(fetchUserFavoritesActionCreator(action.payload.locale));
     yield put(finishLoading(LoadingStatusKey.UPDATE_USER_FAVORITES));
   } catch (error) {
