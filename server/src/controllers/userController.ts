@@ -1,8 +1,7 @@
 import { Controller, Request, Get, Post, Put, Body, Delete, Route, Security, Queries, Path, Patch, Query } from "tsoa";
 import { pick } from "lodash";
+import { Request as ExRequest } from "express";
 
-const checkToken = require("./account/checkToken");
-import express, { Request as ExRequest } from "express";
 import { getFiguresOnUsers, GetUserStatisticsResponse } from "../workflows/users/getFiguresOnUsers";
 import { getAllUsers, GetAllUsersResponse } from "../workflows/users/getAllUsers";
 import { getActiveUsers, GetActiveUsersResponse } from "../workflows/users/getActiveUsers";
@@ -10,7 +9,7 @@ import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
 import { changePassword, UpdatePasswordResponse } from "../workflows/users/changePassword";
-import { setNewPassword } from "../workflows/users/setNewPassword";
+import { setNewPassword, NewPasswordResponse } from "../workflows/users/setNewPassword";
 import { getUserFavoritesInLocale, GetUserFavoritesResponse } from "../workflows/users/getUserFavoritesInLocale";
 import { deleteUser } from "../workflows/users/deleteUser";
 import { LangueId } from "../typegoose";
@@ -21,20 +20,9 @@ import { deleteUserFavorites } from "../workflows/users/deleteUserFavorites";
 import { resetPassword, ResetPasswordResponse } from "../workflows/users/resetPassword";
 import { checkResetToken } from "../workflows/users/checkResetToken";
 import { checkUserExists } from "../workflows/users/checkUserExists";
+import { LoginResponse } from "../workflows/users/login/login";
+
 // import { UserStatus } from "../typegoose/User";
-
-/* TODO: use tsoa */
-const router = express.Router();
-
-router.post("/login", checkToken.getId, checkToken.getRoles, login); // login exception manager
-router.post("/set_new_password", checkToken.getRoles, setNewPassword); // login exception manager
-router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser); // login exception manager
-
-export { router };
-
-export interface SelectedLanguagesRequest {
-  selectedLanguages: LangueId[];
-}
 
 // THIS NOT WORK BECAUSE TSOA NEED TO KNOW EVERY
 // EXTENDED TYPE (IE TYPEGOOSE TYPES) => HE CAN'T
@@ -42,6 +30,10 @@ export interface SelectedLanguagesRequest {
 //   User,
 //   "contributions" | "email" | "roles" | "selectedLanguages" | "status" | "structures" | "username" | "_id"
 // >;
+
+export interface SelectedLanguagesRequest {
+  selectedLanguages: LangueId[];
+}
 
 export interface GetUserInfoResponse {
   _id: Id;
@@ -83,8 +75,44 @@ export interface ResetPasswordRequest {
   username: string;
 }
 
+export interface NewPasswordRequest {
+  newPassword: string;
+  reset_password_token: string;
+  code?: string;
+  email?: string;
+  phone?: string;
+}
+
+export interface LoginRequest {
+  username: string;
+  password: string;
+  code?: string;
+  email?: string;
+  phone?: string;
+}
+
+export interface UpdateUserRequest {
+  user: {
+    roles?: Id[];
+    email?: string;
+    phone?: string;
+    code?: string;
+    username?: string;
+    picture?: Picture;
+    adminComments?: string;
+    selectedLanguages?: Id[];
+  },
+  action: "modify-with-roles" | "modify-my-details";
+}
+
 @Route("user")
 export class UserController extends Controller {
+
+  @Security("fromSite")
+  @Post("/login")
+  public async login(@Body() body: LoginRequest): ResponseWithData<LoginResponse> {
+    return login(body);
+  }
 
   @Security("jwt")
   @Get("/actives")
@@ -117,6 +145,12 @@ export class UserController extends Controller {
   @Post("/password/reset")
   public async resetPassword(@Body() body: ResetPasswordRequest): ResponseWithData<ResetPasswordResponse> {
     return resetPassword(body)
+  }
+
+  @Security("fromSite")
+  @Post("/password/new")
+  public async setNewPassword(@Body() body: NewPasswordRequest): ResponseWithData<NewPasswordResponse> {
+    return setNewPassword(body)
   }
 
   @Security("jwt")
@@ -175,6 +209,12 @@ export class UserController extends Controller {
   @Patch("/{id}/password")
   public async updatePassword(@Path() id: string, @Request() request: ExRequest, @Body() body: UpdatePasswordRequest): ResponseWithData<UpdatePasswordResponse> {
     return changePassword(id, body, request.user);
+  }
+
+  @Security({ jwt: [], fromSite: [] })
+  @Patch("/{id}")
+  public async updateUser(@Path() id: string, @Request() request: ExRequest, @Body() body: UpdateUserRequest): Response {
+    return updateUser(id, body, request.user);
   }
 
   @Delete("/{id}")

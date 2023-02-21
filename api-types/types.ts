@@ -74,13 +74,25 @@ import { PatchThemeResponse } from "../server/src/workflows/themes/patchTheme";
 import { TtsRequest } from "../server/src/controllers/ttsController";
 
 // user
-import { GetUserInfoResponse, UserFavoritesRequest, AddUserFavorite, DeleteUserFavorite, UpdatePasswordRequest, ResetPasswordRequest } from "../server/src/controllers/userController";
+import {
+  GetUserInfoResponse,
+  UserFavoritesRequest,
+  AddUserFavorite,
+  DeleteUserFavorite,
+  UpdatePasswordRequest,
+  ResetPasswordRequest,
+  LoginRequest,
+  NewPasswordRequest,
+  UpdateUserRequest
+} from "../server/src/controllers/userController";
 import { GetUserFavoritesResponse } from "../server/src/workflows/users/getUserFavoritesInLocale";
 import { GetActiveUsersResponse } from "../server/src/workflows/users/getActiveUsers";
 import { GetAllUsersResponse } from "../server/src/workflows/users/getAllUsers";
 import { GetUserStatisticsResponse } from "../server/src/workflows/users/getFiguresOnUsers";
 import { UpdatePasswordResponse } from "../server/src/workflows/users/changePassword";
 import { ResetPasswordResponse } from "../server/src/workflows/users/resetPassword";
+import { LoginResponse } from "../server/src/workflows/users/login";
+import { NewPasswordResponse } from "../server/src/workflows/users/setNewPassword";
 
 // widgets
 import { WidgetRequest } from "../server/src/controllers/widgetController";
@@ -177,6 +189,11 @@ export type {
   UpdatePasswordResponse,
   ResetPasswordRequest,
   ResetPasswordResponse,
+  LoginRequest,
+  LoginResponse,
+  NewPasswordRequest,
+  NewPasswordResponse,
+  UpdateUserRequest,
 
   // widgets
   WidgetRequest,

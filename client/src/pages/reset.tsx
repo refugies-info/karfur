@@ -31,6 +31,7 @@ import { getPath, PathNames } from "routes";
 import PhoneAndEmailFields from "components/Pages/login/PhoneAndEmailFields";
 import CodeField from "components/Pages/login/CodeField";
 import Footer from "components/Pages/login/Footer";
+import { NewPasswordRequest } from "api-types";
 
 const StyledHeader = styled.div`
   font-weight: 600;
@@ -121,14 +122,14 @@ const Reset = () => {
       return;
     }
 
-    const user = {
+    const user: NewPasswordRequest = {
       newPassword: newPassword,
       reset_password_token: resetPasswordToken,
       code,
       email,
       phone,
     };
-    API.set_new_password(user)
+    API.setNewPassword(user)
       .then((data) => {
         Swal.fire({
           title: "Yay...",
@@ -136,25 +137,25 @@ const Reset = () => {
           icon: "success",
           timer: 1500,
         }).then(() => {
-          localStorage.setItem("token", data.data.token);
-          setAuthToken(data.data.token);
+          localStorage.setItem("token", data.data.data.token);
+          setAuthToken(data.data.data.token);
           dispatch(fetchUserActionCreator());
           router.push("/");
         });
       })
       .catch((e) => {
-        if (e.response.status === 501) {
+        if (e.response?.data?.code === "NO_CODE_SUPPLIED") {
           setStep(2);
           setNewHasStructureWithoutPhoneOrEmail(false);
           setSmsSentTo(e.response?.data?.phone || "");
-        } else if (e.response.status === 402) {
+        } else if (e.response?.data?.code === "WRONG_CODE") {
           setWrongAdminCodeError(true);
-        } else if (e.response.status === 502) {
+        } else if (e.response?.data?.code === "NO_CONTACT") {
           setStep(1);
           setNewHasStructureWithoutPhoneOrEmail(true);
           setEmail(e.response?.data?.email || "");
           setStructure(e.response?.data?.structure);
-        } else if (e.response.status === 400 && e.response.data.code === "USED_PASSWORD") {
+        } else if (e.response?.data?.code === "USED_PASSWORD") {
           setSamePasswordError(true);
         } else {
           setUnexpectedError(true);

@@ -67,7 +67,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     const loadIndicators = async () => {
       if (userFromStore) {
         const data = await API.get_progression({
-          userId: userFromStore._id
+          userId: userFromStore._id,
         });
         setIndicators(data.data);
       }
@@ -107,7 +107,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       }
       setEmail(e.target.value);
     },
-    [infosSaved]
+    [infosSaved],
   );
   const onChangePhone = useCallback(
     (e: Event) => {
@@ -119,14 +119,14 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       }
       setPhone(e.target.value);
     },
-    [infosSaved]
+    [infosSaved],
   );
   const onNotesChange = useCallback(
     (e: any) => {
       if (infosSaved) setInfosSaved(false);
       setAdminComments(e.target.value);
     },
-    [infosSaved]
+    [infosSaved],
   );
 
   const handleCheckBoxChange = (name: string) => {
@@ -161,11 +161,9 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         }
         if (!!phoneError || !!emailError) return;
         setPhoneError("");
-        await API.updateUser({
-          query: {
-            user: { _id: userFromStore._id, roles, email, phone, adminComments },
-            action: "modify-with-roles"
-          }
+        await API.updateUser(userFromStore._id, {
+          user: { roles, email, phone, adminComments },
+          action: "modify-with-roles",
         });
         setInfosSaved(true);
         updateUserStore(userFromStore._id, {
@@ -173,7 +171,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
           phone: phone,
           // name: name,
           adminComments: adminComments,
-          roles: roles
+          roles: roles,
         });
         updateLogs();
       }
@@ -182,7 +180,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         title: "Oh non",
         text: "Erreur lors de la modification",
         icon: "error",
-        timer: 1500
+        timer: 1500,
       });
     }
   };
@@ -198,7 +196,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
           confirmButtonColor: colors.rouge,
           cancelButtonColor: colors.vert,
           confirmButtonText: "Oui, le supprimer",
-          cancelButtonText: "Annuler"
+          cancelButtonText: "Annuler",
         });
         if (!res.value) return;
         await API.deleteUser(userFromStore._id);
@@ -206,7 +204,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
           title: "Yay...",
           text: "Utilisateur supprimé",
           icon: "success",
-          timer: 1500
+          timer: 1500,
         });
         dispatch(setAllUsersActionsCreator([...allUsers.filter((u) => u._id !== userFromStore._id)]));
         props.toggleModal();
@@ -216,7 +214,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         title: "Oh non",
         text: "Erreur lors de la suppression",
         icon: "error",
-        timer: 1500
+        timer: 1500,
       });
       props.toggleModal();
     }

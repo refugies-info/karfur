@@ -25,6 +25,8 @@ class APIError extends Error {
   }
 }
 
+export class InternalError extends APIError { }
+
 export class UnauthorizedError extends APIError { }
 
 export class AuthenticationError extends APIError { }
@@ -75,6 +77,13 @@ export const serverErrorHandler = (err: unknown, req: Request, res: Response, ne
   }
   if (err instanceof InvalidRequestError) {
     return res.status(400).json({
+      message: err.message,
+      code: err.code,
+      data: err.data
+    });
+  }
+  if (err instanceof InternalError) {
+    return res.status(500).json({
       message: err.message,
       code: err.code,
       data: err.data

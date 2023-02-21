@@ -33,6 +33,7 @@ import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { getPath, PathNames } from "routes";
+import { LoginRequest } from "api-types";
 
 const StyledHeader = styled.h4`
   font-weight: 600;
@@ -107,15 +108,8 @@ const Register = () => {
     }
   };
 
-  /**
-   * Codes returned by login when register
-   * 401 : weak password
-   * 403 : user creation not possible from api
-   * 500 : internal error
-   * 200: ok
-   */
   const login = () => {
-    const user = {
+    const user: LoginRequest = {
       username,
       password,
       email,
@@ -126,7 +120,7 @@ const Register = () => {
     });
     API.login(user)
       .then((data) => {
-        const token = data.data.token;
+        const token = data.data.data.token;
         logger.info("[Register] user successfully registered", {
           username: user.username,
         });
@@ -153,7 +147,7 @@ const Register = () => {
           username: user.username,
           error: e,
         });
-        if (e.response.status === 401) {
+        if (e.response?.data?.code === "PASSWORD_TOO_WEAK") {
           setWeakPasswordError(true);
           setStep(1);
         } else {

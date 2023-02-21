@@ -6,7 +6,7 @@ import {
   SAVE_USER,
 } from "./user.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { GetUserInfoResponse } from "api-types";
+import { GetUserInfoResponse, Id, UpdateUserRequest } from "api-types";
 
 export const setUserActionCreator = (value: GetUserInfoResponse | null) =>
   action(SET_USER, value);
@@ -17,10 +17,7 @@ export const setUserRoleInStructureActionCreator = (value: string[]) =>
 export const updateUserActionCreator = (value: GetUserInfoResponse) =>
   action(UPDATE_USER, value);
 
-export const saveUserActionCreator = (value: {
-  user: Partial<GetUserInfoResponse>;
-  type: "modify-with-roles" | "delete" | "modify-my-details";
-}) => action(SAVE_USER, value);
+export const saveUserActionCreator = (id: Id, value: UpdateUserRequest) => action(SAVE_USER, { id, value });
 
 export const fetchUserActionCreator = (value?: {
   shouldRedirect: boolean;

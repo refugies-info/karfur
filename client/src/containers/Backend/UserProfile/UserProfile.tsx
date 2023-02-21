@@ -226,16 +226,15 @@ export const UserProfile = (props: Props) => {
     API.postImage(formData).then((data_res) => {
       const imgData = data_res.data.data;
       dispatch(
-        saveUserActionCreator({
+        saveUserActionCreator(user._id, {
           user: {
             picture: {
               secure_url: imgData.secure_url,
               public_id: imgData.public_id,
               imgId: imgData.imgId,
             },
-            _id: user._id.toString(),
           },
-          type: "modify-my-details",
+          action: "modify-my-details",
         }),
       );
       setIsPictureUploading(false);
@@ -248,9 +247,9 @@ export const UserProfile = (props: Props) => {
     if (isEmail) {
       if (!user) return;
       dispatch(
-        saveUserActionCreator({
-          user: { email, _id: user._id.toString() },
-          type: "modify-my-details",
+        saveUserActionCreator(user._id, {
+          user: { email },
+          action: "modify-my-details",
         }),
       );
 
@@ -275,12 +274,10 @@ export const UserProfile = (props: Props) => {
     }
     setNotPhoneError(false);
     if (!user) return;
-    API.updateUser({
-      // will return a 501 and send SMS code
-      query: {
-        user: { phone, _id: user._id },
-        action: "modify-my-details",
-      },
+    // will return an error and send SMS code
+    API.updateUser(user._id, {
+      user: { phone },
+      action: "modify-my-details",
     }).catch(() => setCodePhoneModalVisible(true));
   };
 
@@ -288,9 +285,9 @@ export const UserProfile = (props: Props) => {
   const onSubmitCode = () => {
     if (!user) return;
     dispatch(
-      saveUserActionCreator({
-        user: { phone, code, _id: user._id.toString() },
-        type: "modify-my-details",
+      saveUserActionCreator(user._id, {
+        user: { phone, code },
+        action: "modify-my-details",
       }),
     );
   };
@@ -316,11 +313,9 @@ export const UserProfile = (props: Props) => {
     if (!user) return;
     try {
       // update user here and not in redux to get error if pseudo already exists
-      await API.updateUser({
-        query: {
-          user: { username, _id: user._id },
-          action: "modify-my-details",
-        },
+      await API.updateUser(user._id, {
+        user: { username },
+        action: "modify-my-details",
       });
     } catch (error) {
       Swal.fire({

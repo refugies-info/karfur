@@ -62,13 +62,13 @@ export function* saveUser(
   try {
     logger.info("[saveUser] saga", { payload: action.payload });
     yield put(startLoading(LoadingStatusKey.SAVE_USER));
-    const { user, type } = action.payload;
-    yield call(API.updateUser, { query: { user, action: type } });
+    const { id, value } = action.payload;
+    yield call(API.updateUser, id, value);
     yield put(fetchUserActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_USER));
   } catch (error) {
     logger.error("[saveUser] saga error", { error });
-    if ((<AxiosError>error).response?.status === 402) { // wrong phone code
+    if ((<AxiosError>error).response?.data?.code === "WRONG_CODE") {
       yield put(setError(LoadingStatusKey.SAVE_USER, "WRONG_CODE"));
     } else {
       yield put(setUserActionCreator(null));
