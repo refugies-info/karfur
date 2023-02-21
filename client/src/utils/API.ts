@@ -137,11 +137,8 @@ const API = {
     const headers = getHeaders();
     return instance.post("/user/login", user, { headers });
   },
-  checkUserExists: (query: { username: string }) => {
-    const headers = getHeaders();
-    return instance.post("/user/checkUserExists", query, {
-      headers,
-    });
+  checkUserExists: (username: string): Promise<APIResponse> => {
+    return instance.get(`/user/exists?username=${username}`);
   },
   updatePassword: (id: Id, body: UpdatePasswordRequest): Promise<APIResponse<UpdatePasswordResponse>> => {
     const headers = getHeaders();

@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
 
-export type APIResponse<T = {}> = AxiosResponse<{
+export type APIResponse<T = null> = AxiosResponse<{
   text: "success" | "error";
   data: T;
 }>;

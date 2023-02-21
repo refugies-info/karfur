@@ -208,16 +208,9 @@ const Login = () => {
         });
         return;
       }
-      API.checkUserExists({ username }).then((data) => {
-        const userExists = data.status === 200;
-        if (userExists) {
-          // if user, go to next step (password)
-          setStep(1);
-        } else {
-          // if no user: display error
-          setNoUserError(!userExists);
-        }
-      });
+      API.checkUserExists(username)
+        .then(() => setStep(1))
+        .catch(() => setNoUserError(true));
     } else {
       // password check
       if (password.length === 0) {

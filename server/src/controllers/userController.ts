@@ -1,7 +1,6 @@
 import { Controller, Request, Get, Post, Put, Body, Delete, Route, Security, Queries, Path, Patch, Query } from "tsoa";
 import { pick } from "lodash";
 
-const account = require("./account/lib");
 const checkToken = require("./account/checkToken");
 import express, { Request as ExRequest } from "express";
 import { getFiguresOnUsers, GetUserStatisticsResponse } from "../workflows/users/getFiguresOnUsers";
@@ -20,7 +19,8 @@ import { Id, IRequest, Picture, Response, ResponseWithData } from "../types/inte
 import { addUserFavorite } from "../workflows/users/addUserFavorite";
 import { deleteUserFavorites } from "../workflows/users/deleteUserFavorites";
 import { resetPassword, ResetPasswordResponse } from "../workflows/users/resetPassword";
-import { checkResetToken } from "src/workflows/users/checkResetToken";
+import { checkResetToken } from "../workflows/users/checkResetToken";
+import { checkUserExists } from "../workflows/users/checkUserExists";
 // import { UserStatus } from "../typegoose/User";
 
 /* TODO: use tsoa */
@@ -29,7 +29,6 @@ const router = express.Router();
 router.post("/login", checkToken.getId, checkToken.getRoles, login); // login exception manager
 router.post("/set_new_password", checkToken.getRoles, setNewPassword); // login exception manager
 router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser); // login exception manager
-router.post("/checkUserExists", account.checkUserExists);
 router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
 
 export { router };
@@ -98,6 +97,11 @@ export class UserController extends Controller {
   @Get("/all")
   public async getAll(): ResponseWithData<GetAllUsersResponse[]> {
     return getAllUsers();
+  }
+
+  @Get("/exists")
+  public async getExists(@Query() username: string): Response {
+    return checkUserExists(username);
   }
 
   @Security({ jwt: ["admin"] })
