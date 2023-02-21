@@ -1,4 +1,4 @@
-import { Controller, Request, Get, Post, Put, Body, Delete, Route, Security, Queries, Path } from "tsoa";
+import { Controller, Request, Get, Post, Put, Body, Delete, Route, Security, Queries, Path, Patch } from "tsoa";
 import { pick } from "lodash";
 
 const account = require("./account/lib");
@@ -10,7 +10,7 @@ import { getActiveUsers, GetActiveUsersResponse } from "../workflows/users/getAc
 import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
-import changePassword from "../workflows/users/changePassword";
+import { changePassword, UpdatePasswordResponse } from "../workflows/users/changePassword";
 import { setNewPassword } from "../workflows/users/setNewPassword";
 import { getUserFavoritesInLocale, GetUserFavoritesResponse } from "../workflows/users/getUserFavoritesInLocale";
 import { deleteUser } from "../workflows/users/deleteUser";
@@ -27,8 +27,6 @@ const router = express.Router();
 router.post("/login", checkToken.getId, checkToken.getRoles, login);
 router.post("/checkUserExists", account.checkUserExists);
 router.post("/get_users", checkToken.getId, account.get_users);
-// @ts-ignore FIXME
-router.post("/changePassword", checkToken.check, changePassword);
 router.post("/reset_password", checkToken.getRoles, account.reset_password);
 router.post("/set_new_password", checkToken.getRoles, setNewPassword);
 router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
@@ -76,6 +74,11 @@ export interface AddUserFavorite {
 export interface DeleteUserFavorite {
   dispositifId?: string;
   all?: boolean;
+}
+
+export interface UpdatePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
 }
 
 @Route("user")
@@ -159,6 +162,20 @@ export class UserController extends Controller {
       ]),
     };
   }
+
+  @Security({
+    jwt: [],
+    fromSite: []
+  })
+  @Patch("/{id}/password")
+  public async updatePassword(
+    @Path() id: string,
+    @Request() request: ExRequest,
+    @Body() body: UpdatePasswordRequest,
+  ): ResponseWithData<UpdatePasswordResponse> {
+    return changePassword(id, body, request.user);
+  }
+
 
   @Delete("/{id}")
   @Security({

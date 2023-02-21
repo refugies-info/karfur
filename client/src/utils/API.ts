@@ -65,6 +65,8 @@ import {
   AddUserFavorite,
   DeleteUserFavorite,
   GetUserStatisticsResponse,
+  UpdatePasswordResponse,
+  UpdatePasswordRequest,
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -139,11 +141,9 @@ const API = {
       headers,
     });
   },
-  changePassword: (query: { userId: Id; currentPassword: string; newPassword: string }) => {
+  updatePassword: (id: Id, body: UpdatePasswordRequest): Promise<APIResponse<UpdatePasswordResponse>> => {
     const headers = getHeaders();
-    return instance.post("/user/changePassword", query, {
-      headers,
-    });
+    return instance.patch(`/user/${id}/password`, body, { headers });
   },
   reset_password: (query: { username: string }) => {
     const headers = getHeaders();

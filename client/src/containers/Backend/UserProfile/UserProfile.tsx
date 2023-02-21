@@ -192,20 +192,18 @@ export const UserProfile = (props: Props) => {
     try {
       if (!user) return;
       setIsChangePasswordLoading(true);
-      const data = await API.changePassword({
-        userId: user._id,
+      const data = await API.updatePassword(user._id, {
         currentPassword,
-        newPassword
+        newPassword,
       });
       Swal.fire({
         title: "Yay...",
         text: "Votre mot de passe a bien été modifié",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
-      // @ts-ignore
-      localStorage.setItem("token", data.data.token);
-      setAuthToken(data.data.token);
+      localStorage.setItem("token", data.data.data.token);
+      setAuthToken(data.data.data.token);
       setCurrentPassword("");
       setNewPasswordOk(false);
       setNewPassword("");
@@ -233,12 +231,12 @@ export const UserProfile = (props: Props) => {
             picture: {
               secure_url: imgData.secure_url,
               public_id: imgData.public_id,
-              imgId: imgData.imgId
+              imgId: imgData.imgId,
             },
-            _id: user._id.toString()
+            _id: user._id.toString(),
           },
-          type: "modify-my-details"
-        })
+          type: "modify-my-details",
+        }),
       );
       setIsPictureUploading(false);
     });
@@ -252,15 +250,15 @@ export const UserProfile = (props: Props) => {
       dispatch(
         saveUserActionCreator({
           user: { email, _id: user._id.toString() },
-          type: "modify-my-details"
-        })
+          type: "modify-my-details",
+        }),
       );
 
       Swal.fire({
         title: "Yay...",
         text: "Votre email a bien été modifié",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
       setIsEmailModifyDisabled(true);
     } else {
@@ -281,8 +279,8 @@ export const UserProfile = (props: Props) => {
       // will return a 501 and send SMS code
       query: {
         user: { phone, _id: user._id },
-        action: "modify-my-details"
-      }
+        action: "modify-my-details",
+      },
     }).catch(() => setCodePhoneModalVisible(true));
   };
 
@@ -292,8 +290,8 @@ export const UserProfile = (props: Props) => {
     dispatch(
       saveUserActionCreator({
         user: { phone, code, _id: user._id.toString() },
-        type: "modify-my-details"
-      })
+        type: "modify-my-details",
+      }),
     );
   };
 
@@ -308,7 +306,7 @@ export const UserProfile = (props: Props) => {
         title: "Yay...",
         text: "Votre numéro de téléphone a bien été modifié",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -321,15 +319,15 @@ export const UserProfile = (props: Props) => {
       await API.updateUser({
         query: {
           user: { username, _id: user._id },
-          action: "modify-my-details"
-        }
+          action: "modify-my-details",
+        },
       });
     } catch (error) {
       Swal.fire({
         title: "Oh non!",
         text: "Ce pseudo est déjà pris ",
         icon: "error",
-        timer: 1500
+        timer: 1500,
       });
       return;
     }
@@ -340,7 +338,7 @@ export const UserProfile = (props: Props) => {
       title: "Yay...",
       text: "Votre pseudo a bien été modifié",
       icon: "success",
-      timer: 1500
+      timer: 1500,
     });
     setIsPseudoModifyDisabled(true);
   };
@@ -423,7 +421,7 @@ export const UserProfile = (props: Props) => {
             <DescriptionText>
               {t(
                 "UserProfile.pseudoExplication",
-                "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer."
+                "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.",
               )}
             </DescriptionText>
           </div>
@@ -463,7 +461,7 @@ export const UserProfile = (props: Props) => {
             <DescriptionText>
               {t(
                 "UserProfile.emailExplication",
-                "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site."
+                "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.",
               )}
             </DescriptionText>
           </div>
@@ -510,7 +508,7 @@ export const UserProfile = (props: Props) => {
               <DescriptionText>
                 {t(
                   "UserProfile.phoneExplication",
-                  "Si vous modifiez votre numéro de téléphone, un code de confirmation vous sera demandé pour mettre à jour la double authentification."
+                  "Si vous modifiez votre numéro de téléphone, un code de confirmation vous sera demandé pour mettre à jour la double authentification.",
                 )}
               </DescriptionText>
             </div>
@@ -554,7 +552,7 @@ export const UserProfile = (props: Props) => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "flex-end",
-                  marginTop: "16px"
+                  marginTop: "16px",
                 }}
               >
                 {isChangePasswordLoading ? (
@@ -583,7 +581,7 @@ export const UserProfile = (props: Props) => {
                 <ErrorMessageContainer>
                   {t(
                     "Login.same_password_error",
-                    "Le mot de passe ne peut pas être identique à l'ancien mot de passe."
+                    "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
                   )}
                 </ErrorMessageContainer>
               )}

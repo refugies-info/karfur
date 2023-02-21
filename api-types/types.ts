@@ -74,11 +74,12 @@ import { PatchThemeResponse } from "../server/src/workflows/themes/patchTheme";
 import { TtsRequest } from "../server/src/controllers/ttsController";
 
 // user
-import { GetUserInfoResponse, UserFavoritesRequest, AddUserFavorite, DeleteUserFavorite } from "../server/src/controllers/userController";
+import { GetUserInfoResponse, UserFavoritesRequest, AddUserFavorite, DeleteUserFavorite, UpdatePasswordRequest } from "../server/src/controllers/userController";
 import { GetUserFavoritesResponse } from "../server/src/workflows/users/getUserFavoritesInLocale";
 import { GetActiveUsersResponse } from "../server/src/workflows/users/getActiveUsers";
 import { GetAllUsersResponse } from "../server/src/workflows/users/getAllUsers";
 import { GetUserStatisticsResponse } from "../server/src/workflows/users/getFiguresOnUsers";
+import { UpdatePasswordResponse } from "../server/src/workflows/users/changePassword";
 
 // widgets
 import { WidgetRequest } from "../server/src/controllers/widgetController";
@@ -171,6 +172,8 @@ export type {
   AddUserFavorite,
   DeleteUserFavorite,
   GetUserStatisticsResponse,
+  UpdatePasswordRequest,
+  UpdatePasswordResponse,
 
   // widgets
   WidgetRequest,
