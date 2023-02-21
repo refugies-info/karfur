@@ -1,4 +1,4 @@
-import { Controller, Request, Get, Post, Put, Body, Delete, Route, Security, Queries } from "tsoa";
+import { Controller, Request, Get, Post, Put, Body, Delete, Route, Security, Queries, Path } from "tsoa";
 import { pick } from "lodash";
 
 const account = require("./account/lib");
@@ -13,7 +13,7 @@ import { login } from "../workflows/users/login";
 import changePassword from "../workflows/users/changePassword";
 import { setNewPassword } from "../workflows/users/setNewPassword";
 import { getUserFavoritesInLocale, GetUserFavoritesResponse } from "../workflows/users/getUserFavoritesInLocale";
-import deleteUser from "../workflows/users/deleteUser/deleteUser";
+import { deleteUser } from "../workflows/users/deleteUser";
 import { LangueId } from "../typegoose";
 import { setSelectedLanguages } from "../workflows";
 import { Id, IRequest, Picture, Response, ResponseWithData } from "../types/interface";
@@ -35,8 +35,6 @@ router.post("/set_new_password", checkToken.getRoles, setNewPassword);
 router.get("/getFiguresOnUsers", getFiguresOnUsers);
 router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
 router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
-// @ts-ignore FIXME
-router.delete("/:id", checkToken.check, checkToken.getRoles, deleteUser);
 
 export { router };
 
@@ -154,5 +152,14 @@ export class UserController extends Controller {
         "selectedLanguages",
       ]),
     };
+  }
+
+  @Delete("/{id}")
+  @Security({
+    jwt: ["admin"],
+    fromSite: []
+  })
+  public async deleteUser(@Path() id: string): Response {
+    return deleteUser(id);
   }
 }
