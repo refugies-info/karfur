@@ -13,8 +13,8 @@ export const getUsersById = async (ids: UserId[], neededFields: NeededFields) =>
 export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string, number> = {}) =>
   UserModel.find(filter, neededFields);
 
-export const getAllUsersFromDB = async (neededFields: FilterQuery<User>) =>
-  UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields)
+export const getAllUsersFromDB = async (neededFields: FilterQuery<User>, populate: string = "") =>
+  UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields).populate(populate)
 
 export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>) =>
   UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields).populate<{

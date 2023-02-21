@@ -78,6 +78,7 @@ import { GetUserInfoResponse, UserFavoritesRequest, AddUserFavorite, DeleteUserF
 import { GetUserFavoritesResponse } from "../server/src/workflows/users/getUserFavoritesInLocale";
 import { GetActiveUsersResponse } from "../server/src/workflows/users/getActiveUsers";
 import { GetAllUsersResponse } from "../server/src/workflows/users/getAllUsers";
+import { GetUserStatisticsResponse } from "../server/src/workflows/users/getFiguresOnUsers";
 
 // widgets
 import { WidgetRequest } from "../server/src/controllers/widgetController";
@@ -169,6 +170,7 @@ export type {
   GetAllUsersResponse,
   AddUserFavorite,
   DeleteUserFavorite,
+  GetUserStatisticsResponse,
 
   // widgets
   WidgetRequest,

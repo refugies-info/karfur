@@ -64,6 +64,7 @@ import {
   CreateDispositifRequest,
   AddUserFavorite,
   DeleteUserFavorite,
+  GetUserStatisticsResponse,
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -198,8 +199,9 @@ const API = {
   },
 
   // Users
-  getFiguresOnUsers: () => {
-    return instance.get("/user/getFiguresOnUsers");
+  getUsersStatistics: (): Promise<APIResponse<GetUserStatisticsResponse>> => {
+    const headers = getHeaders();
+    return instance.get("/user/statistics", { headers });
   },
   get_users: (params = {}) => {
     const headers = getHeaders();

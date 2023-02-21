@@ -65,7 +65,7 @@ const Dashboard = (props: Props) => {
           type: "demarche",
           publishedOnly: true,
         }).then((data) => setNbDemarchesActives(data.data.data.count)),
-        API.getFiguresOnUsers().then((data) => {
+        API.getUsersStatistics().then((data) => {
           setNbContributors(data.data.data.nbContributors);
           setNbTraductors(data.data.data.nbTraductors);
         }),

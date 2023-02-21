@@ -4,7 +4,7 @@ import { pick } from "lodash";
 const account = require("./account/lib");
 const checkToken = require("./account/checkToken");
 import express, { Request as ExRequest } from "express";
-import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
+import { getFiguresOnUsers, GetUserStatisticsResponse } from "../workflows/users/getFiguresOnUsers";
 import { getAllUsers, GetAllUsersResponse } from "../workflows/users/getAllUsers";
 import { getActiveUsers, GetActiveUsersResponse } from "../workflows/users/getActiveUsers";
 import { updateUser } from "../workflows/users/updateUser";
@@ -31,8 +31,6 @@ router.post("/get_users", checkToken.getId, account.get_users);
 router.post("/changePassword", checkToken.check, changePassword);
 router.post("/reset_password", checkToken.getRoles, account.reset_password);
 router.post("/set_new_password", checkToken.getRoles, setNewPassword);
-// @ts-ignore FIXME
-router.get("/getFiguresOnUsers", getFiguresOnUsers);
 router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
 router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
 
@@ -97,6 +95,14 @@ export class UserController extends Controller {
   @Get("/all")
   public async getAll(): ResponseWithData<GetAllUsersResponse[]> {
     return getAllUsers();
+  }
+
+  @Security({
+    jwt: ["admin"],
+  })
+  @Get("/statistics")
+  public async getStatistics(): ResponseWithData<GetUserStatisticsResponse> {
+    return getFiguresOnUsers();
   }
 
   @Security("jwt")
