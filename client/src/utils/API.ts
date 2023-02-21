@@ -10,7 +10,6 @@ import {
   TranslationFacets,
   TranslationStatistics,
 } from "types/interface";
-import { ObjectId } from "mongodb";
 import {
   Id,
   PostAdminOptionResponse,
@@ -177,7 +176,7 @@ const API = {
       headers,
     });
   },
-  deleteUser: (query: Id) => {
+  deleteUser: (query: Id): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.delete(`/user/${query}`, { headers });
   },
@@ -485,9 +484,9 @@ const API = {
     return instance.post("/images", query, { headers });
   },
   // Logs
-  logs: (objectId: Id): Promise<APIResponse<GetLogResponse[]>> => {
+  logs: (id: Id): Promise<APIResponse<GetLogResponse[]>> => {
     const headers = getHeaders();
-    return instance.get(`/logs?id=${objectId}`, { headers });
+    return instance.get(`/logs?id=${id}`, { headers });
   },
 
   // Notifications

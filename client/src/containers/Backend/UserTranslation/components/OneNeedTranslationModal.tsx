@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { ObjectId } from "mongodb";
 import { needSelector } from "services/Needs/needs.selectors";
 import { AvailableLanguageI18nCode } from "types/interface";
 import FInput from "components/UI/FInput/FInput";
@@ -9,11 +8,12 @@ import FButton from "components/UI/FButton/FButton";
 import { Label } from "containers/Backend/Admin/sharedComponents/SubComponents";
 import { saveNeedActionCreator } from "services/Needs/needs.actions";
 import styles from "./TranslationNeedsModal.module.scss";
+import { Id } from "api-types";
 
 interface Props {
   show: boolean;
   toggle: () => void;
-  selectedNeedId: null | ObjectId;
+  selectedNeedId: null | Id;
   langueI18nCode: string;
 }
 
@@ -48,9 +48,9 @@ export const OneNeedTranslationModal = (props: Props) => {
           [props.langueI18nCode]: {
             text,
             subtitle,
-            updatedAt: Date.now()
-          }
-        })
+            updatedAt: Date.now(),
+          },
+        }),
       );
     }
     props.toggle();

@@ -1,5 +1,3 @@
-import { ObjectId } from "mongodb";
-import { Moment } from "moment";
 import { AxiosResponse } from "axios";
 import { GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
 
@@ -13,7 +11,7 @@ export interface Event {
 }
 
 export interface Indicator {
-  _id: ObjectId;
+  _id: Id;
   wordsCount: number;
   timeSpent: number;
 }
@@ -38,16 +36,16 @@ export interface OpeningHours {
 }
 
 export interface Translation {
-  _id?: ObjectId;
+  _id?: Id;
   initialText?: object;
   translatedText?: object;
   langueCible?: string;
-  articleId?: ObjectId;
+  articleId?: Id;
   timeSpent?: string;
   isStructure?: boolean;
   avancement?: number;
   type?: string;
-  validatorId?: ObjectId;
+  validatorId?: Id;
   isExpert?: boolean;
 }
 
@@ -82,7 +80,7 @@ export interface RegionFigures {
 }
 export interface NbDispositifsByRegion {
   regionFigures: RegionFigures[];
-  dispositifsWithoutGeoloc: ObjectId[];
+  dispositifsWithoutGeoloc: Id[];
 }
 
 export type TranslationFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";

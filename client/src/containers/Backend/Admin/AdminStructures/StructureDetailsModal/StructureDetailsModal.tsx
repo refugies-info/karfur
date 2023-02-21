@@ -6,7 +6,6 @@ import "moment/locale/fr";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import noStructure from "assets/noStructure.png";
-import { ObjectId } from "mongodb";
 import { correspondingStatus, publicationStatus, progressionStatus } from "../data";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { Date, Label } from "../../sharedComponents/SubComponents";
@@ -101,7 +100,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   const updateStructuresStore = (
     structureId: Id,
     property: "adminComments" | "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "nom",
-    value: string
+    value: string,
   ) => {
     const structures = [...allStructures];
     const newStructure = structures.find((s) => s._id === structureId);
@@ -115,8 +114,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
       ? API.updateStructure({
           query: {
             _id: structure._id,
-            nom
-          }
+            nom,
+          },
         }).then(() => updateStructuresStore(structure._id, "nom", nom))
       : Promise.reject("No structure");
 
@@ -127,7 +126,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
 
   const modifyStatus = async (
     newStatus: string,
-    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "adminComments"
+    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "adminComments",
   ) => {
     if (structure && newStatus !== structure[property]) {
       if (property === "status" && newStatus === "Supprimé") {
@@ -139,7 +138,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
           confirmButtonColor: colors.rouge,
           cancelButtonColor: colors.vert,
           confirmButtonText: "Oui, la supprimer",
-          cancelButtonText: "Annuler"
+          cancelButtonText: "Annuler",
         });
         if (!res.value) return;
       }
@@ -147,8 +146,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
       const queryStructure = {
         query: {
           _id: structure._id,
-          [property]: newStatus
-        }
+          [property]: newStatus,
+        },
       };
 
       await API.updateStructure(queryStructure);
@@ -171,7 +170,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   const dispositifsWithAllInformation = getDispositifsWithAllInformationRequired(
     structure?.dispositifsIds || [],
     allDispositifs,
-    allThemes
+    allThemes,
   );
 
   if (structure) {
@@ -198,7 +197,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
               tag={Link}
               to={{
                 pathname: routerLocale + "/backend/user-dash-structure-selected",
-                search: `?id=${structure._id}`
+                search: `?id=${structure._id}`,
               }}
             >
               Membres

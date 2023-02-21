@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import { Id } from "api-types";
 
 export const activeThemesMock = [
   {
@@ -34,7 +34,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7df5" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7df5" as Id,
     name: {
       fr: "apprendre le français",
       en: "learn French",
@@ -93,7 +93,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7df6" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7df6" as Id,
     name: {
       fr: "gérer mes papiers",
       en: "manage my paperwork",
@@ -152,7 +152,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7df7" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7df7" as Id,
     name: {
       fr: "me loger",
       en: "find housing",
@@ -211,7 +211,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7df8" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7df8" as Id,
     name: {
       fr: "me déplacer",
       en: "move about",
@@ -270,7 +270,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7df9" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7df9" as Id,
     name: {
       fr: "trouver un travail",
       en: "find a job",
@@ -329,7 +329,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dfa" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7dfa" as Id,
     name: {
       fr: "me soigner",
       en: "get medical care",
@@ -388,7 +388,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dfb" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7dfb" as Id,
     name: {
       fr: "apprendre un métier",
       en: "learn a job",
@@ -447,7 +447,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dfc" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7dfc" as Id,
     name: {
       fr: "faire des études",
       en: "study",
@@ -506,7 +506,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dfd" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7dfd" as Id,
     name: {
       fr: "aider une association",
       en: "help an association",
@@ -565,7 +565,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dfe" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7dfe" as Id,
     name: {
       fr: "rencontrer des gens",
       en: "meet people",
@@ -624,7 +624,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dff" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7dff" as Id,
     name: {
       fr: "occuper mon temps libre",
       en: "occupy my free time",
@@ -683,7 +683,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7e00" as unknown as ObjectId,
+    _id: "6319f6b363ab2bbb162d7e00" as Id,
     name: {
       fr: "découvrir la culture",
       en: "discover French culture",
@@ -742,7 +742,7 @@ export const activeThemesMock = [
       public_id: "pictures/wndug5571lzvcs1sguc1",
       imgId: "631f4d52d4047aca79ffd170"
     },
-    _id: "631f3bfe68917b340a04120c" as unknown as ObjectId,
+    _id: "631f3bfe68917b340a04120c" as Id,
     name: {
       fr: "famille",
       uk: "Сім‘я",

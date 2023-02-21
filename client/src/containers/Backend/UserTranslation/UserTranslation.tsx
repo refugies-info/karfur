@@ -15,7 +15,7 @@ import { FrameModal } from "components/Modals";
 import { CompleteProfilModal } from "components/Modals/CompleteProfilModal/CompleteProfilModal";
 
 import API from "utils/API";
-import { Indicators, UserLanguage } from "types/interface";
+import { Indicators } from "types/interface";
 import { TranslationNeedsModal } from "./components/TranslationNeedsModal";
 import { OneNeedTranslationModal } from "./components/OneNeedTranslationModal";
 import { needsSelector } from "services/Needs/needs.selectors";
@@ -23,8 +23,8 @@ import styles from "./UserTranslation.module.scss";
 import { activatedLanguages } from "data/activatedLanguages";
 import useRouterLocale from "hooks/useRouterLocale";
 import { useRouter } from "next/router";
-import { ObjectId } from "mongodb"; // FIXME
 import { useLanguages } from "hooks";
+import { Id } from "api-types";
 
 const availableLanguages = activatedLanguages.map((l) => l.i18nCode).filter((ln) => ln !== "fr");
 
@@ -42,7 +42,7 @@ const UserTranslation = (props: Props) => {
   const [showTraducteurModal, setShowTraducteurModal] = useState(false);
   const [showNeedsModal, setShowNeedsModal] = useState(false);
   const [showCompleteProfilModal, setShowCompleteProfilModal] = useState(false);
-  const [selectedNeedId, setSelectedNeedId] = useState<ObjectId | null>(null);
+  const [selectedNeedId, setSelectedNeedId] = useState<Id | null>(null);
 
   const toggleOneNeedTranslationModal = () => setShowOneNeedTranslationModal(!showOneNeedTranslationModal);
 
@@ -62,7 +62,7 @@ const UserTranslation = (props: Props) => {
   }, []);
 
   const getLangueName = useCallback(
-    (langueId: string | null, userTradLanguages: UserLanguage["_id"][]) => {
+    (langueId: Id | null, userTradLanguages: Id[]) => {
       if (!langueId) return { langueSelectedFr: null, langueI18nCode: null };
 
       const langue = userTradLanguages.find((langue) => langue === langueId);

@@ -14,11 +14,10 @@ import API from "utils/API";
 import FButton from "components/UI/FButton/FButton";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { useDispatch } from "react-redux";
-import { ObjectId } from "mongodb";
 import { sortData } from "./functions";
 import styles from "scss/components/adminTable.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
-import { GetUserInfoResponse } from "api-types";
+import { GetUserInfoResponse, Id } from "api-types";
 
 moment.locale("fr");
 
@@ -26,7 +25,7 @@ interface Props {
   isExpert: boolean;
   data: IDispositifTranslation[];
   history: any;
-  langueId: ObjectId | null;
+  langueId: Id | null;
   isAdmin: boolean;
   languei18nCode: string;
   setElementToTranslate: any;

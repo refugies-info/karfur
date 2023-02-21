@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUserStructureActionCreator,
-  updateUserStructureActionCreator
+  updateUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
 import { userStructureSelector, userStructureMembresSelector } from "services/UserStructure/userStructure.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -13,7 +13,6 @@ import { UserStructureDetails } from "./components/UserStructureDetails";
 import styled from "styled-components";
 import { colors } from "colors";
 import { userSelector } from "services/User/user.selectors";
-import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
 import { Id } from "api-types";
 
@@ -52,8 +51,8 @@ export const UserStructureComponent = (props: Props) => {
       dispatch(
         fetchUserStructureActionCreator({
           structureId: userStructure._id,
-          shouldRedirect: true
-        })
+          shouldRedirect: true,
+        }),
       );
     }
     window.scrollTo(0, 0);
@@ -71,8 +70,8 @@ export const UserStructureComponent = (props: Props) => {
     dispatch(
       updateUserStructureActionCreator({
         modifyMembres: true,
-        data: { structureId: userStructure._id, userId, type: "create" }
-      })
+        data: { structureId: userStructure._id, userId, type: "create" },
+      }),
     );
   };
 
@@ -86,9 +85,9 @@ export const UserStructureComponent = (props: Props) => {
           structureId: userStructure._id,
           userId,
           newRole: role,
-          type: "modify"
-        }
-      })
+          type: "modify",
+        },
+      }),
     );
   };
 
@@ -103,7 +102,7 @@ export const UserStructureComponent = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, l'enlever",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     }).then((result) => {
       if (result.value) {
         dispatch(
@@ -112,9 +111,9 @@ export const UserStructureComponent = (props: Props) => {
             data: {
               structureId: userStructure._id,
               userId,
-              type: "delete"
-            }
-          })
+              type: "delete",
+            },
+          }),
         );
       }
     });

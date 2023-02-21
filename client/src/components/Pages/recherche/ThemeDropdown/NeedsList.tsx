@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import styled from "styled-components";
-import { ObjectId } from "mongodb";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { themesSelector } from "services/Themes/themes.selectors";
@@ -67,8 +66,8 @@ const NeedsList = (props: Props) => {
     dispatch(
       addToQueryActionCreator({
         needs: res.needs,
-        themes: res.themes
-      })
+        themes: res.themes,
+      }),
     );
   };
 
@@ -77,8 +76,8 @@ const NeedsList = (props: Props) => {
     if (query.themes.includes(id)) {
       dispatch(
         addToQueryActionCreator({
-          themes: query.themes.filter((n) => n !== id)
-        })
+          themes: query.themes.filter((n) => n !== id),
+        }),
       );
     } else {
       const newNeeds = allNeeds
@@ -90,8 +89,8 @@ const NeedsList = (props: Props) => {
       dispatch(
         addToQueryActionCreator({
           needs: newNeeds,
-          themes: [...query.themes, id]
-        })
+          themes: [...query.themes, id],
+        }),
       );
       Event("USE_SEARCH", "use theme filter", "select all needs");
     }
@@ -115,7 +114,7 @@ const NeedsList = (props: Props) => {
                 className={styles.badge}
                 style={{
                   backgroundColor: colors?.color30,
-                  color: colors?.color100
+                  color: colors?.color100,
                 }}
               >
                 {props.nbDispositifsByTheme[props.themeSelected.toString()] || 0}
@@ -150,7 +149,7 @@ const NeedsList = (props: Props) => {
                   className={styles.badge}
                   style={{
                     backgroundColor: need.theme.colors.color30,
-                    color: need.theme.colors.color100
+                    color: need.theme.colors.color100,
                   }}
                 >
                   {props.nbDispositifsByNeed[need._id.toString()] || 0}
