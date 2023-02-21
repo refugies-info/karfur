@@ -1,5 +1,6 @@
 import { Controller, Post, Body, Route, Security, Request } from "tsoa";
 import * as express from "express";
+
 import { sendDraftReminderMail } from "../workflows/mail/sendDraftReminderMail";
 import { sendReminderMailToUpdateContents } from "../workflows/mail/sendReminderMailToUpdateContents";
 import { sendAdminImprovementsMail } from "../workflows/mail/sendAdminImprovementsMail";
@@ -31,6 +32,14 @@ export interface AddContactRequest {
 @Route("mail")
 export class MailController extends Controller {
   @Security({
+    fromCron: []
+  })
+  @Post("sendDraftReminderMail")
+  public draftReminderMail(): Response {
+    return sendDraftReminderMail();
+  }
+
+  @Security({
     fromCron: [],
   })
   @Post("sendReminderMailToUpdateContents")
@@ -39,8 +48,8 @@ export class MailController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Post("sendAdminImprovementsMail")
   public adminImprovementsMail(@Body() body: ImprovementsRequest, @Request() request: express.Request): Response {

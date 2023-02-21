@@ -1,5 +1,6 @@
 import { Controller, Get, Route, Request, Query, Security, Path, Queries } from "tsoa";
 import express, { Request as ExRequest } from "express";
+
 const router = express.Router();
 const checkToken = require("./account/checkToken");
 import { getAllStructures, GetAllStructuresResponse } from "../workflows/structure/getAllStructures";
@@ -55,6 +56,6 @@ export class StructureController extends Controller {
     @Query() locale: string,
     @Request() request: ExRequest,
   ): ResponseWithData<GetStructureResponse> {
-    return getStructureById(id, locale, request.userData);
+    return getStructureById(id, locale, request.user);
   }
 }

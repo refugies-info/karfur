@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Delete, Path, Security } from "tsoa";
+import { Route, Controller, Post, Body, Delete, Path, Security } from "tsoa";
 
 import { postNeeds } from "../workflows/needs/postNeeds";
 import { deleteNeed } from "../workflows/needs/deleteNeed";
@@ -20,20 +20,20 @@ export interface UpdatePositionsRequest {
   orderedNeedIds: string[];
 }
 
-// @Route("needs")
+@Route("needs")
 export class NeedController extends Controller {
-  // @Security({
-  //   fromSite: [],
-  //   jwt: ["admin"],
-  // })
-  // @Post("/")
-  // public async post(@Body() body: NeedRequest): ResponseWithData<PostNeedResponse> {
-  //   return postNeeds(body);
-  // }
+  @Security({
+    jwt: ["admin"],
+    fromSite: [],
+  })
+  @Post("/")
+  public async post(@Body() body: NeedRequest): Response {
+    return postNeeds(body);
+  }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Delete("{id}")
   public async delete(@Path() id: string): Response {
@@ -46,8 +46,8 @@ export class NeedController extends Controller {
   }
 
   @Security({
-    fromSite: [],
     jwt: ["admin"],
+    fromSite: [],
   })
   @Post("positions")
   public async positions(@Body() body: UpdatePositionsRequest): ResponseWithData<UpdatePositionsNeedResponse[]> {
