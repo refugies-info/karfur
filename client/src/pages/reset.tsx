@@ -147,14 +147,14 @@ const Reset = () => {
         if (e.response?.data?.code === "NO_CODE_SUPPLIED") {
           setStep(2);
           setNewHasStructureWithoutPhoneOrEmail(false);
-          setSmsSentTo(e.response?.data?.phone || "");
+          setSmsSentTo(e.response?.data?.data?.phone || "");
         } else if (e.response?.data?.code === "WRONG_CODE") {
           setWrongAdminCodeError(true);
         } else if (e.response?.data?.code === "NO_CONTACT") {
           setStep(1);
           setNewHasStructureWithoutPhoneOrEmail(true);
-          setEmail(e.response?.data?.email || "");
-          setStructure(e.response?.data?.structure);
+          setEmail(e.response?.data?.data?.email || "");
+          setStructure(e.response?.data?.data?.structure);
         } else if (e.response?.data?.code === "USED_PASSWORD") {
           setSamePasswordError(true);
         } else {

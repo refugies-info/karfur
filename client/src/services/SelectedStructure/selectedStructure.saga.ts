@@ -42,15 +42,16 @@ export function* updateSelectedStructure(
   try {
     yield put(startLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE));
     logger.info("[updateSelectedStructure] updating user structure");
-    let structureId;
     const structure: GetStructureResponse = yield select(selectedStructureSelector);
-    structureId = structure._id;
+    const structureId = structure._id;
     if (!structure) {
       logger.info("[updateSelectedStructure] no structure to update");
       return;
     }
-    // FIXME delete structure.membres;
-    yield call(API.updateStructure, { query: structure });
+    const updatedStructure: Partial<GetStructureResponse> = { ...structure };
+    delete updatedStructure.membres;
+    //@ts-ignore FIXME: change that -> impossible to type what is sent to the server.
+    yield call(API.updateStructure, structureId, updatedStructure);
 
     yield put(
       fetchSelectedStructureActionCreator({

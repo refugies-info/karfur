@@ -14,7 +14,8 @@ import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions"
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { colors } from "colors";
 import styles from "./SelectFirstResponsableModal.module.scss";
-import { Id, SimpleUser } from "api-types";
+import { Id, PatchStructureRolesRequest, SimpleUser } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 const ModifyLink = styled.div`
   font-weight: bold;
@@ -65,33 +66,27 @@ export const SelectFirstResponsableModal = (props: Props) => {
 
   const onValidate = async () => {
     try {
-      if (!selectedUser || !structureFromStore) return;
+      if (!selectedUser || !structureFromStore || !props.selectedStructureId) return;
 
-      const structure = {
-        membreId: selectedUser._id,
-        structureId: props.selectedStructureId,
+      const structure: PatchStructureRolesRequest = {
+        membreId: selectedUser._id.toString(),
         action: "create",
-        role: "administrateur"
+        role: "administrateur",
       };
 
-      await API.modifyUserRoleInStructure({ query: structure });
+      await API.updateStructureRoles(props.selectedStructureId, structure);
 
       Swal.fire({
         title: "Yay...",
         text: "Responsable modifié",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
       props.toggleModal();
       dispatch(fetchAllStructuresActionsCreator());
       dispatch(fetchAllUsersActionsCreator());
     } catch (error) {
-      Swal.fire({
-        title: "Oh non",
-        text: "Erreur lors de la modification",
-        icon: "error",
-        timer: 1500
-      });
+      handleApiError({ text: "Erreur lors de la modification" });
       props.toggleModal();
     }
   };

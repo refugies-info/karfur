@@ -158,19 +158,19 @@ const Login = () => {
           setStep(2);
           setNewAdminWithoutPhoneOrEmail(false);
           setNewHasStructureWithoutPhoneOrEmail(false);
-          setSmsSentTo(e.response?.data?.phone || "");
+          setSmsSentTo(e.response?.data?.data?.phone || "");
         } else if (["INVALID_PASSWORD", "PASSWORD_TOO_WEAK", "ADMIN_FORBIDDEN"].includes(e.response?.data?.code)) {
           setWrongPasswordError(true);
         } else if (e.response?.data?.code === "WRONG_CODE") {
           setWrongAdminCodeError(true);
         } else if (e.response?.data?.code === "NO_CONTACT") {
-          if (e.response?.data?.role === "admin") {
+          if (e.response?.data?.data?.role === "admin") {
             setNewAdminWithoutPhoneOrEmail(true);
-            setEmail(e.response?.data?.email || "");
+            setEmail(e.response?.data?.data?.email || "");
           } else {
             setNewHasStructureWithoutPhoneOrEmail(true);
-            setEmail(e.response?.data?.email || "");
-            setStructure(e.response?.data?.structure);
+            setEmail(e.response?.data?.data?.email || "");
+            setStructure(e.response?.data?.data?.structure);
           }
         } else if (e.response?.data?.code === "USER_DELETED") {
           setUserDeletedError(true);

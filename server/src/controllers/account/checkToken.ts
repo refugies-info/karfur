@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { RoleModel, UserId, UserModel } from "src/typegoose";
-
+import { UserId, UserModel } from "src/typegoose";
 import jwt from "jwt-simple";
-import logger from "../../logger";
 
 export interface CustomRequest extends Request {
   userId?: UserId;
@@ -80,20 +78,5 @@ const getId = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-/**
- * @deprecated
- * @param req
- * @param res
- * @param next
- */
-const getRoles = (req: Request, res: Response, next: NextFunction) => {
-  RoleModel.find({}).exec(function (err, roles) {
-    if (err) {
-      logger.error("error in getRoles", { error: err.message });
-    }
-    req.roles = roles;
-    next();
-  });
-};
 
-export { check, getId, getRoles };
+export { check, getId };

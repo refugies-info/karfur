@@ -3,7 +3,12 @@ import { Moment } from "moment";
 import { Languages, NeedId, Role, ThemeId, User } from "src/typegoose";
 import { Request as ExpressRequest, Response as ExpressResponse } from "express";
 import { DocumentType } from "@typegoose/typegoose";
-import { ageType, frenchLevel, justificatifType, priceDetails, publicType } from "./newInterface";
+
+type frenchLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+type ageType = "lessThan" | "moreThan" | "between";
+type priceDetails = "une fois" | "à chaque fois" | "par heure" | "par semaine" | "par mois" | "par an";
+type publicType = "refugee" | "all";
+type justificatifType = "diplome" | "titre sejour" | "domicile";
 
 export type Modify<T, R> = Omit<T, keyof R> & R;
 
@@ -11,7 +16,6 @@ declare global {
   namespace Express {
     export interface Request {
       fromSite?: boolean; // TODO: delete
-      fromPostman?: boolean; // TODO: delete
       roles?: Role[]; // TODO: delete? (get it in the workflow)
       user?: DocumentType<User>;
       userId?: typeof User._id;

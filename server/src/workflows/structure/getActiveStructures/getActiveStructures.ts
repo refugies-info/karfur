@@ -39,16 +39,11 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
       disposAssociesLocalisation: [],
     };
     if (item.dispositifsAssocies && item.dispositifsAssocies.length) {
-      item.dispositifsAssocies.map((el: any) => {
-        if (el.contenu && el.contenu[1] && el.contenu[1].children && el.contenu[1].children.length) {
-          const geolocInfocard = el.contenu[1].children.find(
-            (infocard: any) => infocard.title === "Zone d'action",
-          ); /* TODO: update with metadatas */
-          if (geolocInfocard && geolocInfocard.departments) {
-            for (var i = 0; i < geolocInfocard.departments.length; i++) {
-              if (!newStructure.disposAssociesLocalisation.includes(geolocInfocard.departments[i])) {
-                newStructure.disposAssociesLocalisation.push(geolocInfocard.departments[i]);
-              }
+      item.dispositifsAssocies.map((el) => {
+        if (el.metadatas?.location) {
+          for (var i = 0; i < el.metadatas?.location.length; i++) {
+            if (!newStructure.disposAssociesLocalisation.includes(el.metadatas?.location[i])) {
+              newStructure.disposAssociesLocalisation.push(el.metadatas?.location[i]);
             }
           }
         }

@@ -30,7 +30,7 @@ export const changePassword = async (id: string, body: UpdatePasswordRequest, us
   }
 
   if (newPassword === currentPassword) {
-    throw new InvalidRequestError("Le mot de passe ne peut pas être identique à l'ancien mot de passe.", "USED_PASSWORD", "no-alert");
+    throw new InvalidRequestError("Le mot de passe ne peut pas être identique à l'ancien mot de passe.", "USED_PASSWORD");
   }
 
   if (!isPasswordOk(newPassword)) {

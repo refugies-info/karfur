@@ -24,7 +24,8 @@ import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStru
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import styles from "./NewStructureModal.module.scss";
-import { GetActiveUsersResponse, GetAllStructuresResponse, GetAllUsersResponse } from "api-types";
+import { GetActiveUsersResponse, GetAllStructuresResponse, GetAllUsersResponse, PostStructureRequest } from "api-types";
+import { handleApiDefaultError, handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 
@@ -98,7 +99,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
     contact: "",
     phone_contact: "",
     mail_contact: "",
-    ...props.defaults
+    ...props.defaults,
   };
   const [structure, setStructure] = useState<InitialStructure>(initialStructure);
   const [uploading, setUploading] = useState(false);
@@ -123,39 +124,22 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
   const onValidate = async () => {
     try {
       if (!structure.nom) return;
-
-      const membres = structure.responsable
-        ? [
-            {
-              userId: structure.responsable._id,
-              roles: ["administrateur"],
-              added_at: new Date()
-            }
-          ]
-        : [];
-      const structureToSave = {
+      const structureToSave: PostStructureRequest = {
         ...structure,
-        membres: membres
+        responsable: structure.responsable?._id.toString() || null,
       };
-      delete structureToSave.responsable;
-
-      await API.createStructure({ query: structureToSave });
+      await API.createStructure(structureToSave);
 
       Swal.fire({
         title: "Yay...",
         text: "Structure créée",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
       updateData();
       toggle();
     } catch (error) {
-      Swal.fire({
-        title: "Oh non",
-        text: "Erreur lors de la modification",
-        icon: "error",
-        timer: 1500
-      });
+      handleApiError({ text: "Erreur lors de la modification" });
       updateData();
       toggle();
     }
@@ -168,19 +152,21 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
     // @ts-ignore
     formData.append(0, event.target.files[0]);
 
-    API.postImage(formData).then((data_res) => {
-      const imgData = data_res.data.data;
-      setStructure({
-        ...structure,
-        picture: {
-          secure_url: imgData.secure_url,
-          public_id: imgData.public_id,
-          imgId: imgData.imgId
-        }
-      });
-      setUploading(false);
-      return;
-    });
+    API.postImage(formData)
+      .then((data_res) => {
+        const imgData = data_res.data.data;
+        setStructure({
+          ...structure,
+          picture: {
+            secure_url: imgData.secure_url,
+            public_id: imgData.public_id,
+            imgId: imgData.imgId,
+          },
+        });
+        setUploading(false);
+        return;
+      })
+      .catch(handleApiDefaultError);
   };
 
   const modifyStatus = (status: string) => {
@@ -201,8 +187,8 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
         _id: data._id,
         picture: data.picture,
         username: data.username,
-        email: data.email
-      }
+        email: data.email,
+      },
     });
 
   const secureUrl = structure && structure.picture && structure.picture.secure_url;
@@ -292,7 +278,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
                 key={element.storedStatus}
                 style={{
                   marginRight: "8px",
-                  marginBottom: "8px"
+                  marginBottom: "8px",
                 }}
                 onClick={() => modifyStatus(element.storedStatus)}
               >

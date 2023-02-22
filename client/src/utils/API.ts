@@ -74,6 +74,9 @@ import {
   NewPasswordRequest,
   NewPasswordResponse,
   UpdateUserRequest,
+  PostStructureRequest,
+  PatchStructureRequest,
+  PatchStructureRolesRequest,
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -104,17 +107,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status < 500) {
-      if (error.response.data.data !== "no-alert") {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: (error.response.data || {}).text || "",
-          footer: "<i>" + error.message + "</i>",
-          timer: 1500,
-        });
-      }
-    } else if (axios.isCancel(error)) {
+    if (axios.isCancel(error)) {
       logger.error("Error: ", { error: error.message });
     }
     return Promise.reject(error);
@@ -171,7 +164,7 @@ const API = {
   // User
   getUser: (): Promise<APIResponse<GetUserInfoResponse>> => {
     const headers = getHeaders();
-    return instance.get("/user/get_user_info", { headers });
+    return instance.get("/user", { headers });
   },
   updateUser: (id: Id, body: UpdateUserRequest): Promise<APIResponse> => {
     const headers = getHeaders();
@@ -299,23 +292,17 @@ const API = {
   },
 
   // Structure
-  createStructure: (query: any) => {
+  createStructure: (body: PostStructureRequest): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/structures/createStructure", query, {
-      headers,
-    });
+    return instance.post("/structures", body, { headers });
   },
-  updateStructure: (query: any) => {
+  updateStructure: (id: Id, body: PatchStructureRequest): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/structures/updateStructure", query, {
-      headers,
-    });
+    return instance.patch(`/structures/${id}`, body, { headers });
   },
-  modifyUserRoleInStructure: (query: any) => {
+  updateStructureRoles: (id: Id, body: PatchStructureRolesRequest): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/structures/modifyUserRoleInStructure", query, {
-      headers,
-    });
+    return instance.patch(`/structures/${id}/roles`, body, { headers });
   },
   getStructureById: (id: string, locale: string): Promise<APIResponse<GetStructureResponse>> => {
     const headers = getHeaders();

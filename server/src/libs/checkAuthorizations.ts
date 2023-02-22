@@ -26,19 +26,6 @@ export const checkRequestIsFromSite = (fromSite: boolean) => {
 
   return;
 };
-// TODO: delete
-export const checkRequestIsFromPostman = (fromPostman: boolean) => {
-  if (!fromPostman) throw new Error("NOT_AUTHORIZED");
-
-  return;
-};
-// TODO: delete
-export const checkCronAuthorization = (cronToken: string) => {
-  if (!cronToken || process.env.CRON_TOKEN !== cronToken) {
-    throw new Error("NOT_AUTHORIZED");
-  }
-  return;
-};
 
 // Dispositif edition
 const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User) => {

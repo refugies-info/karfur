@@ -9,7 +9,7 @@ import {
   FigureContainer,
   StyledSort,
   Content,
-  StyledHeaderInner
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -44,6 +44,7 @@ import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { GetAllUsersResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 
@@ -51,7 +52,7 @@ export const AdminUsers = () => {
   const defaultSortedHeader = {
     name: "none",
     sens: "none",
-    orderColumn: "none"
+    orderColumn: "none",
   };
 
   // filters
@@ -87,16 +88,16 @@ export const AdminUsers = () => {
         filter,
         selectedUserId,
         selectedContentId,
-        selectedStructureId
+        selectedStructureId,
       );
 
       router.replace(
         {
           pathname: locale + "/backend/admin",
-          search: params
+          search: params,
         },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -149,7 +150,7 @@ export const AdminUsers = () => {
       setSortedHeader({
         name: element.name,
         sens: "up",
-        orderColumn: element.order
+        orderColumn: element.order,
       });
     }
   };
@@ -163,7 +164,7 @@ export const AdminUsers = () => {
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
                 .includes(removeAccents(search.toLowerCase()))) ||
-            user.email?.includes(search)
+            user.email?.includes(search),
         )
       : users;
 
@@ -176,7 +177,7 @@ export const AdminUsers = () => {
       filteredUsers = usersFilteredBySearch.filter((user) => (user.roles || []).includes("ExpertTrad"));
     } else if (filter === "Traducteurs") {
       filteredUsers = usersFilteredBySearch.filter(
-        (user) => user.selectedLanguages && user.selectedLanguages.length > 0
+        (user) => user.selectedLanguages && user.selectedLanguages.length > 0,
       );
     } else if (filter === "Rédacteurs") {
       filteredUsers = usersFilteredBySearch.filter((user) => (user.roles || []).includes("Rédacteur"));
@@ -187,7 +188,7 @@ export const AdminUsers = () => {
     if (sortedHeader.name === "none")
       return {
         usersToDisplay: filteredUsers,
-        usersForCount: usersFilteredBySearch
+        usersForCount: usersFilteredBySearch,
       };
 
     const usersToDisplay = filteredUsers.sort((a: GetAllUsersResponse, b: GetAllUsersResponse) => {
@@ -221,7 +222,7 @@ export const AdminUsers = () => {
     });
     return {
       usersToDisplay,
-      usersForCount: usersFilteredBySearch
+      usersForCount: usersFilteredBySearch,
     };
   };
 
@@ -235,15 +236,10 @@ export const AdminUsers = () => {
         title: "Yay...",
         text: `Export en cours de ${users ? users.length : 0} users`,
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
     } catch (error) {
-      Swal.fire({
-        title: "Oh non!",
-        text: "Something went wrong",
-        icon: "error",
-        timer: 1500
-      });
+      handleApiError({ text: "Something went wrong" });
     }
   };
 
@@ -361,7 +357,7 @@ export const AdminUsers = () => {
                     onClick={() =>
                       setSelectedStructureIdAndToggleModal(
                         //@ts-ignore
-                        element.structures && element.structures.length > 0 ? element.structures[0]._id : null
+                        element.structures && element.structures.length > 0 ? element.structures[0]._id : null,
                       )
                     }
                   >

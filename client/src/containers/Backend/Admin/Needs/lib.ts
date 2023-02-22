@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";
 import { GetAllDispositifsResponse, GetLanguagesResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 // TODO: move function
 export const prepareDeleteContrib = (
@@ -35,12 +36,7 @@ export const prepareDeleteContrib = (
           dispatch(setAllDispositifsActionsCreator(dispositifs));
         })
         .catch(() => {
-          Swal.fire({
-            title: "Oh non!",
-            text: "Something went wrong",
-            icon: "error",
-            timer: 1500,
-          });
+          handleApiError({ text: "Something went wrong" });
         });
     }
     return;

@@ -15,8 +15,10 @@ export const fetchUserStructureActionCreator = (value: {
 }) => action(FETCH_USER_STRUCTURE, value);
 
 export const updateUserStructureActionCreator = (value: {
-  modifyMembres: boolean;
-  data?: {
+  structure?: {
+    hasResponsibleSeenNotification: boolean
+  },
+  membres?: {
     type: "modify" | "delete" | "create";
     userId: Id;
     structureId: Id;

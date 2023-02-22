@@ -66,8 +66,6 @@ app.use(function (_, res, next) {
 // TODO: delete
 app.use(function (req, _, next) {
   //@ts-ignore
-  req.fromPostman = req.headers["postman-secret"] === process.env.POSTMAN_SECRET;
-  //@ts-ignore
   req.fromSite = req.headers["site-secret"] === process.env.REACT_APP_SITE_SECRET;
   next();
 });
@@ -77,12 +75,10 @@ RegisterRoutes(app);
 
 const traductionController = require(__dirname + "/controllers/traductionController");
 const dispositifController = require(__dirname + "/controllers/dispositifController");
-const structureController = require(__dirname + "/controllers/structureController");
 
 app.enable("strict routing");
 app.use("/traduction", traductionController.router);
 app.use("/dispositifs", dispositifController.router);
-app.use("/structures", structureController.router);
 
 app.use(errors()); // TODO: delete and use tsoa instead
 

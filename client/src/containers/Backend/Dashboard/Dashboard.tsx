@@ -15,6 +15,7 @@ import { colors } from "colors";
 import { Spinner } from "reactstrap";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { GetStatisticsResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 const formatter = new Intl.NumberFormat();
@@ -123,12 +124,7 @@ const Dashboard = (props: Props) => {
         timer: 1500,
       });
     } catch (error) {
-      Swal.fire({
-        title: "Oh non!",
-        text: "Something went wrong",
-        icon: "error",
-        timer: 1500,
-      });
+      handleApiError({ text: "Something went wrong" });
     }
   };
   const noGeolocFigures = figuresByRegion.filter((data) => data.region === "No geoloc");

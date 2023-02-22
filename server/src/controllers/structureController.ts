@@ -1,8 +1,6 @@
-import { Controller, Get, Route, Request, Query, Security, Path, Queries } from "tsoa";
-import express, { Request as ExRequest } from "express";
+import { Controller, Get, Route, Request, Query, Security, Path, Queries, Post, Body, Patch } from "tsoa";
+import { Request as ExRequest } from "express";
 
-const router = express.Router();
-const checkToken = require("./account/checkToken");
 import { getAllStructures, GetAllStructuresResponse } from "../workflows/structure/getAllStructures";
 import { getStructureById, GetStructureResponse } from "../workflows/structure/getStructureById";
 import { getActiveStructures, GetActiveStructuresResponse } from "../workflows/structure/getActiveStructures";
@@ -10,23 +8,54 @@ import { createStructure } from "../workflows/structure/createStructure";
 import { updateStructure } from "../workflows/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
 import { getStatistics, GetStructureStatisticsResponse } from "../workflows/structure/getStatistics";
-import { ResponseWithData } from "../types/interface";
-
-/* TODO: use tsoa */
-
-router.post("/createStructure", checkToken.check, createStructure);
-router.post("/updateStructure", checkToken.check, updateStructure);
-router.post("/modifyUserRoleInStructure", checkToken.check, modifyUserRoleInStructure);
-
-export { router };
+import { IRequest, Picture, Response, ResponseWithData } from "../types/interface";
 
 type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
 export interface GetStructureStatisticsRequest {
   facets?: StructureFacets[];
 }
 
+export interface PostStructureRequest {
+  picture: Picture | null;
+  contact: string;
+  phone_contact: string;
+  mail_contact: string;
+  responsable: string | null;
+  nom: string;
+}
+
+// TODO: refactor when rebuild add structure
+export interface PatchStructureRequest {
+  picture?: Picture | null;
+  contact?: string;
+  phone_contact?: string;
+  mail_contact?: string;
+  responsable?: string | null;
+  nom?: string;
+  adminComments?: string;
+  status?: string;
+  adminProgressionStatus?: string;
+  adminPercentageProgressionStatus?: string
+  hasResponsibleSeenNotification?: boolean
+}
+
+export interface PatchStructureRolesRequest {
+  membreId: string;
+  action: "delete" | "modify" | "create";
+  role?: string;
+}
+
 @Route("structures")
 export class StructureController extends Controller {
+  @Security({
+    jwt: ["admin"],
+    fromSite: []
+  })
+  @Post("/")
+  public async createStructure(@Body() body: PostStructureRequest, @Request() request: IRequest): Response {
+    return createStructure(body, request.userId);
+  }
+
   @Security({
     jwt: ["admin"],
   })
@@ -57,5 +86,31 @@ export class StructureController extends Controller {
     @Request() request: ExRequest,
   ): ResponseWithData<GetStructureResponse> {
     return getStructureById(id, locale, request.user);
+  }
+
+  @Security({
+    jwt: [],
+    fromSite: []
+  })
+  @Patch("{id}")
+  public async updateStructure(
+    @Path() id: string,
+    @Body() body: PatchStructureRequest,
+    @Request() request: ExRequest,
+  ): Response {
+    return updateStructure(id, body, request.user);
+  }
+
+  @Security({
+    jwt: [],
+    fromSite: []
+  })
+  @Patch("{id}/roles")
+  public async updateRoles(
+    @Path() id: string,
+    @Body() body: PatchStructureRolesRequest,
+    @Request() request: ExRequest,
+  ): Response {
+    return modifyUserRoleInStructure(id, body, request.user);
   }
 }
