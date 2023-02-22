@@ -111,7 +111,6 @@ describe("setNewPassword", () => {
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
       code: "USED_PASSWORD",
-      data: "no-alert",
       text: "Le mot de passe ne peut pas être identique à l'ancien mot de passe."
     });
   });

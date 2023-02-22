@@ -89,7 +89,7 @@ export const ContentDetailsModal = (props: Props) => {
 
   const modifyStatus = async (
     newStatus: string,
-    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus"
+    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus",
   ) => {
     if (dispositif && newStatus !== dispositif[property]) {
       if (property === "status" && newStatus === "Supprimé") {
@@ -103,7 +103,7 @@ export const ContentDetailsModal = (props: Props) => {
         await API.updateDispositifStatus(dispositif._id, { status: newStatus });
       } else {
         const body: AdminCommentsRequest = {
-          [property]: newStatus
+          [property]: newStatus,
         };
         await API.updateDispositifAdminComments(dispositif._id.toString(), body);
       }
@@ -131,7 +131,7 @@ export const ContentDetailsModal = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, envoyer",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     });
 
     if (!res.value || !dispositif) return;

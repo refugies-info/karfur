@@ -24,6 +24,7 @@ import styles from "./UserProfile.module.scss";
 import { useTranslation } from "next-i18next";
 import { isValidPhone } from "lib/validateFields";
 import { GetUserInfoResponse } from "api-types";
+import { handleApiDefaultError, handleApiError } from "lib/handleApiErrors";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -211,7 +212,7 @@ export const UserProfile = (props: Props) => {
       setIsChangePasswordLoading(false);
     } catch (error: any) {
       setIsChangePasswordLoading(false);
-      if (error.response?.status === 400 && error.response?.data?.code === "USED_PASSWORD") {
+      if (error.response?.data?.code === "USED_PASSWORD") {
         setSamePasswordError(true);
       }
     }
@@ -223,22 +224,24 @@ export const UserProfile = (props: Props) => {
     // @ts-ignore
     formData.append(0, event.target.files[0]);
 
-    API.postImage(formData).then((data_res) => {
-      const imgData = data_res.data.data;
-      dispatch(
-        saveUserActionCreator(user._id, {
-          user: {
-            picture: {
-              secure_url: imgData.secure_url,
-              public_id: imgData.public_id,
-              imgId: imgData.imgId,
+    API.postImage(formData)
+      .then((data_res) => {
+        const imgData = data_res.data.data;
+        dispatch(
+          saveUserActionCreator(user._id, {
+            user: {
+              picture: {
+                secure_url: imgData.secure_url,
+                public_id: imgData.public_id,
+                imgId: imgData.imgId,
+              },
             },
-          },
-          action: "modify-my-details",
-        }),
-      );
-      setIsPictureUploading(false);
-    });
+            action: "modify-my-details",
+          }),
+        );
+        setIsPictureUploading(false);
+      })
+      .catch(handleApiDefaultError);
   };
 
   const onEmailModificationValidate = () => {
@@ -318,12 +321,7 @@ export const UserProfile = (props: Props) => {
         action: "modify-my-details",
       });
     } catch (error) {
-      Swal.fire({
-        title: "Oh non!",
-        text: "Ce pseudo est déjà pris ",
-        icon: "error",
-        timer: 1500,
-      });
+      handleApiError({ text: "Ce pseudo est déjà pris" });
       return;
     }
 

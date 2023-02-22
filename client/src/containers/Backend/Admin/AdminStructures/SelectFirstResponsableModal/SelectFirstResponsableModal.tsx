@@ -15,6 +15,7 @@ import { structureSelector } from "services/AllStructures/allStructures.selector
 import { colors } from "colors";
 import styles from "./SelectFirstResponsableModal.module.scss";
 import { Id, PatchStructureRolesRequest, SimpleUser } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 const ModifyLink = styled.div`
   font-weight: bold;
@@ -85,12 +86,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
       dispatch(fetchAllStructuresActionsCreator());
       dispatch(fetchAllUsersActionsCreator());
     } catch (error) {
-      Swal.fire({
-        title: "Oh non",
-        text: "Erreur lors de la modification",
-        icon: "error",
-        timer: 1500,
-      });
+      handleApiError({ text: "Erreur lors de la modification" });
       props.toggleModal();
     }
   };

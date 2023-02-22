@@ -16,6 +16,7 @@ import { allStructuresSelector } from "services/AllStructures/allStructures.sele
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { SearchStructures } from "components";
 import { GetAllStructuresResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 interface Props {
   show: boolean;
@@ -60,7 +61,7 @@ export const ChangeStructureModal = (props: Props) => {
   const [selectedStructure, setSelectedStructure] = useState<GetAllStructuresResponse | null>(null);
   const dispatch = useDispatch();
   const structures = useSelector(allStructuresSelector).filter(
-    (structure) => structure.status === "Actif" || structure.status === "En attente"
+    (structure) => structure.status === "Actif" || structure.status === "En attente",
   );
   useEffect(() => {
     const loadStructures = () => {
@@ -76,25 +77,20 @@ export const ChangeStructureModal = (props: Props) => {
   const validateStructureChange = () => {
     if (selectedStructure && props.dispositifId) {
       API.updateDispositifMainSponsor(props.dispositifId.toString(), {
-        sponsorId: selectedStructure._id.toString()
+        sponsorId: selectedStructure._id.toString(),
       })
         .then(() => {
           Swal.fire({
             title: "Yay...",
             text: "Structure modifiée",
             icon: "success",
-            timer: 1500
+            timer: 1500,
           });
           toggleModal();
           dispatch(fetchAllDispositifsActionsCreator());
         })
         .catch(() => {
-          Swal.fire({
-            title: "Oh non",
-            text: "Erreur lors de la modification",
-            icon: "error",
-            timer: 1500
-          });
+          handleApiError({ text: "Erreur lors de la modification" });
         });
     }
   };

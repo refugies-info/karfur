@@ -7,6 +7,7 @@ import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Image from "next/image";
 import { GetStructureResponse } from "api-types";
+import { handleApiDefaultError } from "lib/handleApiErrors";
 
 const Title = styled.div`
   font-weight: bold;
@@ -86,18 +87,20 @@ export const Step1 = (props: Props) => {
     // @ts-ignore
     formData.append(0, event.target.files[0]);
 
-    API.postImage(formData).then((data_res) => {
-      const imgData = data_res.data.data;
-      props.setStructure({
-        ...props.structure,
-        picture: {
-          secure_url: imgData.secure_url,
-          public_id: imgData.public_id,
-          imgId: imgData.imgId,
-        },
-      });
-      setUploading(false);
-    });
+    API.postImage(formData)
+      .then((data_res) => {
+        const imgData = data_res.data.data;
+        props.setStructure({
+          ...props.structure,
+          picture: {
+            secure_url: imgData.secure_url,
+            public_id: imgData.public_id,
+            imgId: imgData.imgId,
+          },
+        });
+        setUploading(false);
+      })
+      .catch(handleApiDefaultError);
     props.setHasModifications(true);
   };
   const secureUrl = props.structure && props.structure.picture && props.structure.picture.secure_url;

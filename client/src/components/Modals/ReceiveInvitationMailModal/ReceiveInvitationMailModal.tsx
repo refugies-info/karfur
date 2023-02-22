@@ -10,6 +10,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FInput from "components/UI/FInput/FInput";
 import API from "utils/API";
 import styles from "scss/components/modals.module.scss";
+import { handleApiError } from "lib/handleApiErrors";
 
 declare const window: Window;
 interface Props {
@@ -99,7 +100,7 @@ export const ReceiveInvitationMailModal = (props: Props) => {
         title: "Oops...",
         text: "Aucun mail renseigné",
         icon: "error",
-        timer: 1500
+        timer: 1500,
       });
       return;
     }
@@ -113,18 +114,13 @@ export const ReceiveInvitationMailModal = (props: Props) => {
             title: "Yay...",
             text: "Mail envoyé",
             icon: "success",
-            timer: 1500
+            timer: 1500,
           });
           props.toggle();
           props.togglePreviousModal();
         })
         .catch(() => {
-          Swal.fire({
-            title: "Oh non",
-            text: "Erreur lors de l'envoi",
-            icon: "error",
-            timer: 1500
-          });
+          handleApiError({ text: "Erreur lors de l'envoi" });
           props.toggle();
           props.togglePreviousModal();
         });
@@ -143,7 +139,7 @@ export const ReceiveInvitationMailModal = (props: Props) => {
         <TextContainer>
           {t(
             "Register.Nous vous enverrons un email d'invitation pour vous inscrire",
-            "Nous vous enverrons un email d'invitation pour vous inscrire."
+            "Nous vous enverrons un email d'invitation pour vous inscrire.",
           )}
         </TextContainer>
         <EmailField id="email" email={email} onChange={handleChangeEmail} notEmailError={notEmailError} />

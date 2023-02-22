@@ -18,6 +18,7 @@ import { getUsersToSendMail, getFormattedStatus, getTitle } from "./functions";
 import modalStyles from "../../sharedComponents/DetailsModal.module.scss";
 import styles from "./ImprovementsMailModal.module.scss";
 import { GetLogResponse, Id, ImprovementsRequest } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 interface Props {
   show: boolean;
@@ -43,7 +44,7 @@ export const ImprovementsMailModal = (props: Props) => {
         setLogs(
           res.data.data
             // keep only improvement logs
-            .filter((log: GetLogResponse) => log?.link?.next === "ModalImprovements")
+            .filter((log: GetLogResponse) => log?.link?.next === "ModalImprovements"),
         );
       });
     }
@@ -88,7 +89,7 @@ export const ImprovementsMailModal = (props: Props) => {
     dispositif.creatorId,
     dispositif.mainSponsor,
     users,
-    structures
+    structures,
   );
 
   const formattedStatus = getFormattedStatus(dispositif.status);
@@ -104,7 +105,7 @@ export const ImprovementsMailModal = (props: Props) => {
     "C'est pour qui ?",
     "Pourquoi c'est intéressant ?",
     "Comment je m'engage ?",
-    "Carte interactive"
+    "Carte interactive",
   ];
 
   const onClickCategory = (categorie: string) => {
@@ -126,12 +127,12 @@ export const ImprovementsMailModal = (props: Props) => {
         .map((user) => ({
           username: user.username,
           _id: user._id,
-          email: user.email || ""
+          email: user.email || "",
         })),
       titreInformatif: dispositif.titreInformatif,
       titreMarque: dispositif.titreMarque || "",
       sections: selectedCategories,
-      message
+      message,
     };
 
     API.sendAdminImprovementsMail(data)
@@ -140,17 +141,12 @@ export const ImprovementsMailModal = (props: Props) => {
           title: "Yay...",
           text: "Mail(s) envoyé(s)",
           icon: "success",
-          timer: 1500
+          timer: 1500,
         });
         props.toggleModal();
       })
       .catch(() => {
-        Swal.fire({
-          title: "Oh non",
-          text: "Erreur lors de l'envoi",
-          icon: "error",
-          timer: 1500
-        });
+        handleApiError({ text: "Erreur lors de l'envoi" });
         props.toggleModal();
       });
   };
@@ -219,7 +215,7 @@ export const ImprovementsMailModal = (props: Props) => {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center"
+                  alignItems: "center",
                 }}
               >
                 <p className={cls(styles.text, "mb-3")}>Ajouter un message</p>
@@ -247,7 +243,7 @@ export const ImprovementsMailModal = (props: Props) => {
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "end"
+              justifyContent: "end",
             }}
           >
             <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline">

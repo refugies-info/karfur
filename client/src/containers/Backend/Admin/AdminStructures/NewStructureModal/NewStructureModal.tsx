@@ -25,6 +25,7 @@ import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDi
 import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import styles from "./NewStructureModal.module.scss";
 import { GetActiveUsersResponse, GetAllStructuresResponse, GetAllUsersResponse, PostStructureRequest } from "api-types";
+import { handleApiDefaultError, handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 
@@ -138,12 +139,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
       updateData();
       toggle();
     } catch (error) {
-      Swal.fire({
-        title: "Oh non",
-        text: "Erreur lors de la modification",
-        icon: "error",
-        timer: 1500,
-      });
+      handleApiError({ text: "Erreur lors de la modification" });
       updateData();
       toggle();
     }
@@ -156,19 +152,21 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
     // @ts-ignore
     formData.append(0, event.target.files[0]);
 
-    API.postImage(formData).then((data_res) => {
-      const imgData = data_res.data.data;
-      setStructure({
-        ...structure,
-        picture: {
-          secure_url: imgData.secure_url,
-          public_id: imgData.public_id,
-          imgId: imgData.imgId,
-        },
-      });
-      setUploading(false);
-      return;
-    });
+    API.postImage(formData)
+      .then((data_res) => {
+        const imgData = data_res.data.data;
+        setStructure({
+          ...structure,
+          picture: {
+            secure_url: imgData.secure_url,
+            public_id: imgData.public_id,
+            imgId: imgData.imgId,
+          },
+        });
+        setUploading(false);
+        return;
+      })
+      .catch(handleApiDefaultError);
   };
 
   const modifyStatus = (status: string) => {

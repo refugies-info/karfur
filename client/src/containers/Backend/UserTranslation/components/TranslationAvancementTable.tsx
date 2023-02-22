@@ -18,6 +18,7 @@ import { sortData } from "./functions";
 import styles from "scss/components/adminTable.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
 import { GetUserInfoResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 
@@ -120,12 +121,7 @@ export const TranslationAvancementTable = (props: Props) => {
             });
           })
           .catch(() => {
-            Swal.fire({
-              title: "Oh non!",
-              text: "Something went wrong",
-              icon: "error",
-              timer: 1500,
-            });
+            handleApiError({ text: "Something went wrong" });
           });
       }
     });

@@ -24,6 +24,7 @@ import { LogList } from "../../Logs/LogList";
 import { StructureButton } from "../../sharedComponents/StructureButton";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
 import { GetAllUsersResponse, GetLogResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 
@@ -176,12 +177,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         updateLogs();
       }
     } catch (error) {
-      Swal.fire({
-        title: "Oh non",
-        text: "Erreur lors de la modification",
-        icon: "error",
-        timer: 1500,
-      });
+      handleApiError({ text: "Erreur lors de la modification" });
     }
   };
 
@@ -210,12 +206,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         props.toggleModal();
       }
     } catch (error) {
-      Swal.fire({
-        title: "Oh non",
-        text: "Erreur lors de la suppression",
-        icon: "error",
-        timer: 1500,
-      });
+      handleApiError({ text: "Erreur lors de la suppression" });
       props.toggleModal();
     }
   };

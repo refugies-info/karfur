@@ -183,7 +183,7 @@ export class UserController extends Controller {
     return setSelectedLanguages(request.user, body.selectedLanguages).then(() => ({ text: "success" }));
   }
 
-  @Get("/get_user_info") // TODO: change name
+  @Get("/")
   @Security("jwt")
   public async getUserInfo(@Request() request: IRequest): ResponseWithData<GetUserInfoResponse> {
     return {

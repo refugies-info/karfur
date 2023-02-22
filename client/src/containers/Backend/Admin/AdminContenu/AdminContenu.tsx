@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
 import {
   fetchAllDispositifsActionsCreator,
-  setAllDispositifsActionsCreator
+  setAllDispositifsActionsCreator,
 } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { prepareDeleteContrib } from "../Needs/lib";
@@ -20,7 +20,7 @@ import {
   StyledHeader,
   Content,
   FigureContainer,
-  StyledHeaderInner
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import { colors } from "colors";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
@@ -37,7 +37,7 @@ import {
   DeleteButton,
   FilterButton,
   TabHeader,
-  ColoredRound
+  ColoredRound,
 } from "../sharedComponents/SubComponents";
 import CustomSearchBar from "components/UI/CustomSeachBar";
 import FButton from "components/UI/FButton/FButton";
@@ -57,6 +57,7 @@ import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
 import { GetAllDispositifsResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 
@@ -68,7 +69,7 @@ export const AdminContenu = () => {
   const defaultSortedHeader = {
     name: "none",
     sens: "none",
-    orderColumn: "none"
+    orderColumn: "none",
   };
   const dispositifs = useSelector(allDispositifsSelector);
 
@@ -77,7 +78,7 @@ export const AdminContenu = () => {
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "contenus");
   const [filter, setFilter] = useState<ContentStatusType>(
-    (initialFilters.filter as ContentStatusType) || "En attente admin"
+    (initialFilters.filter as ContentStatusType) || "En attente admin",
   );
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
@@ -130,16 +131,16 @@ export const AdminContenu = () => {
         filter,
         selectedUserId,
         selectedContentId,
-        selectedStructureId
+        selectedStructureId,
       );
 
       router.replace(
         {
           pathname: locale + "/backend/admin",
-          search: params
+          search: params,
         },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -179,7 +180,7 @@ export const AdminContenu = () => {
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
-                .includes(removeAccents(search.toLowerCase())))
+                .includes(removeAccents(search.toLowerCase()))),
         )
       : dispositifs;
 
@@ -187,7 +188,7 @@ export const AdminContenu = () => {
     if (sortedHeader.name === "none")
       return {
         dispositifsToDisplay: filteredDispositifs,
-        dispositifsForCount: dispositifsFilteredBySearch
+        dispositifsForCount: dispositifsFilteredBySearch,
       };
 
     const dispositifsToDisplay = filteredDispositifs.sort((a, b) => {
@@ -220,7 +221,7 @@ export const AdminContenu = () => {
     });
     return {
       dispositifsToDisplay,
-      dispositifsForCount: dispositifsFilteredBySearch
+      dispositifsForCount: dispositifsFilteredBySearch,
     };
   };
 
@@ -234,7 +235,7 @@ export const AdminContenu = () => {
       setSortedHeader({
         name: element.name,
         sens: "up",
-        orderColumn: element.order || ""
+        orderColumn: element.order || "",
       });
     }
   };
@@ -249,15 +250,10 @@ export const AdminContenu = () => {
         title: "Yay...",
         text: "Export en cours",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
     } catch (error) {
-      Swal.fire({
-        title: "Oh non!",
-        text: "Something went wrong",
-        icon: "error",
-        timer: 1500
-      });
+      handleApiError({ text: "Something went wrong" });
     }
   };
 
@@ -297,7 +293,7 @@ export const AdminContenu = () => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le valider",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     });
 
     if (question.value) {
@@ -309,17 +305,12 @@ export const AdminContenu = () => {
           text: "Contenu publié",
           icon: "success",
           timer: 5500,
-          footer: `<a target='_blank' href=${link}>Voir le contenu</a>`
+          footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
         });
         dispatch(fetchAllDispositifsActionsCreator());
         dispatch(fetchActiveDispositifsActionsCreator());
       } catch (error) {
-        Swal.fire({
-          title: "Oh non!",
-          text: "Something went wrong",
-          icon: "error",
-          timer: 1500
-        });
+        handleApiError({ text: "Something went wrong" });
       }
     }
   };

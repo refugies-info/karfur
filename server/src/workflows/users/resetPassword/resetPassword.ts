@@ -4,9 +4,9 @@ import { getUserByUsernameFromDB, updateUserInDB } from "../../../modules/users/
 import { ResetPasswordRequest } from "../../../controllers/userController";
 import { InvalidRequestError, NotFoundError, UnauthorizedError, AuthenticationError } from "../../../errors";
 import { ResponseWithData } from "../../../types/interface";
-import { sendResetPasswordMail } from "src/modules/mail/mail.service";
+import { sendResetPasswordMail } from "../../../modules/mail/mail.service";
 
-const url = process.env.FRONT_SITE_URL; // TODO: test
+const url = process.env.FRONT_SITE_URL;
 
 export interface ResetPasswordResponse {
   email: string;
@@ -15,11 +15,10 @@ export interface ResetPasswordResponse {
 export const resetPassword = async (body: ResetPasswordRequest): ResponseWithData<ResetPasswordResponse> => {
   logger.info("[resetPassword] received");
 
-  const user = getUserByUsernameFromDB(body.username);
-  if (!user) throw new NotFoundError("L'utilisateur n'existe pas");
-  if (!user.email) throw new AuthenticationError("Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.", "", "no-alert");
+  const user = await getUserByUsernameFromDB(body.username);
+  if (!user) throw new NotFoundError("L'utilisateur n'existe pas", null, { noAlert: true });
+  if (!user.email) throw new AuthenticationError("Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.");
   if (user.isAdmin()) throw new UnauthorizedError("Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site");
-
 
   await new Promise((resolve, reject) => {
     crypto.randomBytes(20, async function (errb, buffer) {
@@ -29,7 +28,7 @@ export const resetPassword = async (body: ResetPasswordRequest): ResponseWithDat
         reset_password_token: token,
         reset_password_expires: new Date(Date.now() + 1 * 60 * 60 * 1000),
       })
-      const newUrl = url + "reset?token=" + token;
+      const newUrl = url + "/reset?token=" + token;
       await sendResetPasswordMail(body.username, newUrl, user.email);
       resolve(true);
     });

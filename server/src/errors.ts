@@ -16,9 +16,9 @@ export class MustBePopulatedError extends Error {
 // API Errors
 class APIError extends Error {
   code: string | undefined;
-  data: string | undefined;
+  data: any | undefined;
 
-  constructor(message: string, code?: string, data?: string) {
+  constructor(message: string, code?: string, data?: any) {
     super(message);
     this.code = code;
     this.data = data;
@@ -51,7 +51,7 @@ export const serverErrorHandler = (err: unknown, req: Request, res: Response, ne
   if (err instanceof ValidateError) {
     return res.status(422).json({
       message: "Validation Failed",
-      details: err?.fields,
+      data: err?.fields,
     });
   }
   if (err instanceof AuthenticationError) {

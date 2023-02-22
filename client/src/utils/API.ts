@@ -107,17 +107,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status < 500) {
-      if (error.response.data.data !== "no-alert") {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: (error.response.data || {}).text || "",
-          footer: "<i>" + error.message + "</i>",
-          timer: 1500,
-        });
-      }
-    } else if (axios.isCancel(error)) {
+    if (axios.isCancel(error)) {
       logger.error("Error: ", { error: error.message });
     }
     return Promise.reject(error);
@@ -174,7 +164,7 @@ const API = {
   // User
   getUser: (): Promise<APIResponse<GetUserInfoResponse>> => {
     const headers = getHeaders();
-    return instance.get("/user/get_user_info", { headers });
+    return instance.get("/user", { headers });
   },
   updateUser: (id: Id, body: UpdateUserRequest): Promise<APIResponse> => {
     const headers = getHeaders();
