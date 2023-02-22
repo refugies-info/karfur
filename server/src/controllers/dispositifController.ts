@@ -25,6 +25,7 @@ import { GetUserContributionsResponse } from "../workflows/dispositif/getUserCon
 import { updateDispositifProperties } from "../workflows/dispositif/updateDispositifProperties";
 import { updateDispositif } from "../workflows/dispositif/updateDispositif";
 import { createDispositif } from "../workflows/dispositif/createDispositif";
+import { GetDispositifsWithTranslationAvancementResponse } from "src/workflows/dispositif/getDispositifsWithTranslationAvancement/getDispositifsWithTranslationAvancement";
 
 const router = express.Router();
 
@@ -34,8 +35,7 @@ router.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
 // @ts-ignore FIXME
 router.post("/updateDispositifReactions", checkToken.getId, updateDispositifReactions);
 router.get("/getUserContributions", checkToken.check, getUserContributions);
-// @ts-ignore FIXME
-router.get("/getDispositifsWithTranslationAvancement", checkToken.check, getDispositifsWithTranslationAvancement);
+// router.get("/getDispositifsWithTranslationAvancement", checkToken.check, getDispositifsWithTranslationAvancement);
 router.post("/exportFiches", exportFiches);
 router.post("/exportDispositifsGeolocalisation", exportDispositifsGeolocalisation);
 router.get("/getContentsForApp", getContentsForApp);
@@ -49,18 +49,18 @@ type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDema
 
 export interface CountDispositifsRequest {
   type: "dispositif" | "demarche"; // TODO: type
-  publishedOnly: boolean
+  publishedOnly: boolean;
   themeId?: string;
 }
 
 export interface GetDispositifsRequest {
   type?: "dispositif" | "demarche"; // TODO: type
-  locale: string
-  limit?: number
-  sort?: string
+  locale: string;
+  limit?: number;
+  sort?: string;
 }
 export interface GetStatisticsRequest {
-  facets?: Facets[]
+  facets?: Facets[];
 }
 
 export interface AdminCommentsRequest {
@@ -78,7 +78,7 @@ export interface DispositifStatusRequest {
 }
 
 export interface AddViewsRequest {
-  types: ViewsType[]
+  types: ViewsType[];
 }
 
 export interface UpdateDispositifPropertiesRequest {
@@ -100,18 +100,15 @@ interface DispositifRequest {
   metadatas?: Metadatas;
   // map: Poi[];
 }
-export interface UpdateDispositifRequest extends DispositifRequest { }
+export interface UpdateDispositifRequest extends DispositifRequest {}
 export interface CreateDispositifRequest extends DispositifRequest {
   typeContenu: "dispositif" | "demarche";
 }
 
-
 @Route("dispositifs")
 export class DispositifController extends Controller {
   @Get("/")
-  public async get(
-    @Queries() query: GetDispositifsRequest
-  ): ResponseWithData<GetDispositifsResponse[]> {
+  public async get(@Queries() query: GetDispositifsRequest): ResponseWithData<GetDispositifsResponse[]> {
     return getDispositifs(query);
   }
 
@@ -120,13 +117,9 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Post("/")
-  public async createDispositif(
-    @Body() body: CreateDispositifRequest,
-    @Request() request: express.Request
-  ): Response {
+  public async createDispositif(@Body() body: CreateDispositifRequest, @Request() request: express.Request): Response {
     return createDispositif(body, request.userId);
   }
-
 
   @Security({
     jwt: ["admin"],
@@ -137,9 +130,7 @@ export class DispositifController extends Controller {
   }
 
   @Get("/statistics")
-  public async getStatistics(
-    @Queries() query: GetStatisticsRequest
-  ): ResponseWithData<GetStatisticsResponse> {
+  public async getStatistics(@Queries() query: GetStatisticsRequest): ResponseWithData<GetStatisticsResponse> {
     return getStatistics(query);
   }
 
@@ -147,9 +138,7 @@ export class DispositifController extends Controller {
     jwt: ["admin"],
   })
   @Get("/count")
-  public async getCount(
-    @Queries() query: CountDispositifsRequest
-  ): ResponseWithData<GetCountDispositifsResponse> {
+  public async getCount(@Queries() query: CountDispositifsRequest): ResponseWithData<GetCountDispositifsResponse> {
     return getCountDispositifs(query);
   }
 
@@ -159,19 +148,30 @@ export class DispositifController extends Controller {
   })
   @Get("/user-contributions")
   public async getUserContributions(
-    @Request() request: express.Request
+    @Request() request: express.Request,
   ): ResponseWithData<GetUserContributionsResponse[]> {
     return getUserContributions(request.userId);
   }
 
   @Security({
     fromSite: [],
+    jwt: [],
+  })
+  @Get("/with-translations-status")
+  public async getDispositifsWithTranslationStatus(
+    @Query("locale") locale: Languages,
+  ): ResponseWithData<GetDispositifsWithTranslationAvancementResponse[]> {
+    return getDispositifsWithTranslationAvancement(locale).then((data) => ({
+      text: "success",
+      data,
+    }));
+  }
+
+  @Security({
+    fromSite: [],
   })
   @Post("/{id}/views")
-  public async addViewOrFavorite(
-    @Path() id: string,
-    @Body() types: AddViewsRequest
-  ): Response {
+  public async addViewOrFavorite(@Path() id: string, @Body() types: AddViewsRequest): Response {
     // TODO: change in app
     return updateNbVuesOrFavoritesOnContent(id, types);
   }
@@ -184,7 +184,7 @@ export class DispositifController extends Controller {
   public async updateAdminComments(
     @Path() id: string,
     @Body() body: AdminCommentsRequest,
-    @Request() request: express.Request
+    @Request() request: express.Request,
   ): Response {
     return updateDispositifAdminComments(id, body, request.userId);
   }
@@ -197,7 +197,7 @@ export class DispositifController extends Controller {
   public async updateMainSponsor(
     @Path() id: string,
     @Body() body: MainSponsorRequest,
-    @Request() request: express.Request
+    @Request() request: express.Request,
   ): Response {
     return modifyDispositifMainSponsor(id, body, request.userId);
   }
@@ -207,10 +207,7 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Patch("/{id}/properties")
-  public async updateProperties(
-    @Path() id: string,
-    @Body() body: UpdateDispositifPropertiesRequest
-  ): Response {
+  public async updateProperties(@Path() id: string, @Body() body: UpdateDispositifPropertiesRequest): Response {
     return updateDispositifProperties(id, body);
   }
 
@@ -222,7 +219,7 @@ export class DispositifController extends Controller {
   public async updateStatus(
     @Path() id: string,
     @Body() body: DispositifStatusRequest,
-    @Request() request: express.Request
+    @Request() request: express.Request,
   ): Response {
     return updateDispositifStatus(id, body, request.user);
   }
@@ -235,7 +232,7 @@ export class DispositifController extends Controller {
   public async update(
     @Path() id: string,
     @Body() body: UpdateDispositifRequest,
-    @Request() request: ExRequest
+    @Request() request: ExRequest,
   ): Response {
     return updateDispositif(id, body, request.user);
   }
@@ -245,12 +242,7 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Get("/{id}") // TODO: moved from getContentById?contentId (app)
-  public async getById(
-    @Path() id: string,
-    @Query() locale: Languages
-  ): ResponseWithData<GetDispositifResponse> {
+  public async getById(@Path() id: string, @Query() locale: Languages): ResponseWithData<GetDispositifResponse> {
     return getContentById(id, locale);
   }
 }
-
-

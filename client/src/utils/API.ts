@@ -4,12 +4,7 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import {
-  APIResponse,
-  NbDispositifsByRegion,
-  TranslationFacets,
-  TranslationStatistics,
-} from "types/interface";
+import { APIResponse, NbDispositifsByRegion, TranslationFacets, TranslationStatistics } from "types/interface";
 import {
   Id,
   PostAdminOptionResponse,
@@ -74,6 +69,7 @@ import {
   NewPasswordRequest,
   NewPasswordResponse,
   UpdateUserRequest,
+  GetDispositifsWithTranslationAvancementResponse,
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -245,9 +241,11 @@ const API = {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/admin-comments`, body, { headers });
   },
-  getDispositifsWithTranslationAvancement: (locale: string) => {
+  getDispositifsWithTranslationAvancement: (
+    locale: string,
+  ): Promise<APIResponse<GetDispositifsWithTranslationAvancementResponse[]>> => {
     const headers = getHeaders();
-    return instance.get(`/dispositifs/getDispositifsWithTranslationAvancement?locale=${locale}`, { headers });
+    return instance.get(`/dispositifs/with-translations-status?locale=${locale}`, { headers });
   },
   getDispositifs: (query: GetDispositifsRequest): Promise<APIResponse<GetDispositifsResponse[]>> => {
     return instance.get("/dispositifs", { params: query });
@@ -517,7 +515,7 @@ const API = {
 
   // sms
   smsDownloadApp: (body: DownloadAppRequest): Promise<APIResponse> => {
-    return instance.post("/sms/download-app", body)
+    return instance.post("/sms/download-app", body);
   },
   smsContentLink: (body: ContentLinkRequest): Promise<APIResponse> => {
     const headers = getHeaders();

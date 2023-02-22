@@ -54,7 +54,7 @@ export interface GetUserInfoResponse {
 }
 
 export interface UserFavoritesRequest {
-  locale: string
+  locale: string;
 }
 
 export interface AddUserFavorite {
@@ -101,13 +101,12 @@ export interface UpdateUserRequest {
     picture?: Picture;
     adminComments?: string;
     selectedLanguages?: Id[];
-  },
+  };
   action: "modify-with-roles" | "modify-my-details";
 }
 
 @Route("user")
 export class UserController extends Controller {
-
   @Security("fromSite")
   @Post("/login")
   public async login(@Body() body: LoginRequest): ResponseWithData<LoginResponse> {
@@ -139,24 +138,27 @@ export class UserController extends Controller {
 
   @Get("/password/reset")
   public async checkResetToken(@Query() token: string): Response {
-    return checkResetToken(token)
+    return checkResetToken(token);
   }
 
   @Post("/password/reset")
   public async resetPassword(@Body() body: ResetPasswordRequest): ResponseWithData<ResetPasswordResponse> {
-    return resetPassword(body)
+    return resetPassword(body);
   }
 
   @Security("fromSite")
   @Post("/password/new")
   public async setNewPassword(@Body() body: NewPasswordRequest): ResponseWithData<NewPasswordResponse> {
-    return setNewPassword(body)
+    return setNewPassword(body);
   }
 
   @Security("jwt")
   @Get("/favorites")
-  public async getUserFavorites(@Request() request: IRequest, @Queries() query: UserFavoritesRequest): ResponseWithData<GetUserFavoritesResponse[]> {
-    return getUserFavoritesInLocale(request.user, query)
+  public async getUserFavorites(
+    @Request() request: IRequest,
+    @Queries() query: UserFavoritesRequest,
+  ): ResponseWithData<GetUserFavoritesResponse[]> {
+    return getUserFavoritesInLocale(request.user, query);
   }
 
   @Security("jwt")
@@ -207,13 +209,21 @@ export class UserController extends Controller {
 
   @Security({ jwt: [], fromSite: [] })
   @Patch("/{id}/password")
-  public async updatePassword(@Path() id: string, @Request() request: ExRequest, @Body() body: UpdatePasswordRequest): ResponseWithData<UpdatePasswordResponse> {
+  public async updatePassword(
+    @Path() id: string,
+    @Request() request: ExRequest,
+    @Body() body: UpdatePasswordRequest,
+  ): ResponseWithData<UpdatePasswordResponse> {
     return changePassword(id, body, request.user);
   }
 
   @Security({ jwt: [], fromSite: [] })
   @Patch("/{id}")
-  public async updateUser(@Path() id: string, @Request() request: ExRequest, @Body() body: UpdateUserRequest): Response {
+  public async updateUser(
+    @Path() id: string,
+    @Request() request: ExRequest,
+    @Body() body: UpdateUserRequest,
+  ): Response {
     return updateUser(id, body, request.user);
   }
 

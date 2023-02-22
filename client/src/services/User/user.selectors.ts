@@ -9,7 +9,5 @@ export const userStructureIdSelector = (state: RootState): Id | null =>
 
 export const userDetailsSelector = (state: RootState): GetUserInfoResponse | null => state.user.user;
 
-export const userSelectedLanguageSelector = (
-  state: RootState
-): Id[] =>
+export const userSelectedLanguageSelector = (state: RootState): Id[] =>
   state.user.user && state.user.user.selectedLanguages ? state.user.user.selectedLanguages : [];

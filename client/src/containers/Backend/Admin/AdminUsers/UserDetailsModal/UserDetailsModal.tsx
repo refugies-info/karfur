@@ -24,6 +24,7 @@ import { LogList } from "../../Logs/LogList";
 import { StructureButton } from "../../sharedComponents/StructureButton";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
 import { GetAllUsersResponse, GetLogResponse, Id } from "api-types";
+import { useLanguages } from "hooks";
 
 moment.locale("fr");
 
@@ -35,6 +36,7 @@ interface Props {
 }
 
 export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) => {
+  const { getLanguage } = useLanguages();
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [phoneError, setPhoneError] = useState<string>("");
@@ -351,7 +353,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                 <Label>Langues de traduction activées</Label>
                 <div>
                   {(userFromStore.selectedLanguages || []).map((langue, i) => (
-                    <LangueDetail key={i} langue={langue} />
+                    <LangueDetail key={i} langue={getLanguage(langue)} />
                   ))}
                 </div>
               </div>

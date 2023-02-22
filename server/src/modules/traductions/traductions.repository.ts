@@ -15,7 +15,7 @@ export const getTraductionsByLanguageAndDispositif = (
 export const validateTradInDB = (tradId: TraductionId, validatorId: UserId) =>
   TraductionsModel.findOneAndUpdate({ _id: tradId }, { status: "Validée", validatorId }, { upsert: true, new: true });
 
-export const deleteTradsInDB = (articleId: DispositifId, langueCible: string) =>
+export const deleteTradsInDB = (articleId: DispositifId, langueCible: Languages) =>
   TraductionsModel.deleteMany({
     articleId,
     langueCible,

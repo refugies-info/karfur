@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
 import { useSelector, useDispatch } from "react-redux";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { userSelector } from "services/User/user.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -100,9 +99,9 @@ const LangueItem = (props: { langue: GetLanguagesResponse; isSelected: boolean; 
 );
 
 const TranslationLanguagesChoiceModalComponent = (props: Props) => {
-  const [selectedLangues, setSelectedLangues] = useState<Id[]>([]);
+  const [selectedLangues, setSelectedLangues] = useState<string[]>([]);
 
-  const { langues } = useLanguages();
+  const { langues, userTradLanguages } = useLanguages();
   const user = useSelector(userSelector);
   const isLoadingLangues = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
   const isLoadingUser = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
@@ -110,13 +109,6 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   const isLoading = isLoadingLangues || isLoadingUser;
   const dispatch = useDispatch();
   const routerLocale = useRouterLocale();
-
-  useEffect(() => {
-    const selectedLanguages = user?.user?.selectedLanguages;
-    if (selectedLanguages && selectedLanguages.length > 0) {
-      setSelectedLangues(selectedLanguages);
-    }
-  }, [isLoadingUser, user]);
 
   if (isLoading)
     return (
@@ -151,14 +143,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     }
 
     if (!isLangueSelected) {
-      const newSelectedLangue = {
-        _id: langue._id.toString(),
-        i18nCode: langue.i18nCode,
-        langueCode: langue.langueCode || "",
-        langueFr: langue.langueFr,
-        langueLoc: langue.langueLoc || "",
-      };
-      setSelectedLangues([...selectedLangues, newSelectedLangue]);
+      setSelectedLangues([...selectedLangues, langue._id.toString()]);
     }
   };
 

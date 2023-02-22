@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { UserLanguage, TranslationStatus } from "types/interface";
+import { GetLanguagesResponse, TraductionsStatus } from "api-types";
 import { colorAvancement } from "lib/colors";
 import { Progress } from "reactstrap";
 import { colors } from "colors";
@@ -8,7 +8,7 @@ import FSwitch from "components/UI/FSwitch/FSwitch";
 import styles from "./SubComponents.module.scss";
 
 interface Props {
-  language: UserLanguage;
+  language: GetLanguagesResponse;
   isSelected: boolean;
   hasMultipleLanguages: boolean;
 }
@@ -94,7 +94,7 @@ export const ProgressWithValue = (props: ProgressProps) => {
 };
 
 interface TradStatusProps {
-  status: TranslationStatus;
+  status: TraductionsStatus;
 }
 
 const TradStatusContainer = styled.div`
@@ -108,15 +108,15 @@ const TradStatusContainer = styled.div`
   width: fit-content;
 `;
 
-const getStatus = (status: TranslationStatus, isSingular: boolean) => {
-  if (status === "En attente") return { formattedStatus: "À valider", color: colors.orangeDark };
-  if (status === "À revoir") return { formattedStatus: "À revoir", color: colors.redDark };
-  if (status === "Validée")
+const getStatus = (status: TraductionsStatus, isSingular: boolean) => {
+  if (status === TraductionsStatus.PENDING) return { formattedStatus: "À valider", color: colors.orangeDark };
+  if (status === TraductionsStatus.TO_REVIEW) return { formattedStatus: "À revoir", color: colors.redDark };
+  if (status === TraductionsStatus.VALIDATED)
     return {
       formattedStatus: isSingular ? "Publiée" : "Publiées",
-      color: colors.green
+      color: colors.green,
     };
-  if (status === "À traduire") return { formattedStatus: "À traduire", color: colors.blue };
+  if (status === TraductionsStatus.TO_TRANSLATE) return { formattedStatus: "À traduire", color: colors.blue };
   return { formattedStatus: "No status", color: colors.erreur };
 };
 
@@ -146,7 +146,7 @@ const FilterButtonContainer = styled.div`
 `;
 
 interface FilterButtonProps {
-  status: TranslationStatus;
+  status: TraductionsStatus;
   isSelected: boolean;
   nbContent: number | string;
   onClick: () => void;

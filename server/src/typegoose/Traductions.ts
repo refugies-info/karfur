@@ -1,6 +1,6 @@
 import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { isEmpty, isString } from "lodash";
-import { MustBePopulatedError } from "src/errors";
+import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import {
   DemarcheContent,
@@ -15,10 +15,10 @@ import { User } from "./User";
 
 export type TraductionsType = "suggestion" | "validation";
 export enum TraductionsStatus {
-  VALIDATED,
-  TO_REVIEW,
-  PENDING,
-  TO_TRANSLATE,
+  VALIDATED = "VALIDATED",
+  TO_REVIEW = "TO_REVIEW",
+  PENDING = "PENDING",
+  TO_TRANSLATE = "TO_TRANSLATE",
 }
 
 /**
@@ -75,10 +75,6 @@ export class Traductions extends Base {
   @prop()
   public updatedAt: Date;
 
-  // public get status(): string {
-  //   if()
-  // }
-
   public countWords(): number {
     return (
       countWords(this.translated.content?.titreInformatif) +
@@ -102,13 +98,11 @@ export class Traductions extends Base {
    */
   public get status(): TraductionsStatus {
     if (this.type === "validation") {
-      return isEmpty(this.toReview) && this.avancement === 1
-        ? TraductionsStatus.VALIDATED
-        : TraductionsStatus.TO_REVIEW;
+      return isEmpty(this.toReview) && this.avancement >= 1 ? TraductionsStatus.VALIDATED : TraductionsStatus.TO_REVIEW;
     }
 
     // if type === "suggestion"
-    return this.avancement === 1 ? TraductionsStatus.PENDING : TraductionsStatus.TO_TRANSLATE;
+    return this.avancement >= 1 ? TraductionsStatus.PENDING : TraductionsStatus.TO_TRANSLATE;
   }
 
   public getUser(): User {

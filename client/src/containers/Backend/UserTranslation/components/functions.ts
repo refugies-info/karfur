@@ -1,52 +1,53 @@
-import { GetNeedResponse } from "api-types";
+import { GetDispositifsWithTranslationAvancementResponse, GetNeedResponse, TraductionsStatus } from "api-types";
 import { colors } from "colors";
-import {
-  TranslationStatus,
-  IDispositifTranslation,
-  ITypeContenu,
-  AvailableLanguageI18nCode
-} from "types/interface";
+import { ITypeContenu, AvailableLanguageI18nCode } from "types/interface";
 
-const filterDataExpert = (data: IDispositifTranslation[], isExpert: boolean) => {
+const filterDataExpert = (data: GetDispositifsWithTranslationAvancementResponse[], isExpert: boolean) => {
   if (isExpert) return data;
-  return data.filter((trad) => ["À traduire", "Validée"].includes(trad.tradStatus));
+  return data.filter((trad) => [TraductionsStatus.TO_TRANSLATE, TraductionsStatus.VALIDATED].includes(trad.tradStatus));
 };
 
-const getTradAmount = (data: IDispositifTranslation[]) => {
-  const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir").length;
-  const nbATraduire = data.filter((trad) => trad.tradStatus === "À traduire").length;
-  const nbAValider = data.filter((trad) => trad.tradStatus === "En attente").length;
-  const nbPubliees = data.filter((trad) => trad.tradStatus === "Validée").length;
+const getTradAmount = (data: GetDispositifsWithTranslationAvancementResponse[]) => {
+  const nbARevoir = data.filter((trad) => trad.tradStatus === TraductionsStatus.TO_REVIEW).length;
+  const nbATraduire = data.filter((trad) => trad.tradStatus === TraductionsStatus.TO_TRANSLATE).length;
+  const nbAValider = data.filter((trad) => trad.tradStatus === TraductionsStatus.PENDING).length;
+  const nbPubliees = data.filter((trad) => trad.tradStatus === TraductionsStatus.VALIDATED).length;
 
   return {
     nbARevoir,
     nbATraduire,
     nbAValider,
-    nbPubliees
+    nbPubliees,
   };
 };
 
-const getNbTradByTypeContenu = (data: IDispositifTranslation[]) => {
-  const nbDispositifs = data.filter((trad) => trad.type === "dispositif").length;
-  const nbDemarches = data.filter((trad) => trad.type === "demarche").length;
+const getNbTradByTypeContenu = (data: GetDispositifsWithTranslationAvancementResponse[]) => {
+  const nbDispositifs = data.filter((trad) => trad.typeContenu === "dispositif").length;
+  const nbDemarches = data.filter((trad) => trad.typeContenu === "demarche").length;
 
   return {
     nbDispositifs,
-    nbDemarches
+    nbDemarches,
   };
 };
 
-const filterDataOnStatus = (data: IDispositifTranslation[], filterStatus: TranslationStatus | "all") => {
+const filterDataOnStatus = (
+  data: GetDispositifsWithTranslationAvancementResponse[],
+  filterStatus: TraductionsStatus | "all",
+) => {
   if (filterStatus === "all") return data;
   return data.filter((trad) => trad.tradStatus === filterStatus);
 };
 
-const filterDataOnTypeContenu = (data: IDispositifTranslation[], typeContenuFilter: ITypeContenu | "all") => {
+const filterDataOnTypeContenu = (
+  data: GetDispositifsWithTranslationAvancementResponse[],
+  typeContenuFilter: ITypeContenu | "all",
+) => {
   if (typeContenuFilter === "all") return data;
-  return data.filter((trad) => trad.type === typeContenuFilter);
+  return data.filter((trad) => trad.typeContenu === typeContenuFilter);
 };
 
-const filterDataBySearch = (data: IDispositifTranslation[], search: string) => {
+const filterDataBySearch = (data: GetDispositifsWithTranslationAvancementResponse[], search: string) => {
   if (!search) {
     return data;
   }
@@ -68,16 +69,16 @@ const filterDataBySearch = (data: IDispositifTranslation[], search: string) => {
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase()
-          .includes(text.toLowerCase()))
+          .includes(text.toLowerCase())),
   );
 };
 
 export const filterData = (
-  data: IDispositifTranslation[],
-  filterStatus: TranslationStatus | "all",
+  data: GetDispositifsWithTranslationAvancementResponse[],
+  filterStatus: TraductionsStatus | "all",
   isExpert: boolean,
   typeContenuFilter: "dispositif" | "demarche" | "all",
-  search: string
+  search: string,
 ) => {
   const dataFilteredExpert = filterDataExpert(data, isExpert);
 
@@ -98,7 +99,7 @@ export const filterData = (
     nbAValider,
     nbPubliees,
     nbDispositifs,
-    nbDemarches
+    nbDemarches,
   };
 };
 
@@ -109,8 +110,8 @@ const compare = (valueA: any, valueB: any, sens: string) => {
 };
 
 export const sortData = (
-  data: IDispositifTranslation[],
-  sortedHeader: { name: string; order: string; sens: string }
+  data: GetDispositifsWithTranslationAvancementResponse[],
+  sortedHeader: { name: string; order: string; sens: string },
 ) => {
   if (sortedHeader.name === "none") return data;
 

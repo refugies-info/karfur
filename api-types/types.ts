@@ -1,4 +1,12 @@
-import { Id, TranslatedText, UserStructure, ContentStructure, SimpleUser, StructureMember, InfoSections } from "../server/src/types/interface";
+import {
+  Id,
+  TranslatedText,
+  UserStructure,
+  ContentStructure,
+  SimpleUser,
+  StructureMember,
+  InfoSections,
+} from "../server/src/types/interface";
 
 // adminOptions
 import { AdminOptionRequest } from "../server/src/controllers/AdminOptionController";
@@ -16,7 +24,7 @@ import {
   DispositifStatusRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
-  CreateDispositifRequest
+  CreateDispositifRequest,
 } from "../server/src/controllers/dispositifController";
 import { GetDispositifResponse } from "../server/src/workflows/dispositif/getContentById";
 import { GetDispositifsResponse } from "../server/src/workflows/dispositif/getDispositifs";
@@ -24,6 +32,7 @@ import { GetStatisticsResponse } from "../server/src/workflows/dispositif/getSta
 import { GetAllDispositifsResponse } from "../server/src/workflows/dispositif/getAllDispositifs";
 import { GetCountDispositifsResponse } from "../server/src/workflows/dispositif/getCountDispositifs";
 import { GetUserContributionsResponse } from "../server/src/workflows/dispositif/getUserContributions";
+import { GetDispositifsWithTranslationAvancementResponse } from "../server/src/workflows/dispositif/getDispositifsWithTranslationAvancement";
 
 // images
 import { PostImageResponse } from "../server/src/workflows/images/postImages";
@@ -35,17 +44,10 @@ import { GetLanguagesResponse } from "../server/src/workflows/langues/getLanguag
 import { GetLogResponse } from "../server/src/workflows/log/getLogs";
 
 // mail
-import {
-  ImprovementsRequest,
-  SubscriptionRequest,
-  AddContactRequest
-} from "../server/src/controllers/mailController"
+import { ImprovementsRequest, SubscriptionRequest, AddContactRequest } from "../server/src/controllers/mailController";
 
 // needs
-import {
-  NeedRequest,
-  UpdatePositionsRequest
-} from "../server/src/controllers/needController";
+import { NeedRequest, UpdatePositionsRequest } from "../server/src/controllers/needController";
 import { GetNeedResponse } from "../server/src/workflows/needs/getNeeds";
 import { UpdatePositionsNeedResponse } from "../server/src/workflows/needs/updatePositions";
 
@@ -53,9 +55,7 @@ import { UpdatePositionsNeedResponse } from "../server/src/workflows/needs/updat
 import { SendNotificationsRequest } from "../server/src/controllers/notificationsController";
 
 // sms
-import {
-  DownloadAppRequest, ContentLinkRequest
-} from "../server/src/controllers/smsController";
+import { DownloadAppRequest, ContentLinkRequest } from "../server/src/controllers/smsController";
 
 // structures
 import { GetStructureStatisticsRequest } from "../server/src/controllers/structureController";
@@ -70,6 +70,9 @@ import { GetThemeResponse } from "../server/src/workflows/themes/getThemes";
 import { PostThemeResponse } from "../server/src/workflows/themes/postThemes";
 import { PatchThemeResponse } from "../server/src/workflows/themes/patchTheme";
 
+// translations
+import { TraductionsStatus } from "../server/src/typegoose";
+
 // tts
 import { TtsRequest } from "../server/src/controllers/ttsController";
 
@@ -83,7 +86,7 @@ import {
   ResetPasswordRequest,
   LoginRequest,
   NewPasswordRequest,
-  UpdateUserRequest
+  UpdateUserRequest,
 } from "../server/src/controllers/userController";
 import { GetUserFavoritesResponse } from "../server/src/workflows/users/getUserFavoritesInLocale";
 import { GetActiveUsersResponse } from "../server/src/workflows/users/getActiveUsers";
@@ -132,6 +135,7 @@ export type {
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
   CreateDispositifRequest,
+  GetDispositifsWithTranslationAvancementResponse,
 
   // images
   PostImageResponse,
@@ -201,3 +205,5 @@ export type {
   PostWidgetResponse,
   PatchWidgetResponse,
 };
+
+export { TraductionsStatus };

@@ -37,7 +37,7 @@ export const RoleCheckBox = (props: RoleCheckBoxProps) => (
 );
 
 interface LangueDetailProps {
-  langue: { langueCode: string; langueFr: string };
+  langue: { langueCode?: string; langueFr: string };
 }
 export const LangueDetail = (props: LangueDetailProps) => (
   <div className={styles.langue}>

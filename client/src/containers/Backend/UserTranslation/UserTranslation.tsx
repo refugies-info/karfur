@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { Id } from "api-types";
 import { userSelector } from "services/User/user.selectors";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -24,7 +25,6 @@ import { activatedLanguages } from "data/activatedLanguages";
 import useRouterLocale from "hooks/useRouterLocale";
 import { useRouter } from "next/router";
 import { useLanguages } from "hooks";
-import { Id } from "api-types";
 
 const availableLanguages = activatedLanguages.map((l) => l.i18nCode).filter((ln) => ln !== "fr");
 
@@ -42,7 +42,7 @@ const UserTranslation = (props: Props) => {
   const [showTraducteurModal, setShowTraducteurModal] = useState(false);
   const [showNeedsModal, setShowNeedsModal] = useState(false);
   const [showCompleteProfilModal, setShowCompleteProfilModal] = useState(false);
-  const [selectedNeedId, setSelectedNeedId] = useState<Id | null>(null);
+  const [selectedNeedId, setSelectedNeedId] = useState<Id>();
 
   const toggleOneNeedTranslationModal = () => setShowOneNeedTranslationModal(!showOneNeedTranslationModal);
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { IDispositifTranslation, TranslationStatus, ITypeContenu } from "types/interface";
+import { ITypeContenu } from "types/interface";
 import styled from "styled-components";
+import { GetDispositifsWithTranslationAvancementResponse, TraductionsStatus } from "api-types";
 import { LanguageTitle, FilterButton, TypeContenuFilterButton } from "./SubComponents";
 import { TranslationAvancementTable } from "./TranslationAvancementTable";
 import { filterData } from "./functions";
@@ -16,7 +17,7 @@ interface Props {
   history: any;
   actualLanguage: string;
   isExpert: boolean;
-  data: IDispositifTranslation[];
+  data: GetDispositifsWithTranslationAvancementResponse[];
   isAdmin: boolean;
   toggleTraducteurModal: () => void;
   toggleTutoModal: () => void;
@@ -63,18 +64,21 @@ const IndicatorText = styled.div`
   margin-right: 8px;
 `;
 
-const getInitialFilterStatus = (isExpert: boolean, data: IDispositifTranslation[]) => {
-  if (!isExpert) return "À traduire";
-  const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir").length;
-  if (nbARevoir > 0) return "À revoir";
-  return "En attente";
+const getInitialFilterStatus = (
+  isExpert: boolean,
+  data: GetDispositifsWithTranslationAvancementResponse[],
+): TraductionsStatus => {
+  if (!isExpert) return TraductionsStatus.TO_TRANSLATE;
+  const nbARevoir = data.filter((trad) => trad.tradStatus === TraductionsStatus.TO_REVIEW).length;
+  if (nbARevoir > 0) return TraductionsStatus.TO_REVIEW;
+  return TraductionsStatus.PENDING;
 };
 export const TranslationsAvancement = (props: Props) => {
   const routerLocale = useRouterLocale();
   const { getLanguage, userTradLanguages } = useLanguages();
 
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
+  const [statusFilter, setStatusFilter] = useState<TraductionsStatus | "all">(
     getInitialFilterStatus(props.isExpert, props.data),
   );
   const [typeContenuFilter, setTypeContenuFilter] = useState<ITypeContenu | "all">("dispositif");
@@ -85,7 +89,7 @@ export const TranslationsAvancement = (props: Props) => {
     }
   };
 
-  const onFilterClick = (status: TranslationStatus | "all") => {
+  const onFilterClick = (status: TraductionsStatus | "all") => {
     if (status === statusFilter) return setStatusFilter("all");
     return setStatusFilter(status);
   };
@@ -147,31 +151,31 @@ export const TranslationsAvancement = (props: Props) => {
         <Row>
           {props.isExpert && (
             <FilterButton
-              status="À revoir"
-              isSelected={statusFilter === "À revoir"}
+              status={TraductionsStatus.TO_REVIEW}
+              isSelected={statusFilter === TraductionsStatus.TO_REVIEW}
               nbContent={nbARevoir}
-              onClick={() => onFilterClick("À revoir")}
+              onClick={() => onFilterClick(TraductionsStatus.TO_REVIEW)}
             />
           )}
           <FilterButton
-            status="À traduire"
-            isSelected={statusFilter === "À traduire"}
+            status={TraductionsStatus.TO_TRANSLATE}
+            isSelected={statusFilter === TraductionsStatus.TO_TRANSLATE}
             nbContent={nbATraduire}
-            onClick={() => onFilterClick("À traduire")}
+            onClick={() => onFilterClick(TraductionsStatus.TO_TRANSLATE)}
           />
           {props.isExpert && (
             <FilterButton
-              status="En attente"
-              isSelected={statusFilter === "En attente"}
+              status={TraductionsStatus.PENDING}
+              isSelected={statusFilter === TraductionsStatus.PENDING}
               nbContent={nbAValider}
-              onClick={() => onFilterClick("En attente")}
+              onClick={() => onFilterClick(TraductionsStatus.PENDING)}
             />
           )}
           <FilterButton
-            status="Validée"
-            isSelected={statusFilter === "Validée"}
+            status={TraductionsStatus.VALIDATED}
+            isSelected={statusFilter === TraductionsStatus.VALIDATED}
             nbContent={nbPubliees}
-            onClick={() => onFilterClick("Validée")}
+            onClick={() => onFilterClick(TraductionsStatus.VALIDATED)}
           />
           <TypeContenuFilterButton
             isSelected={typeContenuFilter === "dispositif"}

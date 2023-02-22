@@ -31,7 +31,7 @@ export const updateLanguagesAvancement = async () => {
       logger.info("[updateLanguagesAvancement] before update avancement", {
         language: langue.i18nCode,
         nbActivesContents,
-        nbPublishedTrad
+        nbPublishedTrad,
       });
 
       const tradRatio = nbPublishedTrad / nbActivesContents;
@@ -42,3 +42,75 @@ export const updateLanguagesAvancement = async () => {
   logger.info("[updateLanguagesAvancement] successfully updated avancement");
   return;
 };
+
+/*
+AGGREGATION MONGO
+
+[
+  {
+    $facet:
+      /**
+       * outputFieldN: The first output field.
+       * stageN: The first aggregation stage.
+       * /
+      {
+        actives: [
+          {
+            $match: {
+              status: "Actif",
+            },
+          },
+          {
+            $count: "count",
+          },
+        ],
+        activesAndTranslated: [
+          {
+            $match: {
+              "translations.fa": {
+                $exists: true,
+              },
+            },
+          },
+          {
+            $count: "count",
+          },
+        ],
+      },
+  },
+  {
+    $addFields:
+      /**
+       * newField: The new field name.
+       * expression: The new field expression.
+       * /
+      {
+        total: {
+          $arrayElemAt: ["$actives", 0],
+        },
+        totalTranslated: {
+          $arrayElemAt: [
+            "$activesAndTranslated",
+            0,
+          ],
+        },
+      },
+  },
+  {
+    $addFields:
+      /**
+       * newField: The new field name.
+       * expression: The new field expression.
+       * /
+      {
+        avancement: {
+          $divide: [
+            "$total.count",
+            "$totalTranslated.count",
+          ],
+        },
+      },
+  },
+]
+
+*/

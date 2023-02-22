@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { IDispositifTranslation } from "types/interface";
 import styled from "styled-components";
 import { colors } from "colors";
 import { Table } from "reactstrap";
 import { Link } from "react-router-dom";
+import { GetDispositifsWithTranslationAvancementResponse, TraductionsStatus } from "api-types";
 import { TypeContenu } from "../../UserContributions/components/SubComponents";
 import { Title, TabHeader } from "../../Admin/sharedComponents/SubComponents";
 import { ProgressWithValue, TradStatus } from "./SubComponents";
@@ -23,7 +23,7 @@ moment.locale("fr");
 
 interface Props {
   isExpert: boolean;
-  data: IDispositifTranslation[];
+  data: GetDispositifsWithTranslationAvancementResponse[];
   history: any;
   langueId: Id | null;
   isAdmin: boolean;
@@ -68,13 +68,13 @@ export const TranslationAvancementTable = (props: Props) => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const routerLocale = useRouterLocale();
 
-  const goToTraduction = (event: any, element: IDispositifTranslation) => {
+  const goToTraduction = (event: any, element: GetDispositifsWithTranslationAvancementResponse) => {
     if (props.user && props.user.email === "") {
       props.toggleCompleteProfilModal();
       props.setElementToTranslate(element);
       event.preventDefault();
     } else {
-      if (!props.langueId || (!props.isExpert && element.tradStatus === "Validée")) {
+      if (!props.langueId || (!props.isExpert && element.tradStatus === TraductionsStatus.VALIDATED)) {
         event.preventDefault();
       }
     }
@@ -93,7 +93,7 @@ export const TranslationAvancementTable = (props: Props) => {
   };
 
   const dispatch = useDispatch();
-  const deleteTrad = (e: any, element: IDispositifTranslation) => {
+  const deleteTrad = (e: any, element: GetDispositifsWithTranslationAvancementResponse) => {
     e.stopPropagation();
     Swal.fire({
       title: "Êtes-vous sûr ?",
@@ -170,7 +170,7 @@ export const TranslationAvancementTable = (props: Props) => {
             return (
               <tr key={key} className={styles.line}>
                 <td className={styles.first + " align-middle"}>
-                  <TypeContenu type={element.type || "dispositif"} isDetailedVue={false} />
+                  <TypeContenu type={element.typeContenu || "dispositif"} isDetailedVue={false} />
                 </td>
                 <td className="align-middle">
                   <div style={{ maxWidth: "350px" }}>
@@ -183,7 +183,7 @@ export const TranslationAvancementTable = (props: Props) => {
                           "/backend" +
                           (props.isExpert ? "/validation" : "/traduction") +
                           "/" +
-                          (element.type || "dispositif"),
+                          (element.typeContenu || "dispositif"),
                         search: `?language=${props.langueId}&dispositif=${element._id}`,
                       }}
                     >
@@ -193,13 +193,13 @@ export const TranslationAvancementTable = (props: Props) => {
                 </td>
 
                 <td className="align-middle">
-                  {(!props.isExpert || element.tradStatus === "À traduire") && (
+                  {(!props.isExpert || element.tradStatus === TraductionsStatus.TO_TRANSLATE) && (
                     <ProgressWithValue avancementTrad={element.avancementTrad} isExpert={props.isExpert} />
                   )}
                 </td>
                 {props.isExpert && (
                   <td className="align-middle">
-                    <ProgressWithValue avancementTrad={element.avancementExpert} isExpert={props.isExpert} />
+                    <ProgressWithValue avancementTrad={element.avancementValidation} isExpert={props.isExpert} />
                   </td>
                 )}
 

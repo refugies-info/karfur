@@ -6,6 +6,7 @@ import FButton from "../../../../components/UI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
 import CustomSearchBar from "components/UI/CustomSeachBar";
+import { TraductionsStatus } from "api-types";
 
 const RowContainer = styled.div`
   display: flex;
@@ -68,9 +69,14 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
       </RowContainer>
       <FilterBarContainer>
         <Row>
-          <FilterButton status="À traduire" isSelected={false} nbContent={"..."} onClick={() => {}} />
+          <FilterButton
+            status={TraductionsStatus.TO_TRANSLATE}
+            isSelected={false}
+            nbContent={"..."}
+            onClick={() => {}}
+          />
 
-          <FilterButton status="Validée" isSelected={false} nbContent={"..."} onClick={() => {}} />
+          <FilterButton status={TraductionsStatus.VALIDATED} isSelected={false} nbContent={"..."} onClick={() => {}} />
           <TypeContenuFilterButton isSelected={true} name="Dispositifs" onClick={() => {}} nbContent={"..."} />
           <TypeContenuFilterButton isSelected={false} name="Démarches" onClick={() => {}} nbContent={"..."} />
         </Row>
