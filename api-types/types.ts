@@ -58,7 +58,7 @@ import {
 } from "../server/src/controllers/smsController";
 
 // structures
-import { GetStructureStatisticsRequest, PostStructureRequest } from "../server/src/controllers/structureController";
+import { GetStructureStatisticsRequest, PostStructureRequest, PatchStructureRequest } from "../server/src/controllers/structureController";
 import { GetAllStructuresResponse } from "../server/src/workflows/structure/getAllStructures";
 import { GetStructureResponse } from "../server/src/workflows/structure/getStructureById";
 import { GetStructureStatisticsResponse } from "../server/src/workflows/structure/getStatistics";
@@ -167,6 +167,7 @@ export type {
   GetStructureStatisticsResponse,
   GetActiveStructuresResponse,
   PostStructureRequest,
+  PatchStructureRequest,
 
   // themes
   ThemeRequest,

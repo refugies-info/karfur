@@ -14,7 +14,7 @@ import { userSelector } from "../User/user.selectors";
 import Router from "next/router";
 import { setUserRoleInStructureActionCreator } from "../User/user.actions";
 import { APIResponse } from "types/interface";
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse, PatchStructureRequest } from "api-types";
 import { UserState } from "services/User/user.reducer";
 
 export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructureActionCreator>): SagaIterator {
@@ -52,44 +52,44 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
     logger.info("[updateUserStructure] updating user structure", {
       payload: action.payload,
     });
-    const { modifyMembres, data } = action.payload;
-    let structureId;
-    if (!modifyMembres) {
-      const structure: GetStructureResponse = yield select(userStructureSelector);
-      structureId = structure._id;
-      // we don't want to update membres because they are formatted
-      // FIXME delete structure.membres;
+    const { membres, structure } = action.payload;
+    let structureId
+    if (structure) {
+      const structureFromStore: GetStructureResponse = yield select(userStructureSelector);
+      structureId = structureFromStore._id;
       if (!structure) {
         logger.info("[updateUserStructure] no structure to update");
         return;
       }
-      yield call(API.updateStructure, { query: structure });
-    } else if (data) {
+      const updatedStructure: PatchStructureRequest = { ...structure };
+      yield call(API.updateStructure, structureId, updatedStructure);
+      yield put(setUserStructureActionCreator({ ...structureFromStore, ...structure }))
+    } else if (membres) {
       let query;
-      if (data.type === "create") {
+      if (membres.type === "create") {
         query = {
-          membreId: data.userId,
-          structureId: data.structureId,
+          membreId: membres.userId,
+          structureId: membres.structureId,
           action: "create",
           role: "contributeur",
         };
-      } else if (data.type === "modify" && data.newRole) {
+      } else if (membres.type === "modify" && membres.newRole) {
         query = {
-          membreId: data.userId,
-          structureId: data.structureId,
+          membreId: membres.userId,
+          structureId: membres.structureId,
           action: "modify",
-          role: data.newRole,
+          role: membres.newRole,
         };
-      } else if (data.type === "delete") {
+      } else if (membres.type === "delete") {
         query = {
-          membreId: data.userId,
-          structureId: data.structureId,
+          membreId: membres.userId,
+          structureId: membres.structureId,
           action: "delete",
         };
       } else {
         throw new Error("ERROR_IN_DATA");
       }
-      structureId = data.structureId;
+      structureId = membres.structureId;
 
       yield call(API.modifyUserRoleInStructure, {
         query,
@@ -99,7 +99,7 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
     }
     yield put(
       fetchUserStructureActionCreator({
-        structureId: structureId,
+        structureId,
         shouldRedirect: true,
       }),
     );

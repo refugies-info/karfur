@@ -75,6 +75,7 @@ import {
   NewPasswordResponse,
   UpdateUserRequest,
   PostStructureRequest,
+  PatchStructureRequest,
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -304,11 +305,9 @@ const API = {
     const headers = getHeaders();
     return instance.post("/structures", body, { headers });
   },
-  updateStructure: (query: any) => {
+  updateStructure: (id: Id, body: PatchStructureRequest): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/structures/updateStructure", query, {
-      headers,
-    });
+    return instance.patch(`/structures/${id}`, body, { headers });
   },
   modifyUserRoleInStructure: (query: any) => {
     const headers = getHeaders();

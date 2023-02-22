@@ -28,7 +28,7 @@ import { colors } from "colors";
 import { useRouter } from "next/router";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { useToggle } from "react-use";
-import { GetLogResponse, Id } from "api-types";
+import { GetLogResponse, Id, PatchStructureRequest } from "api-types";
 import { allThemesSelector } from "services/Themes/themes.selectors";
 
 moment.locale("fr");
@@ -111,12 +111,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
 
   const changeNom = (nom: string) =>
     structure
-      ? API.updateStructure({
-          query: {
-            _id: structure._id,
-            nom,
-          },
-        }).then(() => updateStructuresStore(structure._id, "nom", nom))
+      ? API.updateStructure(structure._id, { nom }).then(() => updateStructuresStore(structure._id, "nom", nom))
       : Promise.reject("No structure");
 
   const onNotesChange = (e: any) => {
@@ -143,14 +138,11 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
         if (!res.value) return;
       }
 
-      const queryStructure = {
-        query: {
-          _id: structure._id,
-          [property]: newStatus,
-        },
+      const queryStructure: PatchStructureRequest = {
+        [property]: newStatus,
       };
 
-      await API.updateStructure(queryStructure);
+      await API.updateStructure(structure._id, queryStructure);
       updateStructuresStore(structure._id, property, newStatus);
 
       if (property === "status") {

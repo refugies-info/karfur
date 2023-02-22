@@ -1,4 +1,4 @@
-import { Controller, Get, Route, Request, Query, Security, Path, Queries, Post, Body } from "tsoa";
+import { Controller, Get, Route, Request, Query, Security, Path, Queries, Post, Body, Patch } from "tsoa";
 import express, { Request as ExRequest } from "express";
 
 const router = express.Router();
@@ -13,7 +13,6 @@ import { getStatistics, GetStructureStatisticsResponse } from "../workflows/stru
 import { IRequest, Picture, Response, ResponseWithData } from "../types/interface";
 
 /* TODO: use tsoa */
-router.post("/updateStructure", checkToken.check, updateStructure);
 router.post("/modifyUserRoleInStructure", checkToken.check, modifyUserRoleInStructure);
 
 export { router };
@@ -30,6 +29,21 @@ export interface PostStructureRequest {
   mail_contact: string;
   responsable: string | null;
   nom: string;
+}
+
+// TODO: refactor when rebuild add structure
+export interface PatchStructureRequest {
+  picture?: Picture | null;
+  contact?: string;
+  phone_contact?: string;
+  mail_contact?: string;
+  responsable?: string | null;
+  nom?: string;
+  adminComments?: string;
+  status?: string;
+  adminProgressionStatus?: string;
+  adminPercentageProgressionStatus?: string
+  hasResponsibleSeenNotification?: boolean
 }
 
 @Route("structures")
@@ -73,5 +87,18 @@ export class StructureController extends Controller {
     @Request() request: ExRequest,
   ): ResponseWithData<GetStructureResponse> {
     return getStructureById(id, locale, request.user);
+  }
+
+  @Security({
+    jwt: [],
+    fromSite: []
+  })
+  @Patch("{id}")
+  public async updateStructure(
+    @Path() id: string,
+    @Body() body: PatchStructureRequest,
+    @Request() request: ExRequest,
+  ): Response {
+    return updateStructure(id, body, request.user);
   }
 }
