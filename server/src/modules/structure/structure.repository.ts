@@ -3,7 +3,7 @@ import { asyncForEach } from "../../libs/asyncForEach";
 import { DispositifId, Structure, StructureId, StructureModel, UserId } from "../../typegoose";
 import { Id, Picture } from "../../types/interface";
 import { FilterQuery, ProjectionFields } from "mongoose";
-import { DocumentType } from "@typegoose/typegoose";
+import { Metadatas } from "../../typegoose/Dispositif";
 
 export const getStructureFromDB = async (
   id: StructureId,
@@ -42,10 +42,10 @@ export const getStructuresWithDispos = async (
   logger.info("[getStructuresWithDispos] with dispositifs associes");
   return StructureModel.find(query, neededFields)
     .populate<{
-      dispositifsAssocies: { _id: Id, status: string }[],
+      dispositifsAssocies: { _id: Id, status: string, metadatas: Metadatas }[],
       createur: { _id: Id, username: string, email: string, picture: Picture | null }
     }>([
-      { path: "dispositifsAssocies", select: "_id status" },
+      { path: "dispositifsAssocies", select: "_id status metadatas" },
       { path: "createur", select: "_id username email picture" },
     ])
 }

@@ -1,14 +1,14 @@
 import logger from "../../../logger";
 import { Id, ResponseWithData } from "../../../types/interface";
 import { updateWidget } from "../../../modules/widgets/widgets.repository";
-import { Widget } from "../../../typegoose";
+import { Id as ObjectId, Widget } from "../../../typegoose";
 import { WidgetRequest } from "../../../controllers/widgetController";
 
 export interface PatchWidgetResponse {
   _id: Id;
   name: string;
   tags: string[];
-  themes: Id[];
+  themes: string[];
   typeContenu: ("dispositif" | "demarche")[];
   department: string;
   languages: string[];
@@ -24,11 +24,9 @@ export const patchWidget = async (
   logger.info("[patchWidget] received", id);
 
   const widget: Partial<Widget> = {
-    //@ts-ignore
-    author: userId, // FIXME ref types
+    author: new ObjectId(userId),
     typeContenu: body.typeContenu,
-    //@ts-ignore
-    themes: body.themes, // FIXME ref types
+    themes: body.themes.map(t => new ObjectId(t.toString())),
     languages: body.languages,
     department: body.department,
   };

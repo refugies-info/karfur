@@ -1,14 +1,14 @@
 import logger from "../../../logger";
-import { Id, ResponseWithData } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { createWidget } from "../../../modules/widgets/widgets.repository";
-import { Widget } from "../../../typegoose";
+import { Id, Widget } from "../../../typegoose";
 import { WidgetRequest } from "../../../controllers/widgetController";
 
 export interface PostWidgetResponse {
   _id: Id;
   name: string;
   tags: string[];
-  themes: Id[];
+  themes: string[];
   typeContenu: ("dispositif" | "demarche")[];
   department: string;
   languages: string[];
@@ -21,11 +21,9 @@ export const postWidgets = async (body: WidgetRequest, userId: string): Response
 
   const widget = new Widget();
   widget.name = body.name;
-  //@ts-ignore
-  widget.themes = body.themes; // FIXME ref types
+  widget.themes = body.themes.map(t => new Id(t.toString()));
   widget.typeContenu = body.typeContenu;
-  //@ts-ignore
-  widget.author = userId; // FIXME ref types
+  widget.author = new Id(userId);
 
   if (body.languages?.length) {
     widget.languages = body.languages;

@@ -1,6 +1,7 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { isInteger } from "lodash";
 import { Base } from "./Base";
+import { ImageSchema } from "./generics";
 import { Theme, ThemeId } from "./Theme";
 
 export class NeedTranslation {
@@ -32,9 +33,9 @@ export class Need extends Base {
   })
   public position?: number;
 
-  // FIXME : is this used anymore ? no record in DB
-  //   @prop()
-  //   public image: imageSchema;
+
+  @prop({ _id: false })
+  public image: ImageSchema;
 
   /**
    * Translations

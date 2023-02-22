@@ -93,18 +93,6 @@ export const incrementDispositifViews = async (id: string, properties: ("nbFavor
 export const getActiveDispositifsFromDBWithoutPopulate = (needFields: Object) =>
   DispositifModel.find({ status: "Actif", typeContenu: "dispositif" }, needFields);
 
-// TODO: delete
-// export const getAllContentsFromDB = async () =>
-//   await DispositifModel.find({}, { audienceAge: 1, contenu: 1, typeContenu: 1, status: 1 });
-//
-// export const getAllDemarchesFromDB = async () => await DispositifModel.find({ typeContenu: "demarche" }, { _id: 1 });
-//
-// export const removeAudienceAgeInDB = async (dispositifId: DispositifId) =>
-//   await DispositifModel.update({ _id: dispositifId }, { $unset: { audienceAge: "" } });
-//
-// export const removeVariantesInDB = async (dispositifId: DispositifId) =>
-//   await DispositifModel.update({ _id: dispositifId }, { $unset: { variantes: "" } });
-
 export const getDraftDispositifs = () =>
   DispositifModel.find(
     { status: "Brouillon" },

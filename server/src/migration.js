@@ -3,6 +3,7 @@ const { MongoClient, ObjectId } = require("mongodb");
 const himalaya = require("himalaya");
 const { v4: uuidv4 } = require("uuid");
 const { Types } = require("mongoose");
+const { Id } = require("./typegoose");
 
 const dbPath = "mongodb://127.0.0.1:27017/heroku_wbj38s57?serverSelectionTimeoutMS=60000";
 const client = new MongoClient(dbPath);
@@ -702,7 +703,7 @@ const adaptUserSelectedLanguages = async (usersColl) => {
     // });
     await usersColl.updateOne(
       { _id: user._id },
-      { $set: { selectedLanguages: (user.selectedLanguages || []).map((language) => language._id) } }, // TODO: new ObjectId(language._id) ?
+      { $set: { selectedLanguages: (user.selectedLanguages || []).map((language) => new Id(language._id)) } },
     );
   }
 };

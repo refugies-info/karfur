@@ -20,15 +20,15 @@ export const loginExceptionsManager = (error: LoginError) => {
     case "PASSWORD_TOO_WEAK":
       throw new InvalidRequestError("Le mot de passe est trop faible");
     case "WRONG_CODE":
-      throw new AuthenticationError("Erreur à la vérification du code", "WRONG_CODE", "no-alert"); // 402
+      throw new AuthenticationError("Erreur à la vérification du code", "WRONG_CODE", "no-alert");
     case "ERROR_WHILE_SENDING_ADMIN_CODE":
-      throw new InternalError("Erreur à l'envoi du code à ce numéro", "ERROR_WHILE_SENDING_ADMIN_CODE"); // 404
+      throw new InternalError("Erreur à l'envoi du code à ce numéro", "ERROR_WHILE_SENDING_ADMIN_CODE");
     case "NO_CONTACT":
       throw new InvalidRequestError("No contact informations", "NO_CONTACT", error.data); // TODO: no alert
     case "NO_CODE_SUPPLIED":
       throw new InvalidRequestError("No code supplied", "NO_CODE_SUPPLIED", error.data); // TODO: no alert
     case "USER_DELETED":
-      throw new NotFoundError("Utilisateur supprimé", "USER_DELETED", error.data); // 405
+      throw new NotFoundError("Utilisateur supprimé", "USER_DELETED", error.data);
     case "ADMIN_FORBIDDEN":
       throw new AuthenticationError("Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site", "ADMIN_FORBIDDEN"); // 401
     case "NO_EMAIL":

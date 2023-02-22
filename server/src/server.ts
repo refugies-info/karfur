@@ -66,8 +66,6 @@ app.use(function (_, res, next) {
 // TODO: delete
 app.use(function (req, _, next) {
   //@ts-ignore
-  req.fromPostman = req.headers["postman-secret"] === process.env.POSTMAN_SECRET;
-  //@ts-ignore
   req.fromSite = req.headers["site-secret"] === process.env.REACT_APP_SITE_SECRET;
   next();
 });

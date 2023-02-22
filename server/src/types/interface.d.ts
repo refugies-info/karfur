@@ -11,7 +11,6 @@ declare global {
   namespace Express {
     export interface Request {
       fromSite?: boolean; // TODO: delete
-      fromPostman?: boolean; // TODO: delete
       roles?: Role[]; // TODO: delete? (get it in the workflow)
       user?: DocumentType<User>;
       userId?: typeof User._id;
