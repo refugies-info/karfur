@@ -77,12 +77,10 @@ RegisterRoutes(app);
 
 const traductionController = require(__dirname + "/controllers/traductionController");
 const dispositifController = require(__dirname + "/controllers/dispositifController");
-const structureController = require(__dirname + "/controllers/structureController");
 
 app.enable("strict routing");
 app.use("/traduction", traductionController.router);
 app.use("/dispositifs", dispositifController.router);
-app.use("/structures", structureController.router);
 
 app.use(errors()); // TODO: delete and use tsoa instead
 

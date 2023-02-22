@@ -14,7 +14,7 @@ import { userSelector } from "../User/user.selectors";
 import Router from "next/router";
 import { setUserRoleInStructureActionCreator } from "../User/user.actions";
 import { APIResponse } from "types/interface";
-import { GetStructureResponse, PatchStructureRequest } from "api-types";
+import { GetStructureResponse, PatchStructureRequest, PatchStructureRolesRequest } from "api-types";
 import { UserState } from "services/User/user.reducer";
 
 export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructureActionCreator>): SagaIterator {
@@ -65,25 +65,22 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
       yield call(API.updateStructure, structureId, updatedStructure);
       yield put(setUserStructureActionCreator({ ...structureFromStore, ...structure }))
     } else if (membres) {
-      let query;
+      let query: PatchStructureRolesRequest | null = null;
       if (membres.type === "create") {
         query = {
-          membreId: membres.userId,
-          structureId: membres.structureId,
+          membreId: membres.userId.toString(),
           action: "create",
           role: "contributeur",
         };
       } else if (membres.type === "modify" && membres.newRole) {
         query = {
-          membreId: membres.userId,
-          structureId: membres.structureId,
+          membreId: membres.userId.toString(),
           action: "modify",
           role: membres.newRole,
         };
       } else if (membres.type === "delete") {
         query = {
-          membreId: membres.userId,
-          structureId: membres.structureId,
+          membreId: membres.userId.toString(),
           action: "delete",
         };
       } else {
@@ -91,9 +88,7 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
       }
       structureId = membres.structureId;
 
-      yield call(API.modifyUserRoleInStructure, {
-        query,
-      });
+      yield call(API.updateStructureRoles, membres.structureId, query);
     } else {
       throw new Error("NO_DATA");
     }

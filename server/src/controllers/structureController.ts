@@ -1,8 +1,6 @@
 import { Controller, Get, Route, Request, Query, Security, Path, Queries, Post, Body, Patch } from "tsoa";
-import express, { Request as ExRequest } from "express";
+import { Request as ExRequest } from "express";
 
-const router = express.Router();
-const checkToken = require("./account/checkToken");
 import { getAllStructures, GetAllStructuresResponse } from "../workflows/structure/getAllStructures";
 import { getStructureById, GetStructureResponse } from "../workflows/structure/getStructureById";
 import { getActiveStructures, GetActiveStructuresResponse } from "../workflows/structure/getActiveStructures";
@@ -11,11 +9,6 @@ import { updateStructure } from "../workflows/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
 import { getStatistics, GetStructureStatisticsResponse } from "../workflows/structure/getStatistics";
 import { IRequest, Picture, Response, ResponseWithData } from "../types/interface";
-
-/* TODO: use tsoa */
-router.post("/modifyUserRoleInStructure", checkToken.check, modifyUserRoleInStructure);
-
-export { router };
 
 type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
 export interface GetStructureStatisticsRequest {
@@ -44,6 +37,12 @@ export interface PatchStructureRequest {
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus?: string
   hasResponsibleSeenNotification?: boolean
+}
+
+export interface PatchStructureRolesRequest {
+  membreId: string;
+  action: "delete" | "modify" | "create";
+  role?: string;
 }
 
 @Route("structures")
@@ -100,5 +99,18 @@ export class StructureController extends Controller {
     @Request() request: ExRequest,
   ): Response {
     return updateStructure(id, body, request.user);
+  }
+
+  @Security({
+    jwt: [],
+    fromSite: []
+  })
+  @Patch("{id}/roles")
+  public async updateRoles(
+    @Path() id: string,
+    @Body() body: PatchStructureRolesRequest,
+    @Request() request: ExRequest,
+  ): Response {
+    return modifyUserRoleInStructure(id, body, request.user);
   }
 }

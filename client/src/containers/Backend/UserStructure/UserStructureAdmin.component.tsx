@@ -6,7 +6,7 @@ import { colors } from "colors";
 import { userSelector } from "services/User/user.selectors";
 import API from "utils/API";
 import Swal from "sweetalert2";
-import { GetStructureResponse, Id } from "api-types";
+import { GetStructureResponse, Id, PatchStructureRolesRequest } from "api-types";
 
 declare const window: Window;
 
@@ -49,28 +49,26 @@ export const UserStructureAdminComponent = (props: Props) => {
 
   const addUserInStructure = async (userId: Id) => {
     if (!structure) return;
-    const query = {
-      membreId: userId,
-      structureId: structure._id,
+    const query: PatchStructureRolesRequest = {
+      membreId: userId.toString(),
       action: "create",
-      role: "contributeur"
+      role: "contributeur",
     };
     setIsLoading(true);
-    await API.modifyUserRoleInStructure({ query });
+    await API.updateStructureRoles(structure._id, query);
     setIsLoading(false);
     toggleReload();
   };
 
   const modifyRole = async (userId: Id, role: "contributeur" | "administrateur") => {
     if (!structure) return;
-    const query = {
-      membreId: userId,
-      structureId: structure._id,
+    const query: PatchStructureRolesRequest = {
+      membreId: userId.toString(),
       action: "modify",
-      role
+      role,
     };
     setIsLoading(true);
-    await API.modifyUserRoleInStructure({ query });
+    await API.updateStructureRoles(structure._id, query);
     setIsLoading(false);
     toggleReload();
   };
@@ -86,16 +84,15 @@ export const UserStructureAdminComponent = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, l'enlever",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     }).then(async (result) => {
       if (result.value) {
-        const query = {
-          membreId: userId,
-          structureId: structure._id,
-          action: "delete"
+        const query: PatchStructureRolesRequest = {
+          membreId: userId.toString(),
+          action: "delete",
         };
         setIsLoading(true);
-        await API.modifyUserRoleInStructure({ query });
+        await API.updateStructureRoles(structure._id, query);
         setIsLoading(false);
         toggleReload();
       }
