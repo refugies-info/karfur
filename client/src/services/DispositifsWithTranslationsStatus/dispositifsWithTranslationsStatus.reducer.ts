@@ -1,8 +1,8 @@
 import { createReducer } from "typesafe-actions";
-import { IDispositifTranslation } from "../../types/interface";
+import { GetDispositifsWithTranslationAvancementResponse } from "api-types";
 import { DispositifsWithTranslationsStatusActions } from "./dispositifsWithTranslationsStatus.actions";
 
-export type DispositifsWithTranslationsStatusState = IDispositifTranslation[];
+export type DispositifsWithTranslationsStatusState = GetDispositifsWithTranslationAvancementResponse[];
 
 const initialDispositifsWithTranslationsStatusState: DispositifsWithTranslationsStatusState = [];
 

@@ -4,79 +4,79 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
+import { APIResponse, NbDispositifsByRegion, TranslationFacets, TranslationStatistics } from "types/interface";
 import {
-  APIResponse,
-  NbDispositifsByRegion,
-  TranslationFacets,
-  TranslationStatistics,
-} from "types/interface";
-import {
-  Id,
-  PostAdminOptionResponse,
-  GetAdminOptionResponse,
-  GetDispositifResponse,
-  AdminOptionRequest,
-  PostImageResponse,
-  GetLogResponse,
-  ImprovementsRequest,
-  SubscriptionRequest,
   AddContactRequest,
-  GetNeedResponse,
-  UpdatePositionsNeedResponse,
-  NeedRequest,
-  UpdatePositionsRequest,
-  GetThemeResponse,
-  PostThemeResponse,
-  ThemeRequest,
-  GetWidgetResponse,
-  PostWidgetResponse,
-  PatchWidgetResponse,
-  WidgetRequest,
-  DownloadAppRequest,
-  ContentLinkRequest,
-  SendNotificationsRequest,
-  TtsRequest,
-  GetUserInfoResponse,
-  GetStatisticsRequest,
-  GetStatisticsResponse,
-  GetDispositifsRequest,
-  GetDispositifsResponse,
-  GetAllStructuresResponse,
-  GetAllDispositifsResponse,
-  CountDispositifsRequest,
-  GetCountDispositifsResponse,
-  AdminCommentsRequest,
-  GetUserContributionsResponse,
-  GetUserFavoritesResponse,
-  GetUserFavoritesRequest,
-  GetStructureResponse,
-  GetStructureStatisticsResponse,
-  GetStructureStatisticsRequest,
-  GetLanguagesResponse,
+  // AddUserFavorite,
+  AddUserFavoriteRequest,
   AddViewsRequest,
-  MainSponsorRequest,
+  AdminCommentsRequest,
+  AdminOptionRequest,
+  ContentLinkRequest,
+  CountDispositifsRequest,
+  CreateDispositifRequest,
+  DeleteTranslationsRequest,
+  // DeleteUserFavorite,
+  DeleteUserFavoriteRequest,
   DispositifStatusRequest,
+  DownloadAppRequest,
   GetActiveStructuresResponse,
   GetActiveUsersResponse,
+  GetAdminOptionResponse,
+  GetAllDispositifsResponse,
+  GetAllStructuresResponse,
   GetAllUsersResponse,
-  UpdateDispositifPropertiesRequest,
-  UpdateDispositifRequest,
-  CreateDispositifRequest,
-  AddUserFavoriteRequest,
-  DeleteUserFavoriteRequest,
+  GetCountDispositifsResponse,
+  GetDispositifResponse,
+  GetDispositifsRequest,
+  GetDispositifsResponse,
+  GetDispositifsWithTranslationAvancementResponse,
+  GetLanguagesResponse,
+  GetLogResponse,
+  GetNeedResponse,
+  GetStatisticsRequest,
+  GetStatisticsResponse,
+  GetStructureResponse,
+  GetStructureStatisticsRequest,
+  GetStructureStatisticsResponse,
+  GetThemeResponse,
+  GetUserContributionsResponse,
+  GetUserFavoritesRequest,
+  GetUserFavoritesResponse,
+  GetUserInfoResponse,
   GetUserStatisticsResponse,
-  UpdatePasswordResponse,
-  UpdatePasswordRequest,
-  ResetPasswordRequest,
-  ResetPasswordResponse,
+  GetWidgetResponse,
+  Id,
+  ImprovementsRequest,
   LoginRequest,
   LoginResponse,
+  MainSponsorRequest,
+  NeedRequest,
   NewPasswordRequest,
   NewPasswordResponse,
-  UpdateUserRequest,
-  PostStructureRequest,
   PatchStructureRequest,
   PatchStructureRolesRequest,
+  PatchWidgetResponse,
+  PostAdminOptionResponse,
+  PostImageResponse,
+  PostStructureRequest,
+  PostThemeResponse,
+  PostWidgetResponse,
+  ResetPasswordRequest,
+  ResetPasswordResponse,
+  SendNotificationsRequest,
+  SubscriptionRequest,
+  ThemeRequest,
+  TtsRequest,
+  UpdateDispositifPropertiesRequest,
+  UpdateDispositifRequest,
+  UpdatePasswordRequest,
+  UpdatePasswordResponse,
+  UpdatePositionsNeedResponse,
+  UpdatePositionsRequest,
+  UpdateUserRequest,
+  // UserFavoritesRequest,
+  WidgetRequest,
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -238,9 +238,11 @@ const API = {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/admin-comments`, body, { headers });
   },
-  getDispositifsWithTranslationAvancement: (locale: string) => {
+  getDispositifsWithTranslationAvancement: (
+    locale: string,
+  ): Promise<APIResponse<GetDispositifsWithTranslationAvancementResponse>> => {
     const headers = getHeaders();
-    return instance.get(`/dispositifs/getDispositifsWithTranslationAvancement?locale=${locale}`, { headers });
+    return instance.get(`/dispositifs/with-translations-status?locale=${locale}`, { headers });
   },
   getDispositifs: (query: GetDispositifsRequest): Promise<APIResponse<GetDispositifsResponse[]>> => {
     return instance.get("/dispositifs", { params: query });
@@ -400,12 +402,6 @@ const API = {
     });
   },
 
-  add_tradForReview: (query: any) => {
-    const headers = getHeaders();
-    return instance.post("/traduction/add_tradForReview", query, {
-      headers,
-    });
-  },
   getTraductionsForReview: ({ dispositif, language }: { dispositif: string; language: string }) => {
     const headers = getHeaders();
     return instance.get(`/traduction/for_review?dispositif=${dispositif}&language=${language}`, {
@@ -418,36 +414,16 @@ const API = {
       headers,
     });
   },
-  get_tradForReview: (query: any) => {
+
+  deleteTrads: (query: DeleteTranslationsRequest) => {
     const headers = getHeaders();
-    return instance.post("/traduction/get_tradForReview", query, {
-      headers,
-    });
+    return instance.delete("/traduction", { params: query, headers });
   },
-  validateTranslations: (query: any) => {
+  get_progression: (query: any = {}) => {
     const headers = getHeaders();
-    return instance.post("/traduction/validateTranslations", query, {
-      headers,
-    });
+    return instance.get("/traduction/get_progression", { params: query, headers }).then((response) => response.data);
   },
-  delete_trads: (query: any) => {
-    const headers = getHeaders();
-    return instance.post("/traduction/delete_trads", query, {
-      headers,
-    });
-  },
-  get_progression: (query: any) => {
-    const headers = getHeaders();
-    return instance.post("/traduction/get_progression", query, {
-      headers,
-    });
-  },
-  update_tradForReview: (query: any) => {
-    const headers = getHeaders();
-    return instance.post("/traduction/update_tradForReview", query, {
-      headers,
-    });
-  },
+
   get_translation: (query = {}) => {
     const headers = getHeaders();
     return instance.post("/traduction/translate", query, {
@@ -504,7 +480,7 @@ const API = {
 
   // sms
   smsDownloadApp: (body: DownloadAppRequest): Promise<APIResponse> => {
-    return instance.post("/sms/download-app", body)
+    return instance.post("/sms/download-app", body);
   },
   smsContentLink: (body: ContentLinkRequest): Promise<APIResponse> => {
     const headers = getHeaders();

@@ -19,8 +19,8 @@ interface Props {
   toggle: () => void;
   toggleOneNeedTranslationModal: () => void;
   setSelectedNeedId: (arg: Id) => void;
-  langueSelectedFr: null | string;
-  langueI18nCode: null | string;
+  langueSelectedFr?: string;
+  langueI18nCode?: string;
 }
 const Header = styled.div`
   font-weight: bold;
@@ -58,7 +58,7 @@ export const TranslationNeedsModal = (props: Props) => {
     const { statusColor, statusText } = getStatusColorAndText(
       need,
       // @ts-ignore
-      props.langueI18nCode
+      props.langueI18nCode,
     );
     return { ...need, statusText, statusColor };
   });
@@ -139,7 +139,7 @@ export const TranslationNeedsModal = (props: Props) => {
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "flex-end"
+            justifyContent: "flex-end",
           }}
         >
           <FButton className="me-2" type="white" name="arrow-back-outline" onClick={props.toggle}>
@@ -201,7 +201,7 @@ export const TranslationNeedsModal = (props: Props) => {
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
         }}
       >
         <FButton type="tuto" name={"play-circle-outline"} onClick={toggleTutorielModal}>

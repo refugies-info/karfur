@@ -9,8 +9,8 @@ import { availableLanguages } from "../../libs/getFormattedLocale";
 
 import { parseDispositif, filterTargets, filterTargetsForDemarche, getNotificationEmoji } from "./helpers";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
-import { Dispositif, DispositifId, Languages, NotificationModel } from "../../typegoose";
-import { ContentType } from "api-types";
+import { Dispositif, DispositifId, NotificationModel } from "../../typegoose";
+import { ContentType, Languages } from "api-types";
 
 const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 
@@ -53,12 +53,12 @@ export const sendNotifications = async (messages: ExpoPushMessage[]) => {
         } catch (error) {
           logger.error("[sendNotifications]", error);
         }
-      })
+      }),
     );
   }
 };
 
-export const sendNotificationsForDispositif = async (dispositifId: DispositifId, lang: Languages = "en") => {
+export const sendNotificationsForDispositif = async (dispositifId: DispositifId, lang: Languages) => {
   const notificationActive = await isNotificationsActive();
   if (notificationActive) {
     logger.info("[sendNotificationsForDispositif] notifications actives");
@@ -70,19 +70,26 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
           translations: 1,
           typeContenu: 1,
           theme: 1,
-          notificationsSent: 1
+          notificationsSent: 1,
         },
-        "theme"
+        "theme",
       );
 
-      if (!dispositif || dispositif.typeContenu !== ContentType.DISPOSITIF) {
+      if (!dispositif) {
         logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} not found`);
+        return;
+      }
+
+      /*
+       * Pas de mail si ce n'est pas un dispositif
+       */
+      if (dispositif.isDispositif()) {
         return;
       }
 
       if (dispositif.notificationsSent && dispositif.notificationsSent[lang]) {
         logger.info(
-          `[sendNotificationsForDispositif] dispositif ${dispositifId} notifications already sent for lang ${lang}`
+          `[sendNotificationsForDispositif] dispositif ${dispositifId} notifications already sent for lang ${lang}`,
         );
         return;
       }
@@ -111,17 +118,17 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
             seen: false,
             title: `${getNotificationEmoji(dispositif)} ${t(
               lang,
-              "notifications.newOffer"
+              "notifications.newOffer",
             )} - ${dispositif.getTranslated("content.titreInformatif", lang)} ${t(
               lang,
-              "notifications.with"
+              "notifications.with",
             )} ${dispositif.getTranslated("content.titreMarque", lang)}`,
             data: {
               type: ContentType.DISPOSITIF,
-              contentId: dispositif._id.toString()
-            }
+              contentId: dispositif._id.toString(),
+            },
           };
-        })
+        }),
       );
 
       const messages: ExpoPushMessage[] = savedNotifications
@@ -132,8 +139,8 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
             body: notification.title,
             data: {
               ...notification.data,
-              notificationId: notification._id.toString()
-            }
+              notificationId: notification._id.toString(),
+            },
           };
         })
         .filter((message) => message.to);
@@ -162,10 +169,10 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
           status: 1,
           typeContenu: 1,
           theme: 1,
-          notificationsSent: 1
+          notificationsSent: 1,
           // FIXME avancement: 1
         },
-        "theme"
+        "theme",
       );
 
       if (!demarche || demarche.isDemarche()) {
@@ -180,8 +187,7 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
         return;
       }
 
-      // @ts-ignore FIXME
-      const targetUsers = filterTargetsForDemarche(await getAllAppUsers(), requirements, demarche.avancement);
+      const targetUsers = filterTargetsForDemarche(await getAllAppUsers(), requirements, demarche);
 
       logger.info(`[sendNotificationsForDemarche] demarche ${demarcheId} - ${targetUsers.length} users found`);
 
@@ -200,14 +206,14 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
             seen: false,
             title: `${getNotificationEmoji(demarche)} ${t(lang, "notifications.newOffer")} : ${demarche.getTranslated(
               "content.titreInformatif",
-              lang
+              lang,
             )}`,
             data: {
               type: ContentType.DISPOSITIF,
-              contentId: demarche._id.toString()
-            }
+              contentId: demarche._id.toString(),
+            },
           };
-        })
+        }),
       );
 
       const messages: ExpoPushMessage[] = savedNotifications
@@ -218,8 +224,8 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
             body: notification.title,
             data: {
               ...notification.data,
-              notificationId: notification._id.toString()
-            }
+              notificationId: notification._id.toString(),
+            },
           };
         })
         .filter((message) => message.to);

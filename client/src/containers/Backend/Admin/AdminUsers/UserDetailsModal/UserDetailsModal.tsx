@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Event, Indicators } from "types/interface";
+import { Event } from "types/interface";
 import Image from "next/image";
 import { Spinner, Row, Col } from "reactstrap";
 import moment from "moment";
@@ -23,7 +23,7 @@ import { NotesInput } from "../../sharedComponents/NotesInput";
 import { LogList } from "../../Logs/LogList";
 import { StructureButton } from "../../sharedComponents/StructureButton";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
-import { GetAllUsersResponse, GetLogResponse, Id } from "api-types";
+import { GetAllUsersResponse, GetLogResponse, GetProgressionResponse, Id } from "api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
@@ -41,7 +41,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
   const [phoneError, setPhoneError] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [roles, setRoles] = useState<string[]>([]);
-  const [indicators, setIndicators] = useState<null | Indicators>(null);
+  const [indicators, setIndicators] = useState<null | GetProgressionResponse>(null);
   const [selectedUserId, setSelectedUserId] = useState<Id | null>(props.selectedUserId);
 
   const allUsers = useSelector(allUsersSelector);
@@ -352,10 +352,10 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                   <Label>Minutes passées à traduire</Label>
                   {indicators ? (
                     <>
-                      <div>3 derniers mois : {getMinutes(indicators?.threeMonthsIndicator?.[0]?.timeSpent)}</div>
-                      <div>6 derniers mois : {getMinutes(indicators?.sixMonthsIndicator?.[0]?.timeSpent)}</div>
-                      <div>12 derniers mois : {getMinutes(indicators?.twelveMonthsIndicator?.[0]?.timeSpent)}</div>
-                      <div>Toujours : {getMinutes(indicators?.totalIndicator?.[0]?.timeSpent)}</div>
+                      <div>3 derniers mois : {getMinutes(indicators?.threeMonthsIndicator?.timeSpent)}</div>
+                      <div>6 derniers mois : {getMinutes(indicators?.sixMonthsIndicator?.timeSpent)}</div>
+                      <div>12 derniers mois : {getMinutes(indicators?.twelveMonthsIndicator?.timeSpent)}</div>
+                      <div>Toujours : {getMinutes(indicators?.totalIndicator?.timeSpent)}</div>
                     </>
                   ) : (
                     <Spinner />
@@ -365,10 +365,10 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                   <Label>Nombre de mots traduits</Label>
                   {indicators ? (
                     <>
-                      <div>3 derniers mois : {indicators?.threeMonthsIndicator?.[0]?.wordsCount || 0}</div>
-                      <div>6 derniers mois : {indicators?.sixMonthsIndicator?.[0]?.wordsCount || 0}</div>
-                      <div>12 derniers mois : {indicators?.twelveMonthsIndicator?.[0]?.wordsCount || 0}</div>
-                      <div>Toujours : {indicators?.totalIndicator?.[0]?.wordsCount || 0}</div>
+                      <div>3 derniers mois : {indicators?.threeMonthsIndicator?.wordsCount || 0}</div>
+                      <div>6 derniers mois : {indicators?.sixMonthsIndicator?.wordsCount || 0}</div>
+                      <div>12 derniers mois : {indicators?.twelveMonthsIndicator?.wordsCount || 0}</div>
+                      <div>Toujours : {indicators?.totalIndicator?.wordsCount || 0}</div>
                     </>
                   ) : (
                     <Spinner />

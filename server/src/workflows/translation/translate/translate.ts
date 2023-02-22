@@ -1,6 +1,6 @@
 import { Translate } from "@google-cloud/translate";
+import { Languages } from "api-types";
 import { isEmpty } from "lodash";
-import { Languages } from "../../../typegoose";
 
 const projectId = "traduction-1551702821050";
 

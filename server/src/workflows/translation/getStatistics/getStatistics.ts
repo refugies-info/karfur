@@ -1,93 +1,56 @@
-import { celebrate, Joi, Segments } from "celebrate";
 import logger from "../../../logger";
 import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
 import { getNbWordsTranslated } from "../../../modules/traductions/traductions.repository";
-import { Res, RequestFromClient } from "../../../types/interface";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { User } from "../../../typegoose";
+import { Statistics, TranslationStatisticsRequest } from "api-types";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 
-type Facets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
-interface Statistics {
-  nbTranslators?: number;
-  nbRedactors?: number;
-  nbWordsTranslated?: number;
-  nbActiveTranslators?: {
-    languageId: string;
-    count: number;
-  }[];
-}
-
-const validator = celebrate({
-  [Segments.QUERY]: Joi.object({
-    facets: Joi.array().items(
-      Joi.string().valid("nbTranslators", "nbRedactors", "nbWordsTranslated", "nbActiveTranslators")
-    )
-  })
-});
-
-interface Query {
-  facets?: Facets[];
-}
-
-export const handler = async (req: RequestFromClient<Query>, res: Res) => {
-  try {
+const getStatistics = ({ facets = [] }: TranslationStatisticsRequest): Promise<Statistics> =>
+  Promise.all([
+    getActiveLanguagesFromDB(),
+    getAllUsersForAdminFromDB({ roles: 1, last_connected: 1, selectedLanguages: 1 }),
+  ]).then(async ([languages, users]) => {
     logger.info("[getStatistics] get translations statistics");
-
-    const noFacet = !req.query.facets?.length;
-    const facets = req.query.facets || [];
-    const data: Statistics = {};
-
-    const languages = await getActiveLanguagesFromDB();
-    //@ts-ignore FIXME
-    const users: User[] = await getAllUsersForAdminFromDB({ roles: 1, last_connected: 1, selectedLanguages: 1 });
-
+    const noFacet = facets.length === 0;
+    const stats: Statistics = {};
+    const trads = users.filter((user) => user.hasRole("Trad"));
     // nbTranslators
-    let translators: User[] = [];
     if (noFacet || facets.includes("nbTranslators") || facets.includes("nbActiveTranslators")) {
-      translators = users.filter((x) => (x.roles || []).some((role: any) => role.nom === "Trad"));
-      data.nbTranslators = translators.length;
+      stats.nbTranslators = trads.length;
     }
 
     // nbRedactors
     if (noFacet || facets.includes("nbRedactors")) {
-      const redactors = users.filter((x) => (x.roles || []).some((role: any) => role.nom === "Contrib"));
-      data.nbRedactors = redactors.length;
+      const redactors = users.filter((user) => user.hasRole("Contrib"));
+      stats.nbRedactors = redactors.length;
     }
 
     // nbWordsTranslated
     if (noFacet || facets.includes("nbWordsTranslated")) {
       const nbWordsTranslated = await getNbWordsTranslated();
-      data.nbWordsTranslated = nbWordsTranslated?.[0]?.wordsCount || 0;
+      stats.nbWordsTranslated = nbWordsTranslated?.[0]?.wordsCount || 0;
     }
 
     // nbActiveTranslators
     if (noFacet || facets.includes("nbActiveTranslators")) {
       const now = Date.now();
-      const activeTranslators = translators.filter(
-        (user) => now - new Date(user.last_connected).getTime() <= ONE_MONTH
+      const activeTranslators = trads.filter(
+        (user) => user.hasRole("Trad") && now - new Date(user.last_connected).getTime() <= ONE_MONTH,
       );
       const nbActiveTranslators = languages
         .filter((ln) => ln.i18nCode !== "fr")
         .map((language) => {
-          const languageId = language._id.toString();
+          const languageId = language._id;
           const count = activeTranslators.filter((user) =>
-            user.selectedLanguages.map((l) => l._id.toString()).includes(languageId)
+            user.selectedLanguages.map((l) => l._id.toString()).includes(languageId),
           ).length;
           return { languageId, count };
         });
-      data.nbActiveTranslators = nbActiveTranslators;
+      stats.nbActiveTranslators = nbActiveTranslators;
     }
 
-    return res.status(200).json({
-      text: "OK",
-      data
-    });
-  } catch (error) {
-    logger.error("[getStatistics] translations error", { error: error.message });
-    return res.status(500).json({ text: "Erreur" });
-  }
-};
+    return stats;
+  });
 
-export default [validator, handler];
+export default getStatistics;

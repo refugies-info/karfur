@@ -1,12 +1,6 @@
 import { ContentType } from "api-types";
-import { RefactorTodoError } from "../../errors";
 import { AppUser, Dispositif } from "../../typegoose";
 
-const ACTION_ZONE = "Zone d'action";
-const TARGET_AUDIENCE = "C'est pour qui ?";
-const TARGET_AGE = "Âge requis";
-// const FRENCH_LEVEL = "Niveau de français";
-// const ALL_FRENCH_LEVEL = "Tous les niveaux";
 const ALL = "All";
 
 interface Requirements {
@@ -24,72 +18,57 @@ export const getTitle = (title: string | Record<string, string>, lang: string = 
   return title[lang] || title["fr"] || "";
 };
 
-const getAge = (target: any) => {
-  const age = target?.children?.find((item: any) => getTitle(item.title) === TARGET_AGE);
+const getAge = (dispositif: Dispositif) => {
+  const age = dispositif.metadatas.age;
 
-  return {
-    min: parseInt(age?.bottomValue || 0),
-    max: parseInt(age?.topValue || 99)
-  };
-};
-
-const getDepartments = (target: any): string[] => {
-  const actionZone = target?.children?.find((item: any) => getTitle(item.title) === ACTION_ZONE);
-  if (actionZone) {
-    return actionZone.departments
-      .map((dep: string) => {
-        if (dep === ALL) {
-          return dep;
-        }
-        const split = dep.split("-");
-        if (split.length < 2) {
-          return null;
-        }
-        return split.slice(1).join("-").trim();
-      })
-      .filter((dep: []) => dep?.length);
+  if (age.type === "lessThan") {
+    return {
+      min: 0,
+      max: age.ages[0],
+    };
+  } else if (age.type === "moreThan") {
+    return {
+      min: age.ages[0],
+      max: 99,
+    };
   }
-  return [ALL];
+  return {
+    min: Math.min(...age.ages),
+    max: Math.max(...age.ages),
+  };
 };
 
 const parseTargetAge = (targetAge: string) => {
   if (targetAge === "0 à 17 ans") {
     return {
       min: 0,
-      max: 17
+      max: 17,
     };
   } else if (targetAge === "18 à 25 ans") {
     return {
       min: 18,
-      max: 25
+      max: 25,
     };
   } else if (targetAge === "26 ans et plus") {
     return {
       min: 26,
-      max: 60
+      max: 60,
     };
   }
   return {
     min: 0,
-    max: 60
+    max: 60,
   };
 };
 
 //Extracts age, french level, departments from a dispositif
 export const parseDispositif = (dispositif: Dispositif): Requirements => {
-  throw new RefactorTodoError();
-  // const target = (dispositif?.contenu as any)?.find((item: any) => getTitle(item.title) === TARGET_AUDIENCE);
-
-  // if (!target) {
-  //   return null;
-  // }
-
-  // return {
-  //   departments: getDepartments(target),
-  //   age: getAge(target),
-  //   type: dispositif.type,
-  //   mainThemeId: dispositif?.theme?._id.toString() || null
-  // };
+  return {
+    departments: dispositif.getDepartements(),
+    age: getAge(dispositif),
+    type: dispositif.typeContenu,
+    mainThemeId: dispositif.theme.toString() || null,
+  };
 };
 
 export const filterTargets = (targets: AppUser[], requirements: Requirements, lang: string) => {
@@ -112,7 +91,7 @@ export const filterTargets = (targets: AppUser[], requirements: Requirements, la
   });
 };
 
-export const filterTargetsForDemarche = (targets: AppUser[], requirements: Requirements, avancement: any) => {
+export const filterTargetsForDemarche = (targets: AppUser[], requirements: Requirements, demarche: Dispositif) => {
   return targets.filter((target) => {
     const { age, mainThemeId } = requirements;
     const { notificationsSettings } = target;
@@ -123,7 +102,7 @@ export const filterTargetsForDemarche = (targets: AppUser[], requirements: Requi
     const typeOk = notificationsSettings?.demarches;
     const themeOk = !mainThemeId || notificationsSettings?.themes?.[mainThemeId];
 
-    const langOk = target.selectedLanguage === "fr" || avancement[target.selectedLanguage] === 1;
+    const langOk = demarche.isTranslatedIn(target.selectedLanguage);
 
     return langOk && ageOk && themeOk && typeOk && target.expoPushToken;
   });

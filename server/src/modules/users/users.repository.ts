@@ -1,6 +1,6 @@
 import { Id, UserStatus } from "api-types";
 import { FilterQuery, Types } from "mongoose";
-import { Role, Structure, StructureId, User, UserModel } from "../../typegoose";
+import { LangueId, Role, Structure, StructureId, User, UserModel } from "../../typegoose";
 import { Favorite, UserId } from "../../typegoose/User";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
@@ -20,21 +20,20 @@ export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string
   UserModel.find(filter, neededFields);
 
 export const getAllUsersFromDB = async (neededFields: FilterQuery<User>, populate: string = "") =>
-  UserModel.find({ status: UserStatus.ACTIVE }, neededFields).populate(populate)
+  UserModel.find({ status: UserStatus.ACTIVE }, neededFields).populate(populate);
 
 export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>) =>
   UserModel.find({ status: UserStatus.ACTIVE }, neededFields).populate<{
-    selectedLanguages: { langueCode: string, langueFr: string }[],
-    roles: Role[],
-    structures: (Structure & { _id: Id })[],
-  }>([
-    { path: "selectedLanguages", select: "langueCode langueFr" },
-    { path: "roles" },
-    { path: "structures" }
-  ]);
+    selectedLanguages: { langueCode: string; langueFr: string; _id: LangueId }[];
+    roles: Role[];
+    structures: (Structure & { _id: Id })[];
+  }>([{ path: "selectedLanguages", select: "_id langueCode langueFr" }, { path: "roles" }, { path: "structures" }]);
 
 // update
-export const updateUserInDB = async (id: Id, modifiedUser: any) => // FIXME in updateUser
+export const updateUserInDB = async (
+  id: Id,
+  modifiedUser: any, // FIXME in updateUser
+) =>
   UserModel.findOneAndUpdate({ _id: id }, modifiedUser, {
     upsert: true,
     new: true,
@@ -105,6 +104,6 @@ export const removeFavoriteFromDB = (userId: UserId, dispositifId: Id) =>
   UserModel.updateOne(
     { _id: userId },
     {
-      $pull: { favorites: { dispositifId: dispositifId } }
+      $pull: { favorites: { dispositifId: dispositifId } },
     },
   );
