@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IDispositifTranslation } from "types/interface";
 import styled from "styled-components";
 import { colors } from "colors";
 import { Table } from "reactstrap";
@@ -17,16 +16,15 @@ import { useDispatch } from "react-redux";
 import { sortData } from "./functions";
 import styles from "scss/components/adminTable.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
-import { GetUserInfoResponse, Id } from "api-types";
+import { GetDispositifsWithTranslationAvancementResponse, GetUserInfoResponse, Id, Languages } from "api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 
 interface Props {
   isExpert: boolean;
-  data: IDispositifTranslation[];
+  data: GetDispositifsWithTranslationAvancementResponse[];
   history: any;
-  langueId: Id | null;
   isAdmin: boolean;
   languei18nCode: string;
   setElementToTranslate: any;
@@ -41,7 +39,7 @@ const TableContainer = styled.div`
 `;
 
 const headers = [
-  { name: "Type", order: "typeContenu" },
+  { name: "Type", order: "type" },
   { name: "Titre", order: "titreInformatif" },
   { name: "Progression", order: "avancementTrad" },
   { name: "Mots", order: "nbMots" },
@@ -51,7 +49,7 @@ const headers = [
 ];
 
 const headersExpert = [
-  { name: "Type", order: "typeContenu" },
+  { name: "Type", order: "type" },
   { name: "Titre", order: "titreInformatif" },
   { name: "Progression", order: "avancementTrad" },
   { name: "Validation", order: "avancementExpert" },
@@ -69,13 +67,19 @@ export const TranslationAvancementTable = (props: Props) => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const routerLocale = useRouterLocale();
 
-  const goToTraduction = (event: any, element: IDispositifTranslation) => {
+  /**
+   * Cette fonction sert à court circuiter la navigation si le profil
+   * de l'utilisateur n'est pas complet _notamment_
+   * @param event
+   * @param element
+   */
+  const goToTraduction = (event: any, element: GetDispositifsWithTranslationAvancementResponse) => {
     if (props.user && props.user.email === "") {
       props.toggleCompleteProfilModal();
       props.setElementToTranslate(element);
       event.preventDefault();
     } else {
-      if (!props.langueId || (!props.isExpert && element.tradStatus === "Validée")) {
+      if (!props.languei18nCode || (!props.isExpert && element.tradStatus === "VALIDATED")) {
         event.preventDefault();
       }
     }
@@ -94,7 +98,7 @@ export const TranslationAvancementTable = (props: Props) => {
   };
 
   const dispatch = useDispatch();
-  const deleteTrad = (e: any, element: IDispositifTranslation) => {
+  const deleteTrad = (e: any, element: GetDispositifsWithTranslationAvancementResponse) => {
     e.stopPropagation();
     Swal.fire({
       title: "Êtes-vous sûr ?",
@@ -107,9 +111,9 @@ export const TranslationAvancementTable = (props: Props) => {
       cancelButtonText: "Annuler",
     }).then((result: any) => {
       if (result.value) {
-        API.delete_trads({
-          articleId: element._id,
-          langueCible: props.languei18nCode,
+        API.deleteTrads({
+          dispositifId: element._id,
+          locale: props.languei18nCode as Languages,
         })
           .then(() => {
             dispatch(fetchDispositifsWithTranslationsStatusActionCreator(props.languei18nCode));
@@ -173,14 +177,20 @@ export const TranslationAvancementTable = (props: Props) => {
                     <Link
                       data-test-id={`test-line-${element._id}`}
                       onClick={(e) => goToTraduction(e, element)}
+                      target={element.tradStatus === "VALIDATED" ? "_blank" : "_self"}
                       to={{
                         pathname:
-                          routerLocale +
-                          "/backend" +
-                          (props.isExpert ? "/validation" : "/traduction") +
-                          "/" +
-                          (element.type || "dispositif"),
-                        search: `?language=${props.langueId}&dispositif=${element._id}`,
+                          element.tradStatus === "VALIDATED"
+                            ? `${routerLocale}/${element.type}/${element._id}`
+                            : routerLocale +
+                              "/backend" +
+                              (props.isExpert ? "/validation" : "/traduction") +
+                              "/" +
+                              (element.type || "dispositif"),
+                        search:
+                          element.tradStatus !== "VALIDATED"
+                            ? `?language=${props.languei18nCode}&dispositif=${element._id}`
+                            : "",
                       }}
                     >
                       <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
@@ -189,18 +199,18 @@ export const TranslationAvancementTable = (props: Props) => {
                 </td>
 
                 <td className="align-middle">
-                  {(!props.isExpert || element.tradStatus === "À traduire") && (
+                  {(!props.isExpert || element.tradStatus === "TO_TRANSLATE") && (
                     <ProgressWithValue avancementTrad={element.avancementTrad} isExpert={props.isExpert} />
                   )}
                 </td>
                 {props.isExpert && (
                   <td className="align-middle">
-                    <ProgressWithValue avancementTrad={element.avancementExpert} isExpert={props.isExpert} />
+                    <ProgressWithValue avancementTrad={element.avancementValidation} isExpert={props.isExpert} />
                   </td>
                 )}
 
                 <td className="align-middle">
-                  {Math.round((element.nbMots || 0) * (element.avancementTrad || 0)) + " / " + element.nbMots}
+                  {Math.ceil((element.nbMots || 0) * (element.avancementTrad || 0)) + " / " + element.nbMots}
                 </td>
                 <td className="align-middle">{element.created_at ? nbDays : "Non disponible"}</td>
                 <td className="align-middle">

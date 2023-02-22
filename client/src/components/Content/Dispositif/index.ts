@@ -1,3 +1,1 @@
-import Dispositif from "./Dispositif";
-
-export default Dispositif;
+export { default } from "./Dispositif";

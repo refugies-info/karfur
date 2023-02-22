@@ -50,27 +50,6 @@ export interface Translation {
   isExpert?: boolean;
 }
 
-export type TranslationStatus = "À traduire" | "En attente" | "Validée" | "À revoir";
-export interface IDispositifTranslation {
-  _id: string;
-  titreInformatif: string;
-  titreMarque: string;
-  nbMots: number;
-  created_at: number;
-  type: "dispositif" | "demarche";
-  lastTradUpdatedAt: number | null;
-  avancementTrad: number;
-  avancementExpert: number;
-  tradStatus: TranslationStatus;
-}
-
-export type Indicators = {
-  threeMonthsIndicator?: Indicator[];
-  sixMonthsIndicator?: Indicator[];
-  twelveMonthsIndicator?: Indicator[];
-  totalIndicator?: Indicator[];
-};
-
 export interface RegionFigures {
   region: string;
   nbDispositifs: number;
@@ -105,7 +84,6 @@ export type ContentStatus = {
   storedStatus: DispositifStatus;
   order: number;
 } & Status;
-
 
 export type StructureAdminStatus = {
   storedStatus: StructureStatus;

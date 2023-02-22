@@ -1,4 +1,6 @@
-import { DispositifId, Languages, TraductionId, Traductions, TraductionsModel, UserId } from "../../typegoose";
+import { Languages } from "api-types";
+import { RefactorTodoError } from "src/errors";
+import { DispositifId, TraductionId, Traductions, TraductionsModel, UserId } from "../../typegoose";
 
 type TraductionsKeys = keyof Traductions;
 type TraductionsFieldsRequest = Partial<Record<TraductionsKeys, number>>;
@@ -12,42 +14,45 @@ export const getTraductionsByLanguageAndDispositif = (
   neededFields: TraductionsFieldsRequest = {},
 ) => TraductionsModel.find({ language, dispositifId }, neededFields).populate("userId");
 
-export const validateTradInDB = (tradId: TraductionId, validatorId: UserId) =>
-  TraductionsModel.findOneAndUpdate({ _id: tradId }, { status: "Validée", validatorId }, { upsert: true, new: true });
-
-export const deleteTradsInDB = (articleId: DispositifId, langueCible: string) =>
+export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages) =>
   TraductionsModel.deleteMany({
-    articleId,
-    langueCible,
-    isExpert: { $ne: true },
+    dispositifId,
+    language,
   });
 
-export const getExpertTraductionByLanguage = (articleId: DispositifId, langueCible: string) =>
-  TraductionsModel.find(
-    {
-      articleId,
-      langueCible,
-      isExpert: true,
-    },
-    {},
-    { sort: { updatedAt: -1 } },
-  );
+/**
+ * @deprecated "Il faut utiliser la propriété toReview"
+ * @param dispositifId
+ * @param language
+ * @param avancement
+ */
+export const updateTradsWithARevoir = (dispositifId: DispositifId, language: string, avancement: number) => {
+  throw new RefactorTodoError();
+};
+// TraductionsModel.updateMany({ dispositifId, language }, { status: "À revoir", avancement }, { upsert: false });
 
-export const updateTradsWithARevoir = (articleId: DispositifId, language: string, avancement: number) =>
-  TraductionsModel.updateMany({ articleId, language }, { status: "À revoir", avancement }, { upsert: false });
+// export const updateTradInDB = (_id: TraductionId, trad: any) =>
+//   TraductionsModel.findOneAndUpdate({ _id }, trad, {
+//     upsert: true,
+//     new: true,
+//   });
 
-export const updateTradInDB = (_id: TraductionId, trad: any) =>
-  TraductionsModel.findOneAndUpdate({ _id }, trad, {
-    upsert: true,
-    new: true,
-  });
-
+/**
+ * @deprecated TODO refactor : status not exist anymore
+ *
+ * @param language
+ * @returns
+ */
 export const getPublishedTradIds = (language: string) =>
-  TraductionsModel.distinct("articleId", {
+  TraductionsModel.distinct("dispositifId", {
     language,
     status: "Validée",
   });
 
+/**
+ * @deprecated TODO refactor : status not exist anymore
+ * @returns
+ */
 export const getNbWordsTranslated = () =>
   TraductionsModel.aggregate([
     {

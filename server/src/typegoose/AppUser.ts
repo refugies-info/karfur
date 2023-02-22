@@ -1,4 +1,5 @@
 import { modelOptions, prop } from "@typegoose/typegoose";
+import { Languages } from "api-types";
 import { Schema } from "mongoose";
 import { Base } from "./Base";
 
@@ -30,7 +31,7 @@ export class AppUser extends Base {
   public department?: string;
 
   @prop()
-  public selectedLanguage?: string;
+  public selectedLanguage?: Languages;
 
   @prop()
   public age?: string;

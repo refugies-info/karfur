@@ -10,7 +10,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   const newDispositif = {
     status: "Actif" as Dispositif["status"],
     publishedAt: new Date(),
-    publishedAtAuthor: userId
+    publishedAtAuthor: userId,
   };
 
   const newDispo = await updateDispositifInDB(dispositifId, newDispositif);
@@ -20,7 +20,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     logger.error("[publishDispositif] error while updating languages avancement", { error: error.message });
   }
 
-  const themesList = [newDispo.getTheme(), ...newDispo.getSecondaryThemes()].map((t) => t.short.fr);
+  const themesList = [newDispo.getTheme(), ...newDispo.getSecondaryThemes()];
 
   try {
     await addOrUpdateDispositifInContenusAirtable(
@@ -31,7 +31,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
       newDispo.typeContenu,
       null,
       newDispo.getDepartements(),
-      false
+      false,
     );
   } catch (error) {
     logger.error("[publishDispositif] error while updating contenu in airtable", { error: error.message });
@@ -47,7 +47,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     await sendMailWhenDispositifPublished(newDispo);
   } catch (error) {
     logger.error("[publishDispositif] error while sending email", {
-      error: error.message
+      error: error.message,
     });
   }
 };

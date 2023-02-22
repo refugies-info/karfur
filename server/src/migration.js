@@ -2,8 +2,6 @@
 const { MongoClient, ObjectId } = require("mongodb");
 const himalaya = require("himalaya");
 const { v4: uuidv4 } = require("uuid");
-const { Types } = require("mongoose");
-const { Id } = require("./typegoose");
 
 const dbPath = "mongodb://127.0.0.1:27017/heroku_wbj38s57?serverSelectionTimeoutMS=60000";
 const client = new MongoClient(dbPath);
@@ -703,7 +701,7 @@ const adaptUserSelectedLanguages = async (usersColl) => {
     // });
     await usersColl.updateOne(
       { _id: user._id },
-      { $set: { selectedLanguages: (user.selectedLanguages || []).map((language) => new Id(language._id)) } },
+      { $set: { selectedLanguages: (user.selectedLanguages || []).map((language) => new ObjectId(language._id)) } },
     );
   }
 };
@@ -733,33 +731,33 @@ async function main() {
   console.log("Démarrage ...");
   const db = client.db(dbName);
 
-  // const dispositifsColl = db.collection("dispositifs");
-  // const traductionsColl = db.collection("traductions");
+  const dispositifsColl = db.collection("dispositifs");
+  const traductionsColl = db.collection("traductions");
   const usersColl = db.collection("users");
 
-  // // update dispositifs one by one
-  // console.log("Mise à jour du schéma 'dispositifs' ...");
-  // const dispositifs = await dispositifsColl.find({ status: { $ne: "Supprimé" } }).toArray();
-  // for (const dispositif of dispositifs) {
-  //   const newDispositif = getNewDispositif(dispositif);
-  //   if (newDispositif) {
-  //     await dispositifsColl.replaceOne({ _id: dispositif._id }, newDispositif);
-  //   }
-  // }
+  // update dispositifs one by one
+  console.log("Mise à jour du schéma 'dispositifs' ...");
+  const dispositifs = await dispositifsColl.find({ status: { $ne: "Supprimé" } }).toArray();
+  for (const dispositif of dispositifs) {
+    const newDispositif = getNewDispositif(dispositif);
+    if (newDispositif) {
+      await dispositifsColl.replaceOne({ _id: dispositif._id }, newDispositif);
+    }
+  }
 
-  // // remove all unused dispositifs fields
-  // await removeOldFields(dispositifsColl);
+  // remove all unused dispositifs fields
+  await removeOldFields(dispositifsColl);
 
-  // await removeCorruptedTrads(traductionsColl);
-  // await migrateTrads(traductionsColl, dispositifsColl);
+  await removeCorruptedTrads(traductionsColl);
+  await migrateTrads(traductionsColl, dispositifsColl);
 
-  // // remove all unused dispositifs
-  // await removeDispositifs(dispositifsColl);
+  // remove all unused dispositifs
+  await removeDispositifs(dispositifsColl);
 
-  // console.log("Dernières vérifications...");
-  // await checkDispositifsWithoutTrads(dispositifsColl);
-  // await checkSuggestionsAlreadyValidated(traductionsColl);
-  // console.log("Vérifications terminées");
+  console.log("Dernières vérifications...");
+  await checkDispositifsWithoutTrads(dispositifsColl);
+  await checkSuggestionsAlreadyValidated(traductionsColl);
+  console.log("Vérifications terminées");
 
   console.log("Adaptation des utilisateurs");
   await adaptUserSelectedLanguages(usersColl);

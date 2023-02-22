@@ -1,10 +1,10 @@
 import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { ContentType, DispositifStatus } from "api-types";
+import { ContentType, DispositifStatus, Languages } from "api-types";
 import { get, has } from "lodash";
 import { ObjectId } from "mongoose";
 import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
-import { Languages, RichText, Uuid } from "./generics";
+import { RichText, Uuid } from "./generics";
 import { Need, NeedId } from "./Need";
 
 import { Structure, StructureId } from "./Structure";

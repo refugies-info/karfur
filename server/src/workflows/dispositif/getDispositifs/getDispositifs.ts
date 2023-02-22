@@ -1,9 +1,9 @@
 import logger from "../../../logger";
 import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
-import { Dispositif, Languages } from "../../../typegoose";
+import { Dispositif } from "../../../typegoose";
 import { ResponseWithData } from "../../../types/interface";
 import { FilterQuery } from "mongoose";
-import { DispositifStatus, GetDispositifsRequest, GetDispositifsResponse } from "api-types";
+import { DispositifStatus, GetDispositifsRequest, GetDispositifsResponse, Languages } from "api-types";
 
 export const getDispositifs = async (query: GetDispositifsRequest): ResponseWithData<GetDispositifsResponse[]> => {
   logger.info("[getDispositifs] called");
@@ -16,7 +16,6 @@ export const getDispositifs = async (query: GetDispositifsRequest): ResponseWith
   const result = await getSimpleDispositifs(dbQuery, selectedLocale, limit, sort);
   return {
     text: "success",
-    data: result
-  }
+    data: result,
+  };
 };
-

@@ -1,6 +1,7 @@
 import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { isEmpty, isString } from "lodash";
-import { MustBePopulatedError } from "../errors";
+import { Languages } from "api-types";
+import { flattenDeep, get, isEmpty, isString } from "lodash";
+import { MustBePopulatedError } from "src/errors";
 import { Base } from "./Base";
 import {
   DemarcheContent,
@@ -10,16 +11,50 @@ import {
   InfoSections,
   TranslationContent,
 } from "./Dispositif";
-import { Languages } from "./generics";
 import { User } from "./User";
 
-export type TraductionsType = "suggestion" | "validation";
-export enum TraductionsStatus {
-  VALIDATED,
-  TO_REVIEW,
-  PENDING,
-  TO_TRANSLATE,
+export enum TraductionsType {
+  SUGGESTION = "suggestion",
+  VALIDATION = "validation",
 }
+export enum TraductionsStatus {
+  VALIDATED = "VALIDATED",
+  TO_REVIEW = "TO_REVIEW",
+  PENDING = "PENDING",
+  TO_TRANSLATE = "TO_TRANSLATE",
+}
+
+const keysForSubSection = (prefix: string, translated: any) =>
+  flattenDeep(
+    Object.keys(get(translated, prefix, {})).map((key) => {
+      const arr = [];
+      if (!isEmpty(get(translated, `${prefix}.${key}.title`, ""))) {
+        arr.push(`${prefix}.${key}.title`);
+      }
+      if (!isEmpty(get(translated, `${prefix}.${key}.text`, ""))) {
+        arr.push(`${prefix}.${key}.text`);
+      }
+      return arr;
+    }),
+  );
+
+/**
+ * Cette fonction permet de récupérer l'ensemble des sections
+ * du langue du dispositif ou d'une traduction.
+ * @param translated
+ * @returns
+ */
+const keys = (translated: any) => {
+  return [
+    ...Object.keys(translated.content)
+      .filter((key) => !["how", "why", "next"].includes(key))
+      .map((key) => `content.${key}`),
+    ...keysForSubSection("content.why", translated),
+    ...keysForSubSection("content.how", translated),
+    ...keysForSubSection("content.next", translated),
+    ...Object.keys(translated?.metadatas || {}).map((key) => `metadatas.${key}`),
+  ];
+};
 
 /**
  * Basic word counter
@@ -101,7 +136,7 @@ export class Traductions extends Base {
    * avec la notation : `traduction.status`
    */
   public get status(): TraductionsStatus {
-    if (this.type === "validation") {
+    if (this.type === TraductionsType.VALIDATION) {
       return isEmpty(this.toReview) && this.avancement === 1
         ? TraductionsStatus.VALIDATED
         : TraductionsStatus.TO_REVIEW;
@@ -119,12 +154,8 @@ export class Traductions extends Base {
   }
 
   public static computeAvancement(dispositif: Dispositif, translation: Traductions): number {
-    const dispositifSectionsCounter =
-      Object.keys(dispositif.translations.fr.content).length +
-      Object.keys(dispositif.translations.fr.metadatas || {}).length;
-    const tranlationSectionsCounter =
-      Object.keys(translation.translated?.content || {}).length +
-      Object.keys(translation.translated?.metadatas || {}).length;
+    const dispositifSectionsCounter = keys(dispositif.translations.fr).length;
+    const tranlationSectionsCounter = keys(translation.translated).length;
     return tranlationSectionsCounter / dispositifSectionsCounter;
   }
 }

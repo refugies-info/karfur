@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Modal } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
 import { useSelector, useDispatch } from "react-redux";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { userSelector } from "services/User/user.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -16,6 +15,7 @@ import styles from "./TranslationLanguagesChoiceModal.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
 import { GetLanguagesResponse, Id } from "api-types";
 import { useLanguages } from "hooks";
+import { isUndefined } from "lodash";
 
 const Header = styled.div`
   font-weight: bold;
@@ -78,8 +78,14 @@ interface Props extends RouteComponentProps {
   toggle: () => void;
 }
 
-const LangueItem = (props: { langue: GetLanguagesResponse; isSelected: boolean; onClick: () => void }) => (
-  <LangueItemContainer isSelected={props.isSelected} onClick={props.onClick}>
+interface LangueItemProps {
+  langue: GetLanguagesResponse;
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+const LangueItem = ({ langue, isSelected, onClick }: LangueItemProps) => (
+  <LangueItemContainer isSelected={isSelected} onClick={onClick}>
     <div
       style={{
         display: "flex",
@@ -87,11 +93,11 @@ const LangueItem = (props: { langue: GetLanguagesResponse; isSelected: boolean; 
       }}
     >
       <div className="me-2">
-        <span title={props.langue.langueCode} className={" fi fi-" + props.langue.langueCode} />
+        <span title={langue.langueCode} className={" fi fi-" + langue.langueCode} />
       </div>
-      {props.langue.langueFr === "Persan" ? "Persan/Dari" : props.langue.langueFr}
+      {langue.langueFr === "Persan" ? "Persan/Dari" : langue.langueFr}
     </div>
-    <CheckBoxContainer isSelected={props.isSelected}>
+    <CheckBoxContainer isSelected={isSelected}>
       <div style={{ position: "absolute", bottom: "-2px" }}>
         <EVAIcon name="checkmark-outline" />
       </div>
@@ -100,9 +106,9 @@ const LangueItem = (props: { langue: GetLanguagesResponse; isSelected: boolean; 
 );
 
 const TranslationLanguagesChoiceModalComponent = (props: Props) => {
-  const [selectedLangues, setSelectedLangues] = useState<Id[]>([]);
+  const [selectedLangues, setSelectedLangues] = useState<string[]>([]);
 
-  const { langues } = useLanguages();
+  const { langues, userTradLanguages } = useLanguages();
   const user = useSelector(userSelector);
   const isLoadingLangues = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
   const isLoadingUser = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
@@ -112,11 +118,8 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   const routerLocale = useRouterLocale();
 
   useEffect(() => {
-    const selectedLanguages = user?.user?.selectedLanguages;
-    if (selectedLanguages && selectedLanguages.length > 0) {
-      setSelectedLangues(selectedLanguages);
-    }
-  }, [isLoadingUser, user]);
+    setSelectedLangues(userTradLanguages.map((t) => t.toString()));
+  }, [userTradLanguages]);
 
   if (isLoading)
     return (
@@ -151,14 +154,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     }
 
     if (!isLangueSelected) {
-      const newSelectedLangue = {
-        _id: langue._id.toString(),
-        i18nCode: langue.i18nCode,
-        langueCode: langue.langueCode || "",
-        langueFr: langue.langueFr,
-        langueLoc: langue.langueLoc || "",
-      };
-      setSelectedLangues([...selectedLangues, newSelectedLangue]);
+      setSelectedLangues([...selectedLangues, langue._id]);
     }
   };
 
@@ -194,8 +190,9 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
         {langues
           .filter((langue) => langue.i18nCode !== "fr")
           .map((langue) => {
-            const isLangueSelected =
-              selectedLangues.filter((selectedLangue) => selectedLangue === langue._id).length > 0;
+            const isLangueSelected = !isUndefined(
+              selectedLangues.find((selectedLangue) => selectedLangue === langue._id),
+            );
             return (
               <LangueItem
                 langue={langue}
