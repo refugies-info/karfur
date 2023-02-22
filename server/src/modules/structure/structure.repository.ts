@@ -3,6 +3,7 @@ import { asyncForEach } from "../../libs/asyncForEach";
 import { DispositifId, Structure, StructureId, StructureModel, UserId } from "../../typegoose";
 import { Id, Picture } from "../../types/interface";
 import { FilterQuery, ProjectionFields } from "mongoose";
+import { DocumentType } from "@typegoose/typegoose";
 
 export const getStructureFromDB = async (
   id: StructureId,
@@ -88,7 +89,7 @@ export const updateAssociatedDispositifsInStructure = async (dispositifId: Dispo
   return;
 };
 
-export const createStructureInDB = (structure: Structure) => StructureModel.create(structure);
+export const createStructureInDB = (structure: Partial<Structure>) => StructureModel.create(structure);
 
 export const updateStructureInDB = async (structureId: StructureId, structure: Partial<Structure>) => {
   return StructureModel.findOneAndUpdate(

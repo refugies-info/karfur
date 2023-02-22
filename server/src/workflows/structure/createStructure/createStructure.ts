@@ -1,56 +1,37 @@
 import logger from "../../../logger";
-import { Res, RequestFromClient, Picture, Membre } from "../../../types/interface";
 import { addStructureForUsers } from "../../../modules/users/users.service";
 import { createStructureInDB } from "../../../modules/structure/structure.repository";
 import { log } from "./log";
+import { PostStructureRequest } from "src/controllers/structureController";
+import { Response } from "src/types/interface";
+import { Id, Structure } from "src/typegoose";
+import { pick } from "lodash";
 
-interface ReceivedStructure {
-  picture: Picture | null;
-  status: string;
-  contact: string;
-  phone_contact: string;
-  mail_contact: string;
-  membres: Membre[];
-  nom: string;
-}
 
-export const createStructure = async (req: RequestFromClient<ReceivedStructure>, res: Res) => {
-  if (!req.fromSite) {
-    return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!req.body || !req.body.query) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    try {
-      const structure = req.body.query;
-      logger.info("[createStructure] call received", { structure });
-      const structureToSave = {
-        ...structure,
-        createur: req.userId,
-        status: structure.status || "En attente"
-      };
-
-      // @ts-ignore FIXME
-      const newStructure = await createStructureInDB(structureToSave);
-      await log(newStructure._id, req.userId);
-
-      const structureId = newStructure._id;
-      if (newStructure.membres && newStructure.membres.length > 0) {
-        // if we create a structure there is maximum one membre
-        await addStructureForUsers([newStructure.membres[0].userId.toString()], structureId);
+export const createStructure = async (body: PostStructureRequest, userId: string): Response => {
+  logger.info("[createStructure] call received", { body });
+  const structureToSave: Partial<Structure> = {
+    ...pick(body, ["picture", "contact", "phone_contact", "mail_contact", "nom"]),
+    createur: new Id(userId),
+    status: "En attente",
+    membres: body.responsable ? [
+      {
+        userId: new Id(body.responsable),
+        roles: ["administrateur"],
+        added_at: new Date()
       }
-      logger.info("[createStructure] successfully created structure with id", {
-        structureId
-      });
+    ] : []
+  };
 
-      return res.status(200).json({
-        text: "Succès",
-        data: newStructure
-      });
-    } catch (err) {
-      logger.error("[createStructure] error while creating structure", {
-        error: err
-      });
-      res.status(500).json({ text: "Erreur interne" });
-    }
+  const newStructure = await createStructureInDB(structureToSave);
+  await log(newStructure._id, userId);
+
+  const structureId = newStructure._id;
+  if (newStructure.membres && newStructure.membres.length > 0) {
+    // if we create a structure there is maximum one membre
+    await addStructureForUsers([newStructure.membres[0].userId.toString()], structureId);
   }
+  logger.info("[createStructure] successfully created structure with id", { structureId });
+
+  return { text: "success" }
 };

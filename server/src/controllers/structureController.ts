@@ -1,4 +1,4 @@
-import { Controller, Get, Route, Request, Query, Security, Path, Queries } from "tsoa";
+import { Controller, Get, Route, Request, Query, Security, Path, Queries, Post, Body } from "tsoa";
 import express, { Request as ExRequest } from "express";
 
 const router = express.Router();
@@ -10,11 +10,9 @@ import { createStructure } from "../workflows/structure/createStructure";
 import { updateStructure } from "../workflows/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
 import { getStatistics, GetStructureStatisticsResponse } from "../workflows/structure/getStatistics";
-import { ResponseWithData } from "../types/interface";
+import { IRequest, Picture, Response, ResponseWithData } from "../types/interface";
 
 /* TODO: use tsoa */
-
-router.post("/createStructure", checkToken.check, createStructure);
 router.post("/updateStructure", checkToken.check, updateStructure);
 router.post("/modifyUserRoleInStructure", checkToken.check, modifyUserRoleInStructure);
 
@@ -25,8 +23,26 @@ export interface GetStructureStatisticsRequest {
   facets?: StructureFacets[];
 }
 
+export interface PostStructureRequest {
+  picture: Picture | null;
+  contact: string;
+  phone_contact: string;
+  mail_contact: string;
+  responsable: string | null;
+  nom: string;
+}
+
 @Route("structures")
 export class StructureController extends Controller {
+  @Security({
+    jwt: ["admin"],
+    fromSite: []
+  })
+  @Post("/")
+  public async createStructure(@Body() body: PostStructureRequest, @Request() request: IRequest): Response {
+    return createStructure(body, request.userId);
+  }
+
   @Security({
     jwt: ["admin"],
   })
