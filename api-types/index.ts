@@ -9,7 +9,8 @@ import {
   InfoSections,
   Picture,
   Metadatas,
-  SimpleTheme
+  SimpleTheme,
+  DispositifStatus
 } from "./generics";
 
 // adminOption
@@ -150,6 +151,11 @@ import {
   PostWidgetResponse,
   PatchWidgetResponse,
 } from "./modules/widget";
+
+// enums
+export {
+  DispositifStatus
+}
 
 export type {
   // generics

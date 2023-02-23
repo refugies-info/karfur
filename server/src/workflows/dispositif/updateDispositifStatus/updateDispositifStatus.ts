@@ -11,19 +11,19 @@ import { getDispositifDepartments } from "../../../libs/getDispositifDepartments
 import { Dispositif, User } from "../../../typegoose";
 import { Response } from "../../../types/interface";
 import { AuthenticationError } from "../../../errors";
-import { DispositifStatusRequest } from "api-types";
+import { DispositifStatusRequest, DispositifStatus } from "api-types";
 
 export const updateDispositifStatus = async (id: string, body: DispositifStatusRequest, user: User): Response => {
   logger.info("[updateDispositifStatus]", { id, body });
   await log(id, body.status, user._id);
 
-  if (body.status === "Actif") {
+  if (body.status === DispositifStatus.ACTIVE) {
     if (!user.isAdmin()) throw new AuthenticationError("You cannot publish a dispositif");
     await publishDispositif(id, user._id);
     return { text: "success" };
   }
 
-  if (body.status === "Supprimé") {
+  if (body.status === DispositifStatus.DELETED) {
     const neededFields = {
       creatorId: 1,
       mainSponsor: 1,

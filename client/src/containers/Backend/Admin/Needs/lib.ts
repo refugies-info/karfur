@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";
-import { GetAllDispositifsResponse, GetLanguagesResponse, Id } from "api-types";
+import { DispositifStatus, GetAllDispositifsResponse, GetLanguagesResponse, Id } from "api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 // TODO: move function
@@ -22,7 +22,7 @@ export const prepareDeleteContrib = (
     cancelButtonText: "Annuler",
   }).then((result) => {
     if (result.value && dispositifId) {
-      return API.updateDispositifStatus(dispositifId, { status: "Supprimé" })
+      return API.updateDispositifStatus(dispositifId, { status: DispositifStatus.DELETED })
         .then(() => {
           Swal.fire({
             title: "Yay...",
@@ -32,7 +32,7 @@ export const prepareDeleteContrib = (
           });
           const dispositifs = [...allDispositifs];
           const newDispositif = dispositifs.find((d) => d._id === dispositifId);
-          if (newDispositif) newDispositif.status = "Supprimé";
+          if (newDispositif) newDispositif.status = DispositifStatus.DELETED;
           dispatch(setAllDispositifsActionsCreator(dispositifs));
         })
         .catch(() => {

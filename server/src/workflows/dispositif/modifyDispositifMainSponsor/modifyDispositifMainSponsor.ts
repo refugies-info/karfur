@@ -5,7 +5,7 @@ import { updateAssociatedDispositifsInStructure } from "../../../modules/structu
 import { log } from "./log";
 import { Dispositif } from "../../../typegoose";
 import { NotFoundError } from "../../../errors";
-import { Id, MainSponsorRequest } from "api-types";
+import { DispositifStatus, Id, MainSponsorRequest } from "api-types";
 
 export const modifyDispositifMainSponsor = async (id: string, body: MainSponsorRequest, userId: Id): Response => {
   logger.info("[modifyDispositifMainSponsor]", body);
@@ -16,7 +16,7 @@ export const modifyDispositifMainSponsor = async (id: string, body: MainSponsorR
   const modifiedDispositif: Partial<Dispositif> = {
     mainSponsor: body.sponsorId,
   };
-  if (oldDispositif.status === "En attente non prioritaire") modifiedDispositif.status = "En attente";
+  if (oldDispositif.status === DispositifStatus.NO_STRUCTURE) modifiedDispositif.status = DispositifStatus.WAITING;
 
   await updateDispositifInDB(id, modifiedDispositif);
 

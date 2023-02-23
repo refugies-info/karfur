@@ -2,13 +2,13 @@ import logger from "../../../logger";
 import { createDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { Response } from "../../../types/interface";
 import { Dispositif, ObjectId } from "../../../typegoose";
-import { CreateDispositifRequest, Id } from "api-types";
+import { CreateDispositifRequest, DispositifStatus, Id } from "api-types";
 
 export const createDispositif = async (body: CreateDispositifRequest, userId: Id): Response => {
   logger.info("[createDispositif] received", { body });
 
   const newDispositif: Partial<Dispositif> = {
-    status: "Brouillon",
+    status: DispositifStatus.DRAFT,
     typeContenu: body.typeContenu,
     creatorId: new ObjectId(userId.toString()),
     lastModificationAuthor: new ObjectId(userId.toString()),

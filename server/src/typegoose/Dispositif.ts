@@ -1,4 +1,5 @@
 import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { DispositifStatus } from "api-types";
 import { get, has } from "lodash";
 import { ObjectId } from "mongoose";
 import { MustBePopulatedError } from "../errors";
@@ -162,8 +163,8 @@ export class Poi {
 export class Dispositif extends Base {
   @prop({ required: true })
   public typeContenu: contentType;
-  @prop({ required: true })
-  public status: "Actif" | "Brouillon" | "En attente" | "En attente admin" | "En attente non prioritaire" | "Supprimé"; // TODO: clean type
+  @prop({ required: true, enum: DispositifStatus })
+  public status: DispositifStatus;
   @prop()
   created_at?: Date;
   @prop()

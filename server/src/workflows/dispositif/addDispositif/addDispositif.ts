@@ -21,6 +21,7 @@ import { checkUserIsAuthorizedToModifyDispositif, checkRequestIsFromSite } from 
 import { log } from "./log";
 import { Dispositif, Structure, Theme, User } from "../../../typegoose";
 import { isDocument } from "@typegoose/typegoose";
+import { DispositifStatus } from "api-types";
 
 export interface Request {
   titreInformatif: string;
@@ -44,15 +45,15 @@ export const getNewStatus = (
   saveType: "auto" | "validate" | "save"
 ): Dispositif["status"] => {
   // keep draft if already draft
-  if (dispositif.status === "Brouillon" && saveType !== "validate") {
-    return "Brouillon";
+  if (dispositif.status === DispositifStatus.DRAFT && saveType !== "validate") {
+    return DispositifStatus.DRAFT;
 
     // validate rejected dispositif
   } else if (
     dispositif?.status === "Rejeté structure" && // = Rejeté
     saveType === "validate"
   ) {
-    return "En attente";
+    return DispositifStatus.WAITING;
 
     // keep current status
   } else if (
@@ -73,13 +74,13 @@ export const getNewStatus = (
     const isMembreOfStructure = (membre?.roles || []).some((x) => x === "administrateur" || x === "contributeur");
     if (saveType === "validate") {
       if (isMembreOfStructure || isAdmin) {
-        return "En attente admin"; // = A valider
+        return DispositifStatus.WAITING_ADMIN; // = A valider
       }
-      return "En attente";
+      return DispositifStatus.WAITING;
     }
     return dispositif.status as Dispositif["status"];
   }
-  return "En attente non prioritaire"; // = Sans structure
+  return DispositifStatus.NO_STRUCTURE; // = Sans structure
 };
 
 /**

@@ -52,11 +52,10 @@ import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModa
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 import { needsSelector } from "services/Needs/needs.selectors";
 import styles from "./AdminContenu.module.scss";
-import { ContentStatusType } from "types/interface";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
-import { GetAllDispositifsResponse, Id } from "api-types";
+import { DispositifStatus, GetAllDispositifsResponse, Id } from "api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
@@ -77,8 +76,8 @@ export const AdminContenu = () => {
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "contenus");
-  const [filter, setFilter] = useState<ContentStatusType>(
-    (initialFilters.filter as ContentStatusType) || "En attente admin",
+  const [filter, setFilter] = useState<DispositifStatus>(
+    (initialFilters.filter as DispositifStatus) || DispositifStatus.WAITING_ADMIN,
   );
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
@@ -257,7 +256,7 @@ export const AdminContenu = () => {
     }
   };
 
-  const onFilterClick = (status: ContentStatusType) => {
+  const onFilterClick = (status: DispositifStatus) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -280,7 +279,7 @@ export const AdminContenu = () => {
     const link = `/${dispositif.typeContenu}/${dispositif._id}`;
 
     const text =
-      dispositif.status === "En attente" || dispositif.status === "Accepté structure"
+      dispositif.status === "En attente" || dispositif.status === DispositifStatus.OK_STRUCTURE
         ? "Cette fiche n'a pas encore été validée par sa structure d'appartenance"
         : "Cette fiche sera visible par tous.";
 
@@ -298,7 +297,7 @@ export const AdminContenu = () => {
 
     if (question.value) {
       try {
-        await API.updateDispositifStatus(dispositif._id, { status: "Actif" });
+        await API.updateDispositifStatus(dispositif._id, { status: DispositifStatus.ACTIVE });
 
         Swal.fire({
           title: "Yay...",

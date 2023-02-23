@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
+import { DispositifStatus, GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
 
 export type APIResponse<T = null> = AxiosResponse<{
   text: "success" | "error";
@@ -105,17 +105,8 @@ export type Status = {
   textColor?: string;
 };
 
-export type ContentStatusType =
-  | "Actif"
-  | "En attente"
-  | "Brouillon"
-  | "En attente non prioritaire"
-  | "Rejeté structure"
-  | "En attente admin"
-  | "Accepté structure"
-  | "Supprimé";
 export type ContentStatus = {
-  storedStatus: ContentStatusType;
+  storedStatus: DispositifStatus;
   order: number;
 } & Status;
 

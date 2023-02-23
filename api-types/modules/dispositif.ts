@@ -1,4 +1,4 @@
-import { ContentStructure, Id, InfoSection, InfoSections, Metadatas, Picture, SimpleDispositif, SimpleUser, Sponsor } from "../generics";
+import { ContentStructure, DispositifStatus, Id, InfoSection, InfoSections, Metadatas, SimpleDispositif, SimpleUser, Sponsor } from "../generics";
 
 type ViewsType = "web" | "mobile" | "favorite";
 type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
@@ -49,7 +49,7 @@ export interface MainSponsorRequest {
  * @url PATCH /dispositifs/{id}/status
  */
 export interface DispositifStatusRequest {
-  status: "Actif" | "Supprimé" | "Brouillon" | "En attente" | "En attente admin" | "En attente non prioritaire"; // TODO: type
+  status: DispositifStatus;
 }
 
 /**
@@ -118,7 +118,7 @@ export type GetDispositifResponse = {
   how: InfoSections;
   next?: InfoSections;
   typeContenu: string;
-  status: string;
+  status: DispositifStatus;
   mainSponsor?: ContentStructure
   theme?: Id;
   secondaryThemes?: Id[];
@@ -143,7 +143,7 @@ export interface GetUserContributionsResponse {
   }
   nbVues: number;
   nbMercis: number;
-  status: string;
+  status: DispositifStatus;
 }
 
 /**
@@ -178,7 +178,7 @@ export interface GetAllDispositifsResponse {
   titreInformatif: string;
   titreMarque: string;
   typeContenu: string;
-  status: string;
+  status: DispositifStatus;
   theme?: Id;
   secondaryThemes?: Id[];
   needs: Id[];
