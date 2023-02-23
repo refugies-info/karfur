@@ -16,12 +16,10 @@ export interface Indicator {
   timeSpent: number;
 }
 
-export interface Picture {
-  imgId: string | null;
-  public_id: string | null;
-  secure_url: string | null;
-}
 type iconName = "house" | "search" | "message" | "menu" | "tag" | "";
+/**
+ * @deprecated
+ */
 export interface DetailedOpeningHours {
   day: string;
   from0?: string;
@@ -29,6 +27,9 @@ export interface DetailedOpeningHours {
   from1?: string;
   to1?: string;
 }
+/**
+ * @deprecated
+ */
 export interface OpeningHours {
   details: DetailedOpeningHours[];
   noPublic: boolean;

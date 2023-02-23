@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Picture } from "types/interface";
+import { Picture } from "api-types";
 import placeholder from "assets/no_results_alt.svg";
 import styles from "./LetterSection.module.scss";
 import { getPath } from "routes";
@@ -29,7 +29,7 @@ const StructureCard = (props: StructureCardProps) => {
       legacyBehavior
       href={{
         pathname: getPath("/annuaire/[id]", router.locale),
-        query: { id: props.id.toString() }
+        query: { id: props.id.toString() },
       }}
       prefetch={false}
     >

@@ -9,7 +9,7 @@ import {
   InfoSections,
   Picture,
   Metadatas,
-  Theme
+  SimpleTheme
 } from "./generics";
 
 // adminOption
@@ -159,11 +159,11 @@ export type {
   UserStructure,
   ContentStructure,
   Sponsor,
-  SimpleUser,
   StructureMember,
   Picture,
   Metadatas,
-  Theme,
+  SimpleUser,
+  SimpleTheme,
 
   // adminOptions
   AdminOptionRequest,

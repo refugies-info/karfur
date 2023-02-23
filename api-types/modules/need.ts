@@ -1,4 +1,4 @@
-import { Id, Picture, Theme } from "../generics";
+import { Id, Picture, SimpleTheme } from "../generics";
 
 interface NeedTranslation {
   text: string;
@@ -31,7 +31,7 @@ export interface UpdatePositionsRequest {
  */
 export interface GetNeedResponse {
   _id: Id;
-  theme: Theme;
+  theme: SimpleTheme;
   adminComments?: string;
   nbVues: number;
   position?: number;
@@ -51,7 +51,7 @@ export interface GetNeedResponse {
  */
 export interface UpdatePositionsNeedResponse {
   _id: Id;
-  theme: Theme;
+  theme: SimpleTheme;
   adminComments?: string;
   nbVues: number;
   position?: number;

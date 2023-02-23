@@ -11,9 +11,10 @@ export type TranslatedText = { [key: string]: string };
 export interface Picture {
   imgId: string | null;
   public_id: string | null;
-  secure_url: string | null;
+  secure_url: string;
 }
 
+// Theme
 export interface ThemeColors {
   color100: string;
   color80: string;
@@ -22,7 +23,7 @@ export interface ThemeColors {
   color30: string;
 }
 
-export interface Theme {
+export interface SimpleTheme {
   _id: Id;
   name: TranslatedText;
   short: TranslatedText;
@@ -37,6 +38,7 @@ export interface Theme {
   adminComments?: string;
 }
 
+// Structure
 export interface UserStructure {
   _id: Id;
   nom: string;
@@ -57,6 +59,7 @@ export interface Sponsor {
   link: string;
 }
 
+// User
 export interface SimpleUser {
   _id: Id;
   username: string;
@@ -75,6 +78,7 @@ export interface StructureMember {
   mainRole: string;
 }
 
+// Dispositif
 export interface InfoSection {
   title: string;
   text: string;

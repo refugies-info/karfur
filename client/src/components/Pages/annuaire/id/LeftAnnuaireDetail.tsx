@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { Picture } from "types/interface";
+import { Picture } from "api-types";
 import { StructureType } from "./StructureType";
 import { SocialsLink } from "./SocialsLink";
 import FButton from "components/UI/FButton/FButton";
