@@ -4,7 +4,7 @@ import { getActiveLanguagesFromDB, updateLanguageAvancementInDB } from "./langue
 import { getActiveContents } from "../dispositif/dispositif.repository";
 import { ObjectId } from "mongoose";
 import { getPublishedTradIds } from "../traductions/traductions.repository";
-import { Langue } from "src/typegoose";
+import { Langue } from "../../typegoose";
 
 export const updateLanguagesAvancement = async () => {
   logger.info("[updateLanguagesAvancement] received a call");

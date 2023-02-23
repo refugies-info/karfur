@@ -4,7 +4,7 @@ import { updateDispositifInDB, getDispositifById } from "../../../modules/dispos
 import { computePossibleNeeds } from "../../../modules/needs/needs.service";
 import { checkRequestIsFromSite, checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
-import { DispositifId, NeedId, ThemeId } from "src/typegoose";
+import { DispositifId, NeedId, ThemeId } from "../../../typegoose";
 
 interface QueryUpdate {
   dispositifId: DispositifId;

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Picture } from "types/interface";
+import { Picture } from "api-types";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { useDispatch, useSelector } from "react-redux";

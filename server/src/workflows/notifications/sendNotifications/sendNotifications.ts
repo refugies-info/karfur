@@ -2,8 +2,7 @@ import logger from "../../../logger";
 import { log } from "./log";
 import { sendNotificationsForDemarche } from "../../../modules/notifications/notifications.service";
 import { Response } from "../../../types/interface";
-import { SendNotificationsRequest } from "src/controllers/notificationsController";
-
+import { SendNotificationsRequest } from "api-types";
 
 export const sendNotifications = async (body: SendNotificationsRequest, userId: string): Response => {
   logger.info("[sendNotifications] received");

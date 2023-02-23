@@ -1,5 +1,5 @@
 // @ts-nocheck FIXME
-import { ErrorModel } from "src/typegoose";
+import { ErrorModel } from "../../typegoose";
 
 const himalaya = require("himalaya");
 const sanitizeHtml = require("sanitize-html");

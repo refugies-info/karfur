@@ -1,8 +1,8 @@
 import * as SibApiV3Sdk from "@sendinblue/client";
 import logger from "../../../logger";
-import { AddContactRequest } from "../../../controllers/mailController";
 import { Response } from "../../../types/interface";
 import { InvalidRequestError } from "../../../errors";
+import { AddContactRequest } from "api-types";
 
 let apiInstance = new SibApiV3Sdk.ContactsApi();
 apiInstance.setApiKey(SibApiV3Sdk.ContactsApiApiKeys.apiKey, process.env.SENDINBLUE_API_KEY);

@@ -1,4 +1,4 @@
-import { Theme, ThemeId, ThemeModel } from "src/typegoose";
+import { Theme, ThemeId, ThemeModel } from "../../typegoose";
 
 export const getTheme = (id: ThemeId) => ThemeModel.findOne({ _id: id });
 

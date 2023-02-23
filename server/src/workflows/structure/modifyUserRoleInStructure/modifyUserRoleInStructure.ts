@@ -8,7 +8,7 @@ import { addStructureForUsers, removeStructureOfUser } from "../../../modules/us
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { log } from "./log";
 import { User } from "../../../typegoose";
-import { PatchStructureRolesRequest } from "../../../controllers/structureController";
+import { PatchStructureRolesRequest } from "api-types";
 
 export const modifyUserRoleInStructure = async (id: string, body: PatchStructureRolesRequest, user: User): Response => {
   const { membreId, action, role } = body;

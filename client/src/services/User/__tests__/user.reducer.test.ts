@@ -83,7 +83,7 @@ describe("[Reducer] user", () => {
         {
           nom: "hasStructure",
           _id: "testObjectId",
-          nomPublique: "hasStructure"
+          nomPublic: "hasStructure"
         }
       ]
     };

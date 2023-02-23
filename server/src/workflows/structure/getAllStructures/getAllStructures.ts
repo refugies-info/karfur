@@ -1,33 +1,12 @@
-import { Id, Picture, ResponseWithData, SimpleUser } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructuresWithDispos } from "../../../modules/structure/structure.repository";
 import { getUsersById } from "../../../modules/users/users.repository";
 import { UserId } from "../../../typegoose";
 import pick from "lodash/pick";
+import { GetAllStructuresResponse, Id, SimpleUser } from "api-types";
 
 // type StructureStatusType = "Actif" | "En attente" | "Supprimé";
-interface Membre {
-  userId: Id;
-  roles: string[];
-}
-
-export interface GetAllStructuresResponse {
-  _id: Id;
-  nom: string;
-  acronyme?: string;
-  status?: string;
-  picture?: Picture;
-  nbMembres: number;
-  created_at?: Date;
-  createur: null | SimpleUser;
-  responsable: null | SimpleUser;
-  membres: Membre[];
-  dispositifsIds: Id[];
-  nbFiches: number;
-  adminComments?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
-}
 
 export const getAllStructures = async (): ResponseWithData<GetAllStructuresResponse[]> => {
   logger.info("[getAllStructures] received");

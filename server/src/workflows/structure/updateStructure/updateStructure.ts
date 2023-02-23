@@ -4,8 +4,8 @@ import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/struc
 import { log } from "./log";
 import { addStructureForUsers, removeStructureOfAllUsers } from "../../../modules/users/users.service";
 import { User } from "../../../typegoose";
-import { PatchStructureRequest } from "../../../controllers/structureController";
 import { Response } from "../../../types/interface";
+import { PatchStructureRequest } from "api-types";
 
 export const updateStructure = async (id: string, body: PatchStructureRequest, user: User): Response => {
   logger.info("[updateStructure] try to modify structure with id", { id });

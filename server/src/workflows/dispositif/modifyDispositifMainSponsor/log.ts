@@ -1,7 +1,7 @@
-import { Dispositif, DispositifId, Id as ObjectId, StructureId } from "src/typegoose";
-import { Id } from "../../../types/interface";
+import { Dispositif, DispositifId, ObjectId, StructureId } from "../../../typegoose";
 import logger from "../../../logger";
 import { addLog } from "../../../modules/logs/logs.service";
+import { Id } from "api-types";
 
 export const log = async (
   oldDispositif: Dispositif,

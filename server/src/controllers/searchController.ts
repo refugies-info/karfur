@@ -1,6 +1,7 @@
 import { Controller, Get, Route } from "tsoa";
+import { UpdateIndexResponse } from "api-types";
 
-import { updateIndex, UpdateIndexResponse } from "../workflows/search/updateIndex";
+import { updateIndex } from "../workflows/search/updateIndex";
 import { ResponseWithData } from "../types/interface";
 
 @Route("search")

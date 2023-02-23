@@ -2,7 +2,7 @@ import logger from "../../../logger";
 import { Response } from "../../../types/interface";
 import { sendSMS } from "../../../connectors/twilio/sendSMS";
 import { getLocaleString as t } from "../../../libs/getLocaleString";
-import { DownloadAppRequest } from "src/controllers/smsController";
+import { DownloadAppRequest } from "api-types";
 
 export const downloadApp = async (body: DownloadAppRequest): Response => {
   logger.info("[downloadApp] received", body);

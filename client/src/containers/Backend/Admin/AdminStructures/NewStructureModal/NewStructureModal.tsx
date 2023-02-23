@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Event, Picture } from "types/interface";
+import { Event } from "types/interface";
+import { Picture } from "api-types";
 import { Modal, Input, Spinner } from "reactstrap";
 import Image from "next/image";
 import FInput from "components/UI/FInput/FInput";

@@ -2,21 +2,21 @@ import logger from "../../../logger";
 import { addStructureForUsers } from "../../../modules/users/users.service";
 import { createStructureInDB } from "../../../modules/structure/structure.repository";
 import { log } from "./log";
-import { PostStructureRequest } from "src/controllers/structureController";
-import { Response } from "src/types/interface";
-import { Id, Structure } from "src/typegoose";
+import { Response } from "../../../types/interface";
+import { ObjectId, Structure } from "../../../typegoose";
 import { pick } from "lodash";
+import { PostStructureRequest, StructureStatus } from "api-types";
 
 
 export const createStructure = async (body: PostStructureRequest, userId: string): Response => {
   logger.info("[createStructure] call received", { body });
   const structureToSave: Partial<Structure> = {
     ...pick(body, ["picture", "contact", "phone_contact", "mail_contact", "nom"]),
-    createur: new Id(userId),
-    status: "En attente",
+    createur: new ObjectId(userId),
+    status: StructureStatus.WAITING,
     membres: body.responsable ? [
       {
-        userId: new Id(body.responsable),
+        userId: new ObjectId(body.responsable),
         roles: ["administrateur"],
         added_at: new Date()
       }

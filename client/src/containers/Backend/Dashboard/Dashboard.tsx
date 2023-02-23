@@ -14,7 +14,7 @@ import { RegionFigures } from "types/interface";
 import { colors } from "colors";
 import { Spinner } from "reactstrap";
 import { themesSelector } from "services/Themes/themes.selectors";
-import { GetStatisticsResponse, Id } from "api-types";
+import { ContentType, GetStatisticsResponse, Id } from "api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
@@ -51,19 +51,19 @@ const Dashboard = (props: Props) => {
     if (props.visible && !loaded) {
       const promises = [
         API.countDispositifs({
-          type: "dispositif",
+          type: ContentType.DISPOSITIF,
           publishedOnly: false,
         }).then((data) => setNbDispositifs(data.data.data.count)),
         API.countDispositifs({
-          type: "dispositif",
+          type: ContentType.DISPOSITIF,
           publishedOnly: true,
         }).then((data) => setNbDispositifsActifs(data.data.data.count)),
         API.countDispositifs({
-          type: "demarche",
+          type: ContentType.DEMARCHE,
           publishedOnly: false,
         }).then((data) => setNbDemarches(data.data.data.count)),
         API.countDispositifs({
-          type: "demarche",
+          type: ContentType.DEMARCHE,
           publishedOnly: true,
         }).then((data) => setNbDemarchesActives(data.data.data.count)),
         API.getUsersStatistics().then((data) => {
@@ -88,7 +88,7 @@ const Dashboard = (props: Props) => {
           API.countDispositifs({
             themeId: theme._id.toString(),
             publishedOnly: true,
-            type: "dispositif",
+            type: ContentType.DISPOSITIF,
           }).then((data) => {
             setNbDispositifsByTheme((prev) => ({
               ...prev,
@@ -98,7 +98,7 @@ const Dashboard = (props: Props) => {
           API.countDispositifs({
             themeId: theme._id.toString(),
             publishedOnly: true,
-            type: "demarche",
+            type: ContentType.DEMARCHE,
           }).then((data) => {
             setNbDemarchesByTheme((prev) => ({
               ...prev,

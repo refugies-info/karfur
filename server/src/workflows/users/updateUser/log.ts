@@ -1,8 +1,7 @@
 import { Types } from "mongoose";
-import { UpdateUserRequest } from "../../../controllers/userController";
 import { User } from "../../../typegoose";
 import { addLog, optionsType } from "../../../modules/logs/logs.service";
-import { Id } from "src/types/interface";
+import { Id, UpdateUserRequest } from "api-types";
 
 export const log = async (id: Id, user: UpdateUserRequest["user"], userFromDb: User, authorId: Types.ObjectId) => {
   const logOptions: optionsType = {

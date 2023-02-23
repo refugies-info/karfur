@@ -9,7 +9,7 @@ import {
 } from "../../../modules/dispositif/dispositif.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
-import { DispositifId } from "src/typegoose";
+import { DispositifId } from "../../../typegoose";
 
 interface Request {
   dispositifId: DispositifId;

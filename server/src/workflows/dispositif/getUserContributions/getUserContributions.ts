@@ -1,20 +1,9 @@
 import logger from "../../../logger";
 import { getDispositifsWithCreatorId } from "../../../modules/dispositif/dispositif.repository";
-import { Id, ResponseWithData } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { pick } from "lodash";
+import { GetUserContributionsResponse } from "api-types";
 
-export interface GetUserContributionsResponse {
-  _id: Id;
-  titreInformatif: string;
-  titreMarque: string;
-  typeContenu: string;
-  mainSponsor: {
-    nom: string;
-  }
-  nbVues: number;
-  nbMercis: number;
-  status: string;
-}
 
 export const getUserContributions = async (userId: any): ResponseWithData<GetUserContributionsResponse[]> => {
   logger.info("[getUserContributions] received");

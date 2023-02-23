@@ -1,4 +1,4 @@
-import { Languages } from "src/typegoose";
+import { Languages } from "../typegoose";
 
 const activatedLanguages = [
   {

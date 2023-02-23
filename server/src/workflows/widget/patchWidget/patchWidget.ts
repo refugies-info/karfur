@@ -1,20 +1,9 @@
 import logger from "../../../logger";
-import { Id, ResponseWithData } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { updateWidget } from "../../../modules/widgets/widgets.repository";
-import { Id as ObjectId, Widget } from "../../../typegoose";
-import { WidgetRequest } from "../../../controllers/widgetController";
+import { ObjectId, Widget } from "../../../typegoose";
+import { PatchWidgetResponse, WidgetRequest } from "api-types";
 
-export interface PatchWidgetResponse {
-  _id: Id;
-  name: string;
-  tags: string[];
-  themes: string[];
-  typeContenu: ("dispositif" | "demarche")[];
-  department: string;
-  languages: string[];
-  author: { username: string };
-  created_at: Date;
-}
 
 export const patchWidget = async (
   id: string,

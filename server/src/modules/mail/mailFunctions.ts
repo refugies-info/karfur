@@ -4,8 +4,9 @@ import {
   sendPublishedFicheMailToStructureMembersService,
   sendPublishedFicheMailToCreatorService,
 } from "./mail.service";
-import { User, UserStatus } from "src/typegoose/User";
-import { Dispositif } from "src/typegoose";
+import { User } from "../../typegoose/User";
+import { Dispositif } from "../../typegoose";
+import { UserStatus } from "api-types";
 
 export const sendPublishedMailToCreator = async (
   newDispo: Dispositif,
@@ -20,7 +21,7 @@ export const sendPublishedMailToCreator = async (
   };
 
   const creator = await getUserById(newDispo.creatorId._id, userNeededFields);
-  if (creator.status === UserStatus.USER_STATUS_DELETED) return;
+  if (creator.status === UserStatus.DELETED) return;
   if (creator.email) {
     logger.info("[publish dispositif] creator has email");
 

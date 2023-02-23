@@ -1,6 +1,6 @@
+import { Id } from "api-types";
 import { Types } from "mongoose";
-import { DispositifId, LangueId, Log, StructureId, UserId } from "src/typegoose";
-import { Id } from "src/types/interface";
+import { DispositifId, LangueId, Log, StructureId, UserId } from "../../typegoose";
 import { createLog } from "./logs.repository";
 
 export type optionsType = {

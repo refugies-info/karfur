@@ -1,5 +1,6 @@
 import { isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { MustBePopulatedError } from "src/errors";
+import { StructureStatus } from "api-types";
+import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
 import { ImageSchema } from "./generics";
@@ -69,9 +70,8 @@ export class Structure extends Base {
   public siren?: string;
   @prop()
   public siret?: string;
-  // FIXME typage => Actif | En attente | Supprimé [| ...]
-  @prop()
-  public status?: string;
+  @prop({ enum: StructureStatus })
+  public status?: StructureStatus;
   @prop({ type: () => ImageSchema, _id: false })
   public picture?: ImageSchema;
   @prop({ default: [], type: () => [String] })

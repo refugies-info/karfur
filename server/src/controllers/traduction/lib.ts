@@ -1,7 +1,7 @@
-import { getDispositifById } from "src/modules/dispositif/dispositif.repository";
-import { DispositifId, Id, IndicatorModel, Languages, Traductions, TraductionsModel } from "src/typegoose";
-import { TranslationContent } from "src/typegoose/Dispositif";
-import { Request, RequestFromClient, RequestFromClientWithBody, Res, Response } from "src/types/interface";
+import { getDispositifById } from "../../modules/dispositif/dispositif.repository";
+import { DispositifId, ObjectId, IndicatorModel, Languages, Traductions, TraductionsModel } from "../../typegoose";
+import { TranslationContent } from "../../typegoose/Dispositif";
+import { Request, RequestFromClient, RequestFromClientWithBody, Res } from "../../types/interface";
 
 const axios = require("axios");
 const { turnHTMLtoJSON } = require("../dispositif/functions");
@@ -52,7 +52,7 @@ async function add_tradForReview(req: RequestFromClientWithBody<AddTraductionFor
   const dispositif = await getDispositifById(dispositifId);
 
   const _traduction = new Traductions();
-  _traduction.dispositifId = new Id(dispositifId);
+  _traduction.dispositifId = new ObjectId(dispositifId);
   _traduction.language = locale;
   _traduction.timeSpent = timeSpent;
   _traduction.translated = translated;

@@ -4,7 +4,7 @@ import logger from "../../logger";
 import { addOrUpdateDispositifInContenusAirtable } from "../../controllers/miscellaneous/airtable";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
-import { Dispositif, DispositifId, UserId } from "src/typegoose";
+import { Dispositif, DispositifId, UserId } from "../../typegoose";
 
 export const publishDispositif = async (dispositifId: DispositifId, userId: UserId) => {
   const newDispositif = {

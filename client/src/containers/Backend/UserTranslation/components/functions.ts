@@ -1,9 +1,8 @@
-import { GetNeedResponse } from "api-types";
+import { ContentType, GetNeedResponse } from "api-types";
 import { colors } from "colors";
 import {
   TranslationStatus,
   IDispositifTranslation,
-  ITypeContenu,
   AvailableLanguageI18nCode
 } from "types/interface";
 
@@ -41,7 +40,7 @@ const filterDataOnStatus = (data: IDispositifTranslation[], filterStatus: Transl
   return data.filter((trad) => trad.tradStatus === filterStatus);
 };
 
-const filterDataOnTypeContenu = (data: IDispositifTranslation[], typeContenuFilter: ITypeContenu | "all") => {
+const filterDataOnTypeContenu = (data: IDispositifTranslation[], typeContenuFilter: ContentType | "all") => {
   if (typeContenuFilter === "all") return data;
   return data.filter((trad) => trad.type === typeContenuFilter);
 };
@@ -76,7 +75,7 @@ export const filterData = (
   data: IDispositifTranslation[],
   filterStatus: TranslationStatus | "all",
   isExpert: boolean,
-  typeContenuFilter: "dispositif" | "demarche" | "all",
+  typeContenuFilter: ContentType | "all",
   search: string
 ) => {
   const dataFilteredExpert = filterDataExpert(data, isExpert);

@@ -1,6 +1,7 @@
 import { Controller, Get, Route, Query, Security } from "tsoa";
+import { GetLogResponse } from "api-types";
 
-import { getLogs, GetLogResponse } from "../workflows/log/getLogs";
+import { getLogs } from "../workflows/log/getLogs";
 import { ResponseWithData } from "../types/interface";
 
 @Route("logs")

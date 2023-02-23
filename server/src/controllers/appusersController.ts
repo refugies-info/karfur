@@ -1,27 +1,12 @@
 import { Controller, Get, Post, Body, Route, Header } from "tsoa";
+import { AppUserRequest, GetNotificationsSettingsResponse, NotificationSettingsRequest, PostAppUserResponse, PostNotificationsSettingsResponse } from "api-types";
 
-import { PostAppUserResponse, updateAppUser } from "../workflows/appusers/updateAppUser";
-import { getNotificationsSettings, GetNotificationsSettings } from "../workflows/appusers/getNotificationsSettings";
-import { postNotificationsSettings, PostNotificationsSettings } from "../workflows/appusers/postNotificationsSettings";
+import { updateAppUser } from "../workflows/appusers/updateAppUser";
+import { getNotificationsSettings } from "../workflows/appusers/getNotificationsSettings";
+import { postNotificationsSettings } from "../workflows/appusers/postNotificationsSettings";
 import { ResponseWithData } from "../types/interface";
 
-export interface AppUserRequest {
-  city?: string;
-  department?: string;
-  selectedLanguage?: string;
-  age?: string;
-  frenchLevel?: string;
-  expoPushToken?: string;
-}
 
-export interface NotificationSettingsRequest {
-  global: boolean;
-  local: boolean;
-  demarches: boolean;
-  themes?: {
-    [key: string]: boolean;
-  };
-}
 
 /**
  * TODO: test pattern
@@ -42,7 +27,7 @@ export class AppUsersController extends Controller {
   @Get("/notification_settings") /* TODO: udpate case */
   public async notificationSettings(
     @Header("x-app-uid") appUid: Uid,
-  ): ResponseWithData<GetNotificationsSettings> {
+  ): ResponseWithData<GetNotificationsSettingsResponse> {
     return getNotificationsSettings(appUid);
   }
 
@@ -50,7 +35,7 @@ export class AppUsersController extends Controller {
   public async update(
     @Header("x-app-uid") appUid: Uid,
     @Body() body: NotificationSettingsRequest,
-  ): ResponseWithData<PostNotificationsSettings> {
+  ): ResponseWithData<PostNotificationsSettingsResponse> {
     return postNotificationsSettings(appUid, body);
   }
 }

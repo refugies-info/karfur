@@ -1,12 +1,12 @@
 import logger from "../../../logger";
-import { Id, User } from "../../../typegoose";
-import { AddUserFavorite } from "../../../controllers/userController";
+import { ObjectId, User } from "../../../typegoose";
 import { Response } from "../../../types/interface";
 import { Favorite } from "../../../typegoose/User";
 import { addFavoriteInDB } from "../../../modules/users/users.repository";
 import { InvalidRequestError } from "../../../errors";
+import { AddUserFavoriteRequest } from "api-types";
 
-export const addUserFavorite = async (user: User, body: AddUserFavorite): Response => {
+export const addUserFavorite = async (user: User, body: AddUserFavoriteRequest): Response => {
   logger.info("[addUserFavorite] received");
 
   if (user.favorites.find(f => f.dispositifId.toString() === body.dispositifId)) {
@@ -14,7 +14,7 @@ export const addUserFavorite = async (user: User, body: AddUserFavorite): Respon
   }
 
   const newFavorite: Favorite = {
-    dispositifId: new Id(body.dispositifId),
+    dispositifId: new ObjectId(body.dispositifId),
     created_at: new Date()
   }
   await addFavoriteInDB(user._id, newFavorite);

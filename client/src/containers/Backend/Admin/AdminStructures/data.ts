@@ -1,5 +1,6 @@
+import { StructureStatus } from "api-types";
 import { colors } from "colors";
-import { ProgressionStatus, StructureStatus } from "types/interface";
+import { ProgressionStatus, StructureAdminStatus } from "types/interface";
 
 export const headers = [
   { name: "Nom", order: "nom" },
@@ -14,22 +15,22 @@ const green = "#4CAF50";
 const orange = "#FF9800";
 const red = "#F44336";
 
-export const correspondingStatus: StructureStatus[] = [
+export const correspondingStatus: StructureAdminStatus[] = [
   {
     displayedStatus: "Actif",
-    storedStatus: "Actif",
+    storedStatus: StructureStatus.ACTIVE,
     color: green,
     order: 2
   },
   {
     displayedStatus: "En attente",
-    storedStatus: "En attente",
+    storedStatus: StructureStatus.WAITING,
     color: orange,
     order: 1
   },
   {
     displayedStatus: "Supprimé",
-    storedStatus: "Supprimé",
+    storedStatus: StructureStatus.DELETED,
     color: red,
     order: 3
   },

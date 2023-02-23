@@ -1,6 +1,6 @@
 import { getNeedsFromDB } from "./needs.repository";
 import logger from "../../logger";
-import { NeedId, ThemeId } from "src/typegoose";
+import { NeedId, ThemeId } from "../../typegoose";
 
 export const computePossibleNeeds = async (actualNeeds: NeedId[], contentThemes: ThemeId[]) => {
   try {

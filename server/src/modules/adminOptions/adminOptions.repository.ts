@@ -1,4 +1,4 @@
-import { AdminOptions, AdminOptionsModel } from "src/typegoose";
+import { AdminOptions, AdminOptionsModel } from "../../typegoose";
 
 export const getAdminOption = async (key: string) => AdminOptionsModel.findOne({ key: key });
 

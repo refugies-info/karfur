@@ -28,7 +28,7 @@ import { colors } from "colors";
 import { useRouter } from "next/router";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { useToggle } from "react-use";
-import { GetLogResponse, Id, PatchStructureRequest } from "api-types";
+import { GetLogResponse, Id, PatchStructureRequest, StructureStatus } from "api-types";
 import { allThemesSelector } from "services/Themes/themes.selectors";
 
 moment.locale("fr");
@@ -104,6 +104,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   ) => {
     const structures = [...allStructures];
     const newStructure = structures.find((s) => s._id === structureId);
+    //@ts-ignore
     if (newStructure) newStructure[property] = value;
     dispatch(setAllStructuresActionCreator(structures));
     updateLogs();

@@ -1,6 +1,6 @@
+import { ContentType } from "api-types";
 import FilterButton from "components/UI/FilterButton";
 import { cls } from "lib/classname";
-import { ContentType } from "types/interface";
 import parentStyles from "../Widgets.module.scss";
 
 interface Props {
@@ -24,9 +24,9 @@ export const TypeContenuInput = (props: Props) => {
       <FilterButton
         onClick={(e: any) => {
           e.preventDefault();
-          onTypeContenuChange("dispositif");
+          onTypeContenuChange(ContentType.DISPOSITIF);
         }}
-        active={props.selectedTypeContenu.includes("dispositif")}
+        active={props.selectedTypeContenu.includes(ContentType.DISPOSITIF)}
         className="me-2"
       >
         Dispositif
@@ -34,9 +34,9 @@ export const TypeContenuInput = (props: Props) => {
       <FilterButton
         onClick={(e: any) => {
           e.preventDefault();
-          onTypeContenuChange("demarche");
+          onTypeContenuChange(ContentType.DEMARCHE);
         }}
-        active={props.selectedTypeContenu.includes("demarche")}
+        active={props.selectedTypeContenu.includes(ContentType.DEMARCHE)}
       >
         Démarche
       </FilterButton>

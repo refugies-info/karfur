@@ -1,6 +1,7 @@
 import { Controller, Get, Route } from "tsoa";
+import { GetLanguagesResponse } from "api-types";
 
-import { getLanguages, GetLanguagesResponse } from "../workflows/langues/getLanguages";
+import { getLanguages } from "../workflows/langues/getLanguages";
 import { ResponseWithData } from "../types/interface";
 
 @Route("langues")

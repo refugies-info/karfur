@@ -1,23 +1,7 @@
+import { UpdatePositionsNeedResponse, UpdatePositionsRequest } from "api-types";
 import logger from "../../../logger";
 import { updatePositions as updatePositionsInDb } from "../../../modules/needs/needs.repository";
-import { UpdatePositionsRequest } from "../../../controllers/needController";
-import { NeedTranslation, ResponseWithData, Theme, Id } from "../../../types/interface";
-
-export interface UpdatePositionsNeedResponse {
-  _id: Id;
-  theme: Theme;
-  adminComments?: string;
-  nbVues: number;
-  position?: number;
-  fr: NeedTranslation;
-  ar: NeedTranslation;
-  en: NeedTranslation;
-  ru: NeedTranslation;
-  fa: NeedTranslation;
-  ti: NeedTranslation;
-  ps: NeedTranslation;
-  uk: NeedTranslation;
-}
+import { ResponseWithData } from "../../../types/interface";
 
 export const updatePositions = async (
   body: UpdatePositionsRequest,

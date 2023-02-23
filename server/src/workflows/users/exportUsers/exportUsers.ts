@@ -3,8 +3,9 @@ import { getAllUsersForAdminFromDB } from "../../../modules/users/users.reposito
 import { ObjectId } from "mongoose";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { computeGlobalIndicator, GlobalIndicator } from "../../../controllers/traduction/lib";
-import { Id, Response } from "../../../types/interface";
-import { Role } from "src/typegoose";
+import { Response } from "../../../types/interface";
+import { Role } from "../../../typegoose";
+import { Id } from "api-types";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(process.env.AIRTABLE_BASE_USERS);

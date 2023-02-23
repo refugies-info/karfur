@@ -16,7 +16,7 @@ import illuLocation from "assets/recherche/illu-location.png";
 import HomeTypeCard from "../HomeTypeCard";
 import CardSlider from "../CardSlider";
 import styles from "./HomeSearch.module.scss";
-import { Id } from "api-types";
+import { ContentType, Id } from "api-types";
 
 export const HOME_MAX_SHOWN_DISPOSITIFS = 15;
 export const HOME_MAX_SHOWN_DEMARCHES = 15;
@@ -26,14 +26,14 @@ const demarchesExamples = [
   "Recherche.demarcheExample2",
   "Recherche.demarcheExample3",
   "Recherche.demarcheExample4",
-  "..."
+  "...",
 ];
 const dispositifsExamples = [
   "Recherche.dispositifExample1",
   "Recherche.dispositifExample2",
   "Recherche.dispositifExample3",
   "Recherche.dispositifExample4",
-  "..."
+  "...",
 ];
 
 const departmentExamples = [
@@ -51,7 +51,7 @@ const departmentExamples = [
   "Puy-de-Dôme",
   "Ille-et-Vilaine",
   "Gironde",
-  "Isère"
+  "Isère",
 ];
 
 const HomeSearch = () => {
@@ -122,12 +122,12 @@ const HomeSearch = () => {
             <h2 className="h3">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
             <Button onClick={() => selectType("demarche")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
-          <CardSlider cards={demarches} type="demarche" />
+          <CardSlider cards={demarches} type={ContentType.DEMARCHE} />
           <div className={styles.title_line}>
             <h2 className="h3">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
             <Button onClick={() => selectType("dispositif")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
-          <CardSlider cards={dispositifs} type="dispositif" />
+          <CardSlider cards={dispositifs} type={ContentType.DISPOSITIF} />
         </Container>
       </div>
 

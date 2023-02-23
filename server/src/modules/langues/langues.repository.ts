@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { LangueModel } from "src/typegoose";
+import { LangueModel } from "../../typegoose";
 
 export const getActiveLanguagesFromDB = () =>
   LangueModel.find(

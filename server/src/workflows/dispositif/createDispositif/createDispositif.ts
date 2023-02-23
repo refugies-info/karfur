@@ -1,17 +1,17 @@
 import logger from "../../../logger";
 import { createDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { CreateDispositifRequest } from "../../../controllers/dispositifController";
 import { Response } from "../../../types/interface";
-import { Dispositif, Id } from "../../../typegoose";
+import { Dispositif, ObjectId } from "../../../typegoose";
+import { ContentType, CreateDispositifRequest, DispositifStatus, Id } from "api-types";
 
 export const createDispositif = async (body: CreateDispositifRequest, userId: Id): Response => {
   logger.info("[createDispositif] received", { body });
 
   const newDispositif: Partial<Dispositif> = {
-    status: "Brouillon",
+    status: DispositifStatus.DRAFT,
     typeContenu: body.typeContenu,
-    creatorId: userId,
-    lastModificationAuthor: userId,
+    creatorId: new ObjectId(userId.toString()),
+    lastModificationAuthor: new ObjectId(userId.toString()),
     themesSelectedByAuthor: true,
     // @ts-ignore asking for all languages?
     translations: {
@@ -22,16 +22,16 @@ export const createDispositif = async (body: CreateDispositifRequest, userId: Id
           abstract: body.abstract || "",
           what: body.what || "",
           how: body.how || {},
-          ...(body.typeContenu === "dispositif") ? { why: body.why || {} } : { next: body.next || {} },
+          ...(body.typeContenu === ContentType.DISPOSITIF) ? { why: body.why || {} } : { next: body.next || {} },
         },
         metadatas: {}
       }
     }
   };
 
-  if (body.mainSponsor) newDispositif.mainSponsor = new Id(body.mainSponsor);
-  if (body.theme) newDispositif.theme = new Id(body.theme);
-  if (body.secondaryThemes) newDispositif.secondaryThemes = body.secondaryThemes.map(t => new Id(t));
+  if (body.mainSponsor) newDispositif.mainSponsor = new ObjectId(body.mainSponsor);
+  if (body.theme) newDispositif.theme = new ObjectId(body.theme);
+  if (body.secondaryThemes) newDispositif.secondaryThemes = body.secondaryThemes.map(t => new ObjectId(t));
   if (body.metadatas) newDispositif.metadatas = body.metadatas;
 
   await createDispositifInDB(newDispositif);

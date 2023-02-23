@@ -2,7 +2,7 @@ import logger from "../../logger";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
 import { sendNewFicheEnAttenteMail } from "./mail.service";
-import { Dispositif } from "src/typegoose";
+import { Dispositif } from "../../typegoose";
 
 export const sendMailToStructureMembersWhenDispositifEnAttente = async (dispositif: Dispositif) => {
   logger.info("[sendMailToStructureMembersWhenDispositifEnAttente] received");

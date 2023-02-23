@@ -20,14 +20,13 @@ import {
   Content,
   FigureContainer,
   StyledSort,
-  StyledHeaderInner
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import { TabHeader, StyledStatus, FilterButton } from "../sharedComponents/SubComponents";
 import moment from "moment";
 import "moment/locale/fr";
 import { headers, correspondingStatus } from "./data";
 import { RowContainer, StructureName, ResponsableComponent } from "./components/AdminStructureComponents";
-import { StructureStatusType } from "types/interface";
 import CustomSearchBar from "components/UI/CustomSeachBar";
 import FButton from "components/UI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
@@ -40,7 +39,7 @@ import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { GetAllStructuresResponse, Id } from "api-types";
+import { GetAllStructuresResponse, Id, StructureStatus } from "api-types";
 
 moment.locale("fr");
 
@@ -48,15 +47,15 @@ export const AdminStructures = () => {
   const defaultSortedHeader = {
     name: "none",
     sens: "none",
-    orderColumn: "none"
+    orderColumn: "none",
   };
 
   // filters
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "structures");
-  const [filter, setFilter] = useState<StructureStatusType>(
-    (initialFilters.filter as StructureStatusType) || "En attente"
+  const [filter, setFilter] = useState<StructureStatus>(
+    (initialFilters.filter as StructureStatus) || StructureStatus.WAITING,
   );
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
@@ -86,16 +85,16 @@ export const AdminStructures = () => {
         filter,
         selectedUserId,
         selectedContentId,
-        selectedStructureId
+        selectedStructureId,
       );
 
       router.replace(
         {
           pathname: locale + "/backend/admin",
-          search: params
+          search: params,
         },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -124,7 +123,7 @@ export const AdminStructures = () => {
     toggleStructureDetailsModal();
   };
 
-  const onFilterClick = (status: StructureStatusType) => {
+  const onFilterClick = (status: StructureStatus) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -143,7 +142,7 @@ export const AdminStructures = () => {
       setSortedHeader({
         name: element.name,
         sens: "up",
-        orderColumn: element.order
+        orderColumn: element.order,
       });
     }
   };
@@ -171,7 +170,7 @@ export const AdminStructures = () => {
               .normalize("NFD")
               .replace(/[\u0300-\u036f]/g, "")
               .toLowerCase()
-              .includes(removeAccents(search.toLowerCase()))
+              .includes(removeAccents(search.toLowerCase())),
         )
       : structures;
 
@@ -181,7 +180,7 @@ export const AdminStructures = () => {
     if (sortedHeader.name === "none")
       return {
         structuresToDisplay: filteredStructures,
-        structuresForCount: structuresFilteredBySearch
+        structuresForCount: structuresFilteredBySearch,
       };
 
     const structuresToDisplay = filteredStructures.sort((a: GetAllStructuresResponse, b: GetAllStructuresResponse) => {
@@ -225,7 +224,7 @@ export const AdminStructures = () => {
     });
     return {
       structuresToDisplay,
-      structuresForCount: structuresFilteredBySearch
+      structuresForCount: structuresFilteredBySearch,
     };
   };
 

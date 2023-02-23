@@ -4,7 +4,7 @@ import { getDispositifArray } from "../../../modules/dispositif/dispositif.repos
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { Langue } from "src/typegoose";
+import { Langue } from "../../../typegoose";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(process.env.AIRTABLE_BASE_USERS);

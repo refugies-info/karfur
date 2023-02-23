@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Picture } from "types/interface";
+import { Picture } from "api-types";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,7 @@ import { colors as themeColors } from "colors";
 import {
   createThemeActionCreator,
   deleteThemeActionCreator,
-  saveThemeActionCreator
+  saveThemeActionCreator,
 } from "services/Themes/themes.actions";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { cls } from "lib/classname";
@@ -35,7 +35,7 @@ const EMPTY_COLORS: GetThemeResponse["colors"] = {
   color80: "#000000",
   color60: "#000000",
   color40: "#000000",
-  color30: "#000000"
+  color30: "#000000",
 };
 
 type colorKey = "color100" | "color80" | "color60" | "color40" | "color30";
@@ -106,7 +106,7 @@ export const ThemeFormModal = (props: Props) => {
         appImage,
         shareImage,
         icon,
-        adminComments: notes || ""
+        adminComments: notes || "",
       };
       dispatch(saveThemeActionCreator(props.selectedTheme._id, updatedTheme));
     } else {
@@ -122,7 +122,7 @@ export const ThemeFormModal = (props: Props) => {
         shareImage,
         icon,
         adminComments: notes || "",
-        position: themes.length + 1
+        position: themes.length + 1,
       };
       dispatch(createThemeActionCreator(newTheme));
     }
@@ -139,7 +139,7 @@ export const ThemeFormModal = (props: Props) => {
         confirmButtonColor: themeColors.rouge,
         cancelButtonColor: themeColors.vert,
         confirmButtonText: "Oui, le supprimer",
-        cancelButtonText: "Annuler"
+        cancelButtonText: "Annuler",
       }).then((res) => {
         if (res.value && props.selectedTheme) {
           dispatch(deleteThemeActionCreator(props.selectedTheme._id));
@@ -377,7 +377,7 @@ export const ThemeFormModal = (props: Props) => {
                   setShort((short) => ({
                     ...short,
                     fr: short?.fr || "", // for typescript validation
-                    [selectedLanguageModal.i18nCode]: e.target.value
+                    [selectedLanguageModal.i18nCode]: e.target.value,
                   }))
                 }
                 autoFocus={false}
@@ -397,7 +397,7 @@ export const ThemeFormModal = (props: Props) => {
                   setName((name) => ({
                     ...name,
                     fr: name?.fr || "", // for typescript validation
-                    [selectedLanguageModal.i18nCode]: e.target.value
+                    [selectedLanguageModal.i18nCode]: e.target.value,
                   }))
                 }
                 autoFocus={false}

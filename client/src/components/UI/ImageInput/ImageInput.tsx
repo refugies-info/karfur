@@ -5,7 +5,7 @@ import FButton from "../FButton";
 import emptyImage from "assets/empty-image.svg";
 import styles from "./ImageInput.module.scss";
 import Image from "next/image";
-import { Picture } from "types/interface";
+import { Picture } from "api-types";
 import { cls } from "lib/classname";
 import { handleApiDefaultError } from "lib/handleApiErrors";
 

@@ -4,7 +4,7 @@ import { getAllUsersForAdminFromDB } from "../../../modules/users/users.reposito
 import { getNbWordsTranslated } from "../../../modules/traductions/traductions.repository";
 import { Res, RequestFromClient } from "../../../types/interface";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { User } from "src/typegoose";
+import { User } from "../../../typegoose";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 

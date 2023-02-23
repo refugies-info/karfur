@@ -19,8 +19,9 @@ import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modu
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { checkUserIsAuthorizedToModifyDispositif, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
-import { Dispositif, Structure, Theme, User } from "src/typegoose";
+import { Dispositif, Structure, Theme, User } from "../../../typegoose";
 import { isDocument } from "@typegoose/typegoose";
+import { ContentType, DispositifStatus } from "api-types";
 
 export interface Request {
   titreInformatif: string;
@@ -28,7 +29,7 @@ export interface Request {
   status: string;
   contenu: any;
   nbMots: number;
-  typeContenu: "dispositif" | "demarche";
+  typeContenu: ContentType;
   mainSponsor: Dispositif["mainSponsor"];
   titreMarque: string;
   theme?: Theme;
@@ -44,15 +45,15 @@ export const getNewStatus = (
   saveType: "auto" | "validate" | "save"
 ): Dispositif["status"] => {
   // keep draft if already draft
-  if (dispositif.status === "Brouillon" && saveType !== "validate") {
-    return "Brouillon";
+  if (dispositif.status === DispositifStatus.DRAFT && saveType !== "validate") {
+    return DispositifStatus.DRAFT;
 
     // validate rejected dispositif
   } else if (
     dispositif?.status === "Rejeté structure" && // = Rejeté
     saveType === "validate"
   ) {
-    return "En attente";
+    return DispositifStatus.WAITING;
 
     // keep current status
   } else if (
@@ -73,13 +74,13 @@ export const getNewStatus = (
     const isMembreOfStructure = (membre?.roles || []).some((x) => x === "administrateur" || x === "contributeur");
     if (saveType === "validate") {
       if (isMembreOfStructure || isAdmin) {
-        return "En attente admin"; // = A valider
+        return DispositifStatus.WAITING_ADMIN; // = A valider
       }
-      return "En attente";
+      return DispositifStatus.WAITING;
     }
     return dispositif.status as Dispositif["status"];
   }
-  return "En attente non prioritaire"; // = Sans structure
+  return DispositifStatus.NO_STRUCTURE; // = Sans structure
 };
 
 /**
@@ -205,7 +206,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       }
 
       if (
-        dispositif.typeContenu === "dispositif" &&
+        dispositif.typeContenu === ContentType.DISPOSITIF &&
         originalDispositif.status !== "En attente" &&
         dispositif.status === "En attente" &&
         dispositif.mainSponsor
@@ -243,7 +244,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
 
       const contribRole = await getRoleByName("Contrib");
       await addRoleAndContribToUser(req.userId, contribRole._id, dispResult._id);
-      if (dispositif.typeContenu === "dispositif" && dispositif.status === "En attente" && dispositif.mainSponsor) {
+      if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.status === "En attente" && dispositif.mainSponsor) {
         try {
           logger.info("[addDispositif] send mail to structure member when new dispositif en attente");
 

@@ -1,7 +1,5 @@
 import mongoose, { ObjectId } from "mongoose";
-import { User } from "src/typegoose";
-import { StructureDoc } from "./schemaStructure";
-import { ThemeDoc } from "./schemaTheme";
+import { User } from "../typegoose";
 
 function arrayThemesLimit(val: any[]) {
   return val.length <= 2;

@@ -1,4 +1,4 @@
-import { AppUser, AppUserModel, NotificationsSettings } from "src/typegoose";
+import { AppUser, AppUserModel, NotificationsSettings } from "../../typegoose";
 
 export const getAllAppUsers = async () => AppUserModel.find();
 

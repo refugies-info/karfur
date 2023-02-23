@@ -3,7 +3,6 @@ import { AvailableLanguageI18nCode } from "types/interface";
 
 export const activatedLanguages: GetLanguagesResponse[] = [
   {
-    _id: "",
     langueFr: "Français",
     langueLoc: "Français",
     langueCode: "fr",
@@ -13,7 +12,6 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     _id: "a",
   },
   {
-    _id: "",
     langueFr: "Ukrainien",
     langueLoc: "Українська",
     langueCode: "ua",
@@ -23,7 +21,6 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     _id: "b",
   },
   {
-    _id: "",
     langueFr: "Pachto",
     langueLoc: "پښتو",
     langueCode: "af",
@@ -33,7 +30,6 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     _id: "c",
   },
   {
-    _id: "",
     langueFr: "Anglais",
     langueLoc: "English",
     langueCode: "gb",
@@ -43,7 +39,6 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     _id: "d",
   },
   {
-    _id: "",
     langueFr: "Persan/Dari",
     langueLoc: "فارسی/ دری",
     langueCode: "ir",
@@ -53,7 +48,6 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     _id: "e",
   },
   {
-    _id: "",
     langueFr: "Tigrinya",
     langueLoc: "ትግርኛ",
     langueCode: "er",
@@ -63,7 +57,6 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     _id: "f",
   },
   {
-    _id: "",
     langueFr: "Russe",
     langueLoc: "Русский",
     langueCode: "ru",
@@ -73,7 +66,6 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     _id: "i",
   },
   {
-    _id: "",
     langueFr: "Arabe",
     langueLoc: "العربية",
     langueCode: "sa",

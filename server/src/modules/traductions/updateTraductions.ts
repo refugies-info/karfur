@@ -8,7 +8,7 @@ import logger from "../../logger";
 // import ErrorDB from "../../schema/schemaError";
 // import { getExpertTraductionByLanguage, updateTradsWithARevoir, updateTradInDB } from "./traductions.repository";
 // import { ObjectId } from "mongoose";
-// import { Dispositif } from "src/typegoose";
+// import { Dispositif } from "../../typegoose";
 
 export const updateTraductions = async (/*originalDis: Dispositif, dispositif: Dispositif, userId: ObjectId*/) => {
   logger.info("[updateTraductions] received");

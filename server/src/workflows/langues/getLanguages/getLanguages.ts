@@ -1,17 +1,8 @@
-import { Id, ResponseWithData } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import pick from "lodash/pick";
-
-export interface GetLanguagesResponse {
-  _id: Id,
-  langueFr: string;
-  langueLoc?: string;
-  langueCode?: string;
-  i18nCode: string;
-  avancement: number;
-  avancementTrad: number;
-}
+import { GetLanguagesResponse } from "api-types";
 
 export const getLanguages = async (): ResponseWithData<GetLanguagesResponse[]> => {
   logger.info("[getLanguages] received");

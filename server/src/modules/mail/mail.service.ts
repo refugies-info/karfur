@@ -1,7 +1,7 @@
 import { sendMail } from "../../connectors/sendgrid/sendMail";
 import logger from "../../logger";
 import { addMailEvent } from "./mail.repository";
-import { DispositifId, UserId } from "src/typegoose";
+import { DispositifId, UserId } from "../../typegoose";
 
 export const sendWelcomeMail = async (email: string, username: string, userId: UserId) => {
   try {

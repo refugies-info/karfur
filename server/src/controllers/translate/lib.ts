@@ -1,5 +1,5 @@
 import { Translate } from "@google-cloud/translate";
-import { Request, Res } from "src/types/interface";
+import { Request, Res } from "../../types/interface";
 import logger from "../../logger";
 
 const projectId = "traduction-1551702821050";

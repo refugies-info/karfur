@@ -1,6 +1,6 @@
-import { getDispositifById } from "src/modules/dispositif/dispositif.repository";
-import { Id, IndicatorModel, Languages, RichText, Traductions, TraductionsModel, User } from "src/typegoose";
-import { Content, InfoSection, InfoSections } from "src/typegoose/Dispositif";
+import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { ObjectId, IndicatorModel, Languages, RichText, Traductions, TraductionsModel, User } from "../../../typegoose";
+import { Content, InfoSection, InfoSections } from "../../../typegoose/Dispositif";
 
 export interface SaveTranslationRequest {
   dispositifId: string;
@@ -26,7 +26,7 @@ const saveTranslation = (
 ): Promise<Traductions> =>
   getDispositifById(dispositifId).then(async (dispositif) => {
     const _traduction = new Traductions();
-    _traduction.dispositifId = new Id(dispositifId);
+    _traduction.dispositifId = new ObjectId(dispositifId);
     _traduction.language = language;
     // @ts-ignore
     _traduction.translated = translated;

@@ -1,26 +1,44 @@
 import { Controller, Request, Get, Post, Put, Body, Delete, Route, Security, Queries, Path, Patch, Query } from "tsoa";
 import { pick } from "lodash";
 import { Request as ExRequest } from "express";
+import {
+  AddUserFavoriteRequest,
+  DeleteUserFavoriteRequest,
+  GetActiveUsersResponse,
+  GetAllUsersResponse,
+  GetUserFavoritesResponse,
+  GetUserInfoResponse,
+  GetUserStatisticsResponse,
+  LoginRequest,
+  LoginResponse,
+  NewPasswordRequest,
+  NewPasswordResponse,
+  ResetPasswordRequest,
+  ResetPasswordResponse,
+  SelectedLanguagesRequest,
+  UpdatePasswordRequest,
+  UpdatePasswordResponse,
+  UpdateUserRequest,
+  GetUserFavoritesRequest,
+} from "api-types";
 
-import { getFiguresOnUsers, GetUserStatisticsResponse } from "../workflows/users/getFiguresOnUsers";
-import { getAllUsers, GetAllUsersResponse } from "../workflows/users/getAllUsers";
-import { getActiveUsers, GetActiveUsersResponse } from "../workflows/users/getActiveUsers";
+import { getFiguresOnUsers, } from "../workflows/users/getFiguresOnUsers";
+import { getAllUsers, } from "../workflows/users/getAllUsers";
+import { getActiveUsers, } from "../workflows/users/getActiveUsers";
 import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
-import { changePassword, UpdatePasswordResponse } from "../workflows/users/changePassword";
-import { setNewPassword, NewPasswordResponse } from "../workflows/users/setNewPassword";
-import { getUserFavoritesInLocale, GetUserFavoritesResponse } from "../workflows/users/getUserFavoritesInLocale";
+import { changePassword, } from "../workflows/users/changePassword";
+import { setNewPassword, } from "../workflows/users/setNewPassword";
+import { getUserFavoritesInLocale, } from "../workflows/users/getUserFavoritesInLocale";
 import { deleteUser } from "../workflows/users/deleteUser";
-import { LangueId } from "../typegoose";
 import { setSelectedLanguages } from "../workflows";
-import { Id, IRequest, Picture, Response, ResponseWithData } from "../types/interface";
+import { IRequest, Response, ResponseWithData } from "../types/interface";
 import { addUserFavorite } from "../workflows/users/addUserFavorite";
 import { deleteUserFavorites } from "../workflows/users/deleteUserFavorites";
-import { resetPassword, ResetPasswordResponse } from "../workflows/users/resetPassword";
+import { resetPassword, } from "../workflows/users/resetPassword";
 import { checkResetToken } from "../workflows/users/checkResetToken";
 import { checkUserExists } from "../workflows/users/checkUserExists";
-import { LoginResponse } from "../workflows/users/login/login";
 
 // import { UserStatus } from "../typegoose/User";
 
@@ -31,79 +49,6 @@ import { LoginResponse } from "../workflows/users/login/login";
 //   "contributions" | "email" | "roles" | "selectedLanguages" | "status" | "structures" | "username" | "_id"
 // >;
 
-export interface SelectedLanguagesRequest {
-  selectedLanguages: LangueId[];
-}
-
-export interface GetUserInfoResponse {
-  _id: Id;
-  contributions: string[];
-  email: string;
-  phone: string;
-  roles: { _id: string; nom: string; nomPublic: string }[];
-  selectedLanguages: string[];
-  status: "Actif" | "Exclu"; // FIXME : UserStatus does not work with tsoa
-  structures: string[];
-  traductionsFaites: string[];
-  username: string;
-  picture?: Picture;
-  favorites?: {
-    dispositifId: Id;
-    created_at: Date;
-  }[];
-}
-
-export interface UserFavoritesRequest {
-  locale: string
-}
-
-export interface AddUserFavorite {
-  dispositifId: string;
-}
-
-export interface DeleteUserFavorite {
-  dispositifId?: string;
-  all?: boolean;
-}
-
-export interface UpdatePasswordRequest {
-  currentPassword: string;
-  newPassword: string;
-}
-
-export interface ResetPasswordRequest {
-  username: string;
-}
-
-export interface NewPasswordRequest {
-  newPassword: string;
-  reset_password_token: string;
-  code?: string;
-  email?: string;
-  phone?: string;
-}
-
-export interface LoginRequest {
-  username: string;
-  password: string;
-  code?: string;
-  email?: string;
-  phone?: string;
-}
-
-export interface UpdateUserRequest {
-  user: {
-    roles?: Id[];
-    email?: string;
-    phone?: string;
-    code?: string;
-    username?: string;
-    picture?: Picture;
-    adminComments?: string;
-    selectedLanguages?: Id[];
-  },
-  action: "modify-with-roles" | "modify-my-details";
-}
 
 @Route("user")
 export class UserController extends Controller {
@@ -155,19 +100,19 @@ export class UserController extends Controller {
 
   @Security("jwt")
   @Get("/favorites")
-  public async getUserFavorites(@Request() request: IRequest, @Queries() query: UserFavoritesRequest): ResponseWithData<GetUserFavoritesResponse[]> {
+  public async getUserFavorites(@Request() request: IRequest, @Queries() query: GetUserFavoritesRequest): ResponseWithData<GetUserFavoritesResponse[]> {
     return getUserFavoritesInLocale(request.user, query)
   }
 
   @Security("jwt")
   @Put("/favorites")
-  public async addUserFavorite(@Request() request: ExRequest, @Body() body: AddUserFavorite): Response {
+  public async addUserFavorite(@Request() request: ExRequest, @Body() body: AddUserFavoriteRequest): Response {
     return addUserFavorite(request.user, body);
   }
 
   @Security("jwt")
   @Delete("/favorites")
-  public async deleteUserFavorites(@Request() request: ExRequest, @Queries() query: DeleteUserFavorite): Response {
+  public async deleteUserFavorites(@Request() request: ExRequest, @Queries() query: DeleteUserFavoriteRequest): Response {
     return deleteUserFavorites(request.user, query);
   }
 

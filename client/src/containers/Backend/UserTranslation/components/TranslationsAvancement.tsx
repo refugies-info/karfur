@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IDispositifTranslation, TranslationStatus, ITypeContenu } from "types/interface";
+import { IDispositifTranslation, TranslationStatus } from "types/interface";
 import styled from "styled-components";
 import { LanguageTitle, FilterButton, TypeContenuFilterButton } from "./SubComponents";
 import { TranslationAvancementTable } from "./TranslationAvancementTable";
@@ -10,7 +10,7 @@ import CustomSearchBar from "components/UI/CustomSeachBar";
 import { useLanguages } from "hooks";
 import useRouterLocale from "hooks/useRouterLocale";
 import { Link } from "react-router-dom";
-import { GetUserInfoResponse } from "api-types";
+import { ContentType, GetUserInfoResponse } from "api-types";
 
 interface Props {
   history: any;
@@ -77,7 +77,7 @@ export const TranslationsAvancement = (props: Props) => {
   const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
     getInitialFilterStatus(props.isExpert, props.data),
   );
-  const [typeContenuFilter, setTypeContenuFilter] = useState<ITypeContenu | "all">("dispositif");
+  const [typeContenuFilter, setTypeContenuFilter] = useState<ContentType | "all">(ContentType.DISPOSITIF);
 
   const navigateToLanguage = (e: any, langue: string) => {
     if (props.actualLanguage === langue) {
@@ -90,7 +90,7 @@ export const TranslationsAvancement = (props: Props) => {
     return setStatusFilter(status);
   };
 
-  const onTypeContenuFilterClick = (status: ITypeContenu | "all") => {
+  const onTypeContenuFilterClick = (status: ContentType | "all") => {
     if (status === typeContenuFilter) return setTypeContenuFilter("all");
     return setTypeContenuFilter(status);
   };
@@ -174,15 +174,15 @@ export const TranslationsAvancement = (props: Props) => {
             onClick={() => onFilterClick("Validée")}
           />
           <TypeContenuFilterButton
-            isSelected={typeContenuFilter === "dispositif"}
+            isSelected={typeContenuFilter === ContentType.DISPOSITIF}
             name="Dispositifs"
-            onClick={() => onTypeContenuFilterClick("dispositif")}
+            onClick={() => onTypeContenuFilterClick(ContentType.DISPOSITIF)}
             nbContent={nbDispositifs}
           />
           <TypeContenuFilterButton
-            isSelected={typeContenuFilter === "demarche"}
+            isSelected={typeContenuFilter === ContentType.DEMARCHE}
             name="Démarches"
-            onClick={() => onTypeContenuFilterClick("demarche")}
+            onClick={() => onTypeContenuFilterClick(ContentType.DEMARCHE)}
             nbContent={nbDemarches}
           />
         </Row>

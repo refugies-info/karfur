@@ -1,4 +1,4 @@
-import { Widget, WidgetId, WidgetModel } from "src/typegoose";
+import { Widget, WidgetId, WidgetModel } from "../../typegoose";
 
 export const getAllWidgets = async () => {
   return WidgetModel.find()

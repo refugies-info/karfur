@@ -1,17 +1,7 @@
-import { ResponseWithData } from "src/types/interface";
+import { GetNotificationResponse } from "api-types";
+import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
-
 import { getNotificationsForUser } from "../../../modules/notifications/notifications.service";
-
-export interface GetNotificationResponse {
-  unseenCount: number;
-  notifications: {
-    uid: string;
-    seen: boolean;
-    title: string;
-    data: any;
-  }[]
-}
 
 export const getNotifications = async (appUid: string): ResponseWithData<GetNotificationResponse> => {
   logger.info("[getNotifications] received");

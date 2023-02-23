@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { UserId, UserModel } from "src/typegoose";
+import { UserId, UserModel } from "../../typegoose";
 import jwt from "jwt-simple";
 
 export interface CustomRequest extends Request {

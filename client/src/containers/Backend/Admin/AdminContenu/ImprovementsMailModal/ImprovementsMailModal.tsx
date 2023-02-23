@@ -164,13 +164,15 @@ export const ImprovementsMailModal = (props: Props) => {
             <span className="me-3">
               Fiche : <strong>{title}</strong>
             </span>
-            <StyledStatus
-              text={formattedStatus.displayedStatus}
-              textToDisplay={formattedStatus.displayedStatus}
-              color={formattedStatus.color}
-              disabled={true}
-              textColor={formattedStatus.textColor}
-            />
+            {formattedStatus && (
+              <StyledStatus
+                text={formattedStatus.displayedStatus}
+                textToDisplay={formattedStatus.displayedStatus}
+                color={formattedStatus.color}
+                disabled={true}
+                textColor={formattedStatus.textColor}
+              />
+            )}
           </p>
 
           <p className={cls(styles.infoline, styles.text)}>

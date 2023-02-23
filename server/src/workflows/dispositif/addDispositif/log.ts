@@ -1,7 +1,7 @@
 import { addLog } from "../../../modules/logs/logs.service";
 import { Request } from "./addDispositif";
 import logger from "../../../logger";
-import { Dispositif, UserId } from "src/typegoose";
+import { Dispositif, UserId } from "../../../typegoose";
 
 export const log = async (dispositif: Request, originalDispositif: Dispositif, authorId: UserId) => {
   try {

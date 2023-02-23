@@ -1,10 +1,28 @@
 import { Controller, Get, Route, Path, Query, Security, Queries, Patch, Body, Request, Post } from "tsoa";
+import {
+  AddViewsRequest,
+  AdminCommentsRequest,
+  CountDispositifsRequest,
+  CreateDispositifRequest,
+  DispositifStatusRequest,
+  GetDispositifsRequest,
+  GetStatisticsRequest,
+  MainSponsorRequest,
+  UpdateDispositifPropertiesRequest,
+  UpdateDispositifRequest,
+  GetDispositifsResponse,
+  GetAllDispositifsResponse,
+  GetDispositifResponse,
+  GetStatisticsResponse,
+  GetCountDispositifsResponse,
+  GetUserContributionsResponse,
+} from "api-types";
 import express, { Request as ExRequest } from "express";
 
 import * as checkToken from "./account/checkToken";
 import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
-import { getDispositifs, GetDispositifsResponse } from "../workflows/dispositif/getDispositifs";
-import { getAllDispositifs, GetAllDispositifsResponse } from "../workflows/dispositif/getAllDispositifs";
+import { getDispositifs, } from "../workflows/dispositif/getDispositifs";
+import { getAllDispositifs, } from "../workflows/dispositif/getAllDispositifs";
 import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
 import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispositifMainSponsor";
 import { updateDispositifAdminComments } from "../workflows/dispositif/updateDispositifAdminComments";
@@ -16,12 +34,11 @@ import { exportFiches } from "../workflows/dispositif/exportFiches";
 import { exportDispositifsGeolocalisation } from "../workflows/dispositif/exportDispositifsGeolocalisation";
 import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
-import { getContentById, GetDispositifResponse } from "../workflows/dispositif/getContentById";
-import { getStatistics, GetStatisticsResponse } from "../workflows/dispositif/getStatistics";
-import { InfoSection, Metadatas, Response, ResponseWithData } from "../types/interface";
+import { getContentById, } from "../workflows/dispositif/getContentById";
+import { getStatistics, } from "../workflows/dispositif/getStatistics";
+import { Response, ResponseWithData } from "../types/interface";
 import { Languages } from "../typegoose";
-import { getCountDispositifs, GetCountDispositifsResponse } from "../workflows/dispositif/getCountDispositifs";
-import { GetUserContributionsResponse } from "../workflows/dispositif/getUserContributions/getUserContributions";
+import { getCountDispositifs, } from "../workflows/dispositif/getCountDispositifs";
 import { updateDispositifProperties } from "../workflows/dispositif/updateDispositifProperties";
 import { updateDispositif } from "../workflows/dispositif/updateDispositif";
 import { createDispositif } from "../workflows/dispositif/createDispositif";
@@ -43,67 +60,6 @@ router.get("/getContentsForApp", getContentsForApp);
 router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
 
 export { router };
-
-type ViewsType = "web" | "mobile" | "favorite";
-type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
-
-export interface CountDispositifsRequest {
-  type: "dispositif" | "demarche"; // TODO: type
-  publishedOnly: boolean
-  themeId?: string;
-}
-
-export interface GetDispositifsRequest {
-  type?: "dispositif" | "demarche"; // TODO: type
-  locale: string
-  limit?: number
-  sort?: string
-}
-export interface GetStatisticsRequest {
-  facets?: Facets[]
-}
-
-export interface AdminCommentsRequest {
-  adminComments?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
-}
-
-export interface MainSponsorRequest {
-  sponsorId: string;
-}
-
-export interface DispositifStatusRequest {
-  status: "Actif" | "Supprimé" | "Brouillon" | "En attente" | "En attente admin" | "En attente non prioritaire"; // TODO: type
-}
-
-export interface AddViewsRequest {
-  types: ViewsType[]
-}
-
-export interface UpdateDispositifPropertiesRequest {
-  webOnly: boolean;
-}
-
-interface DispositifRequest {
-  titreInformatif?: string;
-  titreMarque?: string;
-  abstract?: string;
-  what?: string;
-  why?: { [key: string]: InfoSection };
-  how?: { [key: string]: InfoSection };
-  next?: { [key: string]: InfoSection };
-  mainSponsor?: string;
-  theme?: string;
-  secondaryThemes?: string[];
-  // sponsors?: (Sponsor | SponsorDB)[];
-  metadatas?: Metadatas;
-  // map: Poi[];
-}
-export interface UpdateDispositifRequest extends DispositifRequest { }
-export interface CreateDispositifRequest extends DispositifRequest {
-  typeContenu: "dispositif" | "demarche";
-}
 
 
 @Route("dispositifs")

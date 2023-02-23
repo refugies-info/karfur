@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { Langue } from "src/typegoose";
+import { Langue } from "../../typegoose";
 import { getActiveLanguagesFromDB } from "../langues.repository";
 
-jest.mock("src/typegoose", () => ({
+jest.mock("../../typegoose", () => ({
   Langue: {
     find: jest.fn()
   }

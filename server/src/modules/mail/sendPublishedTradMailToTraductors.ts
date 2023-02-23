@@ -4,13 +4,13 @@ import { getUserById } from "../users/users.repository";
 import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
-import { UserStatus } from "src/typegoose/User";
-import { DispositifId } from "src/typegoose";
+import { DispositifId } from "../../typegoose";
+import { ContentType, UserStatus } from "api-types";
 
 export const sendPublishedTradMailToTraductors = async (
   traductorIdsList: string[],
   locale: string,
-  typeContenu: "dispositif" | "demarche",
+  typeContenu: ContentType,
   titreInformatif: string | Record<string, string>,
   titreMarque: string | undefined | Record<string, string>,
   dispositifId: DispositifId,
@@ -33,7 +33,7 @@ export const sendPublishedTradMailToTraductors = async (
         };
 
         const membreFromDB = await getUserById(tradId, userNeededFields);
-        if (membreFromDB.status !== UserStatus.USER_STATUS_DELETED && membreFromDB.email) {
+        if (membreFromDB.status !== UserStatus.DELETED && membreFromDB.email) {
           await sendPublishedTradMailToTraductorsService({
             dispositifId,
             userId: tradId,
@@ -43,7 +43,7 @@ export const sendPublishedTradMailToTraductors = async (
             email: membreFromDB.email,
             pseudo: membreFromDB.username,
             langue,
-            isDispositif: typeContenu === "dispositif",
+            isDispositif: typeContenu === ContentType.DISPOSITIF,
           });
         }
       } catch (error) {

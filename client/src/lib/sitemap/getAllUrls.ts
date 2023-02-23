@@ -1,4 +1,4 @@
-import { GetActiveStructuresResponse, Id } from "api-types";
+import { ContentType, GetActiveStructuresResponse, Id } from "api-types";
 import { getPath, PathNames } from "routes";
 import API from "utils/API";
 
@@ -26,7 +26,7 @@ export const getAllUrls = async (type: string, locale: string): Promise<string[]
     // DISPOSITIFS
     case "dispositifs":
       const dispositifs = await API.getDispositifs({
-        type: "dispositif",
+        type: ContentType.DISPOSITIF,
         locale: locale
       });
       return dispositifs.data.data
@@ -35,7 +35,7 @@ export const getAllUrls = async (type: string, locale: string): Promise<string[]
     // DEMARCHES
     case "demarches":
       const demarches = await API.getDispositifs({
-        type: "demarche",
+        type: ContentType.DEMARCHE,
         locale: locale
       });
       return demarches.data.data

@@ -1,9 +1,9 @@
-import { Id } from "api-types";
+import { DispositifStatus, StructureStatus, Id } from "api-types";
 import { NextRouter } from "next/router";
-import { ContentStatusType, StructureStatusType, UserStatusType } from "types/interface";
+import { UserStatusType } from "types/interface";
 
 export type TabQuery = "contenus" | "structures" | "utilisateurs" | "divers" | "categories" | "widgets" | undefined;
-type Status = ContentStatusType | StructureStatusType | UserStatusType;
+type Status = DispositifStatus | StructureStatus | UserStatusType;
 
 type AdminUrlParams = {
   tab?: string

@@ -1,8 +1,8 @@
+import { Id, Picture, ContentType, SimpleDispositif, DispositifStatus } from "api-types";
 import { omit, pick } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, UpdateQuery } from "mongoose";
 import { Dispositif, DispositifId, DispositifModel, Languages, UserId } from "../../typegoose";
-import { Id, Picture, SimpleDispositif } from "../../types/interface";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({}).populate<{
@@ -91,7 +91,7 @@ export const incrementDispositifViews = async (id: string, properties: ("nbFavor
 }
 
 export const getActiveDispositifsFromDBWithoutPopulate = (needFields: Object) =>
-  DispositifModel.find({ status: "Actif", typeContenu: "dispositif" }, needFields);
+  DispositifModel.find({ status: DispositifStatus.ACTIVE, typeContenu: ContentType.DISPOSITIF }, needFields);
 
 export const getDraftDispositifs = () =>
   DispositifModel.find(
@@ -133,7 +133,7 @@ export const getDispositifByIdWithMainSponsor = async (
 
 export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositif[]> =>
   await DispositifModel.find(
-    { status: "Actif" },
+    { status: DispositifStatus.ACTIVE },
     {
       created_at: 1,
       updatedAt: 1,
@@ -146,7 +146,7 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositi
   ).populate("mainSponsor");
 
 export const getActiveContents = async (neededFields: DispositifFieldsRequest) =>
-  DispositifModel.find({ status: "Actif" }, neededFields);
+  DispositifModel.find({ status: DispositifStatus.ACTIVE }, neededFields);
 
 export const getActiveContentsFiltered = async (neededFields: DispositifFieldsRequest, query: any) =>
   await DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");
@@ -158,7 +158,7 @@ export const createDispositifInDB = async (dispositif: Partial<Dispositif>) => D
 export const getNbMercis = async () => {
   return DispositifModel.aggregate([
     {
-      $match: { status: "Actif" }
+      $match: { status: DispositifStatus.ACTIVE }
     },
     {
       $project: {
@@ -179,7 +179,7 @@ export const getNbMercis = async () => {
 export const getNbVues = async () => {
   return DispositifModel.aggregate([
     {
-      $match: { status: "Actif" }
+      $match: { status: DispositifStatus.ACTIVE }
     },
     {
       $group: {
@@ -192,8 +192,8 @@ export const getNbVues = async () => {
 };
 
 export const getNbFiches = async () => {
-  const nbDispositifs = await DispositifModel.count({ status: "Actif", typeContenu: "dispositif" });
-  const nbDemarches = await DispositifModel.count({ status: "Actif", typeContenu: "demarche" });
+  const nbDispositifs = await DispositifModel.count({ status: DispositifStatus.ACTIVE, typeContenu: ContentType.DISPOSITIF });
+  const nbDemarches = await DispositifModel.count({ status: DispositifStatus.ACTIVE, typeContenu: ContentType.DEMARCHE });
 
   return {
     nbDispositifs,
@@ -203,7 +203,7 @@ export const getNbFiches = async () => {
 
 export const getNbUpdatedRecently = async (date: Date) => {
   return DispositifModel.count({
-    status: "Actif",
+    status: DispositifStatus.ACTIVE,
     lastModificationDate: { $gte: date, $exists: true }
   });
 };

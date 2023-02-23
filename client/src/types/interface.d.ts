@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
+import { DispositifStatus, StructureStatus, GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
 
 export type APIResponse<T = null> = AxiosResponse<{
   text: "success" | "error";
@@ -16,12 +16,10 @@ export interface Indicator {
   timeSpent: number;
 }
 
-export interface Picture {
-  imgId: string | null;
-  public_id: string | null;
-  secure_url: string | null;
-}
 type iconName = "house" | "search" | "message" | "menu" | "tag" | "";
+/**
+ * @deprecated
+ */
 export interface DetailedOpeningHours {
   day: string;
   from0?: string;
@@ -29,6 +27,9 @@ export interface DetailedOpeningHours {
   from1?: string;
   to1?: string;
 }
+/**
+ * @deprecated
+ */
 export interface OpeningHours {
   details: DetailedOpeningHours[];
   noPublic: boolean;
@@ -70,8 +71,6 @@ export type Indicators = {
   totalIndicator?: Indicator[];
 };
 
-export type ITypeContenu = "dispositif" | "demarche";
-
 export interface RegionFigures {
   region: string;
   nbDispositifs: number;
@@ -96,31 +95,20 @@ export interface TranslationStatistics {
 
 export type AvailableLanguageI18nCode = "fr" | "en" | "ps" | "ar" | "ti" | "ru" | "uk" | "fa";
 
-export type ContentType = "dispositif" | "demarche";
-
 export type Status = {
   displayedStatus: string;
   color: string;
   textColor?: string;
 };
 
-export type ContentStatusType =
-  | "Actif"
-  | "En attente"
-  | "Brouillon"
-  | "En attente non prioritaire"
-  | "Rejeté structure"
-  | "En attente admin"
-  | "Accepté structure"
-  | "Supprimé";
 export type ContentStatus = {
-  storedStatus: ContentStatusType;
+  storedStatus: DispositifStatus;
   order: number;
 } & Status;
 
-type StructureStatusType = "Actif" | "En attente" | "Supprimé";
-export type StructureStatus = {
-  storedStatus: StructureStatusType;
+
+export type StructureAdminStatus = {
+  storedStatus: StructureStatus;
   order: number;
 } & Status;
 

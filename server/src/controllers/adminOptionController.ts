@@ -1,12 +1,9 @@
 import { Controller, Get, Post, Body, Route, Path, Security } from "tsoa";
+import { AdminOptionRequest, GetAdminOptionResponse, PostAdminOptionResponse } from "api-types";
 
-import { getAdminOptions, GetAdminOptionResponse } from "../workflows/adminOption/getAdminOptions";
-import { postAdminOptions, PostAdminOptionResponse } from "../workflows/adminOption/postAdminOptions";
+import { getAdminOptions } from "../workflows/adminOption/getAdminOptions";
+import { postAdminOptions } from "../workflows/adminOption/postAdminOptions";
 import { ResponseWithData } from "../types/interface";
-
-export interface AdminOptionRequest {
-  value: any;
-}
 
 @Route("options")
 export class AdminOptionController extends Controller {

@@ -1,4 +1,5 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { ContentType } from "api-types";
 import { Base } from "./Base";
 import { Theme } from "./Theme";
 import { User } from "./User";
@@ -14,8 +15,8 @@ export class Widget extends Base {
   @prop({ required: true, ref: () => Theme })
   public themes!: Ref<Theme>[];
 
-  @prop({ required: true })
-  public typeContenu: ("dispositif" | "demarche")[];
+  @prop({ required: true, enum: ContentType })
+  public typeContenu: ContentType[];
 
   @prop()
   public department: string;

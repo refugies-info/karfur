@@ -2,8 +2,8 @@ import logger from "../../../logger";
 import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { log } from "./log";
 import { Dispositif } from "../../../typegoose";
-import { AdminCommentsRequest } from "../../../controllers/dispositifController";
 import { Response } from "../../../types/interface";
+import { AdminCommentsRequest } from "api-types";
 
 export const updateDispositifAdminComments = async (id: string, body: AdminCommentsRequest, userId: any): Response => {
 

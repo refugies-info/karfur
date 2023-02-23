@@ -2,14 +2,12 @@ import passwordHash from "password-hash";
 import logger from "../../../logger";
 import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
 import { isPasswordOk } from "../../../libs/validatePassword";
-import { User, UserStatus } from "../../../typegoose/User";
-import { UpdatePasswordRequest } from "../../../controllers/userController";
+import { User } from "../../../typegoose/User";
 import { InvalidRequestError, UnauthorizedError } from "../../../errors";
 import { ResponseWithData } from "../../../types/interface";
+import { UpdatePasswordRequest, UpdatePasswordResponse, UserStatus } from "api-types";
 
-export interface UpdatePasswordResponse {
-  token: string;
-}
+
 
 export const changePassword = async (id: string, body: UpdatePasswordRequest, userReq: User): ResponseWithData<UpdatePasswordResponse> => {
   logger.info("[changePassword] received");
@@ -21,7 +19,7 @@ export const changePassword = async (id: string, body: UpdatePasswordRequest, us
 
   const user = await getUserById(id, {});
 
-  if (!user || user.status === UserStatus.USER_STATUS_DELETED) {
+  if (!user || user.status === UserStatus.DELETED) {
     throw new Error("Utilisateur inconnu");
   }
 

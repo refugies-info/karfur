@@ -17,7 +17,7 @@ import {
   fetchUserContributionsActionCreator,
 } from "./userContributions.actions";
 import { APIResponse } from "types/interface";
-import { GetUserContributionsResponse } from "api-types";
+import { DispositifStatus, GetUserContributionsResponse } from "api-types";
 
 export function* fetchUserContributions(): SagaIterator {
   try {
@@ -39,7 +39,7 @@ export function* deleteContributionAndUpdate(
   try {
     logger.info("[deleteContributionAndUpdate] saga", { data: action.payload });
     yield put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
-    yield call(API.updateDispositifStatus, action.payload, { status: "Supprimé" });
+    yield call(API.updateDispositifStatus, action.payload, { status: DispositifStatus.DELETED });
     yield put(fetchUserContributionsActionCreator());
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
   } catch (error) {

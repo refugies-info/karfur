@@ -1,29 +1,17 @@
 import logger from "../../../logger";
 import { ResponseWithData } from "../../../types/interface";
 import { createWidget } from "../../../modules/widgets/widgets.repository";
-import { Id, Widget } from "../../../typegoose";
-import { WidgetRequest } from "../../../controllers/widgetController";
-
-export interface PostWidgetResponse {
-  _id: Id;
-  name: string;
-  tags: string[];
-  themes: string[];
-  typeContenu: ("dispositif" | "demarche")[];
-  department: string;
-  languages: string[];
-  author: { username: string };
-  created_at: Date;
-}
+import { ObjectId, Widget } from "../../../typegoose";
+import { PostWidgetResponse, WidgetRequest } from "api-types";
 
 export const postWidgets = async (body: WidgetRequest, userId: string): ResponseWithData<PostWidgetResponse> => {
   logger.info("[postWidgets] received", body);
 
   const widget = new Widget();
   widget.name = body.name;
-  widget.themes = body.themes.map(t => new Id(t.toString()));
+  widget.themes = body.themes.map(t => new ObjectId(t.toString()));
   widget.typeContenu = body.typeContenu;
-  widget.author = new Id(userId);
+  widget.author = new ObjectId(userId);
 
   if (body.languages?.length) {
     widget.languages = body.languages;
