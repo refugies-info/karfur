@@ -3,13 +3,11 @@ import logger from "../../../logger";
 import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
 import { isPasswordOk } from "../../../libs/validatePassword";
 import { User, UserStatus } from "../../../typegoose/User";
-import { UpdatePasswordRequest } from "../../../controllers/userController";
 import { InvalidRequestError, UnauthorizedError } from "../../../errors";
 import { ResponseWithData } from "../../../types/interface";
+import { UpdatePasswordRequest, UpdatePasswordResponse } from "api-types";
 
-export interface UpdatePasswordResponse {
-  token: string;
-}
+
 
 export const changePassword = async (id: string, body: UpdatePasswordRequest, userReq: User): ResponseWithData<UpdatePasswordResponse> => {
   logger.info("[changePassword] received");

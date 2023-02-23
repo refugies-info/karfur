@@ -3,12 +3,7 @@ import { ImageModel } from "../../../typegoose";
 import logger from "../../../logger";
 import { ResponseWithData } from "../../../types/interface";
 import { InvalidRequestError } from "../../../errors";
-
-export interface PostImageResponse {
-  imgId: string;
-  public_id: string;
-  secure_url: string;
-}
+import { PostImageResponse } from "api-types";
 
 export const postImages = async (files: any): ResponseWithData<PostImageResponse> => {
   logger.info("[postImages] received a call");

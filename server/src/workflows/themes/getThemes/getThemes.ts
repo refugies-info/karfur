@@ -1,24 +1,8 @@
 import logger from "../../../logger";
 import { getAllThemes } from "../../../modules/themes/themes.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { Id, Picture, ResponseWithData, ThemeColors, TranslatedText } from "../../../types/interface";
-
-
-export interface GetThemeResponse {
-  _id: Id;
-  name: TranslatedText;
-  short: TranslatedText;
-  colors: ThemeColors;
-  position: number;
-  icon: Picture;
-  banner: Picture;
-  appBanner: Picture;
-  appImage: Picture;
-  shareImage: Picture;
-  notificationEmoji: string;
-  active: boolean;
-  adminComments?: string;
-}
+import { ResponseWithData } from "../../../types/interface";
+import { GetThemeResponse } from "api-types";
 
 export const getThemes = async (): ResponseWithData<GetThemeResponse[]> => {
   logger.info("[getThemes] received");

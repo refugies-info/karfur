@@ -48,7 +48,7 @@ import {
   AdminCommentsRequest,
   GetUserContributionsResponse,
   GetUserFavoritesResponse,
-  UserFavoritesRequest,
+  GetUserFavoritesRequest,
   GetStructureResponse,
   GetStructureStatisticsResponse,
   GetStructureStatisticsRequest,
@@ -62,8 +62,8 @@ import {
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
   CreateDispositifRequest,
-  AddUserFavorite,
-  DeleteUserFavorite,
+  AddUserFavoriteRequest,
+  DeleteUserFavoriteRequest,
   GetUserStatisticsResponse,
   UpdatePasswordResponse,
   UpdatePasswordRequest,
@@ -178,15 +178,15 @@ const API = {
     const headers = getHeaders();
     return instance.get("/dispositifs/user-contributions", { headers });
   },
-  getUserFavorites: (query: UserFavoritesRequest): Promise<APIResponse<GetUserFavoritesResponse>> => {
+  getUserFavorites: (query: GetUserFavoritesRequest): Promise<APIResponse<GetUserFavoritesResponse>> => {
     const headers = getHeaders();
     return instance.get(`/user/favorites?locale=${query.locale}`, { headers });
   },
-  addUserFavorite: (body: AddUserFavorite): Promise<APIResponse> => {
+  addUserFavorite: (body: AddUserFavoriteRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.put("/user/favorites", body, { headers });
   },
-  deleteUserFavorites: (query: DeleteUserFavorite): Promise<APIResponse> => {
+  deleteUserFavorites: (query: DeleteUserFavoriteRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.delete("/user/favorites", { params: query, headers });
   },

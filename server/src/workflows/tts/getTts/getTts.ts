@@ -1,9 +1,9 @@
 import xmlbuilder from "xmlbuilder";
 import logger from "../../../logger";
 import { ResponseWithData } from "../../../types/interface";
-import { TtsRequest } from "../../../controllers/ttsController";
 import { AuthenticationError } from "../../../errors";
 import voices from "../../../controllers/tts/voices";
+import { TtsRequest } from "api-types";
 
 //@ts-ignore
 const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));

@@ -48,7 +48,8 @@ export const getUsersToSendMail = (
   return [];
 };
 
-export const getFormattedStatus = (dispoStatus: string) => {
+export const getFormattedStatus = (dispoStatus: string | undefined) => {
+  if (!dispoStatus) return null;
   const corresStatus = correspondingStatus.filter(
     (status) => status.storedStatus === dispoStatus
   );

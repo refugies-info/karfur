@@ -1,5 +1,5 @@
 import { isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { MustBePopulatedError } from "src/errors";
+import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
 import { ImageSchema } from "./generics";

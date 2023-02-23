@@ -5,7 +5,7 @@ import { getActiveContents } from "../../../modules/dispositif/dispositif.reposi
 import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";
 import { getTradStatus } from "../../../modules/traductions/traductions.service";
 import { availableLanguages } from "../../../libs/getFormattedLocale";
-import { DispositifId, Languages } from "src/typegoose";
+import { DispositifId, Languages } from "../../../typegoose";
 
 interface Query {
   locale: Languages;

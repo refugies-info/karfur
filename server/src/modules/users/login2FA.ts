@@ -3,7 +3,7 @@ import LoginError from "./LoginError";
 import { updateUserInDB } from "./users.repository";
 import { getStructureFromDB } from "../structure/structure.repository";
 import formatPhoneNumber from "../../libs/formatPhoneNumber";
-import { StructureId, User } from "src/typegoose";
+import { StructureId, User } from "../../typegoose";
 const { accountSid, authToken } = process.env;
 
 // Init Twilio service

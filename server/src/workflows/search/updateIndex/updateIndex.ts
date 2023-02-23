@@ -7,12 +7,7 @@ import { updateAlgoliaIndex } from "../../../modules/search/search.service";
 import { getAllAlgoliaObjects } from "../../../connectors/algolia/updateAlgoliaData";
 import { formatForAlgolia } from "../../../libs/formatForAlgolia";
 import { getAllThemes } from "../../../modules/themes/themes.repository";
-
-export interface UpdateIndexResponse {
-  added: number;
-  deleted: number;
-  updated: number;
-}
+import { UpdateIndexResponse } from "api-types";
 
 const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
   const neededFields = {

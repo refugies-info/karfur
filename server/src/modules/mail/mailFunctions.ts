@@ -4,8 +4,8 @@ import {
   sendPublishedFicheMailToStructureMembersService,
   sendPublishedFicheMailToCreatorService,
 } from "./mail.service";
-import { User, UserStatus } from "src/typegoose/User";
-import { Dispositif } from "src/typegoose";
+import { User, UserStatus } from "../../typegoose/User";
+import { Dispositif } from "../../typegoose";
 
 export const sendPublishedMailToCreator = async (
   newDispo: Dispositif,

@@ -1,6 +1,6 @@
 import { Request } from "express";
 import jwt from "jwt-simple";
-import { User, UserModel } from "src/typegoose";
+import { User, UserModel } from "./typegoose";
 import { AuthenticationError } from "./errors";
 
 // type Role = "optional" | "admin" | "expert";

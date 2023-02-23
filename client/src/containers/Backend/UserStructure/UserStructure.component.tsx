@@ -69,8 +69,7 @@ export const UserStructureComponent = (props: Props) => {
     if (!userStructure) return;
     dispatch(
       updateUserStructureActionCreator({
-        modifyMembres: true,
-        data: { structureId: userStructure._id, userId, type: "create" },
+        membres: { structureId: userStructure._id, userId, type: "create" },
       }),
     );
   };
@@ -80,8 +79,7 @@ export const UserStructureComponent = (props: Props) => {
 
     dispatch(
       updateUserStructureActionCreator({
-        modifyMembres: true,
-        data: {
+        membres: {
           structureId: userStructure._id,
           userId,
           newRole: role,
@@ -107,8 +105,7 @@ export const UserStructureComponent = (props: Props) => {
       if (result.value) {
         dispatch(
           updateUserStructureActionCreator({
-            modifyMembres: true,
-            data: {
+            membres: {
               structureId: userStructure._id,
               userId,
               type: "delete",

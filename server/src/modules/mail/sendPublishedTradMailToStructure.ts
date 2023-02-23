@@ -4,7 +4,7 @@ import { getFormattedLocale } from "../../libs/getFormattedLocale";
 import { asyncForEach } from "../../libs/asyncForEach";
 import logger from "../../logger";
 import { sendPublishedTradMailToStructureService } from "./mail.service";
-import { Dispositif } from "src/typegoose";
+import { Dispositif } from "../../typegoose";
 
 export const sendPublishedTradMailToStructure = async (dispositif: Dispositif, locale: string) => {
   try {

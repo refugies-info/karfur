@@ -2,8 +2,12 @@
   "name": "api-types",
   "version": "1.0.0",
   "description": "Types defined in the API to be used by the frontend",
-  "main": "types.ts",
+  "main": "index.ts",
   "scripts": {},
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mongoose": "^6.10.0"
+  },
+  "dependencies": {}
 }

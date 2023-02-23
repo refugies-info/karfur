@@ -1,5 +1,5 @@
-import { Dispositif, Traductions } from "src/typegoose";
-import { TraductionsStatus } from "src/typegoose/Traductions";
+import { Dispositif, Traductions } from "../../typegoose";
+import { TraductionsStatus } from "../../typegoose/Traductions";
 
 export const getTradStatus = (dispositif: Dispositif, tradArray: Traductions[]) => {
   const isPublished = !!tradArray.find((trad) => trad.status === TraductionsStatus.VALIDATED);

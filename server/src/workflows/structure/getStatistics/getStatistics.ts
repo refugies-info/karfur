@@ -2,13 +2,8 @@ import logger from "../../../logger";
 import { getNbStructures, getStructuresFromDB } from "../../../modules/structure/structure.repository";
 import { ResponseWithData } from "../../../types/interface";
 import { findAllRespo } from "../../../modules/structure/structure.service";
-import { GetStructureStatisticsRequest } from "../../../controllers/structureController";
+import { GetStructureStatisticsRequest, GetStructureStatisticsResponse } from "api-types";
 
-export interface GetStructureStatisticsResponse {
-  nbStructures?: number;
-  nbCDA?: number;
-  nbStructureAdmins?: number;
-}
 
 export const getStatistics = async (query: GetStructureStatisticsRequest): ResponseWithData<GetStructureStatisticsResponse> => {
   logger.info("[getStatistics] structure");

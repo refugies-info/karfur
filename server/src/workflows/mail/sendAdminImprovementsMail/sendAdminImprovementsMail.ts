@@ -3,7 +3,7 @@ import { Response } from "../../../types/interface";
 import { sendAdminImprovementsMailService } from "../../../modules/mail/mail.service";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { log } from "./log";
-import { ImprovementsRequest } from "../../../controllers/mailController";
+import { ImprovementsRequest } from "api-types";
 
 export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userId: string): Response => {
   logger.info("[sendAdminImprovementsMail] received with data", { data: body });

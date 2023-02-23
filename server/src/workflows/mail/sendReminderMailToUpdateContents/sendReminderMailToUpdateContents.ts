@@ -9,7 +9,7 @@ import { filterDispositifsForUpdateReminders } from "../../../modules/dispositif
 import { sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { log } from "./log";
-import { Dispositif } from "src/typegoose";
+import { Dispositif } from "../../../typegoose";
 
 export const sendReminderMailToUpdateContents = async (): Response => {
   logger.error("REFACTOR TODO");

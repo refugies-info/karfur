@@ -1,6 +1,6 @@
 import { filter } from "lodash/fp";
-import { getTraductionsByLanguageAndDispositif } from "src/modules/traductions/traductions.repository";
-import { DispositifId, Languages, User } from "src/typegoose";
+import { getTraductionsByLanguageAndDispositif } from "../../../modules/traductions/traductions.repository";
+import { DispositifId, Languages, User } from "../../../typegoose";
 
 const getTraductionsForReview = (dispositif: DispositifId, language: Languages, currentUser: User) =>
   getTraductionsByLanguageAndDispositif(language, dispositif).then(

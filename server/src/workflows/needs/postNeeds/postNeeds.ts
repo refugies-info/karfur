@@ -2,7 +2,7 @@ import logger from "../../../logger";
 import { Response } from "../../../types/interface";
 import { createNeedInDB } from "../../../modules/needs/needs.repository";
 import { Need } from "../../../typegoose";
-import { NeedRequest } from "../../../controllers/needController";
+import { NeedRequest } from "api-types";
 
 export const postNeeds = async (body: NeedRequest): Response => {
   logger.info("[postNeeds] received", body);

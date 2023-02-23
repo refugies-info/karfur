@@ -1,7 +1,7 @@
 import logger from "../../logger";
 import { getStructureFromDB } from "./structure.repository";
-import { Structure, User, UserId } from "src/typegoose";
-import { Membre, StructureId } from "src/typegoose/Structure";
+import { Structure, User, UserId } from "../../typegoose";
+import { Membre, StructureId } from "../../typegoose/Structure";
 
 const isUserRespoOrContrib = (membres: Membre[] | null, userId: UserId) => {
   if (!membres) return false;

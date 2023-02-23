@@ -5,13 +5,8 @@ import {
   updateAdminOption
 } from "../../../modules/adminOptions/adminOptions.repository";
 import { AdminOptions, AdminOptionsModel } from "../../../typegoose";
-import { AdminOptionRequest } from "../../../controllers/adminOptionController";
 import { ResponseWithData } from "../../../types/interface";
-
-export interface PostAdminOptionResponse {
-  key: string;
-  value: any;
-}
+import { AdminOptionRequest, PostAdminOptionResponse } from "api-types";
 
 export const postAdminOptions = async (key: string, body: AdminOptionRequest): ResponseWithData<PostAdminOptionResponse> => {
   logger.info("[postAdminOptions] received", body);

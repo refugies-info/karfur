@@ -1,10 +1,10 @@
 import logger from "../../../logger";
 import { getDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { UpdateDispositifRequest } from "../../../controllers/dispositifController";
 import { Response } from "../../../types/interface";
-import { Dispositif, Id, User } from "../../../typegoose";
+import { Dispositif, ObjectId, User } from "../../../typegoose";
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
+import { UpdateDispositifRequest } from "api-types";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
   // content
@@ -46,9 +46,9 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
   };
 
   editedDispositif.translations.fr = buildDispositifContent(body, oldDispositif);
-  if (body.mainSponsor) editedDispositif.mainSponsor = new Id(body.mainSponsor);
-  if (body.theme) editedDispositif.theme = new Id(body.theme);
-  if (body.secondaryThemes) editedDispositif.secondaryThemes = body.secondaryThemes.map(t => new Id(t));
+  if (body.mainSponsor) editedDispositif.mainSponsor = new ObjectId(body.mainSponsor);
+  if (body.theme) editedDispositif.theme = new ObjectId(body.theme);
+  if (body.secondaryThemes) editedDispositif.secondaryThemes = body.secondaryThemes.map(t => new ObjectId(t));
   if (body.metadatas) editedDispositif.metadatas = body.metadatas;
 
   await updateDispositifInDB(id, editedDispositif);

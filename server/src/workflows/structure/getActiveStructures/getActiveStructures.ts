@@ -1,17 +1,7 @@
-import { Id, ResponseWithData } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructuresWithDispos } from "../../../modules/structure/structure.repository";
-import { ImageSchema } from "../../../typegoose";
-
-export interface GetActiveStructuresResponse {
-  _id: Id;
-  nom: string;
-  acronyme?: string;
-  picture?: ImageSchema;
-  structureTypes?: string[];
-  departments?: string[];
-  disposAssociesLocalisation?: string[];
-}
+import { GetActiveStructuresResponse } from "api-types";
 
 export const getActiveStructures = async (): ResponseWithData<GetActiveStructuresResponse[]> => {
   logger.info("[getActiveStructures] get structures ");

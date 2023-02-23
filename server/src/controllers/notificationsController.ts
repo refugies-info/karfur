@@ -1,7 +1,8 @@
 import { Controller, Get, Post, Body, Route, Security, Header, Request } from "tsoa";
+import { GetNotificationResponse, MarkAsSeenRequest, SendNotificationsRequest } from "api-types";
 import * as express from "express";
 
-import { getNotifications, GetNotificationResponse } from "../workflows/notifications/getNotifications";
+import { getNotifications } from "../workflows/notifications/getNotifications";
 import { markAsSeen } from "../workflows/notifications/markAsSeen";
 import { sendNotifications } from "../workflows/notifications/sendNotifications";
 import { Response, ResponseWithData } from "../types/interface";
@@ -11,14 +12,6 @@ import { Response, ResponseWithData } from "../types/interface";
  * @pattern [0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}
  */
 export type Uid = string;
-
-export interface MarkAsSeenRequest {
-  notificationId: string;
-}
-
-export interface SendNotificationsRequest {
-  demarcheId: string;
-}
 
 @Route("notifications")
 export class NotificationController extends Controller {

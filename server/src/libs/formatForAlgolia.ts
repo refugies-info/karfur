@@ -1,5 +1,5 @@
 import { AlgoliaObject } from "../types/interface";
-import { Dispositif, Langue, Need, Theme } from "src/typegoose";
+import { Dispositif, Langue, Need, Theme } from "../typegoose";
 import { get } from "lodash";
 
 const extractValuesPerLanguage = (translations: Dispositif["translations"], path: string, keyPrefix: string) => {

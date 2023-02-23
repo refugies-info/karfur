@@ -3,7 +3,7 @@ import { getUserById, updateUserInDB } from "../../../modules/users/users.reposi
 import { removeMemberFromStructure } from "../../../modules/structure/structure.repository";
 import { generateRandomId } from "../../../libs/generateRandomId";
 import { sendAccountDeletedMailService } from "../../../modules/mail/mail.service";
-import { UserStatus } from "src/typegoose/User";
+import { UserStatus } from "../../../typegoose/User";
 
 
 

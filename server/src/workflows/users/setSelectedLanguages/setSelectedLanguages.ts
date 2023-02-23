@@ -1,6 +1,7 @@
-import { saveSelectedLanguages } from "src/modules/users/users.repository";
-import { LangueId, User } from "src/typegoose";
+import { Id } from "api-types";
+import { saveSelectedLanguages } from "../../../modules/users/users.repository";
+import { User } from "../../../typegoose";
 
-export const setSelectedLanguages = (user: User, languesId: LangueId[]) => saveSelectedLanguages(user.id, languesId);
+export const setSelectedLanguages = (user: User, languesId: Id[]) => saveSelectedLanguages(user.id, languesId);
 
 export default setSelectedLanguages;

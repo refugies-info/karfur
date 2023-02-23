@@ -19,7 +19,7 @@ import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modu
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { checkUserIsAuthorizedToModifyDispositif, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
-import { Dispositif, Structure, Theme, User } from "src/typegoose";
+import { Dispositif, Structure, Theme, User } from "../../../typegoose";
 import { isDocument } from "@typegoose/typegoose";
 
 export interface Request {

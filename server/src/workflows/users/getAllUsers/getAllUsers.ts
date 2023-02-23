@@ -1,24 +1,10 @@
 import pick from "lodash/pick";
 import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
 import { Structure, UserId } from "../../../typegoose";
-import { Id, Picture, ResponseWithData, UserStructure } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
+import { GetAllUsersResponse, UserStructure } from "api-types";
 
-export interface GetAllUsersResponse {
-  _id: Id;
-  username: string;
-  picture?: Picture;
-  status?: string;
-  created_at?: Date;
-  roles?: string[];
-  email?: string;
-  phone?: string;
-  selectedLanguages?: { langueCode: string; langueFr: string }[];
-  structures?: UserStructure[];
-  nbStructures: number;
-  nbContributions: number;
-  adminComments?: string;
-}
 
 const getRole = (membres: Structure["membres"], userId: UserId) => {
   const isAdmin =

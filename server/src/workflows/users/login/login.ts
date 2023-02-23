@@ -9,12 +9,8 @@ import { proceedWithLogin } from "../../../modules/users/users.service";
 import { userRespoStructureId } from "../../../modules/structure/structure.service";
 import { loginExceptionsManager } from "./login.exceptions.manager";
 import { logRegister, logLogin } from "./log";
-import { UserStatus } from "src/typegoose/User";
-import { LoginRequest } from "src/controllers/userController";
-
-export interface LoginResponse {
-  token: string;
-}
+import { UserStatus } from "../../../typegoose/User";
+import { LoginRequest, LoginResponse } from "api-types";
 
 export const login = async (body: LoginRequest): ResponseWithData<LoginResponse> => {
   try {

@@ -6,10 +6,10 @@ import { requestSMSLogin, verifyCode } from "../../../modules/users/login2FA";
 import formatPhoneNumber from "../../../libs/formatPhoneNumber";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
 import { log } from "./log";
-import { UpdateUserRequest } from "../../../controllers/userController";
 import { User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
 import { Response } from "../../../types/interface";
+import { UpdateUserRequest } from "api-types";
 
 export const updateUser = async (id: string, body: UpdateUserRequest, userReq: User): Response => {
   const { user, action } = body;

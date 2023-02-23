@@ -1,11 +1,9 @@
 import logger from "../../../logger";
 import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
 import { Dispositif, Languages } from "../../../typegoose";
-import { GetDispositifsRequest } from "../../../controllers/dispositifController";
-import { ResponseWithData, SimpleDispositif } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { FilterQuery } from "mongoose";
-
-export type GetDispositifsResponse = SimpleDispositif;
+import { GetDispositifsRequest, GetDispositifsResponse } from "api-types";
 
 export const getDispositifs = async (query: GetDispositifsRequest): ResponseWithData<GetDispositifsResponse[]> => {
   logger.info("[getDispositifs] called");

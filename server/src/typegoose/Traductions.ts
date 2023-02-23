@@ -1,6 +1,6 @@
 import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { isEmpty, isString } from "lodash";
-import { MustBePopulatedError } from "src/errors";
+import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import {
   DemarcheContent,

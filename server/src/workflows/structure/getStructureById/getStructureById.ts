@@ -1,66 +1,14 @@
 import { FilterQuery } from "mongoose";
 import omit from "lodash/omit";
-import { Picture, ResponseWithData, SimpleDispositif, Id, StructureMember } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructureById as getStructure } from "../../../modules/structure/structure.repository";
 import { getUserById } from "../../../modules/users/users.repository";
 import { Dispositif, Languages, Structure, User } from "../../../typegoose";
 import { NotFoundError } from "../../../errors";
 import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
+import { GetStructureResponse, StructureMember } from "api-types";
 
-interface DetailedOpeningHours {
-  day: string;
-  from0?: string;
-  to0?: string;
-  from1?: string;
-  to1?: string;
-}
-
-interface OpeningHours {
-  details: DetailedOpeningHours[];
-  noPublic: boolean;
-  precisions?: string;
-}
-
-export interface GetStructureResponse {
-  _id: Id;
-  acronyme?: string;
-  administrateur: Id;
-  adresse?: string;
-  authorBelongs?: Boolean;
-  contact?: string;
-  createur: Id;
-  link?: string;
-  mail_contact?: string;
-  mail_generique?: string;
-  nom: string;
-  phone_contact?: string;
-  siren?: string;
-  siret?: string;
-  status?: string;
-  picture?: Picture;
-  structureTypes?: string[];
-  websites?: string[];
-  facebook?: string;
-  linkedin?: string;
-  twitter?: string;
-  activities?: string[];
-  departments?: string[];
-  phonesPublic?: string[];
-  mailsPublic?: string[];
-  adressPublic?: string;
-  openingHours?: OpeningHours;
-  onlyWithRdv?: Boolean;
-  description?: string;
-  hasResponsibleSeenNotification?: Boolean;
-  disposAssociesLocalisation?: string[];
-  adminComments?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus: string;
-
-  membres: StructureMember[];
-  dispositifsAssocies: SimpleDispositif[];
-}
 
 const getMembers = async (structure: Structure) => {
   const structureMembres = structure.membres || [];
@@ -99,9 +47,9 @@ export const getStructureById = async (
   const isAdmin = !!(user ? user.isAdmin() : false);
   const isMember = !!(user._id
     ? (structure.membres || []).find((m) => {
-        if (!m.userId) return false;
-        return m.userId.toString() === user._id.toString();
-      })
+      if (!m.userId) return false;
+      return m.userId.toString() === user._id.toString();
+    })
     : false);
   const shouldIncludeMembers = isAdmin || isMember;
   const structureMembers = shouldIncludeMembers ? await getMembers(structure) : [];

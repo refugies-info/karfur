@@ -1,4 +1,4 @@
-import { Structure, UserId } from "src/typegoose";
+import { Structure, UserId } from "../../../typegoose";
 import { addLog } from "../../../modules/logs/logs.service";
 
 export const log = async (structure: Partial<Structure>, oldStructure: Structure, authorId: UserId) => {

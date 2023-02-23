@@ -1,7 +1,7 @@
 import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { get, has } from "lodash";
 import { ObjectId } from "mongoose";
-import { MustBePopulatedError } from "src/errors";
+import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import { Languages, RichText, Uuid } from "./generics";
 import { Need, NeedId } from "./Need";

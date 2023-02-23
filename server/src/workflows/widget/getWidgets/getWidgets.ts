@@ -1,18 +1,7 @@
 import logger from "../../../logger";
-import { Id, ResponseWithData } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { getAllWidgets } from "../../../modules/widgets/widgets.repository";
-
-export interface GetWidgetResponse {
-  _id: Id;
-  name: string;
-  tags: string[];
-  themes: Id[];
-  typeContenu: ("dispositif" | "demarche")[];
-  department: string;
-  languages: string[];
-  author: { username: string };
-  created_at: Date;
-}
+import { GetWidgetResponse } from "api-types";
 
 export const getWidgets = async (): ResponseWithData<GetWidgetResponse[]> => {
   logger.info("[getWidgets] received");

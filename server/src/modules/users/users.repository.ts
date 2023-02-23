@@ -1,6 +1,6 @@
+import { Id } from "api-types";
 import { FilterQuery, Types } from "mongoose";
-import { Id } from "../../types/interface";
-import { LangueId, Role, Structure, StructureId, User, UserModel } from "../../typegoose";
+import { Role, Structure, StructureId, User, UserModel } from "../../typegoose";
 import { Favorite, UserId, UserStatus } from "../../typegoose/User";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
@@ -40,7 +40,7 @@ export const updateUserInDB = async (id: Id, modifiedUser: any) => // FIXME in u
     new: true,
   });
 
-export const saveSelectedLanguages = (id: UserId, selectedLanguages: LangueId[]) =>
+export const saveSelectedLanguages = (id: UserId, selectedLanguages: Id[]) =>
   UserModel.findByIdAndUpdate(id, { $set: { selectedLanguages } });
 
 export const addStructureForUsersInDB = (userIds: UserId[], structureId: StructureId) =>

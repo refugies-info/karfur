@@ -1,4 +1,4 @@
-import { DispositifId, Languages, TraductionId, Traductions, TraductionsModel, UserId } from "src/typegoose";
+import { DispositifId, Languages, TraductionId, Traductions, TraductionsModel, UserId } from "../../typegoose";
 
 type TraductionsKeys = keyof Traductions;
 type TraductionsFieldsRequest = Partial<Record<TraductionsKeys, number>>;

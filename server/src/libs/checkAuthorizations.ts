@@ -1,4 +1,4 @@
-import { Dispositif, Structure, User } from "src/typegoose";
+import { Dispositif, Structure, User } from "../typegoose";
 import logger from "../logger";
 
 // TODO: delete

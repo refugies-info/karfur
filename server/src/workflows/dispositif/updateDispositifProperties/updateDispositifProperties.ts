@@ -1,6 +1,6 @@
+import { UpdateDispositifPropertiesRequest } from "api-types";
 import logger from "../../../logger";
 import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { UpdateDispositifPropertiesRequest } from "../../../controllers/dispositifController";
 import { Response } from "../../../types/interface";
 
 export const updateDispositifProperties = async (id: string, body: UpdateDispositifPropertiesRequest): Response => {

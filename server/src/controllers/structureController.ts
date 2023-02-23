@@ -1,49 +1,24 @@
 import { Controller, Get, Route, Request, Query, Security, Path, Queries, Post, Body, Patch } from "tsoa";
+import {
+  GetActiveStructuresResponse,
+  GetAllStructuresResponse,
+  GetStructureResponse,
+  GetStructureStatisticsRequest,
+  GetStructureStatisticsResponse,
+  PatchStructureRequest,
+  PatchStructureRolesRequest,
+  PostStructureRequest
+} from "api-types";
 import { Request as ExRequest } from "express";
 
-import { getAllStructures, GetAllStructuresResponse } from "../workflows/structure/getAllStructures";
-import { getStructureById, GetStructureResponse } from "../workflows/structure/getStructureById";
-import { getActiveStructures, GetActiveStructuresResponse } from "../workflows/structure/getActiveStructures";
+import { getAllStructures } from "../workflows/structure/getAllStructures";
+import { getStructureById } from "../workflows/structure/getStructureById";
+import { getActiveStructures } from "../workflows/structure/getActiveStructures";
 import { createStructure } from "../workflows/structure/createStructure";
 import { updateStructure } from "../workflows/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
-import { getStatistics, GetStructureStatisticsResponse } from "../workflows/structure/getStatistics";
-import { IRequest, Picture, Response, ResponseWithData } from "../types/interface";
-
-type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
-export interface GetStructureStatisticsRequest {
-  facets?: StructureFacets[];
-}
-
-export interface PostStructureRequest {
-  picture: Picture | null;
-  contact: string;
-  phone_contact: string;
-  mail_contact: string;
-  responsable: string | null;
-  nom: string;
-}
-
-// TODO: refactor when rebuild add structure
-export interface PatchStructureRequest {
-  picture?: Picture | null;
-  contact?: string;
-  phone_contact?: string;
-  mail_contact?: string;
-  responsable?: string | null;
-  nom?: string;
-  adminComments?: string;
-  status?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string
-  hasResponsibleSeenNotification?: boolean
-}
-
-export interface PatchStructureRolesRequest {
-  membreId: string;
-  action: "delete" | "modify" | "create";
-  role?: string;
-}
+import { getStatistics } from "../workflows/structure/getStatistics";
+import { IRequest, Response, ResponseWithData } from "../types/interface";
 
 @Route("structures")
 export class StructureController extends Controller {
@@ -70,9 +45,7 @@ export class StructureController extends Controller {
   }
 
   @Get("/statistics")
-  public async getStructuresStatistics(
-    @Queries() query: GetStructureStatisticsRequest,
-  ): ResponseWithData<GetStructureStatisticsResponse> {
+  public async getStructuresStatistics(@Queries() query: GetStructureStatisticsRequest): ResponseWithData<GetStructureStatisticsResponse> {
     return getStatistics(query);
   }
 

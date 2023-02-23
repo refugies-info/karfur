@@ -2,11 +2,11 @@ import { Response } from "../../../types/interface";
 import logger from "../../../logger";
 import { removeFavoriteFromDB, updateUserInDB } from "../../../modules/users/users.repository";
 import { User } from "../../../typegoose";
-import { DeleteUserFavorite } from "../../../controllers/userController";
 import { InvalidRequestError } from "../../../errors";
+import { DeleteUserFavoriteRequest } from "api-types";
 
 
-export const deleteUserFavorites = async (user: User, query: DeleteUserFavorite): Response => {
+export const deleteUserFavorites = async (user: User, query: DeleteUserFavoriteRequest): Response => {
   logger.info("[deleteUserFavorites] received");
 
   if (query.all) {

@@ -12,7 +12,7 @@ import { checkRequestIsFromSite, checkIfUserIsAdminOrExpert } from "../../../lib
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { log } from "./log";
 import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
-import { Dispositif, DispositifId, ErrorModel, Languages, TraductionId, Traductions } from "src/typegoose";
+import { Dispositif, DispositifId, ErrorModel, Languages, TraductionId, Traductions } from "../../../typegoose";
 
 interface Query {
   articleId: DispositifId;

@@ -9,7 +9,7 @@ import { availableLanguages } from "../../libs/getFormattedLocale";
 
 import { parseDispositif, filterTargets, filterTargetsForDemarche, getNotificationEmoji } from "./helpers";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
-import { Dispositif, DispositifId, Languages, NotificationModel } from "src/typegoose";
+import { Dispositif, DispositifId, Languages, NotificationModel } from "../../typegoose";
 
 const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 

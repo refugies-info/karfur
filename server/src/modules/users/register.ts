@@ -3,8 +3,8 @@ import { isPasswordOk } from "../../libs/validatePassword";
 import passwordHash from "password-hash";
 import { createUser } from "./users.repository";
 import { sendWelcomeMail } from "../mail/mail.service";
-import { Role } from "src/typegoose";
-import { UserStatus } from "src/typegoose/User";
+import { Role } from "../../typegoose";
+import { UserStatus } from "../../typegoose/User";
 
 export const register = async (user: { username: string; password: string; email?: string }, userRole: Role) => {
   try {

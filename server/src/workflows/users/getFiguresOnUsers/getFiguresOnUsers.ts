@@ -1,12 +1,7 @@
 import { User } from "../../../typegoose/User";
 import { ResponseWithData } from "../../../types/interface";
 import { getAllUsersFromDB } from "../../../modules/users/users.repository";
-
-export interface GetUserStatisticsResponse {
-  nbContributors: number;
-  nbTraductors: number;
-  nbExperts: number;
-}
+import { GetUserStatisticsResponse } from "api-types";
 
 export const getFiguresOnUsers = async (): ResponseWithData<GetUserStatisticsResponse> => {
   const users = await getAllUsersFromDB({ roles: 1 }, "roles");

@@ -1,5 +1,5 @@
-import { DispositifId, MailEvent, MailEventModel, UserId } from "src/typegoose";
-import { Modify } from "src/types/interface";
+import { DispositifId, MailEvent, MailEventModel, UserId } from "../../typegoose";
+import { Modify } from "../../types/interface";
 
 export const addMailEvent = (mailEvent: Modify<MailEvent, { userId?: UserId; dispositifId?: DispositifId }>) =>
   MailEventModel.create(mailEvent);

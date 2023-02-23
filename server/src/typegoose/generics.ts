@@ -36,4 +36,4 @@ export type Languages = "fr" | "en" | "uk" | "ti" | "ar" | "ps" | "ru";
 //   }
 // }
 
-export class Id extends Types.ObjectId { }
+export class ObjectId extends Types.ObjectId { }

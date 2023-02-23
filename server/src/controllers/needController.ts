@@ -1,25 +1,13 @@
 import { Route, Controller, Post, Body, Delete, Path, Security, Get } from "tsoa";
+import { GetNeedResponse, NeedRequest, UpdatePositionsNeedResponse, UpdatePositionsRequest } from "api-types";
 
 import { postNeeds } from "../workflows/needs/postNeeds";
 import { deleteNeed } from "../workflows/needs/deleteNeed";
 import { addView } from "../workflows/needs/addView";
-import { updatePositions, UpdatePositionsNeedResponse } from "../workflows/needs/updatePositions";
-import { Picture, Response, ResponseWithData } from "../types/interface";
-import { getNeeds, GetNeedResponse } from "../workflows/needs/getNeeds";
+import { updatePositions } from "../workflows/needs/updatePositions";
+import { Response, ResponseWithData } from "../types/interface";
+import { getNeeds } from "../workflows/needs/getNeeds";
 
-export interface NeedRequest {
-  fr: {
-    text: string;
-    subtitle: string;
-  };
-  theme?: string;
-  image?: Picture;
-  adminComments: string;
-}
-
-export interface UpdatePositionsRequest {
-  orderedNeedIds: string[];
-}
 
 @Route("needs")
 export class NeedController extends Controller {

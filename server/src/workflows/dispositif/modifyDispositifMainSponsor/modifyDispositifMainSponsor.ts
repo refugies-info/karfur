@@ -1,11 +1,11 @@
 import logger from "../../../logger";
-import { Id, Response } from "../../../types/interface";
+import { Response } from "../../../types/interface";
 import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 import { log } from "./log";
-import { Dispositif } from "src/typegoose";
-import { MainSponsorRequest } from "src/controllers/dispositifController";
-import { NotFoundError } from "src/errors";
+import { Dispositif } from "../../../typegoose";
+import { NotFoundError } from "../../../errors";
+import { Id, MainSponsorRequest } from "api-types";
 
 export const modifyDispositifMainSponsor = async (id: string, body: MainSponsorRequest, userId: Id): Response => {
   logger.info("[modifyDispositifMainSponsor]", body);

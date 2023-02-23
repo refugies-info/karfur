@@ -1,27 +1,11 @@
 import logger from "../../../logger";
-import { Picture, ResponseWithData, ThemeColors, TranslatedText } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { createTheme } from "../../../modules/themes/themes.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { getAllAppUsers, updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
 import map from "lodash/fp/map";
 import { AppUser, Theme } from "../../../typegoose";
-import { ThemeRequest } from "../../../controllers/themeController";
-
-export interface PostThemeResponse {
-  _id: string;
-  name: TranslatedText;
-  short: TranslatedText;
-  colors: ThemeColors;
-  position: number;
-  icon?: Picture;
-  banner?: Picture;
-  appBanner?: Picture;
-  appImage?: Picture;
-  shareImage?: Picture;
-  notificationEmoji: string;
-  active: boolean;
-  adminComments?: string;
-}
+import { PostThemeResponse, ThemeRequest } from "api-types";
 
 export const hasOneNotificationEnabled = (user: AppUser) =>
   user.notificationsSettings.demarches ||

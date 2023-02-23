@@ -1,16 +1,12 @@
 import crypto from "crypto";
 import logger from "../../../logger";
 import { getUserByUsernameFromDB, updateUserInDB } from "../../../modules/users/users.repository";
-import { ResetPasswordRequest } from "../../../controllers/userController";
 import { InvalidRequestError, NotFoundError, UnauthorizedError, AuthenticationError } from "../../../errors";
 import { ResponseWithData } from "../../../types/interface";
 import { sendResetPasswordMail } from "../../../modules/mail/mail.service";
+import { ResetPasswordRequest, ResetPasswordResponse } from "api-types";
 
 const url = process.env.FRONT_SITE_URL;
-
-export interface ResetPasswordResponse {
-  email: string;
-}
 
 export const resetPassword = async (body: ResetPasswordRequest): ResponseWithData<ResetPasswordResponse> => {
   logger.info("[resetPassword] received");

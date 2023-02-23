@@ -1,24 +1,11 @@
 import { Controller, Get, Post, Patch, Body, Delete, Route, Path, Security } from "tsoa";
+import { GetThemeResponse, PatchThemeResponse, PostThemeResponse, ThemeRequest } from "api-types";
 
-import { getThemes, GetThemeResponse } from "../workflows/themes/getThemes";
-import { postThemes, PostThemeResponse } from "../workflows/themes/postThemes";
-import { patchTheme, PatchThemeResponse } from "../workflows/themes/patchTheme";
+import { getThemes } from "../workflows/themes/getThemes";
+import { postThemes } from "../workflows/themes/postThemes";
+import { patchTheme } from "../workflows/themes/patchTheme";
 import { deleteTheme } from "../workflows/themes/deleteTheme";
-import { Picture, Response, ResponseWithData, ThemeColors, TranslatedText } from "../types/interface";
-
-export interface ThemeRequest {
-  name: TranslatedText;
-  short: TranslatedText;
-  colors: ThemeColors;
-  position: number;
-  icon?: Picture;
-  banner?: Picture;
-  appBanner?: Picture;
-  appImage?: Picture;
-  shareImage?: Picture;
-  notificationEmoji: string;
-  adminComments: string;
-}
+import { Response, ResponseWithData } from "../types/interface";
 
 @Route("themes")
 export class ThemeController extends Controller {

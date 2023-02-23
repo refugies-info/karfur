@@ -4,8 +4,8 @@ import { getUserById } from "../users/users.repository";
 import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
-import { UserStatus } from "src/typegoose/User";
-import { DispositifId } from "src/typegoose";
+import { UserStatus } from "../../typegoose/User";
+import { DispositifId } from "../../typegoose";
 
 export const sendPublishedTradMailToTraductors = async (
   traductorIdsList: string[],

@@ -2,13 +2,11 @@ import { FilterQuery } from "mongoose";
 import logger from "../../../logger";
 import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
 import { Dispositif, Languages, User } from "../../../typegoose";
-import { UserFavoritesRequest } from "../../../controllers/userController";
-import { ResponseWithData, SimpleDispositif } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { Favorite } from "../../../typegoose/User";
+import { GetUserFavoritesResponse, GetUserFavoritesRequest } from "api-types";
 
-export type GetUserFavoritesResponse = SimpleDispositif;
-
-export const getUserFavoritesInLocale = async (user: User, query: UserFavoritesRequest): ResponseWithData<GetUserFavoritesResponse[]> => {
+export const getUserFavoritesInLocale = async (user: User, query: GetUserFavoritesRequest): ResponseWithData<GetUserFavoritesResponse[]> => {
   logger.info("[getUserFavoritesInLocale] received");
 
   const favorites: Favorite[] = user.favorites;

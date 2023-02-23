@@ -1,6 +1,6 @@
+import { AddViewsRequest } from "api-types";
 import logger from "../../../logger";
 import { incrementDispositifViews } from "../../../modules/dispositif/dispositif.repository";
-import { AddViewsRequest } from "../../../controllers/dispositifController";
 import { Response } from "../../../types/interface";
 
 export const updateNbVuesOrFavoritesOnContent = async (id: string, body: AddViewsRequest): Response => {

@@ -1,17 +1,8 @@
 
-import { GetStatisticsRequest } from "../../../controllers/dispositifController";
+import { GetStatisticsRequest, GetStatisticsResponse } from "api-types";
 import logger from "../../../logger";
 import { getNbMercis, getNbVues, getNbFiches, getNbUpdatedRecently } from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
-
-export interface GetStatisticsResponse {
-  nbMercis?: number
-  nbVues?: number
-  nbVuesMobile?: number
-  nbDispositifs?: number
-  nbDemarches?: number
-  nbUpdatedRecently?: number
-}
 
 type Mercis = { mercis: number }
 type Vues = { nbVues: number, nbVuesMobile: number }

@@ -1,8 +1,9 @@
+import { Id, Picture } from "api-types";
+import { SimpleDispositif } from "api-types/generics";
 import { omit, pick } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, UpdateQuery } from "mongoose";
 import { Dispositif, DispositifId, DispositifModel, Languages, UserId } from "../../typegoose";
-import { Id, Picture, SimpleDispositif } from "../../types/interface";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({}).populate<{

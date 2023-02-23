@@ -1,4 +1,4 @@
-import { Log, LogModel } from "src/typegoose";
+import { Log, LogModel } from "../../typegoose";
 
 export const findLogs = async (id: string) => {
   return LogModel.find({ objectId: id })

@@ -2,17 +2,9 @@ import { ResponseWithData } from "../../../types/interface";
 import { NotFoundError } from "../../../errors";
 import logger from "../../../logger";
 import { getNotificationsSettings as getSettings } from "../../../modules/appusers/appusers.repository";
+import { GetNotificationsSettingsResponse } from "api-types";
 
-export interface GetNotificationsSettings {
-  global: boolean;
-  local: boolean;
-  demarches: boolean;
-  themes: {
-    [key: string]: boolean;
-  };
-}
-
-export const getNotificationsSettings = async (appUid: string): ResponseWithData<GetNotificationsSettings> => {
+export const getNotificationsSettings = async (appUid: string): ResponseWithData<GetNotificationsSettingsResponse> => {
   logger.info("[getNotificationsSettings] received");
   const settings = await getSettings(appUid);
   if (!settings) throw new NotFoundError("Settings not found");

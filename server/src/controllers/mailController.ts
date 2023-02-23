@@ -1,4 +1,5 @@
 import { Controller, Post, Body, Route, Security, Request } from "tsoa";
+import { AddContactRequest, ImprovementsRequest, SubscriptionRequest } from "api-types";
 import * as express from "express";
 
 import { sendDraftReminderMail } from "../workflows/mail/sendDraftReminderMail";
@@ -6,28 +7,7 @@ import { sendReminderMailToUpdateContents } from "../workflows/mail/sendReminder
 import { sendAdminImprovementsMail } from "../workflows/mail/sendAdminImprovementsMail";
 import { sendSubscriptionReminderMail } from "../workflows/mail/sendSubscriptionReminderMail";
 import { addContact } from "../workflows/mail/addContact";
-import { Response, Id } from "../types/interface";
-
-export interface ImprovementsRequest {
-  dispositifId: Id;
-  users: {
-    username: string;
-    _id: Id;
-    email: string;
-  }[];
-  titreInformatif: string;
-  titreMarque: string;
-  sections: string[];
-  message: string;
-}
-
-export interface SubscriptionRequest {
-  email: string;
-}
-
-export interface AddContactRequest {
-  email: string;
-}
+import { Response } from "../types/interface";
 
 @Route("mail")
 export class MailController extends Controller {

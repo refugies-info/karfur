@@ -7,9 +7,9 @@ import {
   removeStructureOfUserInDB,
 } from "./users.repository";
 import { asyncForEach } from "../../libs/asyncForEach";
-import { User } from "src/typegoose";
-import { UserId, UserStatus } from "src/typegoose/User";
-import { Membre, StructureId } from "src/typegoose/Structure";
+import { User } from "../../typegoose";
+import { UserId, UserStatus } from "../../typegoose/User";
+import { Membre, StructureId } from "../../typegoose/Structure";
 
 export const addStructureForUsers = async (userIds: UserId[], structureId: StructureId) => {
   logger.info("[addStructure] add structure for membres", { userIds, structureId });

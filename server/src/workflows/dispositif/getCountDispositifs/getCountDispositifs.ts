@@ -1,14 +1,12 @@
 
+import { CountDispositifsRequest, GetCountDispositifsResponse } from "api-types";
 import { FilterQuery } from "mongoose";
-import { Dispositif } from "src/typegoose";
-import { CountDispositifsRequest } from "../../../controllers/dispositifController";
+import { Dispositif } from "../../../typegoose";
 import logger from "../../../logger";
 import { getCountDispositifs as countDispositifs } from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
 
-export interface GetCountDispositifsResponse {
-  count: number;
-}
+
 
 export const getCountDispositifs = async (query: CountDispositifsRequest): ResponseWithData<GetCountDispositifsResponse> => {
   logger.info("[getCountDispositifs] dispositif");

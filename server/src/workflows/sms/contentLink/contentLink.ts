@@ -1,7 +1,7 @@
 import logger from "../../../logger";
 import { sendSMS } from "../../../connectors/twilio/sendSMS";
-import { ContentLinkRequest } from "../../../controllers/smsController";
 import { Response } from "../../../types/interface";
+import { ContentLinkRequest } from "api-types";
 
 export const contentLink = async (body: ContentLinkRequest): Response => {
   logger.info("[contentLink] received", body);

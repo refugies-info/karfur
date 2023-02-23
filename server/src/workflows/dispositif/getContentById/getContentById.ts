@@ -1,61 +1,11 @@
-import { Id, InfoSections, Metadatas, Picture, ResponseWithData } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { NotFoundError } from "../../../errors";
 import { Languages } from "../../../typegoose";
 import pick from "lodash/pick";
+import { ContentStructure, GetDispositifResponse, SimpleUser, Sponsor } from "api-types";
 
-interface Sponsor {
-  name: string;
-  logo: string;
-  link: string;
-}
-
-interface SponsorDB {
-  _id: Id;
-  nom: string;
-  picture: Picture;
-}
-
-interface User {
-  _id: Id;
-  username: string;
-  picture: Picture;
-}
-
-interface Poi {
-  title: string;
-  address: string;
-  city: string;
-  lat: number;
-  lng: number;
-  description?: string;
-  email?: string;
-  phone?: string;
-}
-
-
-export type GetDispositifResponse = {
-  _id: Id;
-  titreInformatif: string;
-  titreMarque: string;
-  abstract: string;
-  what: string;
-  why?: InfoSections;
-  how: InfoSections;
-  next?: InfoSections;
-  typeContenu: string;
-  status: string;
-  mainSponsor?: SponsorDB
-  theme?: Id;
-  secondaryThemes?: Id[];
-  needs: Id[];
-  sponsors?: (Sponsor | SponsorDB)[];
-  participants: User[];
-  merci: { created_at: Date, userId?: Id }[];
-  metadatas: Metadatas;
-  map: Poi[];
-};
 
 export const getContentById = async (id: string, locale: Languages): ResponseWithData<GetDispositifResponse> => {
   logger.info("[getContentById] called", {
@@ -79,9 +29,9 @@ export const getContentById = async (id: string, locale: Languages): ResponseWit
   }
 
   const dispositif = await (await getDispositifById(id, fields)).populate<{
-    mainSponsor: SponsorDB,
-    sponsors: (SponsorDB | Sponsor)[],
-    participants: User[]
+    mainSponsor: ContentStructure,
+    sponsors: (ContentStructure | Sponsor)[],
+    participants: SimpleUser[]
   }>([
     { path: "mainSponsor", select: "_id nom picture" },
     { path: "sponsors", select: "_id nom picture" },

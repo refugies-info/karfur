@@ -1,16 +1,9 @@
 import { getAllUsersFromDB } from "../../../modules/users/users.repository";
 import { User } from "../../../typegoose";
-import { Id, Picture, ResponseWithData } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { AuthenticationError } from "../../../errors";
-
-export interface GetActiveUsersResponse {
-  _id: Id;
-  username: string;
-  picture: Picture;
-  status: string;
-  email: string;
-}
+import { GetActiveUsersResponse } from "api-types";
 
 export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUsersResponse[]> => {
   logger.info("[getActiveUsers] received");

@@ -6,12 +6,8 @@ import { proceedWithLogin } from "../../../modules/users/users.service";
 import { login2FA } from "../../../modules/users/login2FA";
 import { ResponseWithData } from "../../../types/interface";
 import { getUserFromDB } from "../../../modules/users/users.repository";
-import { NewPasswordRequest } from "../../../controllers/userController";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
-
-export interface NewPasswordResponse {
-  token: string;
-}
+import { NewPasswordRequest, NewPasswordResponse } from "api-types";
 
 export const setNewPassword = async (body: NewPasswordRequest): ResponseWithData<NewPasswordResponse> => {
   try {

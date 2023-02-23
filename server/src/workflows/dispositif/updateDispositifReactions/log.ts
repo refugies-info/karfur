@@ -1,4 +1,4 @@
-import { Dispositif, DispositifId } from "src/typegoose";
+import { Dispositif, DispositifId } from "../../../typegoose";
 import { addLog } from "../../../modules/logs/logs.service";
 
 export const log = async (dispositif: Dispositif, dispositifId: DispositifId) => {

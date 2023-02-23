@@ -1,5 +1,5 @@
-import { RefactorTodoError } from "src/errors";
-import { AppUser, Dispositif } from "src/typegoose";
+import { RefactorTodoError } from "../../errors";
+import { AppUser, Dispositif } from "../../typegoose";
 
 const ACTION_ZONE = "Zone d'action";
 const TARGET_AUDIENCE = "C'est pour qui ?";
