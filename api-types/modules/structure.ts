@@ -1,4 +1,4 @@
-import { Id, Picture, SimpleDispositif, SimpleUser, StructureMember } from "../generics";
+import { Id, Picture, SimpleDispositif, SimpleUser, StructureMember, StructureStatus } from "../generics";
 
 type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
 /**
@@ -32,7 +32,7 @@ export interface PatchStructureRequest {
   responsable?: string | null;
   nom?: string;
   adminComments?: string;
-  status?: string;
+  status?: StructureStatus;
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus?: string
   hasResponsibleSeenNotification?: boolean
@@ -59,7 +59,7 @@ export interface GetAllStructuresResponse {
   _id: Id;
   nom: string;
   acronyme?: string;
-  status?: string;
+  status?: StructureStatus;
   picture?: Picture;
   nbMembres: number;
   created_at?: Date;
@@ -128,7 +128,7 @@ export interface GetStructureResponse {
   phone_contact?: string;
   siren?: string;
   siret?: string;
-  status?: string;
+  status?: StructureStatus;
   picture?: Picture;
   structureTypes?: string[];
   websites?: string[];

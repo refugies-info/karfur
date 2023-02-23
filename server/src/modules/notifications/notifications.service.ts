@@ -10,6 +10,7 @@ import { availableLanguages } from "../../libs/getFormattedLocale";
 import { parseDispositif, filterTargets, filterTargetsForDemarche, getNotificationEmoji } from "./helpers";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
 import { Dispositif, DispositifId, Languages, NotificationModel } from "../../typegoose";
+import { ContentType } from "api-types";
 
 const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 
@@ -74,7 +75,7 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
         "theme"
       );
 
-      if (!dispositif || dispositif.typeContenu !== "dispositif") {
+      if (!dispositif || dispositif.typeContenu !== ContentType.DISPOSITIF) {
         logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} not found`);
         return;
       }
@@ -116,7 +117,7 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
               "notifications.with"
             )} ${dispositif.getTranslated("content.titreMarque", lang)}`,
             data: {
-              type: "dispositif",
+              type: ContentType.DISPOSITIF,
               contentId: dispositif._id.toString()
             }
           };
@@ -202,7 +203,7 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
               lang
             )}`,
             data: {
-              type: "dispositif",
+              type: ContentType.DISPOSITIF,
               contentId: demarche._id.toString()
             }
           };

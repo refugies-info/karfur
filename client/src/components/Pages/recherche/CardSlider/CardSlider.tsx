@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cls } from "lib/classname";
 import { Button } from "reactstrap";
-import { ContentType } from "types/interface";
 import useRTL from "hooks/useRTL";
 import DemarcheCard from "components/UI/DemarcheCard";
 import DispositifCard from "components/UI/DispositifCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./CardSlider.module.scss";
-import { GetDispositifsResponse } from "api-types";
+import { ContentType, GetDispositifsResponse } from "api-types";
 
 interface Props {
   cards: GetDispositifsResponse[];
@@ -25,7 +24,7 @@ const CardSlider = (props: Props) => {
   const slider = useRef<HTMLDivElement | null>(null);
   const [page, setPage] = useState(0);
   const [maxPage, setMaxPage] = useState(2);
-  const gap = props.type === "dispositif" ? DISP_GAP : DEM_GAP;
+  const gap = props.type === ContentType.DISPOSITIF ? DISP_GAP : DEM_GAP;
 
   const slide = (direction: "prev" | "next") => {
     let newPage = page;
@@ -55,7 +54,7 @@ const CardSlider = (props: Props) => {
     slider.current.scroll({
       left: page * pageWidth * (isRTL ? -1 : 1),
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   }, [page, gap, margins, isRTL]);
 
@@ -73,11 +72,11 @@ const CardSlider = (props: Props) => {
       )}
       <div
         ref={slider}
-        className={cls(styles.slider, props.type === "demarche" ? styles.demarches : styles.dispositifs)}
+        className={cls(styles.slider, props.type === ContentType.DEMARCHE ? styles.demarches : styles.dispositifs)}
       >
         {props.cards.map((d) => (
           <div key={d._id.toString()} className={styles.card}>
-            {props.type === "demarche" ? <DemarcheCard demarche={d} /> : <DispositifCard dispositif={d} />}
+            {props.type === ContentType.DEMARCHE ? <DemarcheCard demarche={d} /> : <DispositifCard dispositif={d} />}
           </div>
         ))}
       </div>

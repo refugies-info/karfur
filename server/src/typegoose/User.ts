@@ -8,13 +8,7 @@ import { Langue } from "./Langue";
 import { Role } from "./Role";
 import { Structure } from "./Structure";
 import { Base } from "./Base";
-
-export enum UserStatus {
-  USER_STATUS_ACTIVE = "Actif",
-  USER_STATUS_DELETED = "Exclu",
-}
-// export type UserStatus = typeof USER_STATUS_ACTIVE | typeof USER_STATUS_DELETED;
-
+import { UserStatus } from "api-types";
 
 export class Favorite {
   @prop({ ref: () => Dispositif })
@@ -65,8 +59,7 @@ export class User extends Base {
   //     required: false,
   //   },
 
-  // FIXME typage
-  @prop({ type: String })
+  @prop({ enum: UserStatus })
   public status?: UserStatus;
 
   @prop()

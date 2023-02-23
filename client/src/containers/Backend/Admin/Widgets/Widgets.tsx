@@ -18,8 +18,7 @@ import { TypeContenuInput } from "./components/TypeContenuInput";
 import { LanguageInput } from "./components/LanguageInput";
 import { EditWidgetModal } from "./EditWidgetModal/EditWidgetModal";
 import styles from "./Widgets.module.scss";
-import { ContentType } from "types/interface";
-import { GetThemeResponse, Id } from "api-types";
+import { ContentType, GetThemeResponse, Id } from "api-types";
 
 let NotificationContainer: any = null;
 if (isInBrowser()) {
@@ -30,7 +29,10 @@ if (isInBrowser()) {
 export const Widgets = () => {
   const [name, setName] = useState("");
   const [selectedThemes, setSelectedThemes] = useState<Id[]>([]);
-  const [selectedTypeContenu, setSelectedTypeContenu] = useState<ContentType[]>(["demarche", "dispositif"]);
+  const [selectedTypeContenu, setSelectedTypeContenu] = useState<ContentType[]>([
+    ContentType.DISPOSITIF,
+    ContentType.DEMARCHE,
+  ]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
@@ -50,7 +52,7 @@ export const Widgets = () => {
   const resetForm = useCallback(() => {
     setName("");
     setSelectedThemes([]);
-    setSelectedTypeContenu(["demarche", "dispositif"]);
+    setSelectedTypeContenu([ContentType.DISPOSITIF, ContentType.DEMARCHE]);
     setSelectedLanguages([]);
   }, []);
 
@@ -63,8 +65,8 @@ export const Widgets = () => {
         themes: selectedThemes,
         typeContenu: selectedTypeContenu,
         languages: selectedLanguages,
-        department: selectedDepartment
-      })
+        department: selectedDepartment,
+      }),
     );
     resetForm();
   };

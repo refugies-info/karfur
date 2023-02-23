@@ -3,9 +3,7 @@ import { getUserById, updateUserInDB } from "../../../modules/users/users.reposi
 import { removeMemberFromStructure } from "../../../modules/structure/structure.repository";
 import { generateRandomId } from "../../../libs/generateRandomId";
 import { sendAccountDeletedMailService } from "../../../modules/mail/mail.service";
-import { UserStatus } from "../../../typegoose/User";
-
-
+import { UserStatus } from "api-types";
 
 export const deleteUser = async (id: string): Response => {
   const user = await getUserById(id, { email: 1, structures: 1 });
@@ -26,7 +24,7 @@ export const deleteUser = async (id: string): Response => {
     cookies: null,
     reset_password_token: "",
     structures: [],
-    status: UserStatus.USER_STATUS_DELETED,
+    status: UserStatus.DELETED,
   });
 
   if (email) {

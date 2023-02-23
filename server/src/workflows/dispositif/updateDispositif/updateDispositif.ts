@@ -4,7 +4,7 @@ import { Response } from "../../../types/interface";
 import { Dispositif, ObjectId, User } from "../../../typegoose";
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
-import { UpdateDispositifRequest } from "api-types";
+import { ContentType, UpdateDispositifRequest } from "api-types";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
   // content
@@ -14,7 +14,7 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
   if (body.abstract) content.abstract = body.abstract;
   if (body.what) content.what = body.what;
 
-  if (oldDispositif.typeContenu === "dispositif") {
+  if (oldDispositif.typeContenu === ContentType.DISPOSITIF) {
     if (body.why) (content as DispositifContent).why = body.why;
     if (body.how) content.how = body.how;
   } else {

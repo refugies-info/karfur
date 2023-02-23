@@ -2,7 +2,7 @@ import logger from "../../../logger";
 import { createDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { Response } from "../../../types/interface";
 import { Dispositif, ObjectId } from "../../../typegoose";
-import { CreateDispositifRequest, DispositifStatus, Id } from "api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus, Id } from "api-types";
 
 export const createDispositif = async (body: CreateDispositifRequest, userId: Id): Response => {
   logger.info("[createDispositif] received", { body });
@@ -22,7 +22,7 @@ export const createDispositif = async (body: CreateDispositifRequest, userId: Id
           abstract: body.abstract || "",
           what: body.what || "",
           how: body.how || {},
-          ...(body.typeContenu === "dispositif") ? { why: body.why || {} } : { next: body.next || {} },
+          ...(body.typeContenu === ContentType.DISPOSITIF) ? { why: body.why || {} } : { next: body.next || {} },
         },
         metadatas: {}
       }

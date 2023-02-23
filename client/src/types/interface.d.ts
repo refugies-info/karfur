@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { DispositifStatus, GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
+import { DispositifStatus, StructureStatus, GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
 
 export type APIResponse<T = null> = AxiosResponse<{
   text: "success" | "error";
@@ -71,8 +71,6 @@ export type Indicators = {
   totalIndicator?: Indicator[];
 };
 
-export type ITypeContenu = "dispositif" | "demarche";
-
 export interface RegionFigures {
   region: string;
   nbDispositifs: number;
@@ -97,8 +95,6 @@ export interface TranslationStatistics {
 
 export type AvailableLanguageI18nCode = "fr" | "en" | "ps" | "ar" | "ti" | "ru" | "uk" | "fa";
 
-export type ContentType = "dispositif" | "demarche";
-
 export type Status = {
   displayedStatus: string;
   color: string;
@@ -110,9 +106,9 @@ export type ContentStatus = {
   order: number;
 } & Status;
 
-type StructureStatusType = "Actif" | "En attente" | "Supprimé";
-export type StructureStatus = {
-  storedStatus: StructureStatusType;
+
+export type StructureAdminStatus = {
+  storedStatus: StructureStatus;
   order: number;
 } & Status;
 

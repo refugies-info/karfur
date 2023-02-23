@@ -14,7 +14,7 @@ import {
   MainFigures,
   MobileApp,
   NewContent,
-  WhyAccordions
+  WhyAccordions,
 } from "components/Pages/homepage/Sections";
 import API from "utils/API";
 import { wrapper } from "services/configureStore";
@@ -25,7 +25,7 @@ import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { TranslationStatistics } from "types/interface";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import commonStyles from "scss/components/staticPages.module.scss";
-import { GetDispositifsResponse, GetStatisticsResponse, GetStructureStatisticsResponse } from "api-types";
+import { ContentType, GetDispositifsResponse, GetStatisticsResponse, GetStructureStatisticsResponse } from "api-types";
 
 interface Props {
   contentStatistics: GetStatisticsResponse;
@@ -99,7 +99,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
 
   const contentStatistics = (
     await API.getDispositifsStatistics({
-      facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"]
+      facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"],
     })
   ).data.data;
   const structuresStatistics = (
@@ -109,18 +109,18 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
 
   const demarches = (
     await API.getDispositifs({
-      type: "demarche",
+      type: ContentType.DEMARCHE,
       limit: 15,
       sort: "publishedAt",
-      locale: locale || "fr"
+      locale: locale || "fr",
     })
   ).data.data;
   const dispositifs = (
     await API.getDispositifs({
-      type: "dispositif",
+      type: ContentType.DISPOSITIF,
       limit: 15,
       sort: "publishedAt",
-      locale: locale || "fr"
+      locale: locale || "fr",
     })
   ).data.data;
 
@@ -131,9 +131,9 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
       structuresStatistics,
       translationStatistics,
       demarches,
-      dispositifs
+      dispositifs,
     },
-    revalidate: 60 * 10
+    revalidate: 60 * 10,
   };
 });
 

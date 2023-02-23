@@ -5,7 +5,7 @@ import { log } from "./log";
 import { Response } from "../../../types/interface";
 import { ObjectId, Structure } from "../../../typegoose";
 import { pick } from "lodash";
-import { PostStructureRequest } from "api-types";
+import { PostStructureRequest, StructureStatus } from "api-types";
 
 
 export const createStructure = async (body: PostStructureRequest, userId: string): Response => {
@@ -13,7 +13,7 @@ export const createStructure = async (body: PostStructureRequest, userId: string
   const structureToSave: Partial<Structure> = {
     ...pick(body, ["picture", "contact", "phone_contact", "mail_contact", "nom"]),
     createur: new ObjectId(userId),
-    status: "En attente",
+    status: StructureStatus.WAITING,
     membres: body.responsable ? [
       {
         userId: new ObjectId(body.responsable),

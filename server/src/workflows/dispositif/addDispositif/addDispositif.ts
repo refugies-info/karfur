@@ -21,7 +21,7 @@ import { checkUserIsAuthorizedToModifyDispositif, checkRequestIsFromSite } from 
 import { log } from "./log";
 import { Dispositif, Structure, Theme, User } from "../../../typegoose";
 import { isDocument } from "@typegoose/typegoose";
-import { DispositifStatus } from "api-types";
+import { ContentType, DispositifStatus } from "api-types";
 
 export interface Request {
   titreInformatif: string;
@@ -29,7 +29,7 @@ export interface Request {
   status: string;
   contenu: any;
   nbMots: number;
-  typeContenu: "dispositif" | "demarche";
+  typeContenu: ContentType;
   mainSponsor: Dispositif["mainSponsor"];
   titreMarque: string;
   theme?: Theme;
@@ -206,7 +206,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       }
 
       if (
-        dispositif.typeContenu === "dispositif" &&
+        dispositif.typeContenu === ContentType.DISPOSITIF &&
         originalDispositif.status !== "En attente" &&
         dispositif.status === "En attente" &&
         dispositif.mainSponsor
@@ -244,7 +244,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
 
       const contribRole = await getRoleByName("Contrib");
       await addRoleAndContribToUser(req.userId, contribRole._id, dispResult._id);
-      if (dispositif.typeContenu === "dispositif" && dispositif.status === "En attente" && dispositif.mainSponsor) {
+      if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.status === "En attente" && dispositif.mainSponsor) {
         try {
           logger.info("[addDispositif] send mail to structure member when new dispositif en attente");
 

@@ -10,7 +10,11 @@ import {
   Picture,
   Metadatas,
   SimpleTheme,
-  DispositifStatus
+  SimpleDispositif,
+  DispositifStatus,
+  StructureStatus,
+  UserStatus,
+  ContentType,
 } from "./generics";
 
 // adminOption
@@ -154,7 +158,10 @@ import {
 
 // enums
 export {
-  DispositifStatus
+  DispositifStatus,
+  StructureStatus,
+  UserStatus,
+  ContentType,
 }
 
 export type {
@@ -170,6 +177,7 @@ export type {
   Metadatas,
   SimpleUser,
   SimpleTheme,
+  SimpleDispositif,
 
   // adminOptions
   AdminOptionRequest,

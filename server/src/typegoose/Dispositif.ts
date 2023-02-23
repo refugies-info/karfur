@@ -1,5 +1,5 @@
 import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { DispositifStatus } from "api-types";
+import { ContentType, DispositifStatus } from "api-types";
 import { get, has } from "lodash";
 import { ObjectId } from "mongoose";
 import { MustBePopulatedError } from "../errors";
@@ -16,7 +16,6 @@ type ageType = "lessThan" | "moreThan" | "between";
 type priceDetails = "une fois" | "à chaque fois" | "par heure" | "par semaine" | "par mois" | "par an";
 type publicType = "refugee" | "all";
 type justificatifType = "diplome" | "titre sejour" | "domicile";
-type contentType = "dispositif" | "demarche";
 
 export class Sponsor {
   @prop()
@@ -161,8 +160,8 @@ export class Poi {
   },
 })
 export class Dispositif extends Base {
-  @prop({ required: true })
-  public typeContenu: contentType;
+  @prop({ required: true, enum: ContentType })
+  public typeContenu: ContentType;
   @prop({ required: true, enum: DispositifStatus })
   public status: DispositifStatus;
   @prop()
@@ -276,11 +275,11 @@ export class Dispositif extends Base {
   }
 
   public isDispositif(): boolean {
-    return this.typeContenu === "dispositif";
+    return this.typeContenu === ContentType.DISPOSITIF;
   }
 
   public isDemarche(): boolean {
-    return this.typeContenu === "demarche";
+    return this.typeContenu === ContentType.DEMARCHE;
   }
 
   public isTranslatedIn(ln: Languages) {

@@ -8,8 +8,9 @@ import {
 } from "./users.repository";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { User } from "../../typegoose";
-import { UserId, UserStatus } from "../../typegoose/User";
+import { UserId } from "../../typegoose/User";
 import { Membre, StructureId } from "../../typegoose/Structure";
+import { UserStatus } from "api-types";
 
 export const addStructureForUsers = async (userIds: UserId[], structureId: StructureId) => {
   logger.info("[addStructure] add structure for membres", { userIds, structureId });
@@ -57,7 +58,7 @@ export const getUsersFromStructureMembres = async (structureMembres: Membre[]): 
 
       try {
         const membreFromDB = await getUserById(membre.userId.toString(), userNeededFields);
-        if (membreFromDB.status === UserStatus.USER_STATUS_DELETED) return;
+        if (membreFromDB.status === UserStatus.DELETED) return;
         if (!membreFromDB.email) return;
         result.push(membreFromDB);
       } catch (e) {

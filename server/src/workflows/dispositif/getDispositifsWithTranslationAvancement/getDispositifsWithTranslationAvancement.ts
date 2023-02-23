@@ -6,6 +6,7 @@ import { getTraductionsByLanguage } from "../../../modules/traductions/traductio
 import { getTradStatus } from "../../../modules/traductions/traductions.service";
 import { availableLanguages } from "../../../libs/getFormattedLocale";
 import { DispositifId, Languages } from "../../../typegoose";
+import { ContentType } from "api-types";
 
 interface Query {
   locale: Languages;
@@ -17,7 +18,7 @@ interface GetDispositifsWithTranslationAvancementResponse {
   titreMarque: string;
   nbMots: number;
   created_at: Date;
-  type: "dispositif" | "demarche";
+  type: ContentType;
   lastTradUpdatedAt: number | null;
   avancementTrad: number;
   avancementExpert: number;

@@ -1,4 +1,4 @@
-import { GetUserInfoResponse } from "api-types";
+import { GetUserInfoResponse, UserStatus } from "api-types";
 import moment from "moment";
 
 const date = moment("2019-05-01 12:00:00");
@@ -11,7 +11,7 @@ export const testUser: GetUserInfoResponse = {
   roles: [],
   email: "",
   selectedLanguages: [],
-  status: "Actif",
+  status: UserStatus.ACTIVE,
   traductionsFaites: []
 };
 

@@ -39,6 +39,12 @@ export interface SimpleTheme {
 }
 
 // Structure
+export enum StructureStatus {
+  ACTIVE = "Actif",
+  WAITING = "En attente",
+  DELETED = "Supprimé"
+}
+
 export interface UserStructure {
   _id: Id;
   nom: string;
@@ -59,7 +65,13 @@ export interface Sponsor {
   link: string;
 }
 
+
 // User
+export enum UserStatus {
+  ACTIVE = "Actif",
+  DELETED = "Exclu",
+}
+
 export interface SimpleUser {
   _id: Id;
   username: string;
@@ -79,6 +91,11 @@ export interface StructureMember {
 }
 
 // Dispositif
+export enum ContentType {
+  DISPOSITIF = "dispositif",
+  DEMARCHE = "demarche"
+}
+
 export enum DispositifStatus {
   ACTIVE = "Actif",
   DRAFT = "Brouillon",
@@ -127,7 +144,7 @@ export interface SimpleDispositif {
   titreInformatif?: string;
   titreMarque?: string;
   abstract?: string;
-  typeContenu: string;
+  typeContenu: ContentType;
   status: DispositifStatus;
   theme?: Id;
   secondaryThemes?: Id[];

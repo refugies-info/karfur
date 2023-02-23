@@ -1,4 +1,4 @@
-import { ContentStructure, DispositifStatus, Id, InfoSection, InfoSections, Metadatas, SimpleDispositif, SimpleUser, Sponsor } from "../generics";
+import { ContentStructure, ContentType, DispositifStatus, Id, InfoSection, InfoSections, Metadatas, SimpleDispositif, SimpleUser, Sponsor } from "../generics";
 
 type ViewsType = "web" | "mobile" | "favorite";
 type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
@@ -7,7 +7,7 @@ type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDema
  * @url GET /dispositifs/count
  */
 export interface CountDispositifsRequest {
-  type: "dispositif" | "demarche"; // TODO: type
+  type: ContentType;
   publishedOnly: boolean
   themeId?: string;
 }
@@ -16,7 +16,7 @@ export interface CountDispositifsRequest {
  * @url GET /dispositifs
  */
 export interface GetDispositifsRequest {
-  type?: "dispositif" | "demarche"; // TODO: type
+  type?: ContentType;
   locale: string
   limit?: number
   sort?: string
@@ -91,7 +91,7 @@ export interface UpdateDispositifRequest extends DispositifRequest { }
  * @url POST /dispositifs
  */
 export interface CreateDispositifRequest extends DispositifRequest {
-  typeContenu: "dispositif" | "demarche";
+  typeContenu: ContentType;
 }
 
 interface Poi {
@@ -117,7 +117,7 @@ export type GetDispositifResponse = {
   why?: InfoSections;
   how: InfoSections;
   next?: InfoSections;
-  typeContenu: string;
+  typeContenu: ContentType;
   status: DispositifStatus;
   mainSponsor?: ContentStructure
   theme?: Id;
@@ -137,7 +137,7 @@ export interface GetUserContributionsResponse {
   _id: Id;
   titreInformatif: string;
   titreMarque: string;
-  typeContenu: string;
+  typeContenu: ContentType;
   mainSponsor: {
     nom: string;
   }
@@ -177,7 +177,7 @@ export interface GetAllDispositifsResponse {
   _id: Id;
   titreInformatif: string;
   titreMarque: string;
-  typeContenu: string;
+  typeContenu: ContentType;
   status: DispositifStatus;
   theme?: Id;
   secondaryThemes?: Id[];

@@ -1,3 +1,4 @@
+import { ContentType } from "api-types";
 import { RefactorTodoError } from "../../errors";
 import { AppUser, Dispositif } from "../../typegoose";
 
@@ -11,7 +12,7 @@ const ALL = "All";
 interface Requirements {
   age: { min: number; max: number };
   departments: string[] | null;
-  type: "dispositif" | "demarche";
+  type: ContentType;
   mainThemeId: string | null;
 }
 
@@ -102,7 +103,7 @@ export const filterTargets = (targets: AppUser[], requirements: Requirements, la
       (departments.includes(target.department) && notificationsSettings.local) ||
       (departments.includes(ALL) && notificationsSettings.global);
 
-    const typeOk = type === "dispositif" ? true : notificationsSettings?.demarches;
+    const typeOk = type === ContentType.DISPOSITIF ? true : notificationsSettings?.demarches;
     const themeOk = !mainThemeId || notificationsSettings?.themes?.[mainThemeId];
 
     const langOk = target.selectedLanguage === lang;

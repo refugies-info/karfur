@@ -7,7 +7,7 @@ import { getPath } from "routes";
 import CardSlider from "components/Pages/recherche/CardSlider";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./NewContent.module.scss";
-import { GetDispositifsResponse } from "api-types";
+import { ContentType, GetDispositifsResponse } from "api-types";
 
 interface Props {
   nbDemarches: number;
@@ -25,8 +25,8 @@ const NewContent = (props: Props) => {
     router.push({
       pathname: getPath("/recherche", router.locale),
       query: {
-        type: type
-      }
+        type: type,
+      },
     });
   };
 
@@ -38,17 +38,17 @@ const NewContent = (props: Props) => {
           <h2 className="h4">{t("Homepage.infoTypeDemarche", { count: props.nbDemarches })}</h2>
           <Button onClick={() => navigateType("demarche")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
         </div>
-        <CardSlider cards={props.demarches} type="demarche" />
+        <CardSlider cards={props.demarches} type={ContentType.DEMARCHE} />
         <div className={styles.title}>
           <h2 className="h4">
             {t("Homepage.infoTypeDispositif", {
               countDispositifs: props.nbDispositifs,
-              countStructures: props.nbStructures
+              countStructures: props.nbStructures,
             })}
           </h2>
           <Button onClick={() => navigateType("dispositif")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
         </div>
-        <CardSlider cards={props.dispositifs} type="dispositif" />
+        <CardSlider cards={props.dispositifs} type={ContentType.DISPOSITIF} />
       </Container>
     </div>
   );

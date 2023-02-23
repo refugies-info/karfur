@@ -4,7 +4,7 @@ import passwordHash from "password-hash";
 import { createUser } from "./users.repository";
 import { sendWelcomeMail } from "../mail/mail.service";
 import { Role } from "../../typegoose";
-import { UserStatus } from "../../typegoose/User";
+import { UserStatus } from "api-types";
 
 export const register = async (user: { username: string; password: string; email?: string }, userRole: Role) => {
   try {
@@ -22,7 +22,7 @@ export const register = async (user: { username: string; password: string; email
       username: user.username,
       password: hashedPassword,
       roles,
-      status: UserStatus.USER_STATUS_ACTIVE,
+      status: UserStatus.ACTIVE,
       last_connected: new Date(),
       email: user.email,
     };

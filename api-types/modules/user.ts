@@ -1,4 +1,4 @@
-import { Id, Picture, SimpleDispositif, UserStructure } from "../generics";
+import { Id, Picture, SimpleDispositif, UserStatus, UserStructure } from "../generics";
 
 /**
  * @url POST /user/login
@@ -93,7 +93,7 @@ export interface GetUserInfoResponse {
   phone: string;
   roles: { _id: string; nom: string; nomPublic: string }[];
   selectedLanguages: string[];
-  status: "Actif" | "Exclu"; // FIXME : UserStatus does not work with tsoa
+  status: UserStatus;
   structures: string[];
   traductionsFaites: string[];
   username: string;
@@ -118,7 +118,7 @@ export interface GetActiveUsersResponse {
   _id: Id;
   username: string;
   picture: Picture;
-  status: string;
+  status: UserStatus;
   email: string;
 }
 
@@ -129,7 +129,7 @@ export interface GetAllUsersResponse {
   _id: Id;
   username: string;
   picture?: Picture;
-  status?: string;
+  status?: UserStatus;
   created_at?: Date;
   roles?: string[];
   email?: string;

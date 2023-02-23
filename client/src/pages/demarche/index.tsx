@@ -1,4 +1,4 @@
-import { CreateDispositifRequest } from "api-types";
+import { ContentType, CreateDispositifRequest } from "api-types";
 import Dispositif from "components/Content/Dispositif";
 import { submitCreateForm } from "lib/dispositifForm";
 import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const DemarchePage = (props: Props) => {
-  const methods = useForm<CreateDispositifRequest>({ defaultValues: { typeContenu: "demarche" } });
+  const methods = useForm<CreateDispositifRequest>({ defaultValues: { typeContenu: ContentType.DEMARCHE } });
   const onSubmit = (data: CreateDispositifRequest) => submitCreateForm(data);
 
   return (

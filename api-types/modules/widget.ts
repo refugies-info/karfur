@@ -1,4 +1,4 @@
-import { Id } from "../generics";
+import { ContentType, Id } from "../generics";
 
 /**
  * @url POST /widgets, PATCH /widgets/{id}
@@ -6,7 +6,7 @@ import { Id } from "../generics";
 export interface WidgetRequest {
   name: string;
   themes: Id[];
-  typeContenu: ("dispositif" | "demarche")[];
+  typeContenu: ContentType[];
   languages?: string[];
   department?: string;
 }
@@ -19,7 +19,7 @@ export interface GetWidgetResponse {
   name: string;
   tags: string[];
   themes: Id[];
-  typeContenu: ("dispositif" | "demarche")[];
+  typeContenu: ContentType[];
   department: string;
   languages: string[];
   author: { username: string };
@@ -34,7 +34,7 @@ export interface PostWidgetResponse {
   name: string;
   tags: string[];
   themes: string[];
-  typeContenu: ("dispositif" | "demarche")[];
+  typeContenu: ContentType[];
   department: string;
   languages: string[];
   author: { username: string };
@@ -49,7 +49,7 @@ export interface PatchWidgetResponse {
   name: string;
   tags: string[];
   themes: string[];
-  typeContenu: ("dispositif" | "demarche")[];
+  typeContenu: ContentType[];
   department: string;
   languages: string[];
   author: { username: string };
