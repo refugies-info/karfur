@@ -15,7 +15,7 @@ export class Widget extends Base {
   @prop({ required: true, ref: () => Theme })
   public themes!: Ref<Theme>[];
 
-  @prop({ required: true, enum: ContentType })
+  @prop({ required: true })
   public typeContenu: ContentType[];
 
   @prop()
