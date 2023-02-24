@@ -1,0 +1,22 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+
+.toggle {
+  padding: u(1);
+  background: $white;
+  border-radius: 0;
+  border: none;
+  height: u(10);
+}
+
+.dropdown {
+  :global(.dropdown-item.active) {
+    background: $bgfocus;
+    color: $darkColor;
+  }
+}
+
+.menu {
+  border: 1px solid $gray40b !important;
+  border-radius: 0 !important;
+}

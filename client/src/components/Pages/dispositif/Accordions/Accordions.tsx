@@ -1,6 +1,6 @@
 import { InfoSections } from "api-types";
 import React from "react";
-import RichTextInput from "../RichTextInput";
+import RichText from "../RichText";
 import TextInput from "../TextInput";
 import { getSectionTitle } from "./functions";
 import styles from "./Accordions.module.scss";
@@ -21,7 +21,7 @@ const Accordions = ({ content, sectionKey }: Props) => {
               <h2 className={styles.title}>
                 <TextInput id={`${sectionKey}.${section[0]}.title`} value={section[1].title} />
               </h2>
-              <RichTextInput id={`${sectionKey}.${section[0]}.text`} value={section[1].text} />
+              <RichText id={`${sectionKey}.${section[0]}.text`} value={section[1].text} />
             </div>
           ))}
         </>
@@ -31,7 +31,7 @@ const Accordions = ({ content, sectionKey }: Props) => {
             <h2 className={styles.title}>
               <TextInput id={`${sectionKey}.a.title`} value={""} />
             </h2>
-            <RichTextInput id={`${sectionKey}.a.text`} value={""} />
+            <RichText id={`${sectionKey}.a.text`} value={""} />
           </div>
         </>
       )}

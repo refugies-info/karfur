@@ -1,0 +1,22 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/variables";
+
+.container {
+  border: 1px solid $gray40b;
+}
+
+.content {
+  padding: u(2);
+
+  p {
+    margin-bottom: u(1);
+  }
+
+  h3 {
+    font-size: 2rem;
+    margin-top: u(2);
+    margin-bottom: u(1);
+  }
+}
