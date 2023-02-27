@@ -22,21 +22,21 @@ import {
   GetUserFavoritesRequest,
 } from "api-types";
 
-import { getFiguresOnUsers, } from "../workflows/users/getFiguresOnUsers";
-import { getAllUsers, } from "../workflows/users/getAllUsers";
-import { getActiveUsers, } from "../workflows/users/getActiveUsers";
+import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
+import { getAllUsers } from "../workflows/users/getAllUsers";
+import { getActiveUsers } from "../workflows/users/getActiveUsers";
 import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
-import { changePassword, } from "../workflows/users/changePassword";
-import { setNewPassword, } from "../workflows/users/setNewPassword";
-import { getUserFavoritesInLocale, } from "../workflows/users/getUserFavoritesInLocale";
+import { changePassword } from "../workflows/users/changePassword";
+import { setNewPassword } from "../workflows/users/setNewPassword";
+import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
 import { deleteUser } from "../workflows/users/deleteUser";
 import { setSelectedLanguages } from "../workflows";
 import { IRequest, Response, ResponseWithData } from "../types/interface";
 import { addUserFavorite } from "../workflows/users/addUserFavorite";
 import { deleteUserFavorites } from "../workflows/users/deleteUserFavorites";
-import { resetPassword, } from "../workflows/users/resetPassword";
+import { resetPassword } from "../workflows/users/resetPassword";
 import { checkResetToken } from "../workflows/users/checkResetToken";
 import { checkUserExists } from "../workflows/users/checkUserExists";
 
@@ -49,10 +49,8 @@ import { checkUserExists } from "../workflows/users/checkUserExists";
 //   "contributions" | "email" | "roles" | "selectedLanguages" | "status" | "structures" | "username" | "_id"
 // >;
 
-
 @Route("user")
 export class UserController extends Controller {
-
   @Security("fromSite")
   @Post("/login")
   public async login(@Body() body: LoginRequest): ResponseWithData<LoginResponse> {
@@ -84,24 +82,27 @@ export class UserController extends Controller {
 
   @Get("/password/reset")
   public async checkResetToken(@Query() token: string): Response {
-    return checkResetToken(token)
+    return checkResetToken(token);
   }
 
   @Post("/password/reset")
   public async resetPassword(@Body() body: ResetPasswordRequest): ResponseWithData<ResetPasswordResponse> {
-    return resetPassword(body)
+    return resetPassword(body);
   }
 
   @Security("fromSite")
   @Post("/password/new")
   public async setNewPassword(@Body() body: NewPasswordRequest): ResponseWithData<NewPasswordResponse> {
-    return setNewPassword(body)
+    return setNewPassword(body);
   }
 
   @Security("jwt")
   @Get("/favorites")
-  public async getUserFavorites(@Request() request: IRequest, @Queries() query: GetUserFavoritesRequest): ResponseWithData<GetUserFavoritesResponse[]> {
-    return getUserFavoritesInLocale(request.user, query)
+  public async getUserFavorites(
+    @Request() request: IRequest,
+    @Queries() query: GetUserFavoritesRequest,
+  ): ResponseWithData<GetUserFavoritesResponse[]> {
+    return getUserFavoritesInLocale(request.user, query);
   }
 
   @Security("jwt")
@@ -112,7 +113,10 @@ export class UserController extends Controller {
 
   @Security("jwt")
   @Delete("/favorites")
-  public async deleteUserFavorites(@Request() request: ExRequest, @Queries() query: DeleteUserFavoriteRequest): Response {
+  public async deleteUserFavorites(
+    @Request() request: ExRequest,
+    @Queries() query: DeleteUserFavoriteRequest,
+  ): Response {
     return deleteUserFavorites(request.user, query);
   }
 
@@ -152,13 +156,21 @@ export class UserController extends Controller {
 
   @Security({ jwt: [], fromSite: [] })
   @Patch("/{id}/password")
-  public async updatePassword(@Path() id: string, @Request() request: ExRequest, @Body() body: UpdatePasswordRequest): ResponseWithData<UpdatePasswordResponse> {
+  public async updatePassword(
+    @Path() id: string,
+    @Request() request: ExRequest,
+    @Body() body: UpdatePasswordRequest,
+  ): ResponseWithData<UpdatePasswordResponse> {
     return changePassword(id, body, request.user);
   }
 
   @Security({ jwt: [], fromSite: [] })
   @Patch("/{id}")
-  public async updateUser(@Path() id: string, @Request() request: ExRequest, @Body() body: UpdateUserRequest): Response {
+  public async updateUser(
+    @Path() id: string,
+    @Request() request: ExRequest,
+    @Body() body: UpdateUserRequest,
+  ): Response {
     return updateUser(id, body, request.user);
   }
 

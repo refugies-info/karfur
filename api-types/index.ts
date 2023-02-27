@@ -1,28 +1,7 @@
-import {
-  Id,
-  TranslatedText,
-  UserStructure,
-  ContentStructure,
-  Sponsor,
-  SimpleUser,
-  StructureMember,
-  InfoSections,
-  Picture,
-  Metadatas,
-  SimpleTheme,
-  SimpleDispositif,
-  DispositifStatus,
-  StructureStatus,
-  UserStatus,
-  ContentType,
-} from "./generics";
+export * from "./generics";
 
 // adminOption
-import {
-  AdminOptionRequest,
-  GetAdminOptionResponse,
-  PostAdminOptionResponse,
-} from "./modules/adminOption";
+import { AdminOptionRequest, GetAdminOptionResponse, PostAdminOptionResponse } from "./modules/adminOption";
 
 // appusers
 import {
@@ -54,52 +33,28 @@ import {
 } from "./modules/dispositif";
 
 // images
-import {
-  PostImageResponse
-} from "./modules/image";
+import { PostImageResponse } from "./modules/image";
 
 // langues
-import {
-  GetLanguagesResponse
-} from "./modules/language";
+import { GetLanguagesResponse } from "./modules/language";
 
 // logs
-import {
-  GetLogResponse
-} from "./modules/log";
+import { GetLogResponse } from "./modules/log";
 
 // mail
-import {
-  ImprovementsRequest,
-  SubscriptionRequest,
-  AddContactRequest
-} from "./modules/mail"
+import { ImprovementsRequest, SubscriptionRequest, AddContactRequest } from "./modules/mail";
 
 // needs
-import {
-  NeedRequest,
-  UpdatePositionsRequest,
-  GetNeedResponse,
-  UpdatePositionsNeedResponse
-} from "./modules/need";
+import { NeedRequest, UpdatePositionsRequest, GetNeedResponse, UpdatePositionsNeedResponse } from "./modules/need";
 
 // notifications
-import {
-  MarkAsSeenRequest,
-  SendNotificationsRequest,
-  GetNotificationResponse
-} from "./modules/notification";
+import { MarkAsSeenRequest, SendNotificationsRequest, GetNotificationResponse } from "./modules/notification";
 
 // search
-import {
-  UpdateIndexResponse,
-} from "./modules/search";
+import { UpdateIndexResponse } from "./modules/search";
 
 // sms
-import {
-  DownloadAppRequest,
-  ContentLinkRequest
-} from "./modules/sms";
+import { DownloadAppRequest, ContentLinkRequest } from "./modules/sms";
 
 // structures
 import {
@@ -110,21 +65,17 @@ import {
   GetAllStructuresResponse,
   GetStructureResponse,
   GetStructureStatisticsResponse,
-  GetActiveStructuresResponse
+  GetActiveStructuresResponse,
 } from "./modules/structure";
 
+// translations
+export * from "./modules/translations";
+
 // themes
-import {
-  ThemeRequest,
-  GetThemeResponse,
-  PostThemeResponse,
-  PatchThemeResponse
-} from "./modules/theme";
+import { ThemeRequest, GetThemeResponse, PostThemeResponse, PatchThemeResponse } from "./modules/theme";
 
 // tts
-import {
-  TtsRequest
-} from "./modules/tts";
+import { TtsRequest } from "./modules/tts";
 
 // user
 import {
@@ -145,40 +96,14 @@ import {
   UpdatePasswordResponse,
   ResetPasswordResponse,
   LoginResponse,
-  NewPasswordResponse
+  NewPasswordResponse,
 } from "./modules/user";
 
 // widgets
-import {
-  WidgetRequest,
-  GetWidgetResponse,
-  PostWidgetResponse,
-  PatchWidgetResponse,
-} from "./modules/widget";
+import { WidgetRequest, GetWidgetResponse, PostWidgetResponse, PatchWidgetResponse } from "./modules/widget";
 
 // enums
-export {
-  DispositifStatus,
-  StructureStatus,
-  UserStatus,
-  ContentType,
-}
-
 export type {
-  // generics
-  Id,
-  InfoSections,
-  TranslatedText,
-  UserStructure,
-  ContentStructure,
-  Sponsor,
-  StructureMember,
-  Picture,
-  Metadatas,
-  SimpleUser,
-  SimpleTheme,
-  SimpleDispositif,
-
   // adminOptions
   AdminOptionRequest,
   GetAdminOptionResponse,

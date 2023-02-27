@@ -6,7 +6,10 @@ import { Types } from "mongoose";
 export type ExcludeMethods<T> = Pick<T, { [K in keyof T]: T[K] extends Function ? never : K }[keyof T]>;
 export type Id = ExcludeMethods<string | Types.ObjectId>;
 
+export type Uuid = string;
+export type RichText = string;
 export type TranslatedText = { [key: string]: string };
+export type Languages = "fr" | "en" | "uk" | "ti" | "ar" | "ps" | "ru" | "fa";
 
 export interface Picture {
   imgId: string | null;
@@ -42,7 +45,7 @@ export interface SimpleTheme {
 export enum StructureStatus {
   ACTIVE = "Actif",
   WAITING = "En attente",
-  DELETED = "Supprimé"
+  DELETED = "Supprimé",
 }
 
 export interface UserStructure {
@@ -64,7 +67,6 @@ export interface Sponsor {
   logo: string;
   link: string;
 }
-
 
 // User
 export enum UserStatus {
@@ -93,7 +95,7 @@ export interface StructureMember {
 // Dispositif
 export enum ContentType {
   DISPOSITIF = "dispositif",
-  DEMARCHE = "demarche"
+  DEMARCHE = "demarche",
 }
 
 export enum DispositifStatus {
@@ -107,12 +109,11 @@ export enum DispositifStatus {
   KO_STRUCTURE = "Rejeté structure",
 }
 
-export interface InfoSection {
+export class InfoSection {
   title: string;
-  text: string;
+  text: RichText;
 }
 export type InfoSections = Record<string, InfoSection>;
-
 
 type frenchLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 type ageType = "lessThan" | "moreThan" | "between";
@@ -157,6 +158,6 @@ export interface SimpleDispositif {
   nbVues: number;
   mainSponsor?: {
     nom: string;
-    picture: Picture
-  }
+    picture: Picture;
+  };
 }

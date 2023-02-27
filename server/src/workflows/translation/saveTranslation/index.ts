@@ -1,1 +1,1 @@
-export { default, SaveTranslationRequest } from "./saveTranslation";
+export { default } from "./saveTranslation";

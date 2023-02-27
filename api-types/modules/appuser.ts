@@ -1,10 +1,12 @@
+import { Languages } from "../generics";
+
 /**
  * @url POST /appuser
  */
 export interface AppUserRequest {
   city?: string;
   department?: string;
-  selectedLanguage?: string;
+  selectedLanguage?: Languages;
   age?: string;
   frenchLevel?: string;
   expoPushToken?: string;
@@ -39,8 +41,8 @@ export interface PostAppUserResponse {
     demarches: boolean;
     themes: {
       [key: string]: boolean;
-    }
-  }
+    };
+  };
 }
 
 /**

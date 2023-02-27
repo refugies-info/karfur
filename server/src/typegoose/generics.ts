@@ -15,8 +15,6 @@ export class ImageSchema {
 export type RichText = string;
 export type Uuid = string;
 
-export type Languages = "fr" | "en" | "uk" | "ti" | "ar" | "ps" | "ru";
-
 // export class Id<TypeId, ToId extends Types.ObjectId = Types.ObjectId> {
 //   private objectId: ToId;
 //   constructor(id: TypeId) {
@@ -36,4 +34,4 @@ export type Languages = "fr" | "en" | "uk" | "ti" | "ar" | "ps" | "ru";
 //   }
 // }
 
-export class ObjectId extends Types.ObjectId { }
+export class ObjectId extends Types.ObjectId {}

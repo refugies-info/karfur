@@ -1,7 +1,7 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { Languages } from "api-types";
 import { isInteger } from "lodash";
 import { Dispositif } from "./Dispositif";
-import { Languages } from "./generics";
 import { User } from "./User";
 
 @modelOptions({ schemaOptions: { collection: "indicators", timestamps: true } })

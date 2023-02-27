@@ -22,7 +22,7 @@ export interface SelectedLanguagesRequest {
  * @url GET /user/favorites
  */
 export interface GetUserFavoritesRequest {
-  locale: string
+  locale: string;
 }
 
 /**
@@ -71,15 +71,15 @@ export interface NewPasswordRequest {
  */
 export interface UpdateUserRequest {
   user: {
-    roles?: Id[];
+    roles?: string[];
     email?: string;
     phone?: string;
     code?: string;
     username?: string;
     picture?: Picture;
     adminComments?: string;
-    selectedLanguages?: Id[];
-  },
+    selectedLanguages?: string[];
+  };
   action: "modify-with-roles" | "modify-my-details";
 }
 

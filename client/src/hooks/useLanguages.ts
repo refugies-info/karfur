@@ -9,8 +9,10 @@ const useLanguages = () => {
   const userTradLanguages = useSelector(userSelectedLanguageSelector);
   const languageById = keyBy(langues, (langue) => langue._id);
   const getLanguage = (id: Id): GetLanguagesResponse => languageById[id.toString()] as GetLanguagesResponse;
+  const getLanguageByCode = (code: string): GetLanguagesResponse | undefined =>
+    langues.find((langue) => langue.i18nCode === code) as GetLanguagesResponse;
 
-  return { langues, getLanguage, userTradLanguages };
+  return { langues, getLanguage, getLanguageByCode, userTradLanguages };
 };
 
 export default useLanguages;

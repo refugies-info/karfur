@@ -3,6 +3,7 @@ export { default as useFavorites } from "./useFavorites";
 export { default as useLanguages } from "./useLanguages";
 export { default as useLocale } from "./useLocale";
 export { default as useOutsideClick } from "./useOutsideClick";
+export { default as useParamsFromHistory } from "./useParamsFromHistory";
 export { default as useRouterLocale } from "./useRouterLocale";
 export { default as useRTL } from "./useRTL";
 export { default as useThemeIcon } from "./useThemeIcon";

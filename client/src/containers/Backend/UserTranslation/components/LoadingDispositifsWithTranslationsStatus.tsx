@@ -68,9 +68,9 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
       </RowContainer>
       <FilterBarContainer>
         <Row>
-          <FilterButton status="À traduire" isSelected={false} nbContent={"..."} onClick={() => {}} />
+          <FilterButton status="TO_TRANSLATE" isSelected={false} nbContent={"..."} onClick={() => {}} />
 
-          <FilterButton status="Validée" isSelected={false} nbContent={"..."} onClick={() => {}} />
+          <FilterButton status="VALIDATED" isSelected={false} nbContent={"..."} onClick={() => {}} />
           <TypeContenuFilterButton isSelected={true} name="Dispositifs" onClick={() => {}} nbContent={"..."} />
           <TypeContenuFilterButton isSelected={false} name="Démarches" onClick={() => {}} nbContent={"..."} />
         </Row>

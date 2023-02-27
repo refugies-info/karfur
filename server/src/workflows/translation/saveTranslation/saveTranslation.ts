@@ -1,36 +1,24 @@
-import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { ObjectId, IndicatorModel, Languages, RichText, Traductions, TraductionsModel, User } from "../../../typegoose";
-import { Content, InfoSection, InfoSections } from "../../../typegoose/Dispositif";
-
-export interface SaveTranslationRequest {
-  dispositifId: string;
-  language: Languages;
-  timeSpent: number;
-  translated: Partial<{
-    content: Partial<Content> & {
-      what?: RichText;
-      why?: { [key: string]: Partial<InfoSection> };
-      how?: { [key: string]: Partial<InfoSection> };
-      next?: InfoSections;
-    };
-    metadatas: Partial<{
-      important?: string;
-      duration?: string;
-    }>;
-  }>;
-}
+import { SaveTranslationRequest } from "api-types";
+import { getDispositifById } from "src/modules/dispositif/dispositif.repository";
+import { IndicatorModel, ObjectId, Traductions, TraductionsModel, User } from "src/typegoose";
+import { TraductionsType } from "src/typegoose/Traductions";
+import validateTranslation from "../validateTranslation";
 
 const saveTranslation = (
   { timeSpent, language, dispositifId, translated }: SaveTranslationRequest,
   user: User,
 ): Promise<Traductions> =>
   getDispositifById(dispositifId).then(async (dispositif) => {
+    if (dispositif.isTranslatedIn(language)) {
+      throw new Error(`Dispositif is already translated in ${language}`);
+    }
+
     const _traduction = new Traductions();
     _traduction.dispositifId = new ObjectId(dispositifId);
     _traduction.language = language;
     // @ts-ignore
     _traduction.translated = translated;
-    _traduction.type = user.isExpert() ? "validation" : "suggestion";
+    _traduction.type = user.isExpert() ? TraductionsType.VALIDATION : TraductionsType.SUGGESTION;
     _traduction.userId = user._id;
 
     _traduction.avancement = Traductions.computeAvancement(dispositif, _traduction);
@@ -47,16 +35,24 @@ const saveTranslation = (
       wordsCount,
     });
 
-    return TraductionsModel.findOneAndUpdate(
-      { dispositifId, userId: user._id, language },
-      { ..._traduction, $inc: { timeSpent } },
-      {
-        upsert: true,
-        setDefaultsOnInsert: true,
-        returnDocument: "after",
-        returnNewDocument: true,
-      },
-    ).then((trad) => trad.toObject());
+    /**
+     * Si l'avancement est à 100% + faite par un expert => traduction prête
+     *
+     * Alors il faut publier la traduction de la fiche
+     * puis supprimer l'ensemble des traductions.
+     */
+    return _traduction.avancement >= 1 && user.isExpert()
+      ? validateTranslation(dispositif, language, _traduction).then(() => _traduction)
+      : TraductionsModel.findOneAndUpdate(
+          { dispositifId, userId: user._id, language },
+          { ..._traduction, $inc: { timeSpent } },
+          {
+            upsert: true,
+            setDefaultsOnInsert: true,
+            returnDocument: "after",
+            returnNewDocument: true,
+          },
+        ).then((trad) => trad.toObject());
   });
 
 export default saveTranslation;

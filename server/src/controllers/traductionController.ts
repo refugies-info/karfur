@@ -1,69 +1,29 @@
-import express from "express";
-import { Body, Controller, Get, Post, Query, Request, Route, Security } from "tsoa";
+import { Body, Controller, Delete, Get, Post, Queries, Query, Request, Route, Security } from "tsoa";
 
-import * as traduction from "./traduction/lib";
-import * as checkToken from "./account/checkToken";
 import { IRequest, ResponseWithData } from "../types/interface";
 import {
+  deleteTranslations,
   getDefaultTraduction,
+  getProgression,
   getStatistics,
   getTraductionsForReview,
   saveTranslation,
-  SaveTranslationRequest,
   translate,
-  validateTranslations,
 } from "src/workflows";
-import { Dispositif, TranslationContent } from "src/typegoose/Dispositif";
-import { Languages } from "src/typegoose";
-import { TraductionsType } from "src/typegoose/Traductions";
-
-const router = express.Router();
-
-/* TODO: use tsoa */
-
-// @ts-ignore FIXME
-router.post("/add_tradForReview", checkToken.check, traduction.add_tradForReview);
-router.post("/get_tradForReview", checkToken.check, traduction.get_tradForReview);
-// @ts-ignore FIXME
-router.post("/validateTranslations", checkToken.check, validateTranslations);
-router.post("/update_tradForReview", checkToken.check, traduction.update_tradForReview);
-router.post("/get_progression", checkToken.check, traduction.get_progression);
-router.post("/delete_trads", checkToken.check, traduction.delete_trads);
-router.get("/statistics", getStatistics);
-
-export { router };
-
-export interface GetTraductionsForReview {
-  author: string;
-  translated: Partial<TranslationContent>;
-  username: string;
-}
-export type GetTraductionsForReviewResponse = GetTraductionsForReview[];
-
-export interface TranslateRequest {
-  q: string;
-  language: Languages;
-}
-
-export interface SaveTranslationResponse {
-  translation: {
-    dispositifId: string;
-    userId: string;
-    language: Languages;
-    translated: Partial<TranslationContent>;
-    // public validatorId: Ref<User>;
-    timeSpent: number;
-    avancement: number;
-    toReview?: string[];
-    type: TraductionsType;
-    created_at: Date;
-    updatedAt: Date;
-  };
-}
-
-export interface GetDefaultTraductionResponse {
-  translation: Dispositif["translations"]["fr"];
-}
+import {
+  DeleteTranslationsRequest,
+  GetDefaultTraductionResponse,
+  GetProgressionRequest,
+  GetProgressionResponse,
+  GetTraductionsForReviewResponse,
+  Languages,
+  SaveTranslationRequest,
+  SaveTranslationResponse,
+  TranslateRequest,
+  TranslationStatisticsRequest,
+  TranslationStatisticsResponse,
+} from "api-types";
+import logger from "src/logger";
 
 @Route("traduction")
 export class TranslationController extends Controller {
@@ -73,19 +33,16 @@ export class TranslationController extends Controller {
     @Body() body: SaveTranslationRequest,
     @Request() request: IRequest,
   ): ResponseWithData<SaveTranslationResponse> {
-    return saveTranslation(body, request.user).then((translation) => {
-      console.log(translation);
-      return {
-        text: "success",
-        data: {
-          translation: {
-            ...translation,
-            dispositifId: translation.dispositifId.toString(),
-            userId: translation.userId.toString(),
-          },
+    return saveTranslation(body, request.user).then((translation) => ({
+      text: "success",
+      data: {
+        translation: {
+          ...translation,
+          dispositifId: translation.dispositifId.toString(),
+          userId: translation.userId.toString(),
         },
-      };
-    });
+      },
+    }));
   }
 
   /**
@@ -99,6 +56,14 @@ export class TranslationController extends Controller {
     return getDefaultTraduction(dispositif).then((translation) => ({
       text: "success",
       data: { translation },
+    }));
+  }
+
+  @Delete("/")
+  @Security({ jwt: ["admin"] })
+  public deleteTraductions(@Queries() queries: DeleteTranslationsRequest) {
+    return deleteTranslations(queries.dispositifId, queries.locale).then(() => ({
+      text: "success",
     }));
   }
 
@@ -131,6 +96,29 @@ export class TranslationController extends Controller {
     return translate(body.q, body.language).then((translation) => ({
       text: "success",
       data: translation,
+    }));
+  }
+
+  @Security("jwt")
+  @Get("/get_progression")
+  public getProgression(
+    @Request() req: IRequest,
+    @Queries() queries?: GetProgressionRequest,
+  ): ResponseWithData<GetProgressionResponse> {
+    logger.info("[get_progression] received");
+    return getProgression(queries.userId || req.user._id).then((progression) => ({
+      text: "success",
+      data: progression,
+    }));
+  }
+
+  @Get("/statistics")
+  public getStatistics(
+    @Queries() queries: TranslationStatisticsRequest,
+  ): ResponseWithData<TranslationStatisticsResponse> {
+    return getStatistics(queries).then((statistics) => ({
+      text: "success",
+      data: statistics,
     }));
   }
 }

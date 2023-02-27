@@ -753,7 +753,7 @@ async function main() {
   const traductionsColl = db.collection("traductions");
   const usersColl = db.collection("users");
 
-  // // update dispositifs one by one
+  // update dispositifs one by one
   console.log("Mise à jour du schéma 'dispositifs' ...");
   const dispositifs = await dispositifsColl.find({ status: { $ne: "Supprimé" } }).toArray();
   for (const dispositif of dispositifs) {
