@@ -13,16 +13,34 @@ const getLocalizedContent = (content, ln, root = false) => {
   return content?.[ln] || "";
 };
 
+const updateCallouts = (htmlContent) => {
+  const regex =
+    /<div class='bloc-rouge'>[ ]*<div class='icon-left-side'>[ ]*<span>i<\/span>[ ]*<\/div>[ ]*<div class='right-side'>[ ]*<div><b>Bon à savoir :<\/b><\/div>.*<\/div>[ ]*<\/div>/gm;
+  let newContent = htmlContent;
+  const matchs = newContent.matchAll(regex);
+  for (const match of matchs) {
+    const content = match[0]
+      .replace(
+        /<div class='bloc-rouge'>[ ]*<div class='icon-left-side'>[ ]*<span>i<\/span>[ ]*<\/div>[ ]*<div class='right-side'>[ ]*<div><b>Bon à savoir :<\/b><\/div>/gm,
+        "<div class='callout callout--info' data-callout='info'>",
+      )
+      .replace(/<\/div>[ ]*<\/div>/gm, "</div>");
+    newContent = newContent.replace(regex, content);
+  }
+  return newContent;
+};
+
 const turnJSONtoHTML = (content) => {
   if (typeof content === Object || typeof content === "object") {
     try {
-      return himalaya.stringify(content);
+      const htmlContent = himalaya.stringify(content);
+      return updateCallouts(htmlContent);
     } catch (error) {
       console.error(error);
       return content;
     }
   }
-  return content;
+  return updateCallouts(content);
 };
 
 /* Remove corrupted dispositifs */
@@ -532,7 +550,7 @@ const getTranslatedText = async (trad, dispositifsColl) => {
   // si la trad est validée
   if (trad.status === "Validée") {
     // on garde le contenu déjà copié dans le dispositif
-    const translated = trad.dispositifs?.[0]?.translations[trad.langueCible];
+    const translated = trad.dispositifs?.[0]?.translations?.[trad.langueCible];
 
     // si pas dispo -> bug
     if (trad.dispositifs?.[0] && !translated) {

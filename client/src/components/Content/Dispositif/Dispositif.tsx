@@ -5,7 +5,7 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
 import SEO from "components/Seo";
 import { Metadatas, Accordions, Map, Header, Sponsors, Contributors } from "components/Pages/dispositif";
-import RichTextInput from "components/Pages/dispositif/RichTextInput";
+import RichText from "components/Pages/dispositif/RichText";
 
 interface Props {
   typeContenu?: "dispositif" | "demarche";
@@ -25,7 +25,7 @@ const Dispositif = (props: Props) => {
         image={theme?.shareImage.secure_url}
       />
       <Header dispositif={dispositif} typeContenu={typeContenu} theme={theme} secondaryThemes={secondaryThemes} />
-      <RichTextInput id="what" value={dispositif?.what || ""} />
+      <RichText id="what" value={dispositif?.what || ""} />
       <Metadatas metadatas={dispositif?.metadatas} />
       {typeContenu === "dispositif" ? (
         <div>
