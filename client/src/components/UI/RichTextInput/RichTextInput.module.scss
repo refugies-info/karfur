@@ -15,9 +15,26 @@
     margin-bottom: u(1);
   }
 
+  a,
+  a[href] {
+    text-decoration: underline;
+    color: $bleuCharte;
+  }
+
   h3 {
     font-size: 2rem;
     margin-top: u(2);
     margin-bottom: u(1);
+  }
+
+  :global(.callout) {
+    background: $gray40b;
+    padding: u(1);
+  }
+  :global(.callout--info) {
+    border-left: 4px solid $bleuCharte;
+  }
+  :global(.callout--important) {
+    border-left: 4px solid $error;
   }
 }

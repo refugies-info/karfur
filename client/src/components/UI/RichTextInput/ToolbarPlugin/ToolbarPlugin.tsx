@@ -32,6 +32,7 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
+import { INSERT_CALLOUT_COMMAND } from "../plugins/CalloutPlugin";
 import * as React from "react";
 import { getSelectedNode } from "../lib";
 import styles from "./ToolbarPlugin.module.scss";
@@ -326,6 +327,31 @@ export default function ToolbarPlugin() {
           title="Insérer un lien"
           isPressed={isLink}
           icon={"link"}
+        />
+        <span className={styles.divider} />
+        <ToolbarDropdown
+          name="callout-menu"
+          title="Choisir un niveau d'information"
+          toggleElement={
+            <span className="d-inline-flex align-items-center">
+              <ToolbarIcon name="text" className="me-2" />
+              <span>&nbsp;Callout</span>
+            </span>
+          }
+          items={[
+            {
+              text: "Bon à savoir",
+              icon: "text",
+              onClick: () => activeEditor.dispatchCommand(INSERT_CALLOUT_COMMAND, "info"),
+              selected: false,
+            },
+            {
+              text: "Important",
+              icon: "text",
+              onClick: () => activeEditor.dispatchCommand(INSERT_CALLOUT_COMMAND, "important"),
+              selected: false,
+            },
+          ]}
         />
         <span className={styles.divider} />
         <ToolbarButton onClick={clearFormatting} title="Réinitialiser le formattage" isPressed={false} icon={"clear"} />

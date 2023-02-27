@@ -13,6 +13,7 @@ import styles from "./RichTextInput.module.scss";
 import LexicalAutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import LinkPlugin from "./plugins/LinkPlugin";
 import OnHtmlChangePlugin from "./plugins/OnHtmlChangePlugin";
+import CalloutPlugin from "./plugins/CalloutPlugin";
 
 const theme = {};
 
@@ -44,6 +45,7 @@ const RichTextInput: FC<Props> = (props: Props) => {
         <LexicalAutoLinkPlugin />
         <ListPlugin />
         <LinkPlugin />
+        <CalloutPlugin />
         <RichTextPlugin
           contentEditable={<ContentEditable className={styles.content} />}
           placeholder={<div></div>}
