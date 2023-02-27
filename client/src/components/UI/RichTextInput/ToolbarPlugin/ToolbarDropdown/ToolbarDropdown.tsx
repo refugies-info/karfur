@@ -2,6 +2,7 @@ import { ReactElement, useCallback, useState } from "react";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./ToolbarDropdown.module.scss";
+import ToolbarIcon from "../ToolbarIcon";
 
 interface Props {
   name: string;
@@ -35,8 +36,16 @@ const ToolbarDropdown = (props: Props) => {
       </DropdownToggle>
       <DropdownMenu id={props.name} className={styles.menu}>
         {props.items.map((item, i) => (
-          <DropdownItem key={i} onClick={item.onClick} active={item.selected}>
-            <EVAIcon fill="dark" name={item.icon} className="me-2" />
+          <DropdownItem
+            key={i}
+            onClick={(e: any) => {
+              e.preventDefault();
+              item.onClick();
+            }}
+            active={item.selected}
+            className="d-flex align-items-center"
+          >
+            <ToolbarIcon name={item.icon} className="me-2" />
             {item.text}
           </DropdownItem>
         ))}

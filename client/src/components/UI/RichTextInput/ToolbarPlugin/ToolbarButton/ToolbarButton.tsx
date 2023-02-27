@@ -1,12 +1,12 @@
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import styles from "./ToolbarButton.module.scss";
+import ToolbarIcon from "../ToolbarIcon";
 
 interface Props {
   disabled?: boolean;
   onClick: () => void;
   title?: string;
-  iconName: string;
+  icon: string;
   isPressed?: boolean;
 }
 
@@ -15,11 +15,14 @@ const ToolbarButton = (props: Props) => {
     <button
       className={cls(styles.btn, props.isPressed && styles.selected)}
       disabled={props.disabled}
-      onClick={props.onClick}
+      onClick={(e: any) => {
+        e.preventDefault();
+        props.onClick();
+      }}
       title={props.title}
       aria-pressed={props.isPressed}
     >
-      <EVAIcon fill="dark" name={props.iconName} />
+      <ToolbarIcon name={props.icon} />
     </button>
   );
 };

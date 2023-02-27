@@ -9,9 +9,15 @@ import {
 } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $createHeadingNode, $isHeadingNode, HeadingTagType } from "@lexical/rich-text";
-import { $isParentElementRTL, $setBlocksType_experimental } from "@lexical/selection";
-import { $findMatchingParent, $getNearestNodeOfType, mergeRegister } from "@lexical/utils";
-import type { LexicalEditor, NodeKey } from "lexical";
+import { $isParentElementRTL, $setBlocksType_experimental, $selectAll } from "@lexical/selection";
+import {
+  $findMatchingParent,
+  $getNearestNodeOfType,
+  $getNearestBlockElementAncestorOrThrow,
+  mergeRegister,
+} from "@lexical/utils";
+import { $isTextNode, LexicalEditor, NodeKey } from "lexical";
+import { $isDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
 import {
   $createParagraphNode,
   $getSelection,
@@ -21,20 +27,17 @@ import {
   CAN_UNDO_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
   DEPRECATED_$isGridSelection,
-  FORMAT_ELEMENT_COMMAND,
   FORMAT_TEXT_COMMAND,
-  INDENT_CONTENT_COMMAND,
-  OUTDENT_CONTENT_COMMAND,
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
 import * as React from "react";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { getSelectedNode } from "../lib";
 import styles from "./ToolbarPlugin.module.scss";
 import ToolbarButton from "./ToolbarButton";
 import ToolbarDropdown from "./ToolbarDropdown";
+import ToolbarIcon from "./ToolbarIcon";
 
 const blockTypeToBlockName = {
   bullet: "Liste à puces",
@@ -44,10 +47,10 @@ const blockTypeToBlockName = {
 };
 
 const blockTypeToBlockIcon = {
-  h3: <EVAIcon fill="dark" name="text-outline" />,
-  paragraph: <EVAIcon fill="dark" name="text" />,
-  bullet: <EVAIcon fill="dark" name="list-outline" />,
-  number: <EVAIcon fill="dark" name="list-outline" />,
+  h3: "title",
+  paragraph: "text",
+  bullet: "bullet-list",
+  number: "number-list",
 };
 
 const BlockFormatDropDown = ({
@@ -102,23 +105,26 @@ const BlockFormatDropDown = ({
         title="Choisir la présentation du texte"
         disabled={disabled}
         toggleElement={
-          <>
-            {blockTypeToBlockIcon[blockType]}
-            <span>&nbsp;{blockTypeToBlockName[blockType]}</span>
-          </>
+          <span className="d-inline-flex align-items-center">
+            <ToolbarIcon name={blockTypeToBlockIcon[blockType]} className="me-2" />
+            <span>
+              &nbsp;
+              {blockTypeToBlockName[blockType]}
+            </span>
+          </span>
         }
         items={[
           { text: "Normal", icon: "text", onClick: formatParagraph, selected: blockType === "paragraph" },
-          { text: "Titre", icon: "text", onClick: () => formatHeading("h3"), selected: blockType === "h3" },
+          { text: "Titre", icon: "title", onClick: () => formatHeading("h3"), selected: blockType === "h3" },
           {
             text: "Liste à puces",
-            icon: "list-outline",
+            icon: "bullet-list",
             onClick: formatBulletList,
             selected: blockType === "bullet",
           },
           {
             text: "Liste numérotée",
-            icon: "list-outline",
+            icon: "number-list",
             onClick: formatNumberedList,
             selected: blockType === "number",
           },
@@ -193,6 +199,25 @@ export default function ToolbarPlugin() {
     }
   }, [activeEditor]);
 
+  const clearFormatting = useCallback(() => {
+    activeEditor.update(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        $selectAll(selection);
+        selection.getNodes().forEach((node) => {
+          if ($isTextNode(node)) {
+            node.setFormat(0);
+            node.setStyle("");
+            $getNearestBlockElementAncestorOrThrow(node).setFormat("");
+          }
+          if ($isDecoratorBlockNode(node)) {
+            node.setFormat("");
+          }
+        });
+      }
+    });
+  }, [activeEditor]);
+
   useEffect(() => {
     return editor.registerCommand(
       SELECTION_CHANGE_COMMAND,
@@ -251,7 +276,7 @@ export default function ToolbarPlugin() {
             activeEditor.dispatchCommand(UNDO_COMMAND, undefined);
           }}
           title={"IS_APPLE" ? "Précédent (⌘Z)" : "Précédent (Ctrl+Z)"}
-          iconName="corner-up-left"
+          icon={"undo"}
         />
         <ToolbarButton
           disabled={!canRedo || !isEditable}
@@ -259,7 +284,7 @@ export default function ToolbarPlugin() {
             activeEditor.dispatchCommand(REDO_COMMAND, undefined);
           }}
           title={"IS_APPLE" ? "Suivant (⌘Y)" : "Suivant (Ctrl+Y)"}
-          iconName="corner-up-right"
+          icon={"redo"}
         />
         <span className={styles.divider} />
         {blockType in blockTypeToBlockName && activeEditor === editor && (
@@ -275,7 +300,7 @@ export default function ToolbarPlugin() {
           }}
           title={"IS_APPLE" ? "Gras (⌘B)" : "Gras (Ctrl+B)"}
           isPressed={isBold}
-          iconName="text"
+          icon={"bold"}
         />
         <ToolbarButton
           disabled={!isEditable}
@@ -284,7 +309,7 @@ export default function ToolbarPlugin() {
           }}
           title={"IS_APPLE" ? "Italique (⌘I)" : "Italique (Ctrl+I)"}
           isPressed={isItalic}
-          iconName="text"
+          icon={"italic"}
         />
         <ToolbarButton
           disabled={!isEditable}
@@ -293,54 +318,17 @@ export default function ToolbarPlugin() {
           }}
           title={"IS_APPLE" ? "Souligné (⌘U)" : "Souligné (Ctrl+U)"}
           isPressed={isUnderline}
-          iconName="text"
+          icon={"underline"}
         />
         <ToolbarButton
           disabled={!isEditable}
           onClick={insertLink}
           title="Insérer un lien"
           isPressed={isLink}
-          iconName="link-outline"
+          icon={"link"}
         />
         <span className={styles.divider} />
-        <ToolbarDropdown
-          name="alignment-menu"
-          title="Alignement du texte"
-          disabled={!isEditable}
-          toggleElement={<EVAIcon fill="dark" name="list-outline" />}
-          items={[
-            {
-              text: "Aligner à gauche",
-              icon: "text",
-              onClick: () => activeEditor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "left"),
-            },
-            {
-              text: "Centrer",
-              icon: "text",
-              onClick: () => activeEditor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "center"),
-            },
-            {
-              text: "Aligner à droite",
-              icon: "list-outline",
-              onClick: () => activeEditor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "right"),
-            },
-            {
-              text: "Justifier",
-              icon: "list-outline",
-              onClick: () => activeEditor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "justify"),
-            },
-            {
-              text: "Désindenter",
-              icon: isRTL ? "list-outline" : "list-outline",
-              onClick: () => activeEditor.dispatchCommand(OUTDENT_CONTENT_COMMAND, undefined),
-            },
-            {
-              text: "Indenter",
-              icon: isRTL ? "list-outline" : "list-outline",
-              onClick: () => activeEditor.dispatchCommand(INDENT_CONTENT_COMMAND, undefined),
-            },
-          ]}
-        />
+        <ToolbarButton onClick={clearFormatting} title="Réinitialiser le formattage" isPressed={false} icon={"clear"} />
       </div>
     </>
   );
