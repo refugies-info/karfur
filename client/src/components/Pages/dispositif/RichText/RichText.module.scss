@@ -1,6 +1,20 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/variables";
+@import "src/scss/mixins/unit";
 
 .highlighted {
   background: lightblue;
+}
+
+.content {
+  :global(.callout) {
+    background: $gray40b;
+    padding: u(1);
+  }
+  :global(.callout--info) {
+    border-left: 4px solid $bleuCharte;
+  }
+  :global(.callout--important) {
+    border-left: 4px solid $error;
+  }
 }

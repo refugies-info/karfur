@@ -2,8 +2,6 @@
 const { MongoClient, ObjectId } = require("mongodb");
 const himalaya = require("himalaya");
 const { v4: uuidv4 } = require("uuid");
-const { Types } = require("mongoose");
-const { Id } = require("./typegoose");
 
 const dbPath = "mongodb://127.0.0.1:27017/heroku_wbj38s57?serverSelectionTimeoutMS=60000";
 const client = new MongoClient(dbPath);
@@ -15,16 +13,34 @@ const getLocalizedContent = (content, ln, root = false) => {
   return content?.[ln] || "";
 };
 
+const updateCallouts = (htmlContent) => {
+  const regex =
+    /<div class='bloc-rouge'>[ ]*<div class='icon-left-side'>[ ]*<span>i<\/span>[ ]*<\/div>[ ]*<div class='right-side'>[ ]*<div><b>Bon à savoir :<\/b><\/div>.*<\/div>[ ]*<\/div>/gm;
+  let newContent = htmlContent;
+  const matchs = newContent.matchAll(regex);
+  for (const match of matchs) {
+    const content = match[0]
+      .replace(
+        /<div class='bloc-rouge'>[ ]*<div class='icon-left-side'>[ ]*<span>i<\/span>[ ]*<\/div>[ ]*<div class='right-side'>[ ]*<div><b>Bon à savoir :<\/b><\/div>/gm,
+        "<div class='callout callout--info' data-callout='info'>",
+      )
+      .replace(/<\/div>[ ]*<\/div>/gm, "</div>");
+    newContent = newContent.replace(regex, content);
+  }
+  return newContent;
+};
+
 const turnJSONtoHTML = (content) => {
   if (typeof content === Object || typeof content === "object") {
     try {
-      return himalaya.stringify(content);
+      const htmlContent = himalaya.stringify(content);
+      return updateCallouts(htmlContent);
     } catch (error) {
       console.error(error);
       return content;
     }
   }
-  return content;
+  return updateCallouts(content);
 };
 
 /* Remove corrupted dispositifs */
@@ -534,7 +550,7 @@ const getTranslatedText = async (trad, dispositifsColl) => {
   // si la trad est validée
   if (trad.status === "Validée") {
     // on garde le contenu déjà copié dans le dispositif
-    const translated = trad.dispositifs?.[0]?.translations[trad.langueCible];
+    const translated = trad.dispositifs?.[0]?.translations?.[trad.langueCible];
 
     // si pas dispo -> bug
     if (trad.dispositifs?.[0] && !translated) {
@@ -703,7 +719,7 @@ const adaptUserSelectedLanguages = async (usersColl) => {
     // });
     await usersColl.updateOne(
       { _id: user._id },
-      { $set: { selectedLanguages: (user.selectedLanguages || []).map((language) => new Id(language._id)) } },
+      { $set: { selectedLanguages: (user.selectedLanguages || []).map((language) => new ObjectId(language._id)) } },
     );
   }
 };
@@ -733,33 +749,33 @@ async function main() {
   console.log("Démarrage ...");
   const db = client.db(dbName);
 
-  // const dispositifsColl = db.collection("dispositifs");
-  // const traductionsColl = db.collection("traductions");
+  const dispositifsColl = db.collection("dispositifs");
+  const traductionsColl = db.collection("traductions");
   const usersColl = db.collection("users");
 
   // // update dispositifs one by one
-  // console.log("Mise à jour du schéma 'dispositifs' ...");
-  // const dispositifs = await dispositifsColl.find({ status: { $ne: "Supprimé" } }).toArray();
-  // for (const dispositif of dispositifs) {
-  //   const newDispositif = getNewDispositif(dispositif);
-  //   if (newDispositif) {
-  //     await dispositifsColl.replaceOne({ _id: dispositif._id }, newDispositif);
-  //   }
-  // }
+  console.log("Mise à jour du schéma 'dispositifs' ...");
+  const dispositifs = await dispositifsColl.find({ status: { $ne: "Supprimé" } }).toArray();
+  for (const dispositif of dispositifs) {
+    const newDispositif = getNewDispositif(dispositif);
+    if (newDispositif) {
+      await dispositifsColl.replaceOne({ _id: dispositif._id }, newDispositif);
+    }
+  }
 
-  // // remove all unused dispositifs fields
-  // await removeOldFields(dispositifsColl);
+  // remove all unused dispositifs fields
+  await removeOldFields(dispositifsColl);
 
-  // await removeCorruptedTrads(traductionsColl);
-  // await migrateTrads(traductionsColl, dispositifsColl);
+  await removeCorruptedTrads(traductionsColl);
+  await migrateTrads(traductionsColl, dispositifsColl);
 
-  // // remove all unused dispositifs
-  // await removeDispositifs(dispositifsColl);
+  // remove all unused dispositifs
+  await removeDispositifs(dispositifsColl);
 
-  // console.log("Dernières vérifications...");
-  // await checkDispositifsWithoutTrads(dispositifsColl);
-  // await checkSuggestionsAlreadyValidated(traductionsColl);
-  // console.log("Vérifications terminées");
+  console.log("Dernières vérifications...");
+  await checkDispositifsWithoutTrads(dispositifsColl);
+  await checkSuggestionsAlreadyValidated(traductionsColl);
+  console.log("Vérifications terminées");
 
   console.log("Adaptation des utilisateurs");
   await adaptUserSelectedLanguages(usersColl);

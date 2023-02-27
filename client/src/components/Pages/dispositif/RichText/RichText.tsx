@@ -14,16 +14,16 @@ const RichText = (props: Props) => {
   const pageContext = useContext(PageContext);
 
   return (
-    <>
+    <div className={styles.content}>
       {pageContext.mode !== "edit" ? (
-        <p
+        <div
           dangerouslySetInnerHTML={{ __html: props.value }}
           className={pageContext.activeSection === props.id ? styles.highlighted : ""}
         />
       ) : (
         <RichTextInput value={props.value} id={props.id} />
       )}
-    </>
+    </div>
   );
 };
 

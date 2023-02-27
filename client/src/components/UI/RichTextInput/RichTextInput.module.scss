@@ -15,17 +15,6 @@
   p {
     margin-bottom: u(1);
   }
-
-  :global(.callout) {
-    background: $gray40b;
-    padding: u(1);
-  }
-  :global(.callout--info) {
-    border-left: 4px solid $bleuCharte;
-  }
-  :global(.callout--important) {
-    border-left: 4px solid $error;
-  }
 }
 
 .underline {

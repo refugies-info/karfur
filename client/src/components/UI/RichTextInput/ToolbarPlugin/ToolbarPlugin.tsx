@@ -334,20 +334,20 @@ export default function ToolbarPlugin() {
           title="Choisir un niveau d'information"
           toggleElement={
             <span className="d-inline-flex align-items-center">
-              <ToolbarIcon name="text" className="me-2" />
+              <ToolbarIcon name="callout" className="me-2" />
               <span>&nbsp;Callout</span>
             </span>
           }
           items={[
             {
               text: "Bon à savoir",
-              icon: "text",
+              icon: "info",
               onClick: () => activeEditor.dispatchCommand(INSERT_CALLOUT_COMMAND, "info"),
               selected: false,
             },
             {
               text: "Important",
-              icon: "text",
+              icon: "important",
               onClick: () => activeEditor.dispatchCommand(INSERT_CALLOUT_COMMAND, "important"),
               selected: false,
             },
