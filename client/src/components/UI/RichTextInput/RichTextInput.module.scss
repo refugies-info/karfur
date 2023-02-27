@@ -5,6 +5,7 @@
 
 .container {
   border: 1px solid $gray40b;
+  position: relative;
 }
 
 .content {
@@ -12,18 +13,6 @@
   outline: none !important;
 
   p {
-    margin-bottom: u(1);
-  }
-
-  a,
-  a[href] {
-    text-decoration: underline;
-    color: $bleuCharte;
-  }
-
-  h3 {
-    font-size: 2rem;
-    margin-top: u(2);
     margin-bottom: u(1);
   }
 
@@ -37,4 +26,23 @@
   :global(.callout--important) {
     border-left: 4px solid $error;
   }
+}
+
+.underline {
+  text-decoration: underline;
+}
+.italic {
+  font-style: italic;
+}
+.bold {
+  font-weight: bold;
+}
+.title {
+  font-size: 2rem;
+  margin-top: u(2);
+  margin-bottom: u(1);
+}
+.link {
+  text-decoration: underline !important;
+  color: $bleuCharte !important;
 }

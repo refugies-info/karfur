@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
@@ -9,13 +9,24 @@ import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 
 import ToolbarPlugin from "./ToolbarPlugin";
 import nodes from "./nodes";
-import styles from "./RichTextInput.module.scss";
 import LexicalAutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import LinkPlugin from "./plugins/LinkPlugin";
 import OnHtmlChangePlugin from "./plugins/OnHtmlChangePlugin";
 import CalloutPlugin from "./plugins/CalloutPlugin";
+import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin";
+import styles from "./RichTextInput.module.scss";
 
-const theme = {};
+const theme = {
+  link: styles.link,
+  heading: {
+    h3: styles.title,
+  },
+  text: {
+    underline: styles.underline,
+    bold: styles.bold,
+    italic: styles.italic,
+  },
+};
 
 interface Props {
   value: string;
@@ -38,14 +49,22 @@ const RichTextInput: FC<Props> = (props: Props) => {
     if (setValue) setValue(props.id, html);
   };
 
+  const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null);
+  const onRef = (floatingAnchorElem: HTMLDivElement) => {
+    if (floatingAnchorElem !== null) {
+      setFloatingAnchorElem(floatingAnchorElem);
+    }
+  };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={onRef}>
       <LexicalComposer initialConfig={initialConfig}>
         <ToolbarPlugin />
         <LexicalAutoLinkPlugin />
         <ListPlugin />
         <LinkPlugin />
         <CalloutPlugin />
+        <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem || undefined} />
         <RichTextPlugin
           contentEditable={<ContentEditable className={styles.content} />}
           placeholder={<div></div>}
