@@ -12,7 +12,7 @@ interface Props {
 const Header = (props: Props) => {
   return (
     <header className={styles.container}>
-      <Breadcrumb />
+      <Breadcrumb dispositif={props.dispositif} />
       <h1 className={styles.title}>
         <TextInput id="titreInformatif" value={props.dispositif?.titreInformatif || ""} />
       </h1>
