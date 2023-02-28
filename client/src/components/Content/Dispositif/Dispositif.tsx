@@ -11,6 +11,7 @@ import Feedback from "components/Pages/dispositif/Feedback";
 import LinkedThemes from "components/Pages/dispositif/LinkedThemes";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import Button from "components/UI/Button";
+import ShareButtons from "components/Pages/dispositif/ShareButtons";
 
 interface Props {
   typeContenu?: ContentType;
@@ -36,7 +37,12 @@ const Dispositif = (props: Props) => {
 
       <div className={styles.content}>
         <div className={styles.left}>
-          <Metadatas metadatas={dispositif?.metadatas} color={color} />
+          <Metadatas
+            metadatas={dispositif?.metadatas}
+            titreMarque={dispositif?.titreMarque}
+            mainSponsor={dispositif?.mainSponsor}
+            color={color}
+          />
         </div>
         <div className={styles.main}>
           <Header dispositif={dispositif} typeContenu={typeContenu} />
@@ -54,7 +60,7 @@ const Dispositif = (props: Props) => {
           )}
           <Feedback nbMercis={dispositif.merci.length} />
           <LinkedThemes theme={theme} secondaryThemes={secondaryThemes} needs={needs} />
-          <Sponsors mainSponsor={dispositif.mainSponsor} sponsors={dispositif.sponsors} />
+          <Sponsors sponsors={dispositif.sponsors} />
         </div>
         <div className={styles.right}>
           <Button onClick={() => {}} icon="play-circle" className="mb-2">
@@ -63,6 +69,8 @@ const Dispositif = (props: Props) => {
           <Button secondary onClick={() => {}} icon="star-outline" className="mb-2">
             Ajouter aux favoris
           </Button>
+
+          <ShareButtons />
         </div>
       </div>
 

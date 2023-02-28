@@ -9,7 +9,7 @@ interface Item {
 }
 
 interface Props {
-  title: string;
+  title: string | React.ReactNode;
   color?: string;
   items: Item[];
 }

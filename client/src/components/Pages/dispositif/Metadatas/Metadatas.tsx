@@ -1,8 +1,8 @@
 import { GetDispositifResponse } from "api-types";
 import React from "react";
-import Card from "./Card";
+import Image from "next/image";
 import { getAge, getPrice, getPublic } from "./functions";
-
+import Card from "./Card";
 import AgeIcon from "assets/dispositif/metadatas/Age";
 import DiplomaIcon from "assets/dispositif/metadatas/Diploma";
 import DurationIcon from "assets/dispositif/metadatas/Durations";
@@ -13,16 +13,45 @@ import LocationIcon from "assets/dispositif/metadatas/Location";
 import PriceIcon from "assets/dispositif/metadatas/Price";
 import PublicIcon from "assets/dispositif/metadatas/Public";
 import StatusIcon from "assets/dispositif/metadatas/Status";
+import styles from "./Metadatas.module.scss";
 
 interface Props {
   metadatas: GetDispositifResponse["metadatas"] | undefined;
+  titreMarque?: GetDispositifResponse["titreMarque"];
+  mainSponsor: GetDispositifResponse["mainSponsor"];
   color: string;
 }
 
-const Metadatas = ({ metadatas, color }: Props) => {
+const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
   if (!metadatas) return <></>;
   return (
     <div>
+      <Card
+        title={
+          <>
+            Avec{" "}
+            <span className={styles.marque} style={{ backgroundColor: color }}>
+              {titreMarque}
+            </span>
+          </>
+        }
+        items={[
+          {
+            label: "Proposé par",
+            content: mainSponsor?.nom,
+            icon: (
+              <Image
+                src={mainSponsor?.picture.secure_url || ""}
+                width={32}
+                height={32}
+                style={{ objectFit: "contain" }}
+                alt={mainSponsor?.nom || ""}
+              />
+            ),
+          },
+        ]}
+        color={color}
+      />
       <Card
         title="Public visé"
         items={[

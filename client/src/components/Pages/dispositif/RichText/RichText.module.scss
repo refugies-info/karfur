@@ -20,8 +20,40 @@
     padding-left: u(8);
     margin-left: u(8);
     border-left: 4px solid #6a6af4;
+
+    &::before {
+      content: "Bon à savoir";
+      display: block;
+      margin-bottom: u(1);
+      @include dsfr-text("h6");
+      font-weight: bold;
+      color: #6a6af4;
+    }
   }
+
   :global(.callout--important) {
-    border-left: 4px solid $error;
+    background: #eee;
+    position: relative;
+    border-radius: u(2);
+    overflow: hidden;
+    padding: u(4) u(2) u(4) u(14);
+
+    &::before {
+      content: "Important";
+      display: block;
+      margin-bottom: u(1);
+      @include dsfr-text("h6");
+      font-weight: bold;
+    }
+
+    &::after {
+      content: "";
+      width: u(10);
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      background: #6a6af4;
+    }
   }
 }

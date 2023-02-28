@@ -64,7 +64,7 @@ export interface ContentStructure {
 
 export interface Sponsor {
   name: string;
-  logo: string;
+  logo: Picture;
   link: string;
 }
 

@@ -34,7 +34,7 @@ export const getContentById = async (id: string, locale: Languages): ResponseWit
     participants: SimpleUser[];
   }>([
     { path: "mainSponsor", select: "_id nom picture" },
-    { path: "sponsors", select: "_id nom picture" },
+    { path: "sponsors", select: "_id nom picture" }, // TODO: why not sent?
     { path: "participants", select: "_id username picture" },
   ]);
   if (!dispositif) throw new NotFoundError("Dispositif not found");

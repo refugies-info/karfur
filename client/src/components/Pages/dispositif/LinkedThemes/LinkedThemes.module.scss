@@ -1,4 +1,36 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: u(2);
+}
+
+.title {
+  @include dsfr-text("small");
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.btn {
+  background: white;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 2px 6px 0 #00001229;
+  padding: u(2) u(3);
+  border-radius: 6px;
+  @include dsfr-text("small");
+
+  & > span {
+    display: inline-block;
+    width: u(4);
+    height: u(4);
+
+    img {
+      vertical-align: top;
+    }
+  }
+}

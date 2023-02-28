@@ -1,3 +1,13 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+
+.marque {
+  @include dsfr-text("small");
+  color: white;
+  text-transform: uppercase;
+  border-radius: u(2);
+  padding: u(1) u(2);
+  white-space: nowrap;
+}

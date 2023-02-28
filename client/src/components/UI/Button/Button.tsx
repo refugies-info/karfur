@@ -36,7 +36,12 @@ const DSFRButton = (props: Props) => {
     >
       <>
         {props.icon && (
-          <EVAIcon name={props.icon} fill={props.secondary ? "#000091" : "white"} size={16} className="me-2" />
+          <EVAIcon
+            name={props.icon}
+            fill={props.secondary || props.tertiary ? "#000091" : "white"}
+            size={!!props.children ? 16 : 24}
+            className={cls(!!props.children && "me-2")}
+          />
         )}
         {props.children}
       </>
