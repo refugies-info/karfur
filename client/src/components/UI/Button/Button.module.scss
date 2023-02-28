@@ -1,0 +1,6 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+
+.btn {
+  border-radius: u(2);
+}

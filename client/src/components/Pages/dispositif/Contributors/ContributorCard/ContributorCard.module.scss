@@ -1,0 +1,33 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+
+.container {
+  background: #2f2f2f;
+  width: 152px;
+  height: 212px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: u(4);
+  border-radius: u(2);
+}
+
+.username {
+  height: u(12);
+  margin-top: u(2);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.role {
+  @include dsfr-text("small");
+  margin-top: u(2);
+  color: white;
+  background: #242424;
+  padding: u(1) u(3);
+  border-radius: 40px;
+}

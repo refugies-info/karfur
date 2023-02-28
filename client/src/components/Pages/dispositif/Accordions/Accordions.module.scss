@@ -1,6 +1,8 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/variables";
+@import "src/scss/mixins/text";
 
 .title {
-  font-size: 24px;
+  @include dsfr-text("chapo");
+  font-weight: bold;
 }

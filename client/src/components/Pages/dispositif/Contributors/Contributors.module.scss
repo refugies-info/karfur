@@ -1,2 +1,22 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+
+.section {
+  background-color: #1e1e1e;
+  padding: u(20) 0;
+}
+
+.row {
+  display: flex;
+  gap: u(4);
+  flex-wrap: wrap; // TODO: remove this when slider
+}
+
+.title {
+  color: white;
+  @include dsfr-text("h3");
+  font-weight: bold;
+  margin-bottom: u(20);
+}

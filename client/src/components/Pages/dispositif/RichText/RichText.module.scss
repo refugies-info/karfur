@@ -1,6 +1,11 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+
+.content {
+  @include dsfr-text("normal");
+}
 
 .highlighted {
   background: lightblue;
@@ -8,11 +13,13 @@
 
 .content {
   :global(.callout) {
-    background: $gray40b;
-    padding: u(1);
+    margin-top: u(6);
+    margin-bottom: u(6);
   }
   :global(.callout--info) {
-    border-left: 4px solid $bleuCharte;
+    padding-left: u(8);
+    margin-left: u(8);
+    border-left: 4px solid #6a6af4;
   }
   :global(.callout--important) {
     border-left: 4px solid $error;

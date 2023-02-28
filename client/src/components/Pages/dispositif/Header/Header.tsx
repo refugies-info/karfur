@@ -1,33 +1,23 @@
 import React from "react";
-import { GetDispositifResponse, GetThemeResponse } from "api-types";
+import { GetDispositifResponse } from "api-types";
 import TextInput from "../TextInput";
+import Breadcrumb from "../Breadcrumb";
+import styles from "./Header.module.scss";
 
 interface Props {
   dispositif: GetDispositifResponse | null;
   typeContenu: string;
-  theme: GetThemeResponse | null;
-  secondaryThemes: GetThemeResponse[];
 }
 
-const Accordions = (props: Props) => {
+const Header = (props: Props) => {
   return (
-    <header>
-      <h1>
+    <header className={styles.container}>
+      <Breadcrumb />
+      <h1 className={styles.title}>
         <TextInput id="titreInformatif" value={props.dispositif?.titreInformatif || ""} />
-        {props.typeContenu === "dispositif" && (
-          <>
-            avec <TextInput id="titreMarque" value={props.dispositif?.titreMarque || ""} />
-          </>
-        )}
       </h1>
-      <p>
-        {props.theme?.name.fr}
-        {props.secondaryThemes.map((theme) => (
-          <span key={theme._id.toString()}> / {theme?.name.fr}</span>
-        ))}
-      </p>
     </header>
   );
 };
 
-export default Accordions;
+export default Header;

@@ -1,0 +1,41 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+
+.container {
+  width: 100%;
+  background-color: #eee;
+}
+
+.banner {
+  height: 400px;
+  background-size: cover;
+  background-position: center center;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}
+.left {
+  width: 320px;
+  padding: 0 u(10);
+}
+.main {
+  width: 800px;
+  background: $gray30;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px 0 #00001229;
+  border-radius: u(2) u(2) 0 0;
+  padding: u(10) u(20);
+  margin-top: -142px;
+}
+.right {
+  width: 320px;
+  padding: u(10);
+}
+
+.section_title {
+  @include dsfr-text("h2");
+  font-weight: bold;
+}

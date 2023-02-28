@@ -3,44 +3,81 @@
 $texts: (
   "very-small": (
     12px,
-    15px
+    15px,
   ),
   "small": (
     14px,
-    19px
+    19px,
   ),
   "normal": (
     16px,
-    22px
+    22px,
   ),
   "large": (
     18px,
-    23px
+    23px,
   ),
   "h5": (
     22px,
-    28px
+    28px,
   ),
   "h4": (
     28px,
-    35px
+    35px,
   ),
   "h3": (
     40px,
-    51px
+    51px,
   ),
   "h2": (
     40px,
-    51px
+    51px,
   ),
   "h1": (
     52px,
-    66px
-  )
+    66px,
+  ),
 );
 
 @mixin text($_key) {
   $sizes: map-get($texts, $_key);
+
+  font-size: nth($sizes, 1);
+  line-height: nth($sizes, 2);
+}
+
+$dsfr-texts: (
+  "small": (
+    14px,
+    24px,
+  ),
+  "normal": (
+    16px,
+    24px,
+  ),
+  "chapo": (
+    20px,
+    32px,
+  ),
+  "h6": (
+    20px,
+    28px,
+  ),
+  "h3": (
+    28px,
+    36px,
+  ),
+  "h2": (
+    32px,
+    40px,
+  ),
+  "h1": (
+    40px,
+    48px,
+  ),
+);
+@mixin dsfr-text($_key) {
+  $sizes: map-get($dsfr-texts, $_key);
 
   font-size: nth($sizes, 1);
   line-height: nth($sizes, 2);

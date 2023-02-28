@@ -1,3 +1,4 @@
+import { cls } from "lib/classname";
 import dynamic from "next/dynamic";
 import React, { useContext } from "react";
 import PageContext from "utils/pageContext";
@@ -18,7 +19,7 @@ const RichText = (props: Props) => {
       {pageContext.mode !== "edit" ? (
         <div
           dangerouslySetInnerHTML={{ __html: props.value }}
-          className={pageContext.activeSection === props.id ? styles.highlighted : ""}
+          className={cls(styles.content, pageContext.activeSection === props.id && styles.highlighted)}
         />
       ) : (
         <RichTextInput value={props.value} id={props.id} />
