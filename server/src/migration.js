@@ -22,7 +22,7 @@ const updateCallouts = (htmlContent) => {
     const content = match[0]
       .replace(
         /<div class='bloc-rouge'>[ ]*<div class='icon-left-side'>[ ]*<span>i<\/span>[ ]*<\/div>[ ]*<div class='right-side'>[ ]*<div><b>Bon à savoir :<\/b><\/div>/gm,
-        "<div class='callout callout--info' data-callout='info'>",
+        "<div class='callout callout--important' data-callout='important'>",
       )
       .replace(/<\/div>[ ]*<\/div>/gm, "</div>");
     newContent = newContent.replace(regex, content);
