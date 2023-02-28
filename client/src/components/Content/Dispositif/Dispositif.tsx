@@ -36,7 +36,7 @@ const Dispositif = (props: Props) => {
 
       <div className={styles.content}>
         <div className={styles.left}>
-          <Metadatas metadatas={dispositif?.metadatas} />
+          <Metadatas metadatas={dispositif?.metadatas} color={color} />
         </div>
         <div className={styles.main}>
           <Header dispositif={dispositif} typeContenu={typeContenu} />
