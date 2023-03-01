@@ -32,6 +32,7 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
   return {
     content,
     metadatas,
+    created_at: oldDispositif.translations.fr.created_at,
   };
 };
 
@@ -62,6 +63,7 @@ const buildTranslations = async (
         unset(newTranslations, `${locale}.${section}`);
       });
     });
+    translationContent.created_at = new Date();
   }
 
   const toReview: string[] = [];
@@ -109,6 +111,8 @@ const buildTranslations = async (
         return translation;
       });
     logger.info("translationsReviews", translationsReviews);
+
+    translationContent.created_at = new Date();
 
     await TraductionsModel.insertMany(translationsReviews).then((result) => {
       logger.info(`[updateDispositif] ${translationsReviews.length} traductions created for review `, result);

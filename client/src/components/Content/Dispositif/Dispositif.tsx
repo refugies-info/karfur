@@ -24,6 +24,7 @@ const Dispositif = (props: Props) => {
         description={dispositif?.abstract || ""}
         image={theme?.shareImage.secure_url}
       />
+      <p>Mise à jour {new Date(dispositif.date).toLocaleDateString()}</p>
       <Header dispositif={dispositif} typeContenu={typeContenu} theme={theme} secondaryThemes={secondaryThemes} />
       <RichTextInput id="what" value={dispositif?.what || ""} />
       <Metadatas metadatas={dispositif?.metadatas} />

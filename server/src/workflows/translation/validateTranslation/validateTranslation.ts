@@ -8,7 +8,10 @@ import { Dispositif, DispositifModel, ErrorModel, Traductions } from "../../../t
 import { Languages } from "api-types";
 
 const validateTranslation = (dispositif: Dispositif, language: Languages, translation: Traductions) =>
-  DispositifModel.updateOne({ _id: dispositif._id }, { $set: { [`translations.${language}`]: translation.translated } })
+  DispositifModel.updateOne(
+    { _id: dispositif._id },
+    { $set: { [`translations.${language}`]: { ...translation.translated, created_at: new Date() } } },
+  )
     .then(() =>
       /*
        * Une fois la traduction publiée
