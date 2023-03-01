@@ -24,7 +24,8 @@ const Dispositif = (props: Props) => {
   const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
 
   const typeContenu = props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF;
-  const color = theme?.colors.color100 || "#000";
+  const color100 = theme?.colors.color100 || "#000";
+  const color30 = theme?.colors.color30 || "#ddd";
 
   return (
     <div className={styles.container}>
@@ -33,7 +34,7 @@ const Dispositif = (props: Props) => {
         description={dispositif?.abstract || ""}
         image={theme?.shareImage.secure_url}
       />
-      <div className={styles.banner} style={{ backgroundImage: `url(${theme?.banner.secure_url});` }}></div>
+      <div className={styles.banner} style={{ backgroundImage: `url(${theme?.banner.secure_url})` }}></div>
 
       <div className={styles.content}>
         <div className={styles.left}>
@@ -41,21 +42,21 @@ const Dispositif = (props: Props) => {
             metadatas={dispositif?.metadatas}
             titreMarque={dispositif?.titreMarque}
             mainSponsor={dispositif?.mainSponsor}
-            color={color}
+            color={color100}
           />
         </div>
         <div className={styles.main}>
           <Header dispositif={dispositif} typeContenu={typeContenu} />
-          <Section sectionKey="what" content={dispositif?.what} color={color} />
+          <Section sectionKey="what" content={dispositif?.what} color100={color100} color30={color30} />
           {typeContenu === ContentType.DISPOSITIF ? (
             <div>
-              <Section accordions={dispositif?.why} sectionKey="why" color={color} />
-              <Section accordions={dispositif?.how} sectionKey="how" color={color} />
+              <Section accordions={dispositif?.why} sectionKey="why" color100={color100} color30={color30} />
+              <Section accordions={dispositif?.how} sectionKey="how" color100={color100} color30={color30} />
             </div>
           ) : (
             <div>
-              <Section accordions={dispositif?.how} sectionKey="how" color={color} />
-              <Section accordions={dispositif?.next} sectionKey="next" color={color} />
+              <Section accordions={dispositif?.how} sectionKey="how" color100={color100} color30={color30} />
+              <Section accordions={dispositif?.next} sectionKey="next" color100={color100} color30={color30} />
             </div>
           )}
           <Feedback nbMercis={dispositif.merci.length} />

@@ -9,17 +9,18 @@ interface Props {
   accordions?: InfoSections;
   content?: string;
   sectionKey: string;
-  color: string;
+  color100: string;
+  color30: string;
 }
 
-const Section = ({ content, sectionKey, color, accordions }: Props) => {
+const Section = ({ content, sectionKey, color100, color30, accordions }: Props) => {
   return (
     <section className={styles.container}>
-      <p className={styles.title} style={{ color }}>
+      <p className={styles.title} style={{ color: color100 }}>
         {getSectionTitle(sectionKey)}
       </p>
       {content && <RichText id={sectionKey} value={content} />}
-      {accordions && <Accordions content={accordions} sectionKey={sectionKey} color={color} />}
+      {accordions && <Accordions content={accordions} sectionKey={sectionKey} color100={color100} color30={color30} />}
     </section>
   );
 };

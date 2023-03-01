@@ -1,8 +1,61 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/unit";
 
 .title {
   @include dsfr-text("chapo");
   font-weight: bold;
+}
+
+.accordion {
+  margin-bottom: u(6);
+}
+
+.container {
+  .btn {
+    @include dsfr-text("chapo");
+    background: $white;
+    border-color: $white;
+    padding: u(4);
+    font-weight: bold;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: u(3);
+    width: 100%;
+
+    &,
+    &:focus {
+      box-shadow: 0 2px 6px 0 #00001229 !important;
+    }
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    &.open {
+      box-shadow: none !important;
+    }
+  }
+}
+
+.icon {
+  margin-left: u(4);
+  transition: transform 0.2s ease-in-out;
+
+  @include rtl() {
+    margin-right: u(4);
+    margin-left: inherit;
+  }
+
+  .open & {
+    transform: rotate(180deg);
+  }
+}
+
+.content {
+  padding: u(4);
 }
