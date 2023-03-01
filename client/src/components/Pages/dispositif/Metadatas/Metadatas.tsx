@@ -1,6 +1,9 @@
-import { GetDispositifResponse } from "api-types";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { Link as DSFRLink } from "@dataesr/react-dsfr";
+import { GetDispositifResponse } from "api-types";
+import { getPath } from "routes";
 import { getAge, getPrice, getPublic } from "./functions";
 import Card from "./Card";
 import AgeIcon from "assets/dispositif/metadatas/Age";
@@ -14,9 +17,6 @@ import PriceIcon from "assets/dispositif/metadatas/Price";
 import PublicIcon from "assets/dispositif/metadatas/Public";
 import StatusIcon from "assets/dispositif/metadatas/Status";
 import styles from "./Metadatas.module.scss";
-import { Link as DSFRLink } from "@dataesr/react-dsfr";
-import Link from "next/link";
-import { getPath } from "routes";
 
 interface Props {
   metadatas: GetDispositifResponse["metadatas"] | undefined;
@@ -114,14 +114,11 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
             content: (
               <>
                 {metadatas.location?.map((dep, i) => (
-                  <>
-                    <DSFRLink
-                      as={<Link href={getPath("/recherche", "fr", `?departments=${dep.split(" - ")[1]}`)}>{dep}</Link>}
-                      key={i}
-                      className={styles.link}
-                    />
-                    <br />
-                  </>
+                  <DSFRLink
+                    as={<Link href={getPath("/recherche", "fr", `?departments=${dep.split(" - ")[1]}`)}>{dep}</Link>}
+                    key={i}
+                    className={styles.link}
+                  />
                 ))}
               </>
             ),
