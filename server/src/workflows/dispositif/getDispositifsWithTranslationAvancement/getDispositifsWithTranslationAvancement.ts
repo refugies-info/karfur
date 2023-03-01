@@ -31,7 +31,11 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
   activeDispositifs.forEach((dispositif: Dispositif) => {
     const correspondingTrads = traductions.filter((trad) => trad.dispositifId.toString() === dispositif._id.toString());
 
-    const lastTradUpdatedAt = Math.max(0, ...correspondingTrads.map((z) => z.updatedAt.getTime() || 0));
+    const lastTradUpdatedAt = Math.max(
+      0,
+      dispositif.translations[locale]?.created_at.getTime() || 0,
+      ...correspondingTrads.map((z) => z.updatedAt.getTime() || 0),
+    );
     const avancementTrad = Math.max(0, ...correspondingTrads.map((z) => z.avancement || -1));
     const avancementValidation = Math.max(
       0,

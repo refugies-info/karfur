@@ -302,6 +302,7 @@ const getContent = (dispositif, ln, root) => {
       what: turnJSONtoHTML(getLocalizedContent(dispositif.contenu?.[0]?.content, ln, root)),
     },
     metadatas: {},
+    created_at: dispositif.created_at,
   };
 
   if (dispositif.typeContenu === "dispositif") {
@@ -327,6 +328,7 @@ const getMultilangContent = (dispositif, translatedMetas) => {
       if (translatedMetas.important) {
         translations[ln].metadatas.important = getLocalizedContent(translatedMetas.important, ln, false);
       }
+      translations[ln].created_at = dispositif.updatedAt;
     }
   }
 
@@ -523,7 +525,7 @@ const getContentFromTrad = (trad) => {
   const dispositifId = trad.articleId;
   const typeContenu = trad.dispositifs?.[0].typeContenu;
   const content = getContent(
-    { ...trad.translatedText, typeContenu: typeContenu, _id: dispositifId },
+    { ...trad.translatedText, typeContenu: typeContenu, _id: dispositifId, created_at: trad.created_at },
     trad.langueCible,
     true,
   );
@@ -743,6 +745,11 @@ const adaptUserFavorites = async (usersColl) => {
   }
 };
 
+const removeValidatedTrad = (traductionsColl) =>
+  traductionsColl.deleteMany({ type: "validation", avancement: { $gte: 1 } }).then(({ deletedCount }) => {
+    console.log("removeValidatedTrad : ", deletedCount);
+  });
+
 /* Start script */
 async function main() {
   await client.connect();
@@ -768,6 +775,7 @@ async function main() {
 
   await removeCorruptedTrads(traductionsColl);
   await migrateTrads(traductionsColl, dispositifsColl);
+  await removeValidatedTrad(traductionsColl);
 
   // remove all unused dispositifs
   await removeDispositifs(dispositifsColl);

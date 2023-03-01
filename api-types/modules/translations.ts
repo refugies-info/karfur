@@ -45,6 +45,8 @@ export class TranslationContent {
     important?: string;
     duration?: string;
   };
+
+  public created_at: Date;
 }
 
 export interface GetTraductionsForReview {
