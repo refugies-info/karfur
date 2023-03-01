@@ -11,3 +11,9 @@
   padding: u(1) u(2);
   white-space: nowrap;
 }
+
+.link {
+  color: #000091 !important;
+  background-image: var(--underline-img), var(--underline-img) !important;
+  display: inline-block;
+}

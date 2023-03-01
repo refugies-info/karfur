@@ -12,6 +12,7 @@ import LinkedThemes from "components/Pages/dispositif/LinkedThemes";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import Button from "components/UI/Button";
 import ShareButtons from "components/Pages/dispositif/ShareButtons";
+import SMSForm from "components/Pages/dispositif/SMSForm";
 
 interface Props {
   typeContenu?: ContentType;
@@ -72,6 +73,7 @@ const Dispositif = (props: Props) => {
           </Button>
 
           <ShareButtons />
+          <SMSForm />
         </div>
       </div>
 

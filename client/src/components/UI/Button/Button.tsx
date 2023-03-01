@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Button } from "@dataesr/react-dsfr";
 import { cls } from "lib/classname";
@@ -21,6 +21,11 @@ interface Props {
   colors?: string[];
 }
 
+const getIconColor = (props: Props) => {
+  if (props.disabled) return "#929292";
+  return props.secondary || props.tertiary ? "#000091" : "white";
+};
+
 const DSFRButton = (props: Props) => {
   return (
     <Button
@@ -38,7 +43,7 @@ const DSFRButton = (props: Props) => {
         {props.icon && (
           <EVAIcon
             name={props.icon}
-            fill={props.secondary || props.tertiary ? "#000091" : "white"}
+            fill={getIconColor(props)}
             size={!!props.children ? 16 : 24}
             className={cls(!!props.children && "me-2")}
           />

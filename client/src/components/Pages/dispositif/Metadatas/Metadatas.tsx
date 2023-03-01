@@ -14,6 +14,9 @@ import PriceIcon from "assets/dispositif/metadatas/Price";
 import PublicIcon from "assets/dispositif/metadatas/Public";
 import StatusIcon from "assets/dispositif/metadatas/Status";
 import styles from "./Metadatas.module.scss";
+import { Link as DSFRLink } from "@dataesr/react-dsfr";
+import Link from "next/link";
+import { getPath } from "routes";
 
 interface Props {
   metadatas: GetDispositifResponse["metadatas"] | undefined;
@@ -58,10 +61,34 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
           { label: "Statut", content: getPublic(metadatas.public), icon: <StatusIcon color={color} /> },
           {
             label: "Français demandé",
-            content: metadatas.frenchLevel?.join(", "),
+            content: (
+              <>
+                <DSFRLink
+                  as={
+                    <Link href={getPath("/recherche", "fr", `?frenchLevel=${"a"}`)}>
+                      {metadatas.frenchLevel?.join(", ")}
+                    </Link>
+                  }
+                  className={styles.link}
+                />
+              </>
+            ),
             icon: <FrenchLevelIcon color={color} />,
           },
-          { label: "Âge demandé", content: getAge(metadatas.age), icon: <AgeIcon color={color} /> },
+          {
+            label: "Âge demandé",
+            content: (
+              <>
+                <>
+                  <DSFRLink
+                    as={<Link href={getPath("/recherche", "fr", `?age=${"a"}`)}>{getAge(metadatas.age)}</Link>}
+                    className={styles.link}
+                  />
+                </>
+              </>
+            ),
+            icon: <AgeIcon color={color} />,
+          },
         ]}
         color={color}
       />
@@ -87,7 +114,14 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
             content: (
               <>
                 {metadatas.location?.map((dep, i) => (
-                  <a key={i}>{dep}</a>
+                  <>
+                    <DSFRLink
+                      as={<Link href={getPath("/recherche", "fr", `?departments=${dep.split(" - ")[1]}`)}>{dep}</Link>}
+                      key={i}
+                      className={styles.link}
+                    />
+                    <br />
+                  </>
                 ))}
               </>
             ),
