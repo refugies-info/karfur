@@ -131,7 +131,7 @@ export interface Metadatas {
   };
   price?: {
     value: number;
-    details?: priceDetails;
+    details?: priceDetails | null;
   };
   duration?: string;
   public?: publicType;

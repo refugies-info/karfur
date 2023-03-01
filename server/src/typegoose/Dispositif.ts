@@ -1,7 +1,8 @@
 import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { ContentType, DispositifStatus, Languages } from "api-types";
 import { get, has } from "lodash";
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
+import { PartialRecord } from "../types/interface";
 import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import { RichText, Uuid } from "./generics";
@@ -65,7 +66,7 @@ export class Suggestion {
   @prop()
   created_at: Date;
   @prop()
-  userId?: ObjectId;
+  userId?: Types.ObjectId;
   @prop()
   read: Boolean;
   @prop()
@@ -80,7 +81,7 @@ export class Merci {
   @prop()
   created_at: Date;
   @prop()
-  userId?: ObjectId;
+  userId?: Types.ObjectId;
 }
 
 export class TranslationContent {
@@ -222,7 +223,7 @@ export class Dispositif extends Base {
   @prop()
   public themesSelectedByAuthor: boolean;
   @prop()
-  public notificationsSent: Record<Languages, boolean>;
+  public notificationsSent: PartialRecord<Languages, boolean>;
 
   @prop()
   public suggestions: Suggestion[];
@@ -232,7 +233,7 @@ export class Dispositif extends Base {
   public webOnly: boolean;
 
   @prop()
-  public translations!: Record<Languages, TranslationContent>;
+  public translations!: PartialRecord<Languages, TranslationContent>;
   @prop({ _id: false })
   public metadatas: Metadatas;
   @prop()
