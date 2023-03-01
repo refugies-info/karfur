@@ -12,6 +12,7 @@ export interface TranslationInputProps {
   prev: any;
   section: string;
   suggestions: { text: string; username: string; author: string }[];
+  toReview: boolean;
   validate: (value: string) => void;
 }
 
@@ -22,12 +23,13 @@ const TranslationInput = ({
   prev,
   section,
   suggestions,
+  toReview,
   validate,
 }: TranslationInputProps) => {
   const { user } = useUser();
   // Index pour parcourir les suggestions de traductions
   const max = Math.max(suggestions.length - 1, 0);
-  const [index, { inc, dec }] = useNumber(0, max, 0);
+  const [index, { inc, dec, reset }] = useNumber(0, max, 0);
 
   // on met la valeur de la traduction suggérée dans la valeur
   // si il n'y en a pas, on met une chaine vide
@@ -50,7 +52,8 @@ const TranslationInput = ({
   // automatique pour en proposer une à l'utilisateur
   useEffect(() => {
     if (!value) translate(initialText, locale);
-  }, [initialText, locale, translate, value]);
+    reset();
+  }, [initialText, locale, reset, translate, value]);
 
   console.log("render", index, value, loading, section, initialText, suggestions);
 
@@ -61,15 +64,16 @@ const TranslationInput = ({
       <b>Texte initial</b>
       <p dangerouslySetInnerHTML={{ __html: initialText }}></p>
       <b>Translate part</b>
+      {toReview && <b>A REVOIR</b>}
       <textarea
         style={{ margin: "1rem", border: "1px solid black" }}
         disabled={loading}
         value={value}
         onChange={(e) => setValue(e.currentTarget.value)}
       ></textarea>
-      {user.expertTrad ? (
+      {user.expertTrad && suggestions.length > 0 ? (
         <div>
-          <p>Par : {user.userId === suggestions[index].author ? " vous" : suggestions[index].username}</p>
+          <p>Par : {user.userId === suggestions[index]?.author ? " vous" : suggestions[index]?.username}</p>
           {suggestions.length > 1 ? (
             <p>
               <Button disabled={index === 0} onClick={() => dec()}>

@@ -1,5 +1,5 @@
 import { useUser } from "hooks";
-import { get, isEmpty, isUndefined } from "lodash";
+import { get, isEmpty, isUndefined, some } from "lodash";
 import Skeleton from "react-loading-skeleton";
 import PageContext from "utils/pageContext";
 import Dispositif from "components/Content/Dispositif";
@@ -82,7 +82,6 @@ const NewTranslation = () => {
           <p>{traductions.length} traductions disponibles</p>
         )}
         {user.expertTrad ? <p>Vous êtes traducteur expert</p> : <p>Vous êtes traducteur</p>}
-        {/* @ts-ignore */}
         <ProgressWithValue avancementTrad={myTranslation.avancement} isExpert={user.expertTrad} />
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1 }}>
@@ -93,6 +92,7 @@ const NewTranslation = () => {
               prev={prevSection}
               next={nextSection}
               validate={validate}
+              toReview={some(traductions, (trad) => trad.toReview?.includes(section) || false)}
               locale={locale || ""}
             />
           </div>

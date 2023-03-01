@@ -51,6 +51,7 @@ export interface GetTraductionsForReview {
   author: string;
   translated: Partial<TranslationContent>;
   username: string;
+  toReview?: string[];
 }
 export type GetTraductionsForReviewResponse = GetTraductionsForReview[];
 

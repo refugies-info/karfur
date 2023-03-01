@@ -13,7 +13,6 @@ export const createDispositif = async (body: CreateDispositifRequest, userId: Id
     creatorId: new ObjectId(userId.toString()),
     lastModificationAuthor: new ObjectId(userId.toString()),
     themesSelectedByAuthor: true,
-    // @ts-ignore asking for all languages?
     translations: {
       fr: {
         content: {
