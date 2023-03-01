@@ -1,0 +1,40 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+
+$iconSize: u(4);
+$btnSize: u(8);
+
+.container {
+  position: absolute;
+  top: 0;
+  right: u(-10);
+
+  .btn {
+    width: $btnSize;
+    height: $btnSize;
+    min-height: $btnSize;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: u(2);
+    box-shadow: inset 0 0 0 1px #e5e5e5;
+
+    span {
+      i {
+        height: $iconSize !important;
+        line-height: $iconSize !important;
+        svg {
+          width: $iconSize;
+          height: $iconSize;
+          fill: #929292;
+        }
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
