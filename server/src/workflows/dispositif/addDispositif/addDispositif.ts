@@ -1,7 +1,7 @@
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 // import { turnHTMLtoJSON } from "../../../controllers/dispositif/functions";
-import { getRoleByName } from "../../../controllers/role/role.repository";
+import { getRoleByName } from "../../../modules/role/role.repository";
 import {
   getDispositifByIdWithMainSponsor,
   updateDispositifInDB,

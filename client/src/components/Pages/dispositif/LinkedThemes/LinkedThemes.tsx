@@ -13,10 +13,10 @@ interface ButtonProps {
   children?: string;
   image: React.ReactNode;
   color: string;
-  pathParams?: any;
+  pathParams?: string;
 }
 const Button = (props: ButtonProps) => (
-  <Link href={getPath("/recherche", "fr")} className={styles.btn} style={{ color: props.color }}>
+  <Link href={getPath("/recherche", "fr", props.pathParams)} className={styles.btn} style={{ color: props.color }}>
     {props.children}
     <span className="ms-2">{props.image}</span>
   </Link>
@@ -37,6 +37,7 @@ const LinkedThemes = (props: Props) => {
           <Button
             image={<ThemeIcon theme={props.theme} color={props.theme.colors.color100} size={16} />}
             color={props.theme.colors.color100}
+            pathParams={`?themes=${props.theme._id}`}
           >
             {props.theme.short?.fr}
           </Button>
@@ -46,6 +47,7 @@ const LinkedThemes = (props: Props) => {
             key={i}
             image={<ThemeIcon theme={theme} color={theme.colors.color100} size={16} />}
             color={theme.colors.color100}
+            pathParams={`?themes=${theme._id}`}
           >
             {theme.short?.fr}
           </Button>
@@ -55,6 +57,7 @@ const LinkedThemes = (props: Props) => {
             key={i}
             image={<Image src={need.image?.secure_url || ""} width={16} height={16} alt="" />}
             color={themes.find((t) => t._id === need.theme._id)?.colors.color100 || "black"}
+            pathParams={`?needs=${need._id}`}
           >
             {need.fr.text}
           </Button>

@@ -33,7 +33,16 @@ const useFavorites = (contentId: Id) => {
     }
   }, [userDetails, contentId, isFavorite, dispatch]);
 
-  return { isFavorite, addToFavorites };
+  const deleteFromFavorites = useCallback(() => {
+    if (API.isAuth() && userDetails) {
+      if (!isFavorite) return;
+      API.deleteUserFavorites({ dispositifId: contentId.toString() }).then(() => {
+        dispatch(fetchUserActionCreator());
+      });
+    }
+  }, [userDetails, contentId, isFavorite, dispatch]);
+
+  return { isFavorite, addToFavorites, deleteFromFavorites };
 }
 
 export default useFavorites;
