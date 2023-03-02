@@ -83,6 +83,20 @@ interface DispositifRequest {
 }
 
 /**
+ * @url PUT /dispositifs/{id}/suggestion
+ */
+export interface AddSuggestionDispositifRequest {
+  suggestion: string;
+  key: string;
+}
+/**
+ * @url PATCH /dispositifs/{id}/suggestion
+ */
+export interface ReadSuggestionDispositifRequest {
+  suggestionId: string;
+}
+
+/**
  * @url PATCH /dispositifs/{id}
  */
 export interface UpdateDispositifRequest extends DispositifRequest { }

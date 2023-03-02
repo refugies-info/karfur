@@ -7,6 +7,7 @@ import isInBrowser from "lib/isInBrowser";
 import { APIResponse, NbDispositifsByRegion, TranslationFacets, TranslationStatistics } from "types/interface";
 import {
   AddContactRequest,
+  AddSuggestionDispositifRequest,
   // AddUserFavorite,
   AddUserFavoriteRequest,
   AddViewsRequest,
@@ -62,6 +63,7 @@ import {
   PostStructureRequest,
   PostThemeResponse,
   PostWidgetResponse,
+  ReadSuggestionDispositifRequest,
   ResetPasswordRequest,
   ResetPasswordResponse,
   SendNotificationsRequest,
@@ -214,12 +216,6 @@ const API = {
     const headers = getHeaders();
     return instance.get("/dispositifs/count", { params: query, headers });
   },
-  updateDispositifReactions: (query: any) => {
-    const headers = getHeaders();
-    return instance.post("/dispositifs/updateDispositifReactions", query, {
-      headers,
-    });
-  },
   updateDispositifStatus: (id: Id, body: DispositifStatusRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/status`, body, { headers });
@@ -261,6 +257,22 @@ const API = {
   getDispositifsStatistics: (query: GetStatisticsRequest): Promise<APIResponse<GetStatisticsResponse>> => {
     const headers = getHeaders();
     return instance.get("/dispositifs/statistics", { params: query, headers });
+  },
+  addDispositifMerci: (id: string): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.put(`/dispositifs/${id}/merci`, {}, { headers });
+  },
+  addDispositifSuggestion: (id: string, body: AddSuggestionDispositifRequest): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.put(`/dispositifs/${id}/suggestion`, body, { headers });
+  },
+  readDispositifSuggestion: (id: string, body: ReadSuggestionDispositifRequest): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.patch(`/dispositifs/${id}/suggestion`, body, { headers });
+  },
+  deleteDispositifSuggestion: (id: string, suggestionId: string): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.delete(`/dispositifs/${id}/suggestion/${suggestionId}`, { headers });
   },
   updateDispositifProperties: (id: Id, body: UpdateDispositifPropertiesRequest): Promise<APIResponse> => {
     const headers = getHeaders();

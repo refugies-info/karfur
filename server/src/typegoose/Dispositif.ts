@@ -1,7 +1,7 @@
 import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { ContentType, DispositifStatus, Languages } from "api-types";
 import { get, has } from "lodash";
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import { RichText, Uuid } from "./generics";
@@ -65,7 +65,7 @@ export class Suggestion {
   @prop()
   created_at: Date;
   @prop()
-  userId?: ObjectId;
+  userId?: Types.ObjectId;
   @prop()
   read: Boolean;
   @prop()
@@ -80,7 +80,7 @@ export class Merci {
   @prop()
   created_at: Date;
   @prop()
-  userId?: ObjectId;
+  userId?: Types.ObjectId;
 }
 
 export class TranslationContent {

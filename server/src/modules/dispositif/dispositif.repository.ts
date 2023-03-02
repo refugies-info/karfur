@@ -2,6 +2,7 @@ import { Id, Picture, ContentType, SimpleDispositif, DispositifStatus, Languages
 import { omit, pick } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, UpdateQuery } from "mongoose";
+import { Merci, Suggestion } from "../../typegoose/Dispositif";
 import { Dispositif, DispositifId, DispositifModel, UserId } from "../../typegoose";
 
 export const getDispositifsFromDB = async () =>
@@ -92,6 +93,33 @@ export const updateDispositifInDB = async (
     upsert: true,
     new: true,
   }).populate("theme secondaryThemes");
+
+export const addMerciDispositifInDB = async (
+  dispositifId: DispositifId,
+  merci: Merci
+): Promise<Dispositif> =>
+  DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $push: { merci } }, {
+    upsert: true,
+    new: true,
+  });
+
+export const addSuggestionDispositifInDB = async (
+  dispositifId: DispositifId,
+  suggestion: Suggestion
+): Promise<Dispositif> =>
+  DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $push: { suggestions: suggestion } }, {
+    upsert: true,
+    new: true,
+  });
+
+export const deleteSuggestionDispositifInDB = async (
+  dispositifId: DispositifId,
+  suggestionId: string
+): Promise<Dispositif> =>
+  DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $pull: { suggestions: { suggestionId } } }, {
+    upsert: true,
+    new: true,
+  });
 
 export const incrementDispositifViews = async (
   id: string,

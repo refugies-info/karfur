@@ -30,6 +30,8 @@ import {
   GetAllDispositifsResponse,
   GetCountDispositifsResponse,
   GetUserContributionsResponse,
+  AddSuggestionDispositifRequest,
+  ReadSuggestionDispositifRequest,
 } from "./modules/dispositif";
 
 // images
@@ -133,6 +135,8 @@ export type {
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
   CreateDispositifRequest,
+  AddSuggestionDispositifRequest,
+  ReadSuggestionDispositifRequest,
 
   // images
   PostImageResponse,

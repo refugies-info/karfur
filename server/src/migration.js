@@ -87,7 +87,7 @@ const removeOldFields = async (dispositifsColl) => {
 
 const formatMerci = (merci) => {
   return {
-    createdAt: new Date(merci.createdAt),
+    created_at: new Date(merci.createdAt),
     userId: new ObjectId(merci.userId) || null,
   };
 };
@@ -109,7 +109,7 @@ const getSuggestionSection = (key, type) => {
 
 const formatSuggestion = (suggestion, typeContenu) => {
   return {
-    createdAt: new Date(suggestion.createdAt),
+    created_at: new Date(suggestion.createdAt),
     userId: new ObjectId(suggestion.userId),
     read: suggestion.read === null ? true : suggestion.read,
     suggestion: suggestion.suggestion,

@@ -13,10 +13,9 @@ export const fetchActiveDispositifsActionsCreator = () =>
   action(FETCH_ACTIVE_DISPOSITIFS);
 
 export const updateDispositifReactionActionCreator = (value: {
-  dispositif: {
+  suggestion: {
     dispositifId: Id;
     suggestionId: string;
-    fieldName: "suggestions" | "suggestions.$.read";
     type: "remove" | "read";
   };
   structureId: Id;

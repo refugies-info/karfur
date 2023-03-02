@@ -118,10 +118,9 @@ const UserNotifications = (props: Props) => {
       if (!notif.dispositifId || !notif.suggestionId || !structureId) return;
       dispatch(
         updateDispositifReactionActionCreator({
-          dispositif: {
+          suggestion: {
             dispositifId: notif.dispositifId,
             suggestionId: notif.suggestionId,
-            fieldName: "suggestions",
             type: "remove",
           },
           structureId,
@@ -151,10 +150,9 @@ const UserNotifications = (props: Props) => {
       if (!notif.dispositifId || !notif.suggestionId || !structureId) return;
       dispatch(
         updateDispositifReactionActionCreator({
-          dispositif: {
+          suggestion: {
             dispositifId: notif.dispositifId,
             suggestionId: notif.suggestionId,
-            fieldName: "suggestions.$.read",
             type: "read",
           },
           structureId,
