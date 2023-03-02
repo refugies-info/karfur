@@ -3,8 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Link as DSFRLink } from "@dataesr/react-dsfr";
 import { GetDispositifResponse } from "api-types";
-import { getPath } from "routes";
-import { getAge, getPrice, getPublic } from "./functions";
+import {
+  getAge,
+  getAgeLink,
+  getFrenchLevelLink,
+  getLocationLink,
+  getPrice,
+  getPublic,
+  getSponsorLink,
+} from "./functions";
 import Card from "./Card";
 import AgeIcon from "assets/dispositif/metadatas/Age";
 import DiplomaIcon from "assets/dispositif/metadatas/Diploma";
@@ -41,7 +48,12 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
         items={[
           {
             label: "Proposé par",
-            content: mainSponsor?.nom,
+            content: (
+              <DSFRLink
+                as={<Link href={getSponsorLink(mainSponsor?._id.toString())}>{mainSponsor?.nom}</Link>}
+                className={styles.link}
+              />
+            ),
             icon: (
               <Image
                 src={mainSponsor?.picture.secure_url || ""}
@@ -64,11 +76,7 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
             content: (
               <>
                 <DSFRLink
-                  as={
-                    <Link href={getPath("/recherche", "fr", `?frenchLevel=${"a"}`)}>
-                      {metadatas.frenchLevel?.join(", ")}
-                    </Link>
-                  }
+                  as={<Link href={getFrenchLevelLink(metadatas.frenchLevel)}>{metadatas.frenchLevel?.join(", ")}</Link>}
                   className={styles.link}
                 />
               </>
@@ -81,7 +89,7 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
               <>
                 <>
                   <DSFRLink
-                    as={<Link href={getPath("/recherche", "fr", `?age=${"a"}`)}>{getAge(metadatas.age)}</Link>}
+                    as={<Link href={getAgeLink(metadatas.age)}>{getAge(metadatas.age)}</Link>}
                     className={styles.link}
                   />
                 </>
@@ -114,11 +122,10 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
             content: (
               <>
                 {metadatas.location?.map((dep, i) => (
-                  <DSFRLink
-                    as={<Link href={getPath("/recherche", "fr", `?departments=${dep.split(" - ")[1]}`)}>{dep}</Link>}
-                    key={i}
-                    className={styles.link}
-                  />
+                  <>
+                    <DSFRLink as={<Link href={getLocationLink(dep)}>{dep}</Link>} key={i} className={styles.link} />
+                    <br />
+                  </>
                 ))}
               </>
             ),

@@ -1,18 +1,21 @@
-import { GetLanguagesResponse } from "api-types";
-import { colors } from "colors";
-import Button from "components/UI/Button";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
 import React, { useState } from "react";
+import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { GetLanguagesResponse } from "api-types";
+import { colors } from "colors";
+import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
+import { isValidPhone } from "lib/validateFields";
+import Button from "components/UI/Button";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import API from "utils/API";
 import styles from "./SMSForm.module.scss";
 
 const SMSForm = () => {
+  const { t } = useTranslation();
   const [selectedLn, setSelectedLn] = useState<string>("fr");
   const [tel, setTel] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
@@ -26,18 +29,23 @@ const SMSForm = () => {
   };
 
   const sendSMS = () => {
-    Event("Share", "SMS", "from dispositif sidebar");
-    API.smsContentLink({
-      phone: tel,
-      title: dispositif.titreInformatif,
-      url: window.location.href,
-    })
-      .then(() => {
-        setTel("");
-        setSelectedLn("fr");
-        setError(null);
+    setError(null);
+    if (isValidPhone(tel)) {
+      Event("Share", "SMS", "from dispositif sidebar");
+      API.smsContentLink({
+        phone: tel,
+        title: dispositif.titreInformatif,
+        url: window.location.href,
       })
-      .catch((e) => setError(e.message));
+        .then(() => {
+          setTel("");
+          setSelectedLn("fr");
+          setError(null);
+        })
+        .catch((e) => setError(e.message));
+    } else {
+      setError(t("Register.Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie"));
+    }
   };
 
   return (
