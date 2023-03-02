@@ -2,6 +2,7 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 
 .card {
   background: #f6f6f6;
@@ -22,7 +23,7 @@
   margin-top: u(6);
 
   .details {
-    margin-left: u(3);
+    @include ml-ltr(u(3));
   }
 
   .icon {

@@ -2,6 +2,7 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
 
 .content {
   @include dsfr-text("normal");
@@ -17,9 +18,14 @@
     margin-bottom: u(6);
   }
   :global(.callout--info) {
-    padding-left: u(8);
-    margin-left: u(8);
-    border-left: 4px solid #6a6af4;
+    @include pl-ltr(u(8));
+    @include ml-ltr(u(8));
+    $border: 4px solid #6a6af4;
+    border-left: $border;
+
+    @include rtl() {
+      border-left: $border;
+    }
 
     &::before {
       content: "Bon à savoir";
@@ -36,7 +42,8 @@
     position: relative;
     border-radius: u(2);
     overflow: hidden;
-    padding: u(4) u(2) u(4) u(14);
+    padding: u(4) u(2);
+    @include pl-ltr(u(14));
 
     &::before {
       content: "Important";
@@ -51,8 +58,8 @@
       width: u(10);
       position: absolute;
       top: 0;
-      left: 0;
       bottom: 0;
+      @include l-ltr(0);
       background: #6a6af4;
     }
   }

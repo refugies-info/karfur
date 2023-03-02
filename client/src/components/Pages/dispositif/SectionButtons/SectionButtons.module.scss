@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 
 $iconSize: u(4);
 $btnSize: u(8);
@@ -8,7 +9,7 @@ $btnSize: u(8);
 .container {
   position: absolute;
   top: 0;
-  right: u(-10);
+  @include r-ltr(u(-10));
 
   .btn {
     width: $btnSize;

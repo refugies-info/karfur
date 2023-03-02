@@ -43,13 +43,8 @@
 }
 
 .icon {
-  margin-left: u(4);
+  @include ml-ltr(u(4));
   transition: transform 0.2s ease-in-out;
-
-  @include rtl() {
-    margin-right: u(4);
-    margin-left: inherit;
-  }
 
   .open & {
     transform: rotate(180deg);
