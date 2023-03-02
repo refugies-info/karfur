@@ -30,7 +30,7 @@ interface Props {
 const LinkedThemes = (props: Props) => {
   const themes = useSelector(themesSelector);
   return (
-    <div>
+    <div className={styles.container}>
       <p className={styles.title}>Thématiques liées</p>
       <div className={styles.row}>
         {props.theme && (

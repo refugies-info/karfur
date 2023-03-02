@@ -13,6 +13,7 @@ import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import Button from "components/UI/Button";
 import ShareButtons from "components/Pages/dispositif/ShareButtons";
 import SMSForm from "components/Pages/dispositif/SMSForm";
+import FRLink from "components/UI/FRLink";
 import { useFavorites } from "hooks";
 import { readAudio } from "lib/readAudio";
 
@@ -33,7 +34,7 @@ const Dispositif = (props: Props) => {
   const color30 = theme?.colors.color30 || "#ddd";
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="top">
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
@@ -67,6 +68,10 @@ const Dispositif = (props: Props) => {
           <Feedback nbMercis={dispositif.merci.length} />
           <LinkedThemes theme={theme} secondaryThemes={secondaryThemes} needs={needs} />
           <Sponsors sponsors={dispositif.sponsors} />
+
+          <FRLink href="#top" icon="arrow-upward">
+            Haut de page
+          </FRLink>
         </div>
         <div className={styles.right}>
           <Button onClick={() => readAudio(dispositif.titreInformatif, "fr")} icon="play-circle" className="mb-2">

@@ -3,6 +3,10 @@
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
 
+.container {
+  margin-bottom: u(16);
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
