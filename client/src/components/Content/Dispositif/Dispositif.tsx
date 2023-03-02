@@ -4,18 +4,15 @@ import { ContentType } from "api-types";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
 import SEO from "components/Seo";
-import { Metadatas, Map, Header, Sponsors, Contributors } from "components/Pages/dispositif";
+import { Header, Sponsors, Contributors } from "components/Pages/dispositif";
 import styles from "./Dispositif.module.scss";
 import Section from "components/Pages/dispositif/Section";
 import Feedback from "components/Pages/dispositif/Feedback";
 import LinkedThemes from "components/Pages/dispositif/LinkedThemes";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
-import Button from "components/UI/Button";
-import ShareButtons from "components/Pages/dispositif/ShareButtons";
-import SMSForm from "components/Pages/dispositif/SMSForm";
 import FRLink from "components/UI/FRLink";
-import { useFavorites } from "hooks";
-import { readAudio } from "lib/readAudio";
+import RightSidebar from "./RightSidebar";
+import LeftSidebar from "./LeftSidebar";
 
 interface Props {
   typeContenu?: ContentType;
@@ -26,8 +23,6 @@ const Dispositif = (props: Props) => {
   const theme = useSelector(themeSelector(dispositif?.theme));
   const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
   const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
-
-  const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(dispositif._id);
 
   const typeContenu = props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF;
   const color100 = theme?.colors.color100 || "#000";
@@ -44,12 +39,7 @@ const Dispositif = (props: Props) => {
 
       <div className={styles.content}>
         <div className={styles.left}>
-          <Metadatas
-            metadatas={dispositif?.metadatas}
-            titreMarque={dispositif?.titreMarque}
-            mainSponsor={dispositif?.mainSponsor}
-            color={color100}
-          />
+          <LeftSidebar />
         </div>
         <div className={styles.main}>
           <Header dispositif={dispositif} typeContenu={typeContenu} />
@@ -74,20 +64,7 @@ const Dispositif = (props: Props) => {
           </FRLink>
         </div>
         <div className={styles.right}>
-          <Button onClick={() => readAudio(dispositif.titreInformatif, "fr")} icon="play-circle" className="mb-2">
-            Écouter la fiche
-          </Button>
-          <Button
-            secondary
-            onClick={isFavorite ? deleteFromFavorites : addToFavorites}
-            icon={isFavorite ? "star" : "star-outline"}
-            className="mb-2"
-          >
-            {isFavorite ? "Ajouté aux favoris" : "Ajouter aux favoris"}
-          </Button>
-
-          <ShareButtons />
-          <SMSForm />
+          <RightSidebar />
         </div>
       </div>
 
