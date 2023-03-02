@@ -12,11 +12,11 @@ const Toast = (props: Props) => {
   return (
     <ToastTS className={styles.container}>
       <ToastBody className={styles.body}>
-        <EVAIcon name="checkmark-circle-2" fill="#18753C" size={24} className="me-2" />
+        <EVAIcon name="checkmark-circle-2" fill={styles.lightTextDefaultSuccess} size={24} className="me-2" />
         {props.children}
       </ToastBody>
       <button onClick={props.close} className={styles.close}>
-        <EVAIcon name="close-outline" fill="#666666" size={24} />
+        <EVAIcon name="close-outline" fill={styles.lightTextMentionGrey} size={24} />
       </button>
     </ToastTS>
   );

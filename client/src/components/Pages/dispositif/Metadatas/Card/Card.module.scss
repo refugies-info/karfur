@@ -5,8 +5,8 @@
 @import "src/scss/mixins/rtl";
 
 .card {
-  background: #f6f6f6;
-  border: 1px solid #dddddd;
+  background: $lightBackgroundElevationAlt;
+  border: 1px solid $lightBorderDefaultGrey;
   padding: u(4);
   margin-bottom: u(6);
   border-radius: u(2);

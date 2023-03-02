@@ -16,7 +16,7 @@
 
 .link {
   @include dsfr-text("very-small");
-  color: #666666;
+  color: $lightTextMentionGrey !important;
   text-decoration: underline !important;
 }
 

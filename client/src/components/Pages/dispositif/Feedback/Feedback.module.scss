@@ -5,8 +5,8 @@
 @import "src/scss/mixins/rtl";
 
 .container {
-  background: #e3e3fd;
-  color: #161616;
+  background: $lightBackgroundActionLowBlueFrance;
+  color: $lightTextTitleGrey;
   padding: u(8) u(4) u(8) 256px;
   border-radius: u(3);
   overflow: hidden;

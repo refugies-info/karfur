@@ -22,8 +22,8 @@ interface Props {
 }
 
 const getIconColor = (props: Props) => {
-  if (props.disabled) return "#929292";
-  return props.secondary || props.tertiary ? "#000091" : "white";
+  if (props.disabled) return styles.lightTextDisabledGrey;
+  return props.secondary || props.tertiary ? styles.lightTextActionHighBlueFrance : "white";
 };
 
 const DSFRButton = (props: Props) => {

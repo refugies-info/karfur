@@ -4,7 +4,7 @@
 @import "src/scss/mixins/unit";
 
 .container {
-  background: #2f2f2f;
+  background: $darkBackgroundElevationContrast;
   width: 152px;
   height: 212px;
   display: flex;
@@ -27,7 +27,7 @@
   @include dsfr-text("small");
   margin-top: u(2);
   color: white;
-  background: #242424;
+  background: $darkBackgroundContrastGrey;
   padding: u(1) u(3);
   border-radius: 40px;
   display: inline-flex;

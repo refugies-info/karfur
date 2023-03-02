@@ -4,7 +4,7 @@
 
 .container {
   width: 100%;
-  background-color: #eee;
+  background-color: $lightBackgroundContrastGrey;
 }
 
 .banner {
@@ -24,7 +24,7 @@
 .main {
   width: 800px;
   background: $gray30;
-  border: 1px solid #ddd;
+  border: 1px solid $lightBorderDefaultGrey;
   box-shadow: 0 4px 12px 0 #00001229;
   border-radius: u(2) u(2) 0 0;
   padding: u(10) u(20);

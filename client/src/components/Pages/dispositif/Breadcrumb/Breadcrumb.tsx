@@ -24,7 +24,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
       <EVAIcon
         name={!isRTL ? "chevron-right-outline" : "chevron-left-outline"}
         size={16}
-        fill="#666666"
+        fill={styles.lightTextMentionGrey}
         className="mx-1"
       />
     ),
@@ -35,7 +35,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
   return (
     <div className={styles.container}>
       <Link href={getPath("/", "fr")} className={styles.home}>
-        <EVAIcon name="home-outline" fill="#666666" size={16} />
+        <EVAIcon name="home-outline" fill={styles.lightTextMentionGrey} size={16} />
       </Link>
 
       {chevron}

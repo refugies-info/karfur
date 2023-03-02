@@ -17,7 +17,9 @@ const FRLink = (props: Props) => {
     <DSFRLink
       as={
         <Link href={props.href}>
-          {props.icon && <EVAIcon name={props.icon} size={20} fill="#000091" className="me-2" />}
+          {props.icon && (
+            <EVAIcon name={props.icon} size={20} fill={styles.lightTextActionHighBlueFrance} className="me-2" />
+          )}
           {props.children}
         </Link>
       }

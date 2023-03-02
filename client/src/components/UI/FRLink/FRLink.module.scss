@@ -2,7 +2,7 @@
 @import "src/scss/mixins/unit";
 
 .link {
-  color: #000091 !important;
+  color: $lightTextActionHighBlueFrance !important;
   background-image: var(--underline-img), var(--underline-img) !important;
   display: inline-flex;
   align-items: center;
