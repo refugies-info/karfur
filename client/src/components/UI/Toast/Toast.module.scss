@@ -1,0 +1,33 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+
+.container {
+  box-shadow: 0 6px 18px 0 #00001229;
+  background: white;
+  border: none;
+  padding: u(3);
+  border-radius: u(2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  width: auto;
+  margin-top: u(6);
+}
+
+.body {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: #18753c;
+  @include dsfr-text("normal");
+}
+
+.close {
+  width: u(6);
+  height: u(6);
+  @include ml-ltr(u(6));
+  padding: 0;
+}

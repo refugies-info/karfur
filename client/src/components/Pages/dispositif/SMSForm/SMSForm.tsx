@@ -3,6 +3,7 @@ import { colors } from "colors";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
@@ -25,6 +26,7 @@ const SMSForm = () => {
   };
 
   const sendSMS = () => {
+    Event("Share", "SMS", "from dispositif sidebar");
     API.smsContentLink({
       phone: tel,
       title: dispositif.titreInformatif,
