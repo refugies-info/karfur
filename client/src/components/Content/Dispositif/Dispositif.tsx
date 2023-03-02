@@ -13,6 +13,8 @@ import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import Button from "components/UI/Button";
 import ShareButtons from "components/Pages/dispositif/ShareButtons";
 import SMSForm from "components/Pages/dispositif/SMSForm";
+import { useFavorites } from "hooks";
+import { readAudio } from "lib/readAudio";
 
 interface Props {
   typeContenu?: ContentType;
@@ -23,6 +25,8 @@ const Dispositif = (props: Props) => {
   const theme = useSelector(themeSelector(dispositif?.theme));
   const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
   const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
+
+  const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(dispositif._id);
 
   const typeContenu = props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF;
   const color100 = theme?.colors.color100 || "#000";
@@ -65,11 +69,16 @@ const Dispositif = (props: Props) => {
           <Sponsors sponsors={dispositif.sponsors} />
         </div>
         <div className={styles.right}>
-          <Button onClick={() => {}} icon="play-circle" className="mb-2">
+          <Button onClick={() => readAudio(dispositif.titreInformatif, "fr")} icon="play-circle" className="mb-2">
             Écouter la fiche
           </Button>
-          <Button secondary onClick={() => {}} icon="star-outline" className="mb-2">
-            Ajouter aux favoris
+          <Button
+            secondary
+            onClick={isFavorite ? deleteFromFavorites : addToFavorites}
+            icon={isFavorite ? "star" : "star-outline"}
+            className="mb-2"
+          >
+            {isFavorite ? "Ajouté aux favoris" : "Ajouter aux favoris"}
           </Button>
 
           <ShareButtons />
