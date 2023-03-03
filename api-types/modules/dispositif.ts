@@ -179,6 +179,19 @@ export interface GetStatisticsResponse {
   nbUpdatedRecently?: number
 }
 
+/**
+ * @url GET /dispositifs/region-statistics
+ */
+export interface GetRegionStatisticsResponse {
+  regionFigures: {
+    region: string;
+    nbDispositifs: number;
+    nbDepartments: number;
+    nbDepartmentsWithDispo: number;
+  }[],
+  dispositifsWithoutGeoloc: Id[]
+}
+
 type Author = {
   _id: Id;
   username: string;

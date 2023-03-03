@@ -50,17 +50,6 @@ export interface Translation {
   isExpert?: boolean;
 }
 
-export interface RegionFigures {
-  region: string;
-  nbDispositifs: number;
-  nbDepartments: number;
-  nbDepartmentsWithDispo: number;
-}
-export interface NbDispositifsByRegion {
-  regionFigures: RegionFigures[];
-  dispositifsWithoutGeoloc: Id[];
-}
-
 export type TranslationFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
 export interface TranslationStatistics {
   nbTranslators?: number;

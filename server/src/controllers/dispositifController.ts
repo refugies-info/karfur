@@ -20,6 +20,7 @@ import {
   Languages,
   AddSuggestionDispositifRequest,
   ReadSuggestionDispositifRequest,
+  GetRegionStatisticsResponse,
 } from "api-types";
 import express, { Request as ExRequest } from "express";
 
@@ -52,11 +53,6 @@ import { deleteSuggestion } from "../workflows/dispositif/deleteSuggestion";
 const router = express.Router();
 
 /* TODO: use tsoa */
-// @ts-ignore FIXME
-router.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
-router.get("/getUserContributions", checkToken.check, getUserContributions);
-router.post("/exportFiches", exportFiches);
-router.post("/exportDispositifsGeolocalisation", exportDispositifsGeolocalisation);
 router.get("/getContentsForApp", getContentsForApp);
 // @ts-ignore FIXME
 router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
@@ -92,6 +88,12 @@ export class DispositifController extends Controller {
     return getStatistics(query);
   }
 
+  @Security("jwt")
+  @Get("/region-statistics")
+  public async getRegionStatistics(): ResponseWithData<GetRegionStatisticsResponse> {
+    return getNbDispositifsByRegion();
+  }
+
   @Security({
     jwt: ["admin"],
   })
@@ -125,6 +127,20 @@ export class DispositifController extends Controller {
     }));
   }
 
+  // export
+  @Security({
+    fromSite: [],
+  })
+  @Post("/export")
+  public async export(): Response {
+    return exportFiches();
+  }
+  @Post("/export-geoloc")
+  public async exportGeolocalisation(): Response {
+    return exportDispositifsGeolocalisation();
+  }
+
+  // updates
   @Security({
     fromSite: [],
   })

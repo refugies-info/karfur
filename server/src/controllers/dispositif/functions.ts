@@ -264,80 +264,6 @@ const countValidated = (obj, nbChamps = 0, type = null) => {
   return nbChamps;
 };
 
-const turnToLocalizedTitles = (result, locale) => {
-  ["titreInformatif", "titreMarque"].forEach((x) => {
-    if (result[x]) {
-      result[x] = result[x][locale] || result[x].fr || result[x];
-    }
-  });
-
-  return result;
-};
-
-const turnToLocalized = (result, locale) => {
-  pointeurs.forEach((x) => {
-    if (result[x]) {
-      result[x] = result[x][locale] || result[x].fr || result[x];
-    }
-  });
-
-  result.contenu.forEach((p) => {
-    if (p.title) {
-      p.title = p.title[locale] || p.title.fr || p.title;
-    }
-    if (p.content) {
-      p.content = p.content[locale] || p.content.fr || p.content;
-    }
-    if (p.children && p.children.length > 0) {
-      p.children.forEach((c) => {
-        if (c.title) {
-          c.title = c.title[locale] || c.title.fr || c.title;
-        }
-        if (c.content) {
-          c.content = c.content[locale] || c.content.fr || c.content;
-        }
-        if (c.contentTitle) {
-          c.contentTitle = c.contentTitle[locale] || c.contentTitle.fr || c.contentTitle;
-        }
-      });
-    }
-  });
-  return result;
-};
-
-// we get the specific language key we need by making a copy
-const turnToLocalizedNew = (resultObj, locale) => {
-  var result = JSON.parse(JSON.stringify(resultObj));
-  pointeurs.forEach((x) => {
-    if (result[x]) {
-      result[x] = result[x][locale] || result[x].fr || result[x];
-    }
-  });
-
-  result.contenu.forEach((p) => {
-    if (p.title) {
-      p.title = p.title[locale] || p.title.fr || p.title;
-    }
-    if (p.content) {
-      p.content = p.content[locale] || p.content.fr || p.content;
-    }
-    if (p.children && p.children.length > 0) {
-      p.children.forEach((c) => {
-        if (c.title) {
-          c.title = c.title[locale] || c.title.fr || c.title;
-        }
-        if (c.content) {
-          c.content = c.content[locale] || c.content.fr || c.content;
-        }
-        if (c.contentTitle) {
-          c.contentTitle = c.contentTitle[locale] || c.contentTitle.fr || c.contentTitle;
-        }
-      });
-    }
-  });
-  return result;
-};
-
 //Dupliqué dans traduction/lib : Node ne semble pas gérer cet export (circulaire)
 const turnHTMLtoJSON = (contenu, nbMots = 0) => {
   for (var i = 0; i < contenu.length; i++) {
@@ -397,7 +323,4 @@ export {
   markTradModifications,
   turnHTMLtoJSON,
   turnJSONtoHTML,
-  turnToLocalized,
-  turnToLocalizedNew,
-  turnToLocalizedTitles
 };

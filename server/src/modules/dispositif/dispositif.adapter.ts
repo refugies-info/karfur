@@ -1,7 +1,7 @@
 import _, { get } from "lodash";
 import moment from "moment";
 import logger from "../../logger";
-import { departmentRegionCorrespondency } from "./data";
+import { departmentRegionCorrespondency, RegionData } from "./data";
 import { isTitreInformatifObject } from "../../types/typeguards";
 import { Dispositif, DispositifId, UserId } from "../../typegoose";
 import { RefactorTodoError } from "../../errors";
@@ -141,45 +141,42 @@ export const removeUselessContent = (dispositifArray: Dispositif[]): Partial<Dis
 
 interface Result {
   _id: DispositifId;
-  department: string;
-  region: string;
+  department: string | null;
+  region: string | null;
 }
-interface CorrespondingData {
-  department: string;
-  region: string;
-}
-const getRegion = (correspondingData: CorrespondingData[], department: string) => {
+
+const getRegionName = (regionData: RegionData | undefined, department: string) => {
   if (department === "All") return "France";
-  return correspondingData.length > 0 ? correspondingData[0].region : "No geoloc";
+  return regionData.region || null;
 };
 
-export const adaptDispositifDepartement = (dispositifs: Dispositif[]): Dispositif[] => {
-  throw new RefactorTodoError();
-  // const result: Result[] = [];
+export const adaptDispositifDepartement = (dispositifs: Dispositif[]): Result[] => {
+  const result: Result[] = [];
 
-  // dispositifs.map((dispositif) => {
-  //   const selectZoneAction = dispositif.contenu[1].children.filter((child: any) => child.title === "Zone d'action");
-  //   const departments =
-  //     selectZoneAction.length > 0 && selectZoneAction[0].departments.length > 0
-  //       ? selectZoneAction[0].departments
-  //       : ["No geoloc"];
+  for (const dispositif of dispositifs) {
+    const location = dispositif.metadatas.location;
+    const departments = location && location.length > 0 ? location : null;
+    if (!departments) {
+      result.push({
+        _id: dispositif._id,
+        department: null,
+        region: null
+      });
+    } else {
+      for (const department of departments) {
+        const regionData = departmentRegionCorrespondency.find((data) => data.department === department);
+        const region = getRegionName(regionData, department);
+        result.push({
+          _id: dispositif._id,
+          department,
+          region
+        });
+      }
+    }
 
-  //   departments.map((department: string) => {
-  //     const correspondingData = departmentRegionCorrespondency.filter((data) => data.department === department);
+  }
 
-  //     const region = getRegion(correspondingData, department);
-
-  //     return result.push({
-  //       _id: dispositif._id,
-  //       department,
-  //       region
-  //     });
-  //   });
-
-  //   return;
-  // });
-
-  // return result;
+  return result;
 };
 
 export const getRegionFigures = (dispositifs: Result[]) => {
@@ -187,11 +184,11 @@ export const getRegionFigures = (dispositifs: Result[]) => {
   const groupedDataByDepartment = _.groupBy(dispositifs, "department");
 
   const regionArray = Object.keys(_.groupBy(departmentRegionCorrespondency, "region"));
-  const regionArrayFull = regionArray.concat(["No geoloc", "France"]);
+  const regionArrayFull = regionArray.concat([null, "France"]);
   return regionArrayFull.map((region) => {
-    const correspondingData = departmentRegionCorrespondency.filter((data) => data.region === region);
+    const regionsData = departmentRegionCorrespondency.filter((data) => data.region === region);
     let nbDepartmentsWithDispo = 0;
-    correspondingData.map((data) => {
+    regionsData.map((data) => {
       if (Object.keys(groupedDataByDepartment).includes(data.department)) {
         nbDepartmentsWithDispo++;
       }
@@ -200,7 +197,7 @@ export const getRegionFigures = (dispositifs: Result[]) => {
     return {
       region,
       nbDispositifs: groupedDataByRegion[region] ? groupedDataByRegion[region].length : 0,
-      nbDepartments: correspondingData.length,
+      nbDepartments: regionsData.length,
       nbDepartmentsWithDispo
     };
   });
@@ -210,12 +207,12 @@ export const getDepartementsFigures = (dispositifs: Result[]) => {
   const groupedDataByDepartment = _.groupBy(dispositifs, "department");
   const departementArray = Object.keys(_.groupBy(departmentRegionCorrespondency, "department"));
   return departementArray.map((dep) => {
-    const dataRegion = departmentRegionCorrespondency.filter((data) => data.department === dep);
+    const dataRegion = departmentRegionCorrespondency.find((data) => data.department === dep);
 
     return {
       departement: dep,
       nbDispositifs: groupedDataByDepartment[dep] ? groupedDataByDepartment[dep].length : 0,
-      region: dataRegion && dataRegion[0] ? dataRegion[0].region : "Pas de région"
+      region: dataRegion?.region || "Pas de région"
     };
   });
 };

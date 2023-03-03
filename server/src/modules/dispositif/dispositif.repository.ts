@@ -1,9 +1,9 @@
 import { Id, Picture, ContentType, SimpleDispositif, DispositifStatus, Languages } from "api-types";
 import { omit, pick } from "lodash";
 import { map } from "lodash/fp";
-import { FilterQuery, UpdateQuery } from "mongoose";
+import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
 import { Merci, Suggestion } from "../../typegoose/Dispositif";
-import { Dispositif, DispositifId, DispositifModel, UserId } from "../../typegoose";
+import { Dispositif, DispositifId, DispositifModel, Need, Theme, UserId } from "../../typegoose";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
@@ -22,6 +22,23 @@ export const getDispositifsFromDB = async () =>
 
 type DispositifKeys = keyof Dispositif;
 type DispositifFieldsRequest = Partial<Record<DispositifKeys, number>>;
+
+
+export const getDispositifsForExport = async (): Promise<Dispositif[]> => {
+  return DispositifModel.find({ status: "Actif" })
+    .populate<{
+      mainSponsor: { _id: Id; nom: string; picture: Picture },
+      needs: { _id: Id, fr: Need["fr"] },
+      themes: { _id: Id, short: Theme["short"] },
+      secondaryThemes: { _id: Id, short: Theme["short"] }[],
+    }>([
+      { path: "mainSponsor", select: "_id nom picture" },
+      { path: "needs", select: "_id fr" },
+      { path: "themes", select: "_id short" },
+      { path: "secondaryThemes", select: "_id short" },
+    ])
+    .lean()
+};
 
 export const getDispositifArray = async (
   query: FilterQuery<Dispositif>,
@@ -132,7 +149,7 @@ export const incrementDispositifViews = async (
   return DispositifModel.findOneAndUpdate({ id }, query);
 };
 
-export const getActiveDispositifsFromDBWithoutPopulate = (needFields: Object) =>
+export const getActiveDispositifsFromDBWithoutPopulate = (needFields: ProjectionType<Dispositif>) =>
   DispositifModel.find({ status: DispositifStatus.ACTIVE, typeContenu: ContentType.DISPOSITIF }, needFields);
 
 export const getDraftDispositifs = () =>

@@ -242,7 +242,7 @@ export const AdminContenu = () => {
   const exportToAirtable = async () => {
     try {
       setIsExportLoading(true);
-      await API.exportFiches();
+      await API.exportDispositifs();
       setIsExportLoading(false);
 
       Swal.fire({

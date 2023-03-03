@@ -4,7 +4,7 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { APIResponse, NbDispositifsByRegion, TranslationFacets, TranslationStatistics } from "types/interface";
+import { APIResponse, TranslationFacets, TranslationStatistics } from "types/interface";
 import {
   AddContactRequest,
   AddSuggestionDispositifRequest,
@@ -35,6 +35,7 @@ import {
   GetLanguagesResponse,
   GetLogResponse,
   GetNeedResponse,
+  GetRegionStatisticsResponse,
   GetStatisticsRequest,
   GetStatisticsResponse,
   GetStructureResponse,
@@ -247,8 +248,8 @@ const API = {
     const headers = getHeaders();
     return instance.get("/dispositifs/all", { headers });
   },
-  getNbDispositifsByRegion: (): Promise<Response<NbDispositifsByRegion>> => {
-    return instance.get("/dispositifs/getNbDispositifsByRegion");
+  getNbDispositifsByRegion: (): Promise<APIResponse<GetRegionStatisticsResponse>> => {
+    return instance.get("/dispositifs/region-statistics");
   },
   addDispositifViews: (id: string, body: AddViewsRequest): Promise<APIResponse> => {
     const headers = getHeaders();
@@ -396,13 +397,13 @@ const API = {
     const headers = getHeaders();
     return instance.post("/user/export", {}, { headers });
   },
-  exportFiches: () => {
+  exportDispositifs: (): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/exportFiches", {}, { headers });
+    return instance.post("/dispositifs/export", {}, { headers });
   },
-  exportDispositifsGeolocalisation: () => {
+  exportDispositifsGeolocalisation: (): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/exportDispositifsGeolocalisation", {}, { headers });
+    return instance.post("/dispositifs/export-geoloc", {}, { headers });
   },
 
   // Trads

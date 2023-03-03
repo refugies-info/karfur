@@ -266,6 +266,14 @@ export class Dispositif extends Base {
     return this.secondaryThemes;
   }
 
+  public getNeeds(): Need[] {
+    if (!this.needs) return [];
+    if (!isDocumentArray(this.needs)) {
+      throw new MustBePopulatedError("needs");
+    }
+    return this.needs;
+  }
+
   public getCreator(): User | null {
     if (!this.creatorId) return null;
     if (!isDocument(this.creatorId)) {
