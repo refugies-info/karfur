@@ -1,34 +1,45 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Image from "next/image";
+import { GetDispositifResponse } from "api-types";
+import { logger } from "logger";
 import { cls } from "lib/classname";
+import isInBrowser from "lib/isInBrowser";
+import { Event } from "lib/tracking";
+import API from "utils/API";
+import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
+import { userSelector } from "services/User/user.selectors";
 import Button from "components/UI/Button";
 import FeedbackIllu from "assets/dispositif/feedback-illu.svg";
 import ThumbUpIcon from "assets/dispositif/thumb-up.svg";
 import ThumbUpFillIcon from "assets/dispositif/thumb-up-fill.svg";
 import ThumbDownIcon from "assets/dispositif/thumb-down.svg";
 import styles from "./Feedback.module.scss";
-import isInBrowser from "lib/isInBrowser";
-import { Event } from "lib/tracking";
-import API from "utils/API";
-import { useSelector } from "react-redux";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { logger } from "logger";
 
 interface Props {
-  nbMercis: number;
+  mercis: GetDispositifResponse["merci"];
 }
 
 const Feedback = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const [didThank, setDidThank] = useState(false);
+  const [nbMercis, setNbMercis] = useState(props.mercis.length);
+
+  const userId = useSelector(userSelector)?.userId;
+  useEffect(() => {
+    setDidThank(!!props.mercis.find((m) => m.userId === userId));
+  }, [userId, props.mercis]);
 
   const sendPositiveFeedback = useCallback(() => {
     if (!dispositif || didThank) return;
     Event("Reaction", "Merci", "from dispositif");
     API.addDispositifMerci(dispositif._id.toString())
-      .then(() => setDidThank(true))
+      .then(() => {
+        setDidThank(true);
+        setNbMercis((c) => c + 1);
+      })
       .catch((e) => logger.error(e));
-  }, []);
+  }, [didThank, dispositif]);
 
   const sendNegativeFeedback = useCallback(() => {
     if (!isInBrowser()) return;
@@ -44,7 +55,7 @@ const Feedback = (props: Props) => {
         <p>Remerciez les contributeurs qui l’ont rédigée et traduite pour vous !</p>
         <Button secondary={!didThank} onClick={sendPositiveFeedback} className={cls(styles.btn, "me-2")}>
           <Image src={didThank ? ThumbUpFillIcon : ThumbUpIcon} width={24} height={24} alt="" className="me-2" />
-          {props.nbMercis + (didThank ? 1 : 0)} mercis
+          {nbMercis} mercis
         </Button>
         <Button secondary onClick={sendNegativeFeedback} className={styles.btn}>
           <Image src={ThumbDownIcon} width={24} height={24} alt="" />

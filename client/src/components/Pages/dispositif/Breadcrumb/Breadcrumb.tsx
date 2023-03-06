@@ -69,9 +69,14 @@ const Breadcrumb = ({ dispositif }: Props) => {
         </>
       )}
 
-      <span className={styles.current}>
-        {`${dispositif.titreMarque || ""} ${getDepartments(dispositif.metadatas.location)}`}
-      </span>
+      {dispositif.typeContenu === ContentType.DISPOSITIF && (
+        <span className={styles.current}>
+          {`${dispositif.titreMarque || ""} ${getDepartments(dispositif.metadatas.location)}`}
+        </span>
+      )}
+      {dispositif.typeContenu === ContentType.DEMARCHE && (
+        <span className={styles.current}>{dispositif.titreInformatif}</span>
+      )}
     </div>
   );
 };

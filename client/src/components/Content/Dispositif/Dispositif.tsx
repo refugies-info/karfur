@@ -55,7 +55,7 @@ const Dispositif = (props: Props) => {
               <Section accordions={dispositif?.next} sectionKey="next" color100={color100} color30={color30} />
             </div>
           )}
-          <Feedback nbMercis={dispositif.merci.length} />
+          <Feedback mercis={dispositif.merci} />
           <LinkedThemes theme={theme} secondaryThemes={secondaryThemes} needs={needs} />
           <Sponsors sponsors={dispositif.sponsors} />
 
