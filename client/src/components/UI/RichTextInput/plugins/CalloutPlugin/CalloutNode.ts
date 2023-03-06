@@ -1,5 +1,6 @@
 import { DOMConversionMap, DOMConversionOutput, EditorConfig, ElementNode, LexicalNode, NodeKey, SerializedElementNode, Spread } from 'lexical';
-
+import { getCalloutTranslationKey } from 'lib/contentParsing';
+import { i18n } from "next-i18next";
 export type CalloutLevel = "info" | "important";
 
 type SerializedCalloutNode = Spread<
@@ -44,6 +45,8 @@ export class CalloutNode extends ElementNode {
     const dom = document.createElement('div');
     dom.classList.add('callout', `callout--${this.__level}`);
     dom.setAttribute("data-callout", this.__level);
+    dom.setAttribute("data-title", i18n?.t(getCalloutTranslationKey(this.__level)) || "");
+
     return dom;
   }
 

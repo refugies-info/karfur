@@ -28,7 +28,7 @@
     }
 
     &::before {
-      content: "Bon à savoir";
+      content: attr(data-title);
       display: block;
       margin-bottom: u(1);
       @include dsfr-text("h6");
@@ -46,7 +46,7 @@
     @include pl-ltr(u(14));
 
     &::before {
-      content: "Important";
+      content: attr(data-title);
       display: block;
       margin-bottom: u(1);
       @include dsfr-text("h6");
