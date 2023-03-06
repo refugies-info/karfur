@@ -39,7 +39,6 @@ interface Props {
   array?: GetAllUsersResponse[] | GetActiveUsersResponse[];
   structures?: boolean;
   users?: boolean;
-  loupe?: boolean;
   className?: string;
   placeholder?: string;
   createNewCta?: string;
@@ -168,10 +167,10 @@ const SearchBar = (props: Props) => {
     placeholder: t(
       // @ts-ignore
       props.placeholder || "Chercher",
-      props.placeholder || "Chercher"
+      props.placeholder || "Chercher",
     ),
     value: value || "",
-    onChange: onChange
+    onChange: onChange,
   };
 
   return (
@@ -204,7 +203,6 @@ const SearchBar = (props: Props) => {
           </div>
         </NoResultContainer>
       )}
-      {props.loupe && <i className="fa fa-search text-grey loupe-btn" aria-hidden="true" />}
     </div>
   );
 };

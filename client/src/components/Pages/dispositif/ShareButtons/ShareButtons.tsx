@@ -65,8 +65,8 @@ const ShareButtons = () => {
         Imprimer
       </Tooltip>
 
-      <Button tertiary onClick={shareFacebook} icon="facebook-outline" className={styles.btn} />
-      <Button tertiary onClick={shareLinkedin} icon="linkedin-outline" className={styles.btn} />
+      <Button tertiary onClick={shareFacebook} icon="ri-facebook-circle-line" className={styles.btn} />
+      <Button tertiary onClick={shareLinkedin} icon="ri-linkedin-box-line" className={styles.btn} />
 
       {showToastLink && <Toast close={() => setShowToastLink(false)}>Lien copié !</Toast>}
     </div>

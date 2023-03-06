@@ -28,9 +28,12 @@ const getIconColor = (props: Props) => {
 };
 
 const DSFRButton = (props: Props) => {
+  const riIcon = props.icon?.startsWith("ri-") ? props.icon : undefined;
+  const evaIcon = !props.icon?.startsWith("ri-") ? props.icon : undefined;
+
   return (
     <Button
-      className={cls(styles.btn, props.className)}
+      className={cls(styles.btn, !!props.children && styles.small_icon, props.className)}
       secondary={props.secondary}
       tertiary={props.tertiary}
       hasBorder={props.hasBorder}
@@ -39,20 +42,16 @@ const DSFRButton = (props: Props) => {
       title={props.title}
       submit={props.submit}
       colors={props.colors}
+      icon={riIcon}
       //@ts-ignore
       id={props.id}
     >
-      <>
-        {props.icon && (
-          <EVAIcon
-            name={props.icon}
-            fill={getIconColor(props)}
-            size={!!props.children ? 16 : 24}
-            className={cls(!!props.children && "me-2")}
-          />
-        )}
-        {props.children}
-      </>
+      {(props.children || evaIcon) && (
+        <>
+          {evaIcon && <EVAIcon name={evaIcon} fill={getIconColor(props)} className={cls(!!props.children && "me-2")} />}
+          {props.children}
+        </>
+      )}
     </Button>
   );
 };
