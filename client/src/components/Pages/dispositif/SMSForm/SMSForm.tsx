@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
-import { Tooltip } from "reactstrap";
 import { colors } from "colors";
 import { useLocale } from "hooks";
 import { cls } from "lib/classname";
@@ -10,6 +9,7 @@ import { isValidPhone } from "lib/validateFields";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Toast from "components/UI/Toast";
+import Tooltip from "components/UI/Tooltip";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import API from "utils/API";
 import LangueMenu from "../LangueMenu";
@@ -23,9 +23,6 @@ const SMSForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [showToast, setShowToast] = useState(false);
   const dispositif = useSelector(selectedDispositifSelector);
-
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-  const toggle = () => setTooltipOpen((o) => !o);
 
   const sendSMS = () => {
     setError(null);
@@ -53,9 +50,7 @@ const SMSForm = () => {
       <p className={styles.title}>
         Envoyer par SMS
         <EVAIcon name="info-outline" size={20} fill="black" className="ms-2" id="SMSTooltip" />
-        <Tooltip target="SMSTooltip" isOpen={tooltipOpen} toggle={toggle}>
-          Vous restez anonyme : le SMS est envoyé avec un numéro Réfugiés.info.
-        </Tooltip>
+        <Tooltip target="SMSTooltip">Vous restez anonyme : le SMS est envoyé avec un numéro Réfugiés.info.</Tooltip>
       </p>
       <div className={styles.input}>
         <input

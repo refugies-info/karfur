@@ -1,19 +1,15 @@
 import React, { useState } from "react";
-import { Tooltip } from "reactstrap";
 import { useSelector } from "react-redux";
 import { ContentType } from "api-types";
 import { Event } from "lib/tracking";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import Toast from "components/UI/Toast";
+import Tooltip from "components/UI/Tooltip";
 import styles from "./ShareButtons.module.scss";
 
 const ShareButtons = () => {
   const dispositif = useSelector(selectedDispositifSelector);
-
-  const [tooltipEmailOpen, setTooltipEmailOpen] = useState(false);
-  const [tooltipCopyOpen, setTooltipCopyOpen] = useState(false);
-  const [tooltipPrintOpen, setTooltipPrintOpen] = useState(false);
 
   const shareEmail = () => {
     if (!dispositif) return;
@@ -55,17 +51,17 @@ const ShareButtons = () => {
   return (
     <div className={styles.container}>
       <Button tertiary onClick={shareEmail} icon="email-outline" className={styles.btn} id="EmailTooltip" />
-      <Tooltip target="EmailTooltip" isOpen={tooltipEmailOpen} toggle={() => setTooltipEmailOpen((o) => !o)}>
+      <Tooltip target="EmailTooltip" placement="bottom">
         Envoyer par email
       </Tooltip>
 
       <Button tertiary onClick={copyLink} icon="copy-outline" className={styles.btn} id="CopyTooltip" />
-      <Tooltip target="CopyTooltip" isOpen={tooltipCopyOpen} toggle={() => setTooltipCopyOpen((o) => !o)}>
+      <Tooltip target="CopyTooltip" placement="bottom">
         Copier le lien de la fiche
       </Tooltip>
 
       <Button tertiary onClick={print} icon="printer-outline" className={styles.btn} id="PrintTooltip" />
-      <Tooltip target="PrintTooltip" isOpen={tooltipPrintOpen} toggle={() => setTooltipPrintOpen((o) => !o)}>
+      <Tooltip target="PrintTooltip" placement="bottom">
         Imprimer
       </Tooltip>
 

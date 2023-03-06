@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Tooltip } from "reactstrap";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import { ReactionModal } from "components/Modals";
+import Tooltip from "components/UI/Tooltip";
 import Toast from "components/UI/Toast";
 import styles from "./SectionButtons.module.scss";
 
@@ -15,9 +15,6 @@ const SectionButtons = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
 
   const [showToast, setShowToast] = useState(false);
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-  const toggle = () => setTooltipOpen((o) => !o);
-
   const [showReactionModal, setShowReactionModal] = useState(false);
 
   const tooltipId = `section_${props.id.replace(".", "_")}`;
@@ -32,7 +29,7 @@ const SectionButtons = (props: Props) => {
         onClick={() => setShowReactionModal(true)}
       />
 
-      <Tooltip target={tooltipId} isOpen={tooltipOpen} toggle={toggle} placement="right">
+      <Tooltip target={tooltipId} placement="right">
         Réagir
       </Tooltip>
 
