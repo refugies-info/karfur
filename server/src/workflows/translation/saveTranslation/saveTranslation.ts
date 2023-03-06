@@ -22,7 +22,6 @@ const saveTranslation = (
     _traduction.userId = user._id;
 
     _traduction.avancement = Traductions.computeAvancement(dispositif, _traduction);
-    if (user.isExpert()) _traduction.validatorId = user._id;
 
     const wordsCount = _traduction.countWords();
 

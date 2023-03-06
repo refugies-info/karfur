@@ -45,8 +45,6 @@ export class TranslationContent {
     important?: string;
     duration?: string;
   };
-
-  public created_at: Date;
 }
 
 export interface GetTraductionsForReview {
@@ -86,7 +84,6 @@ export interface SaveTranslationResponse {
     userId: string;
     language: Languages;
     translated: Partial<TranslationContent>;
-    // public validatorId: Ref<User>;
     timeSpent: number;
     avancement: number;
     toReview?: string[];
