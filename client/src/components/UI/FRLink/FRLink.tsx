@@ -10,13 +10,14 @@ interface Props {
   children: string | React.ReactNode;
   className?: string;
   icon?: string;
+  target?: React.HTMLAttributeAnchorTarget;
 }
 
 const FRLink = (props: Props) => {
   return (
     <DSFRLink
       as={
-        <Link href={props.href}>
+        <Link href={props.href} target={props.target}>
           {props.icon && (
             <EVAIcon name={props.icon} size={20} fill={styles.lightTextActionHighBlueFrance} className="me-2" />
           )}

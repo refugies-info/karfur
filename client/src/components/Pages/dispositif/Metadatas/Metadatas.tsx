@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { GetDispositifResponse } from "api-types";
+import { ContentType, GetDispositifResponse } from "api-types";
 import {
   getAge,
   getAgeLink,
@@ -29,25 +29,34 @@ interface Props {
   titreMarque?: GetDispositifResponse["titreMarque"];
   mainSponsor: GetDispositifResponse["mainSponsor"];
   color: string;
+  typeContenu: ContentType;
 }
 
-const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
+const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: Props) => {
   if (!metadatas) return <></>;
   return (
     <div>
       <Card
         title={
-          <>
-            Avec{" "}
-            <span className={styles.marque} style={{ backgroundColor: color }}>
-              {titreMarque}
-            </span>
-          </>
+          typeContenu === ContentType.DISPOSITIF ? (
+            <>
+              Avec{" "}
+              <span className={styles.marque} style={{ backgroundColor: color }}>
+                {titreMarque}
+              </span>
+            </>
+          ) : (
+            "Proposé par"
+          )
         }
         items={[
           {
-            label: "Proposé par",
-            content: <FRLink href={getSponsorLink(mainSponsor?._id.toString())}>{mainSponsor?.nom}</FRLink>,
+            label: typeContenu === ContentType.DISPOSITIF ? "Proposé par" : undefined,
+            content: (
+              <FRLink target="_blank" href={getSponsorLink(mainSponsor?._id.toString())}>
+                {mainSponsor?.nom}
+              </FRLink>
+            ),
             icon: (
               <Image
                 src={mainSponsor?.picture.secure_url || ""}
@@ -67,14 +76,21 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
           { label: "Statut", content: getPublic(metadatas.public), icon: <StatusIcon color={color} /> },
           {
             label: "Français demandé",
-            content: (
-              <FRLink href={getFrenchLevelLink(metadatas.frenchLevel)}>{metadatas.frenchLevel?.join(", ")}</FRLink>
-            ),
+            content:
+              !metadatas.frenchLevel || metadatas.frenchLevel.length === 0 ? null : (
+                <FRLink target="_blank" href={getFrenchLevelLink(metadatas.frenchLevel)}>
+                  {metadatas.frenchLevel?.join(", ")}
+                </FRLink>
+              ),
             icon: <FrenchLevelIcon color={color} />,
           },
           {
             label: "Âge demandé",
-            content: <FRLink href={getAgeLink(metadatas.age)}>{getAge(metadatas.age)}</FRLink>,
+            content: (
+              <FRLink target="_blank" href={getAgeLink(metadatas.age)}>
+                {getAge(metadatas.age)}
+              </FRLink>
+            ),
             icon: <AgeIcon color={color} />,
           },
         ]}
@@ -99,18 +115,19 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color }: Props) => {
         title="Zone d'action"
         items={[
           {
-            content: (
-              <>
-                {metadatas.location?.map((dep, i) => (
-                  <>
-                    <FRLink key={i} href={getLocationLink(dep)}>
-                      {dep}
-                    </FRLink>
-                    <br />
-                  </>
-                ))}
-              </>
-            ),
+            content:
+              typeContenu === ContentType.DISPOSITIF ? (
+                <>
+                  {metadatas.location?.map((dep, i) => (
+                    <>
+                      <FRLink key={i} target="_blank" href={getLocationLink(dep)}>
+                        {dep}
+                      </FRLink>
+                      <br />
+                    </>
+                  ))}
+                </>
+              ) : null,
             icon: <LocationIcon color={color} />,
           },
         ]}

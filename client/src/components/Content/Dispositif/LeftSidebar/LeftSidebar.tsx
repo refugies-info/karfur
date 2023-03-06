@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { ContentType } from "api-types";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
 import { Metadatas } from "components/Pages/dispositif";
@@ -15,6 +16,7 @@ const Dispositif = () => {
       titreMarque={dispositif?.titreMarque}
       mainSponsor={dispositif?.mainSponsor}
       color={color100}
+      typeContenu={dispositif?.typeContenu || ContentType.DISPOSITIF}
     />
   );
 };
