@@ -5,14 +5,13 @@ import { getRoleByName } from "../../../controllers/role/role.repository";
 import {
   getDispositifByIdWithMainSponsor,
   updateDispositifInDB,
-  createDispositifInDB
+  createDispositifInDB,
 } from "../../../modules/dispositif/dispositif.repository";
-// import { updateTraductions } from "../../../modules/traductions/updateTraductions";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import {
   getStructureFromDB,
-  updateAssociatedDispositifsInStructure
+  updateAssociatedDispositifsInStructure,
 } from "../../../modules/structure/structure.repository";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
 // import { computePossibleNeeds } from "../../../modules/needs/needs.service";
@@ -42,7 +41,7 @@ export const getNewStatus = (
   dispositif: Request | null,
   structure: Structure | null,
   user: User | null,
-  saveType: "auto" | "validate" | "save"
+  saveType: "auto" | "validate" | "save",
 ): Dispositif["status"] => {
   // keep draft if already draft
   if (dispositif.status === DispositifStatus.DRAFT && saveType !== "validate") {
@@ -62,7 +61,7 @@ export const getNewStatus = (
       "",
       "En attente non prioritaire", // = Sans structure
       "Brouillon",
-      "Accepté structure" // = Accepté
+      "Accepté structure", // = Accepté
     ].includes(dispositif.status)
   ) {
     return dispositif.status as Dispositif["status"];
@@ -85,7 +84,7 @@ export const getNewStatus = (
 
 /**
  * update or create a dispositif
- * if update : updateTraductions, updateDispositif, updateContentInAirtable and updateLanguageAvancement
+ * if update : updateDispositif, updateContentInAirtable and updateLanguageAvancement
  * if create : create dispo in db and add role and contrib to creato
  * for both : update dispositif associes in structure
  */
@@ -106,7 +105,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       structure = await getStructureFromDB(
         isDocument(dispositif.mainSponsor) ? dispositif.mainSponsor?._id : dispositif.mainSponsor,
         false,
-        { membres: 1 }
+        { membres: 1 },
       );
     }
     dispositif.status = getNewStatus(
@@ -114,11 +113,11 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       req.body,
       structure,
       req.user,
-      req.body.saveType
+      req.body.saveType,
     );
 
     logger.info("[addDispositif] received a dispositif", {
-      dispositifId: req.body.dispositifId
+      dispositifId: req.body.dispositifId,
     });
 
     let dispResult: Dispositif;
@@ -138,21 +137,8 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       }
 
       logger.info("[addDispositif] updating a dispositif", {
-        dispositifId: req.body.dispositifId
+        dispositifId: req.body.dispositifId,
       });
-
-      // if (originalDispositif.needs) {
-      //   // if a need of the content has a theme that is not a theme of the content we remove the need
-      //   const newNeeds = await computePossibleNeeds(originalDispositif.needs, [
-      //     dispositif.theme._id,
-      //     ...dispositif.secondaryThemes.map((t) => t._id)
-      //   ]);
-      //   dispositif.needs = newNeeds;
-      // }
-
-      // if (dispositif.contenu) {
-      // await updateTraductions(originalDispositif, dispositif, req.userId);
-      // }
 
       if (dispositif.status === "Actif" && originalDispositif.status !== "Actif") {
         dispositif.publishedAt = new Date();
@@ -179,7 +165,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       // when publish or modify a dispositif, update table in airtable to follow the traduction
       if (dispResult.status === "Actif") {
         logger.info("[addDispositif] dispositif is Actif", {
-          dispositifId: dispResult._id
+          dispositifId: dispResult._id,
         });
         try {
           await addOrUpdateDispositifInContenusAirtable(
@@ -190,7 +176,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
             dispResult.typeContenu,
             null,
             dispResult.getDepartements(),
-            false
+            false,
           );
         } catch (error) {
           logger.error("[addDispositif] error while updating contenu in airtable", { error: error.message });
@@ -201,7 +187,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
         await updateLanguagesAvancement();
       } catch (error) {
         logger.error("[addDispositif] error while updating avancement", {
-          error: error.message
+          error: error.message,
         });
       }
 
@@ -217,13 +203,13 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
           await sendMailToStructureMembersWhenDispositifEnAttente(dispositif);
         } catch (error) {
           logger.error("[addDispositif] error while sending mail to structure when new fiche en attente", {
-            error: error.message
+            error: error.message,
           });
         }
       }
     } else {
       logger.info("[addDispositif] creating a new dispositif", {
-        title: dispositif.translations.fr.content.titreInformatif
+        title: dispositif.translations.fr.content.titreInformatif,
       });
       if (dispositif.status === "Actif") {
         throw new Error("NOT_AUTHORIZED");
@@ -244,7 +230,11 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
 
       const contribRole = await getRoleByName("Contrib");
       await addRoleAndContribToUser(req.userId, contribRole._id, dispResult._id);
-      if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.status === "En attente" && dispositif.mainSponsor) {
+      if (
+        dispositif.typeContenu === ContentType.DISPOSITIF &&
+        dispositif.status === "En attente" &&
+        dispositif.mainSponsor
+      ) {
         try {
           logger.info("[addDispositif] send mail to structure member when new dispositif en attente");
 
@@ -252,7 +242,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
           // send mail FicheEnAttenteTo
         } catch (error) {
           logger.error("[addDispositif] error while sending mail to structure when new fiche en attente", {
-            error: error.message
+            error: error.message,
           });
         }
       }
@@ -265,14 +255,14 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       } catch (error) {
         logger.error("[updateAssociatedDispositifsInStructure] error whil updating structures", {
           dispositifId: dispResult._id,
-          sponsorId: dispResult.mainSponsor
+          sponsorId: dispResult.mainSponsor,
         });
       }
     }
 
     return res.status(200).json({
       text: "Succès",
-      data: dispResult
+      data: dispResult,
     });
   } catch (error) {
     logger.error("[addDispositif] error", { error: error.message });
