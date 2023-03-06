@@ -29,9 +29,6 @@ import locale from "utils/locale";
 import { getPath, PathNames } from "routes";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
-import { BookmarkedModal } from "components/Modals";
-import { isFavoriteModalVisibleSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
-import { toggleUserFavoritesModalActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import styles from "./Layout.module.scss";
 import AppLoader from "./AppLoader";
@@ -169,8 +166,6 @@ const Layout = (props: Props) => {
     }
   };
 
-  const isFavoriteModalVisible = useSelector(isFavoriteModalVisibleSelector);
-
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <Navbar />
@@ -189,13 +184,6 @@ const Layout = (props: Props) => {
         isLanguagesLoading={isLanguagesLoading}
       />
       <MobileAppModal show={!!showMobileModal} toggle={toggleMobileAppModal} />
-      <BookmarkedModal
-        success={!!user}
-        show={isFavoriteModalVisible}
-        toggle={() => {
-          dispatch(toggleUserFavoritesModalActionCreator(!isFavoriteModalVisible));
-        }}
-      />
       <SubscribeNewsletterModal />
     </div>
   );

@@ -1,4 +1,3 @@
-import BookmarkedModal from "./BookmarkedModal/BookmarkedModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
 import ReactionModal from "./ReactionModal/ReactionModal";
 import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
@@ -14,7 +13,6 @@ import { DispositifCreateModal } from "./DispositifCreateModal/DispositifCreateM
 import { ShareContentOnMobileModal } from "./ShareContentOnMobileModal/ShareContentOnMobileModal";
 
 export {
-  BookmarkedModal,
   DispositifCreateModal,
   LanguageModal,
   ReactionModal,

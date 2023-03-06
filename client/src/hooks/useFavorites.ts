@@ -3,7 +3,6 @@ import API from "utils/API";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { useCallback, useEffect, useState } from "react";
 import { fetchUserActionCreator } from "services/User/user.actions";
-import { toggleUserFavoritesModalActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { GetUserInfoResponse, Id } from "api-types";
 
 const isContentFavorite = (userDetails: GetUserInfoResponse | null, id: Id) => {
@@ -26,10 +25,7 @@ const useFavorites = (contentId: Id) => {
       if (isFavorite) return;
       API.addUserFavorite({ dispositifId: contentId.toString() }).then(() => {
         dispatch(fetchUserActionCreator());
-        dispatch(toggleUserFavoritesModalActionCreator(true));
       });
-    } else {
-      dispatch(toggleUserFavoritesModalActionCreator(true));
     }
   }, [userDetails, contentId, isFavorite, dispatch]);
 
