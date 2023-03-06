@@ -1,7 +1,7 @@
 import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Languages } from "api-types";
 import { difference, flattenDeep, get, intersection, isEmpty, isString } from "lodash";
-import { MustBePopulatedError } from "src/errors";
+import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import {
   DemarcheContent,
