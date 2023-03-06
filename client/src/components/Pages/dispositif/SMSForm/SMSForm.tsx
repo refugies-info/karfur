@@ -13,6 +13,7 @@ import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import API from "utils/API";
 import styles from "./SMSForm.module.scss";
+import Toast from "components/UI/Toast";
 
 const SMSForm = () => {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ const SMSForm = () => {
   const [error, setError] = useState<string | null>(null);
   const languages = useSelector(allLanguesSelector);
   const [open, setOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const dispositif = useSelector(selectedDispositifSelector);
 
   const onClickItem = (language: GetLanguagesResponse) => {
@@ -41,6 +43,7 @@ const SMSForm = () => {
           setTel("");
           setSelectedLn("fr");
           setError(null);
+          setShowToast(true);
         })
         .catch((e) => setError(e.message));
     } else {
@@ -97,6 +100,7 @@ const SMSForm = () => {
           <p>{error}</p>
         </div>
       )}
+      {showToast && <Toast close={() => setShowToast(false)}>SMS envoyé !</Toast>}
     </div>
   );
 };

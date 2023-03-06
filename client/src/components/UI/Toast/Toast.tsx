@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Toast as ToastTS, ToastBody } from "reactstrap";
 import styles from "./Toast.module.scss";
@@ -9,8 +9,20 @@ interface Props {
 }
 
 const Toast = (props: Props) => {
+  const id = useRef<any | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(true);
+    id.current = setTimeout(() => {
+      props.close();
+    }, 300000);
+
+    return () => clearTimeout(id.current);
+  }, []);
+
   return (
-    <ToastTS className={styles.container}>
+    <ToastTS className={styles.container} isOpen={isOpen} fade={false}>
       <ToastBody className={styles.body}>
         <EVAIcon name="checkmark-circle-2" fill={styles.lightTextDefaultSuccess} size={24} className="me-2" />
         {props.children}

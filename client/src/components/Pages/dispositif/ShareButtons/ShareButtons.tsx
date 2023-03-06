@@ -42,7 +42,7 @@ const ShareButtons = () => {
       <Button tertiary onClick={print} icon="printer-outline" className={styles.btn} />
       <Button tertiary onClick={shareFacebook} icon="facebook-outline" className={styles.btn} />
 
-      {showToastLink && <Toast close={() => setShowToastLink(false)}>Lien copié</Toast>}
+      {showToastLink && <Toast close={() => setShowToastLink(false)}>Lien copié !</Toast>}
     </div>
   );
 };

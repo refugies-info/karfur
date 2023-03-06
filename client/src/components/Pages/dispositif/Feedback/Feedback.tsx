@@ -10,6 +10,7 @@ import API from "utils/API";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { userSelector } from "services/User/user.selectors";
 import Button from "components/UI/Button";
+import Toast from "components/UI/Toast";
 import FeedbackIllu from "assets/dispositif/feedback-illu.svg";
 import ThumbUpIcon from "assets/dispositif/thumb-up.svg";
 import ThumbUpFillIcon from "assets/dispositif/thumb-up-fill.svg";
@@ -23,6 +24,7 @@ interface Props {
 const Feedback = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const [didThank, setDidThank] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [nbMercis, setNbMercis] = useState(props.mercis.length);
 
   const userId = useSelector(userSelector)?.userId;
@@ -36,6 +38,7 @@ const Feedback = (props: Props) => {
     API.addDispositifMerci(dispositif._id.toString())
       .then(() => {
         setDidThank(true);
+        setShowToast(true);
         setNbMercis((c) => c + 1);
       })
       .catch((e) => logger.error(e));
@@ -61,6 +64,8 @@ const Feedback = (props: Props) => {
           <Image src={ThumbDownIcon} width={24} height={24} alt="" />
         </Button>
       </div>
+
+      {showToast && <Toast close={() => setShowToast(false)}>Merci pour votre retour !</Toast>}
     </div>
   );
 };
