@@ -1,44 +1,50 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useTranslation } from "next-i18next";
-import {colors} from "colors";
-
+import { colors } from "colors";
+import { Id } from "api-types";
+import API from "utils/API";
+import { handleApiError } from "lib/handleApiErrors";
 import FButton from "../../UI/FButton/FButton";
 import styles from "./ReactionModal.module.scss";
 
 interface Props {
-  showModals: any
-  toggleModal: any
-  suggestion: any
-  onChange: any
-  onValidate: any
+  toggle: () => void;
+  callback: () => void;
+  dispositifId?: Id;
+  sectionKey: string;
 }
 
 const ReactionModal = (props: Props) => {
   const { t } = useTranslation();
-  const isOpen = props.showModals.reaction;
-  let name = "reaction";
-  let fieldName = "suggestions";
+
+  const [suggestion, setSuggestion] = useState("");
+  const submit = useCallback(async () => {
+    if (!props.dispositifId) return;
+    API.addDispositifSuggestion(props.dispositifId.toString(), {
+      suggestion,
+      key: props.sectionKey,
+    })
+      .then(() => {
+        props.callback();
+        props.toggle();
+      })
+      .catch(() => {
+        handleApiError({
+          title: "Oups, une erreur s'est produite",
+          text: "Veuillez réessayer ou contacter un administrateur",
+        });
+      });
+  }, [suggestion, props.dispositifId, props.sectionKey]);
 
   return (
-    <Modal
-      isOpen={isOpen}
-      toggle={() => props.toggleModal(false, name)}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-    >
-      <ModalHeader
-        className={styles.modal_header}
-        toggle={() => props.toggleModal(false, name)}
-      >
+    <Modal isOpen={true} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
+      <ModalHeader className={styles.modal_header} toggle={props.toggle}>
         {t("Dispositif.Envoyer une réaction", "Envoyer une réaction")}
       </ModalHeader>
       <ModalBody className={styles.modal_body}>
         <div className={styles.inner}>
-          {t(
-            "Dispositif.Dites nous ce que vous pensez",
-            "Dites nous ce que vous pensez :"
-          )}
+          {t("Dispositif.Dites nous ce que vous pensez", "Dites nous ce que vous pensez :")}
         </div>
 
         <Input
@@ -46,9 +52,8 @@ const ReactionModal = (props: Props) => {
           className={styles.input}
           placeholder="J'écris ici ma réaction"
           rows={5}
-          value={props.suggestion}
-          onChange={props.onChange}
-          id="suggestion"
+          value={suggestion}
+          onChange={(e: any) => setSuggestion(e.target.value)}
         />
       </ModalBody>
       <ModalFooter className={styles.modal_footer}>
@@ -63,11 +68,7 @@ const ReactionModal = (props: Props) => {
         >
           {t("Login.Centre d'aide", "Centre d'aide")}
         </FButton>
-        <FButton
-          type="validate"
-          name="checkmark"
-          onClick={() => props.onValidate(name, fieldName)}
-        >
+        <FButton type="validate" name="checkmark" onClick={submit}>
           {t("Envoyer", "Envoyer")}
         </FButton>
       </ModalFooter>

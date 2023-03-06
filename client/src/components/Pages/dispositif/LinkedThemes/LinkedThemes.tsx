@@ -1,12 +1,12 @@
-import { GetNeedResponse, GetThemeResponse } from "api-types";
-import { theme } from "components/UI/FButton/FButton.module.scss";
-import ThemeIcon from "components/UI/ThemeIcon";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
+import Image from "next/image";
+import Link from "next/link";
+import { GetNeedResponse, GetThemeResponse } from "api-types";
 import { getPath } from "routes";
 import { themesSelector } from "services/Themes/themes.selectors";
+import ThemeIcon from "components/UI/ThemeIcon";
+import SectionButtons from "../SectionButtons";
 import styles from "./LinkedThemes.module.scss";
 
 interface ButtonProps {
@@ -63,6 +63,7 @@ const LinkedThemes = (props: Props) => {
           </Button>
         ))}
       </div>
+      <SectionButtons id="themes" />
     </div>
   );
 };

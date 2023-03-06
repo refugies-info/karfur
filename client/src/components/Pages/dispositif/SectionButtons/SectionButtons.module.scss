@@ -9,7 +9,7 @@ $btnSize: u(8);
 .container {
   position: absolute;
   top: 0;
-  @include r-ltr(u(-10));
+  @include r-ltr(-54px);
 
   .btn {
     width: $btnSize;

@@ -6,6 +6,7 @@ import { Button, Collapse } from "reactstrap";
 import styled from "styled-components";
 import PageContext from "utils/pageContext";
 import RichText from "../RichText";
+import SectionButtons from "../SectionButtons";
 import TextInput from "../TextInput";
 import styles from "./Accordions.module.scss";
 
@@ -60,6 +61,7 @@ const Accordions = ({ content, sectionKey, color100, color30 }: Props) => {
                     <RichText id={`${sectionKey}.${section[0]}.text`} value={section[1].text} />
                   </div>
                 </Collapse>
+                <SectionButtons id={`${sectionKey}.${section[0]}`} />
               </div>
             );
           })}
