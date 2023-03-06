@@ -1,0 +1,70 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+
+.dropdown {
+  & > button {
+    background: transparent;
+    color: $gray90;
+    border: none;
+    padding: u(2) u(3);
+    position: relative;
+    white-space: nowrap;
+
+    &:active {
+      background-color: inherit !important;
+      border-color: inherit !important;
+      color: inherit !important;
+    }
+  }
+
+  .menu {
+    box-shadow: 0 4px 12px 0 #00001229;
+    padding: u(2);
+    border-radius: u(2);
+    margin-top: u(2);
+    margin-bottom: u(2);
+
+    .item {
+      display: flex;
+      align-items: center;
+      padding: u(2) u(3);
+      border-radius: u(2) !important;
+      margin-bottom: u(1);
+      border: none;
+      @include text("normal");
+
+      &:hover {
+        background: $gray40b;
+        color: $dark;
+      }
+      &:focus {
+        outline: none;
+      }
+      :global(.fi) {
+        margin: 0 u(2) 0 0;
+        @include rtl() {
+          margin: 0 0 0 u(2);
+        }
+      }
+
+      &.selected {
+        background: $bleuCharte !important;
+        color: $white !important;
+      }
+    }
+    .item_locale {
+      @include mr-ltr(u(1));
+    }
+  }
+}
+
+.flag {
+  width: 20px;
+  height: 15px;
+  border-radius: 2px;
+  outline: 1px solid $white;
+  background-size: cover;
+}

@@ -142,6 +142,7 @@ export type GetDispositifResponse = {
   merci: { created_at: Date, userId?: Id }[];
   metadatas: Metadatas;
   map: Poi[];
+  availableLanguages: string[];
 };
 
 /**

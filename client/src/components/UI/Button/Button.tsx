@@ -5,6 +5,7 @@ import { cls } from "lib/classname";
 import styles from "./Button.module.scss";
 
 interface Props {
+  id?: string;
   secondary?: boolean;
   tertiary?: boolean;
   hasBorder?: boolean;
@@ -38,6 +39,8 @@ const DSFRButton = (props: Props) => {
       title={props.title}
       submit={props.submit}
       colors={props.colors}
+      //@ts-ignore
+      id={props.id}
     >
       <>
         {props.icon && (

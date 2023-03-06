@@ -1,34 +1,31 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
-import { GetLanguagesResponse } from "api-types";
+import { Tooltip } from "reactstrap";
 import { colors } from "colors";
+import { useLocale } from "hooks";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { isValidPhone } from "lib/validateFields";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
+import Toast from "components/UI/Toast";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import API from "utils/API";
+import LangueMenu from "../LangueMenu";
 import styles from "./SMSForm.module.scss";
-import Toast from "components/UI/Toast";
 
 const SMSForm = () => {
   const { t } = useTranslation();
-  const [selectedLn, setSelectedLn] = useState<string>("fr");
+  const locale = useLocale();
+  const [selectedLn, setSelectedLn] = useState<string>(locale);
   const [tel, setTel] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const languages = useSelector(allLanguesSelector);
-  const [open, setOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const dispositif = useSelector(selectedDispositifSelector);
 
-  const onClickItem = (language: GetLanguagesResponse) => {
-    if (language.i18nCode) setSelectedLn(language.i18nCode);
-    setOpen(false);
-  };
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const toggle = () => setTooltipOpen((o) => !o);
 
   const sendSMS = () => {
     setError(null);
@@ -55,7 +52,10 @@ const SMSForm = () => {
     <div className={styles.container}>
       <p className={styles.title}>
         Envoyer par SMS
-        <EVAIcon name="info-outline" size={20} fill="black" className="ms-2" />
+        <EVAIcon name="info-outline" size={20} fill="black" className="ms-2" id="SMSTooltip" />
+        <Tooltip target="SMSTooltip" isOpen={tooltipOpen} toggle={toggle}>
+          Vous restez anonyme : le SMS est envoyé avec un numéro Réfugiés.info.
+        </Tooltip>
       </p>
       <div className={styles.input}>
         <input
@@ -66,30 +66,7 @@ const SMSForm = () => {
           className={cls(!!error && styles.input_error)}
         />
         <span className={styles.divider} />
-        <Dropdown isOpen={open} direction="down" toggle={() => setOpen((o) => !o)} className={styles.dropdown}>
-          <DropdownToggle>
-            en&nbsp;
-            <span className={cls(styles.flag, `ms-2 fi fi-${selectedLn}`)} title={selectedLn} id={selectedLn} />
-          </DropdownToggle>
-          <DropdownMenu className={styles.menu}>
-            {languages.map((ln, i) => (
-              <DropdownItem
-                key={i}
-                onClick={() => onClickItem(ln)}
-                className={cls(styles.item, ln.i18nCode === selectedLn && styles.selected)}
-                toggle={false}
-              >
-                <span
-                  className={cls(styles.flag, `me-2 fi fi-${ln.langueCode}`)}
-                  title={ln.langueCode}
-                  id={ln.langueCode}
-                />
-                <span className={styles.item_locale}>{ln.langueFr} -</span>
-                <span>{ln.langueLoc}</span>
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </Dropdown>
+        <LangueMenu label="en" selectedLn={selectedLn} setSelectedLn={setSelectedLn} />
       </div>
       <Button icon="paper-plane-outline" className={styles.submit} disabled={!tel} onClick={sendSMS}>
         Envoyer
