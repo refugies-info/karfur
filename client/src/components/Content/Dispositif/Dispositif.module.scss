@@ -30,6 +30,14 @@
   border-radius: u(2) u(2) 0 0;
   padding: u(10) u(20);
   margin-top: -142px;
+
+  @media print {
+    margin-right: u(10);
+
+    :global(.collapse:not(.show)) {
+      display: block !important;
+    }
+  }
 }
 .right {
   width: 320px;
@@ -38,6 +46,10 @@
     padding: u(10);
     position: sticky;
     top: 0;
+  }
+
+  @media print {
+    display: none;
   }
 }
 
