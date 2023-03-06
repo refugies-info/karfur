@@ -111,7 +111,7 @@ instance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (axios.isCancel(error)) {
-      logger.error("Error: ", { error: error.message });
+      logger.error("Error (request cancelled): ", { error: error.message });
     }
     return Promise.reject(error);
   },
@@ -480,16 +480,33 @@ const API = {
   },
 
   // tts
-  getTts: (body: TtsRequest): Promise<APIResponse<any>> => {
+  getTts: (body: TtsRequest): Promise<any> => {
     const headers = getHeaders();
-    return instance.post("/tts", body, {
-      headers,
-      cancelToken: new CancelToken(function executor(c) {
-        cancel = c;
-      }),
-    });
+    return instance
+      .request({
+        method: "POST",
+        url: "/tts",
+        responseType: "arraybuffer",
+        responseEncoding: "iso-8859-1",
+        data: body,
+        headers,
+        cancelToken: new CancelToken(function executor(c) {
+          cancel = c;
+        }),
+      })
+      .then((_) => {
+        const decoder = new TextDecoder("iso-8859-1");
+        const text = decoder.decode(_.data);
+        console.log(text);
+        return _.data;
+      })
+      .then((data) => {
+        var b = new Blob([data], { type: "audio/wav" });
+        var blobUrl = URL.createObjectURL(b);
+        return data;
+      });
   },
-  cancel_tts_subscription: () => cancel && cancel(),
+  cancel_tts_subscription: () => cancel && cancel("Cancelled by user"),
 
   // sms
   smsDownloadApp: (body: DownloadAppRequest): Promise<APIResponse> => {
@@ -502,3 +519,38 @@ const API = {
 };
 
 export default API;
+
+/*
+
+getTts: (body: TtsRequest): Promise<any> => {
+    const headers = getHeaders();
+    return fetch(burl + "/tts", { method: "POST", headers, body: JSON.stringify(body) })
+      .then((response) => {
+        if (response.body) {
+          return response.arrayBuffer();
+          // var reader = response.body.getReader();
+          // return reader.read().then((result) => {
+          //   return result.value;
+          // });
+          // return response.text();
+        }
+        throw new Error("whaaaatttt");
+      })
+      .then((buffer) => {
+        const decoder = new TextDecoder("iso-8859-1");
+        const text = decoder.decode(buffer);
+        console.log(text);
+        return text;
+      })
+      .then((data) => {
+        // var b = new Blob([data], { type: "audio/wav" });
+        // var blobUrl = URL.createObjectURL(b);
+        // const audio = new Audio(blobUrl);
+        // audio.play().catch((e) => {
+        //   console.error("bouya", e);
+        // });
+        // console.log(text);
+        return data;
+      });
+  },
+  */
