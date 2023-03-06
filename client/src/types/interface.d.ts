@@ -46,7 +46,6 @@ export interface Translation {
   isStructure?: boolean;
   avancement?: number;
   type?: string;
-  validatorId?: Id;
   isExpert?: boolean;
 }
 

@@ -5,7 +5,7 @@ import { Dispositif, ObjectId, Traductions, TraductionsModel, User } from "../..
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 import { ContentType, Languages, UpdateDispositifRequest } from "api-types";
-import { cloneDeep, isEmpty, unset } from "lodash";
+import { cloneDeep, isEmpty, omit, unset } from "lodash";
 import { TraductionsType } from "src/typegoose/Traductions";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
@@ -33,6 +33,7 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
     content,
     metadatas,
     created_at: oldDispositif.translations.fr.created_at,
+    validatorId: oldDispositif.creatorId._id,
   };
 };
 
@@ -88,7 +89,6 @@ const buildTranslations = async (
   logger.info("[updateDispositif] traduction to review ", toReview);
 
   /**
-   * TODO
    * Supprimer les traductions hors fr dans le dispositif
    * +
    * Créer des traductions "validation" avec la section toReview correctement renseignée
@@ -101,12 +101,11 @@ const buildTranslations = async (
         const translation = new Traductions();
         translation.dispositifId = dispositif._id;
         translation.language = locale as Languages;
-        translation.translated = value;
+        translation.translated = omit(value, "validatorId");
         translation.timeSpent = 0;
         translation.type = TraductionsType.VALIDATION;
         translation.toReview = toReview;
-        translation.userId = dispositif.creatorId; // FIXME => validatorId
-        // translation.validatorId = ????
+        translation.userId = value.validatorId;
         translation.avancement = Traductions.computeAvancement(dispositif, translation);
         return translation;
       });

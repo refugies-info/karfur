@@ -95,9 +95,6 @@ export class Traductions extends Base {
   @prop({ required: true })
   public translated!: Partial<TranslationContent>;
 
-  @prop({ ref: () => User })
-  public validatorId: Ref<User>;
-
   @prop()
   public timeSpent: number;
 
@@ -115,10 +112,6 @@ export class Traductions extends Base {
 
   @prop()
   public updatedAt: Date;
-
-  // public get status(): string {
-  //   if()
-  // }
 
   public countWords(): number {
     return (

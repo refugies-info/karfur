@@ -25,6 +25,7 @@ export const createDispositif = async (body: CreateDispositifRequest, userId: Id
         },
         metadatas: {},
         created_at: new Date(),
+        validatorId: new ObjectId(userId.toString()),
       },
     },
   };

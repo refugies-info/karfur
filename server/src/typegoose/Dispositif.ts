@@ -96,6 +96,9 @@ export class TranslationContent {
 
   @prop()
   public created_at!: Date;
+
+  @prop()
+  validatorId!: Types.ObjectId;
 }
 
 export class Age {
