@@ -69,7 +69,12 @@
     }
 
     &::after {
-      content: "";
+      content: "\ea20";
+      font-family: "remixicon" !important;
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      padding-top: u(4);
       width: u(10);
       position: absolute;
       top: 0;
