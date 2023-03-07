@@ -15,7 +15,7 @@ import styles from "./RightSidebar.module.scss";
 
 const RightSidebar = () => {
   const dispositif = useSelector(selectedDispositifSelector);
-  const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(dispositif._id);
+  const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(dispositif?._id || null);
   const [showFavoriteToast, setShowFavoriteToast] = useState(false);
 
   const router = useRouter();
@@ -40,7 +40,7 @@ const RightSidebar = () => {
   const language = languages.find((ln) => ln.i18nCode === selectedLn);
   const disabledOptions = languages
     .map((ln) => ln.i18nCode)
-    .filter((ln) => !dispositif.availableLanguages.includes(ln));
+    .filter((ln) => !(dispositif?.availableLanguages || []).includes(ln));
   return (
     <div>
       <Button onClick={() => readAudio(dispositif.titreInformatif, "fr")} icon="play-circle" className="mb-2">

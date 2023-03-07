@@ -90,7 +90,7 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
           },
           {
             label: "Âge demandé",
-            content: (
+            content: !metadatas.age ? null : (
               <FRLink target="_blank" href={getAgeLink(metadatas.age)}>
                 {getAge(metadatas.age)}
               </FRLink>
@@ -125,7 +125,7 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
                   {metadatas.location?.map((dep, i) => (
                     <>
                       <FRLink key={i} target="_blank" href={getLocationLink(dep)}>
-                        {dep}
+                        {dep === "All" ? "France entière" : dep}
                       </FRLink>
                       <br />
                     </>

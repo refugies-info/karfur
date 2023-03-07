@@ -91,10 +91,11 @@ export const getSimpleDispositifs = async (
     sort,
   ).then(
     map((dispositif) => {
+      const translation = dispositif.translations[locale] || dispositif.translations.fr;
       const resDisp: SimpleDispositif = {
         _id: dispositif._id,
-        ...pick(dispositif.translations[locale].content, ["titreInformatif", "titreMarque", "abstract"]),
-        metadatas: { ...dispositif.metadatas, ...dispositif.translations[locale].metadatas },
+        ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
+        metadatas: { ...dispositif.metadatas, ...translation.metadatas },
         ...omit(dispositif, ["translations"]),
       };
       return resDisp;

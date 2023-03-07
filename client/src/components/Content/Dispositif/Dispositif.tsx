@@ -28,8 +28,11 @@ const Dispositif = (props: Props) => {
   const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
 
   const typeContenu = props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF;
-  const color100 = theme?.colors.color100 || "#000";
-  const color30 = theme?.colors.color30 || "#ddd";
+  const sectionCommonProps = {
+    color100: theme?.colors.color100 || "#000",
+    color30: theme?.colors.color30 || "#ddd",
+    contentType: typeContenu,
+  };
 
   return (
     <div className={styles.container} id="top">
@@ -47,51 +50,21 @@ const Dispositif = (props: Props) => {
         </div>
         <div className={styles.main} id="anchor-what">
           {!isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
-          <Section
-            sectionKey="what"
-            content={dispositif?.what}
-            color100={color100}
-            color30={color30}
-            contentType={dispositif.typeContenu}
-          />
+          <Section sectionKey="what" content={dispositif?.what} {...sectionCommonProps} />
           {typeContenu === ContentType.DISPOSITIF ? (
             <div>
-              <Section
-                accordions={dispositif?.why}
-                sectionKey="why"
-                color100={color100}
-                color30={color30}
-                contentType={dispositif.typeContenu}
-              />
-              <Section
-                accordions={dispositif?.how}
-                sectionKey="how"
-                color100={color100}
-                color30={color30}
-                contentType={dispositif.typeContenu}
-              />
+              <Section accordions={dispositif?.why} sectionKey="why" {...sectionCommonProps} />
+              <Section accordions={dispositif?.how} sectionKey="how" {...sectionCommonProps} />
             </div>
           ) : (
             <div>
-              <Section
-                accordions={dispositif?.how}
-                sectionKey="how"
-                color100={color100}
-                color30={color30}
-                contentType={dispositif.typeContenu}
-              />
-              <Section
-                accordions={dispositif?.next}
-                sectionKey="next"
-                color100={color100}
-                color30={color30}
-                contentType={dispositif.typeContenu}
-              />
+              <Section accordions={dispositif?.how} sectionKey="how" {...sectionCommonProps} />
+              <Section accordions={dispositif?.next} sectionKey="next" {...sectionCommonProps} />
             </div>
           )}
-          <Feedback mercis={dispositif.merci} />
+          <Feedback mercis={dispositif?.merci || []} />
           <LinkedThemes theme={theme} secondaryThemes={secondaryThemes} needs={needs} />
-          <Sponsors sponsors={dispositif.sponsors} />
+          <Sponsors sponsors={dispositif?.sponsors || []} />
 
           <FRLink href="#top" icon="arrow-upward">
             Haut de page

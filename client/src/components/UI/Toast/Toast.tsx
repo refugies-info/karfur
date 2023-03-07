@@ -16,7 +16,7 @@ const Toast = (props: Props) => {
     setIsOpen(true);
     id.current = setTimeout(() => {
       props.close();
-    }, 300000);
+    }, 3000);
 
     return () => clearTimeout(id.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
