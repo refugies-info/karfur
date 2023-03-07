@@ -11,15 +11,18 @@
   @include media-max("lg-limit") {
     padding: u(10) 0;
   }
-}
 
-.row {
-  display: flex;
-  gap: u(4);
-  flex-wrap: wrap; // TODO: remove this when slider
-  @include media-max("lg-limit") {
-    flex-wrap: nowrap;
-    overflow-x: scroll;
+  :global(.content-card-slider) {
+    --gradient-start: #1e1e1e00;
+    --gradient-end: #1e1e1e;
+
+    .slider_btn {
+      background: $darkBackgroundActionHighBlueFrance;
+
+      &:hover {
+        background: $lightBorderDefaultBlueFrance !important;
+      }
+    }
   }
 }
 
