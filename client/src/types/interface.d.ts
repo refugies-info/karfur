@@ -50,17 +50,6 @@ export interface Translation {
   isExpert?: boolean;
 }
 
-export type TranslationFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
-export interface TranslationStatistics {
-  nbTranslators?: number;
-  nbRedactors?: number;
-  nbWordsTranslated?: number;
-  nbActiveTranslators?: {
-    languageId: string;
-    count: number;
-  }[];
-}
-
 export type AvailableLanguageI18nCode = "fr" | "en" | "ps" | "ar" | "ti" | "ru" | "uk" | "fa";
 
 export type Status = {

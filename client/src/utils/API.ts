@@ -4,7 +4,7 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { APIResponse, TranslationFacets, TranslationStatistics } from "types/interface";
+import { APIResponse } from "types/interface";
 import {
   AddContactRequest,
   AddSuggestionDispositifRequest,
@@ -70,6 +70,8 @@ import {
   SendNotificationsRequest,
   SubscriptionRequest,
   ThemeRequest,
+  TranslationStatisticsRequest,
+  TranslationStatisticsResponse,
   TtsRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
@@ -443,8 +445,8 @@ const API = {
       headers,
     });
   },
-  getTranslationStatistics: (facets?: TranslationFacets[]): Promise<Response<TranslationStatistics>> => {
-    return instance.get("/traduction/statistics", { params: { facets } });
+  getTranslationStatistics: (query: TranslationStatisticsRequest): Promise<APIResponse<TranslationStatisticsResponse>> => {
+    return instance.get("/traduction/statistics", { params: query });
   },
 
   // langues

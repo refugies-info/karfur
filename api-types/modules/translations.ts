@@ -128,9 +128,9 @@ export interface GetProgressionResponse {
   totalIndicator: ProgressionIndicator;
 }
 
-export type Facets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
+type TranslationStatisticsFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
 export interface TranslationStatisticsRequest {
-  facets?: Facets[];
+  facets?: TranslationStatisticsFacets[];
 }
 
 export interface Statistics {
