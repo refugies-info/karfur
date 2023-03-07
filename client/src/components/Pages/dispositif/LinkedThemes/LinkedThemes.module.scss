@@ -2,6 +2,7 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
 
 .container {
   margin-bottom: u(16);
@@ -12,12 +13,20 @@
   display: flex;
   flex-wrap: wrap;
   gap: u(2);
+
+  @include media-max("lg-limit") {
+    display: block;
+  }
 }
 
 .title {
   @include dsfr-text("small");
   text-transform: uppercase;
   font-weight: bold;
+
+  @include media-max("lg-limit") {
+    margin-bottom: u(4);
+  }
 }
 
 .btn {
@@ -28,6 +37,13 @@
   padding: u(2) u(3);
   border-radius: 6px;
   @include dsfr-text("small");
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("normal");
+    display: flex;
+    width: fit-content;
+    margin-bottom: u(2);
+  }
 
   & > span {
     display: inline-block;

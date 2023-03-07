@@ -1,5 +1,6 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
 
 @mixin iconSize($value) {
   i {
@@ -22,7 +23,9 @@
   border-radius: u(2);
   @include iconSize(24px);
 
-  &.small_icon {
-    @include iconSize(16px);
+  @include media-min("lg-limit") {
+    &.small_icon {
+      @include iconSize(16px);
+    }
   }
 }

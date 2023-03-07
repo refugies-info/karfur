@@ -2,6 +2,7 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/responsive";
 
 .marque {
   @include dsfr-text("small");
@@ -10,4 +11,18 @@
   border-radius: u(2);
   padding: u(1) u(2);
   white-space: nowrap;
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("normal");
+  }
+}
+
+.title {
+  display: none;
+
+  @include media-max("lg-limit") {
+    display: block;
+    @include dsfr-text("h3");
+    font-weight: bold;
+  }
 }

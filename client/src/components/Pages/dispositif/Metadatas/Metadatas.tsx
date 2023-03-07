@@ -36,6 +36,9 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
   if (!metadatas) return <></>;
   return (
     <div>
+      <p className={styles.title} style={{ color }}>
+        C'est pour qui ?
+      </p>
       <Card
         title={
           typeContenu === ContentType.DISPOSITIF ? (

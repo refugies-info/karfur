@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { ContentType } from "api-types";
+import { useWindowSize } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
 import SEO from "components/Seo";
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const Dispositif = (props: Props) => {
+  const { isTablet } = useWindowSize();
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
@@ -39,10 +41,11 @@ const Dispositif = (props: Props) => {
 
       <div className={styles.content}>
         <div className={styles.left}>
+          {isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
           <LeftSidebar />
         </div>
         <div className={styles.main}>
-          <Header dispositif={dispositif} typeContenu={typeContenu} />
+          {!isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
           <Section sectionKey="what" content={dispositif?.what} color100={color100} color30={color30} />
           {typeContenu === ContentType.DISPOSITIF ? (
             <div>

@@ -2,6 +2,7 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
 
 $iconSize: u(4);
 $btnSize: u(8);
@@ -10,6 +11,10 @@ $btnSize: u(8);
   position: absolute;
   top: 0;
   @include r-ltr(-54px);
+
+  @include media-max("lg-limit") {
+    display: none;
+  }
 
   .btn {
     width: $btnSize;

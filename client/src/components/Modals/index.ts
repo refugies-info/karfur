@@ -10,7 +10,6 @@ import TagsModal from "./TagsModal/TagsModal";
 import FrameModal from "./FrameModal/FrameModal";
 import { DraftModal } from "./DraftModal/DraftModal";
 import { DispositifCreateModal } from "./DispositifCreateModal/DispositifCreateModal";
-import { ShareContentOnMobileModal } from "./ShareContentOnMobileModal/ShareContentOnMobileModal";
 
 export {
   DispositifCreateModal,
@@ -23,7 +22,6 @@ export {
   FrameModal,
   Modal,
   DraftModal,
-  ShareContentOnMobileModal,
   GoToDesktopModal,
   ReceiveInvitationMailModal,
 };

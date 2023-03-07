@@ -2,6 +2,7 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
 
 .container {
   margin-bottom: u(20);
@@ -12,4 +13,8 @@
   @include dsfr-text("h2");
   font-weight: bold;
   margin-bottom: u(6);
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("h3");
+  }
 }

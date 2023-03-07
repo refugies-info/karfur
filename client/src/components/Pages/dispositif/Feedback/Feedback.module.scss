@@ -3,6 +3,7 @@
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
 
 .container {
   background: $lightBackgroundActionLowBlueFrance;
@@ -12,6 +13,10 @@
   overflow: hidden;
   position: relative;
   margin-bottom: u(20);
+
+  @include media-max("lg-limit") {
+    padding: 0;
+  }
 }
 
 .illu {
@@ -20,17 +25,32 @@
   left: 0;
   height: 100%;
   width: auto;
+
+  @include media-max("lg-limit") {
+    position: relative;
+    height: 240px;
+    width: 120%;
+  }
 }
 
 .content {
   position: relative;
   z-index: 2;
+
+  @include media-max("lg-limit") {
+    padding: u(4);
+    text-align: center;
+  }
 }
 
 .title {
   @include dsfr-text("h6");
   font-weight: bold;
   margin-bottom: u(4);
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("large");
+  }
 }
 
 .btn {

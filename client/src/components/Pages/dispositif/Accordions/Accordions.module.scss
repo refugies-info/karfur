@@ -3,10 +3,15 @@
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/rtl";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
 
 .title {
   @include dsfr-text("chapo");
   font-weight: bold;
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("large");
+  }
 }
 
 .accordion {
