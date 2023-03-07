@@ -42,8 +42,9 @@ const SendSMSModal = (props: Props) => {
       })
         .then(() => {
           setTel("");
-          setSelectedLn("fr");
+          setSelectedLn(locale);
           setError(null);
+          props.toggle();
         })
         .catch((e) => setError(e.message));
     } else {

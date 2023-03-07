@@ -67,6 +67,7 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
                 height={32}
                 style={{ objectFit: "contain" }}
                 alt={mainSponsor?.nom || ""}
+                className={styles.img}
               />
             ),
           },
