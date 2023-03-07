@@ -1,5 +1,5 @@
 import React from "react";
-import { InfoSections } from "api-types";
+import { ContentType, InfoSections } from "api-types";
 import { getSectionTitle } from "./functions";
 import Accordions from "../Accordions";
 import RichText from "../RichText";
@@ -12,9 +12,10 @@ interface Props {
   sectionKey: string;
   color100: string;
   color30: string;
+  contentType?: ContentType;
 }
 
-const Section = ({ content, sectionKey, color100, color30, accordions }: Props) => {
+const Section = ({ content, sectionKey, color100, color30, accordions, contentType }: Props) => {
   return (
     <section className={styles.container} id={`anchor-${sectionKey}`}>
       <p className={styles.title} style={{ color: color100 }}>
@@ -26,7 +27,15 @@ const Section = ({ content, sectionKey, color100, color30, accordions }: Props) 
           <SectionButtons id={sectionKey} />
         </>
       )}
-      {accordions && <Accordions content={accordions} sectionKey={sectionKey} color100={color100} color30={color30} />}
+      {accordions && (
+        <Accordions
+          content={accordions}
+          sectionKey={sectionKey}
+          color100={color100}
+          color30={color30}
+          withNumber={contentType === ContentType.DEMARCHE}
+        />
+      )}
     </section>
   );
 };

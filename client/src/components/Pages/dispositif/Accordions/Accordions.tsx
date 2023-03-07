@@ -28,9 +28,10 @@ interface Props {
   sectionKey: string;
   color100: string;
   color30: string;
+  withNumber?: boolean;
 }
 
-const Accordions = ({ content, sectionKey, color100, color30 }: Props) => {
+const Accordions = ({ content, sectionKey, color100, color30, withNumber }: Props) => {
   const pageContext = useContext(PageContext);
   const [open, setOpen] = useState<number | null>(null);
   const toggle = (id: number) => setOpen((o) => (o === id ? null : id));
@@ -52,6 +53,11 @@ const Accordions = ({ content, sectionKey, color100, color30 }: Props) => {
                   borderColor={color100}
                 >
                   <h2 className={styles.title} style={{ color: color100 }}>
+                    {withNumber && (
+                      <span className={styles.badge} style={{ backgroundColor: color100 }}>
+                        {i + 1}
+                      </span>
+                    )}
                     <TextInput id={`${sectionKey}.${section[0]}.title`} value={section[1].title} />
                   </h2>
                   <EVAIcon name="arrow-ios-downward-outline" fill={color100} size={32} className={styles.icon} />

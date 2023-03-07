@@ -47,16 +47,46 @@ const Dispositif = (props: Props) => {
         </div>
         <div className={styles.main} id="anchor-what">
           {!isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
-          <Section sectionKey="what" content={dispositif?.what} color100={color100} color30={color30} />
+          <Section
+            sectionKey="what"
+            content={dispositif?.what}
+            color100={color100}
+            color30={color30}
+            contentType={dispositif.typeContenu}
+          />
           {typeContenu === ContentType.DISPOSITIF ? (
             <div>
-              <Section accordions={dispositif?.why} sectionKey="why" color100={color100} color30={color30} />
-              <Section accordions={dispositif?.how} sectionKey="how" color100={color100} color30={color30} />
+              <Section
+                accordions={dispositif?.why}
+                sectionKey="why"
+                color100={color100}
+                color30={color30}
+                contentType={dispositif.typeContenu}
+              />
+              <Section
+                accordions={dispositif?.how}
+                sectionKey="how"
+                color100={color100}
+                color30={color30}
+                contentType={dispositif.typeContenu}
+              />
             </div>
           ) : (
             <div>
-              <Section accordions={dispositif?.how} sectionKey="how" color100={color100} color30={color30} />
-              <Section accordions={dispositif?.next} sectionKey="next" color100={color100} color30={color30} />
+              <Section
+                accordions={dispositif?.how}
+                sectionKey="how"
+                color100={color100}
+                color30={color30}
+                contentType={dispositif.typeContenu}
+              />
+              <Section
+                accordions={dispositif?.next}
+                sectionKey="next"
+                color100={color100}
+                color30={color30}
+                contentType={dispositif.typeContenu}
+              />
             </div>
           )}
           <Feedback mercis={dispositif.merci} />

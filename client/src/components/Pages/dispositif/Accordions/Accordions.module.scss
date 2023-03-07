@@ -12,6 +12,23 @@
   @include media-max("lg-limit") {
     @include dsfr-text("large");
   }
+
+  .badge {
+    width: u(8);
+    height: u(8);
+    display: inline-block;
+    text-align: center;
+    @include dsfr-text("large");
+    border-radius: 50%;
+    color: white;
+    @include mr-ltr(u(4));
+
+    @include media-max("lg-limit") {
+      @include dsfr-text("small");
+      width: u(6);
+      height: u(6);
+    }
+  }
 }
 
 .accordion {
