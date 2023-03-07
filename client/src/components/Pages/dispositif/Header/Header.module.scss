@@ -19,9 +19,9 @@
 }
 
 .share {
-  display: none;
+  display: none !important;
 
   @include media-max("lg-limit") {
-    display: block;
+    display: block !important;
   }
 }

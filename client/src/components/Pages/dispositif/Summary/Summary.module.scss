@@ -1,0 +1,42 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
+
+.card {
+  display: none;
+  background: $lightBackgroundContrastGrey;
+  border: 1px solid $lightBorderDefaultGrey;
+  padding: u(4);
+  margin-bottom: u(6);
+  margin-top: u(6);
+  border-radius: u(2);
+
+  @include media-max("lg-limit") {
+    display: block;
+  }
+
+  ol > li::marker {
+    @include dsfr-text("small");
+    font-weight: normal;
+  }
+}
+
+.title {
+  @include dsfr-text("small");
+  font-weight: bold;
+  margin-bottom: u(4);
+  text-transform: uppercase;
+}
+
+.item {
+  padding-bottom: u(4);
+  @include dsfr-text("small");
+  text-decoration: underline;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}

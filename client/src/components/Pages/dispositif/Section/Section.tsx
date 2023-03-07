@@ -16,7 +16,7 @@ interface Props {
 
 const Section = ({ content, sectionKey, color100, color30, accordions }: Props) => {
   return (
-    <section className={styles.container}>
+    <section className={styles.container} id={`anchor-${sectionKey}`}>
       <p className={styles.title} style={{ color: color100 }}>
         {getSectionTitle(sectionKey)}
       </p>

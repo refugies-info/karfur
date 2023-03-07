@@ -35,7 +35,7 @@ interface Props {
 const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: Props) => {
   if (!metadatas) return <></>;
   return (
-    <div>
+    <div id="anchor-who">
       <p className={styles.title} style={{ color }}>
         C'est pour qui ?
       </p>

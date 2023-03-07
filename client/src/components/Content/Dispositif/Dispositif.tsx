@@ -44,7 +44,7 @@ const Dispositif = (props: Props) => {
           {isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
           <LeftSidebar />
         </div>
-        <div className={styles.main}>
+        <div className={styles.main} id="anchor-what">
           {!isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
           <Section sectionKey="what" content={dispositif?.what} color100={color100} color30={color30} />
           {typeContenu === ContentType.DISPOSITIF ? (
