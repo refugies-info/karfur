@@ -34,6 +34,7 @@ const RightSidebar = () => {
         { locale: selectedLn },
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLn]);
 
   const language = languages.find((ln) => ln.i18nCode === selectedLn);

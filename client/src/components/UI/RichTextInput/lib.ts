@@ -53,6 +53,8 @@ const VERTICAL_GAP = 10;
 const HORIZONTAL_OFFSET = 5;
 
 export function setFloatingElemPosition(
+  //FIXME
+  // eslint-disable-next-line no-undef
   targetRect: ClientRect | null,
   floatingElem: HTMLElement,
   anchorElem: HTMLElement,
@@ -62,8 +64,8 @@ export function setFloatingElemPosition(
   const scrollerElem = anchorElem.parentElement;
 
   if (targetRect === null || !scrollerElem) {
-    floatingElem.style.opacity = '0';
-    floatingElem.style.transform = 'translate(-10000px, -10000px)';
+    floatingElem.style.opacity = "0";
+    floatingElem.style.transform = "translate(-10000px, -10000px)";
     return;
   }
 
@@ -85,8 +87,8 @@ export function setFloatingElemPosition(
   top -= anchorElementRect.top;
   left -= anchorElementRect.left;
 
-  floatingElem.style.opacity = '1';
-  floatingElem.style.position = 'absolute';
+  floatingElem.style.opacity = "1";
+  floatingElem.style.position = "absolute";
   floatingElem.style.left = `${left}px`;
   floatingElem.style.top = `${top}px`;
 }

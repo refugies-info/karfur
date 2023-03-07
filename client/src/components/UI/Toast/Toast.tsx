@@ -19,6 +19,7 @@ const Toast = (props: Props) => {
     }, 300000);
 
     return () => clearTimeout(id.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

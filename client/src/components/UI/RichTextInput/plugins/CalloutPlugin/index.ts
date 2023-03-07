@@ -1,5 +1,5 @@
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { $findMatchingParent, mergeRegister } from '@lexical/utils';
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { $findMatchingParent, mergeRegister } from "@lexical/utils";
 import { $setBlocksType_experimental } from "@lexical/selection";
 import {
   $createParagraphNode,
@@ -12,19 +12,19 @@ import {
   KEY_ARROW_DOWN_COMMAND,
   NodeKey,
   createCommand,
-} from 'lexical';
-import { useEffect } from 'react';
+} from "lexical";
+import { useEffect } from "react";
 
-import { $createCalloutNode, $isCalloutNode, CalloutLevel, CalloutNode } from './CalloutNode';
+import { $createCalloutNode, $isCalloutNode, CalloutLevel, CalloutNode } from "./CalloutNode";
 
 export const INSERT_CALLOUT_COMMAND = createCommand<CalloutLevel>();
 
 
-export default function CalloutPlugin(): JSX.Element | null {
+export default function CalloutPlugin() {
   const [editor] = useLexicalComposerContext();
   useEffect(() => {
     if (!editor.hasNodes([CalloutNode])) {
-      throw new Error('CalloutPlugin: CalloutNode not registered on editor');
+      throw new Error("CalloutPlugin: CalloutNode not registered on editor");
     }
 
     return mergeRegister(

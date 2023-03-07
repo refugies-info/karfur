@@ -52,7 +52,7 @@ const TranslationInput = ({
     if (!value) translate(initialText, locale);
   }, [initialText, locale, translate, value]);
 
-  console.log("render", index, value, loading, section, initialText, suggestions);
+  // console.log("render", index, value, loading, section, initialText, suggestions);
 
   return (
     <div style={{ display: "grid" }}>

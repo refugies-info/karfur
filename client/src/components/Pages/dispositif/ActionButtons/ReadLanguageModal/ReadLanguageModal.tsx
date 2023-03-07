@@ -34,6 +34,7 @@ const ReadLanguageModal = (props: Props) => {
       );
       props.toggle();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLn]);
 
   const disabledOptions = languages

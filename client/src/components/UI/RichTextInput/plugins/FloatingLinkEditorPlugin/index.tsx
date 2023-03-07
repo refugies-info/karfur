@@ -33,7 +33,7 @@ interface FloatingLinkEditorProps {
   anchorElem: HTMLElement;
 }
 
-const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingLinkEditorProps): JSX.Element => {
+const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingLinkEditorProps) => {
   const editorRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [linkUrl, setLinkUrl] = useState("");
@@ -70,13 +70,12 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
       let rect;
       if (nativeSelection.anchorNode === rootElement) {
         let inner = rootElement;
-        while (inner.firstElementChild != null) {
+        while (inner.firstElementChild !== null) {
           inner = inner.firstElementChild as HTMLElement;
         }
         rect = inner.getBoundingClientRect();
       } else {
         rect = domRange.getBoundingClientRect();
-        console.log(rect, anchorElem);
       }
 
       setFloatingElemPosition(rect, editorElem, anchorElem);
@@ -156,7 +155,7 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
   );
 };
 
-const useFloatingLinkEditorToolbar = (editor: LexicalEditor, anchorElem: HTMLElement): JSX.Element | null => {
+const useFloatingLinkEditorToolbar = (editor: LexicalEditor, anchorElem: HTMLElement) => {
   const [activeEditor, setActiveEditor] = useState(editor);
   const [isLink, setIsLink] = useState(false);
 
@@ -168,7 +167,7 @@ const useFloatingLinkEditorToolbar = (editor: LexicalEditor, anchorElem: HTMLEle
       const autoLinkParent = $findMatchingParent(node, $isAutoLinkNode);
 
       // We don't want this menu to open for auto links.
-      if (linkParent != null && autoLinkParent == null) {
+      if (linkParent !== null && autoLinkParent === null) {
         setIsLink(true);
       } else {
         setIsLink(false);
@@ -199,9 +198,7 @@ const useFloatingLinkEditorToolbar = (editor: LexicalEditor, anchorElem: HTMLEle
 interface FloatingLinkEditorPluginProps {
   anchorElem?: HTMLElement;
 }
-const FloatingLinkEditorPlugin = ({
-  anchorElem = document.body,
-}: FloatingLinkEditorPluginProps): JSX.Element | null => {
+const FloatingLinkEditorPlugin = ({ anchorElem = document.body }: FloatingLinkEditorPluginProps) => {
   const [editor] = useLexicalComposerContext();
   return useFloatingLinkEditorToolbar(editor, anchorElem);
 };

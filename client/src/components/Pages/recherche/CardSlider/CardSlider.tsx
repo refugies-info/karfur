@@ -16,8 +16,12 @@ const DEM_GAP = 24;
 const CardSlider = (props: Props) => {
   return (
     <ContentSlider
-      cards={props.cards.map((d) =>
-        props.type === ContentType.DEMARCHE ? <DemarcheCard demarche={d} /> : <DispositifCard dispositif={d} />,
+      cards={props.cards.map((d, i) =>
+        props.type === ContentType.DEMARCHE ? (
+          <DemarcheCard key={i} demarche={d} />
+        ) : (
+          <DispositifCard key={i} dispositif={d} />
+        ),
       )}
       gap={props.type === ContentType.DISPOSITIF ? DISP_GAP : DEM_GAP}
       className={props.type === ContentType.DEMARCHE ? styles.demarches : styles.dispositifs}

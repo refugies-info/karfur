@@ -1,11 +1,11 @@
-import { DOMConversionMap, DOMConversionOutput, EditorConfig, ElementNode, LexicalNode, NodeKey, SerializedElementNode, Spread } from 'lexical';
-import { getCalloutTranslationKey } from 'lib/contentParsing';
+import { DOMConversionMap, DOMConversionOutput, EditorConfig, ElementNode, LexicalNode, NodeKey, SerializedElementNode, Spread } from "lexical";
+import { getCalloutTranslationKey } from "lib/contentParsing";
 import { i18n } from "next-i18next";
 export type CalloutLevel = "info" | "important";
 
 type SerializedCalloutNode = Spread<
   {
-    type: 'callout';
+    type: "callout";
     version: 1;
     level: CalloutLevel;
   },
@@ -16,6 +16,7 @@ function convertCalloutElement(domNode: HTMLElement): DOMConversionOutput | null
   const level = domNode.getAttribute("data-callout");
 
   if (level !== null) {
+    // eslint-disable-next-line no-use-before-define
     const node = $createCalloutNode(level as CalloutLevel);
     return {
       node,
@@ -34,7 +35,7 @@ export class CalloutNode extends ElementNode {
   }
 
   static getType(): string {
-    return 'callout';
+    return "callout";
   }
 
   static clone(node: CalloutNode): CalloutNode {
@@ -42,8 +43,8 @@ export class CalloutNode extends ElementNode {
   }
 
   createDOM(config: EditorConfig): HTMLElement {
-    const dom = document.createElement('div');
-    dom.classList.add('callout', `callout--${this.__level}`);
+    const dom = document.createElement("div");
+    dom.classList.add("callout", `callout--${this.__level}`);
     dom.setAttribute("data-callout", this.__level);
     dom.setAttribute("data-title", i18n?.t(getCalloutTranslationKey(this.__level)) || "");
 
@@ -69,6 +70,7 @@ export class CalloutNode extends ElementNode {
   }
 
   static importJSON(serializedNode: SerializedCalloutNode): CalloutNode {
+    // eslint-disable-next-line no-use-before-define
     const node = $createCalloutNode(serializedNode.level);
     return node;
   }
@@ -76,7 +78,7 @@ export class CalloutNode extends ElementNode {
   exportJSON(): SerializedCalloutNode {
     return {
       ...super.exportJSON(),
-      type: 'callout',
+      type: "callout",
       version: 1,
       level: this.__level
     };

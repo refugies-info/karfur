@@ -18,16 +18,18 @@ interface Props {
 const ReactionModal = (props: Props) => {
   const { t } = useTranslation();
 
+  const { dispositifId, sectionKey, callback, toggle } = props;
+
   const [suggestion, setSuggestion] = useState("");
   const submit = useCallback(async () => {
-    if (!props.dispositifId) return;
-    API.addDispositifSuggestion(props.dispositifId.toString(), {
+    if (!dispositifId) return;
+    API.addDispositifSuggestion(dispositifId.toString(), {
       suggestion,
-      key: props.sectionKey,
+      key: sectionKey,
     })
       .then(() => {
-        props.callback();
-        props.toggle();
+        callback();
+        toggle();
       })
       .catch(() => {
         handleApiError({
@@ -35,11 +37,11 @@ const ReactionModal = (props: Props) => {
           text: "Veuillez réessayer ou contacter un administrateur",
         });
       });
-  }, [suggestion, props.dispositifId, props.sectionKey]);
+  }, [suggestion, dispositifId, sectionKey, callback, toggle]);
 
   return (
-    <Modal isOpen={true} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
-      <ModalHeader className={styles.modal_header} toggle={props.toggle}>
+    <Modal isOpen={true} toggle={toggle} className={styles.modal} contentClassName={styles.modal_content}>
+      <ModalHeader className={styles.modal_header} toggle={toggle}>
         {t("Dispositif.Envoyer une réaction", "Envoyer une réaction")}
       </ModalHeader>
       <ModalBody className={styles.modal_body}>
