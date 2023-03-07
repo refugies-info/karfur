@@ -1,3 +1,4 @@
+//@ts-nocheck FIXME use new metadatas
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import { GetDispositifsResponse, Id } from "api-types";
 

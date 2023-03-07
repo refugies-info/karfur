@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { getPath, PathNames } from "routes";
 import { userSelector } from "services/User/user.selectors";
 import history from "utils/backendHistory";
+import styles from "./BackendNavItem.module.scss";
 
 export interface BackendNavItem {
   access: string;

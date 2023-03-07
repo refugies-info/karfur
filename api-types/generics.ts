@@ -109,7 +109,7 @@ export enum DispositifStatus {
   KO_STRUCTURE = "Rejeté structure",
 }
 
-export class InfoSection {
+export interface InfoSection {
   title: string;
   text: RichText;
 }

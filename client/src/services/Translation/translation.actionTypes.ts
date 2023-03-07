@@ -5,3 +5,4 @@ export const UPDATE_TRAD = "UPDATE_TRAD";
 export const VALIDATE_TRAD = "VALIDATE_TRAD";
 export const SET_TRANSLATION = "SET_TRANSLATION";
 export const SET_TRANSLATIONS = "SET_TRANSLATIONS";
+export const ADD_TRAD_DISP = "ADD_TRAD_DISP";
