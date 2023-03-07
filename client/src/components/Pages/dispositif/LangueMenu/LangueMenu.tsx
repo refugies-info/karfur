@@ -4,6 +4,7 @@ import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap
 import { GetLanguagesResponse } from "api-types";
 import { cls } from "lib/classname";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
+import Flag from "components/UI/Flag";
 import styles from "./LangueMenu.module.scss";
 
 interface Props {
@@ -35,7 +36,7 @@ const LangueMenu = (props: Props) => {
     >
       <DropdownToggle>
         {props.label}&nbsp;
-        <span className={cls(styles.flag, `ms-2 fi fi-${lnCode}`)} title={lnCode} id={lnCode} />
+        <Flag langueCode={lnCode} className="ms-2" />
       </DropdownToggle>
       <DropdownMenu className={styles.menu}>
         {languages.map((ln, i) => (
@@ -46,11 +47,7 @@ const LangueMenu = (props: Props) => {
             toggle={false}
             disabled={props.disabledOptions?.includes(ln.i18nCode)}
           >
-            <span
-              className={cls(styles.flag, `me-2 fi fi-${ln.langueCode}`)}
-              title={ln.langueCode}
-              id={ln.langueCode}
-            />
+            <Flag langueCode={ln.langueCode} className="me-2" />
             <span className={styles.item_locale}>{ln.langueFr} -</span>
             <span>{ln.langueLoc}</span>
           </DropdownItem>

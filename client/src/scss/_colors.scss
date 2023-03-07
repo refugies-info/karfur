@@ -52,6 +52,7 @@ $lightBackgroundActionLowBlueFrance: #e3e3fd;
 $lightTextDefaultSuccess: #18753c;
 $lightTextActionHighBlueFrance: #000091;
 $darkBackgroundAltBlueFrance: #1b1b35;
+$lightTextDefaultError: #ce0500;
 
 :export {
   // RI colors
@@ -100,4 +101,5 @@ $darkBackgroundAltBlueFrance: #1b1b35;
   lightTextActionHighBlueFrance: $lightTextActionHighBlueFrance;
   darkBackgroundAltBlueFrance: $darkBackgroundAltBlueFrance;
   lightTextInvertedBlueFrance: $lightTextInvertedBlueFrance;
+  lightTextDefaultError: $lightTextDefaultError;
 }

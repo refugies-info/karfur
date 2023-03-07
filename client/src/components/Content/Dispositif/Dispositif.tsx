@@ -6,14 +6,15 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
 import SEO from "components/Seo";
 import { Header, Sponsors, Contributors } from "components/Pages/dispositif";
-import styles from "./Dispositif.module.scss";
 import Section from "components/Pages/dispositif/Section";
 import Feedback from "components/Pages/dispositif/Feedback";
 import LinkedThemes from "components/Pages/dispositif/LinkedThemes";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import FRLink from "components/UI/FRLink";
+import ActionButtons from "components/Pages/dispositif/ActionButtons";
 import RightSidebar from "./RightSidebar";
 import LeftSidebar from "./LeftSidebar";
+import styles from "./Dispositif.module.scss";
 
 interface Props {
   typeContenu?: ContentType;
@@ -70,6 +71,8 @@ const Dispositif = (props: Props) => {
           <RightSidebar />
         </div>
       </div>
+
+      {isTablet && <ActionButtons />}
 
       {dispositif && <Contributors contributors={dispositif.participants} />}
     </div>

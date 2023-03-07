@@ -10,6 +10,7 @@ interface Props {
   tertiary?: boolean;
   hasBorder?: boolean;
   icon?: string;
+  iconPlacement?: "start" | "end";
   disabled?: boolean;
   onClick?: (...args: any[]) => any;
   title?: string;
@@ -26,6 +27,10 @@ const getIconColor = (props: Props) => {
   if (props.disabled) return styles.lightTextDisabledGrey;
   return props.secondary || props.tertiary ? styles.lightTextActionHighBlueFrance : "white";
 };
+const getIconMargin = (props: Props) => {
+  if (!props.children) return "";
+  return props.iconPlacement === "end" ? "ms-2" : "me-2";
+};
 
 const DSFRButton = (props: Props) => {
   const riIcon = props.icon?.startsWith("ri-") ? props.icon : undefined;
@@ -33,7 +38,12 @@ const DSFRButton = (props: Props) => {
 
   return (
     <Button
-      className={cls(styles.btn, !!props.children && styles.small_icon, props.className)}
+      className={cls(
+        styles.btn,
+        !!props.children && styles.small_icon,
+        props.iconPlacement === "end" && styles.icon_end,
+        props.className,
+      )}
       secondary={props.secondary}
       tertiary={props.tertiary}
       hasBorder={props.hasBorder}
@@ -48,7 +58,7 @@ const DSFRButton = (props: Props) => {
     >
       {(props.children || evaIcon) && (
         <>
-          {evaIcon && <EVAIcon name={evaIcon} fill={getIconColor(props)} className={cls(!!props.children && "me-2")} />}
+          {evaIcon && <EVAIcon name={evaIcon} fill={getIconColor(props)} className={getIconMargin(props)} />}
           {props.children}
         </>
       )}

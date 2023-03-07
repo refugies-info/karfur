@@ -39,16 +39,6 @@
   margin: 0;
 }
 
-.flag {
-  width: 20px;
-  height: 15px;
-  border-radius: 2px;
-  outline: 1px solid $white;
-  background-size: cover;
-  @include mr-ltr(u(2));
-  @include ml-ltr(u(2));
-}
-
 .menu {
   box-shadow: 0 0 40px 0 #00000040;
   padding: u(4);

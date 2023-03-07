@@ -1,0 +1,31 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+
+.container {
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  width: 100%;
+  padding: u(4);
+  z-index: 1050;
+}
+
+.inner {
+  background-color: $lightTextActionHighBlueFrance;
+  box-shadow: 0 6px 18px 0 #00001229;
+  border-radius: u(2);
+  padding: u(2) 0;
+  max-width: 350px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: $lightBorderDefaultGrey;
+  display: block;
+}

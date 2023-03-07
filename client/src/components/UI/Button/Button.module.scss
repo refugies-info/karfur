@@ -23,9 +23,11 @@
   border-radius: u(2);
   @include iconSize(24px);
 
-  @include media-min("lg-limit") {
-    &.small_icon {
-      @include iconSize(16px);
-    }
+  &.small_icon {
+    @include iconSize(16px);
+  }
+
+  &.icon_end {
+    flex-direction: row-reverse;
   }
 }
