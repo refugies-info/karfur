@@ -50,6 +50,7 @@ export interface GetTraductionsForReview {
   author: string;
   translated: Partial<TranslationContent>;
   username: string;
+  toReview?: string[];
 }
 export type GetTraductionsForReviewResponse = GetTraductionsForReview[];
 
@@ -82,7 +83,6 @@ export interface SaveTranslationResponse {
     userId: string;
     language: Languages;
     translated: Partial<TranslationContent>;
-    // public validatorId: Ref<User>;
     timeSpent: number;
     avancement: number;
     toReview?: string[];

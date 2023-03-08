@@ -2,6 +2,7 @@ import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose
 import { ContentType, DispositifStatus, Languages } from "api-types";
 import { get, has } from "lodash";
 import { Types } from "mongoose";
+import { PartialRecord } from "../types/interface";
 import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import { RichText, Uuid } from "./generics";
@@ -92,6 +93,12 @@ export class TranslationContent {
     important?: string;
     duration?: string;
   };
+
+  @prop()
+  public created_at!: Date;
+
+  @prop()
+  validatorId!: Types.ObjectId;
 }
 
 export class Age {
@@ -222,7 +229,7 @@ export class Dispositif extends Base {
   @prop()
   public themesSelectedByAuthor: boolean;
   @prop()
-  public notificationsSent: Record<Languages, boolean>;
+  public notificationsSent: PartialRecord<Languages, boolean>;
 
   @prop()
   public suggestions: Suggestion[];
@@ -232,7 +239,7 @@ export class Dispositif extends Base {
   public webOnly: boolean;
 
   @prop()
-  public translations!: Record<Languages, TranslationContent>;
+  public translations!: PartialRecord<Languages, TranslationContent>;
   @prop({ _id: false })
   public metadatas: Metadatas;
   @prop()

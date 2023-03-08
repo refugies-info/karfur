@@ -9,8 +9,9 @@
   "main": "server.js",
   "scripts": {
     "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
-    "start": "node dist/server.js",
-    "tsc": "tsoa spec-and-routes && tsc",
+    "start": "node dist/src/server.js",
+    "tsc-prod": "cd ../api-types && npm run tsc && cd ../server && tsoa spec-and-routes && tsc",
+    "tsc": "tsoa spec-and-routes && pwd && tsc",
     "test": "npm run test:unit && npm run test:lint && npm run test:types",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
     "test:types": "tsc --noEmit",

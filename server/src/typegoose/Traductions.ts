@@ -1,7 +1,7 @@
 import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Languages } from "api-types";
-import { flattenDeep, get, isEmpty, isString } from "lodash";
-import { MustBePopulatedError } from "src/errors";
+import { difference, flattenDeep, get, intersection, isEmpty, isString } from "lodash";
+import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import {
   DemarcheContent,
@@ -22,6 +22,12 @@ export enum TraductionsStatus {
   TO_REVIEW = "TO_REVIEW",
   PENDING = "PENDING",
   TO_TRANSLATE = "TO_TRANSLATE",
+}
+
+export interface TraductionDiff {
+  added: string[];
+  modified: string[];
+  removed: string[];
 }
 
 const keysForSubSection = (prefix: string, translated: any) =>
@@ -46,7 +52,7 @@ const keysForSubSection = (prefix: string, translated: any) =>
  */
 const keys = (translated: any) => {
   return [
-    ...Object.keys(translated.content)
+    ...Object.keys(translated?.content || {})
       .filter((key) => !["how", "why", "next"].includes(key))
       .map((key) => `content.${key}`),
     ...keysForSubSection("content.why", translated),
@@ -89,9 +95,6 @@ export class Traductions extends Base {
   @prop({ required: true })
   public translated!: Partial<TranslationContent>;
 
-  @prop({ ref: () => User })
-  public validatorId: Ref<User>;
-
   @prop()
   public timeSpent: number;
 
@@ -109,10 +112,6 @@ export class Traductions extends Base {
 
   @prop()
   public updatedAt: Date;
-
-  // public get status(): string {
-  //   if()
-  // }
 
   public countWords(): number {
     return (
@@ -151,6 +150,21 @@ export class Traductions extends Base {
       throw new MustBePopulatedError("userId");
     }
     return this.userId;
+  }
+
+  public static diff(origin: TranslationContent, compareTo: TranslationContent): TraductionDiff {
+    const originKeys = keys(origin);
+    const compareToKeys = keys(compareTo);
+    // ces champs devront être traduits impérativement => to review
+    const added = difference(compareToKeys, originKeys);
+    // les champs supprimés peuvent être traités automatiquement sans re-traduction
+    const removed = difference(originKeys, compareToKeys);
+
+    // et la c'est le flou
+    const intersec = intersection(originKeys, compareToKeys);
+    const modified = intersec.filter((section) => get(origin, section) !== get(compareTo, section));
+
+    return { added, modified, removed };
   }
 
   public static computeAvancement(dispositif: Dispositif, translation: Traductions): number {

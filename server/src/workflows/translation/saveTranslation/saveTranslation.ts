@@ -1,7 +1,7 @@
 import { SaveTranslationRequest } from "api-types";
-import { getDispositifById } from "src/modules/dispositif/dispositif.repository";
-import { IndicatorModel, ObjectId, Traductions, TraductionsModel, User } from "src/typegoose";
-import { TraductionsType } from "src/typegoose/Traductions";
+import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { IndicatorModel, ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
+import { TraductionsType } from "../../../typegoose/Traductions";
 import validateTranslation from "../validateTranslation";
 
 const saveTranslation = (
@@ -22,7 +22,6 @@ const saveTranslation = (
     _traduction.userId = user._id;
 
     _traduction.avancement = Traductions.computeAvancement(dispositif, _traduction);
-    if (user.isExpert()) _traduction.validatorId = user._id;
 
     const wordsCount = _traduction.countWords();
 

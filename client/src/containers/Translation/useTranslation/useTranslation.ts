@@ -46,6 +46,7 @@ const useTranslation = () => {
   );
   const [myTranslation, setMyTranslation] = useState({
     translated: {},
+    avancement: 0,
   });
 
   const { loading, value, error } = useAsync(() =>
