@@ -1,6 +1,6 @@
 import { GetDispositifsWithTranslationAvancementResponse, Languages, TraductionsStatus } from "api-types";
 import { isEmpty, some } from "lodash";
-import { TraductionsType } from "src/typegoose/Traductions";
+import { TraductionsType } from "../../../typegoose/Traductions";
 import logger from "../../../logger";
 import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
 import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";

@@ -1,5 +1,5 @@
 import { Languages } from "api-types";
-import { DispositifModel, TraductionsModel } from "src/typegoose";
+import { DispositifModel, TraductionsModel } from "../../../typegoose";
 
 const deleteTranslations = (dispositifId: string, locale: Languages) =>
   Promise.all([

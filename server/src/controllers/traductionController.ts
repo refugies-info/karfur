@@ -9,7 +9,7 @@ import {
   getTraductionsForReview,
   saveTranslation,
   translate,
-} from "src/workflows";
+} from "../workflows";
 import {
   DeleteTranslationsRequest,
   GetDefaultTraductionResponse,
@@ -23,7 +23,7 @@ import {
   TranslationStatisticsRequest,
   TranslationStatisticsResponse,
 } from "api-types";
-import logger from "src/logger";
+import logger from "../logger";
 
 @Route("traduction")
 export class TranslationController extends Controller {

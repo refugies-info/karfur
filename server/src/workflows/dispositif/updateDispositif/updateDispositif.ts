@@ -6,7 +6,7 @@ import { DemarcheContent, DispositifContent, TranslationContent } from "../../..
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 import { ContentType, Languages, UpdateDispositifRequest } from "api-types";
 import { cloneDeep, isEmpty, omit, unset } from "lodash";
-import { TraductionsType } from "src/typegoose/Traductions";
+import { TraductionsType } from "../../../typegoose/Traductions";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
   // content
