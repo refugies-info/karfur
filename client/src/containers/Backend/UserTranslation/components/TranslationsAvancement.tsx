@@ -16,7 +16,7 @@ import {
   GetUserInfoResponse,
   TraductionsStatus,
 } from "api-types";
-import { isUndefined } from "lodash";
+import isUndefined from "lodash/isUndefined";
 
 interface Props {
   history: any;

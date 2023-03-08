@@ -1,5 +1,5 @@
 import { GetLanguagesResponse, Id } from "api-types";
-import { keyBy } from "lodash";
+import keyBy from "lodash/keyBy";
 import { useSelector } from "react-redux";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { userSelectedLanguageSelector } from "services/User/user.selectors";

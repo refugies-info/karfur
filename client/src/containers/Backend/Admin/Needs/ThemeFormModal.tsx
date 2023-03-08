@@ -19,7 +19,7 @@ import { needsSelector } from "services/Needs/needs.selectors";
 import { cls } from "lib/classname";
 import { LangueButton } from "../AdminUsers/ components/AdminUsersComponents";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
-import { toArray } from "lodash";
+import toArray from "lodash/toArray";
 // import { isThemeTitleOk } from "./lib";
 import { allThemesSelector } from "services/Themes/themes.selectors";
 import { GetLanguagesResponse, GetThemeResponse, ThemeRequest } from "api-types";

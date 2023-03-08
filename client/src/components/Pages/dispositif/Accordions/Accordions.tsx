@@ -11,15 +11,15 @@ import TextInput from "../TextInput";
 import styles from "./Accordions.module.scss";
 
 interface ColoredButtonProps {
-  borderColor: string;
-  backgroundColor: string;
+  border: string;
+  background: string;
 }
 
 const ColoredButton = styled(Button)<ColoredButtonProps>`
   :hover,
   &.${styles.open} {
-    background: ${(props) => props.backgroundColor} !important;
-    border-color: ${(props) => props.borderColor};
+    background: ${(props) => props.background} !important;
+    border-color: ${(props) => props.border};
   }
 `;
 
@@ -49,8 +49,8 @@ const Accordions = ({ content, sectionKey, color100, color30, withNumber }: Prop
                 <ColoredButton
                   className={cls(styles.btn, isItemOpen && styles.open)}
                   onClick={() => toggle(i)}
-                  backgroundColor={color30}
-                  borderColor={color100}
+                  background={color30}
+                  border={color100}
                 >
                   <h2 className={styles.title} style={{ color: color100 }}>
                     {withNumber && (

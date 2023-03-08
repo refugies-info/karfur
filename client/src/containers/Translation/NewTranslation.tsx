@@ -1,5 +1,7 @@
 import { useUser } from "hooks";
-import { get, isEmpty, isUndefined } from "lodash";
+import get from "lodash/get";
+import isEmpty from "lodash/isEmpty";
+import isUndefined from "lodash/isUndefined";
 import Skeleton from "react-loading-skeleton";
 import PageContext from "utils/pageContext";
 import Dispositif from "components/Content/Dispositif";

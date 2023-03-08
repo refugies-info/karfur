@@ -63,7 +63,13 @@ const SMSForm = () => {
         <span className={styles.divider} />
         <LangueMenu label="en" selectedLn={selectedLn} setSelectedLn={setSelectedLn} />
       </div>
-      <Button icon="paper-plane-outline" className={styles.submit} disabled={!tel} onClick={sendSMS}>
+      <Button
+        icon="paper-plane-outline"
+        iconPlacement="end"
+        className={styles.submit}
+        disabled={!tel}
+        onClick={sendSMS}
+      >
         Envoyer
       </Button>
       {error && (

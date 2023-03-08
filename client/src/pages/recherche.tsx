@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import qs from "query-string";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { wrapper } from "services/configureStore";
@@ -53,7 +53,7 @@ const debouncedQuery = debounce(
   (query: SearchQuery, dispositifs: GetDispositifsResponse[], locale: string, callback: (res: Results) => void) => {
     return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res: Results) => callback(res));
   },
-  500
+  500,
 );
 
 const Recherche = () => {
@@ -89,10 +89,10 @@ const Recherche = () => {
         router.push(
           {
             pathname: getPath("/recherche", router.locale),
-            search: newQueryString
+            search: newQueryString,
           },
           undefined,
-          { locale: locale, shallow: true }
+          { locale: locale, shallow: true },
         );
       }
     };
@@ -106,7 +106,7 @@ const Recherche = () => {
 
   // check if department deployed
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
-    getDepartmentsNotDeployed(query.departments, dispositifs)
+    getDepartmentsNotDeployed(query.departments, dispositifs),
   );
   useEffect(() => {
     setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
@@ -155,8 +155,8 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
-    }
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+    },
   };
 });
 
