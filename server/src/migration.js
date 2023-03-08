@@ -7,6 +7,10 @@ const dbPath = "mongodb://127.0.0.1:27017/heroku_wbj38s57?serverSelectionTimeout
 const client = new MongoClient(dbPath);
 const dbName = "heroku_wbj38s57";
 
+const removeHTML = (input) => {
+  return input.replace(/<\/?[^>]+(>|$)/g, "");
+};
+
 const getLocalizedContent = (content, ln, root = false) => {
   if (root) return content || "";
   if (ln === "fr") return content?.fr || content || "";
@@ -128,7 +132,7 @@ const getInfoSections = (children, ln, root, id, type) => {
       const uuid = savedUuids[id + type]?.[i] || uuidv4(); // use uuid if it exists in another language
 
       infosections[uuid] = {
-        title: getLocalizedContent(section.title, ln, root),
+        title: removeHTML(getLocalizedContent(section.title, ln, root)),
         text: turnJSONtoHTML(getLocalizedContent(section.content, ln, root)),
       };
     }
@@ -743,6 +747,20 @@ const adaptUserFavorites = async (usersColl) => {
   }
 };
 
+const adaptLangues = async (languesColl) => {
+  await languesColl.updateMany(
+    {},
+    {
+      $unset: {
+        langueIsDialect: "",
+        langueBackupId: "",
+        status: "",
+        participants: "",
+      },
+    },
+  );
+};
+
 /* Start script */
 async function main() {
   await client.connect();
@@ -752,6 +770,7 @@ async function main() {
   const dispositifsColl = db.collection("dispositifs");
   const traductionsColl = db.collection("traductions");
   const usersColl = db.collection("users");
+  const languesColl = db.collection("langues");
 
   // update dispositifs one by one
   console.log("Mise à jour du schéma 'dispositifs' ...");
@@ -781,6 +800,10 @@ async function main() {
   await adaptUserSelectedLanguages(usersColl);
   await adaptUserFavorites(usersColl);
   console.log("FIN Adaptation des utilisateurs");
+
+  console.log("Adaptation des langues");
+  await adaptLangues(languesColl);
+  console.log("FIN Adaptation des langues");
 
   console.log("C'est tout bon !");
 }
