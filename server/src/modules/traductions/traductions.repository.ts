@@ -1,6 +1,5 @@
 import { Languages } from "api-types";
-import { RefactorTodoError } from "src/errors";
-import { DispositifId, TraductionId, Traductions, TraductionsModel, UserId } from "../../typegoose";
+import { DispositifId, Traductions, TraductionsModel } from "../../typegoose";
 
 type TraductionsKeys = keyof Traductions;
 type TraductionsFieldsRequest = Partial<Record<TraductionsKeys, number>>;
@@ -19,23 +18,6 @@ export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages)
     dispositifId,
     language,
   });
-
-/**
- * @deprecated "Il faut utiliser la propriété toReview"
- * @param dispositifId
- * @param language
- * @param avancement
- */
-export const updateTradsWithARevoir = (dispositifId: DispositifId, language: string, avancement: number) => {
-  throw new RefactorTodoError();
-};
-// TraductionsModel.updateMany({ dispositifId, language }, { status: "À revoir", avancement }, { upsert: false });
-
-// export const updateTradInDB = (_id: TraductionId, trad: any) =>
-//   TraductionsModel.findOneAndUpdate({ _id }, trad, {
-//     upsert: true,
-//     new: true,
-//   });
 
 /**
  * @deprecated TODO refactor : status not exist anymore

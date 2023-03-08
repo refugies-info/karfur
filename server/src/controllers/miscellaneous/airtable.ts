@@ -1,5 +1,5 @@
 import { ContentType, Languages } from "api-types";
-import { DispositifId, Theme } from "src/typegoose";
+import { DispositifId, Theme } from "../../typegoose";
 
 var Airtable = require("airtable");
 var base = new Airtable({

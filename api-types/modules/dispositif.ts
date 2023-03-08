@@ -1,4 +1,15 @@
-import { ContentStructure, ContentType, DispositifStatus, Id, InfoSection, InfoSections, Metadatas, SimpleDispositif, SimpleUser, Sponsor } from "../generics";
+import {
+  ContentStructure,
+  ContentType,
+  DispositifStatus,
+  Id,
+  InfoSection,
+  InfoSections,
+  Metadatas,
+  SimpleDispositif,
+  SimpleUser,
+  Sponsor,
+} from "../generics";
 
 type ViewsType = "web" | "mobile" | "favorite";
 type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
@@ -8,7 +19,7 @@ type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDema
  */
 export interface CountDispositifsRequest {
   type: ContentType;
-  publishedOnly: boolean
+  publishedOnly: boolean;
   themeId?: string;
 }
 
@@ -17,16 +28,16 @@ export interface CountDispositifsRequest {
  */
 export interface GetDispositifsRequest {
   type?: ContentType;
-  locale: string
-  limit?: number
-  sort?: string
+  locale: string;
+  limit?: number;
+  sort?: string;
 }
 
 /**
  * @url GET /dispositifs/statistics
  */
 export interface GetStatisticsRequest {
-  facets?: Facets[]
+  facets?: Facets[];
 }
 
 /**
@@ -56,7 +67,7 @@ export interface DispositifStatusRequest {
  * @url POST /dispositifs/{id}/views
  */
 export interface AddViewsRequest {
-  types: ViewsType[]
+  types: ViewsType[];
 }
 
 /**
@@ -99,7 +110,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest { }
+export interface UpdateDispositifRequest extends DispositifRequest {}
 
 /**
  * @url POST /dispositifs
@@ -133,16 +144,17 @@ export type GetDispositifResponse = {
   next?: InfoSections;
   typeContenu: ContentType;
   status: DispositifStatus;
-  mainSponsor?: ContentStructure
+  mainSponsor?: ContentStructure;
   theme?: Id;
   secondaryThemes?: Id[];
   needs: Id[];
   sponsors?: (Sponsor | ContentStructure)[];
   participants: SimpleUser[];
-  merci: { created_at: Date, userId?: Id }[];
+  merci: { created_at: Date; userId?: Id }[];
   metadatas: Metadatas;
   map: Poi[];
   availableLanguages: string[];
+  date: Date;
 };
 
 /**
@@ -155,7 +167,7 @@ export interface GetUserContributionsResponse {
   typeContenu: ContentType;
   mainSponsor: {
     nom: string;
-  }
+  };
   nbVues: number;
   nbMercis: number;
   status: DispositifStatus;
@@ -172,12 +184,12 @@ export interface GetCountDispositifsResponse {
  * @url GET /dispositifs/statistics
  */
 export interface GetStatisticsResponse {
-  nbMercis?: number
-  nbVues?: number
-  nbVuesMobile?: number
-  nbDispositifs?: number
-  nbDemarches?: number
-  nbUpdatedRecently?: number
+  nbMercis?: number;
+  nbVues?: number;
+  nbVuesMobile?: number;
+  nbDispositifs?: number;
+  nbDemarches?: number;
+  nbUpdatedRecently?: number;
 }
 
 /**
@@ -196,7 +208,7 @@ export interface GetRegionStatisticsResponse {
 type Author = {
   _id: Id;
   username: string;
-}
+};
 
 /**
  * @url GET /dispositifs/all
@@ -227,7 +239,7 @@ export interface GetAllDispositifsResponse {
   lastReminderMailSentToUpdateContentDate?: Date;
   lastModificationAuthor: Author;
   mainSponsor: ContentStructure;
-  themesSelectedByAuthor: boolean
+  themesSelectedByAuthor: boolean;
   webOnly: boolean;
   creatorId: SimpleUser;
 }

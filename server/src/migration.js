@@ -306,6 +306,8 @@ const getContent = (dispositif, ln, root) => {
       what: turnJSONtoHTML(getLocalizedContent(dispositif.contenu?.[0]?.content, ln, root)),
     },
     metadatas: {},
+    created_at: dispositif.created_at,
+    validatorId: dispositif.validatorId,
   };
 
   if (dispositif.typeContenu === "dispositif") {
@@ -319,7 +321,7 @@ const getContent = (dispositif, ln, root) => {
   return contentLn;
 };
 
-const getMultilangContent = (dispositif, translatedMetas) => {
+const getMultilangContent = (dispositif, translatedMetas, validatedTrads) => {
   const translations = {};
   for (const ln of ["fr", "en", "ps", "fa", "ti", "ru", "uk", "ar"]) {
     if (dispositif.avancement[ln] === 1 || (ln === "fr" && dispositif.avancement === 1)) {
@@ -331,6 +333,14 @@ const getMultilangContent = (dispositif, translatedMetas) => {
       if (translatedMetas.important) {
         translations[ln].metadatas.important = getLocalizedContent(translatedMetas.important, ln, false);
       }
+      translations[ln].created_at = dispositif.updatedAt;
+      // console.log(validatedTrads);
+      const trad = validatedTrads.find((t) => t.langueCible === ln);
+      if (trad) {
+        translations[ln].validatorId = trad.validatorId || dispositif.creatorId;
+      } else {
+        translations[ln].validatorId = dispositif.creatorId;
+      }
     }
   }
 
@@ -338,12 +348,12 @@ const getMultilangContent = (dispositif, translatedMetas) => {
 };
 
 /* Add new fields to dispositif */
-const getNewDispositif = (dispositif) => {
+const getNewDispositif = (dispositif, validatedTrads) => {
   if (!dispositif.status) return null; // some dispositifs seems not complete and not displayed
   const metadatas = getMetadatas(dispositif.contenu?.[1], dispositif._id);
   const newDispositif = {
     translations: {
-      ...getMultilangContent(dispositif, metadatas.translatedMetas),
+      ...getMultilangContent(dispositif, metadatas.translatedMetas, validatedTrads),
     },
     map: getMarkers(dispositif.contenu?.[3].children),
     sponsors: getSponsors(dispositif),
@@ -527,7 +537,14 @@ const getContentFromTrad = (trad) => {
   const dispositifId = trad.articleId;
   const typeContenu = trad.dispositifs?.[0].typeContenu;
   const content = getContent(
-    { ...trad.translatedText, typeContenu: typeContenu, _id: dispositifId },
+    {
+      ...trad.translatedText,
+      typeContenu: typeContenu,
+      _id: dispositifId,
+      created_at: trad.created_at,
+      userId: trad.validatorId || trad.userId,
+      validatorId: trad.validatorId || trad.userId,
+    },
     trad.langueCible,
     true,
   );
@@ -761,6 +778,11 @@ const adaptLangues = async (languesColl) => {
   );
 };
 
+const removeValidatedTrad = (traductionsColl) =>
+  traductionsColl.deleteMany({ type: "validation", avancement: { $gte: 1 } }).then(({ deletedCount }) => {
+    console.log("removeValidatedTrad : ", deletedCount);
+  });
+
 /* Start script */
 async function main() {
   await client.connect();
@@ -776,7 +798,10 @@ async function main() {
   console.log("Mise à jour du schéma 'dispositifs' ...");
   const dispositifs = await dispositifsColl.find({ status: { $ne: "Supprimé" } }).toArray();
   for (const dispositif of dispositifs) {
-    const newDispositif = getNewDispositif(dispositif);
+    const validatedTrads = await traductionsColl
+      .find({ articleId: dispositif._id, isExpert: true, status: "Validée" })
+      .toArray();
+    const newDispositif = getNewDispositif(dispositif, validatedTrads);
     if (newDispositif) {
       await dispositifsColl.replaceOne({ _id: dispositif._id }, newDispositif);
     }
@@ -787,6 +812,7 @@ async function main() {
 
   await removeCorruptedTrads(traductionsColl);
   await migrateTrads(traductionsColl, dispositifsColl);
+  await removeValidatedTrad(traductionsColl);
 
   // remove all unused dispositifs
   await removeDispositifs(dispositifsColl);

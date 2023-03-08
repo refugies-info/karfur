@@ -13,7 +13,6 @@ export const createDispositif = async (body: CreateDispositifRequest, userId: Id
     creatorId: new ObjectId(userId.toString()),
     lastModificationAuthor: new ObjectId(userId.toString()),
     themesSelectedByAuthor: true,
-    // @ts-ignore asking for all languages?
     translations: {
       fr: {
         content: {
@@ -22,20 +21,21 @@ export const createDispositif = async (body: CreateDispositifRequest, userId: Id
           abstract: body.abstract || "",
           what: body.what || "",
           how: body.how || {},
-          ...(body.typeContenu === ContentType.DISPOSITIF) ? { why: body.why || {} } : { next: body.next || {} },
+          ...(body.typeContenu === ContentType.DISPOSITIF ? { why: body.why || {} } : { next: body.next || {} }),
         },
-        metadatas: {}
-      }
-    }
+        metadatas: {},
+        created_at: new Date(),
+        validatorId: new ObjectId(userId.toString()),
+      },
+    },
   };
 
   if (body.mainSponsor) newDispositif.mainSponsor = new ObjectId(body.mainSponsor);
   if (body.theme) newDispositif.theme = new ObjectId(body.theme);
-  if (body.secondaryThemes) newDispositif.secondaryThemes = body.secondaryThemes.map(t => new ObjectId(t));
+  if (body.secondaryThemes) newDispositif.secondaryThemes = body.secondaryThemes.map((t) => new ObjectId(t));
   if (body.metadatas) newDispositif.metadatas = body.metadatas;
 
   await createDispositifInDB(newDispositif);
 
   return { text: "success" };
 };
-

@@ -16,7 +16,7 @@
     "baseUrl": "./",
     "types": ["node"],
     "paths": {
-      "tsoa": ["node_modules/tsoa/dist"]
+      "tsoa": ["node_modules/tsoa/dist"],
     }
   },
   "exclude": ["node_modules", "dist", "src/**/*.test.ts"],

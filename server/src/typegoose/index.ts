@@ -13,7 +13,7 @@ import { Notification } from "./Notification";
 import { Role } from "./Role";
 import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
-import { Traductions, TraductionId, TraductionsStatus } from "./Traductions";
+import { Traductions, TraductionDiff, TraductionId, TraductionsStatus } from "./Traductions";
 import { User, UserId } from "./User";
 import { Widget, WidgetId } from "./Widget";
 
@@ -57,6 +57,7 @@ export {
   StructureId,
   Theme,
   ThemeId,
+  TraductionDiff,
   TraductionId,
   Traductions,
   TraductionsStatus,

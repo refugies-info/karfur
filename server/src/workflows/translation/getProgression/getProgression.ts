@@ -1,7 +1,7 @@
 import { GetProgressionResponse, ProgressionIndicator } from "api-types";
-import { computeGlobalIndicator } from "src/controllers/traduction/lib";
-import logger from "src/logger";
-import { IndicatorModel, ObjectId } from "src/typegoose";
+import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
+import logger from "../../../logger";
+import { IndicatorModel, ObjectId } from "../../../typegoose";
 
 export const computeIndicator = async (userId: string, start: Date, end: Date): Promise<ProgressionIndicator> =>
   IndicatorModel.aggregate([
