@@ -39,6 +39,7 @@ const SendSMSModal = (props: Props) => {
         phone: tel,
         title: dispositif.titreInformatif,
         url: window.location.href,
+        locale: selectedLn,
       })
         .then(() => {
           setTel("");

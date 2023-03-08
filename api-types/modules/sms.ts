@@ -13,4 +13,5 @@ export interface ContentLinkRequest {
   phone: string;
   title: string;
   url: string;
+  locale: string;
 }
