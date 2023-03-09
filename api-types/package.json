@@ -4,7 +4,8 @@
   "description": "Types defined in the API to be used by the frontend",
   "main": "dist/index.js",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "postinstall": "tsc"
   },
   "author": "",
   "license": "ISC",
