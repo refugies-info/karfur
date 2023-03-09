@@ -1,10 +1,10 @@
-import { InfoSections } from "api-types";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { cls } from "lib/classname";
 import React, { useContext, useState } from "react";
 import { Button, Collapse } from "reactstrap";
 import styled from "styled-components";
+import { InfoSections } from "api-types";
 import PageContext from "utils/pageContext";
+import { cls } from "lib/classname";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import RichText from "../RichText";
 import SectionButtons from "../SectionButtons";
 import TextInput from "../TextInput";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
 import { getPath, PathNames } from "routes";
 import { useSelector } from "react-redux";
@@ -11,10 +11,8 @@ import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import Button from "components/UI/Button";
-import ShareButtons from "components/Pages/dispositif/ShareButtons";
-import SMSForm from "components/Pages/dispositif/SMSForm";
 import Toast from "components/UI/Toast";
-import LangueMenu from "components/Pages/dispositif/LangueMenu";
+import { ShareButtons, SMSForm, LangueMenu } from "components/Pages/dispositif";
 import styles from "./RightSidebar.module.scss";
 
 const RightSidebar = () => {
@@ -59,10 +57,11 @@ const RightSidebar = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLn]);
 
-  const language = languages.find((ln) => ln.i18nCode === selectedLn);
-  const disabledOptions = languages
-    .map((ln) => ln.i18nCode)
-    .filter((ln) => !(dispositif?.availableLanguages || []).includes(ln));
+  const language = useMemo(() => languages.find((ln) => ln.i18nCode === selectedLn), [languages, selectedLn]);
+  const disabledOptions = useMemo(
+    () => languages.map((ln) => ln.i18nCode).filter((ln) => !(dispositif?.availableLanguages || []).includes(ln)),
+    [dispositif, languages],
+  );
   return (
     <div>
       <Button

@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { ContentType } from "api-types";
 import { useWindowSize } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
-import SEO from "components/Seo";
-import { Header, Sponsors, Contributors } from "components/Pages/dispositif";
-import Section from "components/Pages/dispositif/Section";
-import Feedback from "components/Pages/dispositif/Feedback";
-import LinkedThemes from "components/Pages/dispositif/LinkedThemes";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
+import SEO from "components/Seo";
+import {
+  Header,
+  Sponsors,
+  Contributors,
+  Section,
+  Feedback,
+  LinkedThemes,
+  ActionButtons,
+} from "components/Pages/dispositif";
 import FRLink from "components/UI/FRLink";
-import ActionButtons from "components/Pages/dispositif/ActionButtons";
 import RightSidebar from "./RightSidebar";
 import LeftSidebar from "./LeftSidebar";
 import styles from "./Dispositif.module.scss";
@@ -27,12 +31,18 @@ const Dispositif = (props: Props) => {
   const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
   const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
 
-  const typeContenu = props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF;
-  const sectionCommonProps = {
-    color100: theme?.colors.color100 || "#000",
-    color30: theme?.colors.color30 || "#ddd",
-    contentType: typeContenu,
-  };
+  const typeContenu = useMemo(
+    () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
+    [props.typeContenu, dispositif],
+  );
+  const sectionCommonProps = useMemo(
+    () => ({
+      color100: theme?.colors.color100 || "#000",
+      color30: theme?.colors.color30 || "#ddd",
+      contentType: typeContenu,
+    }),
+    [typeContenu, theme],
+  );
 
   return (
     <div className={styles.container} id="top">
