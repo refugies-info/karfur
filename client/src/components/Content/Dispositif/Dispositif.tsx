@@ -63,12 +63,14 @@ const Dispositif = (props: Props) => {
             </div>
           )}
           <Feedback mercis={dispositif?.merci || []} />
+          <span className={styles.divider} />
           <LinkedThemes theme={theme} secondaryThemes={secondaryThemes} needs={needs} />
-          <Sponsors sponsors={dispositif?.sponsors || []} />
 
-          <FRLink href="#top" icon="arrow-upward">
+          <FRLink href="#top" icon="arrow-upward" className={styles.top}>
             Haut de page
           </FRLink>
+          <span className={styles.divider} />
+          <Sponsors sponsors={dispositif?.sponsors || []} />
         </div>
         <div className={styles.right}>
           <RightSidebar />

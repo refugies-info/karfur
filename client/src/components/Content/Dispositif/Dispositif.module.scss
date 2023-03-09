@@ -91,3 +91,15 @@
   @include dsfr-text("h2");
   font-weight: bold;
 }
+
+.top {
+  margin-bottom: u(16);
+}
+
+.divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: $lightBorderDefaultGrey;
+  margin-bottom: u(10);
+}

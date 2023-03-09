@@ -85,6 +85,7 @@ export const getSimpleDispositifs = async (
       lastModificationDate: 1,
       mainSponsor: 1,
       needs: 1,
+      translations: 1,
     },
     "",
     limit,
@@ -97,6 +98,7 @@ export const getSimpleDispositifs = async (
         ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
         metadatas: { ...dispositif.metadatas, ...translation.metadatas },
         ...omit(dispositif, ["translations"]),
+        availableLanguages: Object.keys(dispositif.translations)
       };
       return resDisp;
     }),

@@ -184,7 +184,7 @@ export class Dispositif extends Base {
   public secondaryThemes?: Ref<Theme, ThemeId>[];
   @prop({ ref: () => Need })
   public needs: Ref<Need, NeedId>[];
-  @prop({ type: () => Sponsor, ref: () => Structure })
+  @prop()
   public sponsors?: (Ref<Structure> | Sponsor)[];
 
   @prop({ required: true, ref: () => User })

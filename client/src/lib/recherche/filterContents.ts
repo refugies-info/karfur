@@ -1,5 +1,3 @@
-// FIXME use new metadatas
-//@ts-nocheck
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import { GetDispositifsResponse, Id } from "api-types";
 
@@ -43,11 +41,11 @@ const filterAgeValues = {
 
 export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
   if (ageFilters.length === 0) return true;
-  const audienceAge = dispositif.audienceAge[0];
-  if (!audienceAge.bottomValue || !audienceAge.topValue) return true;
+  const audienceAge = dispositif.metadatas.age;
+  if (!audienceAge || !audienceAge.ages[0] || !audienceAge.ages[1]) return true;
   for (const age of ageFilters) {
-    if (audienceAge.bottomValue <= filterAgeValues[age][0] &&
-      audienceAge.topValue >= filterAgeValues[age][1]
+    if (audienceAge.ages[0] <= filterAgeValues[age][0] &&
+      audienceAge.ages[1] >= filterAgeValues[age][1]
     ) {
       return true;
     }
@@ -56,14 +54,14 @@ export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeO
 };
 
 const filterFrenchLevelValues = {
-  "a": ["Débutant"],
-  "b": ["Débutant", "Intermédiaire"],
+  "a": ["A1", "A2"],
+  "b": ["A1", "A2", "B1", "B2"],
   "c": []
 }
 
 export const filterByFrenchLevel = (dispositif: GetDispositifsResponse, frenchLevelFilters: FrenchOptions[]) => {
   if (frenchLevelFilters.length === 0) return true;
-  const frenchLevels = dispositif.niveauFrancais;
+  const frenchLevels = dispositif.metadatas.frenchLevel;
   if (!frenchLevels || frenchLevels.length === 0) return true;
 
   if (frenchLevelFilters.includes("c")) {
@@ -86,7 +84,7 @@ export const filterByFrenchLevel = (dispositif: GetDispositifsResponse, frenchLe
 export const filterByLanguage = (dispositif: GetDispositifsResponse, languageFilters: string[]) => {
   if (languageFilters.length === 0) return true;
   for (const ln of languageFilters) {
-    if (dispositif.avancement?.[ln]) {
+    if (dispositif.availableLanguages.includes(ln)) {
       return true;
     }
   }

@@ -160,4 +160,5 @@ export interface SimpleDispositif {
     nom: string;
     picture: Picture;
   };
+  availableLanguages: string[];
 }

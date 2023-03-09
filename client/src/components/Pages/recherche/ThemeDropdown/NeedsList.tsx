@@ -133,7 +133,6 @@ const NeedsList = (props: Props) => {
               (i === 0 || props.displayedNeeds[i - 1].theme._id !== need.theme._id) && (
                 <div className={styles.list_theme}>
                   <TagName theme={need.theme as GetThemeResponse} colored={true} size={20} />
-                  {/* TODO: comment gérer les nested imports */}
                 </div>
               )}
             <ButtonNeed
