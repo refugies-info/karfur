@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import { SimpleUser } from "api-types";
 import DefaultAvatar from "assets/dispositif/default-avatar.png";
@@ -12,8 +12,9 @@ interface Props {
 }
 
 const ContributorCard = ({ user }: Props) => {
-  const role = getRole(user.roles);
-  const hasProfilePicture = !!user.picture?.secure_url;
+  const role = useMemo(() => getRole(user.roles), [user]);
+  const hasProfilePicture = useMemo(() => !!user.picture?.secure_url, [user]);
+
   return (
     <div className={styles.container}>
       <Image

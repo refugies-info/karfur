@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GetNeedResponse, GetThemeResponse } from "api-types";
 import { getPath } from "routes";
+import { getLinkedThemesReadableText } from "lib/getReadableText";
 import { themesSelector } from "services/Themes/themes.selectors";
 import ThemeIcon from "components/UI/ThemeIcon";
 import SectionButtons from "../SectionButtons";
@@ -63,7 +64,10 @@ const LinkedThemes = (props: Props) => {
           </Button>
         ))}
       </div>
-      <SectionButtons id="themes" />
+      <SectionButtons
+        id="themes"
+        content={getLinkedThemesReadableText(props.theme, props.secondaryThemes, props.needs)}
+      />
     </div>
   );
 };

@@ -159,7 +159,7 @@ const Layout = (props: Props) => {
         : e?.target?.textContent || null;
 
       if (sentence) {
-        readAudio(sentence, router.locale, null, false, ttsActive, (val: boolean) => dispatch(toggleSpinner(val)));
+        readAudio(sentence, router.locale, null, ttsActive, (val: boolean) => dispatch(toggleSpinner(val)));
       } else {
         stopAudio();
       }

@@ -1,5 +1,4 @@
-import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./Card.module.scss";
 
 interface Item {
@@ -15,7 +14,7 @@ interface Props {
 }
 
 const Card = ({ title, items, color }: Props) => {
-  const noContent = !items.find((item) => !!item.content);
+  const noContent = useMemo(() => !items.find((item) => !!item.content), [items]);
   if (noContent) return null;
 
   return (

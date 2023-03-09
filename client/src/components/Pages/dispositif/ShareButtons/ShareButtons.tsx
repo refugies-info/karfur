@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { ContentType } from "api-types";
 import { Event } from "lib/tracking";
@@ -11,7 +11,7 @@ import styles from "./ShareButtons.module.scss";
 const ShareButtons = () => {
   const dispositif = useSelector(selectedDispositifSelector);
 
-  const shareEmail = () => {
+  const shareEmail = useCallback(() => {
     if (!dispositif) return;
     Event("Share", "Mail", "from dispositif sidebar");
     const mailSubject =
@@ -20,33 +20,37 @@ const ShareButtons = () => {
         : `${dispositif.titreInformatif}`;
     const mailBody = `Voici le lien vers cette fiche : ${window.location.href}`;
     window.location.href = `mailto:?subject=${mailSubject}&body=${mailBody}`;
-  };
+  }, [dispositif]);
+
   const [showToastLink, setShowToastLink] = useState(false);
-  const copyLink = () => {
+  const copyLink = useCallback(() => {
     Event("Share", "Copy", "from dispositif sidebar");
     navigator.clipboard.writeText(window.location.href);
     setShowToastLink(true);
-  };
-  const print = () => {
+  }, []);
+
+  const print = useCallback(() => {
     Event("Share", "Print", "from dispositif sidebar");
     window.print();
-  };
-  const shareFacebook = () => {
+  }, []);
+
+  const shareFacebook = useCallback(() => {
     Event("Share", "Facebook", "from dispositif sidebar");
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`,
       "_blank",
       "location=yes,height=570,width=520,scrollbars=yes,status=yes",
     );
-  };
-  const shareLinkedin = () => {
+  }, []);
+
+  const shareLinkedin = useCallback(() => {
     Event("Share", "Linkedin", "from dispositif sidebar");
     window.open(
       `https://www.linkedin.com/shareArticle/?mini=true&url=${window.location.href}`,
       "_blank",
       "location=yes,height=570,width=520,scrollbars=yes,status=yes",
     );
-  };
+  }, []);
 
   return (
     <div className={styles.container}>

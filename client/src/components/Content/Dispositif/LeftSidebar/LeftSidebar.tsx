@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { ContentType } from "api-types";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
-import { Metadatas } from "components/Pages/dispositif";
-import Summary from "components/Pages/dispositif/Summary";
+import { Metadatas, Summary } from "components/Pages/dispositif";
 
 const Dispositif = () => {
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
-  const color100 = theme?.colors.color100 || "#000";
+  const color100 = useMemo(() => theme?.colors.color100 || "#000", [theme]);
 
   return (
     <>

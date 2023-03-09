@@ -1,10 +1,10 @@
-import { InfoSections } from "api-types";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { cls } from "lib/classname";
 import React, { useContext, useState } from "react";
 import { Button, Collapse } from "reactstrap";
 import styled from "styled-components";
+import { InfoSections } from "api-types";
 import PageContext from "utils/pageContext";
+import { cls } from "lib/classname";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import RichText from "../RichText";
 import SectionButtons from "../SectionButtons";
 import TextInput from "../TextInput";
@@ -67,7 +67,7 @@ const Accordions = ({ content, sectionKey, color100, color30, withNumber }: Prop
                     <RichText id={`${sectionKey}.${section[0]}.text`} value={section[1].text} />
                   </div>
                 </Collapse>
-                <SectionButtons id={`${sectionKey}.${section[0]}`} />
+                <SectionButtons id={`${sectionKey}.${section[0]}`} content={section[1]} />
               </div>
             );
           })}

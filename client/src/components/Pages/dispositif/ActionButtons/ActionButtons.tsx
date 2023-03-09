@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useLocale } from "hooks";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
@@ -14,7 +14,7 @@ const ActionButtons = () => {
   const [showSMSModal, setShowSMSModal] = useState(false);
   const [showReadModal, setShowReadModal] = useState(false);
 
-  const language = languages.find((ln) => ln.i18nCode === locale);
+  const language = useMemo(() => languages.find((ln) => ln.i18nCode === locale), [languages, locale]);
   return (
     <div className={styles.container}>
       <div className={styles.inner}>

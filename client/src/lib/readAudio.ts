@@ -10,12 +10,11 @@ const readAudio = function (
   text: string,
   locale: string = "fr-fr",
   callback: any = null,
-  inDispositif: boolean = false,
   isActive: boolean = true,
-  startLoader: any = () => {},
+  startLoader: any = () => { },
 ) {
   if (!text || text === "null") return;
-  !inDispositif && startLoader(true);
+  startLoader(true);
   API.cancel_tts_subscription();
   return API.getTts({ text, locale })
     .then((audioData) => {
@@ -31,18 +30,18 @@ const readAudio = function (
           callback && callback();
         };
         //On ne le joue que si l'audio est toujours activé
-        if (isActive || inDispositif) {
+        if (isActive) {
           audio.load();
-          audio.play().catch(() => {});
+          audio.play().catch(() => { });
         }
-        !inDispositif && startLoader(false);
+        startLoader(false);
         return true;
       } catch (e) {
-        !inDispositif && startLoader(false);
+        startLoader(false);
         return false;
       }
     })
-    .catch(() => {});
+    .catch(() => { });
 };
 
 const stopAudio = function () {
@@ -51,4 +50,20 @@ const stopAudio = function () {
   audio.currentTime = 0;
 };
 
-export { readAudio, stopAudio };
+const pauseAudio = function () {
+  if (!audio) return;
+  audio.pause();
+};
+
+const resumeAudio = function () {
+  if (!audio) return;
+  audio.play();
+};
+
+const changeRate = function (rate: 1 | 2) {
+  if (!audio) return;
+  const customRate = rate === 2 ? 1.5 : rate;
+  audio.playbackRate = customRate;
+};
+
+export { readAudio, stopAudio, pauseAudio, resumeAudio, changeRate };
