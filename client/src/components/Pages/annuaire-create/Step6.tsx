@@ -1,5 +1,4 @@
 import React from "react";
-import { ObjectId } from "mongodb";
 import Link from "next/link";
 import FButton from "components/UI/FButton/FButton";
 import gif from "assets/annuaire/GIF-annuaire.gif";
@@ -7,9 +6,10 @@ import Image from "next/image";
 import styles from "./Step6.module.scss";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
+import { Id } from "api-types";
 
 interface Props {
-  structureId: string | ObjectId;
+  structureId: string | Id;
 }
 export const Step6 = (props: Props) => {
   const router = useRouter();

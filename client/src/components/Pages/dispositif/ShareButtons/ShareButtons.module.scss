@@ -1,0 +1,15 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+
+.container {
+  margin-top: u(3);
+  align-items: center;
+  display: flex;
+}
+
+.btn {
+  padding: u(2) !important;
+  @include mr-ltr(u(2));
+}

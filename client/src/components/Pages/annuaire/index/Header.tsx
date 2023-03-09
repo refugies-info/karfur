@@ -1,16 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
-import { SimplifiedStructure } from "types/interface";
 import { useTranslation } from "next-i18next";
 import styles from "./Header.module.scss";
 import useRTL from "hooks/useRTL";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
+import { GetActiveStructuresResponse } from "api-types";
 
 interface Props {
   letters: string[];
-  filteredStructures: SimplifiedStructure[] | null;
+  filteredStructures: GetActiveStructuresResponse[] | null;
   typeSelected: string[] | null;
   setTypeSelected: (a: string[]) => void;
   ville: string;

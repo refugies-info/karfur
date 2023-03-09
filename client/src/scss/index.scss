@@ -5,8 +5,6 @@
 // Vendors
 @import "~bootstrap/scss/bootstrap";
 @import "~flag-icons/css/flag-icons.min.css";
-@import "~font-awesome/css/font-awesome.min.css";
-@import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 @import "~rc-time-picker/assets/index.css";
 @import "~react-notifications/src/notifications.scss";
 @import "~react-loading-skeleton/dist/skeleton.css";
@@ -16,9 +14,6 @@
 @import "./rtl";
 @import "./common";
 @import "./dsfr-fix";
-
-// Pages
-@import "./pages/dispositif.scss";
 
 // TEMP
 @import "../components/UI/SearchBar/SearchBar.scss";

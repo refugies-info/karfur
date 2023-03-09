@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import {
   fetchLanguesActionCreator,
   toggleLangueActionCreator,
-  toggleLangueModalActionCreator
+  toggleLangueModalActionCreator,
 } from "services/Langue/langue.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -29,6 +29,7 @@ import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { getPath, PathNames } from "routes";
+import { LoginRequest } from "api-types";
 
 type Structure = {
   nom: string;
@@ -38,11 +39,11 @@ type Structure = {
 };
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [code, setCode] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [code, setCode] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
   const [smsSentTo, setSmsSentTo] = useState("");
   const [structure, setStructure] = useState<Structure | null>(null);
   const [step, setStep] = useState(0);
@@ -94,10 +95,10 @@ const Login = () => {
   };
 
   const resetPassword = () => {
-    API.reset_password({ username })
+    API.resetPassword({ username })
       .then((data) => {
         setResetPasswordPossible(true);
-        setEmail(data.data.data);
+        setEmail(data.data.data.email);
       })
       .catch((e) => {
         if (e.response.status === 403) {
@@ -112,10 +113,10 @@ const Login = () => {
     router.push(
       {
         pathname: getPath(pathname as PathNames, lng),
-        query
+        query,
       },
       undefined,
-      { locale: lng }
+      { locale: lng },
     );
 
     if (showLangModal) {
@@ -123,35 +124,23 @@ const Login = () => {
     }
   };
 
-  /**
-   * Errors returned by login route
-   * 400 : invalid request, no user with this pseudo
-   * 500 : internal error
-   * 401 : wrong password
-   * 402 : wrong code (admin or hasStructure)
-   * 404 : error sending code (admin), error creating admin account
-   * 501 : no code provided (admin)
-   * 200 : authentification succeeded
-   * 502 : new admin without phone number or email
-   */
-
   const login = () => {
-    const user = {
+    const user: LoginRequest = {
       username,
       password,
       code,
       email,
-      phone
+      phone,
     };
     API.login(user)
       .then((data) => {
-        const token = data.data.token;
+        const token = data.data.data.token;
 
         Swal.fire({
           title: "Yay...",
           text: t("Authentification réussie !", "Authentification réussie !"),
           icon: "success",
-          timer: 1500
+          timer: 1500,
         }).then(() => {
           const { query } = router;
           if (query.redirect) {
@@ -165,27 +154,25 @@ const Login = () => {
         dispatch(fetchUserActionCreator());
       })
       .catch((e) => {
-        // status 501 corresponds to an admin connecting (before entering the code)
-        if (e.response.status === 501) {
+        if (e.response?.data?.code === "NO_CODE_SUPPLIED") {
           setStep(2);
           setNewAdminWithoutPhoneOrEmail(false);
           setNewHasStructureWithoutPhoneOrEmail(false);
-          setSmsSentTo(e.response?.data?.phone || "");
-        } else if (e.response.status === 401) {
-          // status 401 corresponds to wrong password
+          setSmsSentTo(e.response?.data?.data?.phone || "");
+        } else if (["INVALID_PASSWORD", "PASSWORD_TOO_WEAK", "ADMIN_FORBIDDEN"].includes(e.response?.data?.code)) {
           setWrongPasswordError(true);
-        } else if (e.response.status === 402) {
+        } else if (e.response?.data?.code === "WRONG_CODE") {
           setWrongAdminCodeError(true);
-        } else if (e.response.status === 502) {
-          if (e.response?.data?.role === "admin") {
+        } else if (e.response?.data?.code === "NO_CONTACT") {
+          if (e.response?.data?.data?.role === "admin") {
             setNewAdminWithoutPhoneOrEmail(true);
-            setEmail(e.response?.data?.email || "");
+            setEmail(e.response?.data?.data?.email || "");
           } else {
             setNewHasStructureWithoutPhoneOrEmail(true);
-            setEmail(e.response?.data?.email || "");
-            setStructure(e.response?.data?.structure);
+            setEmail(e.response?.data?.data?.email || "");
+            setStructure(e.response?.data?.data?.structure);
           }
-        } else if (e.response.status === 405) {
+        } else if (e.response?.data?.code === "USER_DELETED") {
           setUserDeletedError(true);
         } else {
           setUnexpectedError(true);
@@ -204,20 +191,13 @@ const Login = () => {
           title: "Oops...",
           text: "Aucun nom d'utilisateur n'est renseigné !",
           icon: "error",
-          timer: 1500
+          timer: 1500,
         });
         return;
       }
-      API.checkUserExists({ username }).then((data) => {
-        const userExists = data.status === 200;
-        if (userExists) {
-          // if user, go to next step (password)
-          setStep(1);
-        } else {
-          // if no user: display error
-          setNoUserError(!userExists);
-        }
-      });
+      API.checkUserExists(username)
+        .then(() => setStep(1))
+        .catch(() => setNoUserError(true));
     } else {
       // password check
       if (password.length === 0) {
@@ -225,7 +205,7 @@ const Login = () => {
           title: "Oops...",
           text: "Aucun mot de passe n'est renseigné !",
           icon: "error",
-          timer: 1500
+          timer: 1500,
         });
         return;
       }
@@ -354,7 +334,7 @@ const Login = () => {
       <div className={styles.container}>
         <div
           style={{
-            paddingTop: step === 1 && newHasStructureWithoutPhoneOrEmail ? 40 : 100
+            paddingTop: step === 1 && newHasStructureWithoutPhoneOrEmail ? 40 : 100,
           }}
         >
           <div className={styles.header}>
@@ -386,9 +366,10 @@ const Login = () => {
             <>
               <div className={styles.email_message}>
                 {t(
-                  // @ts-ignore FIXME
+                  // FIXME
+                  // @ts-ignore
                   "Login.Lien réinitialisation",
-                  "Un lien de réinitialisation a été envoyé à "
+                  "Un lien de réinitialisation a été envoyé à ",
                 ) +
                   getHashedEmail() +
                   "."}
@@ -398,7 +379,7 @@ const Login = () => {
                   fontWeight: "bold",
                   fontSize: "16px",
                   lineHeight: "20px",
-                  marginBottom: "64px"
+                  marginBottom: "64px",
                 }}
               >
                 {t("Login.Réinitialisation texte", "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?")}

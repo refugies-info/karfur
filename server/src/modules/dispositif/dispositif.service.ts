@@ -1,17 +1,16 @@
-import { ObjectId } from "mongoose";
 import { updateDispositifInDB } from "./dispositif.repository";
 import { updateLanguagesAvancement } from "../langues/langues.service";
 import logger from "../../logger";
 import { addOrUpdateDispositifInContenusAirtable } from "../../controllers/miscellaneous/airtable";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
-import { getDispositifDepartments } from "../../libs/getDispositifDepartments";
 import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
+import { Dispositif, DispositifId, UserId } from "../../typegoose";
 
-export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId) => {
+export const publishDispositif = async (dispositifId: DispositifId, userId: UserId) => {
   const newDispositif = {
-    status: "Actif",
-    publishedAt: Date.now(),
-    publishedAtAuthor: userId
+    status: "Actif" as Dispositif["status"],
+    publishedAt: new Date(),
+    publishedAtAuthor: userId,
   };
 
   const newDispo = await updateDispositifInDB(dispositifId, newDispositif);
@@ -21,20 +20,18 @@ export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId
     logger.error("[publishDispositif] error while updating languages avancement", { error: error.message });
   }
 
-  const themesList = [newDispo.theme, ...newDispo.secondaryThemes].map(t => t.short.fr);
+  const themesList = [newDispo.getTheme(), ...newDispo.getSecondaryThemes()];
 
   try {
     await addOrUpdateDispositifInContenusAirtable(
-      //@ts-ignore
-      newDispo.titreInformatif?.fr || newDispo.titreInformatif,
-      //@ts-ignore
-      newDispo.titreMarque?.fr || newDispo.titreMarque,
+      newDispo.translations.fr.content.titreInformatif,
+      newDispo.translations.fr.content.titreMarque,
       newDispo._id,
       themesList,
       newDispo.typeContenu,
       null,
-      getDispositifDepartments(newDispo),
-      false
+      newDispo.getDepartements(),
+      false,
     );
   } catch (error) {
     logger.error("[publishDispositif] error while updating contenu in airtable", { error: error.message });
@@ -47,11 +44,10 @@ export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId
   }
 
   try {
-    //@ts-ignore
     await sendMailWhenDispositifPublished(newDispo);
   } catch (error) {
     logger.error("[publishDispositif] error while sending email", {
-      error: error.message
+      error: error.message,
     });
   }
 };

@@ -2,17 +2,18 @@ import { sendMailToStructureMembersWhenDispositifEnAttente } from "../sendMailTo
 import { getStructureMembers } from "../../structure/structure.service";
 import { getUsersFromStructureMembres } from "../../users/users.service";
 import { sendNewFicheEnAttenteMail } from "../mail.service";
+import { Types } from "mongoose";
 
 jest.mock("../../structure/structure.service", () => ({
-  getStructureMembers: jest.fn(),
+  getStructureMembers: jest.fn()
 }));
 
 jest.mock("../../users/users.service", () => ({
-  getUsersFromStructureMembres: jest.fn(),
+  getUsersFromStructureMembres: jest.fn()
 }));
 
 jest.mock("../mail.service", () => ({
-  sendNewFicheEnAttenteMail: jest.fn(),
+  sendNewFicheEnAttenteMail: jest.fn()
 }));
 
 describe("sendMailToStructureMembersWhenDispositifEnAttente", () => {
@@ -28,7 +29,7 @@ describe("sendMailToStructureMembersWhenDispositifEnAttente", () => {
       lien,
       email: "email1",
       dispositifId: "dispoId",
-      userId: "userId1",
+      userId: "userId1"
     };
 
     const data2 = {
@@ -38,23 +39,20 @@ describe("sendMailToStructureMembersWhenDispositifEnAttente", () => {
       lien,
       email: "email2",
       dispositifId: "dispoId",
-      userId: "userId2",
+      userId: "userId2"
     };
 
     getStructureMembers.mockResolvedValueOnce(structureMembers);
     getUsersFromStructureMembres.mockResolvedValueOnce([membre1, membre2]);
 
-    await sendMailToStructureMembersWhenDispositifEnAttente(
-      "sponsorId",
-      "dispoId",
-      "TI",
-      "TM",
-      "dispositif"
-    );
+    await sendMailToStructureMembersWhenDispositifEnAttente({
+      _id: new Types.ObjectId("dispoId"),
+      type: "dispositif",
+      mainSponsor: { _id: new Types.ObjectId("sponsorId") },
+      translations: { fr: { content: { titreInformatif: "TI", titreMarque: "TN" } } }
+    });
     expect(getStructureMembers).toHaveBeenCalledWith("sponsorId");
-    expect(getUsersFromStructureMembres).toHaveBeenCalledWith(
-      "structureMembers"
-    );
+    expect(getUsersFromStructureMembres).toHaveBeenCalledWith("structureMembers");
     expect(sendNewFicheEnAttenteMail).toHaveBeenCalledWith(data1);
     expect(sendNewFicheEnAttenteMail).toHaveBeenCalledWith(data2);
   });

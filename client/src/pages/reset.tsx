@@ -11,7 +11,7 @@ import { fetchUserActionCreator } from "services/User/user.actions";
 import {
   fetchLanguesActionCreator,
   toggleLangueActionCreator,
-  toggleLangueModalActionCreator
+  toggleLangueModalActionCreator,
 } from "services/Langue/langue.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { showLangModalSelector, allLanguesSelector } from "services/Langue/langue.selectors";
@@ -31,6 +31,7 @@ import { getPath, PathNames } from "routes";
 import PhoneAndEmailFields from "components/Pages/login/PhoneAndEmailFields";
 import CodeField from "components/Pages/login/CodeField";
 import Footer from "components/Pages/login/Footer";
+import { NewPasswordRequest } from "api-types";
 
 const StyledHeader = styled.div`
   font-weight: 600;
@@ -94,21 +95,10 @@ const Reset = () => {
       setIsError(true);
       return;
     }
-    API.get_users({
-      query: {
-        reset_password_token: token,
-        reset_password_expires: { $gt: Date.now() }
-      }
-    })
-      .then((data) => {
-        const users = data.data.data;
-        if (users && users.length === 1) {
-          setIsLoading(false);
-          setResetPasswordToken(token);
-        } else {
-          setIsLoading(false);
-          setIsError(true);
-        }
+    API.checkResetToken(token)
+      .then(() => {
+        setIsLoading(false);
+        setResetPasswordToken(token);
       })
       .catch(() => {
         setIsLoading(false);
@@ -127,45 +117,45 @@ const Reset = () => {
         title: "Oops...",
         text: "Aucun mot de passe n'est renseigné !",
         icon: "error",
-        timer: 1500
+        timer: 1500,
       });
       return;
     }
 
-    const user = {
+    const user: NewPasswordRequest = {
       newPassword: newPassword,
       reset_password_token: resetPasswordToken,
       code,
       email,
-      phone
+      phone,
     };
-    API.set_new_password(user)
+    API.setNewPassword(user)
       .then((data) => {
         Swal.fire({
           title: "Yay...",
           text: "Modification du mot de passe réussie !",
           icon: "success",
-          timer: 1500
+          timer: 1500,
         }).then(() => {
-          localStorage.setItem("token", data.data.token);
-          setAuthToken(data.data.token);
+          localStorage.setItem("token", data.data.data.token);
+          setAuthToken(data.data.data.token);
           dispatch(fetchUserActionCreator());
           router.push("/");
         });
       })
       .catch((e) => {
-        if (e.response.status === 501) {
+        if (e.response?.data?.code === "NO_CODE_SUPPLIED") {
           setStep(2);
           setNewHasStructureWithoutPhoneOrEmail(false);
-          setSmsSentTo(e.response?.data?.phone || "");
-        } else if (e.response.status === 402) {
+          setSmsSentTo(e.response?.data?.data?.phone || "");
+        } else if (e.response?.data?.code === "WRONG_CODE") {
           setWrongAdminCodeError(true);
-        } else if (e.response.status === 502) {
+        } else if (e.response?.data?.code === "NO_CONTACT") {
           setStep(1);
           setNewHasStructureWithoutPhoneOrEmail(true);
-          setEmail(e.response?.data?.email || "");
-          setStructure(e.response?.data?.structure);
-        } else if (e.response.status === 400 && e.response.data.code === "USED_PASSWORD") {
+          setEmail(e.response?.data?.data?.email || "");
+          setStructure(e.response?.data?.data?.structure);
+        } else if (e.response?.data?.code === "USED_PASSWORD") {
           setSamePasswordError(true);
         } else {
           setUnexpectedError(true);
@@ -179,10 +169,10 @@ const Reset = () => {
     router.push(
       {
         pathname: getPath(pathname as PathNames, lng),
-        query
+        query,
       },
       undefined,
-      { locale: lng }
+      { locale: lng },
     );
 
     if (showLangModal) {
@@ -244,7 +234,7 @@ const Reset = () => {
         <h5>
           {t(
             "Login.Problème mdp",
-            "Un problème est survenu au moment de réinitialiser le mot de passe. Merci d'essayer à nouveau"
+            "Un problème est survenu au moment de réinitialiser le mot de passe. Merci d'essayer à nouveau",
           )}
           ...
         </h5>

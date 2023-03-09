@@ -10,11 +10,11 @@ import { NoGeolocModal } from "./NoGeolocModal";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import styles from "./Dashboard.module.scss";
-import { RegionFigures, DispositifStatistics } from "types/interface";
-import { ObjectId } from "mongodb";
 import { colors } from "colors";
 import { Spinner } from "reactstrap";
 import { themesSelector } from "services/Themes/themes.selectors";
+import { ContentType, GetRegionStatisticsResponse, GetStatisticsResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 const formatter = new Intl.NumberFormat();
@@ -38,10 +38,10 @@ const Dashboard = (props: Props) => {
     [key: string]: number;
   }>({});
   const [nbTraductors, setNbTraductors] = useState(0);
-  const [figuresByRegion, setFiguresByRegion] = useState<RegionFigures[]>([]);
+  const [figuresByRegion, setFiguresByRegion] = useState<GetRegionStatisticsResponse["regionFigures"]>([]);
   const [showNoGeolocModal, setShowNoGeolocModal] = useState(false);
-  const [dispositifsWithoutGeoloc, setDispositifsWithoutGeoloc] = useState<ObjectId[]>([]);
-  const [statistics, setStatistics] = useState<DispositifStatistics | null>(null);
+  const [dispositifsWithoutGeoloc, setDispositifsWithoutGeoloc] = useState<Id[]>([]);
+  const [statistics, setStatistics] = useState<GetStatisticsResponse | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [notificationsActive, setNotificationsActive] = useState<boolean | null>(null);
   const themes = useSelector(themesSelector);
@@ -49,21 +49,23 @@ const Dashboard = (props: Props) => {
   useEffect(() => {
     if (props.visible && !loaded) {
       const promises = [
-        API.count_dispositifs({
-          typeContenu: { $ne: "demarche" }
-        }).then((data) => setNbDispositifs(data.data)),
-        API.count_dispositifs({
-          typeContenu: { $ne: "demarche" },
-          status: "Actif"
-        }).then((data) => setNbDispositifsActifs(data.data)),
-        API.count_dispositifs({
-          typeContenu: "demarche"
-        }).then((data) => setNbDemarches(data.data)),
-        API.count_dispositifs({
-          typeContenu: "demarche",
-          status: "Actif"
-        }).then((data) => setNbDemarchesActives(data.data)),
-        API.getFiguresOnUsers().then((data) => {
+        API.countDispositifs({
+          type: ContentType.DISPOSITIF,
+          publishedOnly: false,
+        }).then((data) => setNbDispositifs(data.data.data.count)),
+        API.countDispositifs({
+          type: ContentType.DISPOSITIF,
+          publishedOnly: true,
+        }).then((data) => setNbDispositifsActifs(data.data.data.count)),
+        API.countDispositifs({
+          type: ContentType.DEMARCHE,
+          publishedOnly: false,
+        }).then((data) => setNbDemarches(data.data.data.count)),
+        API.countDispositifs({
+          type: ContentType.DEMARCHE,
+          publishedOnly: true,
+        }).then((data) => setNbDemarchesActives(data.data.data.count)),
+        API.getUsersStatistics().then((data) => {
           setNbContributors(data.data.data.nbContributors);
           setNbTraductors(data.data.data.nbTraductors);
         }),
@@ -71,37 +73,37 @@ const Dashboard = (props: Props) => {
           setFiguresByRegion(data.data.data.regionFigures);
           setDispositifsWithoutGeoloc(data.data.data.dispositifsWithoutGeoloc);
         }),
-        API.getDispositifsStatistics(["nbMercis", "nbVues", "nbVuesMobile"]).then((data) => {
+        API.getDispositifsStatistics({ facets: ["nbMercis", "nbVues", "nbVuesMobile"] }).then((data) => {
           setStatistics(data.data.data);
         }),
         API.getAdminOption(ACTIVES_NOTIFICATIONS).then((data) => {
           const res = data.data.data?.value;
           setNotificationsActive(res === null ? true : res);
-        })
+        }),
       ];
 
       for (const theme of themes) {
         promises.push(
-          API.count_dispositifs({
-            theme: theme._id,
-            status: "Actif",
-            typeContenu: "dispositif"
+          API.countDispositifs({
+            themeId: theme._id.toString(),
+            publishedOnly: true,
+            type: ContentType.DISPOSITIF,
           }).then((data) => {
             setNbDispositifsByTheme((prev) => ({
               ...prev,
-              [theme.name.fr]: data.data
+              [theme.name.fr]: data.data.data.count,
             }));
           }),
-          API.count_dispositifs({
-            theme: theme._id,
-            status: "Actif",
-            typeContenu: "demarche"
+          API.countDispositifs({
+            themeId: theme._id.toString(),
+            publishedOnly: true,
+            type: ContentType.DEMARCHE,
           }).then((data) => {
             setNbDemarchesByTheme((prev) => ({
               ...prev,
-              [theme.name.fr]: data.data
+              [theme.name.fr]: data.data.data.count,
             }));
-          })
+          }),
         );
       }
       Promise.all(promises).finally(() => setLoaded(true));
@@ -118,15 +120,10 @@ const Dashboard = (props: Props) => {
         title: "Yay...",
         text: "Export en cours",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
     } catch (error) {
-      Swal.fire({
-        title: "Oh non!",
-        text: "Something went wrong",
-        icon: "error",
-        timer: 1500
-      });
+      handleApiError({ text: "Something went wrong" });
     }
   };
   const noGeolocFigures = figuresByRegion.filter((data) => data.region === "No geoloc");
@@ -143,11 +140,11 @@ const Dashboard = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: notificationsActive ? "Oui, désactiver" : "Oui, réactiver",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     });
     if (!res.value) return;
 
-    return API.setAdminOption(ACTIVES_NOTIFICATIONS, !notificationsActive).then((data) => {
+    return API.setAdminOption(ACTIVES_NOTIFICATIONS, { value: !notificationsActive }).then((data) => {
       const res = data.data.data?.value;
       setNotificationsActive(res === null ? true : res);
     });
@@ -202,7 +199,7 @@ const Dashboard = (props: Props) => {
               <div
                 style={{
                   fontWeight: "bold",
-                  color: "red"
+                  color: "red",
                 }}
               >
                 {`Pas d'infocard geoloc : ${noGeolocFigures[0].nbDispositifs} : `}

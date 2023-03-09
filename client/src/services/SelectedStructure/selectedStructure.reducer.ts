@@ -1,8 +1,8 @@
+import { GetStructureResponse } from "api-types";
 import { createReducer } from "typesafe-actions";
-import { Structure } from "../../types/interface";
 import { SelectedStructureActions } from "./selectedStructure.actions";
 
-export type SelectedStructureState = Structure | null;
+export type SelectedStructureState = GetStructureResponse | null;
 
 const initialSelectedStructureState: SelectedStructureState = null;
 

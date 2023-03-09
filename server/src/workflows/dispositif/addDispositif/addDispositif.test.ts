@@ -3,83 +3,76 @@ import { addDispositif, getNewStatus } from "./addDispositif";
 import {
   getDispositifByIdWithMainSponsor,
   updateDispositifInDB,
-  createDispositifInDB
+  createDispositifInDB,
 } from "../../../modules/dispositif/dispositif.repository";
 import { checkUserIsAuthorizedToModifyDispositif, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { updateTraductions } from "../../../modules/traductions/updateTraductions";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import {
   getStructureFromDB,
-  updateAssociatedDispositifsInStructure
+  updateAssociatedDispositifsInStructure,
 } from "../../../modules/structure/structure.repository";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
-import { getExpertTraductionByLanguage } from "../../../modules/traductions/traductions.repository";
-import { log } from "./log";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifByIdWithMainSponsor: jest.fn(),
   updateDispositifInDB: jest.fn(),
-  createDispositifInDB: jest.fn()
+  createDispositifInDB: jest.fn(),
 }));
 
 jest.mock("../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente", () => ({
-  sendMailToStructureMembersWhenDispositifEnAttente: jest.fn()
+  sendMailToStructureMembersWhenDispositifEnAttente: jest.fn(),
 }));
 jest.mock("./log", () => ({
-  log: jest.fn().mockResolvedValue(undefined)
+  log: jest.fn().mockResolvedValue(undefined),
 }));
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
-  checkUserIsAuthorizedToModifyDispositif: jest.fn()
-}));
-
-jest.mock("../../../modules/traductions/updateTraductions", () => ({
-  updateTraductions: jest.fn()
+  checkUserIsAuthorizedToModifyDispositif: jest.fn(),
 }));
 
 jest.mock("../../../controllers/miscellaneous/airtable", () => ({
-  addOrUpdateDispositifInContenusAirtable: jest.fn()
+  addOrUpdateDispositifInContenusAirtable: jest.fn(),
 }));
 
 jest.mock("../../../modules/langues/langues.service", () => ({
-  updateLanguagesAvancement: jest.fn()
+  updateLanguagesAvancement: jest.fn(),
 }));
 
 jest.mock("../../../modules/structure/structure.repository", () => ({
   updateAssociatedDispositifsInStructure: jest.fn(),
-  getStructureFromDB: jest.fn()
+  getStructureFromDB: jest.fn(),
 }));
 
 jest.mock("../../../controllers/role/role.repository", () => ({
-  getRoleByName: jest.fn()
+  getRoleByName: jest.fn(),
 }));
 
 jest.mock("../../../modules/users/users.repository", () => ({
-  addRoleAndContribToUser: jest.fn()
+  addRoleAndContribToUser: jest.fn(),
 }));
-jest.mock("../../../schema/schemaError", () => ({
-  Error: {
-    save: jest.fn()
-  }
+jest.mock("../../../typegoose/Error", () => ({
+  ErrorModel: {
+    create: jest.fn(),
+  },
 }));
-jest.mock("../../../schema/schemaDispositif", () => ({
-  Dispositif: {
+jest.mock("../../../typegoose/Dispositif", () => ({
+  DispositifModel: {
     find: jest.fn(),
-    findOneAndUpdate: jest.fn()
-  }
+    findOneAndUpdate: jest.fn(),
+  },
 }));
-jest.mock("../../../schema/schemaLangue", () => ({
+jest.mock("src/typegoose/Langue", () => ({
   Langue: {
-    find: jest.fn()
-  }
+    find: jest.fn(),
+  },
 }));
 jest.mock("../../../schema/schemaNeeds", () => ({
   Need: {
-    find: jest.fn()
-  }
+    find: jest.fn(),
+  },
 }));
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -122,17 +115,17 @@ describe("addDispositif", () => {
       _id: "disp_1",
       titreInformatif: "TI",
       status: "Brouillon",
-      dispositifId: "disp_1"
+      dispositifId: "disp_1",
     });
 
     const req = {
       body: {
         dispositifId: "disp_1",
         titreInformatif: "TI",
-        status: "Actif"
+        status: "Actif",
       },
       userId: "userId",
-      user: { roles: [] }
+      user: { roles: [] },
     };
     await addDispositif(req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -143,12 +136,12 @@ describe("addDispositif", () => {
     createDispositifInDB.mockResolvedValueOnce({ _id: "dispoId" });
     const dispositif = {
       titreInformatif: "TI",
-      status: "Brouillon"
+      status: "Brouillon",
     };
     const req = {
       fromSite: true,
       body: dispositif,
-      userId: "userId"
+      userId: "userId",
     };
     await addDispositif(req, res);
     expect(createDispositifInDB).toHaveBeenCalledWith({
@@ -160,7 +153,7 @@ describe("addDispositif", () => {
       themesSelectedByAuthor: true,
       secondaryThemes: [],
       nbVues: 0,
-      nbVuesMobile: 0
+      nbVuesMobile: 0,
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith("userId", "idContrib", "dispoId");
@@ -175,16 +168,16 @@ describe("addDispositif", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "idContrib" });
     createDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
-      mainSponsor: "mainSponsorId"
+      mainSponsor: "mainSponsorId",
     });
     const dispositif = {
       titreInformatif: "TI",
-      status: "Brouillon"
+      status: "Brouillon",
     };
     const req = {
       fromSite: true,
       body: dispositif,
-      userId: "userId"
+      userId: "userId",
     };
     await addDispositif(req, res);
     expect(createDispositifInDB).toHaveBeenCalledWith({
@@ -196,7 +189,7 @@ describe("addDispositif", () => {
       themesSelectedByAuthor: true,
       secondaryThemes: [],
       nbVues: 0,
-      nbVuesMobile: 0
+      nbVuesMobile: 0,
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith("userId", "idContrib", "dispoId");
@@ -210,23 +203,23 @@ describe("addDispositif", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "idContrib" });
     createDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
-      mainSponsor: "mainSponsorId"
+      mainSponsor: "mainSponsorId",
     });
     getStructureFromDB.mockResolvedValueOnce({
       _id: "sponsorId",
-      membres: []
+      membres: [],
     });
     const dispositif = {
       titreInformatif: "TI",
       status: "En attente",
       mainSponsor: "sponsorId",
       titreMarque: "TM",
-      typeContenu: "dispositif"
+      typeContenu: "dispositif",
     };
     const req = {
       fromSite: true,
       body: dispositif,
-      userId: "userId"
+      userId: "userId",
     };
     await addDispositif(req, res);
     expect(createDispositifInDB).toHaveBeenCalledWith({
@@ -241,7 +234,7 @@ describe("addDispositif", () => {
       themesSelectedByAuthor: true,
       secondaryThemes: [],
       nbVues: 0,
-      nbVuesMobile: 0
+      nbVuesMobile: 0,
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith("userId", "idContrib", "dispoId");
@@ -251,7 +244,7 @@ describe("addDispositif", () => {
       "dispoId",
       "TI",
       "TM",
-      "dispositif"
+      "dispositif",
     );
     expect(getDispositifByIdWithMainSponsor).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
@@ -262,11 +255,11 @@ describe("addDispositif", () => {
     getDispositifByIdWithMainSponsor.mockResolvedValueOnce(originalDis);
     getStructureFromDB.mockResolvedValueOnce({
       _id: "mainSponsorId",
-      membres: []
+      membres: [],
     });
     updateDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
-      mainSponsor: "mainSponsorId"
+      mainSponsor: "mainSponsorId",
     });
 
     const dispositif = {
@@ -276,17 +269,16 @@ describe("addDispositif", () => {
       contenu: "contenu",
       typeContenu: "Brouillon",
       theme: { _id: "theme1", short: { fr: "theme" } },
-      secondaryThemes: []
+      secondaryThemes: [],
     };
     const req = {
       fromSite: true,
       body: dispositif,
       userId: "userId",
-      user: { roles: [] }
+      user: { roles: [] },
     };
     await addDispositif(req, res);
     expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith("dispoId", "all");
-    expect(updateTraductions).toHaveBeenCalledWith(originalDis, dispositif, "userId");
     expect(updateDispositifInDB).toHaveBeenCalledWith("dispoId", dispositif);
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
@@ -301,11 +293,11 @@ describe("addDispositif", () => {
     getDispositifByIdWithMainSponsor.mockResolvedValueOnce(originalDis);
     getStructureFromDB.mockResolvedValueOnce({
       _id: "mainSponsorId",
-      membres: []
+      membres: [],
     });
     updateDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
-      mainSponsor: "mainSponsorId"
+      mainSponsor: "mainSponsorId",
     });
 
     const dispositif = {
@@ -317,13 +309,13 @@ describe("addDispositif", () => {
       titreMarque: "TM",
       mainSponsor: "sponsorId",
       theme: { _id: "themeId", short: { fr: "theme" } },
-      secondaryThemes: []
+      secondaryThemes: [],
     };
     const req = {
       fromSite: true,
       body: dispositif,
       userId: "userId",
-      user: { roles: [] }
+      user: { roles: [] },
     };
     await addDispositif(req, res);
     expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith("dispoId", "all");
@@ -337,7 +329,7 @@ describe("addDispositif", () => {
       "dispoId",
       "TI",
       "TM",
-      "dispositif"
+      "dispositif",
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -347,11 +339,11 @@ describe("addDispositif", () => {
     getDispositifByIdWithMainSponsor.mockResolvedValueOnce(originalDis);
     getStructureFromDB.mockResolvedValueOnce({
       _id: "sponsorId",
-      membres: []
+      membres: [],
     });
     updateDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
-      mainSponsor: "mainSponsorId"
+      mainSponsor: "mainSponsorId",
     });
 
     const dispositif = {
@@ -363,13 +355,13 @@ describe("addDispositif", () => {
       titreMarque: "TM",
       mainSponsor: "sponsorId",
       theme: { _id: "themeId", short: { fr: "theme" } },
-      secondaryThemes: []
+      secondaryThemes: [],
     };
     const req = {
       fromSite: true,
       body: dispositif,
       userId: "userId",
-      user: { roles: [] }
+      user: { roles: [] },
     };
     await addDispositif(req, res);
 
@@ -385,13 +377,13 @@ describe("addDispositif", () => {
     const dispositif = {
       titreInformatif: "TI",
       status: "Brouillon",
-      dispositifId: "dispoId"
+      dispositifId: "dispoId",
     };
     const req = {
       fromSite: true,
       body: dispositif,
       userId: "userId",
-      user: { roles: [] }
+      user: { roles: [] },
     };
     await addDispositif(req, res);
     expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith("dispoId", "all");
@@ -402,24 +394,24 @@ describe("addDispositif", () => {
 });
 
 const dispositif = {
-  _id: "dispositifId"
+  _id: "dispositifId",
 };
 const structure = {
   _id: "structureId",
   membres: [
     {
       userId: "userOfStructureId",
-      roles: ["administrateur"]
-    }
-  ]
+      roles: ["administrateur"],
+    },
+  ],
 };
 const user = {
   _id: "userId",
-  roles: []
+  roles: [],
 };
 const userOfStructure = {
   _id: "userOfStructureId",
-  roles: []
+  roles: [],
 };
 
 describe("getNewStatus", () => {

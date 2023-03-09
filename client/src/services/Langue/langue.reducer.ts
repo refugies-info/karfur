@@ -1,10 +1,10 @@
-import { Language } from "types/interface";
 import { LangueActions } from "./langue.actions";
 import { createReducer } from "typesafe-actions";
 import locale from "utils/locale";
+import { GetLanguagesResponse } from "api-types";
 
 export interface LangueState {
-  langues: Language[];
+  langues: GetLanguagesResponse[];
   languei18nCode: string;
   showLanguageModal: boolean;
   showLangModal: boolean;

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Language, Picture, Theme } from "types/interface";
+import { Picture } from "api-types";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,42 +13,39 @@ import { colors as themeColors } from "colors";
 import {
   createThemeActionCreator,
   deleteThemeActionCreator,
-  saveThemeActionCreator
+  saveThemeActionCreator,
 } from "services/Themes/themes.actions";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { cls } from "lib/classname";
 import { LangueButton } from "../AdminUsers/ components/AdminUsersComponents";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
-import { toArray } from "lodash";
+import toArray from "lodash/toArray";
 // import { isThemeTitleOk } from "./lib";
 import { allThemesSelector } from "services/Themes/themes.selectors";
+import { GetLanguagesResponse, GetThemeResponse, ThemeRequest } from "api-types";
 
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedTheme: Theme | null; // if null, creation. Else, edition
+  selectedTheme: GetThemeResponse | null; // if null, creation. Else, edition
 }
 
-const EMPTY_COLORS: Theme["colors"] = {
+const EMPTY_COLORS: GetThemeResponse["colors"] = {
   color100: "#000000",
   color80: "#000000",
   color60: "#000000",
   color40: "#000000",
-  color30: "#000000"
+  color30: "#000000",
 };
 
 type colorKey = "color100" | "color80" | "color60" | "color40" | "color30";
 const COLOR_KEYS: colorKey[] = ["color100", "color80", "color60", "color40", "color30"];
-type title = {
-  [key: string]: string;
-  fr: string;
-};
 
 export const ThemeFormModal = (props: Props) => {
-  const [short, setShort] = useState<title | undefined>(props.selectedTheme?.short || undefined);
-  const [name, setName] = useState<title | undefined>(props.selectedTheme?.name || undefined);
+  const [short, setShort] = useState(props.selectedTheme?.short || { fr: "" });
+  const [name, setName] = useState(props.selectedTheme?.name || { fr: "" });
   const [emoji, setEmoji] = useState(props.selectedTheme?.notificationEmoji || "");
-  const [colors, setColors] = useState<Theme["colors"]>(props.selectedTheme?.colors || EMPTY_COLORS);
+  const [colors, setColors] = useState<GetThemeResponse["colors"]>(props.selectedTheme?.colors || EMPTY_COLORS);
   const [notes, setNotes] = useState("");
   const [banner, setBanner] = useState<Picture | undefined>(props.selectedTheme?.banner || undefined);
   const [appBanner, setAppBanner] = useState<Picture | undefined>(props.selectedTheme?.appBanner || undefined);
@@ -56,7 +53,7 @@ export const ThemeFormModal = (props: Props) => {
   const [shareImage, setShareImage] = useState<Picture | undefined>(props.selectedTheme?.shareImage || undefined);
   const [icon, setIcon] = useState<Picture | undefined>(props.selectedTheme?.icon || undefined);
 
-  const [selectedLanguageModal, setSelectedLanguageModal] = useState<Language | null>(null);
+  const [selectedLanguageModal, setSelectedLanguageModal] = useState<GetLanguagesResponse | null>(null);
 
   const needs = useSelector(needsSelector);
   const languages = useSelector(allLanguesSelector);
@@ -75,15 +72,15 @@ export const ThemeFormModal = (props: Props) => {
       setName(props.selectedTheme.name);
       setEmoji(props.selectedTheme.notificationEmoji);
       setColors(props.selectedTheme.colors);
-      setNotes(props.selectedTheme.adminComments);
+      setNotes(props.selectedTheme.adminComments || "");
       setBanner(props.selectedTheme.banner);
       setAppBanner(props.selectedTheme.appBanner);
       setAppImage(props.selectedTheme.appImage);
       setShareImage(props.selectedTheme.shareImage);
       setIcon(props.selectedTheme.icon);
     } else {
-      setShort(undefined);
-      setName(undefined);
+      setShort({ fr: "" });
+      setName({ fr: "" });
       setEmoji("");
       setColors(EMPTY_COLORS);
       setNotes("");
@@ -97,34 +94,37 @@ export const ThemeFormModal = (props: Props) => {
 
   const themes = useSelector(allThemesSelector);
   const onSave = () => {
-    const theme: Partial<Theme> = {
-      short,
-      name,
-      notificationEmoji: emoji,
-      colors,
-      banner,
-      appBanner,
-      appImage,
-      shareImage,
-      icon
-    };
+    // edition
     if (props.selectedTheme) {
-      // edition
-      dispatch(
-        saveThemeActionCreator({
-          _id: props.selectedTheme._id,
-          ...theme,
-          adminComments: notes
-        })
-      );
+      const updatedTheme: Partial<ThemeRequest> = {
+        short,
+        name,
+        notificationEmoji: emoji,
+        colors,
+        banner,
+        appBanner,
+        appImage,
+        shareImage,
+        icon,
+        adminComments: notes || "",
+      };
+      dispatch(saveThemeActionCreator(props.selectedTheme._id, updatedTheme));
     } else {
       // creation
-      dispatch(
-        createThemeActionCreator({
-          ...theme,
-          position: themes.length + 1
-        })
-      );
+      const newTheme: ThemeRequest = {
+        short,
+        name,
+        notificationEmoji: emoji,
+        colors,
+        banner,
+        appBanner,
+        appImage,
+        shareImage,
+        icon,
+        adminComments: notes || "",
+        position: themes.length + 1,
+      };
+      dispatch(createThemeActionCreator(newTheme));
     }
     props.toggleModal();
   };
@@ -139,7 +139,7 @@ export const ThemeFormModal = (props: Props) => {
         confirmButtonColor: themeColors.rouge,
         cancelButtonColor: themeColors.vert,
         confirmButtonText: "Oui, le supprimer",
-        cancelButtonText: "Annuler"
+        cancelButtonText: "Annuler",
       }).then((res) => {
         if (res.value && props.selectedTheme) {
           dispatch(deleteThemeActionCreator(props.selectedTheme._id));
@@ -377,7 +377,7 @@ export const ThemeFormModal = (props: Props) => {
                   setShort((short) => ({
                     ...short,
                     fr: short?.fr || "", // for typescript validation
-                    [selectedLanguageModal.i18nCode]: e.target.value
+                    [selectedLanguageModal.i18nCode]: e.target.value,
                   }))
                 }
                 autoFocus={false}
@@ -397,7 +397,7 @@ export const ThemeFormModal = (props: Props) => {
                   setName((name) => ({
                     ...name,
                     fr: name?.fr || "", // for typescript validation
-                    [selectedLanguageModal.i18nCode]: e.target.value
+                    [selectedLanguageModal.i18nCode]: e.target.value,
                   }))
                 }
                 autoFocus={false}

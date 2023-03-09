@@ -1,38 +1,16 @@
 import logger from "../../../logger";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { getAllWidgets } from "../../../modules/widgets/widgets.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
+import { GetWidgetResponse } from "api-types";
 
-export interface Request {
-}
+export const getWidgets = async (): ResponseWithData<GetWidgetResponse[]> => {
+  logger.info("[getWidgets] received");
 
-export const getWidgets = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
-  try {
-    logger.info("[getWidgets] received");
-    checkRequestIsFromSite(req.fromSite);
+  const widgets = await getAllWidgets();
+  return {
+    text: "success",
+    // FIXME: include created_at
     //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles)
-
-    const widgets = await getAllWidgets();
-    return res.status(200).json({
-      text: "Succès",
-      data: widgets,
-    });
-  } catch (error) {
-    logger.error("[getWidgets] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Lecture interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
+    data: widgets
   }
 };

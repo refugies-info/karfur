@@ -1,9 +1,4 @@
-import { ObjectId } from "mongoose";
-import { DispositifDoc } from "../schema/schemaDispositif";
+import { Dispositif, DispositifId } from "../typegoose";
 
-export const getDispositifDepartments = (dispositif: DispositifDoc & Required<{ _id: ObjectId }>) => {
-  //@ts-ignore
-  const infocards = (dispositif.contenu?.[1]?.children || []).find((card) => card.title === "Zone d'action");
-  if (!infocards) return [];
-  return infocards.departments || [];
-};
+export const getDispositifDepartments = (dispositif: Dispositif & Required<{ _id: DispositifId }>) =>
+  dispositif.metadatas.location || [];

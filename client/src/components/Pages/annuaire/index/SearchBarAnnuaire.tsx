@@ -5,13 +5,13 @@ import { Input } from "reactstrap";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { structureTypes } from "data/structureTypes";
 import FButton from "components/UI/FButton/FButton";
-import { SimplifiedStructure } from "types/interface";
 import Autocomplete from "react-google-autocomplete";
 import styles from "./SearchBarAnnuaire.module.scss";
 import { cls } from "lib/classname";
+import { GetActiveStructuresResponse } from "api-types";
 interface Props {
   t: any;
-  filteredStructures: SimplifiedStructure[] | null;
+  filteredStructures: GetActiveStructuresResponse[] | null;
   keyword: string;
   setKeyword: (a: string) => void;
   typeSelected: string[] | null;

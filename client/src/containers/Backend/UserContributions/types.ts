@@ -1,14 +1,6 @@
-import { ObjectId } from "mongodb";
+import { GetUserContributionsResponse } from "api-types";
 
-export interface FormattedUserContribution {
-  titreInformatif: string;
-  titreMarque?: string;
-  typeContenu: "dispositif" | "demarche";
-  nbMercis: number;
-  nbVues: number;
+export interface FormattedUserContribution extends GetUserContributionsResponse {
   responsabilite: string | null;
-  _id: ObjectId;
-  status: string;
-  mainSponsor?: string | null;
   isAuthorizedToDelete: boolean;
 }

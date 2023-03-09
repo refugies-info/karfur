@@ -1,0 +1,79 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
+
+.title {
+  @include dsfr-text("chapo");
+  font-weight: bold;
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("large");
+  }
+
+  .badge {
+    width: u(8);
+    height: u(8);
+    display: inline-block;
+    text-align: center;
+    @include dsfr-text("large");
+    border-radius: 50%;
+    color: white;
+    @include mr-ltr(u(4));
+
+    @include media-max("lg-limit") {
+      @include dsfr-text("small");
+      width: u(6);
+      height: u(6);
+    }
+  }
+}
+
+.accordion {
+  margin-bottom: u(6);
+  position: relative;
+}
+
+.container {
+  .btn {
+    @include dsfr-text("chapo");
+    background: $white;
+    border-color: $white;
+    padding: u(4);
+    font-weight: bold;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: u(3);
+    width: 100%;
+
+    &,
+    &:focus {
+      box-shadow: 0 2px 6px 0 #00001229 !important;
+    }
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    &.open {
+      box-shadow: none !important;
+    }
+  }
+}
+
+.icon {
+  @include ml-ltr(u(4));
+  transition: transform 0.2s ease-in-out;
+
+  .open & {
+    transform: rotate(180deg);
+  }
+}
+
+.content {
+  padding: u(4);
+}

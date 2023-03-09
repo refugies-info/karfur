@@ -1,2 +1,1 @@
-import updateAppUser from "./updateAppUser";
-export default updateAppUser;
+export * from "./updateAppUser";

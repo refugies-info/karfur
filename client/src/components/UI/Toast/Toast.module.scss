@@ -1,0 +1,44 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+
+.container {
+  box-shadow: 0 6px 18px 0 #00001229;
+  background: white !important;
+  border: none !important;
+  padding: u(3);
+  border-radius: u(2) !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: auto !important;
+  position: fixed;
+  z-index: 1049;
+  bottom: 32px;
+  left: 50%;
+  transform: translate(-50%, 200%);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+
+  &:global(.show) {
+    transform: translate(-50%, 0);
+  }
+  &:global(:not(.show)) {
+    display: flex !important;
+  }
+}
+
+.body {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  color: $lightTextDefaultSuccess;
+  @include dsfr-text("normal");
+}
+
+.close {
+  width: u(6);
+  height: u(6);
+  @include ml-ltr(u(6));
+  padding: 0;
+}

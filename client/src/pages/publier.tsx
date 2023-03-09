@@ -429,9 +429,9 @@ const RecensezVotreAction = (props: Props) => {
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
   const dispStatistics = (
-    await API.getDispositifsStatistics(["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"])
+    await API.getDispositifsStatistics({ facets: ["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"] })
   ).data.data;
-  const structStatistics = (await API.getStructuresStatistics(["nbStructures"])).data.data;
+  const structStatistics = (await API.getStructuresStatistics({ facets: ["nbStructures"] })).data.data;
 
   return {
     props: {

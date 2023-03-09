@@ -2,18 +2,18 @@ import React from "react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
-import { Theme } from "types/interface";
 import useRTL from "hooks/useRTL";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import ThemeBadge from "components/UI/ThemeBadge";
 import iconMap from "assets/recherche/icon-map.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DispositifCardTitle.module.scss";
+import { GetThemeResponse } from "api-types";
 
 interface Props {
   color?: string;
   count?: number;
-  themes?: Theme[]; // available if cards for secondary themes
+  themes?: GetThemeResponse[]; // available if cards for secondary themes
 }
 
 const DispositifCardTitle = (props: Props) => {

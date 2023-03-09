@@ -9,8 +9,6 @@ import { END } from "redux-saga";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { activeStructuresSelector } from "services/ActiveStructures/activeStructures.selector";
 import { wrapper } from "services/configureStore";
-
-import { SimplifiedStructure } from "types/interface";
 import { getPath } from "routes";
 import { Event } from "lib/tracking";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
@@ -23,6 +21,7 @@ import SEO from "components/Seo";
 
 import styles from "scss/pages/annuaire.module.scss";
 import isInBrowser from "lib/isInBrowser";
+import { GetActiveStructuresResponse } from "api-types";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   let typeSelectedFromUrl: string[] = [];
@@ -75,7 +74,7 @@ const Annuaire = () => {
     setKeyword("");
   }, []);
 
-  const defineLettersClickable = useCallback((sortedStructureByAlpha: SimplifiedStructure[]) => {
+  const defineLettersClickable = useCallback((sortedStructureByAlpha: GetActiveStructuresResponse[]) => {
     let lettersClickable: string[] = [];
     sortedStructureByAlpha.forEach((structure) => {
       let letter = structure.nom[0];

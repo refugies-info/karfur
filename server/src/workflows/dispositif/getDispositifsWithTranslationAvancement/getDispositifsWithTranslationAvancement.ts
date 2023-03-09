@@ -1,150 +1,103 @@
-import { RequestFromClient, Res } from "../../../types/interface";
+import { GetDispositifsWithTranslationAvancementResponse, Languages, TraductionsStatus } from "api-types";
+import { isEmpty, some } from "lodash";
+import { TraductionsType } from "../../../typegoose/Traductions";
 import logger from "../../../logger";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
 import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";
-import { ObjectId } from "mongoose";
-import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
-import { getTradStatus } from "../../../modules/traductions/traductions.service";
-import { availableLanguages } from "../../../libs/getFormattedLocale";
+import { Dispositif } from "../../../typegoose";
 
-interface Query {
-  locale: string;
-}
+export const getDispositifsWithTranslationAvancement = async (locale: Languages) => {
+  logger.info("[getDispositifsWithTranslationAvancement] received with locale", { locale });
 
-interface Result {
-  _id: ObjectId;
-  titreInformatif: string;
-  titreMarque: string;
-  nbMots: number;
-  created_at: number;
-  typeContenu: "dispositif" | "demarche";
-  lastTradUpdatedAt: number | null;
-  avancementTrad: number;
-  avancementExpert: number;
-  tradStatus: string;
-}
+  const activeDispositifs = await getActiveContents({
+    created_at: 1,
+    nbMots: 1,
+    translations: 1,
+    typeContenu: 1,
+  });
 
-export const getDispositifsWithTranslationAvancement = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
-  try {
-    checkRequestIsFromSite(req.fromSite);
+  const traductions = await getTraductionsByLanguage(locale, {
+    avancement: 1,
+    dispositifId: 1,
+    translated: 1,
+    updatedAt: 1,
+    userId: 1,
+    type: 1,
+    toReview: 1,
+  });
 
-    if (
-      !req.query ||
-      !req.query.locale ||
-      !availableLanguages.includes(req.query.locale)
-    ) {
-      throw new Error("INVALID_REQUEST");
-    }
+  let results: GetDispositifsWithTranslationAvancementResponse[] = [];
 
-    const locale = req.query.locale;
-    logger.info(
-      "[getDispositifsWithTranslationAvancement] received with locale",
-      { locale }
+  activeDispositifs.forEach((dispositif: Dispositif) => {
+    const correspondingTrads = traductions.filter((trad) => trad.dispositifId.toString() === dispositif._id.toString());
+
+    const lastTradUpdatedAt = Math.max(
+      0,
+      dispositif.translations[locale]?.created_at.getTime() || 0,
+      ...correspondingTrads.map((z) => z.updatedAt.getTime() || 0),
+    );
+    const avancementTrad = Math.max(0, ...correspondingTrads.map((z) => z.avancement || -1));
+    const avancementValidation = Math.max(
+      0,
+      ...correspondingTrads
+        .filter((y) => {
+          return y.type === "validation";
+        })
+        .map((z) => z.avancement || -1),
     );
 
-    const neededFields = {
-      titreInformatif: 1,
-      titreMarque: 1,
-      nbMots: 1,
-      created_at: 1,
-      typeContenu: 1,
-    };
-    const activeDispositifs = await getActiveContents(neededFields);
-
-    const traductionFields = {
-      articleId: 1,
-      avancement: 1,
-      status: 1,
-      updatedAt: 1,
-      userId: 1,
+    const dispositifData = {
+      _id: dispositif._id.toString(),
+      titreInformatif: dispositif.translations.fr.content.titreInformatif,
+      titreMarque: dispositif.translations.fr.content.titreMarque,
+      nbMots: dispositif.nbMots,
+      created_at: dispositif.created_at,
+      type: dispositif.typeContenu,
+      lastTradUpdatedAt,
+      avancementTrad,
+      avancementValidation,
     };
 
-    const traductions = await getTraductionsByLanguage(
-      locale,
-      traductionFields
-    );
-
-    let results: Result[] = [];
-
-    activeDispositifs.forEach((dispositif) => {
-      const correspondingTrads = traductions.filter(
-        (trad) =>
-          trad.articleId &&
-          dispositif._id &&
-          trad.articleId.toString() === dispositif._id.toString()
-      );
-      turnToLocalizedTitles(dispositif, "fr");
-      const dispositifData = {
-        _id: dispositif._id,
-        titreInformatif: dispositif.titreInformatif,
-        titreMarque: dispositif.titreMarque,
-        nbMots: dispositif.nbMots,
-        created_at: dispositif.created_at,
-        typeContenu: dispositif.typeContenu,
-      };
-
-      if (correspondingTrads.length === 0) {
-        // @ts-ignore : titreInformatif and titreMarque are string after turnToLocalized
-        return results.push({
-          ...dispositifData,
-          lastTradUpdatedAt: null,
-          avancementTrad: 0,
-          avancementExpert: 0,
-          tradStatus: "À traduire",
-        });
-      }
-      const lastTradUpdatedAt = Math.max(
-        0,
-        ...correspondingTrads.map((z) => z.updatedAt || 0)
-      );
-      const avancementTrad = Math.max(
-        0,
-        ...correspondingTrads.map((z) => z.avancement || -1)
-      );
-
-      const avancementExpert = Math.max(
-        0,
-        ...correspondingTrads
-          .filter((y) => {
-            return y.userId.toString() === req.userId.toString();
-          })
-          .map((z) => z.avancement || -1)
-      );
-
-      const tradStatus = getTradStatus(correspondingTrads);
-
-      // @ts-ignore : titreInformatif and titreMarque are string after turnToLocalized
+    /*
+     * La traduction est présente dans le dispositif
+     * Le dispositif est déjà traduit
+     */
+    if (dispositif.isTranslatedIn(locale)) {
       return results.push({
         ...dispositifData,
-        lastTradUpdatedAt,
-        avancementTrad,
-        avancementExpert,
-        tradStatus,
+        avancementTrad: 1,
+        avancementValidation: 1,
+        tradStatus: TraductionsStatus.VALIDATED,
       });
-    });
-
-    logger.info(
-      "[getDispositifsWithTranslationAvancement] got results",
-      { count: results.length }
-    );
-
-    res.status(200).json({ data: results });
-  } catch (error) {
-    logger.error("[getDispositifsWithTranslationAvancement] error", {
-      error: error.message,
-    });
-
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
     }
-  }
+
+    /**
+     * Si une traduction est à revoir
+     */
+    if (some(correspondingTrads, (trad) => trad.type === TraductionsType.VALIDATION && !isEmpty(trad.toReview))) {
+      return results.push({
+        ...dispositifData,
+        tradStatus: TraductionsStatus.TO_REVIEW,
+      });
+    }
+
+    /*
+     * Aucune traduction suggérée n'est complète
+     * Alors le dispositif est à traduire
+     */
+    if (some(correspondingTrads, (trad) => trad.type === TraductionsType.SUGGESTION && trad.avancement >= 1)) {
+      return results.push({
+        ...dispositifData,
+        tradStatus: TraductionsStatus.PENDING,
+      });
+    }
+
+    return results.push({
+      ...dispositifData,
+      tradStatus: TraductionsStatus.TO_TRANSLATE,
+    });
+  });
+
+  logger.info("[getDispositifsWithTranslationAvancement] got results", { count: results.length });
+  return results;
 };

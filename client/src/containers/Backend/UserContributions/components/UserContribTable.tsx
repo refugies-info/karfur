@@ -4,15 +4,15 @@ import Link from "next/link";
 import { FormattedUserContribution } from "../types";
 import { TypeContenu, Responsabilite, ContribStyledStatus, StatutHeader } from "./SubComponents";
 import { Title, DeleteButton, SeeButtonWithoutNavigation } from "../../Admin/sharedComponents/SubComponents";
-import { ObjectId } from "mongodb";
 import styles from "scss/components/adminTable.module.scss";
+import { Id } from "api-types";
 
 const headers = ["Type", "Titre", "Responsabilité", "Statut", "Merci", "Vues"];
 interface Props {
   contributions: FormattedUserContribution[];
   toggleTutoModal: () => void;
   setTutoModalDisplayed: (arg: string) => void;
-  deleteDispositif: (arg1: any, arg: ObjectId, arg2: boolean) => void;
+  deleteDispositif: (arg1: any, arg: Id, arg2: boolean) => void;
 }
 
 export const UserContribTable = (props: Props) => (

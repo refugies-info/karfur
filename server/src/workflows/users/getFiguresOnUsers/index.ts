@@ -1,1 +1,1 @@
-export { getFiguresOnUsers } from "./getFiguresOnUsers";
+export * from "./getFiguresOnUsers";

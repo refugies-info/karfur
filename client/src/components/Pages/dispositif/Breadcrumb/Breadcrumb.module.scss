@@ -1,0 +1,46 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
+
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: u(10);
+
+  @include media-max("lg-limit") {
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+}
+
+.home {
+  height: 16px;
+  display: flex;
+}
+
+.link {
+  @include dsfr-text("very-small");
+  color: $lightTextMentionGrey !important;
+  text-decoration: underline !important;
+}
+
+.theme {
+  @include dsfr-text("very-small");
+  color: white !important;
+  text-decoration: underline !important;
+  padding: u(1) 6px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.current {
+  @include dsfr-text("very-small");
+  @include media-max("lg-limit") {
+    margin-top: u(2);
+  }
+}

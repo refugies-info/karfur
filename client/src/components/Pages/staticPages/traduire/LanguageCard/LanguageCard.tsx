@@ -6,6 +6,7 @@ import { cls } from "lib/classname";
 import { smoothScroll } from "lib/smoothScroll";
 import { NeedKey } from "pages/traduire";
 import { langueSelector } from "services/Langue/langue.selectors";
+import Flag from "components/UI/Flag";
 import styles from "./LanguageCard.module.scss";
 
 interface Props {
@@ -21,7 +22,7 @@ const LanguageCard = (props: Props) => {
   return (
     <Link href={props.href} className={styles.container} onClick={smoothScroll}>
       <div className={styles.title}>
-        <span className={cls(styles.flag, "fi fi-" + language?.langueCode)} title={language?.langueCode} />
+        <Flag langueCode={language?.langueCode} className="d-block me-2" />
         {language?.langueFr}
       </div>
       <p className={styles.subtitle}>

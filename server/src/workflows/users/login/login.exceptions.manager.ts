@@ -1,62 +1,41 @@
+import {
+  UnauthorizedError,
+  AuthenticationError,
+  NotFoundError,
+  InvalidRequestError,
+  InternalError,
+} from "../../../errors";
 import logger from "../../../logger";
-import { Res } from "../../../types/interface";
 import LoginError from "../../../modules/users/LoginError";
 
-export const loginExceptionsManager = (error: LoginError, res: Res) => {
+export const loginExceptionsManager = (error: LoginError) => {
   logger.error("[Login] error while login", { error: error.message });
   switch (error.message) {
     case "INVALID_REQUEST":
-      return res.status(400).json({ text: "Requête invalide" });
+      throw new InvalidRequestError("Requête invalide");
     case "INVALID_PASSWORD":
-      return res
-        .status(401)
-        .json({ text: "Mot de passe incorrect", data: "no-alert" });
+      throw new UnauthorizedError("Mot de passe incorrect", "INVALID_PASSWORD");
     case "USED_PASSWORD":
-      return res.status(400).json({
-        code: "USED_PASSWORD",
-        text: "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
-        data: "no-alert"
-      });
-    case "NOT_FROM_SITE":
-      return res
-        .status(403)
-        .json({ text: "Création d'utilisateur ou login impossible par API" });
+      throw new InvalidRequestError("Requête invalide", "USED_PASSWORD");
     case "PASSWORD_TOO_WEAK":
-      return res.status(401).json({ text: "Le mot de passe est trop faible" });
-    case "INTERNAL":
-      return res.status(500).json({ text: "Erreur interne" });
+      throw new InvalidRequestError("Le mot de passe est trop faible");
     case "WRONG_CODE":
-      return res.status(402).json({
-        text: "Erreur à la vérification du code",
-        data: "no-alert",
-      });
+      throw new AuthenticationError("Erreur à la vérification du code", "WRONG_CODE");
     case "ERROR_WHILE_SENDING_ADMIN_CODE":
-      return res.status(404).json({
-        text: "Erreur à l'envoi du code à ce numéro",
-      });
+      throw new InternalError("Erreur à l'envoi du code à ce numéro", "ERROR_WHILE_SENDING_ADMIN_CODE");
     case "NO_CONTACT":
-      return res.status(502).json({
-        text: "no contact informations",
-        ...error.data
-      });
+      throw new InvalidRequestError("No contact informations", "NO_CONTACT", error.data);
     case "NO_CODE_SUPPLIED":
-      return res.status(501).json({
-        text: "no code supplied",
-        ...error.data
-      });
+      throw new InvalidRequestError("No code supplied", "NO_CODE_SUPPLIED", error.data);
     case "USER_DELETED":
-      return res.status(405).json({
-        text: "Utilisateur supprimé",
-      });
+      throw new NotFoundError("Utilisateur supprimé", "USER_DELETED", error.data);
     case "ADMIN_FORBIDDEN":
-      return res.status(401).json({ text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site" });
+      throw new AuthenticationError("Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site", "ADMIN_FORBIDDEN"); // 401
     case "NO_EMAIL":
-      return res.status(403).json({ text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi." });
+      throw new AuthenticationError("Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.", "NO_EMAIL"); // 401
     case "USER_NOT_EXISTS":
-      return res.status(500).json({ text: "Utilisateur inconnu" });
+      throw new NotFoundError("Utilisateur inconnu.", "USER_NOT_EXISTS");
     default:
-      res.status(500).json({
-        text: "Erreur interne",
-      });
+      throw new InternalError("Erreur interne.");
   }
 };

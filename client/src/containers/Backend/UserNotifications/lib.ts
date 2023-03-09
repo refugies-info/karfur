@@ -1,8 +1,8 @@
-import { SearchDispositif } from "../../../types/interface";
+import { GetDispositifsResponse } from "api-types";
 import { FormattedNotification } from "./types";
 
 export const formatNotifications = (
-  dispositifs: SearchDispositif[],
+  dispositifs: GetDispositifsResponse[],
   hasResponsibleSeenAnnuaireNotif: boolean
 ): FormattedNotification[] => {
   let result: FormattedNotification[] = [];
@@ -19,6 +19,7 @@ export const formatNotifications = (
         createdAt: dispo.created_at,
       });
     }
+    /* TODO: add suggestions to dispositif?
     if (!dispo.suggestions) return;
     dispo.suggestions.forEach((suggestion) => {
       result.push({
@@ -32,7 +33,7 @@ export const formatNotifications = (
         dispositifId: dispo._id,
         typeContenu: dispo.typeContenu,
       });
-    });
+    }); */
   });
   result.sort((a, b) => {
     if (a.read && !b.read) {
@@ -76,7 +77,7 @@ export const formatNotifications = (
 };
 
 export const getNbNewNotifications = (
-  dispositifs: SearchDispositif[],
+  dispositifs: GetDispositifsResponse[],
   hasResponsibleSeenAnnuaireNotif: boolean
 ) => {
   const formattedNotifications = formatNotifications(

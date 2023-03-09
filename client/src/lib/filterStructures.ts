@@ -1,6 +1,6 @@
-import { SimplifiedStructure } from "types/interface";
+import { GetActiveStructuresResponse } from "api-types";
 
-export const filterStructuresByType = (arrayTofilter: SimplifiedStructure[], typeSelected: string[]) => {
+export const filterStructuresByType = (arrayTofilter: GetActiveStructuresResponse[], typeSelected: string[]) => {
   if (!typeSelected || typeSelected.length === 0) {
     return arrayTofilter;
   }
@@ -20,8 +20,8 @@ export const filterStructuresByType = (arrayTofilter: SimplifiedStructure[], typ
   });
 };
 
-export const filterStructuresByKeword = (arrayTofilter: SimplifiedStructure[], keyword: string) => {
-  let newArrayKeyword: SimplifiedStructure[] = [];
+export const filterStructuresByKeword = (arrayTofilter: GetActiveStructuresResponse[], keyword: string) => {
+  let newArrayKeyword: GetActiveStructuresResponse[] = [];
   if (keyword.length > 0) {
     if (arrayTofilter) {
       arrayTofilter.forEach((structure) => {
@@ -45,12 +45,12 @@ export const filterStructuresByKeword = (arrayTofilter: SimplifiedStructure[], k
 };
 
 export const filterStructuresByLoc = (
-  arrayTofilter: SimplifiedStructure[],
+  arrayTofilter: GetActiveStructuresResponse[],
   isCitySelected: boolean,
   depNumber: string,
   depName: string
 ) => {
-  let newArrayLoc: SimplifiedStructure[] = [];
+  let newArrayLoc: GetActiveStructuresResponse[] = [];
   if (isCitySelected) {
     if (arrayTofilter) {
       arrayTofilter.forEach((structure) => {

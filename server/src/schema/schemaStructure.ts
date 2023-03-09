@@ -1,7 +1,7 @@
 import mongoose, { ObjectId } from "mongoose";
-import { Picture, OpeningHours } from "../types/interface";
 import { Moment } from "moment";
 import { DispositifDoc } from "./schemaDispositif";
+import { Picture } from "api-types";
 
 var structureSchema = new mongoose.Schema(
   {
@@ -144,7 +144,7 @@ export interface StructureDoc extends mongoose.Document {
   departments?: string[];
   phonesPublic?: string[];
   adressPublic?: string;
-  openingHours?: OpeningHours;
+  openingHours?: any;
   onlyWithRdv?: boolean;
   description?: string;
   hasResponsibleSeenNotification?: boolean;

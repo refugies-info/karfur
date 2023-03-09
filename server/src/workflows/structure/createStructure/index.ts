@@ -1,1 +1,1 @@
-export { createStructure } from "./createStructure";
+export * from "./createStructure";

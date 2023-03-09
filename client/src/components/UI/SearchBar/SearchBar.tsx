@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
-import debounce from "lodash.debounce";
+import debounce from "lodash/debounce";
 import { useTranslation } from "next-i18next";
 import NoResultImage from "assets/no_results.svg";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -13,9 +13,9 @@ import { removeAccents } from "lib";
 
 import { colors } from "colors";
 import Image from "next/image";
-import { SimplifiedStructure, SimplifiedUser } from "types/interface";
+import { GetActiveUsersResponse, GetAllUsersResponse } from "api-types";
 
-type Suggestion = SimplifiedStructure | SimplifiedUser;
+type Suggestion = GetActiveUsersResponse;
 
 const NoResultContainer = styled.div`
   display: flex;
@@ -36,14 +36,13 @@ const NoResultTextContainer = styled.div`
 `;
 
 interface Props {
-  array?: SimplifiedStructure[] | SimplifiedUser[];
+  array?: GetAllUsersResponse[] | GetActiveUsersResponse[];
   structures?: boolean;
   users?: boolean;
-  loupe?: boolean;
   className?: string;
   placeholder?: string;
   createNewCta?: string;
-  selectItem: (s: SimplifiedStructure | SimplifiedUser) => void;
+  selectItem: (s: GetActiveUsersResponse | GetAllUsersResponse) => void;
   handleChangeValueEntered?: (val: any) => void;
   toggleModal?: (name: any) => void;
 }
@@ -85,18 +84,8 @@ const SearchBar = (props: Props) => {
     const regex = new RegExp(".*?" + escapedValue + ".*", "i");
     if (!props.array) return [];
     //@ts-ignore
-    return props.array.filter((child: Suggestion) => {
-      if ("username" in child) {
-        // User
-        return regex.test(removeAccents(child.username)) || regex.test(removeAccents(child.email));
-      }
-      return (
-        // Structure
-        regex.test(child.acronyme) ||
-        regex.test(removeAccents(child.nom)) ||
-        //@ts-ignore
-        child.createNew
-      );
+    return props.array.filter((child) => {
+      return regex.test(removeAccents(child.username)) || regex.test(removeAccents(child.email));
     });
   };
 
@@ -178,10 +167,10 @@ const SearchBar = (props: Props) => {
     placeholder: t(
       // @ts-ignore
       props.placeholder || "Chercher",
-      props.placeholder || "Chercher"
+      props.placeholder || "Chercher",
     ),
     value: value || "",
-    onChange: onChange
+    onChange: onChange,
   };
 
   return (
@@ -214,7 +203,6 @@ const SearchBar = (props: Props) => {
           </div>
         </NoResultContainer>
       )}
-      {props.loupe && <i className="fa fa-search text-grey loupe-btn" aria-hidden="true" />}
     </div>
   );
 };

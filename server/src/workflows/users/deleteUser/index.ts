@@ -1,2 +1,1 @@
-import deleteUser from "./deleteUser";
-export default deleteUser;
+export * from "./deleteUser";

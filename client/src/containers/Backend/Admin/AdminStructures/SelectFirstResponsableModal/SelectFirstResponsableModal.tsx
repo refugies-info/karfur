@@ -5,10 +5,8 @@ import SearchBar from "components/UI/SearchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
 import FButton from "components/UI/FButton/FButton";
-import { SimplifiedUser } from "types/interface";
-import { ObjectId } from "mongodb";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
@@ -16,6 +14,8 @@ import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions"
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { colors } from "colors";
 import styles from "./SelectFirstResponsableModal.module.scss";
+import { Id, PatchStructureRolesRequest, SimpleUser } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 const ModifyLink = styled.div`
   font-weight: bold;
@@ -52,52 +52,46 @@ const Warning = styled.div`
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedStructureId: ObjectId | null;
+  selectedStructureId: Id | null;
 }
 export const SelectFirstResponsableModal = (props: Props) => {
-  const [selectedUser, setSelectedUser] = useState<SimplifiedUser | null>(null);
+  const [selectedUser, setSelectedUser] = useState<SimpleUser | null>(null);
 
   const dispatch = useDispatch();
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES));
 
   const structureFromStore = useSelector(structureSelector(props.selectedStructureId));
 
-  const activeUsers = useSelector(activeUsersSelector);
+  const activeUsers = useSelector(allActiveUsersSelector);
 
   const onValidate = async () => {
     try {
-      if (!selectedUser || !structureFromStore) return;
+      if (!selectedUser || !structureFromStore || !props.selectedStructureId) return;
 
-      const structure = {
-        membreId: selectedUser._id,
-        structureId: props.selectedStructureId,
+      const structure: PatchStructureRolesRequest = {
+        membreId: selectedUser._id.toString(),
         action: "create",
-        role: "administrateur"
+        role: "administrateur",
       };
 
-      await API.modifyUserRoleInStructure({ query: structure });
+      await API.updateStructureRoles(props.selectedStructureId, structure);
 
       Swal.fire({
         title: "Yay...",
         text: "Responsable modifié",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
       props.toggleModal();
       dispatch(fetchAllStructuresActionsCreator());
       dispatch(fetchAllUsersActionsCreator());
     } catch (error) {
-      Swal.fire({
-        title: "Oh non",
-        text: "Erreur lors de la modification",
-        icon: "error",
-        timer: 1500
-      });
+      handleApiError({ text: "Erreur lors de la modification" });
       props.toggleModal();
     }
   };
 
-  const onSelectItem = (data: SimplifiedUser) => setSelectedUser(data);
+  const onSelectItem = (data: SimpleUser) => setSelectedUser(data);
 
   if (isLoading || !props.selectedStructureId)
     return (

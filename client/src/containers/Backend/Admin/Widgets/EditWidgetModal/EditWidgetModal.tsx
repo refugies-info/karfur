@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "reactstrap";
-import { ContentType, Theme, Widget } from "types/interface";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { saveWidgetActionCreator } from "services/Widgets/widgets.actions";
 import FButton from "components/UI/FButton";
@@ -12,19 +11,20 @@ import { LanguageInput } from "../components/LanguageInput";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import { copyToClipboard, generateIframe } from "../functions";
 import styles from "./EditWidgetModal.module.scss";
+import { ContentType, GetWidgetResponse, Id, WidgetRequest } from "api-types";
 
 interface Props {
   show: boolean;
   toggle: () => void;
-  widget: Widget | null;
+  widget: GetWidgetResponse | null;
 }
 
 export const EditWidgetModal = (props: Props) => {
   const dispatch = useDispatch();
 
-  const [selectedThemes, setSelectedThemes] = useState<Theme[]>(props.widget?.themes || []);
+  const [selectedThemes, setSelectedThemes] = useState<Id[]>(props.widget?.themes || []);
   const [selectedTypeContenu, setSelectedTypeContenu] = useState<ContentType[]>(
-    props.widget?.typeContenu || ["demarche", "dispositif"]
+    props.widget?.typeContenu || [ContentType.DISPOSITIF, ContentType.DEMARCHE],
   );
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>(props.widget?.languages || []);
   const [selectedDepartment, setSelectedDepartment] = useState(props.widget?.department || "");
@@ -47,15 +47,14 @@ export const EditWidgetModal = (props: Props) => {
 
   const editWidget = (e: any) => {
     e.preventDefault();
-    dispatch(
-      saveWidgetActionCreator({
-        _id: props.widget?._id,
-        themes: selectedThemes,
-        typeContenu: selectedTypeContenu,
-        languages: selectedLanguages,
-        department: selectedDepartment
-      })
-    );
+    if (!props.widget) return;
+    const newWidget: Partial<WidgetRequest> = {
+      themes: selectedThemes,
+      typeContenu: selectedTypeContenu,
+      languages: selectedLanguages,
+      department: selectedDepartment,
+    };
+    dispatch(saveWidgetActionCreator(props.widget._id, newWidget));
   };
 
   const editAndCopy = (e: any) => {

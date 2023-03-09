@@ -1,6 +1,6 @@
 import mongoose, { ObjectId } from "mongoose";
 import { Moment } from "moment";
-import { Picture } from "../types/interface";
+import { Picture } from "api-types";
 
 const imageSchema = {
   secure_url: String,

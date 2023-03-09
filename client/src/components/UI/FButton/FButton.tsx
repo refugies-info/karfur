@@ -44,6 +44,9 @@ interface Props {
   [x: string]: any;
 }
 
+/**
+ * @deprecated use Button instead
+ */
 const FButton = React.forwardRef((props: Props, ref) => {
   let { type, className, fill, name, size, filter, tag: Tag, children, wrap, loading = false, ...bProps } = props;
 
@@ -56,7 +59,7 @@ const FButton = React.forwardRef((props: Props, ref) => {
     type ? styles[type] : false,
     className || "",
     themeType,
-    wrap ? styles.wrap : false
+    wrap ? styles.wrap : false,
   );
 
   return (
@@ -78,7 +81,7 @@ FButton.displayName = "FButton";
 
 FButton.defaultProps = {
   type: "default",
-  tag: "button"
+  tag: "button",
 };
 
 export default FButton;

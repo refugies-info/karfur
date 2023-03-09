@@ -1,58 +1,31 @@
 import logger from "../../../logger";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { updateWidget } from "../../../modules/widgets/widgets.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { WidgetDoc } from "../../../schema/schemaWidget";
-import { ThemeDoc } from "../../../schema/schemaTheme";
+import { ObjectId, Widget } from "../../../typegoose";
+import { PatchWidgetResponse, WidgetRequest } from "api-types";
 
-export interface Request {
-  name: string;
-  themes: ThemeDoc[];
-  typeContenu: ("dispositif" | "demarche")[];
-  languages: string[];
-  department: string;
-}
 
 export const patchWidget = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
-  try {
-    logger.info("[patchWidget] received", req.params.id);
-    checkRequestIsFromSite(req.fromSite);
+  id: string,
+  body: Partial<WidgetRequest>,
+  userId: string,
+): ResponseWithData<PatchWidgetResponse> => {
+  logger.info("[patchWidget] received", id);
+
+  const widget: Partial<Widget> = {
+    author: new ObjectId(userId),
+    typeContenu: body.typeContenu,
+    themes: body.themes.map(t => new ObjectId(t.toString())),
+    languages: body.languages,
+    department: body.department,
+  };
+
+  const dbWidget = await updateWidget(id, widget);
+
+  return {
+    text: "success",
+    // FIXME: include created_at
     //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
-
-    if (!req.params.id) throw new Error("INVALID_REQUEST");
-
-    const widget: Partial<WidgetDoc> = {
-      author: req.userId,
-      typeContenu: req.body.typeContenu,
-      themes: req.body.themes.map(t => t._id),
-      languages: req.body.languages,
-      department: req.body.department
-    };
-
-    const dbWidget = await updateWidget(req.params.id, widget);
-
-    return res.status(200).json({
-      text: "Succès",
-      data: dbWidget,
-    });
-  } catch (error) {
-    logger.error("[patchWidget] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Création interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
-  }
+    data: dbWidget,
+  };
 };

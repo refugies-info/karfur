@@ -17,6 +17,8 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
 import { AxiosError } from "axios";
+import { APIResponse } from "types/interface";
+import { GetUserInfoResponse } from "api-types";
 
 export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
@@ -26,7 +28,7 @@ export function* fetchUser(
     yield put(startLoading(LoadingStatusKey.FETCH_USER));
     const isAuth = yield call(API.isAuth);
     if (isAuth) {
-      const data = yield call(API.get_user_info);
+      const data: APIResponse<GetUserInfoResponse> = yield call(API.getUser);
       const user = data.data.data;
       yield put(setUserActionCreator(user));
       if (user.structures && user.structures.length > 0) {
@@ -60,13 +62,13 @@ export function* saveUser(
   try {
     logger.info("[saveUser] saga", { payload: action.payload });
     yield put(startLoading(LoadingStatusKey.SAVE_USER));
-    const { user, type } = action.payload;
-    yield call(API.updateUser, { query: { user, action: type } });
+    const { id, value } = action.payload;
+    yield call(API.updateUser, id, value);
     yield put(fetchUserActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_USER));
   } catch (error) {
     logger.error("[saveUser] saga error", { error });
-    if ((<AxiosError>error).response?.status === 402) { // wrong phone code
+    if ((<AxiosError>error).response?.data?.code === "WRONG_CODE") {
       yield put(setError(LoadingStatusKey.SAVE_USER, "WRONG_CODE"));
     } else {
       yield put(setUserActionCreator(null));

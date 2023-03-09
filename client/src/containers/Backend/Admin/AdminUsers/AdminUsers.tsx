@@ -4,13 +4,12 @@ import moment from "moment";
 import "moment/locale/fr";
 import { useDispatch } from "react-redux";
 import {
-  SearchBarContainer,
   StyledHeader,
   StyledTitle,
   FigureContainer,
   StyledSort,
   Content,
-  StyledHeaderInner
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -20,19 +19,18 @@ import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
 import { TabHeader, FilterButton } from "../sharedComponents/SubComponents";
 import { RowContainer, StructureName } from "../AdminStructures/components/AdminStructureComponents";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
-import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import { SimplifiedUser, UserStatusType } from "types/interface";
+import CustomSearchBar from "components/UI/CustomSeachBar";
+import { UserStatusType } from "types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
 import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
 import { removeAccents } from "lib";
-import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
@@ -45,6 +43,8 @@ import styles from "./AdminUsers.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
+import { GetAllUsersResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 
@@ -52,7 +52,7 @@ export const AdminUsers = () => {
   const defaultSortedHeader = {
     name: "none",
     sens: "none",
-    orderColumn: "none"
+    orderColumn: "none",
   };
 
   // filters
@@ -72,9 +72,9 @@ export const AdminUsers = () => {
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
 
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
-  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
-  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
+  const [selectedUserId, setSelectedUserId] = useState<Id | null>(initialFilters.selectedUserId);
+  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(initialFilters.selectedStructureId);
+  const [selectedContentId, setSelectedContentId] = useState<Id | null>(initialFilters.selectedDispositifId);
   const [selectedContentStatus, setSelectedContentStatus] = useState<string | null>(null);
   const [isExportLoading, setIsExportLoading] = useState(false);
 
@@ -88,16 +88,16 @@ export const AdminUsers = () => {
         filter,
         selectedUserId,
         selectedContentId,
-        selectedStructureId
+        selectedStructureId,
       );
 
       router.replace(
         {
           pathname: locale + "/backend/admin",
-          search: params
+          search: params,
         },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -116,12 +116,12 @@ export const AdminUsers = () => {
 
   const toggleContentDetailsModal = () => setShowContentDetailsModal(!showContentDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+  const setSelectedUserIdAndToggleModal = (userId: Id | null) => {
     setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
 
-  const setSelectedContentIdAndToggleModal = (element: ObjectId | null, status: string | null = null) => {
+  const setSelectedContentIdAndToggleModal = (element: Id | null, status: string | null = null) => {
     setSelectedContentId(element ? element : null);
     if (status) setSelectedContentStatus(status);
     toggleContentDetailsModal();
@@ -134,12 +134,12 @@ export const AdminUsers = () => {
 
   const toggleStructureDetailsModal = () => setShowStructureDetailsModal(!showStructureDetailsModal);
 
-  const setSelectedStructureIdAndToggleModal = (structureId: ObjectId | null) => {
+  const setSelectedStructureIdAndToggleModal = (structureId: Id | null) => {
     setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
 
-  const users = useSelector(activeUsersSelector);
+  const users = useSelector(allActiveUsersSelector);
   const dispositifs = useSelector(allDispositifsSelector);
 
   const reorder = (element: { name: string; order: string }) => {
@@ -150,11 +150,11 @@ export const AdminUsers = () => {
       setSortedHeader({
         name: element.name,
         sens: "up",
-        orderColumn: element.order
+        orderColumn: element.order,
       });
     }
   };
-  const filterAndSortUsers = (users: SimplifiedUser[]) => {
+  const filterAndSortUsers = (users: GetAllUsersResponse[]) => {
     const usersFilteredBySearch = !!search
       ? users.filter(
           (user) =>
@@ -164,7 +164,7 @@ export const AdminUsers = () => {
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
                 .includes(removeAccents(search.toLowerCase()))) ||
-            user.email?.includes(search)
+            user.email?.includes(search),
         )
       : users;
 
@@ -176,7 +176,9 @@ export const AdminUsers = () => {
     } else if (filter === "Experts") {
       filteredUsers = usersFilteredBySearch.filter((user) => (user.roles || []).includes("ExpertTrad"));
     } else if (filter === "Traducteurs") {
-      filteredUsers = usersFilteredBySearch.filter((user) => user.langues && user.langues.length > 0);
+      filteredUsers = usersFilteredBySearch.filter(
+        (user) => user.selectedLanguages && user.selectedLanguages.length > 0,
+      );
     } else if (filter === "Rédacteurs") {
       filteredUsers = usersFilteredBySearch.filter((user) => (user.roles || []).includes("Rédacteur"));
     } else if (filter === "Multi-structure") {
@@ -186,10 +188,10 @@ export const AdminUsers = () => {
     if (sortedHeader.name === "none")
       return {
         usersToDisplay: filteredUsers,
-        usersForCount: usersFilteredBySearch
+        usersForCount: usersFilteredBySearch,
       };
 
-    const usersToDisplay = filteredUsers.sort((a: SimplifiedUser, b: SimplifiedUser) => {
+    const usersToDisplay = filteredUsers.sort((a: GetAllUsersResponse, b: GetAllUsersResponse) => {
       // @ts-ignore
       const orderColumn: "pseudo" | "email" | "structure" | "created_at" = sortedHeader.orderColumn;
 
@@ -220,7 +222,7 @@ export const AdminUsers = () => {
     });
     return {
       usersToDisplay,
-      usersForCount: usersFilteredBySearch
+      usersForCount: usersFilteredBySearch,
     };
   };
 
@@ -234,19 +236,14 @@ export const AdminUsers = () => {
         title: "Yay...",
         text: `Export en cours de ${users ? users.length : 0} users`,
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
     } catch (error) {
-      Swal.fire({
-        title: "Oh non!",
-        text: "Something went wrong",
-        icon: "error",
-        timer: 1500
-      });
+      handleApiError({ text: "Something went wrong" });
     }
   };
 
-  const getNbUsersByStatus = (users: SimplifiedUser[], status: string) => {
+  const getNbUsersByStatus = (users: GetAllUsersResponse[], status: string) => {
     if (status === "Admin") {
       return users.filter((user) => (user.roles || []).includes("Admin")).length;
     }
@@ -257,7 +254,7 @@ export const AdminUsers = () => {
       return users.filter((user) => (user.roles || []).includes("ExpertTrad")).length;
     }
     if (status === "Traducteurs") {
-      return users.filter((user) => user.langues && user.langues.length > 0).length;
+      return users.filter((user) => user.selectedLanguages && user.selectedLanguages.length > 0).length;
     }
     if (status === "Rédacteurs") {
       return users.filter((user) => (user.roles || []).includes("Rédacteur")).length;
@@ -360,7 +357,7 @@ export const AdminUsers = () => {
                     onClick={() =>
                       setSelectedStructureIdAndToggleModal(
                         //@ts-ignore
-                        element.structures && element.structures.length > 0 ? element.structures[0]._id : null
+                        element.structures && element.structures.length > 0 ? element.structures[0]._id : null,
                       )
                     }
                   >
@@ -375,8 +372,8 @@ export const AdminUsers = () => {
                   </td>
                   <td className="align-middle" onClick={() => setSelectedUserIdAndToggleModal(element._id)}>
                     <div className={styles.item_container}>
-                      {(element.langues || []).map((langue) => (
-                        <LangueFlag langue={langue.langueCode} key={langue.langueCode} />
+                      {(element.selectedLanguages || []).map((langue) => (
+                        <LangueFlag langue={langue.langueFr} key={langue.langueCode} />
                       ))}
                     </div>
                   </td>
@@ -419,7 +416,7 @@ export const AdminUsers = () => {
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
-          toggleRespoModal={(structureId: ObjectId) => {
+          toggleRespoModal={(structureId: Id) => {
             setSelectedStructureId(structureId);
             setSelectFirstRespoModal(true);
           }}
@@ -451,7 +448,6 @@ export const AdminUsers = () => {
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
         dispositifId={selectedContentId}
-        dispositifStatus={selectedContentStatus}
       />
     </div>
   );

@@ -22,7 +22,7 @@ import { userSelector } from "../../User/user.selectors";
 import { setUserRoleInStructureActionCreator } from "../../User/user.actions";
 import { userStructureSelector } from "../userStructure.selectors";
 import mockRouter from "next-router-mock";
-jest.mock("next/router",  () => require("next-router-mock"));
+jest.mock("next/router", () => require("next-router-mock"));
 
 describe("[Saga] Structures", () => {
   describe("pilot", () => {
@@ -46,7 +46,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr", true)
+        .call(API.getStructureById, "id", "fr")
         .next({ data: { data: null } })
         .put(setUserStructureActionCreator(null))
         .next()
@@ -69,7 +69,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr", true)
+        .call(API.getStructureById, "id", "fr")
         .next({ data: { data: null } })
         .put(setUserStructureActionCreator(null))
         .next()
@@ -90,7 +90,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr", true)
+        .call(API.getStructureById, "id", "fr")
         .next({
           data: { data: { membres: [{ _id: "id", roles: ["membre"] }] } },
         })
@@ -119,7 +119,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr", true)
+        .call(API.getStructureById, "id", "fr")
         .next({
           data: { data: { membres: [{ _id: "id", roles: ["membre"] }] } },
         })
@@ -146,7 +146,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr", true)
+        .call(API.getStructureById, "id", "fr")
         .next({
           data: {
             data: { membres: [{ _id: "id", roles: ["administrateur"] }] },
@@ -175,7 +175,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr", true)
+        .call(API.getStructureById, "id", "fr")
         .next({
           data: {
             data: { membres: [{ _id: "id", roles: ["administrateur"] }] },
@@ -204,7 +204,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr", true)
+        .call(API.getStructureById, "id", "fr")
         .next({
           data: {
             data: { membres: [{ _id: "id", roles: ["contributeur"] }] },
@@ -233,7 +233,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr", true)
+        .call(API.getStructureById, "id", "fr")
         .next({
           data: {
             data: { membres: [{ _id: "id", roles: ["contributeur"] }] },

@@ -9,12 +9,15 @@
     "noImplicitAny": true,
     "allowJs": true,
     "resolveJsonModule": true,
-    "target": "es6",
+    "target": "es2021",
     "sourceMap": true,
     "skipLibCheck": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "tsoa": ["node_modules/tsoa/dist"],
+    }
   },
   "exclude": ["node_modules", "dist", "src/**/*.test.ts"],
   "include": ["src"]

@@ -1,8 +1,8 @@
 import { createReducer } from "typesafe-actions";
-import { Widget } from "types/interface";
 import { WidgetsActions } from "./widgets.actions";
+import { GetWidgetResponse } from "api-types";
 
-export type WidgetsState = Widget[];
+export type WidgetsState = GetWidgetResponse[];
 
 const initialWidgetsState: WidgetsState = [];
 

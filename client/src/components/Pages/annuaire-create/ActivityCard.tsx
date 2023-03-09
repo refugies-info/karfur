@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { ThemeButton } from "components/UI/ThemeButton/ThemeButton";
-import type { Theme } from "types/interface";
 import placeholder from "assets/placeholder_annuaire.png";
 import useRTL from "hooks/useRTL";
+import { GetThemeResponse } from "api-types";
 
 interface Props {
   activity: string;
@@ -15,7 +15,7 @@ interface Props {
   image: any | null;
   isLectureMode: boolean;
   t?: any;
-  theme?: Theme;
+  theme?: GetThemeResponse;
 }
 
 interface CardContainerProps {

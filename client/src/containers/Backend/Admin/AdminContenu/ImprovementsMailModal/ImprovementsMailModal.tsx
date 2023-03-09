@@ -1,16 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Col, Input, Row } from "reactstrap";
-import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
 import { cls } from "lib/classname";
 import FButton from "components/UI/FButton/FButton";
 import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { Log } from "types/interface";
 import API from "utils/API";
 import { LogList } from "../../Logs/LogList";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
@@ -19,17 +17,19 @@ import { UserButton } from "../../sharedComponents/UserButton";
 import { getUsersToSendMail, getFormattedStatus, getTitle } from "./functions";
 import modalStyles from "../../sharedComponents/DetailsModal.module.scss";
 import styles from "./ImprovementsMailModal.module.scss";
+import { GetLogResponse, Id, ImprovementsRequest } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedDispositifId: ObjectId | null;
+  selectedDispositifId: Id | null;
 }
 
 export const ImprovementsMailModal = (props: Props) => {
   const { selectedDispositifId } = props;
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [logs, setLogs] = useState<Log[]>([]);
+  const [logs, setLogs] = useState<GetLogResponse[]>([]);
   const [message, setMessage] = useState<string>("");
 
   const handleChange = (event: any) => {
@@ -44,7 +44,7 @@ export const ImprovementsMailModal = (props: Props) => {
         setLogs(
           res.data.data
             // keep only improvement logs
-            .filter((log: Log) => log?.link?.next === "ModalImprovements")
+            .filter((log: GetLogResponse) => log?.link?.next === "ModalImprovements"),
         );
       });
     }
@@ -54,7 +54,7 @@ export const ImprovementsMailModal = (props: Props) => {
     updateLogs();
   }, [updateLogs]);
 
-  const users = useSelector(activeUsersSelector);
+  const users = useSelector(allActiveUsersSelector);
   const structures = useSelector(allStructuresSelector);
 
   const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
@@ -84,13 +84,12 @@ export const ImprovementsMailModal = (props: Props) => {
     );
   }
 
-  // eslint-disable-next-line
   const usersToDisplay = getUsersToSendMail(
     dispositif.status,
     dispositif.creatorId,
     dispositif.mainSponsor,
     users,
-    structures
+    structures,
   );
 
   const formattedStatus = getFormattedStatus(dispositif.status);
@@ -106,7 +105,7 @@ export const ImprovementsMailModal = (props: Props) => {
     "C'est pour qui ?",
     "Pourquoi c'est intéressant ?",
     "Comment je m'engage ?",
-    "Carte interactive"
+    "Carte interactive",
   ];
 
   const onClickCategory = (categorie: string) => {
@@ -121,19 +120,19 @@ export const ImprovementsMailModal = (props: Props) => {
   };
 
   const sendMail = () => {
-    const data = {
+    const data: ImprovementsRequest = {
       dispositifId: dispositif._id,
       users: usersToDisplay
         .filter((user) => user.email)
         .map((user) => ({
           username: user.username,
           _id: user._id,
-          email: user.email
+          email: user.email || "",
         })),
       titreInformatif: dispositif.titreInformatif,
-      titreMarque: dispositif.titreMarque,
+      titreMarque: dispositif.titreMarque || "",
       sections: selectedCategories,
-      message
+      message,
     };
 
     API.sendAdminImprovementsMail(data)
@@ -142,17 +141,12 @@ export const ImprovementsMailModal = (props: Props) => {
           title: "Yay...",
           text: "Mail(s) envoyé(s)",
           icon: "success",
-          timer: 1500
+          timer: 1500,
         });
         props.toggleModal();
       })
       .catch(() => {
-        Swal.fire({
-          title: "Oh non",
-          text: "Erreur lors de l'envoi",
-          icon: "error",
-          timer: 1500
-        });
+        handleApiError({ text: "Erreur lors de l'envoi" });
         props.toggleModal();
       });
   };
@@ -170,13 +164,15 @@ export const ImprovementsMailModal = (props: Props) => {
             <span className="me-3">
               Fiche : <strong>{title}</strong>
             </span>
-            <StyledStatus
-              text={formattedStatus.displayedStatus}
-              textToDisplay={formattedStatus.displayedStatus}
-              color={formattedStatus.color}
-              disabled={true}
-              textColor={formattedStatus.textColor}
-            />
+            {formattedStatus && (
+              <StyledStatus
+                text={formattedStatus.displayedStatus}
+                textToDisplay={formattedStatus.displayedStatus}
+                color={formattedStatus.color}
+                disabled={true}
+                textColor={formattedStatus.textColor}
+              />
+            )}
           </p>
 
           <p className={cls(styles.infoline, styles.text)}>
@@ -221,7 +217,7 @@ export const ImprovementsMailModal = (props: Props) => {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center"
+                  alignItems: "center",
                 }}
               >
                 <p className={cls(styles.text, "mb-3")}>Ajouter un message</p>
@@ -249,7 +245,7 @@ export const ImprovementsMailModal = (props: Props) => {
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "end"
+              justifyContent: "end",
             }}
           >
             <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline">

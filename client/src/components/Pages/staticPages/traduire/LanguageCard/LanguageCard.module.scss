@@ -31,20 +31,6 @@
   font-weight: bold;
 }
 
-.flag {
-  display: block;
-  width: 20px;
-  height: 15px;
-  background-size: cover;
-  border-radius: 2px;
-  margin-right: u(2);
-
-  @include rtl() {
-    margin-right: inherit;
-    margin-left: u(2);
-  }
-}
-
 .subtitle {
   margin-top: u(2);
   margin-bottom: 0;

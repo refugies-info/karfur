@@ -1,15 +1,12 @@
 import logger from "../../logger";
 import { isPasswordOk } from "../../libs/validatePassword";
-import { USER_STATUS_ACTIVE } from "../../schema/schemaUser";
 import passwordHash from "password-hash";
 import { createUser } from "./users.repository";
-import { ObjectId } from "mongoose";
 import { sendWelcomeMail } from "../mail/mail.service";
+import { Role } from "../../typegoose";
+import { UserStatus } from "api-types";
 
-export const register = async (
-  user: { username: string; password: string; email?: string },
-  userRole: { nom: string; _id: ObjectId }
-) => {
+export const register = async (user: { username: string; password: string; email?: string }, userRole: Role) => {
   try {
     logger.info("[Register] register attempt", { username: user.username });
     if (!isPasswordOk(user.password)) {
@@ -25,7 +22,7 @@ export const register = async (
       username: user.username,
       password: hashedPassword,
       roles,
-      status: USER_STATUS_ACTIVE,
+      status: UserStatus.ACTIVE,
       last_connected: new Date(),
       email: user.email,
     };

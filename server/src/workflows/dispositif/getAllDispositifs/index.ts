@@ -1,1 +1,1 @@
-export { getAllDispositifs } from "./getAllDispositifs";
+export * from "./getAllDispositifs";

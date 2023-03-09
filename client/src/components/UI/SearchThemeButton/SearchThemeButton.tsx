@@ -3,12 +3,12 @@ import Image from "next/image";
 import styled from "styled-components";
 import { jsUcfirst } from "lib";
 import { cls } from "lib/classname";
-import { Theme } from "types/interface";
 import useLocale from "hooks/useLocale";
 import styles from "./SearchThemeButton.module.scss";
+import { GetThemeResponse } from "api-types";
 
 interface Props {
-  theme: Theme;
+  theme: GetThemeResponse;
   onClick?: () => void;
 }
 

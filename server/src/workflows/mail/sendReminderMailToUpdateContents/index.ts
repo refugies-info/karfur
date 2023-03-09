@@ -1,1 +1,1 @@
-export { sendReminderMailToUpdateContents } from "./sendReminderMailToUpdateContents";
+export * from "./sendReminderMailToUpdateContents";

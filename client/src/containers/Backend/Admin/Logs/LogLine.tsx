@@ -1,17 +1,16 @@
 import React from "react";
 import moment from "moment";
-import { Log } from "types/interface";
 import styles from "./LogLine.module.scss";
 import { getLogText } from "./functions";
-import { ObjectId } from "mongodb";
 import { cls } from "lib/classname";
+import { GetLogResponse, Id } from "api-types";
 
 interface Props {
-  log: Log;
-  openUserModal?: (user: ObjectId | null) => void;
-  openContentModal?: (element: ObjectId | null, status: string | null) => void;
-  openStructureModal?: (element: ObjectId | null) => void;
-  openAnnuaire?: (id: ObjectId) => void;
+  log: GetLogResponse;
+  openUserModal?: (user: Id | null) => void;
+  openContentModal?: (element: Id | null, status: string | null) => void;
+  openStructureModal?: (element: Id | null) => void;
+  openAnnuaire?: (id: Id) => void;
   openImprovementsModal?: () => void;
   openNeedsModal?: () => void;
 }
