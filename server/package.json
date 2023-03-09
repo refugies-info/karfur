@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "start": "node dist/src/server.js",
-    "tsc-prod": "cd node_modules/api-types && npm run tsc && cd ../.. && tsoa spec-and-routes && tsc",
+    "tsc-prod": "tsoa spec-and-routes && tsc",
     "tsc": "tsoa spec-and-routes && pwd && tsc",
     "test": "npm run test:lint && npm run test:types",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
@@ -49,7 +49,8 @@
     "uniqid": "^5.0.3",
     "uuid": "^9.0.0",
     "winston": "^3.2.1",
-    "xmlbuilder": "^12.0.0"
+    "xmlbuilder": "^12.0.0",
+    "api-types": "file:../api-types"
   },
   "devDependencies": {
     "@types/compression": "^1.7.2",
@@ -64,7 +65,6 @@
     "@types/uniqid": "^5.3.0",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
-    "api-types": "file:../api-types",
     "concurrently": "^7.6.0",
     "eslint": "^7.1.0",
     "jest": "^26.0.0",
