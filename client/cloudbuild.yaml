@@ -5,7 +5,7 @@ steps:
     args:
       [
         "-c",
-        'for secret in $(gcloud secrets list --filter=REACT --format=''value(NAME)''); do echo NEXT_PUBLIC_$secret="$(gcloud secrets versions access --secret=$secret latest)" >> .env; done'
+        'for secret in $(gcloud secrets list --filter=REACT --format=''value(NAME)''); do echo NEXT_PUBLIC_$secret="$(gcloud secrets versions access --secret=$secret latest)" >> .env; done',
       ]
     dir: client
 
@@ -24,7 +24,9 @@ steps:
         "APP_ENV=${_APP_ENV}",
         "--build-arg",
         "APP_SITE_URL=${_APP_SITE_URL}",
-        "."
+        "-f",
+        "./client/Dockerfile",
+        ".",
       ]
     dir: client
 
@@ -52,7 +54,7 @@ steps:
         "3000",
         "--memory",
         "1G",
-        "--allow-unauthenticated"
+        "--allow-unauthenticated",
       ]
 
 options:
