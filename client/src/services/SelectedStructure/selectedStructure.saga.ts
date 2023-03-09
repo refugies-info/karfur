@@ -15,7 +15,7 @@ import {
 } from "./selectedStructure.actions";
 import { selectedStructureSelector } from "./selectedStructure.selector";
 import { APIResponse } from "types/interface";
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse, PatchStructureRequest } from "api-types";
 
 export function* fetchSelectedStructure(
   action: ReturnType<typeof fetchSelectedStructureActionCreator>
@@ -48,9 +48,9 @@ export function* updateSelectedStructure(
       logger.info("[updateSelectedStructure] no structure to update");
       return;
     }
-    const updatedStructure: Partial<GetStructureResponse> = { ...structure };
+    const updatedStructure: PatchStructureRequest = { ...structure };
+    // @ts-ignore
     delete updatedStructure.membres;
-    //@ts-ignore FIXME: change that -> impossible to type what is sent to the server.
     yield call(API.updateStructure, structureId, updatedStructure);
 
     yield put(

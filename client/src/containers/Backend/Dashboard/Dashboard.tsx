@@ -10,11 +10,10 @@ import { NoGeolocModal } from "./NoGeolocModal";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import styles from "./Dashboard.module.scss";
-import { RegionFigures } from "types/interface";
 import { colors } from "colors";
 import { Spinner } from "reactstrap";
 import { themesSelector } from "services/Themes/themes.selectors";
-import { ContentType, GetStatisticsResponse, Id } from "api-types";
+import { ContentType, GetRegionStatisticsResponse, GetStatisticsResponse, Id } from "api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
@@ -39,7 +38,7 @@ const Dashboard = (props: Props) => {
     [key: string]: number;
   }>({});
   const [nbTraductors, setNbTraductors] = useState(0);
-  const [figuresByRegion, setFiguresByRegion] = useState<RegionFigures[]>([]);
+  const [figuresByRegion, setFiguresByRegion] = useState<GetRegionStatisticsResponse["regionFigures"]>([]);
   const [showNoGeolocModal, setShowNoGeolocModal] = useState(false);
   const [dispositifsWithoutGeoloc, setDispositifsWithoutGeoloc] = useState<Id[]>([]);
   const [statistics, setStatistics] = useState<GetStatisticsResponse | null>(null);

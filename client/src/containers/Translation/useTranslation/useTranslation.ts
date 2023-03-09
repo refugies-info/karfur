@@ -1,5 +1,10 @@
 import { useParamsFromHistory, useUser } from "hooks";
-import { cloneDeep, flattenDeep, get, indexOf, isFunction, set } from "lodash";
+import cloneDeep from "lodash/cloneDeep";
+import flattenDeep from "lodash/flattenDeep";
+import get from "lodash/get";
+import indexOf from "lodash/indexOf";
+import isFunction from "lodash/isFunction";
+import set from "lodash/set";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";

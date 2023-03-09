@@ -366,7 +366,8 @@ const Login = () => {
             <>
               <div className={styles.email_message}>
                 {t(
-                  // @ts-ignore FIXME
+                  // FIXME
+                  // @ts-ignore
                   "Login.Lien réinitialisation",
                   "Un lien de réinitialisation a été envoyé à ",
                 ) +

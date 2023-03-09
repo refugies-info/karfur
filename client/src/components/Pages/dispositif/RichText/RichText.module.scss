@@ -1,6 +1,13 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
+
+.content {
+  @include dsfr-text("normal");
+}
 
 .highlighted {
   background: lightblue;
@@ -8,13 +15,72 @@
 
 .content {
   :global(.callout) {
-    background: $gray40b;
-    padding: u(1);
+    margin-top: u(6);
+    margin-bottom: u(6);
   }
   :global(.callout--info) {
-    border-left: 4px solid $bleuCharte;
+    @include pl-ltr(u(8));
+    @include ml-ltr(u(8));
+    $border: 4px solid $lightBorderDefaultBlueFrance;
+    border-left: $border;
+
+    @include media-max("lg-limit") {
+      @include pl-ltr(u(4));
+      @include ml-ltr(u(2));
+    }
+
+    @include rtl() {
+      border-right: $border;
+      border-left: none;
+    }
+
+    &::before {
+      content: attr(data-title);
+      display: block;
+      margin-bottom: u(2);
+      @include dsfr-text("h6");
+      font-weight: bold;
+      color: $lightBorderDefaultBlueFrance;
+
+      @include media-max("lg-limit") {
+        @include dsfr-text("large");
+      }
+    }
   }
+
   :global(.callout--important) {
-    border-left: 4px solid $error;
+    background: $lightBackgroundContrastGrey;
+    position: relative;
+    border-radius: u(2);
+    overflow: hidden;
+    padding: u(4) u(2);
+    @include pl-ltr(u(14));
+
+    &::before {
+      content: attr(data-title);
+      display: block;
+      margin-bottom: u(1);
+      @include dsfr-text("h6");
+      font-weight: bold;
+
+      @include media-max("lg-limit") {
+        @include dsfr-text("large");
+      }
+    }
+
+    &::after {
+      content: "\ea20";
+      font-family: "remixicon" !important;
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      padding-top: u(4);
+      width: u(10);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      @include l-ltr(0);
+      background: $lightBorderDefaultBlueFrance;
+    }
   }
 }

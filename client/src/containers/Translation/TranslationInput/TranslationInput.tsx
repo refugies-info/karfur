@@ -1,6 +1,6 @@
 import { Button } from "@dataesr/react-dsfr";
 import { useUser } from "hooks";
-import { get } from "lodash";
+import get from "lodash/get";
 import { useEffect, useState } from "react";
 import { useAsyncFn, useNumber } from "react-use";
 import API from "utils/API";
@@ -55,7 +55,7 @@ const TranslationInput = ({
     reset();
   }, [initialText, locale, reset, translate, value]);
 
-  console.log("render", index, value, loading, section, initialText, suggestions);
+  // console.log("render", index, value, loading, section, initialText, suggestions);
 
   return (
     <div style={{ display: "grid" }}>

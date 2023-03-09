@@ -9,7 +9,8 @@ export const getLogs = async (id: string): ResponseWithData<GetLogResponse[]> =>
 
   return {
     text: "success",
-    //@ts-ignore FIXME : created_at not available
+    // FIXME: created_at not available
+    //@ts-ignore
     data: logs
   };
 }

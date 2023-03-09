@@ -184,7 +184,7 @@ export class Dispositif extends Base {
   public secondaryThemes?: Ref<Theme, ThemeId>[];
   @prop({ ref: () => Need })
   public needs: Ref<Need, NeedId>[];
-  @prop({ type: () => Sponsor, ref: () => Structure })
+  @prop()
   public sponsors?: (Ref<Structure> | Sponsor)[];
 
   @prop({ required: true, ref: () => User })
@@ -271,6 +271,14 @@ export class Dispositif extends Base {
       throw new MustBePopulatedError("secondaryThemes");
     }
     return this.secondaryThemes;
+  }
+
+  public getNeeds(): Need[] {
+    if (!this.needs) return [];
+    if (!isDocumentArray(this.needs)) {
+      throw new MustBePopulatedError("needs");
+    }
+    return this.needs;
   }
 
   public getCreator(): User | null {

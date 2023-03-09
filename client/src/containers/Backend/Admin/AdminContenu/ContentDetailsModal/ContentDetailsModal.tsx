@@ -99,7 +99,8 @@ export const ContentDetailsModal = (props: Props) => {
       }
 
       if (property === "status") {
-        //@ts-ignore FIXME type status
+        // FIXME type status
+        //@ts-ignore
         await API.updateDispositifStatus(dispositif._id, { status: newStatus });
       } else {
         const body: AdminCommentsRequest = {

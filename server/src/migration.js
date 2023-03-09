@@ -7,6 +7,10 @@ const dbPath = "mongodb://127.0.0.1:27017/heroku_wbj38s57?serverSelectionTimeout
 const client = new MongoClient(dbPath);
 const dbName = "heroku_wbj38s57";
 
+const removeHTML = (input) => {
+  return input.replace(/<\/?[^>]+(>|$)/g, "");
+};
+
 const getLocalizedContent = (content, ln, root = false) => {
   if (root) return content || "";
   if (ln === "fr") return content?.fr || content || "";
@@ -22,7 +26,7 @@ const updateCallouts = (htmlContent) => {
     const content = match[0]
       .replace(
         /<div class='bloc-rouge'>[ ]*<div class='icon-left-side'>[ ]*<span>i<\/span>[ ]*<\/div>[ ]*<div class='right-side'>[ ]*<div><b>Bon à savoir :<\/b><\/div>/gm,
-        "<div class='callout callout--info' data-callout='info'>",
+        "<div class='callout callout--important' data-callout='important'>",
       )
       .replace(/<\/div>[ ]*<\/div>/gm, "</div>");
     newContent = newContent.replace(regex, content);
@@ -87,7 +91,7 @@ const removeOldFields = async (dispositifsColl) => {
 
 const formatMerci = (merci) => {
   return {
-    createdAt: new Date(merci.createdAt),
+    created_at: new Date(merci.createdAt),
     userId: new ObjectId(merci.userId) || null,
   };
 };
@@ -109,7 +113,7 @@ const getSuggestionSection = (key, type) => {
 
 const formatSuggestion = (suggestion, typeContenu) => {
   return {
-    createdAt: new Date(suggestion.createdAt),
+    created_at: new Date(suggestion.createdAt),
     userId: new ObjectId(suggestion.userId),
     read: suggestion.read === null ? true : suggestion.read,
     suggestion: suggestion.suggestion,
@@ -128,7 +132,7 @@ const getInfoSections = (children, ln, root, id, type) => {
       const uuid = savedUuids[id + type]?.[i] || uuidv4(); // use uuid if it exists in another language
 
       infosections[uuid] = {
-        title: getLocalizedContent(section.title, ln, root),
+        title: removeHTML(getLocalizedContent(section.title, ln, root)),
         text: turnJSONtoHTML(getLocalizedContent(section.content, ln, root)),
       };
     }
@@ -760,6 +764,20 @@ const adaptUserFavorites = async (usersColl) => {
   }
 };
 
+const adaptLangues = async (languesColl) => {
+  await languesColl.updateMany(
+    {},
+    {
+      $unset: {
+        langueIsDialect: "",
+        langueBackupId: "",
+        status: "",
+        participants: "",
+      },
+    },
+  );
+};
+
 const removeValidatedTrad = (traductionsColl) =>
   traductionsColl.deleteMany({ type: "validation", avancement: { $gte: 1 } }).then(({ deletedCount }) => {
     console.log("removeValidatedTrad : ", deletedCount);
@@ -774,6 +792,7 @@ async function main() {
   const dispositifsColl = db.collection("dispositifs");
   const traductionsColl = db.collection("traductions");
   const usersColl = db.collection("users");
+  const languesColl = db.collection("langues");
 
   // update dispositifs one by one
   console.log("Mise à jour du schéma 'dispositifs' ...");
@@ -807,6 +826,10 @@ async function main() {
   await adaptUserSelectedLanguages(usersColl);
   await adaptUserFavorites(usersColl);
   console.log("FIN Adaptation des utilisateurs");
+
+  console.log("Adaptation des langues");
+  await adaptLangues(languesColl);
+  console.log("FIN Adaptation des langues");
 
   console.log("C'est tout bon !");
 }

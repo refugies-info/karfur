@@ -38,6 +38,7 @@ const OnHtmlChangePlugin = ({ value, onHtmlChanged }: Props) => {
     if (!value || !isFirstRender) return;
     setIsFirstRender(false);
     editor.update(() => generateInitialState(editor, value));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onChange = (editorState: EditorState, editor: LexicalEditor) => {

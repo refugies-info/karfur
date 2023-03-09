@@ -1,5 +1,8 @@
 import { useUser } from "hooks";
-import { get, isEmpty, isUndefined, some } from "lodash";
+import get from "lodash/get";
+import isEmpty from "lodash/isEmpty";
+import isUndefined from "lodash/isUndefined";
+import some from "lodash/some";
 import Skeleton from "react-loading-skeleton";
 import PageContext from "utils/pageContext";
 import Dispositif from "components/Content/Dispositif";
@@ -68,9 +71,9 @@ const NewTranslation = () => {
    * Un mix des cas est possible en cas de traduction(s) partielle(s)
    */
 
+  // TODO à challenger : peu apporter des conflits
   /*
    * activeSection est seulement le dernier élément du chemin vers la section
-   * TODO à challenger : peu apporter des conflits
    */
   return (
     <PageContext.Provider value={{ mode: "translate", activeSection: section.split(".").pop() }}>

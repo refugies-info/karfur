@@ -1,0 +1,9 @@
+@import "src/scss/colors";
+
+.flag {
+  width: 20px;
+  height: 15px;
+  border-radius: 2px;
+  outline: 1px solid $white;
+  background-size: cover;
+}

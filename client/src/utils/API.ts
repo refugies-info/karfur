@@ -4,10 +4,10 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { APIResponse, NbDispositifsByRegion, TranslationFacets, TranslationStatistics } from "types/interface";
+import { APIResponse } from "types/interface";
 import {
   AddContactRequest,
-  // AddUserFavorite,
+  AddSuggestionDispositifRequest,
   AddUserFavoriteRequest,
   AddViewsRequest,
   AdminCommentsRequest,
@@ -16,7 +16,6 @@ import {
   CountDispositifsRequest,
   CreateDispositifRequest,
   DeleteTranslationsRequest,
-  // DeleteUserFavorite,
   DeleteUserFavoriteRequest,
   DispositifStatusRequest,
   DownloadAppRequest,
@@ -34,6 +33,7 @@ import {
   GetLanguagesResponse,
   GetLogResponse,
   GetNeedResponse,
+  GetRegionStatisticsResponse,
   GetStatisticsRequest,
   GetStatisticsResponse,
   GetStructureResponse,
@@ -62,11 +62,14 @@ import {
   PostStructureRequest,
   PostThemeResponse,
   PostWidgetResponse,
+  ReadSuggestionDispositifRequest,
   ResetPasswordRequest,
   ResetPasswordResponse,
   SendNotificationsRequest,
   SubscriptionRequest,
   ThemeRequest,
+  TranslationStatisticsRequest,
+  TranslationStatisticsResponse,
   TtsRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
@@ -75,7 +78,6 @@ import {
   UpdatePositionsNeedResponse,
   UpdatePositionsRequest,
   UpdateUserRequest,
-  // UserFavoritesRequest,
   WidgetRequest,
 } from "api-types";
 
@@ -108,7 +110,7 @@ instance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (axios.isCancel(error)) {
-      logger.error("Error: ", { error: error.message });
+      logger.error("Error (request cancelled): ", { error: error.message });
     }
     return Promise.reject(error);
   },
@@ -214,12 +216,6 @@ const API = {
     const headers = getHeaders();
     return instance.get("/dispositifs/count", { params: query, headers });
   },
-  updateDispositifReactions: (query: any) => {
-    const headers = getHeaders();
-    return instance.post("/dispositifs/updateDispositifReactions", query, {
-      headers,
-    });
-  },
   updateDispositifStatus: (id: Id, body: DispositifStatusRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/status`, body, { headers });
@@ -251,8 +247,8 @@ const API = {
     const headers = getHeaders();
     return instance.get("/dispositifs/all", { headers });
   },
-  getNbDispositifsByRegion: (): Promise<Response<NbDispositifsByRegion>> => {
-    return instance.get("/dispositifs/getNbDispositifsByRegion");
+  getNbDispositifsByRegion: (): Promise<APIResponse<GetRegionStatisticsResponse>> => {
+    return instance.get("/dispositifs/region-statistics");
   },
   addDispositifViews: (id: string, body: AddViewsRequest): Promise<APIResponse> => {
     const headers = getHeaders();
@@ -261,6 +257,22 @@ const API = {
   getDispositifsStatistics: (query: GetStatisticsRequest): Promise<APIResponse<GetStatisticsResponse>> => {
     const headers = getHeaders();
     return instance.get("/dispositifs/statistics", { params: query, headers });
+  },
+  addDispositifMerci: (id: string): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.put(`/dispositifs/${id}/merci`, {}, { headers });
+  },
+  addDispositifSuggestion: (id: string, body: AddSuggestionDispositifRequest): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.put(`/dispositifs/${id}/suggestion`, body, { headers });
+  },
+  readDispositifSuggestion: (id: string, body: ReadSuggestionDispositifRequest): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.patch(`/dispositifs/${id}/suggestion`, body, { headers });
+  },
+  deleteDispositifSuggestion: (id: string, suggestionId: string): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.delete(`/dispositifs/${id}/suggestion/${suggestionId}`, { headers });
   },
   updateDispositifProperties: (id: Id, body: UpdateDispositifPropertiesRequest): Promise<APIResponse> => {
     const headers = getHeaders();
@@ -384,13 +396,13 @@ const API = {
     const headers = getHeaders();
     return instance.post("/user/export", {}, { headers });
   },
-  exportFiches: () => {
+  exportDispositifs: (): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/exportFiches", {}, { headers });
+    return instance.post("/dispositifs/export", {}, { headers });
   },
-  exportDispositifsGeolocalisation: () => {
+  exportDispositifsGeolocalisation: (): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/exportDispositifsGeolocalisation", {}, { headers });
+    return instance.post("/dispositifs/export-geoloc", {}, { headers });
   },
 
   // Trads
@@ -430,8 +442,8 @@ const API = {
       headers,
     });
   },
-  getTranslationStatistics: (facets?: TranslationFacets[]): Promise<Response<TranslationStatistics>> => {
-    return instance.get("/traduction/statistics", { params: { facets } });
+  getTranslationStatistics: (query: TranslationStatisticsRequest): Promise<APIResponse<TranslationStatisticsResponse>> => {
+    return instance.get("/traduction/statistics", { params: query });
   },
 
   // langues
@@ -467,16 +479,27 @@ const API = {
   },
 
   // tts
-  getTts: (body: TtsRequest): Promise<APIResponse<any>> => {
+  getTts: (body: TtsRequest): Promise<any> => {
     const headers = getHeaders();
-    return instance.post("/tts", body, {
-      headers,
-      cancelToken: new CancelToken(function executor(c) {
-        cancel = c;
-      }),
-    });
+    return instance
+      .request({
+        method: "POST",
+        url: "/tts",
+        responseType: "arraybuffer",
+        responseEncoding: "iso-8859-1",
+        data: body,
+        headers,
+        cancelToken: new CancelToken(function executor(c) {
+          cancel = c;
+        }),
+      })
+      .then((_) => {
+        const decoder = new TextDecoder("iso-8859-1");
+        const text = decoder.decode(_.data);
+        return _.data;
+      });
   },
-  cancel_tts_subscription: () => cancel && cancel(),
+  cancel_tts_subscription: () => cancel && cancel("Cancelled by user"),
 
   // sms
   smsDownloadApp: (body: DownloadAppRequest): Promise<APIResponse> => {

@@ -15,7 +15,7 @@ import styles from "./TranslationLanguagesChoiceModal.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
 import { GetLanguagesResponse, Id } from "api-types";
 import { useLanguages } from "hooks";
-import { isUndefined } from "lodash";
+import isUndefined from "lodash/isUndefined";
 
 const Header = styled.div`
   font-weight: bold;

@@ -1,0 +1,105 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/responsive";
+
+.container {
+  width: 100%;
+  background-color: $lightBackgroundContrastGrey;
+}
+
+.banner {
+  height: 400px;
+  background-size: cover;
+  background-position: center center;
+
+  @include media-max("lg-limit") {
+    height: 240px;
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+
+  @include media-max("lg-limit") {
+    display: block;
+    background: $gray30;
+    box-shadow: 0 4px 12px 0 #00001229;
+    border-radius: u(2) u(2) 0 0;
+    padding: u(4);
+    margin-top: -30px;
+  }
+}
+.left {
+  width: 320px;
+  padding: u(10);
+
+  @include media-max("lg-limit") {
+    width: 100%;
+    padding: 0;
+  }
+}
+.main {
+  min-width: 800px;
+  width: 50%;
+  background: $gray30;
+  border: 1px solid $lightBorderDefaultGrey;
+  box-shadow: 0 4px 12px 0 #00001229;
+  border-radius: u(2) u(2) 0 0;
+  padding: u(10) u(20);
+  margin-top: -142px;
+
+  @include media-max("lg-limit") {
+    min-width: 0;
+    width: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin-top: u(10);
+  }
+
+  @media print {
+    margin-right: u(10);
+
+    :global(.collapse:not(.show)) {
+      display: block !important;
+    }
+  }
+}
+.right {
+  width: 320px;
+
+  @include media-max("lg-limit") {
+    display: none;
+  }
+
+  & > div {
+    padding: u(10);
+    position: sticky;
+    top: 0;
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+.section_title {
+  @include dsfr-text("h2");
+  font-weight: bold;
+}
+
+.top {
+  margin-bottom: u(16);
+}
+
+.divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: $lightBorderDefaultGrey;
+  margin-bottom: u(10);
+}

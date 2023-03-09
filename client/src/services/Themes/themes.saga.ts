@@ -76,7 +76,8 @@ export function* createTheme(
 
     const data: APIResponse<PostThemeResponse> = yield call(API.postThemes, newTheme);
     const themes: GetThemeResponse[] = [...(yield select(allThemesSelector))];
-    //@ts-ignore FIXME images optional
+    // FIXME images optional
+    //@ts-ignore
     yield put(setThemesActionCreator([data.data.data, ...themes]));
 
     yield put(finishLoading(LoadingStatusKey.CREATE_THEME));

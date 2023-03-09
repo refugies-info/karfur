@@ -1,68 +1,50 @@
-import xmlbuilder from "xmlbuilder";
 import logger from "../../../logger";
-import { ResponseWithData } from "../../../types/interface";
-import { AuthenticationError } from "../../../errors";
-import voices from "../../../controllers/tts/voices";
 import { TtsRequest } from "api-types";
+import * as sdk from "microsoft-cognitiveservices-speech-sdk";
+import { SpeechSynthesisOutputFormat } from "microsoft-cognitiveservices-speech-sdk";
+import voices from "./voices";
 
-//@ts-ignore
-const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const { PassThrough } = require("stream");
 
-/* TODO: test */
-const getAccessToken = async (subscriptionKey: string) => {
-  const response = await fetch("https://francecentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken", {
-    method: "POST",
-    headers: { "Ocp-Apim-Subscription-Key": subscriptionKey },
-  });
-  return response.json();
-};
-
-export const getTts = async (body: TtsRequest): ResponseWithData<any> => {
-  // TODO: test and type
+export const getTts = async (body: TtsRequest): Promise<any> => {
   logger.info("[getTts] received", body);
-
-  const subscriptionKey = process.env.TTS_KEY_1;
-  const accessToken = await getAccessToken(subscriptionKey);
-  if (!accessToken) {
-    throw new AuthenticationError("Invalid token");
-  }
-
-  // Make sure to update User-Agent with the name of your resource.
-  // You can also change the voice and output formats. See:
-  // https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support#text-to-speech
-  const reader =
-    (voices.data.find((x) => x.locale === body.locale) || {}).name ||
-    "Microsoft Server Speech Text to Speech Voice (fr-FR, Julie, Apollo)";
-  // Create the SSML request.
-  const xml_body = xmlbuilder
-    .create("speak")
-    .att("version", "1.0")
-    .att("xml:lang", body.locale)
-    .ele("voice")
-    .att("xml:lang", body.locale)
-    .att("name", reader)
-    .txt(body.text)
-    .end();
-
-  const options = {
-    method: "POST",
-    headers: {
-      "Authorization": "Bearer " + accessToken,
-      "cache-control": "no-cache",
-      "User-Agent": "MicrosoftTTS",
-      "X-Microsoft-OutputFormat": "riff-24khz-16bit-mono-pcm",
-      "Content-Type": "application/ssml+xml",
-    },
-    encoding: "latin1",
-    body: xml_body.toString(), // Convert the XML into a string to send in the TTS request.
-  };
-
   try {
-    const response = await fetch("https://francecentral.tts.speech.microsoft.com/cognitiveservices/v1", options);
-    return {
-      text: "success",
-      data: response,
-    };
+    const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.TTS_KEY_1, "francecentral");
+    speechConfig.speechSynthesisLanguage = body.locale || "fr-FR"; // The language of the voice that speaks.
+    speechConfig.speechSynthesisVoiceName = voices[body.locale];
+    speechConfig.speechSynthesisOutputFormat = SpeechSynthesisOutputFormat.Riff24Khz16BitMonoPcm;
+
+    let synthesizer = new sdk.SpeechSynthesizer(speechConfig); // Create the speech synthesizer.
+    return new Promise((resolve, reject) => {
+      synthesizer.speakTextAsync(
+        body.text,
+        (result) => {
+          if (result.reason === sdk.ResultReason.SynthesizingAudioCompleted) {
+            logger.info("[getTts] synthesis finished.");
+          } else {
+            logger.error(
+              "[getTts] Speech synthesis canceled, " +
+                result.errorDetails +
+                "\nDid you set the speech resource key and region values?",
+            );
+            reject(result.errorDetails);
+            return;
+          }
+          const { audioData } = result;
+          synthesizer.close();
+          synthesizer = null;
+          const bufferStream = new PassThrough();
+          bufferStream.end(Buffer.from(audioData));
+          resolve(bufferStream);
+        },
+        (err) => {
+          logger.error("[getTts]", err);
+          synthesizer.close();
+          synthesizer = null;
+          reject(err);
+        },
+      );
+    });
   } catch (e) {
     throw new Error(e.message);
   }

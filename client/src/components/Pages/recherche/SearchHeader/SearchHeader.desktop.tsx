@@ -9,10 +9,11 @@ import { allLanguesSelector } from "services/Langue/langue.selectors";
 import {
   inputFocusedSelector,
   searchQuerySelector,
-  themesDisplayedValueSelector
+  themesDisplayedValueSelector,
 } from "services/SearchResults/searchResults.selector";
 import { resetQueryActionCreator, setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import Flag from "components/UI/Flag";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
@@ -62,7 +63,7 @@ const SearchHeaderDesktop = (props: Props) => {
     frenchLevelOptions,
     selectFrenchLevelOption,
     languagesOptions,
-    selectLanguageOption
+    selectLanguageOption,
   } = props;
 
   const query = useSelector(searchQuerySelector);
@@ -78,7 +79,7 @@ const SearchHeaderDesktop = (props: Props) => {
   }, []);
   const setLocationActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("location", active)),
-    [dispatch]
+    [dispatch],
   );
 
   // THEME
@@ -92,7 +93,7 @@ const SearchHeaderDesktop = (props: Props) => {
   }, []);
   const setThemeActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("theme", active)),
-    [dispatch]
+    [dispatch],
   );
 
   // SEARCH
@@ -103,7 +104,7 @@ const SearchHeaderDesktop = (props: Props) => {
   }, []);
   const setSearchActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("search", active)),
-    [dispatch]
+    [dispatch],
   );
 
   const openSearch = useCallback(() => dispatch(setInputFocusedActionCreator("search", true)), [dispatch]);
@@ -153,9 +154,9 @@ const SearchHeaderDesktop = (props: Props) => {
         <>
           {t("Recherche.fichesLanguageFilter")}
           {langueCodes.map((code, i) => (
-            <span key={code} className={cls(styles.flag, `fi fi-${code}`)} title={code} id={code} />
+            <Flag key={i} langueCode={code} className="ms-2" />
           ))}
-        </>
+        </>,
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

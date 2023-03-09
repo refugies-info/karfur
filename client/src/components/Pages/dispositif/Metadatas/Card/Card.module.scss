@@ -1,0 +1,60 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
+
+.card {
+  background: $lightBackgroundElevationAlt;
+  border: 1px solid $lightBorderDefaultGrey;
+  padding: u(4);
+  margin-bottom: u(6);
+  border-radius: u(2);
+
+  @include media-max("lg-limit") {
+    background: $lightBackgroundContrastGrey;
+  }
+
+  .title {
+    @include dsfr-text("h6");
+    font-weight: bold;
+    margin-bottom: 0;
+
+    @include media-max("lg-limit") {
+      @include dsfr-text("large");
+    }
+  }
+}
+
+.item {
+  display: flex;
+  margin-top: u(6);
+
+  .details {
+    @include ml-ltr(u(3));
+  }
+
+  .icon {
+    width: u(8);
+    height: u(8);
+  }
+
+  .label,
+  .content {
+    @include dsfr-text("small");
+    display: block;
+
+    @include media-max("lg-limit") {
+      @include dsfr-text("normal");
+    }
+  }
+  .label {
+    font-weight: bold;
+  }
+  .content {
+    a {
+      display: inline;
+    }
+  }
+}

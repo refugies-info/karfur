@@ -1,0 +1,96 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/responsive";
+
+$iconSize: u(4);
+$btnSize: u(8);
+
+.container {
+  position: absolute;
+  top: 0;
+  @include r-ltr(-54px);
+
+  &.open {
+    background: $lightBackgroundElevationAlt;
+    z-index: 1;
+    padding-bottom: u(5);
+  }
+
+  @include media-max("lg-limit") {
+    display: none;
+  }
+
+  .btn {
+    width: $btnSize;
+    height: $btnSize;
+    min-height: $btnSize;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      i {
+        height: $iconSize !important;
+        line-height: $iconSize !important;
+        svg {
+          width: $iconSize;
+          height: $iconSize;
+        }
+      }
+    }
+    :global(.ri-lg) {
+      font-size: $iconSize !important;
+      line-height: $iconSize !important;
+    }
+
+    &:global(.fr-btn--tertiary) {
+      box-shadow: inset 0 0 0 1px #e5e5e5;
+
+      span i svg {
+        fill: $lightTextDisabledGrey;
+      }
+      :global(.ri-lg) {
+        color: $lightTextDisabledGrey;
+      }
+
+      &:hover {
+        background: $lightBorderDefaultGrey;
+        box-shadow: none;
+        span i svg {
+          fill: $lightTextMentionGrey;
+        }
+        :global(.ri-lg) {
+          color: $lightTextMentionGrey;
+        }
+      }
+    }
+
+    &.speed {
+      @include dsfr-text("very-small");
+      font-weight: bold;
+    }
+
+    &.close {
+      background-color: $lightTextDefaultError;
+      color: $white;
+
+      &:hover {
+        background-color: $darkBorderPlainError;
+      }
+    }
+  }
+}
+
+.tts_buttons {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.15s ease-in-out;
+
+  .open & {
+    height: 72px;
+  }
+}

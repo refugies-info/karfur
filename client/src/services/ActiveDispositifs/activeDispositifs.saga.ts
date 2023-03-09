@@ -41,12 +41,17 @@ export function* updateDispositifReaction(
   action: ReturnType<typeof updateDispositifReactionActionCreator>
 ): SagaIterator {
   try {
-    const { dispositif, structureId } = action.payload;
+    const { suggestion, structureId } = action.payload;
     logger.info("[updateDispositifReaction] updating dispositif reaction", {
-      dispositif,
+      suggestion,
       structureId,
     });
-    yield call(API.updateDispositifReactions, dispositif);
+    if (suggestion.type === "remove") {
+      yield call(API.deleteDispositifSuggestion, suggestion.dispositifId.toString(), suggestion.suggestionId);
+    }
+    if (suggestion.type === "read") {
+      yield call(API.readDispositifSuggestion, suggestion.dispositifId.toString(), { suggestionId: suggestion.suggestionId });
+    }
     yield put(
       fetchUserStructureActionCreator({
         structureId,

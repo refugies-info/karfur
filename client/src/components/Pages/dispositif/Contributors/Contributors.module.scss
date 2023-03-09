@@ -1,2 +1,41 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
+
+.section {
+  background-color: $darkBackgroundAltGrey;
+  padding: u(20) 0;
+
+  @include media-max("lg-limit") {
+    padding: u(10) 0;
+  }
+
+  :global(.content-card-slider) {
+    --gradient-start: #1e1e1e00;
+    --gradient-end: #1e1e1e;
+
+    .slider_btn {
+      background: $darkBackgroundActionHighBlueFrance;
+
+      &:hover {
+        background: $lightBorderDefaultBlueFrance !important;
+      }
+    }
+  }
+}
+
+.title {
+  color: white;
+  @include dsfr-text("h3");
+  font-weight: bold;
+  margin-bottom: u(20);
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("chapo");
+    margin-bottom: u(10);
+    margin-left: u(10);
+    margin-right: u(10);
+  }
+}

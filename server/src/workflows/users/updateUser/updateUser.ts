@@ -1,5 +1,5 @@
 import logger from "../../../logger";
-import { getRoleByName } from "../../../controllers/role/role.repository";
+import { getRoleByName } from "../../../modules/role/role.repository";
 import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
 import { requestSMSLogin, verifyCode } from "../../../modules/users/login2FA";

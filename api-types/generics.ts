@@ -64,7 +64,7 @@ export interface ContentStructure {
 
 export interface Sponsor {
   name: string;
-  logo: string;
+  logo: Picture;
   link: string;
 }
 
@@ -109,7 +109,7 @@ export enum DispositifStatus {
   KO_STRUCTURE = "Rejeté structure",
 }
 
-export class InfoSection {
+export interface InfoSection {
   title: string;
   text: RichText;
 }
@@ -160,4 +160,5 @@ export interface SimpleDispositif {
     nom: string;
     picture: Picture;
   };
+  availableLanguages: string[];
 }

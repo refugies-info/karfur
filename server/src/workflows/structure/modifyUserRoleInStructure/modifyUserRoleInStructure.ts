@@ -5,7 +5,7 @@ import { sendNewReponsableMailService } from "../../../modules/mail/mail.service
 import { getUserById } from "../../../modules/users/users.repository";
 import { updateStructureMember, getStructureFromDB } from "../../../modules/structure/structure.repository";
 import { addStructureForUsers, removeStructureOfUser } from "../../../modules/users/users.service";
-import { getRoleByName } from "../../../controllers/role/role.repository";
+import { getRoleByName } from "../../../modules/role/role.repository";
 import { log } from "./log";
 import { User } from "../../../typegoose";
 import { PatchStructureRolesRequest } from "api-types";

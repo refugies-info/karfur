@@ -17,7 +17,7 @@ const DemarchePage = (props: Props) => {
     <PageContext.Provider value={{ mode: "edit" }}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <Dispositif typeContenu="demarche" />
+          <Dispositif typeContenu={ContentType.DEMARCHE} />
           <button type="submit">Enregistrer</button>
         </form>
       </FormProvider>

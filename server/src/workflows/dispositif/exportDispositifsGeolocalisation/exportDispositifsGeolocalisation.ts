@@ -1,4 +1,4 @@
-import { RequestFromClient, Res } from "../../../types/interface";
+import { Response } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveDispositifsFromDBWithoutPopulate } from "../../../modules/dispositif/dispositif.repository";
 import { adaptDispositifDepartement, getDepartementsFigures } from "../../../modules/dispositif/dispositif.adapter";
@@ -36,25 +36,15 @@ const exportDataInAirtable = (data: { departement: string; region: string; nbDis
   );
 };
 
-export const exportDispositifsGeolocalisation = async (req: RequestFromClient<{}>, res: Res) => {
-  try {
-    logger.info("[exportDispositifsGeolocalisation] received");
-    logger.info("[getNbDispositifsByRegion]");
-    const neededFields = { contenu: 1 };
-    const activeDispositifs = await getActiveDispositifsFromDBWithoutPopulate(neededFields);
+export const exportDispositifsGeolocalisation = async (): Response => {
+  logger.info("[exportDispositifsGeolocalisation] received");
+  const neededFields = { metadatas: 1 };
+  const activeDispositifs = await getActiveDispositifsFromDBWithoutPopulate(neededFields);
+  const adaptedDispositifs = adaptDispositifDepartement(activeDispositifs);
+  const depFigures = getDepartementsFigures(adaptedDispositifs);
+  depFigures.forEach((data) => {
+    exportDataInAirtable(data);
+  });
 
-    const adaptedDispositifs = adaptDispositifDepartement(activeDispositifs);
-    // @ts-ignore FIXME
-    const depFigures = getDepartementsFigures(adaptedDispositifs);
-    depFigures.forEach((data) => {
-      exportDataInAirtable(data);
-    });
-
-    return res.status(200).json({ text: "OK" });
-  } catch (error) {
-    logger.error("[exportDispositifsGeolocalisation] error", {
-      error: error.message
-    });
-    return res.status(500).json({ text: "KO" });
-  }
+  return { text: "success" };
 };

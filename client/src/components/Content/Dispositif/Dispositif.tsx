@@ -1,53 +1,86 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Container } from "reactstrap";
+import { ContentType } from "api-types";
+import { useWindowSize } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
 import SEO from "components/Seo";
-import { Metadatas, Accordions, Map, Header, Sponsors, Contributors } from "components/Pages/dispositif";
-import RichText from "components/Pages/dispositif/RichText";
+import { Header, Sponsors, Contributors } from "components/Pages/dispositif";
+import Section from "components/Pages/dispositif/Section";
+import Feedback from "components/Pages/dispositif/Feedback";
+import LinkedThemes from "components/Pages/dispositif/LinkedThemes";
+import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
+import FRLink from "components/UI/FRLink";
+import ActionButtons from "components/Pages/dispositif/ActionButtons";
+import RightSidebar from "./RightSidebar";
+import LeftSidebar from "./LeftSidebar";
+import styles from "./Dispositif.module.scss";
 
 interface Props {
-  typeContenu?: "dispositif" | "demarche";
+  typeContenu?: ContentType;
 }
 
 const Dispositif = (props: Props) => {
+  const { isTablet } = useWindowSize();
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
+  const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
 
-  const typeContenu = props.typeContenu || dispositif?.typeContenu || "dispositif";
+  const typeContenu = props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF;
+  const sectionCommonProps = {
+    color100: theme?.colors.color100 || "#000",
+    color30: theme?.colors.color30 || "#ddd",
+    contentType: typeContenu,
+  };
+
   return (
-    <Container className="mx-auto">
+    <div className={styles.container} id="top">
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
         image={theme?.shareImage.secure_url}
       />
-      <p>Mise à jour {new Date(dispositif.date).toLocaleDateString()}</p>
-      <Header dispositif={dispositif} typeContenu={typeContenu} theme={theme} secondaryThemes={secondaryThemes} />
-      <RichText id="what" value={dispositif?.what || ""} />
-      <Metadatas metadatas={dispositif?.metadatas} />
-      {typeContenu === "dispositif" ? (
-        <div>
-          <Accordions content={dispositif?.why} sectionKey="why" />
-          <Accordions content={dispositif?.how} sectionKey="how" />
+      <div className={styles.banner} style={{ backgroundImage: `url(${theme?.banner.secure_url})` }}></div>
+
+      <div className={styles.content}>
+        <div className={styles.left}>
+          {isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
+          <LeftSidebar />
         </div>
-      ) : (
-        <div>
-          <Accordions content={dispositif?.how} sectionKey="how" />
-          <Accordions content={dispositif?.next} sectionKey="next" />
+        <div className={styles.main} id="anchor-what">
+          {!isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
+          <Section sectionKey="what" content={dispositif?.what} {...sectionCommonProps} />
+          {typeContenu === ContentType.DISPOSITIF ? (
+            <div>
+              <Section accordions={dispositif?.why} sectionKey="why" {...sectionCommonProps} />
+              <Section accordions={dispositif?.how} sectionKey="how" {...sectionCommonProps} />
+            </div>
+          ) : (
+            <div>
+              <Section accordions={dispositif?.how} sectionKey="how" {...sectionCommonProps} />
+              <Section accordions={dispositif?.next} sectionKey="next" {...sectionCommonProps} />
+            </div>
+          )}
+          <Feedback mercis={dispositif?.merci || []} />
+          <span className={styles.divider} />
+          <LinkedThemes theme={theme} secondaryThemes={secondaryThemes} needs={needs} />
+
+          <FRLink href="#top" icon="arrow-upward" className={styles.top}>
+            Haut de page
+          </FRLink>
+          <span className={styles.divider} />
+          <Sponsors sponsors={dispositif?.sponsors || []} />
         </div>
-      )}
-      {dispositif && (
-        <>
-          <Map markers={dispositif.map} />
-          Mercis: {dispositif.merci.length}
-          <Contributors contributors={dispositif.participants} />
-          <Sponsors mainSponsor={dispositif.mainSponsor} sponsors={dispositif.sponsors} />
-        </>
-      )}
-    </Container>
+        <div className={styles.right}>
+          <RightSidebar />
+        </div>
+      </div>
+
+      {isTablet && <ActionButtons />}
+
+      {dispositif && <Contributors contributors={dispositif.participants} />}
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 import { Moment } from "moment";
-import { Languages, NeedId, Role, ThemeId, User } from "../typegoose";
+import { Languages, NeedId, ThemeId, User } from "../typegoose";
 import { Request as ExpressRequest, Response as ExpressResponse } from "express";
 import { DocumentType } from "@typegoose/typegoose";
 
@@ -10,7 +10,6 @@ declare global {
   namespace Express {
     export interface Request {
       fromSite?: boolean; // TODO: delete
-      roles?: Role[]; // TODO: delete? (get it in the workflow)
       user?: DocumentType<User>;
       userId?: typeof User._id;
     }
@@ -20,20 +19,20 @@ declare global {
 // https://stackoverflow.com/questions/41980195/recursive-partialt-in-typescript
 type RecursivePartial<T> = {
   [P in keyof T]?: T[P] extends (infer U)[]
-    ? RecursivePartial<U>[]
-    : T[P] extends object
-    ? RecursivePartial<T[P]>
-    : T[P];
+  ? RecursivePartial<U>[]
+  : T[P] extends object
+  ? RecursivePartial<T[P]>
+  : T[P];
 };
 
 export type PartialRecord<K extends keyof any, T> = {
   [P in K]?: T;
 };
 
-export interface Request extends ExpressRequest {}
+export interface Request extends ExpressRequest { }
 // Exposed to avoid Request name conflict
-export interface IRequest extends Request {}
-export interface Res extends ExpressResponse {}
+export interface IRequest extends Request { }
+export interface Res extends ExpressResponse { }
 // export interface Response<CustomResponse = any> extends ExpressResponse<{ text?: string; data?: CustomResponse }> {}
 
 type ResponseText = "success" | "error";

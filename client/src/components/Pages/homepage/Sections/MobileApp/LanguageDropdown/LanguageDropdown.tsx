@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { GetLanguagesResponse } from "api-types";
 import { cls } from "lib/classname";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import Flag from "components/UI/Flag";
 import styles from "./LanguageDropdown.module.scss";
-import { GetLanguagesResponse } from "api-types";
 
 interface Props {
   languageSelected: GetLanguagesResponse | undefined;
@@ -29,11 +30,7 @@ const LanguageDropdown = (props: Props) => {
       <DropdownToggle>
         <span className={styles.value}>
           {`en ${languageSelected?.langueFr.toLowerCase() || "français"}`}
-          <span
-            className={cls(styles.flag, `fi fi-${languageSelected?.langueCode || "fr"}`)}
-            title={languageSelected?.langueCode || "fr"}
-            id={languageSelected?.langueCode || "fr"}
-          />
+          <Flag langueCode={languageSelected?.langueCode || "fr"} className="mx-2" />
         </span>
         <EVAIcon className={styles.icon} name="chevron-down-outline" fill="dark" size={24} />
       </DropdownToggle>
@@ -45,7 +42,7 @@ const LanguageDropdown = (props: Props) => {
             className={cls(styles.item, ln.i18nCode === (languageSelected?.i18nCode || "fr") && styles.selected)}
             toggle={false}
           >
-            <span className={cls(styles.flag, `fi fi-${ln.langueCode}`)} title={ln.langueCode} id={ln.langueCode} />
+            <Flag langueCode={ln.langueCode || "fr"} className="mx-2" />
             <span className={styles.item_locale}>{ln.langueFr} -</span>
             <span>{ln.langueLoc}</span>
           </DropdownItem>

@@ -1,4 +1,4 @@
-import { Controller, Get, Route, Path, Query, Security, Queries, Patch, Body, Request, Post } from "tsoa";
+import { Controller, Get, Route, Path, Query, Security, Queries, Patch, Body, Request, Post, Put, Delete } from "tsoa";
 import {
   AddViewsRequest,
   AdminCommentsRequest,
@@ -18,6 +18,9 @@ import {
   GetUserContributionsResponse,
   GetDispositifsWithTranslationAvancementResponse,
   Languages,
+  AddSuggestionDispositifRequest,
+  ReadSuggestionDispositifRequest,
+  GetRegionStatisticsResponse,
 } from "api-types";
 import express, { Request as ExRequest } from "express";
 
@@ -29,7 +32,6 @@ import { updateDispositifStatus } from "../workflows/dispositif/updateDispositif
 import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispositifMainSponsor";
 import { updateDispositifAdminComments } from "../workflows/dispositif/updateDispositifAdminComments";
 import { getNbDispositifsByRegion } from "../workflows/dispositif/getNbDispositifsByRegion";
-import { updateDispositifReactions } from "../workflows/dispositif/updateDispositifReactions";
 import { getUserContributions } from "../workflows/dispositif/getUserContributions";
 import { getDispositifsWithTranslationAvancement } from "../workflows/dispositif/getDispositifsWithTranslationAvancement";
 import { exportFiches } from "../workflows/dispositif/exportFiches";
@@ -43,17 +45,14 @@ import { getCountDispositifs } from "../workflows/dispositif/getCountDispositifs
 import { updateDispositifProperties } from "../workflows/dispositif/updateDispositifProperties";
 import { updateDispositif } from "../workflows/dispositif/updateDispositif";
 import { createDispositif } from "../workflows/dispositif/createDispositif";
+import { addMerci } from "../workflows/dispositif/addMerci";
+import { addSuggestion } from "../workflows/dispositif/addSuggestion";
+import { patchSuggestion } from "../workflows/dispositif/patchSuggestion";
+import { deleteSuggestion } from "../workflows/dispositif/deleteSuggestion";
 
 const router = express.Router();
 
 /* TODO: use tsoa */
-// @ts-ignore FIXME
-router.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
-// @ts-ignore FIXME
-router.post("/updateDispositifReactions", checkToken.getId, updateDispositifReactions);
-router.get("/getUserContributions", checkToken.check, getUserContributions);
-router.post("/exportFiches", exportFiches);
-router.post("/exportDispositifsGeolocalisation", exportDispositifsGeolocalisation);
 router.get("/getContentsForApp", getContentsForApp);
 // @ts-ignore FIXME
 router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
@@ -89,6 +88,12 @@ export class DispositifController extends Controller {
     return getStatistics(query);
   }
 
+  @Security("jwt")
+  @Get("/region-statistics")
+  public async getRegionStatistics(): ResponseWithData<GetRegionStatisticsResponse> {
+    return getNbDispositifsByRegion();
+  }
+
   @Security({
     jwt: ["admin"],
   })
@@ -122,6 +127,20 @@ export class DispositifController extends Controller {
     }));
   }
 
+  // export
+  @Security({
+    fromSite: [],
+  })
+  @Post("/export")
+  public async export(): Response {
+    return exportFiches();
+  }
+  @Post("/export-geoloc")
+  public async exportGeolocalisation(): Response {
+    return exportDispositifsGeolocalisation();
+  }
+
+  // updates
   @Security({
     fromSite: [],
   })
@@ -177,6 +196,40 @@ export class DispositifController extends Controller {
     @Request() request: express.Request,
   ): Response {
     return updateDispositifStatus(id, body, request.user);
+  }
+
+  // reactions
+  @Security({
+    jwt: ["optional"],
+    fromSite: [],
+  })
+  @Put("/{id}/merci")
+  public async addMerci(@Path() id: string, @Request() request: express.Request): Response {
+    return addMerci(id, request.userId);
+  }
+  @Security({
+    jwt: ["optional"],
+    fromSite: [],
+  })
+  @Put("/{id}/suggestion")
+  public async addSuggestion(@Path() id: string, @Body() body: AddSuggestionDispositifRequest, @Request() request: express.Request): Response {
+    return addSuggestion(id, body, request.userId);
+  }
+  @Security({
+    jwt: [""],
+    fromSite: [],
+  })
+  @Patch("/{id}/suggestion")
+  public async updateSuggestion(@Path() id: string, @Body() body: ReadSuggestionDispositifRequest): Response {
+    return patchSuggestion(id, body);
+  }
+  @Security({
+    jwt: ["optional"],
+    fromSite: [],
+  })
+  @Delete("/{id}/suggestion/{suggestionId}")
+  public async deleteSuggestion(@Path() id: string, @Path() suggestionId: string): Response {
+    return deleteSuggestion(id, suggestionId);
   }
 
   @Security({

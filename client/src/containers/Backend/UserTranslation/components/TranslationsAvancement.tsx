@@ -16,7 +16,7 @@ import {
   GetUserInfoResponse,
   TraductionsStatus,
 } from "api-types";
-import { isUndefined } from "lodash";
+import isUndefined from "lodash/isUndefined";
 
 interface Props {
   history: any;
@@ -192,7 +192,6 @@ export const TranslationsAvancement = (props: Props) => {
         isExpert={props.isExpert}
         data={dataToDisplay}
         history={props.history}
-        langueId={props.actualLanguage._id}
         isAdmin={props.isAdmin}
         languei18nCode={props.actualLanguage.i18nCode}
         toggleCompleteProfilModal={props.toggleCompleteProfilModal}

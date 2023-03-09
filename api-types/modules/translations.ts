@@ -21,27 +21,26 @@ export enum TraductionsStatus {
   TO_TRANSLATE = "TO_TRANSLATE",
 }
 
-export class Content {
+export interface Content {
   titreInformatif: string;
   titreMarque: string;
   abstract: string;
 }
 
-export class DispositifContent extends Content {
+export interface DispositifContent extends Content {
   what: RichText;
   why: { [key: string]: InfoSection };
   how: InfoSections;
 }
-export class DemarcheContent extends Content {
+export interface DemarcheContent extends Content {
   what: RichText;
   how: InfoSections;
   next: InfoSections;
 }
 
-export class TranslationContent {
-  public content!: DispositifContent | DemarcheContent;
-
-  public metadatas!: {
+export interface TranslationContent {
+  content: DispositifContent | DemarcheContent;
+  metadatas: {
     important?: string;
     duration?: string;
   };
@@ -129,9 +128,9 @@ export interface GetProgressionResponse {
   totalIndicator: ProgressionIndicator;
 }
 
-export type Facets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
+type TranslationStatisticsFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
 export interface TranslationStatisticsRequest {
-  facets?: Facets[];
+  facets?: TranslationStatisticsFacets[];
 }
 
 export interface Statistics {
@@ -144,4 +143,4 @@ export interface Statistics {
   }[];
 }
 
-export interface TranslationStatisticsResponse extends Statistics {}
+export interface TranslationStatisticsResponse extends Statistics { }

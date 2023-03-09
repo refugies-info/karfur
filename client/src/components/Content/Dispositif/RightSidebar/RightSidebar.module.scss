@@ -1,0 +1,12 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+
+.read {
+  margin-top: u(10);
+
+  & > button {
+    color: $lightTextActionHighBlueFrance;
+    border: 1px solid $lightBorderDefaultGrey;
+  }
+}

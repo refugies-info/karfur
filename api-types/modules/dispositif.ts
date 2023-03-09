@@ -94,6 +94,20 @@ interface DispositifRequest {
 }
 
 /**
+ * @url PUT /dispositifs/{id}/suggestion
+ */
+export interface AddSuggestionDispositifRequest {
+  suggestion: string;
+  key: string;
+}
+/**
+ * @url PATCH /dispositifs/{id}/suggestion
+ */
+export interface ReadSuggestionDispositifRequest {
+  suggestionId: string;
+}
+
+/**
  * @url PATCH /dispositifs/{id}
  */
 export interface UpdateDispositifRequest extends DispositifRequest {}
@@ -139,6 +153,7 @@ export type GetDispositifResponse = {
   merci: { created_at: Date; userId?: Id }[];
   metadatas: Metadatas;
   map: Poi[];
+  availableLanguages: string[];
   date: Date;
 };
 
@@ -175,6 +190,19 @@ export interface GetStatisticsResponse {
   nbDispositifs?: number;
   nbDemarches?: number;
   nbUpdatedRecently?: number;
+}
+
+/**
+ * @url GET /dispositifs/region-statistics
+ */
+export interface GetRegionStatisticsResponse {
+  regionFigures: {
+    region: string;
+    nbDispositifs: number;
+    nbDepartments: number;
+    nbDepartmentsWithDispo: number;
+  }[],
+  dispositifsWithoutGeoloc: Id[]
 }
 
 type Author = {

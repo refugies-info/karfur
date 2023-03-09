@@ -5,9 +5,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import cloudinary from "cloudinary";
 import formData from "express-form-data";
-import path from "path";
 import compression from "compression";
-import { errors } from "celebrate";
 import { RegisterRoutes } from "../dist/routes";
 import logger from "./logger";
 import { serverErrorHandler } from "./errors";
@@ -39,7 +37,6 @@ mongoose
 
 //Body Parser
 app.use(compression());
-app.use(express.static(path.join(__dirname, "../../client", "build")));
 app.use(express.json({ limit: "50mb" }));
 app.use(
   express.urlencoded({
@@ -74,16 +71,13 @@ app.use(function (req, _, next) {
 RegisterRoutes(app);
 
 const dispositifController = require(__dirname + "/controllers/dispositifController");
-
 app.enable("strict routing");
 app.use("/dispositifs", dispositifController.router);
 
-app.use(errors()); // TODO: delete and use tsoa instead
-
 app.use(serverErrorHandler);
 
-var port = process.env.PORT;
 app.get("*", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../../client", "build", "index.html"));
+  res.status(404).json({ message: "Not found" });
 });
+const port = process.env.PORT;
 app.listen(port, () => logger.info(`Listening on port ${port}`));

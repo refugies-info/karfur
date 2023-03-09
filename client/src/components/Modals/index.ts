@@ -1,4 +1,3 @@
-import BookmarkedModal from "./BookmarkedModal/BookmarkedModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
 import ReactionModal from "./ReactionModal/ReactionModal";
 import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
@@ -11,10 +10,8 @@ import TagsModal from "./TagsModal/TagsModal";
 import FrameModal from "./FrameModal/FrameModal";
 import { DraftModal } from "./DraftModal/DraftModal";
 import { DispositifCreateModal } from "./DispositifCreateModal/DispositifCreateModal";
-import { ShareContentOnMobileModal } from "./ShareContentOnMobileModal/ShareContentOnMobileModal";
 
 export {
-  BookmarkedModal,
   DispositifCreateModal,
   LanguageModal,
   ReactionModal,
@@ -25,7 +22,6 @@ export {
   FrameModal,
   Modal,
   DraftModal,
-  ShareContentOnMobileModal,
   GoToDesktopModal,
   ReceiveInvitationMailModal,
 };

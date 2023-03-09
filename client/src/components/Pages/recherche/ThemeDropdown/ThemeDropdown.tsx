@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState, memo, useCallback } from "react";
 import { Collapse } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
@@ -33,11 +33,11 @@ const debouncedQuery = debounce(
     query: SearchQuery,
     dispositifs: GetDispositifsResponse[],
     locale: string,
-    callback: (res: GetDispositifsResponse[]) => void
+    callback: (res: GetDispositifsResponse[]) => void,
   ) => {
     return queryDispositifsWithoutThemes(query, dispositifs, locale).then((res) => callback(res));
   },
-  500
+  500,
 );
 
 const ThemeDropdown = (props: Props) => {
@@ -65,7 +65,7 @@ const ThemeDropdown = (props: Props) => {
       });
       Event("USE_SEARCH", "use theme filter", "click theme");
     },
-    [setThemeSelected]
+    [setThemeSelected],
   );
 
   // fetch dispositifs if not done already

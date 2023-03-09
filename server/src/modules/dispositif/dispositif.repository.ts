@@ -1,8 +1,9 @@
 import { Id, Picture, ContentType, SimpleDispositif, DispositifStatus, Languages } from "api-types";
 import { omit, pick } from "lodash";
 import { map } from "lodash/fp";
-import { FilterQuery, UpdateQuery } from "mongoose";
-import { Dispositif, DispositifId, DispositifModel, UserId } from "../../typegoose";
+import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
+import { Merci, Suggestion } from "../../typegoose/Dispositif";
+import { Dispositif, DispositifId, DispositifModel, Need, Theme, UserId } from "../../typegoose";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
@@ -21,6 +22,23 @@ export const getDispositifsFromDB = async () =>
 
 type DispositifKeys = keyof Dispositif;
 type DispositifFieldsRequest = Partial<Record<DispositifKeys, number>>;
+
+
+export const getDispositifsForExport = async (): Promise<Dispositif[]> => {
+  return DispositifModel.find({ status: "Actif" })
+    .populate<{
+      mainSponsor: { _id: Id; nom: string; picture: Picture },
+      needs: { _id: Id, fr: Need["fr"] },
+      themes: { _id: Id, short: Theme["short"] },
+      secondaryThemes: { _id: Id, short: Theme["short"] }[],
+    }>([
+      { path: "mainSponsor", select: "_id nom picture" },
+      { path: "needs", select: "_id fr" },
+      { path: "themes", select: "_id short" },
+      { path: "secondaryThemes", select: "_id short" },
+    ])
+    .lean()
+};
 
 export const getDispositifArray = async (
   query: FilterQuery<Dispositif>,
@@ -67,17 +85,20 @@ export const getSimpleDispositifs = async (
       lastModificationDate: 1,
       mainSponsor: 1,
       needs: 1,
+      translations: 1,
     },
     "",
     limit,
     sort,
   ).then(
     map((dispositif) => {
+      const translation = dispositif.translations[locale] || dispositif.translations.fr;
       const resDisp: SimpleDispositif = {
         _id: dispositif._id,
-        ...pick(dispositif.translations[locale].content, ["titreInformatif", "titreMarque", "abstract"]),
-        metadatas: { ...dispositif.metadatas, ...dispositif.translations[locale].metadatas },
+        ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
+        metadatas: { ...dispositif.metadatas, ...translation.metadatas },
         ...omit(dispositif, ["translations"]),
+        availableLanguages: Object.keys(dispositif.translations)
       };
       return resDisp;
     }),
@@ -93,6 +114,33 @@ export const updateDispositifInDB = async (
     new: true,
   }).populate("theme secondaryThemes");
 
+export const addMerciDispositifInDB = async (
+  dispositifId: DispositifId,
+  merci: Merci
+): Promise<Dispositif> =>
+  DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $push: { merci } }, {
+    upsert: true,
+    new: true,
+  });
+
+export const addSuggestionDispositifInDB = async (
+  dispositifId: DispositifId,
+  suggestion: Suggestion
+): Promise<Dispositif> =>
+  DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $push: { suggestions: suggestion } }, {
+    upsert: true,
+    new: true,
+  });
+
+export const deleteSuggestionDispositifInDB = async (
+  dispositifId: DispositifId,
+  suggestionId: string
+): Promise<Dispositif> =>
+  DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $pull: { suggestions: { suggestionId } } }, {
+    upsert: true,
+    new: true,
+  });
+
 export const incrementDispositifViews = async (
   id: string,
   properties: ("nbFavoritesMobile" | "nbVues" | "nbVuesMobile")[],
@@ -104,7 +152,7 @@ export const incrementDispositifViews = async (
   return DispositifModel.findOneAndUpdate({ id }, query);
 };
 
-export const getActiveDispositifsFromDBWithoutPopulate = (needFields: Object) =>
+export const getActiveDispositifsFromDBWithoutPopulate = (needFields: ProjectionType<Dispositif>) =>
   DispositifModel.find({ status: DispositifStatus.ACTIVE, typeContenu: ContentType.DISPOSITIF }, needFields);
 
 export const getDraftDispositifs = () =>
