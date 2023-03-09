@@ -1,5 +1,5 @@
 import { ReadSuggestionDispositifRequest } from "api-types";
-import { modifyReadSuggestionInDispositif } from "src/modules/dispositif/dispositif.repository";
+import { modifyReadSuggestionInDispositif } from "../../../modules/dispositif/dispositif.repository";
 import logger from "../../../logger";
 import { Response } from "../../../types/interface";
 

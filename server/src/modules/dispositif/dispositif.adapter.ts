@@ -102,43 +102,6 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
   return formattedArray;
 };
 
-const keysToDelete: string[] = [
-  "isFakeContent",
-  "titleIcon",
-  "typeIcon",
-  "editable",
-  "type",
-  "footer",
-  "footerType",
-  "tooltipContent",
-  "tooltipHeader"
-];
-
-export const removeUselessContent = (dispositifArray: Dispositif[]): Partial<Dispositif[]> => {
-  throw new RefactorTodoError();
-  // return dispositifArray.map((dispositif) => {
-  //   const selectZoneAction = dispositif.contenu[1].children.map((child: any) => {
-  //     if (child.title === "Zone d'action" || child.title === "Durée" || child.title === "Combien ça coûte ?") {
-  //       const newChild = { ...child };
-  //       for (const key of keysToDelete) {
-  //         delete newChild[key];
-  //       }
-  //       return newChild;
-  //     }
-  //     return {};
-  //   });
-
-  //   const simplifiedContent = [{}, { children: selectZoneAction }];
-
-  //   const simplifiedMainSponsor = {
-  //     nom: dispositif.mainSponsor.nom,
-  //     picture: {
-  //       secure_url: dispositif.mainSponsor?.picture?.secure_url || null
-  //     }
-  //   };
-  //   return { ...dispositif, contenu: simplifiedContent, mainSponsor: simplifiedMainSponsor };
-};
-
 interface Result {
   _id: DispositifId;
   department: string | null;
@@ -233,11 +196,10 @@ export const getTitreInfoOrMarqueInLocale = (titre: string | Record<string, stri
   return titre;
 };
 
-const removeAccents = (str: string) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
 export const filterContentsOnGeoloc = (
   contentsArray: Dispositif[],
   department: string | null,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   strict: boolean = false
 ): any[] => {
   throw new RefactorTodoError();
