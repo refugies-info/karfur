@@ -28,6 +28,7 @@ export const getContentById = async (id: string, locale: Languages): ResponseWit
     translations: 1,
     metadatas: 1,
     map: 1,
+    lastModificationDate: 1
   };
 
   const dispositif = await (
@@ -57,7 +58,7 @@ export const getContentById = async (id: string, locale: Languages): ResponseWit
     participants: participantsWithRoles,
     metadatas: { ...dispositifObject.metadatas, ...dispositifObject.translations[dataLanguage].metadatas },
     availableLanguages: Object.keys(dispositifObject.translations),
-    date: dispositifObject.translations[dataLanguage].created_at,
+    date: dispositifObject.translations[dataLanguage].created_at || dispositifObject.lastModificationDate,
     ...pick(dispositif, [
       "typeContenu",
       "status",

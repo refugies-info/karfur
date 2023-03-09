@@ -50,7 +50,6 @@ const Dispositif = (props: Props) => {
         </div>
         <div className={styles.main} id="anchor-what">
           {!isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
-          <p>Mise à jour {new Date(dispositif.date).toLocaleDateString()}</p>
           <Section sectionKey="what" content={dispositif?.what} {...sectionCommonProps} />
           {typeContenu === ContentType.DISPOSITIF ? (
             <div>

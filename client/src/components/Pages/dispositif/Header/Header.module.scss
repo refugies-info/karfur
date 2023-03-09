@@ -22,6 +22,7 @@
   display: none !important;
 
   @include media-max("lg-limit") {
+    margin-top: u(10);
     display: block !important;
   }
 }
