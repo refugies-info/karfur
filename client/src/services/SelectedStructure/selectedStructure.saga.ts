@@ -50,7 +50,8 @@ export function* updateSelectedStructure(
     }
     const updatedStructure: Partial<GetStructureResponse> = { ...structure };
     delete updatedStructure.membres;
-    //@ts-ignore FIXME: change that -> impossible to type what is sent to the server.
+    // FIXME: change that -> impossible to type what is sent to the server.
+    //@ts-ignore
     yield call(API.updateStructure, structureId, updatedStructure);
 
     yield put(

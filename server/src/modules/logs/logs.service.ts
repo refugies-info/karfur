@@ -27,7 +27,8 @@ export const addLog = (
   text: string,
   options?: optionsType
 ) => {
-  // @ts-ignore FIXME
+  // FIXME
+  // @ts-ignore
   const log: Log = {
     objectId: new Types.ObjectId(id.toString()),
     model_object: type,

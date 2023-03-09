@@ -71,9 +71,9 @@ const NewTranslation = () => {
    * Un mix des cas est possible en cas de traduction(s) partielle(s)
    */
 
+  // TODO à challenger : peu apporter des conflits
   /*
    * activeSection est seulement le dernier élément du chemin vers la section
-   * TODO à challenger : peu apporter des conflits
    */
   return (
     <PageContext.Provider value={{ mode: "translate", activeSection: section.split(".").pop() }}>

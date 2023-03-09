@@ -62,7 +62,8 @@ export const getAllUsers = async (): ResponseWithData<GetAllUsersResponse[]> => 
     const structureRoles = getStructureRoles(user.getStructures(), user._id);
     const roles = plateformeRoles.concat(structureRoles);
 
-    //@ts-ignore FIXME ref type
+    // FIXME ref type
+    //@ts-ignore
     const res: GetAllUsersResponse = {
       ...pick(user, ["_id", "username", "picture", "status", "email", "adminComments", "created_at", "last_connected", "phone", "selectedLanguages"]),
       roles,

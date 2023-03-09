@@ -1,4 +1,5 @@
-// @ts-nocheck FIXME
+// FIXME
+// @ts-nocheck
 import { ErrorModel } from "../../typegoose";
 
 const himalaya = require("himalaya");
