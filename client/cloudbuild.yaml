@@ -28,7 +28,6 @@ steps:
         "./client/Dockerfile",
         ".",
       ]
-    dir: client
 
   # Push the container image to Artifact Registry
   - name: "gcr.io/cloud-builders/docker"
