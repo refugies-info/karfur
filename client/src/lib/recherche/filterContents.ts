@@ -1,9 +1,7 @@
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
-import { SearchDispositif } from "types/interface";
-import { ObjectId } from "mongodb";
-import { getDispositifInfos } from "../getDispositifInfos";
+import { GetDispositifsResponse, Id } from "api-types";
 
-export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected: ObjectId[], needs: ObjectId[], withSecondaryTheme: boolean) => {
+export const filterByThemeOrNeed = (dispositif: GetDispositifsResponse, themesSelected: Id[], needs: Id[], withSecondaryTheme: boolean) => {
   if (themesSelected.length === 0 && needs.length === 0) return true;
   if (dispositif.needs) {
     for (const need of dispositif.needs) { // return true if dispositif has need
@@ -22,11 +20,11 @@ export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected
   return false;
 };
 
-export const filterByLocations = (dispositif: SearchDispositif, departments: string[]) => {
+export const filterByLocations = (dispositif: GetDispositifsResponse, departments: string[]) => {
   if (departments.length === 0) return true;
-  const location = getDispositifInfos(dispositif, "location");
-  if (!location?.departments) return false;
-  for (const dep of location?.departments) {
+  const location = dispositif.metadatas.location;
+  if (!location) return false;
+  for (const dep of location) {
     if (departments.includes(dep.split(" - ")[1]) || dep === "All") {
       return true;
     }
@@ -41,13 +39,13 @@ const filterAgeValues = {
   "+25": [25, 99]
 }
 
-export const filterByAge = (dispositif: SearchDispositif, ageFilters: AgeOptions[]) => {
+export const filterByAge = (dispositif: GetDispositifsResponse, ageFilters: AgeOptions[]) => {
   if (ageFilters.length === 0) return true;
-  const audienceAge = dispositif.audienceAge[0];
-  if (!audienceAge.bottomValue || !audienceAge.topValue) return true;
+  const audienceAge = dispositif.metadatas.age;
+  if (!audienceAge || !audienceAge.ages[0] || !audienceAge.ages[1]) return true;
   for (const age of ageFilters) {
-    if (audienceAge.bottomValue <= filterAgeValues[age][0] &&
-      audienceAge.topValue >= filterAgeValues[age][1]
+    if (audienceAge.ages[0] <= filterAgeValues[age][0] &&
+      audienceAge.ages[1] >= filterAgeValues[age][1]
     ) {
       return true;
     }
@@ -56,14 +54,14 @@ export const filterByAge = (dispositif: SearchDispositif, ageFilters: AgeOptions
 };
 
 const filterFrenchLevelValues = {
-  "a": ["Débutant"],
-  "b": ["Débutant", "Intermédiaire"],
+  "a": ["A1", "A2"],
+  "b": ["A1", "A2", "B1", "B2"],
   "c": []
 }
 
-export const filterByFrenchLevel = (dispositif: SearchDispositif, frenchLevelFilters: FrenchOptions[]) => {
+export const filterByFrenchLevel = (dispositif: GetDispositifsResponse, frenchLevelFilters: FrenchOptions[]) => {
   if (frenchLevelFilters.length === 0) return true;
-  const frenchLevels = dispositif.niveauFrancais;
+  const frenchLevels = dispositif.metadatas.frenchLevel;
   if (!frenchLevels || frenchLevels.length === 0) return true;
 
   if (frenchLevelFilters.includes("c")) {
@@ -83,10 +81,10 @@ export const filterByFrenchLevel = (dispositif: SearchDispositif, frenchLevelFil
   return false;
 };
 
-export const filterByLanguage = (dispositif: SearchDispositif, languageFilters: string[]) => {
+export const filterByLanguage = (dispositif: GetDispositifsResponse, languageFilters: string[]) => {
   if (languageFilters.length === 0) return true;
   for (const ln of languageFilters) {
-    if (dispositif.avancement?.[ln]) {
+    if (dispositif.availableLanguages.includes(ln)) {
       return true;
     }
   }

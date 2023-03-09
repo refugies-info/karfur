@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Log } from "types/interface";
 import Image from "next/image";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import moment from "moment";
@@ -7,7 +6,6 @@ import "moment/locale/fr";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import noStructure from "assets/noStructure.png";
-import { ObjectId } from "mongodb";
 import { correspondingStatus, publicationStatus, progressionStatus } from "../data";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { Date, Label } from "../../sharedComponents/SubComponents";
@@ -30,6 +28,8 @@ import { colors } from "colors";
 import { useRouter } from "next/router";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { useToggle } from "react-use";
+import { GetLogResponse, Id, PatchStructureRequest, StructureStatus } from "api-types";
+import { allThemesSelector } from "services/Themes/themes.selectors";
 
 moment.locale("fr");
 
@@ -59,9 +59,9 @@ interface Props extends RouteComponentProps {
   show: boolean;
   toggleModal: () => void;
   toggleRespoModal: () => void;
-  selectedStructureId: ObjectId | null;
-  setSelectedUserIdAndToggleModal: (userId: ObjectId | null) => void;
-  setSelectedContentIdAndToggleModal: (element: ObjectId | null, status: string | null) => void;
+  selectedStructureId: Id | null;
+  setSelectedUserIdAndToggleModal: (userId: Id | null) => void;
+  setSelectedContentIdAndToggleModal: (element: Id | null, status: string | null) => void;
 }
 
 const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: Props) => {
@@ -73,11 +73,12 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   const structure = useSelector(structureSelector(props.selectedStructureId));
   const [adminComments, setAdminComments] = useState<string>(structure?.adminComments || "");
   const [adminCommentsSaved, setAdminCommentsSaved] = useState(false);
-  const [currentId, setCurrentId] = useState<ObjectId | null>(null);
-  const [logs, setLogs] = useState<Log[]>([]);
+  const [currentId, setCurrentId] = useState<Id | null>(null);
+  const [logs, setLogs] = useState<GetLogResponse[]>([]);
 
   const allStructures = useSelector(allStructuresSelector);
   const allDispositifs = useSelector(allDispositifsSelector);
+  const allThemes = useSelector(allThemesSelector);
 
   const updateLogs = useCallback(() => {
     if (selectedStructureId) {
@@ -97,13 +98,13 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   }, [structure, currentId, selectedStructureId, updateLogs]);
 
   const updateStructuresStore = (
-    structureId: ObjectId,
+    structureId: Id,
     property: "adminComments" | "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "nom",
-    value: string
+    value: string,
   ) => {
     const structures = [...allStructures];
     const newStructure = structures.find((s) => s._id === structureId);
-    // @ts-ignore
+    //@ts-ignore
     if (newStructure) newStructure[property] = value;
     dispatch(setAllStructuresActionCreator(structures));
     updateLogs();
@@ -111,12 +112,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
 
   const changeNom = (nom: string) =>
     structure
-      ? API.updateStructure({
-          query: {
-            _id: structure._id,
-            nom
-          }
-        }).then(() => updateStructuresStore(structure._id, "nom", nom))
+      ? API.updateStructure(structure._id, { nom }).then(() => updateStructuresStore(structure._id, "nom", nom))
       : Promise.reject("No structure");
 
   const onNotesChange = (e: any) => {
@@ -126,7 +122,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
 
   const modifyStatus = async (
     newStatus: string,
-    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "adminComments"
+    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "adminComments",
   ) => {
     if (structure && newStatus !== structure[property]) {
       if (property === "status" && newStatus === "Supprimé") {
@@ -138,19 +134,16 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
           confirmButtonColor: colors.rouge,
           cancelButtonColor: colors.vert,
           confirmButtonText: "Oui, la supprimer",
-          cancelButtonText: "Annuler"
+          cancelButtonText: "Annuler",
         });
         if (!res.value) return;
       }
 
-      const queryStructure = {
-        query: {
-          _id: structure._id,
-          [property]: newStatus
-        }
+      const queryStructure: PatchStructureRequest = {
+        [property]: newStatus,
       };
 
-      await API.updateStructure(queryStructure);
+      await API.updateStructure(structure._id, queryStructure);
       updateStructuresStore(structure._id, property, newStatus);
 
       if (property === "status") {
@@ -169,7 +162,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   const secureUrl = structure?.picture?.secure_url;
   const dispositifsWithAllInformation = getDispositifsWithAllInformationRequired(
     structure?.dispositifsIds || [],
-    allDispositifs
+    allDispositifs,
+    allThemes,
   );
 
   if (structure) {
@@ -196,7 +190,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
               tag={Link}
               to={{
                 pathname: routerLocale + "/backend/user-dash-structure-selected",
-                search: `?id=${structure._id}`
+                search: `?id=${structure._id}`,
               }}
             >
               Membres

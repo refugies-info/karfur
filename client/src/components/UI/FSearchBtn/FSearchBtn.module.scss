@@ -1,8 +1,8 @@
-@import 'src/scss/mixins/responsive';
-@import 'src/scss/colors.scss';
+@import "src/scss/mixins/responsive";
+@import "src/scss/colors.scss";
 @import "src/scss/variables";
 
-.search_btn{
+.search_btn {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -17,17 +17,17 @@
   white-space: nowrap;
   border: 0.5px solid transparent;
 
-  &:hover{
+  &:hover {
     color: $gray90;
   }
-  &:focus{
+  &:focus {
     outline: none;
     color: $white;
-    border: 0.5px solid #2D9CDB;
+    border: 0.5px solid #2d9cdb;
   }
 
   // Styles
-  &.active{
+  &.active {
     color: $white;
     background: $gray90;
   }
@@ -37,7 +37,7 @@
   &.with_margins {
     margin: 5px;
   }
-  &.filter{
+  &.filter {
     background: transparent;
     color: $white;
     margin-right: 10px;
@@ -47,8 +47,8 @@
     padding: 8px;
     font-size: $text-normal;
 
-    &:hover{
-      filter:brightness(80%);
+    &:hover {
+      filter: brightness(80%);
     }
     &.active {
       color: black !important;
@@ -56,22 +56,18 @@
       background: $white;
     }
   }
-  &.color{
+  &.color {
     color: $white;
 
-    &:hover{
-      filter:brightness(80%);
+    &:hover {
+      filter: brightness(80%);
     }
   }
   &.in_header {
     color: $gray10;
     font-size: $text-large;
 
-    @include media-min("big-desktop") {
-      font-size: 22px;
-    }
-
-    &:after{
+    &:after {
       margin-left: 13px;
     }
   }

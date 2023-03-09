@@ -1,28 +1,28 @@
 import React from "react";
 import Image from "next/image";
-import { SimplifiedMainSponsor, SimplifiedStructure } from "types/interface";
 import { StyledStatus } from "./SubComponents";
 import { cls } from "lib/classname";
 import noStructure from "assets/noStructure.png";
 import styles from "../Admin.module.scss";
+import { ContentStructure, UserStructure } from "api-types";
 
 export const StructureButton = (props: {
-  sponsor: SimplifiedMainSponsor | SimplifiedStructure | null;
+  sponsor: UserStructure | ContentStructure | null;
   onClick: () => void;
   additionnalProp: "status" | "role";
 }) => {
   const additionnalProp = props.additionnalProp || "status";
   const propsToDisplay =
     additionnalProp === "status"
-      ? (props.sponsor as SimplifiedMainSponsor).status || ""
-      : (props.sponsor as SimplifiedStructure)?.role?.[0] || "";
+      ? (props.sponsor as ContentStructure).status || ""
+      : (props.sponsor as UserStructure)?.role?.[0] || "";
 
   return (
     <div className={styles.details_button} onClick={props.onClick}>
       {props.sponsor?.picture?.secure_url ? (
         <Image
           className={styles.sponsor_img}
-          src={(props.sponsor.picture || {}).secure_url}
+          src={(props.sponsor.picture || {}).secure_url || ""}
           alt={props.sponsor.nom}
           width={95}
           height={30}

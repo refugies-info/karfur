@@ -1,85 +1,76 @@
-import { RequestFromClient, Res } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
-import { getDispositifByIdWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { NotFoundError } from "../../../errors";
+import pick from "lodash/pick";
+import { ContentStructure, GetDispositifResponse, Languages, SimpleUser, Sponsor } from "api-types";
+import { getRoles } from "../../../modules/role/role.repository";
+import { Role } from "src/typegoose";
 
-import { ObjectId } from "mongoose";
-import { DispositifPopulatedMainSponsorDoc } from "../../../schema/schemaDispositif";
-import {
-  turnToLocalized,
-  turnJSONtoHTML,
-} from "../../../controllers/dispositif/functions";
+const getRoleName = (id: string, roles: Role[]) => roles.find(r => r._id.toString() === id.toString())?.nom || ""
 
-interface Query {
-  locale: string;
-  contentId: ObjectId;
-}
+export const getContentById = async (id: string, locale: Languages): ResponseWithData<GetDispositifResponse> => {
+  logger.info("[getContentById] called", {
+    locale,
+    id,
+  });
 
-export const getContentById = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
-  try {
-    checkRequestIsFromSite(req.fromSite);
+  const fields = {
+    typeContenu: 1,
+    status: 1,
+    mainSponsor: 1,
+    theme: 1,
+    secondaryThemes: 1,
+    needs: 1,
+    sponsors: 1,
+    participants: 1,
+    merci: 1,
+    translations: 1,
+    metadatas: 1,
+    map: 1,
+    lastModificationDate: 1
+  };
 
-    if (!req.query || !req.query.locale || !req.query.contentId) {
-      throw new Error("INVALID_REQUEST");
-    }
+  const dispositif = await (
+    await getDispositifById(id, fields)
+  ).populate<{
+    mainSponsor: ContentStructure;
+    sponsors: (ContentStructure | Sponsor)[];
+    participants: SimpleUser[];
+  }>([
+    { path: "mainSponsor", select: "_id nom picture" },
+    { path: "sponsors", select: "_id nom picture" },
+    { path: "participants", select: "_id username picture roles" },
+  ]);
+  if (!dispositif) throw new NotFoundError("Dispositif not found");
+  const dataLanguage = dispositif.isTranslatedIn(locale) ? locale : "fr";
 
-    const { locale, contentId } = req.query;
+  const allRoles = await getRoles();
+  const participantsWithRoles = dispositif.participants.map(p => ({
+    ...pick(p, ["_id", "username", "picture"]),
+    roles: p.roles.filter(r => !!r).map(r => getRoleName(r, allRoles))
+  }))
 
-    logger.info("[getContentById] called", {
-      locale,
-      contentId,
-    });
+  const dispositifObject = dispositif.toObject();
+  const response: GetDispositifResponse = {
+    _id: dispositifObject._id,
+    ...dispositifObject.translations[dataLanguage].content,
+    participants: participantsWithRoles,
+    metadatas: { ...dispositifObject.metadatas, ...dispositifObject.translations[dataLanguage].metadatas },
+    availableLanguages: Object.keys(dispositifObject.translations),
+    date: dispositifObject.translations[dataLanguage].created_at || dispositifObject.lastModificationDate,
+    ...pick(dispositif, [
+      "typeContenu",
+      "status",
+      "mainSponsor",
+      "theme",
+      "secondaryThemes",
+      "needs",
+      "sponsors",
+      "merci",
+      "map",
+    ]),
+  };
 
-    const neededFields = {
-      titreInformatif: 1,
-      titreMarque: 1,
-      avancement: 1,
-      contenu: 1,
-      theme: 1,
-      secondaryThemes: 1,
-      typeContenu: 1,
-      externalLink: 1,
-      lastModificationDate: 1,
-      nbVuesMobile: 1,
-      nbFavoritesMobile: 1,
-    };
-
-    // @ts-ignore
-    const content: DispositifPopulatedMainSponsorDoc = await getDispositifByIdWithMainSponsor(
-      contentId,
-      neededFields
-    );
-
-    const sponsor = content.mainSponsor
-      ? { picture: content.mainSponsor.picture, nom: content.mainSponsor.nom }
-      : null;
-
-    // @ts-ignore
-    content.mainSponsor = sponsor;
-
-    turnToLocalized(content, locale);
-    turnJSONtoHTML(content.contenu);
-
-    res.status(200).json({
-      text: "Succès",
-      data: content,
-    });
-  } catch (error) {
-    logger.error("[getContentById] error while getting dispositif", {
-      error: error.message,
-    });
-    switch (error.message) {
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      default:
-        return res.status(500).json({
-          text: "Erreur interne",
-        });
-    }
-  }
+  return { text: "success", data: response };
 };

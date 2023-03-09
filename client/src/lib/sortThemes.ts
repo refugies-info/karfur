@@ -1,3 +1,3 @@
-import { Theme } from "types/interface";
+import { GetThemeResponse } from "api-types";
 
-export const sortThemes = (a: Theme, b: Theme) => (a.position > b.position ? 1 : -1)
+export const sortThemes = (a: GetThemeResponse, b: GetThemeResponse) => (a.position > b.position ? 1 : -1)

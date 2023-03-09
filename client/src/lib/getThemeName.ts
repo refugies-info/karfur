@@ -1,7 +1,7 @@
-import { Theme } from "types/interface";
+import { GetThemeResponse } from "api-types";
 
 export const getThemeName = (
-  theme: Theme | undefined,
+  theme: GetThemeResponse | undefined,
   routerLocale: string | undefined,
   property: "name" | "short" = "name"
 ) => {

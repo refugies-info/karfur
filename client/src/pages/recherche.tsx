@@ -2,10 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { END } from "redux-saga";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import { ObjectId } from "mongodb";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import qs from "query-string";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { wrapper } from "services/configureStore";
@@ -27,7 +26,6 @@ import { isHomeSearchVisible } from "lib/recherche/isHomeSearchVisible";
 import { getDepartmentsNotDeployed } from "lib/recherche/functions";
 import { generateLightResults } from "lib/recherche/generateLightResults";
 import isInBrowser from "lib/isInBrowser";
-import { SearchDispositif } from "types/interface";
 import SEO from "components/Seo";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import SearchHeader from "components/Pages/recherche/SearchHeader";
@@ -35,11 +33,12 @@ import HomeSearch from "components/Pages/recherche/HomeSearch";
 import NewSearchModal from "components/Modals/NewSearchModal/NewSearchModal";
 import { getPath } from "routes";
 import styles from "scss/pages/recherche.module.scss";
+import { GetDispositifsResponse, Id } from "api-types";
 
 export type UrlSearchQuery = {
   departments?: string | string[];
-  needs?: string | ObjectId[];
-  themes?: string | ObjectId[];
+  needs?: string | Id[];
+  themes?: string | Id[];
   age?: string | AgeOptions[];
   frenchLevel?: string | FrenchOptions[];
   language?: string | string[];
@@ -51,10 +50,10 @@ export type UrlSearchQuery = {
 const MODAL_STORAGE_KEY = "hideNewModal";
 
 const debouncedQuery = debounce(
-  (query: SearchQuery, dispositifs: SearchDispositif[], locale: string, callback: (res: Results) => void) => {
+  (query: SearchQuery, dispositifs: GetDispositifsResponse[], locale: string, callback: (res: Results) => void) => {
     return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res: Results) => callback(res));
   },
-  500
+  500,
 );
 
 const Recherche = () => {
@@ -84,16 +83,16 @@ const Recherche = () => {
     // update url
     const updateUrl = () => {
       const locale = router.locale;
-      const oldQueryString = qs.stringify(router.query, { arrayFormat: "comma" });
-      const newQueryString = qs.stringify({ ...query }, { arrayFormat: "comma" });
+      const oldQueryString = router.asPath.split("?")[1] || "";
+      const newQueryString = qs.stringify({ ...query }, { arrayFormat: "comma", sort: (a, b) => a.localeCompare(b) });
       if (oldQueryString !== newQueryString) {
         router.push(
           {
             pathname: getPath("/recherche", router.locale),
-            search: newQueryString
+            search: newQueryString,
           },
           undefined,
-          { locale: locale, shallow: true }
+          { locale: locale, shallow: true },
         );
       }
     };
@@ -103,12 +102,11 @@ const Recherche = () => {
       updateUrl();
       dispatch(setSearchResultsActionCreator(res));
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, dispositifs]);
+  }, [query, dispositifs, dispatch, router, languei18nCode]);
 
   // check if department deployed
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
-    getDepartmentsNotDeployed(query.departments, dispositifs)
+    getDepartmentsNotDeployed(query.departments, dispositifs),
   );
   useEffect(() => {
     setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
@@ -157,8 +155,8 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
-    }
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+    },
   };
 });
 

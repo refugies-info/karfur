@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { TranslationStatisticsResponse } from "api-types";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
 import { useInView } from "react-intersection-observer";
 import { wrapper } from "services/configureStore";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
-import { TranslationStatistics } from "types/interface";
 import API from "utils/API";
 import SEO from "components/Seo";
 import {
@@ -20,7 +20,7 @@ import {
   InlineLink,
   Register,
   HeroArrow,
-  LanguageIcon
+  LanguageIcon,
 } from "components/Pages/staticPages/common";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import LanguageCard from "components/Pages/staticPages/traduire/LanguageCard";
@@ -34,7 +34,7 @@ import styles from "scss/components/staticPages.module.scss";
 export type View = "who" | "steps" | "next" | "faq" | "register";
 export type NeedKey = "strong" | "medium" | "weak";
 interface Props {
-  translationStatistics: TranslationStatistics;
+  translationStatistics: TranslationStatisticsResponse;
 }
 
 const RecensezVotreAction = (props: Props) => {
@@ -56,7 +56,7 @@ const RecensezVotreAction = (props: Props) => {
       { inView: inViewSteps, id: "steps" },
       { inView: inViewNext, id: "next" },
       { inView: inViewFaq, id: "faq" },
-      { inView: inViewRegister, id: "register" }
+      { inView: inViewRegister, id: "register" },
     ];
     for (const view of views.reverse()) {
       if (view.inView) {
@@ -74,9 +74,9 @@ const RecensezVotreAction = (props: Props) => {
       strong: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count <= 2) || [],
       medium:
         props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 2 && item.count <= 5) || [],
-      weak: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 5) || []
+      weak: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 5) || [],
     }),
-    [props]
+    [props],
   );
 
   const navigateToTranslations = useCallback(() => {
@@ -97,7 +97,7 @@ const RecensezVotreAction = (props: Props) => {
               <p className={styles.subtitle}>
                 {t("Translate.subtitle", {
                   nbBenevoles: props.translationStatistics?.nbTranslators || 0,
-                  nbMots: new Intl.NumberFormat().format(props.translationStatistics?.nbWordsTranslated || 0)
+                  nbMots: new Intl.NumberFormat().format(props.translationStatistics?.nbWordsTranslated || 0),
                 })}
               </p>
               <HeroArrow target="who" />
@@ -114,12 +114,12 @@ const RecensezVotreAction = (props: Props) => {
           { id: "who", color: "green", text: t("Translate.navbarItem1") },
           { id: "steps", color: "orange", text: t("Translate.navbarItem2") },
           { id: "next", color: "purple", text: t("Translate.navbarItem3") },
-          { id: "faq", color: "red", text: t("Translate.navbarItem4") }
+          { id: "faq", color: "red", text: t("Translate.navbarItem4") },
         ]}
         rightLink={{
           id: "register",
           color: "blue",
-          text: t("Translate.navbarItem5")
+          text: t("Translate.navbarItem5"),
         }}
         activeView={activeView}
         isSticky={!inViewHero}
@@ -316,8 +316,8 @@ const RecensezVotreAction = (props: Props) => {
               {
                 title: t("Translate.faqAccordionTitle5"),
                 text: t("Translate.faqAccordionText5"),
-                cta: { text: t("Translate.faqAccordionCTA5"), link: "https://airtable.com/shrQxPHedgZ5PuXot" }
-              }
+                cta: { text: t("Translate.faqAccordionCTA5"), link: "https://airtable.com/shrQxPHedgZ5PuXot" },
+              },
             ]}
             multiOpen
           />
@@ -341,15 +341,15 @@ const RecensezVotreAction = (props: Props) => {
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
   const translationStatistics = (
-    await API.getTranslationStatistics(["nbTranslators", "nbWordsTranslated", "nbActiveTranslators"])
+    await API.getTranslationStatistics({ facets: ["nbTranslators", "nbWordsTranslated", "nbActiveTranslators"] })
   ).data.data;
 
   return {
     props: {
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
-      translationStatistics
+      translationStatistics,
     },
-    revalidate: 60
+    revalidate: 60,
   };
 });
 

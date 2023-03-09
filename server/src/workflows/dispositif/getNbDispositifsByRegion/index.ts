@@ -1,1 +1,1 @@
-export { getNbDispositifsByRegion } from "./getNbDispositifsByRegion";
+export * from "./getNbDispositifsByRegion";

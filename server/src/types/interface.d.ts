@@ -1,156 +1,84 @@
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 import { Moment } from "moment";
-import { UserDoc } from "../schema/schemaUser";
+import { Languages, NeedId, ThemeId, User } from "../typegoose";
+import { Request as ExpressRequest, Response as ExpressResponse } from "express";
+import { DocumentType } from "@typegoose/typegoose";
 
-export interface RequestFromClient<Query> {
+export type Modify<T, R> = Omit<T, keyof R> & R;
+
+declare global {
+  namespace Express {
+    export interface Request {
+      fromSite?: boolean; // TODO: delete
+      user?: DocumentType<User>;
+      userId?: typeof User._id;
+    }
+  }
+}
+
+// https://stackoverflow.com/questions/41980195/recursive-partialt-in-typescript
+type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends (infer U)[]
+  ? RecursivePartial<U>[]
+  : T[P] extends object
+  ? RecursivePartial<T[P]>
+  : T[P];
+};
+
+export type PartialRecord<K extends keyof any, T> = {
+  [P in K]?: T;
+};
+
+export interface Request extends ExpressRequest { }
+// Exposed to avoid Request name conflict
+export interface IRequest extends Request { }
+export interface Res extends ExpressResponse { }
+// export interface Response<CustomResponse = any> extends ExpressResponse<{ text?: string; data?: CustomResponse }> {}
+
+type ResponseText = "success" | "error";
+interface APIResponse {
+  text: ResponseText;
+  code?: string;
+}
+interface APIResponseWithData<Data> extends APIResponse {
+  data: Data;
+}
+
+export type Response = Promise<APIResponse>;
+export type ResponseWithData<Data> = Promise<APIResponseWithData<Data>>;
+
+interface Config {
+  secret?: string;
+}
+
+export interface RequestFromClient<Query> extends Request {
   body?: {
     query: Query;
     sort: Record<string, any>;
-    populate?: string;
-    locale?: string;
+    populate?: string | any;
+    locale?: Languages;
+    limit?: number;
   };
-  fromSite: boolean;
-  fromPostman: boolean;
   query?: Query;
-  userId?: ObjectId;
-  user?: UserDoc;
-  roles?: { nom: string; _id: ObjectId }[];
 }
 
-export interface RequestFromClientWithBody<Query> {
+export interface RequestFromClientWithBody<Query> extends Request {
   body: Query;
-  fromSite: boolean;
-  fromPostman: boolean;
   query?: Query;
-  userId?: ObjectId;
-  user?: UserDoc;
-  roles: { nom: string; _id: ObjectId }[];
-  params?: any
+  params?: any;
 }
 
-export interface AudienceAge {
-  contentTitle: "Plus de ** ans" | "De ** à ** ans" | "Moins de ** ans";
-  bottomValue: number | string;
-  topValue: number | string;
-}
-
-export interface DispositifContent {
-  type: string;
-  title: string;
-  editable: boolean;
-  content: string;
-  children?: DispositifContent[];
-  placeholder?: string;
-  tutoriel?: Record<string, string>;
-  target?: string;
-  contentTitle?: string;
-  isFakeContent?: boolean;
-  titleIcon?: string;
-  typeIcon?: string;
-  bottomValue?: number;
-  topValue?: number;
-  free?: boolean;
-  price?: number;
-  footerHref?: string;
-  footerIcon?: string;
-  footer?: string;
-  niveaux?: string[];
-  departments?: string[];
-  contentBody?: string;
-  ageTitle?: string;
-  noContent?: boolean;
-}
-
-export interface Res {
-  status: Function;
-}
-export interface Picture {
-  imgId: string | null;
-  public_id: string | null;
-  secure_url: string | null;
-}
-export interface DetailedOpeningHours {
-  day: string;
-  from0?: string;
-  to0?: string;
-  from1?: string;
-  to1?: string;
-}
-export interface OpeningHours {
-  details: DetailedOpeningHours[];
-  noPublic: boolean;
-  precisions?: string;
-}
-
-export type IDispositif = any;
-
-export interface Membre {
-  userId: ObjectId;
-  roles: string[];
-}
-export interface IStructure {
-  _id: ObjectId;
-  membres: Membre[];
-  acronyme: string;
-  administrateur: ObjectId;
-  adresse: string;
-  authorBelongs: boolean;
-  contact: string;
-  created_at: Moment;
-  createur: ObjectId;
-  dispositifsAssocies: ObjectId[];
-  link: string;
-  mail_contact: string;
-  mail_generique: string;
-  nom: string;
-  phone_contact: string;
-  siren: string;
-  siret: string;
-  status: string;
-  updatedAt: Moment;
-  picture: Picture;
-  structureTypes: string[];
-  websites: string[];
-  facebook: string;
-  linkedin: string;
-  twitter: string;
-  activities: string[];
-  departments: string[];
-  phonesPublic: string[];
-  adressPublic: string;
-  openingHours: OpeningHours;
-  description: string;
-  hasResponsibleSeenNotification?: boolean;
-  toJSON?: () => IStructure;
-}
-
-export interface IMailEvent {
-  username?: string;
-  email: string;
-  templateName: string;
-  userId?: ObjectId;
-  dispositifId?: ObjectId;
-  langue?: string;
-}
-
-export interface SelectedLanguage {
-  langueFr: string;
-  langueLoc: string;
-  langueCode: string;
-  i18nCode: string;
-  _id: ObjectId;
-}
-
-export interface UserForMailing {
-  username: string;
-  _id: ObjectId;
-  email: string;
+export interface RequestFromClientWithFiles extends Request {
+  files: any;
 }
 
 export interface NeedDetail {
   text: string;
   updatedAt: Moment;
 }
+/**
+ * @deprecated
+ */
 export interface Need {
   fr: NeedDetail;
   ar?: NeedDetail;
@@ -160,13 +88,13 @@ export interface Need {
   ps?: NeedDetail;
   fa?: NeedDetail;
   uk?: NeedDetail;
-  _id: ObjectId;
+  _id: Types.ObjectId;
   created_at: Moment;
   updatedAt: Moment;
 }
 
 export interface AlgoliaObject {
-  objectID: ObjectId | string;
+  objectID: Types.ObjectId | string;
   title_fr: string;
   title_ru?: string;
   title_en?: string;
@@ -194,9 +122,9 @@ export interface AlgoliaObject {
   sponsorName?: string;
   sponsorUrl?: string;
   nbVues?: number;
-  theme?: ObjectId;
-  secondaryThemes?: ObjectId[];
-  needs?: ObjectId[];
+  theme?: ThemeId;
+  secondaryThemes?: ThemeId[];
+  needs?: NeedId[];
   typeContenu: "demarche" | "dispositif" | "besoin" | "theme";
   priority: number;
   webOnly: boolean;

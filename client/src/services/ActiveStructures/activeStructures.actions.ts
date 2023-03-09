@@ -2,10 +2,10 @@ import {
   SET_ACTIVE_STRUCTURES,
   FETCH_ACTIVE_STRUCTURES,
 } from "./activeStructures.actionTypes";
-import { Structure } from "../../types/interface";
 import { action, ActionType } from "typesafe-actions";
+import { GetActiveStructuresResponse } from "api-types";
 
-export const setActiveStructuresActionCreator = (value: Structure[]) =>
+export const setActiveStructuresActionCreator = (value: GetActiveStructuresResponse[]) =>
   action(SET_ACTIVE_STRUCTURES, value);
 
 export const fetchActiveStructuresActionCreator = () =>

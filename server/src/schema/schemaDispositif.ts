@@ -1,7 +1,5 @@
 import mongoose, { ObjectId } from "mongoose";
-import { UserDoc } from "./schemaUser";
-import { StructureDoc } from "./schemaStructure";
-import { ThemeDoc } from "./schemaTheme";
+import { User } from "../typegoose";
 
 function arrayThemesLimit(val: any[]) {
   return val.length <= 2;
@@ -62,13 +60,15 @@ var dispositifSchema = new mongoose.Schema(
     },
     theme: {
       type: mongoose.Types.ObjectId,
-      ref: "Theme",
+      ref: "Theme"
     },
     secondaryThemes: {
-      type: [{
-        type: mongoose.Types.ObjectId,
-        ref: "Theme",
-      }],
+      type: [
+        {
+          type: mongoose.Types.ObjectId,
+          ref: "Theme"
+        }
+      ],
       validate: [arrayThemesLimit, "{PATH} exceeds the limit of 2"]
     },
     localisation: {
@@ -249,7 +249,7 @@ export interface DispositifDoc extends mongoose.Document {
   audienceAge?: Object;
   localisation?: Object;
   niveauFrancais?: Object;
-  creatorId: ObjectId | UserDoc;
+  creatorId: ObjectId | User;
   nbMots?: number;
   merci?: Object[];
   pasMerci?: Object;
@@ -283,32 +283,6 @@ export interface DispositifDoc extends mongoose.Document {
   notificationsSent?: Record<string, boolean>;
   themesSelectedByAuthor?: boolean;
   webOnly?: boolean;
-}
-
-export interface DispositifNotPopulateDoc extends DispositifDoc {
-  creatorId: ObjectId;
-  mainSponsor: ObjectId;
-  theme?: ObjectId;
-  secondaryThemes?: ObjectId[];
-}
-
-export interface DispositifPopulatedDoc extends DispositifDoc {
-  creatorId: UserDoc;
-  mainSponsor: ObjectId;
-  theme?: ObjectId;
-  secondaryThemes?: ObjectId[];
-}
-
-export interface DispositifPopulatedMainSponsorDoc extends DispositifDoc {
-  mainSponsor: StructureDoc;
-  creatorId: UserDoc;
-  theme?: ObjectId;
-  secondaryThemes?: ObjectId[];
-}
-
-export interface DispositifPopulatedThemesDoc extends DispositifDoc {
-  theme: ThemeDoc;
-  secondaryThemes: ThemeDoc[];
 }
 
 export const Dispositif = mongoose.model<DispositifDoc>("Dispositif", dispositifSchema);

@@ -1,1 +1,1 @@
-export { getAllStructures } from "./getAllStructures";
+export * from "./getAllStructures";

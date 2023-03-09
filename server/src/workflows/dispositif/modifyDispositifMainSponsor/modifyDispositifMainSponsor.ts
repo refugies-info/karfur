@@ -1,62 +1,29 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
-import { RequestFromClient, Res } from "../../../types/interface";
+import { Response } from "../../../types/interface";
 import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
-import {
-  checkIfUserIsAdmin,
-} from "../../../libs/checkAuthorizations";
 import { log } from "./log";
+import { Dispositif } from "../../../typegoose";
+import { NotFoundError } from "../../../errors";
+import { DispositifStatus, Id, MainSponsorRequest } from "api-types";
 
-interface QueryModify {
-  dispositifId: ObjectId | null;
-  sponsorId: ObjectId;
-  status: string | null;
-}
+export const modifyDispositifMainSponsor = async (id: string, body: MainSponsorRequest, userId: Id): Response => {
+  logger.info("[modifyDispositifMainSponsor]", body);
 
-export const modifyDispositifMainSponsor = async (
-  req: RequestFromClient<QueryModify>,
-  res: Res
-) => {
-  try {
-    if (!req.fromSite) {
-      return res.status(405).json({ text: "Requête bloquée par API" });
-    } else if (
-      !req.body ||
-      !req.body.query ||
-      !req.body.query.dispositifId ||
-      !req.body.query.sponsorId ||
-      !req.body.query.status
-    ) {
-      return res.status(400).json({ text: "Requête invalide" });
-    }
+  const oldDispositif = await getDispositifById(id, { mainSponsor: 1, status: 1 });
+  if (!oldDispositif) throw new NotFoundError("Dispositif not found");
 
-    // @ts-ignore : populate roles
-    checkIfUserIsAdmin(req.user.roles)
+  const modifiedDispositif: Partial<Dispositif> = {
+    mainSponsor: body.sponsorId,
+  };
+  if (oldDispositif.status === DispositifStatus.NO_STRUCTURE) modifiedDispositif.status = DispositifStatus.WAITING;
 
-    const { dispositifId, sponsorId, status } = req.body.query;
-    logger.info("[modifyDispositifMainSponsor]", {
-      dispositifId,
-      sponsorId,
-      status,
-    });
+  await updateDispositifInDB(id, modifiedDispositif);
 
-    const modifiedDispositif = {
-      mainSponsor: sponsorId,
-      status: status === "En attente non prioritaire" ? "En attente" : status,
-    };
-    const oldDispositif = await getDispositifById(dispositifId, { mainSponsor: 1 });
-    await updateDispositifInDB(dispositifId, modifiedDispositif);
+  await updateAssociatedDispositifsInStructure(id, body.sponsorId);
 
-    await updateAssociatedDispositifsInStructure(dispositifId, sponsorId);
+  await log(oldDispositif, id, body.sponsorId, userId);
 
-    await log(oldDispositif, dispositifId, sponsorId, req.user._id);
+  return { text: "success" };
 
-    res.status(200).json({ text: "OK" });
-  } catch (error) {
-    logger.error("[modifyDispositifMainSponsor] error", {
-      error: error.message,
-    });
-    return res.status(500).json({ text: "Erreur interne" });
-  }
 };

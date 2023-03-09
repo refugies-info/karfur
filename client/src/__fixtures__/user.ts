@@ -1,30 +1,35 @@
-import { ObjectId } from "mongodb";
+import { GetUserInfoResponse, UserStatus } from "api-types";
 import moment from "moment";
 
 const date = moment("2019-05-01 12:00:00");
-export const testUser = {
+export const testUser: GetUserInfoResponse = {
   username: "test",
-  updatedAt: date,
-  created_at: date,
-  _id: new ObjectId("testObjectId"),
-  structures: []
+  _id: "testObjectId",
+  structures: [],
+  contributions: [],
+  phone: "",
+  roles: [],
+  email: "",
+  selectedLanguages: [],
+  status: UserStatus.ACTIVE,
+  traductionsFaites: []
 };
 
-export const testUserWithRoles = {
+export const testUserWithRoles: GetUserInfoResponse = {
   ...testUser,
-  structures: [new ObjectId("testObjectId")],
+  structures: ["testObjectId"],
   roles: [
-    { nom: "Admin", _id: new ObjectId("testObjectId"), nomPublique: "Admin" },
-    { nom: "Trad", _id: new ObjectId("testObjectId"), nomPublique: "Trad" },
+    { nom: "Admin", _id: "testObjectId", nomPublic: "Admin" },
+    { nom: "Trad", _id: "testObjectId", nomPublic: "Trad" },
     {
       nom: "ExpertTrad",
-      _id: new ObjectId("testObjectId"),
-      nomPublique: "ExpertTrad"
+      _id: "testObjectId",
+      nomPublic: "ExpertTrad"
     },
     {
       nom: "Contrib",
-      _id: new ObjectId("testObjectId"),
-      nomPublique: "Contrib"
+      _id: "testObjectId",
+      nomPublic: "Contrib"
     }
   ]
 };

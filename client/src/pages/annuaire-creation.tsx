@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Spinner } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
 import { useRouter } from "next/router";
@@ -19,13 +19,13 @@ import {
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
-import { Structure } from "types/interface";
 import styles from "scss/pages/annuaire-create.module.scss";
 import SEO from "components/Seo";
 import {
   setSelectedStructureActionCreator,
   updateSelectedStructureActionCreator
 } from "services/SelectedStructure/selectedStructure.actions";
+import { GetStructureResponse } from "api-types";
 
 const AnnuaireCreate = () => {
   const router = useRouter();
@@ -57,7 +57,7 @@ const AnnuaireCreate = () => {
     dispatch(updateSelectedStructureActionCreator({ locale: router.locale || "fr" }));
   };
 
-  const setStructure = (structure: Structure) => {
+  const setStructure = (structure: GetStructureResponse) => {
     dispatch(setSelectedStructureActionCreator(structure));
   };
 

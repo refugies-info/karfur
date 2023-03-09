@@ -1,8 +1,8 @@
 import { createReducer } from "typesafe-actions";
 import { UserContributionsActions } from "./userContributions.actions";
-import { IUserContribution } from "../../types/interface";
+import { GetUserContributionsResponse } from "api-types";
 
-export type UserContributionsState = IUserContribution[];
+export type UserContributionsState = GetUserContributionsResponse[];
 
 const initialUserContriubtionsState: UserContributionsState = [];
 

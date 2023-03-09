@@ -1,6 +1,6 @@
 import mongoose, { ObjectId } from "mongoose";
 import { Moment } from "moment";
-import { Picture } from "../types/interface";
+import { Picture } from "api-types";
 
 var needsSchema = new mongoose.Schema(
   {
@@ -90,7 +90,7 @@ export interface NeedDoc extends mongoose.Document {
   fa?: NeedTranslation;
   ru?: NeedTranslation;
   uk?: NeedTranslation;
-  image?: Picture|null;
+  image?: Picture | null;
   adminComments?: string;
   nbVues?: number;
   position?: number;

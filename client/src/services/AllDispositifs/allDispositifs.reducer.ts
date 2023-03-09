@@ -1,8 +1,8 @@
-import { SimplifiedDispositif } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { AllDispositifsActions } from "./allDispositifs.actions";
+import { GetAllDispositifsResponse } from "api-types";
 
-export type AllDispositifsState = SimplifiedDispositif[];
+export type AllDispositifsState = GetAllDispositifsResponse[];
 
 export const initialAllDispositifsState: AllDispositifsState = [];
 

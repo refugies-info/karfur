@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import FButton from "components/UI/FButton/FButton";
-import { ObjectId } from "mongodb";
 import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { needsSelector } from "services/Needs/needs.selectors";
 import API from "utils/API";
@@ -14,21 +13,24 @@ import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import { themesSelector } from "services/Themes/themes.selectors";
 import AdminThemeButton from "components/UI/AdminThemeButton";
 import AdminNeedButton from "components/UI/AdminNeedButton";
-import { Need, SimplifiedDispositif } from "types/interface";
 import { cls } from "lib/classname";
+import { GetAllDispositifsResponse, GetNeedResponse, Id } from "api-types";
 
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  dispositifId: ObjectId | null;
+  dispositifId: Id | null;
 }
 
-const getThemes = (dispositif: SimplifiedDispositif | null) => {
+const getThemes = (dispositif: GetAllDispositifsResponse | null): Id[] => {
   if (!dispositif) return [];
-  return [dispositif.theme._id, ...dispositif.secondaryThemes.map((t) => t._id)];
+  const res = [];
+  if (dispositif.theme) res.push(dispositif.theme);
+  if (dispositif.secondaryThemes) res.push(...dispositif.secondaryThemes);
+  return res;
 };
 
-const getNeed = (needId: ObjectId, allNeeds: Need[]) => {
+const getNeed = (needId: Id, allNeeds: GetNeedResponse[]) => {
   return allNeeds.find((n) => n._id === needId);
 };
 
@@ -39,15 +41,15 @@ export const NeedsChoiceModal = (props: Props) => {
   const themes = useSelector(themesSelector);
   const dispositif = useSelector(dispositifSelector(props.dispositifId));
 
-  const [selectedThemesByAuthor, setSelectedThemesByAuthor] = useState<ObjectId[] | null>(
+  const [selectedThemesByAuthor, setSelectedThemesByAuthor] = useState<Id[] | null>(
     dispositif?.themesSelectedByAuthor ? getThemes(dispositif) : null
   );
-  const [selectedNeeds, setSelectedNeeds] = useState<ObjectId[]>(dispositif?.needs || []);
-  const [selectedThemes, setSelectedThemes] = useState<ObjectId[]>(getThemes(dispositif));
-  const [primaryTheme, setPrimaryTheme] = useState<ObjectId | undefined>(dispositif?.theme._id);
+  const [selectedNeeds, setSelectedNeeds] = useState<Id[]>(dispositif?.needs || []);
+  const [selectedThemes, setSelectedThemes] = useState<Id[]>(getThemes(dispositif));
+  const [primaryTheme, setPrimaryTheme] = useState<Id | undefined>(dispositif?.theme);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const [currentTheme, setCurrentTheme] = useState<ObjectId | null>(null);
+  const [currentTheme, setCurrentTheme] = useState<Id | null>(null);
 
   useEffect(() => {
     // load initial data
@@ -55,19 +57,19 @@ export const NeedsChoiceModal = (props: Props) => {
       if (dispositif.needs && dispositif.needs.length > 0) {
         setSelectedNeeds(dispositif.needs);
       }
-      setPrimaryTheme(dispositif.theme._id);
+      setPrimaryTheme(dispositif.theme);
       setSelectedThemes(getThemes(dispositif));
     }
   }, [dispositif]);
 
-  const addTheme = (needId: ObjectId) => {
+  const addTheme = (needId: Id) => {
     // add theme based on need
     const needTheme = getNeed(needId, allNeeds)?.theme._id;
     if (needTheme) {
       setSelectedThemes((themes) => [...new Set([...themes, needTheme])]);
     }
   };
-  const removeTheme = (needId: ObjectId, newNeeds: ObjectId[]) => {
+  const removeTheme = (needId: Id, newNeeds: Id[]) => {
     // remove theme based on need
     const needTheme = getNeed(needId, allNeeds)?.theme._id;
     const stillHasTheme = newNeeds.find((currentNeedId) => {
@@ -79,7 +81,7 @@ export const NeedsChoiceModal = (props: Props) => {
     }
   };
 
-  const selectNeed = (needId: ObjectId) => {
+  const selectNeed = (needId: Id) => {
     if (selectedNeeds.includes(needId)) {
       // remove need
       setSelectedNeeds((s) => {
@@ -94,7 +96,7 @@ export const NeedsChoiceModal = (props: Props) => {
     }
   };
 
-  const selectTheme = (themeId: ObjectId) => {
+  const selectTheme = (themeId: Id) => {
     if (selectedThemes.includes(themeId)) {
       // remove theme
       setSelectedThemes((t) => t.filter((theme) => theme !== themeId));
@@ -168,14 +170,14 @@ export const NeedsChoiceModal = (props: Props) => {
     props.toggleModal();
   };
 
-  const isThemeSelected = (themeId: ObjectId) => {
+  const isThemeSelected = (themeId: Id) => {
     return (
       !!selectedThemesByAuthor?.includes(themeId) || // theme selected by author
       selectedThemes.includes(themeId) // or by admin
     );
   };
 
-  const hasThemeWarning = (themeId: ObjectId) => {
+  const hasThemeWarning = (themeId: Id) => {
     return (
       !!selectedThemesByAuthor?.includes(themeId) && // theme selected by author
       !selectedThemes.includes(themeId) // but not yet by admin

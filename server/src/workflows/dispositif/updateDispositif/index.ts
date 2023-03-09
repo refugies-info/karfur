@@ -1,2 +1,1 @@
-import updateDispositif from "./updateDispositif";
-export default updateDispositif;
+export * from "./updateDispositif";

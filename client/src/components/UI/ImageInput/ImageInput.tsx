@@ -5,8 +5,9 @@ import FButton from "../FButton";
 import emptyImage from "assets/empty-image.svg";
 import styles from "./ImageInput.module.scss";
 import Image from "next/image";
-import { Picture } from "types/interface";
+import { Picture } from "api-types";
 import { cls } from "lib/classname";
+import { handleApiDefaultError } from "lib/handleApiErrors";
 
 interface Props {
   onImageUploaded: (image: Picture) => void;
@@ -27,15 +28,17 @@ const AdminThemeButton = (props: Props) => {
     // @ts-ignore
     formData.append(0, event.target.files[0]);
 
-    API.set_image(formData).then((data_res: any) => {
-      const imgData = data_res.data.data;
-      props.onImageUploaded({
-        secure_url: imgData.secure_url,
-        public_id: imgData.public_id,
-        imgId: imgData.imgId
-      });
-      setUploading(false);
-    });
+    API.postImage(formData)
+      .then((data_res) => {
+        const imgData = data_res.data.data;
+        props.onImageUploaded({
+          secure_url: imgData.secure_url,
+          public_id: imgData.public_id,
+          imgId: imgData.imgId,
+        });
+        setUploading(false);
+      })
+      .catch(handleApiDefaultError);
   };
 
   return (

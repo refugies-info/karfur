@@ -1,3 +1,4 @@
+// RI colors
 $white: #ffffff;
 $gray10: #fbfbfb;
 $gray20: #f2f2f2;
@@ -35,7 +36,29 @@ $erreur: #ffcecb;
 $rouge: #e55039;
 $error: #f44336;
 
+// DSFR colors
+$lightBackgroundElevationAlt: #f6f6f6;
+$lightBackgroundContrastGrey: #eeeeee;
+$lightTextInvertedBlueFrance: #f5f5fe;
+$lightBorderDefaultGrey: #dddddd;
+$lightTextMentionGrey: #666666;
+$lightTextDisabledGrey: #929292;
+$darkBackgroundElevationContrast: #2f2f2f;
+$darkBackgroundContrastGrey: #242424;
+$darkBackgroundAltGrey: #1e1e1e;
+$lightTextTitleGrey: #161616;
+$lightBorderDefaultBlueFrance: #6a6af4;
+$darkBackgroundActionHighBlueFrance: #8585f6;
+$lightBackgroundActionLowBlueFrance: #e3e3fd;
+$lightTextDefaultSuccess: #18753c;
+$lightPrimaryBlueFranceSun: #2323ff;
+$lightTextActionHighBlueFrance: #000091;
+$darkBackgroundAltBlueFrance: #1b1b35;
+$lightTextDefaultError: #ce0500;
+$darkBorderPlainError: #ff5655;
+
 :export {
+  // RI colors
   lightColor: $lightColor;
   darkColor: $darkColor;
   white: $white;
@@ -64,4 +87,25 @@ $error: #f44336;
   darkOrange: $darkOrange;
   bleuCharte: $bleuCharte;
   lightBlue: $bgfocus;
+
+  // DSFR colors
+  lightBackgroundElevationAlt: $lightBackgroundElevationAlt;
+  lightBackgroundContrastGrey: $lightBackgroundContrastGrey;
+  lightBorderDefaultGrey: $lightBorderDefaultGrey;
+  lightTextMentionGrey: $lightTextMentionGrey;
+  lightTextDisabledGrey: $lightTextDisabledGrey;
+  darkBackgroundElevationContrast: $darkBackgroundElevationContrast;
+  darkBackgroundContrastGrey: $darkBackgroundContrastGrey;
+  darkBackgroundAltGrey: $darkBackgroundAltGrey;
+  lightTextTitleGrey: $lightTextTitleGrey;
+  lightBorderDefaultBlueFrance: $lightBorderDefaultBlueFrance;
+  lightBackgroundActionLowBlueFrance: $lightBackgroundActionLowBlueFrance;
+  lightTextDefaultSuccess: $lightTextDefaultSuccess;
+  lightTextActionHighBlueFrance: $lightTextActionHighBlueFrance;
+  darkBackgroundAltBlueFrance: $darkBackgroundAltBlueFrance;
+  lightTextInvertedBlueFrance: $lightTextInvertedBlueFrance;
+  lightTextDefaultError: $lightTextDefaultError;
+  darkBackgroundActionHighBlueFrance: $darkBackgroundActionHighBlueFrance;
+  darkBorderPlainError: $darkBorderPlainError;
+  lightPrimaryBlueFranceSun: $lightPrimaryBlueFranceSun;
 }

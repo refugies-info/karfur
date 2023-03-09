@@ -1,3 +1,5 @@
+import { Languages } from "api-types";
+
 const activatedLanguages = [
   {
     code: "en",
@@ -34,19 +36,12 @@ const activatedLanguages = [
     short: "Ukrainien",
     full: "ukrainien",
   },
-]
+];
 
-export const availableLanguages = activatedLanguages.map(ln => ln.code);
+export const availableLanguages: Languages[] = activatedLanguages.map((ln) => ln.code as Languages);
 
-export const availableLanguagesWithFr = ["fr", ...activatedLanguages.map(ln => ln.code)]
-
-export const getFormattedLocale = (
-  locale: string,
-  key: "short" | "full" = "full"
-) => {
-  const selectedLocale = activatedLanguages.find(
-    activatedLanguage => locale === activatedLanguage.code
-  );
+export const getFormattedLocale = (locale: string, key: "short" | "full" = "full") => {
+  const selectedLocale = activatedLanguages.find((activatedLanguage) => locale === activatedLanguage.code);
   if (!selectedLocale) return "locale not found";
   return selectedLocale[key];
 };

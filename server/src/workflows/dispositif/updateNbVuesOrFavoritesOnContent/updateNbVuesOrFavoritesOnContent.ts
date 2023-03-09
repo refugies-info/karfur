@@ -1,49 +1,22 @@
-import { RequestFromClient, Res } from "../../../types/interface";
-import { ObjectId } from "mongoose";
+import { AddViewsRequest } from "api-types";
 import logger from "../../../logger";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
+import { incrementDispositifViews } from "../../../modules/dispositif/dispositif.repository";
+import { Response } from "../../../types/interface";
 
-interface Query {
-  id: ObjectId;
-  nbVues?: number;
-  nbVuesMobile?: number;
-  nbFavoritesMobile?: number;
-}
+export const updateNbVuesOrFavoritesOnContent = async (id: string, body: AddViewsRequest): Response => {
+  logger.info(`[updateNbVuesOrFavoritesOnContent] received for dispositif with id ${id}`, body);
 
-const computeQuery = (
-  nbFavoritesMobile: undefined | number,
-  nbVues: undefined | number,
-  nbVuesMobile: undefined | number
-) => {
-  if (nbVuesMobile) {
-    return { nbVuesMobile };
-  }
-  if (nbVues) {
-    return { nbVues };
-  }
-  return { nbFavoritesMobile };
-};
-export const updateNbVuesOrFavoritesOnContent = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
-  try {
-    checkRequestIsFromSite(req.fromSite);
-    const { id, nbVues, nbVuesMobile, nbFavoritesMobile } = req.body.query;
-    logger.info(
-      `[updateNbVuesOrFavoritesOnContent] received for dispositif with id ${id}`,
-      { nbVues, nbVuesMobile, nbFavoritesMobile }
-    );
+  const properties = body.types.map(type => {
+    switch (type) {
+      case "web":
+        return "nbVues"
+      case "mobile":
+        return "nbVuesMobile"
+      case "favorite":
+        return "nbFavoritesMobile"
+    }
+  })
+  await incrementDispositifViews(id, properties);
 
-    const query = computeQuery(nbFavoritesMobile, nbVues, nbVuesMobile);
-    await updateDispositifInDB(id, query);
-
-    res.status(200).json({ text: "OK" });
-  } catch (error) {
-    logger.error("[updateNbVuesOrFavoritesOnContent] error", {
-      error: error.message,
-    });
-    res.status(500).json({ text: "KO" });
-  }
+  return { text: "success" };
 };

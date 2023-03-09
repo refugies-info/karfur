@@ -1,8 +1,8 @@
+import { GetThemeResponse } from "api-types";
 import { ageFilters, AgeOptions, filterType, frenchLevelFilter, FrenchOptions, sortOptions } from "data/searchFilters";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
-import { Theme } from "types/interface";
 
-export const backwardCompatibility = (routerQuery: any, searchQuery: SearchQuery, allThemes: Theme[]): SearchQuery => {
+export const backwardCompatibility = (routerQuery: any, searchQuery: SearchQuery, allThemes: GetThemeResponse[]): SearchQuery => {
   const { tag, dep, age, niveauFrancais, filter, langue, tri } = routerQuery;
 
   if (tag) {

@@ -3,11 +3,11 @@ import { getUserContributions } from "./getUserContributions";
 import { getDispositifsWithCreatorId } from "../../../modules/dispositif/dispositif.repository";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  getDispositifsWithCreatorId: jest.fn(),
+  getDispositifsWithCreatorId: jest.fn()
 }));
-jest.mock("../../../schema/schemaError", () => ({
-  Error: {
-    save: jest.fn(),
+jest.mock("src/typegoose/Error", () => ({
+  ErrorModel: {
+    create: jest.fn()
   }
 }));
 
@@ -37,13 +37,10 @@ describe("getUserContributions", () => {
       titreInformatif: "TI2",
       status: "status2",
       mainSponsor: { nom: "sponsor" },
-      merci: [{ _id: 1 }, { _id: 2 }],
+      merci: [{ _id: 1 }, { _id: 2 }]
     };
 
-    getDispositifsWithCreatorId.mockResolvedValueOnce([
-      { toJSON: () => dispo1 },
-      { toJSON: () => dispo2 },
-    ]);
+    getDispositifsWithCreatorId.mockResolvedValueOnce([{ toJSON: () => dispo1 }, { toJSON: () => dispo2 }]);
 
     const req = { fromSite: true, userId: "userId" };
     await getUserContributions(req, res);
@@ -54,12 +51,9 @@ describe("getUserContributions", () => {
       mainSponsor: 1,
       nbVues: 1,
       status: 1,
-      merci: 1,
+      merci: 1
     };
-    expect(getDispositifsWithCreatorId).toHaveBeenCalledWith(
-      "userId",
-      neededFields
-    );
+    expect(getDispositifsWithCreatorId).toHaveBeenCalledWith("userId", neededFields);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       data: [
@@ -67,15 +61,15 @@ describe("getUserContributions", () => {
           titreInformatif: "TI",
           status: "status",
           nbMercis: 0,
-          mainSponsor: null,
+          mainSponsor: null
         },
         {
           titreInformatif: "TI2",
           status: "status2",
           mainSponsor: "sponsor",
-          nbMercis: 2,
-        },
-      ],
+          nbMercis: 2
+        }
+      ]
     });
   });
 
@@ -91,12 +85,9 @@ describe("getUserContributions", () => {
       mainSponsor: 1,
       nbVues: 1,
       status: 1,
-      merci: 1,
+      merci: 1
     };
-    expect(getDispositifsWithCreatorId).toHaveBeenCalledWith(
-      "userId",
-      neededFields
-    );
+    expect(getDispositifsWithCreatorId).toHaveBeenCalledWith("userId", neededFields);
     expect(res.status).toHaveBeenCalledWith(500);
   });
 });

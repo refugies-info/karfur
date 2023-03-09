@@ -1,29 +1,39 @@
-import { ObjectId } from "mongoose";
-import { Log } from "../../schema/schemaLog";
+import { Id } from "api-types";
+import { Types } from "mongoose";
+import { DispositifId, LangueId, Log, StructureId, UserId } from "../../typegoose";
 import { createLog } from "./logs.repository";
 
 export type optionsType = {
-  author?: ObjectId;
-  dynamicId?: ObjectId;
+  author?: UserId;
+  dynamicId?: UserId | DispositifId | StructureId | LangueId;
   model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
   link?: {
-    id: ObjectId;
+    id: UserId | DispositifId | StructureId;
     model_link: "User" | "Dispositif" | "Structure";
-    next: "ModalContenu" | "ModalStructure" | "ModalUser" | "ModalReaction" | "ModalImprovements" | "ModalNeeds" | "PageAnnuaire";
-  }
-}
+    next:
+    | "ModalContenu"
+    | "ModalStructure"
+    | "ModalUser"
+    | "ModalReaction"
+    | "ModalImprovements"
+    | "ModalNeeds"
+    | "PageAnnuaire";
+  };
+};
 
 export const addLog = (
-  id: string | ObjectId,
+  id: UserId | DispositifId | StructureId | Id,
   type: "User" | "Dispositif" | "Structure",
   text: string,
   options?: optionsType
 ) => {
-  const log = new Log({
-    objectId: id,
+  // FIXME
+  // @ts-ignore
+  const log: Log = {
+    objectId: new Types.ObjectId(id.toString()),
     model_object: type,
     text,
     ...(options || {})
-  });
+  };
   return createLog(log);
-}
+};

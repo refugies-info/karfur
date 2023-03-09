@@ -8,7 +8,9 @@ steps:
         "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
         "-t",
         "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest",
-        "./server",
+        "-f",
+        "./server/Dockerfile",
+        ".",
       ]
   # Push the container image to Container Registry
   - name: "gcr.io/cloud-builders/docker"

@@ -1,9 +1,9 @@
 import React, { memo } from "react";
 import styled from "styled-components";
-import { Theme } from "types/interface";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
 import styles from "./ThemeDropdown.module.scss";
+import { GetThemeResponse } from "api-types";
 
 type ButtonThemeProps = {
   color100: string;
@@ -30,7 +30,7 @@ const ButtonTheme = styled.button<ButtonThemeProps>`
 `;
 
 interface Props {
-  theme: Theme;
+  theme: GetThemeResponse;
   selected: boolean;
   disabled: boolean;
   mobile: boolean;

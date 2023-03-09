@@ -1,33 +1,18 @@
-import { ObjectId } from "mongoose";
 import { AlgoliaObject } from "../types/interface";
-import { LangueDoc } from "../schema/schemaLangue";
-import { DispositifDoc } from "../schema/schemaDispositif";
-import { NeedDoc } from "../schema/schemaNeeds";
-import { ThemeDoc } from "../schema/schemaTheme";
-import { StructureDoc } from "../schema/schemaStructure";
+import { Dispositif, Langue, Need, Theme } from "../typegoose";
+import { get } from "lodash";
 
-const extractValuesPerLanguage = (object: any, keyPrefix: string) => {
-  if (!object) return {};
-  if (typeof object !== "object") { // if object is string
-    return { [`${keyPrefix}_fr`]: object }
-  }
+const extractValuesPerLanguage = (translations: Dispositif["translations"], path: string, keyPrefix: string) => {
+  if (!translations) return {};
   const normalizedObject: any = {};
-  for (const [ln, value] of Object.entries(object)) {
+  for (const [ln, translation] of Object.entries(translations)) {
+    const value = get(translation, path);
     normalizedObject[`${keyPrefix}_${ln}`] = value;
   }
   return normalizedObject;
-}
-
-type Dispositif = DispositifDoc & {
-  _id: ObjectId
-  theme: ThemeDoc
-  secondaryThemes: ThemeDoc[]
-  mainSponsor: StructureDoc
 };
-type Need = NeedDoc & { _id: ObjectId } & { theme: ThemeDoc }
-type Theme = ThemeDoc & { _id: ObjectId };
 
-const getAllNeedTitles = (need: any, activeLanguages: LangueDoc[]) => {
+const getAllNeedTitles = (need: any, activeLanguages: Langue[]) => {
   const titles: any = {};
   for (const ln of activeLanguages) {
     if (need[ln.i18nCode]) {
@@ -35,9 +20,9 @@ const getAllNeedTitles = (need: any, activeLanguages: LangueDoc[]) => {
     }
   }
   return titles;
-}
+};
 
-const getAllThemeTitles = (theme: Theme, activeLanguages: LangueDoc[], property: "name" | "short") => {
+const getAllThemeTitles = (theme: Theme, activeLanguages: Langue[], property: "name" | "short") => {
   const titles: Record<string, string> = {};
   for (const ln of activeLanguages) {
     if (theme[property][ln.i18nCode]) {
@@ -46,43 +31,41 @@ const getAllThemeTitles = (theme: Theme, activeLanguages: LangueDoc[], property:
     }
   }
   return titles;
-}
+};
 
 export const formatForAlgolia = (
   content: Dispositif | Need | Theme,
-  activeLanguages: LangueDoc[] | null = null,
+  activeLanguages: Langue[] | null = null,
   type: "dispositif" | "need" | "theme"
 ): AlgoliaObject => {
-
   if (type === "dispositif") {
     const dispositif = content as Dispositif;
+    const mainSponsor = dispositif.getMainSponsor();
     return {
       objectID: dispositif._id,
-      ...extractValuesPerLanguage(dispositif.titreInformatif, "title"),
-      ...extractValuesPerLanguage(dispositif.titreMarque, "titreMarque"),
-      ...extractValuesPerLanguage(dispositif.abstract, "abstract"),
-      theme: dispositif.theme?._id || "",
-      //@ts-ignore
-      secondaryThemes: (dispositif.secondaryThemes || []).map(t => t._id),
+      ...extractValuesPerLanguage(dispositif.translations, "content.titreInformatif", "title"),
+      ...extractValuesPerLanguage(dispositif.translations, "content.titreMarque", "titreMarque"),
+      ...extractValuesPerLanguage(dispositif.translations, "content.abstract", "abstract"),
+      theme: dispositif.theme || "",
+      secondaryThemes: (dispositif.secondaryThemes || []).map((t) => t.toString()),
       needs: dispositif.needs,
       nbVues: dispositif.nbVues,
       typeContenu: dispositif.typeContenu,
-      sponsorUrl: dispositif?.mainSponsor?.picture?.secure_url,
-      sponsorName: dispositif?.mainSponsor?.nom,
+      sponsorUrl: mainSponsor?.picture?.secure_url,
+      sponsorName: mainSponsor?.nom,
       priority: dispositif.typeContenu === "dispositif" ? 30 : 40,
       webOnly: dispositif.webOnly || false
     };
-
   } else if (type === "need") {
     const need = content as Need;
     return {
       objectID: need._id,
       ...getAllNeedTitles(need, activeLanguages),
-      theme: need.theme._id,
+      theme: need.theme.toString(),
       typeContenu: "besoin",
       priority: 20,
       webOnly: false
-    }
+    };
   }
 
   const theme = content as Theme;
@@ -94,5 +77,5 @@ export const formatForAlgolia = (
     typeContenu: "theme",
     priority: 10,
     webOnly: false
-  }
-}
+  };
+};

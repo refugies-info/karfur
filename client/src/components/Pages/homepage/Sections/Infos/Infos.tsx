@@ -25,7 +25,7 @@ const Infos = () => {
     const regex = /^\S+@\S+\.\S+$/;
     const isEmail = !!email.match(regex);
     if (isEmail) {
-      API.set_mail({ mail: email })
+      API.contacts({ email })
         .then(() => {
           Swal.fire({
             title: "Yay...",

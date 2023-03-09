@@ -1,0 +1,16 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+
+.container {
+  padding: u(1);
+  border-bottom: 1px solid $gray40b;
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  width: 1px;
+  height: u(10);
+  background: $gray40b;
+  margin: 0 u(2);
+}

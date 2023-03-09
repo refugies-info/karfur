@@ -1,12 +1,11 @@
 import { RootState } from "../rootReducer";
-import { SimplifiedDispositif } from "../../types/interface";
-import { ObjectId } from "mongodb";
+import { GetAllDispositifsResponse, Id } from "api-types";
 
 export const allDispositifsSelector = (
   state: RootState
-): SimplifiedDispositif[] => state.allDispositifs;
+): GetAllDispositifsResponse[] => state.allDispositifs;
 
-export const dispositifSelector = (dispositifId: ObjectId | null) => (
+export const dispositifSelector = (dispositifId: Id | null) => (
   state: RootState
 ) => {
   if (!dispositifId) return null;

@@ -1,0 +1,38 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/variables";
+
+.container {
+  border: 1px solid $gray40b;
+  position: relative;
+  background: white;
+}
+
+.content {
+  padding: u(2);
+  outline: none !important;
+
+  p {
+    margin-bottom: u(1);
+  }
+}
+
+.underline {
+  text-decoration: underline;
+}
+.italic {
+  font-style: italic;
+}
+.bold {
+  font-weight: bold;
+}
+.title {
+  font-size: 2rem;
+  margin-top: u(2);
+  margin-bottom: u(1);
+}
+.link {
+  text-decoration: underline !important;
+  color: $bleuCharte !important;
+}

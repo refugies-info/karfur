@@ -1,0 +1,22 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+
+.btn {
+  width: u(10);
+  height: u(10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: $gray40b;
+  }
+
+  &.selected {
+    background-color: $bgfocus;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+  }
+}

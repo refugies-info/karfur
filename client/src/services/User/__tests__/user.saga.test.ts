@@ -8,7 +8,7 @@ import { testUser } from "../../../__fixtures__/user";
 import { startLoading, LoadingStatusKey, finishLoading } from "../../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
 import mockRouter from "next-router-mock";
-import { ObjectId } from "mongodb";
+
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("[Saga] User", () => {
@@ -46,13 +46,13 @@ describe("[Saga] User", () => {
         .next()
         .call(API.isAuth)
         .next(true)
-        .call(API.get_user_info)
-        .next({ data: { data: { ...testUser, structures: [new ObjectId("testObjectId")] } } })
-        .put(setUserActionCreator({ ...testUser, structures: [new ObjectId("testObjectId")] }))
+        .call(API.getUser)
+        .next({ data: { data: { ...testUser, structures: ["testObjectId"] } } })
+        .put(setUserActionCreator({ ...testUser, structures: ["testObjectId"] }))
         .next()
         .put(
           fetchUserStructureActionCreator({
-            structureId: new ObjectId("746573744f626a6563744964"),
+            structureId: "746573744f626a6563744964",
             shouldRedirect: false
           })
         )
@@ -72,7 +72,7 @@ describe("[Saga] User", () => {
         .next()
         .call(API.isAuth)
         .next(true)
-        .call(API.get_user_info)
+        .call(API.getUser)
         .next({ data: { data: testUser } })
         .put(setUserActionCreator(testUser))
         .next()
@@ -93,13 +93,13 @@ describe("[Saga] User", () => {
         .next()
         .call(API.isAuth)
         .next(true)
-        .call(API.get_user_info)
-        .next({ data: { data: { ...testUser, structures: [new ObjectId("testObjectId")] } } })
-        .put(setUserActionCreator({ ...testUser, structures: [new ObjectId("testObjectId")] }))
+        .call(API.getUser)
+        .next({ data: { data: { ...testUser, structures: ["testObjectId"] } } })
+        .put(setUserActionCreator({ ...testUser, structures: ["testObjectId"] }))
         .next()
         .put(
           fetchUserStructureActionCreator({
-            structureId: new ObjectId("746573744f626a6563744964"),
+            structureId: "746573744f626a6563744964",
             shouldRedirect: false
           })
         )
@@ -123,14 +123,14 @@ describe("[Saga] User", () => {
         .isDone();
     });
 
-    it("should call api.isAuth, api.get_user_info and dispatch set user action with null payload if api.get_user_info throws an error", () => {
+    it("should call api.isAuth, api.getUser and dispatch set user action with null payload if api.getUser throws an error", () => {
       testSaga(fetchUser, { type: FETCH_USER, payload: undefined })
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER))
         .next()
         .call(API.isAuth)
         .next(true)
-        .call(API.get_user_info)
+        .call(API.getUser)
         .throw(new Error("test"))
         .put(setUserActionCreator(null))
         .next()

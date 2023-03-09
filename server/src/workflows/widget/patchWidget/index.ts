@@ -1,1 +1,1 @@
-export { patchWidget } from "./patchWidget";
+export * from "./patchWidget";

@@ -1,13 +1,19 @@
-import { ObjectId } from "mongoose";
-import { Log, LogDoc } from "../../schema/schemaLog";
+import { Log, LogModel } from "../../typegoose";
 
-export const findLogs = async (id: ObjectId) => {
-  return Log.find({ objectId: id })
-    .populate("dynamicId", "nom username titreInformatif langueFr")
-    .populate("author", "username")
-    .sort({ created_at: -1 });
-}
+export const findLogs = async (id: string) => {
+  return LogModel.find({ objectId: id })
+    .populate<{
+      dynamicId: {
+        nom?: string
+        username?: string
+        titreInformatif?: string
+        langueFr?: string
+      }
+    }>("dynamicId", "nom username titreInformatif langueFr")
+    .populate<{ author: { username: string } }>("author", "username")
+    .sort({ created_at: -1 })
+};
 
-export const createLog = async (log: LogDoc) => {
-  return new Log(log).save();
-}
+export const createLog = async (log: Log) => {
+  return new LogModel(log).save();
+};

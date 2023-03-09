@@ -1,12 +1,12 @@
 import React from "react";
-import { ObjectId } from "mongodb";
 import { Modal } from "reactstrap";
 import styles from "./NoGeolocModal.module.scss";
+import { Id } from "api-types";
 
 interface Props {
   show: boolean;
   toggle: () => void;
-  dispositifsWithoutGeoloc: ObjectId[];
+  dispositifsWithoutGeoloc: Id[];
 }
 
 export const NoGeolocModal = (props: Props) => (

@@ -62,7 +62,7 @@ interface Props {
   read: boolean;
   type: "reaction" | "annuaire" | "new content";
   title: string | undefined;
-  createdAt: Moment | undefined;
+  createdAt: Date | undefined;
   link: string | undefined;
   onClick: () => void;
   onReactionDeleteClick: () => void;
@@ -77,7 +77,7 @@ const getText = (type: "reaction" | "annuaire" | "new content") => {
   return "Une nouvelle fiche a été attribuée à votre structure";
 };
 
-const getFormattedDate = (createdAt: Moment) => {
+const getFormattedDate = (createdAt: Date) => {
   const nbDays = -moment(createdAt).diff(moment(), "days");
   if (nbDays === 0) return "Aujourd'hui";
   if (nbDays === 1) return "Hier";
@@ -125,7 +125,9 @@ export const Notification = (props: Props) => {
         {props.type === "reaction" && props.title && <DispositifTitle>{props.title}</DispositifTitle>}
       </RowContainer>
       <RowContainer>
-        {props.createdAt && <DateContainer read={props.read}>{getFormattedDate(props.createdAt)}</DateContainer>}
+        {props.createdAt && (
+          <DateContainer read={props.read}>{props.createdAt ? getFormattedDate(props.createdAt) : ""}</DateContainer>
+        )}
         {props.type === "annuaire" && (
           <>
             <FButton type="dark" className="me-2" name="folder-add-outline">

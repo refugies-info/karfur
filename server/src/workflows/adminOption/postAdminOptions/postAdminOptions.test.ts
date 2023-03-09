@@ -1,23 +1,24 @@
 // @ts-nocheck
 import postAdminOptions from "./postAdminOptions";
-import { getAdminOption, createAdminOption, updateAdminOption } from "../../../modules/adminOptions/adminOptions.repository";
 import {
-  checkIfUserIsAdmin,
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+  getAdminOption,
+  createAdminOption,
+  updateAdminOption
+} from "../../../modules/adminOptions/adminOptions.repository";
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 
 jest.mock("../../../modules/adminOptions/adminOptions.repository", () => ({
   getAdminOption: jest.fn(),
   createAdminOption: jest.fn(),
-  updateAdminOption: jest.fn(),
+  updateAdminOption: jest.fn()
 }));
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
-  checkIfUserIsAdmin: jest.fn().mockReturnValue(true),
+  checkIfUserIsAdmin: jest.fn().mockReturnValue(true)
 }));
 
-jest.mock("../../../schema/schemaAdminOption", () => ({
-  AdminOption: jest.fn().mockImplementation(w => w)
+jest.mock("../../../typegoose/AdminOptions", () => ({
+  AdminOptionsModel: jest.fn().mockImplementation((w) => w)
 }));
 
 type MockResponse = { json: any; status: any };
@@ -46,9 +47,9 @@ describe("postAdminOptions", () => {
   it("should return 403 if not admin", async () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
-      user: { roles: [] },
+      user: { roles: [] }
     };
     await postAdminOptions[1](req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -85,7 +86,7 @@ describe("postAdminOptions", () => {
       user: { roles: [] },
       userId: "id"
     };
-    getAdminOption.mockReturnValueOnce({key: "notifs", value: false});
+    getAdminOption.mockReturnValueOnce({ key: "notifs", value: false });
     await postAdminOptions[1](req, res);
     expect(updateAdminOption).toHaveBeenCalledWith("notifs", true);
     expect(res.status).toHaveBeenCalledWith(200);

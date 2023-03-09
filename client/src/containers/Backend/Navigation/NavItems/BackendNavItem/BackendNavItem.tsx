@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { getPath, PathNames } from "routes";
 import { userSelector } from "services/User/user.selectors";
 import history from "utils/backendHistory";
+import styles from "./BackendNavItem.module.scss";
 
 export interface BackendNavItem {
   access: string;
@@ -45,7 +46,7 @@ const BackendNavItem = ({ access, iconName, route, title, titlekey, onClick }: B
       onClick={_onClick}
       asLink={
         <Link href={route}>
-          <EVAIcon fill={enable ? "#000091" : "black"} name={iconName} className="me-2" />
+          <EVAIcon fill={enable ? styles.lightTextActionHighBlueFrance : "black"} name={iconName} className="me-2" />
           <span className="refugies-backend-header-menu-title">{_title}</span>
         </Link>
       }

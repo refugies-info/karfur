@@ -1,12 +1,12 @@
+import { GetNeedResponse } from "api-types";
 import { cls } from "lib/classname";
 import Image from "next/image";
 import React from "react";
-import { Need } from "types/interface";
 import EVAIcon from "../EVAIcon/EVAIcon";
 import styles from "./AdminNeedButton.module.scss";
 
 interface Props {
-  need: Need;
+  need: GetNeedResponse;
   onPress: () => void;
   onClickEdit?: () => void;
   selected: boolean;

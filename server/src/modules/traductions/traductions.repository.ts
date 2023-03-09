@@ -1,81 +1,51 @@
-import { Traduction } from "../../schema/schemaTraduction";
-import { ObjectId } from "mongoose";
+import { Languages } from "api-types";
+import { DispositifId, Traductions, TraductionsModel } from "../../typegoose";
 
-export const getTraductionsByLanguage = async (
-  langue: string,
-  neededFields: Record<string, number>
-) => await Traduction.find({ langueCible: langue }, neededFields);
+type TraductionsKeys = keyof Traductions;
+type TraductionsFieldsRequest = Partial<Record<TraductionsKeys, number>>;
 
-export const validateTradInDB = async (
-  tradId: ObjectId,
-  validatorId: ObjectId
-) =>
-  await Traduction.findOneAndUpdate(
-    { _id: tradId },
-    { status: "Validée", validatorId },
-    // @ts-ignore
-    { upsert: true, new: true }
-  );
+export const getTraductionsByLanguage = (language: string, neededFields: TraductionsFieldsRequest) =>
+  TraductionsModel.find({ language }, neededFields);
 
-export const deleteTradsInDB = async (
-  articleId: ObjectId,
-  langueCible: string
-) =>
-  // @ts-ignore
-  await Traduction.deleteMany({
-    articleId,
-    langueCible,
-    isExpert: { $ne: true },
+export const getTraductionsByLanguageAndDispositif = (
+  language: Languages,
+  dispositifId: DispositifId,
+  neededFields: TraductionsFieldsRequest = {},
+) => TraductionsModel.find({ language, dispositifId }, neededFields).populate("userId");
+
+export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages) =>
+  TraductionsModel.deleteMany({
+    dispositifId,
+    language,
   });
 
-export const getExpertTraductionByLanguage = async (
-  articleId: ObjectId,
-  langueCible: string
-) =>
-  await Traduction.find(
-    {
-      articleId,
-      langueCible,
-      isExpert: true,
-    },
-    {},
-    { sort: { updatedAt: -1 } }
-  );
-
-export const updateTradsWithARevoir = async (
-  articleId: ObjectId,
-  langueCible: string,
-  avancement: number
-) =>
-  await Traduction.updateMany(
-    { articleId, langueCible },
-    { status: "À revoir", avancement },
-    { upsert: false }
-  );
-
-export const updateTradInDB = async (_id: ObjectId, trad: any) =>
-  await Traduction.findOneAndUpdate({ _id }, trad, {
-    upsert: true,
-    // @ts-ignore
-    new: true,
-  });
-
-export const getPublishedTradIds = async (languei18nCode: string) =>
-  await Traduction.distinct("articleId", {
-    langueCible: languei18nCode,
+/**
+ * @deprecated TODO refactor : status not exist anymore
+ *
+ * @param language
+ * @returns
+ */
+export const getPublishedTradIds = (language: string) =>
+  TraductionsModel.distinct("dispositifId", {
+    language,
     status: "Validée",
   });
 
-export const getNbWordsTranslated = async () => Traduction.aggregate([
-  {
-    $match: {
-      status: "Validée",
+/**
+ * @deprecated TODO refactor : status not exist anymore
+ * @returns
+ */
+export const getNbWordsTranslated = () =>
+  TraductionsModel.aggregate([
+    {
+      $match: {
+        status: "Validée",
+      },
     },
-  },
-  {
-    $group: {
-      _id: null,
-      wordsCount: { $sum: "$nbMots" }
-    }
-  },
-]);
+    {
+      $group: {
+        _id: null,
+        wordsCount: { $sum: "$nbMots" },
+      },
+    },
+  ]);

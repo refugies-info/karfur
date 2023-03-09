@@ -1,1 +1,1 @@
-export { updateStructure } from "./updateStructure";
+export * from "./updateStructure";

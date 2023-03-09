@@ -2,8 +2,8 @@ import React from "react";
 import checkStyles from "scss/components/checkbox.module.scss";
 import { cls } from "lib/classname";
 import styles from "./AdminUsersComponent.module.scss";
-import { Language } from "types/interface";
 import { Button } from "reactstrap";
+import { GetLanguagesResponse } from "api-types";
 interface RoleProps {
   role: string;
 }
@@ -54,7 +54,7 @@ export const LangueDetail = (props: LangueDetailProps) => (
 );
 
 interface LangueButtonProps {
-  langue: Language;
+  langue: GetLanguagesResponse;
   onClick: () => void;
   valid?: boolean;
 }

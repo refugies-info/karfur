@@ -20,7 +20,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2018",
+    "target": "ES2022",
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "src",
     "incremental": true,
