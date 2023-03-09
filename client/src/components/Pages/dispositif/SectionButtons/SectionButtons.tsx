@@ -1,37 +1,59 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { InfoSection } from "api-types";
 import { cls } from "lib/classname";
+import { changeRate, pauseAudio, readAudio, resumeAudio } from "lib/readAudio";
+import { useLocale } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import { ReactionModal } from "components/Modals";
 import Tooltip from "components/UI/Tooltip";
 import Toast from "components/UI/Toast";
-import { getPlayIcon } from "./functions";
+import { getPlayIcon, getReadableText } from "./functions";
 import styles from "./SectionButtons.module.scss";
 
 interface Props {
   id: string;
+  content: InfoSection | string;
 }
 
 const SectionButtons = (props: Props) => {
+  const locale = useLocale();
+
   // tts
   const [showTtsButtons, setShowTtsButtons] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [rateSpeed, setRateSpeed] = useState(1);
+  const [rateSpeed, setRateSpeed] = useState<1 | 2>(1);
+
   const startReading = useCallback(() => {
-    setShowTtsButtons(true);
+    if (!showTtsButtons) {
+      // start
+      readAudio(getReadableText(props.content), locale, () => setIsPlaying(false));
+      setShowTtsButtons(true);
+    } else {
+      // resume
+      resumeAudio();
+    }
     setIsPlaying(true);
-  }, []);
+  }, [locale, props.content, showTtsButtons]);
+
   const pause = useCallback(() => {
+    pauseAudio();
     setIsPlaying(false);
   }, []);
+
   const stopReading = useCallback(() => {
+    pauseAudio();
     setShowTtsButtons(false);
     setIsPlaying(false);
   }, []);
+
   const toggleRateSpeed = useCallback(() => {
     setRateSpeed((r) => (r === 1 ? 2 : 1));
   }, []);
+  useEffect(() => {
+    changeRate(rateSpeed);
+  }, [rateSpeed]);
 
   // reactions
   const dispositif = useSelector(selectedDispositifSelector);

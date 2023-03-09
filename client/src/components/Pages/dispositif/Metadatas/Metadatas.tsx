@@ -123,12 +123,12 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
               typeContenu === ContentType.DISPOSITIF ? (
                 <>
                   {metadatas.location?.map((dep, i) => (
-                    <>
-                      <FRLink key={i} target="_blank" href={getLocationLink(dep)}>
+                    <span key={i}>
+                      <FRLink target="_blank" href={getLocationLink(dep)}>
                         {dep === "All" ? "France entière" : dep}
                       </FRLink>
                       <br />
-                    </>
+                    </span>
                   ))}
                 </>
               ) : null,

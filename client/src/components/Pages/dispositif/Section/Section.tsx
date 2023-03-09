@@ -24,7 +24,7 @@ const Section = ({ content, sectionKey, color100, color30, accordions, contentTy
       {content && (
         <>
           <RichText id={sectionKey} value={content} />
-          <SectionButtons id={sectionKey} />
+          <SectionButtons id={sectionKey} content={{ title: getSectionTitle(sectionKey), text: content }} />
         </>
       )}
       {accordions && (

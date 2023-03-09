@@ -67,7 +67,7 @@ const Accordions = ({ content, sectionKey, color100, color30, withNumber }: Prop
                     <RichText id={`${sectionKey}.${section[0]}.text`} value={section[1].text} />
                   </div>
                 </Collapse>
-                <SectionButtons id={`${sectionKey}.${section[0]}`} />
+                <SectionButtons id={`${sectionKey}.${section[0]}`} content={section[1]} />
               </div>
             );
           })}

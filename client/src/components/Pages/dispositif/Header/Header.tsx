@@ -48,7 +48,7 @@ const Header = (props: Props) => {
         >
           Partager la fiche
         </Button>
-        <SectionButtons id="titreInformatif" />
+        <SectionButtons id="titreInformatif" content={props.dispositif?.titreInformatif || ""} />
       </div>
     </header>
   );
