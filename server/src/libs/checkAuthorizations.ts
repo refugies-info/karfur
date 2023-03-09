@@ -11,16 +11,6 @@ export const checkIfUserIsAdmin = (user: User) => {
   return;
 };
 // TODO: delete
-export const checkIfUserIsAdminOrExpert = (user: User) => {
-  // user is admin for the platform
-  const isAdmin = user.isAdmin();
-  const isExpert = user.hasRole("ExpertTrad");
-
-  if (!isAdmin && !isExpert) throw new Error("NOT_AUTHORIZED");
-
-  return;
-};
-// TODO: delete
 export const checkRequestIsFromSite = (fromSite: boolean) => {
   if (!fromSite) throw new Error("NOT_FROM_SITE");
 

@@ -118,7 +118,7 @@ export interface GetStructureResponse {
   acronyme?: string;
   administrateur: Id;
   adresse?: string;
-  authorBelongs?: Boolean;
+  authorBelongs?: boolean;
   contact?: string;
   createur: Id;
   link?: string;
@@ -141,9 +141,9 @@ export interface GetStructureResponse {
   mailsPublic?: string[];
   adressPublic?: string;
   openingHours?: OpeningHours;
-  onlyWithRdv?: Boolean;
+  onlyWithRdv?: boolean;
   description?: string;
-  hasResponsibleSeenNotification?: Boolean;
+  hasResponsibleSeenNotification?: boolean;
   disposAssociesLocalisation?: string[];
   adminComments?: string;
   adminProgressionStatus?: string;

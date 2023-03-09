@@ -16,7 +16,6 @@ const ContributorCard = ({ user }: Props) => {
   const hasProfilePicture = !!user.picture?.secure_url;
   return (
     <div className={styles.container}>
-      {/* TODO: handle image style */}
       <Image
         src={user.picture?.secure_url || DefaultAvatar}
         width={88}

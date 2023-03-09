@@ -8,7 +8,6 @@ import { APIResponse } from "types/interface";
 import {
   AddContactRequest,
   AddSuggestionDispositifRequest,
-  // AddUserFavorite,
   AddUserFavoriteRequest,
   AddViewsRequest,
   AdminCommentsRequest,
@@ -17,7 +16,6 @@ import {
   CountDispositifsRequest,
   CreateDispositifRequest,
   DeleteTranslationsRequest,
-  // DeleteUserFavorite,
   DeleteUserFavoriteRequest,
   DispositifStatusRequest,
   DownloadAppRequest,
@@ -80,7 +78,6 @@ import {
   UpdatePositionsNeedResponse,
   UpdatePositionsRequest,
   UpdateUserRequest,
-  // UserFavoritesRequest,
   WidgetRequest,
 } from "api-types";
 
@@ -499,13 +496,7 @@ const API = {
       .then((_) => {
         const decoder = new TextDecoder("iso-8859-1");
         const text = decoder.decode(_.data);
-        console.log(text);
         return _.data;
-      })
-      .then((data) => {
-        var b = new Blob([data], { type: "audio/wav" });
-        var blobUrl = URL.createObjectURL(b);
-        return data;
       });
   },
   cancel_tts_subscription: () => cancel && cancel("Cancelled by user"),
@@ -521,38 +512,3 @@ const API = {
 };
 
 export default API;
-
-/*
-
-getTts: (body: TtsRequest): Promise<any> => {
-    const headers = getHeaders();
-    return fetch(burl + "/tts", { method: "POST", headers, body: JSON.stringify(body) })
-      .then((response) => {
-        if (response.body) {
-          return response.arrayBuffer();
-          // var reader = response.body.getReader();
-          // return reader.read().then((result) => {
-          //   return result.value;
-          // });
-          // return response.text();
-        }
-        throw new Error("whaaaatttt");
-      })
-      .then((buffer) => {
-        const decoder = new TextDecoder("iso-8859-1");
-        const text = decoder.decode(buffer);
-        console.log(text);
-        return text;
-      })
-      .then((data) => {
-        // var b = new Blob([data], { type: "audio/wav" });
-        // var blobUrl = URL.createObjectURL(b);
-        // const audio = new Audio(blobUrl);
-        // audio.play().catch((e) => {
-        //   console.error("bouya", e);
-        // });
-        // console.log(text);
-        return data;
-      });
-  },
-  */
