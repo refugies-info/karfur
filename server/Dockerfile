@@ -10,7 +10,6 @@ RUN npm ci
 
 # Add app source code
 ADD . /usr/src/app
-ADD ../api-types /usr/src
 
 # Build app
 RUN npm run tsc-prod
