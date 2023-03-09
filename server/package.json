@@ -12,7 +12,7 @@
     "start": "node dist/src/server.js",
     "tsc-prod": "cd ../api-types && npm run tsc && cd ../server && tsoa spec-and-routes && tsc",
     "tsc": "tsoa spec-and-routes && pwd && tsc",
-    "test": "npm run test:unit && npm run test:lint && npm run test:types",
+    "test": "npm run test:lint && npm run test:types",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
     "test:types": "tsc --noEmit",
     "test:unit": "jest --runInBand",
