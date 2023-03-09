@@ -33,3 +33,15 @@
   display: inline-flex;
   align-items: center;
 }
+
+.image {
+  width: u(22);
+  height: u(22);
+  flex-shrink: 0;
+
+  &.profile {
+    border: 4px solid white;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
