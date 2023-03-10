@@ -9,7 +9,7 @@ import styles from "./Section.module.scss";
 interface Props {
   accordions?: InfoSections;
   content?: string;
-  sectionKey: string;
+  sectionKey: "what" | "why" | "how" | "next";
   color100: string;
   color30: string;
   contentType?: ContentType;
@@ -21,13 +21,14 @@ const Section = ({ content, sectionKey, color100, color30, accordions, contentTy
       <p className={styles.title} style={{ color: color100 }}>
         {getSectionTitle(sectionKey)}
       </p>
-      {content && (
+      {sectionKey === "what" ? (
         <>
           <RichText id={sectionKey} value={content} />
-          <SectionButtons id={sectionKey} content={{ title: getSectionTitle(sectionKey), text: content }} />
+          {content && (
+            <SectionButtons id={sectionKey} content={{ title: getSectionTitle(sectionKey), text: content }} />
+          )}
         </>
-      )}
-      {accordions && (
+      ) : (
         <Accordions
           content={accordions}
           sectionKey={sectionKey}

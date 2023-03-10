@@ -8,9 +8,9 @@ import { useLocale } from "hooks";
 import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import { sharingOptions } from "../function";
-import TextInput from "../TextInput";
 import Breadcrumb from "../Breadcrumb";
 import SectionButtons from "../SectionButtons";
+import Title from "../Title";
 import styles from "./Header.module.scss";
 
 interface Props {
@@ -30,9 +30,7 @@ const Header = (props: Props) => {
     <header className={styles.container}>
       <Breadcrumb dispositif={props.dispositif} />
       <div className="position-relative">
-        <h1 className={styles.title}>
-          <TextInput id="titreInformatif" value={props.dispositif?.titreInformatif || ""} />
-        </h1>
+        <Title id="titreInformatif">{props.dispositif?.titreInformatif || ""}</Title>
         {props.dispositif?.date && (
           <Badge text={`Mise à jour ${moment(props.dispositif.date).fromNow()}`} type="success" isSmall hasIcon />
         )}

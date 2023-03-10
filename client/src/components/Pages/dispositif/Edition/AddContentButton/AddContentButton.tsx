@@ -13,7 +13,11 @@ interface Props {
 
 const AddContentButton = (props: Props) => {
   return (
-    <Button tertiary className={cls(styles.btn, props.size && styles[props.size], props.className)}>
+    <Button
+      tertiary
+      className={cls(styles.btn, props.size && styles[props.size], props.className)}
+      onClick={props.onClick}
+    >
       <span>{props.children}</span>
       <EVAIcon name="plus-circle-outline" size={24} fill={styles.lightTextMentionGrey} className={styles.icon} />
     </Button>

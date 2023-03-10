@@ -12,7 +12,10 @@ interface Props {
 
 const DispositifPage = (props: Props) => {
   const methods = useForm<CreateDispositifRequest>({ defaultValues: { typeContenu: ContentType.DISPOSITIF } });
-  const onSubmit = (data: CreateDispositifRequest) => submitCreateForm(data);
+  const onSubmit = (data: CreateDispositifRequest) => {
+    // submitCreateForm(data)
+    logger.info("submit", data);
+  };
 
   return (
     <PageContext.Provider value={{ mode: "edit" }}>

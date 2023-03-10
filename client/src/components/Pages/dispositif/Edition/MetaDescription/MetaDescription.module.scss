@@ -1,0 +1,15 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
+
+.container {
+  margin-bottom: u(20);
+}
+
+.title {
+  @include dsfr-text("h2");
+  font-weight: bold;
+  margin-bottom: u(6);
+}

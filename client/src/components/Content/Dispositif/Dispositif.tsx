@@ -16,7 +16,7 @@ import {
   LinkedThemes,
   ActionButtons,
 } from "components/Pages/dispositif";
-import { RightSidebarEdition, LeftSidebarEdition } from "components/Pages/dispositif/Edition";
+import { RightSidebarEdition, LeftSidebarEdition, MetaDescription } from "components/Pages/dispositif/Edition";
 import FRLink from "components/UI/FRLink";
 import RightSidebar from "./RightSidebar";
 import LeftSidebar from "./LeftSidebar";
@@ -48,6 +48,7 @@ const Dispositif = (props: Props) => {
   );
 
   const isViewMode = pageContext.mode === "view";
+  const isEditMode = pageContext.mode === "edit";
   return (
     <div className={styles.container} id="top">
       <SEO
@@ -91,6 +92,8 @@ const Dispositif = (props: Props) => {
               </FRLink>
             </>
           )}
+
+          {isEditMode && <MetaDescription color={sectionCommonProps.color100} content={dispositif?.abstract} />}
           <span className={styles.divider} />
           <Sponsors sponsors={dispositif?.sponsors || []} />
         </div>
