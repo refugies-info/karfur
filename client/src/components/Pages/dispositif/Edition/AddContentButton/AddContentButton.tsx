@@ -6,6 +6,7 @@ import styles from "./AddContentButton.module.scss";
 
 interface Props {
   children: string | React.ReactNode;
+  content?: string | React.ReactNode;
   onClick: () => void;
   size?: "md" | "lg" | "xl";
   className?: string;
@@ -15,11 +16,34 @@ const AddContentButton = (props: Props) => {
   return (
     <Button
       tertiary
-      className={cls(styles.btn, props.size && styles[props.size], props.className)}
+      className={cls(
+        styles.btn,
+        !!props.content && styles.has_content,
+        props.size && styles[props.size],
+        props.className,
+      )}
       onClick={props.onClick}
     >
-      <span>{props.children}</span>
-      <EVAIcon name="plus-circle-outline" size={24} fill={styles.lightTextMentionGrey} className={styles.icon} />
+      {props.content ? (
+        <>
+          {props.content}
+          <EVAIcon
+            name="checkmark-circle-2"
+            fill={styles.lightPrimaryBlueFranceSun}
+            className={cls(styles.icon, styles.ok)}
+          />
+          <EVAIcon
+            name="edit-2"
+            fill={styles.lightTextActionHighBlueFrance}
+            className={cls(styles.icon, styles.edit)}
+          />
+        </>
+      ) : (
+        <>
+          <span>{props.children}</span>
+          <EVAIcon name="plus-circle-outline" size={24} fill={styles.lightTextMentionGrey} className={styles.icon} />
+        </>
+      )}
     </Button>
   );
 };

@@ -4,3 +4,9 @@
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/rtl";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/input";
+
+.input {
+  @include baseInput();
+  font-weight: bold;
+}

@@ -12,7 +12,7 @@
     width: 100%;
     padding: u(4);
     border-radius: u(2);
-    border: none;
+    border: 1px solid transparent;
     text-align: left;
     display: flex;
     align-items: center;
@@ -25,6 +25,38 @@
         svg {
           width: 24px !important;
           height: 24px !important;
+        }
+      }
+    }
+
+    &.has_content {
+      position: relative;
+      background: transparent;
+      box-shadow: none;
+      color: $lightTextTitleGrey;
+      border: 1px solid $lightBorderDefaultGrey;
+      padding-right: u(10);
+
+      .icon {
+        position: absolute;
+        top: u(7);
+        right: u(4);
+
+        &.edit {
+          display: none;
+        }
+      }
+
+      &:hover {
+        background-color: $lightBackgroundContrastGrey;
+
+        .icon {
+          &.edit {
+            display: block;
+          }
+          &.ok {
+            display: none;
+          }
         }
       }
     }
