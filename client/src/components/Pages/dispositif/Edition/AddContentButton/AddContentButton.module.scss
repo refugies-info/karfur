@@ -1,0 +1,45 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+
+.btn {
+  &:global(.fr-btn) {
+    background-color: white;
+    box-shadow: 0 2px 6px 0 #00001229;
+    color: $lightTextDisabledGrey;
+    width: 100%;
+    padding: u(4);
+    border-radius: u(2);
+    border: none;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .icon {
+      i {
+        line-height: 24px !important;
+        height: 24px !important;
+        svg {
+          width: 24px !important;
+          height: 24px !important;
+        }
+      }
+    }
+
+    &.md {
+      @include dsfr-text("h6");
+      font-weight: bold;
+    }
+    &.lg {
+      @include dsfr-text("chapo");
+      font-weight: bold;
+    }
+    &.xl {
+      @include dsfr-text("h1");
+      font-weight: bold;
+    }
+  }
+}

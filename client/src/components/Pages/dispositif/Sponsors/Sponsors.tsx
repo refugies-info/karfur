@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { ContentStructure, GetDispositifResponse, Sponsor } from "api-types";
+import PageContext from "utils/pageContext";
 import styles from "./Sponsors.module.scss";
 
 interface Props {
@@ -8,11 +9,15 @@ interface Props {
 }
 
 const Sponsors = (props: Props) => {
-  return props.sponsors && props.sponsors.length > 0 ? (
+  const pageContext = useContext(PageContext);
+  const hasSponsors = props.sponsors && props.sponsors.length > 0;
+  const isEditMode = pageContext.mode === "edit";
+
+  return hasSponsors || isEditMode ? (
     <div className={styles.container}>
       <span className={styles.label}>En partenariat avec</span>
       <div className={styles.sponsors}>
-        {props.sponsors?.map((sponsor, i) => {
+        {(props.sponsors || [])?.map((sponsor, i) => {
           const image =
             (sponsor as Sponsor).logo?.secure_url || (sponsor as ContentStructure).picture?.secure_url || "";
           const name = (sponsor as Sponsor).name || (sponsor as ContentStructure).nom || "";

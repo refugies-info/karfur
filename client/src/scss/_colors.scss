@@ -50,6 +50,8 @@ $lightTextTitleGrey: #161616;
 $lightBorderDefaultBlueFrance: #6a6af4;
 $darkBackgroundActionHighBlueFrance: #8585f6;
 $lightBackgroundActionLowBlueFrance: #e3e3fd;
+$lightBackgroundContrastInfo: #e8edff;
+$lightBorderPlainInfo: #0063cb;
 $lightTextDefaultSuccess: #18753c;
 $lightPrimaryBlueFranceSun: #2323ff;
 $lightTextActionHighBlueFrance: #000091;
@@ -108,4 +110,6 @@ $darkBorderPlainError: #ff5655;
   darkBackgroundActionHighBlueFrance: $darkBackgroundActionHighBlueFrance;
   darkBorderPlainError: $darkBorderPlainError;
   lightPrimaryBlueFranceSun: $lightPrimaryBlueFranceSun;
+  lightBackgroundContrastInfo: $lightBackgroundContrastInfo;
+  lightBorderPlainInfo: $lightBorderPlainInfo;
 }

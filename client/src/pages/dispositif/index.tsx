@@ -17,10 +17,12 @@ const DispositifPage = (props: Props) => {
   return (
     <PageContext.Provider value={{ mode: "edit" }}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <Dispositif typeContenu={ContentType.DISPOSITIF} />
-          <button type="submit">Enregistrer</button>
-        </form>
+        <div className="w-100">
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <Dispositif typeContenu={ContentType.DISPOSITIF} />
+            <button type="submit">Enregistrer</button>
+          </form>
+        </div>
       </FormProvider>
     </PageContext.Provider>
   );
