@@ -16,7 +16,12 @@ import {
   LinkedThemes,
   ActionButtons,
 } from "components/Pages/dispositif";
-import { RightSidebarEdition, LeftSidebarEdition, MetaDescription } from "components/Pages/dispositif/Edition";
+import {
+  RightSidebarEdition,
+  LeftSidebarEdition,
+  MetaDescription,
+  CustomNavbar,
+} from "components/Pages/dispositif/Edition";
 import FRLink from "components/UI/FRLink";
 import RightSidebar from "./RightSidebar";
 import LeftSidebar from "./LeftSidebar";
@@ -56,6 +61,7 @@ const Dispositif = (props: Props) => {
         description={dispositif?.abstract || ""}
         image={theme?.shareImage.secure_url}
       />
+      {isEditMode && <CustomNavbar />}
       <div
         className={styles.banner}
         style={theme?.banner.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}}

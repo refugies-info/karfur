@@ -20,7 +20,7 @@ const help = {
 };
 
 const ModalLocation = (props: Props) => {
-  const [selected, setSelected] = useState<"all" | "departments" | "online" | "none" | null>(null);
+  const [selected, setSelected] = useState<"all" | "departments" | "online" | null | undefined>(undefined);
 
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Où votre action est-elle accessible ?">
@@ -56,8 +56,8 @@ const ModalLocation = (props: Props) => {
         <ChoiceButton
           text="Cette information n’est pas pertinente pour mon action"
           type="radio"
-          selected={selected === "none"}
-          onSelect={() => setSelected("none")}
+          selected={selected === null}
+          onSelect={() => setSelected(null)}
           size="xs"
           className="mb-6"
         />

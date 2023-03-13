@@ -21,13 +21,13 @@ const help = {
 
 const ModalPrice = (props: Props) => {
   const formContext = useFormContext();
-  const [selected, setSelected] = useState<"free" | "pay" | "none" | null>(null);
+  const [selected, setSelected] = useState<"free" | "pay" | null | undefined>(undefined);
 
   useEffect(() => {
-    if (selected) {
+    if (selected !== undefined) {
       const newPrice: Metadatas["price"] =
-        selected === "none"
-          ? undefined
+        selected === null
+          ? null
           : {
               value: selected === "free" ? 0 : 1,
             };
@@ -61,8 +61,8 @@ const ModalPrice = (props: Props) => {
         <ChoiceButton
           text="Cette information n’est pas pertinente pour mon action"
           type="radio"
-          selected={selected === "none"}
-          onSelect={() => setSelected("none")}
+          selected={selected === null}
+          onSelect={() => setSelected(null)}
           size="xs"
         />
 

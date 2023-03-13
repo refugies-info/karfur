@@ -122,22 +122,22 @@ type publicType = "refugee" | "all";
 type justificatifType = "diplome" | "titre sejour" | "domicile";
 
 export interface Metadatas {
-  location?: string[];
-  frenchLevel?: frenchLevel[];
-  important?: string;
+  location?: string[] | null;
+  frenchLevel?: frenchLevel[] | null;
+  important?: string | null;
   age?: {
     type: ageType;
     ages: number[];
-  };
+  } | null;
   price?: {
     value: number;
     details?: priceDetails | null;
-  };
-  duration?: string;
-  public?: publicType;
-  titreSejourRequired?: boolean;
-  acteNaissanceRequired?: boolean;
-  justificatif?: justificatifType;
+  } | null;
+  duration?: string | null;
+  public?: publicType | null;
+  titreSejourRequired?: boolean | null;
+  acteNaissanceRequired?: boolean | null;
+  justificatif?: justificatifType | null;
 }
 
 export interface SimpleDispositif {
