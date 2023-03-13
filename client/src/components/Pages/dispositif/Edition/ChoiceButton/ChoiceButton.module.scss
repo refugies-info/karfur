@@ -1,0 +1,46 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/input";
+
+.choice {
+  padding: u(5) u(6);
+  display: flex;
+  flex-wrap: nowrap;
+  border: 1px solid $lightBorderDefaultGrey;
+  border-radius: u(2);
+  align-items: center;
+  width: 100%;
+
+  &.xs {
+    padding-top: u(3);
+    padding-bottom: u(3);
+  }
+  &.sm {
+    padding-top: u(4);
+    padding-bottom: u(4);
+  }
+
+  .text {
+    text-align: left;
+    flex: auto;
+  }
+
+  &:hover {
+    background: $lightBackgroundElevationAlt;
+  }
+
+  &.selected {
+    background: $lightBackgroundActionLowBlueFrance;
+    border-color: $lightBackgroundActionLowBlueFrance;
+    color: $lightTextActionHighBlueFrance;
+
+    &:hover {
+      border-color: $lightTextActionHighBlueFrance;
+      background: $lightBackgroundActionLowBlueFrance;
+    }
+  }
+}
