@@ -2,15 +2,16 @@
 @import "src/scss/mixins/unit";
 
 .container {
-  padding: u(1);
-  border-bottom: 1px solid $gray40b;
+  padding: u(2);
+  border-bottom: 1px solid $lightBorderDefaultGrey;
   display: flex;
   align-items: center;
+  gap: 2px;
 }
 
 .divider {
   width: 1px;
-  height: u(10);
-  background: $gray40b;
-  margin: 0 u(2);
+  height: u(8);
+  background: $lightBorderDefaultGrey;
+  margin: 0 6px;
 }

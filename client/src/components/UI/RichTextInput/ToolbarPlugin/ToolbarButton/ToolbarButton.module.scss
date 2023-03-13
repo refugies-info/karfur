@@ -2,18 +2,23 @@
 @import "src/scss/mixins/unit";
 
 .btn {
-  width: u(10);
-  height: u(10);
+  width: u(8);
+  height: u(8);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 6px;
 
   &:hover {
     background-color: $gray40b;
   }
 
   &.selected {
-    background-color: $bgfocus;
+    background-color: $lightBackgroundActionLowBlueFrance;
+
+    &:hover {
+      background-color: darken($lightBackgroundActionLowBlueFrance, 5%);
+    }
   }
 
   &:disabled {

@@ -4,13 +4,14 @@
 @import "src/scss/variables";
 
 .container {
-  border: 1px solid $gray40b;
+  border: 1px solid $lightTextTitleGrey;
   position: relative;
   background: white;
+  border-radius: u(2);
 }
 
 .content {
-  padding: u(2);
+  padding: u(6);
   outline: none !important;
 
   p {
