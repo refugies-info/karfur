@@ -1,5 +1,6 @@
-import Button from "components/UI/Button";
 import React, { useState } from "react";
+import { useFormContext } from "react-hook-form";
+import Button from "components/UI/Button";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
 import imgCb from "assets/dispositif/form-icons/conditions-cb.svg";
@@ -23,9 +24,18 @@ const help = {
 type Condition = "cb" | "driver" | "ofpra" | "pole-emploi" | "tse" | "ofii";
 
 const ModalConditions = (props: Props) => {
+  const formContext = useFormContext();
   const [selected, setSelected] = useState<Condition[] | null>([]);
   const toggleItem = (item: Condition) =>
     setSelected((items) => (items?.includes(item) ? items.filter((i) => i !== item) : [...(items || []), item]));
+
+  const validate = () => {
+    if (selected !== undefined) {
+      // TODO: update conditions metadatas schema and set value
+      formContext.setValue("metadatas.conditions", {});
+    }
+    props.toggle();
+  };
 
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Faut-il remplir des conditions ?">
@@ -97,7 +107,7 @@ const ModalConditions = (props: Props) => {
         </div>
 
         <div className="text-end">
-          <Button icon="checkmark-circle-2" iconPlacement="end">
+          <Button icon="checkmark-circle-2" iconPlacement="end" onClick={validate}>
             Valider
           </Button>
         </div>

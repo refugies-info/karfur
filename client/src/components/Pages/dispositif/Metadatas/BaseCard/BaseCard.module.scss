@@ -11,9 +11,19 @@
   padding: u(4);
   margin-bottom: u(6);
   border-radius: u(2);
+  position: relative;
 
   @include media-max("lg-limit") {
     background: $lightBackgroundContrastGrey;
+  }
+
+  &.btn {
+    text-align: left;
+    width: 100%;
+
+    &:hover {
+      background: $lightBorderDefaultGrey;
+    }
   }
 
   .title {
@@ -25,6 +35,12 @@
       @include dsfr-text("large");
     }
   }
+}
+
+.status {
+  position: absolute;
+  top: u(4);
+  right: u(3);
 }
 
 .item {
