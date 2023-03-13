@@ -30,7 +30,7 @@ const Header = (props: Props) => {
     <header className={styles.container}>
       <Breadcrumb dispositif={props.dispositif} />
       <div className="position-relative">
-        <Title id="titreInformatif">{props.dispositif?.titreInformatif || ""}</Title>
+        <Title>{props.dispositif?.titreInformatif || ""}</Title>
         {props.dispositif?.date && (
           <Badge text={`Mise à jour ${moment(props.dispositif.date).fromNow()}`} type="success" isSmall hasIcon />
         )}

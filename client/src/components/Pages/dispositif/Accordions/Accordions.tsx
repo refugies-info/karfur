@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Collapse } from "reactstrap";
+import { Button as RSButton, Collapse } from "reactstrap";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { InfoSections } from "api-types";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import Button from "components/UI/Button";
 import { AccordionItemEdit } from "../Edition";
 import SectionButtons from "../SectionButtons";
 import Text from "../Text";
@@ -16,7 +17,7 @@ interface ColoredButtonProps {
   background: string;
 }
 
-const ColoredButton = styled(Button)<ColoredButtonProps>`
+const ColoredButton = styled(RSButton)<ColoredButtonProps>`
   :hover,
   &.${styles.open} {
     background: ${(props) => props.background} !important;
@@ -55,10 +56,25 @@ const Accordions = ({ content, sectionKey, color100, color30, withNumber }: Prop
     }
   }, [pageContext.mode, content, currentContent]);
 
+  const addElement = () => {
+    const key = uuidv4();
+    const newContent: InfoSections = {
+      ...currentContent,
+      [key]: { title: "", text: "" },
+    };
+    setCurrentContent(newContent);
+  };
+  const deleteElement = (key: string) => {
+    const newContent: InfoSections = { ...currentContent };
+    delete newContent[key];
+    setCurrentContent(newContent);
+  };
+
   return (
     <div className={styles.container}>
       {Object.entries(currentContent).map((section, i) => {
         const isItemOpen = isOpen(i);
+
         return pageContext.mode === "view" ? (
           <div key={section[0]} className={styles.accordion}>
             <ColoredButton
@@ -87,9 +103,19 @@ const Accordions = ({ content, sectionKey, color100, color30, withNumber }: Prop
             <SectionButtons id={`${sectionKey}.${section[0]}`} content={section[1]} />
           </div>
         ) : (
-          <AccordionItemEdit key={section[0]} id={`${sectionKey}.${section[0]}`} section={section} />
+          <AccordionItemEdit
+            key={section[0]}
+            id={`${sectionKey}.${section[0]}`}
+            onDelete={Object.keys(currentContent).length > 2 ? () => deleteElement(section[0]) : undefined}
+          />
         );
       })}
+
+      {pageContext.mode === "edit" && (
+        <Button icon="plus-circle-outline" secondary onClick={addElement}>
+          Ajouter un argument
+        </Button>
+      )}
     </div>
   );
 };

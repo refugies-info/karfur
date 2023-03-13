@@ -8,6 +8,7 @@ interface Props {
   children: string | React.ReactNode;
   content?: string | React.ReactNode;
   onClick: () => void;
+  onDelete?: () => void;
   size?: "md" | "lg" | "xl";
   className?: string;
 }
@@ -26,17 +27,38 @@ const AddContentButton = (props: Props) => {
     >
       {props.content ? (
         <>
-          {props.content}
-          <EVAIcon
-            name="checkmark-circle-2"
-            fill={styles.lightPrimaryBlueFranceSun}
-            className={cls(styles.icon, styles.ok)}
-          />
-          <EVAIcon
-            name="edit-2"
-            fill={styles.lightTextActionHighBlueFrance}
-            className={cls(styles.icon, styles.edit)}
-          />
+          {typeof props.content === "string" ? (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: props.content,
+              }}
+            />
+          ) : (
+            props.content
+          )}
+          <div className={styles.icons}>
+            <EVAIcon
+              name="checkmark-circle-2"
+              fill={styles.lightPrimaryBlueFranceSun}
+              className={cls(styles.icon, styles.ok)}
+            />
+            <EVAIcon
+              name="edit-2"
+              fill={styles.lightTextActionHighBlueFrance}
+              className={cls(styles.icon, styles.edit)}
+            />
+            {props.onDelete && (
+              <EVAIcon
+                name="trash-2-outline"
+                fill={styles.lightTextActionHighBlueFrance}
+                className={cls(styles.icon, styles.delete)}
+                onClick={(e: any) => {
+                  e.stopPropagation();
+                  props.onDelete && props.onDelete();
+                }}
+              />
+            )}
+          </div>
         </>
       ) : (
         <>

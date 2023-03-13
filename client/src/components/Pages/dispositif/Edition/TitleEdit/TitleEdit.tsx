@@ -5,19 +5,13 @@ import styles from "./TitleEdit.module.scss";
 
 interface Props {
   id: string;
-  value: string | undefined;
 }
 
 const TitleEdit = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
   const formContext = useFormContext();
-
-  const activateField = useCallback(() => {
-    setIsActive(true);
-    // TODO: set focus
-  }, []);
-
-  const onFocusOut = () => setIsActive(false);
+  const activateField = useCallback(() => setIsActive(true), []);
+  const onFocusOut = useCallback(() => setIsActive(false), []);
 
   return (
     <div>
@@ -27,7 +21,7 @@ const TitleEdit = (props: Props) => {
         </AddContentButton>
       )}
       {isActive && (
-        <input type="text" {...formContext.register(props.id)} onBlur={onFocusOut} className={styles.input} />
+        <input type="text" {...formContext.register(props.id)} onBlur={onFocusOut} className={styles.input} autoFocus />
       )}
     </div>
   );

@@ -3,6 +3,7 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/icons";
 
 .btn {
   &:global(.fr-btn) {
@@ -19,14 +20,7 @@
     justify-content: space-between;
 
     .icon {
-      i {
-        line-height: 24px !important;
-        height: 24px !important;
-        svg {
-          width: 24px !important;
-          height: 24px !important;
-        }
-      }
+      @include iconSize(24px);
     }
 
     &.has_content {
@@ -36,25 +30,39 @@
       color: $lightTextTitleGrey;
       border: 1px solid $lightBorderDefaultGrey;
       padding-right: u(10);
+      align-items: flex-start;
+      min-height: 80px;
 
-      .icon {
+      .icons {
         position: absolute;
-        top: u(7);
-        right: u(4);
+        top: u(4);
+        right: u(3);
+        width: u(8);
+        text-align: center;
 
-        &.edit {
+        .ok {
+          display: block;
+        }
+        .edit {
           display: none;
+        }
+        .delete {
+          @include iconSize(16px);
+          padding: u(2);
+          border-radius: u(2);
+          margin-top: u(2);
+          border: 1px solid $lightBorderDefaultGrey;
         }
       }
 
       &:hover {
         background-color: $lightBackgroundContrastGrey;
 
-        .icon {
-          &.edit {
+        .icons {
+          .edit {
             display: block;
           }
-          &.ok {
+          .ok {
             display: none;
           }
         }

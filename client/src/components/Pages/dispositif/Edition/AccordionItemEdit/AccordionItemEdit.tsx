@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import dynamic from "next/dynamic";
-import { InfoSection } from "api-types";
 import Button from "components/UI/Button";
 import AddContentButton from "../AddContentButton";
 import Text from "../../Text";
@@ -11,16 +10,16 @@ const RichTextInput = dynamic(() => import("components/UI/RichTextInput"), { ssr
 
 interface Props {
   id: string;
-  section: [string, InfoSection];
+  onDelete?: () => void;
 }
 
 const AccordionItemEdit = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const formContext = useFormContext();
+  const { unregister, register, getValues } = useFormContext();
 
   const getContent = () => {
-    const title = formContext.getValues(`${props.id}.title`);
-    const text = formContext.getValues(`${props.id}.text`);
+    const title = getValues(`${props.id}.title`);
+    const text = getValues(`${props.id}.text`);
     if (!title && !text) return;
 
     return (
@@ -35,10 +34,21 @@ const AccordionItemEdit = (props: Props) => {
     );
   };
 
+  // when item unmounted, delete it from form values
+  useEffect(() => {
+    return () => unregister(props.id);
+  }, [unregister, props.id]);
+
   return (
     <div>
       {!isActive && (
-        <AddContentButton onClick={() => setIsActive(true)} size="lg" className="mb-6" content={getContent()}>
+        <AddContentButton
+          onClick={() => setIsActive(true)}
+          size="lg"
+          className="mb-6"
+          content={getContent()}
+          onDelete={props.onDelete}
+        >
           Argument
         </AddContentButton>
       )}
@@ -48,10 +58,10 @@ const AccordionItemEdit = (props: Props) => {
             <input
               type="text"
               placeholder="Titre de l'argument"
-              {...formContext.register(`${props.id}.title`)}
+              {...register(`${props.id}.title`)}
               className={styles.input}
             />
-            <RichTextInput value={props.section[1].text || ""} id={`${props.id}.text`} />
+            <RichTextInput value={getValues(`${props.id}.text`)} id={`${props.id}.text`} />
           </div>
           <div className="text-end mb-6">
             <Button icon="checkmark-circle-2" onClick={() => setIsActive(false)}>

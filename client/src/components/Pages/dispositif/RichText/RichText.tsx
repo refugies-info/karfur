@@ -19,7 +19,7 @@ const RichText = (props: Props) => {
           {props.value || ""}
         </Text>
       ) : (
-        <RichTextEdit value={props.value} id={props.id} />
+        <RichTextEdit id={props.id} />
       )}
     </div>
   );
