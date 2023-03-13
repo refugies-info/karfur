@@ -15,26 +15,27 @@ import {
 
 // dispositifs
 import {
-  GetDispositifsRequest,
-  GetStatisticsRequest,
-  CountDispositifsRequest,
-  AdminCommentsRequest,
+  AddSuggestionDispositifRequest,
   AddViewsRequest,
-  MainSponsorRequest,
-  DispositifStatusRequest,
-  UpdateDispositifPropertiesRequest,
-  UpdateDispositifRequest,
+  AdminCommentsRequest,
+  CountDispositifsRequest,
   CreateDispositifRequest,
-  GetDispositifsResponse,
-  PostDispositifsResponse,
-  GetDispositifResponse,
-  GetStatisticsResponse,
+  DispositifStatusRequest,
   GetAllDispositifsResponse,
   GetCountDispositifsResponse,
-  GetUserContributionsResponse,
-  AddSuggestionDispositifRequest,
-  ReadSuggestionDispositifRequest,
+  GetDispositifResponse,
+  GetDispositifsRequest,
+  GetDispositifsResponse,
   GetRegionStatisticsResponse,
+  GetStatisticsRequest,
+  GetStatisticsResponse,
+  GetUserContributionsResponse,
+  MainSponsorRequest,
+  PostDispositifsResponse,
+  ReadSuggestionDispositifRequest,
+  UpdateDispositifPropertiesRequest,
+  UpdateDispositifRequest,
+  ViewsType,
 } from "./modules/dispositif";
 
 // images
@@ -220,3 +221,5 @@ export type {
   PostWidgetResponse,
   PatchWidgetResponse,
 };
+
+export { ViewsType };
