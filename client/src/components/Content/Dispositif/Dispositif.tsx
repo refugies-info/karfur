@@ -72,6 +72,7 @@ const Dispositif = (props: Props) => {
           {isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
           {isViewMode ? <LeftSidebar /> : <LeftSidebarEdition />}
         </div>
+
         <div className={styles.main} id="anchor-what">
           {!isTablet && <Header dispositif={dispositif} typeContenu={typeContenu} />}
           <Section sectionKey="what" content={dispositif?.what} {...sectionCommonProps} />
@@ -103,6 +104,7 @@ const Dispositif = (props: Props) => {
           <span className={styles.divider} />
           <Sponsors sponsors={dispositif?.sponsors || []} />
         </div>
+
         <div className={styles.right}>{isViewMode ? <RightSidebar /> : <RightSidebarEdition />}</div>
       </div>
 

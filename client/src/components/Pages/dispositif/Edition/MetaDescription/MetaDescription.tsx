@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AddContentButton from "../AddContentButton";
+import { ModalAbstract } from "../Modals";
 import styles from "./MetaDescription.module.scss";
 
 interface Props {
@@ -8,14 +9,15 @@ interface Props {
 }
 
 const MetaDescription = ({ content, color }: Props) => {
-  const [isActive, setIsActive] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <section className={styles.container}>
       <p className={styles.title} style={{ color }}>
         Résumé
       </p>
-      {!isActive && <AddContentButton onClick={() => setIsActive(true)}>Résumé en 1 phrase</AddContentButton>}
+      <AddContentButton onClick={() => setShowModal(true)}>Résumé en 1 phrase</AddContentButton>
+      <ModalAbstract show={showModal} toggle={() => setShowModal((o) => !o)} />
     </section>
   );
 };

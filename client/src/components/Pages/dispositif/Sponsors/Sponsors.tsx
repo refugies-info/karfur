@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import { ContentStructure, GetDispositifResponse, Sponsor } from "api-types";
 import PageContext from "utils/pageContext";
+import Button from "components/UI/Button";
 import styles from "./Sponsors.module.scss";
 
 interface Props {
@@ -29,6 +30,12 @@ const Sponsors = (props: Props) => {
           );
         })}
       </div>
+
+      {isEditMode && (
+        <Button icon="plus-circle-outline" secondary className={styles.add}>
+          Ajouter un partenaire
+        </Button>
+      )}
     </div>
   ) : null;
 };
