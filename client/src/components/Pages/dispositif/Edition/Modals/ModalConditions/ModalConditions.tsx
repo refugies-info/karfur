@@ -91,7 +91,7 @@ const ModalConditions = (props: Props) => {
             type="radio"
             selected={selected === null}
             onSelect={() => setSelected(null)}
-            size="xs"
+            size="lg"
             className="my-6"
           />
         </div>

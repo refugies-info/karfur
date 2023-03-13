@@ -7,21 +7,33 @@
 @import "src/scss/mixins/input";
 
 .choice {
-  padding: u(5) u(6);
+  padding: u(2);
   display: flex;
   flex-wrap: nowrap;
-  border: 1px solid $lightBorderDefaultGrey;
   border-radius: u(2);
   align-items: center;
   width: 100%;
 
-  &.xs {
-    padding-top: u(3);
-    padding-bottom: u(3);
+  &.has_image,
+  &.lg {
+    border: 1px solid $lightBorderDefaultGrey;
+    padding-right: u(6);
+    padding-left: u(6);
   }
-  &.sm {
+
+  &.has_image {
     padding-top: u(4);
     padding-bottom: u(4);
+
+    &.sm {
+      padding-top: u(1);
+      padding-bottom: u(1);
+    }
+  }
+
+  &.lg {
+    padding-top: u(3);
+    padding-bottom: u(3);
   }
 
   .text {
@@ -39,8 +51,12 @@
     color: $lightTextActionHighBlueFrance;
 
     &:hover {
-      border-color: $lightTextActionHighBlueFrance;
       background: $lightBackgroundActionLowBlueFrance;
+
+      &.has_image,
+      &.lg {
+        border-color: $lightTextActionHighBlueFrance;
+      }
     }
   }
 }

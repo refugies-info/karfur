@@ -9,7 +9,6 @@
   .modal_content {
     background: white;
     border: none;
-    overflow: hidden;
     box-shadow: 0 2px 6px 0 #00001229;
     border-radius: u(2);
   }
@@ -24,6 +23,7 @@
   color: $lightBorderPlainInfo;
   background-color: $lightBackgroundContrastInfo;
   padding: u(6);
+  border-radius: u(2) 0 0 u(2);
 
   .title {
     @include dsfr-text("large");

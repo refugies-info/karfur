@@ -10,7 +10,7 @@ interface Props {
   onSelect: () => void;
   image?: any;
   type: "radio" | "checkbox";
-  size?: "xs" | "sm";
+  size?: "lg" | "sm";
   className?: string;
 }
 
@@ -25,6 +25,7 @@ const ChoiceButton = (props: Props) => {
       className={cls(
         styles.choice,
         props.size && styles[props.size],
+        !!props.image && styles.has_image,
         props.selected && styles.selected,
         props.className,
       )}

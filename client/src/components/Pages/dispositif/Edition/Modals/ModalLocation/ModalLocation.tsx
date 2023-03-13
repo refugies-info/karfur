@@ -58,7 +58,7 @@ const ModalLocation = (props: Props) => {
           type="radio"
           selected={selected === null}
           onSelect={() => setSelected(null)}
-          size="xs"
+          size="lg"
           className="mb-6"
         />
 
