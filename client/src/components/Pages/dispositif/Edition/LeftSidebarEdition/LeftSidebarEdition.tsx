@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { ModalPrice } from "../Modals";
 import AddContentButton from "../AddContentButton";
 import styles from "./LeftSidebarEdition.module.scss";
 
 const LeftSidebarEdition = () => {
+  const [showModalPrice, setShowModalPrice] = useState(false);
+  const toggleModalPrice = useCallback(() => setShowModalPrice((o) => !o), []);
+
   return (
     <div>
       <AddContentButton onClick={() => {}} className="mb-6" size="md">
@@ -18,7 +22,7 @@ const LeftSidebarEdition = () => {
       <AddContentButton onClick={() => {}} className="mb-6" size="md">
         Public visé
       </AddContentButton>
-      <AddContentButton onClick={() => {}} className="mb-6" size="md">
+      <AddContentButton onClick={toggleModalPrice} className="mb-6" size="md">
         Prix
       </AddContentButton>
       <AddContentButton onClick={() => {}} className="mb-6" size="md">
@@ -38,6 +42,8 @@ const LeftSidebarEdition = () => {
       <AddContentButton onClick={() => {}} size="md">
         Ajouter ma structure
       </AddContentButton>
+
+      <ModalPrice show={showModalPrice} toggle={toggleModalPrice} />
     </div>
   );
 };

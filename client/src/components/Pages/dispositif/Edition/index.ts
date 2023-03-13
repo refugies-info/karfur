@@ -3,7 +3,6 @@ import AddContentButton from "components/Pages/dispositif/Edition/AddContentButt
 import HelpCard from "components/Pages/dispositif/Edition/HelpCard";
 import LeftSidebarEdition from "components/Pages/dispositif/Edition/LeftSidebarEdition";
 import MetaDescription from "components/Pages/dispositif/Edition/MetaDescription";
-import ModalMeta from "components/Pages/dispositif/Edition/ModalMeta";
 import RichTextEdit from "components/Pages/dispositif/Edition/RichTextEdit";
 import RightSidebarEdition from "components/Pages/dispositif/Edition/RightSidebarEdition";
 import TitleEdit from "components/Pages/dispositif/Edition/TitleEdit";
@@ -14,7 +13,6 @@ export {
   HelpCard,
   LeftSidebarEdition,
   MetaDescription,
-  ModalMeta,
   RichTextEdit,
   RightSidebarEdition,
   TitleEdit
