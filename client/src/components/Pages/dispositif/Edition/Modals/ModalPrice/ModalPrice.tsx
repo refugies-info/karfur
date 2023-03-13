@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Col, Row } from "reactstrap";
+import { useFormContext } from "react-hook-form";
+import { Metadatas } from "api-types";
 import Button from "components/UI/Button";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
 import PriceFree from "assets/dispositif/form-icons/price-free.svg";
 import PricePay from "assets/dispositif/form-icons/price-pay.svg";
 import styles from "./ModalPrice.module.scss";
-import { Col, Row } from "reactstrap";
 
 interface Props {
   show: boolean;
@@ -18,7 +20,20 @@ const help = {
 };
 
 const ModalPrice = (props: Props) => {
+  const formContext = useFormContext();
   const [selected, setSelected] = useState<"free" | "pay" | "none" | null>(null);
+
+  useEffect(() => {
+    if (selected) {
+      const newPrice: Metadatas["price"] =
+        selected === "none"
+          ? undefined
+          : {
+              value: selected === "free" ? 0 : 1,
+            };
+      formContext.setValue("metadatas.price", newPrice);
+    }
+  }, [selected, formContext]);
 
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Faut-il payer pour accéder au dispositif ?">
