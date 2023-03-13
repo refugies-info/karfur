@@ -12,7 +12,11 @@ import {
   Sponsor,
 } from "../generics";
 
-type ViewsType = "web" | "mobile" | "favorite";
+export enum ViewsType {
+  WEB = "web",
+  MOBILE = "mobile",
+  FAVORITE = "favorite",
+}
 type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
 
 /**
@@ -199,8 +203,8 @@ export interface GetRegionStatisticsResponse {
     nbDispositifs: number;
     nbDepartments: number;
     nbDepartmentsWithDispo: number;
-  }[],
-  dispositifsWithoutGeoloc: Id[]
+  }[];
+  dispositifsWithoutGeoloc: Id[];
 }
 
 type Author = {
