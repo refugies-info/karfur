@@ -8,6 +8,8 @@ import CardPrice from "../../Metadatas/CardPrice";
 import CardLocation from "../../Metadatas/CardLocation";
 import CardPublic from "../../Metadatas/CardPublic";
 import styles from "./LeftSidebarEdition.module.scss";
+import CardAvailability from "../../Metadatas/CardAvailability";
+import CardConditions from "../../Metadatas/CardConditions";
 
 type Modals = "Availability" | "Conditions" | "Location" | "Price" | "Public" | "Themes";
 
@@ -28,10 +30,13 @@ const LeftSidebarEdition = () => {
       </AddContentButton>
 
       <p className={styles.title}>C'est pour qui ?</p>
-      {values.metadatas?.age !== undefined ||
+
+      {values.metadatas?.publicStatus !== undefined ||
+      values.metadatas?.age !== undefined ||
       values.metadatas?.frenchLevel !== undefined ||
       values.metadatas?.public !== undefined ? (
         <CardPublic
+          dataPublicStatus={values.metadatas.publicStatus}
           /* @ts-ignore FIXME */
           dataAge={values.metadatas.age}
           dataFrenchLevel={values.metadatas.frenchLevel}
@@ -55,15 +60,37 @@ const LeftSidebarEdition = () => {
         </AddContentButton>
       )}
 
-      <AddContentButton onClick={() => {}} className="mb-6" size="md">
-        Formation certifiante
-      </AddContentButton>
-      <AddContentButton onClick={() => setShowModal("Availability")} className="mb-6" size="md">
-        Disponibilité demandée
-      </AddContentButton>
-      <AddContentButton onClick={() => setShowModal("Conditions")} className="mb-6" size="md">
-        Conditions
-      </AddContentButton>
+      {values.metadatas?.commitment !== undefined ||
+      values.metadatas?.frequency !== undefined ||
+      values.metadatas?.timeSlots !== undefined ? (
+        <CardAvailability
+          /* @ts-ignore FIXME */
+          dataCommitment={values.metadatas.commitment}
+          /* @ts-ignore FIXME */
+          dataFrequency={values.metadatas.frequency}
+          dataTimeSlots={values.metadatas.timeSlots}
+          color={color}
+          status="done"
+          onClick={() => setShowModal("Availability")}
+        />
+      ) : (
+        <AddContentButton onClick={() => setShowModal("Availability")} className="mb-6" size="md">
+          Disponibilité demandée
+        </AddContentButton>
+      )}
+
+      {values.metadatas?.conditions !== undefined ? (
+        <CardConditions
+          data={values.metadatas.conditions}
+          color={color}
+          status="done"
+          onClick={() => setShowModal("Conditions")}
+        />
+      ) : (
+        <AddContentButton onClick={() => setShowModal("Conditions")} className="mb-6" size="md">
+          Conditions
+        </AddContentButton>
+      )}
 
       {values.metadatas?.location !== undefined ? (
         <CardLocation

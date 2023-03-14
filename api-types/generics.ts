@@ -115,29 +115,44 @@ export interface InfoSection {
 }
 export type InfoSections = Record<string, InfoSection>;
 
-type frenchLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+type locationType = "france" | "online" | string[];
+type frenchLevel = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 type ageType = "lessThan" | "moreThan" | "between";
-type priceDetails = "une fois" | "à chaque fois" | "par heure" | "par semaine" | "par mois" | "par an";
-type publicType = "refugee" | "all";
-type justificatifType = "diplome" | "titre sejour" | "domicile";
+type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
+type publicStatus = "asile" | "refugie" | "subsidiaire" | "apatride";
+type publicType = "family" | "women" | "youths" | "senior";
+export type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
+type amountDetailsType = "atLeast" | "approximately" | "mandatory";
+type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
+type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
+type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
 
 export interface Metadatas {
-  location?: string[] | null;
+  location?: locationType | null;
   frenchLevel?: frenchLevel[] | null;
-  important?: string | null;
+  publicStatus?: publicStatus[] | null;
+  public?: publicType[] | null;
+  conditions?: conditionType[] | null;
+  timeSlots?: timeSlotType[] | null;
   age?: {
     type: ageType;
     ages: number[];
   } | null;
   price?: {
-    value: number;
-    details?: priceDetails | null;
+    values: number[];
+    details?: priceDetails;
   } | null;
-  duration?: string | null;
-  public?: publicType | null;
-  titreSejourRequired?: boolean | null;
-  acteNaissanceRequired?: boolean | null;
-  justificatif?: justificatifType | null;
+  commitment?: {
+    amountDetails: amountDetailsType;
+    hours: number;
+    timeUnit: timeUnitType;
+  } | null;
+  frequency?: {
+    amountDetails: amountDetailsType;
+    hours: number;
+    timeUnit: timeUnitType;
+    frequencyUnit: frequencyUnitType;
+  } | null;
 }
 
 export interface SimpleDispositif {

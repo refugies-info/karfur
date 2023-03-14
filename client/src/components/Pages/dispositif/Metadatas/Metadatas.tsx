@@ -7,6 +7,7 @@ import Card from "./BaseCard";
 import CardPrice from "./CardPrice";
 import CardAvailability from "./CardAvailability";
 import CardPublic from "./CardPublic";
+import CardConditions from "./CardConditions";
 import CardLocation from "./CardLocation";
 import styles from "./Metadatas.module.scss";
 
@@ -61,8 +62,9 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
         color={color}
       />
 
-      {(metadatas.public || metadatas.frenchLevel || metadatas.age) && (
+      {(metadatas.publicStatus || metadatas.public || metadatas.frenchLevel || metadatas.age) && (
         <CardPublic
+          dataPublicStatus={metadatas.publicStatus}
           dataPublic={metadatas.public}
           dataFrenchLevel={metadatas.frenchLevel}
           dataAge={metadatas.age}
@@ -70,7 +72,15 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
         />
       )}
       {metadatas.price && <CardPrice data={metadatas.price} color={color} />}
-      {metadatas.duration && <CardAvailability data={metadatas.duration} color={color} />}
+      {(metadatas.commitment || metadatas.frequency || metadatas.timeSlots) && (
+        <CardAvailability
+          dataCommitment={metadatas.commitment}
+          dataFrequency={metadatas.frequency}
+          dataTimeSlots={metadatas.timeSlots}
+          color={color}
+        />
+      )}
+      {metadatas.conditions && <CardConditions data={metadatas.conditions} color={color} />}
       {metadatas.location && <CardLocation data={metadatas.location} typeContenu={typeContenu} color={color} />}
     </div>
   );

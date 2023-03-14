@@ -23,7 +23,7 @@ interface Props {
  * Base component of the left sidebar card. Can be used in VIEW or EDIT mode
  */
 const BaseCard = ({ title, items, color, status, onClick }: Props) => {
-  const noContent = useMemo(() => !items.find((item) => !!item.content), [items]);
+  const noContent = useMemo(() => !items || !items.find((item) => !!item.content), [items]);
 
   const cardContent = useMemo(
     () =>
@@ -55,6 +55,7 @@ const BaseCard = ({ title, items, color, status, onClick }: Props) => {
     [title, items, color, status, noContent],
   );
 
+  if (!cardContent) return null;
   return onClick ? (
     <button className={cls(styles.card, styles.btn)} onClick={onClick}>
       {cardContent}

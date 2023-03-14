@@ -45,7 +45,7 @@ const ModalPrice = (props: Props) => {
         selected === null
           ? null
           : {
-              value: selected === "free" ? 0 : 1,
+              values: selected === "free" ? [0] : [1],
             };
       // TODO: update price metadatas schema and set value
       formContext.setValue("metadatas.price", newPrice);

@@ -46,7 +46,8 @@ const DispositifCard = (props: Props) => {
   const colors = theme.colors;
   const dispositifThemes = [theme, ...getThemes(props.dispositif.secondaryThemes || [], themes)];
 
-  const duration = props.dispositif.metadatas.duration;
+  // TODO: what here?
+  const duration = ""; // props.dispositif.metadatas.duration;
   const price = props.dispositif.metadatas.price;
 
   const getDepartement = () => {
@@ -63,7 +64,7 @@ const DispositifCard = (props: Props) => {
       legacyBehavior
       href={{
         pathname: getPath("/dispositif/[id]", router.locale),
-        query: { id: props.dispositif._id.toString() }
+        query: { id: props.dispositif._id.toString() },
       }}
       passHref
       prefetch={false}
@@ -99,11 +100,12 @@ const DispositifCard = (props: Props) => {
           {price !== undefined && (
             <div className={cls(styles.info)}>
               <Image src={iconEuro} width={16} height={16} alt="" />
-              {price?.value === 0 ? (
+              {price?.values?.[0] === 0 ? (
                 <div className="ms-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
               ) : (
                 <div className="ms-2">
-                  {price?.value}€ {price?.details}
+                  {/* TODO: update here */}
+                  {price?.values?.[0]}€ {price?.details}
                 </div>
               )}
             </div>

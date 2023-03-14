@@ -2,7 +2,7 @@ import React from "react";
 import { Metadatas } from "api-types";
 import BaseCard from "../BaseCard";
 import { BaseCardStatus } from "../BaseCard/BaseCard";
-import { getAge, getAgeLink, getFrenchLevelLink, getPublic } from "../functions";
+import { getAge, getAgeLink, getFrenchLevelLink } from "../functions";
 import FRLink from "components/UI/FRLink";
 import AgeIcon from "assets/dispositif/metadatas/Age";
 import FrenchLevelIcon from "assets/dispositif/metadatas/FrenchLevel";
@@ -10,6 +10,7 @@ import StatusIcon from "assets/dispositif/metadatas/Status";
 import styles from "./CardPublic.module.scss";
 
 interface Props {
+  dataPublicStatus: Metadatas["publicStatus"] | undefined;
   dataPublic: Metadatas["public"] | undefined;
   dataFrenchLevel: Metadatas["frenchLevel"] | undefined;
   dataAge: Metadatas["age"] | undefined;
@@ -18,12 +19,15 @@ interface Props {
   onClick?: () => void;
 }
 
-const CardPublic = ({ dataPublic, dataFrenchLevel, dataAge, color, status, onClick }: Props) => {
+const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, color, status, onClick }: Props) => {
   return (
     <BaseCard
       title="Public visé"
       items={[
-        { label: "Statut", content: getPublic(dataPublic), icon: <StatusIcon color={color} /> },
+        // TODO: translate
+        { label: "Statut", content: dataPublicStatus?.join(", "), icon: <StatusIcon color={color} /> },
+        // TODO: translate
+        { label: "Public spécifique", content: dataPublic?.join(", "), icon: <StatusIcon color={color} /> },
         {
           label: "Français demandé",
           content:

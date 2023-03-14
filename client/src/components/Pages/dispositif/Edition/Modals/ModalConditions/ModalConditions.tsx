@@ -32,7 +32,7 @@ const ModalConditions = (props: Props) => {
   const validate = () => {
     if (selected !== undefined) {
       // TODO: update conditions metadatas schema and set value
-      formContext.setValue("metadatas.conditions", {});
+      formContext.setValue("metadatas.conditions", []);
     }
     props.toggle();
   };

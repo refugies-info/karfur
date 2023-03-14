@@ -1,16 +1,25 @@
 import qs from "query-string";
 import { LinkProps } from "next/link";
-import { GetDispositifResponse, Metadatas } from "api-types";
+import { conditionType, Metadatas } from "api-types";
 import { getPath } from "routes";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
+import imgCb from "assets/dispositif/form-icons/conditions-cb.svg";
+import imgDriver from "assets/dispositif/form-icons/conditions-driver.svg";
+import imgOfpra from "assets/dispositif/form-icons/conditions-ofpra.svg";
+import imgPoleEmploi from "assets/dispositif/form-icons/conditions-pole-emploi.svg";
+import imgTse from "assets/dispositif/form-icons/conditions-tse.svg";
+import imgOfii from "assets/dispositif/form-icons/conditions-ofii.svg";
 
-export const getPrice = (price: GetDispositifResponse["metadatas"]["price"] | undefined) => {
+export const getPrice = (price: Metadatas["price"] | undefined) => {
+  // TODO: translate
   if (!price) return undefined;
-  if (price.value === 0) return "Gratuit";
-  return `${price.value}€ ${price.details}`;
+  if (price.values?.[0] === 0) return "Gratuit";
+  if (price.values.length === 0) return "Montant libre";
+  if (price.values.length === 2)`entre ${price.values[0]} et ${price.values[1]} ${price.details || ""}`;
+  return `${price.values[0]}€ ${price.details || ""}`;
 }
 
-export const getAge = (age: GetDispositifResponse["metadatas"]["age"] | undefined) => {
+export const getAge = (age: Metadatas["age"] | undefined) => {
   if (!age) return undefined;
   switch (age.type) {
     case "lessThan":
@@ -22,11 +31,35 @@ export const getAge = (age: GetDispositifResponse["metadatas"]["age"] | undefine
   }
 }
 
-export const getPublic = (publicType: GetDispositifResponse["metadatas"]["public"] | undefined) => {
-  if (!publicType) return undefined;
-  return publicType === "refugee" ? "Réfugiés" : "Tout le monde";
+export const getCommitment = (commitment: Metadatas["commitment"] | undefined) => {
+  if (!commitment) return "";
+  // TODO : translate
+  return `${commitment.amountDetails} ${commitment.hours} ${commitment.timeUnit}`;
+}
+export const getFrequency = (frequency: Metadatas["frequency"] | undefined) => {
+  if (!frequency) return "";
+  // TODO : translate
+  return `${frequency.amountDetails} ${frequency.hours} ${frequency.timeUnit} par ${frequency.frequencyUnit}`;
 }
 
+export const getConditionImage = (condition: conditionType) => {
+  switch (condition) {
+    case "acte naissance":
+      return imgOfpra;
+    case "titre sejour":
+      return imgTse;
+    case "cir":
+      return imgOfii;
+    case "bank account":
+      return imgCb;
+    case "pole emploi":
+      return imgPoleEmploi;
+    case "driver license":
+      return imgDriver;
+    default:
+      return null;
+  }
+}
 
 export const getSponsorLink = (sponsorId: string | undefined): LinkProps["href"] => {
   if (!sponsorId) return "#";

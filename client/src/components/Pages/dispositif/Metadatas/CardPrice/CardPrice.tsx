@@ -21,7 +21,7 @@ const CardPrice = ({ data, color, status, onClick }: Props) => {
       items={[
         {
           content: getPrice(data),
-          icon: data?.value === 0 ? <FreeIcon color={color} /> : <PriceIcon color={color} />,
+          icon: data?.values?.[0] === 0 ? <FreeIcon color={color} /> : <PriceIcon color={color} />,
         },
       ]}
       color={color}

@@ -1,11 +1,11 @@
-import { ContentType } from "api-types";
+import { ContentType, Metadatas } from "api-types";
 import { AppUser, Dispositif } from "../../typegoose";
 
-const ALL = "All";
+const ALL = "france";
 
 interface Requirements {
   age: { min: number; max: number };
-  departments: string[] | null;
+  departments: Metadatas["location"];
   type: ContentType;
   mainThemeId: string | null;
 }
@@ -79,8 +79,8 @@ export const filterTargets = (targets: AppUser[], requirements: Requirements, la
 
     const ageOk = !target.age || (parsedAge.min >= age.min && parsedAge.max <= age.max);
     const departmentsOk =
-      (departments.includes(target.department) && notificationsSettings.local) ||
-      (departments.includes(ALL) && notificationsSettings.global);
+      (Array.isArray(departments) && departments.includes(target.department) && notificationsSettings.local) ||
+      (departments === ALL && notificationsSettings.global);
 
     const typeOk = type === ContentType.DISPOSITIF ? true : notificationsSettings?.demarches;
     const themeOk = !mainThemeId || notificationsSettings?.themes?.[mainThemeId];
