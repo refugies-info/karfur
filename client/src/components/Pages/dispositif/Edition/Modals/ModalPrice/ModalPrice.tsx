@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useFormContext } from "react-hook-form";
-import { Metadatas } from "api-types";
+import { Metadatas, priceDetails } from "api-types";
 import Button from "components/UI/Button";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
@@ -22,6 +22,7 @@ const help = {
 
 const dropdownOptions = {
   once: "Une seule fois",
+  eachTime: "À chaque fois",
   hour: "Par heure",
   day: "Par jour",
   week: "Par semaine",
@@ -35,19 +36,32 @@ const ModalPrice = (props: Props) => {
   const formContext = useFormContext();
   const [selected, setSelected] = useState<"free" | "pay" | null | undefined>(undefined);
   const [selectedPay, setSelectedPay] = useState<"once" | "between" | "free" | undefined>(undefined);
-  const [selectedRecurent, setSelectedRecurent] = useState("once");
+  const [selectedRecurent, setSelectedRecurent] = useState(/* <priceDetails> */ "once");
   const [priceStart, setPriceStart] = useState<number | undefined>(undefined);
   const [priceEnd, setPriceEnd] = useState<number | undefined>(undefined);
 
   const validate = () => {
     if (selected !== undefined) {
-      const newPrice: Metadatas["price"] =
-        selected === null
-          ? null
-          : {
-              values: selected === "free" ? [0] : [1],
-            };
-      // TODO: update price metadatas schema and set value
+      let newPrice: Metadatas["price"] | null = null;
+      if (selected === "free") {
+        newPrice = { values: [0] };
+      } else if (selected === "pay") {
+        if (selectedPay === "once") {
+          if (!priceStart) return;
+          newPrice = {
+            values: [priceStart],
+            details: selectedRecurent as priceDetails,
+          };
+        } else if (selectedPay === "between") {
+          if (!priceStart || !priceEnd) return;
+          newPrice = {
+            values: [priceStart, priceEnd],
+            details: selectedRecurent as priceDetails,
+          };
+        } else if (selectedPay === "free") {
+          newPrice = { values: [] };
+        }
+      }
       formContext.setValue("metadatas.price", newPrice);
     }
     props.toggle();

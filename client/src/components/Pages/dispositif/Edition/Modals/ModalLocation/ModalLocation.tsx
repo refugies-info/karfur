@@ -1,6 +1,8 @@
-import Button from "components/UI/Button";
 import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
+import { useFormContext } from "react-hook-form";
+import { Metadatas } from "api-types";
+import Button from "components/UI/Button";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
 import imgAll from "assets/dispositif/form-icons/location-all.svg";
@@ -20,7 +22,16 @@ const help = {
 };
 
 const ModalLocation = (props: Props) => {
-  const [selected, setSelected] = useState<"all" | "departments" | "online" | null | undefined>(undefined);
+  const formContext = useFormContext();
+  const [selected, setSelected] = useState<"france" | "departments" | "online" | null | undefined>(undefined);
+
+  const validate = () => {
+    if (selected !== undefined) {
+      const value: Metadatas["location"] = selected === "departments" ? [] : selected;
+      formContext.setValue("metadatas.location", value);
+    }
+    props.toggle();
+  };
 
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Où votre action est-elle accessible ?">
@@ -30,8 +41,8 @@ const ModalLocation = (props: Props) => {
             <ChoiceButton
               text="France entière"
               type="radio"
-              selected={selected === "all"}
-              onSelect={() => setSelected("all")}
+              selected={selected === "france"}
+              onSelect={() => setSelected("france")}
               image={imgAll}
             />
           </Col>
@@ -63,7 +74,7 @@ const ModalLocation = (props: Props) => {
         />
 
         <div className="text-end">
-          <Button icon="checkmark-circle-2" iconPlacement="end">
+          <Button icon="checkmark-circle-2" iconPlacement="end" onClick={validate}>
             Valider
           </Button>
         </div>

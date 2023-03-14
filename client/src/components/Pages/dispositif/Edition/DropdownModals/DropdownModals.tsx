@@ -14,7 +14,7 @@ const DropdownModals = (props: Props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen((o) => !o)}>
+    <Dropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen((o) => !o)} className={styles.dropdown}>
       <DropdownToggle className={styles.toggle}>
         {props.options[props.selected] || ""}
         <EVAIcon name="chevron-down-outline" size={16} fill="dark" className="ms-4" />

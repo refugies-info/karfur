@@ -15,7 +15,7 @@ export const getPrice = (price: Metadatas["price"] | undefined) => {
   if (!price) return undefined;
   if (price.values?.[0] === 0) return "Gratuit";
   if (price.values.length === 0) return "Montant libre";
-  if (price.values.length === 2)`entre ${price.values[0]} et ${price.values[1]} ${price.details || ""}`;
+  if (price.values.length === 2) return `entre ${price.values[0]}€ et ${price.values[1]}€ ${price.details || ""}`;
   return `${price.values[0]}€ ${price.details || ""}`;
 }
 
