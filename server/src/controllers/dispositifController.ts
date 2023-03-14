@@ -51,6 +51,9 @@ import { deleteMerci } from "../workflows/dispositif/deleteMerci";
 import { addSuggestion } from "../workflows/dispositif/addSuggestion";
 import { patchSuggestion } from "../workflows/dispositif/patchSuggestion";
 import { deleteSuggestion } from "../workflows/dispositif/deleteSuggestion";
+import { GetNbContentsForCountyRequest, GetNbContentsForCountyResponse } from "api-types/modules/dispositif";
+import logger from "src/logger";
+import { getNbContentsForCounty } from "src/workflows";
 
 const router = express.Router();
 
@@ -94,6 +97,16 @@ export class DispositifController extends Controller {
   @Get("/region-statistics")
   public async getRegionStatistics(): ResponseWithData<GetRegionStatisticsResponse> {
     return getNbDispositifsByRegion();
+  }
+
+  @Get("/getNbContentsForCounty")
+  public async getNbContentsForCounty(
+    @Queries() queries: GetNbContentsForCountyRequest,
+  ): ResponseWithData<GetNbContentsForCountyResponse> {
+    logger.info("[getNbContentsForCounty]", {
+      queries,
+    });
+    return getNbContentsForCounty(queries.county).then((data) => ({ text: "success", data }));
   }
 
   @Security({
@@ -148,7 +161,6 @@ export class DispositifController extends Controller {
   })
   @Post("/{id}/views")
   public async addViewOrFavorite(@Path() id: string, @Body() types: AddViewsRequest): Response {
-    // TODO: change in app
     return updateNbVuesOrFavoritesOnContent(id, types);
   }
 
@@ -222,7 +234,11 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Put("/{id}/suggestion")
-  public async addSuggestion(@Path() id: string, @Body() body: AddSuggestionDispositifRequest, @Request() request: express.Request): Response {
+  public async addSuggestion(
+    @Path() id: string,
+    @Body() body: AddSuggestionDispositifRequest,
+    @Request() request: express.Request,
+  ): Response {
     return addSuggestion(id, body, request.userId);
   }
   @Security({
@@ -259,7 +275,7 @@ export class DispositifController extends Controller {
   @Security({
     fromSite: [],
   })
-  @Get("/{id}") // TODO: moved from getContentById?contentId (app)
+  @Get("/{id}")
   public async getById(@Path() id: string, @Query() locale: Languages): ResponseWithData<GetDispositifResponse> {
     return getContentById(id, locale);
   }

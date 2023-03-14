@@ -207,6 +207,31 @@ export interface GetRegionStatisticsResponse {
   dispositifsWithoutGeoloc: Id[];
 }
 
+/**
+ * @url GET /dispositifs/getNbContentsForCounty
+ */
+export interface GetNbContentsForCountyRequest {
+  /**
+   * Département par lequel filter
+   */
+  county: string;
+}
+
+/**
+ * @url GET /dispositifs/getNbContentsForCounty
+ */
+export interface GetNbContentsForCountyResponse {
+  /**
+   * Nombre total de contenus
+   */
+  nbGlobalContent: number;
+
+  /**
+   * Nombre de contenus traduits
+   */
+  nbLocalizedContent: number;
+}
+
 type Author = {
   _id: Id;
   username: string;
