@@ -5,6 +5,7 @@ import { Metadatas, priceDetails } from "api-types";
 import Button from "components/UI/Button";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
+import InlineForm from "../components/InlineForm";
 import BaseModal from "../BaseModal";
 import PriceFree from "assets/dispositif/form-icons/price-free.svg";
 import PricePay from "assets/dispositif/form-icons/price-pay.svg";
@@ -20,7 +21,7 @@ const help = {
   content: "Ajoutez les éventuels frais d’inscription, les souscriptions ou les abonnements relatifs à votre action.",
 };
 
-const dropdownOptions = {
+const dropdownOptions: Record<priceDetails, string> = {
   once: "Une seule fois",
   eachTime: "À chaque fois",
   hour: "Par heure",
@@ -36,7 +37,7 @@ const ModalPrice = (props: Props) => {
   const formContext = useFormContext();
   const [selected, setSelected] = useState<"free" | "pay" | null | undefined>(undefined);
   const [selectedPay, setSelectedPay] = useState<"once" | "between" | "free" | undefined>(undefined);
-  const [selectedRecurent, setSelectedRecurent] = useState(/* <priceDetails> */ "once");
+  const [selectedRecurent, setSelectedRecurent] = useState<priceDetails>("once");
   const [priceStart, setPriceStart] = useState<number | undefined>(undefined);
   const [priceEnd, setPriceEnd] = useState<number | undefined>(undefined);
 
@@ -121,8 +122,8 @@ const ModalPrice = (props: Props) => {
               </Col>
             </Row>
             {selectedPay === "once" && (
-              <div className={styles.price_form}>
-                <span className={styles.input}>
+              <InlineForm>
+                <span className={styles.price}>
                   <input
                     type="number"
                     placeholder={"0"}
@@ -130,18 +131,18 @@ const ModalPrice = (props: Props) => {
                     onChange={(e: any) => setPriceStart(e.target.value)}
                   />
                 </span>
-                <DropdownModals
+                <DropdownModals<priceDetails>
                   options={dropdownOptions}
                   selected={selectedRecurent}
-                  setSelected={(key: string) => setSelectedRecurent(key)}
+                  setSelected={(key: priceDetails) => setSelectedRecurent(key)}
                 />
-              </div>
+              </InlineForm>
             )}
 
             {selectedPay === "between" && (
-              <div className={styles.price_form}>
+              <InlineForm>
                 <p>entre</p>
-                <span className={styles.input}>
+                <span className={styles.price}>
                   <input
                     type="number"
                     placeholder={"0"}
@@ -150,7 +151,7 @@ const ModalPrice = (props: Props) => {
                   />
                 </span>
                 <p>et</p>
-                <span className={styles.input}>
+                <span className={styles.price}>
                   <input
                     type="number"
                     placeholder={"0"}
@@ -158,12 +159,12 @@ const ModalPrice = (props: Props) => {
                     onChange={(e: any) => setPriceEnd(e.target.value)}
                   />
                 </span>
-                <DropdownModals
+                <DropdownModals<priceDetails>
                   options={dropdownOptions}
                   selected={selectedRecurent}
-                  setSelected={(key: string) => setSelectedRecurent(key)}
+                  setSelected={(key: priceDetails) => setSelectedRecurent(key)}
                 />
-              </div>
+              </InlineForm>
             )}
           </div>
         )}

@@ -1,31 +1,32 @@
 import React from "react";
 import { Metadatas } from "api-types";
 import BaseCard from "../BaseCard";
-import { BaseCardStatus } from "../BaseCard/BaseCard";
 import { getPrice } from "../functions";
 import FreeIcon from "assets/dispositif/metadatas/Free";
 import PriceIcon from "assets/dispositif/metadatas/Price";
 import styles from "./CardPrice.module.scss";
 
 interface Props {
-  data: Metadatas["price"] | null | undefined;
+  data: Metadatas["price"] | null | undefined; // null = not useful / undefined = not set yet
   color: string;
-  status?: BaseCardStatus;
   onClick?: () => void;
 }
 
-const CardPrice = ({ data, color, status, onClick }: Props) => {
+const CardPrice = ({ data, color, onClick }: Props) => {
   return (
     <BaseCard
       title="Prix"
-      items={[
-        {
-          content: getPrice(data),
-          icon: data?.values?.[0] === 0 ? <FreeIcon color={color} /> : <PriceIcon color={color} />,
-        },
-      ]}
+      items={
+        data === null
+          ? null
+          : [
+              {
+                content: getPrice(data),
+                icon: data?.values?.[0] === 0 ? <FreeIcon color={color} /> : <PriceIcon color={color} />,
+              },
+            ]
+      }
       color={color}
-      status={status}
       onClick={onClick}
     />
   );

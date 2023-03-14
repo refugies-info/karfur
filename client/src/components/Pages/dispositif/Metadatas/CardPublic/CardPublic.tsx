@@ -1,7 +1,6 @@
 import React from "react";
 import { Metadatas } from "api-types";
 import BaseCard from "../BaseCard";
-import { BaseCardStatus } from "../BaseCard/BaseCard";
 import { getAge, getAgeLink, getFrenchLevelLink } from "../functions";
 import FRLink from "components/UI/FRLink";
 import AgeIcon from "assets/dispositif/metadatas/Age";
@@ -15,11 +14,10 @@ interface Props {
   dataFrenchLevel: Metadatas["frenchLevel"] | undefined;
   dataAge: Metadatas["age"] | undefined;
   color: string;
-  status?: BaseCardStatus;
   onClick?: () => void;
 }
 
-const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, color, status, onClick }: Props) => {
+const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, color, onClick }: Props) => {
   return (
     <BaseCard
       title="Public visé"
@@ -49,7 +47,6 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
         },
       ]}
       color={color}
-      status={status}
       onClick={onClick}
     />
   );

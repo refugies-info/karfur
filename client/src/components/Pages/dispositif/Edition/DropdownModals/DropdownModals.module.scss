@@ -9,6 +9,8 @@
     padding: u(2) u(3);
     border: none;
     color: $lightTextTitleGrey;
+    border-radius: u(2);
+    white-space: nowrap;
 
     &:hover,
     &:focus {

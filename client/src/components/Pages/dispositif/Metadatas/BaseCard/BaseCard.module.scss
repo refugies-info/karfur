@@ -35,6 +35,15 @@
       @include dsfr-text("large");
     }
   }
+
+  &.error {
+    border-color: $lightTextDefaultError;
+    box-shadow: 0 2px 6px 0 #00001229;
+
+    .title {
+      color: $lightTextDefaultError !important;
+    }
+  }
 }
 
 .status {
@@ -71,6 +80,15 @@
   .content {
     a {
       display: inline;
+    }
+  }
+
+  &.missing {
+    background: $lightBackgroundContrastError;
+    border-radius: u(2);
+
+    .content {
+      color: $lightTextDefaultError;
     }
   }
 }

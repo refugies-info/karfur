@@ -58,6 +58,7 @@ $lightTextActionHighBlueFrance: #000091;
 $darkBackgroundAltBlueFrance: #1b1b35;
 $lightTextDefaultError: #ce0500;
 $darkBorderPlainError: #ff5655;
+$lightBackgroundContrastError: #ffe9e9;
 
 :export {
   // RI colors
@@ -112,4 +113,5 @@ $darkBorderPlainError: #ff5655;
   lightPrimaryBlueFranceSun: $lightPrimaryBlueFranceSun;
   lightBackgroundContrastInfo: $lightBackgroundContrastInfo;
   lightBorderPlainInfo: $lightBorderPlainInfo;
+  lightBackgroundContrastError: $lightBackgroundContrastError;
 }

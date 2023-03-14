@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import { amountDetailsType, frequencyUnitType, priceDetails, timeUnitType } from "api-types";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import ChoiceButton from "../ChoiceButton";
 import styles from "./DropdownModals.module.scss";
 
-interface Props {
-  options: Record<string, string>;
-  selected: string;
-  setSelected: (key: string) => void;
+type Options = amountDetailsType | timeUnitType | frequencyUnitType | priceDetails;
+
+interface Props<T extends Options> {
+  options: Record<T, string>;
+  selected: T;
+  setSelected: (key: T) => void;
 }
 
-const DropdownModals = (props: Props) => {
+function DropdownModals<T extends Options>(props: Props<T>) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
@@ -22,12 +25,12 @@ const DropdownModals = (props: Props) => {
       <DropdownMenu className={styles.menu}>
         {Object.entries(props.options).map(([key, value], i) => (
           <ChoiceButton
-            text={value}
+            text={value as string}
             selected={props.selected === key}
             type="radio"
             key={i}
             onSelect={() => {
-              props.setSelected(key);
+              props.setSelected(key as T);
               setDropdownOpen(false);
             }}
             className="mb-1"
@@ -36,6 +39,6 @@ const DropdownModals = (props: Props) => {
       </DropdownMenu>
     </Dropdown>
   );
-};
+}
 
 export default DropdownModals;

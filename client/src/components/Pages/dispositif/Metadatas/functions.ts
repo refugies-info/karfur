@@ -10,17 +10,17 @@ import imgPoleEmploi from "assets/dispositif/form-icons/conditions-pole-emploi.s
 import imgTse from "assets/dispositif/form-icons/conditions-tse.svg";
 import imgOfii from "assets/dispositif/form-icons/conditions-ofii.svg";
 
-export const getPrice = (price: Metadatas["price"] | undefined) => {
+export const getPrice = (price: Metadatas["price"] | null | undefined) => {
   // TODO: translate
-  if (!price) return undefined;
+  if (!price) return price; // null or undefined
   if (price.values?.[0] === 0) return "Gratuit";
   if (price.values.length === 0) return "Montant libre";
   if (price.values.length === 2) return `entre ${price.values[0]}€ et ${price.values[1]}€ ${price.details || ""}`;
   return `${price.values[0]}€ ${price.details || ""}`;
 }
 
-export const getAge = (age: Metadatas["age"] | undefined) => {
-  if (!age) return undefined;
+export const getAge = (age: Metadatas["age"] | null | undefined) => {
+  if (!age) return age; // null or undefined
   switch (age.type) {
     case "lessThan":
       return `Moins de ${age.ages[0]} ans`;
@@ -31,15 +31,20 @@ export const getAge = (age: Metadatas["age"] | undefined) => {
   }
 }
 
-export const getCommitment = (commitment: Metadatas["commitment"] | undefined) => {
-  if (!commitment) return "";
+export const getCommitment = (commitment: Metadatas["commitment"] | null | undefined) => {
+  if (!commitment) return commitment;
   // TODO : translate
   return `${commitment.amountDetails} ${commitment.hours} ${commitment.timeUnit}`;
 }
-export const getFrequency = (frequency: Metadatas["frequency"] | undefined) => {
-  if (!frequency) return "";
+export const getFrequency = (frequency: Metadatas["frequency"] | null | undefined) => {
+  if (!frequency) return frequency;
   // TODO : translate
   return `${frequency.amountDetails} ${frequency.hours} ${frequency.timeUnit} par ${frequency.frequencyUnit}`;
+}
+export const getTimeSlots = (timeSlots: Metadatas["timeSlots"] | null | undefined) => {
+  if (!timeSlots) return timeSlots;
+  // TODO : translate
+  return timeSlots.join(", ");
 }
 
 export const getConditionImage = (condition: conditionType) => {

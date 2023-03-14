@@ -1,8 +1,7 @@
 import React from "react";
 import { Metadatas } from "api-types";
 import BaseCard from "../BaseCard";
-import { BaseCardStatus } from "../BaseCard/BaseCard";
-import { getCommitment, getFrequency } from "../functions";
+import { getCommitment, getFrequency, getTimeSlots } from "../functions";
 import DurationIcon from "assets/dispositif/metadatas/Durations";
 import styles from "./CardAvailability.module.scss";
 
@@ -11,11 +10,10 @@ interface Props {
   dataTimeSlots: Metadatas["timeSlots"] | undefined;
   dataFrequency: Metadatas["frequency"] | undefined;
   color: string;
-  status?: BaseCardStatus;
   onClick?: () => void;
 }
 
-const CardAvailability = ({ dataCommitment, dataTimeSlots, dataFrequency, color, status, onClick }: Props) => {
+const CardAvailability = ({ dataCommitment, dataTimeSlots, dataFrequency, color, onClick }: Props) => {
   return (
     <BaseCard
       title="Disponibilité demandée"
@@ -27,10 +25,9 @@ const CardAvailability = ({ dataCommitment, dataTimeSlots, dataFrequency, color,
           icon: <DurationIcon color={color} />,
         },
         // TODO: translate
-        { label: "Jours de présence", content: dataTimeSlots?.join(", "), icon: <DurationIcon color={color} /> },
+        { label: "Jours de présence", content: getTimeSlots(dataTimeSlots), icon: <DurationIcon color={color} /> },
       ]}
       color={color}
-      status={status}
       onClick={onClick}
     />
   );

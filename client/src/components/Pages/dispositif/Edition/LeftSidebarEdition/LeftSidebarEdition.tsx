@@ -42,7 +42,6 @@ const LeftSidebarEdition = () => {
           dataFrenchLevel={values.metadatas.frenchLevel}
           dataPublic={values.metadatas.public}
           color={color}
-          status="done"
           onClick={() => setShowModal("Public")}
         />
       ) : (
@@ -53,7 +52,7 @@ const LeftSidebarEdition = () => {
 
       {values.metadatas?.price !== undefined ? (
         /* @ts-ignore FIXME */
-        <CardPrice data={values.metadatas.price} color={color} status="done" onClick={() => setShowModal("Price")} />
+        <CardPrice data={values.metadatas.price} color={color} onClick={() => setShowModal("Price")} />
       ) : (
         <AddContentButton onClick={() => setShowModal("Price")} className="mb-6" size="md">
           Prix
@@ -70,7 +69,6 @@ const LeftSidebarEdition = () => {
           dataFrequency={values.metadatas.frequency}
           dataTimeSlots={values.metadatas.timeSlots}
           color={color}
-          status="done"
           onClick={() => setShowModal("Availability")}
         />
       ) : (
@@ -80,12 +78,7 @@ const LeftSidebarEdition = () => {
       )}
 
       {values.metadatas?.conditions !== undefined ? (
-        <CardConditions
-          data={values.metadatas.conditions}
-          color={color}
-          status="done"
-          onClick={() => setShowModal("Conditions")}
-        />
+        <CardConditions data={values.metadatas.conditions} color={color} onClick={() => setShowModal("Conditions")} />
       ) : (
         <AddContentButton onClick={() => setShowModal("Conditions")} className="mb-6" size="md">
           Conditions
@@ -97,7 +90,6 @@ const LeftSidebarEdition = () => {
           data={values.metadatas.location}
           typeContenu={values.typeContenu || ContentType.DISPOSITIF}
           color={color}
-          status="done"
           onClick={() => setShowModal("Location")}
         />
       ) : (

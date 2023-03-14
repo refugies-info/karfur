@@ -18,33 +18,14 @@
   }
 }
 
-.price_form {
-  margin-top: u(6);
-  padding: u(4);
-  display: flex;
-  align-items: center;
-  gap: u(4);
-  border-radius: u(2);
-  width: fit-content;
-  background: $lightBackgroundContrastGrey;
-
-  p {
-    margin-bottom: 0;
+.price {
+  &::after {
+    content: "€";
+    position: absolute;
+    right: u(2);
+    top: u(2);
   }
-  .input {
-    position: relative;
-    input {
-      @include baseInput();
-      padding: u(2) u(6) u(2) u(1);
-      max-width: 80px;
-      text-align: right;
-    }
-
-    &::after {
-      content: "€";
-      position: absolute;
-      right: u(2);
-      top: u(2);
-    }
+  input[type="number"] {
+    padding-right: u(6) !important;
   }
 }

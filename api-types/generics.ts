@@ -122,10 +122,10 @@ export type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "mont
 type publicStatus = "asile" | "refugie" | "subsidiaire" | "apatride";
 type publicType = "family" | "women" | "youths" | "senior";
 export type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
-type amountDetailsType = "atLeast" | "approximately" | "mandatory";
-type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
-type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
-type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+export type amountDetailsType = "atLeast" | "approximately" | "mandatory";
+export type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
+export type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
+export type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
 
 export interface Metadatas {
   location?: locationType | null;
