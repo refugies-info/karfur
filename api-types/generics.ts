@@ -115,12 +115,12 @@ export interface InfoSection {
 }
 export type InfoSections = Record<string, InfoSection>;
 
-type locationType = "france" | "online" | string[];
-type frenchLevel = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
-type ageType = "lessThan" | "moreThan" | "between";
+export type locationType = "france" | "online" | string[];
+export type frenchLevelType = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+export type ageType = "lessThan" | "moreThan" | "between";
 export type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
-type publicStatus = "asile" | "refugie" | "subsidiaire" | "apatride";
-type publicType = "family" | "women" | "youths" | "senior";
+export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "apatride" | "french";
+export type publicType = "family" | "women" | "youths" | "senior";
 export type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
 export type amountDetailsType = "atLeast" | "approximately" | "mandatory";
 export type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
@@ -129,8 +129,8 @@ export type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "fr
 
 export interface Metadatas {
   location?: locationType | null;
-  frenchLevel?: frenchLevel[] | null;
-  publicStatus?: publicStatus[] | null;
+  frenchLevel?: frenchLevelType[] | null;
+  publicStatus?: publicStatusType[] | null;
   public?: publicType[] | null;
   conditions?: conditionType[] | null;
   timeSlots?: timeSlotType[] | null;

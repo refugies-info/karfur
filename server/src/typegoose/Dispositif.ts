@@ -13,10 +13,10 @@ import { Theme, ThemeId } from "./Theme";
 import { User, UserId } from "./User";
 
 type locationType = "france" | "online" | string[];
-type frenchLevel = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+type frenchLevelType = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 type ageType = "lessThan" | "moreThan" | "between";
 type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
-type publicStatus = "asile" | "refugie" | "subsidiaire" | "apatride";
+type publicStatusType = "asile" | "refugie" | "subsidiaire" | "apatride" | "french";
 type publicType = "family" | "women" | "youths" | "senior";
 type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
 type amountDetailsType = "atLeast" | "approximately" | "mandatory";
@@ -145,7 +145,7 @@ export class Metadatas {
   @prop()
   public location?: locationType | null;
   @prop()
-  public frenchLevel?: frenchLevel[] | null;
+  public frenchLevel?: frenchLevelType[] | null;
   // @prop()
   // public important?: string;
   @prop({ _id: false })
@@ -155,7 +155,7 @@ export class Metadatas {
   // @prop()
   // public duration?: string;
   @prop()
-  public publicStatus?: publicStatus[] | null;
+  public publicStatus?: publicStatusType[] | null;
   @prop()
   public public?: publicType[] | null;
   // @prop()

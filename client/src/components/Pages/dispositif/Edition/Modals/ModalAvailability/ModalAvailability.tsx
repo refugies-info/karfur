@@ -96,8 +96,9 @@ const ModalAvailability = (props: Props) => {
       formContext.setValue("metadatas.frequency", frequency);
       setStep(3);
     } else if (step === 3) {
-      if (timeSlots !== undefined) {
-        formContext.setValue("metadatas.timeSlots", timeSlots);
+      const newTimeSlots: Metadatas["timeSlots"] = timeSlots;
+      if (newTimeSlots !== undefined) {
+        formContext.setValue("metadatas.timeSlots", newTimeSlots);
       }
       props.toggle();
     }

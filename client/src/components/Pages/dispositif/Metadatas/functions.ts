@@ -19,6 +19,17 @@ export const getPrice = (price: Metadatas["price"] | null | undefined) => {
   return `${price.values[0]}€ ${price.details || ""}`;
 }
 
+export const getPublicStatus = (publicStatus: Metadatas["publicStatus"] | null | undefined) => {
+  if (!publicStatus) return publicStatus;
+  // TODO : translate
+  return publicStatus.join(", ");
+}
+export const getPublic = (publicType: Metadatas["public"] | null | undefined) => {
+  if (!publicType) return publicType;
+  // TODO : translate
+  return publicType.join(", ");
+}
+
 export const getAge = (age: Metadatas["age"] | null | undefined) => {
   if (!age) return age; // null or undefined
   switch (age.type) {

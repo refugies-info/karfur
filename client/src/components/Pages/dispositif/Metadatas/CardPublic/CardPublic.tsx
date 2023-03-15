@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadatas } from "api-types";
 import BaseCard from "../BaseCard";
-import { getAge, getAgeLink, getFrenchLevelLink } from "../functions";
+import { getAge, getAgeLink, getFrenchLevelLink, getPublic, getPublicStatus } from "../functions";
 import FRLink from "components/UI/FRLink";
 import AgeIcon from "assets/dispositif/metadatas/Age";
 import FrenchLevelIcon from "assets/dispositif/metadatas/FrenchLevel";
@@ -22,14 +22,14 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
     <BaseCard
       title="Public visé"
       items={[
-        // TODO: translate
-        { label: "Statut", content: dataPublicStatus?.join(", "), icon: <StatusIcon color={color} /> },
-        // TODO: translate
-        { label: "Public spécifique", content: dataPublic?.join(", "), icon: <StatusIcon color={color} /> },
+        { label: "Statut", content: getPublicStatus(dataPublicStatus), icon: <StatusIcon color={color} /> },
+        { label: "Public spécifique", content: getPublic(dataPublic), icon: <StatusIcon color={color} /> },
         {
           label: "Français demandé",
           content:
-            !dataFrenchLevel || dataFrenchLevel.length === 0 ? null : (
+            !dataFrenchLevel || dataFrenchLevel.length === 0 ? (
+              dataFrenchLevel
+            ) : (
               <FRLink target="_blank" href={getFrenchLevelLink(dataFrenchLevel)}>
                 {dataFrenchLevel?.join(", ")}
               </FRLink>
@@ -38,7 +38,9 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
         },
         {
           label: "Âge demandé",
-          content: !dataAge ? null : (
+          content: !dataAge ? (
+            dataAge
+          ) : (
             <FRLink target="_blank" href={getAgeLink(dataAge)}>
               {getAge(dataAge)}
             </FRLink>
