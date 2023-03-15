@@ -1,10 +1,5 @@
 // @ts-nocheck
-import {
-  formatDispositifsByCreator,
-  getTitreInfoOrMarque,
-  countDispositifMercis,
-  filterContentsOnGeoloc
-} from "../dispositif.adapter";
+import { formatDispositifsByCreator, getTitreInfoOrMarque, countDispositifMercis } from "../dispositif.adapter";
 
 describe("formatDispositifsByCreator", () => {
   beforeEach(() => {
@@ -116,45 +111,45 @@ describe("countDispositifMercis", () => {
       {
         _id: "dispoId1",
         titreInformatif: "t1",
-        merci: [{added_at: "x"}]
+        merci: [{ added_at: "x" }],
       },
       {
         _id: "dispoId2",
         titreInformatif: "t2",
-        merci: [{added_at: "x"}, {added_at: "x"}]
+        merci: [{ added_at: "x" }, { added_at: "x" }],
       },
       {
         _id: "dispoId3",
         titreInformatif: "t3",
-        merci: []
+        merci: [],
       },
       {
         _id: "dispoId4",
         titreInformatif: "t4",
-      }
+      },
     ];
     const expectedResult = [
       {
         _id: "dispoId1",
         titreInformatif: "t1",
-        nbMercis: 1
+        nbMercis: 1,
       },
       {
         _id: "dispoId2",
         titreInformatif: "t2",
-        nbMercis: 2
+        nbMercis: 2,
       },
       {
         _id: "dispoId3",
         titreInformatif: "t3",
-        nbMercis: 0
+        nbMercis: 0,
       },
       {
         _id: "dispoId4",
         titreInformatif: "t4",
-        nbMercis: 0
-      }
-    ]
+        nbMercis: 0,
+      },
+    ];
 
     const res = countDispositifMercis(dispositifs);
 
@@ -169,11 +164,11 @@ describe("countDispositifMercis", () => {
           children: [
             {
               title: "Zone d'action",
-              departments: ["All"]
-            }
-          ]
-        }
-      ]
+              departments: ["All"],
+            },
+          ],
+        },
+      ],
     },
     {
       contenu: [
@@ -182,76 +177,11 @@ describe("countDispositifMercis", () => {
           children: [
             {
               title: "Zone d'action",
-              departments: ["63 - Puy-de-Dôme"]
-            }
-          ]
-        }
-      ]
-    },
-  ]
-
-  describe("filterContentsOnGeoloc", () => {
-    it("should return 1 content", () => {
-      const res1 = filterContentsOnGeoloc(contents, "Puy-de-Dôme", true);
-      expect(res1).toEqual([{
-        contenu: [
-          {},
-          {
-            children: [
-              {
-                title: "Zone d'action",
-                departments: ["63 - Puy-de-Dôme"]
-              }
-            ]
-          }
-        ]
-      }]);
-
-      const res2 = filterContentsOnGeoloc(contents, "Puy-de-Dome", true);
-      expect(res2).toEqual([{
-        contenu: [
-          {},
-          {
-            children: [
-              {
-                title: "Zone d'action",
-                departments: ["63 - Puy-de-Dôme"]
-              }
-            ]
-          }
-        ]
-      }]);
-    });
-
-    it("should return 2 content", () => {
-      const res = filterContentsOnGeoloc(contents, "Puy-de-Dôme", false);
-      expect(res).toEqual([
-        {
-          contenu: [
-            {},
-            {
-              children: [
-                {
-                  title: "Zone d'action",
-                  departments: ["All"]
-                }
-              ]
-            }
-          ]
+              departments: ["63 - Puy-de-Dôme"],
+            },
+          ],
         },
-        {
-          contenu: [
-            {},
-            {
-              children: [
-                {
-                  title: "Zone d'action",
-                  departments: ["63 - Puy-de-Dôme"]
-                }
-              ]
-            }
-          ]
-        }]);
-    });
-  });
+      ],
+    },
+  ];
 });

@@ -1,27 +1,30 @@
 import { Controller, Get, Route, Path, Query, Security, Queries, Patch, Body, Request, Post, Put, Delete } from "tsoa";
 import {
+  AddSuggestionDispositifRequest,
   AddViewsRequest,
   AdminCommentsRequest,
   CountDispositifsRequest,
   CreateDispositifRequest,
   DispositifStatusRequest,
+  GetAllDispositifsResponse,
+  GetContentsForAppRequest,
+  GetCountDispositifsResponse,
+  GetDispositifResponse,
   GetDispositifsRequest,
+  GetDispositifsResponse,
+  GetDispositifsWithTranslationAvancementResponse,
+  GetNbContentsForCountyRequest,
+  GetNbContentsForCountyResponse,
+  GetRegionStatisticsResponse,
   GetStatisticsRequest,
+  GetStatisticsResponse,
+  GetUserContributionsResponse,
+  Languages,
   MainSponsorRequest,
+  PostDispositifsResponse,
+  ReadSuggestionDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
-  GetDispositifsResponse,
-  GetAllDispositifsResponse,
-  GetDispositifResponse,
-  GetStatisticsResponse,
-  GetCountDispositifsResponse,
-  GetUserContributionsResponse,
-  GetDispositifsWithTranslationAvancementResponse,
-  Languages,
-  AddSuggestionDispositifRequest,
-  ReadSuggestionDispositifRequest,
-  GetRegionStatisticsResponse,
-  PostDispositifsResponse,
 } from "api-types";
 import express, { Request as ExRequest } from "express";
 
@@ -51,14 +54,12 @@ import { deleteMerci } from "../workflows/dispositif/deleteMerci";
 import { addSuggestion } from "../workflows/dispositif/addSuggestion";
 import { patchSuggestion } from "../workflows/dispositif/patchSuggestion";
 import { deleteSuggestion } from "../workflows/dispositif/deleteSuggestion";
-import { GetNbContentsForCountyRequest, GetNbContentsForCountyResponse } from "api-types/modules/dispositif";
 import logger from "src/logger";
 import { getNbContentsForCounty } from "src/workflows";
+import { GetContentsForAppResponse } from "api-types/modules/dispositif";
 
 const router = express.Router();
 
-/* TODO: use tsoa */
-router.get("/getContentsForApp", getContentsForApp);
 // @ts-ignore FIXME
 router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
 
@@ -71,12 +72,23 @@ export class DispositifController extends Controller {
     return getDispositifs(query);
   }
 
+  // TODO use / ?
+  @Get("/getContentsForApp")
+  public async getContentsForApp(
+    @Queries() queries: GetContentsForAppRequest,
+  ): ResponseWithData<GetContentsForAppResponse> {
+    return getContentsForApp(queries).then((data) => ({ text: "success", data }));
+  }
+
   @Security({
     jwt: [],
     fromSite: [],
   })
   @Post("/")
-  public async createDispositif(@Body() body: CreateDispositifRequest, @Request() request: express.Request): ResponseWithData<PostDispositifsResponse> {
+  public async createDispositif(
+    @Body() body: CreateDispositifRequest,
+    @Request() request: express.Request,
+  ): ResponseWithData<PostDispositifsResponse> {
     return createDispositif(body, request.userId);
   }
 
