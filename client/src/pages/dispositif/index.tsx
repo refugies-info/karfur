@@ -23,7 +23,6 @@ const DispositifPage = (props: Props) => {
         <div className="w-100">
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <Dispositif typeContenu={ContentType.DISPOSITIF} />
-            <button type="submit">Enregistrer</button>
           </form>
         </div>
       </FormProvider>

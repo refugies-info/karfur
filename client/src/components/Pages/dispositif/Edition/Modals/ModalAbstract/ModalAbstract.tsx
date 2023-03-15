@@ -1,6 +1,15 @@
-import Button from "components/UI/Button";
-import React from "react";
+import React, { useMemo, useState } from "react";
+import { useFormContext, useWatch } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { Col, Row } from "reactstrap";
+import { GetDispositifResponse } from "api-types";
+import { themesSelector } from "services/Themes/themes.selectors";
+import DispositifCard from "components/UI/DispositifCard";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import BaseModal from "../BaseModal";
+import { SimpleFooter } from "../components";
+import { getDefaultDispositif } from "./functions";
+import { help } from "./data";
 import styles from "./ModalAbstract.module.scss";
 
 interface Props {
@@ -8,20 +17,54 @@ interface Props {
   toggle: () => void;
 }
 
-const help = {
-  title: "À quoi sert cette phrase ?",
-  content: "Cette phrase sera visible uniquement sur la tuile des résultats de recherche.",
-};
+const MAX_LENGTH = 110;
 
 const ModalAbstract = (props: Props) => {
+  const formContext = useFormContext();
+  const values = useWatch<GetDispositifResponse>();
+  const themes = useSelector(themesSelector);
+  const [abstract, setAbstract] = useState<string | undefined>(values.abstract);
+
+  const validate = () => {
+    formContext.setValue("abstract", abstract || undefined);
+    props.toggle();
+  };
+
+  const remainingChars = useMemo(() => MAX_LENGTH - (abstract || "").length, [abstract]);
+
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajoutez un résumé">
       <div>
-        <div className="text-end">
-          <Button icon="checkmark-circle-2" iconPlacement="end" onClick={props.toggle}>
-            Valider
-          </Button>
-        </div>
+        <Row>
+          <Col>
+            <div className={styles.text}>
+              <textarea
+                onChange={(e: any) => setAbstract(e.target.value)}
+                placeholder="Résumez en 1 phrase votre action"
+                value={abstract}
+                className={styles.input}
+                maxLength={MAX_LENGTH}
+              />
+              {remainingChars > 0 && (
+                <p className={styles.help}>
+                  <EVAIcon name="alert-triangle" size={16} fill={styles.lightTextDefaultError} className="me-2" />
+                  {remainingChars} sur 110 caractères restants
+                </p>
+              )}
+            </div>
+          </Col>
+          <Col xs="auto" className="px-0 d-flex align-items-center">
+            <EVAIcon name="arrow-forward-outline" size={32} fill={styles.lightTextActionHighBlueFrance} />
+          </Col>
+          <Col>
+            <DispositifCard
+              dispositif={{ ...getDefaultDispositif(values, themes[0]._id), abstract }}
+              abstractPlaceholder
+            />
+          </Col>
+        </Row>
+
+        <SimpleFooter onValidate={validate} />
       </div>
     </BaseModal>
   );

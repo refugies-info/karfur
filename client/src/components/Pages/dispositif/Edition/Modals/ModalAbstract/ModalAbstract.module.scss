@@ -1,4 +1,25 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
-@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/input";
+@import "src/scss/mixins/text";
+
+.text {
+  position: relative;
+  height: 100%;
+}
+
+.input {
+  @include baseInput();
+  height: 100%;
+}
+
+.help {
+  @include dsfr-text("very-small");
+  position: absolute;
+  bottom: u(4);
+  left: u(4);
+  right: u(4);
+  margin-bottom: 0;
+  color: $lightTextDefaultError;
+}
