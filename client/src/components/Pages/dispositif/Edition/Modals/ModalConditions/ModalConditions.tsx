@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { conditionType, Metadatas } from "api-types";
+import { conditionType, CreateDispositifRequest } from "api-types";
 import { entries } from "lib/typedObjectEntries";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
@@ -14,15 +14,14 @@ interface Props {
 }
 
 const ModalConditions = (props: Props) => {
-  const formContext = useFormContext();
-  const [selected, setSelected] = useState<conditionType[] | null>([]);
+  const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
+  const [selected, setSelected] = useState<conditionType[] | null>(getValues("metadatas.conditions") || []);
   const toggleItem = (item: conditionType) =>
     setSelected((items) => (items?.includes(item) ? items.filter((i) => i !== item) : [...(items || []), item]));
 
   const validate = () => {
-    const value: Metadatas["conditions"] = selected;
-    if (value !== undefined) {
-      formContext.setValue("metadatas.conditions", value);
+    if (selected !== undefined) {
+      setValue("metadatas.conditions", selected);
     }
     props.toggle();
   };

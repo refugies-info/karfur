@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useFormContext } from "react-hook-form";
-import { Metadatas, priceDetails } from "api-types";
+import { CreateDispositifRequest, Metadatas, priceDetails } from "api-types";
 import DropdownModals from "../../DropdownModals";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
@@ -9,6 +9,7 @@ import { SimpleFooter, InlineForm } from "../components";
 import PriceFree from "assets/dispositif/form-icons/price-free.svg";
 import PricePay from "assets/dispositif/form-icons/price-pay.svg";
 import { dropdownOptions, help } from "./data";
+import { getInitialPrice, getInitialType } from "./functions";
 import styles from "./ModalPrice.module.scss";
 
 interface Props {
@@ -17,12 +18,18 @@ interface Props {
 }
 
 const ModalPrice = (props: Props) => {
-  const formContext = useFormContext();
-  const [selected, setSelected] = useState<"free" | "pay" | null | undefined>(undefined);
-  const [selectedPay, setSelectedPay] = useState<"once" | "between" | "free" | undefined>(undefined);
-  const [selectedRecurent, setSelectedRecurent] = useState<priceDetails>("once");
-  const [priceStart, setPriceStart] = useState<number | undefined>(undefined);
-  const [priceEnd, setPriceEnd] = useState<number | undefined>(undefined);
+  const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
+  const [selected, setSelected] = useState<"free" | "pay" | null | undefined>(
+    getInitialPrice(getValues("metadatas.price")) || undefined,
+  );
+  const [selectedPay, setSelectedPay] = useState<"once" | "between" | "free" | undefined>(
+    getInitialType(getValues("metadatas.price")),
+  );
+  const [selectedRecurent, setSelectedRecurent] = useState<priceDetails>(
+    getValues("metadatas.price.details") || "once",
+  );
+  const [priceStart, setPriceStart] = useState<number | undefined>(getValues("metadatas.price.values.0") || undefined);
+  const [priceEnd, setPriceEnd] = useState<number | undefined>(getValues("metadatas.price.values.1") || undefined);
 
   const validate = () => {
     if (selected !== undefined) {
@@ -46,7 +53,7 @@ const ModalPrice = (props: Props) => {
           newPrice = { values: [] };
         }
       }
-      formContext.setValue("metadatas.price", newPrice);
+      setValue("metadatas.price", newPrice);
     }
     props.toggle();
   };

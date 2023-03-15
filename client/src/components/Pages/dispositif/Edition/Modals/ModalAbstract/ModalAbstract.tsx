@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
-import { GetDispositifResponse } from "api-types";
+import { CreateDispositifRequest } from "api-types";
 import { themesSelector } from "services/Themes/themes.selectors";
 import DispositifCard from "components/UI/DispositifCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -20,13 +20,13 @@ interface Props {
 const MAX_LENGTH = 110;
 
 const ModalAbstract = (props: Props) => {
-  const formContext = useFormContext();
-  const values = useWatch<GetDispositifResponse>();
+  const formContext = useFormContext<CreateDispositifRequest>();
+  const values = useWatch<CreateDispositifRequest>();
   const themes = useSelector(themesSelector);
   const [abstract, setAbstract] = useState<string | undefined>(values.abstract);
 
   const validate = () => {
-    formContext.setValue("abstract", abstract || undefined);
+    formContext.setValue("abstract", abstract || "");
     props.toggle();
   };
 

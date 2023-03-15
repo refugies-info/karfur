@@ -96,7 +96,13 @@ const BaseCard = ({ title, items, color, onClick }: Props) => {
 
   if (noContent) return null;
   return onClick ? (
-    <button className={cls(styles.card, styles.btn, status === "error" && styles.error)} onClick={onClick}>
+    <button
+      className={cls(styles.card, styles.btn, status === "error" && styles.error)}
+      onClick={(e: any) => {
+        e.preventDefault();
+        onClick();
+      }}
+    >
       {cardContent}
     </button>
   ) : (

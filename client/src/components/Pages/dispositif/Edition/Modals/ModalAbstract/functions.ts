@@ -1,7 +1,7 @@
 import { DeepPartialSkipArrayKey } from "react-hook-form";
-import { ContentType, DispositifStatus, GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus, GetDispositifsResponse, Id } from "api-types";
 
-export const getDefaultDispositif = (formValues: DeepPartialSkipArrayKey<GetDispositifResponse>, theme: Id): GetDispositifsResponse => {
+export const getDefaultDispositif = (formValues: DeepPartialSkipArrayKey<CreateDispositifRequest>, theme: Id): GetDispositifsResponse => {
   return {
     _id: "",
     titreInformatif: formValues.titreInformatif || "Titre de la fiche",

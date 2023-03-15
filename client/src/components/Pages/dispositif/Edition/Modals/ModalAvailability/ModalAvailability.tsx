@@ -1,6 +1,13 @@
 import React, { useCallback, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { amountDetailsType, frequencyUnitType, Metadatas, timeSlotType, timeUnitType } from "api-types";
+import {
+  amountDetailsType,
+  CreateDispositifRequest,
+  frequencyUnitType,
+  Metadatas,
+  timeSlotType,
+  timeUnitType,
+} from "api-types";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
 import BaseModal from "../BaseModal";
@@ -23,13 +30,19 @@ interface Props {
 const MAX_STEP = 3;
 
 const ModalAvailability = (props: Props) => {
-  const formContext = useFormContext();
+  const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
   const [step, setStep] = useState<number>(1);
 
   // commitment
-  const [commitmentAmountDetails, setCommitmentAmountDetails] = useState<amountDetailsType>("atLeast");
-  const [commitmentHours, setCommitmentHours] = useState<number | undefined>(undefined);
-  const [commitmentTimeUnit, setCommitmentTimeUnit] = useState<timeUnitType>("hours");
+  const [commitmentAmountDetails, setCommitmentAmountDetails] = useState<amountDetailsType>(
+    getValues("metadatas.commitment.amountDetails") || "atLeast",
+  );
+  const [commitmentHours, setCommitmentHours] = useState<number | undefined>(
+    getValues("metadatas.commitment.hours") || undefined,
+  );
+  const [commitmentTimeUnit, setCommitmentTimeUnit] = useState<timeUnitType>(
+    getValues("metadatas.commitment.timeUnit") || "hours",
+  );
   const [noCommitment, setNoCommitment] = useState<boolean>(false);
   const validateCommitment = () => {
     let commitment: Metadatas["commitment"] = undefined;
@@ -41,14 +54,22 @@ const ModalAvailability = (props: Props) => {
         timeUnit: commitmentTimeUnit,
       };
     }
-    formContext.setValue("metadatas.commitment", commitment);
+    setValue("metadatas.commitment", commitment);
   };
 
   // frequency
-  const [frequencyAmountDetails, setFrequencyAmountDetails] = useState<amountDetailsType>("atLeast");
-  const [frequencyHours, setFrequencyHours] = useState<number | undefined>(undefined);
-  const [frequencyTimeUnit, setFrequencyTimeUnit] = useState<timeUnitType>("hours");
-  const [frequencyUnit, setFrequencyUnit] = useState<frequencyUnitType>("day");
+  const [frequencyAmountDetails, setFrequencyAmountDetails] = useState<amountDetailsType>(
+    getValues("metadatas.frequency.amountDetails") || "atLeast",
+  );
+  const [frequencyHours, setFrequencyHours] = useState<number | undefined>(
+    getValues("metadatas.frequency.hours") || undefined,
+  );
+  const [frequencyTimeUnit, setFrequencyTimeUnit] = useState<timeUnitType>(
+    getValues("metadatas.frequency.timeUnit") || "hours",
+  );
+  const [frequencyUnit, setFrequencyUnit] = useState<frequencyUnitType>(
+    getValues("metadatas.frequency.frequencyUnit") || "day",
+  );
   const [noFrequency, setNoFrequency] = useState<boolean>(false);
   const validateFrequency = () => {
     let frequency: Metadatas["frequency"] = undefined;
@@ -61,20 +82,21 @@ const ModalAvailability = (props: Props) => {
         frequencyUnit: frequencyUnit,
       };
     }
-    formContext.setValue("metadatas.frequency", frequency);
+    setValue("metadatas.frequency", frequency);
   };
 
   // timeSlots
-  const [timeSlots, setTimeSlots] = useState<timeSlotType[] | null | undefined>(undefined);
+  const [timeSlots, setTimeSlots] = useState<timeSlotType[] | null | undefined>(
+    getValues("metadatas.timeSlots") || undefined,
+  );
   const selectTimeSlot = useCallback((option: timeSlotType) => {
     setTimeSlots((options) =>
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
     );
   }, []);
   const validateTimeSlots = () => {
-    const newTimeSlots: Metadatas["timeSlots"] = timeSlots;
-    if (newTimeSlots !== undefined) {
-      formContext.setValue("metadatas.timeSlots", newTimeSlots);
+    if (timeSlots !== undefined) {
+      setValue("metadatas.timeSlots", timeSlots);
     }
   };
 

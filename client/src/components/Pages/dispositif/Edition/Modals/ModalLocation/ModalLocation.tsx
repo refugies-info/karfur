@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useFormContext } from "react-hook-form";
-import { Metadatas } from "api-types";
+import { CreateDispositifRequest, Metadatas } from "api-types";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
 import { SimpleFooter } from "../components";
@@ -17,13 +17,16 @@ interface Props {
 }
 
 const ModalLocation = (props: Props) => {
-  const formContext = useFormContext();
-  const [selected, setSelected] = useState<"france" | "departments" | "online" | null | undefined>(undefined);
+  const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
+  const initialValue = getValues("metadatas.location");
+  const [selected, setSelected] = useState<"france" | "departments" | "online" | null | undefined>(
+    Array.isArray(initialValue) ? "departments" : initialValue,
+  );
 
   const validate = () => {
     if (selected !== undefined) {
       const value: Metadatas["location"] = selected === "departments" ? [] : selected;
-      formContext.setValue("metadatas.location", value);
+      setValue("metadatas.location", value);
     }
     props.toggle();
   };

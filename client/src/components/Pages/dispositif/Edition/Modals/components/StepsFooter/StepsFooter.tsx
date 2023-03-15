@@ -15,14 +15,25 @@ const StepsFooter = (props: Props) => {
       <Steps step={props.step} maxStep={props.maxSteps} />
       <div className="flex-grow-1 text-end">
         {props.step > 1 && (
-          <Button secondary icon="arrow-back-outline" onClick={props.onPrevious} className="me-4">
+          <Button
+            secondary
+            icon="arrow-back-outline"
+            onClick={(e: any) => {
+              e.preventDefault();
+              props.onPrevious();
+            }}
+            className="me-4"
+          >
             Précédent
           </Button>
         )}
         <Button
           icon={props.step === props.maxSteps ? "checkmark-circle-2" : "arrow-forward-outline"}
           iconPlacement="end"
-          onClick={props.onValidate}
+          onClick={(e: any) => {
+            e.preventDefault();
+            props.onValidate();
+          }}
         >
           {props.step === props.maxSteps ? "Valider" : "Étape suivante"}
         </Button>

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { ageType, frenchLevelType, Metadatas, publicStatusType, publicType } from "api-types";
+import { ageType, CreateDispositifRequest, frenchLevelType, Metadatas, publicStatusType, publicType } from "api-types";
 import { cls } from "lib/classname";
 import { entries } from "lib/typedObjectEntries";
 import ChoiceButton from "../../ChoiceButton";
@@ -18,54 +18,57 @@ interface Props {
 const MAX_STEP = 4;
 
 const ModalPublic = (props: Props) => {
-  const formContext = useFormContext();
+  const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
   const [step, setStep] = useState<number>(1);
 
   // public status
-  const [publicStatus, setPublicStatus] = useState<publicStatusType[] | undefined>(undefined);
+  const [publicStatus, setPublicStatus] = useState<publicStatusType[] | undefined>(
+    getValues("metadatas.publicStatus") || undefined,
+  );
   const selectPublicStatus = useCallback((option: publicStatusType) => {
     setPublicStatus((options) =>
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
     );
   }, []);
   const validatePublicStatus = () => {
-    const newPublicStatus: Metadatas["publicStatus"] = publicStatus;
-    if (newPublicStatus !== undefined) {
-      formContext.setValue("metadatas.publicStatus", newPublicStatus);
+    if (publicStatus !== undefined) {
+      setValue("metadatas.publicStatus", publicStatus);
     }
   };
 
   // public
-  const [publicType, setPublicType] = useState<publicType[] | null | undefined>(undefined);
+  const [publicType, setPublicType] = useState<publicType[] | null | undefined>(
+    getValues("metadatas.public") || undefined,
+  );
   const selectPublicType = useCallback((option: publicType) => {
     setPublicType((options) =>
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
     );
   }, []);
   const validatePublicType = () => {
-    const newPublicType: Metadatas["public"] = publicType;
-    if (newPublicType !== undefined) {
-      formContext.setValue("metadatas.public", newPublicType);
+    if (publicType !== undefined) {
+      setValue("metadatas.public", publicType);
     }
   };
 
   // frenchLevel
-  const [frenchLevel, setFrenchLevel] = useState<frenchLevelType[] | null | undefined>(undefined);
+  const [frenchLevel, setFrenchLevel] = useState<frenchLevelType[] | null | undefined>(
+    getValues("metadatas.frenchLevel") || undefined,
+  );
   const selectFrenchLevel = useCallback((option: frenchLevelType) => {
     setFrenchLevel((options) =>
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
     );
   }, []);
   const validateFrenchLevel = () => {
-    const newFrenchLevel: Metadatas["frenchLevel"] = frenchLevel;
-    if (newFrenchLevel !== undefined) {
-      formContext.setValue("metadatas.frenchLevel", newFrenchLevel);
+    if (frenchLevel !== undefined) {
+      setValue("metadatas.frenchLevel", frenchLevel);
     }
   };
 
   // age
-  const [ageType, setAgeType] = useState<ageType>("moreThan");
-  const [ages, setAges] = useState<number[]>([]);
+  const [ageType, setAgeType] = useState<ageType>(getValues("metadatas.age.type") || "moreThan");
+  const [ages, setAges] = useState<number[]>(getValues("metadatas.age.ages") || []);
   const [noAge, setNoAge] = useState(false);
   const validateAge = () => {
     let age: Metadatas["age"] = undefined;
@@ -80,7 +83,7 @@ const ModalPublic = (props: Props) => {
         };
       }
     }
-    formContext.setValue("metadatas.age", age);
+    setValue("metadatas.age", age);
   };
 
   const validate = () => {

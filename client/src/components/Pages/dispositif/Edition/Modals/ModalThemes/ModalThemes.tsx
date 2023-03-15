@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useFormContext } from "react-hook-form";
-import { GetDispositifResponse, Id } from "api-types";
+import { CreateDispositifRequest } from "api-types";
 import { themesSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import BaseModal from "../BaseModal";
@@ -27,16 +27,16 @@ const help = {
 const MAX_SECONDARY_THEMES = 2;
 
 const ModalThemes = (props: Props) => {
-  const formContext = useFormContext();
+  const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
   const themes = useSelector(themesSelector);
-  const [mainTheme, setMainTheme] = useState<Id | null>(null);
-  const [secondaryThemes, setSecondaryThemes] = useState<Id[]>([]);
+  const [mainTheme, setMainTheme] = useState<string | undefined>(getValues("theme") || undefined);
+  const [secondaryThemes, setSecondaryThemes] = useState<string[]>(getValues("secondaryThemes") || []);
 
   const selectTheme = useCallback(
-    (id: Id) => {
+    (id: string) => {
       // remove main theme = unselect all
       if (id === mainTheme) {
-        setMainTheme(null);
+        setMainTheme(undefined);
         setSecondaryThemes([]);
         return;
       }
@@ -65,10 +65,8 @@ const ModalThemes = (props: Props) => {
   );
 
   const validate = () => {
-    const newTheme: GetDispositifResponse["theme"] = mainTheme || undefined;
-    const newSecondaryThemes: GetDispositifResponse["secondaryThemes"] = secondaryThemes;
-    formContext.setValue("theme", newTheme);
-    formContext.setValue("secondaryThemes", newSecondaryThemes);
+    setValue("theme", mainTheme);
+    setValue("secondaryThemes", secondaryThemes);
     props.toggle();
   };
 
@@ -88,7 +86,7 @@ const ModalThemes = (props: Props) => {
         <p className="mb-6">Choisissez un thème principal et jusqu’à deux thèmes secondaires :</p>
         {themes.map((theme, i) => {
           const isSelectedPrimary = mainTheme === theme._id;
-          const isSelected = secondaryThemes.includes(theme._id);
+          const isSelected = secondaryThemes.includes(theme._id.toString());
           return (
             <ThemeSelectButton
               key={i}
@@ -96,7 +94,7 @@ const ModalThemes = (props: Props) => {
               selectedPrimary={isSelectedPrimary}
               selected={isSelected}
               disabled={!isSelectedPrimary && !isSelected && maxSelected}
-              onClick={() => selectTheme(theme._id)}
+              onClick={() => selectTheme(theme._id.toString())}
             />
           );
         })}
