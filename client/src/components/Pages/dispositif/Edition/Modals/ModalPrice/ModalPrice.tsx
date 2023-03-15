@@ -2,36 +2,19 @@ import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useFormContext } from "react-hook-form";
 import { Metadatas, priceDetails } from "api-types";
-import Button from "components/UI/Button";
-import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
-import InlineForm from "../components/InlineForm";
+import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
+import { SimpleFooter, InlineForm } from "../components";
 import PriceFree from "assets/dispositif/form-icons/price-free.svg";
 import PricePay from "assets/dispositif/form-icons/price-pay.svg";
+import { dropdownOptions, help } from "./data";
 import styles from "./ModalPrice.module.scss";
 
 interface Props {
   show: boolean;
   toggle: () => void;
 }
-
-const help = {
-  title: "À quoi sert cette information ?",
-  content: "Ajoutez les éventuels frais d’inscription, les souscriptions ou les abonnements relatifs à votre action.",
-};
-
-const dropdownOptions: Record<priceDetails, string> = {
-  once: "Une seule fois",
-  eachTime: "À chaque fois",
-  hour: "Par heure",
-  day: "Par jour",
-  week: "Par semaine",
-  month: "Par mois",
-  trimester: "Par trimestre",
-  semester: "Par semestre",
-  year: "Par an",
-};
 
 const ModalPrice = (props: Props) => {
   const formContext = useFormContext();
@@ -177,11 +160,7 @@ const ModalPrice = (props: Props) => {
           size="lg"
         />
 
-        <div className="text-end mt-6">
-          <Button icon="checkmark-circle-2" iconPlacement="end" onClick={validate}>
-            Valider
-          </Button>
-        </div>
+        <SimpleFooter onValidate={validate} />
       </div>
     </BaseModal>
   );

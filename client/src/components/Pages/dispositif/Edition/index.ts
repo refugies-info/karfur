@@ -2,6 +2,7 @@ import AccordionItemEdit from "components/Pages/dispositif/Edition/AccordionItem
 import AddContentButton from "components/Pages/dispositif/Edition/AddContentButton";
 import ChoiceButton from "components/Pages/dispositif/Edition/ChoiceButton";
 import CustomNavbar from "components/Pages/dispositif/Edition/CustomNavbar";
+import DropdownModals from "components/Pages/dispositif/Edition/DropdownModals";
 import HelpCard from "components/Pages/dispositif/Edition/HelpCard";
 import LeftSidebarEdition from "components/Pages/dispositif/Edition/LeftSidebarEdition";
 import MetaDescription from "components/Pages/dispositif/Edition/MetaDescription";
@@ -14,6 +15,7 @@ export {
   AddContentButton,
   ChoiceButton,
   CustomNavbar,
+  DropdownModals,
   HelpCard,
   LeftSidebarEdition,
   MetaDescription,

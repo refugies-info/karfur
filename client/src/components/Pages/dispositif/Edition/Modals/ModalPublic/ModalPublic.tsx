@@ -3,11 +3,11 @@ import { useFormContext } from "react-hook-form";
 import { ageType, frenchLevelType, Metadatas, publicStatusType, publicType } from "api-types";
 import { cls } from "lib/classname";
 import { entries } from "lib/typedObjectEntries";
-import Button from "components/UI/Button";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
-import InlineForm from "../components/InlineForm";
-import Steps from "../components/Steps";
+import { StepsFooter, InlineForm } from "../components";
+import { ageOptions, frenchLevelOptions, help, publicOptions, publicStatusOptions } from "./data";
+import { includeAllRefugees } from "./functions";
 import styles from "./ModalPublic.module.scss";
 
 interface Props {
@@ -15,113 +15,86 @@ interface Props {
   toggle: () => void;
 }
 
-const help = {
-  title: "À quoi sert cette information ?",
-  content: "Ajoutez-les seulement si ce sont vraiment des critères exluant le cas échéant.",
-};
-
-const publicStatusOptions: Record<publicStatusType, string> = {
-  asile: "Demandeurs d'asile",
-  refugie: "Réfugiés statutaires",
-  subsidiaire: "Bénéficiaires de la protection subsidiaire",
-  apatride: "Apatrides",
-  french: "Citoyens français",
-};
-const publicOptions: Record<publicType, string> = {
-  family: "Famille",
-  women: "Femmes",
-  youths: "Jeunes (de 16 à 25 ans)",
-  senior: "Séniors",
-};
-const frenchLevelOptions: Record<frenchLevelType, string> = {
-  "A1.1": "en cours d'alphabétisation",
-  "A1": "je découvre le français",
-  "A2": "je comprends des messages simples",
-  "B1": "je communique avec des francophones",
-  "B2": "je communique avec aisance",
-  "C1": "je communique avec grande aisance",
-  "C2": "...",
-};
-const ageOptions: Record<ageType, string> = {
-  moreThan: "Plus de ** ans",
-  between: "Entre ** et ** ans",
-  lessThan: "Moins de ** ans",
-};
-
-const includeAllRefugees = (publicStatus: publicStatusType[] | undefined) => {
-  return !!(
-    publicStatus &&
-    publicStatus.includes("asile") &&
-    publicStatus.includes("refugie") &&
-    publicStatus.includes("subsidiaire") &&
-    publicStatus.includes("apatride")
-  );
-};
-
 const MAX_STEP = 4;
 
 const ModalPublic = (props: Props) => {
   const formContext = useFormContext();
   const [step, setStep] = useState<number>(1);
 
+  // public status
   const [publicStatus, setPublicStatus] = useState<publicStatusType[] | undefined>(undefined);
   const selectPublicStatus = useCallback((option: publicStatusType) => {
     setPublicStatus((options) =>
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
     );
   }, []);
+  const validatePublicStatus = () => {
+    const newPublicStatus: Metadatas["publicStatus"] = publicStatus;
+    if (newPublicStatus !== undefined) {
+      formContext.setValue("metadatas.publicStatus", newPublicStatus);
+    }
+  };
 
+  // public
   const [publicType, setPublicType] = useState<publicType[] | null | undefined>(undefined);
   const selectPublicType = useCallback((option: publicType) => {
     setPublicType((options) =>
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
     );
   }, []);
+  const validatePublicType = () => {
+    const newPublicType: Metadatas["public"] = publicType;
+    if (newPublicType !== undefined) {
+      formContext.setValue("metadatas.public", newPublicType);
+    }
+  };
 
+  // frenchLevel
   const [frenchLevel, setFrenchLevel] = useState<frenchLevelType[] | null | undefined>(undefined);
   const selectFrenchLevel = useCallback((option: frenchLevelType) => {
     setFrenchLevel((options) =>
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
     );
   }, []);
+  const validateFrenchLevel = () => {
+    const newFrenchLevel: Metadatas["frenchLevel"] = frenchLevel;
+    if (newFrenchLevel !== undefined) {
+      formContext.setValue("metadatas.frenchLevel", newFrenchLevel);
+    }
+  };
 
+  // age
   const [ageType, setAgeType] = useState<ageType>("moreThan");
   const [ages, setAges] = useState<number[]>([]);
   const [noAge, setNoAge] = useState(false);
+  const validateAge = () => {
+    let age: Metadatas["age"] = undefined;
+    if (noAge) age = null;
+    else if (!noAge && ages.length > 0) {
+      const betweenFormError = ageType === "between" && (isNaN(ages[0]) || isNaN(ages[1]));
+      const formError = isNaN(ages[0]);
+      if (!betweenFormError && !formError) {
+        age = {
+          type: ageType,
+          ages: ageType === "between" ? [ages[0], ages[1]] : [ages[0]],
+        };
+      }
+    }
+    formContext.setValue("metadatas.age", age);
+  };
 
   const validate = () => {
     if (step === 1) {
-      const newPublicStatus: Metadatas["publicStatus"] = publicStatus;
-      if (newPublicStatus !== undefined) {
-        formContext.setValue("metadatas.publicStatus", newPublicStatus);
-      }
+      validatePublicStatus();
       setStep(2);
     } else if (step === 2) {
-      const newPublicType: Metadatas["public"] = publicType;
-      if (newPublicType !== undefined) {
-        formContext.setValue("metadatas.public", newPublicType);
-      }
+      validatePublicType();
       setStep(3);
     } else if (step === 3) {
-      const newFrenchLevel: Metadatas["frenchLevel"] = frenchLevel;
-      if (newFrenchLevel !== undefined) {
-        formContext.setValue("metadatas.frenchLevel", newFrenchLevel);
-      }
+      validateFrenchLevel();
       setStep(4);
     } else if (step === 4) {
-      let age: Metadatas["age"] = undefined;
-      if (noAge) age = null;
-      else if (!noAge && ages.length > 0) {
-        const betweenFormError = ageType === "between" && (isNaN(ages[0]) || isNaN(ages[1]));
-        const formError = isNaN(ages[0]);
-        if (!betweenFormError && !formError) {
-          age = {
-            type: ageType,
-            ages: ageType === "between" ? [ages[0], ages[1]] : [ages[0]],
-          };
-        }
-      }
-      formContext.setValue("metadatas.age", age);
+      validateAge();
       props.toggle();
     }
   };
@@ -303,23 +276,7 @@ const ModalPublic = (props: Props) => {
           </div>
         )}
 
-        <div className="d-flex mt-6">
-          <Steps step={step} maxStep={MAX_STEP} />
-          <div className="flex-grow-1 text-end">
-            {step > 1 && (
-              <Button secondary icon="arrow-back-outline" onClick={() => setStep((s) => s - 1)} className="me-4">
-                Précédent
-              </Button>
-            )}
-            <Button
-              icon={step === MAX_STEP ? "checkmark-circle-2" : "arrow-forward-outline"}
-              iconPlacement="end"
-              onClick={validate}
-            >
-              {step === MAX_STEP ? "Valider" : "Étape suivante"}
-            </Button>
-          </div>
-        </div>
+        <StepsFooter onValidate={validate} onPrevious={() => setStep((s) => s - 1)} maxSteps={MAX_STEP} step={step} />
       </div>
     </BaseModal>
   );

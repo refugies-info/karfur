@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { amountDetailsType, frequencyUnitType, Metadatas, timeSlotType, timeUnitType } from "api-types";
-import Button from "components/UI/Button";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
 import BaseModal from "../BaseModal";
-import InlineForm from "../components/InlineForm";
-import Steps from "../components/Steps";
+import { StepsFooter, InlineForm } from "../components";
+import { amountDetailsOptions, frequencyUnitOptions, help, timeSlotOptions, timeUnitOptions } from "./data";
 import styles from "./ModalAvailability.module.scss";
 
 interface Props {
@@ -14,34 +13,6 @@ interface Props {
   toggle: () => void;
 }
 
-const help = {
-  title: "À quoi sert cette information ?",
-  content: "Si c’est variable selon le profil : il faut cocher la case “cette question ne me concerne pas”",
-};
-
-const amountDetailsOptions: Record<amountDetailsType, string> = {
-  atLeast: "Au moins",
-  approximately: "Environ",
-  mandatory: "Obligatoirement",
-};
-const timeUnitOptions: Record<timeUnitType, string> = {
-  hours: "heures",
-  days: "jours",
-  weeks: "semaines",
-  months: "mois",
-  trimesters: "trimestres",
-  semesters: "semestres",
-  years: "années",
-};
-const frequencyUnitOptions: Record<frequencyUnitType, string> = {
-  day: "jour",
-  week: "semaine",
-  month: "mois",
-  trimester: "trimestre",
-  semester: "semestre",
-  year: "année",
-};
-const timeSlotOptions: timeSlotType[] = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 const MAX_STEP = 3;
 
 const ModalAvailability = (props: Props) => {
@@ -53,6 +24,18 @@ const ModalAvailability = (props: Props) => {
   const [commitmentHours, setCommitmentHours] = useState<number | undefined>(undefined);
   const [commitmentTimeUnit, setCommitmentTimeUnit] = useState<timeUnitType>("hours");
   const [noCommitment, setNoCommitment] = useState<boolean>(false);
+  const validateCommitment = () => {
+    let commitment: Metadatas["commitment"] = undefined;
+    if (noCommitment) commitment = null;
+    else if (!noCommitment && commitmentHours !== undefined) {
+      commitment = {
+        amountDetails: commitmentAmountDetails,
+        hours: commitmentHours,
+        timeUnit: commitmentTimeUnit,
+      };
+    }
+    formContext.setValue("metadatas.commitment", commitment);
+  };
 
   // frequency
   const [frequencyAmountDetails, setFrequencyAmountDetails] = useState<amountDetailsType>("atLeast");
@@ -60,6 +43,19 @@ const ModalAvailability = (props: Props) => {
   const [frequencyTimeUnit, setFrequencyTimeUnit] = useState<timeUnitType>("hours");
   const [frequencyUnit, setFrequencyUnit] = useState<frequencyUnitType>("day");
   const [noFrequency, setNoFrequency] = useState<boolean>(false);
+  const validateFrequency = () => {
+    let frequency: Metadatas["frequency"] = undefined;
+    if (noFrequency) frequency = null;
+    if (!noFrequency && frequencyHours !== undefined) {
+      frequency = {
+        amountDetails: frequencyAmountDetails,
+        hours: frequencyHours,
+        timeUnit: frequencyTimeUnit,
+        frequencyUnit: frequencyUnit,
+      };
+    }
+    formContext.setValue("metadatas.frequency", frequency);
+  };
 
   // timeSlots
   const [timeSlots, setTimeSlots] = useState<timeSlotType[] | null | undefined>(undefined);
@@ -68,38 +64,22 @@ const ModalAvailability = (props: Props) => {
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
     );
   }, []);
+  const validateTimeSlots = () => {
+    const newTimeSlots: Metadatas["timeSlots"] = timeSlots;
+    if (newTimeSlots !== undefined) {
+      formContext.setValue("metadatas.timeSlots", newTimeSlots);
+    }
+  };
 
   const validate = () => {
     if (step === 1) {
-      let commitment: Metadatas["commitment"] = undefined;
-      if (noCommitment) commitment = null;
-      else if (!noCommitment && commitmentHours !== undefined) {
-        commitment = {
-          amountDetails: commitmentAmountDetails,
-          hours: commitmentHours,
-          timeUnit: commitmentTimeUnit,
-        };
-      }
-      formContext.setValue("metadatas.commitment", commitment);
+      validateCommitment();
       setStep(2);
     } else if (step === 2) {
-      let frequency: Metadatas["frequency"] = undefined;
-      if (noFrequency) frequency = null;
-      if (!noFrequency && frequencyHours !== undefined) {
-        frequency = {
-          amountDetails: frequencyAmountDetails,
-          hours: frequencyHours,
-          timeUnit: frequencyTimeUnit,
-          frequencyUnit: frequencyUnit,
-        };
-      }
-      formContext.setValue("metadatas.frequency", frequency);
+      validateFrequency();
       setStep(3);
     } else if (step === 3) {
-      const newTimeSlots: Metadatas["timeSlots"] = timeSlots;
-      if (newTimeSlots !== undefined) {
-        formContext.setValue("metadatas.timeSlots", newTimeSlots);
-      }
+      validateTimeSlots();
       props.toggle();
     }
   };
@@ -205,23 +185,7 @@ const ModalAvailability = (props: Props) => {
         </div>
       )}
 
-      <div className="d-flex mt-6">
-        <Steps step={step} maxStep={MAX_STEP} />
-        <div className="flex-grow-1 text-end">
-          {step > 1 && (
-            <Button secondary icon="arrow-back-outline" onClick={() => setStep((s) => s - 1)} className="me-4">
-              Précédent
-            </Button>
-          )}
-          <Button
-            icon={step === MAX_STEP ? "checkmark-circle-2" : "arrow-forward-outline"}
-            iconPlacement="end"
-            onClick={validate}
-          >
-            {step === MAX_STEP ? "Valider" : "Étape suivante"}
-          </Button>
-        </div>
-      </div>
+      <StepsFooter onValidate={validate} onPrevious={() => setStep((s) => s - 1)} maxSteps={MAX_STEP} step={step} />
     </BaseModal>
   );
 };

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useFormContext } from "react-hook-form";
 import { Metadatas } from "api-types";
-import Button from "components/UI/Button";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
+import { SimpleFooter } from "../components";
+import { help } from "./data";
 import imgAll from "assets/dispositif/form-icons/location-all.svg";
 import imgDepartment from "assets/dispositif/form-icons/location-department.svg";
 import imgInternet from "assets/dispositif/form-icons/location-internet.svg";
@@ -14,12 +15,6 @@ interface Props {
   show: boolean;
   toggle: () => void;
 }
-
-const help = {
-  title: "À quoi sert cette information ?",
-  content:
-    "Votre action est accessible dans quels départements ? Est-elle déployé sur toutes la France ? Ou disponible en ligne ?",
-};
 
 const ModalLocation = (props: Props) => {
   const formContext = useFormContext();
@@ -73,11 +68,7 @@ const ModalLocation = (props: Props) => {
           className="mb-6"
         />
 
-        <div className="text-end">
-          <Button icon="checkmark-circle-2" iconPlacement="end" onClick={validate}>
-            Valider
-          </Button>
-        </div>
+        <SimpleFooter onValidate={validate} />
       </div>
     </BaseModal>
   );
