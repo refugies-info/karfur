@@ -1,18 +1,20 @@
-import AccordionItemEdit from "components/Pages/dispositif/Edition/AccordionItemEdit";
-import AddContentButton from "components/Pages/dispositif/Edition/AddContentButton";
-import ChoiceButton from "components/Pages/dispositif/Edition/ChoiceButton";
-import CustomNavbar from "components/Pages/dispositif/Edition/CustomNavbar";
-import DropdownModals from "components/Pages/dispositif/Edition/DropdownModals";
-import HelpCard from "components/Pages/dispositif/Edition/HelpCard";
-import LeftSidebarEdition from "components/Pages/dispositif/Edition/LeftSidebarEdition";
-import MetaDescription from "components/Pages/dispositif/Edition/MetaDescription";
-import RichTextEdit from "components/Pages/dispositif/Edition/RichTextEdit";
-import RightSidebarEdition from "components/Pages/dispositif/Edition/RightSidebarEdition";
-import TitleEdit from "components/Pages/dispositif/Edition/TitleEdit";
+import AccordionItemEdit from "./AccordionItemEdit";
+import AddContentButton from "./AddContentButton";
+import BannerEdition from "./BannerEdition";
+import ChoiceButton from "./ChoiceButton";
+import CustomNavbar from "./CustomNavbar";
+import DropdownModals from "./DropdownModals";
+import HelpCard from "./HelpCard";
+import LeftSidebarEdition from "./LeftSidebarEdition";
+import MetaDescription from "./MetaDescription";
+import RichTextEdit from "./RichTextEdit";
+import RightSidebarEdition from "./RightSidebarEdition";
+import TitleEdit from "./TitleEdit";
 
 export {
   AccordionItemEdit,
   AddContentButton,
+  BannerEdition,
   ChoiceButton,
   CustomNavbar,
   DropdownModals,

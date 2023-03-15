@@ -26,7 +26,7 @@ const CustomNavbar = () => {
           </p>
           <p className={styles.help}>{getText(progress)}</p>
         </div>
-        <Button icon="checkmark-circle-2" iconPlacement="end">
+        <Button submit icon="checkmark-circle-2" iconPlacement="end">
           Terminer
         </Button>
       </div>

@@ -1,21 +1,21 @@
+import { GetDispositifResponse } from "api-types";
 import React, { useState } from "react";
+import { useWatch } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { themeSelector } from "services/Themes/themes.selectors";
+import SectionTitle from "../../SectionTitle";
 import AddContentButton from "../AddContentButton";
 import { ModalAbstract } from "../Modals";
 import styles from "./MetaDescription.module.scss";
 
-interface Props {
-  content?: string;
-  color: string;
-}
-
-const MetaDescription = ({ content, color }: Props) => {
+const MetaDescription = () => {
   const [showModal, setShowModal] = useState(false);
+  const values = useWatch<GetDispositifResponse>();
+  const theme = useSelector(themeSelector(values?.theme));
 
   return (
     <section className={styles.container}>
-      <p className={styles.title} style={{ color }}>
-        Résumé
-      </p>
+      <SectionTitle titleKey="abstract" />
       <AddContentButton onClick={() => setShowModal(true)}>Résumé en 1 phrase</AddContentButton>
       <ModalAbstract show={showModal} toggle={() => setShowModal((o) => !o)} />
     </section>

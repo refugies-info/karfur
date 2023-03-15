@@ -1,26 +1,29 @@
-import Accordions from "components/Pages/dispositif/Accordions";
-import ActionButtons from "components/Pages/dispositif/ActionButtons";
-import Breadcrumb from "components/Pages/dispositif/Breadcrumb";
-import Contributors from "components/Pages/dispositif/Contributors";
-import Feedback from "components/Pages/dispositif/Feedback";
-import Header from "components/Pages/dispositif/Header";
-import LangueMenu from "components/Pages/dispositif/LangueMenu";
-import LangueSelectList from "components/Pages/dispositif/LangueSelectList";
-import LinkedThemes from "components/Pages/dispositif/LinkedThemes";
-import Metadatas from "components/Pages/dispositif/Metadatas";
-import RichText from "components/Pages/dispositif/RichText";
-import Section from "components/Pages/dispositif/Section";
-import SectionButtons from "components/Pages/dispositif/SectionButtons";
-import ShareButtons from "components/Pages/dispositif/ShareButtons";
-import SMSForm from "components/Pages/dispositif/SMSForm";
-import Sponsors from "components/Pages/dispositif/Sponsors";
-import Summary from "components/Pages/dispositif/Summary";
-import Text from "components/Pages/dispositif/Text";
-import Title from "components/Pages/dispositif/Title";
+import Accordions from "./Accordions";
+import ActionButtons from "./ActionButtons";
+import Banner from "./Banner";
+import Breadcrumb from "./Breadcrumb";
+import Contributors from "./Contributors";
+import Feedback from "./Feedback";
+import Header from "./Header";
+import LangueMenu from "./LangueMenu";
+import LangueSelectList from "./LangueSelectList";
+import LinkedThemes from "./LinkedThemes";
+import Metadatas from "./Metadatas";
+import RichText from "./RichText";
+import Section from "./Section";
+import SectionButtons from "./SectionButtons";
+import SectionTitle from "./SectionTitle";
+import ShareButtons from "./ShareButtons";
+import SMSForm from "./SMSForm";
+import Sponsors from "./Sponsors";
+import Summary from "./Summary";
+import Text from "./Text";
+import Title from "./Title";
 
 export {
   Accordions,
   ActionButtons,
+  Banner,
   Breadcrumb,
   Contributors,
   Header,
@@ -32,6 +35,7 @@ export {
   RichText,
   Section,
   SectionButtons,
+  SectionTitle,
   ShareButtons,
   SMSForm,
   Sponsors,

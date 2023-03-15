@@ -67,10 +67,8 @@ const ModalThemes = (props: Props) => {
   const validate = () => {
     const newTheme: GetDispositifResponse["theme"] = mainTheme || undefined;
     const newSecondaryThemes: GetDispositifResponse["secondaryThemes"] = secondaryThemes;
-    if (newTheme) {
-      formContext.setValue("theme", newTheme);
-      formContext.setValue("secondaryThemes", newSecondaryThemes);
-    }
+    formContext.setValue("theme", newTheme);
+    formContext.setValue("secondaryThemes", newSecondaryThemes);
     props.toggle();
   };
 

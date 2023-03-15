@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from "react";
+import { useSelector } from "react-redux";
 import moment from "moment";
 // TODO import all locales
 import "moment/locale/fr";
 import { Badge } from "@dataesr/react-dsfr";
-import { GetDispositifResponse } from "api-types";
 import { useLocale } from "hooks";
 import PageContext from "utils/pageContext";
+import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import { sharingOptions } from "../function";
 import Breadcrumb from "../Breadcrumb";
@@ -14,11 +15,11 @@ import Title from "../Title";
 import styles from "./Header.module.scss";
 
 interface Props {
-  dispositif: GetDispositifResponse | null;
   typeContenu: string;
 }
 
 const Header = (props: Props) => {
+  const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
   useEffect(() => {
     moment.locale(locale);
@@ -28,11 +29,11 @@ const Header = (props: Props) => {
   const isViewMode = pageContext.mode === "view";
   return (
     <header className={styles.container}>
-      <Breadcrumb dispositif={props.dispositif} />
+      <Breadcrumb dispositif={dispositif} />
       <div className="position-relative">
-        <Title>{props.dispositif?.titreInformatif || ""}</Title>
-        {props.dispositif?.date && (
-          <Badge text={`Mise à jour ${moment(props.dispositif.date).fromNow()}`} type="success" isSmall hasIcon />
+        <Title>{dispositif?.titreInformatif || ""}</Title>
+        {dispositif?.date && (
+          <Badge text={`Mise à jour ${moment(dispositif.date).fromNow()}`} type="success" isSmall hasIcon />
         )}
 
         <Button
@@ -40,16 +41,12 @@ const Header = (props: Props) => {
           tertiary
           icon="share-outline"
           onClick={() =>
-            sharingOptions(
-              props.typeContenu,
-              props.dispositif?.titreInformatif || "",
-              props.dispositif?.titreMarque || "",
-            )
+            sharingOptions(props.typeContenu, dispositif?.titreInformatif || "", dispositif?.titreMarque || "")
           }
         >
           Partager la fiche
         </Button>
-        {isViewMode && <SectionButtons id="titreInformatif" content={props.dispositif?.titreInformatif || ""} />}
+        {isViewMode && <SectionButtons id="titreInformatif" content={dispositif?.titreInformatif || ""} />}
       </div>
     </header>
   );

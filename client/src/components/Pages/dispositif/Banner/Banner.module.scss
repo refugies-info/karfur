@@ -1,0 +1,16 @@
+@import "src/scss/colors.scss";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
+
+.banner {
+  height: 400px;
+  background: url(../../../../assets/dispositif/notheme-banner.svg);
+  background-size: cover;
+  background-position: center center;
+
+  @include media-max("lg-limit") {
+    height: 240px;
+  }
+}
