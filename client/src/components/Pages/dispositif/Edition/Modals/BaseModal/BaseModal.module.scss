@@ -24,6 +24,7 @@
   background-color: $lightBackgroundContrastInfo;
   padding: u(6);
   border-radius: u(2) 0 0 u(2);
+  flex-shrink: 0;
 
   .title {
     @include dsfr-text("large");

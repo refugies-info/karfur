@@ -49,8 +49,8 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
 
     return (
       <div key={i} className={cls(styles.item, infoMissing && styles.missing)}>
-        <div className={styles.icon}>{item.icon}</div>
-        <div className={styles.details}>
+        {item.icon && <div className={styles.icon}>{item.icon}</div>}
+        <div className={cls(styles.details, !item.icon && styles.no_icon)}>
           <span className={styles.label}>{item.label}</span>
           <span className={styles.content}>{content}</span>
         </div>
