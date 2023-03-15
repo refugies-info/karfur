@@ -5,6 +5,7 @@ import {
   Id,
   InfoSection,
   InfoSections,
+  Languages,
   Metadatas,
   Poi,
   SimpleDispositif,
@@ -37,6 +38,47 @@ export interface GetDispositifsRequest {
   limit?: number;
   sort?: string;
 }
+
+/**
+ * @url GET /dispositifs/getContentsForApp
+ */
+export interface GetContentsForAppRequest {
+  locale: Languages;
+  age?: "0 à 17 ans" | "18 à 25 ans" | "26 ans et plus";
+  county?: string;
+  frenchLevel?: string;
+  strictLocation?: boolean;
+}
+
+/**
+ * @url GET /dispositifs/getContentsForApp
+ */
+export type GetContentsForAppResponse = {
+  dataFr: {
+    _id: string;
+    titreInformatif: string;
+    titreMarque: string;
+    theme: Id;
+    secondaryThemes: Id[];
+    needs: Id[];
+    nbVues: number;
+    nbVuesMobile: number;
+    typeContenu: ContentType;
+    sponsorUrl: string;
+  }[];
+  data?: {
+    _id: string;
+    titreInformatif: string;
+    titreMarque: string;
+    theme: Id;
+    secondaryThemes: Id[];
+    needs: Id[];
+    nbVues: number;
+    nbVuesMobile: number;
+    typeContenu: ContentType;
+    sponsorUrl: string;
+  }[];
+};
 
 /**
  * @url GET /dispositifs/statistics
