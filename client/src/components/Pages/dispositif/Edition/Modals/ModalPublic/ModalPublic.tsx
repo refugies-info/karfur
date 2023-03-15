@@ -6,7 +6,7 @@ import { entries } from "lib/typedObjectEntries";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
 import { StepsFooter, InlineForm } from "../components";
-import { ageOptions, frenchLevelOptions, help, publicOptions, publicStatusOptions } from "./data";
+import { ageOptions, frenchLevelOptions, help, modalTitles, publicOptions, publicStatusOptions } from "./data";
 import { includeAllRefugees } from "./functions";
 import styles from "./ModalPublic.module.scss";
 
@@ -100,7 +100,7 @@ const ModalPublic = (props: Props) => {
   };
 
   return (
-    <BaseModal show={props.show} toggle={props.toggle} help={help} title="À quel public s'adresse votre action ?">
+    <BaseModal show={props.show} toggle={props.toggle} help={help} title={modalTitles[step - 1]}>
       <div>
         {step === 1 && (
           <div>

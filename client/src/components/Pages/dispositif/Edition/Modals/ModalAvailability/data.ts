@@ -28,3 +28,9 @@ export const frequencyUnitOptions: Record<frequencyUnitType, string> = {
   year: "année",
 };
 export const timeSlotOptions: timeSlotType[] = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+
+export const modalTitles = [
+  "Quelle est la durée d’engagement total demandée ?",
+  "Quelle est la fréquence de participation au programme ou les créneaux disponibles ?",
+  "Quels sont les créneaux disponibles ?"
+]

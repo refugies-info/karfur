@@ -32,3 +32,10 @@ export const ageOptions: Record<ageType, string> = {
   between: "Entre ** et ** ans",
   lessThan: "Moins de ** ans",
 };
+
+export const modalTitles = [
+  "À quel public s'adresse votre action ?",
+  "Votre action vise-t-elle un public spécifique ?",
+  "Votre action est ouverte aux personnes de niveau(x) :",
+  "Quel âge est demandé ?"
+]

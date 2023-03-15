@@ -5,7 +5,14 @@ import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
 import BaseModal from "../BaseModal";
 import { StepsFooter, InlineForm } from "../components";
-import { amountDetailsOptions, frequencyUnitOptions, help, timeSlotOptions, timeUnitOptions } from "./data";
+import {
+  amountDetailsOptions,
+  frequencyUnitOptions,
+  help,
+  modalTitles,
+  timeSlotOptions,
+  timeUnitOptions,
+} from "./data";
 import styles from "./ModalAvailability.module.scss";
 
 interface Props {
@@ -85,12 +92,7 @@ const ModalAvailability = (props: Props) => {
   };
 
   return (
-    <BaseModal
-      show={props.show}
-      toggle={props.toggle}
-      help={help}
-      title="Quelle est la durée d’engagement total demandée ?"
-    >
+    <BaseModal show={props.show} toggle={props.toggle} help={help} title={modalTitles[step - 1]}>
       {step === 1 && (
         <div>
           <InlineForm>
