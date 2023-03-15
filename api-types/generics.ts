@@ -11,6 +11,11 @@ export type RichText = string;
 export type TranslatedText = { [key: string]: string };
 export type Languages = "fr" | "en" | "uk" | "ti" | "ar" | "ps" | "ru" | "fa";
 
+/**
+ * @pattern [0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}
+ */
+export type AppUserUid = string;
+
 export interface Picture {
   imgId: string | null;
   public_id: string | null;
@@ -187,6 +192,7 @@ export interface SimpleDispositif {
   lastModificationDate?: Date;
   nbMots: number;
   nbVues: number;
+  nbVuesMobile: number;
   mainSponsor?: {
     nom: string;
     picture: Picture;
