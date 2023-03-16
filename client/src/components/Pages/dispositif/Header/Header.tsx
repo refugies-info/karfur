@@ -26,12 +26,11 @@ const Header = (props: Props) => {
   }, [locale]);
 
   const pageContext = useContext(PageContext);
-  const isViewMode = pageContext.mode === "view";
   return (
     <header className={styles.container}>
       <Breadcrumb dispositif={dispositif} />
       <div className="position-relative">
-        <Title>{dispositif?.titreInformatif || ""}</Title>
+        <Title />
         {dispositif?.date && (
           <Badge text={`Mise à jour ${moment(dispositif.date).fromNow()}`} type="success" isSmall hasIcon />
         )}
@@ -46,7 +45,9 @@ const Header = (props: Props) => {
         >
           Partager la fiche
         </Button>
-        {isViewMode && <SectionButtons id="titreInformatif" content={dispositif?.titreInformatif || ""} />}
+        {pageContext.mode === "view" && (
+          <SectionButtons id="titreInformatif" content={dispositif?.titreInformatif || ""} />
+        )}
       </div>
     </header>
   );

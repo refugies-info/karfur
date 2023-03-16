@@ -1,39 +1,68 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import PageContext from "utils/pageContext";
 import AddContentButton from "../AddContentButton";
 import styles from "./TitleEdit.module.scss";
 
-interface Props {
-  id: string;
-}
+interface Props {}
 
 /**
- * Form component for a title.
+ * Form component for a title (titreInformatif and titreMarque).
  * Shows either an AddContentButton if the section in not active, or an input if it is.
  */
 const TitleEdit = (props: Props) => {
-  const [isActive, setIsActive] = useState(false);
+  const [isTitleActive, setIsTitleActive] = useState(false);
+  const [isActionActive, setIsActionActive] = useState(false);
   const formContext = useFormContext();
-  const activateField = useCallback(() => setIsActive(true), []);
-  const onFocusOut = useCallback(() => setIsActive(false), []);
 
   const pageContext = useContext(PageContext);
   useEffect(() => {
-    pageContext.setActiveSection?.(isActive ? props.id : "");
+    pageContext.setActiveSection?.(isTitleActive ? "titreInformatif" : "");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isActive, props.id]);
+  }, [isTitleActive]);
 
   return (
     <div>
-      {!isActive && (
-        <AddContentButton onClick={activateField} size="xl" content={formContext.getValues(props.id)}>
-          Titre
+      {!isTitleActive && (
+        <AddContentButton
+          onClick={() => setIsTitleActive(true)}
+          size="xl"
+          content={formContext.getValues("titreInformatif")}
+        >
+          Titre de la fiche
         </AddContentButton>
       )}
-      {isActive && (
-        <input type="text" {...formContext.register(props.id)} onBlur={onFocusOut} className={styles.input} autoFocus />
+      {isTitleActive && (
+        <input
+          type="text"
+          {...formContext.register("titreInformatif")}
+          onBlur={() => setIsTitleActive(false)}
+          className={styles.input}
+          autoFocus
+        />
       )}
+
+      <div className={styles.marque}>
+        <span className="me-6">Avec</span>
+        {!isActionActive && (
+          <AddContentButton
+            onClick={() => setIsActionActive(true)}
+            size="lg"
+            content={formContext.getValues("titreMarque")}
+          >
+            Nom de l'action
+          </AddContentButton>
+        )}
+        {isActionActive && (
+          <input
+            type="text"
+            {...formContext.register("titreMarque")}
+            onBlur={() => setIsActionActive(false)}
+            className={styles.input}
+            autoFocus
+          />
+        )}
+      </div>
     </div>
   );
 };

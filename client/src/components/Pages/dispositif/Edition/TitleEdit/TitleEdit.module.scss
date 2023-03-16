@@ -10,3 +10,11 @@
   @include baseInput();
   font-weight: bold;
 }
+
+.marque {
+  @include dsfr-text("chapo");
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  margin-top: u(6);
+}
