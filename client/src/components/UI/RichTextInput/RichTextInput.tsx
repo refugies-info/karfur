@@ -33,6 +33,9 @@ interface Props {
   id: string;
 }
 
+/**
+ * Input for rich text, using Lexical
+ */
 const RichTextInput: FC<Props> = (props: Props) => {
   const { setValue } = useFormContext();
 

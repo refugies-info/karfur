@@ -10,15 +10,20 @@ import {
   COMMAND_PRIORITY_LOW,
   DELETE_CHARACTER_COMMAND,
   KEY_ARROW_DOWN_COMMAND,
-  NodeKey,
   createCommand,
 } from "lexical";
 import { useEffect } from "react";
 
 import { $createCalloutNode, $isCalloutNode, CalloutLevel, CalloutNode } from "./CalloutNode";
 
-export const INSERT_CALLOUT_COMMAND = createCommand<CalloutLevel>();
+const INSERT_CALLOUT_COMMAND = createCommand<CalloutLevel>();
+const REMOVE_CALLOUT_COMMAND = createCommand();
 
+export {
+  INSERT_CALLOUT_COMMAND,
+  REMOVE_CALLOUT_COMMAND,
+  $isCalloutNode,
+}
 
 export default function CalloutPlugin() {
   const [editor] = useLexicalComposerContext();
@@ -79,9 +84,28 @@ export default function CalloutPlugin() {
           editor.update(() => {
             const selection = $getSelection();
             if (!$isRangeSelection(selection)) return;
-            if ($findMatchingParent(selection.anchor.getNode(), $isCalloutNode)) return; // do not nest callouts
+            const matchingParent = $findMatchingParent(selection.anchor.getNode(), $isCalloutNode) as CalloutNode | null;
+            if (matchingParent) {
+              if (matchingParent.getLevel() !== level) { // just change level
+                matchingParent.setLevel(level);
+              }
+              return; // or return to not nest callouts
+            }
 
             $setBlocksType_experimental(selection, () => $createCalloutNode(level));
+          });
+
+          return true;
+        },
+        COMMAND_PRIORITY_EDITOR
+      ),
+      editor.registerCommand(
+        REMOVE_CALLOUT_COMMAND,
+        () => {
+          editor.update(() => {
+            const selection = $getSelection();
+            if (!$isRangeSelection(selection)) return;
+            $setBlocksType_experimental(selection, () => $createParagraphNode());
           });
 
           return true;
