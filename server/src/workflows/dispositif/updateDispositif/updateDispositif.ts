@@ -128,7 +128,7 @@ const buildTranslations = async (
 export const updateDispositif = async (id: string, body: UpdateDispositifRequest, user: User): Response => {
   logger.info("[updateDispositif] received", { id, body, user: user._id });
 
-  const oldDispositif = await getDispositifById(id, { typeContenu: 1, translations: 1, mainSponsor: 1 }, "mainSponsor");
+  const oldDispositif = await getDispositifById(id, { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1 }, "mainSponsor");
   checkUserIsAuthorizedToModifyDispositif(oldDispositif, user);
 
   const translationContent = buildDispositifContent(body, oldDispositif);

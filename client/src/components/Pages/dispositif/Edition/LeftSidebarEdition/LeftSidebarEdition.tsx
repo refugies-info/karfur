@@ -48,9 +48,6 @@ const LeftSidebarEdition = () => {
           Thèmes
         </AddContentButton>
       )}
-      <AddContentButton onClick={() => {}} size="md">
-        Nom de l'action
-      </AddContentButton>
 
       <p className={styles.title}>C'est pour qui ?</p>
 

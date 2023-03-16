@@ -58,6 +58,7 @@ import {
   PatchStructureRolesRequest,
   PatchWidgetResponse,
   PostAdminOptionResponse,
+  PostDispositifsResponse,
   PostImageResponse,
   PostStructureRequest,
   PostThemeResponse,
@@ -282,7 +283,7 @@ const API = {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}`, body, { headers });
   },
-  createDispositif: (body: CreateDispositifRequest): Promise<APIResponse> => {
+  createDispositif: (body: CreateDispositifRequest): Promise<APIResponse<PostDispositifsResponse>> => {
     const headers = getHeaders();
     return instance.post("/dispositifs", body, { headers });
   },

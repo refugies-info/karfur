@@ -31,22 +31,25 @@ const Header = (props: Props) => {
       <Breadcrumb dispositif={dispositif} />
       <div className="position-relative">
         <Title />
-        {dispositif?.date && (
-          <Badge text={`Mise à jour ${moment(dispositif.date).fromNow()}`} type="success" isSmall hasIcon />
-        )}
-
-        <Button
-          className={styles.share}
-          tertiary
-          icon="share-outline"
-          onClick={() =>
-            sharingOptions(props.typeContenu, dispositif?.titreInformatif || "", dispositif?.titreMarque || "")
-          }
-        >
-          Partager la fiche
-        </Button>
         {pageContext.mode === "view" && (
-          <SectionButtons id="titreInformatif" content={dispositif?.titreInformatif || ""} />
+          <>
+            {dispositif?.date && (
+              <Badge text={`Mise à jour ${moment(dispositif.date).fromNow()}`} type="success" isSmall hasIcon />
+            )}
+
+            <Button
+              className={styles.share}
+              tertiary
+              icon="share-outline"
+              onClick={() =>
+                sharingOptions(props.typeContenu, dispositif?.titreInformatif || "", dispositif?.titreMarque || "")
+              }
+            >
+              Partager la fiche
+            </Button>
+
+            <SectionButtons id="titreInformatif" content={dispositif?.titreInformatif || ""} />
+          </>
         )}
       </div>
     </header>

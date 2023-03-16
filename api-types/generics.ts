@@ -140,7 +140,7 @@ export interface Metadatas {
   } | null;
   price?: {
     values: number[];
-    details?: priceDetails;
+    details?: priceDetails | null;
   } | null;
   commitment?: {
     amountDetails: amountDetailsType;
@@ -153,6 +153,10 @@ export interface Metadatas {
     timeUnit: timeUnitType;
     frequencyUnit: frequencyUnitType;
   } | null;
+
+  // TODO: delete
+  duration?: string;
+  important?: string;
 }
 
 export interface SimpleDispositif {
