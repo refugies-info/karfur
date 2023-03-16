@@ -19,7 +19,6 @@ import {
 import {
   RightSidebarEdition,
   LeftSidebarEdition,
-  MetaDescription,
   CustomNavbar,
   BannerEdition,
 } from "components/Pages/dispositif/Edition";
@@ -82,7 +81,6 @@ const Dispositif = (props: Props) => {
             </>
           )}
 
-          {isEditMode && <MetaDescription />}
           <span className={styles.divider} />
           <Sponsors />
         </div>

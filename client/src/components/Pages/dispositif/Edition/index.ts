@@ -6,7 +6,6 @@ import CustomNavbar from "./CustomNavbar";
 import DropdownModals from "./DropdownModals";
 import HelpCard from "./HelpCard";
 import LeftSidebarEdition from "./LeftSidebarEdition";
-import MetaDescription from "./MetaDescription";
 import RichTextEdit from "./RichTextEdit";
 import RightSidebarEdition from "./RightSidebarEdition";
 import TitleEdit from "./TitleEdit";
@@ -20,7 +19,6 @@ export {
   DropdownModals,
   HelpCard,
   LeftSidebarEdition,
-  MetaDescription,
   RichTextEdit,
   RightSidebarEdition,
   TitleEdit

@@ -10,6 +10,7 @@ interface Props {
   onClick: () => void;
   onDelete?: () => void;
   size?: "md" | "lg" | "xl";
+  contentSize?: "sm" | "md" | "lg" | "xl";
   className?: string;
 }
 
@@ -36,6 +37,7 @@ const AddContentButton = (props: Props) => {
         <>
           {typeof props.content === "string" ? (
             <span
+              className={cls(props.contentSize && styles[props.contentSize])}
               dangerouslySetInnerHTML={{
                 __html: props.content,
               }}

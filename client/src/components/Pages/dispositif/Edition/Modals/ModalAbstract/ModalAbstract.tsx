@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
-import { CreateDispositifRequest } from "api-types";
+import { ContentType, CreateDispositifRequest } from "api-types";
 import { themesSelector } from "services/Themes/themes.selectors";
 import DispositifCard from "components/UI/DispositifCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -53,15 +53,19 @@ const ModalAbstract = (props: Props) => {
               )}
             </div>
           </Col>
-          <Col xs="auto" className="px-0 d-flex align-items-center">
-            <EVAIcon name="arrow-forward-outline" size={32} fill={styles.lightTextActionHighBlueFrance} />
-          </Col>
-          <Col>
-            <DispositifCard
-              dispositif={{ ...getDefaultDispositif(values, themes[0]._id), abstract }}
-              abstractPlaceholder
-            />
-          </Col>
+          {values.typeContenu === ContentType.DISPOSITIF && (
+            <>
+              <Col xs="auto" className="px-0 d-flex align-items-center">
+                <EVAIcon name="arrow-forward-outline" size={32} fill={styles.lightTextActionHighBlueFrance} />
+              </Col>
+              <Col>
+                <DispositifCard
+                  dispositif={{ ...getDefaultDispositif(values, themes[0]._id), abstract }}
+                  abstractPlaceholder
+                />
+              </Col>
+            </>
+          )}
         </Row>
 
         <SimpleFooter onValidate={validate} />

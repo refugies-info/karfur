@@ -23,6 +23,19 @@
       @include iconSize(24px);
     }
 
+    &.md {
+      @include dsfr-text("h6");
+      font-weight: bold;
+    }
+    &.lg {
+      @include dsfr-text("chapo");
+      font-weight: bold;
+    }
+    &.xl {
+      @include dsfr-text("h1");
+      font-weight: bold;
+    }
+
     &.has_content {
       position: relative;
       background: transparent;
@@ -66,19 +79,23 @@
           }
         }
       }
-    }
 
-    &.md {
-      @include dsfr-text("h6");
-      font-weight: bold;
-    }
-    &.lg {
-      @include dsfr-text("chapo");
-      font-weight: bold;
-    }
-    &.xl {
-      @include dsfr-text("h1");
-      font-weight: bold;
+      .sm {
+        @include dsfr-text("normal");
+        font-weight: normal;
+      }
+      .md {
+        @include dsfr-text("h6");
+        font-weight: bold;
+      }
+      .lg {
+        @include dsfr-text("chapo");
+        font-weight: bold;
+      }
+      .xl {
+        @include dsfr-text("h1");
+        font-weight: bold;
+      }
     }
   }
 }

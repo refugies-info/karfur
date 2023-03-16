@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { ContentType } from "api-types";
 import PageContext from "utils/pageContext";
 import AddContentButton from "../AddContentButton";
 import styles from "./TitleEdit.module.scss";
@@ -42,27 +43,29 @@ const TitleEdit = (props: Props) => {
         />
       )}
 
-      <div className={styles.marque}>
-        <span className="me-6">Avec</span>
-        {!isActionActive && (
-          <AddContentButton
-            onClick={() => setIsActionActive(true)}
-            size="lg"
-            content={formContext.getValues("titreMarque")}
-          >
-            Nom de l'action
-          </AddContentButton>
-        )}
-        {isActionActive && (
-          <input
-            type="text"
-            {...formContext.register("titreMarque")}
-            onBlur={() => setIsActionActive(false)}
-            className={styles.input}
-            autoFocus
-          />
-        )}
-      </div>
+      {formContext.getValues("typeContenu") === ContentType.DISPOSITIF && (
+        <div className={styles.marque}>
+          <span className="me-6">Avec</span>
+          {!isActionActive && (
+            <AddContentButton
+              onClick={() => setIsActionActive(true)}
+              size="lg"
+              content={formContext.getValues("titreMarque")}
+            >
+              Nom de l'action
+            </AddContentButton>
+          )}
+          {isActionActive && (
+            <input
+              type="text"
+              {...formContext.register("titreMarque")}
+              onBlur={() => setIsActionActive(false)}
+              className={styles.input}
+              autoFocus
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };

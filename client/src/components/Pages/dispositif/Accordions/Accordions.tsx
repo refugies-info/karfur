@@ -53,11 +53,8 @@ const Accordions = ({ content, sectionKey, color100, color30, withNumber }: Prop
         [key2]: { title: "", text: "" },
       };
       setCurrentContent(newContent);
-    } else if (content) {
-      // content changed
-      setCurrentContent(content);
     }
-  }, [pageContext.mode, content, currentContent]);
+  }, [pageContext.mode, currentContent]);
 
   const addElement = () => {
     const key = uuidv4();

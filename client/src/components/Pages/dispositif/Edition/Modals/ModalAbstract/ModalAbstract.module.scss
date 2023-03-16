@@ -12,6 +12,7 @@
 .input {
   @include baseInput();
   height: 100%;
+  padding-bottom: u(12);
 }
 
 .help {

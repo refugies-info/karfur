@@ -4,7 +4,15 @@ import { useSelector } from "react-redux";
 import { themeSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { ContentType, GetDispositifResponse } from "api-types";
-import { ModalAvailability, ModalConditions, ModalLocation, ModalPrice, ModalPublic, ModalThemes } from "../Modals";
+import {
+  ModalAbstract,
+  ModalAvailability,
+  ModalConditions,
+  ModalLocation,
+  ModalPrice,
+  ModalPublic,
+  ModalThemes,
+} from "../Modals";
 import AddContentButton from "../AddContentButton";
 import CardPrice from "../../Metadatas/CardPrice";
 import CardLocation from "../../Metadatas/CardLocation";
@@ -15,7 +23,7 @@ import CardTheme from "../../Metadatas/CardTheme";
 import { cls } from "lib/classname";
 import styles from "./LeftSidebarEdition.module.scss";
 
-type Modals = "Availability" | "Conditions" | "Location" | "Price" | "Public" | "Themes";
+type Modals = "Availability" | "Conditions" | "Location" | "Price" | "Public" | "Themes" | "Abstract";
 
 /**
  * Left sidebar of the page in EDIT mode.
@@ -118,9 +126,25 @@ const LeftSidebarEdition = () => {
         </AddContentButton>
       )}
 
-      <p className={styles.title}>Responsabilité</p>
-      <AddContentButton onClick={() => {}} size="md">
-        Ajouter ma structure
+      <p className={styles.title}>À faire en dernier</p>
+      <AddContentButton onClick={() => {}} size="md" className="mb-6">
+        <EVAIcon
+          name="home-outline"
+          size={24}
+          fill={styles.lightTextDisabledGrey}
+          className={cls(styles.theme_icon, "me-2")}
+        />
+        Structure
+      </AddContentButton>
+
+      <AddContentButton onClick={() => setShowModal("Abstract")} size="md" contentSize="sm" content={values.abstract}>
+        <EVAIcon
+          name="file-text-outline"
+          size={24}
+          fill={styles.lightTextDisabledGrey}
+          className={cls(styles.theme_icon, "me-2")}
+        />
+        Résumé
       </AddContentButton>
 
       <ModalAvailability show={showModal === "Availability"} toggle={toggleModal} />
@@ -129,6 +153,7 @@ const LeftSidebarEdition = () => {
       <ModalPrice show={showModal === "Price"} toggle={toggleModal} />
       <ModalPublic show={showModal === "Public"} toggle={toggleModal} />
       <ModalThemes show={showModal === "Themes"} toggle={toggleModal} />
+      <ModalAbstract show={showModal === "Abstract"} toggle={toggleModal} />
     </div>
   );
 };
