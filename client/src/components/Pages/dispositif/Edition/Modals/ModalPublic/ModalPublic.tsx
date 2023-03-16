@@ -6,7 +6,15 @@ import { entries } from "lib/typedObjectEntries";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
 import { StepsFooter, InlineForm } from "../components";
-import { ageOptions, frenchLevelOptions, help, modalTitles, publicOptions, publicStatusOptions } from "./data";
+import {
+  ageOptions,
+  ChoiceItem,
+  frenchLevelOptions,
+  help,
+  modalTitles,
+  publicOptions,
+  publicStatusOptions,
+} from "./data";
 import { includeAllRefugees } from "./functions";
 import styles from "./ModalPublic.module.scss";
 
@@ -128,6 +136,7 @@ const ModalPublic = (props: Props) => {
                 );
               }}
               className="mb-2"
+              helpTooltip="Les primo-arrivants contiennent également les regroupements familiaux, les personnes exilées, les étudiants étrangers, etc."
             />
             <div>
               {entries<Record<publicStatusType, string>>(publicStatusOptions).map(([key, text]) => (
@@ -171,15 +180,16 @@ const ModalPublic = (props: Props) => {
 
         {step === 3 && (
           <div>
-            {entries<Record<frenchLevelType, string>>(frenchLevelOptions).map(([key, text]) => (
+            {entries<Record<frenchLevelType, ChoiceItem>>(frenchLevelOptions).map(([key, item]) => (
               <div key={key}>
                 <ChoiceButton
                   key={key}
-                  text={`${key === "A1.1" ? "Infra A1 et A1.1" : key} : ${text}`}
+                  text={`${key === "A1.1" ? "Infra A1 et A1.1" : key} : ${item.text}`}
                   type="checkbox"
                   selected={!!(frenchLevel && frenchLevel?.includes(key))}
                   onSelect={() => selectFrenchLevel(key)}
                   className="mb-2"
+                  helpTooltip={item.help}
                 />
               </div>
             ))}

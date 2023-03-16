@@ -1,0 +1,55 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+
+.input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: $lightBackgroundElevationAlt;
+  border-radius: u(2);
+  padding: u(2) u(3);
+
+  input {
+    outline: none !important;
+    flex-grow: 1;
+    padding-left: u(2);
+  }
+}
+.suggestions {
+  box-shadow: 0 2px 6px 0 #00001229;
+  background: white;
+  border-radius: u(2);
+  padding: u(4);
+  width: 250px;
+  position: absolute;
+  margin-top: u(2);
+
+  .btn {
+    border-radius: u(2);
+    padding: u(2);
+    text-align: left;
+  }
+}
+
+.selected {
+  min-height: 180px;
+  margin-top: u(6);
+}
+
+.dep_btn {
+  padding: u(2) u(3);
+  background-color: $lightBackgroundActionLowBlueFrance;
+  border-radius: u(2);
+  color: $lightTextActionHighBlueFrance;
+  font-weight: bold;
+  margin-right: u(1);
+  margin-bottom: u(1);
+  text-align: left;
+
+  &:hover {
+    background: $lightPrimaryBlueFrance;
+  }
+}

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Col, Row } from "reactstrap";
 import { useFormContext } from "react-hook-form";
 import { CreateDispositifRequest, Metadatas } from "api-types";
 import ChoiceButton from "../../ChoiceButton";
 import BaseModal from "../BaseModal";
-import { SimpleFooter } from "../components";
+import { SimpleFooter, StepsFooter } from "../components";
 import { help } from "./data";
+import DepartmentInput from "./DepartmentInput";
 import imgAll from "assets/dispositif/form-icons/location-all.svg";
 import imgDepartment from "assets/dispositif/form-icons/location-department.svg";
 import imgInternet from "assets/dispositif/form-icons/location-internet.svg";
@@ -22,56 +22,76 @@ const ModalLocation = (props: Props) => {
   const [selected, setSelected] = useState<"france" | "departments" | "online" | null | undefined>(
     Array.isArray(initialValue) ? "departments" : initialValue,
   );
+  const [selectedDepartments, setSelectedDepartments] = useState<string[] | null | undefined>(
+    Array.isArray(initialValue) ? initialValue : undefined,
+  );
+  const [step, setStep] = useState(1);
 
   const validate = () => {
     if (selected !== undefined) {
-      const value: Metadatas["location"] = selected === "departments" ? [] : selected;
+      const value: Metadatas["location"] = selected === "departments" ? selectedDepartments : selected;
       setValue("metadatas.location", value);
     }
     props.toggle();
   };
 
   return (
-    <BaseModal show={props.show} toggle={props.toggle} help={help} title="Où votre action est-elle accessible ?">
+    <BaseModal
+      show={props.show}
+      toggle={props.toggle}
+      help={help}
+      title={step === 1 ? "Où votre action est-elle accessible ?" : "Dans quel(s) département(s) est-elle accessible ?"}
+    >
       <div>
-        <Row className="mb-6">
-          <Col>
+        {step === 1 && (
+          <>
             <ChoiceButton
               text="France entière"
               type="radio"
               selected={selected === "france"}
               onSelect={() => setSelected("france")}
               image={imgAll}
+              className="mb-2"
             />
-          </Col>
-          <Col>
             <ChoiceButton
               text="Départements"
               type="radio"
               selected={selected === "departments"}
               onSelect={() => setSelected("departments")}
               image={imgDepartment}
+              className="mb-2"
             />
-          </Col>
-        </Row>
-        <ChoiceButton
-          text="Ressource en ligne (pas de logique territoriale)"
-          type="radio"
-          selected={selected === "online"}
-          onSelect={() => setSelected("online")}
-          image={imgInternet}
-          className="mb-6"
-        />
-        <ChoiceButton
-          text="Cette information n’est pas pertinente pour mon action"
-          type="radio"
-          selected={selected === null}
-          onSelect={() => setSelected(null)}
-          size="lg"
-          className="mb-6"
-        />
+            <ChoiceButton
+              text="Ressource en ligne"
+              type="radio"
+              selected={selected === "online"}
+              onSelect={() => setSelected("online")}
+              image={imgInternet}
+              className="mb-6"
+            />
+          </>
+        )}
 
-        <SimpleFooter onValidate={validate} />
+        {step === 2 && (
+          <>
+            <p>Vous pouvez taper le numéro ou le nom des départements.</p>
+            <DepartmentInput
+              selectedDepartments={selectedDepartments}
+              setSelectedDepartments={setSelectedDepartments}
+            />
+          </>
+        )}
+
+        {selected === "departments" ? (
+          <StepsFooter
+            step={step}
+            maxSteps={2}
+            onPrevious={() => setStep(1)}
+            onValidate={step === 1 ? () => setStep(2) : validate}
+          />
+        ) : (
+          <SimpleFooter onValidate={validate} />
+        )}
       </div>
     </BaseModal>
   );

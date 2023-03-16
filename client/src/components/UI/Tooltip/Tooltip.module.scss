@@ -17,6 +17,6 @@
     --bs-tooltip-border-radius: 4px;
   }
   :global(.arrow) {
-    display: none;
+    display: none !important;
   }
 }
