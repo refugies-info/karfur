@@ -1,6 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
+import uniqueId from "lodash/uniqueId";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import Tooltip from "components/UI/Tooltip";
 import styles from "./ChoiceButton.module.scss";
 import { cls } from "lib/classname";
 
@@ -12,6 +14,7 @@ interface Props {
   type: "radio" | "checkbox";
   size?: "lg" | "sm";
   className?: string;
+  helpTooltip?: string;
 }
 
 /**
@@ -22,6 +25,7 @@ const ChoiceButton = (props: Props) => {
     if (props.type === "radio") return props.selected ? "radio-button-on" : "radio-button-off";
     return props.selected ? "checkmark-square-2" : "square";
   }, [props.selected, props.type]);
+  const [tooltipId] = useState(uniqueId("tooltip_"));
 
   return (
     <button
@@ -43,7 +47,24 @@ const ChoiceButton = (props: Props) => {
         fill={props.selected ? styles.lightTextActionHighBlueFrance : styles.lightTextTitleGrey}
         className="me-2"
       />
-      <span className={styles.text}>{props.text}</span>
+      <span className={styles.text}>
+        {props.text}
+        {props.helpTooltip && (
+          <>
+            <EVAIcon
+              name="question-mark-circle-outline"
+              size={20}
+              fill={styles.lightTextMentionGrey}
+              className="ms-2"
+              id={tooltipId}
+            />
+            <Tooltip target={tooltipId} placement="right">
+              {props.helpTooltip}
+            </Tooltip>
+          </>
+        )}
+      </span>
+
       {props.image && <Image src={props.image} width={48} height={48} alt="" />}
     </button>
   );
