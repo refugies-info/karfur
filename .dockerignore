@@ -2,6 +2,5 @@
 documentation/
 **/node_modules
 **/dist
-server
 client/.next
 client/.jest
