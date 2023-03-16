@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import PageContext from "utils/pageContext";
 import AddContentButton from "../AddContentButton";
 import styles from "./TitleEdit.module.scss";
 
@@ -12,6 +13,12 @@ const TitleEdit = (props: Props) => {
   const formContext = useFormContext();
   const activateField = useCallback(() => setIsActive(true), []);
   const onFocusOut = useCallback(() => setIsActive(false), []);
+
+  const pageContext = useContext(PageContext);
+  useEffect(() => {
+    pageContext.setActiveSection?.(isActive ? props.id : "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActive, props.id]);
 
   return (
     <div>

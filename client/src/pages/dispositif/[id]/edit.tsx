@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Dispositif from "components/Content/Dispositif";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
@@ -24,9 +25,10 @@ const DispositifPage = (props: Props) => {
     if (!dispositif?._id) return;
     submitUpdateForm(dispositif._id, data);
   };
+  const [activeSection, setActiveSection] = useState("");
 
   return (
-    <PageContext.Provider value={{ mode: "edit" }}>
+    <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Dispositif />

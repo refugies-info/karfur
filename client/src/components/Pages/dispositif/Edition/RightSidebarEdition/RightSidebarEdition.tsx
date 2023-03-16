@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import PageContext from "utils/pageContext";
 import HelpCard from "../HelpCard";
+import { Help } from "./data";
+import { getHelp } from "./functions";
 import styles from "./RightSidebarEdition.module.scss";
 
 const RightSidebarEdition = () => {
+  const pageContext = useContext(PageContext);
+  const [help, setHelp] = useState<Help | null>(null);
+
+  useEffect(() => {
+    if (!pageContext.activeSection) setHelp(null);
+    setHelp(getHelp(pageContext.activeSection));
+  }, [pageContext.activeSection]);
+
   return (
     <div>
-      <HelpCard title="Le titre résume l'action">
-        <p>Commencez par un verbe à l'infinitif. Par exemple : “Passer son permis”.</p>
-        <p>
-          Demandez-vous ce qui est vraiment important dans cette fiche : ne choisissez pas un titre trop long ou trop
-          vague.
-        </p>
-      </HelpCard>
+      {help && (
+        <HelpCard title={help.title}>
+          {Array.isArray(help.text) ? help.text.map((text, i) => <p key={i}>{text}</p>) : <p>{help.text}</p>}
+        </HelpCard>
+      )}
     </div>
   );
 };

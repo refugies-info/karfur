@@ -23,7 +23,10 @@ const AddContentButton = (props: Props) => {
         props.size && styles[props.size],
         props.className,
       )}
-      onClick={props.onClick}
+      onClick={(e: any) => {
+        e.preventDefault();
+        props.onClick();
+      }}
     >
       {props.content ? (
         <>

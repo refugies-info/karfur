@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ContentType, CreateDispositifRequest } from "api-types";
 import Dispositif from "components/Content/Dispositif";
 import { submitCreateForm } from "lib/dispositifForm";
@@ -16,9 +17,10 @@ const DispositifPage = (props: Props) => {
     // submitCreateForm(data)
     logger.info("submit", data);
   };
+  const [activeSection, setActiveSection] = useState("");
 
   return (
-    <PageContext.Provider value={{ mode: "edit" }}>
+    <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>
       <FormProvider {...methods}>
         <div className="w-100">
           <form onSubmit={methods.handleSubmit(onSubmit)}>

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import dynamic from "next/dynamic";
+import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import AddContentButton from "../AddContentButton";
 import styles from "./RichText.module.scss";
@@ -14,6 +15,12 @@ interface Props {
 const RichText = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
   const formContext = useFormContext();
+
+  const pageContext = useContext(PageContext);
+  useEffect(() => {
+    pageContext.setActiveSection?.(isActive ? props.id : "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActive, props.id]);
 
   return (
     <div>

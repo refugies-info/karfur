@@ -23,7 +23,7 @@ const Section = ({ sectionKey, contentType }: Props) => {
 
   // content
   const contentHtml: string | undefined = useMemo(
-    () => (sectionKey === "what" ? dispositif?.[sectionKey] : undefined),
+    () => (sectionKey === "what" ? dispositif?.[sectionKey] || "" : undefined),
     [sectionKey, dispositif],
   );
   const contentAccordions: InfoSections | undefined = useMemo(
@@ -44,7 +44,7 @@ const Section = ({ sectionKey, contentType }: Props) => {
   return (
     <section className={styles.container} id={`anchor-${sectionKey}`}>
       <SectionTitle titleKey={sectionKey} />
-      {contentHtml ? (
+      {contentHtml !== undefined ? (
         <>
           <RichText id={sectionKey} value={contentHtml} />
           {contentHtml && (

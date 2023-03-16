@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import dynamic from "next/dynamic";
 import Button from "components/UI/Button";
+import PageContext from "utils/pageContext";
 import AddContentButton from "../AddContentButton";
 import Text from "../../Text";
 import styles from "./AccordionItemEdit.module.scss";
@@ -38,6 +39,12 @@ const AccordionItemEdit = (props: Props) => {
   useEffect(() => {
     return () => unregister(props.id);
   }, [unregister, props.id]);
+
+  const pageContext = useContext(PageContext);
+  useEffect(() => {
+    pageContext.setActiveSection?.(isActive ? props.id : "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActive, props.id]);
 
   return (
     <div>

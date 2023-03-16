@@ -14,9 +14,11 @@ const isAccordionOk = (content: InfoSections | undefined) => {
   return content && Object.keys(content).length >= 2 && !Object.values(content).find(c => !c.title || !c.text)
 }
 
-const isMetadataOk = (content: any) => {
-  if (content || content === null) return true
-  return false
+const isMetadataOk = (content: any | any[]) => {
+  if (Array.isArray(content)) { // if multiple metas in sections, none should be undefined
+    return content.filter(c => c === undefined).length === 0
+  }
+  return content || content === null // ok if filled or null
 }
 
 export const calculateProgress = (dispositif: Partial<GetDispositifResponse>) => {
@@ -27,7 +29,19 @@ export const calculateProgress = (dispositif: Partial<GetDispositifResponse>) =>
     dispositif.typeContenu === ContentType.DISPOSITIF ? isAccordionOk(dispositif.how) : isAccordionOk(dispositif.next),
     !!dispositif.abstract,
     !!dispositif.theme,
+    isMetadataOk([
+      dispositif.metadatas?.publicStatus,
+      dispositif.metadatas?.age,
+      dispositif.metadatas?.frenchLevel,
+      dispositif.metadatas?.public,
+    ]),
     isMetadataOk(dispositif.metadatas?.price),
+    isMetadataOk([
+      dispositif.metadatas?.commitment,
+      dispositif.metadatas?.frequency,
+      dispositif.metadatas?.timeSlots,
+    ]),
+    isMetadataOk(dispositif.metadatas?.conditions),
     isMetadataOk(dispositif.metadatas?.location)
     // TODO: continue here
   ];

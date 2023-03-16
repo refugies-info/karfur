@@ -1,9 +1,10 @@
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { ContentType, CreateDispositifRequest } from "api-types";
-import Dispositif from "components/Content/Dispositif";
 import { submitCreateForm } from "lib/dispositifForm";
 import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
-import { FormProvider, useForm } from "react-hook-form";
 import PageContext from "utils/pageContext";
+import Dispositif from "components/Content/Dispositif";
 
 interface Props {
   history: string[];
@@ -12,9 +13,10 @@ interface Props {
 const DemarchePage = (props: Props) => {
   const methods = useForm<CreateDispositifRequest>({ defaultValues: { typeContenu: ContentType.DEMARCHE } });
   const onSubmit = (data: CreateDispositifRequest) => submitCreateForm(data);
+  const [activeSection, setActiveSection] = useState("");
 
   return (
-    <PageContext.Provider value={{ mode: "edit" }}>
+    <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>
       <FormProvider {...methods}>
         <div className="w-100">
           <form onSubmit={methods.handleSubmit(onSubmit)}>
