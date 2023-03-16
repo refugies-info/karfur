@@ -1,7 +1,7 @@
 import { useState, Dispatch, SetStateAction, useEffect, useRef } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import styles, { suggestions } from "./DepartmentInput.module.scss";
+import styles from "./DepartmentInput.module.scss";
 
 interface Props {
   selectedDepartments: string[] | null | undefined;
@@ -58,7 +58,7 @@ const DepartmentInput = (props: Props) => {
         </div>
 
         {!!(!hidePredictions && placePredictions?.length) && (
-          <div className={suggestions} ref={refSuggestions}>
+          <div className={styles.suggestions} ref={refSuggestions}>
             {placePredictions.slice(0, 5).map((p, i) => (
               <button key={i} onClick={() => onPlaceSelected(p.place_id)} className={styles.btn}>
                 <EVAIcon name="pin-outline" fill="black" size={20} className="me-2" />
