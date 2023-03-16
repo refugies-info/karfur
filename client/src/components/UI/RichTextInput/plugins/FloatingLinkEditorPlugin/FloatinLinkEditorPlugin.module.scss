@@ -1,15 +1,71 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 
-.container {
+.floating_container {
   background: white;
-  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
+  box-shadow: 0 4px 12px 0 #00001229;
+  border-radius: u(2);
+  padding: u(4);
+  min-width: 350px;
+  z-index: 10;
 
-  input {
-    padding: u(2);
-    outline: none;
-    min-width: 300px;
+  .text {
+    color: $lightTextActionHighBlueFrance;
+    font-weight: bold;
+    margin-bottom: u(2);
+  }
+  .url {
+    color: $darkBackgroundElevationContrast;
+    text-decoration: underline;
+  }
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+.modal {
+  padding: u(4) u(8) u(8) u(8);
+  border-radius: u(2);
+  box-shadow: 0 2px 6px 0 #00001229;
+  min-width: 550px;
+
+  .title {
+    @include dsfr-text("h4");
+    font-weight: bold;
+    color: $lightTextTitleGrey;
+    margin-bottom: u(6);
+  }
+
+  .label {
+    margin-bottom: u(2);
+  }
+  .input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: $lightBackgroundElevationAlt;
+    border-radius: u(2);
+    padding: u(2) u(3);
+
+    input {
+      outline: none;
+      flex-grow: 1;
+      padding-left: u(2);
+    }
+  }
+}
+
+.floating_container,
+.modal {
+  .close {
+    padding: u(1) u(3);
+    @include dsfr-text("small");
+    box-shadow: none;
+    min-height: 0;
+    margin-bottom: u(2);
   }
 }

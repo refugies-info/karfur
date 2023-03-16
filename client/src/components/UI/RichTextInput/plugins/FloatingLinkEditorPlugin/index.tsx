@@ -8,23 +8,36 @@
 import { $isAutoLinkNode, $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $findMatchingParent, mergeRegister } from "@lexical/utils";
+import Button from "components/UI/Button";
 import {
   $getSelection,
   $isRangeSelection,
+  CLICK_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
   COMMAND_PRIORITY_HIGH,
   COMMAND_PRIORITY_LOW,
-  GridSelection,
+  CONTROLLED_TEXT_INSERTION_COMMAND,
   KEY_ESCAPE_COMMAND,
   LexicalEditor,
-  NodeSelection,
-  RangeSelection,
   SELECTION_CHANGE_COMMAND,
 } from "lexical";
 import { Dispatch, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { Modal } from "reactstrap";
 import { getSelectedNode, sanitizeUrl, setFloatingElemPosition } from "../../lib";
 import styles from "./FloatinLinkEditorPlugin.module.scss";
+
+interface CloseButtonProps {
+  onClick: () => void;
+}
+
+const CloseButton = (props: CloseButtonProps) => (
+  <div className="text-end">
+    <Button icon="close-outline" iconPlacement="end" tertiary className={styles.close} onClick={props.onClick}>
+      Fermer
+    </Button>
+  </div>
+);
 
 interface FloatingLinkEditorProps {
   editor: LexicalEditor;
@@ -35,9 +48,9 @@ interface FloatingLinkEditorProps {
 
 const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingLinkEditorProps) => {
   const editorRef = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
   const [linkUrl, setLinkUrl] = useState("");
-  const [lastSelection, setLastSelection] = useState<RangeSelection | GridSelection | NodeSelection | null>(null);
+  const [linkText, setLinkText] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const updateLinkEditor = useCallback(() => {
     const selection = $getSelection();
@@ -46,10 +59,13 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
       const parent = node.getParent();
       if ($isLinkNode(parent)) {
         setLinkUrl(parent.getURL());
+        setLinkText(parent.getTextContent());
       } else if ($isLinkNode(node)) {
         setLinkUrl(node.getURL());
+        setLinkText(node.getTextContent());
       } else {
         setLinkUrl("");
+        setLinkText("");
       }
     }
     const editorElem = editorRef.current;
@@ -79,12 +95,10 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
       }
 
       setFloatingElemPosition(rect, editorElem, anchorElem);
-      setLastSelection(selection);
     } else if (!activeElement || activeElement.className !== "link-input") {
       if (rootElement !== null) {
         setFloatingElemPosition(null, editorElem, anchorElem);
       }
-      setLastSelection(null);
       setLinkUrl("");
     }
 
@@ -137,21 +151,64 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
     editor.getEditorState().read(() => updateLinkEditor());
   }, [editor, updateLinkEditor]);
 
+  const removeLink = useCallback(() => {
+    editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
+    setIsLink(false);
+  }, [editor, setIsLink]);
+
+  const validateModal = () => {
+    editor.dispatchCommand(TOGGLE_LINK_COMMAND, sanitizeUrl(linkUrl));
+    // TODO: how to insert text
+    // editor.dispatchCommand(CONTROLLED_TEXT_INSERTION_COMMAND, linkText);
+    setIsModalOpen(false);
+  };
+
   return (
-    <div ref={editorRef} className={styles.container}>
-      <input
-        ref={inputRef}
-        type="url"
-        value={linkUrl}
-        onChange={(event) => setLinkUrl(event.target.value)}
-        onBlur={(event) => {
-          event.preventDefault();
-          if (lastSelection !== null && linkUrl !== "") {
-            editor.dispatchCommand(TOGGLE_LINK_COMMAND, sanitizeUrl(linkUrl));
-          }
-        }}
-      />
-    </div>
+    <>
+      <div ref={editorRef} className={styles.floating_container}>
+        <CloseButton onClick={() => setIsLink(false)} />
+        <p className={styles.text}>{linkText}</p>
+        <p className={styles.url}>{linkUrl}</p>
+        <div className={styles.buttons}>
+          <Button secondary className="me-4" onClick={removeLink}>
+            Supprimer le lien
+          </Button>
+          <Button onClick={() => setIsModalOpen(true)}>Modifier</Button>
+        </div>
+      </div>
+
+      <Modal isOpen={isModalOpen} toggle={() => setIsModalOpen((o) => !o)} contentClassName={styles.modal}>
+        <CloseButton onClick={() => setIsModalOpen(false)} />
+
+        <p className={styles.title}>Modifier le lien</p>
+        <div>
+          <label className={styles.label}>Texte</label>
+          <span className={styles.input}>
+            <i className="ri-message-3-line"></i>
+            <input type="text" value={linkText} onChange={(event) => setLinkText(event.target.value)} />
+          </span>
+        </div>
+        <div className="my-6">
+          <label className={styles.label}>URL</label>
+          <span className={styles.input}>
+            <i className="ri-link"></i>
+            <input type="url" value={linkUrl} onChange={(event) => setLinkUrl(event.target.value)} />
+          </span>
+        </div>
+        <div className="text-end">
+          <Button
+            icon="checkmark-circle-2"
+            iconPlacement="end"
+            onClick={(event) => {
+              event.preventDefault();
+              validateModal();
+            }}
+          >
+            Valider
+          </Button>
+        </div>
+      </Modal>
+    </>
   );
 };
 
