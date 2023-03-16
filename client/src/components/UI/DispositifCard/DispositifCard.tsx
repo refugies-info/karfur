@@ -36,6 +36,7 @@ interface Props {
   dispositif: GetDispositifsResponse;
   selectedDepartment?: string;
   targetBlank?: boolean;
+  abstractPlaceholder?: boolean;
 }
 
 const DispositifCard = (props: Props) => {
@@ -46,15 +47,20 @@ const DispositifCard = (props: Props) => {
   const colors = theme.colors;
   const dispositifThemes = [theme, ...getThemes(props.dispositif.secondaryThemes || [], themes)];
 
-  const duration = props.dispositif.metadatas.duration;
+  // TODO: what here?
+  const duration = ""; // props.dispositif.metadatas.duration;
   const price = props.dispositif.metadatas.price;
 
   const getDepartement = () => {
     const location = props.dispositif.metadatas.location;
     if (!location) return null;
-    if (location.length === 1 && location[0] === "All") return jsUcfirst(t("Recherche.france", "toute la France"));
+    if (!Array.isArray(location)) {
+      if (location === "france") return jsUcfirst(t("Recherche.france", "toute la France"));
+      if (location === "online") return "En ligne"; // TODO: translate
+    }
     if (props.selectedDepartment) return props.selectedDepartment;
-    if (location.length > 1) return `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
+    if (Array.isArray(location) && location.length > 1)
+      return `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
     return location[0];
   };
 
@@ -63,7 +69,7 @@ const DispositifCard = (props: Props) => {
       legacyBehavior
       href={{
         pathname: getPath("/dispositif/[id]", router.locale),
-        query: { id: props.dispositif._id.toString() }
+        query: { id: props.dispositif._id.toString() },
       }}
       passHref
       prefetch={false}
@@ -90,7 +96,12 @@ const DispositifCard = (props: Props) => {
         />
 
         <div
-          className={cls(styles.text, styles.max_lines, styles.abstract)}
+          className={cls(
+            styles.text,
+            styles.max_lines,
+            styles.abstract,
+            props.abstractPlaceholder && styles.placeholder,
+          )}
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.dispositif.abstract || "" }}
         />
@@ -99,11 +110,12 @@ const DispositifCard = (props: Props) => {
           {price !== undefined && (
             <div className={cls(styles.info)}>
               <Image src={iconEuro} width={16} height={16} alt="" />
-              {price?.value === 0 ? (
+              {price?.values?.[0] === 0 ? (
                 <div className="ms-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
               ) : (
                 <div className="ms-2">
-                  {price?.value}€ {price?.details}
+                  {/* TODO: update here */}
+                  {price?.values?.[0]}€ {price?.details}
                 </div>
               )}
             </div>

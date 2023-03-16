@@ -12,11 +12,17 @@ import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
 import { User, UserId } from "./User";
 
-type frenchLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+type locationType = "france" | "online" | string[];
+type frenchLevelType = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 type ageType = "lessThan" | "moreThan" | "between";
-type priceDetails = "une fois" | "à chaque fois" | "par heure" | "par semaine" | "par mois" | "par an";
-type publicType = "refugee" | "all";
-type justificatifType = "diplome" | "titre sejour" | "domicile";
+type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
+type publicStatusType = "asile" | "refugie" | "subsidiaire" | "apatride" | "french";
+type publicType = "family" | "women" | "youths" | "senior";
+type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
+type amountDetailsType = "atLeast" | "approximately" | "mandatory";
+type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
+type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
+type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
 
 export class Sponsor {
   @prop()
@@ -110,32 +116,60 @@ export class Age {
 
 export class Price {
   @prop()
-  public value: number;
+  public values: number[]; // 0 = free, empty = montant libre
   @prop()
   public details?: priceDetails;
 }
 
+export class Commitment {
+  @prop()
+  public amountDetails: amountDetailsType;
+  @prop()
+  public hours: number;
+  @prop()
+  public timeUnit: timeUnitType;
+}
+
+export class Frequency {
+  @prop()
+  public amountDetails: amountDetailsType;
+  @prop()
+  public hours: number;
+  @prop()
+  public timeUnit: timeUnitType;
+  @prop()
+  public frequencyUnit: frequencyUnitType;
+}
+
 export class Metadatas {
   @prop()
-  public location?: string[];
+  public location?: locationType | null;
   @prop()
-  public frenchLevel?: frenchLevel[];
-  @prop()
-  public important?: string;
+  public frenchLevel?: frenchLevelType[] | null;
+  // @prop()
+  // public important?: string;
   @prop({ _id: false })
-  public age?: Age;
+  public age?: Age | null;
   @prop({ _id: false })
-  public price?: Price;
+  public price?: Price | null;
+  // @prop()
+  // public duration?: string;
   @prop()
-  public duration?: string;
+  public publicStatus?: publicStatusType[] | null;
   @prop()
-  public public?: publicType;
+  public public?: publicType[] | null;
+  // @prop()
+  // public titreSejourRequired?: boolean;
+  // @prop()
+  // public acteNaissanceRequired?: boolean;
   @prop()
-  public titreSejourRequired?: boolean;
+  public conditions?: conditionType[] | null;
+  @prop({ _id: false })
+  public commitment?: Commitment | null;
+  @prop({ _id: false })
+  public frequency?: Frequency | null;
   @prop()
-  public acteNaissanceRequired?: boolean;
-  @prop()
-  public justificatif?: justificatifType;
+  public timeSlots?: timeSlotType[] | null;
 }
 
 export class Poi {
@@ -254,7 +288,7 @@ export class Dispositif extends Base {
   }
 
   public getDepartements() {
-    return this.metadatas.location || [];
+    return this.metadatas.location || null;
   }
 
   public getTheme(): Theme | null {

@@ -50,12 +50,15 @@ $lightTextTitleGrey: #161616;
 $lightBorderDefaultBlueFrance: #6a6af4;
 $darkBackgroundActionHighBlueFrance: #8585f6;
 $lightBackgroundActionLowBlueFrance: #e3e3fd;
+$lightBackgroundContrastInfo: #e8edff;
+$lightBorderPlainInfo: #0063cb;
 $lightTextDefaultSuccess: #18753c;
 $lightPrimaryBlueFranceSun: #2323ff;
 $lightTextActionHighBlueFrance: #000091;
 $darkBackgroundAltBlueFrance: #1b1b35;
 $lightTextDefaultError: #ce0500;
 $darkBorderPlainError: #ff5655;
+$lightBackgroundContrastError: #ffe9e9;
 
 :export {
   // RI colors
@@ -108,4 +111,7 @@ $darkBorderPlainError: #ff5655;
   darkBackgroundActionHighBlueFrance: $darkBackgroundActionHighBlueFrance;
   darkBorderPlainError: $darkBorderPlainError;
   lightPrimaryBlueFranceSun: $lightPrimaryBlueFranceSun;
+  lightBackgroundContrastInfo: $lightBackgroundContrastInfo;
+  lightBorderPlainInfo: $lightBorderPlainInfo;
+  lightBackgroundContrastError: $lightBackgroundContrastError;
 }

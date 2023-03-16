@@ -15,6 +15,8 @@ import OnHtmlChangePlugin from "./plugins/OnHtmlChangePlugin";
 import CalloutPlugin from "./plugins/CalloutPlugin";
 import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin";
 import styles from "./RichTextInput.module.scss";
+import FocusPlugin from "./plugins/FocusPlugin";
+import { cls } from "lib/classname";
 
 const theme = {
   link: styles.link,
@@ -33,8 +35,12 @@ interface Props {
   id: string;
 }
 
+/**
+ * Input for rich text, using Lexical
+ */
 const RichTextInput: FC<Props> = (props: Props) => {
   const { setValue } = useFormContext();
+  const [hasFocus, setHasFocus] = useState(false);
 
   const initialConfig = {
     namespace: "RIEditor",
@@ -57,13 +63,14 @@ const RichTextInput: FC<Props> = (props: Props) => {
   };
 
   return (
-    <div className={styles.container} ref={onRef}>
+    <div className={cls(styles.container, hasFocus && styles.focus)} ref={onRef}>
       <LexicalComposer initialConfig={initialConfig}>
         <ToolbarPlugin />
         <LexicalAutoLinkPlugin />
         <ListPlugin />
         <LinkPlugin />
         <CalloutPlugin />
+        <FocusPlugin onFocus={() => setHasFocus(true)} onBlur={() => setHasFocus(false)} />
         <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem || undefined} />
         <RichTextPlugin
           contentEditable={<ContentEditable className={styles.content} />}

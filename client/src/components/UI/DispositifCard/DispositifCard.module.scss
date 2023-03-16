@@ -52,6 +52,13 @@
   @include isMobile() {
     height: auto;
   }
+
+  &.placeholder {
+    border: 1px dashed $lightBorderPlainInfo;
+    background: $lightBackgroundContrastInfo;
+    border-radius: u(2);
+    width: 100%;
+  }
 }
 
 .text {

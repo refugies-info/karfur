@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Dispositif from "components/Content/Dispositif";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
@@ -20,14 +21,17 @@ interface Props {
 const DispositifPage = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const methods = useForm<UpdateDispositifRequest>({ defaultValues: getDefaultValue(dispositif) });
-  const onSubmit = (data: UpdateDispositifRequest) => submitUpdateForm(dispositif._id, data);
+  const onSubmit = (data: UpdateDispositifRequest) => {
+    if (!dispositif?._id) return;
+    submitUpdateForm(dispositif._id, data);
+  };
+  const [activeSection, setActiveSection] = useState("");
 
   return (
-    <PageContext.Provider value={{ mode: "edit" }}>
+    <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Dispositif />
-          <button type="submit">Enregistrer</button>
         </form>
       </FormProvider>
     </PageContext.Provider>
@@ -38,7 +42,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   if (query.id) {
     const action = fetchSelectedDispositifActionCreator({
       selectedDispositifId: query.id as string,
-      locale: locale || "fr"
+      locale: locale || "fr",
     });
     store.dispatch(action);
     store.dispatch(fetchThemesActionCreator());
@@ -57,8 +61,8 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   // 200
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
-    }
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+    },
   };
 });
 

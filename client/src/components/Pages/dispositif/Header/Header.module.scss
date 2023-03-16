@@ -9,15 +9,6 @@
   position: relative;
 }
 
-.title {
-  @include dsfr-text("h1");
-
-  @include media-max("lg-limit") {
-    @include dsfr-text("h2");
-    margin-top: u(6);
-  }
-}
-
 .share {
   display: none !important;
 

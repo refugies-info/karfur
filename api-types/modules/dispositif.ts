@@ -110,7 +110,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest {}
+export interface UpdateDispositifRequest extends DispositifRequest { }
 
 /**
  * @url POST /dispositifs
@@ -242,6 +242,13 @@ export interface GetAllDispositifsResponse {
   themesSelectedByAuthor: boolean;
   webOnly: boolean;
   creatorId: SimpleUser;
+}
+
+/**
+ * @url POST /dispositifs
+ */
+export interface PostDispositifsResponse {
+  id: Id;
 }
 
 /**

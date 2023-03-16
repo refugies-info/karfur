@@ -1,0 +1,52 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/input";
+
+.container {
+  background-color: white;
+  border-top: 1px solid $lightBorderDefaultGrey;
+  padding: u(2) 0;
+  position: relative;
+  z-index: 501; // goes over menu
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.help {
+  @include dsfr-text("small");
+  margin-bottom: 0;
+  color: $lightTextActionHighBlueFrance;
+  margin-left: u(4);
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+
+  .step {
+    display: block;
+    background: $gray40;
+    width: u(4);
+    height: 6px;
+    border-radius: 30px;
+    margin-right: 2px;
+    &.done {
+      background: $lightPrimaryBlueFranceSun;
+    }
+  }
+
+  .label {
+    @include dsfr-text("small");
+    color: $lightTextMentionGrey;
+    margin-bottom: 0;
+    margin-left: u(2);
+  }
+}

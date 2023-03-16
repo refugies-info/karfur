@@ -17,6 +17,9 @@ interface Props {
   content: InfoSection | string;
 }
 
+/**
+ * Suggestion and TTS buttons
+ */
 const SectionButtons = (props: Props) => {
   const locale = useLocale();
 

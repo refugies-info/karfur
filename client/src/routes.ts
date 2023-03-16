@@ -6,8 +6,10 @@ export type PathNames =
   | "/annuaire-creation"
   | "/demarche"
   | "/demarche/[id]"
+  | "/demarche/[id]/edit"
   | "/dispositif"
   | "/dispositif/[id]"
+  | "/dispositif/[id]/edit"
   | "/publier"
   | "/traduire"
   | "/qui-sommes-nous"
@@ -32,8 +34,10 @@ const routes: Routes = {
   "/annuaire-creation": "/directory-create",
   "/demarche": "/processe",
   "/demarche/[id]": "/procedure/[id]",
+  "/demarche/[id]/edit": "/procedure/[id]/edit",
   "/dispositif": "/program",
   "/dispositif/[id]": "/program/[id]",
+  "/dispositif/[id]/edit": "/program/[id]/edit",
   "/publier": "/publish",
   "/traduire": "/translate",
   "/qui-sommes-nous": "/who-are-we",

@@ -1,0 +1,14 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
+
+.badge {
+  padding: u(1) u(3);
+  border-radius: u(2);
+  margin-bottom: u(2);
+  display: inline-flex;
+  align-items: center;
+}

@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { isMacOs } from "react-device-detect";
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
 import {
   $isListNode,
@@ -8,7 +9,7 @@ import {
   REMOVE_LIST_COMMAND,
 } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $createHeadingNode, $isHeadingNode, HeadingTagType } from "@lexical/rich-text";
+import { $createHeadingNode, $isHeadingNode } from "@lexical/rich-text";
 import { $isParentElementRTL, $setBlocksType_experimental, $selectAll } from "@lexical/selection";
 import {
   $findMatchingParent,
@@ -16,7 +17,7 @@ import {
   $getNearestBlockElementAncestorOrThrow,
   mergeRegister,
 } from "@lexical/utils";
-import { $isTextNode, LexicalEditor, NodeKey } from "lexical";
+import { $isTextNode, NodeKey } from "lexical";
 import { $isDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
 import {
   $createParagraphNode,
@@ -32,107 +33,19 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
-import { INSERT_CALLOUT_COMMAND } from "../plugins/CalloutPlugin";
-import * as React from "react";
+import { $isCalloutNode, INSERT_CALLOUT_COMMAND, REMOVE_CALLOUT_COMMAND } from "../plugins/CalloutPlugin";
 import { getSelectedNode } from "../lib";
-import styles from "./ToolbarPlugin.module.scss";
 import ToolbarButton from "./ToolbarButton";
-import ToolbarDropdown from "./ToolbarDropdown";
-import ToolbarIcon from "./ToolbarIcon";
+import styles from "./ToolbarPlugin.module.scss";
+import { CalloutLevel, CalloutNode } from "../plugins/CalloutPlugin/CalloutNode";
 
 const blockTypeToBlockName = {
   bullet: "Liste à puces",
   h3: "Titre",
   number: "Liste numérotée",
   paragraph: "Normal",
-};
-
-const blockTypeToBlockIcon = {
-  h3: "title",
-  paragraph: "text",
-  bullet: "bullet-list",
-  number: "number-list",
-};
-
-const BlockFormatDropDown = ({
-  editor,
-  blockType,
-  disabled = false,
-}: {
-  blockType: keyof typeof blockTypeToBlockName;
-  editor: LexicalEditor;
-  disabled?: boolean;
-}) => {
-  const formatParagraph = () => {
-    if (blockType !== "paragraph") {
-      editor.update(() => {
-        const selection = $getSelection();
-        if ($isRangeSelection(selection) || DEPRECATED_$isGridSelection(selection))
-          $setBlocksType_experimental(selection, () => $createParagraphNode());
-      });
-    }
-  };
-
-  const formatHeading = (headingSize: HeadingTagType) => {
-    if (blockType !== headingSize) {
-      editor.update(() => {
-        const selection = $getSelection();
-        if ($isRangeSelection(selection) || DEPRECATED_$isGridSelection(selection)) {
-          $setBlocksType_experimental(selection, () => $createHeadingNode(headingSize));
-        }
-      });
-    }
-  };
-
-  const formatBulletList = () => {
-    if (blockType !== "bullet") {
-      editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined);
-    } else {
-      editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
-    }
-  };
-
-  const formatNumberedList = () => {
-    if (blockType !== "number") {
-      editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined);
-    } else {
-      editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
-    }
-  };
-  return (
-    <>
-      <ToolbarDropdown
-        name="text-type-menu"
-        title="Choisir la présentation du texte"
-        disabled={disabled}
-        toggleElement={
-          <span className="d-inline-flex align-items-center">
-            <ToolbarIcon name={blockTypeToBlockIcon[blockType]} className="me-2" />
-            <span>
-              &nbsp;
-              {blockTypeToBlockName[blockType]}
-            </span>
-          </span>
-        }
-        items={[
-          { text: "Normal", icon: "text", onClick: formatParagraph, selected: blockType === "paragraph" },
-          { text: "Titre", icon: "title", onClick: () => formatHeading("h3"), selected: blockType === "h3" },
-          {
-            text: "Liste à puces",
-            icon: "bullet-list",
-            onClick: formatBulletList,
-            selected: blockType === "bullet",
-          },
-          {
-            text: "Liste numérotée",
-            icon: "number-list",
-            onClick: formatNumberedList,
-            selected: blockType === "number",
-          },
-        ]}
-      />
-    </>
-  );
+  important: "Important",
+  info: "Bon à savoir",
 };
 
 export default function ToolbarPlugin() {
@@ -152,6 +65,19 @@ export default function ToolbarPlugin() {
   const updateToolbar = useCallback(() => {
     const selection = $getSelection();
     if ($isRangeSelection(selection)) {
+      // Text format
+      setIsBold(selection.hasFormat("bold"));
+      setIsItalic(selection.hasFormat("italic"));
+      setIsUnderline(selection.hasFormat("underline"));
+      setIsRTL($isParentElementRTL(selection));
+
+      const node = getSelectedNode(selection);
+      const parent = node.getParent();
+
+      // Links
+      setIsLink($isLinkNode(parent) || $isLinkNode(node));
+
+      // Block formats
       const anchorNode = selection.anchor.getNode();
       let element =
         anchorNode.getKey() === "root"
@@ -164,33 +90,22 @@ export default function ToolbarPlugin() {
       if (element === null) {
         element = anchorNode.getTopLevelElementOrThrow();
       }
-
       const elementKey = element.getKey();
       const elementDOM = activeEditor.getElementByKey(elementKey);
-
-      // Update text format
-      setIsBold(selection.hasFormat("bold"));
-      setIsItalic(selection.hasFormat("italic"));
-      setIsUnderline(selection.hasFormat("underline"));
-      setIsRTL($isParentElementRTL(selection));
-
-      // Update links
-      const node = getSelectedNode(selection);
-      const parent = node.getParent();
-      if ($isLinkNode(parent) || $isLinkNode(node)) {
-        setIsLink(true);
-      } else {
-        setIsLink(false);
-      }
-
       if (elementDOM !== null) {
         setSelectedElementKey(elementKey);
         if ($isListNode(element)) {
+          // list
           const parentList = $getNearestNodeOfType<ListNode>(anchorNode, ListNode);
           const type = parentList ? parentList.getListType() : element.getListType();
-          //@ts-ignore check here
+          setBlockType(type as "number" | "bullet");
+        } else if ($isCalloutNode(element)) {
+          // callout
+          const parentNode = $getNearestNodeOfType<CalloutNode>(anchorNode, CalloutNode);
+          const type = parentNode ? parentNode.getLevel() : element.getLevel();
           setBlockType(type);
         } else {
+          // heading
           const type = $isHeadingNode(element) ? element.getTag() : element.getType();
           if (type in blockTypeToBlockName) {
             setBlockType(type as keyof typeof blockTypeToBlockName);
@@ -219,6 +134,61 @@ export default function ToolbarPlugin() {
     });
   }, [activeEditor]);
 
+  const formatParagraph = () => {
+    if (blockType !== "paragraph") {
+      editor.update(() => {
+        const selection = $getSelection();
+        if ($isRangeSelection(selection) || DEPRECATED_$isGridSelection(selection))
+          $setBlocksType_experimental(selection, () => $createParagraphNode());
+      });
+    }
+  };
+
+  const formatHeading = () => {
+    editor.update(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection) || DEPRECATED_$isGridSelection(selection)) {
+        if (blockType !== "h3") {
+          $setBlocksType_experimental(selection, () => $createHeadingNode("h3"));
+        } else {
+          $setBlocksType_experimental(selection, () => $createParagraphNode());
+        }
+      }
+    });
+  };
+
+  const formatBulletList = () => {
+    if (blockType !== "bullet") {
+      editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined);
+    } else {
+      editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
+    }
+  };
+
+  const formatNumberedList = () => {
+    if (blockType !== "number") {
+      editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined);
+    } else {
+      editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
+    }
+  };
+
+  const insertLink = useCallback(() => {
+    if (!isLink) {
+      editor.dispatchCommand(TOGGLE_LINK_COMMAND, "https://" /* sanitizeUrl("https://") */);
+    } else {
+      editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
+    }
+  }, [editor, isLink]);
+
+  const formatCallout = (type: CalloutLevel) => {
+    if (blockType !== type) {
+      editor.dispatchCommand(INSERT_CALLOUT_COMMAND, type);
+    } else {
+      editor.dispatchCommand(REMOVE_CALLOUT_COMMAND, undefined);
+    }
+  };
+
   useEffect(() => {
     return editor.registerCommand(
       SELECTION_CHANGE_COMMAND,
@@ -233,13 +203,9 @@ export default function ToolbarPlugin() {
 
   useEffect(() => {
     return mergeRegister(
-      editor.registerEditableListener((editable) => {
-        setIsEditable(editable);
-      }),
+      editor.registerEditableListener((editable) => setIsEditable(editable)),
       activeEditor.registerUpdateListener(({ editorState }) => {
-        editorState.read(() => {
-          updateToolbar();
-        });
+        editorState.read(() => updateToolbar());
       }),
       activeEditor.registerCommand<boolean>(
         CAN_UNDO_COMMAND,
@@ -260,101 +226,108 @@ export default function ToolbarPlugin() {
     );
   }, [activeEditor, editor, updateToolbar]);
 
-  const insertLink = useCallback(() => {
-    if (!isLink) {
-      editor.dispatchCommand(TOGGLE_LINK_COMMAND, "https://" /* sanitizeUrl("https://") */);
-    } else {
-      editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
-    }
-  }, [editor, isLink]);
-
   return (
     <>
       <div className={styles.container}>
         <ToolbarButton
           disabled={!canUndo || !isEditable}
-          onClick={() => {
-            activeEditor.dispatchCommand(UNDO_COMMAND, undefined);
-          }}
-          title={"IS_APPLE" ? "Précédent (⌘Z)" : "Précédent (Ctrl+Z)"}
-          icon={"undo"}
+          onClick={() => activeEditor.dispatchCommand(UNDO_COMMAND, undefined)}
+          title={isMacOs ? "Précédent (⌘Z)" : "Précédent (Ctrl+Z)"}
+          icon="ri-arrow-go-back-line"
         />
         <ToolbarButton
           disabled={!canRedo || !isEditable}
-          onClick={() => {
-            activeEditor.dispatchCommand(REDO_COMMAND, undefined);
-          }}
-          title={"IS_APPLE" ? "Suivant (⌘Y)" : "Suivant (Ctrl+Y)"}
-          icon={"redo"}
+          onClick={() => activeEditor.dispatchCommand(REDO_COMMAND, undefined)}
+          title={isMacOs ? "Suivant (⌘Y)" : "Suivant (Ctrl+Y)"}
+          icon="ri-arrow-go-forward-line"
         />
         <span className={styles.divider} />
-        {blockType in blockTypeToBlockName && activeEditor === editor && (
-          <>
-            <BlockFormatDropDown disabled={!isEditable} blockType={blockType} editor={editor} />
-          </>
-        )}
+        <ToolbarButton
+          disabled={!isEditable}
+          onClick={formatParagraph}
+          isPressed={blockType === "paragraph"}
+          title="Normal"
+          icon="ri-text"
+        />
+        <ToolbarButton
+          disabled={!isEditable}
+          onClick={() => formatHeading()}
+          isPressed={blockType === "h3"}
+          title="Titre"
+          icon="ri-h-1"
+        />
         <span className={styles.divider} />
         <ToolbarButton
           disabled={!isEditable}
           onClick={() => {
             activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold");
           }}
-          title={"IS_APPLE" ? "Gras (⌘B)" : "Gras (Ctrl+B)"}
+          title={isMacOs ? "Gras (⌘B)" : "Gras (Ctrl+B)"}
           isPressed={isBold}
-          icon={"bold"}
+          icon="ri-bold"
         />
         <ToolbarButton
           disabled={!isEditable}
           onClick={() => {
             activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic");
           }}
-          title={"IS_APPLE" ? "Italique (⌘I)" : "Italique (Ctrl+I)"}
+          title={isMacOs ? "Italique (⌘I)" : "Italique (Ctrl+I)"}
           isPressed={isItalic}
-          icon={"italic"}
+          icon="ri-italic"
         />
         <ToolbarButton
           disabled={!isEditable}
           onClick={() => {
             activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
           }}
-          title={"IS_APPLE" ? "Souligné (⌘U)" : "Souligné (Ctrl+U)"}
+          title={isMacOs ? "Souligné (⌘U)" : "Souligné (Ctrl+U)"}
           isPressed={isUnderline}
-          icon={"underline"}
+          icon="ri-underline"
         />
+        <span className={styles.divider} />
+        <ToolbarButton
+          disabled={!isEditable}
+          onClick={formatBulletList}
+          isPressed={blockType === "bullet"}
+          title="Liste à puces"
+          icon="ri-list-unordered"
+        />
+        <ToolbarButton
+          disabled={!isEditable}
+          onClick={formatNumberedList}
+          isPressed={blockType === "number"}
+          title="Liste numérotée"
+          icon="ri-list-ordered"
+        />
+        <span className={styles.divider} />
         <ToolbarButton
           disabled={!isEditable}
           onClick={insertLink}
           title="Insérer un lien"
           isPressed={isLink}
-          icon={"link"}
+          icon="ri-link"
+        />
+        <ToolbarButton
+          onClick={clearFormatting}
+          title="Réinitialiser le formattage"
+          isPressed={false}
+          icon="ri-file-text-line"
         />
         <span className={styles.divider} />
-        <ToolbarDropdown
-          name="callout-menu"
-          title="Choisir un niveau d'information"
-          toggleElement={
-            <span className="d-inline-flex align-items-center">
-              <ToolbarIcon name="callout" className="me-2" />
-              <span>&nbsp;Callout</span>
-            </span>
-          }
-          items={[
-            {
-              text: "Bon à savoir",
-              icon: "info",
-              onClick: () => activeEditor.dispatchCommand(INSERT_CALLOUT_COMMAND, "info"),
-              selected: false,
-            },
-            {
-              text: "Important",
-              icon: "important",
-              onClick: () => activeEditor.dispatchCommand(INSERT_CALLOUT_COMMAND, "important"),
-              selected: false,
-            },
-          ]}
+        <ToolbarButton
+          disabled={!isEditable}
+          onClick={() => formatCallout("important")}
+          title="Important"
+          isPressed={blockType === "important"}
+          icon="ri-alert-fill"
         />
-        <span className={styles.divider} />
-        <ToolbarButton onClick={clearFormatting} title="Réinitialiser le formattage" isPressed={false} icon={"clear"} />
+        <ToolbarButton
+          disabled={!isEditable}
+          onClick={() => formatCallout("info")}
+          title="Bon à savoir"
+          isPressed={blockType === "info"}
+          icon="ri-side-bar-fill"
+        />
       </div>
     </>
   );

@@ -37,7 +37,7 @@ const SendSMSModal = (props: Props) => {
       Event("Share", "SMS", "from dispositif sidebar");
       API.smsContentLink({
         phone: tel,
-        title: dispositif.titreInformatif,
+        title: dispositif?.titreInformatif || "",
         url: window.location.href,
         locale: selectedLn,
       })

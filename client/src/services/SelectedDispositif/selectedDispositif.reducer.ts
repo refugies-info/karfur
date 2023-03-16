@@ -4,7 +4,7 @@ import merge from "lodash/merge";
 import { GetDispositifResponse } from "api-types";
 
 
-export type SelectedDispositifState = GetDispositifResponse;
+export type SelectedDispositifState = GetDispositifResponse | null;
 
 const initialSelectedDispositifState = null;
 

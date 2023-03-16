@@ -1,3 +1,4 @@
+import { cls } from "lib/classname";
 import Image from "next/image";
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
 }
 
 const ToolbarIcon = (props: Props) => {
-  return <Image src={`/icons/editor/${props.name}.svg`} width={16} height={16} alt="" className={props.className} />;
+  return <i className={cls(props.name, props.className)} />;
 };
 
 export default ToolbarIcon;

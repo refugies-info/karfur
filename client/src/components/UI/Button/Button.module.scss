@@ -1,23 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/responsive";
-
-@mixin iconSize($value) {
-  i {
-    line-height: $value !important;
-    height: $value !important;
-
-    svg {
-      width: $value;
-      height: $value;
-    }
-  }
-
-  :global(.ri-lg) {
-    font-size: $value;
-    line-height: $value;
-  }
-}
+@import "src/scss/mixins/icons";
 
 .btn {
   border-radius: u(2);

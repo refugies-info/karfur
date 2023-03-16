@@ -15,6 +15,9 @@ interface Props {
   disabledOptions?: string[];
 }
 
+/**
+ * Dropdown showing a list of languages. Can be used at different places across the page.
+ */
 const LangueMenu = (props: Props) => {
   const languages = useSelector(allLanguesSelector);
   const [open, setOpen] = useState(false);

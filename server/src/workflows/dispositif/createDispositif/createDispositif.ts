@@ -1,10 +1,10 @@
 import logger from "../../../logger";
 import { createDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { Response } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { Dispositif, ObjectId } from "../../../typegoose";
-import { ContentType, CreateDispositifRequest, DispositifStatus, Id } from "api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus, Id, PostDispositifsResponse } from "api-types";
 
-export const createDispositif = async (body: CreateDispositifRequest, userId: Id): Response => {
+export const createDispositif = async (body: CreateDispositifRequest, userId: Id): ResponseWithData<PostDispositifsResponse> => {
   logger.info("[createDispositif] received", { body });
 
   const newDispositif: Partial<Dispositif> = {
@@ -35,7 +35,7 @@ export const createDispositif = async (body: CreateDispositifRequest, userId: Id
   if (body.secondaryThemes) newDispositif.secondaryThemes = body.secondaryThemes.map((t) => new ObjectId(t));
   if (body.metadatas) newDispositif.metadatas = body.metadatas;
 
-  await createDispositifInDB(newDispositif);
+  const dispositif = await createDispositifInDB(newDispositif);
 
-  return { text: "success" };
+  return { text: "success", data: { id: dispositif._id } };
 };

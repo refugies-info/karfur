@@ -21,6 +21,7 @@ import {
   AddSuggestionDispositifRequest,
   ReadSuggestionDispositifRequest,
   GetRegionStatisticsResponse,
+  PostDispositifsResponse,
 } from "api-types";
 import express, { Request as ExRequest } from "express";
 
@@ -71,7 +72,7 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Post("/")
-  public async createDispositif(@Body() body: CreateDispositifRequest, @Request() request: express.Request): Response {
+  public async createDispositif(@Body() body: CreateDispositifRequest, @Request() request: express.Request): ResponseWithData<PostDispositifsResponse> {
     return createDispositif(body, request.userId);
   }
 

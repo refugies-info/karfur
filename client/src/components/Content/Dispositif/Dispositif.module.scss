@@ -8,16 +8,6 @@
   background-color: $lightBackgroundContrastGrey;
 }
 
-.banner {
-  height: 400px;
-  background-size: cover;
-  background-position: center center;
-
-  @include media-max("lg-limit") {
-    height: 240px;
-  }
-}
-
 .content {
   display: flex;
   justify-content: center;

@@ -2,10 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
-import { GetNeedResponse, GetThemeResponse } from "api-types";
 import { getPath } from "routes";
 import { getLinkedThemesReadableText } from "lib/getReadableText";
-import { themesSelector } from "services/Themes/themes.selectors";
+import { secondaryThemesSelector, themeSelector, themesSelector } from "services/Themes/themes.selectors";
+import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
+import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import ThemeIcon from "components/UI/ThemeIcon";
 import SectionButtons from "../SectionButtons";
 import styles from "./LinkedThemes.module.scss";
@@ -23,27 +24,27 @@ const Button = (props: ButtonProps) => (
   </Link>
 );
 
-interface Props {
-  theme: GetThemeResponse | null;
-  secondaryThemes: GetThemeResponse[];
-  needs: GetNeedResponse[];
-}
-const LinkedThemes = (props: Props) => {
+const LinkedThemes = () => {
   const themes = useSelector(themesSelector);
+  const dispositif = useSelector(selectedDispositifSelector);
+  const theme = useSelector(themeSelector(dispositif?.theme));
+  const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
+  const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
+
   return (
     <div className={styles.container}>
       <p className={styles.title}>Thématiques liées</p>
       <div className={styles.row}>
-        {props.theme && (
+        {theme && (
           <Button
-            image={<ThemeIcon theme={props.theme} color={props.theme.colors.color100} size={16} />}
-            color={props.theme.colors.color100}
-            pathParams={`?themes=${props.theme._id}`}
+            image={<ThemeIcon theme={theme} color={theme.colors.color100} size={16} />}
+            color={theme.colors.color100}
+            pathParams={`?themes=${theme._id}`}
           >
-            {props.theme.short?.fr}
+            {theme.short?.fr}
           </Button>
         )}
-        {props.secondaryThemes.map((theme, i) => (
+        {secondaryThemes.map((theme, i) => (
           <Button
             key={i}
             image={<ThemeIcon theme={theme} color={theme.colors.color100} size={16} />}
@@ -53,7 +54,7 @@ const LinkedThemes = (props: Props) => {
             {theme.short?.fr}
           </Button>
         ))}
-        {props.needs.map((need, i) => (
+        {needs.map((need, i) => (
           <Button
             key={i}
             image={<Image src={need.image?.secure_url || ""} width={16} height={16} alt="" />}
@@ -64,10 +65,7 @@ const LinkedThemes = (props: Props) => {
           </Button>
         ))}
       </div>
-      <SectionButtons
-        id="themes"
-        content={getLinkedThemesReadableText(props.theme, props.secondaryThemes, props.needs)}
-      />
+      <SectionButtons id="themes" content={getLinkedThemesReadableText(theme, secondaryThemes, needs)} />
     </div>
   );
 };

@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
-import { ContentStructure, GetDispositifResponse, Sponsor } from "api-types";
+import { useSelector } from "react-redux";
+import { ContentStructure, Sponsor } from "api-types";
+import PageContext from "utils/pageContext";
+import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
+import Button from "components/UI/Button";
 import styles from "./Sponsors.module.scss";
 
-interface Props {
-  sponsors: GetDispositifResponse["sponsors"];
-}
+/**
+ * Show secondary sponsors of a dispositif. Can be used in VIEW or EDIT mode.
+ */
+const Sponsors = () => {
+  const dispositif = useSelector(selectedDispositifSelector);
+  const pageContext = useContext(PageContext);
+  const hasSponsors = dispositif?.sponsors && dispositif.sponsors.length > 0;
+  const isEditMode = pageContext.mode === "edit";
 
-const Sponsors = (props: Props) => {
-  return props.sponsors && props.sponsors.length > 0 ? (
+  return hasSponsors || isEditMode ? (
     <div className={styles.container}>
       <span className={styles.label}>En partenariat avec</span>
       <div className={styles.sponsors}>
-        {props.sponsors?.map((sponsor, i) => {
+        {(dispositif?.sponsors || [])?.map((sponsor, i) => {
           const image =
             (sponsor as Sponsor).logo?.secure_url || (sponsor as ContentStructure).picture?.secure_url || "";
           const name = (sponsor as Sponsor).name || (sponsor as ContentStructure).nom || "";
@@ -24,6 +32,12 @@ const Sponsors = (props: Props) => {
           );
         })}
       </div>
+
+      {isEditMode && (
+        <Button icon="plus-circle-outline" secondary className={styles.add}>
+          Ajouter un partenaire
+        </Button>
+      )}
     </div>
   ) : null;
 };

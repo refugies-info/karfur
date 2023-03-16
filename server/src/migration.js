@@ -172,6 +172,34 @@ const getJustificatif = (justificatif) => {
   }
 };
 
+const getPriceDetails = (detail) => {
+  switch (detail) {
+    case "une fois":
+      return "once";
+    case "une seule fois":
+      return "once";
+    case "à chaque fois":
+      return "eachTime";
+    case "par heure":
+      return "hour";
+    case "par jour":
+      return "day";
+    case "par semaine":
+      return "week";
+    case "par mois":
+      return "month";
+    case "par trimestre":
+      return "trimester";
+    case "par semestre":
+      return "semester";
+    case "par an":
+      return "year";
+    default:
+      console.warn("ERROR: price detail does not exist:", detail);
+      return "";
+  }
+};
+
 const getMarkers = (children) => {
   const markers = children.find((c) => c.type === "map")?.markers;
 
@@ -227,12 +255,16 @@ const getMetadatas = (content, id) => {
     const title = metadata.title?.fr || metadata.title;
     switch (title) {
       case "Zone d'action":
-        metas.location = metadata.departments;
+        if (metadata.departments.length === 1 && metadata.departments[0] === "All") {
+          metas.location = "france";
+        } else {
+          metas.location = metadata.departments;
+        }
         break;
       case "Combien ça coûte ?":
         metas.price = {
-          value: parseInt(metadata.price),
-          details: metadata.price === 0 || !metadata.contentTitle ? null : metadata.contentTitle,
+          values: [parseInt(metadata.price)],
+          details: metadata.price === 0 || !metadata.contentTitle ? null : getPriceDetails(metadata.contentTitle),
         };
         break;
       case "Niveau de français":
@@ -245,21 +277,29 @@ const getMetadatas = (content, id) => {
         };
         break;
       case "Public visé":
-        metas.public = metadata.contentTitle === "Réfugié" ? "refugee" : "all";
+        metas.publicStatus =
+          metadata.contentTitle === "Réfugié" ? ["refugie"] : ["asile", "refugie", "subsidiaire", "apatride"];
         break;
       case "Acte de naissance OFPRA":
-        metas.acteNaissanceRequired = true;
+        if (!metas.conditions) metas.conditions = [];
+        metas.conditions.push("acte naissance");
         break;
       case "Titre de séjour":
-        metas.titreSejourRequired = true;
+        if (!metas.conditions) metas.conditions = [];
+        metas.conditions.push("titre sejour");
         break;
       case "Justificatif demandé":
-        metas.justificatif = getJustificatif(metadata.contentTitle);
+        if (getJustificatif(metadata.contentTitle)) {
+          if (!metas.conditions) metas.conditions = [];
+          metas.conditions.push(getJustificatif(metadata.contentTitle));
+        }
         break;
       case "Durée":
+        // TODO: what here?
         translatedMetas.duration = metadata.contentTitle;
         break;
       case "Important !":
+        // TODO: what here?
         translatedMetas.important = metadata.contentTitle;
         break;
       default:

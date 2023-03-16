@@ -1,0 +1,32 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/input";
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.step {
+  width: u(6);
+  height: u(6);
+  border-radius: 50%;
+  background: $gray40;
+  @include dsfr-text("small");
+  color: $lightTextDisabledGrey;
+  margin-right: u(2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.current {
+    background: $lightPrimaryBlueFranceSun;
+    color: white;
+  }
+  &.done {
+    background: $lightTextActionHighBlueFrance;
+    color: white;
+  }
+}

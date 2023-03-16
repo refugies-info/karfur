@@ -52,6 +52,11 @@ export class CalloutNode extends ElementNode {
   }
 
   updateDOM(prevNode: CalloutNode, dom: HTMLElement): boolean {
+    if (this.__level !== dom.getAttribute("data-callout")) {
+      dom.setAttribute("class", `callout callout--${this.__level}`);
+      dom.setAttribute("data-callout", this.__level);
+      dom.setAttribute("data-title", i18n?.t(getCalloutTranslationKey(this.__level)) || "");
+    }
     return false;
   }
 
