@@ -2,6 +2,9 @@ import Link from "next/link";
 import React from "react";
 import styles from "./Summary.module.scss";
 
+/**
+ * Summary for mobile version
+ */
 const Summary = () => {
   return (
     <div className={styles.card}>

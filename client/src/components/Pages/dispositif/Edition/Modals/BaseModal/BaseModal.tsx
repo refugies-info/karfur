@@ -18,6 +18,9 @@ interface Props {
   children: React.ReactNode;
 }
 
+/**
+ * Modal structure used across the EDIT mode of the page.
+ */
 const BaseModal = (props: Props) => {
   return (
     <Modal

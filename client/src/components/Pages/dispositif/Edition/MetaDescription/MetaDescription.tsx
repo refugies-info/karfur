@@ -6,6 +6,9 @@ import AddContentButton from "../AddContentButton";
 import { ModalAbstract } from "../Modals";
 import styles from "./MetaDescription.module.scss";
 
+/**
+ * Abstract section
+ */
 const MetaDescription = () => {
   const [showModal, setShowModal] = useState(false);
   const values = useWatch<GetDispositifResponse>();

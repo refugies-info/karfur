@@ -13,6 +13,10 @@ interface Props {
   className?: string;
 }
 
+/**
+ * Button which shows an editable section.
+ * Shows the value of the section if the content attribute is set.
+ */
 const AddContentButton = (props: Props) => {
   return (
     <Button

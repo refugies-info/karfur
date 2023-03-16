@@ -17,6 +17,10 @@ import styles from "./LeftSidebarEdition.module.scss";
 
 type Modals = "Availability" | "Conditions" | "Location" | "Price" | "Public" | "Themes";
 
+/**
+ * Left sidebar of the page in EDIT mode.
+ * For each section, it shows either an AddContentButton if no content yet, or a card if the value is set.
+ */
 const LeftSidebarEdition = () => {
   const values = useWatch<GetDispositifResponse>();
   const [showModal, setShowModal] = useState<Modals | null>(null);

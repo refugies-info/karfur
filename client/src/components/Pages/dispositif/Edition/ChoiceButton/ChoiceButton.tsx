@@ -14,6 +14,9 @@ interface Props {
   className?: string;
 }
 
+/**
+ * Button used to make a choice. Can be of multiple sizes, a radio or a checkbox, and accepts images.
+ */
 const ChoiceButton = (props: Props) => {
   const iconName = useMemo(() => {
     if (props.type === "radio") return props.selected ? "radio-button-on" : "radio-button-off";

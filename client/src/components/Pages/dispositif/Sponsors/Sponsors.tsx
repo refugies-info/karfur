@@ -7,6 +7,9 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import Button from "components/UI/Button";
 import styles from "./Sponsors.module.scss";
 
+/**
+ * Show secondary sponsors of a dispositif. Can be used in VIEW or EDIT mode.
+ */
 const Sponsors = () => {
   const dispositif = useSelector(selectedDispositifSelector);
   const pageContext = useContext(PageContext);

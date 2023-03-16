@@ -14,6 +14,9 @@ interface Props {
   onDelete?: () => void;
 }
 
+/**
+ * Form component of an InfoSection. Responsible of getting and setting its own value
+ */
 const AccordionItemEdit = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { unregister, register, getValues } = useFormContext();

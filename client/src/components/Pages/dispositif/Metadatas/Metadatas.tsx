@@ -19,6 +19,9 @@ interface Props {
   typeContenu: ContentType;
 }
 
+/**
+ * Shows the metadatas of a dispositif, with Cards, in VIEW mode
+ */
 const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: Props) => {
   if (!metadatas) return <></>;
   return (

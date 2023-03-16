@@ -5,6 +5,9 @@ import { Help } from "./data";
 import { getHelp } from "./functions";
 import styles from "./RightSidebarEdition.module.scss";
 
+/**
+ * Right sidebar of the EDIT mode. Used to show the contextual help.
+ */
 const RightSidebarEdition = () => {
   const pageContext = useContext(PageContext);
   const [help, setHelp] = useState<Help | null>(null);

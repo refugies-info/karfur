@@ -13,6 +13,9 @@ interface Props<T extends Options> {
   setSelected: (key: T) => void;
 }
 
+/**
+ * Dropdown used in modal forms
+ */
 function DropdownModals<T extends Options>(props: Props<T>) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 

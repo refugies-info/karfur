@@ -60,7 +60,7 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
 };
 
 /**
- * Base component of the left sidebar card. Can be used in VIEW or EDIT mode
+ * Base component of the left sidebar card. Can be used in VIEW or EDIT mode.
  */
 const BaseCard = ({ title, items, color, onClick }: Props) => {
   const pageContext = useContext(PageContext);

@@ -33,6 +33,9 @@ interface Props {
   withNumber?: boolean;
 }
 
+/**
+ * Displays a list of InfoSection in VIEW or EDIT mode
+ */
 const Accordions = ({ content, sectionKey, color100, color30, withNumber }: Props) => {
   const pageContext = useContext(PageContext);
   const [open, setOpen] = useState<number | null>(null);

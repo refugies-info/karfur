@@ -35,7 +35,7 @@ const SectionTitleView = (props: Props) => {
 };
 
 /**
- * Displays automatically the title in the right color for VIEW or EDIT mode
+ * Displays automatically the title of a section in the right color for VIEW or EDIT mode
  */
 const SectionTitle = (props: Props) => {
   const pageContext = useContext(PageContext);

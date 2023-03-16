@@ -5,6 +5,9 @@ import Button from "components/UI/Button";
 import { calculateProgress, getText } from "./functions";
 import styles from "./CustomNavbar.module.scss";
 
+/**
+ * Navbar of edition mode, which shows progress and validate buttons
+ */
 const CustomNavbar = () => {
   const total = Array(14).fill(true); // create an empty array with all steps
   const values = useWatch();

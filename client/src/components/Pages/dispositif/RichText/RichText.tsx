@@ -9,6 +9,9 @@ interface Props {
   value: string | undefined;
 }
 
+/**
+ * Shows a rich text as html, or the form component of the RichText. Can be used for VIEW or EDIT mode.
+ */
 const RichText = (props: Props) => {
   const pageContext = useContext(PageContext);
 

@@ -8,6 +8,9 @@ interface Props {
   themeId: Id | undefined;
 }
 
+/**
+ * Top level banner with theme image or default one
+ */
 const Banner = (props: Props) => {
   const theme = useSelector(themeSelector(props.themeId));
   return (

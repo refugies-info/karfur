@@ -8,6 +8,9 @@ interface Props {
   children: string | React.ReactNode;
 }
 
+/**
+ * Card which displays contextual help
+ */
 const HelpCard = (props: Props) => {
   return (
     <div className={styles.container}>

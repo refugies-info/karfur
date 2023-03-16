@@ -6,6 +6,9 @@ import ContentSlider from "components/UI/ContentSlider";
 import ContributorCard from "./ContributorCard";
 import styles from "./Contributors.module.scss";
 
+/**
+ * List of contributors of the dispositif
+ */
 const Contributors = () => {
   const dispositif = useSelector(selectedDispositifSelector);
 

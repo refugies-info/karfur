@@ -18,6 +18,9 @@ interface Props {
 const DEFAULT_COLOR_100 = "#000";
 const DEFAULT_COLOR_30 = "#ccc";
 
+/**
+ * Shows a section of a dispositif. Can display a rich text or InfoSections. Can be used in VIEW or EDIT mode.
+ */
 const Section = ({ sectionKey, contentType }: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
 

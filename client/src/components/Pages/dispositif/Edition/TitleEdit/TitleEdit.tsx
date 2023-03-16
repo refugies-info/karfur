@@ -8,6 +8,10 @@ interface Props {
   id: string;
 }
 
+/**
+ * Form component for a title.
+ * Shows either an AddContentButton if the section in not active, or an input if it is.
+ */
 const TitleEdit = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
   const formContext = useFormContext();

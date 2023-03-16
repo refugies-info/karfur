@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import AddContentButton from "../AddContentButton";
-import styles from "./RichText.module.scss";
+import styles from "./RichTextEdit.module.scss";
 
 const RichTextInput = dynamic(() => import("components/UI/RichTextInput"), { ssr: false });
 
@@ -12,7 +12,11 @@ interface Props {
   id: string;
 }
 
-const RichText = (props: Props) => {
+/**
+ * Form component for a rich text.
+ * Shows either an AddContentButton if the section in not active, or a the rich text editor if it is.
+ */
+const RichTextEdit = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
   const formContext = useFormContext();
 
@@ -43,4 +47,4 @@ const RichText = (props: Props) => {
   );
 };
 
-export default RichText;
+export default RichTextEdit;

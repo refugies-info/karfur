@@ -8,6 +8,9 @@ interface Props {
   children: string;
 }
 
+/**
+ * Shows a text as title, or the form component of the Title. Can be used for VIEW or EDIT mode.
+ */
 const Title = (props: Props) => {
   const pageContext = useContext(PageContext);
 
