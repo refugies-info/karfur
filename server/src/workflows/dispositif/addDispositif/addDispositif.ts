@@ -316,7 +316,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       data: dispResult
     });
   } catch (error) {
-    logger.error("[addDispositif] error", { error: error.message });
+    logger.error("[addDispositif] error", error);
     switch (error.message) {
       case "NOT_FROM_SITE":
         return res.status(405).json({ text: "Requête bloquée par API" });
