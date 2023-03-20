@@ -154,7 +154,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       if (originalDispositif.needs) {
         // if a need of the content has a theme that is not a theme of the content we remove the need
         const newNeeds = await computePossibleNeeds(originalDispositif.needs, [
-          dispositif.theme._id,
+          dispositif.theme?._id,
           ...dispositif.secondaryThemes.map((t) => t._id)
         ]);
         dispositif.needs = newNeeds;
@@ -182,7 +182,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       // format themes to keep ids only
       const themesList = [dispositif.theme, ...dispositif.secondaryThemes].map((t) => t.short.fr);
       // @ts-ignore
-      dispositif.theme = dispositif.theme._id;
+      dispositif.theme = dispositif.theme?._id;
       // @ts-ignore
       dispositif.secondaryThemes = dispositif.secondaryThemes.map((t) => t._id);
 
