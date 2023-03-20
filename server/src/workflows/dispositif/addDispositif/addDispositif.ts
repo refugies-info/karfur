@@ -180,7 +180,8 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       dispositif.lastModificationAuthor = req.userId;
 
       // format themes to keep ids only
-      const themesList = [dispositif.theme, ...dispositif.secondaryThemes].map((t) => t.short.fr);
+      const themesList = [...dispositif.secondaryThemes];
+      if (dispositif.theme) themesList.push(dispositif.theme);
       // @ts-ignore
       dispositif.theme = dispositif.theme?._id;
       // @ts-ignore
@@ -209,7 +210,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
             dispResult.titreInformatif,
             dispResult.titreMarque,
             dispResult._id,
-            themesList,
+            themesList.map((t) => t.short.fr),
             dispResult.typeContenu,
             null,
             getDispositifDepartments(dispResult),
