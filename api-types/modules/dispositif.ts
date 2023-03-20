@@ -139,7 +139,7 @@ interface DispositifRequest {
     phone: string;
     comments: string;
     isStructureContact: boolean;
-  }
+  };
   theme?: string;
   secondaryThemes?: string[];
   sponsors?: Sponsor[];
@@ -164,7 +164,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest { }
+export interface UpdateDispositifRequest extends DispositifRequest {}
 
 /**
  * @url POST /dispositifs
@@ -173,6 +173,16 @@ export interface CreateDispositifRequest extends DispositifRequest {
   typeContenu: ContentType;
 }
 
+export interface Poi {
+  title: string;
+  address: string;
+  city: string;
+  lat: number;
+  lng: number;
+  description?: string;
+  email?: string;
+  phone?: string;
+}
 
 /**
  * @url GET /dispositifs/{id}
