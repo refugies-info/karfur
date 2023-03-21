@@ -1,4 +1,5 @@
 export * from "./generics";
+export * from "./modules/misc";
 
 // adminOption
 import { AdminOptionRequest, GetAdminOptionResponse, PostAdminOptionResponse } from "./modules/adminOption";

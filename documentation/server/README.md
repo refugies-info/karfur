@@ -15,12 +15,12 @@ The source code is located at `/server`.
 ## Tech stack
 
 This project is based on [Node@16](https://nodejs.org/en/). It includes the following libraries:
+
 - [Typescript](https://www.typescriptlang.org/)
 - [Express](https://expressjs.com/)
 - [Mongoose](https://mongoosejs.com/)
 - [ESLint](https://eslint.org/)
 - [Jest](https://jestjs.io/)
-
 
 ## Setup
 
@@ -32,27 +32,32 @@ This project is based on [Node@16](https://nodejs.org/en/). It includes the foll
 
 Please note that you need mongo, the server and the client to run concurrently in different terminal session, in order to let them communicate.
 
-
 ### Install repository
 
 1. Clone the repository locally
-  ```bash
-  > git clone https://github.com/refugies-info/karfur.git
-  ```
+
+```bash
+> git clone https://github.com/refugies-info/karfur.git
+```
+
 2. Install the dependencies
-  ```bash
-  > npm install
-  ```
+
+```bash
+> npm install
+```
+
 3. Copy the `/example-env-file.env` to `.env` and replace `demo` with the right values.
 4. In `server/src/config` create a config.js with:
-  ```bash
-  module.exports = {
-    "secret" : "XXX"
-  }
-  ```
-  Ask to an administrator for the right secret.
 
-  This file MUST NOT be commited on github, it should be in gitignore.
+```bash
+module.exports = {
+  "secret" : "XXX"
+}
+```
+
+Ask to an administrator for the right secret.
+
+This file MUST NOT be commited on github, it should be in gitignore.
 
 ### Setup your test database
 
@@ -80,15 +85,16 @@ Check it is ok:
 > db.users.updateMany({},{$set:{email:"dev@refugies.info", phone: "", picture: ""}})
 ```
 
-
 ## Development
 
 Make sure you have a mongodb instance launched.
+
 ```bash
 > mongod --port 27017 --dbpath db-backup --noauth --bind_ip 127.0.0.1
 ```
 
 Open a new terminal tab and launch the server:
+
 ```bash
 > cd karfur/server                # go into app's directory
 > npm install -g nodemon ts-node  # install globally some dependencies
@@ -108,25 +114,36 @@ Open a new terminal tab and launch the server:
 - disconnect from website and reconnect, you need to add an email and phone number for 2 factor authent for admin
 - after entering the code received by sms, click on the picture top right and then click on Administration. If you have access it is ok !
 
+## Configuration
+
+### Minimal mobile application version
+
+The minimal version of the application must be configured in the build pipeline of the server. You must specify the version under the YYYY.MM.V format (Y: year; M: month; V: version in month).
+
+If a user access to the API with a older version, a page tells him to upgrade to a newer version.
+
+You can use this fonctionnality in case of breaking changes in API.
 
 ## Testing
 
 To launch the tests, run:
+
 ```bash
 > npm run test
 ```
 
 It will execute:
+
 - **unit tests**. Made with Jest, to test functions
 - **linter**. With ESLint, it analyzes the Javascript code the find potential problems
 - **types**. With Typescript, it checks the code syntax
 
 Each time you write a feature, you must include some tests.
 
-
 ## Deploy
 
 We use 2 environments:
+
 - staging: https://staging.refugies.info
 - prod: https://refugies.info
 
@@ -136,16 +153,13 @@ To deploy on **production**, merge the branch `staging-backend` to `master-backe
 
 To learn more about the git flow, read the [Git Flow documentation](../README.md#git-flow).
 
-
 ## Architecture
 
 Learn more about the [architecture of the project here](architecture.md).
 
-
 ## Development Guide
 
 Follow the [technical standards](general.md) to keep the codebase clean.
-
 
 ## Reference
 
