@@ -15,7 +15,9 @@ import { Provider } from "react-redux";
 import { store } from "./services/redux/store";
 
 import { ConnexionTest } from "./components/ConnexionTest";
-import { updateAppUser } from "./utils/API";
+import { retrieveTechnicalInfo, updateAppUser } from "./utils/API";
+import useAsync from "react-use/lib/useAsync";
+import OfflinePage from "./components/OfflinePage";
 
 const queryClient = new QueryClient();
 
@@ -54,14 +56,22 @@ const updateUserInfo = async () => {
 };
 
 export default function App() {
+  const { loading, error } = useAsync(retrieveTechnicalInfo);
   const isLoadingComplete = useCachedResources();
 
   useEffect(() => {
     updateUserInfo();
   }, []);
 
-  if (!isLoadingComplete) {
+  if (!isLoadingComplete || loading) {
     return null;
+  }
+
+  /**
+   * The app must be upgraded to continue
+   */
+  if (error) {
+    return <OfflinePage />;
   }
 
   return (

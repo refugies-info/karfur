@@ -1,3 +1,5 @@
+import Constants from "expo-constants";
+
 import { ObjectId, AppUser } from "../types/interface";
 import { makeApiRequest } from "../hooks/useApi";
 import { apiCaller } from "./ConfigAPI";
@@ -87,6 +89,15 @@ export const markNotificationAsSeen = async (notificationId: string) =>
     "/notifications/seen",
     {
       notificationId,
+    },
+    "POST"
+  );
+
+export const retrieveTechnicalInfo = () =>
+  makeApiRequest(
+    "/technical-info",
+    {
+      appVersion: Constants.manifest?.extra?.displayVersionNumber,
     },
     "POST"
   );
