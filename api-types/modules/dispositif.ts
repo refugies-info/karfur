@@ -209,6 +209,7 @@ export type GetDispositifResponse = {
   map: Poi[];
   availableLanguages: string[];
   date: Date;
+  lastModificationDate?: Date;
 };
 
 /**
