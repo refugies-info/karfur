@@ -5,7 +5,7 @@ import { Languages } from "../generics";
  */
 export interface AppUserRequest {
   city?: string;
-  department?: string;
+  department?: string | null;
   selectedLanguage?: Languages;
   age?: string;
   frenchLevel?: string;
