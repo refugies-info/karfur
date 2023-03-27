@@ -5,15 +5,15 @@ import { getUsersFromStructureMembres } from "../../users/users.service";
 import { sendPublishedTradMailToStructureService } from "../mail.service";
 
 jest.mock("../../structure/structure.service", () => ({
-  getStructureMembers: jest.fn(),
+  getStructureMembers: jest.fn()
 }));
 
 jest.mock("../../users/users.service", () => ({
-  getUsersFromStructureMembres: jest.fn(),
+  getUsersFromStructureMembres: jest.fn()
 }));
 
 jest.mock("../mail.service", () => ({
-  sendPublishedTradMailToStructureService: jest.fn(),
+  sendPublishedTradMailToStructureService: jest.fn()
 }));
 
 describe("sendPublishedTradMailToStructure", () => {
@@ -31,7 +31,7 @@ describe("sendPublishedTradMailToStructure", () => {
     email: "email1",
     dispositifId: "id",
     userId: "membre1",
-    langue: "anglais",
+    langue: "anglais"
   };
 
   const data2 = {
@@ -42,7 +42,7 @@ describe("sendPublishedTradMailToStructure", () => {
     email: "email2",
     dispositifId: "id",
     userId: "membre2",
-    langue: "anglais",
+    langue: "anglais"
   };
 
   it("should getStructureMembers get users and send published mail", async () => {
@@ -53,7 +53,7 @@ describe("sendPublishedTradMailToStructure", () => {
       titreInformatif: "TI",
       titreMarque: "TM",
       typeContenu: "dispositif",
-      _id: "id",
+      _id: "id"
     };
     await sendPublishedTradMailToStructure(dispositif, "en");
     expect(getStructureMembers).toHaveBeenCalledWith("sponsorId");
