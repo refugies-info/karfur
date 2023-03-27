@@ -9,8 +9,10 @@
 .container {
   background-color: white;
   border-top: 1px solid $lightBorderDefaultGrey;
+  border-bottom: 1px solid $lightBorderDefaultGrey;
   padding: u(2) 0;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 501; // goes over menu
 
   .inner {
