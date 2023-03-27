@@ -36,9 +36,15 @@
     padding-bottom: u(3);
   }
 
-  .text {
+  .text,
+  .subtext {
     text-align: left;
     flex: auto;
+  }
+  .subtext {
+    display: block;
+    @include dsfr-text("very-small");
+    color: $lightTextMentionGrey;
   }
 
   &:hover {
@@ -49,6 +55,10 @@
     background: $lightBackgroundActionLowBlueFrance;
     border-color: $lightBackgroundActionLowBlueFrance;
     color: $lightTextActionHighBlueFrance;
+
+    .subtext {
+      color: $lightTextActionHighBlueFrance;
+    }
 
     &:hover {
       background: $lightBackgroundActionLowBlueFrance;

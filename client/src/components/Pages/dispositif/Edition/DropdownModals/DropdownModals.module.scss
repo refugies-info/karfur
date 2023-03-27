@@ -5,17 +5,32 @@
 
 .dropdown {
   .toggle {
-    background: $white;
+    background: $gray30;
     padding: u(2) u(3);
-    border: none;
     color: $lightTextTitleGrey;
     border-radius: u(2);
     white-space: nowrap;
+    border: 1px solid transparent;
+
+    &:hover,
+    &:active {
+      background: $lightBackgroundContrastGrey !important;
+      border-color: transparent;
+    }
+    &:focus {
+      background: $lightBackgroundContrastGrey !important;
+      border-color: $lightTextTitleGrey;
+    }
 
     &:hover,
     &:focus {
-      background: $lightTextInvertedBlueFrance !important;
       color: $lightTextTitleGrey !important;
+    }
+
+    &:global([aria-expanded="true"]) {
+      .icon {
+        transform: rotate(180deg);
+      }
     }
   }
   .menu {

@@ -8,6 +8,7 @@ import { cls } from "lib/classname";
 
 interface Props {
   text: string;
+  subtext?: string;
   selected: boolean;
   onSelect: () => void;
   image?: any;
@@ -49,6 +50,7 @@ const ChoiceButton = (props: Props) => {
       />
       <span className={styles.text}>
         {props.text}
+        {props.subtext && <span className={styles.subtext}>{props.subtext}</span>}
         {props.helpTooltip && (
           <>
             <EVAIcon

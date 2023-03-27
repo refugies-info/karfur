@@ -23,7 +23,7 @@
   background: white;
   border-radius: u(2);
   padding: u(4);
-  width: 250px;
+  width: 100%;
   position: absolute;
   margin-top: u(2);
 
@@ -44,12 +44,11 @@
   background-color: $lightBackgroundActionLowBlueFrance;
   border-radius: u(2);
   color: $lightTextActionHighBlueFrance;
-  font-weight: bold;
   margin-right: u(1);
   margin-bottom: u(1);
   text-align: left;
 
   &:hover {
-    background: $lightPrimaryBlueFrance;
+    background: $lightPrimaryBlueFrance !important;
   }
 }

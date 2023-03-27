@@ -4,6 +4,7 @@ import { amountDetailsType, frequencyUnitType, priceDetails, timeUnitType } from
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import ChoiceButton from "../ChoiceButton";
 import styles from "./DropdownModals.module.scss";
+import { cls } from "lib/classname";
 
 type Options = amountDetailsType | timeUnitType | frequencyUnitType | priceDetails;
 
@@ -23,7 +24,7 @@ function DropdownModals<T extends Options>(props: Props<T>) {
     <Dropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen((o) => !o)} className={styles.dropdown}>
       <DropdownToggle className={styles.toggle}>
         {props.options[props.selected] || ""}
-        <EVAIcon name="chevron-down-outline" size={16} fill="dark" className="ms-4" />
+        <EVAIcon name="chevron-down-outline" size={16} fill="dark" className={cls(styles.icon, "ms-4")} />
       </DropdownToggle>
       <DropdownMenu className={styles.menu}>
         {Object.entries(props.options).map(([key, value], i) => (

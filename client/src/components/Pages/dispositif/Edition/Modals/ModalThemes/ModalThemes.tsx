@@ -64,6 +64,11 @@ const ModalThemes = (props: Props) => {
     [mainTheme, secondaryThemes],
   );
 
+  const remainingSelect = useMemo(
+    () => 3 - (!!mainTheme ? 1 : 0) - secondaryThemes.length,
+    [mainTheme, secondaryThemes],
+  );
+
   const validate = () => {
     setValue("theme", mainTheme);
     setValue("secondaryThemes", secondaryThemes);
@@ -98,6 +103,13 @@ const ModalThemes = (props: Props) => {
             />
           );
         })}
+
+        {remainingSelect > 0 && (
+          <p className={styles.help}>
+            <EVAIcon name="info" size={16} fill={styles.lightBorderPlainInfo} className="me-2" />
+            {remainingSelect} thèmes restants maximum
+          </p>
+        )}
         <SimpleFooter onValidate={validate} />
       </div>
     </BaseModal>
