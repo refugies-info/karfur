@@ -1,7 +1,13 @@
 import { sendMail } from "../../connectors/sendgrid/sendMail";
 import logger from "../../logger";
 import { addMailEvent } from "./mail.repository";
-import { DispositifId, UserId } from "../../typegoose";
+import { DispositifId, StructureId, UserId } from "../../typegoose";
+
+/**
+ * FIXME PATCH POUR LA STRUCTURE MenS
+ * @deprecated En attente d'une interface de pilotage des notifications dans le middle office
+ */
+export const isMenSStructure = (structureId: StructureId) => structureId.toString() === "63985164fd1bf4e22792ef6e";
 
 export const sendWelcomeMail = async (email: string, username: string, userId: UserId) => {
   try {
@@ -10,13 +16,13 @@ export const sendWelcomeMail = async (email: string, username: string, userId: U
       to: email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       // cc: "contact@refugies.info",
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
-        pseudo: username
-      }
+        pseudo: username,
+      },
     };
     const templateName = "newUserWelcome";
     sendMail(templateName, dynamicData);
@@ -34,13 +40,13 @@ export const sendResetPasswordMail = async (username: string, lien_reinitialisat
       to: email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
         Pseudonyme: username,
-        lien_reinitialisation: lien_reinitialisation
-      }
+        lien_reinitialisation: lien_reinitialisation,
+      },
     };
     const templateName = "resetPassword";
     sendMail(templateName, dynamicData);
@@ -49,7 +55,7 @@ export const sendResetPasswordMail = async (username: string, lien_reinitialisat
   } catch (error) {
     logger.error("[sendResetPasswordMail] error", {
       email,
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -61,12 +67,12 @@ export const sendResetPhoneNumberMail = async (username: string, email: string) 
       to: email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
-        pseudonyme: username
-      }
+        pseudonyme: username,
+      },
     };
     const templateName = "changePhoneNumber";
     sendMail(templateName, dynamicData);
@@ -75,7 +81,7 @@ export const sendResetPhoneNumberMail = async (username: string, email: string) 
   } catch (error) {
     logger.error("[sendResetPhoneNumberMail] error", {
       email,
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -87,10 +93,10 @@ export const sendSubscriptionReminderMailService = async (email: string) => {
       to: email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       // cc: "contact@refugies.info",
-      reply_to: "contact@email.refugies.info"
+      reply_to: "contact@email.refugies.info",
     };
     const templateName = "subscriptionReminderMail";
     sendMail(templateName, dynamicData);
@@ -99,7 +105,7 @@ export const sendSubscriptionReminderMailService = async (email: string) => {
   } catch (error) {
     logger.error("[sendSubscriptionReminderMailService] error", {
       email,
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -110,25 +116,25 @@ export const sendOneDraftReminderMailService = async (
   titreInformatif: string,
   userId: UserId,
   dispositifId: DispositifId,
-  reminder: "first" | "second"
+  reminder: "first" | "second",
 ) => {
   try {
     logger.info("[sendOneDraftReminderMailService]  received", {
       email,
-      dispositifId
+      dispositifId,
     });
     const dynamicData = {
       to: email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       // cc: "contact@refugies.info",
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
         pseudo: username,
-        titreInformatif
-      }
+        titreInformatif,
+      },
     };
     const templateName = reminder === "first" ? "oneDraftReminder" : "secondOneDraftReminder";
     sendMail(templateName, dynamicData);
@@ -137,7 +143,7 @@ export const sendOneDraftReminderMailService = async (
   } catch (error) {
     logger.error("[sendOneDraftReminderMailService] error", {
       email,
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -148,26 +154,26 @@ export const sendUpdateReminderMailService = async (
   titreInformatif: string,
   userId: UserId,
   dispositifId: DispositifId,
-  lienFiche: string
+  lienFiche: string,
 ) => {
   try {
     logger.info("[sendUpdateReminderMailService]  received", {
       email,
-      dispositifId
+      dispositifId,
     });
     const dynamicData = {
       to: email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       // cc: "contact@refugies.info",
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
         Pseudonyme: username,
         titreInformatif,
-        lienFiche
-      }
+        lienFiche,
+      },
     };
     const templateName = "updateReminder";
     sendMail(templateName, dynamicData);
@@ -178,7 +184,7 @@ export const sendUpdateReminderMailService = async (
   } catch (error) {
     logger.error("[sendUpdateReminderMailService] error", {
       email,
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -187,23 +193,23 @@ export const sendMultipleDraftsReminderMailService = async (
   email: string,
   username: string,
   userId: UserId,
-  reminder: "first" | "second"
+  reminder: "first" | "second",
 ) => {
   try {
     logger.info("[sendMultipleDraftsReminderMailService] received", {
-      email
+      email,
     });
     const dynamicData = {
       to: email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       // cc: "contact@refugies.info",
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
-        pseudo: username
-      }
+        pseudo: username,
+      },
     };
     const templateName = reminder === "first" ? "multipleDraftsReminder" : "secondMultipleDraftReminder";
     sendMail(templateName, dynamicData);
@@ -212,7 +218,7 @@ export const sendMultipleDraftsReminderMailService = async (
   } catch (error) {
     logger.error("[sendMultipleDraftsReminderMailService] error", {
       email,
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -228,7 +234,7 @@ interface PublishedFicheMailToStructureMembersData {
 }
 
 export const sendPublishedFicheMailToStructureMembersService = async (
-  data: PublishedFicheMailToStructureMembersData
+  data: PublishedFicheMailToStructureMembersData,
 ) => {
   try {
     logger.info("[sendPublishedFicheMail] received");
@@ -237,15 +243,15 @@ export const sendPublishedFicheMailToStructureMembersService = async (
       to: data.email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
         pseudo: data.pseudo,
         titreInformatif: data.titreInformatif,
         lien: data.lien,
-        titreMarque: data.titreMarque
-      }
+        titreMarque: data.titreMarque,
+      },
     };
     const templateName = "publishedFicheToStructureMembers";
 
@@ -255,12 +261,12 @@ export const sendPublishedFicheMailToStructureMembersService = async (
       username: data.pseudo,
       email: data.email,
       userId: data.userId,
-      dispositifId: data.dispositifId
+      dispositifId: data.dispositifId,
     });
     return;
   } catch (error) {
     logger.error("[sendPublishedFicheMail] error", {
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -282,15 +288,15 @@ export const sendPublishedFicheMailToCreatorService = async (data: PublishedFich
       to: data.email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
         pseudo: data.pseudo,
         titreInformatif: data.titreInformatif,
         lien: data.lien,
-        titreMarque: data.titreMarque
-      }
+        titreMarque: data.titreMarque,
+      },
     };
     const templateName = "publishedFicheToCreator";
     sendMail(templateName, dynamicData);
@@ -299,12 +305,12 @@ export const sendPublishedFicheMailToCreatorService = async (data: PublishedFich
       username: data.pseudo,
       email: data.email,
       userId: data.userId,
-      dispositifId: data.dispositifId
+      dispositifId: data.dispositifId,
     });
     return;
   } catch (error) {
     logger.error("[sendPublishedFicheMailToCreatorService] error", {
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -327,15 +333,15 @@ export const sendPublishedTradMailToStructureService = async (data: PublishedTra
       to: data.email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
         titreInformatif: data.titreInformatif,
         titreMarque: data.titreMarque,
         lien: data.lien,
-        langue: data.langue
-      }
+        langue: data.langue,
+      },
     };
     const templateName = "publishedTradForStructure";
     sendMail(templateName, dynamicData);
@@ -345,12 +351,12 @@ export const sendPublishedTradMailToStructureService = async (data: PublishedTra
       email: data.email,
       userId: data.userId,
       dispositifId: data.dispositifId,
-      langue: data.langue
+      langue: data.langue,
     });
     return;
   } catch (error) {
     logger.error("[sendPublishedTradMailToStructure] error", {
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -372,14 +378,14 @@ export const sendNewFicheEnAttenteMail = async (data: NewFicheEnAttenteMail) => 
       to: data.email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
         titreInformatif: data.titreInformatif,
         titreMarque: data.titreMarque,
-        lien: data.lien
-      }
+        lien: data.lien,
+      },
     };
     const templateName = "newFicheEnAttente";
     sendMail(templateName, dynamicData);
@@ -388,12 +394,12 @@ export const sendNewFicheEnAttenteMail = async (data: NewFicheEnAttenteMail) => 
       username: data.pseudo,
       email: data.email,
       userId: data.userId,
-      dispositifId: data.dispositifId
+      dispositifId: data.dispositifId,
     });
     return;
   } catch (error) {
     logger.error("[sendNewFicheEnAttenteMail] error", {
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -417,7 +423,7 @@ export const sendPublishedTradMailToTraductorsService = async (data: PublishedTr
       to: data.email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
@@ -426,8 +432,8 @@ export const sendPublishedTradMailToTraductorsService = async (data: PublishedTr
         lien: data.lien,
         isDispositif: data.isDispositif,
         langue: data.langue,
-        pseudo: data.pseudo
-      }
+        pseudo: data.pseudo,
+      },
     };
     const templateName = "publishedTradForTraductors";
     // @ts-ignore
@@ -439,12 +445,12 @@ export const sendPublishedTradMailToTraductorsService = async (data: PublishedTr
       // @ts-ignore
       userId: data.userId,
       dispositifId: data.dispositifId,
-      langue: data.langue
+      langue: data.langue,
     });
     return;
   } catch (error) {
     logger.error("[sendPublishedTradMailToTraductorsService] error", {
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -469,7 +475,7 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
       to: data.email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
       cc: "alice@refugies.info",
@@ -479,8 +485,8 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
         lien: data.lien,
         pseudo: data.pseudo,
         sectionsToModify: data.sectionsToModify,
-        message: data.message
-      }
+        message: data.message,
+      },
     };
     const templateName = "reviewFiche";
     // @ts-ignore
@@ -491,12 +497,12 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
       email: data.email,
       // @ts-ignore
       userId: data.userId,
-      dispositifId: data.dispositifId
+      dispositifId: data.dispositifId,
     });
     return;
   } catch (error) {
     logger.error("[sendAdminImprovementsMailService] error", {
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -516,13 +522,13 @@ export const sendNewReponsableMailService = async (data: NewResponsableMail) => 
       to: data.email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
         pseudonyme: data.pseudonyme,
-        nomstructure: data.nomstructure
-      }
+        nomstructure: data.nomstructure,
+      },
     };
     const templateName = "newResponsable";
     sendMail(templateName, dynamicData);
@@ -530,12 +536,12 @@ export const sendNewReponsableMailService = async (data: NewResponsableMail) => 
       templateName,
       username: data.pseudonyme,
       email: data.email,
-      userId: data.userId
+      userId: data.userId,
     });
     return;
   } catch (error) {
     logger.error("[sendNewReponsableMailService] error", {
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -548,20 +554,20 @@ export const sendAccountDeletedMailService = async (email: string) => {
       to: email,
       from: {
         email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
+        name: "L'équipe de Réfugiés.info",
       },
-      reply_to: "contact@email.refugies.info"
+      reply_to: "contact@email.refugies.info",
     };
     const templateName = "accountDeleted";
     sendMail(templateName, dynamicData);
     await addMailEvent({
       templateName,
-      email: email
+      email: email,
     });
     return;
   } catch (error) {
     logger.error("[sendAccountDeletedMailService] error", {
-      error: error.message
+      error: error.message,
     });
   }
 };

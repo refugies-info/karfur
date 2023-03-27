@@ -2,11 +2,11 @@ import logger from "../../../logger";
 import { Response } from "../../../types/interface";
 import {
   getPublishedDispositifWithMainSponsor,
-  updateDispositifInDB
+  updateDispositifInDB,
 } from "../../../modules/dispositif/dispositif.repository";
 import { getUserById } from "../../../modules/users/users.repository";
 import { filterDispositifsForUpdateReminders } from "../../../modules/dispositif/dispositif.adapter";
-import { sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
+import { isMenSStructure, sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { log } from "./log";
 import { Dispositif } from "../../../typegoose";
@@ -27,13 +27,13 @@ export const sendReminderMailToUpdateContents = async (): Response => {
   const filteredDispositifWithTitreInfoFormated = filteredDispositifs.map((dispo) => ({
     // FIXME ...dispo.toJSON({ flattenMaps: false }),
     ...dispo,
-    titreInformatif: dispo.translations.fr.content.titreInformatif
+    titreInformatif: dispo.translations.fr.content.titreInformatif,
   }));
   await asyncForEach(
     filteredDispositifWithTitreInfoFormated,
     async (dispositif: Dispositif & { titreInformatif: string }) => {
       try {
-        if (dispositif.mainSponsor) {
+        if (dispositif.mainSponsor && !isMenSStructure(dispositif.mainSponsor.toString())) {
           if (dispositif.getMainSponsor().membres) {
             await Promise.all(
               dispositif.getMainSponsor().membres.map(async (membre) => {
@@ -41,7 +41,7 @@ export const sendReminderMailToUpdateContents = async (): Response => {
                   if (membre.roles.includes("administrateur")) {
                     let user = await getUserById(membre.userId.toString(), {
                       username: 1,
-                      email: 1
+                      email: 1,
                     });
                     if (user.email) {
                       await sendUpdateReminderMailService(
@@ -50,28 +50,28 @@ export const sendReminderMailToUpdateContents = async (): Response => {
                         dispositif.titreInformatif,
                         user._id,
                         dispositif._id,
-                        "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id
+                        "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id,
                       );
 
                       await updateDispositifInDB(dispositif._id, {
-                        lastReminderMailSentToUpdateContentDate: new Date()
+                        lastReminderMailSentToUpdateContentDate: new Date(),
                       });
                     }
                   }
                 } catch (e) {
                   logger.error("[sendReminderMailToUpdateContents] error while sending mail", e);
                 }
-              })
+              }),
             );
           }
         }
         await log(dispositif._id);
       } catch (error) {
         logger.error("[sendReminderMailToUpdateContents] error", {
-          error: error.message
+          error: error.message,
         });
       }
-    }
+    },
   );
   return { text: "success" };
 };

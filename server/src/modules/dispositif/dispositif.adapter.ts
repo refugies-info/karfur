@@ -3,13 +3,13 @@ import moment from "moment";
 import logger from "../../logger";
 import { departmentRegionCorrespondency, RegionData } from "./data";
 import { isTitreInformatifObject } from "../../types/typeguards";
-import { Dispositif, DispositifId, UserId } from "../../typegoose";
 import { RefactorTodoError } from "../../errors";
+import { Dispositif, DispositifId, StructureId, UserId } from "../../typegoose";
 
 export const filterDispositifsForDraftReminders = (
   dispositifs: Dispositif[],
   nbDaysBeforeReminder: number,
-  reminderDateProp: "draftReminderMailSentDate" | "draftSecondReminderMailSentDate"
+  reminderDateProp: "draftReminderMailSentDate" | "draftSecondReminderMailSentDate",
 ) =>
   dispositifs.filter((dispositif) => {
     if (get(dispositif, reminderDateProp)) {
@@ -22,7 +22,7 @@ export const filterDispositifsForDraftReminders = (
 
     if (nbDaysFromNow < nbDaysBeforeReminder) {
       logger.info(
-        `[sendDraftReminderMail] dispositif with id ${dispositif._id} has been updated ${nbDaysFromNow} days ago`
+        `[sendDraftReminderMail] dispositif with id ${dispositif._id} has been updated ${nbDaysFromNow} days ago`,
       );
       return false;
     }
@@ -39,11 +39,11 @@ export const filterDispositifsForUpdateReminders = (dispositifs: Dispositif[], n
   dispositifs.filter((dispositif) => {
     if (dispositif.lastReminderMailSentToUpdateContentDate) {
       const nbDaysLastReminderFromNow = Math.round(
-        moment(moment()).diff(dispositif.lastReminderMailSentToUpdateContentDate) / (1000 * 60 * 60 * 24)
+        moment(moment()).diff(dispositif.lastReminderMailSentToUpdateContentDate) / (1000 * 60 * 60 * 24),
       );
       if (nbDaysLastReminderFromNow < nbDaysBeforeReminder) {
         logger.info(
-          `[sendReminderMailToUpdateContents] dispositif with id ${dispositif._id} has already received reminder ${nbDaysLastReminderFromNow} days ago`
+          `[sendReminderMailToUpdateContents] dispositif with id ${dispositif._id} has already received reminder ${nbDaysLastReminderFromNow} days ago`,
         );
         return false;
       }
@@ -54,7 +54,7 @@ export const filterDispositifsForUpdateReminders = (dispositifs: Dispositif[], n
 
     if (nbDaysFromNow < nbDaysBeforeReminder) {
       logger.info(
-        `[sendReminderMailToUpdateContents] dispositif with id ${dispositif._id} has been updated ${nbDaysFromNow} days ago`
+        `[sendReminderMailToUpdateContents] dispositif with id ${dispositif._id} has been updated ${nbDaysFromNow} days ago`,
       );
       return false;
     }
@@ -64,9 +64,10 @@ export const filterDispositifsForUpdateReminders = (dispositifs: Dispositif[], n
 
 export interface FormattedDispositif {
   creatorId: UserId;
-  username: string;
-  email: string;
   dispositifs: { _id: DispositifId; titreInformatif: string }[];
+  email: string;
+  structureId: StructureId;
+  username: string;
 }
 export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
   logger.error("TO REFACTOR");
@@ -74,7 +75,7 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
 
   dispositifs.forEach((dispositif) => {
     const elementIndex = formattedArray.findIndex(
-      (obj) => obj.creatorId.toString() === dispositif.creatorId._id.toString()
+      (obj) => obj.creatorId.toString() === dispositif.creatorId._id.toString(),
     );
 
     const isCreatorIdInArray = elementIndex !== -1;
@@ -82,9 +83,10 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
     if (!isCreatorIdInArray && dispositif.getCreator()?.email) {
       formattedArray.push({
         creatorId: dispositif.creatorId._id,
-        username: dispositif.getCreator()?.username,
+        dispositifs: [{ _id: dispositif._id, titreInformatif: dispositif.getTranslated("content.titreInformatif") }],
         email: dispositif.getCreator()?.email,
-        dispositifs: [{ _id: dispositif._id, titreInformatif: dispositif.getTranslated("content.titreInformatif") }]
+        structureId: dispositif.mainSponsor.toString(),
+        username: dispositif.getCreator()?.username,
       });
       return;
     }
@@ -93,8 +95,8 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
       ...formattedArray[elementIndex],
       dispositifs: [
         ...formattedArray[elementIndex].dispositifs,
-        { _id: dispositif._id, titreInformatif: dispositif.getTranslated("content.titreInformatif") }
-      ]
+        { _id: dispositif._id, titreInformatif: dispositif.getTranslated("content.titreInformatif") },
+      ],
     };
 
     formattedArray[elementIndex] = updatedObject;
@@ -123,7 +125,7 @@ export const adaptDispositifDepartement = (dispositifs: Dispositif[]): Result[] 
       result.push({
         _id: dispositif._id,
         department: null,
-        region: null
+        region: null,
       });
     } else {
       for (const department of departments) {
@@ -132,11 +134,10 @@ export const adaptDispositifDepartement = (dispositifs: Dispositif[]): Result[] 
         result.push({
           _id: dispositif._id,
           department,
-          region
+          region,
         });
       }
     }
-
   }
 
   return result;
@@ -161,7 +162,7 @@ export const getRegionFigures = (dispositifs: Result[]) => {
       region,
       nbDispositifs: groupedDataByRegion[region] ? groupedDataByRegion[region].length : 0,
       nbDepartments: regionsData.length,
-      nbDepartmentsWithDispo
+      nbDepartmentsWithDispo,
     };
   });
 };
@@ -175,7 +176,7 @@ export const getDepartementsFigures = (dispositifs: Result[]) => {
     return {
       departement: dep,
       nbDispositifs: groupedDataByDepartment[dep] ? groupedDataByDepartment[dep].length : 0,
-      region: dataRegion?.region || "Pas de région"
+      region: dataRegion?.region || "Pas de région",
     };
   });
 };
@@ -200,7 +201,7 @@ export const filterContentsOnGeoloc = (
   contentsArray: Dispositif[],
   department: string | null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  strict: boolean = false
+  strict: boolean = false,
 ): any[] => {
   throw new RefactorTodoError();
   // if (!department) return contentsArray;

@@ -3,12 +3,15 @@ import { getUsersFromStructureMembres } from "../users/users.service";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
 import { asyncForEach } from "../../libs/asyncForEach";
 import logger from "../../logger";
-import { sendPublishedTradMailToStructureService } from "./mail.service";
+import { isMenSStructure, sendPublishedTradMailToStructureService } from "./mail.service";
 import { Dispositif } from "../../typegoose";
 
 export const sendPublishedTradMailToStructure = async (dispositif: Dispositif, locale: string) => {
   try {
     logger.info("[sendPublishedTradMailToStructureService] received");
+    if (isMenSStructure(dispositif.mainSponsor.toString())) {
+      return;
+    }
     const structureMembres = await getStructureMembers(dispositif.mainSponsor.toString());
     const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
 
@@ -16,7 +19,7 @@ export const sendPublishedTradMailToStructure = async (dispositif: Dispositif, l
 
     await asyncForEach(membresToSendMail, async (membre) => {
       logger.info("[sendPublishedTradMailToStructureService] send mail to membre", {
-        membreId: membre._id
+        membreId: membre._id,
       });
       try {
         await sendPublishedTradMailToStructureService({
@@ -27,7 +30,7 @@ export const sendPublishedTradMailToStructure = async (dispositif: Dispositif, l
           email: membre.email,
           dispositifId: dispositif._id,
           userId: membre._id,
-          langue
+          langue,
         });
       } catch (e) {
         logger.error("[sendPublishedTradMailToStructureService] Error while sending mail", e);
