@@ -7,14 +7,18 @@ interface Props {
   onPrevious: () => void;
   maxSteps: number;
   step: number;
+  previousOnFirst?: boolean;
+  nextText?: string;
+  nextIcon?: string;
 }
 
 const StepsFooter = (props: Props) => {
+  const showPreviousButton = props.step > 1 || (props.step === 1 && props.previousOnFirst);
   return (
     <div className="d-flex mt-6">
       <Steps step={props.step} maxStep={props.maxSteps} />
       <div className="flex-grow-1 text-end">
-        {props.step > 1 && (
+        {showPreviousButton && (
           <Button
             secondary
             icon="arrow-back-outline"
@@ -28,14 +32,14 @@ const StepsFooter = (props: Props) => {
           </Button>
         )}
         <Button
-          icon={props.step === props.maxSteps ? "checkmark-circle-2" : "arrow-forward-outline"}
+          icon={props.nextIcon || (props.step === props.maxSteps ? "checkmark-circle-2" : "arrow-forward-outline")}
           iconPlacement="end"
           onClick={(e: any) => {
             e.preventDefault();
             props.onValidate();
           }}
         >
-          {props.step === props.maxSteps ? "Valider" : "Étape suivante"}
+          {props.nextText || (props.step === props.maxSteps ? "Valider" : "Étape suivante")}
         </Button>
       </div>
     </div>

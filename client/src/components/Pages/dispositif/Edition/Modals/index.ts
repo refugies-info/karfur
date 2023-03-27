@@ -5,6 +5,7 @@ import ModalLocation from "./ModalLocation";
 import ModalPrice from "./ModalPrice";
 import ModalPublic from "./ModalPublic";
 import ModalThemes from "./ModalThemes";
+import ModalWelcome from "./ModalWelcome";
 
 export {
   ModalAbstract,
@@ -14,5 +15,6 @@ export {
   ModalPrice,
   ModalPublic,
   ModalThemes,
+  ModalWelcome,
 };
 

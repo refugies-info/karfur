@@ -7,6 +7,7 @@ import { submitCreateForm } from "lib/dispositifForm";
 import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
 import PageContext from "utils/pageContext";
 import Dispositif from "components/Content/Dispositif";
+import { ModalWelcome } from "components/Pages/dispositif/Edition/Modals";
 
 interface Props {
   history: string[];
@@ -23,6 +24,7 @@ const DemarchePage = (props: Props) => {
     });
   };
   const [activeSection, setActiveSection] = useState("");
+  const [showWelcomeModal, setShowWelcomeModal] = useState(true);
 
   return (
     <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>
@@ -33,6 +35,7 @@ const DemarchePage = (props: Props) => {
           </form>
         </div>
       </FormProvider>
+      <ModalWelcome show={showWelcomeModal} toggle={() => setShowWelcomeModal((o) => !o)} />
     </PageContext.Provider>
   );
 };
