@@ -1,0 +1,84 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  label {
+    margin-bottom: u(2);
+    color: $lightTextTitleGrey;
+  }
+  &.valid label {
+    color: $lightTextDefaultSuccess;
+  }
+  &.error label {
+    color: $lightTextDefaultError;
+  }
+
+  &:hover {
+    .input {
+      background: $lightBackgroundContrastGrey;
+    }
+  }
+}
+
+.wrapper {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  top: 9px;
+
+  &.prepend {
+    @include l-ltr(u(4));
+  }
+  &.append {
+    @include r-ltr(u(4));
+  }
+
+  .input:focus + & {
+    svg {
+      fill: $lightTextTitleGrey;
+    }
+  }
+}
+
+.input {
+  border: 1px solid transparent;
+  outline: none !important;
+  background: $gray30;
+  border-radius: u(2);
+  padding: u(2) u(4);
+  width: 100%;
+
+  &:focus {
+    border-color: $lightTextTitleGrey;
+    color: $lightTextTitleGrey;
+    background: $gray30 !important;
+  }
+
+  .with_icon & {
+    @include pl-ltr(44px);
+  }
+
+  .valid & {
+    border-color: $lightTextDefaultSuccess;
+  }
+  .error & {
+    border-color: $lightTextDefaultError;
+  }
+}
+
+.error_msg {
+  @include dsfr-text("very-small");
+  display: inline-block;
+  margin-top: u(2);
+  color: $lightTextDefaultError;
+}

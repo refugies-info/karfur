@@ -21,6 +21,7 @@ import {
   LeftSidebarEdition,
   CustomNavbar,
   BannerEdition,
+  SponsorsEdit,
 } from "components/Pages/dispositif/Edition";
 import FRLink from "components/UI/FRLink";
 import RightSidebar from "./RightSidebar";
@@ -82,7 +83,7 @@ const Dispositif = (props: Props) => {
           )}
 
           <span className={styles.divider} />
-          <Sponsors />
+          {isViewMode ? <Sponsors sponsors={dispositif?.sponsors} /> : <SponsorsEdit />}
         </div>
 
         <div className={styles.right}>{isViewMode ? <RightSidebar /> : <RightSidebarEdition />}</div>

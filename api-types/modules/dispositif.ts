@@ -88,7 +88,7 @@ interface DispositifRequest {
   mainSponsor?: string;
   theme?: string;
   secondaryThemes?: string[];
-  // sponsors?: (Sponsor | SponsorDB)[];
+  sponsors?: Sponsor[];
   metadatas?: Metadatas;
   // map: Poi[];
 }

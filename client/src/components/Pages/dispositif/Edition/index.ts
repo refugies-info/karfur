@@ -8,6 +8,7 @@ import HelpCard from "./HelpCard";
 import LeftSidebarEdition from "./LeftSidebarEdition";
 import RichTextEdit from "./RichTextEdit";
 import RightSidebarEdition from "./RightSidebarEdition";
+import SponsorsEdit from "./SponsorsEdit";
 import TitleEdit from "./TitleEdit";
 
 export {
@@ -21,6 +22,7 @@ export {
   LeftSidebarEdition,
   RichTextEdit,
   RightSidebarEdition,
+  SponsorsEdit,
   TitleEdit
 };
 
