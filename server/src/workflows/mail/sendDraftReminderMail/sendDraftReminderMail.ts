@@ -14,6 +14,7 @@ import {
 import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 import { DispositifPopulatedDoc } from "../../../schema/schemaDispositif";
 import { log } from "./log";
+import { isMenSStructure } from "../../../connectors/sendgrid/sendMail";
 
 const formatTitle = (dispo: DispositifPopulatedDoc) => {
   if (isTitreInformatifObject(dispo.titreInformatif)) {
@@ -23,6 +24,10 @@ const formatTitle = (dispo: DispositifPopulatedDoc) => {
 };
 
 const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "first" | "second") => {
+  if (isMenSStructure(recipient.structureId)) {
+    logger.warn("[sendDraftReminderMail] NO mail send for MenS structure");
+    return;
+  }
   try {
     if (recipient.dispositifs.length === 1) {
       const dispositifId = recipient.dispositifs[0]._id;

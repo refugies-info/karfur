@@ -18,7 +18,7 @@ module.exports = {
   collectCoverage: false,
   moduleDirectories: ["node_modules", "src"],
   moduleNameMapper: {
-    "src/(.*)": "<rootDir>/src/$1"
+    "^src/(.*)": "<rootDir>/src/$1"
   },
   testEnvironment: "node",
   setupFilesAfterEnv: ["./src/jest/setupJest.js"]

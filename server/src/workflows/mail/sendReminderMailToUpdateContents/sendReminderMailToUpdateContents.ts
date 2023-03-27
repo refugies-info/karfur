@@ -12,6 +12,7 @@ import { sendUpdateReminderMailService } from "../../../modules/mail/mail.servic
 import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { log } from "./log";
+import { isMenSStructure } from "../../../connectors/sendgrid/sendMail";
 
 export const sendReminderMailToUpdateContents = async (req: RequestFromClient<{ cronToken: string }>, res: Res) => {
   try {
@@ -40,7 +41,7 @@ export const sendReminderMailToUpdateContents = async (req: RequestFromClient<{ 
     await asyncForEach(filteredDispositifWithTitreInfoFormated, async (dispositif) => {
       try {
         // @ts-ignore
-        if (dispositif.mainSponsor) {
+        if (dispositif.mainSponsor && !isMenSStructure(dispositif.mainSponsor.toString())) {
           //@ts-ignore
           if (dispositif.mainSponsor.membres) {
             await asyncForEach(
