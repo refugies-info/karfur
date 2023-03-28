@@ -133,7 +133,7 @@ const getInfoSections = (children, ln, root, id, type) => {
 
       const title = removeHTML(getLocalizedContent(section.title, ln, root));
       const text = turnJSONtoHTML(getLocalizedContent(section.content, ln, root));
-      if (!title && !text) continue;
+      if (!title && (!text || text === "undefined")) continue;
       infosections[uuid] = { title, text };
     }
   }
