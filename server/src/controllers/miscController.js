@@ -2,7 +2,6 @@ import { celebrate, Segments } from "celebrate";
 import express from "express";
 import Joi from "joi";
 import logger from "src/logger";
-import { RequestFromClientWithBody, Res } from "src/types/interface";
 import { verifyVersion } from "src/workflows/misc";
 const router = express.Router();
 
@@ -12,11 +11,11 @@ const validator = celebrate({
   })
 });
 
-interface Request {
-  appVersion: string;
-}
+// interface Request {
+//   appVersion: string;
+// }
 
-const handler = async (req: RequestFromClientWithBody<Request>, res: Res) =>
+const handler = async (req /*: RequestFromClientWithBody<Request>*/, res /*: Res*/) =>
   verifyVersion(req.body.appVersion)
     .then((result) => {
       return result
@@ -38,7 +37,6 @@ const _verifyVersion = [validator, handler];
  * Cette route est implémentée dans la nouvelle version
  * du serveur dans le fichier miscController
  */
-// @ts-ignore
 router.post("/technical-info", _verifyVersion);
 
 module.exports = router;
