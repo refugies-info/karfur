@@ -8,10 +8,8 @@ import { updatePositions } from "../workflows/needs/updatePositions";
 import { Response, ResponseWithData } from "../types/interface";
 import { getNeeds } from "../workflows/needs/getNeeds";
 
-
 @Route("needs")
 export class NeedController extends Controller {
-
   @Get("/")
   public async get(): ResponseWithData<GetNeedResponse[]> {
     return getNeeds();
@@ -35,8 +33,8 @@ export class NeedController extends Controller {
     return deleteNeed(id);
   }
 
-  @Post("views")
-  public async views(@Body() id: string): Response {
+  @Post("{id}/views")
+  public async views(@Path() id: string): Response {
     return addView(id);
   }
 
