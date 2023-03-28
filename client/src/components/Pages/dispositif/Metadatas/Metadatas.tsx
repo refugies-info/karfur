@@ -27,7 +27,7 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
   return (
     <div id="anchor-who">
       <p className={styles.title} style={{ color }}>
-        C'est pour qui ?
+        Informations importantes
       </p>
       <Card
         title={
