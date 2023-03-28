@@ -42,6 +42,7 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
   // items contents
   return (items || []).map((item, i) => {
     let content = item.content;
+    if (!item.content && !editMode) return null; // view mode, no content
     const infoNotUseful = editMode && item.content === null;
     const infoMissing = editMode && item.content === undefined;
     if (infoNotUseful) content = "Cette information n’est pas pertinente pour mon action";
