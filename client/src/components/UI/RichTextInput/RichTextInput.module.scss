@@ -22,22 +22,3 @@
     margin-bottom: u(1);
   }
 }
-
-.underline {
-  text-decoration: underline;
-}
-.italic {
-  font-style: italic;
-}
-.bold {
-  font-weight: bold;
-}
-.title {
-  font-size: 2rem;
-  margin-top: u(2);
-  margin-bottom: u(1);
-}
-.link {
-  text-decoration: underline !important;
-  color: $bleuCharte !important;
-}

@@ -14,19 +14,19 @@ import LinkPlugin from "./plugins/LinkPlugin";
 import OnHtmlChangePlugin from "./plugins/OnHtmlChangePlugin";
 import CalloutPlugin from "./plugins/CalloutPlugin";
 import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin";
-import styles from "./RichTextInput.module.scss";
 import FocusPlugin from "./plugins/FocusPlugin";
 import { cls } from "lib/classname";
+import styles from "./RichTextInput.module.scss";
 
 const theme = {
-  link: styles.link,
+  link: "rtri-link",
   heading: {
-    h3: styles.title,
+    h3: "rtri-title",
   },
   text: {
-    underline: styles.underline,
-    bold: styles.bold,
-    italic: styles.italic,
+    underline: "rtri-underline",
+    bold: "rtri-bold",
+    italic: "rtri-italic",
   },
 };
 
