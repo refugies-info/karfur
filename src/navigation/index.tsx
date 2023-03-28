@@ -16,7 +16,6 @@ import { useQueryClient } from "react-query";
 import { logger } from "../logger";
 import { styles } from "../theme";
 
-import { AvailableLanguageI18nCode } from "../types/interface";
 import { RootStackParamList } from "../../types";
 
 import { markNotificationAsSeen } from "../utils/API";
@@ -38,6 +37,7 @@ import {
   getNotificationFromStack,
   notificationDataStackLength,
 } from "../libs/notifications";
+import { Languages } from "@refugies-info/api-types";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -61,9 +61,9 @@ export const RootNavigator = () => {
         i18n.use(initReactI18next);
         await i18n.init();
         try {
-          // @ts-ignore
-          const language: AvailableLanguageI18nCode | null =
-            await AsyncStorage.getItem("SELECTED_LANGUAGE");
+          const language: Languages =
+            ((await AsyncStorage.getItem("SELECTED_LANGUAGE")) as Languages) ||
+            ("fr" as Languages);
           if (language) {
             i18n.changeLanguage(language);
           } else {
@@ -119,9 +119,10 @@ export const RootNavigator = () => {
             contentId: response.notification.request.content.data.contentId,
           },
         });
-        await markNotificationAsSeen(
-          response.notification.request.content.data.notificationId as string
-        );
+        await markNotificationAsSeen({
+          notificationId: response.notification.request.content.data
+            .notificationId as string,
+        });
         queryClient.invalidateQueries("notifications");
       }
       default:

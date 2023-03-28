@@ -8,7 +8,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 import { TextSmallBold, TextVerySmallNormal } from "../StyledText";
 import { StreamlineIcon } from "../StreamlineIcon";
-import { Picture } from "../../types/interface";
+import { Picture } from "@refugies-info/api-types";
 
 const ICON_SIZE = 24;
 

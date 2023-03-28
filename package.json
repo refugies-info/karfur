@@ -15,7 +15,8 @@
     },
     "setupFiles": [
       "<rootDir>/setup.jest.js"
-    ]
+    ],
+    "transform": {}
   },
   "dependencies": {
     "@03balogun/react-native-skeleton-content": "^1.0.25",
@@ -30,8 +31,9 @@
     "@react-navigation/bottom-tabs": "~6",
     "@react-navigation/native": "~6",
     "@react-navigation/stack": "~6",
+    "@reduxjs/toolkit": "^1.9.3",
     "algoliasearch": "^4.14.2",
-    "api-types": "https://gitpkg.now.sh/refugies-info/karfur/api-types?dev&scripts.postinstall=pwd",
+    "@refugies-info/api-types": "1.0.1",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "expo": "^45.0.6",
     "expo-asset": "~8.5.0",

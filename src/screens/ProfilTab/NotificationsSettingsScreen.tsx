@@ -71,7 +71,6 @@ export const NotificationsSettingsScreen = () => {
       await updateSettings("local", state);
     }
   };
-
   return (
     <Page loading={!settings} headerTitle={t("notifications.notifications")}>
       {settings && (
@@ -110,7 +109,7 @@ export const NotificationsSettingsScreen = () => {
                     theme.name[currentLanguageI18nCode || "fr"]
                   )}
                   icon={theme.icon}
-                  enabled={settings?.themes[theme._id]}
+                  enabled={settings?.themes[theme._id.toString()]}
                   onToggle={(state) =>
                     updateSettings(`themes.${theme._id}`, state)
                   }

@@ -6,10 +6,10 @@ import { TextSmallNormal } from "../StyledText";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { getImageNameFromContentId } from "../Contents/contentsIdDemarcheImageCorrespondency";
-import { ObjectId, Picture } from "../../types/interface";
 import { DemarcheImage } from "../Contents/DemarcheImage";
 import Columns from "../layout/Columns";
 import { ReadableText } from "../ReadableText";
+import { Picture } from "@refugies-info/api-types";
 
 const CONTAINER_SIZE = 100;
 
@@ -67,7 +67,7 @@ interface Props {
   sponsorName: string;
   typeContenu: "dispositif" | "demarche";
   icon?: Picture;
-  contentId: ObjectId;
+  contentId: string;
 }
 
 export const ContentImage = (props: Props) => {

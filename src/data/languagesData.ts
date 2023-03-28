@@ -1,9 +1,9 @@
-import { AvailableLanguageI18nCode } from "../types/interface";
+import { Languages } from "@refugies-info/api-types";
 
 export const activatedLanguages: {
   langueFr: string;
   langueLoc: string;
-  i18nCode: AvailableLanguageI18nCode;
+  i18nCode: Languages;
 }[] = [
   {
     langueFr: "Français",
@@ -13,7 +13,7 @@ export const activatedLanguages: {
   {
     langueFr: "Ukrainien",
     langueLoc: "Українська",
-    i18nCode: "uk"
+    i18nCode: "uk",
   },
   {
     langueFr: "Persan/Dari",
@@ -44,5 +44,5 @@ export const activatedLanguages: {
     langueFr: "Tigrinya",
     langueLoc: "ትግርኛ",
     i18nCode: "ti",
-  }
+  },
 ];

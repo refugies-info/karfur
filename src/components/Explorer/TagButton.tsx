@@ -8,9 +8,9 @@ import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
 import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
-import { Picture } from "../../types/interface";
 import { LinearGradient } from "expo-linear-gradient";
 import { isArray } from "lodash";
+import { Picture } from "@refugies-info/api-types";
 
 interface Props {
   name?: string;

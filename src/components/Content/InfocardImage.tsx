@@ -11,15 +11,17 @@ import francais from "../../theme/images/infocards/francais.png";
 
 import React from "react";
 import { Image } from "react-native";
+import { Metadatas } from "@refugies-info/api-types";
 
+type metaKeys = keyof Metadatas;
 interface Props {
-  title: string;
+  title: metaKeys;
   isFree: boolean;
 }
 
 const IMAGE_SIZE = 56;
 export const InfocardImage = ({ title, isFree }: Props) => {
-  if (title === "Combien ça coûte ?" && isFree) {
+  if (title === "price" && isFree) {
     return (
       <Image
         source={Gratuit}
@@ -28,7 +30,7 @@ export const InfocardImage = ({ title, isFree }: Props) => {
     );
   }
 
-  if (title === "Combien ça coûte ?" && !isFree) {
+  if (title === "price" && !isFree) {
     return (
       <Image
         source={Payant}
@@ -38,51 +40,53 @@ export const InfocardImage = ({ title, isFree }: Props) => {
   }
 
   switch (title) {
-    case "Acte de naissance OFPRA":
-      return (
-        <Image
-          source={acte_naissance}
-          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-          resizeMode="contain"
-        />
-      );
-    case "Durée":
+    // FIXME
+    // case "Acte de naissance OFPRA":
+    //   return (
+    //     <Image
+    //       source={acte_naissance}
+    //       style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+    //       resizeMode="contain"
+    //     />
+    //   );
+    case "duration":
       return (
         <Image
           source={duree}
           style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
         />
       );
-    case "Important !":
+    case "important":
       return (
         <Image
           source={important}
           style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
         />
       );
-    case "Zone d'action":
+    case "location":
       return (
         <Image
           source={localisation}
           style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
         />
       );
-    case "Titre de séjour":
-      return (
-        <Image
-          source={titreSejour}
-          style={{
-            height: IMAGE_SIZE,
-            width: IMAGE_SIZE,
-            resizeMode: "contain",
-          }}
-        />
-      );
-    case "Âge requis":
+    // FIXME
+    // case "Titre de séjour":
+    //   return (
+    //     <Image
+    //       source={titreSejour}
+    //       style={{
+    //         height: IMAGE_SIZE,
+    //         width: IMAGE_SIZE,
+    //         resizeMode: "contain",
+    //       }}
+    //     />
+    //   );
+    case "age":
       return (
         <Image source={age} style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }} />
       );
-    case "Niveau de français":
+    case "frenchLevel":
       return (
         <Image
           source={francais}

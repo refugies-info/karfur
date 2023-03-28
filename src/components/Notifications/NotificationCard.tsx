@@ -60,7 +60,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
   const queryClient = useQueryClient();
 
   const markAsSeen = async () => {
-    await markNotificationAsSeen(_id);
+    await markNotificationAsSeen({ notificationId: _id });
     queryClient.invalidateQueries("notifications");
   };
 

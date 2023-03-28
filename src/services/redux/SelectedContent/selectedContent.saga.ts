@@ -25,8 +25,7 @@ export function* fetchSelectedContent(
       contentId,
       locale,
     });
-    const contentLocale =
-      data && data.data && data.data.data ? data.data.data : null;
+    const contentLocale = data || null;
 
     yield put(
       setSelectedContentActionCreator({ content: contentLocale, locale })
@@ -36,8 +35,7 @@ export function* fetchSelectedContent(
         contentId,
         locale: "fr",
       });
-      const contentFr =
-        dataFr && dataFr.data && dataFr.data.data ? dataFr.data.data : null;
+      const contentFr = dataFr || null;
       yield put(
         setSelectedContentActionCreator({
           content: contentFr,

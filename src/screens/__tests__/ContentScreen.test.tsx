@@ -1,6 +1,6 @@
 import React from "react";
 import { wrapWithProvidersAndRender } from "../../jest/wrapWithProvidersAndRender";
-import { ContentScreen } from "../ContentScreen";
+import ContentScreen from "../ContentScreen";
 import { fireEvent, act } from "react-native-testing-library";
 import { initialRootStateFactory } from "../../services/redux/reducers";
 import { selectedContent } from "../../jest/__fixtures__/selectedContent";
@@ -17,6 +17,10 @@ jest.mock("../../hooks/useTranslationWithRTL", () => ({
     t: jest.fn().mockImplementation((_, arg2) => arg2),
     isRTL: false,
   }),
+}));
+
+jest.mock("../../utils/API", () => ({
+  updateNbVuesOrFavoritesOnContent: jest.fn().mockReturnValue("ok"),
 }));
 
 jest.mock("../../libs/getImageUri", () => ({
@@ -82,6 +86,7 @@ describe("ContentScreen", () => {
           currentLanguagei18nCode: "fr",
           favorites: [],
         },
+        themes: mockedThemesData,
         selectedContent: {
           fr: selectedContent,
           en: null,
@@ -125,6 +130,7 @@ describe("ContentScreen", () => {
           ru: null,
           uk: null,
         },
+        themes: mockedThemesData,
       },
       compProps: { navigation, route },
     });

@@ -78,12 +78,12 @@ export const ProfilScreen = ({
     dispatch(removeUserAgeActionCreator(true));
     dispatch(removeUserLocationActionCreator(true));
     updateAppUser({
-      selectedLanguage: null,
-      city: null,
-      department: null,
-      age: null,
-      frenchLevel: null,
-      expoPushToken: null,
+      selectedLanguage: undefined,
+      city: undefined,
+      department: undefined,
+      age: undefined,
+      frenchLevel: undefined,
+      expoPushToken: undefined,
     });
   };
 
@@ -98,12 +98,12 @@ export const ProfilScreen = ({
         dispatch(removeUserAllFavoritesActionCreator());
         dispatch(removeHasUserSeenOnboardingActionCreator());
         updateAppUser({
-          selectedLanguage: null,
-          city: null,
-          department: null,
-          age: null,
-          frenchLevel: null,
-          expoPushToken: null,
+          selectedLanguage: undefined,
+          city: undefined,
+          department: undefined,
+          age: undefined,
+          frenchLevel: undefined,
+          expoPushToken: undefined,
         });
       });
   };

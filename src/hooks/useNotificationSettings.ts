@@ -14,14 +14,14 @@ export type NotificationsSettings = {
 };
 
 const logSettingsUpdate = (key: string, value: boolean) => {
-  const event = key.includes("themes") ?
-    FirebaseEvent.TOGGLE_NOTIFICATION_THEME :
-    FirebaseEvent.TOGGLE_NOTIFICATION_TYPE;
+  const event = key.includes("themes")
+    ? FirebaseEvent.TOGGLE_NOTIFICATION_THEME
+    : FirebaseEvent.TOGGLE_NOTIFICATION_TYPE;
   logEventInFirebase(event, {
     id: key,
-    value: value
-  })
-}
+    value: value,
+  });
+};
 
 export const useNotificationsSettings = (): [
   NotificationsSettings | undefined,

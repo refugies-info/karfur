@@ -1,4 +1,5 @@
-import { ObjectId, Theme } from "./src/types/interface";
+import { GetThemeResponse } from "@refugies-info/api-types";
+import { ObjectId } from "./src/types/interface";
 
 /**
  * Learn more about using TypeScript with React Navigation:
@@ -24,18 +25,18 @@ export type BottomTabParamList = {
 export type ExplorerParamList = {
   ExplorerScreen: undefined;
   ContentsScreen: {
-    theme: Theme;
+    theme: GetThemeResponse;
     needId: ObjectId;
     backScreen?: string;
   };
   ContentScreen: {
     contentId: ObjectId;
     needId?: ObjectId;
-    theme?: Theme;
+    theme?: GetThemeResponse;
     backScreen?: string;
   };
   NeedsScreen: {
-    theme: Theme;
+    theme: GetThemeResponse;
     backScreen?: string;
   };
   NotificationsScreen: {};

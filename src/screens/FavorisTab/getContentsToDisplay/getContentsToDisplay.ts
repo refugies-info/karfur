@@ -1,8 +1,5 @@
-import {
-  AvailableLanguageI18nCode,
-  ObjectId,
-  SimplifiedContent,
-} from "../../../types/interface";
+import { Languages } from "@refugies-info/api-types";
+import { ObjectId, SimplifiedContent } from "../../../types/interface";
 import { getContentById } from "../../../utils/API";
 
 /**
@@ -15,7 +12,7 @@ import { getContentById } from "../../../utils/API";
 const getContentsToDisplay = async (
   contentsId: ObjectId[],
   contents: SimplifiedContent[],
-  currentLanguageI18nCode: AvailableLanguageI18nCode | null
+  currentLanguageI18nCode: Languages | null
 ) => {
   let result: SimplifiedContent[] = [];
   for (let contentId of contentsId) {

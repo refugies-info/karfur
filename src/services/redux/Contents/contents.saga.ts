@@ -33,6 +33,7 @@ export function* fetchContents(): SagaIterator {
     const frenchLevel = yield select(userFrenchLevelSelector);
 
     if (selectedLanguage) {
+      // @ts-ignore
       const data = yield call(getContentsForApp, {
         locale: selectedLanguage,
         age,
@@ -40,45 +41,41 @@ export function* fetchContents(): SagaIterator {
         frenchLevel,
       });
 
-      if (!data || !data.data) {
-        logger.warn("[fetchContents] saga - no data fetched");
+      if (!data) {
+        logger.warn("[fetchContents] saga - no data fetched", data);
         crashlytics().recordError(new Error("No content loaded"));
       }
 
-      if (data && data.data && data.data.data && selectedLanguage !== "fr") {
+      if (data && selectedLanguage !== "fr") {
         yield put(
           setContentsActionCreator({
             langue: selectedLanguage,
-            contents: data.data.data,
+            contents: data.data,
           })
         );
       }
-      if (data && data.data && data.data.dataFr) {
+      if (data && data.dataFr) {
         yield put(
           setContentsActionCreator({
             langue: "fr",
-            contents: data.data.dataFr,
+            contents: data.dataFr,
           })
         );
 
-        const groupedResults = yield call(groupResultsByNeed, data.data.dataFr);
+        const groupedResults = yield call(groupResultsByNeed, data.dataFr);
         yield put(setGroupedContentsActionCreator(groupedResults));
       }
     }
 
     // Nb Content
-    let nbGlobalContent: number | null = null;
-    let nbLocalizedContent: number | null = null;
+    let nbContent = {
+      nbGlobalContent: null,
+      nbLocalizedContent: null,
+    };
     if (department) {
-      const nbContent = yield call(getNbContents, { department });
-      if (nbContent?.data?.data) {
-        nbGlobalContent = nbContent.data.data.nbGlobalContent;
-        nbLocalizedContent = nbContent.data.data.nbLocalizedContent;
-      }
+      nbContent = yield call(getNbContents, { county: department });
     }
-    yield put(
-      setNbContentsActionCreator({ nbGlobalContent, nbLocalizedContent })
-    );
+    yield put(setNbContentsActionCreator(nbContent));
 
     yield put(finishLoading(LoadingStatusKey.FETCH_CONTENTS));
   } catch (error: any) {

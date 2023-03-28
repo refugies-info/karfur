@@ -1,19 +1,19 @@
-import { Content } from "../../../types/interface";
 import { SelectedContentActions } from "./selectedContent.actions";
 import { createReducer } from "typesafe-actions";
+import { GetDispositifResponse } from "@refugies-info/api-types";
 
 export type SelectedContentState = {
-  fr: Content | null;
-  en: Content | null;
-  ar: Content | null;
-  ps: Content | null;
-  fa: Content | null;
-  ti: Content | null;
-  ru: Content | null;
-  uk: Content | null;
+  fr: GetDispositifResponse | null;
+  en: GetDispositifResponse | null;
+  ar: GetDispositifResponse | null;
+  ps: GetDispositifResponse | null;
+  fa: GetDispositifResponse | null;
+  ti: GetDispositifResponse | null;
+  ru: GetDispositifResponse | null;
+  uk: GetDispositifResponse | null;
 };
 
-export const initialSelectedContentState = {
+export const initialSelectedContentState: SelectedContentState = {
   fr: null,
   en: null,
   ar: null,

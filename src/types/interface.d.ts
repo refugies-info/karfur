@@ -1,7 +1,14 @@
+import { Languages } from "@refugies-info/api-types";
 import { Moment } from "moment";
 
+/**
+ * @deprecated
+ */
 export type ObjectId = any;
 
+/**
+ * @deprecated use Picture from api-types
+ */
 export interface Picture {
   secure_url: string;
   public_id: string;
@@ -22,6 +29,9 @@ export interface ThemeColors {
   color30: string;
 }
 
+/**
+ * @deprecated use GetThemeResponse from @refugies-info/api-types
+ */
 export interface Theme {
   _id: ObjectId;
   name: {
@@ -54,19 +64,12 @@ export interface SimplifiedContent {
   nbVues: number;
   nbVuesMobile: number;
   sponsorUrl: string | null;
-  avancement: number | Record<AvailableLanguageI18nCode, string>;
+  avancement: number | Record<Languages, string>;
 }
 
-export type AvailableLanguageI18nCode =
-  | "fr"
-  | "en"
-  | "ps"
-  | "ar"
-  | "ti"
-  | "ru"
-  | "fa"
-  | "uk";
-
+/**
+ * @deprecated
+ */
 export interface DispositifContent {
   type: string;
   title: string;
@@ -99,6 +102,10 @@ export interface Sponsor {
   picture?: { secure_url: string };
   nom: string;
 }
+
+/**
+ * @deprecated
+ */
 export interface Content {
   _id: ObjectId;
   avancement: Record<string, number>;

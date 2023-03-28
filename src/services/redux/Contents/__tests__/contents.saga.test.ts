@@ -1,6 +1,9 @@
 import { testSaga } from "redux-saga-test-plan";
 import latestActionsSaga, { fetchContents } from "../contents.saga";
-import { setContentsActionCreator, setNbContentsActionCreator } from "../contents.actions";
+import {
+  setContentsActionCreator,
+  setNbContentsActionCreator,
+} from "../contents.actions";
 import {
   startLoading,
   LoadingStatusKey,
@@ -43,9 +46,12 @@ describe("[Saga] contents", () => {
         .next({ department: null })
         .select(userFrenchLevelSelector)
         .next(null)
-        .put(setNbContentsActionCreator({
-          nbGlobalContent: null, nbLocalizedContent: null
-        }))
+        .put(
+          setNbContentsActionCreator({
+            nbGlobalContent: null,
+            nbLocalizedContent: null,
+          })
+        )
         .next(null)
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
         .next()
@@ -72,30 +78,28 @@ describe("[Saga] contents", () => {
           age: "age",
         })
         .next({
-          data: {
-            dataFr: [
-              {
-                _id: "idFr",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
-                nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1
-              },
-              {
-                _id: "id1Fr",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
-                nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1
-              },
-            ],
-          },
+          dataFr: [
+            {
+              _id: "idFr",
+              titreInformatif: "titre",
+              theme: theme,
+              secondaryThemes: [],
+              typeContenu: "dispositif",
+              nbVues: 1,
+              sponsorUrl: null,
+              avancement: 1,
+            },
+            {
+              _id: "id1Fr",
+              titreInformatif: "titre",
+              theme: theme,
+              secondaryThemes: [],
+              typeContenu: "dispositif",
+              nbVues: 1,
+              sponsorUrl: null,
+              avancement: 1,
+            },
+          ],
         })
         .put(
           setContentsActionCreator({
@@ -109,7 +113,7 @@ describe("[Saga] contents", () => {
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
-                avancement: 1
+                avancement: 1,
               },
               {
                 _id: "id1Fr",
@@ -119,7 +123,7 @@ describe("[Saga] contents", () => {
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
-                avancement: 1
+                avancement: 1,
               },
             ],
           })
@@ -134,7 +138,7 @@ describe("[Saga] contents", () => {
             typeContenu: "dispositif",
             nbVues: 1,
             sponsorUrl: null,
-            avancement: 1
+            avancement: 1,
           },
           {
             _id: "id1Fr",
@@ -144,17 +148,23 @@ describe("[Saga] contents", () => {
             typeContenu: "dispositif",
             nbVues: 1,
             sponsorUrl: null,
-            avancement: 1
+            avancement: 1,
           },
         ])
         .next({ idFr: [], id1Fr: [] })
         .put(setGroupedContentsActionCreator({ idFr: [], id1Fr: [] }))
         .next()
-        .call(getNbContents, {department: "dep"})
-        .next()
-        .put(setNbContentsActionCreator({
-          nbGlobalContent: null, nbLocalizedContent: null
-        }))
+        .call(getNbContents, { county: "dep" })
+        .next({
+          nbGlobalContent: 42,
+          nbLocalizedContent: 42,
+        })
+        .put(
+          setNbContentsActionCreator({
+            nbGlobalContent: 42,
+            nbLocalizedContent: 42,
+          })
+        )
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
         .next()
@@ -181,52 +191,50 @@ describe("[Saga] contents", () => {
           frenchLevel: null,
         })
         .next({
-          data: {
-            data: [
-              {
-                _id: "id_ar",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
-                nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1
-              },
-              {
-                _id: "id1_ar",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
-                nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1
-              },
-            ],
-            dataFr: [
-              {
-                _id: "id_fr",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
-                nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1
-              },
-              {
-                _id: "id1_fr",
-                titreInformatif: "titre",
-                theme: theme,
-                secondaryThemes: [],
-                typeContenu: "dispositif",
-                nbVues: 1,
-                sponsorUrl: null,
-                avancement: 1
-              },
-            ],
-          },
+          data: [
+            {
+              _id: "id_ar",
+              titreInformatif: "titre",
+              theme: theme,
+              secondaryThemes: [],
+              typeContenu: "dispositif",
+              nbVues: 1,
+              sponsorUrl: null,
+              avancement: 1,
+            },
+            {
+              _id: "id1_ar",
+              titreInformatif: "titre",
+              theme: theme,
+              secondaryThemes: [],
+              typeContenu: "dispositif",
+              nbVues: 1,
+              sponsorUrl: null,
+              avancement: 1,
+            },
+          ],
+          dataFr: [
+            {
+              _id: "id_fr",
+              titreInformatif: "titre",
+              theme: theme,
+              secondaryThemes: [],
+              typeContenu: "dispositif",
+              nbVues: 1,
+              sponsorUrl: null,
+              avancement: 1,
+            },
+            {
+              _id: "id1_fr",
+              titreInformatif: "titre",
+              theme: theme,
+              secondaryThemes: [],
+              typeContenu: "dispositif",
+              nbVues: 1,
+              sponsorUrl: null,
+              avancement: 1,
+            },
+          ],
         })
         .put(
           setContentsActionCreator({
@@ -240,7 +248,7 @@ describe("[Saga] contents", () => {
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
-                avancement: 1
+                avancement: 1,
               },
               {
                 _id: "id1_ar",
@@ -250,7 +258,7 @@ describe("[Saga] contents", () => {
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
-                avancement: 1
+                avancement: 1,
               },
             ],
           })
@@ -268,7 +276,7 @@ describe("[Saga] contents", () => {
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
-                avancement: 1
+                avancement: 1,
               },
               {
                 _id: "id1_fr",
@@ -278,7 +286,7 @@ describe("[Saga] contents", () => {
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
-                avancement: 1
+                avancement: 1,
               },
             ],
           })
@@ -293,7 +301,7 @@ describe("[Saga] contents", () => {
             typeContenu: "dispositif",
             nbVues: 1,
             sponsorUrl: null,
-            avancement: 1
+            avancement: 1,
           },
           {
             _id: "id1_fr",
@@ -303,15 +311,18 @@ describe("[Saga] contents", () => {
             typeContenu: "dispositif",
             nbVues: 1,
             sponsorUrl: null,
-            avancement: 1
+            avancement: 1,
           },
         ])
         .next({ idFr: [], id1Fr: [] })
         .put(setGroupedContentsActionCreator({ idFr: [], id1Fr: [] }))
         .next()
-        .put(setNbContentsActionCreator({
-          nbGlobalContent: null, nbLocalizedContent: null
-        }))
+        .put(
+          setNbContentsActionCreator({
+            nbGlobalContent: null,
+            nbLocalizedContent: null,
+          })
+        )
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
         .next()

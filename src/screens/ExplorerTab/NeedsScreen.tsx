@@ -76,7 +76,7 @@ export const NeedsScreen = ({
   const needsToDisplay = computeNeedsToDisplay(
     allNeeds,
     groupedContents,
-    theme._id
+    theme._id.toString()
   );
 
   if (isLoading) {

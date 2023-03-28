@@ -12,14 +12,16 @@ import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import Highlight from "../Search/Highlight";
-import { Picture, Theme } from "../../types/interface";
 import { ReadableText } from "../ReadableText";
 import { Columns, ColumnsSpacing, Rows, RowsSpacing } from "../layout";
 import { ExplorerParamList } from "../../../types";
 import { isEmpty } from "lodash";
 import { UriImage } from "../iconography";
+import { GetThemeResponse, Picture } from "@refugies-info/api-types";
 
-const NeedContainer = styled(RTLTouchableOpacity)<{ needTheme: Theme }>`
+const NeedContainer = styled(RTLTouchableOpacity)<{
+  needTheme: GetThemeResponse;
+}>`
   padding: ${({ theme }) => theme.margin * 2}px
   background-color: ${({ needTheme }) => needTheme.colors.color30};
   border-radius: ${({ theme }) => theme.radius * 2}px;
@@ -43,7 +45,7 @@ interface Props {
   searchItem?: any;
   searchLanguageMatch?: string;
   style?: StyleProp<ViewStyle>;
-  theme: Theme;
+  theme: GetThemeResponse;
   pressCallback?: () => void;
 }
 
@@ -82,12 +84,14 @@ export const NeedsSummary = ({
       accessibilityRole="button"
       needTheme={theme}
       onPress={goToContent}
-      style={style}>
+      style={style}
+    >
       <Columns
         layout="1 auto"
         horizontalAlign="center"
         verticalAlign="center"
-        spacing={ColumnsSpacing.Large}>
+        spacing={ColumnsSpacing.Large}
+      >
         <Rows spacing={RowsSpacing.Text} verticalAlign="center">
           <TextSmallBold color={theme.colors.color100}>
             {searchItem ? (

@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Picture } from "../types/interface";
 import { SvgXml } from "react-native-svg";
-import { getImageUri } from "../libs/getImageUri";
+import { Picture } from "@refugies-info/api-types";
 import useAsync from "react-use/lib/useAsync";
+import { getImageUri } from "../libs/getImageUri";
 import { apiCaller } from "../utils/ConfigAPI";
 
 interface StreamlineIconProps {

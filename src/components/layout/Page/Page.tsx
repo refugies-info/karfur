@@ -29,10 +29,10 @@ import { SkeletonListPage } from "../../feedback";
 import { useStateOnce } from "../../../hooks";
 import { withProps } from "../../../utils";
 import { getImageUri } from "../../../libs/getImageUri";
-import { Picture } from "../../../types/interface";
 import SafeAreaViewTopInset from "../SafeAreaViewTopInset";
 import Spacer from "../Spacer";
 import { isDarkColor } from "../../utils";
+import { Picture } from "@refugies-info/api-types";
 
 const PageContainer = styled.View<{ backgroundColor: string }>`
   background-color: ${({ backgroundColor }) => backgroundColor};

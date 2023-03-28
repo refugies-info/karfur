@@ -50,7 +50,8 @@ const Hit = ({
         flex: 1,
         marginBottom: styles.margin * 2,
         paddingHorizontal: styles.margin * 3,
-      }}>
+      }}
+    >
       <SearchContentSummary
         navigation={navigation}
         item={hit}

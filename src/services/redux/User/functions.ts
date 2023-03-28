@@ -28,8 +28,8 @@ export const saveItemInAsyncStorage = async (item: Item, value: string) => {
 
   if (Object.keys(itemsToSave).includes(item)) {
     await updateAppUser({
-      //@ts-expect-error
-      [itemsToSave[item]]: value,
+      // @ts-expect-error
+      [itemsToSave[item]]: value === null ? undefined : value,
     });
   }
 };
@@ -42,8 +42,8 @@ export const deleteItemInAsyncStorage = async (item: Item) => {
 
   if (Object.keys(itemsToSave).includes(item)) {
     await updateAppUser({
-      //@ts-expect-error
-      [itemsToSave[item]]: null,
+      // @ts-ignore
+      [itemsToSave[item]]: undefined,
     });
   }
 };

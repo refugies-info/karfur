@@ -5,7 +5,7 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { TagButton } from "../Explorer/TagButton";
 import { useSelector } from "react-redux";
-import { themesSelector } from "../../services/redux/Themes/themes.selectors";
+import { themeSelector } from "../../services";
 
 interface Props {
   navigation: any;
@@ -17,14 +17,14 @@ interface Props {
 }
 
 export const SearchContentSummary = (props: Props) => {
-  const themes = useSelector(themesSelector);
-  const theme = themes.find((t) => {
-    if (props.item.typeContenu === "theme") {
-      return t._id.toString() === props.item.objectID;
-    }
-    return t._id.toString() === props.item.theme;
-  });
-  if (!theme) return null;
+  const themeId =
+    props.item.typeContenu === "theme"
+      ? props.item.objectID
+      : props.item.theme._id.toString();
+  const theme = useSelector(themeSelector(themeId));
+  if (!theme) {
+    return null;
+  }
 
   if (props.item.typeContenu === "besoin") {
     return (

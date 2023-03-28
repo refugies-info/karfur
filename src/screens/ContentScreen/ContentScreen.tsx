@@ -1,7 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import {
-  useWindowDimensions,
   View,
   Modal,
   Share,
@@ -12,106 +11,116 @@ import {
 } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import * as Linking from "expo-linking";
-import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { ExplorerParamList, BottomTabParamList } from "../../types";
-import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
-import { setRedirectDispositifActionCreator } from "../services/redux/User/user.actions";
-import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
-import { styles } from "../theme";
-import Config from "../libs/getEnvironment";
+import { Trans } from "react-i18next";
 import {
-  TextBigBold,
-  TextSmallNormal,
-  TextSmallBold,
-} from "../components/StyledText";
+  ContentType,
+  Languages,
+  Poi,
+  ViewsType,
+} from "@refugies-info/api-types";
+// @ts-ignore
+import moment from "moment/min/moment-with-locales";
+
+import { ExplorerParamList, BottomTabParamList } from "../../../types";
+import { styles } from "../../theme";
+import Config from "../../libs/getEnvironment";
+import { MapGoogle } from "../../types/interface";
+
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { fetchSelectedContentActionCreator } from "../../services/redux/SelectedContent/selectedContent.actions";
+import { setRedirectDispositifActionCreator } from "../../services/redux/User/user.actions";
+import { selectedContentSelector } from "../../services/redux/SelectedContent/selectedContent.selectors";
+
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
   isFavorite,
   userFavorites,
-} from "../services/redux/User/user.selectors";
+} from "../../services/redux/User/user.selectors";
 import {
   addUserFavoriteActionCreator,
   removeUserFavoriteActionCreator,
   saveUserHasNewFavoritesActionCreator,
-} from "../services/redux/User/user.actions";
-import { Content, Theme } from "../types/interface";
-import { ContentFromHtml } from "../components/Content/ContentFromHtml";
-import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
-import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
-import { CustomButton } from "../components/CustomButton";
-import { RTLView } from "../components/BasicComponents";
-import { SmallButton } from "../components/SmallButton";
-// @ts-ignore
-import moment from "moment/min/moment-with-locales";
-import { InfocardsSection } from "../components/Content/InfocardsSection";
-import { Map } from "../components/Content/Map";
-import { MiniMap } from "../components/Content/MiniMap";
-import { AccordionAnimated } from "../components/Content/AccordionAnimated";
-import { ErrorScreen } from "../components/ErrorScreen";
-import { FixSafeAreaView } from "../components/FixSafeAreaView";
-import { Toast } from "../components/Toast";
+} from "../../services/redux/User/user.actions";
+import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
+import { themeSelector } from "../../services/redux/Themes/themes.selectors";
+import { SmallButton } from "../../components/SmallButton";
+
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { logEventInFirebase } from "../utils/logEvent";
-import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
-import { updateNbVuesOrFavoritesOnContent } from "../utils/API";
-import { registerBackButton } from "../libs/backButton";
-import { Trans } from "react-i18next";
-import { defaultColors } from "../libs/getThemeTag";
-import { ReadableText } from "../components/ReadableText";
-import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions";
-import { useVoiceover } from "../hooks/useVoiceover";
-import { ReadButton } from "../components/UI/ReadButton";
-import { readingListLengthSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
-import { withProps } from "../utils";
-import { Columns, Page, Spacer } from "../components";
-import HeaderContentContentScreen from "../components/layout/Header/HeaderContentContentScreen";
-import { HeaderContentProps } from "../components/layout/Header/HeaderContentProps";
-import PageSkeleton from "./SearchTab/ContentScreen/PageSkeleton";
+import { logEventInFirebase } from "../../utils/logEvent";
+import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
+import { updateNbVuesOrFavoritesOnContent } from "../../utils/API";
+import { registerBackButton } from "../../libs/backButton";
+
+import { defaultColors } from "../../libs/getThemeTag";
+import { resetReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { useVoiceover } from "../../hooks/useVoiceover";
+import { readingListLengthSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
+import { withProps } from "../../utils";
+import {
+  Columns,
+  CustomButton,
+  ErrorScreen,
+  FixSafeAreaView,
+  HeaderContentContentScreen,
+  HeaderContentProps,
+  InfocardsSection,
+  Map,
+  MiniMap,
+  Page,
+  ReadableText,
+  ReadButton,
+  RTLView,
+  Spacer,
+  TextBigBold,
+  TextSmallBold,
+  TextSmallNormal,
+  Toast,
+} from "../../components";
+import PageSkeleton from "../SearchTab/ContentScreen/PageSkeleton";
+import Section from "./Section";
 
 const HeaderText = styled(TextBigBold)`
-  margin-top: ${styles.margin * 2}px;
-  margin-bottom: ${styles.margin * 2}px;
+  margin-top: ${({ theme }) => theme.margin * 2}px;
+  margin-bottom: ${({ theme }) => theme.margin * 2}px;
   flex-shrink: 1;
 `;
 
 const LastUpdateDateContainer = styled(Columns)`
-  margin-top: ${styles.margin * 4}px;
-  margin-bottom: ${styles.margin * 2 * PixelRatio.getFontScale()}px;
+  margin-top: ${({ theme }) => theme.margin * 4}px;
+  margin-bottom: ${({ theme }) =>
+    theme.margin * 2 * PixelRatio.getFontScale()}px;
 `;
 
 const LastUpdateDate = styled(TextSmallNormal)`
-  color: ${styles.colors.green};
+  color: ${({ theme }) => theme.colors.green};
 `;
 
 const LastUpdateText = styled(TextSmallNormal)`
-  color: ${styles.colors.darkGrey};
+  color: ${({ theme }) => theme.colors.darkGrey};
   margin-left: ${({ theme }) => (theme.i18n.isRTL ? 4 : 0)}px;
   margin-right: ${({ theme }) => (theme.i18n.isRTL ? 0 : 4)}px;
 `;
 
 const FakeMapButton = styled(RTLView)`
-  background-color: ${styles.colors.white};
+  background-color: ${({ theme }) => theme.colors.white};
   justify-content: center;
   align-items: center;
-  padding-vertical: ${styles.radius * 3}px;
-  border-radius: ${styles.radius * 2}px;
+  padding-vertical: ${({ theme }) => theme.radius * 3}px;
+  border-radius: ${({ theme }) => theme.radius * 2}px;
   width: auto;
   height: 56px;
-  padding-horizontal: ${styles.radius * 3}px;
+  padding-horizontal: ${({ theme }) => theme.radius * 3}px;
 `;
 const FakeMapButtonText = styled(TextSmallBold)`
-  margin-left: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? styles.margin : 0}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
+  margin-left: ${({ theme }) => (!theme.i18n.isRTL ? theme.margin : 0)}px;
+  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
 `;
 const ModalContainer = withProps(() => {
   const insets = useSafeAreaInsets();
@@ -122,7 +131,7 @@ const ModalContainer = withProps(() => {
   display: flex;
   position: absolute;
   width: 100%;
-  padding-horizontal: ${styles.margin * 2}px;
+  padding-horizontal: ${({ theme }) => theme.margin * 2}px;
   padding-top: ${({ paddingTop }) => paddingTop}px;
   z-index: 2;
   flex-direction: row;
@@ -132,29 +141,16 @@ const TabBarContainer = styled.View`
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: ${styles.colors.white};
-  ${styles.shadows.xs}
+  background-color: ${({ theme }) => theme.colors.white};
+  ${({ theme }) => theme.shadows.xs}
   z-index: 14;
 `;
 const ToastText = styled(TextSmallNormal)`
-  color: ${styles.colors.white};
+  color: ${({ theme }) => theme.colors.white};
 `;
 const ToastTextBold = styled(TextSmallBold)`
-  color: ${styles.colors.white};
+  color: ${({ theme }) => theme.colors.white};
 `;
-
-const headersDispositif = ["what", "who", "why", "how_involved"];
-
-const headersDemarche = ["what", "who", "how_to_do", "what_next"];
-
-const computeIfContentIsTranslatedInCurrentLanguage = (
-  avancement: 1 | Record<AvailableLanguageI18nCode, number>,
-  currentLanguage: AvailableLanguageI18nCode
-) => {
-  if (currentLanguage === "fr") return false;
-  if (avancement === 1) return false;
-  return avancement[currentLanguage] === 1;
-};
 
 type ContentScreenType = CompositeScreenProps<
   //@ts-ignore
@@ -162,14 +158,17 @@ type ContentScreenType = CompositeScreenProps<
   BottomTabScreenProps<BottomTabParamList>
 >;
 
-export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
+const CONTENT_STRUCTURES: Record<
+  ContentType,
+  ("what" | "how" | "why" | "next")[]
+> = {
+  [ContentType.DISPOSITIF]: ["what", "why", "how"],
+  [ContentType.DEMARCHE]: ["what", "how", "next"],
+};
+
+const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   const { contentId, needId, backScreen } = route.params;
   const dispatch = useDispatch();
-
-  const [theme, setTheme] = React.useState<Theme | null>(
-    route.params.theme || null
-  );
-  const colors = theme?.colors || defaultColors;
 
   const insets = useSafeAreaInsets();
 
@@ -178,7 +177,6 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const currentLanguage = useSelector(currentI18nCodeSelector);
 
-  const windowWidth = useWindowDimensions().width;
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_CONTENT)
   );
@@ -194,40 +192,28 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   const { saveList } = useVoiceover(scrollview, offset);
 
   // Load content
-  let unsubscribeConnectionListener: any;
-  const fetchContent = (
-    contentId: string,
-    selectedLanguage: AvailableLanguageI18nCode
-  ) => {
+  const fetchContent = (contentId: string, selectedLanguage: Languages) => {
     dispatch(resetReadingList());
     dispatch(
       fetchSelectedContentActionCreator({
-        contentId: contentId,
+        contentId,
         locale: selectedLanguage,
       })
     );
   };
-  const handleFindConnection = (connectionInfo: NetInfoState) => {
-    if (connectionInfo.isConnected) {
-      if (contentId && selectedLanguage) {
-        unsubscribeConnectionListener();
-        return fetchContent(contentId, selectedLanguage);
-      }
-    }
-  };
+
   React.useEffect(() => {
     if (contentId && selectedLanguage) {
-      NetInfo.fetch().then((connectionInfo) => {
-        fetchContent(contentId, selectedLanguage); // fetch in any case, to reset if needed
-        if (!connectionInfo.isConnected) {
-          unsubscribeConnectionListener =
-            NetInfo.addEventListener(handleFindConnection);
-        }
-      });
+      fetchContent(contentId, selectedLanguage); // fetch in any case, to reset if needed
     }
   }, [selectedLanguage]);
 
   const selectedContent = useSelector(selectedContentSelector(currentLanguage));
+  const theme = useSelector(
+    themeSelector(
+      selectedContent?.theme?.toString() || route.params.theme?._id.toString()
+    )
+  );
   const readingListLength = useSelector(readingListLengthSelector);
   React.useEffect(() => {
     if (selectedContent) {
@@ -235,20 +221,10 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         // new reading list if content is just loaded
         saveList();
       }
-      const nbVuesMobile = selectedContent.nbVuesMobile
-        ? selectedContent.nbVuesMobile + 1
-        : 1;
-      updateNbVuesOrFavoritesOnContent({
-        query: {
-          id: selectedContent._id,
-          nbVuesMobile,
-        },
-      });
-
-      // Load colors if not available in route
-      if (!route.params.theme) {
-        setTheme(selectedContent.theme);
-      }
+      updateNbVuesOrFavoritesOnContent(
+        selectedContent._id.toString(),
+        ViewsType.MOBILE
+      );
     }
   }, [selectedContent]);
 
@@ -279,15 +255,10 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
       dispatch(addUserFavoriteActionCreator(contentId));
       setFavoriteToast("added");
       if (selectedContent) {
-        const nbFavoritesMobile = selectedContent.nbFavoritesMobile
-          ? selectedContent.nbFavoritesMobile + 1
-          : 1;
-        updateNbVuesOrFavoritesOnContent({
-          query: {
-            id: selectedContent._id,
-            nbFavoritesMobile,
-          },
-        });
+        updateNbVuesOrFavoritesOnContent(
+          selectedContent._id.toString(),
+          ViewsType.FAVORITE
+        );
       }
       logEventInFirebase(FirebaseEvent.ADD_FAVORITE, {
         contentId: selectedContent?._id || "unknown",
@@ -321,20 +292,7 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
       </Page>
     );
 
-  // @ts-ignore
-  const map: MapGoogle =
-    selectedContent &&
-    selectedContent.contenu[3] &&
-    selectedContent.contenu[3].children &&
-    // @ts-ignore
-    selectedContent.contenu[3].children.filter((child) => child.type === "map")
-      .length > 0
-      ? selectedContent.contenu[3].children.filter(
-          (child) => child.type === "map"
-        )[0]
-      : null;
-
-  if (!selectedContent || !currentLanguage) {
+  if (!selectedContent || !currentLanguage || !theme) {
     return (
       <Page backScreen={backScreen}>
         <ErrorScreen
@@ -350,6 +308,22 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     );
   }
 
+  const colors = theme?.colors || defaultColors;
+
+  const map: MapGoogle = {
+    markers: selectedContent.map.map((poi: Poi, index) => ({
+      address: poi.address,
+      email: poi.email,
+      latitude: poi.lat,
+      longitude: poi.lng,
+      nom: poi.title,
+      telephone: poi.phone,
+      vicinity: poi.city,
+      description: poi.description,
+      place_id: index.toString(),
+    })),
+  };
+
   const toggleMap = () => {
     logEventInFirebase(FirebaseEvent.CLIC_SEE_MAP, {
       contentId: selectedContent._id,
@@ -357,57 +331,46 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     setMapModalVisible(!mapModalVisible);
   };
 
-  const handleClick = () => {
-    logEventInFirebase(FirebaseEvent.CLIC_SEE_WEBSITE, {
-      contentId: selectedContent._id,
-    });
-    const url = !selectedContent.externalLink.includes("https://")
-      ? "https://" + selectedContent.externalLink
-      : selectedContent.externalLink;
-    Linking.canOpenURL(url).then((supported) => {
-      if (supported) {
-        Linking.openURL(url);
-      }
-    });
-  };
-  const isDispositif = selectedContent.typeContenu === "dispositif";
-
-  const headers = isDispositif ? headersDispositif : headersDemarche;
-  const isContentTranslatedInCurrentLanguage =
-    computeIfContentIsTranslatedInCurrentLanguage(
-      selectedContent.avancement,
-      currentLanguage
-    );
-
-  const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
-  const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
+  // const handleClick = () => {
+  //   logEventInFirebase(FirebaseEvent.CLIC_SEE_WEBSITE, {
+  //     contentId: selectedContent._id,
+  //   });
+  //   const url = !selectedContent.externalLink.includes("https://")
+  //     ? "https://" + selectedContent.externalLink
+  //     : selectedContent.externalLink;
+  //   Linking.canOpenURL(url).then((supported) => {
+  //     if (supported) {
+  //       Linking.openURL(url);
+  //     }
+  //   });
+  // };
 
   const formattedLastModifDate = selectedContent.lastModificationDate
     ? moment(selectedContent.lastModificationDate).locale("fr")
     : null;
 
   // SHARE
-  const shareContent = async (content: Content) => {
+  const shareContent = async () => {
     logEventInFirebase(FirebaseEvent.SHARE_CONTENT, {
-      titreInformatif: content.titreInformatif,
-      contentId: content._id,
+      titreInformatif: selectedContent.titreInformatif,
+      contentId: selectedContent._id,
     });
 
-    const siteUrl = Config.siteUrl;
-    let urlType: string = content.typeContenu;
+    let urlType: string = selectedContent.typeContenu;
     if (currentLanguage !== "fr") {
-      urlType = content.typeContenu === "demarche" ? "procedure" : "program";
+      urlType =
+        selectedContent.typeContenu === "demarche" ? "procedure" : "program";
     }
     try {
       const shareData =
         Platform.OS === "ios"
           ? {
-              message: `${content.titreInformatif}`,
-              url: `${siteUrl}/${currentLanguage}/${urlType}/${content._id}`,
+              message: `${selectedContent.titreInformatif}`,
+              url: `${Config.siteUrl}/${currentLanguage}/${urlType}/${selectedContent._id}`,
             }
           : {
-              title: `${content.titreInformatif}`,
-              message: `${siteUrl}/${currentLanguage}/${urlType}/${content._id}`,
+              title: `${selectedContent.titreInformatif}`,
+              message: `${Config.siteUrl}/${currentLanguage}/${urlType}/${selectedContent._id}`,
             };
       await Share.share(shareData);
     } catch (error: any) {
@@ -416,7 +379,7 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   };
 
   const navigateToFavorites = () => {
-    const redirectTheme = theme || selectedContent.theme;
+    const redirectTheme = theme;
     dispatch(
       setRedirectDispositifActionCreator({
         contentId,
@@ -441,103 +404,29 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         HeaderContent={HeaderContent}
       >
         <Spacer height={20} />
-        {headers.map((header, index) => {
-          if (
-            index === 1 &&
-            selectedContent.contenu[1] &&
-            selectedContent.contenu[1].children
-          )
-            return (
-              <InfocardsSection
-                key={index}
-                content={selectedContent.contenu[1].children.filter(
-                  (element) => element.type === "card"
-                )}
-                color={colors.color100}
-                typeContenu={selectedContent.typeContenu}
-              />
-            );
-          if (index === 0 && selectedContent.contenu[0].content) {
-            return (
-              <View key={index}>
-                <HeaderText color={colors.color100}>
-                  <ReadableText>
-                    {t("content_screen." + header, header)}
-                  </ReadableText>
-                </HeaderText>
-                <View>
-                  <ContentFromHtml
-                    htmlContent={selectedContent.contenu[index].content}
-                    windowWidth={windowWidth}
-                  />
-                </View>
-              </View>
-            );
-          }
-          if (index === 1) {
-            return (
-              <View key={index}>
-                <HeaderText color={colors.color100}>
-                  <ReadableText>
-                    {t("content_screen." + header, header)}
-                  </ReadableText>
-                </HeaderText>
-              </View>
-            );
-          }
 
-          return (
-            <View key={index}>
-              <HeaderText color={colors.color100}>
-                <ReadableText>
-                  {t("content_screen." + header, header)}
-                </ReadableText>
-              </HeaderText>
-              {selectedContent &&
-                selectedContent.contenu[index] &&
-                selectedContent.contenu[index].children &&
-                // @ts-ignore
-                selectedContent.contenu[index].children.map(
-                  (child, indexChild) => {
-                    if (child.type === "accordion" || child.type === "etape") {
-                      // trigger event firebase when user clic first accordion of Je m'engage section
-                      const shouldTriggerFirebaseEvent =
-                        selectedContent.typeContenu === "dispositif" &&
-                        index === 3 &&
-                        indexChild === 0;
-                      return (
-                        <AccordionAnimated
-                          title={child.title}
-                          content={child.content}
-                          key={indexChild}
-                          stepNumber={
-                            child.type === "etape" ? indexChild + 1 : null
-                          }
-                          width={
-                            child.type === "etape"
-                              ? accordionMaxWidthWithStep
-                              : accordionMaxWidthWithoutStep
-                          }
-                          currentLanguage={currentLanguage}
-                          windowWidth={windowWidth}
-                          darkColor={colors.color100}
-                          lightColor={colors.color30}
-                          isContentTranslated={
-                            isContentTranslatedInCurrentLanguage
-                          }
-                          shouldTriggerFirebaseEvent={
-                            shouldTriggerFirebaseEvent
-                          }
-                          contentId={selectedContent._id}
-                        />
-                      );
-                    }
-                  }
-                )}
-            </View>
-          );
-        })}
-        {!!selectedContent.externalLink && (
+        <Section
+          key="what"
+          sectionKey="what"
+          contentType={selectedContent.typeContenu}
+        />
+
+        <InfocardsSection
+          key="infocards"
+          content={selectedContent.metadatas}
+          color={colors.color100}
+          typeContenu={selectedContent.typeContenu}
+        />
+
+        {CONTENT_STRUCTURES[selectedContent.typeContenu].map((section, i) => (
+          <Section
+            key={i}
+            sectionKey={section}
+            contentType={selectedContent.typeContenu}
+          />
+        ))}
+
+        {/* FIXME {!!selectedContent.externalLink && (
           <View
             style={{
               marginTop: styles.margin,
@@ -554,7 +443,7 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
               accessibilityLabel={t("content_screen.go_website_accessibility")}
             />
           </View>
-        )}
+        )} */}
 
         {!!map && map.markers.length > 0 && (
           <>
@@ -658,7 +547,7 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             isSmall={true}
             isTextNotBold={true}
             notFullWidth={true}
-            onPress={() => shareContent(selectedContent)}
+            onPress={shareContent}
             readableOverridePosY={100001}
             style={{ marginHorizontal: styles.margin, width: 120 }}
             textColor={styles.colors.black}
@@ -721,3 +610,5 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     </>
   );
 };
+
+export default ContentScreen;

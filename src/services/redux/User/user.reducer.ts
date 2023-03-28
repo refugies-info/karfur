@@ -1,12 +1,13 @@
 import { createReducer } from "typesafe-actions";
 import { UserActions } from "./user.actions";
-import { AvailableLanguageI18nCode, ObjectId, Theme } from "../../../types/interface";
+import { ObjectId } from "../../../types/interface";
+import { GetThemeResponse, Languages } from "@refugies-info/api-types";
 
 export interface UserState {
-  hasUserSeenOnboarding: boolean | null;
+  hasUserSeenOnboarding: boolean | null;
   hasUserNewFavorites: boolean;
-  selectedLanguagei18nCode: AvailableLanguageI18nCode | null;
-  currentLanguagei18nCode: AvailableLanguageI18nCode | null;
+  selectedLanguagei18nCode: Languages | null;
+  currentLanguagei18nCode: Languages | null;
   city: string | null;
   department: string | null;
   age: string | null;
@@ -17,7 +18,7 @@ export interface UserState {
   redirectDispositif: {
     contentId: ObjectId;
     needId: ObjectId;
-    theme: Theme;
+    theme: GetThemeResponse;
   } | null;
 }
 
@@ -33,7 +34,7 @@ export const initialUserState = {
   favorites: [],
   localizedWarningHidden: false,
   initialUrlUsed: false,
-  redirectDispositif: null
+  redirectDispositif: null,
 };
 
 export const userReducer = createReducer<UserState, UserActions>(
@@ -83,6 +84,6 @@ export const userReducer = createReducer<UserState, UserActions>(
     SET_REDIRECT_DISPOSITIF: (state, action) => ({
       ...state,
       redirectDispositif: action.payload,
-    })
+    }),
   }
 );

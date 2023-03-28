@@ -4,11 +4,10 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 import { ExplorerParamList } from "../../../types";
 import { ExplorerScreen } from "../../screens/ExplorerTab/ExplorerScreen";
-import { ContentScreen } from "../../screens/ContentScreen";
 import { ContentsScreen } from "../../screens/ContentsScreen";
 import { NeedsScreen } from "../../screens/ExplorerTab/NeedsScreen";
 import { NotificationsScreen } from "../../screens/NotificationsScreen";
-import { NearMeCardsScreen } from "../../screens";
+import { ContentScreen, NearMeCardsScreen } from "../../screens";
 
 interface Props {
   navigation?: any;

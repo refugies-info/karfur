@@ -1,4 +1,4 @@
-import { AvailableLanguageI18nCode } from "../../../../types/interface";
+import { Languages } from "@refugies-info/api-types";
 import { initialRootStateFactory } from "../../reducers";
 import { initialUserState } from "../user.reducer";
 import {
@@ -27,7 +27,7 @@ describe("[Selector] user", () => {
         user: {
           ...initialUserState,
           hasUserSeenOnboarding: true,
-          selectedLanguagei18nCode: "en" as AvailableLanguageI18nCode,
+          selectedLanguagei18nCode: "en" as Languages,
         },
       };
       expect(hasUserSeenOnboardingSelector(state)).toEqual(true);

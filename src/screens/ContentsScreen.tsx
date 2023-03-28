@@ -11,11 +11,7 @@ import { groupedContentsSelector } from "../services/redux/ContentsGroupedByNeed
 import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
 import { ContentSummary } from "../components/Contents/ContentSummary";
-import {
-  SimplifiedContent,
-  AvailableLanguageI18nCode,
-  ObjectId,
-} from "../types/interface";
+import { SimplifiedContent, ObjectId } from "../types/interface";
 import { TextBigBold } from "../components/StyledText";
 import styled from "styled-components/native";
 import { registerBackButton } from "../libs/backButton";
@@ -26,6 +22,7 @@ import { Page } from "../components";
 import { withProps } from "../utils";
 import { HeaderContentProps } from "../components/layout/Header/HeaderContentProps";
 import { HeaderContentContentsScreen } from "../components/layout/Header/HeaderContentContentsScreen";
+import { Languages } from "@refugies-info/api-types";
 
 const SectionHeaderText = styled(TextBigBold)`
   color: ${(props: { color: string }) => props.color};
@@ -52,7 +49,7 @@ const sortContents = (contents: SimplifiedContent[]) => {
 
 const getTranslatedContents = (
   contents: SimplifiedContent[],
-  currentLanguage: AvailableLanguageI18nCode | null
+  currentLanguage: Languages | null
 ) => {
   if (!currentLanguage || currentLanguage === "fr")
     return { translatedContents: contents, nonTranslatedContents: [] };
@@ -122,7 +119,7 @@ export const ContentsScreen = ({
   );
 
   React.useEffect(() => {
-    addNeedView({ id: needId });
+    addNeedView(needId);
   }, []);
 
   // Back button

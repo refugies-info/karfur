@@ -2,7 +2,7 @@ import React from "react";
 import { StyleProp, View, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
-import { ObjectId, Theme } from "../../types/interface";
+import { ObjectId } from "../../types/interface";
 import {
   TextSmallBold,
   TextSmallNormal,
@@ -18,6 +18,7 @@ import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
 import { defaultColors } from "../../libs/getThemeTag";
 import { Columns } from "../layout";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 const IMAGE_SIZE = 58;
 
@@ -79,7 +80,7 @@ interface Props {
   navigation: any;
   contentId: ObjectId;
   needId?: ObjectId;
-  theme?: Theme | null;
+  theme?: GetThemeResponse | null;
   titreInfo?: string;
   titreMarque?: string | undefined;
   typeContenu: "dispositif" | "demarche";
@@ -112,7 +113,8 @@ export const ContentSummary = (props: Props) => {
         onPress={props.actionPress}
         accessibilityRole="button"
         accessible={true}
-        accessibilityLabel={props.actionLabel}>
+        accessibilityLabel={props.actionLabel}
+      >
         <Icon
           name={props.actionIcon || ""}
           width={16}
@@ -142,7 +144,8 @@ export const ContentSummary = (props: Props) => {
               backScreen: props.backScreen,
             },
           });
-        }}>
+        }}
+      >
         <Columns layout="auto 1" RTLBehaviour verticalAlign="center">
           {props.sponsorUrl ? (
             <ImageContainer hasMatch={props.hasSponsorMatch}>
@@ -234,7 +237,8 @@ export const ContentSummary = (props: Props) => {
             backScreen: props.backScreen,
           },
         });
-      }}>
+      }}
+    >
       <Columns layout="auto 1" RTLBehaviour verticalAlign="center">
         <ImageContainer lightColor={colors.color30}>
           <DemarcheImage

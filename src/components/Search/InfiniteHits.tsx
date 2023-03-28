@@ -64,16 +64,14 @@ const InfiniteHits = ({
         contentContainerStyle={{ paddingBottom: styles.margin * 6 }}
         {...keyboardDismissProp}
         ListHeaderComponent={<NbResults />}
-        renderItem={({ item }) => {
-          return (
-            <HitWithInsights
-              hit={item}
-              navigation={navigation}
-              selectedLanguage={selectedLanguage}
-              nbContents={nbContents}
-            />
-          );
-        }}
+        renderItem={({ item }) => (
+          <HitWithInsights
+            hit={item}
+            navigation={navigation}
+            selectedLanguage={selectedLanguage}
+            nbContents={nbContents}
+          />
+        )}
       />
     </View>
   );

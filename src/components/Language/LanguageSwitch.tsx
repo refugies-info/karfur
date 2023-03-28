@@ -10,10 +10,10 @@ import {
   selectedI18nCodeSelector,
 } from "../../services/redux/User/user.selectors";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { AvailableLanguageI18nCode } from "../../types/interface";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { newReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { Languages } from "@refugies-info/api-types";
 
 const ButtonContainerCommon = styled.View`
   background-color: ${({ theme }) => theme.colors.white};
@@ -73,8 +73,8 @@ const FlagBackground = styled.View`
 `;
 
 interface Props {
-  selectedLanguageI18nCode?: AvailableLanguageI18nCode | null;
-  currentLanguageI18nCode?: AvailableLanguageI18nCode | null;
+  selectedLanguageI18nCode?: Languages | null;
+  currentLanguageI18nCode?: Languages | null;
   onLongPressSwitchLanguage?: () => void;
 }
 
@@ -92,7 +92,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
 
   const changeLanguage = (
     isFrenchSelected: boolean,
-    selectedLanguageI18nCode: AvailableLanguageI18nCode
+    selectedLanguageI18nCode: Languages
   ) => {
     if (isFrenchSelected) {
       i18n.changeLanguage(selectedLanguageI18nCode);

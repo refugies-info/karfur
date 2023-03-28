@@ -5,10 +5,10 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { useSelector, useDispatch } from "react-redux";
 import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { AvailableLanguageI18nCode } from "../../types/interface";
 import { activatedLanguages } from "../../data/languagesData";
 import { LanguageDetailsButton } from "../../components";
 import { Page, Rows, RowsSpacing, Title } from "../../components";
+import { Languages } from "@refugies-info/api-types";
 
 export const LangueProfilScreen = ({
   navigation,
@@ -17,7 +17,7 @@ export const LangueProfilScreen = ({
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
 
-  const changeLanguage = (ln: AvailableLanguageI18nCode) => {
+  const changeLanguage = (ln: Languages) => {
     i18n.changeLanguage(ln);
     dispatch(
       saveSelectedLanguageActionCreator({

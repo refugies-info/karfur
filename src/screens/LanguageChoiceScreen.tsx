@@ -4,10 +4,10 @@ import { saveSelectedLanguageActionCreator } from "../services/redux/User/user.a
 import { LanguageDetailsButton } from "../components";
 import { activatedLanguages } from "../data/languagesData";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
-import { AvailableLanguageI18nCode } from "../types/interface";
 import { OnboardingParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { Page } from "../components";
+import { Languages } from "@refugies-info/api-types";
 
 export const LanguageChoiceScreen = ({
   navigation,
@@ -15,7 +15,7 @@ export const LanguageChoiceScreen = ({
   const { i18n, t } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
-  const changeLanguage = (ln: AvailableLanguageI18nCode) => {
+  const changeLanguage = (ln: Languages) => {
     i18n.changeLanguage(ln);
     dispatch(
       saveSelectedLanguageActionCreator({

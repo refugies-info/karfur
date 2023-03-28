@@ -28,9 +28,10 @@ import {
   REMOVE_USER_ALL_FAVORITES,
   REMOVE_USER_LOCALIZED_WARNING_HIDDEN,
   SET_INITIAL_URL_USED,
-  SET_REDIRECT_DISPOSITIF
+  SET_REDIRECT_DISPOSITIF,
 } from "./user.actionTypes";
-import { AvailableLanguageI18nCode, ObjectId, Theme } from "../../../types/interface";
+import { ObjectId, Theme } from "../../../types/interface";
+import { GetThemeResponse, Languages } from "@refugies-info/api-types";
 
 export const setHasUserSeenOnboardingActionCreator = (value: boolean) =>
   action(SET_USER_HAS_SEEN_ONBOARDING, value);
@@ -62,19 +63,19 @@ export const removeUserLocalizedWarningHiddenActionCreator = () =>
 export const setInitialUrlUsed = (value: boolean) =>
   action(SET_INITIAL_URL_USED, value);
 
-export const setRedirectDispositifActionCreator = (value: {
-  needId: ObjectId,
-  contentId: ObjectId,
-  theme: Theme,
-} | null) =>
-  action(SET_REDIRECT_DISPOSITIF, value);
+export const setRedirectDispositifActionCreator = (
+  value: {
+    needId: ObjectId;
+    contentId: ObjectId;
+    theme: GetThemeResponse;
+  } | null
+) => action(SET_REDIRECT_DISPOSITIF, value);
 
-export const setSelectedLanguageActionCreator = (
-  value: AvailableLanguageI18nCode | null
-) => action(SET_SELECTED_LANGUAGE, value);
+export const setSelectedLanguageActionCreator = (value: Languages | null) =>
+  action(SET_SELECTED_LANGUAGE, value);
 
 export const saveSelectedLanguageActionCreator = (value: {
-  langue: AvailableLanguageI18nCode;
+  langue: Languages;
   shouldFetchContents: boolean;
 }) => action(SAVE_SELECTED_LANGUAGE, value);
 
@@ -118,23 +119,19 @@ export const removeUserFrenchLevelActionCreator = (
   shouldFetchContents: boolean
 ) => action(REMOVE_USER_FRENCH_LEVEL, shouldFetchContents);
 
-export const setCurrentLanguageActionCreator = (
-  value: AvailableLanguageI18nCode | null
-) => action(SET_CURRENT_LANGUAGE, value);
+export const setCurrentLanguageActionCreator = (value: Languages | null) =>
+  action(SET_CURRENT_LANGUAGE, value);
 
 export const getUserInfosActionCreator = () => action(GET_USER_INFOS);
 
-export const setUserFavoritesActionCreator = (
-  contentIds: string[]
-) => action(SET_USER_FAVORITES, contentIds);
+export const setUserFavoritesActionCreator = (contentIds: string[]) =>
+  action(SET_USER_FAVORITES, contentIds);
 
-export const addUserFavoriteActionCreator = (
-  contentId: string
-) => action(ADD_USER_FAVORITE, contentId);
+export const addUserFavoriteActionCreator = (contentId: string) =>
+  action(ADD_USER_FAVORITE, contentId);
 
-export const removeUserFavoriteActionCreator = (
-  contentId: string
-) => action(REMOVE_USER_FAVORITE, contentId);
+export const removeUserFavoriteActionCreator = (contentId: string) =>
+  action(REMOVE_USER_FAVORITE, contentId);
 
 export const removeUserAllFavoritesActionCreator = () =>
   action(REMOVE_USER_ALL_FAVORITES);
@@ -166,6 +163,6 @@ const actions = {
   removeUserFavoriteActionCreator,
   removeUserAllFavoritesActionCreator,
   setInitialUrlUsed,
-  setRedirectDispositifActionCreator
+  setRedirectDispositifActionCreator,
 };
 export type UserActions = ActionType<typeof actions>;

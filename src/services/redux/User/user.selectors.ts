@@ -1,3 +1,4 @@
+import { Languages } from "@refugies-info/api-types";
 import { RootState } from "../reducers";
 
 export const hasUserSeenOnboardingSelector = (state: RootState) =>
@@ -6,10 +7,10 @@ export const hasUserSeenOnboardingSelector = (state: RootState) =>
 export const hasUserNewFavoritesSelector = (state: RootState) =>
   state.user.hasUserNewFavorites;
 
-export const selectedI18nCodeSelector = (state: RootState) =>
+export const selectedI18nCodeSelector = (state: RootState): Languages | null =>
   state.user.selectedLanguagei18nCode;
 
-export const currentI18nCodeSelector = (state: RootState) =>
+export const currentI18nCodeSelector = (state: RootState): Languages | null =>
   state.user.currentLanguagei18nCode;
 
 export const userLocationSelector = (state: RootState) => ({
@@ -21,8 +22,7 @@ export const userAgeSelector = (state: RootState) => state.user.age;
 export const userFrenchLevelSelector = (state: RootState) =>
   state.user.frenchLevel;
 
-export const userFavorites = (state: RootState) =>
-  state.user.favorites;
+export const userFavorites = (state: RootState) => state.user.favorites;
 
 export const isFavorite = (contentId: string) => (state: RootState) => {
   return state.user.favorites.includes(contentId);

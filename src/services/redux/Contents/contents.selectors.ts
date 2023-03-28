@@ -1,5 +1,5 @@
+import { Languages } from "@refugies-info/api-types";
 import { RootState } from "../reducers";
-import { AvailableLanguageI18nCode } from "../../../types/interface";
 
 export const contentsSelector = (state: RootState) =>
   state.user.currentLanguagei18nCode
@@ -7,7 +7,7 @@ export const contentsSelector = (state: RootState) =>
     : [];
 
 export const mostViewedContentsSelector =
-  (langue: AvailableLanguageI18nCode) => (state: RootState) =>
+  (langue: Languages) => (state: RootState) =>
     state.contents[langue]
       .sort((a, b) => b.nbVuesMobile - a.nbVuesMobile)
       .slice(0, 10);

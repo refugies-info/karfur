@@ -1,8 +1,12 @@
-import { isNull } from "lodash";
 import React from "react";
+import {
+  GetDispositifResponse,
+  GetThemeResponse,
+} from "@refugies-info/api-types";
+import { isNull } from "lodash";
 import { View } from "react-native";
 import styled from "styled-components/native";
-import { Content, Sponsor, Theme } from "../../../types/interface";
+import { Sponsor } from "../../../types/interface";
 import {
   ContentImage,
   getContainerDimensions,
@@ -37,9 +41,9 @@ const TitreMarqueText = styled(TextSmallNormal)`
 `;
 
 export interface HeaderContentContentScreenProps extends HeaderContentProps {
-  content: Content;
+  content: GetDispositifResponse;
   sponsor: Sponsor;
-  theme: Theme;
+  theme: GetThemeResponse;
 }
 
 const HeaderContentContentScreen = ({
@@ -74,7 +78,7 @@ const HeaderContentContentScreen = ({
           sponsorPictureUrl={sponsor.picture?.secure_url || null}
           typeContenu={content.typeContenu}
           icon={theme?.icon}
-          contentId={content._id}
+          contentId={content._id.toString()}
         />
       </View>
     </Container>

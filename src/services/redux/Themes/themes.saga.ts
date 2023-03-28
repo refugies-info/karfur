@@ -15,8 +15,8 @@ export function* fetchThemes(): SagaIterator {
     logger.info("[fetchThemes] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_THEMES));
     const data = yield call(getThemes);
-    if (data && data.data && data.data.data) {
-      yield put(setThemesActionCreator(data.data.data));
+    if (data) {
+      yield put(setThemesActionCreator(data));
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_THEMES));
   } catch (error: any) {

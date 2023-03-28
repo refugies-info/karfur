@@ -3,20 +3,16 @@ import {
   FETCH_SELECTED_CONTENT,
 } from "./selectedContent.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import {
-  Content,
-  ObjectId,
-  AvailableLanguageI18nCode,
-} from "../../../types/interface";
+import { GetDispositifResponse, Languages } from "@refugies-info/api-types";
 
 export const setSelectedContentActionCreator = (payload: {
-  content: Content | null;
-  locale: AvailableLanguageI18nCode;
+  content: GetDispositifResponse | null;
+  locale: Languages;
 }) => action(SET_SELECTED_CONTENT, payload);
 
 export const fetchSelectedContentActionCreator = (payload: {
-  contentId: ObjectId;
-  locale: AvailableLanguageI18nCode;
+  contentId: string;
+  locale: Languages;
 }) => action(FETCH_SELECTED_CONTENT, payload);
 
 const actions = {

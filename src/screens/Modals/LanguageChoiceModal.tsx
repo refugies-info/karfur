@@ -12,10 +12,10 @@ import { RTLView } from "../../components/BasicComponents";
 import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { CustomButton } from "../../components/CustomButton";
-import { AvailableLanguageI18nCode } from "../../types/interface";
 import { Icon } from "react-native-eva-icons";
 import { useStopVoiceover } from "../../hooks/useStopVoiceover";
 import LanguageDetailsButton from "../../components/Language/LanguageDetailsButton";
+import { Languages } from "@refugies-info/api-types";
 
 interface Props {
   isModalVisible: boolean;
@@ -60,7 +60,7 @@ export const LanguageChoiceModal = (props: Props) => {
   const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
 
-  const changeLanguage = (ln: AvailableLanguageI18nCode) => {
+  const changeLanguage = (ln: Languages) => {
     i18n.changeLanguage(ln);
     dispatch(
       saveSelectedLanguageActionCreator({

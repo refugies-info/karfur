@@ -1,4 +1,4 @@
-import React, { ComponentType, ReactNode } from "react";
+import * as React from "react";
 import { useSelector } from "react-redux";
 import useAsync from "react-use/lib/useAsync";
 
@@ -19,7 +19,7 @@ import { nbContentsSelector } from "../../../services/redux/Contents/contents.se
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 
 export interface PageProps {
-  children: ReactNode;
+  children: React.ReactNode;
   title: string;
 }
 
@@ -33,8 +33,8 @@ const useNearMeCards = () => {
   } = useAsync(
     () =>
       getContentsForApp({
-        locale: locale?.toString() || "fr",
-        department: department || "",
+        locale: locale || "fr",
+        county: department || "",
         strictLocation: true,
       })
         .then((response: any) => {

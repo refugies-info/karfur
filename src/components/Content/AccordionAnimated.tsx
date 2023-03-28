@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { View, StyleSheet, Animated } from "react-native";
-import { AvailableLanguageI18nCode, ObjectId } from "../../types/interface";
+import { ObjectId } from "../../types/interface";
 import { styles } from "../../theme";
 import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
 import { TextSmallBold } from "../StyledText";
@@ -14,6 +14,7 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { ReadableText } from "../ReadableText";
 import { useSelector } from "react-redux";
 import { currentItemSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
+import { Languages } from "@refugies-info/api-types";
 
 const TitleContainer = styled(RTLTouchableOpacity)<{
   darkColor: string;
@@ -86,13 +87,13 @@ interface Props {
   content: string;
   stepNumber: number | null;
   width: number;
-  currentLanguage: AvailableLanguageI18nCode | null;
+  currentLanguage: Languages | null;
   windowWidth: number;
   darkColor: string;
   lightColor: string;
   isContentTranslated: boolean;
   shouldTriggerFirebaseEvent: boolean;
-  contentId: ObjectId;
+  contentId: string;
 }
 
 export const AccordionAnimated = (props: Props) => {

@@ -1,14 +1,31 @@
 import Constants from "expo-constants";
+import {
+  AppUserRequest,
+  GetContentsForAppRequest,
+  GetContentsForAppResponse,
+  GetDispositifResponse,
+  GetNbContentsForCountyRequest,
+  GetNbContentsForCountyResponse,
+  GetThemeResponse,
+  Languages,
+  MarkAsSeenRequest,
+  PostAppUserResponse,
+  ViewsType,
+} from "@refugies-info/api-types";
 
-import { ObjectId, AppUser } from "../types/interface";
-import { makeApiRequest } from "../hooks/useApi";
+import { makeApiRequest, ResponseWith } from "../hooks/useApi";
 import { apiCaller } from "./ConfigAPI";
 
+// FIXME Return type
 export const getLanguages = () => apiCaller.get("/langues/getLanguages");
 
+// FIXME Return type
 export const getNeeds = () => apiCaller.get("/needs");
 
-export const getThemes = () => apiCaller.get("/themes");
+export const getThemes = (): Promise<GetThemeResponse[]> =>
+  makeApiRequest<null, ResponseWith<GetThemeResponse[]>>("/themes", null).then(
+    (response) => response.data
+  );
 
 export const getCitiesFromGoogleAPI = (text: string) =>
   apiCaller.post(
@@ -28,68 +45,64 @@ export const getPlaceIdFromLocationFromGoogleAPI = (
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.GOOGLE_API_KEY}`
   );
 
-export const getContentsForApp = ({
-  locale,
-  age,
-  department,
-  frenchLevel,
-  strictLocation = false,
-}: {
-  locale: string;
-  age?: string | null;
-  department?: string | null;
-  frenchLevel?: string | null;
-  strictLocation?: boolean;
-}) => {
-  const route =
-    `/dispositifs/getContentsForApp?locale=${locale}` +
-    (age ? `&age=${age}` : "") +
-    (department ? `&department=${department}` : "") +
-    (strictLocation ? "&strictLocation=1" : "") +
-    (frenchLevel ? `&frenchLevel=${frenchLevel}` : "");
+export const getContentsForApp = (
+  req: GetContentsForAppRequest
+): Promise<GetContentsForAppResponse> =>
+  makeApiRequest<
+    GetContentsForAppRequest,
+    ResponseWith<GetContentsForAppResponse>
+  >("/dispositifs/getContentsForApp", req, "GET").then(
+    (response) => response.data
+  );
 
-  return apiCaller.get(route);
+export const getNbContents = (
+  req: GetNbContentsForCountyRequest
+): Promise<GetNbContentsForCountyResponse> => {
+  const route = `/dispositifs/getNbContents?county=${req.county}`;
+  return makeApiRequest<
+    GetNbContentsForCountyRequest,
+    ResponseWith<GetNbContentsForCountyResponse>
+  >(route, req, "GET").then((response) => response.data);
 };
 
-export const getNbContents = ({
-  department,
-}: {
-  department: string | null;
-}) => {
-  const route = `/dispositifs/getNbContents?department=${department}`;
-  return apiCaller.get(route);
-};
-
+type GetContentByIdRequest = any;
 export const getContentById = ({
   locale,
   contentId,
 }: {
-  locale: string;
-  contentId: ObjectId;
-}) => {
-  const route = `/dispositifs/getContentById?locale=${locale}&contentId=${contentId}`;
+  locale: Languages;
+  contentId: string;
+}): Promise<GetDispositifResponse> =>
+  makeApiRequest<GetContentByIdRequest, ResponseWith<GetDispositifResponse>>(
+    `/dispositifs/${contentId}?locale=${locale}`,
+    {},
+    "GET"
+  ).then((response) => response.data);
 
-  return apiCaller.get(route);
-};
-
+// FIXME Return type
 export const updateNbVuesOrFavoritesOnContent = (
-  params:
-    | { query: { id: ObjectId; nbVuesMobile: number } }
-    | { query: { id: ObjectId; nbFavoritesMobile: number } }
-) => apiCaller.post("/dispositifs/updateNbVuesOrFavoritesOnContent", params);
+  contentId: string,
+  type: ViewsType
+) =>
+  makeApiRequest(`/dispositifs/${contentId}/views`, { types: [type] }, "POST");
 
-export const addNeedView = (params: { id: ObjectId }) =>
-  apiCaller.post("/needs/views", params);
+// FIXME Return type
+// export const addNeedView = (id: string) => apiCaller.post("/needs/views", id);
+export const addNeedView = (id: string) =>
+  makeApiRequest(`/needs/${id}/views`, null, "POST");
 
-export const updateAppUser = async (payload: AppUser) =>
-  makeApiRequest("/appuser/", payload, "POST");
+export const updateAppUser = async (user: AppUserRequest) =>
+  makeApiRequest<AppUserRequest, ResponseWith<PostAppUserResponse>>(
+    "/appuser/",
+    user,
+    "POST"
+  );
 
-export const markNotificationAsSeen = async (notificationId: string) =>
-  makeApiRequest(
+// FIXME Return type
+export const markNotificationAsSeen = async (request: MarkAsSeenRequest) =>
+  makeApiRequest<MarkAsSeenRequest, any>(
     "/notifications/seen",
-    {
-      notificationId,
-    },
+    request,
     "POST"
   );
 

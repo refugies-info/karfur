@@ -16,6 +16,7 @@ import { apiCaller } from "../utils/ConfigAPI";
 import { logger } from "../logger";
 
 type Method = "GET" | "POST" | "PUT" | "DELETE";
+export type ResponseWith<T> = { data: T };
 
 const UID_STORAGE_KEY = "uid";
 
@@ -29,9 +30,9 @@ export const getUid = async (): Promise<string> => {
   return newUid;
 };
 
-export const makeApiRequest = async <T extends unknown>(
+export const makeApiRequest = async <Request extends any, T extends any>(
   url: string,
-  payload: any,
+  payload: Request,
   method: Method = "GET"
 ): Promise<T> => {
   try {
@@ -54,7 +55,7 @@ export const makeApiRequest = async <T extends unknown>(
 
     return resp?.data || <T>null;
   } catch (err) {
-    logger.error(`makeApiRequest error: ${err}`);
+    logger.error(`makeApiRequest error: ${err}`, { url, method });
     throw err;
   }
 };
@@ -68,7 +69,10 @@ export const useApi = <Type, Error>(
 ): UseQueryResult<Type, Error> => {
   return useQuery<Type, Error, Type>(
     key,
-    () => makeApiRequest(url, payload, method),
+    () =>
+      makeApiRequest<any, any>(url, payload, method).then(
+        (response) => response.data
+      ),
     options as Omit<
       UseQueryOptions<Type, Error, Type, QueryKey>,
       "queryKey" | "queryFn"
@@ -84,7 +88,7 @@ export const useApiMutation = <Type, Error>(
 ): UseMutationResult<Type, Error, Type> => {
   return useMutation<Type, Error, Type>(
     key,
-    (payload: any) => makeApiRequest(url, payload, method),
+    (payload: any) => makeApiRequest<any, any>(url, payload, method),
     options as Omit<
       UseMutationOptions<Type, Error, Type>,
       "mutationKey" | "mutationFn"
