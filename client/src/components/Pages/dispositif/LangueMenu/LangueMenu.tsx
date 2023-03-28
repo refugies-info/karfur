@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import uniqueId from "lodash/uniqueId";
 import { GetLanguagesResponse } from "api-types";
 import { cls } from "lib/classname";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import Flag from "components/UI/Flag";
-import styles from "./LangueMenu.module.scss";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import Tooltip from "components/UI/Tooltip";
+import styles from "./LangueMenu.module.scss";
 
 interface Props {
   selectedLn: string;
@@ -23,6 +25,7 @@ interface Props {
 const LangueMenu = (props: Props) => {
   const languages = useSelector(allLanguesSelector);
   const [open, setOpen] = useState(false);
+  const [tooltipId] = useState(uniqueId("tooltip_"));
 
   const onClickItem = (language: GetLanguagesResponse) => {
     if (props.disabledOptions?.includes(language.i18nCode)) return; // disabled
@@ -46,17 +49,23 @@ const LangueMenu = (props: Props) => {
       </DropdownToggle>
       <DropdownMenu className={styles.menu}>
         {languages.map((ln, i) => (
-          <DropdownItem
-            key={i}
-            onClick={() => onClickItem(ln)}
-            className={cls(styles.item, ln.i18nCode === props.selectedLn && styles.selected)}
-            toggle={false}
-            disabled={props.disabledOptions?.includes(ln.i18nCode)}
-          >
-            <Flag langueCode={ln.langueCode} className="me-2" />
-            <span className={styles.item_locale}>{ln.langueFr} -</span>
-            <span>{ln.langueLoc}</span>
-          </DropdownItem>
+          <span key={i} id={`${tooltipId}_${ln.i18nCode}`}>
+            <DropdownItem
+              onClick={() => onClickItem(ln)}
+              className={cls(styles.item, ln.i18nCode === props.selectedLn && styles.selected)}
+              toggle={false}
+              disabled={props.disabledOptions?.includes(ln.i18nCode)}
+            >
+              <Flag langueCode={ln.langueCode} className="me-2" />
+              <span className={styles.item_locale}>{ln.langueFr} -</span>
+              <span>{ln.langueLoc}</span>
+              {props.disabledOptions?.includes(ln.i18nCode) && (
+                <Tooltip target={`${tooltipId}_${ln.i18nCode}`} placement="top">
+                  Cette fiche n'est pas encore disponible en {ln.langueLoc}
+                </Tooltip>
+              )}
+            </DropdownItem>
+          </span>
         ))}
       </DropdownMenu>
     </Dropdown>

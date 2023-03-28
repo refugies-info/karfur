@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
@@ -71,6 +71,11 @@ const SendSMSModal = (props: Props) => {
     }
   };
 
+  const disabledOptions = useMemo(
+    () => languages.map((ln) => ln.i18nCode).filter((ln) => !(dispositif?.availableLanguages || []).includes(ln)),
+    [dispositif, languages],
+  );
+
   const selectedLanguage = languages.find((ln) => ln.i18nCode === selectedLn);
 
   return (
@@ -108,7 +113,11 @@ const SendSMSModal = (props: Props) => {
               />
             </Button>
             <Collapse isOpen={lnListOpen}>
-              <LangueSelectList selectedLn={selectedLn} setSelectedLn={setSelectedLn} />
+              <LangueSelectList
+                selectedLn={selectedLn}
+                setSelectedLn={setSelectedLn}
+                disabledOptions={disabledOptions}
+              />
             </Collapse>
           </div>
 

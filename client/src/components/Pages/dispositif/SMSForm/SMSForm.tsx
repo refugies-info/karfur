@@ -16,7 +16,11 @@ import LangueMenu from "../LangueMenu";
 import Input from "../Input";
 import styles from "./SMSForm.module.scss";
 
-const SMSForm = () => {
+interface Props {
+  disabledOptions: string[];
+}
+
+const SMSForm = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
 
@@ -73,6 +77,7 @@ const SMSForm = () => {
         selectedLn={selectedLn}
         setSelectedLn={setSelectedLn}
         className={styles.language}
+        disabledOptions={props.disabledOptions}
       />
       <Button
         icon="paper-plane-outline"

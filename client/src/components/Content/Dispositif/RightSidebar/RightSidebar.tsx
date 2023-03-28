@@ -99,7 +99,7 @@ const RightSidebar = () => {
         </Toast>
       )}
 
-      <SMSForm />
+      <SMSForm disabledOptions={disabledOptions} />
       <ShareButtons />
     </div>
   );
