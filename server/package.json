@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Plateforme dédiée aux réfugiés",
   "author": "Soufiane Lamrissi",
-  "homepage": "https://accueil-integration-refugies.fr",
+  "homepage": "https://refugies.info",
   "copyright": "Copyright 2019 DiAiR",
   "license": "MIT",
   "main": "server.js",
