@@ -10,7 +10,7 @@ interface Props {
   show: boolean;
   toggle: () => void;
   className?: string;
-  help: {
+  help?: {
     title: string;
     content: string | React.ReactNode;
   };
@@ -30,11 +30,13 @@ const BaseModal = (props: Props) => {
       contentClassName={styles.modal_content}
     >
       <div className={styles.container}>
-        <div className={styles.sidebar}>
-          <Image src={TutoImg} width={47} height={32} alt="" />
-          <p className={styles.title}>{props.help.title}</p>
-          <div className={styles.text}>{props.help.content}</div>
-        </div>
+        {props.help && (
+          <div className={styles.sidebar}>
+            <Image src={TutoImg} width={47} height={32} alt="" />
+            <p className={styles.title}>{props.help.title}</p>
+            <div className={styles.text}>{props.help.content}</div>
+          </div>
+        )}
         <div className={styles.content}>
           <div className="text-end">
             <Button icon="close-outline" iconPlacement="end" tertiary className={styles.close} onClick={props.toggle}>

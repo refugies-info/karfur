@@ -2,3 +2,9 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+
+.help {
+  @include dsfr-text("very-small");
+  color: $lightBorderPlainInfo;
+}

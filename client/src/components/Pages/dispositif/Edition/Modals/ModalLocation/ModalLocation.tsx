@@ -55,6 +55,7 @@ const ModalLocation = (props: Props) => {
             />
             <ChoiceButton
               text="Départements"
+              subtext="Vous pourrez choisir les départements à l’étape suivante."
               type="radio"
               selected={selected === "departments"}
               onSelect={() => setSelected("departments")}

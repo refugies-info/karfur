@@ -180,6 +180,13 @@ const ModalPublic = (props: Props) => {
 
         {step === 3 && (
           <div>
+            <ChoiceButton
+              text="Tous les niveaux"
+              type="checkbox"
+              selected={frenchLevel?.length === 7}
+              onSelect={() => setFrenchLevel(["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"])}
+              className="mb-2"
+            />
             {entries<Record<frenchLevelType, ChoiceItem>>(frenchLevelOptions).map(([key, item]) => (
               <div key={key}>
                 <ChoiceButton
@@ -193,13 +200,6 @@ const ModalPublic = (props: Props) => {
                 />
               </div>
             ))}
-            <ChoiceButton
-              text="Peu importe, tous les niveaux"
-              type="checkbox"
-              selected={frenchLevel?.length === 7}
-              onSelect={() => setFrenchLevel(["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"])}
-              className="mb-2"
-            />
             <ChoiceButton
               text="Cette information n’est pas pertinente pour mon action"
               type="radio"
@@ -227,7 +227,7 @@ const ModalPublic = (props: Props) => {
                 </div>
               ))}
             </div>
-            <InlineForm>
+            <InlineForm border className="mt-4">
               {ageType === "moreThan" && (
                 <>
                   <p>Plus de </p>

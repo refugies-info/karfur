@@ -139,11 +139,12 @@ const ModalAvailability = (props: Props) => {
             />
           </InlineForm>
           <ChoiceButton
-            text="Cette question ne concerne pas mon action / C’est variable selon le profil"
+            text="Cette question ne concerne pas mon action"
             type="checkbox"
             selected={noCommitment}
             onSelect={() => setNoCommitment((o) => !o)}
             size="lg"
+            className="mt-6"
           />
         </div>
       )}
@@ -177,11 +178,12 @@ const ModalAvailability = (props: Props) => {
             />
           </InlineForm>
           <ChoiceButton
-            text="Cette question ne concerne pas mon action / C’est variable selon le profil"
+            text="Cette question ne concerne pas mon action"
             type="checkbox"
             selected={noFrequency}
             onSelect={() => setNoFrequency((o) => !o)}
             size="lg"
+            className="mt-6"
           />
         </div>
       )}
@@ -199,7 +201,7 @@ const ModalAvailability = (props: Props) => {
             />
           ))}
           <ChoiceButton
-            text="Cette question ne concerne pas mon action / C’est variable selon le profil"
+            text="Cette question ne concerne pas mon action"
             type="radio"
             selected={timeSlots === null}
             onSelect={() => setTimeSlots(null)}

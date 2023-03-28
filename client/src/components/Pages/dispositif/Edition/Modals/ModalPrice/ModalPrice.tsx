@@ -112,7 +112,7 @@ const ModalPrice = (props: Props) => {
               </Col>
             </Row>
             {selectedPay === "once" && (
-              <InlineForm>
+              <InlineForm className="mt-6">
                 <span className={styles.price}>
                   <input
                     type="number"
@@ -130,7 +130,7 @@ const ModalPrice = (props: Props) => {
             )}
 
             {selectedPay === "between" && (
-              <InlineForm>
+              <InlineForm className="mt-6">
                 <p>entre</p>
                 <span className={styles.price}>
                   <input

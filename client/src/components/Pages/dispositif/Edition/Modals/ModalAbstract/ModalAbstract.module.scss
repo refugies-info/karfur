@@ -13,6 +13,16 @@
   @include baseInput();
   height: 100%;
   padding-bottom: u(12);
+  background: $gray30;
+  border: 1px solid $lightBorderDefaultGrey;
+
+  &:hover {
+    background: $lightBackgroundContrastGrey;
+  }
+  &:focus {
+    background: $gray30;
+    border-color: $lightTextTitleGrey;
+  }
 }
 
 .help {

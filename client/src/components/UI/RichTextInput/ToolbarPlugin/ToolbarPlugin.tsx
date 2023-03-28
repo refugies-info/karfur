@@ -232,13 +232,13 @@ export default function ToolbarPlugin() {
         <ToolbarButton
           disabled={!canUndo || !isEditable}
           onClick={() => activeEditor.dispatchCommand(UNDO_COMMAND, undefined)}
-          title={isMacOs ? "Précédent (⌘Z)" : "Précédent (Ctrl+Z)"}
+          title={isMacOs ? "Annuler (⌘Z)" : "Annuler (Ctrl+Z)"}
           icon="ri-arrow-go-back-line"
         />
         <ToolbarButton
           disabled={!canRedo || !isEditable}
           onClick={() => activeEditor.dispatchCommand(REDO_COMMAND, undefined)}
-          title={isMacOs ? "Suivant (⌘Y)" : "Suivant (Ctrl+Y)"}
+          title={isMacOs ? "Rétablir (⌘Y)" : "Rétablir (Ctrl+Y)"}
           icon="ri-arrow-go-forward-line"
         />
         <span className={styles.divider} />
@@ -246,7 +246,7 @@ export default function ToolbarPlugin() {
           disabled={!isEditable}
           onClick={formatParagraph}
           isPressed={blockType === "paragraph"}
-          title="Normal"
+          title="Paragraphe"
           icon="ri-text"
         />
         <ToolbarButton
@@ -303,7 +303,7 @@ export default function ToolbarPlugin() {
         <ToolbarButton
           disabled={!isEditable}
           onClick={insertLink}
-          title="Insérer un lien"
+          title="Lien externe"
           isPressed={isLink}
           icon="ri-link"
         />
@@ -317,14 +317,14 @@ export default function ToolbarPlugin() {
         <ToolbarButton
           disabled={!isEditable}
           onClick={() => formatCallout("important")}
-          title="Important"
+          title="Bloc 'Important'"
           isPressed={blockType === "important"}
           icon="ri-alert-fill"
         />
         <ToolbarButton
           disabled={!isEditable}
           onClick={() => formatCallout("info")}
-          title="Bon à savoir"
+          title="Bloc 'Bon à savoir'"
           isPressed={blockType === "info"}
           icon="ri-side-bar-fill"
         />
