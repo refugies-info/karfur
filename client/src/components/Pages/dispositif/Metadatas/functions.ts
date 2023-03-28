@@ -116,3 +116,18 @@ export const getFrenchLevelLink = (frenchLevel: Metadatas["frenchLevel"]): LinkP
     query: qs.stringify({ frenchLevel: options }, { arrayFormat: "comma" }),
   }
 }
+
+export const getFrenchLevel = (frenchLevel: Metadatas["frenchLevel"]): string => {
+  if (!frenchLevel) return "";
+  if (
+    frenchLevel.includes("A1") &&
+    frenchLevel.includes("A2") &&
+    frenchLevel.includes("B1") &&
+    frenchLevel.includes("B2") &&
+    frenchLevel.includes("C1") &&
+    frenchLevel.includes("C2")
+  ) {
+    return "Tous niveaux"; //TODO :translate
+  }
+  return frenchLevel?.join(", ")
+}
