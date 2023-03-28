@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
 import { getPath, PathNames } from "routes";
 import { useSelector } from "react-redux";
-import { useFavorites, useLocale } from "hooks";
+import { useFavorites, useLocale, useAuth } from "hooks";
 import { readAudio, stopAudio } from "lib/readAudio";
 import { getAllPageReadableText } from "lib/getReadableText";
 import { cls } from "lib/classname";
@@ -12,17 +12,26 @@ import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.s
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import Button from "components/UI/Button";
 import Toast from "components/UI/Toast";
+import BookmarkedModal from "components/Modals/BookmarkedModal";
 import { ShareButtons, SMSForm, LangueMenu } from "components/Pages/dispositif";
 import styles from "./RightSidebar.module.scss";
 
 const RightSidebar = () => {
   const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
+  const { isAuth } = useAuth();
 
   // favorites
+  const [showNoAuthModal, setShowNoAuthModal] = useState(false);
+  const noAuthModalToggle = useCallback(() => setShowNoAuthModal((o) => !o), []);
+
   const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(dispositif?._id || null);
   const [showFavoriteToast, setShowFavoriteToast] = useState<"added" | "removed" | null>(null);
   const toggleFavorite = useCallback(() => {
+    if (!isAuth) {
+      noAuthModalToggle();
+      return;
+    }
     if (isFavorite) {
       deleteFromFavorites();
       setShowFavoriteToast("removed");
@@ -30,7 +39,7 @@ const RightSidebar = () => {
       addToFavorites();
       setShowFavoriteToast("added");
     }
-  }, [addToFavorites, deleteFromFavorites, isFavorite]);
+  }, [addToFavorites, deleteFromFavorites, isFavorite, isAuth, noAuthModalToggle]);
 
   // tts
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -101,6 +110,8 @@ const RightSidebar = () => {
 
       <SMSForm disabledOptions={disabledOptions} />
       <ShareButtons />
+
+      {!isAuth && <BookmarkedModal show={showNoAuthModal} toggle={noAuthModalToggle} />}
     </div>
   );
 };
