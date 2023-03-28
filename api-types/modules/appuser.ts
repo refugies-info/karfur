@@ -4,11 +4,11 @@ import { Languages } from "../generics";
  * @url POST /appuser
  */
 export interface AppUserRequest {
-  city?: string;
+  city?: string | null;
   department?: string | null;
   selectedLanguage?: Languages;
-  age?: string;
-  frenchLevel?: string;
+  age?: string | null;
+  frenchLevel?: string | null;
   expoPushToken?: string;
 }
 
