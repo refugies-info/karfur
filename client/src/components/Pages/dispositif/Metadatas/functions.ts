@@ -1,7 +1,7 @@
-import qs from "query-string";
 import { LinkProps } from "next/link";
 import { conditionType, Metadatas } from "api-types";
 import { getPath } from "routes";
+import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import imgCb from "assets/dispositif/form-icons/conditions-cb.svg";
 import imgDriver from "assets/dispositif/form-icons/conditions-driver.svg";
@@ -88,7 +88,7 @@ export const getSponsorLink = (sponsorId: string | undefined): LinkProps["href"]
 export const getLocationLink = (department: string): LinkProps["href"] => {
   return {
     pathname: getPath("/recherche", "fr"),
-    query: { departments: department.split(" - ")[1] },
+    search: buildUrlQuery({ departments: [department.split(" - ")[1]] }),
   }
 }
 export const getAgeLink = (age: Metadatas["age"]): LinkProps["href"] => {
@@ -101,7 +101,7 @@ export const getAgeLink = (age: Metadatas["age"]): LinkProps["href"] => {
   }
   return {
     pathname: getPath("/recherche", "fr"),
-    search: qs.stringify({ age: options }, { arrayFormat: "comma" }),
+    search: buildUrlQuery({ age: options }),
   }
 }
 export const getFrenchLevelLink = (frenchLevel: Metadatas["frenchLevel"]): LinkProps["href"] => {
@@ -113,7 +113,7 @@ export const getFrenchLevelLink = (frenchLevel: Metadatas["frenchLevel"]): LinkP
   }
   return {
     pathname: getPath("/recherche", "fr"),
-    query: qs.stringify({ frenchLevel: options }, { arrayFormat: "comma" }),
+    search: buildUrlQuery({ frenchLevel: options }),
   }
 }
 

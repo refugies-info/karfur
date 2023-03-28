@@ -13,6 +13,7 @@ import "scss/index.scss";
 import { Provider } from "react-redux";
 import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatus.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isRoute } from "routes";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -30,14 +31,14 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? defaultLayout;
   const options: PageOptions = Component.options || {
     cookiesModule: true,
-    supportModule: true
+    supportModule: true,
   };
   const router = useRouter();
 
   if (isInBrowser() && options.cookiesModule) {
     // AXEPTIO
     window.axeptioSettings = {
-      clientId: process.env.NEXT_PUBLIC_REACT_APP_AXEPTIO_CLIENTID
+      clientId: process.env.NEXT_PUBLIC_REACT_APP_AXEPTIO_CLIENTID,
     };
   }
 
@@ -67,7 +68,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   // Loader
   useEffect(() => {
     const handleRouteChange = (url: string) => {
-      if (url.includes("recherche") || url.includes("advanced-search")) {
+      if (isRoute(url, "/recherche") && !isRoute(window.location.pathname, "/recherche")) {
         store.dispatch(startLoading(LoadingStatusKey.NAVIGATING));
       }
     };
@@ -101,7 +102,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
               s.src = "https://client.crisp.chat/l.js";
               s.async = 1;
               d.getElementsByTagName("head")[0].appendChild(s);
-            })();`
+            })();`,
           }}
         />
       )}

@@ -4,6 +4,7 @@ import { ContentType, GetDispositifResponse } from "api-types";
 import Link from "next/link";
 import { getPath } from "routes";
 import { useRTL, useWindowSize } from "hooks";
+import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { needSelector } from "services/Needs/needs.selectors";
 import { themeSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -50,7 +51,10 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
           {chevron}
 
-          <Link href={getPath("/recherche", "fr", `?type=${dispositif.typeContenu}`)} className={styles.link}>
+          <Link
+            href={getPath("/recherche", "fr", buildUrlQuery({ type: dispositif.typeContenu }))}
+            className={styles.link}
+          >
             {dispositif.typeContenu === ContentType.DISPOSITIF ? "Actions" : "Démarches"}
           </Link>
 
@@ -59,7 +63,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
           {theme && (
             <>
               <Link
-                href={getPath("/recherche", "fr", `?themes=${theme._id}`)}
+                href={getPath("/recherche", "fr", buildUrlQuery({ themes: [theme._id] }))}
                 className={styles.theme}
                 style={{ backgroundColor: theme.colors.color100 }}
               >
@@ -72,7 +76,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
           {dispositif.needs.length === 1 && need && (
             <>
-              <Link href={getPath("/recherche", "fr", `?needs=${need._id}`)} className={styles.link}>
+              <Link href={getPath("/recherche", "fr", buildUrlQuery({ needs: [need._id] }))} className={styles.link}>
                 {need.fr.text}
               </Link>
               {chevron}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPath } from "routes";
 import { getLinkedThemesReadableText } from "lib/getReadableText";
+import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { secondaryThemesSelector, themeSelector, themesSelector } from "services/Themes/themes.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
@@ -39,7 +40,7 @@ const LinkedThemes = () => {
           <Button
             image={<ThemeIcon theme={theme} color={theme.colors.color100} size={16} />}
             color={theme.colors.color100}
-            pathParams={`?themes=${theme._id}`}
+            pathParams={`?${buildUrlQuery({ themes: [theme._id] })}`}
           >
             {theme.short?.fr}
           </Button>
@@ -49,7 +50,7 @@ const LinkedThemes = () => {
             key={i}
             image={<ThemeIcon theme={theme} color={theme.colors.color100} size={16} />}
             color={theme.colors.color100}
-            pathParams={`?themes=${theme._id}`}
+            pathParams={`?${buildUrlQuery({ themes: [theme._id] })}`}
           >
             {theme.short?.fr}
           </Button>
@@ -59,7 +60,7 @@ const LinkedThemes = () => {
             key={i}
             image={<Image src={need.image?.secure_url || ""} width={16} height={16} alt="" />}
             color={themes.find((t) => t._id === need.theme._id)?.colors.color100 || "black"}
-            pathParams={`?needs=${need._id}`}
+            pathParams={`?${buildUrlQuery({ needs: [need._id] })}`}
           >
             {need.fr.text}
           </Button>

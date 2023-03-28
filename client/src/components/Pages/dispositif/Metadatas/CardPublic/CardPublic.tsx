@@ -30,21 +30,13 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
             !dataFrenchLevel || dataFrenchLevel.length === 0 ? (
               dataFrenchLevel
             ) : (
-              <FRLink target="_blank" href={getFrenchLevelLink(dataFrenchLevel)}>
-                {getFrenchLevel(dataFrenchLevel)}
-              </FRLink>
+              <FRLink href={getFrenchLevelLink(dataFrenchLevel)}>{getFrenchLevel(dataFrenchLevel)}</FRLink>
             ),
           icon: <FrenchLevelIcon color={color} />,
         },
         {
           label: "Âge demandé",
-          content: !dataAge ? (
-            dataAge
-          ) : (
-            <FRLink target="_blank" href={getAgeLink(dataAge)}>
-              {getAge(dataAge)}
-            </FRLink>
-          ),
+          content: !dataAge ? dataAge : <FRLink href={getAgeLink(dataAge)}>{getAge(dataAge)}</FRLink>,
           icon: <AgeIcon color={color} />,
         },
       ]}

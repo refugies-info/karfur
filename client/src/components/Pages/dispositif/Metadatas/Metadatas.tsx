@@ -45,11 +45,7 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
         items={[
           {
             label: typeContenu === ContentType.DISPOSITIF ? "Proposé par" : undefined,
-            content: (
-              <FRLink target="_blank" href={getSponsorLink(mainSponsor?._id.toString())}>
-                {mainSponsor?.nom}
-              </FRLink>
-            ),
+            content: <FRLink href={getSponsorLink(mainSponsor?._id.toString())}>{mainSponsor?.nom}</FRLink>,
             icon: (
               <Image
                 src={mainSponsor?.picture.secure_url || ""}
