@@ -29,15 +29,24 @@ const Feedback = () => {
   }, [userId, mercis]);
 
   const sendPositiveFeedback = useCallback(() => {
-    if (!dispositif || didThank) return;
-    Event("Reaction", "Merci", "from dispositif");
-    API.addDispositifMerci(dispositif._id.toString())
-      .then(() => {
-        setDidThank(true);
-        setShowToast(true);
-        setNbMercis((c) => c + 1);
-      })
-      .catch((e) => logger.error(e));
+    if (!dispositif) return;
+    if (didThank) {
+      API.deleteDispositifMerci(dispositif._id.toString())
+        .then(() => {
+          setDidThank(false);
+          setNbMercis((c) => c - 1);
+        })
+        .catch((e) => logger.error(e));
+    } else {
+      Event("Reaction", "Merci", "from dispositif");
+      API.addDispositifMerci(dispositif._id.toString())
+        .then(() => {
+          setDidThank(true);
+          setShowToast(true);
+          setNbMercis((c) => c + 1);
+        })
+        .catch((e) => logger.error(e));
+    }
   }, [didThank, dispositif]);
 
   const sendNegativeFeedback = useCallback(() => {
