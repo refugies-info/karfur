@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
@@ -11,13 +11,20 @@ import styles from "./Contributors.module.scss";
  */
 const Contributors = () => {
   const dispositif = useSelector(selectedDispositifSelector);
+  const participants = useMemo(() => {
+    return (dispositif?.participants || []).sort((a, b) => {
+      if (a.roles?.includes("Admin")) return -1;
+      if (b.roles?.includes("Admin")) return 1;
+      return 0;
+    });
+  }, [dispositif?.participants]);
 
   return (
     <div className={styles.section}>
       <Container>
-        <p className={styles.title}>{(dispositif?.participants || []).length} contributeurs mobilisés</p>
+        <p className={styles.title}>{participants.length} contributeurs mobilisés</p>
         <ContentSlider
-          cards={(dispositif?.participants || []).map((user, i) => (
+          cards={participants.map((user, i) => (
             <ContributorCard key={i} user={user} />
           ))}
           gap={16}
