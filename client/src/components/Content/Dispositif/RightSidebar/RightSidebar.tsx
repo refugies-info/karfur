@@ -18,8 +18,19 @@ import styles from "./RightSidebar.module.scss";
 const RightSidebar = () => {
   const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
+
+  // favorites
   const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(dispositif?._id || null);
-  const [showFavoriteToast, setShowFavoriteToast] = useState(false);
+  const [showFavoriteToast, setShowFavoriteToast] = useState<"added" | "removed" | null>(null);
+  const toggleFavorite = useCallback(() => {
+    if (isFavorite) {
+      deleteFromFavorites();
+      setShowFavoriteToast("removed");
+    } else {
+      addToFavorites();
+      setShowFavoriteToast("added");
+    }
+  }, [addToFavorites, deleteFromFavorites, isFavorite]);
 
   // tts
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -71,19 +82,7 @@ const RightSidebar = () => {
       >
         {isPlayingTts ? "Arrêter" : "Écouter la fiche"}
       </Button>
-      <Button
-        secondary
-        onClick={
-          isFavorite
-            ? deleteFromFavorites
-            : () => {
-                addToFavorites();
-                setShowFavoriteToast(true);
-              }
-        }
-        icon={isFavorite ? "star" : "star-outline"}
-        className={styles.btn}
-      >
+      <Button secondary onClick={toggleFavorite} icon={isFavorite ? "star" : "star-outline"} className={styles.btn}>
         {isFavorite ? "Ajouté aux favoris" : "Ajouter aux favoris"}
       </Button>
       <LangueMenu
@@ -94,7 +93,11 @@ const RightSidebar = () => {
         disabledOptions={disabledOptions}
         withFlag
       />
-      {showFavoriteToast && <Toast close={() => setShowFavoriteToast(false)}>Fiche ajoutée aux favoris !</Toast>}
+      {showFavoriteToast && (
+        <Toast close={() => setShowFavoriteToast(null)}>
+          {showFavoriteToast === "added" ? "Fiche ajoutée aux favoris !" : "Fiche retirée des favoris !"}
+        </Toast>
+      )}
 
       <SMSForm />
       <ShareButtons />
