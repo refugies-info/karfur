@@ -131,10 +131,10 @@ const getInfoSections = (children, ln, root, id, type) => {
     for (const [i, section] of Object.entries(children)) {
       const uuid = savedUuids[id + type]?.[i] || uuidv4(); // use uuid if it exists in another language
 
-      infosections[uuid] = {
-        title: removeHTML(getLocalizedContent(section.title, ln, root)),
-        text: turnJSONtoHTML(getLocalizedContent(section.content, ln, root)),
-      };
+      const title = removeHTML(getLocalizedContent(section.title, ln, root));
+      const text = turnJSONtoHTML(getLocalizedContent(section.content, ln, root));
+      if (!title && !text) continue;
+      infosections[uuid] = { title, text };
     }
   }
 
