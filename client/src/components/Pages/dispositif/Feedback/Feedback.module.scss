@@ -14,7 +14,7 @@
   position: relative;
   margin-bottom: u(20);
 
-  @include media-max("lg-limit") {
+  @include media-max("xl-limit") {
     padding: 0;
   }
 }
@@ -26,7 +26,7 @@
   height: 100%;
   width: auto;
 
-  @include media-max("lg-limit") {
+  @include media-max("xl-limit") {
     position: relative;
     height: 240px;
     width: 120%;
@@ -37,7 +37,7 @@
   position: relative;
   z-index: 2;
 
-  @include media-max("lg-limit") {
+  @include media-max("xl-limit") {
     padding: u(4);
     text-align: center;
   }
@@ -48,7 +48,7 @@
   font-weight: bold;
   margin-bottom: u(4);
 
-  @include media-max("lg-limit") {
+  @include media-max("xl-limit") {
     @include dsfr-text("large");
   }
 }

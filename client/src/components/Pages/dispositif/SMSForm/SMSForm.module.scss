@@ -15,6 +15,8 @@
   @include dsfr-text("h6");
   font-weight: bold;
   margin-bottom: u(6);
+  display: flex;
+  align-items: center;
 }
 
 .input {

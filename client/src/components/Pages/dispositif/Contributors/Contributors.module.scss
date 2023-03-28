@@ -7,6 +7,7 @@
 .section {
   background-color: $darkBackgroundAltGrey;
   padding: u(20) 0;
+  overflow-x: hidden;
 
   @include media-max("lg-limit") {
     padding: u(10) 0;
