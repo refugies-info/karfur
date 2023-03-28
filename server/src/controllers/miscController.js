@@ -1,8 +1,8 @@
 import { celebrate, Segments } from "celebrate";
 import express from "express";
 import Joi from "joi";
-import logger from "src/logger";
-import { verifyVersion } from "src/workflows/misc";
+import logger from "../logger";
+import { verifyVersion } from "../workflows/misc";
 const router = express.Router();
 
 const validator = celebrate({
