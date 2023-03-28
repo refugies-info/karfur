@@ -1,24 +1,29 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { colors } from "colors";
 import { useLocale } from "hooks";
-import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { isValidPhone } from "lib/validateFields";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
+import { allLanguesSelector } from "services/Langue/langue.selectors";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Toast from "components/UI/Toast";
 import Tooltip from "components/UI/Tooltip";
 import API from "utils/API";
 import LangueMenu from "../LangueMenu";
+import Input from "../Input";
 import styles from "./SMSForm.module.scss";
 
 const SMSForm = () => {
   const { t } = useTranslation();
   const locale = useLocale();
+
   const [selectedLn, setSelectedLn] = useState<string>(locale);
+  const languages = useSelector(allLanguesSelector);
+  const language = useMemo(() => languages.find((ln) => ln.i18nCode === selectedLn), [languages, selectedLn]);
+
   const [tel, setTel] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [showToast, setShowToast] = useState(false);
@@ -53,17 +58,22 @@ const SMSForm = () => {
         <EVAIcon name="info-outline" size={20} fill="black" className="ms-2" id="SMSTooltip" />
         <Tooltip target="SMSTooltip">Vous restez anonyme : le SMS est envoyé avec un numéro Réfugiés.info.</Tooltip>
       </p>
-      <div className={styles.input}>
-        <input
-          type="tel"
-          placeholder="N° de téléphone"
-          value={tel}
-          onChange={(e: any) => setTel(e.target.value)}
-          className={cls(!!error && styles.input_error)}
-        />
-        <span className={styles.divider} />
-        <LangueMenu label="en" selectedLn={selectedLn} setSelectedLn={setSelectedLn} />
-      </div>
+      <Input
+        id="sms-phone-input"
+        type="tel"
+        label="Numéro de téléphone"
+        icon="phone-outline"
+        value={tel}
+        onChange={(e: any) => setTel(e.target.value)}
+        error={error}
+        className="mb-4"
+      />
+      <LangueMenu
+        label={`SMS en ${(language?.langueFr || "français").toLowerCase()}`}
+        selectedLn={selectedLn}
+        setSelectedLn={setSelectedLn}
+        className={styles.language}
+      />
       <Button
         icon="paper-plane-outline"
         iconPlacement="end"

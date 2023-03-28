@@ -6,11 +6,13 @@ import { cls } from "lib/classname";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import Flag from "components/UI/Flag";
 import styles from "./LangueMenu.module.scss";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
 interface Props {
   selectedLn: string;
   setSelectedLn: React.Dispatch<React.SetStateAction<string>>;
   label?: string;
+  withFlag?: boolean;
   className?: string;
   disabledOptions?: string[];
 }
@@ -35,11 +37,12 @@ const LangueMenu = (props: Props) => {
       isOpen={open}
       direction="down"
       toggle={() => setOpen((o) => !o)}
-      className={cls(styles.dropdown, props.className)}
+      className={cls(styles.dropdown, open && styles.open, props.className)}
     >
       <DropdownToggle>
         {props.label}&nbsp;
-        <Flag langueCode={lnCode} className="ms-2" />
+        {props.withFlag && <Flag langueCode={lnCode} className="ms-2" />}
+        <EVAIcon name={open ? "chevron-up" : "chevron-down"} size={16} fill="dark" className={styles.icon} />
       </DropdownToggle>
       <DropdownMenu className={styles.menu}>
         {languages.map((ln, i) => (

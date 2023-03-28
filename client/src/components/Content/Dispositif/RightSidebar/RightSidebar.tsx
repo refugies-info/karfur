@@ -63,11 +63,11 @@ const RightSidebar = () => {
     [dispositif, languages],
   );
   return (
-    <div>
+    <div className={styles.container}>
       <Button
         onClick={toggleReading}
         icon={isPlayingTts ? "stop-circle" : "play-circle"}
-        className={cls("mb-2", isPlayingTts && styles.playing)}
+        className={cls(styles.btn, isPlayingTts && styles.playing)}
       >
         {isPlayingTts ? "Arrêter" : "Écouter la fiche"}
       </Button>
@@ -82,22 +82,22 @@ const RightSidebar = () => {
               }
         }
         icon={isFavorite ? "star" : "star-outline"}
-        className="mb-2"
+        className={styles.btn}
       >
         {isFavorite ? "Ajouté aux favoris" : "Ajouter aux favoris"}
       </Button>
-      {showFavoriteToast && <Toast close={() => setShowFavoriteToast(false)}>Fiche ajoutée aux favoris !</Toast>}
-
-      <ShareButtons />
-      <SMSForm />
-
       <LangueMenu
-        label={`Lire en ${language?.langueLoc?.toLowerCase() || "français"}`}
+        label={`En ${language?.langueLoc?.toLowerCase() || "français"}`}
         selectedLn={selectedLn}
         setSelectedLn={setSelectedLn}
         className={styles.read}
         disabledOptions={disabledOptions}
+        withFlag
       />
+      {showFavoriteToast && <Toast close={() => setShowFavoriteToast(false)}>Fiche ajoutée aux favoris !</Toast>}
+
+      <SMSForm />
+      <ShareButtons />
     </div>
   );
 };

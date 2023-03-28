@@ -6,6 +6,9 @@
 
 .container {
   margin-top: u(10);
+  border: 1px solid $lightBorderDefaultGrey;
+  padding: u(4);
+  border-radius: u(2);
 }
 
 .title {
@@ -35,11 +38,16 @@
   }
 }
 
-.divider {
-  width: 1px;
-  height: 24px;
-  background: $lightBorderDefaultGrey;
-  display: block;
+.language {
+  margin-bottom: u(4);
+
+  & > button {
+    width: 100%;
+    justify-content: center;
+    border-radius: u(2);
+    background: $lightBackgroundElevationAlt !important;
+    text-align: left;
+  }
 }
 
 .submit {

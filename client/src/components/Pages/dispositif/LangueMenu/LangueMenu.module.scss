@@ -18,6 +18,16 @@
       border-color: inherit !important;
       color: inherit !important;
     }
+
+    .icon {
+      position: absolute;
+      @include r-ltr(u(3));
+      top: u(3);
+    }
+  }
+
+  .open .icon {
+    transform: rotate(180deg);
   }
 
   .menu {
