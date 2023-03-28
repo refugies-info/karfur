@@ -2706,7 +2706,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         }
       >
         Version 
-        2023.01.1
+        2023.04.1
       </Text>
       <Modal
         animationType="none"
@@ -5473,7 +5473,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         }
       >
         Version 
-        2023.01.1
+        2023.04.1
       </Text>
       <Modal
         animationType="none"
@@ -8240,7 +8240,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         }
       >
         Version 
-        2023.01.1
+        2023.04.1
       </Text>
       <Modal
         animationType="none"
