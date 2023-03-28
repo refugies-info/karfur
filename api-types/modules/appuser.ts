@@ -16,9 +16,9 @@ export interface AppUserRequest {
  * @url POST /appuser/notification_settings
  */
 export interface NotificationSettingsRequest {
-  global: boolean;
-  local: boolean;
-  demarches: boolean;
+  global?: boolean;
+  local?: boolean;
+  demarches?: boolean;
   themes?: {
     [key: string]: boolean;
   };
