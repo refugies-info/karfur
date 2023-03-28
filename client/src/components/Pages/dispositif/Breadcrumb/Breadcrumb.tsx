@@ -51,7 +51,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
           {chevron}
 
           <Link href={getPath("/recherche", "fr", `?type=${dispositif.typeContenu}`)} className={styles.link}>
-            {dispositif.typeContenu === ContentType.DISPOSITIF ? "Dispositifs" : "Démarches"}
+            {dispositif.typeContenu === ContentType.DISPOSITIF ? "Actions" : "Démarches"}
           </Link>
 
           {chevron}
