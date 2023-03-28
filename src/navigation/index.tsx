@@ -14,7 +14,7 @@ import * as Notifications from "expo-notifications";
 import { useQueryClient } from "react-query";
 
 import { logger } from "../logger";
-import { styles, ThemeProvider } from "../theme";
+import { styles } from "../theme";
 
 import { AvailableLanguageI18nCode } from "../types/interface";
 import { RootStackParamList } from "../../types";
@@ -188,25 +188,23 @@ export const RootNavigator = () => {
   };
 
   return (
-    <ThemeProvider>
-      <NavigationContainer
-        theme={MyTheme}
-        ref={navigationRef}
-        onReady={() => setNavigationReady(true)}
-      >
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {!hasUserSeenOnboarding ? (
-            <Stack.Screen
-              name="OnboardingNavigator"
-              component={OnboardingStackNavigator}
-            />
-          ) : (
-            <>
-              <Stack.Screen name="Root" component={BottomTabNavigator} />
-            </>
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </ThemeProvider>
+    <NavigationContainer
+      theme={MyTheme}
+      ref={navigationRef}
+      onReady={() => setNavigationReady(true)}
+    >
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {!hasUserSeenOnboarding ? (
+          <Stack.Screen
+            name="OnboardingNavigator"
+            component={OnboardingStackNavigator}
+          />
+        ) : (
+          <>
+            <Stack.Screen name="Root" component={BottomTabNavigator} />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };

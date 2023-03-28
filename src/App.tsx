@@ -18,6 +18,7 @@ import { ConnexionTest } from "./components/ConnexionTest";
 import { retrieveTechnicalInfo, updateAppUser } from "./utils/API";
 import useAsync from "react-use/lib/useAsync";
 import OfflinePage from "./components/OfflinePage";
+import { ThemeProvider } from "./theme";
 
 const queryClient = new QueryClient();
 
@@ -79,9 +80,11 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
           <SafeAreaProvider>
-            <RootNavigator />
-            <ConnexionTest />
-            <StatusBar />
+            <ThemeProvider>
+              <RootNavigator />
+              <ConnexionTest />
+              <StatusBar />
+            </ThemeProvider>
           </SafeAreaProvider>
         </Provider>
       </QueryClientProvider>
