@@ -6,7 +6,7 @@ import { cls } from "lib/classname";
 import ThemeIcon from "components/UI/ThemeIcon";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Tooltip from "components/UI/Tooltip";
-import AdminIcon from "assets/dispositif/admin-icon.svg";
+import AdminIcon from "assets/dispositif/crown.svg";
 import styles from "./ThemeSelectButton.module.scss";
 
 interface ButtonProps {
@@ -62,7 +62,7 @@ const ThemeSelectButton = (props: Props) => {
             style={{ backgroundColor: props.theme.colors.color30, color: props.theme.colors.color100 }}
           >
             thème principal
-            <Image src={AdminIcon} width={20} height={20} alt="" className="ms-2" />
+            <Image src={AdminIcon} width={16} height={16} alt="" className="ms-2" />
           </span>
         )}
         {selected && <EVAIcon name="close-outline" size={24} className="ms-2" fill="white" />}

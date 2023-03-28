@@ -6,7 +6,7 @@ import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.s
 import TagName from "components/UI/TagName";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import BaseCard from "../BaseCard";
-import AdminIcon from "assets/dispositif/admin-icon.svg";
+import AdminIcon from "assets/dispositif/crown.svg";
 import styles from "./CardTheme.module.scss";
 
 interface Props {
@@ -25,7 +25,7 @@ const CardTheme = ({ dataTheme, dataSecondaryThemes, color, onClick }: Props) =>
         {theme && (
           <span className={styles.badge} style={{ backgroundColor: theme.colors.color100 }}>
             <TagName theme={theme} size={16} />
-            <Image src={AdminIcon} width={20} height={20} alt="" className="ms-2" />
+            <Image src={AdminIcon} width={16} height={16} alt="" className="ms-2" />
           </span>
         )}
         {secondaryThemes.map((theme, i) => (
