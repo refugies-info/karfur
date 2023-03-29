@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { CreateDispositifRequest, Metadatas } from "api-types";
+import { BaseModal } from "components/Pages/dispositif";
 import ChoiceButton from "../../ChoiceButton";
-import BaseModal from "../BaseModal";
 import { SimpleFooter, StepsFooter } from "../components";
 import { help } from "./data";
 import DepartmentInput from "./DepartmentInput";

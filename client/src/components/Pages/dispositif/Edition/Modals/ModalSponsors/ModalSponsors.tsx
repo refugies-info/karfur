@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { CreateDispositifRequest, Picture, Sponsor } from "api-types";
 import Input from "components/Pages/dispositif/Input";
-import BaseModal from "../BaseModal";
+import { BaseModal } from "components/Pages/dispositif";
 import { SimpleFooter } from "../components";
 import { help } from "./data";
 import LogoInput from "../../LogoInput";

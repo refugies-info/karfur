@@ -9,6 +9,7 @@ import CardAvailability from "./CardAvailability";
 import CardPublic from "./CardPublic";
 import CardConditions from "./CardConditions";
 import CardLocation from "./CardLocation";
+import defaultStructureImage from "assets/recherche/default-structure-image.svg";
 import styles from "./Metadatas.module.scss";
 
 interface Props {
@@ -48,7 +49,7 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
             content: <FRLink href={getSponsorLink(mainSponsor?._id.toString())}>{mainSponsor?.nom}</FRLink>,
             icon: (
               <Image
-                src={mainSponsor?.picture.secure_url || ""}
+                src={mainSponsor?.picture?.secure_url || defaultStructureImage}
                 width={32}
                 height={32}
                 style={{ objectFit: "contain" }}

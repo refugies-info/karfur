@@ -8,9 +8,9 @@ import {
   timeSlotType,
   timeUnitType,
 } from "api-types";
+import { BaseModal } from "components/Pages/dispositif";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
-import BaseModal from "../BaseModal";
 import { StepsFooter, InlineForm } from "../components";
 import {
   amountDetailsOptions,
