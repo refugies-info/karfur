@@ -1,0 +1,28 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/input";
+
+.modal {
+  width: 588px !important;
+}
+
+.footer {
+  margin-top: u(8);
+  text-align: right;
+}
+
+.textarea {
+  @include baseInput();
+  background: $gray30;
+  border: 1px solid $lightBorderDefaultGrey;
+  min-height: 240px;
+
+  &:hover {
+    background: $lightBackgroundContrastGrey;
+  }
+  &:focus {
+    background: $gray30;
+    border-color: $lightTextTitleGrey;
+  }
+}

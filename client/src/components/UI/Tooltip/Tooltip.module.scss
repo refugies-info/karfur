@@ -19,4 +19,8 @@
   :global(.arrow) {
     display: none !important;
   }
+
+  @media print {
+    display: none;
+  }
 }

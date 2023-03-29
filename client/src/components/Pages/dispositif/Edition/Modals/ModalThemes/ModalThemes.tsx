@@ -4,7 +4,7 @@ import { useFormContext } from "react-hook-form";
 import { CreateDispositifRequest } from "api-types";
 import { themesSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import BaseModal from "../BaseModal";
+import { BaseModal } from "components/Pages/dispositif";
 import { SimpleFooter } from "../components";
 import ThemeSelectButton from "./ThemeSelectButton";
 import styles from "./ModalThemes.module.scss";

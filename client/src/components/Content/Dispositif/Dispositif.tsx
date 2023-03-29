@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { ContentType } from "api-types";
-import { useWindowSize } from "hooks";
+import { useContentLocale, useWindowSize } from "hooks";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
@@ -42,6 +42,7 @@ const Dispositif = (props: Props) => {
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
+  const { isRTL } = useContentLocale();
 
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
@@ -65,7 +66,7 @@ const Dispositif = (props: Props) => {
           {isViewMode ? <LeftSidebar /> : <LeftSidebarEdition />}
         </div>
 
-        <div className={styles.main} id="anchor-what">
+        <div className={styles.main} id="anchor-what" dir={isRTL ? undefined : "ltr"}>
           {!isTablet && <Header typeContenu={typeContenu} />}
           {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
             <Section key={i} sectionKey={section} contentType={typeContenu} />

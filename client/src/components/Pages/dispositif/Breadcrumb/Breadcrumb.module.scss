@@ -40,7 +40,4 @@
 
 .current {
   @include dsfr-text("very-small");
-  @include media-max("lg-limit") {
-    margin-top: u(2);
-  }
 }

@@ -263,6 +263,10 @@ const API = {
     const headers = getHeaders();
     return instance.put(`/dispositifs/${id}/merci`, {}, { headers });
   },
+  deleteDispositifMerci: (id: string): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.delete(`/dispositifs/${id}/merci`, { headers });
+  },
   addDispositifSuggestion: (id: string, body: AddSuggestionDispositifRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.put(`/dispositifs/${id}/suggestion`, body, { headers });

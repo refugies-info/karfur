@@ -3,8 +3,8 @@ import { useFormContext } from "react-hook-form";
 import { ageType, CreateDispositifRequest, frenchLevelType, Metadatas, publicStatusType, publicType } from "api-types";
 import { cls } from "lib/classname";
 import { entries } from "lib/typedObjectEntries";
+import { BaseModal } from "components/Pages/dispositif";
 import ChoiceButton from "../../ChoiceButton";
-import BaseModal from "../BaseModal";
 import { StepsFooter, InlineForm } from "../components";
 import {
   ageOptions,

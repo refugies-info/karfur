@@ -6,7 +6,7 @@ import { ContentType, CreateDispositifRequest } from "api-types";
 import { themesSelector } from "services/Themes/themes.selectors";
 import DispositifCard from "components/UI/DispositifCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import BaseModal from "../BaseModal";
+import { BaseModal } from "components/Pages/dispositif";
 import { SimpleFooter } from "../components";
 import { getDefaultDispositif } from "./functions";
 import { help } from "./data";

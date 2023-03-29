@@ -17,19 +17,13 @@ const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
   const links = useMemo(() => {
     if (!data) return data;
     if (!Array.isArray(data)) {
-      return (
-        <FRLink target="_blank" href={getLocationLink(data)}>
-          {data === "france" ? "France entière" : "En ligne"}
-        </FRLink>
-      );
+      return <FRLink href={getLocationLink(data)}>{data === "france" ? "France entière" : "En ligne"}</FRLink>;
     }
     return (
       <>
         {data.map((dep, i) => (
           <span key={i}>
-            <FRLink target="_blank" href={getLocationLink(dep)}>
-              {dep}
-            </FRLink>
+            <FRLink href={getLocationLink(dep)}>{dep}</FRLink>
             <br />
           </span>
         ))}

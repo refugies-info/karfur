@@ -9,4 +9,5 @@ export { default as useRTL } from "./useRTL";
 export { default as useThemeIcon } from "./useThemeIcon";
 export { default as useUser } from "./useUser";
 export { default as useWindowSize } from "./useWindowSize";
+export { default as useContentLocale } from "./useContentLocale";
 export { useScrollDirection } from "./useScrollDirection";

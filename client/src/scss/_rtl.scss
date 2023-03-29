@@ -26,3 +26,30 @@ html body div[dir="rtl"] {
     margin-right: auto !important;
   }
 }
+
+html body div[dir="ltr"] {
+  text-align: left;
+
+  @each $prop, $abbrev in (margin: m, padding: p) {
+    @each $size, $length in $spacers {
+      .#{$abbrev}e-#{$size} {
+        #{$prop}-left: 0 !important;
+        #{$prop}-right: $length !important;
+      }
+      .#{$abbrev}s-#{$size} {
+        #{$prop}-left: $length !important;
+        #{$prop}-right: 0 !important;
+      }
+    }
+  }
+
+  // Some special margin utils
+  .me-auto {
+    margin-right: auto !important;
+    margin-left: inherit !important;
+  }
+  .ms-auto {
+    margin-left: auto !important;
+    margin-right: inherit !important;
+  }
+}

@@ -3,7 +3,7 @@ import { Tooltip as TooltipTS, TooltipProps } from "reactstrap";
 import styles from "./Tooltip.module.scss";
 
 interface Props {
-  children: string;
+  children: string | React.ReactNode;
   target: string | HTMLElement | React.RefObject<HTMLElement>;
   placement?: TooltipProps["placement"];
 }

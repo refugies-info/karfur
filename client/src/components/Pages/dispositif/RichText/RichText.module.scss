@@ -22,7 +22,6 @@
     @include pl-ltr(u(8));
     @include ml-ltr(u(8));
     $border: 4px solid $lightBorderDefaultBlueFrance;
-    border-left: $border;
 
     @include media-max("lg-limit") {
       @include pl-ltr(u(4));
@@ -32,6 +31,10 @@
     @include rtl() {
       border-right: $border;
       border-left: none;
+    }
+    @include ltr() {
+      border-left: $border;
+      border-right: none;
     }
 
     &::before {
@@ -53,8 +56,12 @@
     position: relative;
     border-radius: u(2);
     overflow: hidden;
-    padding: u(4) u(2);
-    @include pl-ltr(u(14));
+    @include rtl() {
+      padding: u(4) u(14) u(4) u(2);
+    }
+    @include ltr() {
+      padding: u(4) u(2) u(4) u(14);
+    }
 
     &::before {
       content: attr(data-title);

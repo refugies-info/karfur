@@ -14,6 +14,10 @@ $btnSize: u(8);
   top: 0;
   @include r-ltr(-54px);
 
+  @media print {
+    display: none;
+  }
+
   &.open {
     background: $lightBackgroundElevationAlt;
     z-index: 1;

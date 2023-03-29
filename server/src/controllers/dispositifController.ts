@@ -47,6 +47,7 @@ import { updateDispositifProperties } from "../workflows/dispositif/updateDispos
 import { updateDispositif } from "../workflows/dispositif/updateDispositif";
 import { createDispositif } from "../workflows/dispositif/createDispositif";
 import { addMerci } from "../workflows/dispositif/addMerci";
+import { deleteMerci } from "../workflows/dispositif/deleteMerci";
 import { addSuggestion } from "../workflows/dispositif/addSuggestion";
 import { patchSuggestion } from "../workflows/dispositif/patchSuggestion";
 import { deleteSuggestion } from "../workflows/dispositif/deleteSuggestion";
@@ -207,6 +208,14 @@ export class DispositifController extends Controller {
   @Put("/{id}/merci")
   public async addMerci(@Path() id: string, @Request() request: express.Request): Response {
     return addMerci(id, request.userId);
+  }
+  @Security({
+    jwt: ["optional"],
+    fromSite: [],
+  })
+  @Delete("/{id}/merci")
+  public async deleteMerci(@Path() id: string, @Request() request: express.Request): Response {
+    return deleteMerci(id, request.userId);
   }
   @Security({
     jwt: ["optional"],

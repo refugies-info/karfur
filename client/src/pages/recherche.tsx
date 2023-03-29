@@ -5,8 +5,8 @@ import { Container } from "reactstrap";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import debounce from "lodash/debounce";
-import qs from "query-string";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetDispositifsResponse, Id } from "api-types";
 import { wrapper } from "services/configureStore";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
@@ -20,6 +20,7 @@ import { Results, SearchQuery } from "services/SearchResults/searchResults.reduc
 import { cls } from "lib/classname";
 import { queryDispositifs, queryDispositifsWithAlgolia } from "lib/recherche/queryContents";
 import decodeQuery from "lib/recherche/decodeUrlQuery";
+import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { isHomeSearchVisible } from "lib/recherche/isHomeSearchVisible";
@@ -31,9 +32,8 @@ import SearchResults from "components/Pages/recherche/SearchResults";
 import SearchHeader from "components/Pages/recherche/SearchHeader";
 import HomeSearch from "components/Pages/recherche/HomeSearch";
 import NewSearchModal from "components/Modals/NewSearchModal/NewSearchModal";
-import { getPath } from "routes";
+import { getPath, isRoute } from "routes";
 import styles from "scss/pages/recherche.module.scss";
-import { GetDispositifsResponse, Id } from "api-types";
 
 export type UrlSearchQuery = {
   departments?: string | string[];
@@ -76,6 +76,18 @@ const Recherche = () => {
     localStorage.setItem(MODAL_STORAGE_KEY, "true");
   }, [setShowModal]);
 
+  // when navigating, save state to prevent loop on search page
+  const [isNavigating, setIsNavigating] = useState(false);
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (!isRoute(url, "/recherche")) setIsNavigating(true);
+    };
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [router]);
+
   useEffect(() => {
     // toggle home screen
     setShowHome(isHomeSearchVisible(query));
@@ -84,7 +96,7 @@ const Recherche = () => {
     const updateUrl = () => {
       const locale = router.locale;
       const oldQueryString = router.asPath.split("?")[1] || "";
-      const newQueryString = qs.stringify({ ...query }, { arrayFormat: "comma", sort: (a, b) => a.localeCompare(b) });
+      const newQueryString = buildUrlQuery(query);
       if (oldQueryString !== newQueryString) {
         router.push(
           {
@@ -98,11 +110,13 @@ const Recherche = () => {
     };
 
     // query dispositifs
-    debouncedQuery(query, dispositifs, languei18nCode, (res) => {
-      updateUrl();
-      dispatch(setSearchResultsActionCreator(res));
-    });
-  }, [query, dispositifs, dispatch, router, languei18nCode]);
+    if (!isNavigating) {
+      debouncedQuery(query, dispositifs, languei18nCode, (res) => {
+        updateUrl();
+        dispatch(setSearchResultsActionCreator(res));
+      });
+    }
+  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode]);
 
   // check if department deployed
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(

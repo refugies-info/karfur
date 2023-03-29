@@ -21,7 +21,9 @@ const CardConditions = ({ data, color, onClick }: Props) => {
           : (data || []).map((item) => ({
               // TODO: translate
               content: item,
-              icon: <Image src={getConditionImage(item)} width={32} height={32} alt="" />,
+              icon: getConditionImage(item) ? (
+                <Image src={getConditionImage(item)} width={32} height={32} alt="" />
+              ) : null,
             }))
       }
       color={color}

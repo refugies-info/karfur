@@ -34,7 +34,7 @@ const Header = (props: Props) => {
         {pageContext.mode === "view" && (
           <>
             {dispositif?.date && (
-              <Badge text={`Mise à jour ${moment(dispositif.date).fromNow()}`} type="success" isSmall hasIcon />
+              <Badge text={`Mise à jour ${moment(dispositif.date).fromNow()}`} type="info" isSmall hasIcon />
             )}
 
             <Button

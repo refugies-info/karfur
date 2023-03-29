@@ -10,7 +10,7 @@
   text-transform: uppercase;
   border-radius: u(2);
   padding: u(1) u(2);
-  white-space: nowrap;
+  display: inline-block;
 
   @include media-max("lg-limit") {
     @include dsfr-text("normal");

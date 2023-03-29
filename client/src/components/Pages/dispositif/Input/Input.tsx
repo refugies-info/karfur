@@ -5,12 +5,12 @@ import styles from "./Input.module.scss";
 
 interface Props {
   id: string;
-  type?: "text" | "email";
+  type?: "text" | "email" | "tel";
   placeholder?: string;
   label?: string;
   icon?: string;
   className?: string;
-  error?: string;
+  error?: string | null;
   valid?: boolean;
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -18,7 +18,7 @@ interface Props {
 
 const Input = (props: Props) => {
   return (
-    <div className={cls(styles.container, props.valid && styles.valid, props.error && styles.error)}>
+    <div className={cls(styles.container, props.valid && styles.valid, !!props.error && styles.error)}>
       {props.label && <label htmlFor={props.id}>{props.label}</label>}
       <div className={cls(styles.wrapper, props.icon && styles.with_icon, props.className)}>
         <input

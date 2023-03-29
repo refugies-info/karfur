@@ -4,7 +4,7 @@ import { SimpleUser } from "api-types";
 import DefaultAvatar from "assets/dispositif/default-avatar.png";
 import { cls } from "lib/classname";
 import { getRole } from "./functions";
-import AdminIcon from "assets/dispositif/admin-icon.svg";
+import AdminIcon from "assets/dispositif/crown.svg";
 import styles from "./ContributorCard.module.scss";
 
 interface Props {
@@ -27,7 +27,7 @@ const ContributorCard = ({ user }: Props) => {
       <span className={styles.username}>{user.username}</span>
       <span className={styles.role}>
         {role}
-        {role === "Admin" && <Image src={AdminIcon} width={24} height={24} alt="" className="ms-2" />}
+        {role === "Admin" && <Image src={AdminIcon} width={16} height={16} alt="" className="ms-2" />}
       </span>
     </div>
   );

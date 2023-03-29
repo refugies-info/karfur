@@ -12,6 +12,10 @@
   display: flex;
   justify-content: center;
 
+  @media print {
+    justify-content: flex-start;
+  }
+
   @include media-max("lg-limit") {
     display: block;
     background: $gray30;
@@ -25,13 +29,17 @@
   width: 320px;
   padding: u(10);
 
+  @include media-max("xl-limit") {
+    padding: u(5);
+  }
+
   @include media-max("lg-limit") {
     width: 100%;
     padding: 0;
   }
 }
 .main {
-  min-width: 800px;
+  min-width: 700px;
   width: 50%;
   background: $gray30;
   border: 1px solid $lightBorderDefaultGrey;
@@ -39,6 +47,10 @@
   border-radius: u(2) u(2) 0 0;
   padding: u(10) u(20);
   margin-top: -142px;
+
+  @include media-max("xl-limit") {
+    min-width: 580px;
+  }
 
   @include media-max("lg-limit") {
     min-width: 0;
@@ -70,6 +82,10 @@
     padding: u(10);
     position: sticky;
     top: 0;
+
+    @include media-max("xl-limit") {
+      padding: u(5);
+    }
   }
 
   @media print {
@@ -84,6 +100,10 @@
 
 .top {
   margin-bottom: u(16);
+
+  @media print {
+    display: none;
+  }
 }
 
 .divider {

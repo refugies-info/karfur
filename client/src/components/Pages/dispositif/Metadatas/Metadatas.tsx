@@ -9,6 +9,7 @@ import CardAvailability from "./CardAvailability";
 import CardPublic from "./CardPublic";
 import CardConditions from "./CardConditions";
 import CardLocation from "./CardLocation";
+import defaultStructureImage from "assets/recherche/default-structure-image.svg";
 import styles from "./Metadatas.module.scss";
 
 interface Props {
@@ -27,7 +28,7 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
   return (
     <div id="anchor-who">
       <p className={styles.title} style={{ color }}>
-        C'est pour qui ?
+        Informations importantes
       </p>
       <Card
         title={
@@ -45,14 +46,10 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
         items={[
           {
             label: typeContenu === ContentType.DISPOSITIF ? "Proposé par" : undefined,
-            content: (
-              <FRLink target="_blank" href={getSponsorLink(mainSponsor?._id.toString())}>
-                {mainSponsor?.nom}
-              </FRLink>
-            ),
+            content: <FRLink href={getSponsorLink(mainSponsor?._id.toString())}>{mainSponsor?.nom}</FRLink>,
             icon: (
               <Image
-                src={mainSponsor?.picture.secure_url || ""}
+                src={mainSponsor?.picture?.secure_url || defaultStructureImage}
                 width={32}
                 height={32}
                 style={{ objectFit: "contain" }}

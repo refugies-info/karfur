@@ -123,6 +123,30 @@ export const addMerciDispositifInDB = async (
     new: true,
   });
 
+export const removeMerciDispositifInDB = async (
+  dispositifId: DispositifId,
+  userId: UserId
+): Promise<Dispositif> => {
+  if (userId) {
+    // remove merci of user
+    return DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $pull: { merci: { userId } } }, {
+      upsert: true,
+      new: true,
+    });
+  }
+  // if no user id, remove last merci without userId
+  const dispositif = await DispositifModel.findOne({ _id: dispositifId }, { merci: 1 });
+  if (!dispositif) return
+  const newMerci = [...(dispositif.merci || [])];
+  for (var i = newMerci.length - 1; i >= 0; i--) {
+    if (!newMerci[i].userId) {
+      newMerci.splice(i, 1);
+      break;
+    }
+  }
+  return DispositifModel.findOneAndUpdate({ _id: dispositifId }, { merci: newMerci });
+}
+
 export const addSuggestionDispositifInDB = async (
   dispositifId: DispositifId,
   suggestion: Suggestion
