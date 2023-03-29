@@ -56,10 +56,10 @@
     position: relative;
     border-radius: u(2);
     overflow: hidden;
-    @include ltr() {
+    @include rtl() {
       padding: u(4) u(14) u(4) u(2);
     }
-    @include rtl() {
+    @include ltr() {
       padding: u(4) u(2) u(4) u(14);
     }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
 import { getPath, PathNames } from "routes";
 import { useDispatch, useSelector } from "react-redux";
-import { useFavorites, useLocale, useAuth } from "hooks";
+import { useFavorites, useLocale, useAuth, useContentLocale } from "hooks";
 import { readAudio, stopAudio } from "lib/readAudio";
 import { getAllPageReadableText } from "lib/getReadableText";
 import { cls } from "lib/classname";
@@ -20,6 +20,7 @@ import styles from "./RightSidebar.module.scss";
 const RightSidebar = () => {
   const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
+  const { contentLocale } = useContentLocale();
   const { isAuth } = useAuth();
 
   // favorites
@@ -63,9 +64,11 @@ const RightSidebar = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const languages = useSelector(allLanguesSelector);
-  const [selectedLn, setSelectedLn] = useState<string>(locale);
+  const [selectedLn, setSelectedLn] = useState<string>(contentLocale);
+
   useEffect(() => {
-    if (selectedLn !== locale) {
+    // selected language changes -> change site locale
+    if (selectedLn !== locale && dispositif?.availableLanguages.includes(selectedLn)) {
       dispatch(toggleLangueActionCreator(selectedLn));
       const { pathname, query } = router;
       router.push(
@@ -79,6 +82,14 @@ const RightSidebar = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLn]);
+
+  useEffect(() => {
+    // locale changes -> change selected language
+    if (selectedLn !== locale && dispositif?.availableLanguages.includes(locale)) {
+      setSelectedLn(locale);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale]);
 
   const language = useMemo(() => languages.find((ln) => ln.i18nCode === selectedLn), [languages, selectedLn]);
   const disabledOptions = useMemo(
