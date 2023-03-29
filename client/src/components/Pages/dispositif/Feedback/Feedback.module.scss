@@ -14,6 +14,10 @@
   position: relative;
   margin-bottom: u(20);
 
+  @media print {
+    display: none;
+  }
+
   @include media-max("xl-limit") {
     padding: 0;
   }

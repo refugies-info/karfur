@@ -12,6 +12,10 @@
   display: flex;
   justify-content: center;
 
+  @media print {
+    justify-content: flex-start;
+  }
+
   @include media-max("lg-limit") {
     display: block;
     background: $gray30;
@@ -96,6 +100,10 @@
 
 .top {
   margin-bottom: u(16);
+
+  @media print {
+    display: none;
+  }
 }
 
 .divider {

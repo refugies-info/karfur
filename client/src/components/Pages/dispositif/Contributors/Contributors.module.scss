@@ -9,6 +9,10 @@
   padding: u(20) 0;
   overflow-x: hidden;
 
+  @media print {
+    display: none;
+  }
+
   @include media-max("lg-limit") {
     padding: u(10) 0;
   }
