@@ -173,17 +173,6 @@ export interface CreateDispositifRequest extends DispositifRequest {
   typeContenu: ContentType;
 }
 
-export interface Poi {
-  title: string;
-  address: string;
-  city: string;
-  lat: number;
-  lng: number;
-  description?: string;
-  email?: string;
-  phone?: string;
-}
-
 /**
  * @url GET /dispositifs/{id}
  */

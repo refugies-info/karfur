@@ -126,7 +126,13 @@ export type ageType = "lessThan" | "moreThan" | "between";
 export type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
 export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
 export type publicType = "family" | "women" | "youths" | "senior";
-export type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
+export type conditionType =
+  | "acte naissance"
+  | /* "diplome" | */ "titre sejour" /* | "domicile" */
+  | "cir"
+  | "bank account"
+  | "pole emploi"
+  | "driver license";
 export type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
 export type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
 export type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
