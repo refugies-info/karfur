@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { ContentType, GetDispositifResponse } from "api-types";
 import Link from "next/link";
 import { getPath } from "routes";
-import { useRTL, useWindowSize } from "hooks";
+import { useContentLocale, useWindowSize } from "hooks";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { needSelector } from "services/Needs/needs.selectors";
 import { themeSelector } from "services/Themes/themes.selectors";
@@ -22,7 +22,8 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
   const theme = useSelector(themeSelector(dispositif?.theme));
   const need = useSelector(needSelector(dispositif?.needs?.[0] || null));
-  const isRTL = useRTL();
+  const { isRTL } = useContentLocale();
+
   const chevron = useMemo(
     () => (
       <EVAIcon

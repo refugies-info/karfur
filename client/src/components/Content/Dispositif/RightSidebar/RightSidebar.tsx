@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
 import { getPath, PathNames } from "routes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFavorites, useLocale, useAuth } from "hooks";
 import { readAudio, stopAudio } from "lib/readAudio";
 import { getAllPageReadableText } from "lib/getReadableText";
@@ -10,6 +10,7 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
+import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import Button from "components/UI/Button";
 import Toast from "components/UI/Toast";
 import BookmarkedModal from "components/Modals/BookmarkedModal";
@@ -60,10 +61,12 @@ const RightSidebar = () => {
 
   // available languages
   const router = useRouter();
+  const dispatch = useDispatch();
   const languages = useSelector(allLanguesSelector);
   const [selectedLn, setSelectedLn] = useState<string>(locale);
   useEffect(() => {
     if (selectedLn !== locale) {
+      dispatch(toggleLangueActionCreator(selectedLn));
       const { pathname, query } = router;
       router.push(
         {

@@ -49,6 +49,10 @@
     border-radius: u(2);
     background: $lightBackgroundElevationAlt !important;
     text-align: left;
+
+    @include rtl() {
+      text-align: right;
+    }
   }
 }
 
