@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
-import { getPath, PathNames } from "routes";
 import { useDispatch, useSelector } from "react-redux";
-import { useFavorites, useLocale, useAuth, useContentLocale } from "hooks";
+import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage } from "hooks";
 import { readAudio, stopAudio } from "lib/readAudio";
 import { getAllPageReadableText } from "lib/getReadableText";
 import { cls } from "lib/classname";
@@ -10,7 +9,6 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
-import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import Button from "components/UI/Button";
 import Toast from "components/UI/Toast";
 import BookmarkedModal from "components/Modals/BookmarkedModal";
@@ -66,19 +64,11 @@ const RightSidebar = () => {
   const languages = useSelector(allLanguesSelector);
   const [selectedLn, setSelectedLn] = useState<string>(contentLocale);
 
+  const { changeLanguage } = useChangeLanguage();
   useEffect(() => {
     // selected language changes -> change site locale
     if (selectedLn !== locale && dispositif?.availableLanguages.includes(selectedLn)) {
-      dispatch(toggleLangueActionCreator(selectedLn));
-      const { pathname, query } = router;
-      router.push(
-        {
-          pathname: getPath(pathname as PathNames, selectedLn),
-          query,
-        },
-        undefined,
-        { locale: selectedLn },
-      );
+      changeLanguage(selectedLn, "push");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLn]);

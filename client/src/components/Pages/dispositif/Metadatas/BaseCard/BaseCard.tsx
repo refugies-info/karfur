@@ -1,8 +1,10 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { cls } from "lib/classname";
 import PageContext from "utils/pageContext";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./BaseCard.module.scss";
+import { uniqueId } from "lodash";
+import Tooltip from "components/UI/Tooltip";
 
 type BaseCardStatus = "done" | "error";
 
@@ -65,6 +67,7 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
  */
 const BaseCard = ({ title, items, color, onClick }: Props) => {
   const pageContext = useContext(PageContext);
+  const [tooltipId] = useState(uniqueId("tooltip_card_"));
 
   const noContent = useMemo(() => {
     return pageContext.mode === "view" && !(items || []).find((item) => !!item.content);
@@ -79,11 +82,18 @@ const BaseCard = ({ title, items, color, onClick }: Props) => {
           <p className={styles.title} style={{ color }}>
             {title}
             {status === "done" && (
-              <EVAIcon
-                name="checkmark-circle-2"
-                fill={styles.lightPrimaryBlueFranceSun}
-                className={cls(styles.status)}
-              />
+              <>
+                <EVAIcon
+                  name="checkmark-circle-2"
+                  fill={styles.lightPrimaryBlueFranceSun}
+                  className={cls(styles.status, styles.done)}
+                />
+                <EVAIcon
+                  name="edit-2"
+                  fill={styles.lightTextActionHighBlueFrance}
+                  className={cls(styles.status, styles.edit)}
+                />
+              </>
             )}
             {status === "error" && (
               <EVAIcon name="alert-triangle" fill={styles.lightTextDefaultError} className={cls(styles.status)} />
@@ -98,6 +108,7 @@ const BaseCard = ({ title, items, color, onClick }: Props) => {
   if (noContent) return null;
   return onClick ? (
     <button
+      id={tooltipId}
       className={cls(styles.card, styles.btn, status === "error" && styles.error)}
       onClick={(e: any) => {
         e.preventDefault();
@@ -105,6 +116,10 @@ const BaseCard = ({ title, items, color, onClick }: Props) => {
       }}
     >
       {cardContent}
+
+      <Tooltip target={tooltipId} placement="right">
+        Modifier
+      </Tooltip>
     </button>
   ) : (
     <div className={cls(styles.card, status === "error" && styles.error)}>{cardContent}</div>

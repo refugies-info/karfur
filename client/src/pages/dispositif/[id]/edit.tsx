@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dispositif from "components/Content/Dispositif";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
+import { useChangeLanguage, useLocale } from "hooks";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
@@ -26,6 +27,14 @@ const DispositifPage = (props: Props) => {
     submitUpdateForm(dispositif._id, data);
   };
   const [activeSection, setActiveSection] = useState("");
+
+  const locale = useLocale();
+  const { changeLanguage } = useChangeLanguage();
+  useEffect(() => {
+    if (locale !== "fr") {
+      changeLanguage("fr");
+    }
+  }, [locale, changeLanguage]);
 
   return (
     <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>

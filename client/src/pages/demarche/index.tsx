@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { ContentType, CreateDispositifRequest } from "api-types";
 import { getPath } from "routes";
+import { useChangeLanguage, useLocale } from "hooks";
 import { submitCreateForm } from "lib/dispositifForm";
 import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
 import PageContext from "utils/pageContext";
@@ -25,6 +26,14 @@ const DemarchePage = (props: Props) => {
   };
   const [activeSection, setActiveSection] = useState("");
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);
+
+  const locale = useLocale();
+  const { changeLanguage } = useChangeLanguage();
+  useEffect(() => {
+    if (locale !== "fr") {
+      changeLanguage("fr");
+    }
+  }, [locale, changeLanguage]);
 
   return (
     <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>

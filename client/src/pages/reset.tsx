@@ -27,11 +27,12 @@ import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { getPath, PathNames } from "routes";
+import { getPath } from "routes";
 import PhoneAndEmailFields from "components/Pages/login/PhoneAndEmailFields";
 import CodeField from "components/Pages/login/CodeField";
 import Footer from "components/Pages/login/Footer";
 import { NewPasswordRequest } from "api-types";
+import { useChangeLanguage } from "hooks";
 
 const StyledHeader = styled.div`
   font-weight: 600;
@@ -163,23 +164,13 @@ const Reset = () => {
       });
   };
 
-  const changeLanguage = (lng: string) => {
-    dispatch(toggleLangueActionCreator(lng));
-    const { pathname, query } = router;
-    router.push(
-      {
-        pathname: getPath(pathname as PathNames, lng),
-        query,
-      },
-      undefined,
-      { locale: lng },
-    );
-
+  const { changeLanguage } = useChangeLanguage();
+  const changeLanguageCallback = (lng: string) => {
+    changeLanguage(lng, "push");
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
   };
-
   const getFormTemplate = () => {
     if (step === 0) {
       // STEP 0: New password
@@ -313,7 +304,7 @@ const Reset = () => {
           show={showLangModal}
           currentLanguage={router.locale || "fr"}
           toggle={() => dispatch(toggleLangueModalActionCreator())}
-          changeLanguage={changeLanguage}
+          changeLanguage={changeLanguageCallback}
           languages={langues}
           isLanguagesLoading={isLanguagesLoading}
         />

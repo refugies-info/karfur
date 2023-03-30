@@ -28,8 +28,8 @@ import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { getPath, PathNames } from "routes";
 import { LoginRequest } from "api-types";
+import { useChangeLanguage } from "hooks";
 
 type Structure = {
   nom: string;
@@ -107,18 +107,9 @@ const Login = () => {
       });
   };
 
-  const changeLanguage = (lng: string) => {
-    dispatch(toggleLangueActionCreator(lng));
-    const { pathname, query } = router;
-    router.push(
-      {
-        pathname: getPath(pathname as PathNames, lng),
-        query,
-      },
-      undefined,
-      { locale: lng },
-    );
-
+  const { changeLanguage } = useChangeLanguage();
+  const changeLanguageCallback = (lng: string) => {
+    changeLanguage(lng, "push");
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
@@ -408,7 +399,7 @@ const Login = () => {
           show={showLangModal}
           currentLanguage={router.locale || "fr"}
           toggle={() => dispatch(toggleLangueModalActionCreator())}
-          changeLanguage={changeLanguage}
+          changeLanguage={changeLanguageCallback}
           languages={langues}
           isLanguagesLoading={isLanguagesLoading}
         />

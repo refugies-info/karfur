@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useForm, FormProvider } from "react-hook-form";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useChangeLanguage, useLocale } from "hooks";
 import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
@@ -26,6 +27,14 @@ const DemarchePage = (props: Props) => {
     submitUpdateForm(dispositif._id, data);
   };
   const [activeSection, setActiveSection] = useState("");
+
+  const locale = useLocale();
+  const { changeLanguage } = useChangeLanguage();
+  useEffect(() => {
+    if (locale !== "fr") {
+      changeLanguage("fr");
+    }
+  }, [locale, changeLanguage]);
 
   return (
     <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>

@@ -23,6 +23,7 @@ interface Props {
  * Shows the value of the section if the content attribute is set.
  */
 const AddContentButton = (props: Props) => {
+  const [tooltipDeleteId] = useState(uniqueId("tooltip_delete_"));
   const [tooltipId] = useState(uniqueId("tooltip_"));
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const toggleDeleteModal = useCallback(() => setShowDeleteModal((o) => !o), []);
@@ -41,6 +42,7 @@ const AddContentButton = (props: Props) => {
         e.preventDefault();
         props.onClick();
       }}
+      id={tooltipId}
     >
       {props.content ? (
         <>
@@ -83,10 +85,10 @@ const AddContentButton = (props: Props) => {
                     e.stopPropagation();
                     props.onDelete && setShowDeleteModal(true);
                   }}
-                  id={tooltipId}
+                  id={tooltipDeleteId}
                 />
                 {props.onDelete === false && (
-                  <Tooltip target={tooltipId} placement="right">
+                  <Tooltip target={tooltipDeleteId} placement="right">
                     Vous ne pouvez pas supprimer cet élément : il en faut au moins trois pour valider la fiche.
                   </Tooltip>
                 )}
@@ -105,6 +107,10 @@ const AddContentButton = (props: Props) => {
           <EVAIcon name="plus-circle-outline" size={24} fill={styles.lightTextMentionGrey} className={styles.icon} />
         </>
       )}
+
+      <Tooltip target={tooltipId} placement="right">
+        {!props.content ? "Ajouter" : "Modifier"}
+      </Tooltip>
     </Button>
   );
 };

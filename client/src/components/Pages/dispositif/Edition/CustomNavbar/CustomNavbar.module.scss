@@ -10,7 +10,6 @@
   background-color: white;
   border-top: 1px solid $lightBorderDefaultGrey;
   border-bottom: 1px solid $lightBorderDefaultGrey;
-  padding: u(2) 0;
   position: sticky;
   top: 0;
   z-index: 501; // goes over menu
@@ -19,7 +18,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: u(2) 0;
   }
+}
+.warning {
+  padding: u(2) 0;
+  background: $lightBackgroundContrastInfo;
+  color: $lightBorderPlainInfo;
+  font-weight: bold;
 }
 
 .help {
