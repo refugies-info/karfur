@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import {
   amountDetailsType,
@@ -41,13 +41,13 @@ const ModalAvailability = (props: Props) => {
     getValues("metadatas.commitment.hours") || undefined,
   );
   const [commitmentTimeUnit, setCommitmentTimeUnit] = useState<timeUnitType>(
-    getValues("metadatas.commitment.timeUnit") || "hours",
+    getValues("metadatas.commitment.timeUnit") || "weeks",
   );
   const [noCommitment, setNoCommitment] = useState<boolean>(false);
   const validateCommitment = () => {
     let commitment: Metadatas["commitment"] = undefined;
     if (noCommitment) commitment = null;
-    else if (!noCommitment && commitmentHours !== undefined) {
+    else if (!noCommitment && !!commitmentHours) {
       commitment = {
         amountDetails: commitmentAmountDetails,
         hours: commitmentHours,
@@ -74,7 +74,7 @@ const ModalAvailability = (props: Props) => {
   const validateFrequency = () => {
     let frequency: Metadatas["frequency"] = undefined;
     if (noFrequency) frequency = null;
-    if (!noFrequency && frequencyHours !== undefined) {
+    if (!noFrequency && !!frequencyHours) {
       frequency = {
         amountDetails: frequencyAmountDetails,
         hours: frequencyHours,
@@ -113,8 +113,29 @@ const ModalAvailability = (props: Props) => {
     }
   };
 
+  const emptySteps = useMemo(() => {
+    return [
+      !noCommitment && !commitmentHours,
+      !noFrequency && !frequencyHours,
+      timeSlots === undefined || timeSlots?.length === 0,
+    ];
+  }, [noCommitment, commitmentHours, noFrequency, frequencyHours, timeSlots]);
+
+  const navigateToStep = useCallback(() => {
+    const firstEmpty = emptySteps.indexOf(true);
+    if (firstEmpty >= 0) {
+      setStep(firstEmpty + 1);
+    }
+  }, [emptySteps]);
+
   return (
-    <BaseModal show={props.show} toggle={props.toggle} help={help} title={modalTitles[step - 1]}>
+    <BaseModal
+      show={props.show}
+      toggle={props.toggle}
+      help={help}
+      title={modalTitles[step - 1]}
+      onOpened={navigateToStep}
+    >
       {step === 1 && (
         <div>
           <InlineForm>
@@ -127,7 +148,7 @@ const ModalAvailability = (props: Props) => {
               <input
                 type="number"
                 placeholder={"0"}
-                value={commitmentHours}
+                value={commitmentHours || ""}
                 onChange={(e: any) => setCommitmentHours(e.target.value)}
               />
             </span>
@@ -161,7 +182,7 @@ const ModalAvailability = (props: Props) => {
               <input
                 type="number"
                 placeholder={"0"}
-                value={frequencyHours}
+                value={frequencyHours || ""}
                 onChange={(e: any) => setFrequencyHours(e.target.value)}
               />
             </span>
@@ -211,7 +232,13 @@ const ModalAvailability = (props: Props) => {
         </div>
       )}
 
-      <StepsFooter onValidate={validate} onPrevious={() => setStep((s) => s - 1)} maxSteps={MAX_STEP} step={step} />
+      <StepsFooter
+        onValidate={validate}
+        onPrevious={() => setStep((s) => s - 1)}
+        maxSteps={MAX_STEP}
+        step={step}
+        disabled={emptySteps[step - 1]}
+      />
     </BaseModal>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { ageType, CreateDispositifRequest, frenchLevelType, Metadatas, publicStatusType, publicType } from "api-types";
 import { cls } from "lib/classname";
@@ -82,8 +82,8 @@ const ModalPublic = (props: Props) => {
     let age: Metadatas["age"] = undefined;
     if (noAge) age = null;
     else if (!noAge && ages.length > 0) {
-      const betweenFormError = ageType === "between" && (isNaN(ages[0]) || isNaN(ages[1]));
-      const formError = isNaN(ages[0]);
+      const betweenFormError = ageType === "between" && (!ages[0] || !ages[1]);
+      const formError = !ages[0];
       if (!betweenFormError && !formError) {
         age = {
           type: ageType,
@@ -110,8 +110,30 @@ const ModalPublic = (props: Props) => {
     }
   };
 
+  const emptySteps = useMemo(() => {
+    return [
+      publicStatus === undefined || publicStatus?.length === 0, // step 1
+      publicType === undefined || publicType?.length === 0, // step 2
+      frenchLevel === undefined || frenchLevel?.length === 0, // step 3
+      !noAge && !ages[0], // step 4
+    ];
+  }, [publicStatus, publicType, frenchLevel, noAge, ages]);
+
+  const navigateToStep = useCallback(() => {
+    const firstEmpty = emptySteps.indexOf(true);
+    if (firstEmpty >= 0) {
+      setStep(firstEmpty + 1);
+    }
+  }, [emptySteps]);
+
   return (
-    <BaseModal show={props.show} toggle={props.toggle} help={help} title={modalTitles[step - 1]}>
+    <BaseModal
+      show={props.show}
+      toggle={props.toggle}
+      help={help}
+      title={modalTitles[step - 1]}
+      onOpened={navigateToStep}
+    >
       <div>
         {step === 1 && (
           <div>
@@ -235,8 +257,8 @@ const ModalPublic = (props: Props) => {
                     <input
                       type="number"
                       placeholder={"0"}
-                      value={ages[0]}
-                      onChange={(e: any) => setAges([e.target.value])}
+                      value={ages[0] || ""}
+                      onChange={(e: any) => setAges([parseInt(e.target.value)])}
                     />
                   </span>
                 </>
@@ -248,8 +270,8 @@ const ModalPublic = (props: Props) => {
                     <input
                       type="number"
                       placeholder={"0"}
-                      value={ages[0]}
-                      onChange={(e: any) => setAges((a) => [e.target.value, a[1]])}
+                      value={ages[0] || ""}
+                      onChange={(e: any) => setAges((a) => [parseInt(e.target.value), a[1]])}
                     />
                   </span>
                   <p>et</p>
@@ -257,8 +279,8 @@ const ModalPublic = (props: Props) => {
                     <input
                       type="number"
                       placeholder={"0"}
-                      value={ages[1]}
-                      onChange={(e: any) => setAges((a) => [a[0], e.target.value])}
+                      value={ages[1] || ""}
+                      onChange={(e: any) => setAges((a) => [a[0], parseInt(e.target.value)])}
                     />
                   </span>
                 </>
@@ -270,8 +292,8 @@ const ModalPublic = (props: Props) => {
                     <input
                       type="number"
                       placeholder={"0"}
-                      value={ages[0]}
-                      onChange={(e: any) => setAges([e.target.value])}
+                      value={ages[0] || ""}
+                      onChange={(e: any) => setAges([parseInt(e.target.value)])}
                     />
                   </span>
                 </>
@@ -289,7 +311,13 @@ const ModalPublic = (props: Props) => {
           </div>
         )}
 
-        <StepsFooter onValidate={validate} onPrevious={() => setStep((s) => s - 1)} maxSteps={MAX_STEP} step={step} />
+        <StepsFooter
+          onValidate={validate}
+          onPrevious={() => setStep((s) => s - 1)}
+          maxSteps={MAX_STEP}
+          step={step}
+          disabled={emptySteps[step - 1]}
+        />
       </div>
     </BaseModal>
   );

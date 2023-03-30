@@ -26,7 +26,7 @@ const Input = (props: Props) => {
           type={props.type || "text"}
           placeholder={props.placeholder}
           className={styles.input}
-          value={props.value}
+          value={props.value || ""}
           onChange={props.onChange}
         />
         {props.icon && (

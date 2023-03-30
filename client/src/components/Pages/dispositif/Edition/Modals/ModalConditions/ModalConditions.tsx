@@ -53,7 +53,7 @@ const ModalConditions = (props: Props) => {
           />
         </div>
 
-        <SimpleFooter onValidate={validate} />
+        <SimpleFooter onValidate={validate} disabled={selected !== null && selected.length === 0} />
       </div>
     </BaseModal>
   );

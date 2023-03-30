@@ -45,12 +45,11 @@ const ModalAbstract = (props: Props) => {
                 className={styles.input}
                 maxLength={MAX_LENGTH}
               />
-              {remainingChars > 0 && (
-                <p className={styles.help}>
-                  <EVAIcon name="alert-triangle" size={16} fill={styles.lightTextDefaultError} className="me-2" />
-                  {remainingChars} sur 110 caractères restants
-                </p>
-              )}
+
+              <p className={styles.help}>
+                <EVAIcon name="alert-triangle" size={16} fill={styles.lightTextDefaultError} className="me-2" />
+                {remainingChars} sur 110 caractères restants
+              </p>
             </div>
           </Col>
           {values.typeContenu === ContentType.DISPOSITIF && (
@@ -68,7 +67,7 @@ const ModalAbstract = (props: Props) => {
           )}
         </Row>
 
-        <SimpleFooter onValidate={validate} />
+        <SimpleFooter onValidate={validate} disabled={!abstract} />
       </div>
     </BaseModal>
   );

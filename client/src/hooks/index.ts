@@ -8,6 +8,7 @@ export { default as useParamsFromHistory } from "./useParamsFromHistory";
 export { default as useRouterLocale } from "./useRouterLocale";
 export { default as useRTL } from "./useRTL";
 export { default as useThemeIcon } from "./useThemeIcon";
+export { default as useUniqueId } from "./useUniqueId";
 export { default as useUser } from "./useUser";
 export { default as useWindowSize } from "./useWindowSize";
 export { default as useContentLocale } from "./useContentLocale";

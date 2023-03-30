@@ -89,9 +89,10 @@ const ModalLocation = (props: Props) => {
             maxSteps={2}
             onPrevious={() => setStep(1)}
             onValidate={step === 1 ? () => setStep(2) : validate}
+            disabled={step === 2 && !selectedDepartments?.length}
           />
         ) : (
-          <SimpleFooter onValidate={validate} />
+          <SimpleFooter onValidate={validate} disabled={selected === undefined} />
         )}
       </div>
     </BaseModal>

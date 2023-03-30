@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
-import uniqueId from "lodash/uniqueId";
 import { cls } from "lib/classname";
+import { useUniqueId } from "hooks";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Tooltip from "components/UI/Tooltip";
@@ -23,8 +23,8 @@ interface Props {
  * Shows the value of the section if the content attribute is set.
  */
 const AddContentButton = (props: Props) => {
-  const [tooltipDeleteId] = useState(uniqueId("tooltip_delete_"));
-  const [tooltipId] = useState(uniqueId("tooltip_"));
+  const tooltipDeleteId = useUniqueId("tooltip_delete_");
+  const tooltipId = useUniqueId("tooltip_");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const toggleDeleteModal = useCallback(() => setShowDeleteModal((o) => !o), []);
 
@@ -87,7 +87,7 @@ const AddContentButton = (props: Props) => {
                   }}
                   id={tooltipDeleteId}
                 />
-                {props.onDelete === false && (
+                {props.onDelete === false && tooltipDeleteId && (
                   <Tooltip target={tooltipDeleteId} placement="right">
                     Vous ne pouvez pas supprimer cet élément : il en faut au moins trois pour valider la fiche.
                   </Tooltip>
@@ -108,9 +108,11 @@ const AddContentButton = (props: Props) => {
         </>
       )}
 
-      <Tooltip target={tooltipId} placement="right">
-        {!props.content ? "Ajouter" : "Modifier"}
-      </Tooltip>
+      {tooltipId && (
+        <Tooltip target={tooltipId} placement="right">
+          {!props.content ? "Ajouter" : "Modifier"}
+        </Tooltip>
+      )}
     </Button>
   );
 };
