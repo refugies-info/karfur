@@ -25,6 +25,8 @@ const ColoredButton = styled(RSButton)<ColoredButtonProps>`
   }
 `;
 
+const MIN_ACCORDIONS = 3;
+
 interface Props {
   content: InfoSections | undefined;
   sectionKey: string;
@@ -46,12 +48,11 @@ const Accordions = ({ content, sectionKey, color100, color30, withNumber }: Prop
   useEffect(() => {
     if (pageContext.mode === "edit" && Object.keys(currentContent).length === 0) {
       // generate content
-      const key1 = uuidv4();
-      const key2 = uuidv4();
-      const newContent: InfoSections = {
-        [key1]: { title: "", text: "" },
-        [key2]: { title: "", text: "" },
-      };
+      const newContent: InfoSections = {};
+      for (let i = 0; i < MIN_ACCORDIONS; i++) {
+        const key = uuidv4();
+        newContent[key] = { title: "", text: "" };
+      }
       setCurrentContent(newContent);
     }
   }, [pageContext.mode, currentContent]);
@@ -106,7 +107,7 @@ const Accordions = ({ content, sectionKey, color100, color30, withNumber }: Prop
           <AccordionItemEdit
             key={section[0]}
             id={`${sectionKey}.${section[0]}`}
-            onDelete={Object.keys(currentContent).length > 2 ? () => deleteElement(section[0]) : undefined}
+            onDelete={Object.keys(currentContent).length > MIN_ACCORDIONS ? () => deleteElement(section[0]) : false}
           />
         );
       })}

@@ -29,7 +29,7 @@ const ModalWelcome = (props: Props) => {
   };
 
   return (
-    <BaseModal show={props.show} toggle={props.toggle} title={modalTitles[step - 1]} className={styles.modal}>
+    <BaseModal show={props.show} toggle={props.toggle} title={modalTitles[step - 1]} small className={styles.modal}>
       <div className={styles.content}>
         {step === 1 && (
           <>

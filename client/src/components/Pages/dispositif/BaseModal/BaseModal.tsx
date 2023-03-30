@@ -16,6 +16,7 @@ interface Props {
   };
   title: string | React.ReactNode;
   children: React.ReactNode;
+  small?: boolean;
 }
 
 /**
@@ -26,7 +27,7 @@ const BaseModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggle}
-      className={cls(styles.modal, props.className || "")}
+      className={cls(styles.modal, props.small && styles.small, props.className || "")}
       contentClassName={styles.modal_content}
     >
       <div className={styles.container}>

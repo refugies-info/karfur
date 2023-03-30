@@ -6,6 +6,10 @@
 .modal {
   max-width: 800px !important;
 
+  &.small {
+    max-width: 588px !important;
+  }
+
   .modal_content {
     background: white;
     border: none;

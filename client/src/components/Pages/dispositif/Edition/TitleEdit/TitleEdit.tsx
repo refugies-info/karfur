@@ -18,9 +18,10 @@ const TitleEdit = (props: Props) => {
 
   const pageContext = useContext(PageContext);
   useEffect(() => {
-    pageContext.setActiveSection?.(isTitleActive ? "titreInformatif" : "");
+    if (isTitleActive) pageContext.setActiveSection?.("titreInformatif");
+    if (isActionActive) pageContext.setActiveSection?.("titreMarque");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isTitleActive]);
+  }, [isTitleActive, isActionActive]);
 
   return (
     <div>

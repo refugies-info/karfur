@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import dynamic from "next/dynamic";
 import PageContext from "utils/pageContext";
@@ -22,9 +22,21 @@ const RichTextEdit = (props: Props) => {
 
   const pageContext = useContext(PageContext);
   useEffect(() => {
-    pageContext.setActiveSection?.(isActive ? props.id : "");
+    if (isActive) {
+      pageContext.setActiveSection?.(props.id);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive, props.id]);
+
+  useEffect(() => {
+    if (pageContext.activeSection !== props.id) {
+      setIsActive(false);
+    }
+  }, [pageContext.activeSection, props.id]);
+
+  const closeSection = useCallback(() => {
+    setIsActive(false);
+  }, []);
 
   return (
     <div>
@@ -37,7 +49,7 @@ const RichTextEdit = (props: Props) => {
         <>
           <RichTextInput value={formContext.getValues(props.id) || ""} id={props.id} />
           <div className="text-end mt-6">
-            <Button icon="checkmark-circle-2" onClick={() => setIsActive(false)}>
+            <Button icon="checkmark-circle-2" onClick={closeSection}>
               Fermer la section
             </Button>
           </div>
