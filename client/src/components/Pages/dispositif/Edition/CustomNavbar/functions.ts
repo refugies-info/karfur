@@ -11,7 +11,7 @@ export const getText = (progress: number) => {
 
 const isAccordionOk = (content: InfoSections | undefined) => {
   if (!content) return false;
-  return content && Object.keys(content).length >= 2 && !Object.values(content).find(c => !c.title || !c.text)
+  return content && Object.keys(content).length >= 3 && !Object.values(content).find(c => !c.title || !c.text)
 }
 
 const isMetadataOk = (content: any | any[]) => {
@@ -24,11 +24,14 @@ const isMetadataOk = (content: any | any[]) => {
 export const calculateProgress = (dispositif: Partial<GetDispositifResponse>) => {
   const conditions: boolean[] = [
     !!dispositif.titreInformatif,
+    !!dispositif.titreMarque,
     !!dispositif.what,
     dispositif.typeContenu === ContentType.DISPOSITIF ? isAccordionOk(dispositif.why) : isAccordionOk(dispositif.how),
     dispositif.typeContenu === ContentType.DISPOSITIF ? isAccordionOk(dispositif.how) : isAccordionOk(dispositif.next),
     !!dispositif.abstract,
     !!dispositif.theme,
+    (dispositif.sponsors?.length || 0) > 0,
+    // TODO: main sponsor
     isMetadataOk([
       dispositif.metadatas?.publicStatus,
       dispositif.metadatas?.age,
@@ -43,7 +46,6 @@ export const calculateProgress = (dispositif: Partial<GetDispositifResponse>) =>
     ]),
     isMetadataOk(dispositif.metadatas?.conditions),
     isMetadataOk(dispositif.metadatas?.location)
-    // TODO: continue here
   ];
   return conditions.filter(c => c).length;
 }

@@ -64,7 +64,7 @@ const ModalSponsors = (props: Props) => {
           onImageUploaded={(img) => setLogo(img)}
           dimensionsHelp="Formats acceptés : .jpeg, .png, .svg"
         />
-        <SimpleFooter onValidate={validate} disabled={!name} />
+        <SimpleFooter onValidate={validate} disabled={!name || !link || !logo} />
       </div>
     </BaseModal>
   );
