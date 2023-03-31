@@ -10,6 +10,7 @@ import {
   COMMAND_PRIORITY_LOW,
   DELETE_CHARACTER_COMMAND,
   KEY_ARROW_DOWN_COMMAND,
+  KEY_ARROW_UP_COMMAND,
   createCommand,
 } from "lexical";
 import { useEffect } from "react";
@@ -73,6 +74,28 @@ export default function CalloutPlugin() {
           const parent = container.getParent();
           if (parent !== null && parent.getLastChild() === container) {
             parent.append($createParagraphNode());
+          }
+          return false;
+        },
+        COMMAND_PRIORITY_LOW
+      ),
+      editor.registerCommand(
+        KEY_ARROW_UP_COMMAND,
+        () => {
+          const selection = $getSelection();
+          if (!$isRangeSelection(selection) || !selection.isCollapsed()) {
+            return false;
+          }
+
+          const container = $findMatchingParent(selection.anchor.getNode(), $isCalloutNode);
+
+          if (container === null) {
+            return false;
+          }
+
+          const parent = container.getParent();
+          if (parent !== null && parent.getFirstChild() === container) {
+            container.insertBefore($createParagraphNode());
           }
           return false;
         },
