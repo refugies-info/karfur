@@ -44,21 +44,6 @@ const ModalPublic = (props: Props) => {
     }
   };
 
-  // public
-  const [publicType, setPublicType] = useState<publicType[] | null | undefined>(
-    getValues("metadatas.public") || undefined,
-  );
-  const selectPublicType = useCallback((option: publicType) => {
-    setPublicType((options) =>
-      options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
-    );
-  }, []);
-  const validatePublicType = () => {
-    if (publicType !== undefined) {
-      setValue("metadatas.public", publicType);
-    }
-  };
-
   // frenchLevel
   const [frenchLevel, setFrenchLevel] = useState<frenchLevelType[] | null | undefined>(
     getValues("metadatas.frenchLevel") || undefined,
@@ -94,18 +79,33 @@ const ModalPublic = (props: Props) => {
     setValue("metadatas.age", age);
   };
 
+  // public
+  const [publicType, setPublicType] = useState<publicType[] | null | undefined>(
+    getValues("metadatas.public") || undefined,
+  );
+  const selectPublicType = useCallback((option: publicType) => {
+    setPublicType((options) =>
+      options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
+    );
+  }, []);
+  const validatePublicType = () => {
+    if (publicType !== undefined) {
+      setValue("metadatas.public", publicType);
+    }
+  };
+
   const validate = () => {
     if (step === 1) {
       validatePublicStatus();
       setStep(2);
     } else if (step === 2) {
-      validatePublicType();
+      validateFrenchLevel();
       setStep(3);
     } else if (step === 3) {
-      validateFrenchLevel();
+      validateAge();
       setStep(4);
     } else if (step === 4) {
-      validateAge();
+      validatePublicType();
       props.toggle();
     }
   };
@@ -113,9 +113,9 @@ const ModalPublic = (props: Props) => {
   const emptySteps = useMemo(() => {
     return [
       publicStatus === undefined || publicStatus?.length === 0, // step 1
-      publicType === undefined || publicType?.length === 0, // step 2
-      frenchLevel === undefined || frenchLevel?.length === 0, // step 3
-      !noAge && !ages[0], // step 4
+      frenchLevel === undefined || frenchLevel?.length === 0, // step 2
+      !noAge && !ages[0], // step 3
+      publicType === undefined || publicType?.length === 0, // step 4
     ];
   }, [publicStatus, publicType, frenchLevel, noAge, ages]);
 
@@ -177,31 +177,6 @@ const ModalPublic = (props: Props) => {
 
         {step === 2 && (
           <div>
-            {entries<Record<publicType, string>>(publicOptions).map(([key, text]) => (
-              <div key={key}>
-                <ChoiceButton
-                  key={key}
-                  text={text}
-                  type="checkbox"
-                  selected={!!(publicType && publicType?.includes(key))}
-                  onSelect={() => selectPublicType(key)}
-                  className="mb-2"
-                />
-              </div>
-            ))}
-            <ChoiceButton
-              text="Cette information n’est pas pertinente pour mon action"
-              type="radio"
-              selected={publicType === null}
-              onSelect={() => setPublicType(null)}
-              size="lg"
-              className="mt-6"
-            />
-          </div>
-        )}
-
-        {step === 3 && (
-          <div>
             <ChoiceButton
               text="Tous les niveaux"
               type="checkbox"
@@ -233,7 +208,7 @@ const ModalPublic = (props: Props) => {
           </div>
         )}
 
-        {step === 4 && (
+        {step === 3 && (
           <div>
             <div className="d-flex justify-content-between">
               {entries<Record<ageType, string>>(ageOptions).map(([key, text]) => (
@@ -305,6 +280,31 @@ const ModalPublic = (props: Props) => {
               type="checkbox"
               selected={noAge}
               onSelect={() => setNoAge((o) => !o)}
+              size="lg"
+              className="mt-6"
+            />
+          </div>
+        )}
+
+        {step === 4 && (
+          <div>
+            {entries<Record<publicType, string>>(publicOptions).map(([key, text]) => (
+              <div key={key}>
+                <ChoiceButton
+                  key={key}
+                  text={text}
+                  type="checkbox"
+                  selected={!!(publicType && publicType?.includes(key))}
+                  onSelect={() => selectPublicType(key)}
+                  className="mb-2"
+                />
+              </div>
+            ))}
+            <ChoiceButton
+              text="Cette information n’est pas pertinente pour mon action"
+              type="radio"
+              selected={publicType === null}
+              onSelect={() => setPublicType(null)}
               size="lg"
               className="mt-6"
             />

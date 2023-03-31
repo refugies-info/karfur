@@ -23,7 +23,6 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
       title="Public visé"
       items={[
         { label: "Statut", content: getPublicStatus(dataPublicStatus), icon: <StatusIcon color={color} /> },
-        { label: "Public spécifique", content: getPublic(dataPublic), icon: <StatusIcon color={color} /> },
         {
           label: "Français demandé",
           content:
@@ -39,6 +38,7 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
           content: !dataAge ? dataAge : <FRLink href={getAgeLink(dataAge)}>{getAge(dataAge)}</FRLink>,
           icon: <AgeIcon color={color} />,
         },
+        { label: "Public spécifique", content: getPublic(dataPublic), icon: <StatusIcon color={color} /> },
       ]}
       color={color}
       onClick={onClick}

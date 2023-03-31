@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { ContentType } from "api-types";
 import { useContentLocale, useWindowSize } from "hooks";
 import PageContext from "utils/pageContext";
+import { cls } from "lib/classname";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
 import SEO from "components/Seo";
@@ -52,7 +53,7 @@ const Dispositif = (props: Props) => {
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
   const isEditMode = useMemo(() => pageContext.mode === "edit", [pageContext.mode]);
   return (
-    <div className={styles.container} id="top">
+    <div className={cls(styles.container, isEditMode && styles.edit)} id="top">
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
