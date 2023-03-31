@@ -113,6 +113,11 @@
 
     &.has_error {
       border-color: $lightTextDefaultError;
+      color: $lightTextDefaultError;
+
+      & > span svg {
+        fill: $lightTextDefaultError;
+      }
     }
   }
 }

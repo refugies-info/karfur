@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import { cls } from "lib/classname";
 import { useUniqueId } from "hooks";
+import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Tooltip from "components/UI/Tooltip";
@@ -27,14 +28,24 @@ const AddContentButton = (props: Props) => {
   const tooltipId = useUniqueId("tooltip_");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const toggleDeleteModal = useCallback(() => setShowDeleteModal((o) => !o), []);
+  const { showMissingSteps } = useContext(PageContext);
 
+  const hasContent = useMemo(() => !!props.content, [props.content]);
+  const hasErrorStatus = useMemo(
+    () => props.hasError || (showMissingSteps && !hasContent),
+    [props.hasError, showMissingSteps, hasContent],
+  );
+  const errorIcon = useMemo(
+    () => <EVAIcon name="alert-triangle" fill={styles.lightTextDefaultError} className={cls(styles.icon, styles.ok)} />,
+    [],
+  );
   return (
     <Button
       tertiary
       className={cls(
         styles.btn,
-        !!props.content && styles.has_content,
-        props.hasError && styles.has_error,
+        hasContent && styles.has_content,
+        hasErrorStatus && styles.has_error,
         props.size && styles[props.size],
         props.className,
       )}
@@ -44,7 +55,7 @@ const AddContentButton = (props: Props) => {
       }}
       id={tooltipId}
     >
-      {props.content ? (
+      {hasContent ? (
         <>
           {typeof props.content === "string" ? (
             <span
@@ -57,18 +68,14 @@ const AddContentButton = (props: Props) => {
             props.content
           )}
           <div className={styles.icons}>
-            {!props.hasError ? (
+            {!hasErrorStatus ? (
               <EVAIcon
                 name="checkmark-circle-2"
                 fill={styles.lightPrimaryBlueFranceSun}
                 className={cls(styles.icon, styles.ok)}
               />
             ) : (
-              <EVAIcon
-                name="alert-triangle"
-                fill={styles.lightTextDefaultError}
-                className={cls(styles.icon, styles.ok)}
-              />
+              errorIcon
             )}
             <EVAIcon
               name="edit-2"
@@ -104,13 +111,17 @@ const AddContentButton = (props: Props) => {
       ) : (
         <>
           <span>{props.children}</span>
-          <EVAIcon name="plus-circle-outline" size={24} fill={styles.lightTextMentionGrey} className={styles.icon} />
+          {!hasErrorStatus ? (
+            <EVAIcon name="plus-circle-outline" size={24} fill={styles.lightTextMentionGrey} className={styles.icon} />
+          ) : (
+            errorIcon
+          )}
         </>
       )}
 
       {tooltipId && (
         <Tooltip target={tooltipId} placement="right">
-          {!props.content ? "Ajouter" : "Modifier"}
+          {!hasContent ? "Ajouter" : "Modifier"}
         </Tooltip>
       )}
     </Button>

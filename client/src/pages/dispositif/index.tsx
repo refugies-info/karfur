@@ -25,6 +25,7 @@ const DispositifPage = (props: Props) => {
     });
   };
   const [activeSection, setActiveSection] = useState("");
+  const [showMissingSteps, setShowMissingSteps] = useState(false);
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);
 
   const locale = useLocale();
@@ -36,7 +37,9 @@ const DispositifPage = (props: Props) => {
   }, [locale, changeLanguage]);
 
   return (
-    <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>
+    <PageContext.Provider
+      value={{ mode: "edit", activeSection, setActiveSection, showMissingSteps, setShowMissingSteps }}
+    >
       <FormProvider {...methods}>
         <div className="w-100">
           <form onSubmit={methods.handleSubmit(onSubmit)}>
