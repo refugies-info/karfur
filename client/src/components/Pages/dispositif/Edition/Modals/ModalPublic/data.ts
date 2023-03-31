@@ -9,6 +9,7 @@ export const publicStatusOptions: Record<publicStatusType, string> = {
   asile: "Demandeurs d'asile",
   refugie: "Réfugiés statutaires",
   subsidiaire: "Bénéficiaires de la protection subsidiaire",
+  temporaire: "Bénéficiaires de la protection temporaire",
   apatride: "Apatrides",
   french: "Citoyens français",
 };
