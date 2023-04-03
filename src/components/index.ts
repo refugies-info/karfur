@@ -1,4 +1,5 @@
 // Core Design System
+export * from "./buttons";
 export * from "./feedback";
 export * from "./formulaire";
 export * from "./iconography";
