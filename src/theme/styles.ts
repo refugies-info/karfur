@@ -1,4 +1,4 @@
-const colors = {
+const colors: Record<string, string> = {
   darkBlue: "#0421B1",
   black: "#212121",
   darkGrey: "#5E5E5E",
@@ -77,6 +77,13 @@ const colors = {
   greyDisabled: "#919191",
 };
 
+/**
+ * Décisions design
+ * Permet d'apporter du sens aux noms des couleurs
+ */
+colors.skeleton = colors.greyDisabled;
+colors.action = colors.darkBlue;
+
 const images = {};
 
 const fonts = {
@@ -90,6 +97,11 @@ const fonts = {
     circularStandard: "circularBook",
     circularBold: "circularBold",
     circularItalic: "circularItalic",
+  },
+  button: {
+    family: "circularBook",
+    size: 19,
+    weight: "normal",
   },
 };
 
@@ -172,4 +184,7 @@ export default {
   radius: 6,
   shadows,
   shadowsStylesheet,
+  opacity: {
+    disabled: 0.8,
+  },
 };

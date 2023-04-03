@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacityProps } from "react-native";
 import styled, { useTheme } from "styled-components/native";
-import { Icon } from "react-native-eva-icons";
+import Icon from "../Icon";
 
 const ButtonContainer = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.colors.white};
@@ -15,12 +15,14 @@ const ICON_SIZE = 24;
 
 export interface IconButtonProps {
   accessibilityLabel: string;
+  color: string;
   iconName: string;
   onPress: TouchableOpacityProps["onPress"];
 }
 
 const IconButton = ({
   accessibilityLabel,
+  color,
   iconName,
   onPress,
 }: IconButtonProps) => {
@@ -34,9 +36,8 @@ const IconButton = ({
     >
       <Icon
         name={iconName}
-        width={ICON_SIZE}
-        height={ICON_SIZE}
-        fill={theme.colors.black}
+        size={ICON_SIZE}
+        color={color || theme.colors.black}
       />
     </ButtonContainer>
   );
