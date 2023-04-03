@@ -1,0 +1,26 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/input";
+
+.collapse {
+  position: absolute;
+  width: 100%;
+  max-height: 240px;
+  overflow-y: scroll;
+  background-color: white;
+  box-shadow: 0 2px 6px 0 #00001229;
+  margin-top: u(-3);
+  border-radius: u(2);
+  padding: u(4);
+}
+
+.item {
+  padding: u(2);
+  border: none !important;
+
+  &:hover {
+    background-color: $lightBackgroundElevationAlt;
+  }
+}

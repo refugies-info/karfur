@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm, FormProvider } from "react-hook-form";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
@@ -14,6 +14,7 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import { UpdateDispositifRequest } from "api-types";
 import { getDefaultValue, submitUpdateForm } from "lib/dispositifForm";
 import Dispositif from "components/Content/Dispositif";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 
 interface Props {
   history: string[];
@@ -35,6 +36,11 @@ const DemarchePage = (props: Props) => {
       changeLanguage("fr");
     }
   }, [locale, changeLanguage]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAllStructuresActionsCreator());
+  }, [dispatch]);
 
   return (
     <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>

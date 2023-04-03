@@ -9,6 +9,8 @@ import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
 import PageContext from "utils/pageContext";
 import Dispositif from "components/Content/Dispositif";
 import { ModalWelcome } from "components/Pages/dispositif/Edition/Modals";
+import { useDispatch } from "react-redux";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 
 interface Props {
   history: string[];
@@ -35,6 +37,11 @@ const DispositifPage = (props: Props) => {
       changeLanguage("fr");
     }
   }, [locale, changeLanguage]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAllStructuresActionsCreator());
+  }, [dispatch]);
 
   return (
     <PageContext.Provider

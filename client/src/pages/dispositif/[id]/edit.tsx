@@ -10,10 +10,11 @@ import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { useForm, FormProvider } from "react-hook-form";
 import PageContext from "utils/pageContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { UpdateDispositifRequest } from "api-types";
 import { getDefaultValue, submitUpdateForm } from "lib/dispositifForm";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 
 interface Props {
   history: string[];
@@ -35,6 +36,11 @@ const DispositifPage = (props: Props) => {
       changeLanguage("fr");
     }
   }, [locale, changeLanguage]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAllStructuresActionsCreator());
+  }, [dispatch]);
 
   return (
     <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>

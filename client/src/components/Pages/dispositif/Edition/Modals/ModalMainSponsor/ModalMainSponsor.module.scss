@@ -1,0 +1,11 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+
+.container {
+  p {
+    color: $lightTextDefaultGrey;
+    margin-bottom: u(6);
+  }
+}

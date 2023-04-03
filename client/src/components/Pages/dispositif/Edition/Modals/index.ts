@@ -2,6 +2,7 @@ import ModalAbstract from "./ModalAbstract";
 import ModalAvailability from "./ModalAvailability";
 import ModalConditions from "./ModalConditions";
 import ModalLocation from "./ModalLocation";
+import ModalMainSponsor from "./ModalMainSponsor";
 import ModalPrice from "./ModalPrice";
 import ModalPublic from "./ModalPublic";
 import ModalSponsors from "./ModalSponsors";
@@ -13,6 +14,7 @@ export {
   ModalAvailability,
   ModalConditions,
   ModalLocation,
+  ModalMainSponsor,
   ModalPrice,
   ModalPublic,
   ModalSponsors,

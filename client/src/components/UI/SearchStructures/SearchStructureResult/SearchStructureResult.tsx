@@ -1,19 +1,28 @@
-import { GetAllStructuresResponse } from "api-types";
+import Image from "next/image";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
+import { GetAllStructuresResponse } from "api-types";
+import { cls } from "lib/classname";
 import { StyledStatusContainer } from "containers/Backend/Admin/sharedComponents/SubComponents";
-import Image from "next/image";
-
-import styles from "../SearchStructures.module.scss";
+import styles from "./SearchStructureResult.module.scss";
 
 export interface SearchStructureResultProps {
   onClick: (structure: GetAllStructuresResponse) => void;
   query: string;
   selected: boolean;
   structure: GetAllStructuresResponse;
+  logoSize?: number;
+  className?: string;
 }
 
-const SearchStructureResult = ({ query, selected, structure, onClick }: SearchStructureResultProps) => {
+const SearchStructureResult = ({
+  query,
+  selected,
+  structure,
+  onClick,
+  logoSize,
+  className,
+}: SearchStructureResultProps) => {
   const firstPart = structure.acronyme || "";
   const secondPart = structure.nom || "";
 
@@ -30,49 +39,44 @@ const SearchStructureResult = ({ query, selected, structure, onClick }: SearchSt
 
   return (
     <div
-      className={
-        styles.search_structures__result +
-        (selected ? ` ${styles.selected} ` : "") +
-        (onHold ? ` ${styles.on_hold} ` : "")
-      }
+      className={cls(styles.container, selected && styles.selected, onHold && styles.on_hold, className)}
       onClick={_onClick}
     >
-      {structure.picture && structure.picture.secure_url ? (
+      {structure.picture?.secure_url ? (
         <Image
           src={structure.picture.secure_url}
-          className="selection-logo me-2"
+          className="me-2"
           alt="logo"
-          width={40}
-          height={40}
+          width={logoSize || 40}
+          height={logoSize || 40}
           style={{ objectFit: "contain" }}
         />
       ) : (
-        <span style={{ width: 40, height: 40 }}></span>
+        <span style={{ width: logoSize || 40, height: logoSize || 40 }}></span>
       )}
       {firstPart !== "" ? (
         <span className={styles.name}>
-          {parts_first.map((part, index) => {
-            const className = part.highlight ? styles.highlight : null;
-            return (
-              <span className={className || ""} key={index}>
-                {part.text}
-              </span>
-            );
-          })}
+          {parts_first.map((part, index) => (
+            <span className={cls(part.highlight && styles.highlight)} key={index}>
+              {part.text}
+            </span>
+          ))}
         </span>
       ) : null}
       <span className={styles.name_2}>
-        {parts_second.map((part, index) => {
-          const className = part.highlight ? styles.highlight : null;
-          return (
-            <span className={className || ""} key={index}>
-              {part.text}
-            </span>
-          );
-        })}
+        {parts_second.map((part, index) => (
+          <span className={cls(part.highlight && styles.highlight)} key={index}>
+            {part.text}
+          </span>
+        ))}
       </span>
       {onHold ? (
-        <StyledStatusContainer className={styles.tag} color="#FF9800" textColor="black" disabled={false}>
+        <StyledStatusContainer
+          className={styles.tag}
+          color={styles.orange}
+          textColor={styles.darkColor}
+          disabled={false}
+        >
           En attente de validation
         </StyledStatusContainer>
       ) : null}

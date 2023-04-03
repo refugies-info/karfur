@@ -9,6 +9,7 @@ import {
   ModalAvailability,
   ModalConditions,
   ModalLocation,
+  ModalMainSponsor,
   ModalPrice,
   ModalPublic,
   ModalThemes,
@@ -23,7 +24,7 @@ import CardTheme from "../../Metadatas/CardTheme";
 import { cls } from "lib/classname";
 import styles from "./LeftSidebarEdition.module.scss";
 
-type Modals = "Availability" | "Conditions" | "Location" | "Price" | "Public" | "Themes" | "Abstract";
+type Modals = "Availability" | "Conditions" | "Location" | "Price" | "Public" | "Themes" | "Abstract" | "MainSponsor";
 
 /**
  * Left sidebar of the page in EDIT mode.
@@ -127,7 +128,7 @@ const LeftSidebarEdition = () => {
       )}
 
       <p className={styles.title}>À faire en dernier</p>
-      <AddContentButton onClick={() => {}} size="md" className="mb-6">
+      <AddContentButton onClick={() => setShowModal("MainSponsor")} size="md" className="mb-6">
         <EVAIcon
           name="home-outline"
           size={24}
@@ -154,6 +155,7 @@ const LeftSidebarEdition = () => {
       <ModalPublic show={showModal === "Public"} toggle={toggleModal} />
       <ModalThemes show={showModal === "Themes"} toggle={toggleModal} />
       <ModalAbstract show={showModal === "Abstract"} toggle={toggleModal} />
+      <ModalMainSponsor show={showModal === "MainSponsor"} toggle={toggleModal} />
     </div>
   );
 };

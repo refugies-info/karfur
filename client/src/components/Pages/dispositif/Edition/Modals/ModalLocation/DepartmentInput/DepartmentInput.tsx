@@ -1,6 +1,7 @@
 import { useState, Dispatch, SetStateAction, useEffect, useRef } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { RemovableItem } from "../../components";
 import styles from "./DepartmentInput.module.scss";
 
 interface Props {
@@ -71,14 +72,11 @@ const DepartmentInput = (props: Props) => {
 
       <div className={styles.selected}>
         {(props.selectedDepartments || []).map((dep, i) => (
-          <button
+          <RemovableItem
             key={i}
-            className={styles.dep_btn}
+            text={dep}
             onClick={() => props.setSelectedDepartments((departments) => departments?.filter((d) => d !== dep))}
-          >
-            {dep}
-            <EVAIcon name="close-outline" fill={styles.lightTextActionHighBlueFrance} size={24} className="ms-2" />
-          </button>
+          />
         ))}
       </div>
     </div>
