@@ -1,17 +1,17 @@
 import { DeepPartialSkipArrayKey } from "react-hook-form";
-import { ContentType, CreateDispositifRequest, DispositifStatus, GetDispositifsResponse, Id } from "api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus, GetDispositifsResponse } from "api-types";
 
-export const getDefaultDispositif = (formValues: DeepPartialSkipArrayKey<CreateDispositifRequest>, theme: Id): GetDispositifsResponse => {
+export const getDefaultDispositif = (formValues: DeepPartialSkipArrayKey<CreateDispositifRequest>): GetDispositifsResponse => {
   return {
     _id: "",
     titreInformatif: formValues.titreInformatif || "Titre de la fiche",
-    titreMarque: formValues.titreMarque || "Nom de l'action",
+    titreMarque: formValues.titreMarque || "Structure",
     typeContenu: ContentType.DISPOSITIF,
     status: DispositifStatus.ACTIVE,
-    theme: formValues.theme || theme,
+    theme: formValues.theme || undefined,
     secondaryThemes: formValues.secondaryThemes,
     metadatas: {
-      location: formValues.metadatas?.location || "france",
+      location: formValues.metadatas?.location || ["Lieu"],
       //@ts-ignore
       price: formValues.metadatas?.price, // FIXME
     },

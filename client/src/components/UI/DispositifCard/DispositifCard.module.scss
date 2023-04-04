@@ -54,8 +54,8 @@
   }
 
   &.placeholder {
-    border: 1px dashed $lightBorderPlainInfo;
-    background: $lightBackgroundContrastInfo;
+    border: 1px solid $lightBorderDefaultGrey;
+    background: $lightBackgroundElevationAlt;
     border-radius: u(2);
     width: 100%;
   }

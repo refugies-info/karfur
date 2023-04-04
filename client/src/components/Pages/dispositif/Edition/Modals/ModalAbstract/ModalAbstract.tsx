@@ -58,10 +58,7 @@ const ModalAbstract = (props: Props) => {
                 <EVAIcon name="arrow-forward-outline" size={32} fill={styles.lightTextActionHighBlueFrance} />
               </Col>
               <Col>
-                <DispositifCard
-                  dispositif={{ ...getDefaultDispositif(values, themes[0]._id), abstract }}
-                  abstractPlaceholder
-                />
+                <DispositifCard dispositif={{ ...getDefaultDispositif(values), abstract }} abstractPlaceholder />
               </Col>
             </>
           )}
