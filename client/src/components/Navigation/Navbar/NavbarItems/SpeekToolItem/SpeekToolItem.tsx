@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { ToolItem } from "@dataesr/react-dsfr";
 import { hasTTSAvailable } from "data/activatedLanguages";
+import { useEditionMode } from "hooks";
 import { cls } from "lib/classname";
 import { ttsActiveSelector, ttsLoadingSelector } from "services/Tts/tts.selector";
 import { toggleTTSActionCreator } from "services/Tts/tts.actions";
@@ -20,10 +21,7 @@ const SpeekToolItem = () => {
   const ttsLoading = useSelector(ttsLoadingSelector);
   const enabled = !isMobile && hasTTSAvailable.includes((router.locale || "fr") as AvailableLanguageI18nCode);
   const toggleAudio = () => dispatch(toggleTTSActionCreator());
-
-  const isEditionMode = useMemo(() => {
-    return ["/dispositif", "/demarche", "/dispositif/[id]/edit", "/demarche/[id]/edit"].includes(router.pathname);
-  }, [router.pathname]);
+  const isEditionMode = useEditionMode();
 
   if (!enabled) return null;
 

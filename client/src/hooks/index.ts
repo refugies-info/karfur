@@ -1,4 +1,5 @@
 export { default as useChangeLanguage } from "./useChangeLanguage";
+export { default as useEditionMode } from "./useEditionMode";
 export { default as useAuth } from "./useAuth";
 export { default as useFavorites } from "./useFavorites";
 export { default as useLanguages } from "./useLanguages";

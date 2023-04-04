@@ -9,7 +9,7 @@ import {
   FooterTop,
   FooterTopCategory,
   Link,
-  Logo
+  Logo,
 } from "@dataesr/react-dsfr";
 import { logoDIAIR } from "assets";
 import Image from "next/image";
@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useDispatch } from "react-redux";
 import { getPath } from "routes";
+import { useEditionMode } from "hooks";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import ThemesFooterCategory from "./ThemesFooterCategory";
 import styles from "./FooterDSFR.module.scss";
@@ -26,10 +27,13 @@ const Footer = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const isEditionMode = useEditionMode();
 
   const openCrisp = () => {
     window.$crisp.push(["do", "chat:open"]);
   };
+
+  if (isEditionMode) return null;
 
   return (
     <DSFRFooter className={styles.footer}>
@@ -93,7 +97,7 @@ const Footer = () => {
           <FooterLink href="https://accueil-integration-refugies.fr/" target="_blank">
             {t(
               "Footer.La Délégation interministérielle à l’accueil et l’intégration des réfugiés",
-              "La Délégation interministérielle à l’accueil et l’intégration des réfugiés"
+              "La Délégation interministérielle à l’accueil et l’intégration des réfugiés",
             )}
           </FooterLink>
           <FooterLink href="https://lamednum.coop/notre-cooperative/" target="_blank">
@@ -121,7 +125,7 @@ const Footer = () => {
       <FooterBody
         description={t(
           "Footer.Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
-          "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France."
+          "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
         )}
       >
         <Logo>Gouvernement</Logo>
@@ -162,7 +166,7 @@ const Footer = () => {
         <FooterCopy>
           {t(
             "Footer.Sauf mention contraire, tous les contenus de ce site sont sous",
-            "Sauf mention contraire, tous les contenus de ce site sont sous"
+            "Sauf mention contraire, tous les contenus de ce site sont sous",
           )}{" "}
           <a
             href="https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"

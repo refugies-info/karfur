@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { ToolTranslate, ToolTranslateItem } from "@dataesr/react-dsfr";
 import { activatedLanguages } from "data/activatedLanguages";
-import { useChangeLanguage } from "hooks";
+import { useChangeLanguage, useEditionMode } from "hooks";
 import { Event } from "lib/tracking";
 import { useRouter } from "next/router";
 import Tooltip from "components/UI/Tooltip";
@@ -13,10 +13,7 @@ const TranslationToolItem = () => {
 
   const currentLanguage = activatedLanguages.find((ln) => ln.i18nCode === router.locale) || null;
   const { changeLanguage } = useChangeLanguage();
-
-  const isEditionMode = useMemo(() => {
-    return ["/dispositif", "/demarche", "/dispositif/[id]/edit", "/demarche/[id]/edit"].includes(router.pathname);
-  }, [router.pathname]);
+  const isEditionMode = useEditionMode();
 
   return (
     <span id="translation-tool-item">
