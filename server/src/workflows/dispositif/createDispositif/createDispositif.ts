@@ -30,7 +30,7 @@ export const createDispositif = async (body: CreateDispositifRequest, userId: Id
     },
   };
 
-  if (body.mainSponsor) newDispositif.mainSponsor = new ObjectId(body.mainSponsor);
+  if (body.mainSponsor && typeof body.mainSponsor === "string") newDispositif.mainSponsor = new ObjectId(body.mainSponsor);
   if (body.theme) newDispositif.theme = new ObjectId(body.theme);
   if (body.secondaryThemes) newDispositif.secondaryThemes = body.secondaryThemes.map((t) => new ObjectId(t));
   if (body.metadatas) newDispositif.metadatas = body.metadatas;

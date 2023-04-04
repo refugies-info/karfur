@@ -12,11 +12,12 @@ import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
 import { User, UserId } from "./User";
 
+// TODO: use from api-types
 type locationType = "france" | "online" | string[];
 type frenchLevelType = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 type ageType = "lessThan" | "moreThan" | "between";
 type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
-type publicStatusType = "asile" | "refugie" | "subsidiaire" | "apatride" | "french";
+type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
 type publicType = "family" | "women" | "youths" | "senior";
 type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
 type amountDetailsType = "atLeast" | "approximately" | "mandatory";

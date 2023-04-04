@@ -140,7 +140,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     translations,
   };
 
-  if (body.mainSponsor) editedDispositif.mainSponsor = new ObjectId(body.mainSponsor);
+  if (body.mainSponsor && typeof body.mainSponsor === "string") editedDispositif.mainSponsor = new ObjectId(body.mainSponsor);
   if (body.theme) editedDispositif.theme = new ObjectId(body.theme);
   if (body.secondaryThemes) editedDispositif.secondaryThemes = body.secondaryThemes.map((t) => new ObjectId(t));
   if (body.metadatas) editedDispositif.metadatas = body.metadatas;
