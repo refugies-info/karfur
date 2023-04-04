@@ -66,7 +66,20 @@ const ModalMainSponsor = (props: Props) => {
     },
   });
 
-  const validate = () => {
+  const setData = () => {
+    if (selectedStructure) {
+      setValue("mainSponsor", selectedStructure.toString());
+    } else if (!!mainSponsor.name && !!mainSponsor.link && !!mainSponsor.logo.secure_url) {
+      setValue("mainSponsor", mainSponsor);
+    }
+
+    if (!!contact.name && !!contact.email && !!contact.phone) {
+      const isStructureContact = unknownContact !== true;
+      setValue("contact", { ...contact, isStructureContact });
+    }
+  };
+
+  const goToNextStep = () => {
     if (user.hasStructure) {
       /* [step] ([condition]) [component]
       0 ChooseStructure
@@ -115,6 +128,8 @@ const ModalMainSponsor = (props: Props) => {
         setStep((s) => s + 1);
       }
     }
+
+    setData();
   };
 
   const displayedStep = useMemo(() => getDisplayedStep(step, user.hasStructure), [step, user.hasStructure]);
@@ -194,7 +209,7 @@ const ModalMainSponsor = (props: Props) => {
             <SimpleFooter onValidate={props.toggle} disabled={false} text="C'est noté&nbsp;!" />
           ) : (
             <StepsFooter
-              onValidate={validate}
+              onValidate={goToNextStep}
               onPrevious={() => setStep(previousStep)}
               maxSteps={displayedMaxStep}
               step={displayedStep}
@@ -241,7 +256,7 @@ const ModalMainSponsor = (props: Props) => {
             <SimpleFooter onValidate={props.toggle} disabled={false} text="C'est noté&nbsp;!" />
           ) : (
             <StepsFooter
-              onValidate={validate}
+              onValidate={goToNextStep}
               onPrevious={() => setStep(previousStep)}
               maxSteps={displayedMaxStep}
               step={displayedStep}

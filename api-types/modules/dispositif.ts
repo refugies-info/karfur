@@ -85,12 +85,19 @@ interface DispositifRequest {
   why?: { [key: string]: InfoSection };
   how?: { [key: string]: InfoSection };
   next?: { [key: string]: InfoSection };
-  mainSponsor?: string;
+  mainSponsor?: string | Sponsor;
+  contact?: {
+    name: string;
+    email: string;
+    phone: string;
+    comments: string;
+    isStructureContact: boolean;
+  }
   theme?: string;
   secondaryThemes?: string[];
   sponsors?: Sponsor[];
   metadatas?: Metadatas;
-  // map: Poi[];
+  map?: Poi[];
 }
 
 /**
