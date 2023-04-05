@@ -73,6 +73,7 @@
 
   .details {
     @include ml-ltr(u(3));
+    flex-grow: 1;
 
     &.no_icon {
       @include ml-ltr(0);

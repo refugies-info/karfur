@@ -15,6 +15,7 @@ interface Item {
 }
 
 interface Props {
+  id?: string;
   title: string | React.ReactNode;
   color?: string;
   items: Item[] | null;
@@ -65,7 +66,7 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
 /**
  * Base component of the left sidebar card. Can be used in VIEW or EDIT mode.
  */
-const BaseCard = ({ title, items, color, onClick }: Props) => {
+const BaseCard = ({ id, title, items, color, onClick }: Props) => {
   const pageContext = useContext(PageContext);
   const [tooltipId] = useState(uniqueId("tooltip_card_"));
 
@@ -122,7 +123,9 @@ const BaseCard = ({ title, items, color, onClick }: Props) => {
       </Tooltip>
     </button>
   ) : (
-    <div className={cls(styles.card, status === "error" && styles.error)}>{cardContent}</div>
+    <div id={id} className={cls(styles.card, status === "error" && styles.error)}>
+      {cardContent}
+    </div>
   );
 };
 

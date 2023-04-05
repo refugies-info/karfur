@@ -3,7 +3,7 @@ import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { themeSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { ContentType, GetDispositifResponse } from "api-types";
+import { ContentType, UpdateDispositifRequest } from "api-types";
 import {
   ModalAbstract,
   ModalAvailability,
@@ -21,17 +21,22 @@ import CardPublic from "../../Metadatas/CardPublic";
 import CardAvailability from "../../Metadatas/CardAvailability";
 import CardConditions from "../../Metadatas/CardConditions";
 import CardTheme from "../../Metadatas/CardTheme";
+import CardMainSponsor from "../../Metadatas/CardMainSponsor";
 import { cls } from "lib/classname";
 import styles from "./LeftSidebarEdition.module.scss";
 
 type Modals = "Availability" | "Conditions" | "Location" | "Price" | "Public" | "Themes" | "Abstract" | "MainSponsor";
 
+interface Props {
+  typeContenu: ContentType;
+}
+
 /**
  * Left sidebar of the page in EDIT mode.
  * For each section, it shows either an AddContentButton if no content yet, or a card if the value is set.
  */
-const LeftSidebarEdition = () => {
-  const values = useWatch<GetDispositifResponse>();
+const LeftSidebarEdition = (props: Props) => {
+  const values = useWatch<UpdateDispositifRequest>();
   const [showModal, setShowModal] = useState<Modals | null>(null);
   const toggleModal = useCallback(() => setShowModal((o) => null), []);
   const currentTheme = useSelector(themeSelector(values.theme));
@@ -117,7 +122,7 @@ const LeftSidebarEdition = () => {
       {values.metadatas?.location !== undefined ? (
         <CardLocation
           data={values.metadatas.location}
-          typeContenu={values.typeContenu || ContentType.DISPOSITIF}
+          typeContenu={props.typeContenu || ContentType.DISPOSITIF}
           color={color}
           onClick={() => setShowModal("Location")}
         />
@@ -128,15 +133,25 @@ const LeftSidebarEdition = () => {
       )}
 
       <p className={styles.title}>À faire en dernier</p>
-      <AddContentButton onClick={() => setShowModal("MainSponsor")} size="md" className="mb-6">
-        <EVAIcon
-          name="home-outline"
-          size={24}
-          fill={styles.lightTextDisabledGrey}
-          className={cls(styles.theme_icon, "me-2")}
+
+      {values.mainSponsor !== undefined ? (
+        <CardMainSponsor
+          /* @ts-ignore FIXME */
+          dataMainSponsor={values.mainSponsor}
+          color={color}
+          onClick={() => setShowModal("MainSponsor")}
         />
-        Structure
-      </AddContentButton>
+      ) : (
+        <AddContentButton onClick={() => setShowModal("MainSponsor")} size="md" className="mb-6">
+          <EVAIcon
+            name="home-outline"
+            size={24}
+            fill={styles.lightTextDisabledGrey}
+            className={cls(styles.theme_icon, "me-2")}
+          />
+          Structure
+        </AddContentButton>
+      )}
 
       <AddContentButton onClick={() => setShowModal("Abstract")} size="md" contentSize="sm" content={values.abstract}>
         <EVAIcon

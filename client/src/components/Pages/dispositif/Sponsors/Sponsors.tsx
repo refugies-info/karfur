@@ -50,6 +50,7 @@ const Sponsors = (props: Props) => {
                   icon="trash-2-outline"
                   onClick={(e: any) => {
                     e.stopPropagation();
+                    e.preventDefault();
                     props.onDelete?.(i);
                   }}
                   className={cls("ms-2", styles.delete)}

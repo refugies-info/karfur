@@ -69,6 +69,7 @@ export const isNextButtonDisabled = (
   selectedStructure: Id | null,
   otherStructure: boolean | null,
   createStructure: boolean | null,
+  unknownContact: boolean | null,
 ) => {
   const isCreateForm = hasStructure ? isStep(step, 4) : isStep(step, 5);
   const isAuthorContactForm = hasStructure ? isStep(step, 7) : isStep(step, [2, 7, 11]);
@@ -78,8 +79,8 @@ export const isNextButtonDisabled = (
   const isSearchStructureForm = hasStructure ? isStep(step, 2) : isStep(step, 0);
 
   if (isCreateForm) {
-    return !mainSponsor.name || !mainSponsor.link /* || !mainSponsor.logo.secure_url */; // FIXME : temp
-  } else if (isAuthorContactForm || isStructureContactForm) {
+    return !mainSponsor.name || !mainSponsor.link || !mainSponsor.logo.secure_url;
+  } else if (isAuthorContactForm || (isStructureContactForm && !unknownContact)) {
     return !contact.name || !contact.email || !contact.phone;
   } else if (isMemberOfStructureForm) {
     return memberOfStructure === null;

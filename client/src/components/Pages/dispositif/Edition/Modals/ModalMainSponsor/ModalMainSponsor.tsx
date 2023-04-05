@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { CreateDispositifRequest, Id, Sponsor } from "api-types";
@@ -40,16 +40,17 @@ interface Props {
   toggle: () => void;
 }
 
-const ModalMainSponsor = (props: Props) => {
+const ModalMainSponsor = ({ show, toggle }: Props) => {
   const user = useSelector(userSelector);
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
 
   const [step, setStep] = useState(0);
-  const [selectedStructure, setSelectedStructure] = useState<Id | null>(null);
+  const [selectedStructure, setSelectedStructure] = useState<Id | null>(getValues("mainSponsor") || null);
   const [createStructure, setCreateStructure] = useState(false);
   const [memberOfStructure, setMemberOfStructure] = useState<boolean | null>(null);
   const [otherStructure, setOtherStructure] = useState<boolean | null>(null);
   const [unknownContact, setUnknownContact] = useState<boolean | null>(null);
+  // TODO: get infos from somewhere
   const [contact, setContact] = useState<ContactInfos>({
     name: "",
     email: "",
@@ -93,7 +94,7 @@ const ModalMainSponsor = (props: Props) => {
               8 ThanksMessage */
       if (step === 0) {
         if (otherStructure) setStep(2);
-        else props.toggle();
+        else toggle();
       } else if (step === 2) {
         setStep(createStructure ? 4 : 3);
       } else if (step === 5) {
@@ -151,6 +152,7 @@ const ModalMainSponsor = (props: Props) => {
         selectedStructure,
         otherStructure,
         createStructure,
+        unknownContact,
       ),
     [
       step,
@@ -161,13 +163,19 @@ const ModalMainSponsor = (props: Props) => {
       selectedStructure,
       otherStructure,
       createStructure,
+      unknownContact,
     ],
   );
 
+  const endForm = useCallback(() => {
+    toggle();
+    setStep(0);
+  }, [toggle]);
+
   return (
     <BaseModal
-      show={props.show}
-      toggle={props.toggle}
+      show={show}
+      toggle={toggle}
       help={isEndModal ? undefined : help}
       title={title}
       small={isEndModal}
@@ -206,7 +214,7 @@ const ModalMainSponsor = (props: Props) => {
           {step === 8 && <ThanksMessage />}
 
           {isEndModal ? (
-            <SimpleFooter onValidate={props.toggle} disabled={false} text="C'est noté&nbsp;!" />
+            <SimpleFooter onValidate={endForm} disabled={false} text="C'est noté&nbsp;!" />
           ) : (
             <StepsFooter
               onValidate={goToNextStep}
@@ -253,7 +261,7 @@ const ModalMainSponsor = (props: Props) => {
           {step === 12 && <ThanksMessage />}
 
           {isEndModal ? (
-            <SimpleFooter onValidate={props.toggle} disabled={false} text="C'est noté&nbsp;!" />
+            <SimpleFooter onValidate={endForm} disabled={false} text="C'est noté&nbsp;!" />
           ) : (
             <StepsFooter
               onValidate={goToNextStep}

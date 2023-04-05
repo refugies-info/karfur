@@ -64,7 +64,7 @@ const Dispositif = (props: Props) => {
       <div className={styles.content}>
         <div className={styles.left}>
           {isTablet && <Header typeContenu={typeContenu} />}
-          {isViewMode ? <LeftSidebar /> : <LeftSidebarEdition />}
+          {isViewMode ? <LeftSidebar /> : <LeftSidebarEdition typeContenu={typeContenu} />}
         </div>
 
         <div className={styles.main} id="anchor-what" dir={isRTL ? undefined : "ltr"}>
