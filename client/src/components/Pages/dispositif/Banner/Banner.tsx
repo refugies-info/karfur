@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Badge } from "@dataesr/react-dsfr";
 import { Id } from "api-types";
@@ -8,6 +8,7 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import Button from "components/UI/Button";
 import { getStatus } from "./functions";
 import styles from "./Banner.module.scss";
+import PageContext from "utils/pageContext";
 
 interface Props {
   themeId: Id | undefined;
@@ -21,13 +22,14 @@ const Banner = (props: Props) => {
   const user = useSelector(userSelector);
   const dispositif = useSelector(selectedDispositifSelector);
   const status = getStatus(dispositif?.status, user.admin);
+  const pageContext = useContext(PageContext);
 
   return (
     <div
       className={styles.banner}
       style={theme?.banner.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}}
     >
-      {user && (
+      {user && pageContext.mode === "view" && (
         <div className={styles.actions}>
           {status && <Badge text={status.text} type={status.type} hasIcon icon={status.icon} className="me-4" />}
           <Button icon="edit-outline" className={styles.edit}>

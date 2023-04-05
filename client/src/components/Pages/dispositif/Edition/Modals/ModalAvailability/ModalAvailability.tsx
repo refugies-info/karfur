@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import {
-  amountDetailsType,
+  commitmentDetailsType,
   CreateDispositifRequest,
+  frequencyDetailsType,
   frequencyUnitType,
   Metadatas,
   timeSlotType,
@@ -13,7 +14,8 @@ import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
 import { StepsFooter, InlineForm } from "../components";
 import {
-  amountDetailsOptions,
+  commitmentDetailsOptions,
+  frequencyDetailsOptions,
   frequencyUnitOptions,
   help,
   modalTitles,
@@ -21,6 +23,7 @@ import {
   timeUnitOptions,
 } from "./data";
 import NoIcon from "assets/dispositif/no-icon.svg";
+import { getInputValue, getInputValues, isCommitmentHoursKo } from "./functions";
 import styles from "./ModalAvailability.module.scss";
 
 interface Props {
@@ -35,10 +38,10 @@ const ModalAvailability = (props: Props) => {
   const [step, setStep] = useState<number>(1);
 
   // commitment
-  const [commitmentAmountDetails, setCommitmentAmountDetails] = useState<amountDetailsType>(
-    getValues("metadatas.commitment.amountDetails") || "atLeast",
+  const [commitmentAmountDetails, setCommitmentAmountDetails] = useState<commitmentDetailsType>(
+    getValues("metadatas.commitment.amountDetails") || "exactly",
   );
-  const [commitmentHours, setCommitmentHours] = useState<number | undefined>(
+  const [commitmentHours, setCommitmentHours] = useState<(number | undefined)[] | undefined>(
     getValues("metadatas.commitment.hours") || undefined,
   );
   const [commitmentTimeUnit, setCommitmentTimeUnit] = useState<timeUnitType>(
@@ -48,10 +51,10 @@ const ModalAvailability = (props: Props) => {
   const validateCommitment = () => {
     let commitment: Metadatas["commitment"] = undefined;
     if (noCommitment) commitment = null;
-    else if (!noCommitment && !!commitmentHours) {
+    else if (!noCommitment && !isCommitmentHoursKo(commitmentHours, commitmentAmountDetails)) {
       commitment = {
         amountDetails: commitmentAmountDetails,
-        hours: commitmentHours,
+        hours: commitmentHours?.filter((c) => c !== undefined) as number[],
         timeUnit: commitmentTimeUnit,
       };
     }
@@ -59,8 +62,8 @@ const ModalAvailability = (props: Props) => {
   };
 
   // frequency
-  const [frequencyAmountDetails, setFrequencyAmountDetails] = useState<amountDetailsType>(
-    getValues("metadatas.frequency.amountDetails") || "atLeast",
+  const [frequencyAmountDetails, setFrequencyAmountDetails] = useState<frequencyDetailsType>(
+    getValues("metadatas.frequency.amountDetails") || "minimum",
   );
   const [frequencyHours, setFrequencyHours] = useState<number | undefined>(
     getValues("metadatas.frequency.hours") || undefined,
@@ -116,11 +119,11 @@ const ModalAvailability = (props: Props) => {
 
   const emptySteps = useMemo(() => {
     return [
-      !noCommitment && !commitmentHours,
+      !noCommitment && isCommitmentHoursKo(commitmentHours, commitmentAmountDetails),
       !noFrequency && !frequencyHours,
       timeSlots === undefined || timeSlots?.length === 0,
     ];
-  }, [noCommitment, commitmentHours, noFrequency, frequencyHours, timeSlots]);
+  }, [noCommitment, commitmentAmountDetails, commitmentHours, noFrequency, frequencyHours, timeSlots]);
 
   const navigateToStep = useCallback(() => {
     const firstEmpty = emptySteps.indexOf(true);
@@ -140,18 +143,35 @@ const ModalAvailability = (props: Props) => {
       {step === 1 && (
         <div>
           <InlineForm>
-            <DropdownModals<amountDetailsType>
-              options={amountDetailsOptions}
+            <DropdownModals<commitmentDetailsType>
+              options={commitmentDetailsOptions}
               selected={commitmentAmountDetails}
-              setSelected={(key: amountDetailsType) => setCommitmentAmountDetails(key)}
+              setSelected={(key: commitmentDetailsType) => setCommitmentAmountDetails(key)}
             />
             <span>
               <input
                 type="number"
                 placeholder={"0"}
-                value={commitmentHours || ""}
-                onChange={(e: any) => setCommitmentHours(e.target.value)}
+                value={getInputValue(commitmentHours?.[0])}
+                onChange={(e: any) =>
+                  setCommitmentHours(
+                    commitmentAmountDetails === "between"
+                      ? getInputValues([e.target.value, commitmentHours?.[1]])
+                      : getInputValues([e.target.value]),
+                  )
+                }
               />
+              {commitmentAmountDetails === "between" && (
+                <>
+                  <span className="mx-2">et</span>
+                  <input
+                    type="number"
+                    placeholder={"0"}
+                    value={getInputValue(commitmentHours?.[1])}
+                    onChange={(e: any) => setCommitmentHours(getInputValues([commitmentHours?.[0], e.target.value]))}
+                  />
+                </>
+              )}
             </span>
 
             <DropdownModals<timeUnitType>
@@ -175,10 +195,10 @@ const ModalAvailability = (props: Props) => {
       {step === 2 && (
         <div>
           <InlineForm>
-            <DropdownModals<amountDetailsType>
-              options={amountDetailsOptions}
+            <DropdownModals<frequencyDetailsType>
+              options={frequencyDetailsOptions}
               selected={frequencyAmountDetails}
-              setSelected={(key: amountDetailsType) => setFrequencyAmountDetails(key)}
+              setSelected={(key: frequencyDetailsType) => setFrequencyAmountDetails(key)}
             />
             <span>
               <input

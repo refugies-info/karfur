@@ -13,6 +13,7 @@
   border-bottom: 1px solid $lightBorderDefaultGrey;
   position: sticky;
   top: 0;
+  box-shadow: 0 12px 32px -8px #0000241f;
   z-index: 501; // goes over menu
 
   .inner {

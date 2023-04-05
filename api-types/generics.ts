@@ -122,7 +122,8 @@ export type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "mont
 export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
 export type publicType = "family" | "women" | "youths" | "senior";
 export type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
-export type amountDetailsType = "atLeast" | "approximately" | "mandatory";
+export type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
+export type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
 export type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
 export type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
 export type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
@@ -143,12 +144,12 @@ export interface Metadatas {
     details?: priceDetails | null;
   } | null;
   commitment?: {
-    amountDetails: amountDetailsType;
-    hours: number;
+    amountDetails: commitmentDetailsType;
+    hours: number[];
     timeUnit: timeUnitType;
   } | null;
   frequency?: {
-    amountDetails: amountDetailsType;
+    amountDetails: frequencyDetailsType;
     hours: number;
     timeUnit: timeUnitType;
     frequencyUnit: frequencyUnitType;

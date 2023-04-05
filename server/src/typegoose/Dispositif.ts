@@ -20,7 +20,8 @@ type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "t
 type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
 type publicType = "family" | "women" | "youths" | "senior";
 type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
-type amountDetailsType = "atLeast" | "approximately" | "mandatory";
+type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
+type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
 type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
 type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
 type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
@@ -124,16 +125,16 @@ export class Price {
 
 export class Commitment {
   @prop()
-  public amountDetails: amountDetailsType;
+  public amountDetails: commitmentDetailsType;
   @prop()
-  public hours: number;
+  public hours: number[];
   @prop()
   public timeUnit: timeUnitType;
 }
 
 export class Frequency {
   @prop()
-  public amountDetails: amountDetailsType;
+  public amountDetails: frequencyDetailsType;
   @prop()
   public hours: number;
   @prop()

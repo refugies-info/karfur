@@ -35,7 +35,7 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
     return (
       <div className={styles.item}>
         <div className={cls(styles.details, "ms-0")}>
-          <span className={styles.content}>Cette information n’est pas pertinente pour mon action</span>
+          <span className={styles.content}>Non pertinent pour mon action</span>
         </div>
       </div>
     );
@@ -47,7 +47,7 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
     if (!item.content && !editMode) return null; // view mode, no content
     const infoNotUseful = editMode && item.content === null;
     const infoMissing = editMode && item.content === undefined;
-    if (infoNotUseful) content = "Cette information n’est pas pertinente pour mon action";
+    if (infoNotUseful) content = "Non pertinent pour mon action";
     if (infoMissing) content = "Info manquante";
 
     return (

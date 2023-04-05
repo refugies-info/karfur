@@ -112,7 +112,7 @@ const AddContentButton = (props: Props) => {
         <>
           <span>{props.children}</span>
           {!hasErrorStatus ? (
-            <EVAIcon name="plus-circle-outline" size={24} fill={styles.lightTextMentionGrey} className={styles.icon} />
+            <EVAIcon name="plus-circle" size={24} fill={styles.lightTextMentionGrey} className={styles.icon} />
           ) : (
             errorIcon
           )}

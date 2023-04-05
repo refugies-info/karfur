@@ -14,7 +14,7 @@ export const publicStatusOptions: Record<publicStatusType, string> = {
   french: "Citoyens français",
 };
 export const publicOptions: Record<publicType, string> = {
-  family: "Famille",
+  family: "Familles et enfants",
   women: "Femmes",
   youths: "Jeunes (de 16 à 25 ans)",
   senior: "Séniors",
