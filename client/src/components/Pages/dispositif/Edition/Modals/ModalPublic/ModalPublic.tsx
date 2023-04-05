@@ -16,6 +16,7 @@ import {
   publicStatusOptions,
 } from "./data";
 import { includeAllRefugees } from "./functions";
+import NoIcon from "assets/dispositif/no-icon.svg";
 import styles from "./ModalPublic.module.scss";
 
 interface Props {
@@ -204,6 +205,7 @@ const ModalPublic = (props: Props) => {
               onSelect={() => setFrenchLevel(null)}
               size="lg"
               className="mt-6"
+              image={NoIcon}
             />
           </div>
         )}
@@ -282,6 +284,7 @@ const ModalPublic = (props: Props) => {
               onSelect={() => setNoAge((o) => !o)}
               size="lg"
               className="mt-6"
+              image={NoIcon}
             />
           </div>
         )}
@@ -307,6 +310,7 @@ const ModalPublic = (props: Props) => {
               onSelect={() => setPublicType(null)}
               size="lg"
               className="mt-6"
+              image={NoIcon}
             />
           </div>
         )}

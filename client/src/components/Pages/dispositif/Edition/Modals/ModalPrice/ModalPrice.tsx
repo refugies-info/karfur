@@ -10,6 +10,7 @@ import PriceFree from "assets/dispositif/form-icons/price-free.svg";
 import PricePay from "assets/dispositif/form-icons/price-pay.svg";
 import { dropdownOptions, help } from "./data";
 import { getInitialPrice, getInitialType, isPriceValue } from "./functions";
+import NoIcon from "assets/dispositif/no-icon.svg";
 import styles from "./ModalPrice.module.scss";
 
 interface Props {
@@ -174,6 +175,7 @@ const ModalPrice = (props: Props) => {
           selected={selected === null}
           onSelect={() => setSelected(null)}
           size="lg"
+          image={NoIcon}
         />
 
         <SimpleFooter onValidate={validate} disabled={disabled} />

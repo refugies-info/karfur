@@ -20,6 +20,7 @@ import {
   timeSlotOptions,
   timeUnitOptions,
 } from "./data";
+import NoIcon from "assets/dispositif/no-icon.svg";
 import styles from "./ModalAvailability.module.scss";
 
 interface Props {
@@ -166,6 +167,7 @@ const ModalAvailability = (props: Props) => {
             onSelect={() => setNoCommitment((o) => !o)}
             size="lg"
             className="mt-6"
+            image={NoIcon}
           />
         </div>
       )}
@@ -205,6 +207,7 @@ const ModalAvailability = (props: Props) => {
             onSelect={() => setNoFrequency((o) => !o)}
             size="lg"
             className="mt-6"
+            image={NoIcon}
           />
         </div>
       )}
@@ -228,6 +231,7 @@ const ModalAvailability = (props: Props) => {
             onSelect={() => setTimeSlots(null)}
             size="lg"
             className="mt-6"
+            image={NoIcon}
           />
         </div>
       )}
