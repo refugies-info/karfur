@@ -30,28 +30,20 @@
 }
 
 .btn {
-  background: white;
+  font-weight: bold;
   display: inline-flex;
   align-items: center;
   box-shadow: 0 2px 6px 0 #00001229;
-  padding: u(2) u(3);
-  border-radius: 6px;
-  @include dsfr-text("small");
+  padding: u(2) u(4);
+  border-radius: u(2);
 
   @include media-max("lg-limit") {
-    @include dsfr-text("normal");
     display: flex;
     width: fit-content;
     margin-bottom: u(2);
   }
 
-  & > span {
-    display: inline-block;
-    width: u(4);
-    height: u(4);
-
-    img {
-      vertical-align: top;
-    }
+  &.need {
+    border: 1px solid transparent;
   }
 }
