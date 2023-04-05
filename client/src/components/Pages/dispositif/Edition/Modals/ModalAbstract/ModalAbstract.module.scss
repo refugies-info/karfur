@@ -15,6 +15,7 @@
   padding-bottom: u(12);
   background: $gray30;
   border: 1px solid $lightBorderDefaultGrey;
+  max-width: 230px;
 
   &:hover {
     background: $lightBackgroundContrastGrey;
@@ -33,4 +34,14 @@
   right: u(4);
   margin-bottom: 0;
   color: $lightTextDefaultError;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  left: 230px;
+  transform: translateY(-50px);
+  z-index: 1;
+  width: 64px;
+  height: 30px;
 }

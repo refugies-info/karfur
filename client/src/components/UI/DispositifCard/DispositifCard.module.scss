@@ -132,7 +132,12 @@
 }
 
 .card {
-  &:hover .sponsor .picture {
+  &:hover:not(.demo) .sponsor .picture {
     background-color: $white;
+  }
+  &.demo {
+    border: 1px solid $lightBorderDefaultGrey;
+    box-shadow: none !important;
+    cursor: default !important;
   }
 }

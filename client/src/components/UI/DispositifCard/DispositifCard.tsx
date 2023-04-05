@@ -23,20 +23,25 @@ import { GetDispositifsResponse } from "api-types";
 type DispositifLinkProps = {
   background: string;
   border: string;
+  demoCard: boolean;
 };
 const DispositifLink = styled.a<DispositifLinkProps>`
-  :hover {
-    background-color: ${(props) => props.background} !important;
-    border-color: ${(props) => props.border} !important;
-    color: ${(props) => props.border} !important;
-  }
+  ${(props) =>
+    !props.demoCard &&
+    `
+:hover {
+  background-color: ${props.background} !important;
+  border-color: ${props.border} !important;
+  color: ${props.border} !important;
+}
+`}
 `;
 
 interface Props {
   dispositif: GetDispositifsResponse;
   selectedDepartment?: string;
   targetBlank?: boolean;
-  abstractPlaceholder?: boolean;
+  demoCard?: boolean;
 }
 
 const DispositifCard = (props: Props) => {
@@ -67,17 +72,29 @@ const DispositifCard = (props: Props) => {
   return (
     <Link
       legacyBehavior
-      href={{
-        pathname: getPath("/dispositif/[id]", router.locale),
-        query: { id: props.dispositif._id.toString() },
-      }}
+      href={
+        props.demoCard
+          ? "#"
+          : {
+              pathname: getPath("/dispositif/[id]", router.locale),
+              query: { id: props.dispositif._id.toString() },
+            }
+      }
       passHref
       prefetch={false}
     >
       <DispositifLink
-        className={cls(commonStyles.card, commonStyles.dispositif, commonStyles.content, styles.card)}
+        className={cls(
+          commonStyles.card,
+          commonStyles.dispositif,
+          commonStyles.content,
+          styles.card,
+          props.demoCard && commonStyles.demo,
+          props.demoCard && styles.demo,
+        )}
         background={colors.color30}
         border={colors.color100}
+        demoCard={!!props.demoCard}
         target={props.targetBlank ? "_blank" : undefined}
         rel={props.targetBlank ? "noopener noreferrer" : undefined}
       >
@@ -96,12 +113,7 @@ const DispositifCard = (props: Props) => {
         />
 
         <div
-          className={cls(
-            styles.text,
-            styles.max_lines,
-            styles.abstract,
-            props.abstractPlaceholder && styles.placeholder,
-          )}
+          className={cls(styles.text, styles.max_lines, styles.abstract, props.demoCard && styles.placeholder)}
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.dispositif.abstract || "" }}
         />
