@@ -5,7 +5,7 @@ import { addOrUpdateDispositifInContenusAirtable } from "../../controllers/misce
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
 import { Dispositif, DispositifId, ObjectId, Structure, User, UserId } from "../../typegoose";
-import { CreateDispositifRequest, DispositifStatus, StructureStatus, UpdateDispositifRequest } from "api-types";
+import { ContentType, CreateDispositifRequest, DemarcheContent, DispositifContent, DispositifStatus, InfoSections, StructureStatus, UpdateDispositifRequest } from "api-types";
 import { createStructureInDB } from "../structure/structure.repository";
 import { checkUserIsAuthorizedToDeleteDispositif } from "../../libs/checkAuthorizations";
 import { getDispositifDepartments } from "../../libs/getDispositifDepartments";
@@ -113,4 +113,38 @@ export const buildNewDispositif = async (formContent: UpdateDispositifRequest | 
   if (formContent.sponsors) editedDispositif.sponsors = formContent.sponsors;
 
   return editedDispositif;
+}
+
+const isAccordionOk = (content: InfoSections | undefined) => {
+  if (!content) return false;
+  return content && Object.keys(content).length >= 3 && !Object.values(content).find(c => !c.title || !c.text)
+}
+
+const isMetadataOk = (content: any) => {
+  return content || content === null // ok if filled or null
+}
+
+export const isDispositifComplete = (dispositif: Dispositif) => {
+  const content = dispositif.translations.fr.content;
+  const conditions: boolean[] = [
+    !!content.titreInformatif,
+    !!content.titreMarque,
+    !!content.what,
+    dispositif.typeContenu === ContentType.DISPOSITIF ? isAccordionOk((content as DispositifContent).why) : isAccordionOk((content as DemarcheContent).how),
+    dispositif.typeContenu === ContentType.DISPOSITIF ? isAccordionOk((content as DispositifContent).how) : isAccordionOk((content as DemarcheContent).next),
+    !!content.abstract,
+    !!dispositif.theme,
+    dispositif.mainSponsor,
+    isMetadataOk(dispositif.metadatas?.publicStatus),
+    isMetadataOk(dispositif.metadatas?.age),
+    isMetadataOk(dispositif.metadatas?.frenchLevel),
+    isMetadataOk(dispositif.metadatas?.public),
+    isMetadataOk(dispositif.metadatas?.price),
+    isMetadataOk(dispositif.metadatas?.commitment),
+    isMetadataOk(dispositif.metadatas?.frequency),
+    isMetadataOk(dispositif.metadatas?.timeSlots),
+    isMetadataOk(dispositif.metadatas?.conditions),
+    isMetadataOk(dispositif.metadatas?.location)
+  ];
+  return conditions.filter(c => c).length;
 }

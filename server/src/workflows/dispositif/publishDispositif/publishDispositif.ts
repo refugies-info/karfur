@@ -5,14 +5,17 @@ import { Response } from "../../../types/interface";
 import { Dispositif, User } from "../../../typegoose";
 import { InvalidRequestError } from "../../../errors";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
+import { isDispositifComplete } from "../../../modules/dispositif/dispositif.service";
 import { log } from "./log";
 
 export const publishDispositif = async (id: string, body: PublishDispositifRequest, user: User): Response => {
   logger.info("[publishDispositif] received", { id, body, user: user._id });
 
-  const oldDispositif = await getDispositifById(id, { status: 1, creatorId: 1, mainSponsor: 1, translations: 1, typeContenu: 1, metadatas: 1 }, "mainSponsor");
+  const oldDispositif = await getDispositifById(id, { status: 1, creatorId: 1, theme: 1, mainSponsor: 1, translations: 1, typeContenu: 1, metadatas: 1 }, "mainSponsor");
 
-  /* TODO: check dispositif is complete */
+  if (!isDispositifComplete(oldDispositif)) {
+    throw new InvalidRequestError("The content is incomplete, it cannot be published")
+  }
 
   const editedDispositif: Partial<Dispositif> = {};
 

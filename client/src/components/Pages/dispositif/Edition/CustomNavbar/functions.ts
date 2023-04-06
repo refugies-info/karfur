@@ -31,7 +31,7 @@ export const calculateProgress = (dispositif: Partial<GetDispositifResponse>) =>
     !!dispositif.abstract,
     !!dispositif.theme,
     (dispositif.sponsors?.length || 0) > 0,
-    // TODO: main sponsor
+    dispositif.mainSponsor,
     isMetadataOk([
       dispositif.metadatas?.publicStatus,
       dispositif.metadatas?.age,
