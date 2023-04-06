@@ -38,7 +38,6 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   // 404
   const dispositif = store.getState().selectedDispositif;
   if (!dispositif || dispositif.typeContenu !== "dispositif") {
-    /* TODO: check authorization */
     return { notFound: true };
   }
 

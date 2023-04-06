@@ -356,12 +356,7 @@ const Login = () => {
           {resetPasswordPossible && (
             <>
               <div className={styles.email_message}>
-                {t(
-                  // FIXME
-                  // @ts-ignore
-                  "Login.Lien réinitialisation",
-                  "Un lien de réinitialisation a été envoyé à ",
-                ) +
+                {t("Login.Lien réinitialisation", "Un lien de réinitialisation a été envoyé à ") +
                   getHashedEmail() +
                   "."}
               </div>

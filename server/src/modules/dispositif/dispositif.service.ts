@@ -109,8 +109,8 @@ export const buildNewDispositif = async (formContent: UpdateDispositifRequest | 
   if (formContent.secondaryThemes) editedDispositif.secondaryThemes = formContent.secondaryThemes.map((t) => new ObjectId(t));
   if (formContent.metadatas) editedDispositif.metadatas = formContent.metadatas;
   if (formContent.map) editedDispositif.map = formContent.map;
-  //@ts-ignore FIXME picture type
-  if (formContent.sponsors) editedDispositif.sponsors = formContent.sponsors;
+  //@ts-ignore
+  if (formContent.sponsors) editedDispositif.sponsors = formContent.sponsors; // FIXME picture type
 
   return editedDispositif;
 }
