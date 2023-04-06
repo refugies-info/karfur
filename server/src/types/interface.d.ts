@@ -9,7 +9,6 @@ export type Modify<T, R> = Omit<T, keyof R> & R;
 declare global {
   namespace Express {
     export interface Request {
-      fromSite?: boolean; // TODO: delete
       user?: DocumentType<User>;
       userId?: typeof User._id;
     }

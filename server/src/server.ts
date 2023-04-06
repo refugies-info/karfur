@@ -59,14 +59,6 @@ app.use(function (_, res, next) {
   next();
 });
 
-//Checking request origin
-// TODO: delete
-app.use(function (req, _, next) {
-  //@ts-ignore
-  req.fromSite = req.headers["site-secret"] === process.env.REACT_APP_SITE_SECRET;
-  next();
-});
-
 // Setup routes
 RegisterRoutes(app);
 

@@ -1,7 +1,6 @@
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getTitreInfoOrMarqueInLocale, filterContentsOnGeoloc } from "../../../modules/dispositif/dispositif.adapter";
 import { addAgeQuery, addFrenchLevelQuery } from "./functions";
 
@@ -39,8 +38,6 @@ const present = (locale: string) => (content: any) => {
 
 export const getContentsForApp = async (req: RequestFromClient<Query>, res: Res) => {
   try {
-    checkRequestIsFromSite(req.fromSite);
-
     if (!req.query || !req.query.locale) {
       throw new Error("INVALID_REQUEST");
     }

@@ -65,6 +65,15 @@ export interface DispositifStatusRequest {
 }
 
 /**
+ * @url PATCH /dispositifs/{id}/themes-needs
+ */
+export interface DispositifThemeNeedsRequest {
+  theme?: string;
+  secondaryThemes?: string[];
+  needs?: string[];
+}
+
+/**
  * @url POST /dispositifs/{id}/views
  */
 export interface AddViewsRequest {

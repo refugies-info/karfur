@@ -24,10 +24,10 @@ import {
   PostDispositifsResponse,
   PublishDispositifRequest,
   StructureReceiveDispositifRequest,
+  DispositifThemeNeedsRequest,
 } from "api-types";
 import express, { Request as ExRequest } from "express";
 
-import * as checkToken from "./account/checkToken";
 import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
 import { getDispositifs } from "../workflows/dispositif/getDispositifs";
 import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
@@ -61,8 +61,6 @@ const router = express.Router();
 
 /* TODO: use tsoa */
 router.get("/getContentsForApp", getContentsForApp);
-// @ts-ignore FIXME
-router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
 
 export { router };
 
@@ -221,6 +219,18 @@ export class DispositifController extends Controller {
     @Request() request: express.Request,
   ): Response {
     return updateDispositifStatus(id, body, request.user);
+  }
+  @Security({
+    jwt: ["admin"],
+    fromSite: [],
+  })
+  @Patch("/{id}/themes-needs")
+  public async updateThemeNeeds(
+    @Path() id: string,
+    @Body() body: DispositifThemeNeedsRequest,
+    @Request() request: express.Request,
+  ): Response {
+    return updateDispositifTagsOrNeeds(id, body, request.user);
   }
 
   // reactions

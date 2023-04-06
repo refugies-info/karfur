@@ -3,7 +3,7 @@ import logger from "../../../logger";
 import { getDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { Response } from "../../../types/interface";
 import { Dispositif, User } from "../../../typegoose";
-import { InvalidRequestError, UnauthorizedError } from "src/errors";
+import { InvalidRequestError, UnauthorizedError } from "../../../errors";
 import { log } from "./log";
 
 export const structureReceiveDispositif = async (id: string, body: StructureReceiveDispositifRequest, user: User): Response => {

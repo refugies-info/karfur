@@ -18,6 +18,7 @@ import {
   DeleteTranslationsRequest,
   DeleteUserFavoriteRequest,
   DispositifStatusRequest,
+  DispositifThemeNeedsRequest,
   DownloadAppRequest,
   GetActiveStructuresResponse,
   GetActiveUsersResponse,
@@ -231,11 +232,9 @@ const API = {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/structure-receive`, body, { headers });
   },
-  updateDispositifTagsOrNeeds: (query: any) => {
+  updateDispositifThemesOrNeeds: (id: Id, body: DispositifThemeNeedsRequest) => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/updateDispositifTagsOrNeeds", query, {
-      headers,
-    });
+    return instance.patch(`/dispositifs/${id}/themes-needs`, body, { headers });
   },
   updateDispositifMainSponsor: (id: string, body: MainSponsorRequest): Promise<APIResponse> => {
     const headers = getHeaders();

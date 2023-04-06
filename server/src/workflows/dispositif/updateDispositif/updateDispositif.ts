@@ -144,7 +144,6 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
   };
 
   // TODO : if published, create draft work version instead
-  // if incomplete and WAITING_STRUCTURE | WAITING_ADMIN -> DRAFT
 
   const newDispositif = await updateDispositifInDB(id, editedDispositif);
   await log(newDispositif, oldDispositif, user._id);
