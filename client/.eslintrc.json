@@ -28,5 +28,8 @@
     "react/jsx-no-target-blank": "off",
     "eqeqeq": "error",
     "no-undef": "error"
+  },
+  "globals": {
+    "google": "readonly"
   }
 }

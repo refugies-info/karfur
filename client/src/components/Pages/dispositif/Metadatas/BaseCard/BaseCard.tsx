@@ -1,8 +1,10 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { cls } from "lib/classname";
 import PageContext from "utils/pageContext";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./BaseCard.module.scss";
+import { uniqueId } from "lodash";
+import Tooltip from "components/UI/Tooltip";
 
 type BaseCardStatus = "done" | "error";
 
@@ -13,6 +15,7 @@ interface Item {
 }
 
 interface Props {
+  id?: string;
   title: string | React.ReactNode;
   color?: string;
   items: Item[] | null;
@@ -33,7 +36,7 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
     return (
       <div className={styles.item}>
         <div className={cls(styles.details, "ms-0")}>
-          <span className={styles.content}>Cette information n’est pas pertinente pour mon action</span>
+          <span className={styles.content}>Non pertinent pour mon action</span>
         </div>
       </div>
     );
@@ -45,7 +48,7 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
     if (!item.content && !editMode) return null; // view mode, no content
     const infoNotUseful = editMode && item.content === null;
     const infoMissing = editMode && item.content === undefined;
-    if (infoNotUseful) content = "Cette information n’est pas pertinente pour mon action";
+    if (infoNotUseful) content = "Non pertinent pour mon action";
     if (infoMissing) content = "Info manquante";
 
     return (
@@ -63,8 +66,9 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
 /**
  * Base component of the left sidebar card. Can be used in VIEW or EDIT mode.
  */
-const BaseCard = ({ title, items, color, onClick }: Props) => {
+const BaseCard = ({ id, title, items, color, onClick }: Props) => {
   const pageContext = useContext(PageContext);
+  const [tooltipId] = useState(uniqueId("tooltip_card_"));
 
   const noContent = useMemo(() => {
     return pageContext.mode === "view" && !(items || []).find((item) => !!item.content);
@@ -79,11 +83,18 @@ const BaseCard = ({ title, items, color, onClick }: Props) => {
           <p className={styles.title} style={{ color }}>
             {title}
             {status === "done" && (
-              <EVAIcon
-                name="checkmark-circle-2"
-                fill={styles.lightPrimaryBlueFranceSun}
-                className={cls(styles.status)}
-              />
+              <>
+                <EVAIcon
+                  name="checkmark-circle-2"
+                  fill={styles.lightPrimaryBlueFranceSun}
+                  className={cls(styles.status, styles.done)}
+                />
+                <EVAIcon
+                  name="edit-2"
+                  fill={styles.lightTextActionHighBlueFrance}
+                  className={cls(styles.status, styles.edit)}
+                />
+              </>
             )}
             {status === "error" && (
               <EVAIcon name="alert-triangle" fill={styles.lightTextDefaultError} className={cls(styles.status)} />
@@ -98,6 +109,7 @@ const BaseCard = ({ title, items, color, onClick }: Props) => {
   if (noContent) return null;
   return onClick ? (
     <button
+      id={tooltipId}
       className={cls(styles.card, styles.btn, status === "error" && styles.error)}
       onClick={(e: any) => {
         e.preventDefault();
@@ -105,9 +117,15 @@ const BaseCard = ({ title, items, color, onClick }: Props) => {
       }}
     >
       {cardContent}
+
+      <Tooltip target={tooltipId} placement="right">
+        Modifier
+      </Tooltip>
     </button>
   ) : (
-    <div className={cls(styles.card, status === "error" && styles.error)}>{cardContent}</div>
+    <div id={id} className={cls(styles.card, status === "error" && styles.error)}>
+      {cardContent}
+    </div>
   );
 };
 

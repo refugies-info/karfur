@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { ageType, CreateDispositifRequest, frenchLevelType, Metadatas, publicStatusType, publicType } from "api-types";
 import { cls } from "lib/classname";
@@ -16,6 +16,7 @@ import {
   publicStatusOptions,
 } from "./data";
 import { includeAllRefugees } from "./functions";
+import NoIcon from "assets/dispositif/no-icon.svg";
 import styles from "./ModalPublic.module.scss";
 
 interface Props {
@@ -44,21 +45,6 @@ const ModalPublic = (props: Props) => {
     }
   };
 
-  // public
-  const [publicType, setPublicType] = useState<publicType[] | null | undefined>(
-    getValues("metadatas.public") || undefined,
-  );
-  const selectPublicType = useCallback((option: publicType) => {
-    setPublicType((options) =>
-      options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
-    );
-  }, []);
-  const validatePublicType = () => {
-    if (publicType !== undefined) {
-      setValue("metadatas.public", publicType);
-    }
-  };
-
   // frenchLevel
   const [frenchLevel, setFrenchLevel] = useState<frenchLevelType[] | null | undefined>(
     getValues("metadatas.frenchLevel") || undefined,
@@ -82,8 +68,8 @@ const ModalPublic = (props: Props) => {
     let age: Metadatas["age"] = undefined;
     if (noAge) age = null;
     else if (!noAge && ages.length > 0) {
-      const betweenFormError = ageType === "between" && (isNaN(ages[0]) || isNaN(ages[1]));
-      const formError = isNaN(ages[0]);
+      const betweenFormError = ageType === "between" && (!ages[0] || !ages[1]);
+      const formError = !ages[0];
       if (!betweenFormError && !formError) {
         age = {
           type: ageType,
@@ -94,24 +80,61 @@ const ModalPublic = (props: Props) => {
     setValue("metadatas.age", age);
   };
 
+  // public
+  const [publicType, setPublicType] = useState<publicType[] | null | undefined>(
+    getValues("metadatas.public") || undefined,
+  );
+  const selectPublicType = useCallback((option: publicType) => {
+    setPublicType((options) =>
+      options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
+    );
+  }, []);
+  const validatePublicType = () => {
+    if (publicType !== undefined) {
+      setValue("metadatas.public", publicType);
+    }
+  };
+
   const validate = () => {
     if (step === 1) {
       validatePublicStatus();
       setStep(2);
     } else if (step === 2) {
-      validatePublicType();
+      validateFrenchLevel();
       setStep(3);
     } else if (step === 3) {
-      validateFrenchLevel();
+      validateAge();
       setStep(4);
     } else if (step === 4) {
-      validateAge();
+      validatePublicType();
       props.toggle();
     }
   };
 
+  const emptySteps = useMemo(() => {
+    return [
+      publicStatus === undefined || publicStatus?.length === 0, // step 1
+      frenchLevel === undefined || frenchLevel?.length === 0, // step 2
+      !noAge && !ages[0], // step 3
+      publicType === undefined || publicType?.length === 0, // step 4
+    ];
+  }, [publicStatus, publicType, frenchLevel, noAge, ages]);
+
+  const navigateToStep = useCallback(() => {
+    const firstEmpty = emptySteps.indexOf(true);
+    if (firstEmpty >= 0) {
+      setStep(firstEmpty + 1);
+    }
+  }, [emptySteps]);
+
   return (
-    <BaseModal show={props.show} toggle={props.toggle} help={help} title={modalTitles[step - 1]}>
+    <BaseModal
+      show={props.show}
+      toggle={props.toggle}
+      help={help}
+      title={modalTitles[step - 1]}
+      onOpened={navigateToStep}
+    >
       <div>
         {step === 1 && (
           <div>
@@ -155,31 +178,6 @@ const ModalPublic = (props: Props) => {
 
         {step === 2 && (
           <div>
-            {entries<Record<publicType, string>>(publicOptions).map(([key, text]) => (
-              <div key={key}>
-                <ChoiceButton
-                  key={key}
-                  text={text}
-                  type="checkbox"
-                  selected={!!(publicType && publicType?.includes(key))}
-                  onSelect={() => selectPublicType(key)}
-                  className="mb-2"
-                />
-              </div>
-            ))}
-            <ChoiceButton
-              text="Cette information n’est pas pertinente pour mon action"
-              type="radio"
-              selected={publicType === null}
-              onSelect={() => setPublicType(null)}
-              size="lg"
-              className="mt-6"
-            />
-          </div>
-        )}
-
-        {step === 3 && (
-          <div>
             <ChoiceButton
               text="Tous les niveaux"
               type="checkbox"
@@ -207,11 +205,12 @@ const ModalPublic = (props: Props) => {
               onSelect={() => setFrenchLevel(null)}
               size="lg"
               className="mt-6"
+              image={NoIcon}
             />
           </div>
         )}
 
-        {step === 4 && (
+        {step === 3 && (
           <div>
             <div className="d-flex justify-content-between">
               {entries<Record<ageType, string>>(ageOptions).map(([key, text]) => (
@@ -235,8 +234,8 @@ const ModalPublic = (props: Props) => {
                     <input
                       type="number"
                       placeholder={"0"}
-                      value={ages[0]}
-                      onChange={(e: any) => setAges([e.target.value])}
+                      value={ages[0] || ""}
+                      onChange={(e: any) => setAges([parseInt(e.target.value)])}
                     />
                   </span>
                 </>
@@ -248,8 +247,8 @@ const ModalPublic = (props: Props) => {
                     <input
                       type="number"
                       placeholder={"0"}
-                      value={ages[0]}
-                      onChange={(e: any) => setAges((a) => [e.target.value, a[1]])}
+                      value={ages[0] || ""}
+                      onChange={(e: any) => setAges((a) => [parseInt(e.target.value), a[1]])}
                     />
                   </span>
                   <p>et</p>
@@ -257,8 +256,8 @@ const ModalPublic = (props: Props) => {
                     <input
                       type="number"
                       placeholder={"0"}
-                      value={ages[1]}
-                      onChange={(e: any) => setAges((a) => [a[0], e.target.value])}
+                      value={ages[1] || ""}
+                      onChange={(e: any) => setAges((a) => [a[0], parseInt(e.target.value)])}
                     />
                   </span>
                 </>
@@ -270,8 +269,8 @@ const ModalPublic = (props: Props) => {
                     <input
                       type="number"
                       placeholder={"0"}
-                      value={ages[0]}
-                      onChange={(e: any) => setAges([e.target.value])}
+                      value={ages[0] || ""}
+                      onChange={(e: any) => setAges([parseInt(e.target.value)])}
                     />
                   </span>
                 </>
@@ -285,11 +284,44 @@ const ModalPublic = (props: Props) => {
               onSelect={() => setNoAge((o) => !o)}
               size="lg"
               className="mt-6"
+              image={NoIcon}
             />
           </div>
         )}
 
-        <StepsFooter onValidate={validate} onPrevious={() => setStep((s) => s - 1)} maxSteps={MAX_STEP} step={step} />
+        {step === 4 && (
+          <div>
+            {entries<Record<publicType, string>>(publicOptions).map(([key, text]) => (
+              <div key={key}>
+                <ChoiceButton
+                  key={key}
+                  text={text}
+                  type="checkbox"
+                  selected={!!(publicType && publicType?.includes(key))}
+                  onSelect={() => selectPublicType(key)}
+                  className="mb-2"
+                />
+              </div>
+            ))}
+            <ChoiceButton
+              text="Cette information n’est pas pertinente pour mon action"
+              type="radio"
+              selected={publicType === null}
+              onSelect={() => setPublicType(null)}
+              size="lg"
+              className="mt-6"
+              image={NoIcon}
+            />
+          </div>
+        )}
+
+        <StepsFooter
+          onValidate={validate}
+          onPrevious={() => setStep((s) => s - 1)}
+          maxSteps={MAX_STEP}
+          step={step}
+          disabled={emptySteps[step - 1]}
+        />
       </div>
     </BaseModal>
   );

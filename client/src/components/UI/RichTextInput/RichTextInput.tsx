@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
@@ -33,12 +33,15 @@ const theme = {
 interface Props {
   value: string;
   id: string;
+  onBlur?: () => void;
+  onFocus?: () => void;
 }
 
 /**
  * Input for rich text, using Lexical
  */
 const RichTextInput: FC<Props> = (props: Props) => {
+  const { value, id, onBlur, onFocus } = props;
   const { setValue } = useFormContext();
   const [hasFocus, setHasFocus] = useState(false);
 
@@ -52,7 +55,7 @@ const RichTextInput: FC<Props> = (props: Props) => {
   };
 
   const onChange = (html: string) => {
-    if (setValue) setValue(props.id, html);
+    if (setValue) setValue(id, html);
   };
 
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null);
@@ -62,6 +65,16 @@ const RichTextInput: FC<Props> = (props: Props) => {
     }
   };
 
+  const onBlurCallback = useCallback(() => {
+    setHasFocus(false);
+    onBlur?.();
+  }, [onBlur]);
+
+  const onFocusCallback = useCallback(() => {
+    setHasFocus(true);
+    onFocus?.();
+  }, [onFocus]);
+
   return (
     <div className={cls(styles.container, hasFocus && styles.focus)} ref={onRef}>
       <LexicalComposer initialConfig={initialConfig}>
@@ -70,14 +83,14 @@ const RichTextInput: FC<Props> = (props: Props) => {
         <ListPlugin />
         <LinkPlugin />
         <CalloutPlugin />
-        <FocusPlugin onFocus={() => setHasFocus(true)} onBlur={() => setHasFocus(false)} />
+        <FocusPlugin onFocus={onFocusCallback} onBlur={onBlurCallback} />
         <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem || undefined} />
         <RichTextPlugin
           contentEditable={<ContentEditable className={styles.content} />}
           placeholder={<div></div>}
           ErrorBoundary={LexicalErrorBoundary}
         />
-        <OnHtmlChangePlugin value={props.value} onHtmlChanged={onChange} />
+        <OnHtmlChangePlugin value={value} onHtmlChanged={onChange} />
         <HistoryPlugin />
       </LexicalComposer>
     </div>

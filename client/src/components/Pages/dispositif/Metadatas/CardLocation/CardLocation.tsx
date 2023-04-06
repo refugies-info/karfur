@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { ContentType, Metadatas } from "api-types";
+import { formatDepartment } from "lib/departments";
 import FRLink from "components/UI/FRLink";
 import BaseCard from "../BaseCard";
 import { getLocationLink } from "../functions";
@@ -23,7 +24,7 @@ const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
       <>
         {data.map((dep, i) => (
           <span key={i}>
-            <FRLink href={getLocationLink(dep)}>{dep}</FRLink>
+            <FRLink href={getLocationLink(dep)}>{formatDepartment(dep)}</FRLink>
             <br />
           </span>
         ))}

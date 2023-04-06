@@ -5,21 +5,29 @@
 @import "src/scss/mixins/rtl";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/input";
+@import "src/scss/mixins/icons";
 
 .container {
   background-color: white;
   border-top: 1px solid $lightBorderDefaultGrey;
   border-bottom: 1px solid $lightBorderDefaultGrey;
-  padding: u(2) 0;
   position: sticky;
   top: 0;
+  box-shadow: 0 12px 32px -8px #0000241f;
   z-index: 501; // goes over menu
 
   .inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: u(2) 0;
   }
+}
+.warning {
+  padding: u(2) 0;
+  background: $lightBackgroundContrastInfo;
+  color: $lightBorderPlainInfo;
+  font-weight: bold;
 }
 
 .help {
@@ -51,4 +59,19 @@
     margin-bottom: 0;
     margin-left: u(2);
   }
+  .btn {
+    @include iconSize(u(4));
+    min-height: u(8);
+    padding: u(2);
+  }
+}
+
+.save {
+  background: $lightBackgroundElevationAlt;
+  border-radius: u(1);
+  padding: 0 u(1);
+  color: $darkBackgroundElevationContrast;
+  @include dsfr-text("small");
+  margin-right: u(8);
+  cursor: default;
 }

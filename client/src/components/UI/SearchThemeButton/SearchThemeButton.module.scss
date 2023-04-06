@@ -20,13 +20,22 @@
   justify-content: space-between;
   width: 270px;
   height: 76px;
-  box-shadow: 0 4px 18px 0 #0000001A;
+  box-shadow: 0 4px 18px 0 #0000001a;
 
   @include rtl() {
     text-align: right;
   }
   @include isMobile() {
     width: 100%;
+  }
+
+  &.sm {
+    padding: u(2) u(4);
+    @include text("normal");
+    width: fit-content;
+    height: 50px;
+    box-shadow: 0 2px 6px 0 #00001229;
+    border-radius: u(2);
   }
 
   &:focus {
@@ -39,6 +48,11 @@
   height: 64px;
   width: 64px;
   flex-shrink: 0;
+
+  .sm & {
+    height: u(8);
+    width: u(8);
+  }
 }
 .image_inner {
   position: absolute;

@@ -58,6 +58,10 @@
   padding: u(2) u(4);
   width: 100%;
 
+  &.textarea {
+    border-color: $lightBorderDefaultGrey;
+  }
+
   &:focus {
     border-color: $lightTextTitleGrey;
     color: $lightTextTitleGrey;

@@ -1,6 +1,8 @@
 import { useState, Dispatch, SetStateAction, useEffect, useRef } from "react";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import { formatDepartment, getDbDepartment } from "lib/departments";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { RemovableItem } from "../../components";
 import styles from "./DepartmentInput.module.scss";
 
 interface Props {
@@ -28,11 +30,10 @@ const DepartmentInput = (props: Props) => {
         comp.types.includes("administrative_area_level_2"),
       );
       if (!departement) return;
-      // TODO: return the same way that the one stored in db today
       let depName = departement.long_name;
       if (depName === "Département de Paris") depName = "Paris";
       if (depName && !props.selectedDepartments?.includes(depName)) {
-        const newDeps = [...(props.selectedDepartments || []), depName];
+        const newDeps = [...(props.selectedDepartments || []), getDbDepartment(depName)];
         props.setSelectedDepartments(newDeps);
         setHidePredictions(true);
       }
@@ -62,7 +63,7 @@ const DepartmentInput = (props: Props) => {
             {placePredictions.slice(0, 5).map((p, i) => (
               <button key={i} onClick={() => onPlaceSelected(p.place_id)} className={styles.btn}>
                 <EVAIcon name="pin-outline" fill="black" size={20} className="me-2" />
-                {p.description}
+                {formatDepartment(p.structured_formatting.main_text)}
               </button>
             ))}
           </div>
@@ -71,14 +72,11 @@ const DepartmentInput = (props: Props) => {
 
       <div className={styles.selected}>
         {(props.selectedDepartments || []).map((dep, i) => (
-          <button
+          <RemovableItem
             key={i}
-            className={styles.dep_btn}
+            text={formatDepartment(dep)}
             onClick={() => props.setSelectedDepartments((departments) => departments?.filter((d) => d !== dep))}
-          >
-            {dep}
-            <EVAIcon name="close-outline" fill={styles.lightTextActionHighBlueFrance} size={24} className="ms-2" />
-          </button>
+          />
         ))}
       </div>
     </div>

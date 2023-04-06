@@ -9,11 +9,12 @@ export const publicStatusOptions: Record<publicStatusType, string> = {
   asile: "Demandeurs d'asile",
   refugie: "Réfugiés statutaires",
   subsidiaire: "Bénéficiaires de la protection subsidiaire",
+  temporaire: "Bénéficiaires de la protection temporaire",
   apatride: "Apatrides",
   french: "Citoyens français",
 };
 export const publicOptions: Record<publicType, string> = {
-  family: "Famille",
+  family: "Familles et enfants",
   women: "Femmes",
   youths: "Jeunes (de 16 à 25 ans)",
   senior: "Séniors",
@@ -58,7 +59,7 @@ export const ageOptions: Record<ageType, string> = {
 
 export const modalTitles = [
   "À quel public s'adresse votre action ?",
-  "Votre action vise-t-elle un public spécifique ?",
   "Votre action est ouverte aux personnes de niveau(x) :",
-  "Quel âge est demandé ?"
+  "Quel âge est demandé ?",
+  "Votre action vise-t-elle un public spécifique ?",
 ]

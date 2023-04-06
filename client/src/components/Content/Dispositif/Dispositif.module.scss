@@ -43,10 +43,10 @@
   width: 50%;
   background: $gray30;
   border: 1px solid $lightBorderDefaultGrey;
-  box-shadow: 0 4px 12px 0 #00001229;
   border-radius: u(2) u(2) 0 0;
   padding: u(10) u(20);
   margin-top: -142px;
+  z-index: 1;
 
   @include media-max("xl-limit") {
     min-width: 580px;
@@ -90,6 +90,11 @@
 
   @media print {
     display: none;
+  }
+}
+.edit {
+  .right > div {
+    top: 56px;
   }
 }
 

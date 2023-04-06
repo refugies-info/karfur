@@ -29,15 +29,17 @@ export const updateDispositifStatus = async (id: string, body: DispositifStatusR
       mainSponsor: 1,
       status: 1,
       typeContenu: 1,
-      contenu: 1
+      contenu: 1,
+      translations: 1,
+      metadatas: 1
     };
 
     const dispositif = await getDispositifByIdWithMainSponsor(id, neededFields);
     checkUserIsAuthorizedToDeleteDispositif(dispositif, user);
 
     await addOrUpdateDispositifInContenusAirtable(
-      dispositif.translations.fr.content.titreInformatif,
-      dispositif.translations.fr.content.titreMarque,
+      dispositif.translations?.fr?.content?.titreInformatif || "",
+      dispositif.translations?.fr?.content?.titreMarque || "",
       dispositif._id,
       [],
       dispositif.typeContenu,

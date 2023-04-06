@@ -1,0 +1,75 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/icons";
+@import "src/scss/mixins/responsive";
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  transition: transform ease-in-out 0.2s;
+
+  &.hidden {
+    transform: translateX(-200px);
+  }
+
+  .list {
+    background: white;
+    width: 200px;
+    height: 100%;
+    border-right: 1px solid $lightBorderDefaultGrey;
+    padding: u(2);
+    overflow-y: scroll;
+  }
+}
+
+.btn {
+  width: u(8);
+  height: u(8);
+  min-height: u(8) !important;
+  @include iconSize(u(4));
+  transform: rotate(180deg);
+
+  .hidden & {
+    transform: rotate(0);
+  }
+}
+
+.item {
+  padding: u(2);
+  width: 100%;
+  text-align: left;
+  border-radius: u(2);
+
+  &:hover,
+  &.active {
+    background: $lightBackgroundActionLowBlueFrance !important;
+    color: $lightTextActionHighBlueFrance;
+    svg {
+      fill: $lightTextActionHighBlueFrance;
+    }
+  }
+
+  .title {
+    @include dsfr-text("small");
+    margin-bottom: 0;
+  }
+  .city {
+    @include dsfr-text("very-small");
+    margin-bottom: 0;
+  }
+}
+
+.divider {
+  display: block;
+  margin: u(1) 0;
+  width: 100%;
+  height: 1px;
+  background: $lightBorderDefaultGrey;
+}

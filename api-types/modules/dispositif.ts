@@ -6,6 +6,7 @@ import {
   InfoSection,
   InfoSections,
   Metadatas,
+  Poi,
   SimpleDispositif,
   SimpleUser,
   Sponsor,
@@ -85,12 +86,19 @@ interface DispositifRequest {
   why?: { [key: string]: InfoSection };
   how?: { [key: string]: InfoSection };
   next?: { [key: string]: InfoSection };
-  mainSponsor?: string;
+  mainSponsor?: string | Sponsor;
+  contact?: {
+    name: string;
+    email: string;
+    phone: string;
+    comments: string;
+    isStructureContact: boolean;
+  }
   theme?: string;
   secondaryThemes?: string[];
   sponsors?: Sponsor[];
   metadatas?: Metadatas;
-  // map: Poi[];
+  map?: Poi[];
 }
 
 /**
@@ -119,16 +127,6 @@ export interface CreateDispositifRequest extends DispositifRequest {
   typeContenu: ContentType;
 }
 
-interface Poi {
-  title: string;
-  address: string;
-  city: string;
-  lat: number;
-  lng: number;
-  description?: string;
-  email?: string;
-  phone?: string;
-}
 
 /**
  * @url GET /dispositifs/{id}

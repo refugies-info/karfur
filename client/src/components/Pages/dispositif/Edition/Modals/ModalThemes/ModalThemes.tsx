@@ -110,7 +110,7 @@ const ModalThemes = (props: Props) => {
             {remainingSelect} thèmes restants maximum
           </p>
         )}
-        <SimpleFooter onValidate={validate} />
+        <SimpleFooter onValidate={validate} disabled={!mainTheme} />
       </div>
     </BaseModal>
   );

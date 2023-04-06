@@ -7,6 +7,7 @@ interface Props {
   onPrevious: () => void;
   maxSteps: number;
   step: number;
+  disabled?: boolean;
   previousOnFirst?: boolean;
   nextText?: string;
   nextIcon?: string;
@@ -38,6 +39,7 @@ const StepsFooter = (props: Props) => {
             e.preventDefault();
             props.onValidate();
           }}
+          disabled={props.disabled}
         >
           {props.nextText || (props.step === props.maxSteps ? "Valider" : "Étape suivante")}
         </Button>

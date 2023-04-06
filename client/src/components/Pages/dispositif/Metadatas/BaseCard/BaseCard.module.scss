@@ -46,10 +46,25 @@
   }
 }
 
+// Icon
 .status {
   position: absolute;
   top: u(4);
   right: u(3);
+
+  &.edit {
+    display: none;
+  }
+}
+.card:hover {
+  .status {
+    &.done {
+      display: none;
+    }
+    &.edit {
+      display: block;
+    }
+  }
 }
 
 .item {
@@ -58,6 +73,7 @@
 
   .details {
     @include ml-ltr(u(3));
+    flex-grow: 1;
 
     &.no_icon {
       @include ml-ltr(0);

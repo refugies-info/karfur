@@ -19,6 +19,15 @@
     align-items: center;
     justify-content: space-between;
 
+    &:hover {
+      border-color: $lightBorderDefaultGrey;
+      box-shadow: none;
+      background-color: white;
+    }
+    &:active {
+      background: $lightBackgroundElevationAlt;
+    }
+
     .icon {
       @include iconSize(24px);
     }
@@ -64,6 +73,10 @@
           border-radius: u(2);
           margin-top: u(2);
           border: 1px solid $lightBorderDefaultGrey;
+
+          &:hover:not(.disabled) {
+            background: $lightBorderDefaultGrey;
+          }
         }
       }
 
@@ -95,6 +108,15 @@
       .xl {
         @include dsfr-text("h1");
         font-weight: bold;
+      }
+    }
+
+    &.has_error {
+      border-color: $lightTextDefaultError;
+      color: $lightTextDefaultError;
+
+      & > span svg {
+        fill: $lightTextDefaultError;
       }
     }
   }

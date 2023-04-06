@@ -39,7 +39,7 @@ const ReactionModal = (props: Props) => {
   }, [suggestion, dispositifId, sectionKey, callback, toggle]);
 
   return (
-    <BaseModal show={true} toggle={toggle} title="Vous avez une suggestion ?" className={styles.modal}>
+    <BaseModal show={true} toggle={toggle} title="Vous avez une suggestion ?" small>
       <p>Signalez-nous toute erreur ou suggestion de modification. Nous en tiendrons compte pour améliorer la page.</p>
 
       <textarea

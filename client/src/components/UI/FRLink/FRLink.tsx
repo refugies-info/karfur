@@ -11,13 +11,14 @@ interface Props {
   className?: string;
   icon?: string;
   target?: React.HTMLAttributeAnchorTarget;
+  onClick?: (e: any) => void;
 }
 
 const FRLink = (props: Props) => {
   return (
     <DSFRLink
       as={
-        <Link href={props.href} target={props.target}>
+        <Link href={props.href} target={props.target} onClick={props.onClick}>
           {props.icon && (
             <EVAIcon name={props.icon} size={20} fill={styles.lightTextActionHighBlueFrance} className="me-2" />
           )}

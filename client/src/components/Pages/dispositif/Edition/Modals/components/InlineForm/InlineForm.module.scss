@@ -21,6 +21,8 @@
   }
   & > span {
     position: relative;
+    display: flex;
+    align-items: center;
 
     & > input {
       @include baseInput();

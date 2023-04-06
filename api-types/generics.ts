@@ -119,13 +119,25 @@ export type locationType = "france" | "online" | string[];
 export type frenchLevelType = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 export type ageType = "lessThan" | "moreThan" | "between";
 export type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
-export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "apatride" | "french";
+export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
 export type publicType = "family" | "women" | "youths" | "senior";
 export type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
-export type amountDetailsType = "atLeast" | "approximately" | "mandatory";
+export type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
+export type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
 export type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
 export type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
 export type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+
+export interface Poi {
+  title: string;
+  address: string;
+  city: string;
+  lat: number;
+  lng: number;
+  description?: string;
+  email?: string;
+  phone?: string;
+}
 
 export interface Metadatas {
   location?: locationType | null;
@@ -143,12 +155,12 @@ export interface Metadatas {
     details?: priceDetails | null;
   } | null;
   commitment?: {
-    amountDetails: amountDetailsType;
-    hours: number;
+    amountDetails: commitmentDetailsType;
+    hours: number[];
     timeUnit: timeUnitType;
   } | null;
   frequency?: {
-    amountDetails: amountDetailsType;
+    amountDetails: frequencyDetailsType;
     hours: number;
     timeUnit: timeUnitType;
     frequencyUnit: frequencyUnitType;

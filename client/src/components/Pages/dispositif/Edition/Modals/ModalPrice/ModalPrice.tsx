@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useFormContext } from "react-hook-form";
 import { CreateDispositifRequest, Metadatas, priceDetails } from "api-types";
@@ -9,7 +9,8 @@ import { SimpleFooter, InlineForm } from "../components";
 import PriceFree from "assets/dispositif/form-icons/price-free.svg";
 import PricePay from "assets/dispositif/form-icons/price-pay.svg";
 import { dropdownOptions, help } from "./data";
-import { getInitialPrice, getInitialType } from "./functions";
+import { getInitialPrice, getInitialType, isPriceValue } from "./functions";
+import NoIcon from "assets/dispositif/no-icon.svg";
 import styles from "./ModalPrice.module.scss";
 
 interface Props {
@@ -57,6 +58,15 @@ const ModalPrice = (props: Props) => {
     }
     props.toggle();
   };
+
+  const disabled = useMemo(() => {
+    return (
+      selected === undefined ||
+      (selected === "pay" && selectedPay === undefined) ||
+      (selected === "pay" && selectedPay === "once" && !priceStart) ||
+      (selected === "pay" && selectedPay === "between" && (!priceStart || !priceEnd))
+    );
+  }, [selected, priceStart, selectedPay, priceEnd]);
 
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Faut-il payer pour accéder au dispositif ?">
@@ -117,8 +127,8 @@ const ModalPrice = (props: Props) => {
                   <input
                     type="number"
                     placeholder={"0"}
-                    value={priceStart}
-                    onChange={(e: any) => setPriceStart(e.target.value)}
+                    value={priceStart || ""}
+                    onChange={(e: any) => (isPriceValue(e.target.value) ? setPriceStart(e.target.value) : null)}
                   />
                 </span>
                 <DropdownModals<priceDetails>
@@ -136,8 +146,8 @@ const ModalPrice = (props: Props) => {
                   <input
                     type="number"
                     placeholder={"0"}
-                    value={priceStart}
-                    onChange={(e: any) => setPriceStart(e.target.value)}
+                    value={priceStart || ""}
+                    onChange={(e: any) => (isPriceValue(e.target.value) ? setPriceStart(e.target.value) : null)}
                   />
                 </span>
                 <p>et</p>
@@ -145,8 +155,8 @@ const ModalPrice = (props: Props) => {
                   <input
                     type="number"
                     placeholder={"0"}
-                    value={priceEnd}
-                    onChange={(e: any) => setPriceEnd(e.target.value)}
+                    value={priceEnd || ""}
+                    onChange={(e: any) => (isPriceValue(e.target.value) ? setPriceEnd(e.target.value) : null)}
                   />
                 </span>
                 <DropdownModals<priceDetails>
@@ -165,9 +175,10 @@ const ModalPrice = (props: Props) => {
           selected={selected === null}
           onSelect={() => setSelected(null)}
           size="lg"
+          image={NoIcon}
         />
 
-        <SimpleFooter onValidate={validate} />
+        <SimpleFooter onValidate={validate} disabled={disabled} />
       </div>
     </BaseModal>
   );

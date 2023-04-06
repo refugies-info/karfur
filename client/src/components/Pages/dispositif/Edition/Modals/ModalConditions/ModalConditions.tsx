@@ -6,6 +6,7 @@ import { BaseModal } from "components/Pages/dispositif";
 import ChoiceButton from "../../ChoiceButton";
 import { SimpleFooter } from "../components";
 import { dropdownOptions, help } from "./data";
+import NoIcon from "assets/dispositif/no-icon.svg";
 import styles from "./ModalConditions.module.scss";
 
 interface Props {
@@ -50,10 +51,11 @@ const ModalConditions = (props: Props) => {
             onSelect={() => setSelected(null)}
             size="lg"
             className="my-6"
+            image={NoIcon}
           />
         </div>
 
-        <SimpleFooter onValidate={validate} />
+        <SimpleFooter onValidate={validate} disabled={selected !== null && selected.length === 0} />
       </div>
     </BaseModal>
   );

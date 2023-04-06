@@ -20,7 +20,7 @@
   // typeContenu
   &.demarche {
     width: 208px;
-    font-size: .95rem;
+    font-size: 0.95rem;
 
     @include isMobile() {
       width: 100%;
@@ -34,7 +34,7 @@
   &.dispositif {
     width: 260px;
     max-width: 100%;
-    font-size: .95rem;
+    font-size: 0.95rem;
 
     @include isMobile() {
       width: 100%;
@@ -55,7 +55,7 @@
     box-shadow: none;
   }
   &.content {
-    &:hover {
+    &:hover:not(.demo) {
       border-color: $dark;
       background-color: $gray30;
       box-shadow: none;
@@ -117,7 +117,7 @@
       left: 12px;
     }
   }
-  &:hover .favorite {
+  &:hover:not(.demo) .favorite {
     display: block;
   }
 }

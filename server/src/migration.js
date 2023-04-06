@@ -226,13 +226,13 @@ const getFrenchLevel = (metadata) => {
   const value = metadata.contentTitle?.fr || metadata.contentTitle;
   switch (value) {
     case "Débutant":
-      return ["A1", "A2"];
+      return ["A1.1", "A1"];
     case "Intermédiaire":
-      return ["A1", "A2", "B1", "B2"];
+      return ["A1.1", "A1", "A2", "B1"];
     case "Avancé":
-      return ["A1", "A2", "B1", "B2", "C1", "C2"];
+      return ["A1.1", "A1", "A2", "B1", "B2", "C1"];
     case "Tous les niveaux":
-      return ["A1", "A2", "B1", "B2", "C1", "C2"];
+      return ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
     default:
       console.warn("  frenchLevel non ajouté. Valeur :", metadata.contentTitle);
       return "";
@@ -278,7 +278,9 @@ const getMetadatas = (content, id) => {
         break;
       case "Public visé":
         metas.publicStatus =
-          metadata.contentTitle === "Réfugié" ? ["refugie"] : ["asile", "refugie", "subsidiaire", "apatride"];
+          metadata.contentTitle === "Réfugié"
+            ? ["refugie", "subsidiaire", "temporaire", "apatride"]
+            : ["asile", "refugie", "subsidiaire", "temporaire", "apatride", "french"];
         break;
       case "Acte de naissance OFPRA":
         if (!metas.conditions) metas.conditions = [];

@@ -1,15 +1,15 @@
 import React, { useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import { useSelector } from "react-redux";
+import Image from "next/image";
 import { Col, Row } from "reactstrap";
 import { ContentType, CreateDispositifRequest } from "api-types";
-import { themesSelector } from "services/Themes/themes.selectors";
 import DispositifCard from "components/UI/DispositifCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { BaseModal } from "components/Pages/dispositif";
 import { SimpleFooter } from "../components";
 import { getDefaultDispositif } from "./functions";
 import { help } from "./data";
+import ArrowRight from "assets/dispositif/arrow-right.svg";
 import styles from "./ModalAbstract.module.scss";
 
 interface Props {
@@ -22,7 +22,6 @@ const MAX_LENGTH = 110;
 const ModalAbstract = (props: Props) => {
   const formContext = useFormContext<CreateDispositifRequest>();
   const values = useWatch<CreateDispositifRequest>();
-  const themes = useSelector(themesSelector);
   const [abstract, setAbstract] = useState<string | undefined>(values.abstract);
 
   const validate = () => {
@@ -35,7 +34,7 @@ const ModalAbstract = (props: Props) => {
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajoutez un résumé">
       <div>
-        <Row>
+        <Row className="position-relative">
           <Col>
             <div className={styles.text}>
               <textarea
@@ -45,30 +44,26 @@ const ModalAbstract = (props: Props) => {
                 className={styles.input}
                 maxLength={MAX_LENGTH}
               />
-              {remainingChars > 0 && (
-                <p className={styles.help}>
-                  <EVAIcon name="alert-triangle" size={16} fill={styles.lightTextDefaultError} className="me-2" />
-                  {remainingChars} sur 110 caractères restants
-                </p>
-              )}
+
+              <p className={styles.help}>
+                <EVAIcon name="alert-triangle" size={16} fill={styles.lightTextDefaultError} className="me-2" />
+                {remainingChars} sur 110 caractères restants
+              </p>
             </div>
           </Col>
           {values.typeContenu === ContentType.DISPOSITIF && (
             <>
-              <Col xs="auto" className="px-0 d-flex align-items-center">
-                <EVAIcon name="arrow-forward-outline" size={32} fill={styles.lightTextActionHighBlueFrance} />
-              </Col>
+              <span className={styles.arrow}>
+                <Image src={ArrowRight} width={60} height={29} alt="" />
+              </span>
               <Col>
-                <DispositifCard
-                  dispositif={{ ...getDefaultDispositif(values, themes[0]._id), abstract }}
-                  abstractPlaceholder
-                />
+                <DispositifCard dispositif={{ ...getDefaultDispositif(values), abstract }} demoCard />
               </Col>
             </>
           )}
         </Row>
 
-        <SimpleFooter onValidate={validate} />
+        <SimpleFooter onValidate={validate} disabled={!abstract} />
       </div>
     </BaseModal>
   );

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { ContentType } from "api-types";
 import { useContentLocale, useWindowSize } from "hooks";
 import PageContext from "utils/pageContext";
+import { cls } from "lib/classname";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
 import SEO from "components/Seo";
@@ -15,6 +16,7 @@ import {
   LinkedThemes,
   ActionButtons,
   Banner,
+  Map,
 } from "components/Pages/dispositif";
 import {
   RightSidebarEdition,
@@ -52,7 +54,7 @@ const Dispositif = (props: Props) => {
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
   const isEditMode = useMemo(() => pageContext.mode === "edit", [pageContext.mode]);
   return (
-    <div className={styles.container} id="top">
+    <div className={cls(styles.container, isEditMode && styles.edit)} id="top">
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
@@ -63,7 +65,7 @@ const Dispositif = (props: Props) => {
       <div className={styles.content}>
         <div className={styles.left}>
           {isTablet && <Header typeContenu={typeContenu} />}
-          {isViewMode ? <LeftSidebar /> : <LeftSidebarEdition />}
+          {isViewMode ? <LeftSidebar /> : <LeftSidebarEdition typeContenu={typeContenu} />}
         </div>
 
         <div className={styles.main} id="anchor-what" dir={isRTL ? undefined : "ltr"}>
@@ -71,6 +73,7 @@ const Dispositif = (props: Props) => {
           {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
             <Section key={i} sectionKey={section} contentType={typeContenu} />
           ))}
+          {(dispositif?.map || []).length > 0 && <Map />}
           {isViewMode && (
             <>
               <Feedback />

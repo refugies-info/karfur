@@ -11,7 +11,7 @@ const RichTextInput = dynamic(() => import("components/UI/RichTextInput"), { ssr
 
 interface Props {
   id: string;
-  onDelete?: () => void;
+  onDelete?: (() => void) | false;
 }
 
 /**
@@ -45,9 +45,16 @@ const AccordionItemEdit = (props: Props) => {
 
   const pageContext = useContext(PageContext);
   useEffect(() => {
-    pageContext.setActiveSection?.(isActive ? props.id : "");
+    if (isActive) {
+      pageContext.setActiveSection?.(props.id);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive, props.id]);
+  useEffect(() => {
+    if (pageContext.activeSection !== props.id) {
+      setIsActive(false);
+    }
+  }, [pageContext.activeSection, props.id]);
 
   return (
     <div>
@@ -58,6 +65,7 @@ const AccordionItemEdit = (props: Props) => {
           className="mb-6"
           content={getContent()}
           onDelete={props.onDelete}
+          hasError={!!getContent() && (!getValues(`${props.id}.title`) || !getValues(`${props.id}.text`))}
         >
           Argument
         </AddContentButton>

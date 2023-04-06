@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm, FormProvider } from "react-hook-form";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useChangeLanguage, useLocale } from "hooks";
 import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
@@ -13,6 +14,7 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import { UpdateDispositifRequest } from "api-types";
 import { getDefaultValue, submitUpdateForm } from "lib/dispositifForm";
 import Dispositif from "components/Content/Dispositif";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 
 interface Props {
   history: string[];
@@ -26,6 +28,19 @@ const DemarchePage = (props: Props) => {
     submitUpdateForm(dispositif._id, data);
   };
   const [activeSection, setActiveSection] = useState("");
+
+  const locale = useLocale();
+  const { changeLanguage } = useChangeLanguage();
+  useEffect(() => {
+    if (locale !== "fr") {
+      changeLanguage("fr");
+    }
+  }, [locale, changeLanguage]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAllStructuresActionsCreator());
+  }, [dispatch]);
 
   return (
     <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>

@@ -13,3 +13,5 @@ export const getInitialType = (price: Metadatas["price"] | undefined): "once" | 
   if (price.values.length === 1) return "once";
   return "free";
 }
+
+export const isPriceValue = (text: string) => text.match(/^(\d*\.{0,1}\d{0,1}$)/);

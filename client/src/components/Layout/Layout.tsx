@@ -24,9 +24,8 @@ import { readAudio, stopAudio } from "lib/readAudio";
 import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
-import useRTL from "hooks/useRTL";
+import { useChangeLanguage, useRTL } from "hooks";
 import locale from "utils/locale";
-import { getPath, PathNames } from "routes";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
@@ -48,23 +47,9 @@ const Layout = (props: Props) => {
   const ttsActive = useSelector(ttsActiveSelector);
   const showLangModal = useSelector(showLangModalSelector);
 
-  const changeLanguage = (lng: string) => {
-    dispatch(toggleLangueActionCreator(lng));
-
-    const { pathname, query } = router;
-    router
-      .replace(
-        {
-          pathname: getPath(pathname as PathNames, lng),
-          query,
-        },
-        undefined,
-        { locale: lng },
-      )
-      .then(() => {
-        setLanguageLoaded(true);
-      });
-
+  const { changeLanguage } = useChangeLanguage();
+  const changeLanguageCallback = (lng: string) => {
+    changeLanguage(lng, "replace", () => setLanguageLoaded(true));
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
@@ -78,7 +63,7 @@ const Layout = (props: Props) => {
     // Language popup
     const storedLanguei18nCode = locale.getFromCache();
     if (storedLanguei18nCode && storedLanguei18nCode !== "fr" && storedLanguei18nCode !== router.locale) {
-      changeLanguage(storedLanguei18nCode);
+      changeLanguageCallback(storedLanguei18nCode);
     } else if (!storedLanguei18nCode) {
       if (!showLangModal) {
         dispatch(toggleLangueModalActionCreator());
@@ -179,7 +164,7 @@ const Layout = (props: Props) => {
         show={showLangModal}
         currentLanguage={router.locale || "fr"}
         toggle={() => dispatch(toggleLangueModalActionCreator())}
-        changeLanguage={changeLanguage}
+        changeLanguage={changeLanguageCallback}
         languages={langues}
         isLanguagesLoading={isLanguagesLoading}
       />
