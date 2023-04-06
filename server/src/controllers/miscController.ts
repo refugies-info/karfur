@@ -1,8 +1,8 @@
 import { Body, Controller, Post, Route } from "tsoa";
 import { TechnicalInfoRequest } from "api-types";
-import { verifyVersion } from "src/workflows";
+import { verifyVersion } from "../workflows";
 import { AuthenticationError } from "../errors";
-import { Response } from "src/types/interface";
+import { Response } from "../types/interface";
 
 @Route("")
 export class MiscController extends Controller {

@@ -5,7 +5,7 @@ import { NotFoundError } from "../../../errors";
 import pick from "lodash/pick";
 import { ContentStructure, GetDispositifResponse, Languages, SimpleUser, Sponsor } from "api-types";
 import { getRoles } from "../../../modules/role/role.repository";
-import { Role } from "src/typegoose";
+import { Role } from "../../../typegoose";
 
 const getRoleName = (id: string, roles: Role[]) => roles.find(r => r._id.toString() === id.toString())?.nom || ""
 const getMetadatas = (metadatas: GetDispositifResponse["metadatas"]): GetDispositifResponse["metadatas"] => { // remove empty metas
