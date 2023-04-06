@@ -16,6 +16,7 @@ import {
   LinkedThemes,
   ActionButtons,
   Banner,
+  Map,
 } from "components/Pages/dispositif";
 import {
   RightSidebarEdition,
@@ -72,6 +73,7 @@ const Dispositif = (props: Props) => {
           {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
             <Section key={i} sectionKey={section} contentType={typeContenu} />
           ))}
+          {(dispositif?.map || []).length > 0 && <Map />}
           {isViewMode && (
             <>
               <Feedback />

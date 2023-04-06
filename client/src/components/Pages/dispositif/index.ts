@@ -9,6 +9,7 @@ import Header from "./Header";
 import LangueMenu from "./LangueMenu";
 import LangueSelectList from "./LangueSelectList";
 import LinkedThemes from "./LinkedThemes";
+import Map from "./Map";
 import Metadatas from "./Metadatas";
 import RichText from "./RichText";
 import Section from "./Section";
@@ -33,6 +34,7 @@ export {
   LangueMenu,
   LangueSelectList,
   LinkedThemes,
+  Map,
   Metadatas,
   RichText,
   Section,

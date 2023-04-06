@@ -128,6 +128,17 @@ export type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" 
 export type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
 export type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
 
+export interface Poi {
+  title: string;
+  address: string;
+  city: string;
+  lat: number;
+  lng: number;
+  description?: string;
+  email?: string;
+  phone?: string;
+}
+
 export interface Metadatas {
   location?: locationType | null;
   frenchLevel?: frenchLevelType[] | null;

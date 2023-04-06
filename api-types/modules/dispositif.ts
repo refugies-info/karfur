@@ -6,6 +6,7 @@ import {
   InfoSection,
   InfoSections,
   Metadatas,
+  Poi,
   SimpleDispositif,
   SimpleUser,
   Sponsor,
@@ -126,16 +127,6 @@ export interface CreateDispositifRequest extends DispositifRequest {
   typeContenu: ContentType;
 }
 
-interface Poi {
-  title: string;
-  address: string;
-  city: string;
-  lat: number;
-  lng: number;
-  description?: string;
-  email?: string;
-  phone?: string;
-}
 
 /**
  * @url GET /dispositifs/{id}
