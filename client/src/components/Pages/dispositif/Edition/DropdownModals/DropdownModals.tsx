@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import { amountDetailsType, frequencyUnitType, priceDetails, timeUnitType } from "api-types";
+import { commitmentDetailsType, frequencyDetailsType, frequencyUnitType, priceDetails, timeUnitType } from "api-types";
+import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import ChoiceButton from "../ChoiceButton";
 import styles from "./DropdownModals.module.scss";
-import { cls } from "lib/classname";
 
-type Options = amountDetailsType | timeUnitType | frequencyUnitType | priceDetails;
+type Options = commitmentDetailsType | frequencyDetailsType | timeUnitType | frequencyUnitType | priceDetails;
 
 interface Props<T extends Options> {
   options: Record<T, string>;
