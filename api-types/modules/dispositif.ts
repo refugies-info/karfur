@@ -121,6 +121,18 @@ export interface ReadSuggestionDispositifRequest {
 export interface UpdateDispositifRequest extends DispositifRequest { }
 
 /**
+ * @url PATCH /dispositifs/{id}/publish
+ */
+export interface PublishDispositifRequest { }
+
+/**
+ * @url PATCH /dispositifs/{id}/structure-receive
+ */
+export interface StructureReceiveDispositifRequest {
+  accept: boolean
+}
+
+/**
  * @url POST /dispositifs
  */
 export interface CreateDispositifRequest extends DispositifRequest {

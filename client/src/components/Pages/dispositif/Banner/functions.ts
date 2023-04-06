@@ -38,7 +38,7 @@ export const getStatus = (status: DispositifStatus | undefined, isAdmin: boolean
       return null;
     case DispositifStatus.OK_STRUCTURE:
       return null;
-    case DispositifStatus.WAITING:
+    case DispositifStatus.WAITING_STRUCTURE:
       return {
         text: "Relecture par la structure",
         type: "warning",

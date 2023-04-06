@@ -102,7 +102,7 @@ export enum DispositifStatus {
   ACTIVE = "Actif",
   DRAFT = "Brouillon",
   DELETED = "Supprimé",
-  WAITING = "En attente",
+  WAITING_STRUCTURE = "En attente",
   WAITING_ADMIN = "En attente admin",
   NO_STRUCTURE = "En attente non prioritaire",
   OK_STRUCTURE = "Accepté structure",

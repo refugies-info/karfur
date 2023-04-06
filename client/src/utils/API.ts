@@ -63,10 +63,12 @@ import {
   PostStructureRequest,
   PostThemeResponse,
   PostWidgetResponse,
+  PublishDispositifRequest,
   ReadSuggestionDispositifRequest,
   ResetPasswordRequest,
   ResetPasswordResponse,
   SendNotificationsRequest,
+  StructureReceiveDispositifRequest,
   SubscriptionRequest,
   ThemeRequest,
   TranslationStatisticsRequest,
@@ -217,9 +219,17 @@ const API = {
     const headers = getHeaders();
     return instance.get("/dispositifs/count", { params: query, headers });
   },
+  deleteDispositif: (id: Id): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.delete(`/dispositifs/${id}/status`, { headers });
+  },
   updateDispositifStatus: (id: Id, body: DispositifStatusRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/status`, body, { headers });
+  },
+  structureReceiveDispositifStatus: (id: Id, body: StructureReceiveDispositifRequest): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.patch(`/dispositifs/${id}/structure-receive`, body, { headers });
   },
   updateDispositifTagsOrNeeds: (query: any) => {
     const headers = getHeaders();
@@ -286,6 +296,11 @@ const API = {
   updateDispositif: (id: Id, body: UpdateDispositifRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}`, body, { headers });
+  },
+  publishDispositif: (id: Id): Promise<APIResponse> => {
+    const headers = getHeaders();
+    const body: PublishDispositifRequest = {};
+    return instance.patch(`/dispositifs/${id}/publish`, body, { headers });
   },
   createDispositif: (body: CreateDispositifRequest): Promise<APIResponse<PostDispositifsResponse>> => {
     const headers = getHeaders();

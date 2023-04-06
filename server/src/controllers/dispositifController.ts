@@ -22,6 +22,8 @@ import {
   ReadSuggestionDispositifRequest,
   GetRegionStatisticsResponse,
   PostDispositifsResponse,
+  PublishDispositifRequest,
+  StructureReceiveDispositifRequest,
 } from "api-types";
 import express, { Request as ExRequest } from "express";
 
@@ -51,6 +53,9 @@ import { deleteMerci } from "../workflows/dispositif/deleteMerci";
 import { addSuggestion } from "../workflows/dispositif/addSuggestion";
 import { patchSuggestion } from "../workflows/dispositif/patchSuggestion";
 import { deleteSuggestion } from "../workflows/dispositif/deleteSuggestion";
+import { publishDispositif } from "../workflows/dispositif/publishDispositif";
+import { deleteDispositif } from "../workflows/dispositif/deleteDispositif";
+import { structureReceiveDispositif } from "../workflows/dispositif/structureReceiveDispositif";
 
 const router = express.Router();
 
@@ -144,6 +149,24 @@ export class DispositifController extends Controller {
 
   // updates
   @Security({
+    jwt: [],
+    fromSite: [],
+  })
+  @Patch("/{id}/publish")
+  public async publishDispositif(@Path() id: string, @Body() body: PublishDispositifRequest, @Request() request: express.Request): Response {
+    return publishDispositif(id, body, request.user);
+  }
+
+  @Security({
+    jwt: [],
+    fromSite: [],
+  })
+  @Patch("/{id}/structure-receive")
+  public async structureReceiveDispositif(@Path() id: string, @Body() body: StructureReceiveDispositifRequest, @Request() request: express.Request): Response {
+    return structureReceiveDispositif(id, body, request.user);
+  }
+
+  @Security({
     fromSite: [],
   })
   @Post("/{id}/views")
@@ -188,7 +211,7 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    jwt: [],
+    jwt: ["admin"],
     fromSite: [],
   })
   @Patch("/{id}/status")
@@ -253,6 +276,15 @@ export class DispositifController extends Controller {
     @Request() request: ExRequest,
   ): Response {
     return updateDispositif(id, body, request.user);
+  }
+
+  @Security({
+    jwt: [],
+    fromSite: [],
+  })
+  @Delete("/{id}")
+  public async deleteDispositif(@Path() id: string, @Request() request: express.Request): Response {
+    return deleteDispositif(id, request.user);
   }
 
   // keep in last position to make sure /xyz routes are catched before

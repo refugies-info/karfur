@@ -80,7 +80,7 @@ export const createUser = (user: {
   last_connected: Date;
 }): Promise<User> => UserModel.create(user);
 
-export const addRoleAndContribToUser = (userId: Types.ObjectId, roleId: Types.ObjectId, contribId: Types.ObjectId) =>
+export const addRoleAndContribToUser = (userId: Id, roleId: Types.ObjectId, contribId: Types.ObjectId) =>
   UserModel.findByIdAndUpdate(
     { _id: userId },
     {

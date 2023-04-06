@@ -16,7 +16,7 @@ export const modifyDispositifMainSponsor = async (id: string, body: MainSponsorR
   const modifiedDispositif: Partial<Dispositif> = {
     mainSponsor: body.sponsorId,
   };
-  if (oldDispositif.status === DispositifStatus.NO_STRUCTURE) modifiedDispositif.status = DispositifStatus.WAITING;
+  if (oldDispositif.status === DispositifStatus.NO_STRUCTURE) modifiedDispositif.status = DispositifStatus.WAITING_STRUCTURE;
 
   await updateDispositifInDB(id, modifiedDispositif);
 

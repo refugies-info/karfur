@@ -1,12 +1,14 @@
 import logger from "../../../logger";
 import { getDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { Response } from "../../../types/interface";
-import { Dispositif, ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
+import { Dispositif, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 import { ContentType, Languages, UpdateDispositifRequest } from "api-types";
 import { cloneDeep, isEmpty, omit, unset } from "lodash";
 import { TraductionsType } from "../../../typegoose/Traductions";
+import { buildNewDispositif } from "../../../modules/dispositif/dispositif.service";
+import { log } from "./log";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
   // content
@@ -138,15 +140,14 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     lastModificationAuthor: user._id,
     themesSelectedByAuthor: !user.isAdmin(),
     translations,
+    ...buildNewDispositif(body, user._id.toString())
   };
 
-  if (body.mainSponsor && typeof body.mainSponsor === "string") editedDispositif.mainSponsor = new ObjectId(body.mainSponsor);
-  if (body.theme) editedDispositif.theme = new ObjectId(body.theme);
-  if (body.secondaryThemes) editedDispositif.secondaryThemes = body.secondaryThemes.map((t) => new ObjectId(t));
-  if (body.metadatas) editedDispositif.metadatas = body.metadatas;
+  // TODO : if published, create draft work version instead
+  // if incomplete and WAITING_STRUCTURE | WAITING_ADMIN -> DRAFT
 
-  await updateDispositifInDB(id, editedDispositif);
-  // await log(dispositif, originalDispositif, req.user._id);
+  const newDispositif = await updateDispositifInDB(id, editedDispositif);
+  await log(newDispositif, oldDispositif, user._id);
 
   return { text: "success" };
 };
