@@ -4,6 +4,7 @@ import { Badge } from "@dataesr/react-dsfr";
 import { isStatus } from "lib/dispositif";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import StepBar from "../../StepBar";
 import { help } from "./data";
 import styles from "./MissingContent.module.scss";
 
@@ -13,6 +14,8 @@ interface Props {
   onQuit: () => void;
   onStay: () => void;
 }
+
+const STEPS = 14;
 
 const MissingContent = (props: Props) => {
   const content = useMemo(() => {
@@ -25,6 +28,12 @@ const MissingContent = (props: Props) => {
   return (
     <div>
       <p>{content}</p>
+      <StepBar
+        total={STEPS}
+        progress={STEPS - props.missingSteps.length}
+        text={`${STEPS - props.missingSteps.length} étapes complétées sur ${STEPS}`}
+      />
+
       <div className={styles.missing}>
         {props.missingSteps.map((step, i) => (
           <div key={i} className={styles.step}>
