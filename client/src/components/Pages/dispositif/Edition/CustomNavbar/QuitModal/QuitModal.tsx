@@ -19,7 +19,7 @@ interface Props {
   isComplete: boolean;
 }
 
-const DeleteContentModal = (props: Props) => {
+const QuitModal = (props: Props) => {
   const content = useMemo(() => {
     if (isStatus(props.status, DispositifStatus.DRAFT)) return contents.draft;
     if (isStatus(props.status, DispositifStatus.ACTIVE)) {
@@ -80,4 +80,4 @@ const DeleteContentModal = (props: Props) => {
   );
 };
 
-export default DeleteContentModal;
+export default QuitModal;
