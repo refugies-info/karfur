@@ -296,9 +296,8 @@ const API = {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}`, body, { headers });
   },
-  publishDispositif: (id: Id): Promise<APIResponse> => {
+  publishDispositif: (id: Id, body: PublishDispositifRequest): Promise<APIResponse> => {
     const headers = getHeaders();
-    const body: PublishDispositifRequest = {};
     return instance.patch(`/dispositifs/${id}/publish`, body, { headers });
   },
   createDispositif: (body: CreateDispositifRequest): Promise<APIResponse<PostDispositifsResponse>> => {

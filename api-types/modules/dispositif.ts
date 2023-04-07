@@ -132,7 +132,9 @@ export interface UpdateDispositifRequest extends DispositifRequest { }
 /**
  * @url PATCH /dispositifs/{id}/publish
  */
-export interface PublishDispositifRequest { }
+export interface PublishDispositifRequest {
+  keepTranslations?: boolean;
+}
 
 /**
  * @url PATCH /dispositifs/{id}/structure-receive

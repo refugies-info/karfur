@@ -1,10 +1,10 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useMemo } from "react";
 import { cls } from "lib/classname";
 import PageContext from "utils/pageContext";
+import { useUniqueId } from "hooks";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import styles from "./BaseCard.module.scss";
-import { uniqueId } from "lodash";
 import Tooltip from "components/UI/Tooltip";
+import styles from "./BaseCard.module.scss";
 
 type BaseCardStatus = "done" | "error";
 
@@ -68,7 +68,7 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
  */
 const BaseCard = ({ id, title, items, color, onClick }: Props) => {
   const pageContext = useContext(PageContext);
-  const [tooltipId] = useState(uniqueId("tooltip_card_"));
+  const tooltipId = useUniqueId("tooltip_card_");
 
   const noContent = useMemo(() => {
     return pageContext.mode === "view" && !(items || []).find((item) => !!item.content);
@@ -118,9 +118,11 @@ const BaseCard = ({ id, title, items, color, onClick }: Props) => {
     >
       {cardContent}
 
-      <Tooltip target={tooltipId} placement="right">
-        Modifier
-      </Tooltip>
+      {tooltipId && (
+        <Tooltip target={tooltipId} placement="right">
+          Modifier
+        </Tooltip>
+      )}
     </button>
   ) : (
     <div id={id} className={cls(styles.card, status === "error" && styles.error)}>

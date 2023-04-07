@@ -15,7 +15,7 @@ $primary: $bleuCharte;
 
 $custom-colors: (
   "primary": $primary,
-  "light-green": $greenValidate
+  "light-green": $greenValidate,
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
@@ -26,14 +26,14 @@ $grid-breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 );
 
 $container-max-widths: (
   sm: 540px,
   md: 720px,
   lg: 960px,
-  xl: 1140px
+  xl: 1140px,
 );
 
 // Headings
@@ -57,21 +57,27 @@ $spacer: 1rem;
 $spacers: (
   0: 0,
   1: (
-    $spacer * 0.25
+    $spacer * 0.25,
   ),
   2: (
-    $spacer * 0.5
+    $spacer * 0.5,
   ),
   3: (
-    $spacer * 0.75
+    $spacer * 0.75,
   ),
   4: $spacer,
   5: (
-    $spacer * 1.25
+    $spacer * 1.25,
   ),
   6: (
-    $spacer * 1.5
-  )
+    $spacer * 1.5,
+  ),
+  7: (
+    $spacer * 1.75,
+  ),
+  8: (
+    $spacer * 2,
+  ),
 );
 
 // Custom

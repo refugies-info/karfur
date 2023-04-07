@@ -1,4 +1,4 @@
-import { ContentType, GetDispositifResponse, InfoSections } from "api-types";
+import { ContentType, CreateDispositifRequest, InfoSections } from "api-types";
 
 export const getText = (progress: number) => {
   if (progress === 0) return "C'est parti lancez-vous !";
@@ -21,31 +21,42 @@ const isMetadataOk = (content: any | any[]) => {
   return content || content === null // ok if filled or null
 }
 
-export const calculateProgress = (dispositif: Partial<GetDispositifResponse>) => {
-  const conditions: boolean[] = [
-    !!dispositif.titreInformatif,
-    !!dispositif.titreMarque,
-    !!dispositif.what,
-    dispositif.typeContenu === ContentType.DISPOSITIF ? isAccordionOk(dispositif.why) : isAccordionOk(dispositif.how),
-    dispositif.typeContenu === ContentType.DISPOSITIF ? isAccordionOk(dispositif.how) : isAccordionOk(dispositif.next),
-    !!dispositif.abstract,
-    !!dispositif.theme,
-    (dispositif.sponsors?.length || 0) > 0,
-    dispositif.mainSponsor,
+/**
+ * return an array with null if complete, or the name of the step if missing
+ */
+export const getMissingSteps = (dispositif: Partial<CreateDispositifRequest>): (string | null)[] => {
+  /* TODO: translate keys */
+  return [
+    !!dispositif.titreInformatif ? null : "titreInformatif",
+    !!dispositif.titreMarque ? null : "titreMarque",
+    !!dispositif.what ? null : "what",
+    dispositif.typeContenu === ContentType.DISPOSITIF ?
+      isAccordionOk(dispositif.why) ? null : "why" :
+      isAccordionOk(dispositif.how) ? null : "how",
+    dispositif.typeContenu === ContentType.DISPOSITIF ?
+      isAccordionOk(dispositif.how) ? null : "how" :
+      isAccordionOk(dispositif.next) ? null : "next",
+    !!dispositif.abstract ? null : "abstract",
+    !!dispositif.theme ? null : "theme",
+    (dispositif.sponsors?.length || 0) > 0 ? null : "sponsors",
+    dispositif.mainSponsor ? null : "mainSponsor",
     isMetadataOk([
       dispositif.metadatas?.publicStatus,
       dispositif.metadatas?.age,
       dispositif.metadatas?.frenchLevel,
       dispositif.metadatas?.public,
-    ]),
-    isMetadataOk(dispositif.metadatas?.price),
+    ]) ? null : "public",
+    isMetadataOk(dispositif.metadatas?.price) ? null : "price",
     isMetadataOk([
       dispositif.metadatas?.commitment,
       dispositif.metadatas?.frequency,
       dispositif.metadatas?.timeSlots,
-    ]),
-    isMetadataOk(dispositif.metadatas?.conditions),
-    isMetadataOk(dispositif.metadatas?.location)
+    ]) ? null : "commitment",
+    isMetadataOk(dispositif.metadatas?.conditions) ? null : "conditions",
+    isMetadataOk(dispositif.metadatas?.location) ? null : "location"
   ];
-  return conditions.filter(c => c).length;
+}
+
+export const calculateProgress = (dispositif: Partial<CreateDispositifRequest>) => {
+  return getMissingSteps(dispositif).filter(c => c === null).length;
 }
