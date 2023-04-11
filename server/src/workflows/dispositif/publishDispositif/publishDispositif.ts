@@ -35,5 +35,11 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
     await log(newDispositif, oldDispositif, user._id);
   }
 
+  if (user.isAdmin() && body.keepTranslations) { // keep translations
+    // do nothing
+  } else { // translate
+    // TODO: revalidate translations if content changed
+  }
+
   return { text: "success" };
 };
