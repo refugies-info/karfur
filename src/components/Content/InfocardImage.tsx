@@ -15,11 +15,11 @@ import { Metadatas } from "@refugies-info/api-types";
 
 type metaKeys = keyof Metadatas;
 interface Props {
-  title: metaKeys;
+  title: metaKeys | "mainSponsor";
   isFree: boolean;
 }
 
-const IMAGE_SIZE = 56;
+export const IMAGE_SIZE = 56;
 export const InfocardImage = ({ title, isFree }: Props) => {
   if (title === "price" && isFree) {
     return (

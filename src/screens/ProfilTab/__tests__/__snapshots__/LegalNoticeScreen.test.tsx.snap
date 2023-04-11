@@ -102,78 +102,87 @@ exports[`LegalNotice screen should render correctly 1`] = `
               }
             >
               <View
-                collapsable={false}
+                disabled={false}
                 style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 1,
-                      },
-                    ],
-                  }
+                  Array [
+                    Object {},
+                  ]
                 }
               >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={24}
-                  bbWidth={24}
-                  fill="#212121"
-                  focusable={false}
-                  height={24}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
+                <View
+                  collapsable={false}
                   style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                    }
                   }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={24}
                 >
-                  <RNSVGGroup
-                    fill={4280361249}
-                    propList={
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={24}
+                    bbWidth={24}
+                    fill="#212121"
+                    focusable={false}
+                    height={24}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
                       Array [
-                        "fill",
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 24,
+                          "width": 24,
+                        },
                       ]
                     }
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={24}
                   >
-                    <RNSVGGroup>
+                    <RNSVGGroup
+                      fill={4280361249}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
                       <RNSVGGroup>
-                        <RNSVGRect
-                          height="24"
-                          matrix={
-                            Array [
-                              6.123233995736766e-17,
-                              1,
-                              -1,
-                              6.123233995736766e-17,
-                              24,
-                              0,
-                            ]
-                          }
-                          opacity={0}
-                          width="24"
-                          x={0}
-                          y={0}
-                        />
-                        <RNSVGPath
-                          d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                        />
+                        <RNSVGGroup>
+                          <RNSVGRect
+                            height="24"
+                            matrix={
+                              Array [
+                                6.123233995736766e-17,
+                                1,
+                                -1,
+                                6.123233995736766e-17,
+                                24,
+                                0,
+                              ]
+                            }
+                            opacity={0}
+                            width="24"
+                            x={0}
+                            y={0}
+                          />
+                          <RNSVGPath
+                            d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                          />
+                        </RNSVGGroup>
                       </RNSVGGroup>
                     </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
+                  </RNSVGSvgView>
+                </View>
               </View>
             </View>
           </View>

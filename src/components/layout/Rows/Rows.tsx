@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import { FlexItem, getFlexValue } from "../common";
 import { isLastChild } from "../../utils";
 import { isNull } from "lodash";
+import Separator from "../Separator";
 
 const RowsWrapper = styled.View<{
   horizontalAlign?: string;
@@ -30,6 +31,7 @@ export interface RowsProps {
   verticalAlign?: string;
   layout?: string;
   spacing?: RowsSpacing;
+  separator?: boolean;
 }
 
 const Rows = ({
@@ -38,6 +40,7 @@ const Rows = ({
   verticalAlign,
   layout = "auto",
   spacing = RowsSpacing.Default,
+  separator = false,
 }: RowsProps) => {
   const _children = React.Children.toArray(children).filter(
     (child: ReactNode) => !isNull(child)
@@ -51,14 +54,19 @@ const Rows = ({
         _children,
         (child: ReactNode, index: number) =>
           child && (
-            <FlexItem
-              flex={getFlexValue(layout, index)}
-              // eslint-disable-next-line react/no-array-index-key
-              key={index}
-              marginBottom={!isLastChild(_children, index) && spacing}
-            >
-              {child}
-            </FlexItem>
+            <>
+              <FlexItem
+                flex={getFlexValue(layout, index)}
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+                marginBottom={!isLastChild(_children, index) && spacing}
+              >
+                {child}
+              </FlexItem>
+              {separator && !isLastChild(_children, index) && (
+                <Separator fullWidth />
+              )}
+            </>
           )
       )}
     </RowsWrapper>

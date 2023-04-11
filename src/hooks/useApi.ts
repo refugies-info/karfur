@@ -51,6 +51,10 @@ export const makeApiRequest = async <Request extends any, T extends any>(
       resp = await apiCaller.get(url, { headers, params: payload });
     } else if (method === "POST") {
       resp = await apiCaller.post(url, payload, { headers });
+    } else if (method === "PUT") {
+      resp = await apiCaller.put(url, payload, { headers });
+    } else if (method === "DELETE") {
+      resp = await apiCaller.delete(url, payload, { headers });
     }
 
     return resp?.data || <T>null;

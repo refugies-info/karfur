@@ -3,10 +3,12 @@ import * as React from "react";
 import { View } from "react-native";
 import { styles } from "../../theme";
 import { RTLView } from "../BasicComponents";
-import { Icon } from "react-native-eva-icons";
-import { TextSmallNormal } from "../StyledText";
+import { TextNormal, TextNormalBold } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ReadableText } from "../ReadableText";
+import { Card, Columns, Rows, RowsSpacing, Spacer } from "../layout";
+import { useTheme } from "styled-components/native";
+import { Icon } from "../iconography";
 
 interface Props {
   htmlContent: string;
@@ -14,7 +16,8 @@ interface Props {
   fromAccordion?: boolean;
 }
 export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
-  const { isRTL } = useTranslationWithRTL();
+  const theme = useTheme();
+  const { t, isRTL } = useTranslationWithRTL();
 
   return (
     <View style={{ flexDirection: "row" }}>
@@ -111,19 +114,16 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                 >
                   <Icon
                     name={isRTL ? "arrow-left" : "arrow-right"}
-                    height={18}
-                    width={18}
-                    fill={styles.colors.black}
+                    size={18}
+                    color={styles.colors.black}
                   />
                 </View>
-                <TextSmallNormal style={{ flexShrink: 1 }}>
-                  {children}
-                </TextSmallNormal>
+                <TextNormal style={{ flexShrink: 1 }}>{children}</TextNormal>
               </RTLView>
             ),
             // eslint-disable-next-line react/display-name
             p: (_, children, _cssStyles, passProps) => (
-              <TextSmallNormal
+              <TextNormal
                 key={passProps.key}
                 style={{
                   marginBottom: styles.margin,
@@ -132,13 +132,93 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                 }}
               >
                 {children}
-              </TextSmallNormal>
+              </TextNormal>
             ),
+            div: (_, children, _cssStyles, passProps) => {
+              if (_["data-callout"] === "important") {
+                return (
+                  <>
+                    <Spacer height={theme.margin} />
+                    <Card
+                      key={passProps.key}
+                      backgroundColor={theme.colors.lightGrey}
+                    >
+                      <Columns layout="auto 1">
+                        <View
+                          style={{
+                            backgroundColor: "#6A6AF4",
+                            flexGrow: 1,
+                          }}
+                        >
+                          <Icon name="warning" size={40} color="white" />
+                        </View>
+                        <View style={{ padding: 10 }}>
+                          <Rows spacing={RowsSpacing.Text}>
+                            <TextNormalBold>
+                              {t("Important", "Important")}
+                            </TextNormalBold>
+                            {children}
+                          </Rows>
+                        </View>
+                      </Columns>
+                    </Card>
+                    <Spacer height={theme.margin} />
+                  </>
+                );
+              }
+
+              if (_["data-callout"] === "info") {
+                return (
+                  <>
+                    <Spacer height={theme.margin} />
+                    <Card
+                      key={passProps.key}
+                      backgroundColor={theme.colors.white}
+                    >
+                      <Columns layout="auto 1">
+                        <View
+                          style={{
+                            marginHorizontal: theme.margin,
+                            borderRadius: 2,
+                            backgroundColor: "#6A6AF4",
+                            flexGrow: 1,
+                          }}
+                        >
+                          <View
+                            style={{
+                              width: theme.margin / 2,
+                              alignSelf: "center",
+                              backgroundColor: "#6A6AF4",
+                            }}
+                          />
+                        </View>
+                        <View style={{ padding: 10 }}>
+                          <Rows spacing={RowsSpacing.Text}>
+                            <TextNormalBold style={{ color: "#6A6AF4" }}>
+                              {t("Bon à savoir", "Bon à savoir")}
+                            </TextNormalBold>
+                            {children}
+                          </Rows>
+                        </View>
+                      </Columns>
+                    </Card>
+                    <Spacer height={theme.margin} />
+                  </>
+                );
+              }
+
+              return <View>{children}</View>;
+            },
           }}
         />
       </ReadableText>
     </View>
-  )
+  );
 });
 
 ContentFromHtml.displayName = "ContentFromHtml";
+
+/**
+ * <div class='callout callout--important' data-callout='important'>Le Café des Réfugiés est seulement ouvert aux réfugiés statutaires et aux bénéficiaires de la protection subsidiaire domiciliés sur Paris (75000).  </div>
+ * <div class='callout callout--important' data-callout='important'>Avant de participer, il faut aller au bureau du centre d'accueil pour faire le point sur votre situation.  </div>
+ */

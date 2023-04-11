@@ -86,6 +86,12 @@ export const updateNbVuesOrFavoritesOnContent = (
 ) =>
   makeApiRequest(`/dispositifs/${contentId}/views`, { types: [type] }, "POST");
 
+export const addMerci = (contentId: string) =>
+  makeApiRequest(`/dispositifs/${contentId}/merci`, {}, "PUT");
+
+export const deleteMerci = (contentId: string) =>
+  makeApiRequest(`/dispositifs/${contentId}/merci`, {}, "DELETE");
+
 // FIXME Return type
 // export const addNeedView = (id: string) => apiCaller.post("/needs/views", id);
 export const addNeedView = (id: string) =>

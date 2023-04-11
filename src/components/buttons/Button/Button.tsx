@@ -2,6 +2,7 @@ import React from "react";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { Icon } from "../../iconography";
+import { Columns } from "../../layout";
 
 const ICON_SIZE = 24;
 
@@ -33,7 +34,7 @@ const Container = styled.View<{
   backgroundColor: string;
   disabledBackgroundColor: string;
   disabled: boolean;
-  borderColor: string;
+  borderColor?: string;
   disabledBorderColor: string;
 }>`
   background-color: ${({
@@ -41,8 +42,8 @@ const Container = styled.View<{
     disabledBackgroundColor,
     disabled,
   }) => (disabled ? disabledBackgroundColor : backgroundColor)};
-  border-color: ${({ borderColor, disabledBorderColor, disabled }) =>
-    disabled ? disabledBorderColor : borderColor};
+  border-color: ${({ borderColor, disabledBorderColor, disabled, theme }) =>
+    disabled ? disabledBorderColor : borderColor || theme.colors.black};
   border-radius: ${({ theme }) => theme.radius * 2}px;
   border-width: 1px;
   padding: ${({ theme }) => theme.radius * 2}px;
@@ -71,26 +72,29 @@ const Button = ({
       disabled={disabled || loading}
     >
       <Container
-        backgroundColor="sdfs"
-        disabledBackgroundColor="sdfs"
+        backgroundColor="transparent"
+        disabledBackgroundColor="gray"
         disabled={disabled}
-        borderColor="kjbkj"
-        disabledBorderColor="jkhbk"
+        borderColor={color}
+        disabledBorderColor="gray"
       >
-        {iconName && (
-          <Icon
-            name={iconName}
-            size={ICON_SIZE}
-            color={color || theme.colors.black}
-          />
-        )}
-        <ButtonText
-          color={iconColor || color || theme.colors.black}
-          disabledColor={disabledColor || theme.colors.greyDisabled}
-          disabled={disabled}
-        >
-          {title}
-        </ButtonText>
+        <Columns layout="auto">
+          {iconName && (
+            <Icon
+              color={color || theme.colors.black}
+              loading={loading}
+              name={iconName}
+              size={ICON_SIZE}
+            />
+          )}
+          <ButtonText
+            color={iconColor || color || theme.colors.black}
+            disabledColor={disabledColor || theme.colors.greyDisabled}
+            disabled={disabled || loading}
+          >
+            {title}
+          </ButtonText>
+        </Columns>
       </Container>
     </TouchableOpacity>
   );

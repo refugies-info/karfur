@@ -20,7 +20,7 @@ import { Picture } from "@refugies-info/api-types";
 interface Props {
   icon?: Picture;
   stroke?: string;
-  contentId: ObjectId;
+  contentId: string;
   isSmall?: boolean;
 }
 
@@ -48,7 +48,7 @@ export const DemarcheImage = (props: Props) => {
 
   if (imageName && imageFiles[imageName]) {
     const passportRatio = 1.4;
-    const height = imageName !== "passeport" ? "auto" : cardWidth;
+    const height = imageName !== "passeport" ? 100 : cardWidth;
     const width =
       imageName !== "passeport" ? cardWidth : cardWidth / passportRatio;
 

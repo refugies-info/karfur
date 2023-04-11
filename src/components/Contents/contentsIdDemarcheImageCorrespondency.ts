@@ -1,6 +1,4 @@
-import { ObjectId } from "../../types/interface";
-
-export const getImageNameFromContentId = (contentId: ObjectId) => {
+export const getImageNameFromContentId = (contentId: string) => {
   if (contentId === "6051e8eebf0a6d0014ee6809") {
     return "ameli";
   }

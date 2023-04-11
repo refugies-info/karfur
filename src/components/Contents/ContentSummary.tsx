@@ -244,7 +244,7 @@ export const ContentSummary = (props: Props) => {
           <DemarcheImage
             icon={props.theme?.icon}
             stroke={colors.color100}
-            contentId={props.contentId}
+            contentId={props.contentId.toString()}
             isSmall={true}
           />
         </ImageContainer>

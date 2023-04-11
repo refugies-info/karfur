@@ -3,7 +3,6 @@ import styled from "styled-components/native";
 import { FlexItem, getFlexValue } from "../common";
 import { isLastChild } from "../../utils";
 import { Animated } from "react-native";
-import { isNull } from "lodash";
 
 const ColumnsWrapper = styled(Animated.View)<{
   horizontalAlign?: string;
@@ -42,9 +41,6 @@ const Columns = ({
   spacing = ColumnsSpacing.Default,
   verticalAlign = "flex-start",
 }: ColumnsProps) => {
-  // const _children = React.Children.toArray(children).filter(
-  //   (child) => !isNull(child)
-  // );
   return (
     <ColumnsWrapper
       horizontalAlign={horizontalAlign}

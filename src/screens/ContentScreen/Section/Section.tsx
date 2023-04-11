@@ -18,11 +18,10 @@ import {
 import { defaultColors } from "../../../libs";
 
 export interface SectionProps {
-  contentType: ContentType;
   sectionKey: "what" | "how" | "why" | "next";
 }
 
-const Section = ({ contentType, sectionKey }: SectionProps) => {
+const Section = ({ sectionKey }: SectionProps) => {
   const { t } = useTranslationWithRTL();
 
   const windowWidth = useWindowDimensions().width;

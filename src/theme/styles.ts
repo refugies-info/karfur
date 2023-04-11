@@ -100,7 +100,7 @@ const fonts = {
   },
   button: {
     family: "circularBook",
-    size: 19,
+    size: "19px",
     weight: "normal",
   },
 };

@@ -1,33 +1,30 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import {
-  TextNormalBold,
-  TextVerySmallNormal,
-  TextSmallNormal,
-} from "../StyledText";
-import { formatInfocards, getDescription } from "../../libs/content";
+import { TextNormalBold, TextSmallBold, TextSmallNormal } from "../StyledText";
+import { getConditionImage, getDescriptionNew } from "../../libs/content";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { TextFromHtml } from "./TextFromHtml";
-import { RTLView } from "../BasicComponents";
-import { View } from "react-native";
-import { InfocardImage } from "./InfocardImage";
+import { IMAGE_SIZE, InfocardImage } from "./InfocardImage";
 import { ReadableText } from "../ReadableText";
-import { ContentType, Metadatas } from "@refugies-info/api-types";
+import {
+  conditionType,
+  ContentType,
+  GetDispositifResponse,
+  Metadatas,
+} from "@refugies-info/api-types";
+import { Columns, Rows, RowsSpacing } from "../layout";
+import { Image } from "react-native";
 
 interface Props {
-  content: Metadatas;
+  content: GetDispositifResponse;
   color: string;
-  typeContenu: ContentType;
 }
 
 const MainContainer = styled.View`
-  display: flex;
-  flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.lightGrey};
+  border: 1px solid ${({ theme }) => theme.colors.grey};
   border-radius: ${({ theme }) => theme.radius * 2}px;
-  padding-top: ${({ theme }) => theme.margin * 2}px;
-  ${({ theme }) => theme.shadows.lg}
-  margin-top: ${({ theme }) => theme.margin}px;
+  padding-vertical: ${({ theme }) => theme.margin * 2}px;
+  margin-vertical: ${({ theme }) => theme.margin}px;
 `;
 
 const TitleText = styled(TextNormalBold)<{ color: string }>`
@@ -35,8 +32,8 @@ const TitleText = styled(TextNormalBold)<{ color: string }>`
   margin-bottom: ${({ theme }) => theme.radius * 2}px;
 `;
 
-const SubtitleText = styled(TextVerySmallNormal)`
-  color: ${({ theme }) => theme.colors.darkGrey};
+const SubtitleText = styled(TextSmallBold)`
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const DescriptionText = styled(TextSmallNormal)`
@@ -48,112 +45,184 @@ const SectionContainer = styled.View`
   padding-horizontal: ${({ theme }) => theme.margin * 2}px;
 `;
 
-const InfocardContainer = styled.View<{ isDuree: boolean }>`
-  margin-bottom: ${({ isDuree, theme }) =>
-    isDuree ? theme.margin : theme.margin * 3}px;
-`;
-
-const Separator = styled.View`
-  width: 100%;
-  height: 1px;
-  background-color: ${({ theme }) => theme.colors.grey};
-  margin-bottom: ${({ theme }) => theme.margin * 3}px;
-  margin-top: ${({ theme }) => theme.margin}px;
-`;
-
 const InfocardTextContainer = styled.View`
   flex: 1;
   margin-right: ${({ theme }) => (theme.i18n.isRTL ? 0 : 8)}px;
   margin-left: ${({ theme }) => (theme.i18n.isRTL ? 8 : 0)}px;
 `;
 
-interface CardProps {
-  data: any;
-  color: string;
-  title: string;
-}
-
-const Card = ({ data, color, title }: CardProps) => {
+const Metadata = ({
+  metadatas,
+  metadataKey,
+  withTitle = false,
+}: {
+  metadatas: Metadatas;
+  metadataKey: keyof Metadatas;
+  withTitle?: boolean;
+}) => {
   const { t } = useTranslationWithRTL();
+  if (!metadatas[metadataKey]) return null;
 
   return (
-    <View>
-      <SectionContainer>
-        <TitleText color={color}>
-          <ReadableText>{t("content_screen." + title, title)}</ReadableText>
-        </TitleText>
-        {data.map((infocard: any, key: any) => {
-          // FIXME not supported yet
-          if (infocard.title === "publicStatus") return;
-
-          const displayedName = infocard.title;
-          const description = getDescription(infocard, t);
-
-          return (
-            <InfocardContainer
-              key={key}
-              isDuree={infocard.title === "duration"}
-            >
-              <RTLView style={{ justifyContent: "space-between" }}>
-                <InfocardTextContainer>
-                  {!!displayedName && (
-                    <SubtitleText>
-                      <ReadableText>
-                        {t("content_screen." + displayedName, displayedName)}
-                      </ReadableText>
-                    </SubtitleText>
-                  )}
-                  {!!description && (
-                    <View>
-                      <DescriptionText>
-                        <ReadableText>{description}</ReadableText>
-                      </DescriptionText>
-                    </View>
-                  )}
-                  {infocard.title === "duration" && infocard.contentTitle && (
-                    <TextFromHtml htmlContent={infocard.contentTitle} />
-                  )}
-                  {infocard.title === "important" && infocard.contentTitle && (
-                    <TextFromHtml htmlContent={infocard.contentTitle} />
-                  )}
-                </InfocardTextContainer>
-                <InfocardImage
-                  title={infocard.title}
-                  isFree={
-                    infocard.title === "price" &&
-                    infocard.filteredData.values[0] === 0
-                  }
-                />
-              </RTLView>
-            </InfocardContainer>
-          );
-        })}
-      </SectionContainer>
-    </View>
+    <Columns RTLBehaviour layout="auto 1" horizontalAlign="space-between">
+      <InfocardImage
+        title={metadataKey}
+        isFree={metadataKey === "price" && metadatas.price?.values[0] === 0}
+      />
+      <InfocardTextContainer>
+        {withTitle && (
+          <SubtitleText>
+            <ReadableText>
+              {t("content_screen." + metadataKey, metadataKey)}
+            </ReadableText>
+          </SubtitleText>
+        )}
+        <DescriptionText>
+          <ReadableText>
+            {getDescriptionNew(metadatas, metadataKey, t)}
+          </ReadableText>
+        </DescriptionText>
+      </InfocardTextContainer>
+    </Columns>
   );
 };
 
-export const InfocardsSection = ({ content, color, typeContenu }: Props) => {
-  const formattedData = formatInfocards(content, typeContenu);
-  if (formattedData.length === 0) {
-    return <View />;
-  }
-  const keys = Object.keys(formattedData);
+const Section = ({
+  children,
+  color,
+  title,
+}: {
+  children: React.ReactNode;
+  color: string;
+  title: string;
+}) => (
+  <SectionContainer>
+    <TitleText color={color}>
+      <ReadableText>{title}</ReadableText>
+    </TitleText>
+
+    <Rows>{children}</Rows>
+  </SectionContainer>
+);
+
+export const InfocardsSection = ({ content, color }: Props) => {
+  const { t } = useTranslationWithRTL();
+  const metadatas = content.metadatas;
   return (
     <MainContainer>
-      {keys.map((key, indexSection) => (
-        <>
-          <Card
-            key={`${key}-card`}
-            data={formattedData[key]}
-            title={key}
-            color={color}
-          />
-          {indexSection !== keys.length - 1 && (
-            <Separator key={`${key}-separator`} />
+      <Rows separator>
+        <Section
+          color={color}
+          title={t("content_screen.public", "Public visé")}
+        >
+          {metadatas.publicStatus && (
+            <Metadata
+              metadatas={metadatas}
+              metadataKey="publicStatus"
+              withTitle
+            />
           )}
-        </>
-      ))}
+          {metadatas.public && (
+            <Metadata metadatas={metadatas} metadataKey="public" withTitle />
+          )}
+          {metadatas.frenchLevel && (
+            <Metadata
+              metadatas={metadatas}
+              metadataKey="frenchLevel"
+              withTitle
+            />
+          )}
+          {metadatas.age && (
+            <Metadata metadatas={metadatas} metadataKey="age" withTitle />
+          )}
+        </Section>
+
+        {metadatas.price && (
+          <Section color={color} title={t("content_screen.price", "Prix")}>
+            <Metadata metadatas={metadatas} metadataKey="price" />
+          </Section>
+        )}
+
+        {(metadatas.commitment ||
+          metadatas.frequency ||
+          metadatas.timeSlots) && (
+          <Section
+            color={color}
+            title={t("content_screen.availability", "Disponibilité demandée")}
+          >
+            {metadatas.commitment && (
+              <Metadata metadatas={metadatas} metadataKey="commitment" />
+            )}
+            {metadatas.frequency && (
+              <Metadata metadatas={metadatas} metadataKey="frequency" />
+            )}
+            {metadatas.timeSlots && (
+              <Metadata metadatas={metadatas} metadataKey="timeSlots" />
+            )}
+          </Section>
+        )}
+
+        {metadatas.conditions && (
+          <Section
+            color={color}
+            title={t("content_screen.conditions", "Conditions")}
+          >
+            {/* <Metadata metadatas={metadatas} metadataKey="conditions" /> */}
+            <Rows layout="1" spacing={RowsSpacing.Text}>
+              {metadatas.conditions.map((condition: conditionType) => (
+                <Columns layout="auto 1" key={condition}>
+                  <Image
+                    style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+                    source={getConditionImage(condition)}
+                  />
+                  <DescriptionText>
+                    <ReadableText>
+                      {t(
+                        `content_screen.conditions_${condition.replaceAll(
+                          " ",
+                          "_"
+                        )}`,
+                        condition
+                      )}
+                    </ReadableText>
+                  </DescriptionText>
+                </Columns>
+              ))}
+            </Rows>
+          </Section>
+        )}
+
+        {content.typeContenu === ContentType.DISPOSITIF &&
+          metadatas.location && (
+            <Section
+              color={color}
+              title={t("content_screen.location", "Zone d'action")}
+            >
+              <Metadata metadatas={metadatas} metadataKey="location" />
+            </Section>
+          )}
+
+        {content.mainSponsor && (
+          <Section
+            color={color}
+            title={t("content_screen.mainSponsor", "Proposé par")}
+          >
+            <Columns
+              RTLBehaviour
+              layout="auto 1"
+              horizontalAlign="space-between"
+            >
+              <Image
+                source={{ uri: content.mainSponsor.picture.secure_url }}
+                style={{ width: IMAGE_SIZE, height: IMAGE_SIZE }}
+              />
+              <DescriptionText>
+                <ReadableText>{content.mainSponsor.nom}</ReadableText>
+              </DescriptionText>
+            </Columns>
+          </Section>
+        )}
+      </Rows>
     </MainContainer>
   );
 };

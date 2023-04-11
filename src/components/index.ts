@@ -12,6 +12,7 @@ export * from "./Language";
 // Other / legacy components
 export * from "./BasicComponents";
 export * from "./Content";
+export * from "./Contents";
 export * from "./StyledText";
 export * from "./UI";
 export { CustomButton } from "./CustomButton";

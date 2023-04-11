@@ -6,10 +6,9 @@ import {
   Share,
   Platform,
   TouchableOpacity,
-  PixelRatio,
   ActivityIndicator,
+  Image,
 } from "react-native";
-import { Icon } from "react-native-eva-icons";
 import * as Linking from "expo-linking";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -23,8 +22,6 @@ import {
   Poi,
   ViewsType,
 } from "@refugies-info/api-types";
-// @ts-ignore
-import moment from "moment/min/moment-with-locales";
 
 import { ExplorerParamList, BottomTabParamList } from "../../../types";
 import { styles } from "../../theme";
@@ -50,7 +47,6 @@ import {
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { themeSelector } from "../../services/redux/Themes/themes.selectors";
-import { SmallButton } from "../../components/SmallButton";
 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { logEventInFirebase } from "../../utils/logEvent";
@@ -64,48 +60,44 @@ import { useVoiceover } from "../../hooks/useVoiceover";
 import { readingListLengthSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { withProps } from "../../utils";
 import {
+  Card,
   Columns,
   CustomButton,
+  DemarcheImage,
   ErrorScreen,
   FixSafeAreaView,
   HeaderContentContentScreen,
   HeaderContentProps,
+  Icon,
+  IconButton,
   InfocardsSection,
   Map,
   MiniMap,
   Page,
   ReadableText,
   ReadButton,
+  Rows,
+  RowsSpacing,
   RTLView,
+  SectionTitle,
+  Separator,
   Spacer,
   TextBigBold,
   TextSmallBold,
   TextSmallNormal,
+  Title,
   Toast,
 } from "../../components";
 import PageSkeleton from "../SearchTab/ContentScreen/PageSkeleton";
 import Section from "./Section";
+import { dateDiffReadable } from "./dateDiff";
+import { LinkedTheme, Mercis } from "./Sections";
+import { isEmpty } from "lodash";
 
 const HeaderText = styled(TextBigBold)`
   margin-top: ${({ theme }) => theme.margin * 2}px;
   margin-bottom: ${({ theme }) => theme.margin * 2}px;
   flex-shrink: 1;
-`;
-
-const LastUpdateDateContainer = styled(Columns)`
-  margin-top: ${({ theme }) => theme.margin * 4}px;
-  margin-bottom: ${({ theme }) =>
-    theme.margin * 2 * PixelRatio.getFontScale()}px;
-`;
-
-const LastUpdateDate = styled(TextSmallNormal)`
-  color: ${({ theme }) => theme.colors.green};
-`;
-
-const LastUpdateText = styled(TextSmallNormal)`
-  color: ${({ theme }) => theme.colors.darkGrey};
-  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 4 : 0)}px;
-  margin-right: ${({ theme }) => (theme.i18n.isRTL ? 0 : 4)}px;
 `;
 
 const FakeMapButton = styled(RTLView)`
@@ -152,8 +144,22 @@ const ToastTextBold = styled(TextSmallBold)`
   color: ${({ theme }) => theme.colors.white};
 `;
 
-type ContentScreenType = CompositeScreenProps<
-  //@ts-ignore
+const LastModifDateView = styled.View`
+  background-color: #e8edff;
+  padding: 6px;
+  border-radius: 4px;
+`;
+
+const LastModifDateText = styled.Text`
+  font-size: 12px;
+  font-weight: 700;
+  color: #0063cb;
+  flex: 1;
+  flex-grow: 0;
+  flex-shrink: 0;
+`;
+
+export type ContentScreenType = CompositeScreenProps<
   StackScreenProps<ExplorerParamList, "ContentScreen">,
   BottomTabScreenProps<BottomTabParamList>
 >;
@@ -272,8 +278,6 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     () =>
       withProps({
         content: selectedContent,
-        sponsor,
-        theme,
       })(HeaderContentContentScreen) as React.ComponentType<HeaderContentProps>,
     [selectedContent, sponsor, theme]
   );
@@ -331,23 +335,20 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     setMapModalVisible(!mapModalVisible);
   };
 
-  // const handleClick = () => {
-  //   logEventInFirebase(FirebaseEvent.CLIC_SEE_WEBSITE, {
-  //     contentId: selectedContent._id,
-  //   });
-  //   const url = !selectedContent.externalLink.includes("https://")
-  //     ? "https://" + selectedContent.externalLink
-  //     : selectedContent.externalLink;
-  //   Linking.canOpenURL(url).then((supported) => {
-  //     if (supported) {
-  //       Linking.openURL(url);
-  //     }
-  //   });
-  // };
-
-  const formattedLastModifDate = selectedContent.lastModificationDate
-    ? moment(selectedContent.lastModificationDate).locale("fr")
-    : null;
+  const handleClick = () => {
+    logEventInFirebase(FirebaseEvent.CLIC_SEE_WEBSITE, {
+      contentId: selectedContent._id,
+    });
+    if (!selectedContent.externalLink) return;
+    const url = !selectedContent.externalLink.includes("https://")
+      ? "https://" + selectedContent.externalLink
+      : selectedContent.externalLink;
+    Linking.canOpenURL(url).then((supported) => {
+      if (supported) {
+        Linking.openURL(url);
+      }
+    });
+  };
 
   // SHARE
   const shareContent = async () => {
@@ -392,7 +393,6 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   };
 
   const noReadButton = ["ps", "fa", "ti"].includes(currentLanguage || "fr");
-
   return (
     <>
       <Page
@@ -403,96 +403,162 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         Skeleton={PageSkeleton}
         HeaderContent={HeaderContent}
       >
-        <Spacer height={20} />
+        <Rows>
+          <Title>{selectedContent.titreInformatif}</Title>
 
-        <Section
-          key="what"
-          sectionKey="what"
-          contentType={selectedContent.typeContenu}
-        />
+          {!isEmpty(selectedContent.titreMarque) && (
+            <SectionTitle>
+              {t("content_screen.with", "Avec")} {selectedContent.titreMarque}
+            </SectionTitle>
+          )}
 
-        <InfocardsSection
-          key="infocards"
-          content={selectedContent.metadatas}
-          color={colors.color100}
-          typeContenu={selectedContent.typeContenu}
-        />
-
-        {CONTENT_STRUCTURES[selectedContent.typeContenu].map((section, i) => (
-          <Section
-            key={i}
-            sectionKey={section}
-            contentType={selectedContent.typeContenu}
-          />
-        ))}
-
-        {/* FIXME {!!selectedContent.externalLink && (
-          <View
-            style={{
-              marginTop: styles.margin,
-              marginBottom: styles.margin * 2,
-            }}
-          >
-            <CustomButton
-              textColor={styles.colors.white}
-              i18nKey="content_screen.go_website_button"
-              onPress={handleClick}
-              defaultText="Voir le site"
-              backgroundColor={colors.color100}
-              iconName="external-link-outline"
-              accessibilityLabel={t("content_screen.go_website_accessibility")}
+          {selectedContent.typeContenu === ContentType.DEMARCHE && (
+            <DemarcheImage
+              icon={selectedContent.mainSponsor?.picture}
+              stroke={colors.color100}
+              contentId={selectedContent._id.toString()}
+              isSmall={false}
             />
-          </View>
-        )} */}
+          )}
 
-        {!!map && map.markers.length > 0 && (
-          <>
-            <HeaderText key={1} color={colors.color100}>
-              <ReadableText>
-                {t("content_screen.where", "Trouver un interlocuteur")}
-              </ReadableText>
-            </HeaderText>
-            <MiniMap map={map} markersColor={colors.color100}>
-              <TouchableOpacity
-                onPress={toggleMap}
-                accessibilityLabel={t("content_screen.see_map_button")}
-                testID="test-button-map"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <FakeMapButton>
-                  <Icon
-                    name="eye-outline"
-                    width={24}
-                    height={24}
-                    fill={styles.colors.black}
-                  />
-                  <FakeMapButtonText isRTL={isRTL}>
-                    {t("content_screen.see_map_button", "Voir la carte")}
-                  </FakeMapButtonText>
-                </FakeMapButton>
-              </TouchableOpacity>
-            </MiniMap>
-          </>
-        )}
+          {selectedContent.lastModificationDate && (
+            <Columns layout="auto">
+              <LastModifDateView>
+                <LastModifDateText>
+                  <Icon name="i" color="#0063CB" size={10} />
+                  <Spacer width={5} />
+                  {t("content_screen.updated_ago", "MISE À JOUR IL Y A")}{" "}
+                  {dateDiffReadable(
+                    new Date(selectedContent.lastModificationDate)
+                  )}
+                </LastModifDateText>
+              </LastModifDateView>
+            </Columns>
+          )}
 
-        {formattedLastModifDate && (
-          <>
-            <Spacer height={20} />
-            <LastUpdateDateContainer RTLBehaviour layout="1">
-              <LastUpdateText>
-                {t("content_screen.last_update", "Dernière mise à jour :")}
-              </LastUpdateText>
-              <LastUpdateDate>
-                {formattedLastModifDate.format("ll")}
-              </LastUpdateDate>
-            </LastUpdateDateContainer>
-          </>
-        )}
+          <Section key="what" sectionKey="what" />
+
+          <InfocardsSection
+            key="infocards"
+            content={selectedContent}
+            color={colors.color100}
+          />
+
+          {CONTENT_STRUCTURES[selectedContent.typeContenu].map(
+            (section, i) =>
+              section !== "what" && <Section key={i} sectionKey={section} />
+          )}
+
+          {!!selectedContent.externalLink && (
+            <View
+              style={{
+                marginTop: styles.margin,
+                marginBottom: styles.margin * 2,
+              }}
+            >
+              <CustomButton
+                textColor={styles.colors.white}
+                i18nKey="content_screen.go_website_button"
+                onPress={handleClick}
+                defaultText="Voir le site"
+                backgroundColor={colors.color100}
+                iconName="external-link-outline"
+                accessibilityLabel={t(
+                  "content_screen.go_website_accessibility"
+                )}
+              />
+            </View>
+          )}
+
+          {!!map && map.markers.length > 0 && (
+            <>
+              <HeaderText key={1} color={colors.color100}>
+                <ReadableText>
+                  {t("content_screen.where", "Trouver un interlocuteur")}
+                </ReadableText>
+              </HeaderText>
+              <MiniMap map={map} markersColor={colors.color100}>
+                <TouchableOpacity
+                  onPress={toggleMap}
+                  accessibilityLabel={t("content_screen.see_map_button")}
+                  testID="test-button-map"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <FakeMapButton>
+                    <Icon
+                      color={styles.colors.black}
+                      name="eye-outline"
+                      size={24}
+                    />
+                    <FakeMapButtonText isRTL={isRTL}>
+                      {t("content_screen.see_map_button", "Voir la carte")}
+                    </FakeMapButtonText>
+                  </FakeMapButton>
+                </TouchableOpacity>
+              </MiniMap>
+            </>
+          )}
+
+          <Mercis dispositif={selectedContent} />
+
+          {selectedContent.secondaryThemes &&
+            !isEmpty(selectedContent.secondaryThemes) && (
+              <>
+                <Separator />
+
+                <SectionTitle>
+                  {t("content_screen.related_topic", "THÉMATIQUES LIÉES")}
+                </SectionTitle>
+
+                <Rows spacing={RowsSpacing.NoSpace}>
+                  {selectedContent.secondaryThemes.map(
+                    (secondaryTheme, index) => (
+                      <LinkedTheme
+                        key={secondaryTheme.toString()}
+                        themeId={secondaryTheme}
+                      />
+                    )
+                  )}
+                </Rows>
+              </>
+            )}
+
+          {selectedContent.sponsors && !isEmpty(selectedContent.sponsors) && (
+            <>
+              <Separator fullWidth />
+              <SectionTitle>
+                {t("content_screen.in_partnership_with", "En partenariat avec")}
+              </SectionTitle>
+              <Rows>
+                {selectedContent.sponsors.map((sponsor, index) => (
+                  <Columns
+                    key={index}
+                    RTLBehaviour
+                    layout="auto 1"
+                    verticalAlign="center"
+                  >
+                    <Image
+                      style={{ width: 50, height: 50 }}
+                      source={{
+                        // @ts-ignore
+                        uri: (sponsor.logo || sponsor.picture).secure_url,
+                      }}
+                    />
+                    <TextSmallNormal>
+                      {/* @ts-ignore */}
+                      {sponsor.name || sponsor.nom}
+                    </TextSmallNormal>
+                  </Columns>
+                ))}
+              </Rows>
+            </>
+          )}
+        </Rows>
         <Spacer height={84} />
       </Page>
 
@@ -593,15 +659,17 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
       <Modal visible={mapModalVisible} animationType="slide">
         <FixSafeAreaView>
           <ModalContainer>
-            <SmallButton
+            <IconButton
+              accessibilityLabel={t(
+                "content_screen.back_content_accessibility"
+              )}
               iconName="arrow-back-outline"
               onPress={toggleMap}
-              label={t("content_screen.back_content_accessibility")}
             />
-            <SmallButton
+            <IconButton
+              accessibilityLabel={t("content_screen.close_map_accessibility")}
               iconName="close-outline"
               onPress={toggleMap}
-              label={t("content_screen.close_map_accessibility")}
             />
           </ModalContainer>
         </FixSafeAreaView>

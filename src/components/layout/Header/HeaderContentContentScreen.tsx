@@ -1,17 +1,8 @@
 import React from "react";
-import {
-  GetDispositifResponse,
-  GetThemeResponse,
-} from "@refugies-info/api-types";
-import { isNull } from "lodash";
+import { GetDispositifResponse } from "@refugies-info/api-types";
 import { View } from "react-native";
 import styled from "styled-components/native";
-import { Sponsor } from "../../../types/interface";
-import {
-  ContentImage,
-  getContainerDimensions,
-} from "../../Content/ContentImage";
-import { getImageNameFromContentId } from "../../Contents/contentsIdDemarcheImageCorrespondency";
+
 import { ReadableText } from "../../ReadableText";
 import { TextBigBold, TextSmallNormal } from "../../StyledText";
 import { HeaderContentProps } from "./HeaderContentProps";
@@ -20,7 +11,9 @@ const Container = styled.View`
   position: relative;
 `;
 
-const TitlesContainer = styled(View)``;
+const TitlesContainer = styled(View)`
+  height: 170px;
+`;
 
 const TitreInfoText = styled(TextBigBold)`
   opacity: 0.9;
@@ -42,45 +35,14 @@ const TitreMarqueText = styled(TextSmallNormal)`
 
 export interface HeaderContentContentScreenProps extends HeaderContentProps {
   content: GetDispositifResponse;
-  sponsor: Sponsor;
-  theme: GetThemeResponse;
 }
 
 const HeaderContentContentScreen = ({
   content,
-  sponsor,
-  theme,
 }: HeaderContentContentScreenProps) => {
-  const imageName = getImageNameFromContentId(content._id);
-  const bottom =
-    content.typeContenu === "dispositif"
-      ? -50
-      : isNull(imageName)
-      ? -25
-      : -getContainerDimensions(imageName).height / 2;
-
   return (
     <Container>
-      <TitlesContainer>
-        <TitreInfoText>
-          <ReadableText>{content.titreInformatif || ""}</ReadableText>
-        </TitreInfoText>
-
-        {!!content.titreMarque && (
-          <TitreMarqueText>
-            <ReadableText>{"avec " + content.titreMarque}</ReadableText>
-          </TitreMarqueText>
-        )}
-      </TitlesContainer>
-      <View style={{ bottom }}>
-        <ContentImage
-          sponsorName={sponsor.nom}
-          sponsorPictureUrl={sponsor.picture?.secure_url || null}
-          typeContenu={content.typeContenu}
-          icon={theme?.icon}
-          contentId={content._id.toString()}
-        />
-      </View>
+      <TitlesContainer></TitlesContainer>
     </Container>
   );
 };
