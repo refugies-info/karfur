@@ -23,21 +23,20 @@ export const getDispositifsFromDB = async () =>
 type DispositifKeys = keyof Dispositif;
 type DispositifFieldsRequest = Partial<Record<DispositifKeys, number>>;
 
-
 export const getDispositifsForExport = async (): Promise<Dispositif[]> => {
   return DispositifModel.find({ status: "Actif" })
     .populate<{
-      mainSponsor: { _id: Id; nom: string; picture: Picture },
-      needs: { _id: Id, fr: Need["fr"] },
-      themes: { _id: Id, short: Theme["short"] },
-      secondaryThemes: { _id: Id, short: Theme["short"] }[],
+      mainSponsor: { _id: Id; nom: string; picture: Picture };
+      needs: { _id: Id; fr: Need["fr"] };
+      themes: { _id: Id; short: Theme["short"] };
+      secondaryThemes: { _id: Id; short: Theme["short"] }[];
     }>([
       { path: "mainSponsor", select: "_id nom picture" },
       { path: "needs", select: "_id fr" },
       { path: "themes", select: "_id short" },
       { path: "secondaryThemes", select: "_id short" },
     ])
-    .lean()
+    .lean();
 };
 
 export const getDispositifArray = async (
@@ -86,6 +85,7 @@ export const getSimpleDispositifs = async (
       mainSponsor: 1,
       needs: 1,
       translations: 1,
+      nbVuesMobile: 1,
     },
     "",
     limit,
@@ -98,7 +98,7 @@ export const getSimpleDispositifs = async (
         ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
         metadatas: { ...dispositif.metadatas, ...translation.metadatas },
         ...omit(dispositif, ["translations"]),
-        availableLanguages: Object.keys(dispositif.translations)
+        availableLanguages: Object.keys(dispositif.translations),
       };
       return resDisp;
     }),
@@ -114,14 +114,15 @@ export const updateDispositifInDB = async (
     new: true,
   }).populate("theme secondaryThemes");
 
-export const addMerciDispositifInDB = async (
-  dispositifId: DispositifId,
-  merci: Merci
-): Promise<Dispositif> =>
-  DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $push: { merci } }, {
-    upsert: true,
-    new: true,
-  });
+export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: Merci): Promise<Dispositif> =>
+  DispositifModel.findOneAndUpdate(
+    { _id: dispositifId },
+    { $push: { merci } },
+    {
+      upsert: true,
+      new: true,
+    },
+  );
 
 export const removeMerciDispositifInDB = async (
   dispositifId: DispositifId,
@@ -149,21 +150,29 @@ export const removeMerciDispositifInDB = async (
 
 export const addSuggestionDispositifInDB = async (
   dispositifId: DispositifId,
-  suggestion: Suggestion
+  suggestion: Suggestion,
 ): Promise<Dispositif> =>
-  DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $push: { suggestions: suggestion } }, {
-    upsert: true,
-    new: true,
-  });
+  DispositifModel.findOneAndUpdate(
+    { _id: dispositifId },
+    { $push: { suggestions: suggestion } },
+    {
+      upsert: true,
+      new: true,
+    },
+  );
 
 export const deleteSuggestionDispositifInDB = async (
   dispositifId: DispositifId,
-  suggestionId: string
+  suggestionId: string,
 ): Promise<Dispositif> =>
-  DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $pull: { suggestions: { suggestionId } } }, {
-    upsert: true,
-    new: true,
-  });
+  DispositifModel.findOneAndUpdate(
+    { _id: dispositifId },
+    { $pull: { suggestions: { suggestionId } } },
+    {
+      upsert: true,
+      new: true,
+    },
+  );
 
 export const incrementDispositifViews = async (
   id: string,
@@ -236,8 +245,8 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositi
 export const getActiveContents = async (neededFields: DispositifFieldsRequest) =>
   DispositifModel.find({ status: DispositifStatus.ACTIVE }, neededFields);
 
-export const getActiveContentsFiltered = async (neededFields: DispositifFieldsRequest, query: any) =>
-  await DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");
+export const getActiveContentsFiltered = (neededFields: DispositifFieldsRequest, query: any) =>
+  DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");
 
 export const getDispositifByIdWithAllFields = (id: DispositifId) => DispositifModel.findOne({ _id: id });
 

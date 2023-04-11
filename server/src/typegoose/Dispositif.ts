@@ -19,7 +19,13 @@ type ageType = "lessThan" | "moreThan" | "between";
 type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
 type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
 type publicType = "family" | "women" | "youths" | "senior";
-type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
+type conditionType =
+  | "acte naissance"
+  | /* "diplome" | */ "titre sejour" /* | "domicile" */
+  | "cir"
+  | "bank account"
+  | "pole emploi"
+  | "driver license";
 type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
 type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
 type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
@@ -222,6 +228,8 @@ export class Dispositif extends Base {
   public needs: Ref<Need, NeedId>[];
   @prop()
   public sponsors?: (Ref<Structure> | Sponsor)[];
+  @prop()
+  public externalLink?: string;
 
   @prop({ required: true, ref: () => User })
   public creatorId!: Ref<User>;

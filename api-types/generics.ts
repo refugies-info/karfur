@@ -11,6 +11,11 @@ export type RichText = string;
 export type TranslatedText = { [key: string]: string };
 export type Languages = "fr" | "en" | "uk" | "ti" | "ar" | "ps" | "ru" | "fa";
 
+/**
+ * @pattern [0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}
+ */
+export type AppUserUid = string;
+
 export interface Picture {
   imgId: string | null;
   public_id: string | null;
@@ -121,7 +126,13 @@ export type ageType = "lessThan" | "moreThan" | "between";
 export type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
 export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
 export type publicType = "family" | "women" | "youths" | "senior";
-export type conditionType = "acte naissance" | /* "diplome" | */ "titre sejour" /* | "domicile" */ | "cir" | "bank account" | "pole emploi" | "driver license";
+export type conditionType =
+  | "acte naissance"
+  | /* "diplome" | */ "titre sejour" /* | "domicile" */
+  | "cir"
+  | "bank account"
+  | "pole emploi"
+  | "driver license";
 export type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
 export type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
 export type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
@@ -187,6 +198,7 @@ export interface SimpleDispositif {
   lastModificationDate?: Date;
   nbMots: number;
   nbVues: number;
+  nbVuesMobile: number;
   mainSponsor?: {
     nom: string;
     picture: Picture;

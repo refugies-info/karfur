@@ -1,111 +1,167 @@
-import { RequestFromClient, Res } from "../../../types/interface";
+import { DispositifStatus, GetContentsForAppRequest, GetContentsForAppResponse, Languages } from "api-types";
+
+import { Dispositif } from "../../../typegoose";
 import logger from "../../../logger";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
-import { getTitreInfoOrMarqueInLocale, filterContentsOnGeoloc } from "../../../modules/dispositif/dispositif.adapter";
-import { addAgeQuery, addFrenchLevelQuery } from "./functions";
 
-interface Query {
-  locale: string;
-  age?: string;
-  department?: string;
-  frenchLevel?: string;
-  strictLocation?: boolean | string;
-}
-
-const present = (locale: string) => (content: any) => {
-  const titreInformatif = getTitreInfoOrMarqueInLocale(content.titreInformatif, locale);
-  const titreMarque = getTitreInfoOrMarqueInLocale(content.titreMarque, locale);
-
-  const sponsorUrl =
-    content.mainSponsor && content.mainSponsor.picture && content.mainSponsor.picture.secure_url
-      ? content.mainSponsor.picture.secure_url
-      : null;
+const present = (locale: Languages) => (dispositif: Dispositif) => {
+  const translation = dispositif.translations[locale] || dispositif.translations.fr;
+  const sponsorUrl = dispositif.getMainSponsor().picture?.secure_url || null;
 
   return {
-    _id: content._id,
-    titreInformatif,
-    titreMarque,
-    theme: content.theme,
-    secondaryThemes: content.secondaryThemes,
-    needs: content.needs,
-    nbVues: content.nbVues,
-    nbVuesMobile: content.nbVuesMobile,
-    typeContenu: content.typeContenu,
+    _id: dispositif._id.toString(),
+    titreInformatif: translation.content.titreInformatif,
+    titreMarque: translation.content.titreMarque,
+    theme: dispositif.theme,
+    secondaryThemes: dispositif.secondaryThemes,
+    needs: dispositif.needs,
+    nbVues: dispositif.nbVues,
+    nbVuesMobile: dispositif.nbVuesMobile,
+    typeContenu: dispositif.typeContenu,
     sponsorUrl,
-    avancement: content.avancement
   };
 };
 
-export const getContentsForApp = async (req: RequestFromClient<Query>, res: Res) => {
-  try {
-    if (!req.query || !req.query.locale) {
-      throw new Error("INVALID_REQUEST");
+const filterByAge =
+  (age: GetContentsForAppRequest["age"] | null) =>
+  (dispositifs: Dispositif[]): Dispositif[] => {
+    let bottomValue: number | null = null,
+      topValue: number | null = null;
+    switch (age) {
+      case "0 à 17 ans":
+        bottomValue = 0;
+        topValue = 17;
+        break;
+
+      case "18 à 25 ans":
+        bottomValue = 18;
+        topValue = 25;
+        break;
+
+      case "26 ans et plus":
+        bottomValue = 26;
+        topValue = Number.MAX_SAFE_INTEGER;
+        break;
+      default:
+        // Pas de filtrage par âge => c'est ok
+        return dispositifs;
     }
 
-    const { locale, age, department, frenchLevel } = req.query;
+    return dispositifs.filter((dispositif) => {
+      if (!dispositif.metadatas.age) return false;
+      // Initialisation d'une intersection d'intervale invalide
+      // car la borne supérieure est inférieure à la borne inférieure
+      let intersection = { bottom: 0, top: -1 };
+      switch (dispositif.metadatas.age.type) {
+        case "between":
+          intersection = {
+            bottom: Math.max(bottomValue, dispositif.metadatas.age.ages[0]),
+            top: Math.min(topValue, dispositif.metadatas.age.ages[1]),
+          };
+          break;
+        case "lessThan":
+          intersection = {
+            // 0 comme borne inférieure
+            bottom: Math.max(bottomValue, 0),
+            top: Math.min(topValue, dispositif.metadatas.age.ages[0]),
+          };
+          break;
+        case "moreThan":
+          intersection = {
+            bottom: Math.max(bottomValue, dispositif.metadatas.age.ages[0]),
+            // Infini comme borne supérieure
+            top: Math.min(topValue, Number.MAX_SAFE_INTEGER),
+          };
+          break;
+      }
 
-    const strictLocation = req.query.strictLocation === "true" || req.query.strictLocation === "1";
-
-    logger.info("[getContentsForApp] called", {
-      locale,
-      age,
-      department,
-      frenchLevel,
-      strictLocation
+      /**
+       * Si l'intersection est valide le dispositif est gardé par le filtrage
+       *
+       * Un intervalle d'intersection est valide lorsque sa borne inférieure
+       * est bien inférieure à sa borne supérieure.
+       */
+      return intersection.bottom - intersection.top <= 0;
     });
+  };
 
-    const neededFields = {
-      titreInformatif: 1,
-      titreMarque: 1,
-      avancement: 1,
-      contenu: 1,
+export const getContentsForApp = async (req: GetContentsForAppRequest): Promise<GetContentsForAppResponse> => {
+  const { locale, age, county, frenchLevel, strictLocation } = req;
+
+  logger.info("[getContentsForApp] called", {
+    locale,
+    age,
+    county,
+    frenchLevel,
+    strictLocation,
+  });
+
+  const query: any[] = [
+    {
+      status: DispositifStatus.ACTIVE,
+    },
+  ];
+
+  /**
+   * frenchLevel
+   */
+  if (frenchLevel === "Je parle un peu") {
+    query.push(
+      { "metadatas.frenchLevel": { $ne: "C1" } },
+      { "metadatas.frenchLevel": { $ne: "C2" } },
+      { "metadatas.frenchLevel": { $ne: "B1" } },
+      { "metadatas.frenchLevel": { $ne: "B2" } },
+    );
+  }
+  if (frenchLevel === "Je parle bien") {
+    query.push({ "metadatas.frenchLevel": { $ne: "C1" } }, { "metadatas.frenchLevel": { $ne: "C2" } });
+  }
+
+  /**
+   * Location
+   */
+  if (county) {
+    const locationFilter = [];
+    if (strictLocation) {
+      locationFilter.push({ "metadatas.location": { $regex: ` - ${county}$` } });
+    } else {
+      locationFilter.push({ "metadatas.location": { $eq: "All" } });
+      // TODO locationFilter.push({ "metadatas.location": { $eq: "france" } });
+      // TODO locationFilter.push({ "metadatas.location": { $eq: "online" } });
+    }
+    query.push({
+      $or: locationFilter,
+    });
+  }
+
+  const dispositifs: Dispositif[] = await getActiveContentsFiltered(
+    {
+      translations: 1,
       theme: 1,
       secondaryThemes: 1,
       needs: 1,
       typeContenu: 1,
       nbVues: 1,
-      nbVuesMobile: 1
+      nbVuesMobile: 1,
+      metadatas: 1,
+    },
+    {
+      $and: query,
+    },
+  ).then(filterByAge(age));
+
+  const contentsArrayFr = dispositifs.map(present("fr"));
+
+  if (locale === "fr") {
+    return {
+      dataFr: contentsArrayFr,
     };
-
-    const initialQuery = {
-      status: "Actif"
-    };
-    const queryWithAge = addAgeQuery(age, initialQuery);
-    const queryWithAgeAndFrenchLevel = addFrenchLevelQuery(frenchLevel, queryWithAge);
-
-    const contentsArray = await getActiveContentsFiltered(neededFields, queryWithAgeAndFrenchLevel);
-
-    const filteredContents = filterContentsOnGeoloc(contentsArray, department, strictLocation);
-
-    const contentsArrayFr = filteredContents.map(present("fr"));
-
-    if (locale === "fr") {
-      return res.status(200).json({
-        text: "Succès",
-        dataFr: contentsArrayFr
-      });
-    }
-
-    const contentsArrayLocale = filteredContents.map(present(locale));
-
-    res.status(200).json({
-      text: "Succès",
-      data: contentsArrayLocale,
-      dataFr: contentsArrayFr
-    });
-  } catch (error) {
-    logger.error("[getContentsForApp] error while getting dispositifs", {
-      error: error.message
-    });
-    switch (error.message) {
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      default:
-        return res.status(500).json({
-          text: "Erreur interne"
-        });
-    }
   }
+
+  const contentsArrayLocale = dispositifs.map(present(locale));
+
+  return {
+    data: contentsArrayLocale,
+    dataFr: contentsArrayFr,
+  };
 };

@@ -5,6 +5,7 @@ import {
   Id,
   InfoSection,
   InfoSections,
+  Languages,
   Metadatas,
   Poi,
   SimpleDispositif,
@@ -12,7 +13,11 @@ import {
   Sponsor,
 } from "../generics";
 
-type ViewsType = "web" | "mobile" | "favorite";
+export enum ViewsType {
+  WEB = "web",
+  MOBILE = "mobile",
+  FAVORITE = "favorite",
+}
 type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
 
 /**
@@ -33,6 +38,47 @@ export interface GetDispositifsRequest {
   limit?: number;
   sort?: string;
 }
+
+/**
+ * @url GET /dispositifs/getContentsForApp
+ */
+export interface GetContentsForAppRequest {
+  locale: Languages;
+  age?: "0 à 17 ans" | "18 à 25 ans" | "26 ans et plus";
+  county?: string;
+  frenchLevel?: string;
+  strictLocation?: boolean;
+}
+
+/**
+ * @url GET /dispositifs/getContentsForApp
+ */
+export type GetContentsForAppResponse = {
+  dataFr: {
+    _id: string;
+    titreInformatif: string;
+    titreMarque: string;
+    theme: Id;
+    secondaryThemes: Id[];
+    needs: Id[];
+    nbVues: number;
+    nbVuesMobile: number;
+    typeContenu: ContentType;
+    sponsorUrl: string;
+  }[];
+  data?: {
+    _id: string;
+    titreInformatif: string;
+    titreMarque: string;
+    theme: Id;
+    secondaryThemes: Id[];
+    needs: Id[];
+    nbVues: number;
+    nbVuesMobile: number;
+    typeContenu: ContentType;
+    sponsorUrl: string;
+  }[];
+};
 
 /**
  * @url GET /dispositifs/statistics
@@ -102,7 +148,7 @@ interface DispositifRequest {
     phone: string;
     comments: string;
     isStructureContact: boolean;
-  }
+  };
   theme?: string;
   secondaryThemes?: string[];
   sponsors?: Sponsor[];
@@ -127,7 +173,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest { }
+export interface UpdateDispositifRequest extends DispositifRequest {}
 
 /**
  * @url PATCH /dispositifs/{id}/publish
@@ -149,7 +195,6 @@ export interface StructureReceiveDispositifRequest {
 export interface CreateDispositifRequest extends DispositifRequest {
   typeContenu: ContentType;
 }
-
 
 /**
  * @url GET /dispositifs/{id}
@@ -176,6 +221,8 @@ export type GetDispositifResponse = {
   map: Poi[];
   availableLanguages: string[];
   date: Date;
+  lastModificationDate?: Date;
+  externalLink?: string;
 };
 
 /**
@@ -222,8 +269,33 @@ export interface GetRegionStatisticsResponse {
     nbDispositifs: number;
     nbDepartments: number;
     nbDepartmentsWithDispo: number;
-  }[],
-  dispositifsWithoutGeoloc: Id[]
+  }[];
+  dispositifsWithoutGeoloc: Id[];
+}
+
+/**
+ * @url GET /dispositifs/getNbContentsForCounty
+ */
+export interface GetNbContentsForCountyRequest {
+  /**
+   * Département par lequel filter
+   */
+  county: string;
+}
+
+/**
+ * @url GET /dispositifs/getNbContentsForCounty
+ */
+export interface GetNbContentsForCountyResponse {
+  /**
+   * Nombre total de contenus
+   */
+  nbGlobalContent: number;
+
+  /**
+   * Nombre de contenus traduits
+   */
+  nbLocalizedContent: number;
 }
 
 type Author = {

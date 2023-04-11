@@ -1,31 +1,35 @@
 import { Controller, Get, Route, Path, Query, Security, Queries, Patch, Body, Request, Post, Put, Delete } from "tsoa";
 import {
+  AddSuggestionDispositifRequest,
   AddViewsRequest,
   AdminCommentsRequest,
   CountDispositifsRequest,
   CreateDispositifRequest,
   DispositifStatusRequest,
-  GetDispositifsRequest,
-  GetStatisticsRequest,
-  MainSponsorRequest,
-  UpdateDispositifPropertiesRequest,
-  UpdateDispositifRequest,
-  GetDispositifsResponse,
+  DispositifThemeNeedsRequest,
   GetAllDispositifsResponse,
-  GetDispositifResponse,
-  GetStatisticsResponse,
+  GetContentsForAppRequest,
   GetCountDispositifsResponse,
-  GetUserContributionsResponse,
+  GetDispositifResponse,
+  GetDispositifsRequest,
+  GetDispositifsResponse,
   GetDispositifsWithTranslationAvancementResponse,
-  Languages,
-  AddSuggestionDispositifRequest,
-  ReadSuggestionDispositifRequest,
+  GetNbContentsForCountyRequest,
+  GetNbContentsForCountyResponse,
   GetRegionStatisticsResponse,
+  GetStatisticsRequest,
+  GetStatisticsResponse,
+  GetUserContributionsResponse,
+  Languages,
+  MainSponsorRequest,
   PostDispositifsResponse,
   PublishDispositifRequest,
   StructureReceiveDispositifRequest,
-  DispositifThemeNeedsRequest,
+  ReadSuggestionDispositifRequest,
+  UpdateDispositifPropertiesRequest,
+  UpdateDispositifRequest,
 } from "api-types";
+import { GetContentsForAppResponse } from "api-types/modules/dispositif";
 import express, { Request as ExRequest } from "express";
 
 import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
@@ -56,13 +60,8 @@ import { deleteSuggestion } from "../workflows/dispositif/deleteSuggestion";
 import { publishDispositif } from "../workflows/dispositif/publishDispositif";
 import { deleteDispositif } from "../workflows/dispositif/deleteDispositif";
 import { structureReceiveDispositif } from "../workflows/dispositif/structureReceiveDispositif";
-
-const router = express.Router();
-
-/* TODO: use tsoa */
-router.get("/getContentsForApp", getContentsForApp);
-
-export { router };
+import { getNbContentsForCounty } from "../workflows";
+import logger from "../logger";
 
 @Route("dispositifs")
 export class DispositifController extends Controller {
@@ -71,12 +70,23 @@ export class DispositifController extends Controller {
     return getDispositifs(query);
   }
 
+  // TODO use / ?
+  @Get("/getContentsForApp")
+  public async getContentsForApp(
+    @Queries() queries: GetContentsForAppRequest,
+  ): ResponseWithData<GetContentsForAppResponse> {
+    return getContentsForApp(queries).then((data) => ({ text: "success", data }));
+  }
+
   @Security({
     jwt: [],
     fromSite: [],
   })
   @Post("/")
-  public async createDispositif(@Body() body: CreateDispositifRequest, @Request() request: express.Request): ResponseWithData<PostDispositifsResponse> {
+  public async createDispositif(
+    @Body() body: CreateDispositifRequest,
+    @Request() request: express.Request,
+  ): ResponseWithData<PostDispositifsResponse> {
     return createDispositif(body, request.userId);
   }
 
@@ -97,6 +107,16 @@ export class DispositifController extends Controller {
   @Get("/region-statistics")
   public async getRegionStatistics(): ResponseWithData<GetRegionStatisticsResponse> {
     return getNbDispositifsByRegion();
+  }
+
+  @Get("/getNbContentsForCounty")
+  public async getNbContentsForCounty(
+    @Queries() queries: GetNbContentsForCountyRequest,
+  ): ResponseWithData<GetNbContentsForCountyResponse> {
+    logger.info("[getNbContentsForCounty]", {
+      queries,
+    });
+    return getNbContentsForCounty(queries.county).then((data) => ({ text: "success", data }));
   }
 
   @Security({
@@ -169,7 +189,6 @@ export class DispositifController extends Controller {
   })
   @Post("/{id}/views")
   public async addViewOrFavorite(@Path() id: string, @Body() types: AddViewsRequest): Response {
-    // TODO: change in app
     return updateNbVuesOrFavoritesOnContent(id, types);
   }
 
@@ -255,7 +274,11 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Put("/{id}/suggestion")
-  public async addSuggestion(@Path() id: string, @Body() body: AddSuggestionDispositifRequest, @Request() request: express.Request): Response {
+  public async addSuggestion(
+    @Path() id: string,
+    @Body() body: AddSuggestionDispositifRequest,
+    @Request() request: express.Request,
+  ): Response {
     return addSuggestion(id, body, request.userId);
   }
   @Security({
@@ -301,7 +324,7 @@ export class DispositifController extends Controller {
   @Security({
     fromSite: [],
   })
-  @Get("/{id}") // TODO: moved from getContentById?contentId (app)
+  @Get("/{id}")
   public async getById(@Path() id: string, @Query() locale: Languages): ResponseWithData<GetDispositifResponse> {
     return getContentById(id, locale);
   }

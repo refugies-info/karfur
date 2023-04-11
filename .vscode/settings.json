@@ -10,5 +10,8 @@
     "client/src/locales",
     "server/src/locales"
   ],
-  "i18n-ally.keystyle": "nested"
+  "i18n-ally.keystyle": "nested",
+  "conventionalCommits.scopes": [
+    "api-types"
+  ]
 }
