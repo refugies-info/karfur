@@ -24,6 +24,7 @@ import {
   CustomNavbar,
   BannerEdition,
   SponsorsEdit,
+  MapEdit,
 } from "components/Pages/dispositif/Edition";
 import FRLink from "components/UI/FRLink";
 import RightSidebar from "./RightSidebar";
@@ -73,7 +74,7 @@ const Dispositif = (props: Props) => {
           {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
             <Section key={i} sectionKey={section} contentType={typeContenu} />
           ))}
-          {(dispositif?.map || []).length > 0 && <Map />}
+          {isViewMode ? (dispositif?.map || []).length > 0 && <Map /> : <MapEdit />}
           {isViewMode && (
             <>
               <Feedback />

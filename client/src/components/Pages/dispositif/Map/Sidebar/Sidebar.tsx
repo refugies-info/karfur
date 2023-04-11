@@ -34,11 +34,14 @@ const Sidebar = ({ markers, onSelectMarker, selectedMarkerId }: Props) => {
       </div>
       <Button
         tertiary
-        icon="chevron-right"
+        icon={showSidebar ? "chevron-left" : "chevron-right"}
         className={cls("ms-2 mt-2 p-2", styles.btn)}
-        colors={["white", "black"]}
+        colors={["white", styles.lightTextActionHighBlueFrance]}
         onClick={() => setShowSidebar((o) => !o)}
-      ></Button>
+        iconPlacement="end"
+      >
+        {!showSidebar && "Afficher la liste"}
+      </Button>
     </div>
   );
 };

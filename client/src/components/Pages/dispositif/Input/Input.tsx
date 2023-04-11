@@ -18,9 +18,9 @@ interface Props {
 
 const Input = (props: Props) => {
   return (
-    <div className={cls(styles.container, props.valid && styles.valid, !!props.error && styles.error)}>
+    <div className={cls(styles.container, props.valid && styles.valid, !!props.error && styles.error, props.className)}>
       {props.label && <label htmlFor={props.id}>{props.label}</label>}
-      <div className={cls(styles.wrapper, props.icon && styles.with_icon, props.className)}>
+      <div className={cls(styles.wrapper, props.icon && styles.with_icon)}>
         {props.type === "textarea" ? (
           <textarea
             id={props.id}

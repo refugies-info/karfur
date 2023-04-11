@@ -5,24 +5,18 @@
 @import "src/scss/mixins/icons";
 @import "src/scss/mixins/responsive";
 
+.add {
+  @include dsfr-text("chapo");
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
 .container {
-  height: 320px;
+  height: 620px;
   position: relative;
   border-radius: u(2);
   border: 1px solid $lightBorderDefaultGrey;
   overflow: hidden;
   margin-bottom: u(14);
-
-  // map zoom controls
-  :global(.gm-bundled-control) {
-    :global(.gmnoprint) {
-      & > div {
-        border-radius: 8px !important;
-      }
-    }
-    button img {
-      width: 12px !important;
-      height: 12px !important;
-    }
-  }
 }

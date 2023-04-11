@@ -1,0 +1,31 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/icons";
+@import "src/scss/mixins/responsive";
+
+.container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+
+  .form {
+    background: white;
+    width: 400px;
+    height: 100%;
+    box-shadow: 0 6px 18px 0 #00001229;
+    padding: u(4);
+    overflow-y: scroll;
+
+    .close {
+      padding: u(1) u(3);
+      @include dsfr-text("small");
+      box-shadow: none;
+      min-height: 0;
+      margin-bottom: u(2);
+    }
+  }
+}

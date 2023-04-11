@@ -7,37 +7,22 @@
 
 .sidebar {
   position: absolute;
-  top: 0;
+  top: 64px;
   left: 0;
   bottom: 0;
   z-index: 1;
   display: flex;
   align-items: flex-start;
-  transition: transform ease-in-out 0.2s;
-
-  &.hidden {
-    transform: translateX(-200px);
-
-    .btn {
-      width: fit-content;
-    }
-  }
 
   .list {
     background: white;
     width: 200px;
     height: 100%;
     border-right: 1px solid $lightBorderDefaultGrey;
+    border-top: 1px solid $lightBorderDefaultGrey;
+    border-radius: 0 u(2) 0 0;
     padding: u(2);
     overflow-y: scroll;
-  }
-  .btn {
-    width: u(8);
-    height: u(8);
-    min-height: u(8) !important;
-    @include iconSize(u(4));
-    @include dsfr-text("small");
-    box-shadow: 0 6px 18px 0 #00001229;
   }
 }
 
