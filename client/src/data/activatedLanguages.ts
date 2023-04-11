@@ -76,4 +76,4 @@ export const activatedLanguages: GetLanguagesResponse[] = [
   },
 ];
 
-export const hasTTSAvailable: AvailableLanguageI18nCode[] = ["fr", "en", "ar", "ru", "uk"];
+export const hasTTSAvailable: AvailableLanguageI18nCode[] = ["fr", "en", "ar", "ru", "uk", "ps", "fa"];
