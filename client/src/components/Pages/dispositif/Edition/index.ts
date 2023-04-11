@@ -1,28 +1,13 @@
-import AccordionItemEdit from "./AccordionItemEdit";
-import AddContentButton from "./AddContentButton";
-import BannerEdition from "./BannerEdition";
-import ChoiceButton from "./ChoiceButton";
-import CustomNavbar from "./CustomNavbar";
-import DropdownModals from "./DropdownModals";
-import HelpCard from "./HelpCard";
-import LeftSidebarEdition from "./LeftSidebarEdition";
-import RichTextEdit from "./RichTextEdit";
-import RightSidebarEdition from "./RightSidebarEdition";
-import SponsorsEdit from "./SponsorsEdit";
-import TitleEdit from "./TitleEdit";
-
-export {
-  AccordionItemEdit,
-  AddContentButton,
-  BannerEdition,
-  ChoiceButton,
-  CustomNavbar,
-  DropdownModals,
-  HelpCard,
-  LeftSidebarEdition,
-  RichTextEdit,
-  RightSidebarEdition,
-  SponsorsEdit,
-  TitleEdit
-};
-
+export { default as AccordionItemEdit } from "./AccordionItemEdit";
+export { default as AddContentButton } from "./AddContentButton";
+export { default as BannerEdition } from "./BannerEdition";
+export { default as ChoiceButton } from "./ChoiceButton";
+export { default as CustomNavbar } from "./CustomNavbar";
+export { default as DropdownModals } from "./DropdownModals";
+export { default as HelpCard } from "./HelpCard";
+export { default as LeftSidebarEdition } from "./LeftSidebarEdition";
+export { default as MapEdit } from "./MapEdit";
+export { default as RichTextEdit } from "./RichTextEdit";
+export { default as RightSidebarEdition } from "./RightSidebarEdition";
+export { default as SponsorsEdit } from "./SponsorsEdit";
+export { default as TitleEdit } from "./TitleEdit";

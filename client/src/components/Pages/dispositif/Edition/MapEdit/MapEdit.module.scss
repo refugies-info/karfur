@@ -1,0 +1,22 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/icons";
+@import "src/scss/mixins/responsive";
+
+.add {
+  @include dsfr-text("chapo");
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  height: 620px;
+  position: relative;
+  border-radius: u(2);
+  border: 1px solid $lightBorderDefaultGrey;
+  overflow: hidden;
+  margin-bottom: u(14);
+}

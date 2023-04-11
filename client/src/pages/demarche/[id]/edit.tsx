@@ -45,7 +45,7 @@ const DemarchePage = (props: Props) => {
   return (
     <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} className="flex-grow-1">
           <Dispositif />
         </form>
       </FormProvider>
