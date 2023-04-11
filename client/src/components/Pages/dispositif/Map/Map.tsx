@@ -77,6 +77,7 @@ const Map = () => {
             fullscreenControl: false,
             streetViewControl: false,
             maxZoom: maxZoom,
+            controlSize: 32,
           }}
         >
           {markers.map((marker, key) => (

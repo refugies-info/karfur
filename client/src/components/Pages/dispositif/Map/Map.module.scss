@@ -12,4 +12,17 @@
   border: 1px solid $lightBorderDefaultGrey;
   overflow: hidden;
   margin-bottom: u(14);
+
+  // map zoom controls
+  :global(.gm-bundled-control) {
+    :global(.gmnoprint) {
+      & > div {
+        border-radius: 8px !important;
+      }
+    }
+    button img {
+      width: 12px !important;
+      height: 12px !important;
+    }
+  }
 }
