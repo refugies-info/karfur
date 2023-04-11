@@ -111,6 +111,15 @@ export interface DispositifStatusRequest {
 }
 
 /**
+ * @url PATCH /dispositifs/{id}/themes-needs
+ */
+export interface DispositifThemeNeedsRequest {
+  theme?: string;
+  secondaryThemes?: string[];
+  needs?: string[];
+}
+
+/**
  * @url POST /dispositifs/{id}/views
  */
 export interface AddViewsRequest {
@@ -165,6 +174,20 @@ export interface ReadSuggestionDispositifRequest {
  * @url PATCH /dispositifs/{id}
  */
 export interface UpdateDispositifRequest extends DispositifRequest {}
+
+/**
+ * @url PATCH /dispositifs/{id}/publish
+ */
+export interface PublishDispositifRequest {
+  keepTranslations?: boolean;
+}
+
+/**
+ * @url PATCH /dispositifs/{id}/structure-receive
+ */
+export interface StructureReceiveDispositifRequest {
+  accept: boolean
+}
 
 /**
  * @url POST /dispositifs

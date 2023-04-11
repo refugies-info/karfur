@@ -70,7 +70,7 @@ export const correspondingStatus: ContentStatus[] = [
     order: 5
   },
   {
-    storedStatus: DispositifStatus.WAITING,
+    storedStatus: DispositifStatus.WAITING_STRUCTURE,
     displayedStatus: "En attente",
     color: orange,
     order: 1,

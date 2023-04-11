@@ -5,7 +5,7 @@ import {
   deleteTranslations,
   getDefaultTraduction,
   getProgression,
-  getStatistics,
+  getTranslationStatistics,
   getTraductionsForReview,
   saveTranslation,
   translate,
@@ -117,7 +117,7 @@ export class TranslationController extends Controller {
   public getStatistics(
     @Queries() queries: TranslationStatisticsRequest,
   ): ResponseWithData<TranslationStatisticsResponse> {
-    return getStatistics(queries).then((statistics) => ({
+    return getTranslationStatistics(queries).then((statistics) => ({
       text: "success",
       data: statistics,
     }));

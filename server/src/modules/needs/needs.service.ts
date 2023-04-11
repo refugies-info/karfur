@@ -1,8 +1,7 @@
 import { getNeedsFromDB } from "./needs.repository";
 import logger from "../../logger";
-import { NeedId, ThemeId } from "../../typegoose";
 
-export const computePossibleNeeds = async (actualNeeds: NeedId[], contentThemes: ThemeId[]) => {
+export const computePossibleNeeds = async (actualNeeds: string[], contentThemes: string[]) => {
   try {
     const allNeeds = await getNeedsFromDB();
 

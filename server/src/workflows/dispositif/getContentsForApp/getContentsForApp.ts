@@ -6,7 +6,6 @@ import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositi
 
 const present = (locale: Languages) => (dispositif: Dispositif) => {
   const translation = dispositif.translations[locale] || dispositif.translations.fr;
-
   const sponsorUrl = dispositif.getMainSponsor().picture?.secure_url || null;
 
   return {

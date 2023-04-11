@@ -39,7 +39,7 @@ export function* deleteContributionAndUpdate(
   try {
     logger.info("[deleteContributionAndUpdate] saga", { data: action.payload });
     yield put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
-    yield call(API.updateDispositifStatus, action.payload, { status: DispositifStatus.DELETED });
+    yield call(API.deleteDispositif, action.payload);
     yield put(fetchUserContributionsActionCreator());
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
   } catch (error) {

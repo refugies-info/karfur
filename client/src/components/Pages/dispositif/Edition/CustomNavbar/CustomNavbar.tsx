@@ -1,21 +1,31 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { DispositifStatus } from "api-types";
+import API from "utils/API";
 import { cls } from "lib/classname";
+import { isStatus } from "lib/dispositif";
 import { useLocale } from "hooks";
 import PageContext from "utils/pageContext";
+import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { calculateProgress, getText } from "./functions";
 import Tooltip from "components/UI/Tooltip";
 import QuitModal from "./QuitModal";
+import PublishModal from "./PublishModal";
+import StepBar from "./StepBar";
 import styles from "./CustomNavbar.module.scss";
 
 /**
  * Navbar of edition mode, which shows progress and validate buttons
  */
 const CustomNavbar = () => {
-  const total = Array(14).fill(true); // create an empty array with all steps
+  const router = useRouter();
+  const total = 14;
   const values = useWatch();
+  const dispositif = useSelector(selectedDispositifSelector);
   const [progress, setProgress] = useState<number>(calculateProgress(values));
 
   const initialLocale = useLocale();
@@ -27,8 +37,44 @@ const CustomNavbar = () => {
 
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
 
+  // Quit
   const [showQuitModal, setShowQuitModal] = useState(false);
   const toggleQuitModal = useCallback(() => setShowQuitModal((o) => !o), []);
+  const quit = useCallback(() => router.push("/backend/user-dash-contrib"), [router]);
+  const handleQuit = useCallback(() => {
+    const isComplete = progress === 0;
+    if (
+      // no status
+      !dispositif?.status ||
+      // waiting and complete
+      (isStatus(dispositif.status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE]) &&
+        isComplete) ||
+      // deleted or rejected
+      isStatus(dispositif.status, [DispositifStatus.DELETED, DispositifStatus.KO_STRUCTURE])
+    ) {
+      quit();
+    } else {
+      toggleQuitModal();
+    }
+  }, [dispositif, progress, toggleQuitModal, quit]);
+
+  // Publish
+  const [showPublishModal, setShowPublishModal] = useState(false);
+  const togglePublishModal = useCallback(() => setShowPublishModal((o) => !o), []);
+  const hideValidateButton = useMemo(() => {
+    return isStatus(dispositif?.status, [
+      DispositifStatus.KO_STRUCTURE,
+      DispositifStatus.DELETED,
+      DispositifStatus.NO_STRUCTURE,
+    ]);
+  }, [dispositif]);
+  const handlePublish = useCallback(
+    async (keepTranslations: boolean) => {
+      if (!dispositif?._id) return;
+      API.publishDispositif(dispositif._id, { keepTranslations });
+    },
+    [dispositif],
+  );
 
   return (
     <div className={styles.container}>
@@ -47,12 +93,7 @@ const CustomNavbar = () => {
       )}
       <div className={cls("fr-container", styles.inner)}>
         <div className={styles.steps}>
-          {total.map((_, i) => (
-            <span key={i} className={cls(styles.step, i < progress && styles.done)} />
-          ))}
-          <p className={styles.label}>
-            {progress} / {total.length}
-          </p>
+          <StepBar total={total} progress={progress} text={`${progress} / ${total}`} />
           <p className={styles.help}>{getText(progress)}</p>
           <Button
             secondary={!showMissingSteps}
@@ -73,16 +114,35 @@ const CustomNavbar = () => {
           <Tooltip target="save-status" placement="top">
             Toutes les modifications sont sauvegardées automatiquement
           </Tooltip>
-          <Button secondary icon="log-out-outline" iconPlacement="end" onClick={toggleQuitModal} className="me-4">
+          <Button secondary icon="log-out-outline" iconPlacement="end" onClick={handleQuit} className="me-4">
             Quitter
           </Button>
-          <Button submit icon="checkmark-circle-2" iconPlacement="end">
-            Valider
-          </Button>
+          {!hideValidateButton && (
+            <Button icon="checkmark-circle-2" iconPlacement="end" onClick={togglePublishModal}>
+              Valider
+            </Button>
+          )}
         </div>
       </div>
 
-      <QuitModal show={showQuitModal} toggle={toggleQuitModal} onQuit={() => {}} />
+      <QuitModal
+        show={showQuitModal}
+        toggle={toggleQuitModal}
+        onQuit={quit}
+        onPublish={() => {
+          toggleQuitModal();
+          togglePublishModal();
+        }}
+        status={dispositif?.status || null}
+        isComplete={progress === 0}
+      />
+      <PublishModal
+        show={showPublishModal}
+        toggle={togglePublishModal}
+        onQuit={toggleQuitModal}
+        onPublish={handlePublish}
+        status={dispositif?.status || null}
+      />
     </div>
   );
 };

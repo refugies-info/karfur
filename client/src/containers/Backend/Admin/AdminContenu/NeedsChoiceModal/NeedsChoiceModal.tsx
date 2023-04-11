@@ -14,7 +14,7 @@ import { themesSelector } from "services/Themes/themes.selectors";
 import AdminThemeButton from "components/UI/AdminThemeButton";
 import AdminNeedButton from "components/UI/AdminNeedButton";
 import { cls } from "lib/classname";
-import { GetAllDispositifsResponse, GetNeedResponse, Id } from "api-types";
+import { DispositifThemeNeedsRequest, GetAllDispositifsResponse, GetNeedResponse, Id } from "api-types";
 
 interface Props {
   show: boolean;
@@ -42,7 +42,7 @@ export const NeedsChoiceModal = (props: Props) => {
   const dispositif = useSelector(dispositifSelector(props.dispositifId));
 
   const [selectedThemesByAuthor, setSelectedThemesByAuthor] = useState<Id[] | null>(
-    dispositif?.themesSelectedByAuthor ? getThemes(dispositif) : null
+    dispositif?.themesSelectedByAuthor ? getThemes(dispositif) : null,
   );
   const [selectedNeeds, setSelectedNeeds] = useState<Id[]>(dispositif?.needs || []);
   const [selectedThemes, setSelectedThemes] = useState<Id[]>(getThemes(dispositif));
@@ -153,20 +153,21 @@ export const NeedsChoiceModal = (props: Props) => {
   }, [selectedThemes, selectedNeeds, primaryTheme, selectedThemesByAuthor, allNeeds]);
 
   const onValidate = async () => {
-    const query: any = {
-      dispositifId: props.dispositifId,
-      needs: selectedNeeds
+    const body: DispositifThemeNeedsRequest = {
+      needs: selectedNeeds.map((n) => n.toString()),
     };
-    if (primaryTheme) query.theme = primaryTheme;
+    if (primaryTheme) body.theme = primaryTheme.toString();
     if (selectedThemes) {
-      query.secondaryThemes = [
+      body.secondaryThemes = [
         ...selectedThemes.filter((t) => t !== primaryTheme),
-        ...(selectedThemesByAuthor?.filter((t) => t !== primaryTheme) || [])
-      ];
+        ...(selectedThemesByAuthor?.filter((t) => t !== primaryTheme) || []),
+      ].map((t) => t.toString());
     }
 
-    await API.updateDispositifTagsOrNeeds({ query });
-    dispatch(fetchAllDispositifsActionsCreator());
+    if (props.dispositifId) {
+      await API.updateDispositifThemesOrNeeds(props.dispositifId, body);
+      dispatch(fetchAllDispositifsActionsCreator());
+    }
     props.toggleModal();
   };
 

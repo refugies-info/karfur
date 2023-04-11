@@ -40,25 +40,6 @@
 .steps {
   display: flex;
   align-items: center;
-
-  .step {
-    display: block;
-    background: $gray40;
-    width: u(4);
-    height: 6px;
-    border-radius: 30px;
-    margin-right: 2px;
-    &.done {
-      background: $lightPrimaryBlueFranceSun;
-    }
-  }
-
-  .label {
-    @include dsfr-text("small");
-    color: $lightTextMentionGrey;
-    margin-bottom: 0;
-    margin-left: u(2);
-  }
   .btn {
     @include iconSize(u(4));
     min-height: u(8);

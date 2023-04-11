@@ -18,6 +18,7 @@ import {
   DeleteTranslationsRequest,
   DeleteUserFavoriteRequest,
   DispositifStatusRequest,
+  DispositifThemeNeedsRequest,
   DownloadAppRequest,
   GetActiveStructuresResponse,
   GetActiveUsersResponse,
@@ -63,10 +64,12 @@ import {
   PostStructureRequest,
   PostThemeResponse,
   PostWidgetResponse,
+  PublishDispositifRequest,
   ReadSuggestionDispositifRequest,
   ResetPasswordRequest,
   ResetPasswordResponse,
   SendNotificationsRequest,
+  StructureReceiveDispositifRequest,
   SubscriptionRequest,
   ThemeRequest,
   TranslationStatisticsRequest,
@@ -217,15 +220,21 @@ const API = {
     const headers = getHeaders();
     return instance.get("/dispositifs/count", { params: query, headers });
   },
+  deleteDispositif: (id: Id): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.delete(`/dispositifs/${id}/status`, { headers });
+  },
   updateDispositifStatus: (id: Id, body: DispositifStatusRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/status`, body, { headers });
   },
-  updateDispositifTagsOrNeeds: (query: any) => {
+  structureReceiveDispositifStatus: (id: Id, body: StructureReceiveDispositifRequest): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/updateDispositifTagsOrNeeds", query, {
-      headers,
-    });
+    return instance.patch(`/dispositifs/${id}/structure-receive`, body, { headers });
+  },
+  updateDispositifThemesOrNeeds: (id: Id, body: DispositifThemeNeedsRequest) => {
+    const headers = getHeaders();
+    return instance.patch(`/dispositifs/${id}/themes-needs`, body, { headers });
   },
   updateDispositifMainSponsor: (id: string, body: MainSponsorRequest): Promise<APIResponse> => {
     const headers = getHeaders();
@@ -286,6 +295,10 @@ const API = {
   updateDispositif: (id: Id, body: UpdateDispositifRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}`, body, { headers });
+  },
+  publishDispositif: (id: Id, body: PublishDispositifRequest): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.patch(`/dispositifs/${id}/publish`, body, { headers });
   },
   createDispositif: (body: CreateDispositifRequest): Promise<APIResponse<PostDispositifsResponse>> => {
     const headers = getHeaders();

@@ -1,0 +1,50 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+
+.container {
+  background: $lightBackgroundContrastInfo;
+  border-radius: u(2);
+  padding: u(8);
+  color: $lightBorderPlainInfo;
+  margin-top: u(6);
+  margin-bottom: u(8);
+}
+.item {
+  padding-bottom: u(6);
+  display: flex;
+  align-items: baseline;
+  position: relative;
+
+  &:after {
+    content: "";
+    height: 100%;
+    width: 2px;
+    background: $lightBorderPlainInfo;
+    position: absolute;
+    left: 11px;
+    top: 6px;
+  }
+
+  &:last-child:after {
+    content: none;
+    display: none;
+  }
+}
+.title {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.subtitle {
+  @include dsfr-text("very-small");
+  margin-bottom: 0;
+}
+.icon {
+  position: relative;
+  z-index: 1;
+
+  // trick to avoid border going over icons
+  background: $lightBackgroundContrastInfo;
+  height: 20px;
+}

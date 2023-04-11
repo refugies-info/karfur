@@ -1,23 +1,22 @@
 import { addLog } from "../../../modules/logs/logs.service";
-import { Request } from "./addDispositif";
 import logger from "../../../logger";
 import { Dispositif, UserId } from "../../../typegoose";
 
-export const log = async (dispositif: Request, originalDispositif: Dispositif, authorId: UserId) => {
+export const log = async (dispositif: Dispositif, originalDispositif: Dispositif, authorId: UserId) => {
   try {
-    await addLog(dispositif.dispositifId, "Dispositif", "Contenu modifié", { author: authorId });
+    await addLog(dispositif._id, "Dispositif", "Contenu modifié", { author: authorId });
     await addLog(authorId, "User", "Modification de la fiche : {{dynamic}}", {
-      dynamicId: dispositif.dispositifId,
+      dynamicId: dispositif._id,
       model_dynamic: "Dispositif",
       link: {
-        id: dispositif.dispositifId,
+        id: dispositif._id,
         model_link: "Dispositif",
         next: "ModalContenu"
       }
     });
     // status
     if (originalDispositif.status !== dispositif.status) {
-      await addLog(dispositif.dispositifId, "Dispositif", "Statut modifié : " + dispositif.status, {
+      await addLog(dispositif._id, "Dispositif", "Statut modifié : " + dispositif.status, {
         author: authorId
       });
     }
@@ -27,7 +26,7 @@ export const log = async (dispositif: Request, originalDispositif: Dispositif, a
       [originalDispositif.theme, ...originalDispositif.secondaryThemes.sort()].filter((t) => !!t)
     );
     if (newThemes !== oldThemes) {
-      await addLog(dispositif.dispositifId, "Dispositif", "Thèmes modifiés", { author: authorId });
+      await addLog(dispositif._id, "Dispositif", "Thèmes modifiés", { author: authorId });
     }
 
     // sponsor
@@ -39,7 +38,7 @@ export const log = async (dispositif: Request, originalDispositif: Dispositif, a
     if (oldSponsorIdString !== newSponsorIdString) {
       if (!!oldSponsorIdString && !!newSponsorIdString) {
         // sponsor changes
-        await addLog(dispositif.dispositifId, "Dispositif", "Structure responsable modifiée : {{dynamic}}", {
+        await addLog(dispositif._id, "Dispositif", "Structure responsable modifiée : {{dynamic}}", {
           dynamicId: newSponsorId.toString(),
           model_dynamic: "Structure",
           link: {
@@ -57,7 +56,7 @@ export const log = async (dispositif: Request, originalDispositif: Dispositif, a
             dynamicId: newSponsorId.toString(),
             model_dynamic: "Structure",
             link: {
-              id: dispositif.dispositifId,
+              id: dispositif._id,
               model_link: "Dispositif",
               next: "ModalContenu"
             },
@@ -72,7 +71,7 @@ export const log = async (dispositif: Request, originalDispositif: Dispositif, a
             dynamicId: oldSponsorId.toString(),
             model_dynamic: "Structure",
             link: {
-              id: dispositif.dispositifId,
+              id: dispositif._id,
               model_link: "Dispositif",
               next: "ModalContenu"
             },
@@ -83,10 +82,10 @@ export const log = async (dispositif: Request, originalDispositif: Dispositif, a
       if (!oldSponsorIdString && newSponsorIdString) {
         // sponsor added
         await addLog(newSponsorId.toString(), "Structure", "Nouvelle fiche attribuée : {{dynamic}}", {
-          dynamicId: dispositif.dispositifId,
+          dynamicId: dispositif._id,
           model_dynamic: "Dispositif",
           link: {
-            id: dispositif.dispositifId,
+            id: dispositif._id,
             model_link: "Dispositif",
             next: "ModalContenu"
           },
@@ -103,14 +102,14 @@ export const log = async (dispositif: Request, originalDispositif: Dispositif, a
             dynamicId: oldSponsorId.toString(),
             model_dynamic: "Structure",
             link: {
-              id: dispositif.dispositifId,
+              id: dispositif._id,
               model_link: "Dispositif",
               next: "ModalContenu"
             },
             author: authorId
           }
         );
-        await addLog(dispositif.dispositifId, "Dispositif", "Structure responsable supprimée : {{dynamic}}", {
+        await addLog(dispositif._id, "Dispositif", "Structure responsable supprimée : {{dynamic}}", {
           dynamicId: oldSponsorId.toString(),
           model_dynamic: "Structure",
           link: {

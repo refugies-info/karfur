@@ -4,6 +4,7 @@ import { useFormContext } from "react-hook-form";
 import Image from "next/image";
 import { DispositifStatus, Sponsor, UpdateDispositifRequest } from "api-types";
 import { cls } from "lib/classname";
+import { isStatus } from "lib/dispositif";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 import { userSelector } from "services/User/user.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
@@ -44,7 +45,7 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
   }, [dataMainSponsor, structures]);
 
   const isAllowedToEdit = useMemo(() => {
-    return user.admin || dispositif?.status !== DispositifStatus.ACTIVE;
+    return user.admin || isStatus(dispositif?.status, DispositifStatus.ACTIVE);
   }, [user, dispositif]);
 
   return (

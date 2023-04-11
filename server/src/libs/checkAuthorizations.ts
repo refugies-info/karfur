@@ -1,22 +1,6 @@
 import { Dispositif, Structure, User } from "../typegoose";
 import logger from "../logger";
 
-// TODO: delete
-export const checkIfUserIsAdmin = (user: User) => {
-  // user is admin for the platform
-  const isAdmin = user.isAdmin();
-
-  if (!isAdmin) throw new Error("NOT_AUTHORIZED");
-
-  return;
-};
-// TODO: delete
-export const checkRequestIsFromSite = (fromSite: boolean) => {
-  if (!fromSite) throw new Error("NOT_FROM_SITE");
-
-  return;
-};
-
 // Dispositif edition
 const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User) => {
   logger.info("[isUserAuthorizedToModifyDispositif] received");
