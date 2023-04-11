@@ -40,6 +40,7 @@ export const getContentById = async (id: string, locale: Languages): ResponseWit
     metadatas: 1,
     map: 1,
     lastModificationDate: 1,
+    externalLink: 1,
   };
 
   const dispositif = await (
@@ -84,6 +85,7 @@ export const getContentById = async (id: string, locale: Languages): ResponseWit
       "sponsors",
       "status",
       "theme",
+      "externalLink",
     ]),
   };
 

@@ -199,6 +199,7 @@ export type GetDispositifResponse = {
   availableLanguages: string[];
   date: Date;
   lastModificationDate?: Date;
+  externalLink?: string;
 };
 
 /**
