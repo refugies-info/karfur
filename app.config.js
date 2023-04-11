@@ -134,11 +134,12 @@ export default {
         foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
         backgroundColor: "#0421B1",
       },
-      package: "com.refugiesinfo.app",
-      // package:
-      //   "com.refugiesinfo.app" + process.env.EAS_BUILD_PROFILE !== "production"
-      //     ? `.${process.env.EAS_BUILD_PROFILE}`
-      //     : "",
+      // package: "com.refugiesinfo.app",
+      package:
+        "com.refugiesinfo.app" +
+        (process.env.EAS_BUILD_PROFILE !== "production"
+          ? `.${process.env.EAS_BUILD_PROFILE}`
+          : ""),
       config: {
         googleMaps: { apiKey: process.env.GOOGLE_MAPS_KEY_ANDROID },
       },
