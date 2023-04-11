@@ -61,11 +61,7 @@ app.use(function (_, res, next) {
 
 // Setup routes
 RegisterRoutes(app);
-
-const dispositifController = require(__dirname + "/controllers/dispositifController");
 app.enable("strict routing");
-app.use("/dispositifs", dispositifController.router);
-
 app.use(serverErrorHandler);
 
 app.get("*", (_req, res) => {

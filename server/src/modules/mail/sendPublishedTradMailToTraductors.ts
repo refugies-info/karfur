@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import logger from "../../logger";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { getUserById } from "../users/users.repository";
@@ -5,7 +6,7 @@ import { getFormattedLocale } from "../../libs/getFormattedLocale";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
 import { DispositifId } from "../../typegoose";
 import { ContentType, UserStatus } from "api-types";
-import { RefactorTodoError } from "src/errors";
+import { RefactorTodoError } from "../../errors";
 
 export const sendPublishedTradMailToTraductors = async (
   traductorIdsList: string[],

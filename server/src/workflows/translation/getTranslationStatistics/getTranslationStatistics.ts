@@ -6,12 +6,12 @@ import { Statistics, TranslationStatisticsRequest } from "api-types";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 
-const getStatistics = ({ facets = [] }: TranslationStatisticsRequest): Promise<Statistics> =>
+const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest): Promise<Statistics> =>
   Promise.all([
     getActiveLanguagesFromDB(),
     getAllUsersForAdminFromDB({ roles: 1, last_connected: 1, selectedLanguages: 1 }),
   ]).then(async ([languages, users]) => {
-    logger.info("[getStatistics] get translations statistics");
+    logger.info("[getTranslationStatistics] get translations statistics");
     const noFacet = facets.length === 0;
     const stats: Statistics = {};
     const trads = users.filter((user) => user.hasRole("Trad"));
@@ -53,4 +53,4 @@ const getStatistics = ({ facets = [] }: TranslationStatisticsRequest): Promise<S
     return stats;
   });
 
-export default getStatistics;
+export default getTranslationStatistics;

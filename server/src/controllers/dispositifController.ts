@@ -1,4 +1,5 @@
 import { Controller, Get, Route, Path, Query, Security, Queries, Patch, Body, Request, Post, Put, Delete } from "tsoa";
+import express from "express";
 import {
   AddSuggestionDispositifRequest,
   AddViewsRequest,
@@ -9,6 +10,7 @@ import {
   DispositifThemeNeedsRequest,
   GetAllDispositifsResponse,
   GetContentsForAppRequest,
+  GetContentsForAppResponse,
   GetCountDispositifsResponse,
   GetDispositifResponse,
   GetDispositifsRequest,
@@ -24,44 +26,43 @@ import {
   MainSponsorRequest,
   PostDispositifsResponse,
   PublishDispositifRequest,
-  StructureReceiveDispositifRequest,
   ReadSuggestionDispositifRequest,
+  StructureReceiveDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
 } from "api-types";
-import { GetContentsForAppResponse } from "api-types/modules/dispositif";
-import express, { Request as ExRequest } from "express";
-
-import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
-import { getDispositifs } from "../workflows/dispositif/getDispositifs";
-import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
-import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
-import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispositifMainSponsor";
-import { updateDispositifAdminComments } from "../workflows/dispositif/updateDispositifAdminComments";
-import { getNbDispositifsByRegion } from "../workflows/dispositif/getNbDispositifsByRegion";
-import { getUserContributions } from "../workflows/dispositif/getUserContributions";
-import { getDispositifsWithTranslationAvancement } from "../workflows/dispositif/getDispositifsWithTranslationAvancement";
-import { exportFiches } from "../workflows/dispositif/exportFiches";
-import { exportDispositifsGeolocalisation } from "../workflows/dispositif/exportDispositifsGeolocalisation";
-import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
-import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
-import { getContentById } from "../workflows/dispositif/getContentById";
-import { getStatistics } from "../workflows/dispositif/getStatistics";
-import { Response, ResponseWithData } from "../types/interface";
-import { getCountDispositifs } from "../workflows/dispositif/getCountDispositifs";
-import { updateDispositifProperties } from "../workflows/dispositif/updateDispositifProperties";
-import { updateDispositif } from "../workflows/dispositif/updateDispositif";
-import { createDispositif } from "../workflows/dispositif/createDispositif";
-import { addMerci } from "../workflows/dispositif/addMerci";
-import { deleteMerci } from "../workflows/dispositif/deleteMerci";
-import { addSuggestion } from "../workflows/dispositif/addSuggestion";
-import { patchSuggestion } from "../workflows/dispositif/patchSuggestion";
-import { deleteSuggestion } from "../workflows/dispositif/deleteSuggestion";
-import { publishDispositif } from "../workflows/dispositif/publishDispositif";
-import { deleteDispositif } from "../workflows/dispositif/deleteDispositif";
-import { structureReceiveDispositif } from "../workflows/dispositif/structureReceiveDispositif";
-import { getNbContentsForCounty } from "../workflows";
+import {
+  addMerci,
+  addSuggestion,
+  createDispositif,
+  deleteDispositif,
+  deleteMerci,
+  deleteSuggestion,
+  exportDispositifsGeolocalisation,
+  exportFiches,
+  getAllDispositifs,
+  getContentById,
+  getContentsForApp,
+  getCountDispositifs,
+  getDispositifs,
+  getDispositifsWithTranslationAvancement,
+  getNbContentsForCounty,
+  getNbDispositifsByRegion,
+  getStatistics,
+  getUserContributions,
+  modifyDispositifMainSponsor,
+  patchSuggestion,
+  publishDispositif,
+  structureReceiveDispositif,
+  updateDispositif,
+  updateDispositifAdminComments,
+  updateDispositifProperties,
+  updateDispositifStatus,
+  updateDispositifTagsOrNeeds,
+  updateNbVuesOrFavoritesOnContent,
+} from "../workflows";
 import logger from "../logger";
+import { Response, ResponseWithData } from "../types/interface";
 
 @Route("dispositifs")
 export class DispositifController extends Controller {
@@ -306,7 +307,7 @@ export class DispositifController extends Controller {
   public async update(
     @Path() id: string,
     @Body() body: UpdateDispositifRequest,
-    @Request() request: ExRequest,
+    @Request() request: express.Request,
   ): Response {
     return updateDispositif(id, body, request.user);
   }
