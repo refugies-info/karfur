@@ -30,7 +30,9 @@ aa("init", {
 const updateUserInfo = async () => {
   const [selectedLanguage, city, department, age, frenchLevel] =
     await Promise.all([
-      AsyncStorage.getItem("SELECTED_LANGUAGE"),
+      AsyncStorage.getItem("SELECTED_LANGUAGE").then(
+        (result) => result || "fr"
+      ),
       AsyncStorage.getItem("CITY"),
       AsyncStorage.getItem("DEP"),
       AsyncStorage.getItem("AGE"),

@@ -71,14 +71,16 @@ export const ExplorerScreen = ({
   };
   const isInitialUrlUsed = useSelector(isInitialUrlUsedSelector);
   useEffect(() => {
-    Linking.addEventListener("url", (event) => handleOpenUrl(event));
+    const emitter = Linking.addEventListener("url", (event) =>
+      handleOpenUrl(event)
+    );
     if (!isInitialUrlUsed) {
       Linking.getInitialURL()
         .then(handleOpenUrl)
         .then(() => dispatch(setInitialUrlUsed(true)));
     }
 
-    return Linking.removeEventListener("url", handleOpenUrl);
+    return emitter.remove;
   }, []);
 
   // When the screen gets focus, redirect if needed

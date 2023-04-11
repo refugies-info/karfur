@@ -10,6 +10,13 @@ let Config = {
   algoliaIndex: process.env.ALGOLIA_INDEX || "",
 };
 
+console.log(
+  "releaseChannel",
+  Updates.releaseChannel,
+  "channel",
+  Updates.channel
+);
+
 // Env variables for staging or production here
 if (
   Updates.releaseChannel === "staging" ||

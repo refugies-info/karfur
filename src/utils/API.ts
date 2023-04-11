@@ -116,7 +116,7 @@ export const retrieveTechnicalInfo = () =>
   makeApiRequest(
     "/technical-info",
     {
-      appVersion: Constants.manifest?.extra?.displayVersionNumber,
+      appVersion: Constants.expoConfig?.extra?.displayVersionNumber,
     },
     "POST"
   );

@@ -1,8 +1,10 @@
+import { Languages } from "@refugies-info/api-types";
 import * as config from "../../config/i18n";
-const translationLoader = {
+
+const translationLoader: any = {
   type: "backend",
   init: () => {},
-  read: function (language, _, callback) {
+  read: function (language: Languages, _: any, callback: Function) {
     let resource,
       error = null;
     try {

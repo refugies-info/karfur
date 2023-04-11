@@ -1,6 +1,8 @@
 import i18next from "i18next";
 import * as config from "../../config/i18n";
 import translationLoader from "./translation-loader";
+import { Languages } from "@refugies-info/api-types";
+
 const i18n = {
   /**
    * @returns {Promise}
@@ -19,18 +21,18 @@ const i18n = {
           if (error) {
             return reject(error);
           }
-          resolve();
+          resolve(true);
         }
       );
     });
   },
-  use: (elem) => i18next.use(elem),
+  use: (elem: any) => i18next.use(elem),
   /**
    * @param {string} key
    * @param {Object} options
    * @returns {string}
    */
-  t: (key, options) => i18next.t(key, options),
+  t: (key: string, options: Object) => i18next.t(key, options),
   /**
    * @returns {string}
    */
@@ -40,13 +42,13 @@ const i18n = {
   /**
    * @returns {'LTR' | 'RTL'}
    */
-  get dir() {
+  get dir(): string {
     return i18next.dir().toUpperCase();
   },
   /**
    * @returns {boolean}
    */
-  isRTL: () => {
+  isRTL: (): boolean => {
     return i18next.language ? i18next.dir().toUpperCase() === "RTL" : false;
   },
   /**
@@ -59,12 +61,12 @@ const i18n = {
    * @param {Object<string,mixed>} map
    * @returns {mixed}
    */
-  select(map) {
-    const key = this.isRTL ? "rtl" : "ltr";
+  select(map: Record<string, any>) {
+    const key = this.isRTL() ? "rtl" : "ltr";
     return map[key];
   },
 
-  changeLanguage: (ln) => i18next.changeLanguage(ln),
+  changeLanguage: (ln: Languages) => i18next.changeLanguage(ln.toString()),
 };
 export const t = i18n.t;
 export default i18n;

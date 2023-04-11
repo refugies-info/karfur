@@ -1,5 +1,10 @@
-export const fallback = "fr";
-export const supportedLocales = {
+import { Languages } from "@refugies-info/api-types";
+
+export const fallback: Languages = "fr";
+export const supportedLocales: Record<
+  Languages,
+  { translationFileLoader: Function }
+> = {
   fr: {
     translationFileLoader: () => require("../translations/fr.json"),
   },

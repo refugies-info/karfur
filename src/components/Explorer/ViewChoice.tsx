@@ -7,7 +7,7 @@ import GalerieFill from "../../theme/images/streamlineIcons/galerie-fill.svg";
 import GalerieOutline from "../../theme/images/streamlineIcons/galerie-outline.svg";
 import ListFill from "../../theme/images/streamlineIcons/list-fill.svg";
 import ListOutline from "../../theme/images/streamlineIcons/list-outline.svg";
-import { useTranslation } from "react-i18next";
+import { useTranslationWithRTL } from "../../hooks";
 
 const ICON_SIZE = 16;
 
@@ -25,7 +25,7 @@ const StyledButton = styled(RTLTouchableOpacity)`
   padding-horizontal: ${styles.margin * 3}px;
   padding-vertical: ${styles.margin * 2}px;
   background-color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? styles.colors.white : "transparent" };
+    props.isSelected ? styles.colors.white : "transparent"};
   border-radius: ${styles.radius * 2}px;
   flex-basis: 50%;
   justify-content: center;
@@ -53,7 +53,7 @@ const StreamlineIcon = ({
   return <ListOutline width={ICON_SIZE} height={ICON_SIZE} />;
 };
 export const ViewChoice = (props: Props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslationWithRTL();
 
   return (
     <StyledButton
@@ -67,9 +67,9 @@ export const ViewChoice = (props: Props) => {
           {t("explorer_screen." + props.text, props.text)}
         </ChoiceTextBold>
       ) : (
-          <ChoiceText>
-            {t("explorer_screen." + props.text, props.text)}
-          </ChoiceText>
+        <ChoiceText>
+          {t("explorer_screen." + props.text, props.text)}
+        </ChoiceText>
       )}
     </StyledButton>
   );
