@@ -24,6 +24,7 @@ const DemarchePage = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const methods = useForm<UpdateDispositifRequest>({ defaultValues: getDefaultValue(dispositif) });
   const [activeSection, setActiveSection] = useState("");
+  const [showMissingSteps, setShowMissingSteps] = useState(false);
 
   const locale = useLocale();
   const { changeLanguage } = useChangeLanguage();
@@ -39,7 +40,9 @@ const DemarchePage = (props: Props) => {
   }, [dispatch]);
 
   return (
-    <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>
+    <PageContext.Provider
+      value={{ mode: "edit", activeSection, setActiveSection, showMissingSteps, setShowMissingSteps }}
+    >
       <FormProvider {...methods}>
         <div className="w-100">
           <form>

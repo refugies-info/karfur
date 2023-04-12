@@ -140,7 +140,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     lastModificationAuthor: user._id,
     themesSelectedByAuthor: !user.isAdmin(),
     translations,
-    ...buildNewDispositif(body, user._id.toString())
+    ...(await buildNewDispositif(body, user._id.toString()))
   };
 
   // TODO : if published, create draft work version instead

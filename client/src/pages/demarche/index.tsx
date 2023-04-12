@@ -16,6 +16,7 @@ interface Props {
 const DemarchePage = (props: Props) => {
   const methods = useForm<CreateDispositifRequest>({ defaultValues: { typeContenu: ContentType.DEMARCHE } });
   const [activeSection, setActiveSection] = useState("");
+  const [showMissingSteps, setShowMissingSteps] = useState(false);
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);
 
   const locale = useLocale();
@@ -32,7 +33,9 @@ const DemarchePage = (props: Props) => {
   }, [dispatch]);
 
   return (
-    <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>
+    <PageContext.Provider
+      value={{ mode: "edit", activeSection, setActiveSection, showMissingSteps, setShowMissingSteps }}
+    >
       <FormProvider {...methods}>
         <div className="w-100">
           <form>
