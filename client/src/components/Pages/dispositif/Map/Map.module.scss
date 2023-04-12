@@ -25,4 +25,14 @@
       height: 12px !important;
     }
   }
+
+  @include media-max("lg-limit") {
+    height: 75vh;
+  }
+
+  .popup {
+    background: white;
+    box-shadow: 0 6px 18px 0 #00001229;
+    border-radius: u(2);
+  }
 }
