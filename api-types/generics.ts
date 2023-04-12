@@ -177,10 +177,6 @@ export interface Metadatas {
     timeUnit: timeUnitType;
     frequencyUnit: frequencyUnitType;
   } | null;
-
-  // TODO: delete
-  duration?: string;
-  important?: string;
 }
 
 export interface SimpleDispositif {

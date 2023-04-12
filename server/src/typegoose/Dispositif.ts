@@ -97,12 +97,6 @@ export class TranslationContent {
   public content!: DispositifContent | DemarcheContent;
 
   @prop()
-  public metadatas!: {
-    important?: string;
-    duration?: string;
-  };
-
-  @prop()
   public created_at!: Date;
 
   @prop()
@@ -148,22 +142,14 @@ export class Metadatas {
   public location?: locationType | null;
   @prop()
   public frenchLevel?: frenchLevelType[] | null;
-  // @prop()
-  // public important?: string;
   @prop({ _id: false })
   public age?: Age | null;
   @prop({ _id: false })
   public price?: Price | null;
-  // @prop()
-  // public duration?: string;
   @prop()
   public publicStatus?: publicStatusType[] | null;
   @prop()
   public public?: publicType[] | null;
-  // @prop()
-  // public titreSejourRequired?: boolean;
-  // @prop()
-  // public acteNaissanceRequired?: boolean;
   @prop()
   public conditions?: conditionType[] | null;
   @prop({ _id: false })

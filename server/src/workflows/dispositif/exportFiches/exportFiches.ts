@@ -56,11 +56,6 @@ const getNiveauFrancais = (metadatas: Dispositif["metadatas"]) => {
   return metadatas.frenchLevel.map((f) => f.toString());
 };
 
-// const getDuree = (metadatas: Dispositif["metadatas"]) => {
-//   if (!metadatas.duration) return "";
-//   return metadatas.duration;
-// };
-
 const getPrice = (metadatas: Dispositif["metadatas"]) => {
   if (!metadatas.price) return "";
   if (metadatas.price.values?.[0] === 0) return "Gratuit";

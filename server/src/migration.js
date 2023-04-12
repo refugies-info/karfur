@@ -239,17 +239,17 @@ const getFrenchLevel = (metadata) => {
   }
 };
 
-const savedMetadatasIndex = {}; // save index of translated meta to find it in translations then
+// const savedMetadatasIndex = {}; // save index of translated meta to find it in translations then
 
 const getMetadatas = (content, id) => {
   const metas = {};
-  const translatedMetas = {};
+  // const translatedMetas = {};
 
-  const titles = (content?.children || []).map((c) => c.title);
-  savedMetadatasIndex[id] = {};
+  // const titles = (content?.children || []).map((c) => c.title);
+  // savedMetadatasIndex[id] = {};
 
-  if (titles.indexOf("Durée") >= 0) savedMetadatasIndex[id].duration = titles.indexOf("Durée");
-  if (titles.indexOf("Important !") >= 0) savedMetadatasIndex[id].important = titles.indexOf("Important !");
+  // if (titles.indexOf("Durée") >= 0) savedMetadatasIndex[id].duration = titles.indexOf("Durée");
+  // if (titles.indexOf("Important !") >= 0) savedMetadatasIndex[id].important = titles.indexOf("Important !");
 
   for (const metadata of content.children) {
     const title = metadata.title?.fr || metadata.title;
@@ -297,19 +297,20 @@ const getMetadatas = (content, id) => {
         }
         break;
       case "Durée":
-        // TODO: what here?
-        translatedMetas.duration = metadata.contentTitle;
+        // translatedMetas.duration = metadata.contentTitle; // do nothing
         break;
       case "Important !":
-        // TODO: what here?
-        translatedMetas.important = metadata.contentTitle;
+        // translatedMetas.important = metadata.contentTitle; // do nothing
         break;
       default:
         console.warn("  À CHECKER ! Meta non ajoutée", metadata.title, id);
     }
   }
 
-  return { metas, translatedMetas };
+  return {
+    metas,
+    // translatedMetas
+  };
 };
 
 const getSponsors = (dispositif) => {
@@ -363,18 +364,18 @@ const getContent = (dispositif, ln, root) => {
   return contentLn;
 };
 
-const getMultilangContent = (dispositif, translatedMetas, validatedTrads) => {
+const getMultilangContent = (dispositif, /* translatedMetas, */ validatedTrads) => {
   const translations = {};
   for (const ln of ["fr", "en", "ps", "fa", "ti", "ru", "uk", "ar"]) {
     if (dispositif.avancement[ln] === 1 || (ln === "fr" && dispositif.avancement === 1)) {
       translations[ln] = getContent(dispositif, ln, false);
 
-      if (translatedMetas.duration) {
+      /* if (translatedMetas.duration) {
         translations[ln].metadatas.duration = getLocalizedContent(translatedMetas.duration, ln, false);
       }
       if (translatedMetas.important) {
         translations[ln].metadatas.important = getLocalizedContent(translatedMetas.important, ln, false);
-      }
+      } */
       translations[ln].created_at = dispositif.updatedAt;
       // console.log(validatedTrads);
       const trad = validatedTrads.find((t) => t.langueCible === ln);
@@ -395,7 +396,7 @@ const getNewDispositif = (dispositif, validatedTrads) => {
   const metadatas = getMetadatas(dispositif.contenu?.[1], dispositif._id);
   const newDispositif = {
     translations: {
-      ...getMultilangContent(dispositif, metadatas.translatedMetas, validatedTrads),
+      ...getMultilangContent(dispositif, /* metadatas.translatedMetas, */ validatedTrads),
     },
     map: getMarkers(dispositif.contenu?.[3].children),
     sponsors: getSponsors(dispositif),
@@ -563,6 +564,7 @@ const findToReview = (trad, newContent, typeContenu) => {
     res.push(...getInfosectionReview(trad, newContent, "how", 2), ...getInfosectionReview(trad, newContent, "next", 3));
   }
 
+  /*
   if (savedMetadatasIndex[trad.articleId]?.important) {
     if (translated.contenu[1]?.children?.[savedMetadatasIndex[trad.articleId]?.important]?.contentTitleModified)
       res.push("metadatas.important");
@@ -570,7 +572,7 @@ const findToReview = (trad, newContent, typeContenu) => {
   if (savedMetadatasIndex[trad.articleId]?.duration) {
     if (translated.contenu[1]?.children?.[savedMetadatasIndex[trad.articleId]?.duration]?.contentTitleModified)
       res.push("metadatas.duration");
-  }
+  } */
 
   return res;
 };
@@ -592,14 +594,14 @@ const getContentFromTrad = (trad) => {
   );
 
   // get metadatas from index
-  if (savedMetadatasIndex[dispositifId]?.duration !== undefined) {
+  /* if (savedMetadatasIndex[dispositifId]?.duration !== undefined) {
     const value = trad.translatedText.contenu[1]?.children?.[savedMetadatasIndex[dispositifId].duration]?.contentTitle;
     if (value) content.metadatas.duration = value;
   }
   if (savedMetadatasIndex[dispositifId]?.important !== undefined) {
     const value = trad.translatedText.contenu[1]?.children?.[savedMetadatasIndex[dispositifId].important]?.contentTitle;
     if (value) content.metadatas.important = value;
-  }
+  } */
 
   if (trad.status === "À revoir") {
     toReview[dispositifId] = findToReview(trad, content, typeContenu);
