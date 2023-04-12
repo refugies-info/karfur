@@ -6,7 +6,7 @@ import { DispositifStatus } from "api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
-import { useLocale } from "hooks";
+import { useAutosave, useLocale } from "hooks";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
@@ -19,9 +19,11 @@ import StepBar from "./StepBar";
 import styles from "./CustomNavbar.module.scss";
 
 /**
- * Navbar of edition mode, which shows progress and validate buttons
+ * Navbar of edition mode, which shows progress and validate buttons.
+ * Responsible for autosave
  */
 const CustomNavbar = () => {
+  const { isSaving } = useAutosave();
   const router = useRouter();
   const total = 14;
   const values = useWatch();
@@ -108,8 +110,13 @@ const CustomNavbar = () => {
         </div>
         <div>
           <span id="save-status" className={styles.save}>
-            <EVAIcon name="save" size={16} fill={styles.darkBackgroundElevationContrast} className="me-2" />
-            Sauvegardé il y a quelques secondes
+            <EVAIcon
+              name={isSaving ? "sync-outline" : "save"}
+              size={16}
+              fill={styles.darkBackgroundElevationContrast}
+              className="me-2"
+            />
+            <span>{isSaving ? "Sauvegarde en cours..." : "Sauvegardé il y a quelques secondes"}</span>
           </span>
           <Tooltip target="save-status" placement="top">
             Toutes les modifications sont sauvegardées automatiquement

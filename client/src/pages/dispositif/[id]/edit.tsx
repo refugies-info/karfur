@@ -13,7 +13,7 @@ import PageContext from "utils/pageContext";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { UpdateDispositifRequest } from "api-types";
-import { getDefaultValue, submitUpdateForm } from "lib/dispositifForm";
+import { getDefaultValue } from "lib/dispositifForm";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 
 interface Props {
@@ -23,10 +23,6 @@ interface Props {
 const DispositifPage = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const methods = useForm<UpdateDispositifRequest>({ defaultValues: getDefaultValue(dispositif) });
-  const onSubmit = (data: UpdateDispositifRequest) => {
-    if (!dispositif?._id) return;
-    submitUpdateForm(dispositif._id, data);
-  };
   const [activeSection, setActiveSection] = useState("");
 
   const locale = useLocale();
@@ -45,9 +41,11 @@ const DispositifPage = (props: Props) => {
   return (
     <PageContext.Provider value={{ mode: "edit", activeSection, setActiveSection }}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)} className="flex-grow-1">
-          <Dispositif />
-        </form>
+        <div className="w-100">
+          <form>
+            <Dispositif />
+          </form>
+        </div>
       </FormProvider>
     </PageContext.Provider>
   );
