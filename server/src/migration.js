@@ -348,7 +348,6 @@ const getContent = (dispositif, ln, root) => {
       abstract: getLocalizedContent(dispositif.abstract, ln, root),
       what: turnJSONtoHTML(getLocalizedContent(dispositif.contenu?.[0]?.content, ln, root)),
     },
-    metadatas: {},
     created_at: dispositif.created_at,
     validatorId: dispositif.validatorId,
   };
