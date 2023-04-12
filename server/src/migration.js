@@ -164,11 +164,11 @@ const getJustificatif = (justificatif) => {
     case "Titre de sejour":
       return "titre sejour";
     case "Diplôme":
-      return "diplome";
-    case "Justificatif de domicile":
+      return "school";
+    case "Justificatif de domicile": // TODO -> what here
       return "domicile";
     default:
-      return "";
+      return null;
   }
 };
 
@@ -239,6 +239,19 @@ const getFrenchLevel = (metadata) => {
   }
 };
 
+const getAge = (metadata) => {
+  const type = getAgeType(metadata.contentTitle?.fr || metadata.contentTitle);
+  let ages = null;
+  if (type === "between") {
+    ages = [parseInt(metadata.bottomValue), parseInt(metadata.topValue)];
+  } else if (type === "moreThan") {
+    ages = [parseInt(metadata.bottomValue)];
+  } else {
+    ages = [parseInt(metadata.topValue)];
+  }
+  return { type, ages };
+};
+
 // const savedMetadatasIndex = {}; // save index of translated meta to find it in translations then
 
 const getMetadatas = (content, id) => {
@@ -271,10 +284,7 @@ const getMetadatas = (content, id) => {
         metas.frenchLevel = getFrenchLevel(metadata);
         break;
       case "Âge requis":
-        metas.age = {
-          type: getAgeType(metadata.contentTitle?.fr || metadata.contentTitle),
-          ages: [parseInt(metadata.bottomValue), parseInt(metadata.topValue)],
-        };
+        metas.age = getAge(metadata);
         break;
       case "Public visé":
         metas.publicStatus =
@@ -284,16 +294,17 @@ const getMetadatas = (content, id) => {
         break;
       case "Acte de naissance OFPRA":
         if (!metas.conditions) metas.conditions = [];
-        metas.conditions.push("acte naissance");
+        if (!metas.conditions.includes("acte naissance")) metas.conditions.push("acte naissance");
         break;
       case "Titre de séjour":
         if (!metas.conditions) metas.conditions = [];
-        metas.conditions.push("titre sejour");
+        if (!metas.conditions.includes("titre sejour")) metas.conditions.push("titre sejour");
         break;
       case "Justificatif demandé":
-        if (getJustificatif(metadata.contentTitle)) {
+        if (getJustificatif(metadata.contentTitle) !== null) {
           if (!metas.conditions) metas.conditions = [];
-          metas.conditions.push(getJustificatif(metadata.contentTitle));
+          if (!metas.conditions.includes(getJustificatif(metadata.contentTitle)))
+            metas.conditions.push(getJustificatif(metadata.contentTitle));
         }
         break;
       case "Durée":
@@ -807,6 +818,9 @@ const adaptUserFavorites = async (usersColl) => {
   }
 };
 
+const deleteLangues = async (languesColl) => {
+  await languesColl.deleteMany({ avancement: 0 });
+};
 const adaptLangues = async (languesColl) => {
   await languesColl.updateMany(
     {},
@@ -871,6 +885,7 @@ async function main() {
   console.log("FIN Adaptation des utilisateurs");
 
   console.log("Adaptation des langues");
+  await deleteLangues(languesColl);
   await adaptLangues(languesColl);
   console.log("FIN Adaptation des langues");
 

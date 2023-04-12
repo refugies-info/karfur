@@ -128,7 +128,7 @@ export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire
 export type publicType = "family" | "women" | "youths" | "senior" | "gender";
 export type conditionType =
   | "acte naissance"
-  | /* "diplome" | */ "titre sejour" /* | "domicile" */
+  | "titre sejour" /* | "domicile" */
   | "cir"
   | "bank account"
   | "pole emploi"
