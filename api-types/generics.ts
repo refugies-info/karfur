@@ -125,18 +125,19 @@ export type frenchLevelType = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 export type ageType = "lessThan" | "moreThan" | "between";
 export type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
 export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
-export type publicType = "family" | "women" | "youths" | "senior";
+export type publicType = "family" | "women" | "youths" | "senior" | "gender";
 export type conditionType =
   | "acte naissance"
   | /* "diplome" | */ "titre sejour" /* | "domicile" */
   | "cir"
   | "bank account"
   | "pole emploi"
-  | "driver license";
+  | "driver license"
+  | "school";
 export type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
 export type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
-export type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
-export type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
+export type timeUnitType = "sessions" | "hours" | "half-days" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
+export type frequencyUnitType = "session" | "day" | "week" | "month" | "trimester" | "semester" | "year";
 export type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
 
 export interface Poi {

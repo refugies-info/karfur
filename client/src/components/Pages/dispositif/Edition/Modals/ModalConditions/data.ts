@@ -36,4 +36,8 @@ export const dropdownOptions: Record<conditionType, { text: string, image: any }
     text: "Avoir son permis B",
     image: imgDriver
   },
+  "school": {
+    text: "Avoir le niveau de fin de lycée",
+    image: imgDriver
+  },
 };

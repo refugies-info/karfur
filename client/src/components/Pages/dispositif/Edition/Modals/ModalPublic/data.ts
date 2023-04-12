@@ -16,8 +16,9 @@ export const publicStatusOptions: Record<publicStatusType, string> = {
 export const publicOptions: Record<publicType, string> = {
   family: "Familles et enfants",
   women: "Femmes",
-  youths: "Jeunes (de 16 à 25 ans)",
+  youths: "Jeune",
   senior: "Séniors",
+  gender: "Minorités de genre",
 };
 export type ChoiceItem = {
   text: string;

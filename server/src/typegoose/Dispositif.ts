@@ -18,18 +18,19 @@ type frenchLevelType = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 type ageType = "lessThan" | "moreThan" | "between";
 type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
 type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
-type publicType = "family" | "women" | "youths" | "senior";
+type publicType = "family" | "women" | "youths" | "senior" | "gender";
 type conditionType =
   | "acte naissance"
   | /* "diplome" | */ "titre sejour" /* | "domicile" */
   | "cir"
   | "bank account"
   | "pole emploi"
-  | "driver license";
+  | "driver license"
+  | "school";
 type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
 type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
-type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
-type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
+type timeUnitType = "sessions" | "hours" | "half-days" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
+type frequencyUnitType = "session" | "day" | "week" | "month" | "trimester" | "semester" | "year";
 type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
 
 export class Sponsor {
