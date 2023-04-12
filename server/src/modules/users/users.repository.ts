@@ -1,4 +1,4 @@
-import { Id, UserStatus } from "api-types";
+import { Id, UserStatus } from "@refugies-info/api-types";
 import { FilterQuery, Types } from "mongoose";
 import { LangueId, ObjectId, Role, Structure, StructureId, User, UserModel } from "../../typegoose";
 import { Favorite, UserId } from "../../typegoose/User";

@@ -7,8 +7,8 @@ import {
   GetStructureStatisticsResponse,
   PatchStructureRequest,
   PatchStructureRolesRequest,
-  PostStructureRequest
-} from "api-types";
+  PostStructureRequest,
+} from "@refugies-info/api-types";
 import { Request as ExRequest } from "express";
 
 import { getAllStructures } from "../workflows/structure/getAllStructures";
@@ -24,7 +24,7 @@ import { IRequest, Response, ResponseWithData } from "../types/interface";
 export class StructureController extends Controller {
   @Security({
     jwt: ["admin"],
-    fromSite: []
+    fromSite: [],
   })
   @Post("/")
   public async createStructure(@Body() body: PostStructureRequest, @Request() request: IRequest): Response {
@@ -45,7 +45,9 @@ export class StructureController extends Controller {
   }
 
   @Get("/statistics")
-  public async getStructuresStatistics(@Queries() query: GetStructureStatisticsRequest): ResponseWithData<GetStructureStatisticsResponse> {
+  public async getStructuresStatistics(
+    @Queries() query: GetStructureStatisticsRequest,
+  ): ResponseWithData<GetStructureStatisticsResponse> {
     return getStatistics(query);
   }
 
@@ -63,7 +65,7 @@ export class StructureController extends Controller {
 
   @Security({
     jwt: [],
-    fromSite: []
+    fromSite: [],
   })
   @Patch("{id}")
   public async updateStructure(
@@ -76,7 +78,7 @@ export class StructureController extends Controller {
 
   @Security({
     jwt: [],
-    fromSite: []
+    fromSite: [],
   })
   @Patch("{id}/roles")
   public async updateRoles(

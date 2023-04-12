@@ -2,10 +2,11 @@ import logger from "../../../logger";
 import { getNbStructures, getStructuresFromDB } from "../../../modules/structure/structure.repository";
 import { ResponseWithData } from "../../../types/interface";
 import { findAllRespo } from "../../../modules/structure/structure.service";
-import { GetStructureStatisticsRequest, GetStructureStatisticsResponse } from "api-types";
+import { GetStructureStatisticsRequest, GetStructureStatisticsResponse } from "@refugies-info/api-types";
 
-
-export const getStatistics = async (query: GetStructureStatisticsRequest): ResponseWithData<GetStructureStatisticsResponse> => {
+export const getStatistics = async (
+  query: GetStructureStatisticsRequest,
+): ResponseWithData<GetStructureStatisticsResponse> => {
   logger.info("[getStatistics] structure");
 
   const noFacet = !query.facets?.length;
@@ -32,8 +33,7 @@ export const getStatistics = async (query: GetStructureStatisticsRequest): Respo
   }
 
   return {
-    text: "success", data
+    text: "success",
+    data,
   };
 };
-
-

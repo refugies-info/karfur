@@ -7,7 +7,7 @@ import { getUserById } from "../../../modules/users/users.repository";
 import { Dispositif, Structure, User } from "../../../typegoose";
 import { NotFoundError } from "../../../errors";
 import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
-import { GetStructureResponse, Languages, StructureMember } from "api-types";
+import { GetStructureResponse, Languages, StructureMember } from "@refugies-info/api-types";
 
 const getMembers = async (structure: Structure) => {
   const structureMembres = structure.membres || [];
@@ -46,9 +46,9 @@ export const getStructureById = async (
   const isAdmin = !!(user ? user.isAdmin() : false);
   const isMember = !!(user?._id
     ? (structure.membres || []).find((m) => {
-      if (!m.userId) return false;
-      return m.userId.toString() === user._id.toString();
-    })
+        if (!m.userId) return false;
+        return m.userId.toString() === user._id.toString();
+      })
     : false);
   const shouldIncludeMembers = isAdmin || isMember;
   const structureMembers = shouldIncludeMembers ? await getMembers(structure) : [];

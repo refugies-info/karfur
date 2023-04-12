@@ -1,4 +1,4 @@
-import { DispositifStatus } from "api-types";
+import { DispositifStatus } from "@refugies-info/api-types";
 import { GetNbContentsForCountyResponse } from "api-types/modules/dispositif";
 import { getCountDispositifs } from "../../../modules/dispositif/dispositif.repository";
 

@@ -4,7 +4,7 @@ import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.rep
 import { Dispositif, User } from "../../../typegoose";
 import { ResponseWithData } from "../../../types/interface";
 import { Favorite } from "../../../typegoose/User";
-import { GetUserFavoritesResponse, GetUserFavoritesRequest, Languages } from "api-types";
+import { GetUserFavoritesResponse, GetUserFavoritesRequest, Languages } from "@refugies-info/api-types";
 
 export const getUserFavoritesInLocale = async (
   user: User,

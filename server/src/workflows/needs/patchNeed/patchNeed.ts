@@ -2,7 +2,7 @@ import { Response } from "../../../types/interface";
 import { getNeedFromDB, saveNeedInDB } from "../../../modules/needs/needs.repository";
 import logger from "../../../logger";
 import { Need } from "../../../typegoose";
-import { NeedRequest } from "api-types";
+import { NeedRequest } from "@refugies-info/api-types";
 
 export const patchNeed = async (id: string, body: Partial<NeedRequest>): Response => {
   logger.info("[saveNeed] received", id);
@@ -19,5 +19,5 @@ export const patchNeed = async (id: string, body: Partial<NeedRequest>): Respons
 
   await saveNeedInDB(id, need);
 
-  return { text: "success" }
-}
+  return { text: "success" };
+};

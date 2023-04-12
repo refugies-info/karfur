@@ -5,7 +5,7 @@ import { asyncForEach } from "../../../libs/asyncForEach";
 import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
 import { Response } from "../../../types/interface";
 import { Role } from "../../../typegoose";
-import { Id, ProgressionIndicator } from "api-types";
+import { Id, ProgressionIndicator } from "@refugies-info/api-types";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(process.env.AIRTABLE_BASE_USERS);

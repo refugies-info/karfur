@@ -1,4 +1,4 @@
-import { DispositifStatusRequest, DispositifStatus } from "api-types";
+import { DispositifStatusRequest, DispositifStatus } from "@refugies-info/api-types";
 import logger from "../../../logger";
 import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { deleteDispositifInDb, publishDispositif } from "../../../modules/dispositif/dispositif.service";

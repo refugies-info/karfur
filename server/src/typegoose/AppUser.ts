@@ -1,5 +1,5 @@
 import { modelOptions, prop } from "@typegoose/typegoose";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { Schema } from "mongoose";
 import { Base } from "./Base";
 

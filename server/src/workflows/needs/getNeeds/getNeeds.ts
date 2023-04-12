@@ -1,7 +1,7 @@
 import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getNeedsFromDB } from "../../../modules/needs/needs.repository";
-import { GetNeedResponse } from "api-types";
+import { GetNeedResponse } from "@refugies-info/api-types";
 
 // TODO: stop populating themes to have a lighter response?
 export const getNeeds = async (): ResponseWithData<GetNeedResponse[]> => {
@@ -10,6 +10,6 @@ export const getNeeds = async (): ResponseWithData<GetNeedResponse[]> => {
 
   return {
     text: "success",
-    data: needs
+    data: needs,
   };
 };

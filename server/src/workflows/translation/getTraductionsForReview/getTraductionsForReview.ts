@@ -1,4 +1,4 @@
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { filter, sortBy } from "lodash/fp";
 import { getTraductionsByLanguageAndDispositif } from "../../../modules/traductions/traductions.repository";
 import { DispositifId, User } from "../../../typegoose";

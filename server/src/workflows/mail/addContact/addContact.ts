@@ -2,7 +2,7 @@ import * as SibApiV3Sdk from "@sendinblue/client";
 import logger from "../../../logger";
 import { Response } from "../../../types/interface";
 import { InvalidRequestError } from "../../../errors";
-import { AddContactRequest } from "api-types";
+import { AddContactRequest } from "@refugies-info/api-types";
 
 let apiInstance = new SibApiV3Sdk.ContactsApi();
 apiInstance.setApiKey(SibApiV3Sdk.ContactsApiApiKeys.apiKey, process.env.SENDINBLUE_API_KEY);
@@ -10,7 +10,7 @@ apiInstance.setApiKey(SibApiV3Sdk.ContactsApiApiKeys.apiKey, process.env.SENDINB
 export const addContact = async (body: AddContactRequest): Response => {
   if (process.env.NODE_ENV === "dev") {
     logger.error("[setMail] mail not saved in DEV");
-    return { text: "success" }
+    return { text: "success" };
   }
 
   const createContactRequest = new SibApiV3Sdk.CreateContact();
@@ -26,9 +26,8 @@ export const addContact = async (body: AddContactRequest): Response => {
       if (error.response.statusCode === 400 && error.response.body?.message === "Contact already exist")
         throw new InvalidRequestError("This email is already in the list.", "CONTACT_ALREADY_EXIST");
       throw new Error("Error while creating contact");
-    }
+    },
   );
 
-  return { text: "success" }
+  return { text: "success" };
 };
-

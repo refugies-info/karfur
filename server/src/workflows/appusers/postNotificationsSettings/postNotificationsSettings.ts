@@ -2,10 +2,12 @@ import { ResponseWithData } from "../../../types/interface";
 import { NotFoundError } from "../../../errors";
 import logger from "../../../logger";
 import { updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
-import { NotificationSettingsRequest, PostNotificationsSettingsResponse } from "api-types";
+import { NotificationSettingsRequest, PostNotificationsSettingsResponse } from "@refugies-info/api-types";
 
-
-export const postNotificationsSettings = async (appUid: string, body: NotificationSettingsRequest): ResponseWithData<PostNotificationsSettingsResponse> => {
+export const postNotificationsSettings = async (
+  appUid: string,
+  body: NotificationSettingsRequest,
+): ResponseWithData<PostNotificationsSettingsResponse> => {
   logger.info("[updateNotificationsSettings] received");
 
   const settings = await updateNotificationsSettings(appUid, body);
@@ -13,7 +15,6 @@ export const postNotificationsSettings = async (appUid: string, body: Notificati
 
   return {
     text: "success",
-    data: settings
-  }
+    data: settings,
+  };
 };
-

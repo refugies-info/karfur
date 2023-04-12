@@ -20,7 +20,7 @@ import {
   UpdatePasswordResponse,
   UpdateUserRequest,
   GetUserFavoritesRequest,
-} from "api-types";
+} from "@refugies-info/api-types";
 
 import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
 import { getAllUsers } from "../workflows/users/getAllUsers";

@@ -1,5 +1,5 @@
 import { Controller, Get, Route } from "tsoa";
-import { UpdateIndexResponse } from "api-types";
+import { UpdateIndexResponse } from "@refugies-info/api-types";
 
 import { updateIndex } from "../workflows/search/updateIndex";
 import { ResponseWithData } from "../types/interface";

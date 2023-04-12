@@ -1,4 +1,4 @@
-import { SaveTranslationRequest } from "api-types";
+import { SaveTranslationRequest } from "@refugies-info/api-types";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { IndicatorModel, ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { TraductionsType } from "../../../typegoose/Traductions";

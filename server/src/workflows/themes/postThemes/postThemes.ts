@@ -5,7 +5,7 @@ import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repos
 import { getAllAppUsers, updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
 import map from "lodash/fp/map";
 import { AppUser, Theme } from "../../../typegoose";
-import { PostThemeResponse, ThemeRequest } from "api-types";
+import { PostThemeResponse, ThemeRequest } from "@refugies-info/api-types";
 
 export const hasOneNotificationEnabled = (user: AppUser) =>
   user.notificationsSettings.demarches ||
@@ -16,12 +16,11 @@ export const hasOneNotificationEnabled = (user: AppUser) =>
 export const addThemeInNotificationSettingsForUser = (theme: Theme) => (user: AppUser) =>
   updateNotificationsSettings(user.uid, {
     ...user.notificationsSettings,
-    themes: { ...user.notificationsSettings.themes, [`${theme._id}`]: hasOneNotificationEnabled(user) }
+    themes: { ...user.notificationsSettings.themes, [`${theme._id}`]: hasOneNotificationEnabled(user) },
   });
 
 const updateUsersNotificationsSettings = async (theme: Theme) =>
   getAllAppUsers().then(map(addThemeInNotificationSettingsForUser(theme)));
-
 
 export const postThemes = async (theme: ThemeRequest): ResponseWithData<PostThemeResponse> => {
   logger.info("[postThemes] received", theme);
@@ -33,7 +32,6 @@ export const postThemes = async (theme: ThemeRequest): ResponseWithData<PostThem
 
   return {
     text: "success",
-    data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) }
-  }
+    data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) },
+  };
 };
-

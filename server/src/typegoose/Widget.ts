@@ -1,5 +1,5 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 import { Base } from "./Base";
 import { Theme } from "./Theme";
 import { User } from "./User";

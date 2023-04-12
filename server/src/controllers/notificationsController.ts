@@ -1,5 +1,10 @@
 import { Controller, Get, Post, Body, Route, Security, Header, Request } from "tsoa";
-import { AppUserUid, GetNotificationResponse, MarkAsSeenRequest, SendNotificationsRequest } from "api-types";
+import {
+  AppUserUid,
+  GetNotificationResponse,
+  MarkAsSeenRequest,
+  SendNotificationsRequest,
+} from "@refugies-info/api-types";
 import * as express from "express";
 
 import { getNotifications } from "../workflows/notifications/getNotifications";

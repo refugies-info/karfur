@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 import { User } from "../../../typegoose";
 import { addLog, optionsType } from "../../../modules/logs/logs.service";
-import { Id, UpdateUserRequest } from "api-types";
+import { Id, UpdateUserRequest } from "@refugies-info/api-types";
 
 export const log = async (id: Id, user: UpdateUserRequest["user"], userFromDb: User, authorId: Types.ObjectId) => {
   const logOptions: optionsType = {
@@ -9,8 +9,8 @@ export const log = async (id: Id, user: UpdateUserRequest["user"], userFromDb: U
     link: {
       id: authorId,
       model_link: "User",
-      next: "ModalUser"
-    }
+      next: "ModalUser",
+    },
   };
 
   if (userFromDb.phone && user.phone !== userFromDb.phone) {

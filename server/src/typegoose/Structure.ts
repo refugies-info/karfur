@@ -1,5 +1,5 @@
 import { isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { StructureStatus } from "api-types";
+import { StructureStatus } from "@refugies-info/api-types";
 import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";

@@ -1,4 +1,4 @@
-import { UpdatePositionsNeedResponse, UpdatePositionsRequest } from "api-types";
+import { UpdatePositionsNeedResponse, UpdatePositionsRequest } from "@refugies-info/api-types";
 import logger from "../../../logger";
 import { updatePositions as updatePositionsInDb } from "../../../modules/needs/needs.repository";
 import { ResponseWithData } from "../../../types/interface";

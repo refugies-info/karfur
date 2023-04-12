@@ -5,7 +5,7 @@ import { log } from "./log";
 import { addStructureForUsers, removeStructureOfAllUsers } from "../../../modules/users/users.service";
 import { User } from "../../../typegoose";
 import { Response } from "../../../types/interface";
-import { PatchStructureRequest } from "api-types";
+import { PatchStructureRequest } from "@refugies-info/api-types";
 
 export const updateStructure = async (id: string, body: PatchStructureRequest, user: User): Response => {
   logger.info("[updateStructure] try to modify structure with id", { id });
@@ -16,7 +16,7 @@ export const updateStructure = async (id: string, body: PatchStructureRequest, u
     picture: 1,
     nom: 1,
     status: 1,
-    adminComments: 1
+    adminComments: 1,
   });
   const updatedStructure = await updateStructureInDB(id, body);
 
@@ -38,12 +38,12 @@ export const updateStructure = async (id: string, body: PatchStructureRequest, u
      */
     await addStructureForUsers(
       updatedStructure.membres.map((membre) => membre.userId.toString()),
-      id
+      id,
     );
   }
 
   await log(updatedStructure, oldStructure, user._id);
   logger.info("[modifyStructure] successfully modified structure with id", { id });
 
-  return { text: "success" }
+  return { text: "success" };
 };

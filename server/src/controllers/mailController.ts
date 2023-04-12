@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Route, Security, Request } from "tsoa";
-import { AddContactRequest, ImprovementsRequest, SubscriptionRequest } from "api-types";
+import { AddContactRequest, ImprovementsRequest, SubscriptionRequest } from "@refugies-info/api-types";
 import * as express from "express";
 
 import { sendDraftReminderMail } from "../workflows/mail/sendDraftReminderMail";
@@ -12,7 +12,7 @@ import { Response } from "../types/interface";
 @Route("mail")
 export class MailController extends Controller {
   @Security({
-    fromCron: []
+    fromCron: [],
   })
   @Post("sendDraftReminderMail")
   public draftReminderMail(): Response {

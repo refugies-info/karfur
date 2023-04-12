@@ -9,7 +9,7 @@ import { log } from "./log";
 import { User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
 import { Response } from "../../../types/interface";
-import { UpdateUserRequest } from "api-types";
+import { UpdateUserRequest } from "@refugies-info/api-types";
 
 export const updateUser = async (id: string, body: UpdateUserRequest, userReq: User): Response => {
   const { user, action } = body;
@@ -31,7 +31,7 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
     const actualRoles = userFromDB.roles;
 
     let newRoles = actualRoles.filter(
-      (role) => role && role.toString() !== adminRole._id.toString() && role.toString() !== expertRole._id.toString()
+      (role) => role && role.toString() !== adminRole._id.toString() && role.toString() !== expertRole._id.toString(),
     );
 
     // add role admin
@@ -47,7 +47,7 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
       email: user.email,
       phone: user.phone,
       roles: newRoles,
-      adminComments: user.adminComments
+      adminComments: user.adminComments,
     });
     user.username = userFromDB.username; // populate username for log
 
@@ -67,7 +67,7 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
         const traducteurRole = await getRoleByName("Trad");
         const actualRoles = userFromDB.roles;
         const hasAlreadyRoleTrad = !!actualRoles.find(
-          (role) => role && role.toString() === traducteurRole._id.toString()
+          (role) => role && role.toString() === traducteurRole._id.toString(),
         );
         if (hasAlreadyRoleTrad) {
           await updateUserInDB(id, user);
@@ -101,5 +101,5 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
   }
   await log(id, user, userFromDB, userReq._id);
 
-  return { text: "success" }
+  return { text: "success" };
 };

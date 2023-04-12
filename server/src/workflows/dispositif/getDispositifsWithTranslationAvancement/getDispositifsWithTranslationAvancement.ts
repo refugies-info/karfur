@@ -1,4 +1,8 @@
-import { GetDispositifsWithTranslationAvancementResponse, Languages, TraductionsStatus } from "api-types";
+import {
+  GetDispositifsWithTranslationAvancementResponse,
+  Languages,
+  TraductionsStatus,
+} from "@refugies-info/api-types";
 import { isEmpty, some } from "lodash";
 import { TraductionsType } from "../../../typegoose/Traductions";
 import logger from "../../../logger";

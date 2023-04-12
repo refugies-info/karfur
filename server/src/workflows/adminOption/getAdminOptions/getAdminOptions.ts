@@ -3,7 +3,7 @@ import { ResponseWithData } from "../../../types/interface";
 import { getAdminOption } from "../../../modules/adminOptions/adminOptions.repository";
 import { NotFoundError } from "../../../errors";
 import { AdminOptions } from "../../../typegoose";
-import { GetAdminOptionResponse } from "api-types";
+import { GetAdminOptionResponse } from "@refugies-info/api-types";
 
 export const getAdminOptions = async (key: string): ResponseWithData<GetAdminOptionResponse> => {
   logger.info("[getAdminOptions] received");
@@ -13,6 +13,6 @@ export const getAdminOptions = async (key: string): ResponseWithData<GetAdminOpt
 
   return {
     text: "success",
-    data: adminOption.toObject<AdminOptions>()
-  }
-}
+    data: adminOption.toObject<AdminOptions>(),
+  };
+};

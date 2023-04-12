@@ -5,7 +5,16 @@ import { addOrUpdateDispositifInContenusAirtable } from "../../controllers/misce
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
 import { Dispositif, DispositifId, ObjectId, Structure, User, UserId } from "../../typegoose";
-import { ContentType, CreateDispositifRequest, DemarcheContent, DispositifContent, DispositifStatus, InfoSections, StructureStatus, UpdateDispositifRequest } from "api-types";
+import {
+  ContentType,
+  CreateDispositifRequest,
+  DemarcheContent,
+  DispositifContent,
+  DispositifStatus,
+  InfoSections,
+  StructureStatus,
+  UpdateDispositifRequest,
+} from "@refugies-info/api-types";
 import { createStructureInDB } from "../structure/structure.repository";
 import { checkUserIsAuthorizedToDeleteDispositif } from "../../libs/checkAuthorizations";
 import { getDispositifDepartments } from "../../libs/getDispositifDepartments";
@@ -65,7 +74,7 @@ export const deleteDispositifInDb = async (id: string, user: User) => {
     typeContenu: 1,
     contenu: 1,
     translations: 1,
-    metadatas: 1
+    metadatas: 1,
   };
 
   const dispositif = await getDispositifByIdWithMainSponsor(id, neededFields);
@@ -79,18 +88,23 @@ export const deleteDispositifInDb = async (id: string, user: User) => {
     dispositif.typeContenu,
     null,
     getDispositifDepartments(dispositif),
-    true
+    true,
   );
 
   await updateDispositifInDB(id, { status: DispositifStatus.DELETED });
-}
+};
 
-export const buildNewDispositif = async (formContent: UpdateDispositifRequest | CreateDispositifRequest, userId: string): Promise<Partial<Dispositif>> => {
+export const buildNewDispositif = async (
+  formContent: UpdateDispositifRequest | CreateDispositifRequest,
+  userId: string,
+): Promise<Partial<Dispositif>> => {
   const editedDispositif: Partial<Dispositif> = {};
   if (formContent.mainSponsor) {
-    if (typeof formContent.mainSponsor === "string") { // existing structure
+    if (typeof formContent.mainSponsor === "string") {
+      // existing structure
       editedDispositif.mainSponsor = new ObjectId(formContent.mainSponsor);
-    } else { // create structure
+    } else {
+      // create structure
       const structureToSave: Partial<Structure> = {
         status: StructureStatus.WAITING,
         picture: formContent.mainSponsor.logo,
@@ -106,23 +120,24 @@ export const buildNewDispositif = async (formContent: UpdateDispositifRequest | 
     // TODO save contact infos somewhere or in new structure. See createStructure.ts
   }
   if (formContent.theme) editedDispositif.theme = new ObjectId(formContent.theme);
-  if (formContent.secondaryThemes) editedDispositif.secondaryThemes = formContent.secondaryThemes.map((t) => new ObjectId(t));
+  if (formContent.secondaryThemes)
+    editedDispositif.secondaryThemes = formContent.secondaryThemes.map((t) => new ObjectId(t));
   if (formContent.metadatas) editedDispositif.metadatas = formContent.metadatas;
   if (formContent.map) editedDispositif.map = formContent.map;
   //@ts-ignore
   if (formContent.sponsors) editedDispositif.sponsors = formContent.sponsors; // FIXME picture type
 
   return editedDispositif;
-}
+};
 
 const isAccordionOk = (content: InfoSections | undefined) => {
   if (!content) return false;
-  return content && Object.keys(content).length >= 3 && !Object.values(content).find(c => !c.title || !c.text)
-}
+  return content && Object.keys(content).length >= 3 && !Object.values(content).find((c) => !c.title || !c.text);
+};
 
 const isMetadataOk = (content: any) => {
-  return content || content === null // ok if filled or null
-}
+  return content || content === null; // ok if filled or null
+};
 
 export const isDispositifComplete = (dispositif: Dispositif) => {
   const content = dispositif.translations.fr.content;
@@ -130,8 +145,12 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
     !!content.titreInformatif,
     !!content.titreMarque,
     !!content.what,
-    dispositif.typeContenu === ContentType.DISPOSITIF ? isAccordionOk((content as DispositifContent).why) : isAccordionOk((content as DemarcheContent).how),
-    dispositif.typeContenu === ContentType.DISPOSITIF ? isAccordionOk((content as DispositifContent).how) : isAccordionOk((content as DemarcheContent).next),
+    dispositif.typeContenu === ContentType.DISPOSITIF
+      ? isAccordionOk((content as DispositifContent).why)
+      : isAccordionOk((content as DemarcheContent).how),
+    dispositif.typeContenu === ContentType.DISPOSITIF
+      ? isAccordionOk((content as DispositifContent).how)
+      : isAccordionOk((content as DemarcheContent).next),
     !!content.abstract,
     !!dispositif.theme,
     dispositif.mainSponsor,
@@ -144,7 +163,7 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
     isMetadataOk(dispositif.metadatas?.frequency),
     isMetadataOk(dispositif.metadatas?.timeSlots),
     isMetadataOk(dispositif.metadatas?.conditions),
-    isMetadataOk(dispositif.metadatas?.location)
+    isMetadataOk(dispositif.metadatas?.location),
   ];
-  return conditions.filter(c => c).length;
-}
+  return conditions.filter((c) => c).length;
+};
