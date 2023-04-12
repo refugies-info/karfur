@@ -50,7 +50,7 @@
     "uuid": "^9.0.0",
     "winston": "^3.2.1",
     "xmlbuilder": "^12.0.0",
-    "@refugies-info/api-types": "^1.0.2"
+    "@refugies-info/api-types": "^1.0.3"
   },
   "devDependencies": {
     "@types/compression": "^1.7.2",
