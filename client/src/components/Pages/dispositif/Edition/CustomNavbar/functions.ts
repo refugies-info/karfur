@@ -58,6 +58,6 @@ export const getMissingSteps = (dispositif: DeepPartialSkipArrayKey<CreateDispos
   ];
 }
 
-export const calculateProgress = (dispositif: Partial<CreateDispositifRequest>) => {
+export const calculateProgress = (dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>) => {
   return getMissingSteps(dispositif).filter(c => c === null).length;
 }

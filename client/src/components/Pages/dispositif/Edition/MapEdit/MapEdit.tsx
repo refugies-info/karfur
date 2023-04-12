@@ -151,7 +151,6 @@ const MapEdit = () => {
     <div className={styles.container}>
       <Header onSelectPlace={onSelectPlace} onDelete={() => setShowDeleteModal(true)} />
 
-      {/* @ts-ignore fix useWatch partial type */}
       {showSidebar && <Sidebar markers={markers} onSelectMarker={selectMarker} selectedMarkerId={selectedMarker} />}
       {poiForm && (
         <PoiForm

@@ -2,6 +2,7 @@ import { getDispositifSectionTitle, titleKeyType } from "lib/getDispositifSectio
 import React, { useContext, useMemo } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { CreateDispositifRequest } from "api-types";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
 import PageContext from "utils/pageContext";
@@ -21,7 +22,7 @@ interface Props {
   titleKey: titleKeyType;
 }
 const SectionTitleEdit = (props: Props) => {
-  const themeId = useWatch({ name: "theme" });
+  const themeId: CreateDispositifRequest["theme"] = useWatch({ name: "theme" });
   const theme = useSelector(themeSelector(themeId));
   const color = useMemo(() => theme?.colors.color100 || "#000", [theme]);
   return <Title titleKey={props.titleKey} color={color} />;

@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { DispositifStatus } from "api-types";
+import { CreateDispositifRequest, DispositifStatus } from "api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
@@ -26,7 +26,7 @@ const CustomNavbar = () => {
   const { isSaving } = useAutosave();
   const router = useRouter();
   const total = 14;
-  const values = useWatch();
+  const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);
   const [progress, setProgress] = useState<number>(calculateProgress(values));
 
