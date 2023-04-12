@@ -4,6 +4,7 @@
 @import "src/scss/mixins/rtl";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/icons";
 
 $iconSize: u(4);
 $btnSize: u(8);
@@ -12,6 +13,10 @@ $btnSize: u(8);
   position: absolute;
   top: 0;
   @include r-ltr(-54px);
+
+  @media print {
+    display: none;
+  }
 
   &.open {
     background: $lightBackgroundElevationAlt;
@@ -31,21 +36,7 @@ $btnSize: u(8);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    span {
-      i {
-        height: $iconSize !important;
-        line-height: $iconSize !important;
-        svg {
-          width: $iconSize;
-          height: $iconSize;
-        }
-      }
-    }
-    :global(.ri-lg) {
-      font-size: $iconSize !important;
-      line-height: $iconSize !important;
-    }
+    @include iconSize($iconSize);
 
     &:global(.fr-btn--tertiary) {
       box-shadow: inset 0 0 0 1px #e5e5e5;

@@ -1,25 +1,32 @@
-import Accordions from "components/Pages/dispositif/Accordions";
-import ActionButtons from "components/Pages/dispositif/ActionButtons";
-import Breadcrumb from "components/Pages/dispositif/Breadcrumb";
-import Contributors from "components/Pages/dispositif/Contributors";
-import Header from "components/Pages/dispositif/Header";
-import Feedback from "components/Pages/dispositif/Feedback";
-import LangueMenu from "components/Pages/dispositif/LangueMenu";
-import LangueSelectList from "components/Pages/dispositif/LangueSelectList";
-import LinkedThemes from "components/Pages/dispositif/LinkedThemes";
-import Metadatas from "components/Pages/dispositif/Metadatas";
-import RichText from "components/Pages/dispositif/RichText";
-import Section from "components/Pages/dispositif/Section";
-import SectionButtons from "components/Pages/dispositif/SectionButtons";
-import ShareButtons from "components/Pages/dispositif/ShareButtons";
-import SMSForm from "components/Pages/dispositif/SMSForm";
-import Sponsors from "components/Pages/dispositif/Sponsors";
-import Summary from "components/Pages/dispositif/Summary";
-import TextInput from "components/Pages/dispositif/TextInput";
+import Accordions from "./Accordions";
+import ActionButtons from "./ActionButtons";
+import Banner from "./Banner";
+import BaseModal from "./BaseModal";
+import Breadcrumb from "./Breadcrumb";
+import Contributors from "./Contributors";
+import Feedback from "./Feedback";
+import Header from "./Header";
+import LangueMenu from "./LangueMenu";
+import LangueSelectList from "./LangueSelectList";
+import LinkedThemes from "./LinkedThemes";
+import Map from "./Map";
+import Metadatas from "./Metadatas";
+import RichText from "./RichText";
+import Section from "./Section";
+import SectionButtons from "./SectionButtons";
+import SectionTitle from "./SectionTitle";
+import ShareButtons from "./ShareButtons";
+import SMSForm from "./SMSForm";
+import Sponsors from "./Sponsors";
+import Summary from "./Summary";
+import Text from "./Text";
+import Title from "./Title";
 
 export {
   Accordions,
   ActionButtons,
+  Banner,
+  BaseModal,
   Breadcrumb,
   Contributors,
   Header,
@@ -27,13 +34,16 @@ export {
   LangueMenu,
   LangueSelectList,
   LinkedThemes,
+  Map,
   Metadatas,
   RichText,
   Section,
   SectionButtons,
+  SectionTitle,
   ShareButtons,
   SMSForm,
   Sponsors,
   Summary,
-  TextInput
+  Text,
+  Title
 }

@@ -4,11 +4,11 @@ import { Languages } from "../generics";
  * @url POST /appuser
  */
 export interface AppUserRequest {
-  city?: string;
-  department?: string;
+  city?: string | null;
+  department?: string | null;
   selectedLanguage?: Languages;
-  age?: string;
-  frenchLevel?: string;
+  age?: string | null;
+  frenchLevel?: string | null;
   expoPushToken?: string;
 }
 
@@ -16,9 +16,9 @@ export interface AppUserRequest {
  * @url POST /appuser/notification_settings
  */
 export interface NotificationSettingsRequest {
-  global: boolean;
-  local: boolean;
-  demarches: boolean;
+  global?: boolean;
+  local?: boolean;
+  demarches?: boolean;
   themes?: {
     [key: string]: boolean;
   };

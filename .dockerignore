@@ -1,0 +1,6 @@
+**/db-backup*
+documentation/
+**/node_modules
+**/dist
+client/.next
+client/.jest

@@ -1,27 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import { ContentType, GetDispositifResponse } from "api-types";
-import {
-  getAge,
-  getAgeLink,
-  getFrenchLevelLink,
-  getLocationLink,
-  getPrice,
-  getPublic,
-  getSponsorLink,
-} from "./functions";
-import Card from "./Card";
 import FRLink from "components/UI/FRLink";
-import AgeIcon from "assets/dispositif/metadatas/Age";
-import DiplomaIcon from "assets/dispositif/metadatas/Diploma";
-import DurationIcon from "assets/dispositif/metadatas/Durations";
-import FreeIcon from "assets/dispositif/metadatas/Free";
-import FrenchLevelIcon from "assets/dispositif/metadatas/FrenchLevel";
-import ImportantIcon from "assets/dispositif/metadatas/Important";
-import LocationIcon from "assets/dispositif/metadatas/Location";
-import PriceIcon from "assets/dispositif/metadatas/Price";
-import PublicIcon from "assets/dispositif/metadatas/Public";
-import StatusIcon from "assets/dispositif/metadatas/Status";
+import { getSponsorLink } from "./functions";
+import Card from "./BaseCard";
+import CardPrice from "./CardPrice";
+import CardAvailability from "./CardAvailability";
+import CardPublic from "./CardPublic";
+import CardConditions from "./CardConditions";
+import CardLocation from "./CardLocation";
+import defaultStructureImage from "assets/recherche/default-structure-image.svg";
 import styles from "./Metadatas.module.scss";
 
 interface Props {
@@ -32,12 +20,15 @@ interface Props {
   typeContenu: ContentType;
 }
 
+/**
+ * Shows the metadatas of a dispositif, with Cards, in VIEW mode
+ */
 const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: Props) => {
   if (!metadatas) return <></>;
   return (
     <div id="anchor-who">
       <p className={styles.title} style={{ color }}>
-        C'est pour qui ?
+        Informations importantes
       </p>
       <Card
         title={
@@ -55,14 +46,10 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
         items={[
           {
             label: typeContenu === ContentType.DISPOSITIF ? "Proposé par" : undefined,
-            content: (
-              <FRLink target="_blank" href={getSponsorLink(mainSponsor?._id.toString())}>
-                {mainSponsor?.nom}
-              </FRLink>
-            ),
+            content: <FRLink href={getSponsorLink(mainSponsor?._id.toString())}>{mainSponsor?.nom}</FRLink>,
             icon: (
               <Image
-                src={mainSponsor?.picture.secure_url || ""}
+                src={mainSponsor?.picture?.secure_url || defaultStructureImage}
                 width={32}
                 height={32}
                 style={{ objectFit: "contain" }}
@@ -74,69 +61,27 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
         ]}
         color={color}
       />
-      <Card
-        title="Public visé"
-        items={[
-          { label: "Statut", content: getPublic(metadatas.public), icon: <StatusIcon color={color} /> },
-          {
-            label: "Français demandé",
-            content:
-              !metadatas.frenchLevel || metadatas.frenchLevel.length === 0 ? null : (
-                <FRLink target="_blank" href={getFrenchLevelLink(metadatas.frenchLevel)}>
-                  {metadatas.frenchLevel?.join(", ")}
-                </FRLink>
-              ),
-            icon: <FrenchLevelIcon color={color} />,
-          },
-          {
-            label: "Âge demandé",
-            content: !metadatas.age ? null : (
-              <FRLink target="_blank" href={getAgeLink(metadatas.age)}>
-                {getAge(metadatas.age)}
-              </FRLink>
-            ),
-            icon: <AgeIcon color={color} />,
-          },
-        ]}
-        color={color}
-      />
-      <Card
-        title="Prix"
-        items={[
-          {
-            content: getPrice(metadatas.price),
-            icon: metadatas.price?.value === 0 ? <FreeIcon color={color} /> : <PriceIcon color={color} />,
-          },
-        ]}
-        color={color}
-      />
-      <Card
-        title="Disponibilité demandée"
-        items={[{ label: "Durée d'engagement", content: metadatas.duration, icon: <DurationIcon color={color} /> }]}
-        color={color}
-      />
-      <Card
-        title="Zone d'action"
-        items={[
-          {
-            content:
-              typeContenu === ContentType.DISPOSITIF ? (
-                <>
-                  {metadatas.location?.map((dep, i) => (
-                    <span key={i}>
-                      <FRLink target="_blank" href={getLocationLink(dep)}>
-                        {dep === "All" ? "France entière" : dep}
-                      </FRLink>
-                      <br />
-                    </span>
-                  ))}
-                </>
-              ) : null,
-            icon: <LocationIcon color={color} />,
-          },
-        ]}
-        color={color}
-      />
+
+      {(metadatas.publicStatus || metadatas.public || metadatas.frenchLevel || metadatas.age) && (
+        <CardPublic
+          dataPublicStatus={metadatas.publicStatus}
+          dataPublic={metadatas.public}
+          dataFrenchLevel={metadatas.frenchLevel}
+          dataAge={metadatas.age}
+          color={color}
+        />
+      )}
+      {metadatas.price && <CardPrice data={metadatas.price} color={color} />}
+      {(metadatas.commitment || metadatas.frequency || metadatas.timeSlots) && (
+        <CardAvailability
+          dataCommitment={metadatas.commitment}
+          dataFrequency={metadatas.frequency}
+          dataTimeSlots={metadatas.timeSlots}
+          color={color}
+        />
+      )}
+      {metadatas.conditions && <CardConditions data={metadatas.conditions} color={color} />}
+      {metadatas.location && <CardLocation data={metadatas.location} typeContenu={typeContenu} color={color} />}
     </div>
   );
 };

@@ -5,13 +5,19 @@ import {
   Id,
   InfoSection,
   InfoSections,
+  Languages,
   Metadatas,
+  Poi,
   SimpleDispositif,
   SimpleUser,
   Sponsor,
 } from "../generics";
 
-type ViewsType = "web" | "mobile" | "favorite";
+export enum ViewsType {
+  WEB = "web",
+  MOBILE = "mobile",
+  FAVORITE = "favorite",
+}
 type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
 
 /**
@@ -32,6 +38,47 @@ export interface GetDispositifsRequest {
   limit?: number;
   sort?: string;
 }
+
+/**
+ * @url GET /dispositifs/getContentsForApp
+ */
+export interface GetContentsForAppRequest {
+  locale: Languages;
+  age?: "0 à 17 ans" | "18 à 25 ans" | "26 ans et plus";
+  county?: string;
+  frenchLevel?: string;
+  strictLocation?: boolean;
+}
+
+/**
+ * @url GET /dispositifs/getContentsForApp
+ */
+export type GetContentsForAppResponse = {
+  dataFr: {
+    _id: string;
+    titreInformatif: string;
+    titreMarque: string;
+    theme: Id;
+    secondaryThemes: Id[];
+    needs: Id[];
+    nbVues: number;
+    nbVuesMobile: number;
+    typeContenu: ContentType;
+    sponsorUrl: string;
+  }[];
+  data?: {
+    _id: string;
+    titreInformatif: string;
+    titreMarque: string;
+    theme: Id;
+    secondaryThemes: Id[];
+    needs: Id[];
+    nbVues: number;
+    nbVuesMobile: number;
+    typeContenu: ContentType;
+    sponsorUrl: string;
+  }[];
+};
 
 /**
  * @url GET /dispositifs/statistics
@@ -64,6 +111,15 @@ export interface DispositifStatusRequest {
 }
 
 /**
+ * @url PATCH /dispositifs/{id}/themes-needs
+ */
+export interface DispositifThemeNeedsRequest {
+  theme?: string;
+  secondaryThemes?: string[];
+  needs?: string[];
+}
+
+/**
  * @url POST /dispositifs/{id}/views
  */
 export interface AddViewsRequest {
@@ -85,12 +141,19 @@ interface DispositifRequest {
   why?: { [key: string]: InfoSection };
   how?: { [key: string]: InfoSection };
   next?: { [key: string]: InfoSection };
-  mainSponsor?: string;
+  mainSponsor?: string | Sponsor;
+  contact?: {
+    name: string;
+    email: string;
+    phone: string;
+    comments: string;
+    isStructureContact: boolean;
+  };
   theme?: string;
   secondaryThemes?: string[];
-  // sponsors?: (Sponsor | SponsorDB)[];
+  sponsors?: Sponsor[];
   metadatas?: Metadatas;
-  // map: Poi[];
+  map?: Poi[];
 }
 
 /**
@@ -113,21 +176,24 @@ export interface ReadSuggestionDispositifRequest {
 export interface UpdateDispositifRequest extends DispositifRequest {}
 
 /**
+ * @url PATCH /dispositifs/{id}/publish
+ */
+export interface PublishDispositifRequest {
+  keepTranslations?: boolean;
+}
+
+/**
+ * @url PATCH /dispositifs/{id}/structure-receive
+ */
+export interface StructureReceiveDispositifRequest {
+  accept: boolean
+}
+
+/**
  * @url POST /dispositifs
  */
 export interface CreateDispositifRequest extends DispositifRequest {
   typeContenu: ContentType;
-}
-
-interface Poi {
-  title: string;
-  address: string;
-  city: string;
-  lat: number;
-  lng: number;
-  description?: string;
-  email?: string;
-  phone?: string;
 }
 
 /**
@@ -155,6 +221,8 @@ export type GetDispositifResponse = {
   map: Poi[];
   availableLanguages: string[];
   date: Date;
+  lastModificationDate?: Date;
+  externalLink?: string;
 };
 
 /**
@@ -201,8 +269,33 @@ export interface GetRegionStatisticsResponse {
     nbDispositifs: number;
     nbDepartments: number;
     nbDepartmentsWithDispo: number;
-  }[],
-  dispositifsWithoutGeoloc: Id[]
+  }[];
+  dispositifsWithoutGeoloc: Id[];
+}
+
+/**
+ * @url GET /dispositifs/getNbContentsForCounty
+ */
+export interface GetNbContentsForCountyRequest {
+  /**
+   * Département par lequel filter
+   */
+  county: string;
+}
+
+/**
+ * @url GET /dispositifs/getNbContentsForCounty
+ */
+export interface GetNbContentsForCountyResponse {
+  /**
+   * Nombre total de contenus
+   */
+  nbGlobalContent: number;
+
+  /**
+   * Nombre de contenus traduits
+   */
+  nbLocalizedContent: number;
 }
 
 type Author = {
@@ -242,6 +335,13 @@ export interface GetAllDispositifsResponse {
   themesSelectedByAuthor: boolean;
   webOnly: boolean;
   creatorId: SimpleUser;
+}
+
+/**
+ * @url POST /dispositifs
+ */
+export interface PostDispositifsResponse {
+  id: Id;
 }
 
 /**

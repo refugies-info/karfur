@@ -47,7 +47,7 @@ const getAgeRequis = (metadatas: Dispositif["metadatas"]) => {
 
 const getPublicVise = (metadatas: Dispositif["metadatas"]) => {
   if (!metadatas.public) return "";
-  return metadatas.public;
+  return metadatas.public.join(" / ");
 };
 
 const getNiveauFrancais = (metadatas: Dispositif["metadatas"]) => {
@@ -55,20 +55,20 @@ const getNiveauFrancais = (metadatas: Dispositif["metadatas"]) => {
   return metadatas.frenchLevel.map(f => f.toString());
 };
 
-const getDuree = (metadatas: Dispositif["metadatas"]) => {
-  if (!metadatas.duration) return "";
-  return metadatas.duration;
-};
+// const getDuree = (metadatas: Dispositif["metadatas"]) => {
+//   if (!metadatas.duration) return "";
+//   return metadatas.duration;
+// };
 
 const getPrice = (metadatas: Dispositif["metadatas"]) => {
   if (!metadatas.price) return "";
-  if (metadatas.price.value === 0) return "Gratuit";
+  if (metadatas.price.values?.[0] === 0) return "Gratuit";
   return "Payant";
 };
 
 const getZoneAction = (metadatas: Dispositif["metadatas"]) => {
   if (!metadatas.location || metadatas.location.length === 0) return "";
-  return metadatas.location.join(" / ");
+  return Array.isArray(metadatas.location) ? metadatas.location.join(" / ") : metadatas.location;
 };
 
 const exportFichesInAirtable = (fiches: { fields: Result }[]) => {
@@ -91,7 +91,7 @@ const formatDispositif = (dispositif: Dispositif, activeLanguages: Langue[]) => 
   const ageRequis = getAgeRequis(dispositif.metadatas);
   const publicVise = getPublicVise(dispositif.metadatas);
   const niveauFrancais = getNiveauFrancais(dispositif.metadatas);
-  const duree = getDuree(dispositif.metadatas);
+  const duree = ""; //getDuree(dispositif.metadatas);
   const prix = getPrice(dispositif.metadatas);
   const zoneAction = getZoneAction(dispositif.metadatas);
   const besoins = dispositif.getNeeds().map((need) => need.fr.text);

@@ -39,7 +39,7 @@ const ReadLanguageModal = (props: Props) => {
 
   const disabledOptions = languages
     .map((ln) => ln.i18nCode)
-    .filter((ln) => !dispositif.availableLanguages.includes(ln));
+    .filter((ln) => !(dispositif?.availableLanguages || []).includes(ln));
   return (
     <MobileModal title="Lire la fiche en" show={props.show} toggle={props.toggle}>
       <LangueSelectList selectedLn={selectedLn} setSelectedLn={setSelectedLn} disabledOptions={disabledOptions} />

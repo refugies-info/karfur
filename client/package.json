@@ -63,7 +63,8 @@
     "sortablejs": "^1.15.0",
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.6.16",
-    "typesafe-actions": "^5.1.0"
+    "typesafe-actions": "^5.1.0",
+    "uuid": "^9.0.0"
   },
   "scripts": {
     "dev": "next dev",
@@ -106,6 +107,7 @@
     "@types/recompose": "^0.30.7",
     "@types/sortablejs": "^1.13.0",
     "@types/styled-components": "^5.1.1",
+    "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "csvtojson": "^2.0.10",

@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Route, Security, Header, Request } from "tsoa";
-import { GetNotificationResponse, MarkAsSeenRequest, SendNotificationsRequest } from "api-types";
+import { AppUserUid, GetNotificationResponse, MarkAsSeenRequest, SendNotificationsRequest } from "api-types";
 import * as express from "express";
 
 import { getNotifications } from "../workflows/notifications/getNotifications";
@@ -7,21 +7,15 @@ import { markAsSeen } from "../workflows/notifications/markAsSeen";
 import { sendNotifications } from "../workflows/notifications/sendNotifications";
 import { Response, ResponseWithData } from "../types/interface";
 
-/**
- * TODO: test pattern
- * @pattern [0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}
- */
-export type Uid = string;
-
 @Route("notifications")
 export class NotificationController extends Controller {
   @Get("/")
-  public async get(@Header("x-app-uid") appUid: Uid): ResponseWithData<GetNotificationResponse> {
+  public async get(@Header("x-app-uid") appUid: AppUserUid): ResponseWithData<GetNotificationResponse> {
     return getNotifications(appUid);
   }
 
   @Post("/seen")
-  public async seen(@Header("x-app-uid") appUid: Uid, @Body() body: MarkAsSeenRequest): Response {
+  public async seen(@Header("x-app-uid") appUid: AppUserUid, @Body() body: MarkAsSeenRequest): Response {
     return markAsSeen(appUid, body);
   }
 

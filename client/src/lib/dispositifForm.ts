@@ -3,9 +3,10 @@ import { CreateDispositifRequest, GetDispositifResponse, Id, UpdateDispositifReq
 import { logger } from "logger";
 import API from "utils/API";
 
-export const getDefaultValue = (dispositif: GetDispositifResponse): UpdateDispositifRequest => {
+export const getDefaultValue = (dispositif: GetDispositifResponse | null): UpdateDispositifRequest => {
+  if (!dispositif) return {};
   const defaultValues: UpdateDispositifRequest = {
-    ...pick(dispositif, ["titreInformatif", "titreMarque", "abstract", "what", "why", "how", "next", "metadatas"]),
+    ...pick(dispositif, ["titreInformatif", "titreMarque", "abstract", "what", "why", "how", "next", "metadatas", "map"]),
     mainSponsor: dispositif.mainSponsor?._id.toString(),
     theme: dispositif.theme?.toString(),
     secondaryThemes: dispositif.secondaryThemes?.map((t) => t.toString())

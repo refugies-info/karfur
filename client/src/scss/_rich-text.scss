@@ -1,0 +1,40 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/variables";
+
+.rtri-link {
+  background-image: var(--underline-img), var(--underline-img) !important;
+  background-position: var(--underline-x) 100%, var(--underline-x) calc(100% - 0.0625em);
+  background-repeat: no-repeat, no-repeat;
+  background-size: var(--underline-hover-width) 0.125em, var(--underline-idle-width) 0.0625em;
+  transition: background-size 0s;
+
+  &:after {
+    --icon-size: 1rem;
+    background-color: currentColor;
+    content: var(--external-link-content);
+    display: inline-block;
+    flex: 0 0 auto;
+    height: var(--icon-size);
+    margin-left: 0.25rem;
+    mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZD0iTTEwIDZ2Mkg1djExaDExdi01aDJ2NmExIDEgMCAwMS0xIDFINGExIDEgMCAwMS0xLTFWN2ExIDEgMCAwMTEtMWg2em0xMS0zdjhoLTJWNi40MTNsLTcuNzkzIDcuNzk0LTEuNDE0LTEuNDE0TDE3LjU4NSA1SDEzVjNoOHoiLz48L3N2Zz4=);
+    mask-size: 100% 100%;
+    vertical-align: calc(0.375em - var(--icon-size) * 0.5);
+    width: var(--icon-size);
+  }
+}
+.rtri-underline {
+  text-decoration: underline;
+}
+.rtri-italic {
+  font-style: italic;
+}
+.rtri-bold {
+  font-weight: bold;
+}
+.rtri-title {
+  font-size: 2rem;
+  margin-top: u(2);
+  margin-bottom: u(1);
+}

@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
-import { GetDispositifResponse } from "api-types";
 import { logger } from "logger";
 import { cls } from "lib/classname";
 import isInBrowser from "lib/isInBrowser";
@@ -17,31 +16,37 @@ import ThumbUpFillIcon from "assets/dispositif/thumb-up-fill.svg";
 import ThumbDownIcon from "assets/dispositif/thumb-down.svg";
 import styles from "./Feedback.module.scss";
 
-interface Props {
-  mercis: GetDispositifResponse["merci"];
-}
-
-const Feedback = (props: Props) => {
+const Feedback = () => {
   const dispositif = useSelector(selectedDispositifSelector);
+  const mercis = useMemo(() => dispositif?.merci || [], [dispositif]);
   const [didThank, setDidThank] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const [nbMercis, setNbMercis] = useState(props.mercis.length);
+  const [nbMercis, setNbMercis] = useState(mercis.length);
 
   const userId = useSelector(userSelector)?.userId;
   useEffect(() => {
-    setDidThank(!!props.mercis.find((m) => m.userId === userId));
-  }, [userId, props.mercis]);
+    setDidThank(!!mercis.find((m) => m.userId === userId));
+  }, [userId, mercis]);
 
   const sendPositiveFeedback = useCallback(() => {
-    if (!dispositif || didThank) return;
-    Event("Reaction", "Merci", "from dispositif");
-    API.addDispositifMerci(dispositif._id.toString())
-      .then(() => {
-        setDidThank(true);
-        setShowToast(true);
-        setNbMercis((c) => c + 1);
-      })
-      .catch((e) => logger.error(e));
+    if (!dispositif) return;
+    if (didThank) {
+      API.deleteDispositifMerci(dispositif._id.toString())
+        .then(() => {
+          setDidThank(false);
+          setNbMercis((c) => c - 1);
+        })
+        .catch((e) => logger.error(e));
+    } else {
+      Event("Reaction", "Merci", "from dispositif");
+      API.addDispositifMerci(dispositif._id.toString())
+        .then(() => {
+          setDidThank(true);
+          setShowToast(true);
+          setNbMercis((c) => c + 1);
+        })
+        .catch((e) => logger.error(e));
+    }
   }, [didThank, dispositif]);
 
   const sendNegativeFeedback = useCallback(() => {

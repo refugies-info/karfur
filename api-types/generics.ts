@@ -11,6 +11,11 @@ export type RichText = string;
 export type TranslatedText = { [key: string]: string };
 export type Languages = "fr" | "en" | "uk" | "ti" | "ar" | "ps" | "ru" | "fa";
 
+/**
+ * @pattern [0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}
+ */
+export type AppUserUid = string;
+
 export interface Picture {
   imgId: string | null;
   public_id: string | null;
@@ -102,7 +107,7 @@ export enum DispositifStatus {
   ACTIVE = "Actif",
   DRAFT = "Brouillon",
   DELETED = "Supprimé",
-  WAITING = "En attente",
+  WAITING_STRUCTURE = "En attente",
   WAITING_ADMIN = "En attente admin",
   NO_STRUCTURE = "En attente non prioritaire",
   OK_STRUCTURE = "Accepté structure",
@@ -115,29 +120,66 @@ export interface InfoSection {
 }
 export type InfoSections = Record<string, InfoSection>;
 
-type frenchLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
-type ageType = "lessThan" | "moreThan" | "between";
-type priceDetails = "une fois" | "à chaque fois" | "par heure" | "par semaine" | "par mois" | "par an";
-type publicType = "refugee" | "all";
-type justificatifType = "diplome" | "titre sejour" | "domicile";
+export type locationType = "france" | "online" | string[];
+export type frenchLevelType = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+export type ageType = "lessThan" | "moreThan" | "between";
+export type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
+export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
+export type publicType = "family" | "women" | "youths" | "senior";
+export type conditionType =
+  | "acte naissance"
+  | /* "diplome" | */ "titre sejour" /* | "domicile" */
+  | "cir"
+  | "bank account"
+  | "pole emploi"
+  | "driver license";
+export type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
+export type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
+export type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
+export type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
+export type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+
+export interface Poi {
+  title: string;
+  address: string;
+  city: string;
+  lat: number;
+  lng: number;
+  description?: string;
+  email?: string;
+  phone?: string;
+}
 
 export interface Metadatas {
-  location?: string[];
-  frenchLevel?: frenchLevel[];
-  important?: string;
+  location?: locationType | null;
+  frenchLevel?: frenchLevelType[] | null;
+  publicStatus?: publicStatusType[] | null;
+  public?: publicType[] | null;
+  conditions?: conditionType[] | null;
+  timeSlots?: timeSlotType[] | null;
   age?: {
     type: ageType;
     ages: number[];
-  };
+  } | null;
   price?: {
-    value: number;
+    values: number[];
     details?: priceDetails | null;
-  };
+  } | null;
+  commitment?: {
+    amountDetails: commitmentDetailsType;
+    hours: number[];
+    timeUnit: timeUnitType;
+  } | null;
+  frequency?: {
+    amountDetails: frequencyDetailsType;
+    hours: number;
+    timeUnit: timeUnitType;
+    frequencyUnit: frequencyUnitType;
+  } | null;
+
+  // TODO: delete
   duration?: string;
-  public?: publicType;
-  titreSejourRequired?: boolean;
-  acteNaissanceRequired?: boolean;
-  justificatif?: justificatifType;
+  important?: string;
 }
 
 export interface SimpleDispositif {
@@ -156,6 +198,7 @@ export interface SimpleDispositif {
   lastModificationDate?: Date;
   nbMots: number;
   nbVues: number;
+  nbVuesMobile: number;
   mainSponsor?: {
     nom: string;
     picture: Picture;

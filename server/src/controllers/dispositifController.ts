@@ -1,63 +1,68 @@
 import { Controller, Get, Route, Path, Query, Security, Queries, Patch, Body, Request, Post, Put, Delete } from "tsoa";
+import express from "express";
 import {
+  AddSuggestionDispositifRequest,
   AddViewsRequest,
   AdminCommentsRequest,
   CountDispositifsRequest,
   CreateDispositifRequest,
   DispositifStatusRequest,
+  DispositifThemeNeedsRequest,
+  GetAllDispositifsResponse,
+  GetContentsForAppRequest,
+  GetContentsForAppResponse,
+  GetCountDispositifsResponse,
+  GetDispositifResponse,
   GetDispositifsRequest,
+  GetDispositifsResponse,
+  GetDispositifsWithTranslationAvancementResponse,
+  GetNbContentsForCountyRequest,
+  GetNbContentsForCountyResponse,
+  GetRegionStatisticsResponse,
   GetStatisticsRequest,
+  GetStatisticsResponse,
+  GetUserContributionsResponse,
+  Languages,
   MainSponsorRequest,
+  PostDispositifsResponse,
+  PublishDispositifRequest,
+  ReadSuggestionDispositifRequest,
+  StructureReceiveDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
-  GetDispositifsResponse,
-  GetAllDispositifsResponse,
-  GetDispositifResponse,
-  GetStatisticsResponse,
-  GetCountDispositifsResponse,
-  GetUserContributionsResponse,
-  GetDispositifsWithTranslationAvancementResponse,
-  Languages,
-  AddSuggestionDispositifRequest,
-  ReadSuggestionDispositifRequest,
-  GetRegionStatisticsResponse,
 } from "api-types";
-import express, { Request as ExRequest } from "express";
-
-import * as checkToken from "./account/checkToken";
-import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
-import { getDispositifs } from "../workflows/dispositif/getDispositifs";
-import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
-import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
-import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispositifMainSponsor";
-import { updateDispositifAdminComments } from "../workflows/dispositif/updateDispositifAdminComments";
-import { getNbDispositifsByRegion } from "../workflows/dispositif/getNbDispositifsByRegion";
-import { getUserContributions } from "../workflows/dispositif/getUserContributions";
-import { getDispositifsWithTranslationAvancement } from "../workflows/dispositif/getDispositifsWithTranslationAvancement";
-import { exportFiches } from "../workflows/dispositif/exportFiches";
-import { exportDispositifsGeolocalisation } from "../workflows/dispositif/exportDispositifsGeolocalisation";
-import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
-import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
-import { getContentById } from "../workflows/dispositif/getContentById";
-import { getStatistics } from "../workflows/dispositif/getStatistics";
+import {
+  addMerci,
+  addSuggestion,
+  createDispositif,
+  deleteDispositif,
+  deleteMerci,
+  deleteSuggestion,
+  exportDispositifsGeolocalisation,
+  exportFiches,
+  getAllDispositifs,
+  getContentById,
+  getContentsForApp,
+  getCountDispositifs,
+  getDispositifs,
+  getDispositifsWithTranslationAvancement,
+  getNbContentsForCounty,
+  getNbDispositifsByRegion,
+  getStatistics,
+  getUserContributions,
+  modifyDispositifMainSponsor,
+  patchSuggestion,
+  publishDispositif,
+  structureReceiveDispositif,
+  updateDispositif,
+  updateDispositifAdminComments,
+  updateDispositifProperties,
+  updateDispositifStatus,
+  updateDispositifTagsOrNeeds,
+  updateNbVuesOrFavoritesOnContent,
+} from "../workflows";
+import logger from "../logger";
 import { Response, ResponseWithData } from "../types/interface";
-import { getCountDispositifs } from "../workflows/dispositif/getCountDispositifs";
-import { updateDispositifProperties } from "../workflows/dispositif/updateDispositifProperties";
-import { updateDispositif } from "../workflows/dispositif/updateDispositif";
-import { createDispositif } from "../workflows/dispositif/createDispositif";
-import { addMerci } from "../workflows/dispositif/addMerci";
-import { addSuggestion } from "../workflows/dispositif/addSuggestion";
-import { patchSuggestion } from "../workflows/dispositif/patchSuggestion";
-import { deleteSuggestion } from "../workflows/dispositif/deleteSuggestion";
-
-const router = express.Router();
-
-/* TODO: use tsoa */
-router.get("/getContentsForApp", getContentsForApp);
-// @ts-ignore FIXME
-router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
-
-export { router };
 
 @Route("dispositifs")
 export class DispositifController extends Controller {
@@ -66,12 +71,23 @@ export class DispositifController extends Controller {
     return getDispositifs(query);
   }
 
+  // TODO use / ?
+  @Get("/getContentsForApp")
+  public async getContentsForApp(
+    @Queries() queries: GetContentsForAppRequest,
+  ): ResponseWithData<GetContentsForAppResponse> {
+    return getContentsForApp(queries).then((data) => ({ text: "success", data }));
+  }
+
   @Security({
     jwt: [],
     fromSite: [],
   })
   @Post("/")
-  public async createDispositif(@Body() body: CreateDispositifRequest, @Request() request: express.Request): Response {
+  public async createDispositif(
+    @Body() body: CreateDispositifRequest,
+    @Request() request: express.Request,
+  ): ResponseWithData<PostDispositifsResponse> {
     return createDispositif(body, request.userId);
   }
 
@@ -92,6 +108,16 @@ export class DispositifController extends Controller {
   @Get("/region-statistics")
   public async getRegionStatistics(): ResponseWithData<GetRegionStatisticsResponse> {
     return getNbDispositifsByRegion();
+  }
+
+  @Get("/getNbContentsForCounty")
+  public async getNbContentsForCounty(
+    @Queries() queries: GetNbContentsForCountyRequest,
+  ): ResponseWithData<GetNbContentsForCountyResponse> {
+    logger.info("[getNbContentsForCounty]", {
+      queries,
+    });
+    return getNbContentsForCounty(queries.county).then((data) => ({ text: "success", data }));
   }
 
   @Security({
@@ -142,11 +168,28 @@ export class DispositifController extends Controller {
 
   // updates
   @Security({
+    jwt: [],
+    fromSite: [],
+  })
+  @Patch("/{id}/publish")
+  public async publishDispositif(@Path() id: string, @Body() body: PublishDispositifRequest, @Request() request: express.Request): Response {
+    return publishDispositif(id, body, request.user);
+  }
+
+  @Security({
+    jwt: [],
+    fromSite: [],
+  })
+  @Patch("/{id}/structure-receive")
+  public async structureReceiveDispositif(@Path() id: string, @Body() body: StructureReceiveDispositifRequest, @Request() request: express.Request): Response {
+    return structureReceiveDispositif(id, body, request.user);
+  }
+
+  @Security({
     fromSite: [],
   })
   @Post("/{id}/views")
   public async addViewOrFavorite(@Path() id: string, @Body() types: AddViewsRequest): Response {
-    // TODO: change in app
     return updateNbVuesOrFavoritesOnContent(id, types);
   }
 
@@ -186,7 +229,7 @@ export class DispositifController extends Controller {
   }
 
   @Security({
-    jwt: [],
+    jwt: ["admin"],
     fromSite: [],
   })
   @Patch("/{id}/status")
@@ -196,6 +239,18 @@ export class DispositifController extends Controller {
     @Request() request: express.Request,
   ): Response {
     return updateDispositifStatus(id, body, request.user);
+  }
+  @Security({
+    jwt: ["admin"],
+    fromSite: [],
+  })
+  @Patch("/{id}/themes-needs")
+  public async updateThemeNeeds(
+    @Path() id: string,
+    @Body() body: DispositifThemeNeedsRequest,
+    @Request() request: express.Request,
+  ): Response {
+    return updateDispositifTagsOrNeeds(id, body, request.user);
   }
 
   // reactions
@@ -211,8 +266,20 @@ export class DispositifController extends Controller {
     jwt: ["optional"],
     fromSite: [],
   })
+  @Delete("/{id}/merci")
+  public async deleteMerci(@Path() id: string, @Request() request: express.Request): Response {
+    return deleteMerci(id, request.userId);
+  }
+  @Security({
+    jwt: ["optional"],
+    fromSite: [],
+  })
   @Put("/{id}/suggestion")
-  public async addSuggestion(@Path() id: string, @Body() body: AddSuggestionDispositifRequest, @Request() request: express.Request): Response {
+  public async addSuggestion(
+    @Path() id: string,
+    @Body() body: AddSuggestionDispositifRequest,
+    @Request() request: express.Request,
+  ): Response {
     return addSuggestion(id, body, request.userId);
   }
   @Security({
@@ -240,16 +307,25 @@ export class DispositifController extends Controller {
   public async update(
     @Path() id: string,
     @Body() body: UpdateDispositifRequest,
-    @Request() request: ExRequest,
+    @Request() request: express.Request,
   ): Response {
     return updateDispositif(id, body, request.user);
+  }
+
+  @Security({
+    jwt: [],
+    fromSite: [],
+  })
+  @Delete("/{id}")
+  public async deleteDispositif(@Path() id: string, @Request() request: express.Request): Response {
+    return deleteDispositif(id, request.user);
   }
 
   // keep in last position to make sure /xyz routes are catched before
   @Security({
     fromSite: [],
   })
-  @Get("/{id}") // TODO: moved from getContentById?contentId (app)
+  @Get("/{id}")
   public async getById(@Path() id: string, @Query() locale: Languages): ResponseWithData<GetDispositifResponse> {
     return getContentById(id, locale);
   }

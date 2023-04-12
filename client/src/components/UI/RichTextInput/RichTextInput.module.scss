@@ -4,35 +4,21 @@
 @import "src/scss/variables";
 
 .container {
-  border: 1px solid $gray40b;
+  border: 1px solid $lightBorderDefaultGrey;
   position: relative;
   background: white;
+  border-radius: u(2);
+
+  &.focus {
+    border-color: $lightTextTitleGrey;
+  }
 }
 
 .content {
-  padding: u(2);
+  padding: u(6);
   outline: none !important;
 
   p {
     margin-bottom: u(1);
   }
-}
-
-.underline {
-  text-decoration: underline;
-}
-.italic {
-  font-style: italic;
-}
-.bold {
-  font-weight: bold;
-}
-.title {
-  font-size: 2rem;
-  margin-top: u(2);
-  margin-bottom: u(1);
-}
-.link {
-  text-decoration: underline !important;
-  color: $bleuCharte !important;
 }

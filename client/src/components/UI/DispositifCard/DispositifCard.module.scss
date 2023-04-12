@@ -52,6 +52,13 @@
   @include isMobile() {
     height: auto;
   }
+
+  &.placeholder {
+    border: 1px solid $lightBorderDefaultGrey;
+    background: $lightBackgroundElevationAlt;
+    border-radius: u(2);
+    width: 100%;
+  }
 }
 
 .text {
@@ -125,7 +132,12 @@
 }
 
 .card {
-  &:hover .sponsor .picture {
+  &:hover:not(.demo) .sponsor .picture {
     background-color: $white;
+  }
+  &.demo {
+    border: 1px solid $lightBorderDefaultGrey;
+    box-shadow: none !important;
+    cursor: default !important;
   }
 }

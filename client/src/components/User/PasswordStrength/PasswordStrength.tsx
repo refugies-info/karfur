@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { getPasswordStrength } from "lib/validatePassword";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";

@@ -7,7 +7,7 @@ import NoResultImage from "assets/no_results.svg";
 import FButton from "../FButton";
 import { removeAccents } from "lib";
 import { escapeRegexCharacters } from "lib/search";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import styles from "./SearchStructures.module.scss";
 import SearchStructureResult from "./SearchStructureResult";
@@ -42,7 +42,7 @@ const SearchStructures = ({
   onChange,
   onClickCreateStructure,
   selectedStructure,
-  structures = []
+  structures = [],
 }: SearchStructuresProps) => {
   const { t } = useTranslation();
   const [needle, setNeedle] = useState<string>("");
@@ -52,7 +52,7 @@ const SearchStructures = ({
       setNeedle(data.currentTarget.value);
       onChange(null);
     },
-    [onChange, setNeedle]
+    [onChange, setNeedle],
   );
 
   const filteredStructures = useMemo(() => {
@@ -63,7 +63,7 @@ const SearchStructures = ({
 
     const regex = new RegExp(".*?" + escapedValue + ".*", "i");
     return structures.filter(
-      (structure) => regex.test(structure.acronyme || "") || regex.test(removeAccents(structure.nom))
+      (structure) => regex.test(structure.acronyme || "") || regex.test(removeAccents(structure.nom)),
     );
   }, [needle, structures]);
 

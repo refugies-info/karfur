@@ -8,6 +8,9 @@ import SendSMSModal from "./SendSMSModal";
 import ReadLanguageModal from "./ReadLanguageModal";
 import styles from "./ActionButtons.module.scss";
 
+/**
+ * Floating action buttons for mobile version
+ */
 const ActionButtons = () => {
   const locale = useLocale();
   const languages = useSelector(allLanguesSelector);

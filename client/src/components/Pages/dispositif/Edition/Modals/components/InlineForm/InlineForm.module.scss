@@ -1,0 +1,48 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/input";
+
+.form {
+  display: flex;
+  align-items: center;
+  gap: u(4);
+  width: fit-content;
+
+  &.border {
+    border: 1px solid $lightBorderDefaultGrey;
+    padding: u(4);
+    border-radius: u(2);
+  }
+
+  & > p {
+    margin-bottom: 0;
+  }
+  & > span {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    & > input {
+      @include baseInput();
+      background: $gray30;
+      color: $lightTextTitleGrey;
+      border: 1px solid transparent;
+      padding: u(2) u(1);
+      max-width: 72px;
+      min-width: 25px;
+      text-align: center;
+
+      &:hover,
+      &:active {
+        background: $lightBackgroundContrastGrey !important;
+        border-color: transparent;
+      }
+      &:focus {
+        background: $lightBackgroundContrastGrey !important;
+        border-color: $lightTextTitleGrey;
+      }
+    }
+  }
+}

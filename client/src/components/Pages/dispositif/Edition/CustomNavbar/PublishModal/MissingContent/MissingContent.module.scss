@@ -1,0 +1,30 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+
+.missing {
+  padding: u(8);
+  background: $lightBackgroundContrastWarning;
+  border-radius: u(2);
+  margin-top: u(6);
+  margin-bottom: u(8);
+}
+
+.step {
+  background: white;
+  padding: u(3) u(4);
+  border-radius: u(2);
+  box-shadow: 0 2px 6px 0 #00001229;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: u(2);
+  color: $lightTextDefaultWarning;
+
+  & > span {
+    display: flex;
+    align-items: center;
+  }
+}

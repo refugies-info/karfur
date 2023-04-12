@@ -1,4 +1,4 @@
-import { ContentType, Languages } from "api-types";
+import { ContentType, Languages, Metadatas } from "api-types";
 import { DispositifId, Theme } from "../../typegoose";
 
 var Airtable = require("airtable");
@@ -13,7 +13,7 @@ const addDispositifInContenusAirtable = async (
   link: string,
   themesList: Theme[],
   type: ContentType,
-  departments: string[],
+  departments: Metadatas["location"],
 ) => {
   try {
     logger.info("[addDispositifInContenusAirtable] adding a new line", {
@@ -31,7 +31,7 @@ const addDispositifInContenusAirtable = async (
             "! À traduire ?": true,
             "! Priorité": ["Normale"],
             "! Type de contenus": type === "demarche" ? ["Démarche"] : ["Dispositif"],
-            "! Départements": departments,
+            "! Départements": departments || "",
           },
         },
       ],
@@ -46,7 +46,7 @@ const removeTraductionDispositifInContenusAirtable = async (
   recordId: any,
   title: string,
   themesList: Theme[],
-  departments: string[],
+  departments: Metadatas["location"],
 ) => {
   try {
     logger.info("[removeTraductionDispositifInContenusAirtable] update line for record", {
@@ -60,7 +60,7 @@ const removeTraductionDispositifInContenusAirtable = async (
             "! Titre": title,
             "! Traduits ?": [],
             "! Thèmes": themesList.map((t) => t.short.fr),
-            "! Départements": departments,
+            "! Départements": departments || "",
           },
         },
       ],
@@ -112,7 +112,7 @@ export const addOrUpdateDispositifInContenusAirtable = async (
   themesList: Theme[],
   type: ContentType,
   locale: Languages,
-  departments: string[],
+  departments: Metadatas["location"],
   hasContentBeenDeleted: boolean,
 ) => {
   if (process.env.NODE_ENV !== "production") {

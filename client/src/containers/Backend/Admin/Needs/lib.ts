@@ -22,7 +22,7 @@ export const prepareDeleteContrib = (
     cancelButtonText: "Annuler",
   }).then((result) => {
     if (result.value && dispositifId) {
-      return API.updateDispositifStatus(dispositifId, { status: DispositifStatus.DELETED })
+      return API.deleteDispositif(dispositifId)
         .then(() => {
           Swal.fire({
             title: "Yay...",

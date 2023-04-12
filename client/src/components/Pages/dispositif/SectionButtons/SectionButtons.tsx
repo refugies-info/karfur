@@ -6,17 +6,21 @@ import { changeRate, pauseAudio, readAudio, resumeAudio } from "lib/readAudio";
 import { useLocale } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
-import { ReactionModal } from "components/Modals";
+
 import Tooltip from "components/UI/Tooltip";
 import Toast from "components/UI/Toast";
 import { getPlayIcon, getReadableText } from "./functions";
 import styles from "./SectionButtons.module.scss";
+import ReactionModal from "./ReactionModal";
 
 interface Props {
   id: string;
   content: InfoSection | string;
 }
 
+/**
+ * Suggestion and TTS buttons
+ */
 const SectionButtons = (props: Props) => {
   const locale = useLocale();
 

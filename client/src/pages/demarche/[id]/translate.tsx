@@ -33,7 +33,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   if (query.id) {
     const action = fetchSelectedDispositifActionCreator({
       selectedDispositifId: query.id as string,
-      locale: locale || "fr"
+      locale: locale || "fr",
     });
     store.dispatch(action);
     store.dispatch(fetchThemesActionCreator());
@@ -45,15 +45,14 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   // 404
   const dispositif = store.getState().selectedDispositif;
   if (!dispositif || dispositif.typeContenu !== "demarche") {
-    /* TODO: check authorization */
     return { notFound: true };
   }
 
   // 200
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
-    }
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+    },
   };
 });
 

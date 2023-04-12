@@ -14,7 +14,7 @@ interface Props {
 
 const NEGATIVE_MARGINS_LG = 160 * 2;
 const NEGATIVE_MARGINS_MD = 50 * 2;
-const RESPONSIVE_WIDTH_LIMIT = 1400;
+const RESPONSIVE_WIDTH_LIMIT = 1200;
 
 const ContentSlider = (props: Props) => {
   const isRTL = useRTL();

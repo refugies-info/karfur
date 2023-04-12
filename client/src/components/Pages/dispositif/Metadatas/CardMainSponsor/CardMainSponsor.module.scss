@@ -1,0 +1,23 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/icons";
+@import "src/scss/mixins/responsive";
+
+.name {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.img {
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.delete {
+  @include iconSize(u(4));
+  padding: u(2) !important;
+  min-height: u(8) !important;
+}

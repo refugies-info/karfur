@@ -12,6 +12,9 @@ interface Props {
   disabledOptions?: string[];
 }
 
+/**
+ * List of languages with radio buttons. Can be used at different places across the page.
+ */
 const LangueSelectList = (props: Props) => {
   const languages = useSelector(allLanguesSelector).sort((a, b) => {
     if (a.langueCode === "fr") return -1;

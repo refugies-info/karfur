@@ -17,6 +17,10 @@
     --bs-tooltip-border-radius: 4px;
   }
   :global(.arrow) {
+    display: none !important;
+  }
+
+  @media print {
     display: none;
   }
 }

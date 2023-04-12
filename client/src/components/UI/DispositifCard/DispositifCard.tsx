@@ -23,19 +23,25 @@ import { GetDispositifsResponse } from "api-types";
 type DispositifLinkProps = {
   background: string;
   border: string;
+  demoCard: boolean;
 };
 const DispositifLink = styled.a<DispositifLinkProps>`
-  :hover {
-    background-color: ${(props) => props.background} !important;
-    border-color: ${(props) => props.border} !important;
-    color: ${(props) => props.border} !important;
-  }
+  ${(props) =>
+    !props.demoCard &&
+    `
+:hover {
+  background-color: ${props.background} !important;
+  border-color: ${props.border} !important;
+  color: ${props.border} !important;
+}
+`}
 `;
 
 interface Props {
   dispositif: GetDispositifsResponse;
   selectedDepartment?: string;
   targetBlank?: boolean;
+  demoCard?: boolean;
 }
 
 const DispositifCard = (props: Props) => {
@@ -46,32 +52,49 @@ const DispositifCard = (props: Props) => {
   const colors = theme.colors;
   const dispositifThemes = [theme, ...getThemes(props.dispositif.secondaryThemes || [], themes)];
 
-  const duration = props.dispositif.metadatas.duration;
+  // TODO: what here?
+  const duration = ""; // props.dispositif.metadatas.duration;
   const price = props.dispositif.metadatas.price;
 
   const getDepartement = () => {
     const location = props.dispositif.metadatas.location;
     if (!location) return null;
-    if (location.length === 1 && location[0] === "All") return jsUcfirst(t("Recherche.france", "toute la France"));
+    if (!Array.isArray(location)) {
+      if (location === "france") return jsUcfirst(t("Recherche.france", "toute la France"));
+      if (location === "online") return "En ligne"; // TODO: translate
+    }
     if (props.selectedDepartment) return props.selectedDepartment;
-    if (location.length > 1) return `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
+    if (Array.isArray(location) && location.length > 1)
+      return `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
     return location[0];
   };
 
   return (
     <Link
       legacyBehavior
-      href={{
-        pathname: getPath("/dispositif/[id]", router.locale),
-        query: { id: props.dispositif._id.toString() }
-      }}
+      href={
+        props.demoCard
+          ? "#"
+          : {
+              pathname: getPath("/dispositif/[id]", router.locale),
+              query: { id: props.dispositif._id.toString() },
+            }
+      }
       passHref
       prefetch={false}
     >
       <DispositifLink
-        className={cls(commonStyles.card, commonStyles.dispositif, commonStyles.content, styles.card)}
+        className={cls(
+          commonStyles.card,
+          commonStyles.dispositif,
+          commonStyles.content,
+          styles.card,
+          props.demoCard && commonStyles.demo,
+          props.demoCard && styles.demo,
+        )}
         background={colors.color30}
         border={colors.color100}
+        demoCard={!!props.demoCard}
         target={props.targetBlank ? "_blank" : undefined}
         rel={props.targetBlank ? "noopener noreferrer" : undefined}
       >
@@ -90,7 +113,7 @@ const DispositifCard = (props: Props) => {
         />
 
         <div
-          className={cls(styles.text, styles.max_lines, styles.abstract)}
+          className={cls(styles.text, styles.max_lines, styles.abstract, props.demoCard && styles.placeholder)}
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.dispositif.abstract || "" }}
         />
@@ -99,11 +122,12 @@ const DispositifCard = (props: Props) => {
           {price !== undefined && (
             <div className={cls(styles.info)}>
               <Image src={iconEuro} width={16} height={16} alt="" />
-              {price?.value === 0 ? (
+              {price?.values?.[0] === 0 ? (
                 <div className="ms-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
               ) : (
                 <div className="ms-2">
-                  {price?.value}€ {price?.details}
+                  {/* TODO: update here */}
+                  {price?.values?.[0]}€ {price?.details}
                 </div>
               )}
             </div>

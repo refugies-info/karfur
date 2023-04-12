@@ -131,10 +131,10 @@ const getInfoSections = (children, ln, root, id, type) => {
     for (const [i, section] of Object.entries(children)) {
       const uuid = savedUuids[id + type]?.[i] || uuidv4(); // use uuid if it exists in another language
 
-      infosections[uuid] = {
-        title: removeHTML(getLocalizedContent(section.title, ln, root)),
-        text: turnJSONtoHTML(getLocalizedContent(section.content, ln, root)),
-      };
+      const title = removeHTML(getLocalizedContent(section.title, ln, root));
+      const text = turnJSONtoHTML(getLocalizedContent(section.content, ln, root));
+      if (!title && (!text || text === "undefined")) continue;
+      infosections[uuid] = { title, text };
     }
   }
 
@@ -172,6 +172,34 @@ const getJustificatif = (justificatif) => {
   }
 };
 
+const getPriceDetails = (detail) => {
+  switch (detail) {
+    case "une fois":
+      return "once";
+    case "une seule fois":
+      return "once";
+    case "à chaque fois":
+      return "eachTime";
+    case "par heure":
+      return "hour";
+    case "par jour":
+      return "day";
+    case "par semaine":
+      return "week";
+    case "par mois":
+      return "month";
+    case "par trimestre":
+      return "trimester";
+    case "par semestre":
+      return "semester";
+    case "par an":
+      return "year";
+    default:
+      console.warn("ERROR: price detail does not exist:", detail);
+      return "";
+  }
+};
+
 const getMarkers = (children) => {
   const markers = children.find((c) => c.type === "map")?.markers;
 
@@ -198,13 +226,13 @@ const getFrenchLevel = (metadata) => {
   const value = metadata.contentTitle?.fr || metadata.contentTitle;
   switch (value) {
     case "Débutant":
-      return ["A1", "A2"];
+      return ["A1.1", "A1"];
     case "Intermédiaire":
-      return ["A1", "A2", "B1", "B2"];
+      return ["A1.1", "A1", "A2", "B1"];
     case "Avancé":
-      return ["A1", "A2", "B1", "B2", "C1", "C2"];
+      return ["A1.1", "A1", "A2", "B1", "B2", "C1"];
     case "Tous les niveaux":
-      return ["A1", "A2", "B1", "B2", "C1", "C2"];
+      return ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
     default:
       console.warn("  frenchLevel non ajouté. Valeur :", metadata.contentTitle);
       return "";
@@ -227,12 +255,16 @@ const getMetadatas = (content, id) => {
     const title = metadata.title?.fr || metadata.title;
     switch (title) {
       case "Zone d'action":
-        metas.location = metadata.departments;
+        if (metadata.departments.length === 1 && metadata.departments[0] === "All") {
+          metas.location = "france";
+        } else {
+          metas.location = metadata.departments;
+        }
         break;
       case "Combien ça coûte ?":
         metas.price = {
-          value: parseInt(metadata.price),
-          details: metadata.price === 0 || !metadata.contentTitle ? null : metadata.contentTitle,
+          values: [parseInt(metadata.price)],
+          details: metadata.price === 0 || !metadata.contentTitle ? null : getPriceDetails(metadata.contentTitle),
         };
         break;
       case "Niveau de français":
@@ -245,21 +277,31 @@ const getMetadatas = (content, id) => {
         };
         break;
       case "Public visé":
-        metas.public = metadata.contentTitle === "Réfugié" ? "refugee" : "all";
+        metas.publicStatus =
+          metadata.contentTitle === "Réfugié"
+            ? ["refugie", "subsidiaire", "temporaire", "apatride"]
+            : ["asile", "refugie", "subsidiaire", "temporaire", "apatride", "french"];
         break;
       case "Acte de naissance OFPRA":
-        metas.acteNaissanceRequired = true;
+        if (!metas.conditions) metas.conditions = [];
+        metas.conditions.push("acte naissance");
         break;
       case "Titre de séjour":
-        metas.titreSejourRequired = true;
+        if (!metas.conditions) metas.conditions = [];
+        metas.conditions.push("titre sejour");
         break;
       case "Justificatif demandé":
-        metas.justificatif = getJustificatif(metadata.contentTitle);
+        if (getJustificatif(metadata.contentTitle)) {
+          if (!metas.conditions) metas.conditions = [];
+          metas.conditions.push(getJustificatif(metadata.contentTitle));
+        }
         break;
       case "Durée":
+        // TODO: what here?
         translatedMetas.duration = metadata.contentTitle;
         break;
       case "Important !":
+        // TODO: what here?
         translatedMetas.important = metadata.contentTitle;
         break;
       default:

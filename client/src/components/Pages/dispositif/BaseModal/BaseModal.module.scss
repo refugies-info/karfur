@@ -1,0 +1,65 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+
+.modal {
+  max-width: 800px !important;
+
+  &.small {
+    max-width: 588px !important;
+  }
+
+  .modal_content {
+    background: white;
+    border: none;
+    box-shadow: 0 2px 6px 0 #00001229;
+    border-radius: u(2);
+    height: 100%;
+  }
+}
+
+.container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.sidebar {
+  width: 204px;
+  color: $lightBorderPlainInfo;
+  background-color: $lightBackgroundContrastInfo;
+  padding: u(6);
+  border-radius: u(2) 0 0 u(2);
+  flex-shrink: 0;
+
+  .title {
+    @include dsfr-text("large");
+    font-weight: bold;
+    margin-top: u(2);
+    margin-bottom: u(6);
+  }
+  .text {
+    @include dsfr-text("very-small");
+  }
+}
+
+.content {
+  padding: u(4) u(8) u(8) u(8);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    @include dsfr-text("h4");
+    font-weight: bold;
+    color: $lightTextTitleGrey;
+  }
+
+  .close {
+    padding: u(1) u(3);
+    @include dsfr-text("small");
+    box-shadow: none;
+    min-height: 0;
+    margin-bottom: u(2);
+  }
+}

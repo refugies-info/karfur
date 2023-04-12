@@ -1,4 +1,5 @@
 export * from "./generics";
+export * from "./modules/misc";
 
 // adminOption
 import { AdminOptionRequest, GetAdminOptionResponse, PostAdminOptionResponse } from "./modules/adminOption";
@@ -14,25 +15,34 @@ import {
 
 // dispositifs
 import {
-  GetDispositifsRequest,
-  GetStatisticsRequest,
-  CountDispositifsRequest,
-  AdminCommentsRequest,
+  AddSuggestionDispositifRequest,
   AddViewsRequest,
-  MainSponsorRequest,
+  AdminCommentsRequest,
+  CountDispositifsRequest,
+  CreateDispositifRequest,
   DispositifStatusRequest,
+  DispositifThemeNeedsRequest,
+  GetAllDispositifsResponse,
+  GetContentsForAppRequest,
+  GetContentsForAppResponse,
+  GetCountDispositifsResponse,
+  GetDispositifResponse,
+  GetDispositifsRequest,
+  GetDispositifsResponse,
+  GetNbContentsForCountyRequest,
+  GetNbContentsForCountyResponse,
+  GetRegionStatisticsResponse,
+  GetStatisticsRequest,
+  GetStatisticsResponse,
+  GetUserContributionsResponse,
+  MainSponsorRequest,
+  PostDispositifsResponse,
+  PublishDispositifRequest,
+  ReadSuggestionDispositifRequest,
+  StructureReceiveDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
-  CreateDispositifRequest,
-  GetDispositifsResponse,
-  GetDispositifResponse,
-  GetStatisticsResponse,
-  GetAllDispositifsResponse,
-  GetCountDispositifsResponse,
-  GetUserContributionsResponse,
-  AddSuggestionDispositifRequest,
-  ReadSuggestionDispositifRequest,
-  GetRegionStatisticsResponse,
+  ViewsType,
 } from "./modules/dispositif";
 
 // images
@@ -120,25 +130,33 @@ export type {
   PostNotificationsSettingsResponse,
 
   // dispositifs
-  GetStatisticsRequest,
-  GetDispositifsRequest,
-  GetDispositifResponse,
-  GetDispositifsResponse,
-  GetStatisticsResponse,
-  GetAllDispositifsResponse,
-  CountDispositifsRequest,
-  GetCountDispositifsResponse,
-  AdminCommentsRequest,
-  GetUserContributionsResponse,
+  AddSuggestionDispositifRequest,
   AddViewsRequest,
-  MainSponsorRequest,
+  AdminCommentsRequest,
+  CountDispositifsRequest,
+  CreateDispositifRequest,
   DispositifStatusRequest,
+  DispositifThemeNeedsRequest,
+  GetAllDispositifsResponse,
+  GetContentsForAppRequest,
+  GetContentsForAppResponse,
+  GetCountDispositifsResponse,
+  GetDispositifResponse,
+  GetDispositifsRequest,
+  GetDispositifsResponse,
+  GetNbContentsForCountyRequest,
+  GetNbContentsForCountyResponse,
+  GetRegionStatisticsResponse,
+  GetStatisticsRequest,
+  GetStatisticsResponse,
+  GetUserContributionsResponse,
+  MainSponsorRequest,
+  PostDispositifsResponse,
+  PublishDispositifRequest,
+  ReadSuggestionDispositifRequest,
+  StructureReceiveDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
-  CreateDispositifRequest,
-  AddSuggestionDispositifRequest,
-  ReadSuggestionDispositifRequest,
-  GetRegionStatisticsResponse,
 
   // images
   PostImageResponse,
@@ -217,3 +235,5 @@ export type {
   PostWidgetResponse,
   PatchWidgetResponse,
 };
+
+export { ViewsType };

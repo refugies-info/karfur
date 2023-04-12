@@ -1,0 +1,44 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+
+.popup {
+  position: relative;
+  background: white;
+  z-index: 1;
+  width: 240px;
+  height: 180px;
+  border-radius: u(2);
+  padding: u(2);
+
+  .title {
+    @include dsfr-text("small");
+    margin-bottom: u(3);
+    color: $lightTextActionHighBlueFrance;
+  }
+  .info {
+    @include dsfr-text("very-small");
+    margin-bottom: 0;
+    padding: u(1);
+    display: flex;
+    align-items: baseline;
+    word-break: break-word;
+  }
+  .close {
+    width: u(8);
+    height: u(8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: u(2);
+    right: u(2);
+    cursor: pointer;
+    border-radius: u(1);
+
+    &:hover {
+      background: $lightBackgroundContrastGrey;
+    }
+  }
+}

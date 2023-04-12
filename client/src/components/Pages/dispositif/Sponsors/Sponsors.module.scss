@@ -2,6 +2,7 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/icons";
 @import "src/scss/mixins/responsive";
 
 .container {
@@ -44,4 +45,20 @@
     margin-bottom: u(4);
     max-width: none;
   }
+
+  &.edit {
+    padding: u(1) u(2);
+    border-radius: u(2);
+    border: 1px solid $lightBorderDefaultGrey;
+    cursor: pointer;
+    &:hover {
+      background: $lightBackgroundContrastGrey;
+    }
+  }
+}
+
+.delete {
+  @include iconSize(u(4));
+  padding: u(2) !important;
+  min-height: u(8) !important;
 }

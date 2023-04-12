@@ -1,10 +1,13 @@
 import logger from "../../../logger";
 import { createDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { Response } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { Dispositif, ObjectId } from "../../../typegoose";
-import { ContentType, CreateDispositifRequest, DispositifStatus, Id } from "api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus, Id, PostDispositifsResponse } from "api-types";
+import { buildNewDispositif } from "../../../modules/dispositif/dispositif.service";
+import { getRoleByName } from "../../../modules/role/role.repository";
+import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 
-export const createDispositif = async (body: CreateDispositifRequest, userId: Id): Response => {
+export const createDispositif = async (body: CreateDispositifRequest, userId: Id): ResponseWithData<PostDispositifsResponse> => {
   logger.info("[createDispositif] received", { body });
 
   const newDispositif: Partial<Dispositif> = {
@@ -28,14 +31,13 @@ export const createDispositif = async (body: CreateDispositifRequest, userId: Id
         validatorId: new ObjectId(userId.toString()),
       },
     },
+    ...buildNewDispositif(body, userId.toString())
   };
 
-  if (body.mainSponsor) newDispositif.mainSponsor = new ObjectId(body.mainSponsor);
-  if (body.theme) newDispositif.theme = new ObjectId(body.theme);
-  if (body.secondaryThemes) newDispositif.secondaryThemes = body.secondaryThemes.map((t) => new ObjectId(t));
-  if (body.metadatas) newDispositif.metadatas = body.metadatas;
+  const dispositif = await createDispositifInDB(newDispositif);
 
-  await createDispositifInDB(newDispositif);
+  const contribRole = await getRoleByName("Contrib");
+  await addRoleAndContribToUser(userId, contribRole._id, dispositif._id);
 
-  return { text: "success" };
+  return { text: "success", data: { id: dispositif._id } };
 };
