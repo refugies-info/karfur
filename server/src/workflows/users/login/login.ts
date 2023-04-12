@@ -9,7 +9,7 @@ import { proceedWithLogin } from "../../../modules/users/users.service";
 import { userRespoStructureId } from "../../../modules/structure/structure.service";
 import { loginExceptionsManager } from "./login.exceptions.manager";
 import { logRegister, logLogin } from "./log";
-import { LoginRequest, LoginResponse, UserStatus } from "api-types";
+import { LoginRequest, LoginResponse, UserStatus } from "@refugies-info/api-types";
 
 export const login = async (body: LoginRequest): ResponseWithData<LoginResponse> => {
   try {
@@ -28,7 +28,7 @@ export const login = async (body: LoginRequest): ResponseWithData<LoginResponse>
       return {
         text: "success",
         data: { token },
-      }
+      };
     }
 
     // login
@@ -51,7 +51,7 @@ export const login = async (body: LoginRequest): ResponseWithData<LoginResponse>
     return {
       text: "success",
       data: { token: user.getToken() },
-    }
+    };
   } catch (error) {
     loginExceptionsManager(error);
   }

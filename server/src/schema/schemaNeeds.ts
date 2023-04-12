@@ -1,6 +1,6 @@
 import mongoose, { ObjectId } from "mongoose";
 import { Moment } from "moment";
-import { Picture } from "api-types";
+import { Picture } from "@refugies-info/api-types";
 
 var needsSchema = new mongoose.Schema(
   {
@@ -16,51 +16,51 @@ var needsSchema = new mongoose.Schema(
     fr: {
       text: String,
       subtitle: String,
-      updatedAt: Date
+      updatedAt: Date,
     },
     ar: {
       text: String,
       subtitle: String,
-      updatedAt: Date
+      updatedAt: Date,
     },
     en: {
       text: String,
       subtitle: String,
-      updatedAt: Date
+      updatedAt: Date,
     },
     ru: {
       text: String,
       subtitle: String,
-      updatedAt: Date
+      updatedAt: Date,
     },
     fa: {
       text: String,
       subtitle: String,
-      updatedAt: Date
+      updatedAt: Date,
     },
     ti: {
       text: String,
       subtitle: String,
-      updatedAt: Date
+      updatedAt: Date,
     },
     ps: {
       text: String,
       subtitle: String,
-      updatedAt: Date
+      updatedAt: Date,
     },
     uk: {
       text: String,
       subtitle: String,
-      updatedAt: Date
+      updatedAt: Date,
     },
     image: {
       secure_url: String,
       public_id: String,
-      imgId: String
+      imgId: String,
     },
     adminComments: {
       type: String,
-      required: false
+      required: false,
     },
     nbVues: {
       type: Number,
@@ -69,9 +69,9 @@ var needsSchema = new mongoose.Schema(
     position: {
       type: Number,
       required: false,
-    }
+    },
   },
-  { timestamps: { createdAt: "created_at" } }
+  { timestamps: { createdAt: "created_at" } },
 );
 
 export interface NeedTranslation {

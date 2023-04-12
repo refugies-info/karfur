@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Route, Path, Security } from "tsoa";
-import { AdminOptionRequest, GetAdminOptionResponse, PostAdminOptionResponse } from "api-types";
+import { AdminOptionRequest, GetAdminOptionResponse, PostAdminOptionResponse } from "@refugies-info/api-types";
 
 import { getAdminOptions } from "../workflows/adminOption/getAdminOptions";
 import { postAdminOptions } from "../workflows/adminOption/postAdminOptions";

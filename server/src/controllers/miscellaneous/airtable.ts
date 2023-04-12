@@ -1,4 +1,4 @@
-import { ContentType, Languages, Metadatas } from "api-types";
+import { ContentType, Languages, Metadatas } from "@refugies-info/api-types";
 import { DispositifId, Theme } from "../../typegoose";
 
 var Airtable = require("airtable");

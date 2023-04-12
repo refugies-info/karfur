@@ -10,7 +10,7 @@ import { availableLanguages } from "../../libs/getFormattedLocale";
 import { parseDispositif, filterTargets, filterTargetsForDemarche, getNotificationEmoji } from "./helpers";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
 import { Dispositif, DispositifId, NotificationModel } from "../../typegoose";
-import { ContentType, Languages } from "api-types";
+import { ContentType, Languages } from "@refugies-info/api-types";
 
 const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 

@@ -1,5 +1,5 @@
 import { Body, Controller, Post, Route } from "tsoa";
-import { TechnicalInfoRequest } from "api-types";
+import { TechnicalInfoRequest } from "@refugies-info/api-types";
 import { verifyVersion } from "../workflows";
 import { AuthenticationError } from "../errors";
 import { Response } from "../types/interface";

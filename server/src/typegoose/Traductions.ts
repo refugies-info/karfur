@@ -1,5 +1,5 @@
 import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { difference, flattenDeep, get, intersection, isEmpty, isString } from "lodash";
 import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";

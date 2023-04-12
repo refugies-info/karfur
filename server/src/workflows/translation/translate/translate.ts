@@ -1,5 +1,5 @@
 import { Translate } from "@google-cloud/translate";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { isEmpty } from "lodash";
 
 const projectId = "traduction-1551702821050";

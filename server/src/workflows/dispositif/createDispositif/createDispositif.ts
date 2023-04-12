@@ -2,12 +2,21 @@ import logger from "../../../logger";
 import { createDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
 import { Dispositif, ObjectId } from "../../../typegoose";
-import { ContentType, CreateDispositifRequest, DispositifStatus, Id, PostDispositifsResponse } from "api-types";
+import {
+  ContentType,
+  CreateDispositifRequest,
+  DispositifStatus,
+  Id,
+  PostDispositifsResponse,
+} from "@refugies-info/api-types";
 import { buildNewDispositif } from "../../../modules/dispositif/dispositif.service";
 import { getRoleByName } from "../../../modules/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 
-export const createDispositif = async (body: CreateDispositifRequest, userId: Id): ResponseWithData<PostDispositifsResponse> => {
+export const createDispositif = async (
+  body: CreateDispositifRequest,
+  userId: Id,
+): ResponseWithData<PostDispositifsResponse> => {
   logger.info("[createDispositif] received", { body });
 
   const newDispositif: Partial<Dispositif> = {
@@ -31,7 +40,7 @@ export const createDispositif = async (body: CreateDispositifRequest, userId: Id
         validatorId: new ObjectId(userId.toString()),
       },
     },
-    ...(await buildNewDispositif(body, userId.toString()))
+    ...(await buildNewDispositif(body, userId.toString())),
   };
 
   const dispositif = await createDispositifInDB(newDispositif);

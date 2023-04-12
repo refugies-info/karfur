@@ -1,4 +1,4 @@
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 import { Types } from "mongoose";
 import { DispositifId, LangueId, Log, StructureId, UserId } from "../../typegoose";
 import { createLog } from "./logs.repository";
@@ -11,13 +11,13 @@ export type optionsType = {
     id: UserId | DispositifId | StructureId;
     model_link: "User" | "Dispositif" | "Structure";
     next:
-    | "ModalContenu"
-    | "ModalStructure"
-    | "ModalUser"
-    | "ModalReaction"
-    | "ModalImprovements"
-    | "ModalNeeds"
-    | "PageAnnuaire";
+      | "ModalContenu"
+      | "ModalStructure"
+      | "ModalUser"
+      | "ModalReaction"
+      | "ModalImprovements"
+      | "ModalNeeds"
+      | "PageAnnuaire";
   };
 };
 
@@ -25,7 +25,7 @@ export const addLog = (
   id: UserId | DispositifId | StructureId | Id,
   type: "User" | "Dispositif" | "Structure",
   text: string,
-  options?: optionsType
+  options?: optionsType,
 ) => {
   // FIXME
   // @ts-ignore
@@ -33,7 +33,7 @@ export const addLog = (
     objectId: new Types.ObjectId(id.toString()),
     model_object: type,
     text,
-    ...(options || {})
+    ...(options || {}),
   };
   return createLog(log);
 };

@@ -1,5 +1,5 @@
 import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { ContentType, DispositifStatus, Languages } from "api-types";
+import { ContentType, DispositifStatus, Languages } from "@refugies-info/api-types";
 import { get, has } from "lodash";
 import { Types } from "mongoose";
 import { PartialRecord } from "../types/interface";

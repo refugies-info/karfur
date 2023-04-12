@@ -4,7 +4,7 @@ import passwordHash from "password-hash";
 import { createUser } from "./users.repository";
 import { sendWelcomeMail } from "../mail/mail.service";
 import { Role } from "../../typegoose";
-import { UserStatus } from "api-types";
+import { UserStatus } from "@refugies-info/api-types";
 
 export const register = async (user: { username: string; password: string; email?: string }, userRole: Role) => {
   try {

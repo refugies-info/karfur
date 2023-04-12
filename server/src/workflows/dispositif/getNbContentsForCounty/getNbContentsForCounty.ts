@@ -1,5 +1,4 @@
-import { DispositifStatus } from "api-types";
-import { GetNbContentsForCountyResponse } from "api-types/modules/dispositif";
+import { DispositifStatus, GetNbContentsForCountyResponse } from "@refugies-info/api-types";
 import { getCountDispositifs } from "../../../modules/dispositif/dispositif.repository";
 
 const getNbContentsForCounty = (county: string): Promise<GetNbContentsForCountyResponse> =>

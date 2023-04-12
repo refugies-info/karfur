@@ -30,7 +30,7 @@ import {
   StructureReceiveDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
-} from "api-types";
+} from "@refugies-info/api-types";
 import {
   addMerci,
   addSuggestion,
@@ -172,7 +172,11 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Patch("/{id}/publish")
-  public async publishDispositif(@Path() id: string, @Body() body: PublishDispositifRequest, @Request() request: express.Request): Response {
+  public async publishDispositif(
+    @Path() id: string,
+    @Body() body: PublishDispositifRequest,
+    @Request() request: express.Request,
+  ): Response {
     return publishDispositif(id, body, request.user);
   }
 
@@ -181,7 +185,11 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Patch("/{id}/structure-receive")
-  public async structureReceiveDispositif(@Path() id: string, @Body() body: StructureReceiveDispositifRequest, @Request() request: express.Request): Response {
+  public async structureReceiveDispositif(
+    @Path() id: string,
+    @Body() body: StructureReceiveDispositifRequest,
+    @Request() request: express.Request,
+  ): Response {
     return structureReceiveDispositif(id, body, request.user);
   }
 

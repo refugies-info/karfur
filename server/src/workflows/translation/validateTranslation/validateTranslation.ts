@@ -5,7 +5,7 @@ import { updateLanguagesAvancement } from "../../../modules/langues/langues.serv
 import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
 import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
 import { Dispositif, DispositifModel, ErrorModel, Traductions } from "../../../typegoose";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 
 const validateTranslation = (dispositif: Dispositif, language: Languages, translation: Traductions) =>
   DispositifModel.updateOne(

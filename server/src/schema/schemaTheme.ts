@@ -1,6 +1,6 @@
 import mongoose, { ObjectId } from "mongoose";
 import { Moment } from "moment";
-import { Picture } from "api-types";
+import { Picture } from "@refugies-info/api-types";
 
 const imageSchema = {
   secure_url: String,
@@ -40,7 +40,7 @@ const themeSchema = new mongoose.Schema(
       color30: {
         type: String,
         required: true,
-      }
+      },
     },
     position: {
       type: Number,
@@ -57,10 +57,10 @@ const themeSchema = new mongoose.Schema(
     },
     adminComments: {
       type: String,
-      required: false
+      required: false,
     },
   },
-  { timestamps: { createdAt: "created_at" } }
+  { timestamps: { createdAt: "created_at" } },
 );
 
 export interface ThemeDoc extends mongoose.Document {
@@ -79,7 +79,7 @@ export interface ThemeDoc extends mongoose.Document {
     color60: string;
     color40: string;
     color30: string;
-  }
+  };
   position: number;
   icon: Picture;
   banner: Picture;
@@ -90,6 +90,5 @@ export interface ThemeDoc extends mongoose.Document {
   adminComments?: string;
   created_at: Moment;
 }
-
 
 export const Theme = mongoose.model<ThemeDoc>("Theme", themeSchema);

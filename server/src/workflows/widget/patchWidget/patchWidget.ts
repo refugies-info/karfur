@@ -2,8 +2,7 @@ import logger from "../../../logger";
 import { ResponseWithData } from "../../../types/interface";
 import { updateWidget } from "../../../modules/widgets/widgets.repository";
 import { ObjectId, Widget } from "../../../typegoose";
-import { PatchWidgetResponse, WidgetRequest } from "api-types";
-
+import { PatchWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
 
 export const patchWidget = async (
   id: string,
@@ -15,7 +14,7 @@ export const patchWidget = async (
   const widget: Partial<Widget> = {
     author: new ObjectId(userId),
     typeContenu: body.typeContenu,
-    themes: body.themes.map(t => new ObjectId(t.toString())),
+    themes: body.themes.map((t) => new ObjectId(t.toString())),
     languages: body.languages,
     department: body.department,
   };

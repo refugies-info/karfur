@@ -6,7 +6,7 @@ import {
   NotificationSettingsRequest,
   PostAppUserResponse,
   PostNotificationsSettingsResponse,
-} from "api-types";
+} from "@refugies-info/api-types";
 
 import { updateAppUser } from "../workflows/appusers/updateAppUser";
 import { getNotificationsSettings } from "../workflows/appusers/getNotificationsSettings";

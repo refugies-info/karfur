@@ -1,7 +1,7 @@
 import mongoose, { ObjectId } from "mongoose";
 import { Moment } from "moment";
 import { DispositifDoc } from "./schemaDispositif";
-import { Picture } from "api-types";
+import { Picture } from "@refugies-info/api-types";
 
 var structureSchema = new mongoose.Schema(
   {
@@ -111,7 +111,7 @@ var structureSchema = new mongoose.Schema(
       required: false,
     },
   },
-  { timestamps: { createdAt: "created_at" } }
+  { timestamps: { createdAt: "created_at" } },
 );
 
 export interface StructureDoc extends mongoose.Document {
@@ -163,7 +163,4 @@ export interface StructureSimplifiedWithLoc extends mongoose.Document {
   disposAssociesLocalisation?: string[];
 }
 
-export const Structure = mongoose.model<StructureDoc>(
-  "Structure",
-  structureSchema
-);
+export const Structure = mongoose.model<StructureDoc>("Structure", structureSchema);

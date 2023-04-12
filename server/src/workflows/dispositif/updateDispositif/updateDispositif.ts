@@ -4,7 +4,7 @@ import { Response } from "../../../types/interface";
 import { Dispositif, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
-import { ContentType, DispositifStatus, Languages, UpdateDispositifRequest } from "api-types";
+import { ContentType, DispositifStatus, Languages, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { cloneDeep, isEmpty, omit, unset } from "lodash";
 import { TraductionsType } from "../../../typegoose/Traductions";
 import { buildNewDispositif, isDispositifComplete } from "../../../modules/dispositif/dispositif.service";
@@ -130,7 +130,11 @@ const buildTranslations = async (
 export const updateDispositif = async (id: string, body: UpdateDispositifRequest, user: User): Response => {
   logger.info("[updateDispositif] received", { id, body, user: user._id });
 
-  const oldDispositif = await getDispositifById(id, { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1 }, "mainSponsor");
+  const oldDispositif = await getDispositifById(
+    id,
+    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1 },
+    "mainSponsor",
+  );
   checkUserIsAuthorizedToModifyDispositif(oldDispositif, user);
 
   const translationContent = buildDispositifContent(body, oldDispositif);
@@ -140,7 +144,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     lastModificationAuthor: user._id,
     themesSelectedByAuthor: !user.isAdmin(),
     translations,
-    ...(await buildNewDispositif(body, user._id.toString()))
+    ...(await buildNewDispositif(body, user._id.toString())),
   };
 
   // TODO : if published, create draft work version instead
@@ -149,7 +153,9 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
   await log(newDispositif, oldDispositif, user._id);
 
   // if dispositif becomes incomplete, revert it to DRAFT
-  const isStatusWaiting = newDispositif.status === DispositifStatus.WAITING_ADMIN || newDispositif.status === DispositifStatus.WAITING_STRUCTURE;
+  const isStatusWaiting =
+    newDispositif.status === DispositifStatus.WAITING_ADMIN ||
+    newDispositif.status === DispositifStatus.WAITING_STRUCTURE;
   if (isStatusWaiting && !isDispositifComplete(newDispositif)) {
     await updateDispositifInDB(id, { status: DispositifStatus.DRAFT });
   }

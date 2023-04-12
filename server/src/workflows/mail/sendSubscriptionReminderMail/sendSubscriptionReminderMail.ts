@@ -1,7 +1,7 @@
 import { Response } from "../../../types/interface";
 import logger from "../../../logger";
 import { sendSubscriptionReminderMailService } from "../../../modules/mail/mail.service";
-import { SubscriptionRequest } from "api-types";
+import { SubscriptionRequest } from "@refugies-info/api-types";
 
 export const sendSubscriptionReminderMail = async (body: SubscriptionRequest): Response => {
   logger.info("[sendSubscriptionReminderMail] received with data", { data: body });

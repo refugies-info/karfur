@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Patch, Body, Delete, Route, Path, Security, Request } from "tsoa";
-import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse, WidgetRequest } from "api-types";
+import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
 import * as express from "express";
 
 import { getWidgets } from "../workflows/widget/getWidgets";

@@ -6,8 +6,7 @@ import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repos
 import { Theme } from "../../../typegoose";
 import { ResponseWithData } from "../../../types/interface";
 import { NotFoundError } from "../../../errors";
-import { PatchThemeResponse, ThemeRequest } from "api-types";
-
+import { PatchThemeResponse, ThemeRequest } from "@refugies-info/api-types";
 
 export const patchTheme = async (id: string, theme: Partial<ThemeRequest>): ResponseWithData<PatchThemeResponse> => {
   logger.info("[patchTheme] received", id);
@@ -15,13 +14,12 @@ export const patchTheme = async (id: string, theme: Partial<ThemeRequest>): Resp
   const oldTheme = await getTheme(id);
   if (!oldTheme) throw new NotFoundError("Theme not found");
 
-  let oldThemeObject: DocumentType<Theme> = oldTheme.toObject()
+  let oldThemeObject: DocumentType<Theme> = oldTheme.toObject();
   const dbTheme = await updateTheme(id, merge(oldThemeObject, theme));
   const activeLanguages = await getActiveLanguagesFromDB();
 
   return {
     text: "success",
-    data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) }
+    data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) },
   };
 };
-

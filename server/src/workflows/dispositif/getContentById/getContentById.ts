@@ -3,7 +3,7 @@ import logger from "../../../logger";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { NotFoundError } from "../../../errors";
 import pick from "lodash/pick";
-import { ContentStructure, GetDispositifResponse, Languages, SimpleUser, Sponsor } from "api-types";
+import { ContentStructure, GetDispositifResponse, Languages, SimpleUser, Sponsor } from "@refugies-info/api-types";
 import { getRoles } from "../../../modules/role/role.repository";
 import { Role } from "../../../typegoose";
 

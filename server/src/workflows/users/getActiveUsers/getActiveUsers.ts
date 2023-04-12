@@ -3,7 +3,7 @@ import { User } from "../../../typegoose";
 import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { AuthenticationError } from "../../../errors";
-import { GetActiveUsersResponse } from "api-types";
+import { GetActiveUsersResponse } from "@refugies-info/api-types";
 
 export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUsersResponse[]> => {
   logger.info("[getActiveUsers] received");
@@ -33,6 +33,6 @@ export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUser
 
   return {
     text: "success",
-    data: result
-  }
+    data: result,
+  };
 };

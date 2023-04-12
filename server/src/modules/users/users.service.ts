@@ -10,7 +10,7 @@ import { asyncForEach } from "../../libs/asyncForEach";
 import { User } from "../../typegoose";
 import { UserId } from "../../typegoose/User";
 import { Membre, StructureId } from "../../typegoose/Structure";
-import { UserStatus } from "api-types";
+import { UserStatus } from "@refugies-info/api-types";
 
 export const addStructureForUsers = async (userIds: UserId[], structureId: StructureId) => {
   logger.info("[addStructure] add structure for membres", { userIds, structureId });
