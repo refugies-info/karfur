@@ -7,7 +7,7 @@ import styles from "./ChoiceButton.module.scss";
 import { cls } from "lib/classname";
 
 interface Props {
-  text: string;
+  text: string | React.ReactNode;
   subtext?: string;
   selected: boolean;
   onSelect: () => void;

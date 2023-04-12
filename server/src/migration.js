@@ -226,13 +226,13 @@ const getFrenchLevel = (metadata) => {
   const value = metadata.contentTitle?.fr || metadata.contentTitle;
   switch (value) {
     case "Débutant":
-      return ["A1.1", "A1"];
+      return ["alpha", "A1"];
     case "Intermédiaire":
-      return ["A1.1", "A1", "A2", "B1"];
+      return ["alpha", "A1", "A2", "B1"];
     case "Avancé":
-      return ["A1.1", "A1", "A2", "B1", "B2", "C1"];
+      return ["alpha", "A1", "A2", "B1", "B2", "C1"];
     case "Tous les niveaux":
-      return ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
+      return ["alpha", "A1", "A2", "B1", "B2", "C1", "C2"];
     default:
       console.warn("  frenchLevel non ajouté. Valeur :", metadata.contentTitle);
       return "";
