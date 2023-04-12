@@ -14,16 +14,12 @@ const SponsorsEdit = () => {
   const [showModal, setShowModal] = useState(false);
   const [toDeleteItemModal, setToDeleteItemModal] = useState(-1); // -1 closed, else show modal and save index to delete
   const [currentSponsorIndex, setCurrentSponsorIndex] = useState(-1);
-  // FIXME : ts error
-  //@ts-ignore
-  const sponsors = useWatch<CreateDispositifRequest["sponsors"]>({ name: "sponsors", default: [] });
+  const sponsors: CreateDispositifRequest["sponsors"] = useWatch({ name: "sponsors" });
   const { setValue } = useFormContext();
 
   return (
     <div className={styles.container}>
       <Sponsors
-        /* FIXME */
-        /* @ts-ignore */
         sponsors={sponsors}
         editMode
         onClick={(idx) => {

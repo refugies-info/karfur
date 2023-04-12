@@ -56,7 +56,14 @@ const Header = (props: Props) => {
         {!!(!hidePredictions && placePredictions?.length) && (
           <div className={styles.suggestions}>
             {placePredictions.slice(0, 5).map((p, i) => (
-              <button key={i} onClick={() => onPlaceSelected(p.place_id)} className={styles.btn}>
+              <button
+                key={i}
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  onPlaceSelected(p.place_id);
+                }}
+                className={styles.btn}
+              >
                 <EVAIcon name="pin-outline" fill="black" size={20} className="me-2" />
                 {p.description}
               </button>

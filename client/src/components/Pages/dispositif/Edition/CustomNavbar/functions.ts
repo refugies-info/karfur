@@ -1,3 +1,4 @@
+import { DeepPartialSkipArrayKey } from "react-hook-form";
 import { ContentType, CreateDispositifRequest, InfoSections } from "api-types";
 
 export const getText = (progress: number) => {
@@ -9,9 +10,9 @@ export const getText = (progress: number) => {
   return "Bravo, tout est bon ! 🎉";
 };
 
-const isAccordionOk = (content: InfoSections | undefined) => {
+const isAccordionOk = (content: DeepPartialSkipArrayKey<InfoSections> | undefined) => {
   if (!content) return false;
-  return content && Object.keys(content).length >= 3 && !Object.values(content).find(c => !c.title || !c.text)
+  return content && Object.keys(content).length >= 3 && !Object.values(content).find(c => !c || !c.title || !c.text)
 }
 
 const isMetadataOk = (content: any | any[]) => {
@@ -24,7 +25,7 @@ const isMetadataOk = (content: any | any[]) => {
 /**
  * return an array with null if complete, or the name of the step if missing
  */
-export const getMissingSteps = (dispositif: Partial<CreateDispositifRequest>): (string | null)[] => {
+export const getMissingSteps = (dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>): (string | null)[] => {
   /* TODO: translate keys */
   return [
     !!dispositif.titreInformatif ? null : "titreInformatif",
@@ -57,6 +58,6 @@ export const getMissingSteps = (dispositif: Partial<CreateDispositifRequest>): (
   ];
 }
 
-export const calculateProgress = (dispositif: Partial<CreateDispositifRequest>) => {
+export const calculateProgress = (dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>) => {
   return getMissingSteps(dispositif).filter(c => c === null).length;
 }

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { useWatch } from "react-hook-form";
+import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
 import { CreateDispositifRequest, DispositifStatus } from "api-types";
 import { BaseModal } from "components/Pages/dispositif";
 import { getMissingSteps } from "../functions";
@@ -16,10 +16,9 @@ interface Props {
 }
 
 const PublishModal = (props: Props) => {
-  const dispositif = useWatch<Partial<CreateDispositifRequest>>();
+  const dispositif = useWatch<DeepPartialSkipArrayKey<CreateDispositifRequest>>();
   const missingSteps = useMemo(
-    //@ts-ignore
-    () => getMissingSteps(dispositif).filter((c) => c !== null) as string[], // FIXME type
+    () => getMissingSteps(dispositif).filter((c) => c !== null) as string[],
     [dispositif],
   );
 

@@ -40,7 +40,7 @@ export const createDispositif = async (
         validatorId: new ObjectId(userId.toString()),
       },
     },
-    ...buildNewDispositif(body, userId.toString()),
+    ...(await buildNewDispositif(body, userId.toString())),
   };
 
   const dispositif = await createDispositifInDB(newDispositif);
