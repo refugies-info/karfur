@@ -1,4 +1,4 @@
-import { DispositifStatus, StructureReceiveDispositifRequest } from "api-types";
+import { DispositifStatus, StructureReceiveDispositifRequest } from "@refugies-info/api-types";
 import logger from "../../../logger";
 import { getDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { Response } from "../../../types/interface";
@@ -6,17 +6,21 @@ import { Dispositif, User } from "../../../typegoose";
 import { InvalidRequestError, UnauthorizedError } from "../../../errors";
 import { log } from "./log";
 
-export const structureReceiveDispositif = async (id: string, body: StructureReceiveDispositifRequest, user: User): Response => {
+export const structureReceiveDispositif = async (
+  id: string,
+  body: StructureReceiveDispositifRequest,
+  user: User,
+): Response => {
   logger.info("[structureReceiveDispositif] received", { id, body, user: user._id });
 
   const oldDispositif = await getDispositifById(id, { status: 1, creatorId: 1, mainSponsor: 1 }, "mainSponsor");
   const editedDispositif: Partial<Dispositif> = {};
 
   if (oldDispositif.status !== DispositifStatus.WAITING_STRUCTURE) {
-    throw new InvalidRequestError("The content cannot be accepted or rejected by the stucture")
+    throw new InvalidRequestError("The content cannot be accepted or rejected by the stucture");
   }
-  if (!oldDispositif.getMainSponsor()?.membres.find(membre => membre.userId === user._id)) {
-    throw new UnauthorizedError("You are not allowed to accept or reject this content")
+  if (!oldDispositif.getMainSponsor()?.membres.find((membre) => membre.userId === user._id)) {
+    throw new UnauthorizedError("You are not allowed to accept or reject this content");
   }
   editedDispositif.status = body.accept ? DispositifStatus.WAITING_ADMIN : DispositifStatus.KO_STRUCTURE;
 

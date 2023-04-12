@@ -6,7 +6,7 @@ import {
 } from "./mail.service";
 import { User } from "../../typegoose/User";
 import { Dispositif } from "../../typegoose";
-import { UserStatus } from "api-types";
+import { UserStatus } from "@refugies-info/api-types";
 
 export const sendPublishedMailToCreator = async (
   newDispo: Dispositif,

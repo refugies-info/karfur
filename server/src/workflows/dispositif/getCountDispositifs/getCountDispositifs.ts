@@ -1,12 +1,13 @@
-
-import { CountDispositifsRequest, DispositifStatus, GetCountDispositifsResponse } from "api-types";
+import { CountDispositifsRequest, DispositifStatus, GetCountDispositifsResponse } from "@refugies-info/api-types";
 import { FilterQuery } from "mongoose";
 import { Dispositif } from "../../../typegoose";
 import logger from "../../../logger";
 import { getCountDispositifs as countDispositifs } from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
 
-export const getCountDispositifs = async (query: CountDispositifsRequest): ResponseWithData<GetCountDispositifsResponse> => {
+export const getCountDispositifs = async (
+  query: CountDispositifsRequest,
+): ResponseWithData<GetCountDispositifsResponse> => {
   logger.info("[getCountDispositifs] dispositif");
 
   const dbQuery: FilterQuery<Dispositif> = {};
@@ -18,6 +19,6 @@ export const getCountDispositifs = async (query: CountDispositifsRequest): Respo
 
   return {
     text: "success",
-    data: { count: res }
-  }
+    data: { count: res },
+  };
 };

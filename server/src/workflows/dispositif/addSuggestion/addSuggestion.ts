@@ -1,4 +1,4 @@
-import { AddSuggestionDispositifRequest } from "api-types";
+import { AddSuggestionDispositifRequest } from "@refugies-info/api-types";
 import uniqid from "uniqid";
 import { addSuggestionDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { ObjectId } from "../../../typegoose";
@@ -7,7 +7,11 @@ import logger from "../../../logger";
 import { Response } from "../../../types/interface";
 import { log } from "./log";
 
-export const addSuggestion = async (id: string, body: AddSuggestionDispositifRequest, userId: string | null): Response => {
+export const addSuggestion = async (
+  id: string,
+  body: AddSuggestionDispositifRequest,
+  userId: string | null,
+): Response => {
   logger.info("[addSuggestion] received", { id, body });
   const newSuggestion: Suggestion = {
     created_at: new Date(),
@@ -24,4 +28,3 @@ export const addSuggestion = async (id: string, body: AddSuggestionDispositifReq
 
   return { text: "success" };
 };
-

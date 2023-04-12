@@ -1,4 +1,4 @@
-import { Id, Picture, ContentType, SimpleDispositif, DispositifStatus, Languages } from "api-types";
+import { Id, Picture, ContentType, SimpleDispositif, DispositifStatus, Languages } from "@refugies-info/api-types";
 import { omit, pick } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
@@ -124,20 +124,21 @@ export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: 
     },
   );
 
-export const removeMerciDispositifInDB = async (
-  dispositifId: DispositifId,
-  userId: UserId
-): Promise<Dispositif> => {
+export const removeMerciDispositifInDB = async (dispositifId: DispositifId, userId: UserId): Promise<Dispositif> => {
   if (userId) {
     // remove merci of user
-    return DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $pull: { merci: { userId } } }, {
-      upsert: true,
-      new: true,
-    });
+    return DispositifModel.findOneAndUpdate(
+      { _id: dispositifId },
+      { $pull: { merci: { userId } } },
+      {
+        upsert: true,
+        new: true,
+      },
+    );
   }
   // if no user id, remove last merci without userId
   const dispositif = await DispositifModel.findOne({ _id: dispositifId }, { merci: 1 });
-  if (!dispositif) return
+  if (!dispositif) return;
   const newMerci = [...(dispositif.merci || [])];
   for (var i = newMerci.length - 1; i >= 0; i--) {
     if (!newMerci[i].userId) {
@@ -146,7 +147,7 @@ export const removeMerciDispositifInDB = async (
     }
   }
   return DispositifModel.findOneAndUpdate({ _id: dispositifId }, { merci: newMerci });
-}
+};
 
 export const addSuggestionDispositifInDB = async (
   dispositifId: DispositifId,

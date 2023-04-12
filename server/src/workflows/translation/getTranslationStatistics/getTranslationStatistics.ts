@@ -2,7 +2,7 @@ import logger from "../../../logger";
 import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
 import { getNbWordsTranslated } from "../../../modules/traductions/traductions.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { Statistics, TranslationStatisticsRequest } from "api-types";
+import { Statistics, TranslationStatisticsRequest } from "@refugies-info/api-types";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 

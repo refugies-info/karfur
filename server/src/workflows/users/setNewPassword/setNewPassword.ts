@@ -7,14 +7,14 @@ import { login2FA } from "../../../modules/users/login2FA";
 import { ResponseWithData } from "../../../types/interface";
 import { getUserFromDB } from "../../../modules/users/users.repository";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
-import { NewPasswordRequest, NewPasswordResponse } from "api-types";
+import { NewPasswordRequest, NewPasswordResponse } from "@refugies-info/api-types";
 
 export const setNewPassword = async (body: NewPasswordRequest): ResponseWithData<NewPasswordResponse> => {
   try {
     logger.info("[setNewPassword] received");
     const user = await getUserFromDB({
       reset_password_token: body.reset_password_token,
-      reset_password_expires: { $gt: Date.now() }
+      reset_password_expires: { $gt: Date.now() },
     }).populate("roles");
 
     if (!user) {
@@ -35,7 +35,7 @@ export const setNewPassword = async (body: NewPasswordRequest): ResponseWithData
 
     const userStructureId = await userRespoStructureId(
       user.structures.map((structure) => structure._id) || [],
-      user._id
+      user._id,
     );
     if (userStructureId) {
       await login2FA(
@@ -44,10 +44,10 @@ export const setNewPassword = async (body: NewPasswordRequest): ResponseWithData
           password: body.newPassword,
           code: body.code,
           email: body.email,
-          phone: body.phone
+          phone: body.phone,
         },
         user,
-        userStructureId
+        userStructureId,
       );
     }
     await proceedWithLogin(user);
@@ -58,8 +58,8 @@ export const setNewPassword = async (body: NewPasswordRequest): ResponseWithData
 
     return {
       data: { token: user.getToken() },
-      text: "success"
-    }
+      text: "success",
+    };
   } catch (error) {
     loginExceptionsManager(error);
   }

@@ -1,4 +1,4 @@
-import { TranslationContent } from "api-types";
+import { TranslationContent } from "@refugies-info/api-types";
 import { RecursivePartial } from "../types/interface";
 import { Traductions } from "./Traductions";
 

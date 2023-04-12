@@ -8,7 +8,7 @@ import { addStructureForUsers, removeStructureOfUser } from "../../../modules/us
 import { getRoleByName } from "../../../modules/role/role.repository";
 import { log } from "./log";
 import { User } from "../../../typegoose";
-import { PatchStructureRolesRequest } from "api-types";
+import { PatchStructureRolesRequest } from "@refugies-info/api-types";
 
 export const modifyUserRoleInStructure = async (id: string, body: PatchStructureRolesRequest, user: User): Response => {
   const { membreId, action, role } = body;
@@ -17,25 +17,25 @@ export const modifyUserRoleInStructure = async (id: string, body: PatchStructure
     id,
     action,
     role,
-    membreId
+    membreId,
   });
 
   await checkIfUserIsAuthorizedToModifyStructure(id, user);
 
   logger.info("[modifyUserRoleInStructure] updating stucture", {
-    id
+    id,
   });
   let structure;
 
   if (action === "modify" && role) {
     structure = {
       _id: id,
-      $set: { "membres.$.roles": [role] }
+      $set: { "membres.$.roles": [role] },
     };
   } else if (action === "delete") {
     structure = {
       _id: id,
-      $pull: { membres: { userId: membreId } }
+      $pull: { membres: { userId: membreId } },
     };
   } else if (action === "create" && role) {
     structure = {
@@ -44,9 +44,9 @@ export const modifyUserRoleInStructure = async (id: string, body: PatchStructure
         membres: {
           userId: membreId,
           roles: [role],
-          added_at: new Date()
-        }
-      }
+          added_at: new Date(),
+        },
+      },
     };
   } else {
     throw new Error("ERREUR");
@@ -70,7 +70,7 @@ export const modifyUserRoleInStructure = async (id: string, body: PatchStructure
         userId: user._id,
         email: user.email,
         pseudonyme: user.username,
-        nomstructure: structureData.nom
+        nomstructure: structureData.nom,
       });
     }
   }

@@ -3,24 +3,23 @@ import { updateDispositifInDB, getDispositifById } from "../../../modules/dispos
 import { log } from "./log";
 import { Dispositif } from "../../../typegoose";
 import { Response } from "../../../types/interface";
-import { AdminCommentsRequest } from "api-types";
+import { AdminCommentsRequest } from "@refugies-info/api-types";
 
 export const updateDispositifAdminComments = async (id: string, body: AdminCommentsRequest, userId: any): Response => {
-
   const { adminComments, adminProgressionStatus, adminPercentageProgressionStatus } = body;
 
   logger.info("[updateDispositifAdminComments] data", {
     id,
     adminComments,
     adminProgressionStatus,
-    adminPercentageProgressionStatus
+    adminPercentageProgressionStatus,
   });
 
   const modifiedDispositif: Partial<Dispositif> = {
     adminComments,
     adminProgressionStatus,
     adminPercentageProgressionStatus,
-    lastAdminUpdate: new Date()
+    lastAdminUpdate: new Date(),
   };
 
   const oldDispositif = await getDispositifById(id, { adminComments: 1 });
@@ -28,5 +27,4 @@ export const updateDispositifAdminComments = async (id: string, body: AdminComme
   await log(id, newDispositif, oldDispositif, userId);
 
   return { text: "success" };
-
 };

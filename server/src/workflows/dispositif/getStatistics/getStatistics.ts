@@ -1,12 +1,16 @@
-
-import { GetStatisticsRequest, GetStatisticsResponse } from "api-types";
+import { GetStatisticsRequest, GetStatisticsResponse } from "@refugies-info/api-types";
 import logger from "../../../logger";
-import { getNbMercis, getNbVues, getNbFiches, getNbUpdatedRecently } from "../../../modules/dispositif/dispositif.repository";
+import {
+  getNbMercis,
+  getNbVues,
+  getNbFiches,
+  getNbUpdatedRecently,
+} from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
 
-type Mercis = { mercis: number }
-type Vues = { nbVues: number, nbVuesMobile: number }
-type NbContent = { nbDispositifs: number, nbDemarches: number }
+type Mercis = { mercis: number };
+type Vues = { nbVues: number; nbVuesMobile: number };
+type NbContent = { nbDispositifs: number; nbDemarches: number };
 
 export const getStatistics = async (query: GetStatisticsRequest): ResponseWithData<GetStatisticsResponse> => {
   logger.info("[getStatistics] dispositif");
@@ -45,6 +49,6 @@ export const getStatistics = async (query: GetStatisticsRequest): ResponseWithDa
 
   return {
     text: "success",
-    data
-  }
+    data,
+  };
 };

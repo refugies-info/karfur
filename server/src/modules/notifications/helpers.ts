@@ -1,4 +1,4 @@
-import { ContentType, Metadatas } from "api-types";
+import { ContentType, Metadatas } from "@refugies-info/api-types";
 import { AppUser, Dispositif } from "../../typegoose";
 
 const ALL = "france";

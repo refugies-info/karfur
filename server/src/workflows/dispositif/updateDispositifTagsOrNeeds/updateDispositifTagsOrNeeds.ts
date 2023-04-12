@@ -3,10 +3,14 @@ import { updateDispositifInDB, getDispositifById } from "../../../modules/dispos
 import { computePossibleNeeds } from "../../../modules/needs/needs.service";
 import { log } from "./log";
 import { ObjectId, User } from "../../../typegoose";
-import { DispositifThemeNeedsRequest } from "api-types";
+import { DispositifThemeNeedsRequest } from "@refugies-info/api-types";
 import { Response } from "../../../types/interface";
 
-export const updateDispositifTagsOrNeeds = async (id: string, body: DispositifThemeNeedsRequest, user: User): Response => {
+export const updateDispositifTagsOrNeeds = async (
+  id: string,
+  body: DispositifThemeNeedsRequest,
+  user: User,
+): Response => {
   logger.info("[updateDispositifTagsOrNeeds]", { id, body });
 
   const allThemes: string[] = [];
@@ -16,7 +20,7 @@ export const updateDispositifTagsOrNeeds = async (id: string, body: DispositifTh
   let newNeeds: string[] = [];
   if (body.theme || body.secondaryThemes) {
     const originalDispositif = await getDispositifById(id, {
-      needs: 1
+      needs: 1,
     });
     if (body.needs || originalDispositif.needs) {
       // if a need of the content has a tag that is not a tag of the content we remove the need
@@ -26,9 +30,9 @@ export const updateDispositifTagsOrNeeds = async (id: string, body: DispositifTh
 
   const newDispositif = {
     theme: new ObjectId(body.theme),
-    secondaryThemes: body.secondaryThemes.map(s => new ObjectId(s)),
-    needs: newNeeds.map(n => new ObjectId(n)),
-    themesSelectedByAuthor: (body.theme || body.secondaryThemes) && user.isAdmin()
+    secondaryThemes: body.secondaryThemes.map((s) => new ObjectId(s)),
+    needs: newNeeds.map((n) => new ObjectId(n)),
+    themesSelectedByAuthor: (body.theme || body.secondaryThemes) && user.isAdmin(),
   };
   await log(id, allThemes.length > 0, user._id);
 

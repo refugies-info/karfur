@@ -1,5 +1,10 @@
 import { Route, Controller, Post, Body, Delete, Path, Security, Get } from "tsoa";
-import { GetNeedResponse, NeedRequest, UpdatePositionsNeedResponse, UpdatePositionsRequest } from "api-types";
+import {
+  GetNeedResponse,
+  NeedRequest,
+  UpdatePositionsNeedResponse,
+  UpdatePositionsRequest,
+} from "@refugies-info/api-types";
 
 import { postNeeds } from "../workflows/needs/postNeeds";
 import { deleteNeed } from "../workflows/needs/deleteNeed";

@@ -3,7 +3,7 @@ import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.rep
 import { Dispositif } from "../../../typegoose";
 import { ResponseWithData } from "../../../types/interface";
 import { FilterQuery } from "mongoose";
-import { DispositifStatus, GetDispositifsRequest, GetDispositifsResponse, Languages } from "api-types";
+import { DispositifStatus, GetDispositifsRequest, GetDispositifsResponse, Languages } from "@refugies-info/api-types";
 
 export const getDispositifs = async (query: GetDispositifsRequest): ResponseWithData<GetDispositifsResponse[]> => {
   logger.info("[getDispositifs] called");

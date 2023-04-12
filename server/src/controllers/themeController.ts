@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Patch, Body, Delete, Route, Path, Security } from "tsoa";
-import { GetThemeResponse, PatchThemeResponse, PostThemeResponse, ThemeRequest } from "api-types";
+import { GetThemeResponse, PatchThemeResponse, PostThemeResponse, ThemeRequest } from "@refugies-info/api-types";
 
 import { getThemes } from "../workflows/themes/getThemes";
 import { postThemes } from "../workflows/themes/postThemes";

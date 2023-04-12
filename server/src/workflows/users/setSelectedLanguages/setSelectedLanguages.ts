@@ -1,4 +1,4 @@
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 import { saveSelectedLanguages } from "../../../modules/users/users.repository";
 import { User } from "../../../typegoose";
 

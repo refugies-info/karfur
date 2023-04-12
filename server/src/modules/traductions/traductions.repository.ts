@@ -1,4 +1,4 @@
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { DispositifId, Traductions, TraductionsModel } from "../../typegoose";
 
 type TraductionsKeys = keyof Traductions;

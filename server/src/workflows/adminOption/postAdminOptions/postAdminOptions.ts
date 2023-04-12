@@ -2,13 +2,16 @@ import logger from "../../../logger";
 import {
   getAdminOption,
   createAdminOption,
-  updateAdminOption
+  updateAdminOption,
 } from "../../../modules/adminOptions/adminOptions.repository";
 import { AdminOptions, AdminOptionsModel } from "../../../typegoose";
 import { ResponseWithData } from "../../../types/interface";
-import { AdminOptionRequest, PostAdminOptionResponse } from "api-types";
+import { AdminOptionRequest, PostAdminOptionResponse } from "@refugies-info/api-types";
 
-export const postAdminOptions = async (key: string, body: AdminOptionRequest): ResponseWithData<PostAdminOptionResponse> => {
+export const postAdminOptions = async (
+  key: string,
+  body: AdminOptionRequest,
+): ResponseWithData<PostAdminOptionResponse> => {
   logger.info("[postAdminOptions] received", body);
 
   let updatedAdminOption = null;
@@ -18,15 +21,13 @@ export const postAdminOptions = async (key: string, body: AdminOptionRequest): R
   } else {
     const newOption = new AdminOptionsModel({
       key: key,
-      value: body.value
+      value: body.value,
     });
     updatedAdminOption = await createAdminOption(newOption);
   }
 
   return {
     text: "success",
-    data: updatedAdminOption.toObject<AdminOptions>()
-  }
+    data: updatedAdminOption.toObject<AdminOptions>(),
+  };
 };
-
-

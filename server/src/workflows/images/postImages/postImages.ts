@@ -3,7 +3,7 @@ import { ImageModel } from "../../../typegoose";
 import logger from "../../../logger";
 import { ResponseWithData } from "../../../types/interface";
 import { InvalidRequestError } from "../../../errors";
-import { PostImageResponse } from "api-types";
+import { PostImageResponse } from "@refugies-info/api-types";
 
 export const postImages = async (files: any): ResponseWithData<PostImageResponse> => {
   logger.info("[postImages] received a call");
@@ -23,7 +23,7 @@ export const postImages = async (files: any): ResponseWithData<PostImageResponse
     secure_url: imgData.secure_url,
     signature: imgData.signature,
     url: imgData.url,
-    version: imgData.version
+    version: imgData.version,
   };
 
   await ImageModel.create(image);
@@ -32,7 +32,7 @@ export const postImages = async (files: any): ResponseWithData<PostImageResponse
     data: {
       imgId: imgData._id,
       public_id: imgData.public_id,
-      secure_url: imgData.secure_url
-    }
-  }
+      secure_url: imgData.secure_url,
+    },
+  };
 };

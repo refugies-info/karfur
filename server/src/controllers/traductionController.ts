@@ -22,7 +22,7 @@ import {
   TranslateRequest,
   TranslationStatisticsRequest,
   TranslationStatisticsResponse,
-} from "api-types";
+} from "@refugies-info/api-types";
 import logger from "../logger";
 
 @Route("traduction")

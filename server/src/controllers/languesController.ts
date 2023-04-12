@@ -1,5 +1,5 @@
 import { Controller, Get, Route } from "tsoa";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 
 import { getLanguages } from "../workflows/langues/getLanguages";
 import { ResponseWithData } from "../types/interface";

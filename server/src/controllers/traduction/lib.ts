@@ -1,4 +1,4 @@
-import { ProgressionIndicator } from "api-types";
+import { ProgressionIndicator } from "@refugies-info/api-types";
 import { IndicatorModel, ObjectId } from "../../typegoose";
 
 const axios = require("axios");

@@ -1,5 +1,5 @@
 import { Controller, Post, Route, Body, Security } from "tsoa";
-import { TtsRequest } from "api-types";
+import { TtsRequest } from "@refugies-info/api-types";
 import { getTts } from "../workflows/tts/getTts";
 
 @Route("tts")

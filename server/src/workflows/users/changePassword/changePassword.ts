@@ -5,11 +5,13 @@ import { isPasswordOk } from "../../../libs/validatePassword";
 import { User } from "../../../typegoose/User";
 import { InvalidRequestError, UnauthorizedError } from "../../../errors";
 import { ResponseWithData } from "../../../types/interface";
-import { UpdatePasswordRequest, UpdatePasswordResponse, UserStatus } from "api-types";
+import { UpdatePasswordRequest, UpdatePasswordResponse, UserStatus } from "@refugies-info/api-types";
 
-
-
-export const changePassword = async (id: string, body: UpdatePasswordRequest, userReq: User): ResponseWithData<UpdatePasswordResponse> => {
+export const changePassword = async (
+  id: string,
+  body: UpdatePasswordRequest,
+  userReq: User,
+): ResponseWithData<UpdatePasswordResponse> => {
   logger.info("[changePassword] received");
 
   const { currentPassword, newPassword } = body;
@@ -28,7 +30,10 @@ export const changePassword = async (id: string, body: UpdatePasswordRequest, us
   }
 
   if (newPassword === currentPassword) {
-    throw new InvalidRequestError("Le mot de passe ne peut pas être identique à l'ancien mot de passe.", "USED_PASSWORD");
+    throw new InvalidRequestError(
+      "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
+      "USED_PASSWORD",
+    );
   }
 
   if (!isPasswordOk(newPassword)) {

@@ -8,7 +8,7 @@ import { Langue } from "./Langue";
 import { Role } from "./Role";
 import { Structure } from "./Structure";
 import { Base } from "./Base";
-import { UserStatus } from "api-types";
+import { UserStatus } from "@refugies-info/api-types";
 
 export class Favorite {
   @prop({ ref: () => Dispositif })
@@ -16,7 +16,6 @@ export class Favorite {
   @prop()
   public created_at: Date;
 }
-
 
 @modelOptions({ schemaOptions: { collection: "users", timestamps: { createdAt: "created_at" } } })
 export class User extends Base {
@@ -128,8 +127,8 @@ export class User extends Base {
 
     return this.roles && this.roles.length > 0
       ? this.roles
-        .filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad")
-        .map((role) => role.nom.toString())
+          .filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad")
+          .map((role) => role.nom.toString())
       : [];
   }
 

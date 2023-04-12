@@ -1,4 +1,4 @@
-import { GetLogResponse } from "api-types";
+import { GetLogResponse } from "@refugies-info/api-types";
 import logger from "../../../logger";
 import { findLogs } from "../../../modules/logs/logs.repository";
 import { ResponseWithData } from "../../../types/interface";
@@ -11,6 +11,6 @@ export const getLogs = async (id: string): ResponseWithData<GetLogResponse[]> =>
     text: "success",
     // FIXME: created_at not available
     //@ts-ignore
-    data: logs
+    data: logs,
   };
-}
+};

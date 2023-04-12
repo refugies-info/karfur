@@ -5,7 +5,7 @@ import { getUserById } from "../users/users.repository";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
 import { DispositifId } from "../../typegoose";
-import { ContentType, UserStatus } from "api-types";
+import { ContentType, UserStatus } from "@refugies-info/api-types";
 import { RefactorTodoError } from "../../errors";
 
 export const sendPublishedTradMailToTraductors = async (

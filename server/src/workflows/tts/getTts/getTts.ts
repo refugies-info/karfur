@@ -1,5 +1,5 @@
 import logger from "../../../logger";
-import { TtsRequest } from "api-types";
+import { TtsRequest } from "@refugies-info/api-types";
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import { SpeechSynthesisOutputFormat } from "microsoft-cognitiveservices-speech-sdk";
 import voices from "./voices";

@@ -1,4 +1,4 @@
-import { GetProgressionResponse, ProgressionIndicator } from "api-types";
+import { GetProgressionResponse, ProgressionIndicator } from "@refugies-info/api-types";
 import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
 import logger from "../../../logger";
 import { IndicatorModel, ObjectId } from "../../../typegoose";

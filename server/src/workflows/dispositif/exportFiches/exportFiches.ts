@@ -3,7 +3,7 @@ import { Response } from "../../../types/interface";
 import { getDispositifsForExport } from "../../../modules/dispositif/dispositif.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { Dispositif, Langue } from "../../../typegoose";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(process.env.AIRTABLE_BASE_USERS);
@@ -31,7 +31,8 @@ interface Result {
 const getTranslatedTitles = (dispositif: Dispositif, activeLanguages: Langue[]) => {
   const translatedTitles: Record<string, string> = {};
   for (const ln of activeLanguages) {
-    translatedTitles[`Titre informatif ${ln.i18nCode}`] = dispositif.translations?.[ln.i18nCode as Languages]?.content.titreInformatif || "";
+    translatedTitles[`Titre informatif ${ln.i18nCode}`] =
+      dispositif.translations?.[ln.i18nCode as Languages]?.content.titreInformatif || "";
   }
   return translatedTitles;
 };
@@ -52,7 +53,7 @@ const getPublicVise = (metadatas: Dispositif["metadatas"]) => {
 
 const getNiveauFrancais = (metadatas: Dispositif["metadatas"]) => {
   if (!metadatas.frenchLevel) return [];
-  return metadatas.frenchLevel.map(f => f.toString());
+  return metadatas.frenchLevel.map((f) => f.toString());
 };
 
 // const getDuree = (metadatas: Dispositif["metadatas"]) => {
@@ -77,7 +78,7 @@ const exportFichesInAirtable = (fiches: { fields: Result }[]) => {
     if (err) {
       logger.error("[exportFichesInAirtable] error while exporting fiches to airtable", {
         fichesId: fiches.map((fiche) => fiche.fields.Lien),
-        error: err
+        error: err,
       });
       return;
     }
@@ -114,7 +115,7 @@ const formatDispositif = (dispositif: Dispositif, activeLanguages: Langue[]) => 
     "Nombre de vues": dispositif.nbVues || 0,
     "Besoins": besoins,
     ...translatedTitles,
-    "Date de dernière mise à jour": dispositif.updatedAt.toISOString()
+    "Date de dernière mise à jour": dispositif.updatedAt.toISOString(),
   };
 
   return { fields: formattedResult };
@@ -140,7 +141,7 @@ export const exportFiches = async (): Response => {
     } catch (error) {
       logger.error("error with fiche", {
         _id: dispositif._id,
-        error: error.message
+        error: error.message,
       });
     }
   });

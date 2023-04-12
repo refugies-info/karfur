@@ -1,13 +1,13 @@
 import { Dispositif, DispositifId, ObjectId, StructureId } from "../../../typegoose";
 import logger from "../../../logger";
 import { addLog } from "../../../modules/logs/logs.service";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 export const log = async (
   oldDispositif: Dispositif,
   dispositifId: DispositifId,
   sponsorId: StructureId,
-  authorId: Id
+  authorId: Id,
 ) => {
   try {
     if (oldDispositif.mainSponsor && oldDispositif.mainSponsor !== sponsorId) {
@@ -21,10 +21,10 @@ export const log = async (
           link: {
             id: dispositifId,
             model_link: "Dispositif",
-            next: "ModalContenu"
+            next: "ModalContenu",
           },
-          author: new ObjectId(authorId.toString())
-        }
+          author: new ObjectId(authorId.toString()),
+        },
       );
       await addLog(
         sponsorId,
@@ -36,10 +36,10 @@ export const log = async (
           link: {
             id: dispositifId,
             model_link: "Dispositif",
-            next: "ModalContenu"
+            next: "ModalContenu",
           },
-          author: new ObjectId(authorId.toString())
-        }
+          author: new ObjectId(authorId.toString()),
+        },
       );
     }
     if (!oldDispositif.mainSponsor && sponsorId) {
@@ -49,9 +49,9 @@ export const log = async (
         link: {
           id: dispositifId,
           model_link: "Dispositif",
-          next: "ModalContenu"
+          next: "ModalContenu",
         },
-        author: new ObjectId(authorId.toString())
+        author: new ObjectId(authorId.toString()),
       });
     }
     if (oldDispositif.mainSponsor && !sponsorId) {
@@ -65,10 +65,10 @@ export const log = async (
           link: {
             id: dispositifId,
             model_link: "Dispositif",
-            next: "ModalContenu"
+            next: "ModalContenu",
           },
-          author: new ObjectId(authorId.toString())
-        }
+          author: new ObjectId(authorId.toString()),
+        },
       );
     }
     await addLog(dispositifId, "Dispositif", "Structure responsable modifiée : {{dynamic}}", {
@@ -77,9 +77,9 @@ export const log = async (
       link: {
         id: sponsorId,
         model_link: "Structure",
-        next: "ModalStructure"
+        next: "ModalStructure",
       },
-      author: new ObjectId(authorId.toString())
+      author: new ObjectId(authorId.toString()),
     });
   } catch (e) {
     logger.error("[modifyDispositifMainSponsor] log error", e);

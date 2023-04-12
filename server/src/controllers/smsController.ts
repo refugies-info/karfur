@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Route, Security } from "tsoa";
-import { ContentLinkRequest, DownloadAppRequest } from "api-types";
+import { ContentLinkRequest, DownloadAppRequest } from "@refugies-info/api-types";
 
 import { downloadApp } from "../workflows/sms/downloadApp";
 import { contentLink } from "../workflows/sms/contentLink";

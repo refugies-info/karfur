@@ -3,8 +3,7 @@ import logger from "../../../logger";
 import { removeFavoriteFromDB, updateUserInDB } from "../../../modules/users/users.repository";
 import { User } from "../../../typegoose";
 import { InvalidRequestError } from "../../../errors";
-import { DeleteUserFavoriteRequest } from "api-types";
-
+import { DeleteUserFavoriteRequest } from "@refugies-info/api-types";
 
 export const deleteUserFavorites = async (user: User, query: DeleteUserFavoriteRequest): Response => {
   logger.info("[deleteUserFavorites] received");
