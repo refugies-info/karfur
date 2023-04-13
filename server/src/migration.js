@@ -165,8 +165,8 @@ const getJustificatif = (justificatif) => {
       return "titre sejour";
     case "Diplôme":
       return "school";
-    case "Justificatif de domicile": // TODO -> what here
-      return "domicile";
+    // case "Justificatif de domicile":
+    //   return "domicile";
     default:
       return null;
   }

@@ -180,7 +180,7 @@ const importData = async (line) => {
   const frequencyAmountDetails = getFrequencyAmountDetails(line[6], id);
   const frequencyHours = getFrequencyHours(line[7]);
   const frequencyTimeUnit = getFrequencyTimeUnit(line[8], id);
-  const frequencUnit = getFrequencyUnit(line[9], id);
+  const frequencyUnit = getFrequencyUnit(line[9], id);
   const timeSlots = getTimeSlots(line[10]);
   const conditions = getConditions(line[11]);
   const publicStatus = getPublicStatus(line[12]);
@@ -189,7 +189,11 @@ const importData = async (line) => {
   let metadatas = {};
   if (commitmentAmountDetails || commitmentHours || commitmentTimeUnit) {
     if (commitmentAmountDetails && commitmentHours && commitmentTimeUnit) {
-      metadatas["metadatas.commitment"] = { commitmentAmountDetails, commitmentHours, commitmentTimeUnit };
+      metadatas["metadatas.commitment"] = {
+        amountDetails: commitmentAmountDetails,
+        hours: commitmentHours,
+        timeUnit: commitmentTimeUnit,
+      };
       if (commitmentAmountDetails === "between" && commitmentHours.length !== 2) {
         console.log(id, "commitment between error", commitmentHours);
       }
@@ -201,13 +205,13 @@ const importData = async (line) => {
     }
   }
 
-  if (frequencyAmountDetails || frequencyHours || frequencyTimeUnit || frequencUnit) {
-    if (frequencyAmountDetails && frequencyHours && frequencyTimeUnit && frequencUnit) {
+  if (frequencyAmountDetails || frequencyHours || frequencyTimeUnit || frequencyUnit) {
+    if (frequencyAmountDetails && frequencyHours && frequencyTimeUnit && frequencyUnit) {
       metadatas["metadatas.frequency"] = {
-        frequencyAmountDetails,
-        frequencyHours,
-        frequencyTimeUnit,
-        frequencUnit,
+        amountDetails: frequencyAmountDetails,
+        hours: frequencyHours,
+        timeUnit: frequencyTimeUnit,
+        frequencyUnit: frequencyUnit,
       };
     } else {
       console.log(
@@ -216,7 +220,7 @@ const importData = async (line) => {
         frequencyAmountDetails,
         frequencyHours,
         frequencyTimeUnit,
-        frequencUnit,
+        frequencyUnit,
       );
     }
   }
@@ -262,6 +266,79 @@ async function main() {
   }
 
   console.log(generated, "metadatas générées, ", edited, "dispositif modifiés");
+  console.log("Import terminé. Test des données");
+  const tests = [
+    dispositifsColl
+      .find({
+        "metadatas.commitment": { $exists: true },
+        "metadatas.commitment.amountDetails": {
+          $nin: ["minimum", "maximum", "approximately", "exactly", "between"],
+        },
+      })
+      .toArray(),
+    dispositifsColl
+      .find({
+        "metadatas.commitment": { $exists: true },
+        "metadatas.commitment.timeUnit": {
+          $nin: ["sessions", "hours", "half-days", "days", "weeks", "months", "trimesters", "semesters", "years"],
+        },
+      })
+      .toArray(),
+    dispositifsColl
+      .find({
+        "metadatas.frequency": { $exists: true },
+        "metadatas.frequency.amountDetails": { $nin: ["minimum", "maximum", "approximately", "exactly"] },
+      })
+      .toArray(),
+    dispositifsColl
+      .find({
+        "metadatas.frequency": { $exists: true },
+        "metadatas.frequency.timeUnit": {
+          $nin: ["sessions", "hours", "half-days", "days", "weeks", "months", "trimesters", "semesters", "years"],
+        },
+      })
+      .toArray(),
+    dispositifsColl
+      .find({
+        "metadatas.frequency": { $exists: true },
+        "metadatas.frequency.frequencyUnit": {
+          $nin: ["session", "day", "week", "month", "trimester", "semester", "year"],
+        },
+      })
+      .toArray(),
+    dispositifsColl
+      .find({
+        "metadatas.publicStatus.0": { $exists: true },
+        "metadatas.publicStatus": { $nin: ["asile", "refugie", "subsidiaire", "temporaire", "apatride", "french"] },
+      })
+      .toArray(),
+    dispositifsColl
+      .find({
+        "metadatas.public.0": { $exists: true },
+        "metadatas.public": { $nin: ["family", "women", "youths", "senior", "gender"] },
+      })
+      .toArray(),
+    dispositifsColl
+      .find({
+        "metadatas.conditions.0": { $exists: true },
+        "metadatas.conditions": {
+          $nin: ["acte naissance", "titre sejour", "cir", "bank account", "pole emploi", "driver license", "school"],
+        },
+      })
+      .toArray(),
+    dispositifsColl
+      .find({
+        "metadatas.timeSlots.0": { $exists: true },
+        "metadatas.timeSlots": { $nin: ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"] },
+      })
+      .toArray(),
+  ];
+  const testRes = await Promise.all(tests);
+  if (testRes.map((t) => t.length).find((t) => t !== 0)) {
+    console.log("Données corrompues :", testRes);
+  } else {
+    console.log("Données OK. Tout est bon !");
+  }
 }
 
 main()

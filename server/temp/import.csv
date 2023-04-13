@@ -103,7 +103,7 @@ https://refugies.info/fr/dispositif/6017d5ad1dbd390014db8b5c;En fonction des mis
 https://refugies.info/fr/dispositif/6018370cd158930014c3c734;Modulable;;;;;;;;;;;;;TRUE;FALSE;
 https://refugies.info/fr/dispositif/601abce6c8597d0014cbcec6;2h30;;Exactement;2.5;heures;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/601c184a9f69df0014499c36;5 mois;;Exactement;5;mois;;;;;;;;;FALSE;FALSE;
-https://refugies.info/fr/dispositif/6021326305fd07001477173d;;Contrats CDDI;Maximum;2;années;Entre;26 - 35;heures;semaine;;;;;FALSE;FALSE;
+https://refugies.info/fr/dispositif/6021326305fd07001477173d;;Contrats CDDI;Maximum;2;années;Environ;30;heures;semaine;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/602a40775e206e00147d5230;6 à 12 mois;;Entre;6 - 12;mois;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/602a56342bb80b0014cc570b;5,5 mois;Inscrit à Pôle emploi et CIR terminé;Exactement;5.5;mois;;;;;;Avoir signé le CIR et terminé les cours OFII, Être inscrit à Pôle Emploi;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/602bcfc31a1ab20014fc7d08;6 semaines;;Exactement;6;semaines;;;;;;Avoir son titre de séjour ou son récépissé;Primo-arrivants;;FALSE;FALSE;
@@ -237,20 +237,20 @@ https://refugies.info/fr/dispositif/620f7267e2c4a80013d117d3;Toute l'année;;;;;
 https://refugies.info/fr/dispositif/62149dc3228345001371ba69;de 12 à 36 mois;;Entre;1 - 3;années;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/621c98bfe7e177e193915370;Toute l'année;Les jeudis de 14h à 16h;;;;Environ;1;séances;semaine;Jeudi;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/621e3024e892695e62dd1862;6 mois;;Environ;6;mois;;;;;;;;;FALSE;FALSE;
-https://refugies.info/fr/dispositif/6220c067a86330922a5b2c18;Jusqu'à 36 mois;;Environ;1 - 3;années;;;;;;;;;FALSE;FALSE;
+https://refugies.info/fr/dispositif/6220c067a86330922a5b2c18;Jusqu'à 36 mois;;Entre;1 - 3;années;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/62221bc80d690aeea0b12a9d;Le vendredi de 16h15 à 17h45<br>;;;;;Exactement;1;séances;semaine;Vendredi;;;;FALSE;FALSE;
-https://refugies.info/fr/dispositif/62221e450d690aeea0b12ed4;4 à 6 mois<br>;;Environ;4 - 6;mois;Minimum;6;séances;;;;;;FALSE;FALSE;
+https://refugies.info/fr/dispositif/62221e450d690aeea0b12ed4;4 à 6 mois<br>;;Entre;4 - 6;mois;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/62221f7b800f3acd84b7f8a8;Du lundi au vendredi, de 10h à 17h;;;;;;;;;Lundi, Mardi, Mercredi, Jeudi, Vendredi;;;;FALSE;TRUE;Ajouter les horaires dans le texte
-https://refugies.info/fr/dispositif/6225d3eadc42f6dcd355647c;6 à 24 mois;Être une personne isolée;Environ;6 - 24;mois;;;;;;;;;FALSE;FALSE;
+https://refugies.info/fr/dispositif/6225d3eadc42f6dcd355647c;6 à 24 mois;Être une personne isolée;Entre;6 - 24;mois;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/62287ca24ef9e4c06ccd12dd;3 à 6 mois;;Entre;3 - 6;mois;Exactement;1.5;heures;semaine;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/622c6963919592ccd095affe;2-4 ans<br>;;Entre;2 - 4;années;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/622df39bdfdbedf899ac85f2;6 mois;;Environ;6;mois;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/622f62f62e86257203fb9506;6 à 12 mois;;;;;;;;;;;;;TRUE;FALSE;
 https://refugies.info/fr/dispositif/6230541da457bc5d2b7e79e9;6 à 12 mois;accompagnement individualisé;;;;;;;;;;;;FALSE;TRUE;Durée d'engagement à préciser
-https://refugies.info/fr/dispositif/62308d48c3b1141d6140b6d8;6 à 12 mois;;Environ;1;années;Exactement;200;heures;;;;;;FALSE;FALSE;
+https://refugies.info/fr/dispositif/62308d48c3b1141d6140b6d8;6 à 12 mois;;Environ;1;années;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/62309f4cc3b1141d6140c4de;CDI<br>;;;;;;;;;;;;;TRUE;FALSE;
 https://refugies.info/fr/dispositif/6231ba77b4a1b88f70eae856;1 à 10 mois;;Maximum;10;mois;;;;;;;;;FALSE;FALSE;
-https://refugies.info/fr/dispositif/6231ddf15634f90b7cd6ab35;2 à 12 mois;;Environ;2 - 12;mois;;;;;;;;;FALSE;FALSE;
+https://refugies.info/fr/dispositif/6231ddf15634f90b7cd6ab35;2 à 12 mois;;Entre;2 - 12;mois;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/6231e539c99b5be73abb302b;en fonction des besoins;;;;;;;;;;;;;TRUE;FALSE;
 https://refugies.info/fr/dispositif/6231f325beccd4c4f888591c;6 à 12 mois;;;;;Exactement;1;séances;semaine;Mardi;;;;FALSE;TRUE;Préciser les horaires dans le texte
 https://refugies.info/fr/dispositif/62345b05983a398af43a45f1;Toute l'année;;;;;;;;;;;;;TRUE;FALSE;
@@ -264,7 +264,7 @@ https://refugies.info/fr/dispositif/623c1ae5693e319364d4aba5;10 mois;;Exactement
 https://refugies.info/fr/dispositif/623c5c40a11eab81721ee115;5 semaines<div>Du 02/04 au 03/05</div>;;Exactement;5;semaines;;;;;;;;;FALSE;TRUE;Revoir les dates d'inscription
 https://refugies.info/fr/dispositif/62430247d04e22e93321b044;2h30;;Exactement;2.5;heures;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/6246bedcb50ab139a9e2092e;;Accès aux soins 24h/24;;;;;;;;;;;;TRUE;FALSE;
-https://refugies.info/fr/dispositif/6246c08b489b7657ce28b246;6 à 12 mois;;;;;Entre;15 - 20;heures;semaine;;;;;FALSE;TRUE;Modifier la durée d'engagement
+https://refugies.info/fr/dispositif/6246c08b489b7657ce28b246;6 à 12 mois;;;;;Environ;20;heures;semaine;;;;;FALSE;TRUE;Modifier la durée d'engagement
 https://refugies.info/fr/dispositif/6246c257b50ab139a9e20b19;10 mois;;Environ;10;mois;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/6246cf23489b7657ce28b6a0;6 à 12 mois;;;;;;;;;;;;;FALSE;TRUE;Vérifier la durée d'engagement
 https://refugies.info/fr/dispositif/624ef57bfe0f8d9a4741c62d;6 semaines à 6 mois;;Entre;1.5 - 6;mois;;;;;;;;;FALSE;FALSE;
@@ -278,7 +278,7 @@ https://refugies.info/fr/dispositif/626291968b7ec954a9d0f406;4 mois<br>;Signatur
 https://refugies.info/fr/dispositif/62669fc35af8666e977d03e4;Jusqu'à 6 mois;;Maximum;6;mois;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/6266b32729b7b5d8834cd959;4 à 6 mois;Ile de France;Entre;4 - 6;mois;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/6267b0cb58117d947aa29c3d;1h30;;Exactement;1.5;heures;;;;;;;;;FALSE;FALSE;
-https://refugies.info/fr/dispositif/6267ba6d58117d947aa2a32e;3h;;;;;Exactement;3;heures;semaine;Jeudi ;;;;FALSE;FALSE;
+https://refugies.info/fr/dispositif/6267ba6d58117d947aa2a32e;3h;;;;;Exactement;3;heures;semaine;Jeudi;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/6267ba8d58117d947aa2a36d;1 à 6 mois;;Maximum;6;mois;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/626bcec486df40bf70820e74;3 mois à 6 mois;;Entre;3 - 6;mois;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/627393182bd48cb893ba175d;12 mois;Être inscrit à Pôle Emploi;Environ;12;mois;;;;;;Être inscrit à Pôle Emploi;Tous les publics;;FALSE;FALSE;
@@ -292,7 +292,7 @@ https://refugies.info/fr/dispositif/6273db1c151469195d8f2efe;6 semaines;;Exactem
 https://refugies.info/fr/dispositif/6273e50668507dc8cd5cc1c2;5 mois;Signature du CIR<br>;Exactement;5;mois;;;;;;Avoir signé le CIR et terminé les cours OFII;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/6278f6dd55abdddbde490549;jusqu'à 30 mois<br>;;Maximum;2.5;années;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/627cbc3a6eb187fed9b90083;Entre 1 semaine et 1 an;;Minimum;1;semaines;;;;;;;;;TRUE;FALSE;
-https://refugies.info/fr/dispositif/627e1776dff1206b1a71ce3b;6 mois;;Exactement;6;séances;Exactement;6;séances;;;;Réfugiés statutaires, Bénéficiaires de la protection subsidiaire, Bénéficiaires de la protection temporaire, Apatrides;;TRUE;FALSE;
+https://refugies.info/fr/dispositif/627e1776dff1206b1a71ce3b;6 mois;;Exactement;6;séances;;;;;;;Réfugiés statutaires, Bénéficiaires de la protection subsidiaire, Bénéficiaires de la protection temporaire, Apatrides;;TRUE;FALSE;
 https://refugies.info/fr/dispositif/627e486092b9cc98ab5a0031;4 mois;;Exactement;4;mois;;;;;;;Réfugiés statutaires, Bénéficiaires de la protection subsidiaire, Bénéficiaires de la protection temporaire, Apatrides;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/6283668623d7f4a66d1d4b67;6 à 12 mois;Accompagnement sur validation;Entre;6 - 12;mois;;;;;;;;;FALSE;TRUE;Edito : Accompagnement sur validation
 https://refugies.info/fr/dispositif/6294adb05d5f30024d5c5513;6 à 12 mois;;;;;;;;;Jeudi, Vendredi;;;;FALSE;TRUE;Vérifier la durée d'engagement
@@ -354,17 +354,17 @@ https://refugies.info/fr/dispositif/638dcbbaf0b1a31177cf9602;1 à 3 mois;;Entre;
 https://refugies.info/fr/dispositif/638f4bd332ad4b4d82bee432;3h par semaine<br>;;Environ;4;mois;Exactement;3;heures;semestre;Jeudi;;;;TRUE;FALSE;
 https://refugies.info/fr/dispositif/6391ec3fc4d17891b4015185;10 heures environ;;Environ;10;heures;;;;;;;;;TRUE;FALSE;
 https://refugies.info/fr/dispositif/639ad8d316e643b264e47f04;24 mois maximum<br>;Territoire du Grand Perigueux;Maximum;2;années;;;;;;;;;TRUE;FALSE;
-https://refugies.info/fr/dispositif/63a07c21f8a1002a9f2f0621;2h par atelier;;Environ;2;mois;Exactement;4;séances;;;;;;TRUE;FALSE;
-https://refugies.info/fr/dispositif/63a09096e05318191f09690b;;Avoir le niveau bac+2<br>;Exactement;2;semestres;Environ;8;mois;;;;;;FALSE;TRUE;Avoir le niveau bac+2
+https://refugies.info/fr/dispositif/63a07c21f8a1002a9f2f0621;2h par atelier;;;;;Exactement;2;heures;séance;;;;;TRUE;FALSE;
+https://refugies.info/fr/dispositif/63a09096e05318191f09690b;;Avoir le niveau bac+2<br>;Exactement;2;semestres;;;;;;;;;FALSE;TRUE;Avoir le niveau bac+2
 https://refugies.info/fr/dispositif/63ac59778c7d4cfa502df70d;6 mois;;Exactement;6;mois;;;;;;;;;TRUE;FALSE;
 https://refugies.info/fr/dispositif/63b2d9f834c2467856a214b8;10 semaines;CIR signé / Cours OFII terminés;Exactement;8;semaines;;;;;;Avoir signé le CIR et terminé les cours OFII;;;TRUE;FALSE;
 https://refugies.info/fr/dispositif/63b2f8a58d5fef20f701e1d3;5 mois et demi;Il faut être disponible à plein temps;Exactement;7;mois;Exactement;5;journées;semaine;;;;;TRUE;FALSE;
 https://refugies.info/fr/dispositif/63c93f76e28d047d60ff6e49;;Être en recherche d'emploi / formation;;;;;;;;;;;;FALSE;TRUE;Être en recherche d'emploi / formation
 https://refugies.info/fr/dispositif/63c9578371eba405ec559495;Adaptée à vos besoins<br>;;;;;;;;;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/63c9775d1ca498a96eb45e96;4 mois;;Exactement;4;mois;Exactement;10;heures;semaine;;;;;FALSE;FALSE;
-https://refugies.info/fr/dispositif/63c9797f1ca498a96eb46196;De 6 à 12 mois;;Entre;6 - 12;mois;Entre;15 - 20;heures;semaine;;;;;FALSE;FALSE;
+https://refugies.info/fr/dispositif/63c9797f1ca498a96eb46196;De 6 à 12 mois;;Entre;6 - 12;mois;Environ;20;heures;semaine;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/63ceb71af48b3e5a1ed0ace9;6 à 12 mois;;Entre;6 - 12;mois;;;;;;;;;FALSE;FALSE;
-https://refugies.info/fr/dispositif/63da8de48747701d9eca8ee5;de 3 à 6 mois;;Entre;3 - 6;mois;Entre;10 - 15;heures;semaine;;;;;FALSE;FALSE;
+https://refugies.info/fr/dispositif/63da8de48747701d9eca8ee5;de 3 à 6 mois;;Entre;3 - 6;mois;Environ;15;heures;semaine;;;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/63dccefaacb72a93cc4a3623;8 semaines;Être inscrit à Pôle Emploi;Exactement;8;semaines;;;;;;Être inscrit à Pôle Emploi;;;FALSE;FALSE;
 https://refugies.info/fr/dispositif/63dcd6a5acb72a93cc4a43ba;12 mois<br>;Être dans un centre d'hébergement;Exactement;1;années;;;;;;Être inscrit à Pôle Emploi;Réfugiés statutaires, Bénéficiaires de la protection subsidiaire;;FALSE;TRUE;Être dans un centre d'hébergement
 https://refugies.info/fr/dispositif/63e2713dbd3844ab44fb5683;Mercredi de 9h à 12h;1 mercredi sur 2;;;;Exactement;2;journées;mois;Mercredi;;;;FALSE;TRUE;Mercredi 9h à 12h
@@ -459,7 +459,7 @@ https://refugies.info/fr/dispositif/638fbfba5b045c90b45b3194;6 à 12 mois;;Entre
 https://refugies.info/fr/dispositif/6392f0f5bcd2075a3791ed89;6 à 12 mois;;Entre;6 - 12;mois;;;;;;;;;FALSE;FALSE;Statut : A valider
 https://refugies.info/fr/dispositif/63a4886e4d96473e0d1ea41e;du 23 janvier au 07 avril 2023;;;;;;;;;;;;;FALSE;FALSE;Statut : A valider
 https://refugies.info/fr/dispositif/63a573355dda9b29c5f06519;6 à 12 mois;Compte bancaire;Entre;6 - 12;mois;;;;;;Avoir un compte bancaire;;;FALSE;FALSE;Statut : A valider
-https://refugies.info/fr/dispositif/63ac049adde65f97889be26d;6 à 12 mois;;Environ;6 - 12;mois;;;;;;;;;FALSE;FALSE;Statut : A valider
+https://refugies.info/fr/dispositif/63ac049adde65f97889be26d;6 à 12 mois;;Entre;6 - 12;mois;;;;;;;;;FALSE;FALSE;Statut : A valider
 https://refugies.info/fr/dispositif/63b28f0175b394be44b45e23;6 à 12 mois;;Entre;6 - 12;mois;;;;;;;;;FALSE;FALSE;Statut : A valider
 https://refugies.info/fr/dispositif/63be74a683d62b04a604da20;6 mois;;Environ;6;mois;;;;;;;;;FALSE;FALSE;Statut : A valider
 https://refugies.info/fr/dispositif/63d29f067c263fb02f98f950;Maximum 2 ans<br>;;Maximum;2;années;;;;;;;;;FALSE;FALSE;Statut : A valider
@@ -468,7 +468,7 @@ https://refugies.info/fr/dispositif/63fcc050cae637195bb7ea76;6 à 12 mois;;Entre
 https://refugies.info/fr/dispositif/640b514722a87ec51bcb77a6;6 à 36 mois;Avoir un compte bancaire;Entre;6 - 36;mois;;;;;;Avoir un compte bancaire;;;FALSE;FALSE;Statut : A valider
 https://refugies.info/fr/dispositif/640f30640d73ac6cfd64cd24;6 mois;;Environ;6;mois;;;;;;;;;FALSE;FALSE;Statut : A valider
 https://refugies.info/fr/dispositif/641058951b89b9a623ff9233;10 semaines;;Environ;10;semaines;;;;;;;;;FALSE;FALSE;Statut : A valider
-https://refugies.info/fr/dispositif/64108d411b89b9a6230698cf;6 à 12 mois;;Environ;6 - 12;mois;;;;;;;;;FALSE;FALSE;Statut : A valider
+https://refugies.info/fr/dispositif/64108d411b89b9a6230698cf;6 à 12 mois;;Entre;6 - 12;mois;;;;;;;;;FALSE;FALSE;Statut : A valider
 https://refugies.info/fr/dispositif/6410971f1b89b9a62306fb85;116 heures;;Environ;116;heures;;;;;;;;;FALSE;FALSE;Statut : A valider
 https://refugies.info/fr/dispositif/6411e9e238cce904e4f99b16;6 à 12 mois;Compte bancaire;Entre;6 - 12;mois;;;;;;Avoir un compte bancaire ;;;FALSE;FALSE;Statut : A valider
 https://refugies.info/fr/dispositif/6422afe0b30dd226b5bd2b67;6 à 12 mois;;Entre;6 - 12;mois;;;;;;;;;FALSE;FALSE;Statut : A valider

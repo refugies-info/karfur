@@ -126,14 +126,7 @@ export type ageType = "lessThan" | "moreThan" | "between";
 export type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
 export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
 export type publicType = "family" | "women" | "youths" | "senior" | "gender";
-export type conditionType =
-  | "acte naissance"
-  | "titre sejour" /* | "domicile" */
-  | "cir"
-  | "bank account"
-  | "pole emploi"
-  | "driver license"
-  | "school";
+export type conditionType = "acte naissance" | "titre sejour" | "cir" | "bank account" | "pole emploi" | "driver license" | "school";
 export type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
 export type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
 export type timeUnitType = "sessions" | "hours" | "half-days" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
