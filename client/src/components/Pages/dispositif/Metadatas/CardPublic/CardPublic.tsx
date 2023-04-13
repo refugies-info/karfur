@@ -1,7 +1,16 @@
 import React from "react";
 import { Metadatas } from "api-types";
 import BaseCard from "../BaseCard";
-import { getAge, getAgeLink, getFrenchLevel, getFrenchLevelLink, getPublic, getPublicStatus } from "../functions";
+import {
+  getAge,
+  getAgeLink,
+  getAllFrenchLevel,
+  getAllPublicStatus,
+  getFrenchLevel,
+  getFrenchLevelLink,
+  getPublic,
+  getPublicStatus,
+} from "../functions";
 import FRLink from "components/UI/FRLink";
 import AgeIcon from "assets/dispositif/metadatas/Age";
 import FrenchLevelIcon from "assets/dispositif/metadatas/FrenchLevel";
@@ -22,7 +31,12 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
     <BaseCard
       title="Public visé"
       items={[
-        { label: "Statut", content: getPublicStatus(dataPublicStatus), icon: <StatusIcon color={color} /> },
+        {
+          label: "Statut",
+          content: getPublicStatus(dataPublicStatus),
+          icon: <StatusIcon color={color} />,
+          defaultValue: getAllPublicStatus(),
+        },
         {
           label: "Français demandé",
           content:
@@ -32,11 +46,13 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
               <FRLink href={getFrenchLevelLink(dataFrenchLevel)}>{getFrenchLevel(dataFrenchLevel)}</FRLink>
             ),
           icon: <FrenchLevelIcon color={color} />,
+          defaultValue: <FRLink href={getFrenchLevelLink([])}>{getAllFrenchLevel()}</FRLink>,
         },
         {
           label: "Âge demandé",
           content: !dataAge ? dataAge : <FRLink href={getAgeLink(dataAge)}>{getAge(dataAge)}</FRLink>,
           icon: <AgeIcon color={color} />,
+          defaultValue: <FRLink href={getAgeLink(undefined)}>Tous les âges</FRLink>,
         },
         { label: "Public spécifique", content: getPublic(dataPublic), icon: <StatusIcon color={color} /> },
       ]}

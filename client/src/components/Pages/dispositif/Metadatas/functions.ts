@@ -2,7 +2,7 @@ import { LinkProps } from "next/link";
 import { conditionType, Metadatas } from "api-types";
 import { getPath } from "routes";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
-import { getAgeText, getCommitmentText, getFrequencyText, getPriceText, getPublicStatusText, getPublicText, getTimeSlotsText } from "lib/dispositif";
+import { getAgeText, getCommitmentText, getFrenchLevelText, getFrequencyText, getPriceText, getPublicStatusText, getPublicText, getTimeSlotsText } from "lib/dispositif";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import imgCb from "assets/dispositif/form-icons/conditions-cb.svg";
 import imgDriver from "assets/dispositif/form-icons/conditions-driver.svg";
@@ -18,6 +18,11 @@ export const getPrice = (price: Metadatas["price"] | null | undefined) => {
 export const getPublicStatus = (publicStatus: Metadatas["publicStatus"] | null | undefined) => {
   if (!publicStatus) return publicStatus;
   return getPublicStatusText(publicStatus);
+}
+export const getAllPublicStatus = () => {
+  return getPublicStatusText([
+    "apatride", "asile", "refugie", "subsidiaire", "temporaire", "french"
+  ]);
 }
 export const getPublic = (publicType: Metadatas["public"] | null | undefined) => {
   if (!publicType) return publicType;
@@ -38,6 +43,13 @@ export const getFrequency = (frequency: Metadatas["frequency"] | null | undefine
 export const getTimeSlots = (timeSlots: Metadatas["timeSlots"] | null | undefined) => {
   if (!timeSlots) return timeSlots;
   return getTimeSlotsText(timeSlots);
+}
+export const getFrenchLevel = (frenchLevel: Metadatas["frenchLevel"]) => {
+  if (!frenchLevel) return frenchLevel;
+  return getFrenchLevelText(frenchLevel);
+}
+export const getAllFrenchLevel = () => {
+  return getFrenchLevelText(["alpha", "A1", "A2", "B1", "B2", "C1", "C2"]);
 }
 
 export const getConditionImage = (condition: conditionType) => {
@@ -89,7 +101,7 @@ export const getAgeLink = (age: Metadatas["age"]): LinkProps["href"] => {
 export const getFrenchLevelLink = (frenchLevel: Metadatas["frenchLevel"]): LinkProps["href"] => {
   const options: FrenchOptions[] = [];
   if (frenchLevel) {
-    if (frenchLevel.includes("A1") || frenchLevel.includes("A2")) options.push("a");
+    if (frenchLevel.includes("alpha") || frenchLevel.includes("A1") || frenchLevel.includes("A2")) options.push("a");
     if (frenchLevel.includes("B1") || frenchLevel.includes("B2")) options.push("b");
     if (frenchLevel.includes("C1") || frenchLevel.includes("C2")) options.push("c");
   }
@@ -97,19 +109,4 @@ export const getFrenchLevelLink = (frenchLevel: Metadatas["frenchLevel"]): LinkP
     pathname: getPath("/recherche", "fr"),
     search: buildUrlQuery({ frenchLevel: options }),
   }
-}
-
-export const getFrenchLevel = (frenchLevel: Metadatas["frenchLevel"]): string => {
-  if (!frenchLevel) return "";
-  if (
-    frenchLevel.includes("A1") &&
-    frenchLevel.includes("A2") &&
-    frenchLevel.includes("B1") &&
-    frenchLevel.includes("B2") &&
-    frenchLevel.includes("C1") &&
-    frenchLevel.includes("C2")
-  ) {
-    return "Tous niveaux"; //TODO :translate
-  }
-  return frenchLevel?.join(", ")
 }

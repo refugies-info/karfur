@@ -12,6 +12,7 @@ interface Item {
   label?: string;
   icon: React.ReactNode;
   content: string | React.ReactNode | undefined | null;
+  defaultValue?: string | React.ReactNode;
 }
 
 interface Props {
@@ -45,11 +46,13 @@ const getContent = (items: Item[] | null, editMode: boolean) => {
   // items contents
   return (items || []).map((item, i) => {
     let content = item.content;
-    if (!item.content && !editMode) return null; // view mode, no content
+    if (!item.content && !editMode && !item.defaultValue) return null; // view mode, no content
     const infoNotUseful = editMode && item.content === null;
     const infoMissing = editMode && item.content === undefined;
+    const hasDefault = !editMode && !item.content && !!item.defaultValue;
     if (infoNotUseful) content = "Non pertinent pour mon action";
     if (infoMissing) content = "Info manquante";
+    if (hasDefault) content = item.defaultValue;
 
     return (
       <div key={i} className={cls(styles.item, infoMissing && styles.missing)}>

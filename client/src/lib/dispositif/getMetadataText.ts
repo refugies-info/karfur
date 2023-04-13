@@ -50,6 +50,12 @@ export const getFrequencyText = (data: Metadatas["frequency"] | undefined): stri
 
 export const getTimeSlotsText = (data: Metadatas["timeSlots"] | undefined): string | null => {
   if (!data) return null;
+  if (data.length === 7) return "Tous les jours";
   return data.join(", ");
+}
+
+export const getFrenchLevelText = (data: Metadatas["frenchLevel"] | undefined): string | null => {
+  if (!data) return null;
+  return data?.join(", ")
 }
 

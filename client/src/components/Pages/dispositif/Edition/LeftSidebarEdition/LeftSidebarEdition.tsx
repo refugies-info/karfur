@@ -3,7 +3,7 @@ import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { themeSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { ContentType, UpdateDispositifRequest } from "api-types";
+import { ContentType, Metadatas, UpdateDispositifRequest } from "api-types";
 import {
   ModalAbstract,
   ModalAvailability,
@@ -71,8 +71,7 @@ const LeftSidebarEdition = (props: Props) => {
       values.metadatas?.public !== undefined ? (
         <CardPublic
           dataPublicStatus={values.metadatas.publicStatus}
-          /* @ts-ignore */
-          dataAge={values.metadatas.age} /* FIXME */
+          dataAge={values.metadatas.age as Metadatas["age"]}
           dataFrenchLevel={values.metadatas.frenchLevel}
           dataPublic={values.metadatas.public}
           color={color}
@@ -85,8 +84,11 @@ const LeftSidebarEdition = (props: Props) => {
       )}
 
       {values.metadatas?.price !== undefined ? (
-        /* @ts-ignore */
-        <CardPrice data={values.metadatas.price} color={color} onClick={() => setShowModal("Price")} /> /* FIXME */
+        <CardPrice
+          data={values.metadatas.price as Metadatas["price"]}
+          color={color}
+          onClick={() => setShowModal("Price")}
+        />
       ) : (
         <AddContentButton onClick={() => setShowModal("Price")} className="mb-6" size="md">
           Prix
@@ -97,10 +99,8 @@ const LeftSidebarEdition = (props: Props) => {
       values.metadatas?.frequency !== undefined ||
       values.metadatas?.timeSlots !== undefined ? (
         <CardAvailability
-          /* @ts-ignore */
-          dataCommitment={values.metadatas.commitment} /* FIXME */
-          /* @ts-ignore */
-          dataFrequency={values.metadatas.frequency} /* FIXME */
+          dataCommitment={values.metadatas.commitment as Metadatas["commitment"]}
+          dataFrequency={values.metadatas.frequency as Metadatas["frequency"]}
           dataTimeSlots={values.metadatas.timeSlots}
           color={color}
           onClick={() => setShowModal("Availability")}
