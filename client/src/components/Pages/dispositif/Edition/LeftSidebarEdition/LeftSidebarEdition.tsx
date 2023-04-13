@@ -71,8 +71,8 @@ const LeftSidebarEdition = (props: Props) => {
       values.metadatas?.public !== undefined ? (
         <CardPublic
           dataPublicStatus={values.metadatas.publicStatus}
-          /* @ts-ignore FIXME */
-          dataAge={values.metadatas.age}
+          /* @ts-ignore */
+          dataAge={values.metadatas.age} /* FIXME */
           dataFrenchLevel={values.metadatas.frenchLevel}
           dataPublic={values.metadatas.public}
           color={color}
@@ -85,8 +85,8 @@ const LeftSidebarEdition = (props: Props) => {
       )}
 
       {values.metadatas?.price !== undefined ? (
-        /* @ts-ignore FIXME */
-        <CardPrice data={values.metadatas.price} color={color} onClick={() => setShowModal("Price")} />
+        /* @ts-ignore */
+        <CardPrice data={values.metadatas.price} color={color} onClick={() => setShowModal("Price")} /> /* FIXME */
       ) : (
         <AddContentButton onClick={() => setShowModal("Price")} className="mb-6" size="md">
           Prix
@@ -97,10 +97,10 @@ const LeftSidebarEdition = (props: Props) => {
       values.metadatas?.frequency !== undefined ||
       values.metadatas?.timeSlots !== undefined ? (
         <CardAvailability
-          /* @ts-ignore FIXME */
-          dataCommitment={values.metadatas.commitment}
-          /* @ts-ignore FIXME */
-          dataFrequency={values.metadatas.frequency}
+          /* @ts-ignore */
+          dataCommitment={values.metadatas.commitment} /* FIXME */
+          /* @ts-ignore */
+          dataFrequency={values.metadatas.frequency} /* FIXME */
           dataTimeSlots={values.metadatas.timeSlots}
           color={color}
           onClick={() => setShowModal("Availability")}
@@ -136,8 +136,8 @@ const LeftSidebarEdition = (props: Props) => {
 
       {values.mainSponsor !== undefined ? (
         <CardMainSponsor
-          /* @ts-ignore FIXME */
-          dataMainSponsor={values.mainSponsor}
+          /* @ts-ignore */
+          dataMainSponsor={values.mainSponsor} /* FIXME */
           color={color}
           onClick={() => setShowModal("MainSponsor")}
         />

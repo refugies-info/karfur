@@ -2,6 +2,7 @@ import { LinkProps } from "next/link";
 import { conditionType, Metadatas } from "api-types";
 import { getPath } from "routes";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
+import { getAgeText, getCommitmentText, getFrequencyText, getPriceText, getPublicStatusText, getPublicText, getTimeSlotsText } from "lib/dispositif";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import imgCb from "assets/dispositif/form-icons/conditions-cb.svg";
 import imgDriver from "assets/dispositif/form-icons/conditions-driver.svg";
@@ -11,51 +12,32 @@ import imgTse from "assets/dispositif/form-icons/conditions-tse.svg";
 import imgOfii from "assets/dispositif/form-icons/conditions-ofii.svg";
 
 export const getPrice = (price: Metadatas["price"] | null | undefined) => {
-  // TODO: translate
   if (!price) return price; // null or undefined
-  if (price.values?.[0] === 0) return "Gratuit";
-  if (price.values.length === 0) return "Montant libre";
-  if (price.values.length === 2) return `entre ${price.values[0]}€ et ${price.values[1]}€ ${price.details || ""}`;
-  return `${price.values[0]}€ ${price.details || ""}`;
+  return getPriceText(price);
 }
-
 export const getPublicStatus = (publicStatus: Metadatas["publicStatus"] | null | undefined) => {
   if (!publicStatus) return publicStatus;
-  // TODO : translate
-  return publicStatus.join(", ");
+  return getPublicStatusText(publicStatus);
 }
 export const getPublic = (publicType: Metadatas["public"] | null | undefined) => {
   if (!publicType) return publicType;
-  // TODO : translate
-  return publicType.join(", ");
+  return getPublicText(publicType);
 }
-
 export const getAge = (age: Metadatas["age"] | null | undefined) => {
   if (!age) return age; // null or undefined
-  switch (age.type) {
-    case "lessThan":
-      return `Moins de ${age.ages[0]} ans`;
-    case "moreThan":
-      return `Plus de ${age.ages[0]} ans`;
-    case "between":
-      return `Entre ${age.ages[0]} et ${age.ages[1]} ans`;
-  }
+  return getAgeText(age);
 }
-
 export const getCommitment = (commitment: Metadatas["commitment"] | null | undefined) => {
   if (!commitment) return commitment;
-  // TODO : translate
-  return `${commitment.amountDetails} ${commitment.hours} ${commitment.timeUnit}`;
+  return getCommitmentText(commitment);
 }
 export const getFrequency = (frequency: Metadatas["frequency"] | null | undefined) => {
   if (!frequency) return frequency;
-  // TODO : translate
-  return `${frequency.amountDetails} ${frequency.hours} ${frequency.timeUnit} par ${frequency.frequencyUnit}`;
+  return getFrequencyText(frequency);
 }
 export const getTimeSlots = (timeSlots: Metadatas["timeSlots"] | null | undefined) => {
   if (!timeSlots) return timeSlots;
-  // TODO : translate
-  return timeSlots.join(", ");
+  return getTimeSlotsText(timeSlots);
 }
 
 export const getConditionImage = (condition: conditionType) => {
