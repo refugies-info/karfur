@@ -41,13 +41,7 @@ const Banner = (props: Props) => {
   }, [dispositif, router]);
 
   const onEditClick = useCallback(() => {
-    if (
-      isStatus(dispositif?.status, [
-        DispositifStatus.ACTIVE,
-        DispositifStatus.WAITING_ADMIN,
-        DispositifStatus.WAITING_STRUCTURE,
-      ])
-    ) {
+    if (isStatus(dispositif?.status, DispositifStatus.ACTIVE)) {
       setShowEditModal(true);
     } else {
       navigateToEdit();
@@ -68,12 +62,7 @@ const Banner = (props: Props) => {
               Modifier la fiche
             </Button>
           </div>
-          <EditModal
-            show={showEditModal}
-            toggle={() => setShowEditModal((o) => !o)}
-            onValidate={navigateToEdit}
-            status={dispositif?.status || null}
-          />
+          <EditModal show={showEditModal} toggle={() => setShowEditModal((o) => !o)} onValidate={navigateToEdit} />
         </>
       )}
     </div>
