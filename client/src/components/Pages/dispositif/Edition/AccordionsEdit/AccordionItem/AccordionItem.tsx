@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import dynamic from "next/dynamic";
-import Button from "components/UI/Button";
 import PageContext from "utils/pageContext";
-import AddContentButton from "../AddContentButton";
-import Text from "../../Text";
-import styles from "./AccordionItemEdit.module.scss";
+import Button from "components/UI/Button";
+import Text from "components/Pages/dispositif/Text";
+import AddContentButton from "../../AddContentButton";
+import styles from "./AccordionItem.module.scss";
 
 const RichTextInput = dynamic(() => import("components/UI/RichTextInput"), { ssr: false });
 
@@ -18,9 +18,9 @@ interface Props {
 /**
  * Form component of an InfoSection. Responsible of getting and setting its own value
  */
-const AccordionItemEdit = (props: Props) => {
+const AccordionItem = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const { unregister, register, getValues } = useFormContext();
+  const { unregister, register, getValues, setValue } = useFormContext();
 
   const getContent = () => {
     const title = getValues(`${props.id}.title`);
@@ -57,11 +57,13 @@ const AccordionItemEdit = (props: Props) => {
     }
   }, [pageContext.activeSection, props.id]);
 
+  const toggleIsActive = useCallback(() => setIsActive(true), []);
+
   return (
     <div>
       {!isActive && (
         <AddContentButton
-          onClick={() => setIsActive(true)}
+          onClick={toggleIsActive}
           size="lg"
           className="mb-6"
           content={getContent()}
@@ -93,4 +95,4 @@ const AccordionItemEdit = (props: Props) => {
   );
 };
 
-export default AccordionItemEdit;
+export default AccordionItem;

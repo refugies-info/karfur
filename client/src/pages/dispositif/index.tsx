@@ -3,6 +3,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { ContentType, CreateDispositifRequest } from "api-types";
 import { useChangeLanguage, useLocale } from "hooks";
 import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
+import { getInitialValue } from "lib/dispositifForm";
 import PageContext from "utils/pageContext";
 import Dispositif from "components/Content/Dispositif";
 import { ModalWelcome } from "components/Pages/dispositif/Edition/Modals";
@@ -14,7 +15,7 @@ interface Props {
 }
 
 const DispositifPage = (props: Props) => {
-  const methods = useForm<CreateDispositifRequest>({ defaultValues: { typeContenu: ContentType.DISPOSITIF } });
+  const methods = useForm<CreateDispositifRequest>({ defaultValues: getInitialValue(ContentType.DISPOSITIF) });
   const [activeSection, setActiveSection] = useState("");
   const [showMissingSteps, setShowMissingSteps] = useState(false);
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);

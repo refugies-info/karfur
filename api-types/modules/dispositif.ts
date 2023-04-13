@@ -138,9 +138,9 @@ interface DispositifRequest {
   titreMarque?: string;
   abstract?: string;
   what?: string;
-  why?: { [key: string]: Partial<InfoSection> };
-  how?: { [key: string]: Partial<InfoSection> };
-  next?: { [key: string]: Partial<InfoSection> };
+  why?: { [key: string]: InfoSection };
+  how?: { [key: string]: InfoSection };
+  next?: { [key: string]: InfoSection };
   mainSponsor?: string | Sponsor;
   contact?: {
     name: string;

@@ -60,7 +60,7 @@ const Section = ({ sectionKey, contentType }: Props) => {
       ) : (
         <Accordions
           content={contentAccordions}
-          sectionKey={sectionKey}
+          sectionKey={sectionKey as "why" | "how" | "next"}
           color100={colors.color100}
           color30={colors.color30}
           contentType={contentType || ContentType.DISPOSITIF}
