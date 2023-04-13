@@ -6,7 +6,6 @@ const { withXcodeProject } = require("@expo/config-plugins");
  */
 function setExcludedArchitectures(project) {
   const configurations = project.pbxXCBuildConfigurationSection();
-  // @ts-ignore
   for (const { buildSettings } of Object.values(configurations || {})) {
     // Guessing that this is the best way to emulate Xcode.
     // Using `project.addToBuildSettings` modifies too many targets.

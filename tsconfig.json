@@ -3,6 +3,7 @@
   "compilerOptions": {
     "jsx": "react",
     "strict": true,
+    "allowJs": false
   },
   "exclude": [
     "node_modules",
