@@ -12,6 +12,7 @@ const RichTextInput = dynamic(() => import("components/UI/RichTextInput"), { ssr
 interface Props {
   id: string;
   onDelete?: (() => void) | false;
+  label?: string;
 }
 
 /**
@@ -67,7 +68,7 @@ const AccordionItemEdit = (props: Props) => {
           onDelete={props.onDelete}
           hasError={!!getContent() && (!getValues(`${props.id}.title`) || !getValues(`${props.id}.text`))}
         >
-          Argument
+          {props.label || "Argument"}
         </AddContentButton>
       )}
       {isActive && (

@@ -63,7 +63,7 @@ const Section = ({ sectionKey, contentType }: Props) => {
           sectionKey={sectionKey}
           color100={colors.color100}
           color30={colors.color30}
-          withNumber={contentType === ContentType.DEMARCHE}
+          contentType={contentType || ContentType.DISPOSITIF}
         />
       )}
     </section>

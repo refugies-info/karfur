@@ -138,9 +138,9 @@ interface DispositifRequest {
   titreMarque?: string;
   abstract?: string;
   what?: string;
-  why?: { [key: string]: InfoSection };
-  how?: { [key: string]: InfoSection };
-  next?: { [key: string]: InfoSection };
+  why?: { [key: string]: Partial<InfoSection> };
+  how?: { [key: string]: Partial<InfoSection> };
+  next?: { [key: string]: Partial<InfoSection> };
   mainSponsor?: string | Sponsor;
   contact?: {
     name: string;
@@ -173,7 +173,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest {}
+export interface UpdateDispositifRequest extends DispositifRequest { }
 
 /**
  * @url PATCH /dispositifs/{id}/publish
