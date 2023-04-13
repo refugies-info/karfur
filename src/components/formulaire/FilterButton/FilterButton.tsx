@@ -26,7 +26,7 @@ const FilterButton = (props: FilterButtonProps) => {
     >
       <StyledText isSelected={props.isSelected}>
         {t("filters." + props.text, props.text)}
-        {props.details && (
+        {props.text !== "french_level_0" && props.details && (
           <StyledText isSelected={props.isSelected}>
             {" "}
             ({props.details.join("/")})

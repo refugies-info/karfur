@@ -45,7 +45,8 @@ export const SearchResultsScreen = ({
   const nbContents = React.useMemo(() => {
     const nbContents: any = {};
     for (const need of allNeeds) {
-      nbContents[need._id] = groupedContents[need._id]?.length || 0;
+      nbContents[need._id.toString()] =
+        groupedContents[need._id.toString()]?.length || 0;
     }
     return nbContents;
   }, []);
@@ -71,7 +72,8 @@ export const SearchResultsScreen = ({
         searchClient={searchClient}
         indexName={Config.algoliaIndex}
         searchState={searchState}
-        onSearchStateChange={setSearchState}>
+        onSearchStateChange={setSearchState}
+      >
         <Configure
           restrictSearchableAttributes={searchableAttributes}
           queryLanguages={queryLanguages}
@@ -79,7 +81,8 @@ export const SearchResultsScreen = ({
           filters="webOnly:false"
         />
         <SearchBoxContainer
-          style={{ paddingTop: insets.top + styles.margin * 3 }}>
+          style={{ paddingTop: insets.top + styles.margin * 3 }}
+        >
           <SearchBox backCallback={() => navigation.navigate("SearchScreen")} />
         </SearchBoxContainer>
         {searchState.query !== "" ? (
@@ -99,7 +102,8 @@ export const SearchResultsScreen = ({
             contentContainerStyle={{
               paddingBottom: styles.margin * 5 + (insets.bottom || 0),
               paddingHorizontal: styles.margin * 3,
-            }}>
+            }}
+          >
             <SearchSuggestions
               contents={mostViewedContents}
               navigation={navigation}

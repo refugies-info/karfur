@@ -1,5 +1,4 @@
 import React from "react";
-import { TouchableOpacityProps } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import Icon from "../Icon";
 
@@ -24,7 +23,7 @@ export interface IconButtonProps {
   color?: string;
   iconName: string;
   loading?: boolean;
-  onPress: TouchableOpacityProps["onPress"];
+  onPress: (event: any) => void;
   outlined?: boolean;
 }
 

@@ -80,14 +80,14 @@ interface Props {
   iconFirst?: boolean;
   iconName?: string;
   iconSize?: number;
-  iconStyle?: StyleProp<ViewStyle>;
+  iconStyle?: any;
   isDisabled?: boolean;
   isSmall?: boolean;
   isTextNotBold?: boolean;
   notFullWidth?: boolean;
   onPress: () => void;
   readableOverridePosY?: number;
-  style?: StyleProp<ViewStyle>;
+  style?: any;
   textColor: string;
   textStyle?: StyleProp<TextStyle>;
   withShadows?: boolean;

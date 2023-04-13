@@ -136,11 +136,13 @@ export function* saveUserFrenchLevel(
   try {
     const { frenchLevel, shouldFetchContents } = action.payload;
     logger.info("[saveUserFrenchLevel] saga", { frenchLevel });
-    yield call(saveItemInAsyncStorage, "FRENCH_LEVEL", frenchLevel);
+    if (frenchLevel) {
+      yield call(saveItemInAsyncStorage, "FRENCH_LEVEL", frenchLevel);
+      yield call(logEventInFirebase, FirebaseEvent.VALIDATE_FRENCH_LEVEL, {
+        level: frenchLevel,
+      });
+    }
     yield put(setUserFrenchLevelActionCreator(frenchLevel));
-    yield call(logEventInFirebase, FirebaseEvent.VALIDATE_FRENCH_LEVEL, {
-      level: frenchLevel,
-    });
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
@@ -283,14 +285,19 @@ export function* getUserInfos(): SagaIterator {
         getItemInAsyncStorage,
         "HAS_USER_SEEN_ONBOARDING"
       );
-      yield put(setHasUserSeenOnboardingActionCreator(hasUserAlreadySeenOnboarding === "TRUE"));
+      yield put(
+        setHasUserSeenOnboardingActionCreator(
+          hasUserAlreadySeenOnboarding === "TRUE"
+        )
+      );
     } catch (error: any) {
       logger.error("Error while getting onboarding status", {
         error: error.message,
       });
     }
     const hasUserSeenOnboarding = yield select(hasUserSeenOnboardingSelector);
-    if (hasUserSeenOnboarding) { // start loader
+    if (hasUserSeenOnboarding) {
+      // start loader
       yield put(startLoading(LoadingStatusKey.FETCH_CONTENTS));
     }
     try {
@@ -338,7 +345,8 @@ export function* getUserInfos(): SagaIterator {
         error: error.message,
       });
     }
-    if (hasUserSeenOnboarding) { // when user infos loaded, load content
+    if (hasUserSeenOnboarding) {
+      // when user infos loaded, load content
       yield put(fetchContentsActionCreator());
     }
     try {
@@ -352,7 +360,10 @@ export function* getUserInfos(): SagaIterator {
       });
     }
     try {
-      const value = yield call(getItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN");
+      const value = yield call(
+        getItemInAsyncStorage,
+        "LOCALIZED_WARNING_HIDDEN"
+      );
       const isLocalizedWarningHidden = value === "TRUE";
       if (isLocalizedWarningHidden) {
         yield put(setUserLocalizedWarningHiddenActionCreator(true));
@@ -421,7 +432,10 @@ function* latestActionsSaga() {
   yield takeLatest(SAVE_SELECTED_LANGUAGE, saveSelectedLanguage);
   yield takeLatest(SAVE_USER_HAS_SEEN_ONBOARDING, saveHasUserSeenOnboarding);
   yield takeLatest(SAVE_USER_HAS_NEW_FAVORITES, saveUserHasNewFavorites);
-  yield takeLatest(SAVE_USER_LOCALIZED_WARNING_HIDDEN, saveUserLocalizedWarningHidden);
+  yield takeLatest(
+    SAVE_USER_LOCALIZED_WARNING_HIDDEN,
+    saveUserLocalizedWarningHidden
+  );
   yield takeLatest(SAVE_USER_LOCATION, saveUserLocation);
   yield takeLatest(SAVE_USER_FRENCH_LEVEL, saveUserFrenchLevel);
   yield takeLatest(SAVE_USER_AGE, saveUserAge);
@@ -435,7 +449,10 @@ function* latestActionsSaga() {
     removeHasUserSeenOnboarding
   );
   yield takeLatest(REMOVE_USER_HAS_NEW_FAVORITES, removeUserHasNewFavorites);
-  yield takeLatest(REMOVE_USER_LOCALIZED_WARNING_HIDDEN, removeUserLocalizedWarningHidden);
+  yield takeLatest(
+    REMOVE_USER_LOCALIZED_WARNING_HIDDEN,
+    removeUserLocalizedWarningHidden
+  );
   yield takeLatest(ADD_USER_FAVORITE, addUserFavorite);
   yield takeLatest(REMOVE_USER_FAVORITE, removeUserFavorite);
   yield takeLatest(REMOVE_USER_ALL_FAVORITES, removeUserAllFavorites);

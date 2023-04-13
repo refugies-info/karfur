@@ -18,7 +18,7 @@ interface Props {
   iconName: string;
   onPress?: () => void;
   rounded?: boolean;
-  style?: StyleProp<ViewStyle>;
+  style?: any;
   label?: string;
 }
 /**

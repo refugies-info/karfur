@@ -85,12 +85,6 @@ export interface GoogleAPISuggestion {
   description: string;
 }
 
-export interface FrenchLevel {
-  name: string;
-  cecrCorrespondency?: string[];
-  key: string;
-}
-
 declare global {
   namespace ReactNavigation {
     interface RootParamList extends RootStackParamList {}

@@ -1,5 +1,5 @@
 import React from "react";
-import { OnboardingParamList, FrenchLevel } from "../../../types";
+import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
 import { BottomButtons } from "../../components/Onboarding/BottomButtons";
@@ -15,12 +15,13 @@ import {
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
 import { FilterButton, Page, RadioGroup, Rows } from "../../components";
 import { View } from "react-native";
+import { MobileFrenchLevel } from "@refugies-info/api-types";
 
 export const FilterFrenchLevel = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterFrenchLevel">) => {
   const [selectedFrenchLevel, setSelectedFrenchLevel] =
-    React.useState<null | FrenchLevel>(null);
+    React.useState<null | MobileFrenchLevel>(null);
   const { t } = useTranslationWithRTL();
 
   const navigateToNextScreen = () => navigation.navigate("FinishOnboarding");
@@ -31,11 +32,11 @@ export const FilterFrenchLevel = ({
 
   React.useEffect(() => {
     if (userFrenchLevel) {
-      const formattedLevel = frenchLevelFilters.filter(
+      const formattedLevel = frenchLevelFilters.find(
         (frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel
       );
-      if (formattedLevel.length > 0) {
-        setSelectedFrenchLevel(formattedLevel[0]);
+      if (formattedLevel) {
+        setSelectedFrenchLevel(formattedLevel.key);
       }
     }
   }, [userFrenchLevel]);
@@ -44,7 +45,7 @@ export const FilterFrenchLevel = ({
     if (selectedFrenchLevel) {
       dispatch(
         saveUserFrenchLevelActionCreator({
-          frenchLevel: selectedFrenchLevel.key,
+          frenchLevel: selectedFrenchLevel,
           shouldFetchContents: false,
         })
       );
@@ -54,15 +55,14 @@ export const FilterFrenchLevel = ({
     return navigateToNextScreen();
   };
 
-  const onSelectFrenchLevel = (frenchLevel: FrenchLevel) => {
-    if (selectedFrenchLevel && selectedFrenchLevel.key === frenchLevel.key) {
+  const onSelectFrenchLevel = (frenchLevel: MobileFrenchLevel) => {
+    if (selectedFrenchLevel === frenchLevel) {
       setSelectedFrenchLevel(null);
-      return;
+    } else {
+      setSelectedFrenchLevel(frenchLevel);
     }
-
-    setSelectedFrenchLevel(frenchLevel);
-    return;
   };
+
   return (
     <Page
       headerIconName={"person-outline"}
@@ -88,9 +88,11 @@ export const FilterFrenchLevel = ({
                 text={frenchLevel.name}
                 isSelected={
                   !!selectedFrenchLevel &&
-                  frenchLevel.key === selectedFrenchLevel.key
+                  frenchLevel.key === selectedFrenchLevel
                 }
-                onPress={() => onSelectFrenchLevel(frenchLevel)}
+                onPress={() => {
+                  onSelectFrenchLevel(frenchLevel.key);
+                }}
                 details={frenchLevel.cecrCorrespondency}
               />
             ))}

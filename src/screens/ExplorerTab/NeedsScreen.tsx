@@ -7,8 +7,6 @@ import { currentI18nCodeSelector } from "../../services/redux/User/user.selector
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
-import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
-import { ObjectId, Need } from "../../types/interface";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ErrorScreen } from "../../components/ErrorScreen";
@@ -18,17 +16,19 @@ import { Page, SkeletonListPage } from "../../components";
 import { withProps } from "../../utils";
 import HeaderContentTitle from "../../components/layout/Header/HeaderContentTitle";
 import { HeaderContentProps } from "../../components/layout/Header/HeaderContentProps";
+import { GetNeedResponse, NeedTranslation } from "@refugies-info/api-types";
+import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 
 const computeNeedsToDisplay = (
-  allNeeds: Need[],
-  groupedContents: Record<ObjectId, ObjectId[]>,
+  allNeeds: GetNeedResponse[],
+  groupedContents: Record<string, string[]>,
   themeId: string
-): Need[] => {
+): GetNeedResponse[] => {
   const filteredNeeds = allNeeds.filter((need) => {
     if (
       need.theme._id === themeId &&
-      groupedContents[need._id] &&
-      groupedContents[need._id].length > 0
+      groupedContents[need._id.toString()] &&
+      groupedContents[need._id.toString()].length > 0
     )
       return true;
     return false;
@@ -36,7 +36,10 @@ const computeNeedsToDisplay = (
 
   return filteredNeeds
     .map((need) => {
-      return { ...need, nbContents: groupedContents[need._id].length };
+      return {
+        ...need,
+        nbContents: groupedContents[need._id.toString()].length,
+      };
     })
     .sort((a, b) => {
       // if no position, sort as before
@@ -49,11 +52,12 @@ const computeNeedsToDisplay = (
       return -1;
     });
 };
-
 export const NeedsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
+  const { theme, backScreen } = route.params;
+
   const isLoadingContents = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
   );
@@ -64,20 +68,19 @@ export const NeedsScreen = ({
 
   const { t } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
-
-  const { theme, backScreen } = route.params;
-
   const allNeeds = useSelector(needsSelector);
   const groupedContents = useSelector(groupedContentsSelector);
-
-  // Back button
-  React.useEffect(() => registerBackButton(backScreen, navigation), []);
-
   const needsToDisplay = computeNeedsToDisplay(
     allNeeds,
     groupedContents,
     theme._id.toString()
   );
+  // const needsToDisplay = allNeeds.filter(
+  //   (need) => need.theme._id === theme._id
+  // );
+
+  // Back button
+  React.useEffect(() => registerBackButton(backScreen, navigation), []);
 
   if (isLoading) {
     return (
@@ -135,23 +138,39 @@ export const NeedsScreen = ({
         })(HeaderContentTitle) as ComponentType<HeaderContentProps>
       }
     >
-      {needsToDisplay.map((need: Need) => {
+      {needsToDisplay.map((need: GetNeedResponse) => {
         const needText =
           currentLanguageI18nCode &&
-          need[currentLanguageI18nCode as keyof Need]?.text
-            ? need[currentLanguageI18nCode as keyof Need].text
+          (
+            need[
+              currentLanguageI18nCode as keyof GetNeedResponse
+            ] as NeedTranslation
+          )?.text
+            ? (
+                need[
+                  currentLanguageI18nCode as keyof GetNeedResponse
+                ] as NeedTranslation
+              ).text
             : need.fr.text;
         const needSubtitle =
           currentLanguageI18nCode &&
-          need[currentLanguageI18nCode as keyof Need]?.subtitle
-            ? need[currentLanguageI18nCode as keyof Need].subtitle
+          (
+            need[
+              currentLanguageI18nCode as keyof GetNeedResponse
+            ] as NeedTranslation
+          )?.subtitle
+            ? (
+                need[
+                  currentLanguageI18nCode as keyof GetNeedResponse
+                ] as NeedTranslation
+              ).subtitle
             : undefined;
 
         return (
           <NeedsSummary
-            id={need._id}
+            id={need._id.toString()}
             image={need.image || need.theme.appImage}
-            key={need._id}
+            key={need._id.toString()}
             needSubtitle={needSubtitle}
             needText={needText}
             needTextFr={need.fr.text}

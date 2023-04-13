@@ -17,6 +17,7 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { ErrorScreen } from "../../../components/ErrorScreen";
 import { nbContentsSelector } from "../../../services/redux/Contents/contents.selectors";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
+import { GetContentsForAppResponse } from "@refugies-info/api-types";
 
 export interface PageProps {
   children: React.ReactNode;
@@ -37,10 +38,11 @@ const useNearMeCards = () => {
         county: department || "",
         strictLocation: true,
       })
-        .then((response: any) => {
-          return response.data?.data || response.data?.dataFr;
-        })
-        .then((data: any) => {
+        .then(
+          (response: GetContentsForAppResponse) =>
+            response.data || response.dataFr
+        )
+        .then((data) => {
           if (!data) {
             throw new Error("Empty response from API");
           }

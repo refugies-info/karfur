@@ -11,6 +11,7 @@ import { Icon } from "react-native-eva-icons";
 import { styles } from "../../theme";
 
 interface PropsType {
+  children: React.ReactNode;
   map: MapGoogle;
   markersColor: string;
 }

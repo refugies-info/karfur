@@ -33,11 +33,10 @@ export function* fetchContents(): SagaIterator {
     const frenchLevel = yield select(userFrenchLevelSelector);
 
     if (selectedLanguage) {
-      // @ts-ignore
       const data = yield call(getContentsForApp, {
-        locale: selectedLanguage,
+        locale: selectedLanguage || "fr",
         age,
-        department,
+        county: department,
         frenchLevel,
       });
 
@@ -73,7 +72,9 @@ export function* fetchContents(): SagaIterator {
       nbLocalizedContent: null,
     };
     if (department) {
-      nbContent = yield call(getNbContents, { county: department });
+      nbContent = yield call(getNbContents, {
+        county: department,
+      });
     }
     yield put(setNbContentsActionCreator(nbContent));
 

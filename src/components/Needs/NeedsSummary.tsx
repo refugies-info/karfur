@@ -44,7 +44,7 @@ interface Props {
   needTextFr: string;
   searchItem?: any;
   searchLanguageMatch?: string;
-  style?: StyleProp<ViewStyle>;
+  style?: any;
   theme: GetThemeResponse;
   pressCallback?: () => void;
 }

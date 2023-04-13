@@ -1,19 +1,18 @@
-import { SimplifiedContent } from "../../../types/interface";
+import { GetContentsForAppResponse } from "@refugies-info/api-types";
 
-export const groupResultsByNeed = (contents: SimplifiedContent[]) => {
-  let results = {};
+export const groupResultsByNeed = (
+  contents: GetContentsForAppResponse["dataFr"]
+) => {
+  let results: Record<string, string[]> = {};
   if (contents && contents.length > 0) {
-    contents.forEach((content) => {
+    contents.map((content) => {
       if (content.needs && content.needs.length > 0) {
         content.needs.forEach((needId) => {
-          // @ts-ignore
-          if (results[needId]) {
-            // @ts-ignore
-            results[needId].push(content._id);
+          if (results[needId.toString()]) {
+            results[needId.toString()].push(content._id);
             return;
           }
-          // @ts-ignore
-          results[needId] = [content._id];
+          results[needId.toString()] = [content._id];
           return;
         });
         return;

@@ -6,6 +6,7 @@ import {
   GetDispositifResponse,
   GetNbContentsForCountyRequest,
   GetNbContentsForCountyResponse,
+  GetNeedResponse,
   GetThemeResponse,
   Languages,
   MarkAsSeenRequest,
@@ -19,8 +20,10 @@ import { apiCaller } from "./ConfigAPI";
 // FIXME Return type
 export const getLanguages = () => apiCaller.get("/langues/getLanguages");
 
-// FIXME Return type
-export const getNeeds = () => apiCaller.get("/needs");
+export const getNeeds = () =>
+  makeApiRequest<null, ResponseWith<GetNeedResponse[]>>("/needs", null).then(
+    (response) => response.data
+  );
 
 export const getThemes = (): Promise<GetThemeResponse[]> =>
   makeApiRequest<null, ResponseWith<GetThemeResponse[]>>("/themes", null).then(
@@ -57,13 +60,13 @@ export const getContentsForApp = (
 
 export const getNbContents = (
   req: GetNbContentsForCountyRequest
-): Promise<GetNbContentsForCountyResponse> => {
-  const route = `/dispositifs/getNbContents?county=${req.county}`;
-  return makeApiRequest<
+): Promise<GetNbContentsForCountyResponse> =>
+  makeApiRequest<
     GetNbContentsForCountyRequest,
     ResponseWith<GetNbContentsForCountyResponse>
-  >(route, req, "GET").then((response) => response.data);
-};
+  >("/dispositifs/getNbContentsForCounty", req, "GET").then(
+    (response) => response.data
+  );
 
 type GetContentByIdRequest = any;
 export const getContentById = ({

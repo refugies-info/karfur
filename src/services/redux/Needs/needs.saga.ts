@@ -15,8 +15,8 @@ export function* fetchNeeds(): SagaIterator {
     logger.info("[fetchNeeds] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_NEEDS));
     const data = yield call(getNeeds);
-    if (data && data.data && data.data.data) {
-      yield put(setNeedsActionCreator(data.data.data));
+    if (data) {
+      yield put(setNeedsActionCreator(data));
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_NEEDS));
   } catch (error: any) {

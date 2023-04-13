@@ -5,7 +5,7 @@
     "ios": "expo run:ios",
     "test:types": "tsc --noEmit",
     "test:unit": "jest --runInBand",
-    "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
+    "test:lint": "eslint . --ext ts,tsx,js --quiet --cache  --ignore-pattern dist",
     "test": "yarn test:lint && yarn test:unit && yarn test:types"
   },
   "jest": {
@@ -31,7 +31,7 @@
     "@react-navigation/native": "~6",
     "@react-navigation/stack": "~6",
     "@reduxjs/toolkit": "^1.9.3",
-    "@refugies-info/api-types": "1.0.2",
+    "@refugies-info/api-types": "1.0.11",
     "algoliasearch": "^4.14.2",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "expo": "~48.0.10",
@@ -58,6 +58,7 @@
     "lodash": "^4.17.21",
     "lottie-react-native": "5.1.4",
     "moment": "^2.29.4",
+    "mongoose": "^7.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^11.18.3",
@@ -85,7 +86,7 @@
     "sharp": "^0.30.7",
     "styled-components": "^5.3.9",
     "typesafe-actions": "^5.1.0",
-    "uuid": "^9.0.0"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

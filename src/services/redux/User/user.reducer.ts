@@ -1,7 +1,11 @@
 import { createReducer } from "typesafe-actions";
 import { UserActions } from "./user.actions";
 import { ObjectId } from "../../../types/interface";
-import { GetThemeResponse, Languages } from "@refugies-info/api-types";
+import {
+  GetThemeResponse,
+  Languages,
+  MobileFrenchLevel,
+} from "@refugies-info/api-types";
 
 export interface UserState {
   hasUserSeenOnboarding: boolean | null;
@@ -11,7 +15,7 @@ export interface UserState {
   city: string | null;
   department: string | null;
   age: string | null;
-  frenchLevel: string | null;
+  frenchLevel: MobileFrenchLevel | null;
   favorites: string[];
   localizedWarningHidden: boolean;
   initialUrlUsed: boolean;

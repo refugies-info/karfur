@@ -30,8 +30,12 @@ import {
   SET_INITIAL_URL_USED,
   SET_REDIRECT_DISPOSITIF,
 } from "./user.actionTypes";
-import { ObjectId, Theme } from "../../../types/interface";
-import { GetThemeResponse, Languages } from "@refugies-info/api-types";
+import { ObjectId } from "../../../types/interface";
+import {
+  GetThemeResponse,
+  Languages,
+  MobileFrenchLevel,
+} from "@refugies-info/api-types";
 
 export const setHasUserSeenOnboardingActionCreator = (value: boolean) =>
   action(SET_USER_HAS_SEEN_ONBOARDING, value);
@@ -108,12 +112,13 @@ export const removeUserAgeActionCreator = (shouldFetchContents: boolean) =>
   action(REMOVE_USER_AGE, shouldFetchContents);
 
 export const saveUserFrenchLevelActionCreator = (value: {
-  frenchLevel: string;
+  frenchLevel: MobileFrenchLevel;
   shouldFetchContents: boolean;
 }) => action(SAVE_USER_FRENCH_LEVEL, value);
 
-export const setUserFrenchLevelActionCreator = (value: string | null) =>
-  action(SET_USER_FRENCH_LEVEL, value);
+export const setUserFrenchLevelActionCreator = (
+  value: MobileFrenchLevel | null
+) => action(SET_USER_FRENCH_LEVEL, value);
 
 export const removeUserFrenchLevelActionCreator = (
   shouldFetchContents: boolean

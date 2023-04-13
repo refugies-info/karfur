@@ -11,6 +11,7 @@ import {
 } from "../../services/redux/User/user.actions";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import { FilterButton, Page, RadioGroup, Title } from "../../components";
+import { MobileFrenchLevel } from "@refugies-info/api-types";
 
 export const FrenchLevelProfilScreen = ({
   navigation,
@@ -22,7 +23,7 @@ export const FrenchLevelProfilScreen = ({
     (frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel
   );
 
-  const onValidateFrenchLevel = (frenchLevelKey: string) => {
+  const onValidateFrenchLevel = (frenchLevelKey: MobileFrenchLevel) => {
     if (selectedFrenchLevel && selectedFrenchLevel.key === frenchLevelKey)
       return;
     dispatch(

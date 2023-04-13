@@ -96,11 +96,12 @@ export const ContentsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
+  const { theme, needId, backScreen } = route.params;
+
   const { t } = useTranslationWithRTL();
 
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const contents = useSelector(contentsSelector);
-  const { theme, needId, backScreen } = route.params;
 
   const groupedContents = useSelector(groupedContentsSelector);
   const contentsId = groupedContents[needId];

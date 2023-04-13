@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleProp, View, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
 import { ObjectId } from "../../types/interface";
@@ -89,7 +88,7 @@ interface Props {
   searchLanguageMatch?: string;
   isTextNotBold?: boolean;
   showAbstract?: boolean;
-  style?: StyleProp<ViewStyle>;
+  style?: any;
   actionPress?: any;
   actionIcon?: string;
   actionLabel?: string;

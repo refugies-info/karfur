@@ -1,5 +1,5 @@
-import Carousel, { Pagination } from "react-native-snap-carousel";
 import React from "react";
+import { Carousel, Pagination } from "react-native-snap-carousel";
 import { View, Dimensions } from "react-native";
 import { styles } from "../../theme";
 import { OnboardingCarouselElement } from "./OnboardingCarouselElement";
@@ -36,15 +36,29 @@ const NextButtonContainer = styled(SafeAreaView)`
   padding-horizontal: ${styles.margin * 3}px;
 `;
 
+export interface OnboardingCarouselProps {
+  navigateBack: Function;
+  finishOnboarding: Function;
+  t: Function;
+}
+
+interface OnboardingCarouselState {
+  activeIndex: number;
+}
+
 const carouselItems = onboardingCarouselData;
 class OnboardingCarousel extends React.Component {
-  constructor(props) {
+  private carousel: Carousel<any> | null = null;
+  private props: OnboardingCarouselProps;
+  private state: OnboardingCarouselState;
+  constructor(props: OnboardingCarouselProps) {
     super(props);
+    this.props = props;
     this.state = {
       activeIndex: 0,
     };
   }
-  _renderItem({ item }) {
+  _renderItem({ item }: any) {
     return <OnboardingCarouselElement step={item.stepNumber} />;
   }
 
@@ -100,17 +114,21 @@ class OnboardingCarousel extends React.Component {
                 this.props.navigateBack();
                 return;
               }
-              this.carousel.snapToPrev();
+              this.carousel?.snapToPrev();
             }}
             label={t("onboarding_screens.back_button_accessibility")}
           />
         </TopButtonsContainer>
+        {/* @ts-ignore */}
         <Carousel
           layout={"default"}
+          // @ts-ignore
           ref={(ref) => (this.carousel = ref)}
           data={carouselItems}
           renderItem={this._renderItem}
+          // @ts-ignore
           onSnapToItem={(index) => this.setState({ activeIndex: index })}
+          // @ts-ignore
           currentIndex={activeIndex}
           inverted={false}
           sliderWidth={viewportWidth}
@@ -122,7 +140,11 @@ class OnboardingCarousel extends React.Component {
         {this.pagination}
         <NextButtonContainer edges={["right", "bottom", "left"]}>
           <CustomButton
-            i18nKey={activeIndex !== 3 ? "onboarding_screens.next_button" : "onboarding_screens.continue_button"}
+            i18nKey={
+              activeIndex !== 3
+                ? "onboarding_screens.next_button"
+                : "onboarding_screens.continue_button"
+            }
             defaultText={activeIndex !== 3 ? "Suivant" : "Continuer"}
             textColor={styles.colors.black}
             onPress={() => {
@@ -130,7 +152,7 @@ class OnboardingCarousel extends React.Component {
                 this.props.finishOnboarding();
                 return;
               }
-              this.carousel.snapToNext();
+              this.carousel?.snapToNext();
             }}
             iconName="arrow-forward-outline"
           />
@@ -140,4 +162,7 @@ class OnboardingCarousel extends React.Component {
   }
 }
 
-export default withTranslation()(OnboardingCarousel)
+// @ts-ignore
+const OnboardingCarouselComponent = withTranslation()(OnboardingCarousel);
+
+export default OnboardingCarouselComponent;

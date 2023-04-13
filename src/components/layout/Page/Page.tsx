@@ -176,7 +176,7 @@ const Page = ({
   );
 
   const onHeaderLayout = useCallback(
-    (e) => setInitialHeaderSize(e.nativeEvent.layout.height),
+    (e: any) => setInitialHeaderSize(e.nativeEvent.layout.height),
     [setInitialHeaderSize]
   );
 
@@ -223,6 +223,7 @@ const Page = ({
         </>
       ) : (
         <>
+          {/* @ts-ignore */}
           <ScrollableContent
             alwaysBounceVertical={false}
             contentContainerStyle={scrollableContentContainer}
