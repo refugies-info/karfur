@@ -68,10 +68,7 @@ export const getContentById = async (id: string, locale: Languages): ResponseWit
     _id: dispositifObject._id,
     ...dispositifObject.translations[dataLanguage].content,
     participants: participantsWithRoles,
-    metadatas: {
-      ...getMetadatas(dispositifObject.metadatas),
-      ...dispositifObject.translations[dataLanguage].metadatas,
-    },
+    metadatas: getMetadatas(dispositifObject.metadatas),
     availableLanguages: Object.keys(dispositifObject.translations),
     date: dispositifObject.translations[dataLanguage].created_at || dispositifObject.lastModificationDate,
     ...pick(dispositif, [

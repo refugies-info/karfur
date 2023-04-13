@@ -35,7 +35,6 @@ export const createDispositif = async (
           how: body.how || {},
           ...(body.typeContenu === ContentType.DISPOSITIF ? { why: body.why || {} } : { next: body.next || {} }),
         },
-        metadatas: {},
         created_at: new Date(),
         validatorId: new ObjectId(userId.toString()),
       },

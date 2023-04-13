@@ -23,6 +23,12 @@
     }
   }
 
+  @include media-max("lg-limit") {
+    transform: none !important;
+    top: inherit;
+    max-width: 100%;
+  }
+
   .list {
     background: white;
     width: 200px;
@@ -30,6 +36,20 @@
     border-right: 1px solid $lightBorderDefaultGrey;
     padding: u(2);
     overflow-y: scroll;
+
+    @include media-max("lg-limit") {
+      background: transparent;
+      display: flex;
+      overflow-x: scroll;
+      width: auto;
+      height: auto;
+      border: none;
+      overflow-y: hidden;
+
+      & > span {
+        flex-shrink: 0;
+      }
+    }
   }
   .btn {
     width: u(8);
@@ -38,6 +58,10 @@
     @include iconSize(u(4));
     @include dsfr-text("small");
     box-shadow: 0 6px 18px 0 #00001229;
+
+    @include media-max("lg-limit") {
+      display: none;
+    }
   }
 }
 
@@ -47,10 +71,24 @@
   text-align: left;
   border-radius: u(2);
 
+  @include media-max("lg-limit") {
+    width: 200px;
+    background: white;
+    margin-right: u(2);
+    margin-left: u(2);
+    box-shadow: 0 6px 18px 0 #00001229;
+    border: 1px solid transparent;
+  }
+
   &:hover,
   &.active {
     background: $lightBackgroundActionLowBlueFrance !important;
     color: $lightTextActionHighBlueFrance;
+
+    @include media-max("lg-limit") {
+      border-color: $lightTextActionHighBlueFrance;
+    }
+
     svg {
       fill: $lightTextActionHighBlueFrance;
     }
@@ -59,6 +97,11 @@
   .title {
     @include dsfr-text("small");
     margin-bottom: 0;
+
+    @include media-max("lg-limit") {
+      min-height: 36px;
+      margin-bottom: u(2);
+    }
   }
   .city {
     @include dsfr-text("very-small");
@@ -72,4 +115,7 @@
   width: 100%;
   height: 1px;
   background: $lightBorderDefaultGrey;
+  @include media-max("lg-limit") {
+    display: none;
+  }
 }

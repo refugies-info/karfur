@@ -1,5 +1,19 @@
 import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { ContentType, DispositifStatus, Languages } from "@refugies-info/api-types";
+import {
+  ContentType, DispositifStatus, Languages,
+  locationType,
+  frenchLevelType,
+  ageType,
+  priceDetails,
+  publicStatusType,
+  publicType,
+  conditionType,
+  commitmentDetailsType,
+  frequencyDetailsType,
+  timeUnitType,
+  frequencyUnitType,
+  timeSlotType,
+} from "@refugies-info/api-types";
 import { get, has } from "lodash";
 import { Types } from "mongoose";
 import { PartialRecord } from "../types/interface";
@@ -11,26 +25,6 @@ import { Need, NeedId } from "./Need";
 import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
 import { User, UserId } from "./User";
-
-// TODO: use from api-types
-type locationType = "france" | "online" | string[];
-type frenchLevelType = "A1.1" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
-type ageType = "lessThan" | "moreThan" | "between";
-type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
-type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
-type publicType = "family" | "women" | "youths" | "senior";
-type conditionType =
-  | "acte naissance"
-  | /* "diplome" | */ "titre sejour" /* | "domicile" */
-  | "cir"
-  | "bank account"
-  | "pole emploi"
-  | "driver license";
-type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
-type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
-type timeUnitType = "hours" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
-type frequencyUnitType = "day" | "week" | "month" | "trimester" | "semester" | "year";
-type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
 
 export class Sponsor {
   @prop()
@@ -103,12 +97,6 @@ export class TranslationContent {
   public content!: DispositifContent | DemarcheContent;
 
   @prop()
-  public metadatas!: {
-    important?: string;
-    duration?: string;
-  };
-
-  @prop()
   public created_at!: Date;
 
   @prop()
@@ -154,22 +142,14 @@ export class Metadatas {
   public location?: locationType | null;
   @prop()
   public frenchLevel?: frenchLevelType[] | null;
-  // @prop()
-  // public important?: string;
   @prop({ _id: false })
   public age?: Age | null;
   @prop({ _id: false })
   public price?: Price | null;
-  // @prop()
-  // public duration?: string;
   @prop()
   public publicStatus?: publicStatusType[] | null;
   @prop()
   public public?: publicType[] | null;
-  // @prop()
-  // public titreSejourRequired?: boolean;
-  // @prop()
-  // public acteNaissanceRequired?: boolean;
   @prop()
   public conditions?: conditionType[] | null;
   @prop({ _id: false })

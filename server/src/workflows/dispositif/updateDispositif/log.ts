@@ -21,9 +21,9 @@ export const log = async (dispositif: Dispositif, originalDispositif: Dispositif
       });
     }
 
-    const newThemes = JSON.stringify([dispositif.theme, ...dispositif.secondaryThemes.sort()].filter((t) => !!t));
+    const newThemes = JSON.stringify([dispositif.theme, ...(dispositif.secondaryThemes || []).sort()].filter((t) => !!t));
     const oldThemes = JSON.stringify(
-      [originalDispositif.theme, ...originalDispositif.secondaryThemes.sort()].filter((t) => !!t)
+      [originalDispositif.theme, ...(originalDispositif.secondaryThemes || []).sort()].filter((t) => !!t)
     );
     if (newThemes !== oldThemes) {
       await addLog(dispositif._id, "Dispositif", "Thèmes modifiés", { author: authorId });

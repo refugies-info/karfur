@@ -173,7 +173,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest {}
+export interface UpdateDispositifRequest extends DispositifRequest { }
 
 /**
  * @url PATCH /dispositifs/{id}/publish

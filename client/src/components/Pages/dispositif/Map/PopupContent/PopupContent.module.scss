@@ -5,12 +5,11 @@
 
 .popup {
   position: relative;
-  background: white;
-  z-index: 1;
+  font-family: $font-family-sans-serif;
   width: 240px;
   height: 180px;
-  border-radius: u(2);
   padding: u(2);
+  z-index: 1;
 
   .title {
     @include dsfr-text("small");

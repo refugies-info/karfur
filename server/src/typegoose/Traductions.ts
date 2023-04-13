@@ -72,9 +72,6 @@ const keys = (translated: any) => {
  */
 const countWords = (str?: string): number => (isString(str) ? str.split(/\s+/).length : 0);
 
-const countWordsForRecord = (records: Record<any, string>): number =>
-  Object.values(records || {}).reduce((acc, cur) => acc + countWords(cur), 0);
-
 const countWordsForInfoSections = (infoSections: InfoSections): number =>
   Object.values(infoSections || {}).reduce(
     (acc, { title, text }: InfoSection) => acc + countWords(title) + countWords(text),
@@ -125,8 +122,7 @@ export class Traductions extends Base {
         : 0) +
       (this.translated.content instanceof DispositifContent
         ? countWordsForInfoSections(this.translated.content?.why)
-        : 0) +
-      countWordsForRecord(this.translated.metadatas)
+        : 0)
     );
   }
 

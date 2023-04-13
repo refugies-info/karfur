@@ -96,7 +96,7 @@ export const getSimpleDispositifs = async (
       const resDisp: SimpleDispositif = {
         _id: dispositif._id,
         ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
-        metadatas: { ...dispositif.metadatas, ...translation.metadatas },
+        metadatas: dispositif.metadatas,
         ...omit(dispositif, ["translations"]),
         availableLanguages: Object.keys(dispositif.translations),
       };

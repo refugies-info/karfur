@@ -96,7 +96,14 @@ const Map = () => {
           ))}
 
           {popup && (
-            <InfoBox position={new google.maps.LatLng(popup.lat, popup.lng)} options={{ closeBoxURL: "" }}>
+            <InfoBox
+              position={new google.maps.LatLng(popup.lat, popup.lng)}
+              options={{
+                closeBoxURL: "",
+                pixelOffset: new google.maps.Size(-120, 10), // half of the PopupContent width
+                boxClass: styles.popup,
+              }}
+            >
               <PopupContent marker={popup} onClose={() => setPopup(null)} />
             </InfoBox>
           )}

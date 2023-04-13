@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Button from "components/UI/Button";
 import Input from "components/Pages/dispositif/Input";
@@ -42,7 +43,7 @@ const Header = (props: Props) => {
   }, [search]);
 
   return (
-    <Row className={styles.container} noGutters>
+    <Row className={cls(styles.container, "gx-0")}>
       <Col xs="8">
         <Input
           id="search-location-input"

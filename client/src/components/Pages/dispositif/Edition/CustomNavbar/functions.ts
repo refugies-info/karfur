@@ -10,9 +10,9 @@ export const getText = (progress: number) => {
   return "Bravo, tout est bon ! 🎉";
 };
 
-const isAccordionOk = (content: DeepPartialSkipArrayKey<InfoSections> | undefined) => {
+const isAccordionOk = (content: DeepPartialSkipArrayKey<InfoSections> | undefined, minAccordions: number) => {
   if (!content) return false;
-  return content && Object.keys(content).length >= 3 && !Object.values(content).find(c => !c || !c.title || !c.text)
+  return content && Object.keys(content).length >= minAccordions && !Object.values(content).find(c => !c || !c.title || !c.text)
 }
 
 const isMetadataOk = (content: any | any[]) => {
@@ -32,11 +32,11 @@ export const getMissingSteps = (dispositif: DeepPartialSkipArrayKey<CreateDispos
     !!dispositif.titreMarque ? null : "titreMarque",
     !!dispositif.what ? null : "what",
     dispositif.typeContenu === ContentType.DISPOSITIF ?
-      isAccordionOk(dispositif.why) ? null : "why" :
-      isAccordionOk(dispositif.how) ? null : "how",
+      isAccordionOk(dispositif.why, 3) ? null : "why" :
+      isAccordionOk(dispositif.how, 1) ? null : "how",
     dispositif.typeContenu === ContentType.DISPOSITIF ?
-      isAccordionOk(dispositif.how) ? null : "how" :
-      isAccordionOk(dispositif.next) ? null : "next",
+      isAccordionOk(dispositif.how, 3) ? null : "how" :
+      isAccordionOk(dispositif.next, 1) ? null : "next",
     !!dispositif.abstract ? null : "abstract",
     !!dispositif.theme ? null : "theme",
     (dispositif.sponsors?.length || 0) > 0 ? null : "sponsors",
