@@ -3,6 +3,7 @@ import {
   GetContentsForAppRequest,
   GetContentsForAppResponse,
   Languages,
+  MobileFrenchLevel,
 } from "@refugies-info/api-types";
 
 import { Dispositif } from "../../../typegoose";
@@ -110,16 +111,23 @@ export const getContentsForApp = async (req: GetContentsForAppRequest): Promise<
   /**
    * frenchLevel
    */
-  if (frenchLevel === "Je parle un peu") {
-    query.push(
-      { "metadatas.frenchLevel": { $ne: "C1" } },
-      { "metadatas.frenchLevel": { $ne: "C2" } },
-      { "metadatas.frenchLevel": { $ne: "B1" } },
-      { "metadatas.frenchLevel": { $ne: "B2" } },
-    );
-  }
-  if (frenchLevel === "Je parle bien") {
-    query.push({ "metadatas.frenchLevel": { $ne: "C1" } }, { "metadatas.frenchLevel": { $ne: "C2" } });
+  switch (frenchLevel) {
+    case MobileFrenchLevel["Je ne lis et n'écris pas le français"]:
+      // query.push({ "metadatas.frenchLevel": { $eq: "A1.1" } });
+      query.push({ "metadata.frenchLevel": { $eq: "alpha" } });
+      break;
+    case MobileFrenchLevel["Je parle un peu"]:
+      query.push({ "metadatas.frenchLevel": { $eq: "A1" } });
+      query.push({ "metadatas.frenchLevel": { $eq: "A2" } });
+      break;
+    case MobileFrenchLevel["Je parle bien"]:
+      query.push({ "metadatas.frenchLevel": { $eq: "B1" } });
+      query.push({ "metadatas.frenchLevel": { $eq: "B2" } });
+      break;
+    case MobileFrenchLevel["Je parle couramment"]:
+      query.push({ "metadatas.frenchLevel": { $eq: "C1" } });
+      query.push({ "metadatas.frenchLevel": { $eq: "C2" } });
+      break;
   }
 
   /**
@@ -130,9 +138,8 @@ export const getContentsForApp = async (req: GetContentsForAppRequest): Promise<
     if (strictLocation) {
       locationFilter.push({ "metadatas.location": { $regex: ` - ${county}$` } });
     } else {
-      locationFilter.push({ "metadatas.location": { $eq: "All" } });
-      // TODO locationFilter.push({ "metadatas.location": { $eq: "france" } });
-      // TODO locationFilter.push({ "metadatas.location": { $eq: "online" } });
+      // locationFilter.push({ "metadatas.location": { $eq: "france" } });
+      // locationFilter.push({ "metadatas.location": { $eq: "online" } });
     }
     query.push({
       $or: locationFilter,

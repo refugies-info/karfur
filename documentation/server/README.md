@@ -101,6 +101,14 @@ Open a new terminal tab and launch the server:
 > nodemon                         # serve at localhost:8000
 ```
 
+If you need to develop on `server` and `api-types`, you may need to made some change in `server/package.json` :
+
+```
+    "@refugies-info/api-types": "file:../api-types",
+```
+
+Note: This will failed to deploy.
+
 ### Admin account creation
 
 - create an account on the website

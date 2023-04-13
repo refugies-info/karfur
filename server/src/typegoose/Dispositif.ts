@@ -1,6 +1,8 @@
 import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import {
-  ContentType, DispositifStatus, Languages,
+  ContentType,
+  DispositifStatus,
+  Languages,
   locationType,
   frenchLevelType,
   ageType,
