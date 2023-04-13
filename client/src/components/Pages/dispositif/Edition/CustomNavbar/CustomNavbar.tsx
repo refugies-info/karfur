@@ -125,7 +125,11 @@ const CustomNavbar = () => {
             Quitter
           </Button>
           {!hideValidateButton && (
-            <Button icon="checkmark-circle-2" iconPlacement="end" onClick={togglePublishModal}>
+            <Button
+              icon={progress === total ? "checkmark-circle-2" : undefined}
+              iconPlacement="end"
+              onClick={togglePublishModal}
+            >
               Valider
             </Button>
           )}

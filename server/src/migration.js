@@ -228,9 +228,9 @@ const getFrenchLevel = (metadata) => {
     case "Débutant":
       return ["alpha", "A1"];
     case "Intermédiaire":
-      return ["alpha", "A1", "A2", "B1"];
+      return ["A2", "B1"];
     case "Avancé":
-      return ["alpha", "A1", "A2", "B1", "B2", "C1"];
+      return ["B2", "C1"];
     case "Tous les niveaux":
       return ["alpha", "A1", "A2", "B1", "B2", "C1", "C2"];
     default:
