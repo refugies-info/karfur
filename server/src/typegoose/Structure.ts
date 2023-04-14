@@ -44,8 +44,8 @@ export class Structure extends Base {
 
   @prop()
   public acronyme?: string;
-  @prop({ required: true, ref: () => User })
-  public administrateur!: Ref<User>;
+  @prop({ ref: () => User })
+  public administrateur?: Ref<User>;
   @prop()
   public adresse?: string;
   @prop()

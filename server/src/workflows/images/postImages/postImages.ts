@@ -26,11 +26,11 @@ export const postImages = async (files: any): ResponseWithData<PostImageResponse
     version: imgData.version,
   };
 
-  await ImageModel.create(image);
+  const imageDb = await ImageModel.create(image);
   return {
     text: "success",
     data: {
-      imgId: imgData._id,
+      imgId: imageDb._id.toString(),
       public_id: imgData.public_id,
       secure_url: imgData.secure_url,
     },
