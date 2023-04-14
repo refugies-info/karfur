@@ -213,7 +213,12 @@ const getMarkers = (children) => {
       lng: m.longitude,
     };
 
-    if (m.description) marker.description = removeHTML(m.description);
+    if (m.description) {
+      const newDescription = removeHTML(m.description);
+      if (newDescription !== "Saisir des informations complémentaires si besoin") {
+        marker.description = newDescription;
+      }
+    }
     if (m.email) marker.email = removeHTML(m.email);
     if (m.telephone) marker.phone = removeHTML(m.telephone);
 
