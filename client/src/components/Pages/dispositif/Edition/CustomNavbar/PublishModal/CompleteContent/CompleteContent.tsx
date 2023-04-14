@@ -33,8 +33,8 @@ const CompleteContent = (props: Props) => {
 
   useEffect(() => {
     const textContent = getTextContent(status);
-    setTitle(textContent[step].title);
-    setTextContent(textContent);
+    setTitle(textContent[step].title); // TODO: if admin and no changes -> Tout est prêt !
+    setTextContent(textContent); // TODO: if admin and no changes -> Les changements que tu as effectué n'ont pas impacté les traductions. Publier tes modifications ne déclenchera pas un nouveau processus de traduction.
   }, [status, step, setTitle]);
 
   const content = useMemo(() => {
@@ -42,6 +42,7 @@ const CompleteContent = (props: Props) => {
     if (isStatus(status, DispositifStatus.ACTIVE)) {
       // role === admin
       if (user.admin) {
+        // TODO: only if content changes (new API endpoint?)
         return (
           <>
             <ChoiceButton
@@ -70,6 +71,22 @@ const CompleteContent = (props: Props) => {
             </div>
           </>
         );
+
+        // TODO : if admin and no changes, new content (cf https://app.asana.com/0/1200625325783854/1204226726560920/f)
+        /* return (
+          <>
+            <StepBar
+              total={TOTAL_STEPS}
+              progress={TOTAL_STEPS}
+              text={`${TOTAL_STEPS} étapes complétées sur ${TOTAL_STEPS}`}
+            />
+            <div className="text-end">
+              <Button onClick={() => onPublish(false).then(toggle)} icon="arrow-forward-outline" iconPlacement="end">
+                Publier
+              </Button>
+            </div>
+          </>
+        ); */
       }
       // role === user
       return (
