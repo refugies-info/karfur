@@ -6,7 +6,7 @@ export const getText = (progress: number) => {
   if (progress <= 3) return "Vous êtes sur la bonne voie !";
   if (progress <= 6) return "Presqu’à la moitié";
   if (progress <= 9) return "Continuez comme ça !";
-  if (progress <= 13) return "Vous y êtes presque !";
+  if (progress <= 12) return "Vous y êtes presque !";
   return "Bravo, tout est bon ! 🎉";
 };
 
@@ -22,6 +22,7 @@ const isMetadataOk = (content: any | any[]) => {
   return content || content === null // ok if filled or null
 }
 
+export const TOTAL_STEPS = 13;
 
 export type Step = "titreInformatif" | "titreMarque" | "what" | "why" | "how" | "how" | "next" | "abstract" | "theme" | "sponsors" | "mainSponsor" | "public" | "price" | "commitment" | "conditions" | "location";
 /**
@@ -41,7 +42,6 @@ export const getMissingSteps = (dispositif: DeepPartialSkipArrayKey<CreateDispos
       isAccordionOk(dispositif.next, 1) ? null : "next",
     !!dispositif.abstract ? null : "abstract",
     !!dispositif.theme ? null : "theme",
-    (dispositif.sponsors?.length || 0) > 0 ? null : "sponsors",
     dispositif.mainSponsor ? null : "mainSponsor",
     isMetadataOk([
       dispositif.metadatas?.publicStatus,

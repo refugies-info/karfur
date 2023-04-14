@@ -6,7 +6,7 @@ import PageContext, { Modals } from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import StepBar from "../../StepBar";
-import { Step } from "../../functions";
+import { Step, TOTAL_STEPS } from "../../functions";
 import { help } from "./data";
 import styles from "./MissingContent.module.scss";
 
@@ -17,7 +17,6 @@ interface Props {
   onStay: () => void;
 }
 
-const STEPS = 14;
 const STEPS_MODAL: Record<Step, Modals | null> = {
   commitment: "Availability",
   conditions: "Conditions",
@@ -65,9 +64,9 @@ const MissingContent = (props: Props) => {
     <div>
       <p>{content}</p>
       <StepBar
-        total={STEPS}
-        progress={STEPS - props.missingSteps.length}
-        text={`${STEPS - props.missingSteps.length} étapes complétées sur ${STEPS}`}
+        total={TOTAL_STEPS}
+        progress={TOTAL_STEPS - props.missingSteps.length}
+        text={`${TOTAL_STEPS - props.missingSteps.length} étapes complétées sur ${TOTAL_STEPS}`}
       />
 
       <div className={styles.missing}>

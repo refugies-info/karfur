@@ -9,6 +9,7 @@ import StepBar from "../../StepBar";
 import ChoiceButton from "../../../ChoiceButton";
 import PublicationSteps from "./PublicationSteps";
 import BubbleFlags from "./BubbleFlags";
+import { TOTAL_STEPS } from "../../functions";
 import { getTextContent } from "./functions";
 import { Content } from "./data";
 import PublishImage from "assets/dispositif/publish-image.svg";
@@ -73,7 +74,11 @@ const CompleteContent = (props: Props) => {
       // role === user
       return (
         <>
-          <StepBar total={14} progress={14} text={"14 étapes complétées sur 14"} />
+          <StepBar
+            total={TOTAL_STEPS}
+            progress={TOTAL_STEPS}
+            text={`${TOTAL_STEPS} étapes complétées sur ${TOTAL_STEPS}`}
+          />
           <PublicationSteps
             items={[
               {
@@ -105,7 +110,11 @@ const CompleteContent = (props: Props) => {
     if (step === 0) {
       return (
         <>
-          <StepBar total={14} progress={14} text={"14 étapes complétées sur 14"} />
+          <StepBar
+            total={TOTAL_STEPS}
+            progress={TOTAL_STEPS}
+            text={`${TOTAL_STEPS} étapes complétées sur ${TOTAL_STEPS}`}
+          />
           <div className="text-center mb-8 mt-6">
             <Image src={PublishImage} width={345} height={240} alt="" />
           </div>

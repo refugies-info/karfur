@@ -12,7 +12,7 @@ import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { calculateProgress, getText } from "./functions";
+import { calculateProgress, getText, TOTAL_STEPS } from "./functions";
 import Tooltip from "components/UI/Tooltip";
 import QuitModal from "./QuitModal";
 import PublishModal from "./PublishModal";
@@ -30,7 +30,6 @@ interface Props {
 const CustomNavbar = (props: Props) => {
   const { isSaving } = useAutosave();
   const router = useRouter();
-  const total = 14;
   const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);
   const [progress, setProgress] = useState<number>(calculateProgress(values, props.typeContenu));
@@ -100,7 +99,7 @@ const CustomNavbar = (props: Props) => {
       )}
       <div className={cls("fr-container", styles.inner)}>
         <div className={styles.steps}>
-          <StepBar total={total} progress={progress} text={`${progress} / ${total}`} />
+          <StepBar total={TOTAL_STEPS} progress={progress} text={`${progress} / ${TOTAL_STEPS}`} />
           <p className={styles.help}>{getText(progress)}</p>
           <Button
             secondary={!showMissingSteps}
@@ -131,7 +130,7 @@ const CustomNavbar = (props: Props) => {
           </Button>
           {!hideValidateButton && (
             <Button
-              icon={progress === total ? "checkmark-circle-2" : undefined}
+              icon={progress === TOTAL_STEPS ? "checkmark-circle-2" : undefined}
               iconPlacement="end"
               onClick={togglePublishModal}
             >
