@@ -19,7 +19,7 @@ const MentionsLegales = () => {
 
       <h2>Directeur de la publication</h2>
 
-      <strong>Nour Allazkani</strong>
+      <strong>Yannick Prost</strong>
 
       <h2>Droit d’accès</h2>
 
