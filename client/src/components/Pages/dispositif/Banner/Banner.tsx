@@ -55,7 +55,7 @@ const Banner = (props: Props) => {
     >
       {/* TODO: check that user is authorized to edit */}
       {user && pageContext.mode === "view" && (
-        <>
+        <div className={styles.container}>
           <div className={styles.actions}>
             {status && <Badge text={status.text} type={status.type} hasIcon icon={status.icon} className="me-4" />}
             <Button icon="edit-outline" className={styles.edit} onClick={onEditClick}>
@@ -63,7 +63,7 @@ const Banner = (props: Props) => {
             </Button>
           </div>
           <EditModal show={showEditModal} toggle={() => setShowEditModal((o) => !o)} onValidate={navigateToEdit} />
-        </>
+        </div>
       )}
     </div>
   );

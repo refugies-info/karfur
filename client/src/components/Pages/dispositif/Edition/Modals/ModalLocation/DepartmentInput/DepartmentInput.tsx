@@ -21,6 +21,7 @@ const DepartmentInput = (props: Props) => {
     options: {
       componentRestrictions: { country: "fr" },
       types: ["administrative_area_level_2"],
+      language: "fr",
     },
   });
 

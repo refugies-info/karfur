@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { ContentType } from "api-types";
+import { useContentType } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import AddContentButton from "../AddContentButton";
 import styles from "./TitleEdit.module.scss";
@@ -12,6 +13,7 @@ interface Props {}
  * Shows either an AddContentButton if the section in not active, or an input if it is.
  */
 const TitleEdit = (props: Props) => {
+  const typeContenu = useContentType();
   const [isTitleActive, setIsTitleActive] = useState(false);
   const [isActionActive, setIsActionActive] = useState(false);
   const formContext = useFormContext();
@@ -24,7 +26,7 @@ const TitleEdit = (props: Props) => {
   }, [isTitleActive, isActionActive]);
 
   return (
-    <div>
+    <div id="step-titreInformatif">
       {!isTitleActive && (
         <AddContentButton
           onClick={() => setIsTitleActive(true)}
@@ -44,8 +46,8 @@ const TitleEdit = (props: Props) => {
         />
       )}
 
-      {formContext.getValues("typeContenu") === ContentType.DISPOSITIF && (
-        <div className={styles.marque}>
+      {typeContenu === ContentType.DISPOSITIF && (
+        <div className={styles.marque} id="step-titreMarque">
           <span className="me-6">Avec</span>
           {!isActionActive && (
             <AddContentButton

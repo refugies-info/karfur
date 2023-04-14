@@ -18,7 +18,7 @@ const SponsorsEdit = () => {
   const { setValue } = useFormContext();
 
   return (
-    <div className={styles.container}>
+    <div id="step-sponsors" className={styles.container}>
       <Sponsors
         sponsors={sponsors}
         editMode

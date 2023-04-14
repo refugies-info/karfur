@@ -110,6 +110,7 @@ export const buildNewDispositif = async (
         picture: formContent.mainSponsor.logo,
         nom: formContent.mainSponsor.name,
         link: formContent.mainSponsor.link,
+        createur: new ObjectId(userId),
       };
       const newStructure = await createStructureInDB(structureToSave);
       editedDispositif.mainSponsor = newStructure._id;

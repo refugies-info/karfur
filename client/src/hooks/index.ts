@@ -1,4 +1,3 @@
-export { default as useAutosave } from "./useAutosave";
 export { default as useChangeLanguage } from "./useChangeLanguage";
 export { default as useEditionMode } from "./useEditionMode";
 export { default as useAuth } from "./useAuth";

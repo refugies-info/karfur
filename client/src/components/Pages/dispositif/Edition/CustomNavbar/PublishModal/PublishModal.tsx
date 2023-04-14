@@ -1,14 +1,15 @@
 import React, { useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
-import { CreateDispositifRequest, DispositifStatus } from "api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-types";
 import { BaseModal } from "components/Pages/dispositif";
-import { getMissingSteps } from "../functions";
+import { getMissingSteps, Step } from "../functions";
 import CompleteContent from "./CompleteContent";
 import MissingContent from "./MissingContent";
 import styles from "./PublishModal.module.scss";
 
 interface Props {
   show: boolean;
+  typeContenu: ContentType;
   status: DispositifStatus | null;
   toggle: () => void;
   onQuit: () => void;
@@ -18,8 +19,8 @@ interface Props {
 const PublishModal = (props: Props) => {
   const dispositif = useWatch<DeepPartialSkipArrayKey<CreateDispositifRequest>>();
   const missingSteps = useMemo(
-    () => getMissingSteps(dispositif).filter((c) => c !== null) as string[],
-    [dispositif],
+    () => getMissingSteps(dispositif, props.typeContenu).filter((c) => c !== null) as Step[],
+    [dispositif, props.typeContenu],
   );
 
   const isComplete = useMemo(() => missingSteps.length === 0, [missingSteps]);

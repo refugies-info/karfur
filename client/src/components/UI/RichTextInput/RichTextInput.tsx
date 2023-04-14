@@ -55,7 +55,10 @@ const RichTextInput: FC<Props> = (props: Props) => {
   };
 
   const onChange = (html: string) => {
-    if (setValue) setValue(id, html);
+    if (setValue) {
+      if (html === "<p><br></p>") setValue(id, ""); // empty input
+      else setValue(id, html);
+    }
   };
 
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null);

@@ -141,10 +141,12 @@ const ModalPublic = (props: Props) => {
             <ChoiceButton
               text="Tous les publics"
               type="checkbox"
-              selected={publicStatus?.length === 5}
+              selected={publicStatus?.length === 6}
               onSelect={() => {
                 setPublicStatus(
-                  publicStatus?.length === 5 ? [] : ["apatride", "asile", "french", "refugie", "subsidiaire"],
+                  publicStatus?.length === 6
+                    ? []
+                    : ["apatride", "asile", "french", "refugie", "temporaire", "subsidiaire"],
                 );
               }}
               className="mb-2"
@@ -155,7 +157,7 @@ const ModalPublic = (props: Props) => {
               selected={includeAllRefugees(publicStatus)}
               onSelect={() => {
                 setPublicStatus(
-                  includeAllRefugees(publicStatus) ? [] : ["apatride", "asile", "refugie", "subsidiaire"],
+                  includeAllRefugees(publicStatus) ? [] : ["apatride", "asile", "refugie", "temporaire", "subsidiaire"],
                 );
               }}
               className="mb-2"

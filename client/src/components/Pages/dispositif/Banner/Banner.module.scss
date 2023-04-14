@@ -17,6 +17,12 @@
   }
 }
 
+.container {
+  @include media-max("lg-limit") {
+    display: none;
+  }
+}
+
 .actions {
   position: absolute;
   top: u(4);

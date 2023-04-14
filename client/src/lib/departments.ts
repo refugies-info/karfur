@@ -13,5 +13,6 @@ export const formatDepartment = (depName: string) => {
   }
 
   const dep = depDbFormat.split(" - ");
+  if (!dep[1]) return dep[0];
   return `${dep[1]} (${dep[0]})`;
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { ContentType } from "api-types";
-import { useAutosave, useContentLocale, useWindowSize } from "hooks";
+import { useContentLocale, useWindowSize } from "hooks";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
@@ -61,7 +61,7 @@ const Dispositif = (props: Props) => {
         description={dispositif?.abstract || ""}
         image={theme?.shareImage.secure_url}
       />
-      {isEditMode && <CustomNavbar />}
+      {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
       {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
       <div className={styles.content}>
         <div className={styles.left}>

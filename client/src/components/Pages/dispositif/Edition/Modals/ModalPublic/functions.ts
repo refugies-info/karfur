@@ -6,6 +6,7 @@ export const includeAllRefugees = (publicStatus: publicStatusType[] | undefined)
     publicStatus.includes("asile") &&
     publicStatus.includes("refugie") &&
     publicStatus.includes("subsidiaire") &&
-    publicStatus.includes("apatride")
+    publicStatus.includes("apatride") &&
+    publicStatus.includes("temporaire")
   );
 };

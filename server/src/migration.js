@@ -8,7 +8,8 @@ const client = new MongoClient(dbPath);
 const dbName = "heroku_wbj38s57";
 
 const removeHTML = (input) => {
-  return input.replace(/<\/?[^>]+(>|$)/g, "");
+  if (!input) return input;
+  return input.replace(/<\/?[^>]+(>|$)/g, "").replace("&nbsp;", " ");
 };
 
 const getLocalizedContent = (content, ln, root = false) => {
@@ -205,16 +206,21 @@ const getMarkers = (children) => {
 
   return (markers || []).map((m) => {
     const marker = {
-      title: m.nom,
-      address: m.address,
-      city: m.vicinity,
+      title: removeHTML(m.nom),
+      address: removeHTML(m.address),
+      city: removeHTML(m.vicinity),
       lat: m.latitude,
       lng: m.longitude,
     };
 
-    if (m.description) marker.description = m.description;
-    if (m.email) marker.email = m.email;
-    if (m.telephone) marker.phone = m.telephone;
+    if (m.description) {
+      const newDescription = removeHTML(m.description);
+      if (newDescription !== "Saisir des informations complémentaires si besoin") {
+        marker.description = newDescription;
+      }
+    }
+    if (m.email) marker.email = removeHTML(m.email);
+    if (m.telephone) marker.phone = removeHTML(m.telephone);
 
     return marker;
   });
@@ -228,9 +234,9 @@ const getFrenchLevel = (metadata) => {
     case "Débutant":
       return ["alpha", "A1"];
     case "Intermédiaire":
-      return ["alpha", "A1", "A2", "B1"];
+      return ["A2", "B1"];
     case "Avancé":
-      return ["alpha", "A1", "A2", "B1", "B2", "C1"];
+      return ["B2", "C1"];
     case "Tous les niveaux":
       return ["alpha", "A1", "A2", "B1", "B2", "C1", "C2"];
     default:
