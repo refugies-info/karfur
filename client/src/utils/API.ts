@@ -1,6 +1,5 @@
-import axios, { AxiosResponse, Canceler } from "axios";
-
-import setAuthToken from "./setAuthToken";
+import axios, { Canceler } from "axios";
+import { getAuthToken, removeAuthToken } from "utils/authToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
@@ -87,8 +86,6 @@ import {
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
-type Response<T = any> = AxiosResponse<{ text: string; data: T }>;
-
 //@ts-ignore
 axios.withCredentials = true;
 const instance = axios.create({
@@ -129,9 +126,11 @@ const getHeaders = () => {
     "site-secret": process.env.NEXT_PUBLIC_REACT_APP_SITE_SECRET || "",
   };
 
-  const token = isInBrowser() ? localStorage.getItem("token") : undefined;
+  const token = isInBrowser()
+    ? getAuthToken()
+    //@ts-ignore
+    : axios.defaults.headers["x-access-token"]; // headers set for server calls
   if (token) headers["x-access-token"] = token;
-
   return headers;
 };
 
@@ -160,11 +159,10 @@ const API = {
   },
   isAuth: () => {
     if (!isInBrowser()) return false;
-    return localStorage.getItem("token") !== null;
+    return getAuthToken() !== undefined;
   },
   logout: () => {
-    setAuthToken("");
-    return localStorage.removeItem("token");
+    return removeAuthToken();
   },
 
   // User

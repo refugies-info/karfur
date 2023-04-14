@@ -22,7 +22,7 @@ import UsernameField from "components/Pages/register/UsernameField";
 import EmailField from "components/Pages/register/EmailField";
 import Footer from "components/Pages/register/Footer";
 import API from "utils/API";
-import setAuthToken from "utils/setAuthToken";
+import { setAuthToken } from "utils/authToken";
 import { logger } from "logger";
 import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
@@ -124,7 +124,6 @@ const Register = () => {
           }
         });
 
-        localStorage.setItem("token", token);
         setAuthToken(token);
         dispatch(fetchUserActionCreator());
       })

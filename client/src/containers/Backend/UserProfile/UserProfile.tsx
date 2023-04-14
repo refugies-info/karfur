@@ -12,7 +12,7 @@ import { PasswordField } from "./components/PasswordField";
 import { CodePhoneValidationModal } from "components/Modals/CodePhoneValidationModal/CodePhoneValidationModal";
 import API from "utils/API";
 import Swal from "sweetalert2";
-import setAuthToken from "utils/setAuthToken";
+import { setAuthToken } from "utils/authToken";
 import { getPasswordStrength } from "lib/validatePassword";
 import { saveUserActionCreator, fetchUserActionCreator } from "services/User/user.actions";
 import { isLoadingSelector, errorSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -203,7 +203,7 @@ export const UserProfile = (props: Props) => {
         icon: "success",
         timer: 1500,
       });
-      localStorage.setItem("token", data.data.data.token);
+
       setAuthToken(data.data.data.token);
       setCurrentPassword("");
       setNewPasswordOk(false);
