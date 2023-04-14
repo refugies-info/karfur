@@ -1,29 +1,65 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { DispositifStatus } from "api-types";
 import { Badge } from "@dataesr/react-dsfr";
 import { isStatus } from "lib/dispositif";
+import PageContext, { Modals } from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import StepBar from "../../StepBar";
+import { Step } from "../../functions";
 import { help } from "./data";
 import styles from "./MissingContent.module.scss";
 
 interface Props {
-  missingSteps: string[];
+  missingSteps: Step[];
   status: DispositifStatus | null;
   onQuit: () => void;
   onStay: () => void;
 }
 
 const STEPS = 14;
+const STEPS_MODAL: Record<Step, Modals | null> = {
+  commitment: "Availability",
+  conditions: "Conditions",
+  location: "Location",
+  price: "Price",
+  public: "Public",
+  theme: "Themes",
+  abstract: "Abstract",
+  mainSponsor: "MainSponsor",
+  titreInformatif: null,
+  titreMarque: null,
+  what: null,
+  why: null,
+  how: null,
+  next: null,
+  sponsors: null,
+};
 
 const MissingContent = (props: Props) => {
+  const pageContext = useContext(PageContext);
+
   const content = useMemo(() => {
     if (isStatus(props.status, DispositifStatus.ACTIVE)) return help.published;
     if (isStatus(props.status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE]))
       return help.waiting;
     return help.draft;
   }, [props.status]);
+
+  const goToStep = (step: Step) => {
+    pageContext.setShowMissingSteps?.(true);
+    props.onStay();
+    // delay scroll so the modal is closed
+    setTimeout(() => {
+      document.getElementById(`step-${step}`)?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+      if (STEPS_MODAL[step]) {
+        pageContext.setActiveModal?.(STEPS_MODAL[step]);
+      }
+    }, 1000);
+  };
 
   return (
     <div>
@@ -36,14 +72,14 @@ const MissingContent = (props: Props) => {
 
       <div className={styles.missing}>
         {props.missingSteps.map((step, i) => (
-          <div key={i} className={styles.step}>
+          <button key={i} className={styles.step} onClick={() => goToStep(step)}>
             <span>{step}</span>
 
             <span>
               <Badge type="warning" text="Manquant" icon="ri-alert-fill" isSmall className="me-4" />
               <EVAIcon name="plus-circle" size={24} fill={styles.lightTextMentionGrey} />
             </span>
-          </div>
+          </button>
         ))}
       </div>
       <div className="text-end">

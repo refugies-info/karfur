@@ -22,10 +22,12 @@ const isMetadataOk = (content: any | any[]) => {
   return content || content === null // ok if filled or null
 }
 
+
+export type Step = "titreInformatif" | "titreMarque" | "what" | "why" | "how" | "how" | "next" | "abstract" | "theme" | "sponsors" | "mainSponsor" | "public" | "price" | "commitment" | "conditions" | "location";
 /**
  * return an array with null if complete, or the name of the step if missing
  */
-export const getMissingSteps = (dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>, typeContenu: ContentType): (string | null)[] => {
+export const getMissingSteps = (dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>, typeContenu: ContentType): (Step | null)[] => {
   /* TODO: translate keys */
   return [
     !!dispositif.titreInformatif ? null : "titreInformatif",

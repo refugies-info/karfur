@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { ContentType } from "api-types";
-import { useAutosave, useContentLocale, useWindowSize } from "hooks";
+import { useContentLocale, useWindowSize } from "hooks";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";

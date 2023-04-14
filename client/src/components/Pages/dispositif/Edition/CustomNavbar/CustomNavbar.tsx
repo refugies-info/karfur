@@ -6,7 +6,8 @@ import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-type
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
-import { useAutosave, useLocale } from "hooks";
+import { useLocale } from "hooks";
+import { useAutosave } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";

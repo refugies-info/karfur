@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { ContentType, Metadatas, UpdateDispositifRequest } from "api-types";
 import { themeSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { ContentType, Metadatas, UpdateDispositifRequest } from "api-types";
+import PageContext from "utils/pageContext";
 import {
   ModalAbstract,
   ModalAvailability,
@@ -25,8 +26,6 @@ import CardMainSponsor from "../../Metadatas/CardMainSponsor";
 import { cls } from "lib/classname";
 import styles from "./LeftSidebarEdition.module.scss";
 
-type Modals = "Availability" | "Conditions" | "Location" | "Price" | "Public" | "Themes" | "Abstract" | "MainSponsor";
-
 interface Props {
   typeContenu: ContentType;
 }
@@ -37,22 +36,24 @@ interface Props {
  */
 const LeftSidebarEdition = (props: Props) => {
   const values = useWatch<UpdateDispositifRequest>();
-  const [showModal, setShowModal] = useState<Modals | null>(null);
-  const toggleModal = useCallback(() => setShowModal((o) => null), []);
   const currentTheme = useSelector(themeSelector(values.theme));
   const color = currentTheme?.colors.color100 || "#000";
 
+  const { activeModal, setActiveModal } = useContext(PageContext);
+  const toggleModal = useCallback(() => setActiveModal?.(null), [setActiveModal]);
+
   return (
     <div className={styles.container}>
+      <div id="step-theme"></div>
       {values.theme !== undefined ? (
         <CardTheme
           dataTheme={values.theme}
           dataSecondaryThemes={values.secondaryThemes}
           color={color}
-          onClick={() => setShowModal("Themes")}
+          onClick={() => setActiveModal?.("Themes")}
         />
       ) : (
-        <AddContentButton onClick={() => setShowModal("Themes")} className="mb-6" size="md">
+        <AddContentButton onClick={() => setActiveModal?.("Themes")} className="mb-6" size="md">
           <EVAIcon
             name="color-palette-outline"
             size={24}
@@ -65,6 +66,7 @@ const LeftSidebarEdition = (props: Props) => {
 
       <p className={styles.title}>C'est pour qui ?</p>
 
+      <div id="step-public"></div>
       {values.metadatas?.publicStatus !== undefined ||
       values.metadatas?.age !== undefined ||
       values.metadatas?.frenchLevel !== undefined ||
@@ -75,26 +77,28 @@ const LeftSidebarEdition = (props: Props) => {
           dataFrenchLevel={values.metadatas.frenchLevel}
           dataPublic={values.metadatas.public}
           color={color}
-          onClick={() => setShowModal("Public")}
+          onClick={() => setActiveModal?.("Public")}
         />
       ) : (
-        <AddContentButton onClick={() => setShowModal("Public")} className="mb-6" size="md">
+        <AddContentButton onClick={() => setActiveModal?.("Public")} className="mb-6" size="md">
           Public visé
         </AddContentButton>
       )}
 
+      <div id="step-price"></div>
       {values.metadatas?.price !== undefined ? (
         <CardPrice
           data={values.metadatas.price as Metadatas["price"]}
           color={color}
-          onClick={() => setShowModal("Price")}
+          onClick={() => setActiveModal?.("Price")}
         />
       ) : (
-        <AddContentButton onClick={() => setShowModal("Price")} className="mb-6" size="md">
+        <AddContentButton onClick={() => setActiveModal?.("Price")} className="mb-6" size="md">
           Prix
         </AddContentButton>
       )}
 
+      <div id="step-commitment"></div>
       {values.metadatas?.commitment !== undefined ||
       values.metadatas?.frequency !== undefined ||
       values.metadatas?.timeSlots !== undefined ? (
@@ -103,46 +107,53 @@ const LeftSidebarEdition = (props: Props) => {
           dataFrequency={values.metadatas.frequency as Metadatas["frequency"]}
           dataTimeSlots={values.metadatas.timeSlots}
           color={color}
-          onClick={() => setShowModal("Availability")}
+          onClick={() => setActiveModal?.("Availability")}
         />
       ) : (
-        <AddContentButton onClick={() => setShowModal("Availability")} className="mb-6" size="md">
+        <AddContentButton onClick={() => setActiveModal?.("Availability")} className="mb-6" size="md">
           Disponibilité demandée
         </AddContentButton>
       )}
 
+      <div id="step-conditions"></div>
       {values.metadatas?.conditions !== undefined ? (
-        <CardConditions data={values.metadatas.conditions} color={color} onClick={() => setShowModal("Conditions")} />
+        <CardConditions
+          data={values.metadatas.conditions}
+          color={color}
+          onClick={() => setActiveModal?.("Conditions")}
+        />
       ) : (
-        <AddContentButton onClick={() => setShowModal("Conditions")} className="mb-6" size="md">
+        <AddContentButton onClick={() => setActiveModal?.("Conditions")} className="mb-6" size="md">
           Conditions
         </AddContentButton>
       )}
 
+      <div id="step-location"></div>
       {values.metadatas?.location !== undefined ? (
         <CardLocation
           data={values.metadatas.location}
           typeContenu={props.typeContenu || ContentType.DISPOSITIF}
           color={color}
-          onClick={() => setShowModal("Location")}
+          onClick={() => setActiveModal?.("Location")}
         />
       ) : (
-        <AddContentButton onClick={() => setShowModal("Location")} className="mb-6" size="md">
+        <AddContentButton onClick={() => setActiveModal?.("Location")} className="mb-6" size="md">
           Zone d'action
         </AddContentButton>
       )}
 
       <p className={styles.title}>À faire en dernier</p>
 
+      <div id="step-mainSponsor"></div>
       {values.mainSponsor !== undefined ? (
         <CardMainSponsor
           /* @ts-ignore */
           dataMainSponsor={values.mainSponsor} /* FIXME */
           color={color}
-          onClick={() => setShowModal("MainSponsor")}
+          onClick={() => setActiveModal?.("MainSponsor")}
         />
       ) : (
-        <AddContentButton onClick={() => setShowModal("MainSponsor")} size="md" className="mb-6">
+        <AddContentButton onClick={() => setActiveModal?.("MainSponsor")} size="md" className="mb-6">
           <EVAIcon
             name="home-outline"
             size={24}
@@ -153,7 +164,13 @@ const LeftSidebarEdition = (props: Props) => {
         </AddContentButton>
       )}
 
-      <AddContentButton onClick={() => setShowModal("Abstract")} size="md" contentSize="sm" content={values.abstract}>
+      <div id="step-abstract"></div>
+      <AddContentButton
+        onClick={() => setActiveModal?.("Abstract")}
+        size="md"
+        contentSize="sm"
+        content={values.abstract}
+      >
         <EVAIcon
           name="file-text-outline"
           size={24}
@@ -163,14 +180,14 @@ const LeftSidebarEdition = (props: Props) => {
         Résumé
       </AddContentButton>
 
-      <ModalAvailability show={showModal === "Availability"} toggle={toggleModal} />
-      <ModalConditions show={showModal === "Conditions"} toggle={toggleModal} />
-      <ModalLocation show={showModal === "Location"} toggle={toggleModal} />
-      <ModalPrice show={showModal === "Price"} toggle={toggleModal} />
-      <ModalPublic show={showModal === "Public"} toggle={toggleModal} />
-      <ModalThemes show={showModal === "Themes"} toggle={toggleModal} />
-      <ModalAbstract show={showModal === "Abstract"} toggle={toggleModal} />
-      <ModalMainSponsor show={showModal === "MainSponsor"} toggle={toggleModal} />
+      <ModalAvailability show={activeModal === "Availability"} toggle={toggleModal} />
+      <ModalConditions show={activeModal === "Conditions"} toggle={toggleModal} />
+      <ModalLocation show={activeModal === "Location"} toggle={toggleModal} />
+      <ModalPrice show={activeModal === "Price"} toggle={toggleModal} />
+      <ModalPublic show={activeModal === "Public"} toggle={toggleModal} />
+      <ModalThemes show={activeModal === "Themes"} toggle={toggleModal} />
+      <ModalAbstract show={activeModal === "Abstract"} toggle={toggleModal} />
+      <ModalMainSponsor show={activeModal === "MainSponsor"} toggle={toggleModal} />
     </div>
   );
 };
