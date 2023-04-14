@@ -25,17 +25,17 @@ const isMetadataOk = (content: any | any[]) => {
 /**
  * return an array with null if complete, or the name of the step if missing
  */
-export const getMissingSteps = (dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>): (string | null)[] => {
+export const getMissingSteps = (dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>, typeContenu: ContentType): (string | null)[] => {
   /* TODO: translate keys */
   return [
     !!dispositif.titreInformatif ? null : "titreInformatif",
     !!dispositif.titreMarque ? null : "titreMarque",
     !!dispositif.what ? null : "what",
-    dispositif.typeContenu === ContentType.DISPOSITIF ?
+    typeContenu === ContentType.DISPOSITIF ?
       isAccordionOk(dispositif.why, 3) ? null : "why" :
-      isAccordionOk(dispositif.how, 1) ? null : "how",
-    dispositif.typeContenu === ContentType.DISPOSITIF ?
-      isAccordionOk(dispositif.how, 3) ? null : "how" :
+      isAccordionOk(dispositif.how, 3) ? null : "how",
+    typeContenu === ContentType.DISPOSITIF ?
+      isAccordionOk(dispositif.how, 1) ? null : "how" :
       isAccordionOk(dispositif.next, 1) ? null : "next",
     !!dispositif.abstract ? null : "abstract",
     !!dispositif.theme ? null : "theme",
@@ -58,6 +58,6 @@ export const getMissingSteps = (dispositif: DeepPartialSkipArrayKey<CreateDispos
   ];
 }
 
-export const calculateProgress = (dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>) => {
-  return getMissingSteps(dispositif).filter(c => c === null).length;
+export const calculateProgress = (dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>, typeContenu: ContentType) => {
+  return getMissingSteps(dispositif, typeContenu).filter(c => c === null).length;
 }

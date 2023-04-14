@@ -61,7 +61,7 @@ const Dispositif = (props: Props) => {
         description={dispositif?.abstract || ""}
         image={theme?.shareImage.secure_url}
       />
-      {isEditMode && <CustomNavbar />}
+      {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
       {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
       <div className={styles.content}>
         <div className={styles.left}>

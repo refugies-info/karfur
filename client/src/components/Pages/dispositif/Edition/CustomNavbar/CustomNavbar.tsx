@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { CreateDispositifRequest, DispositifStatus } from "api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
@@ -18,24 +18,28 @@ import PublishModal from "./PublishModal";
 import StepBar from "./StepBar";
 import styles from "./CustomNavbar.module.scss";
 
+interface Props {
+  typeContenu: ContentType;
+}
+
 /**
  * Navbar of edition mode, which shows progress and validate buttons.
  * Responsible for autosave
  */
-const CustomNavbar = () => {
+const CustomNavbar = (props: Props) => {
   const { isSaving } = useAutosave();
   const router = useRouter();
   const total = 14;
   const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);
-  const [progress, setProgress] = useState<number>(calculateProgress(values));
+  const [progress, setProgress] = useState<number>(calculateProgress(values, props.typeContenu));
 
   const initialLocale = useLocale();
   const [showLanguageWarning, setShowLanguageWarning] = useState(initialLocale !== "fr");
 
   useEffect(() => {
-    setProgress(calculateProgress(values));
-  }, [values]);
+    setProgress(calculateProgress(values, props.typeContenu));
+  }, [values, props.typeContenu]);
 
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
 
@@ -149,6 +153,7 @@ const CustomNavbar = () => {
       />
       <PublishModal
         show={showPublishModal}
+        typeContenu={props.typeContenu}
         toggle={togglePublishModal}
         onQuit={toggleQuitModal}
         onPublish={handlePublish}
