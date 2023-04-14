@@ -1,18 +1,6 @@
 import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import {
   ContentType, DispositifStatus, Languages,
-  locationType,
-  frenchLevelType,
-  ageType,
-  priceDetails,
-  publicStatusType,
-  publicType,
-  conditionType,
-  commitmentDetailsType,
-  frequencyDetailsType,
-  timeUnitType,
-  frequencyUnitType,
-  timeSlotType,
 } from "@refugies-info/api-types";
 import { get, has } from "lodash";
 import { Types } from "mongoose";
@@ -25,6 +13,19 @@ import { Need, NeedId } from "./Need";
 import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
 import { User, UserId } from "./User";
+
+type locationType = "france" | "online" | string[];
+type frenchLevelType = "alpha" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
+type ageType = "lessThan" | "moreThan" | "between";
+type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
+type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
+type publicType = "family" | "women" | "youths" | "senior" | "gender";
+type conditionType = "acte naissance" | "titre sejour" | "cir" | "bank account" | "pole emploi" | "driver license" | "school";
+type commitmentDetailsType = "minimum" | "maximum" | "approximately" | "exactly" | "between";
+type frequencyDetailsType = "minimum" | "maximum" | "approximately" | "exactly";
+type timeUnitType = "sessions" | "hours" | "half-days" | "days" | "weeks" | "months" | "trimesters" | "semesters" | "years";
+type frequencyUnitType = "session" | "day" | "week" | "month" | "trimester" | "semester" | "year";
+type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
 
 export class Sponsor {
   @prop()
