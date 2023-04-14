@@ -8,7 +8,8 @@ const client = new MongoClient(dbPath);
 const dbName = "heroku_wbj38s57";
 
 const removeHTML = (input) => {
-  return input.replace(/<\/?[^>]+(>|$)/g, "");
+  if (!input) return input;
+  return input.replace(/<\/?[^>]+(>|$)/g, "").replace("&nbsp;", " ");
 };
 
 const getLocalizedContent = (content, ln, root = false) => {
@@ -205,16 +206,16 @@ const getMarkers = (children) => {
 
   return (markers || []).map((m) => {
     const marker = {
-      title: m.nom,
-      address: m.address,
-      city: m.vicinity,
+      title: removeHTML(m.nom),
+      address: removeHTML(m.address),
+      city: removeHTML(m.vicinity),
       lat: m.latitude,
       lng: m.longitude,
     };
 
-    if (m.description) marker.description = m.description;
-    if (m.email) marker.email = m.email;
-    if (m.telephone) marker.phone = m.telephone;
+    if (m.description) marker.description = removeHTML(m.description);
+    if (m.email) marker.email = removeHTML(m.email);
+    if (m.telephone) marker.phone = removeHTML(m.telephone);
 
     return marker;
   });
