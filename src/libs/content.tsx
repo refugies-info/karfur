@@ -9,6 +9,11 @@ import imgCb from "../theme/images/demarche/carteBancaire.png";
 import imgPoleEmploi from "../theme/images/demarche/poleEmploi.png";
 import imgDriver from "../theme/images/demarche/permisConduire.png";
 
+/**
+ * A1.1, A1, A2, B1, B2, C1, C2
+ */
+const ALL_FRENCH_LEVELS = 7;
+
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -33,7 +38,8 @@ export const getConditionImage = (condition: conditionType) => {
 };
 
 const getAge = (data: Metadatas["age"], t: any) => {
-  if (!data) return "";
+  if (data === null) t("content_screen.irrelevant");
+  if (!data) return t("content_screen.all_ages");
   if (data.type === "moreThan") {
     const result =
       t("content_screen.more_than", "Plus de") +
@@ -120,6 +126,15 @@ export const getDescriptionNew = (
 ) => {
   switch (key) {
     case "publicStatus":
+      if (!metadatas.publicStatus || metadatas.publicStatus.length === 0) {
+        return [
+          t("content_screen.status_refugie"),
+          t("content_screen.status_asile"),
+          t("content_screen.status_subsidiaire"),
+          t("content_screen.status_apatride"),
+          t("content_screen.status_french"),
+        ].join(", ");
+      }
       return capitalizeFirstLetter(
         metadatas.publicStatus
           ?.map((status) => t(`content_screen.status_${status}`, status))
@@ -128,6 +143,12 @@ export const getDescriptionNew = (
     case "public":
       return metadatas.public?.join(", ");
     case "frenchLevel":
+      if (
+        !metadatas.frenchLevel ||
+        metadatas.frenchLevel.length === ALL_FRENCH_LEVELS
+      ) {
+        return t("content_screen.all_french_levels", "Tous les niveaux");
+      }
       return metadatas.frenchLevel?.join(", ");
     case "age":
       return getAge(metadatas.age, t);

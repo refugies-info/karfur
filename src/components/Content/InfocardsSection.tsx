@@ -61,7 +61,19 @@ const Metadata = ({
   withTitle?: boolean;
 }) => {
   const { t } = useTranslationWithRTL();
-  if (!metadatas[metadataKey]) return null;
+  /**
+   * Exception : some Metadata must  be display in any case
+   * - frenchLevel
+   * - publicStatus
+   * - age
+   */
+  if (
+    !metadatas[metadataKey] &&
+    metadataKey !== "frenchLevel" &&
+    metadataKey !== "age" &&
+    metadataKey !== "publicStatus"
+  )
+    return null;
 
   return (
     <Columns RTLBehaviour layout="auto 1" horizontalAlign="space-between">
@@ -115,26 +127,17 @@ export const InfocardsSection = ({ content, color }: Props) => {
           color={color}
           title={t("content_screen.public", "Public visé")}
         >
-          {metadatas.publicStatus && (
-            <Metadata
-              metadatas={metadatas}
-              metadataKey="publicStatus"
-              withTitle
-            />
-          )}
+          <Metadata
+            metadatas={metadatas}
+            metadataKey="publicStatus"
+            withTitle
+          />
           {metadatas.public && (
             <Metadata metadatas={metadatas} metadataKey="public" withTitle />
           )}
-          {metadatas.frenchLevel && (
-            <Metadata
-              metadatas={metadatas}
-              metadataKey="frenchLevel"
-              withTitle
-            />
-          )}
-          {metadatas.age && (
-            <Metadata metadatas={metadatas} metadataKey="age" withTitle />
-          )}
+
+          <Metadata metadatas={metadatas} metadataKey="frenchLevel" withTitle />
+          <Metadata metadatas={metadatas} metadataKey="age" withTitle />
         </Section>
 
         {metadatas.price && (

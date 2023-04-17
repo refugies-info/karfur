@@ -144,7 +144,10 @@
     "status_french": "français",
     "in_partnership_with": "En partenariat avec",
     "related_topic": "THÉMATIQUES LIÉES",
-    "updated_ago": "MISE À JOUR IL Y A"
+    "updated_ago": "MISE À JOUR IL Y A",
+    "all_french_levels": "Tous les niveaux",
+    "irrelevant": "Pas pertinent",
+    "all_ages": "Tous les âges"
   },
   "needs_screen": {
     "fiches": "fiches",
