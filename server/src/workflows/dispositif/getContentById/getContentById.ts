@@ -5,7 +5,7 @@ import { NotFoundError } from "../../../errors";
 import pick from "lodash/pick";
 import { ContentStructure, GetDispositifResponse, Languages, SimpleUser, Sponsor } from "@refugies-info/api-types";
 import { getRoles } from "../../../modules/role/role.repository";
-import { Role } from "../../../typegoose";
+import { Role, User } from "../../../typegoose";
 
 const getRoleName = (id: string, roles: Role[]) => roles.find((r) => r._id.toString() === id.toString())?.nom || "";
 const getMetadatas = (metadatas: GetDispositifResponse["metadatas"]): GetDispositifResponse["metadatas"] => {
@@ -20,10 +20,11 @@ const getMetadatas = (metadatas: GetDispositifResponse["metadatas"]): GetDisposi
   return newMetas;
 };
 
-export const getContentById = async (id: string, locale: Languages): ResponseWithData<GetDispositifResponse> => {
+export const getContentById = async (id: string, locale: Languages, user?: User | undefined): ResponseWithData<GetDispositifResponse> => {
   logger.info("[getContentById] called", {
     locale,
     id,
+    user: user?._id
   });
 
   const fields = {

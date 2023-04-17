@@ -9,6 +9,7 @@ import { GetDispositifResponse } from "api-types";
 export const fetchSelectedDispositifActionCreator = (value: {
   selectedDispositifId: string;
   locale: string;
+  token?: string;
 }) => action(FETCH_SELECTED_DISPOSITIF, value);
 
 export const setSelectedDispositifActionCreator = (

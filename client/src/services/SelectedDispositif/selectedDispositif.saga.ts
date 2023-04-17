@@ -26,7 +26,7 @@ export function* fetchSelectedDispositif(
       { id: selectedDispositifId, locale }
     );
     if (selectedDispositifId) {
-      const data: APIResponse<GetDispositifResponse> = yield call(API.getDispositif, selectedDispositifId, locale);
+      const data: APIResponse<GetDispositifResponse> = yield call(API.getDispositif, selectedDispositifId, locale, { token: action.payload.token });
 
       const dispositif: GetDispositifResponse = data.data.data;
       if (dispositif) {

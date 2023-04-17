@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import setAuthToken from "utils/setAuthToken";
+import { setAuthToken } from "utils/authToken";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import {
   fetchLanguesActionCreator,
@@ -138,7 +138,6 @@ const Reset = () => {
           icon: "success",
           timer: 1500,
         }).then(() => {
-          localStorage.setItem("token", data.data.data.token);
           setAuthToken(data.data.data.token);
           dispatch(fetchUserActionCreator());
           router.push("/");

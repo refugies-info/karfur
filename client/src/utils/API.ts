@@ -1,6 +1,5 @@
-import axios, { AxiosResponse, Canceler } from "axios";
-
-import setAuthToken from "./setAuthToken";
+import axios, { Canceler } from "axios";
+import { getAuthToken, removeAuthToken } from "utils/authToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
@@ -87,8 +86,6 @@ import {
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
-type Response<T = any> = AxiosResponse<{ text: string; data: T }>;
-
 //@ts-ignore
 axios.withCredentials = true;
 const instance = axios.create({
@@ -123,15 +120,18 @@ instance.interceptors.response.use(
 const CancelToken = axios.CancelToken;
 let cancel: Canceler;
 
-const getHeaders = () => {
+type RequestOptions = {
+  token?: string
+}
+
+const getHeaders = (jwtToken?: string) => {
   const headers: any = {
     "Content-Type": "application/json",
     "site-secret": process.env.NEXT_PUBLIC_REACT_APP_SITE_SECRET || "",
   };
 
-  const token = isInBrowser() ? localStorage.getItem("token") : undefined;
+  const token = isInBrowser() ? getAuthToken() : jwtToken;
   if (token) headers["x-access-token"] = token;
-
   return headers;
 };
 
@@ -160,16 +160,15 @@ const API = {
   },
   isAuth: () => {
     if (!isInBrowser()) return false;
-    return localStorage.getItem("token") !== null;
+    return getAuthToken() !== undefined;
   },
   logout: () => {
-    setAuthToken("");
-    return localStorage.removeItem("token");
+    return removeAuthToken();
   },
 
   // User
-  getUser: (): Promise<APIResponse<GetUserInfoResponse>> => {
-    const headers = getHeaders();
+  getUser: (options?: RequestOptions): Promise<APIResponse<GetUserInfoResponse>> => {
+    const headers = getHeaders(options?.token);
     return instance.get("/user", { headers });
   },
   updateUser: (id: Id, body: UpdateUserRequest): Promise<APIResponse> => {
@@ -212,8 +211,8 @@ const API = {
   },
 
   // Dispositif
-  getDispositif: (id: string, locale: string): Promise<APIResponse<GetDispositifResponse>> => {
-    const headers = getHeaders();
+  getDispositif: (id: string, locale: string, options?: RequestOptions): Promise<APIResponse<GetDispositifResponse>> => {
+    const headers = getHeaders(options?.token);
     return instance.get(`/dispositifs/${id}?locale=${locale}`, { headers });
   },
   countDispositifs: (query: CountDispositifsRequest): Promise<APIResponse<GetCountDispositifsResponse>> => {
