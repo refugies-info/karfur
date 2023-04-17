@@ -1,4 +1,6 @@
-export const mockedThemesData = [
+import { ThemeState } from "../../services/redux/Themes/themes.reducer";
+
+export const mockedThemesData: ThemeState = [
   {
     _id: "63286a015d31b2c0cad9960a",
     name: {
@@ -176,9 +178,6 @@ export const mockedThemesData = [
       imgId: "63450d813e23cd7181ba0b01",
     },
     notificationEmoji: "👨‍👩‍👦",
-    created_at: "2022-10-11T06:31:48.487Z",
-    updatedAt: "2022-10-11T07:51:08.974Z",
-    __v: 0,
     active: true,
   },
   {

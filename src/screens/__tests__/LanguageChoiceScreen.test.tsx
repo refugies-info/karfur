@@ -1,7 +1,7 @@
 import { wrapWithProvidersAndRender } from "../../jest/wrapWithProvidersAndRender";
 import { LanguageChoiceScreen } from "../LanguageChoiceScreen";
 import { initialRootStateFactory } from "../../services/redux/reducers";
-import { fireEvent, act } from "react-native-testing-library";
+import { fireEvent, act } from "@testing-library/react-native";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useRoute } from "@react-navigation/core";

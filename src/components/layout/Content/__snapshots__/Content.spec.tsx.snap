@@ -3,8 +3,8 @@
 exports[`Content snapshot test suite should render without bug 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "paddingBottom": 24,
         "paddingLeft": 24,
         "paddingRight": 24,

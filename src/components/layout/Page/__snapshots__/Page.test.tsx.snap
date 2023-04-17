@@ -4,8 +4,8 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
@@ -19,7 +19,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
@@ -33,8 +33,8 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "minHeight": 65,
             "paddingBottom": 20,
           },
@@ -46,7 +46,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
         collapsable={false}
         horizontalAlign="space-between"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -58,8 +58,8 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -71,6 +71,23 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
             <View
               accessibilityLabel="global.back_button_accessibility"
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -82,7 +99,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
                   "elevation": 6,
@@ -92,7 +109,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
                   "paddingRight": 12,
                   "paddingTop": 12,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -105,17 +122,17 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
               <View
                 disabled={false}
                 style={
-                  Array [
-                    Object {},
+                  [
+                    {},
                   ]
                 }
               >
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "scale": 1,
                         },
                       ],
@@ -124,8 +141,8 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight={24}
-                    bbWidth={24}
+                    bbHeight="24"
+                    bbWidth="24"
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -133,12 +150,12 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
                     minX={0}
                     minY={0}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "backgroundColor": "transparent",
                           "borderWidth": 0,
                         },
-                        Object {
+                        {
                           "flex": 0,
                           "height": 24,
                           "width": 24,
@@ -150,9 +167,14 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
                     width={24}
                   >
                     <RNSVGGroup
-                      fill={4280361249}
+                      fill={
+                        {
+                          "payload": 4280361249,
+                          "type": 0,
+                        }
+                      }
                       propList={
-                        Array [
+                        [
                           "fill",
                         ]
                       }
@@ -162,7 +184,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
                           <RNSVGRect
                             height="24"
                             matrix={
-                              Array [
+                              [
                                 6.123233995736766e-17,
                                 1,
                                 -1,
@@ -173,8 +195,8 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x={0}
-                            y={0}
+                            x="0"
+                            y="0"
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -190,8 +212,8 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginRight": 8,
@@ -203,8 +225,8 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -216,7 +238,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
             collapsable={false}
             horizontalAlign="flex-end"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -228,8 +250,8 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -260,7 +282,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
       scrollTo={null}
       statusBarTranslucent={false}
       supportedOrientations={
-        Array [
+        [
           "portrait",
           "landscape",
         ]
@@ -273,8 +295,8 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
   <View
     height={81}
     style={
-      Array [
-        Object {
+      [
+        {
           "minHeight": 81,
         },
       ]
@@ -283,7 +305,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
   <View
     boneColor="#EDEBEB"
     containerStyle={
-      Object {
+      {
         "display": "flex",
         "flex": 1,
         "marginHorizontal": 24,
@@ -293,20 +315,20 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
     highlightColor="#F6F6F6"
     isLoading={true}
     layout={
-      Array [
-        Object {
+      [
+        {
           "height": 80,
           "key": "Section1",
           "marginBottom": 24,
           "width": "100%",
         },
-        Object {
+        {
           "height": 80,
           "key": "Section2",
           "marginBottom": 24,
           "width": "100%",
         },
-        Object {
+        {
           "height": 80,
           "key": "Section3",
           "marginBottom": 24,
@@ -322,8 +344,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
@@ -337,7 +359,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
@@ -351,8 +373,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "minHeight": 65,
             "paddingBottom": 20,
           },
@@ -364,7 +386,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         collapsable={false}
         horizontalAlign="space-between"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -376,8 +398,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -389,6 +411,23 @@ exports[`Page snapshot test suite should render without bug 1`] = `
             <View
               accessibilityLabel="global.back_button_accessibility"
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -400,7 +439,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
                   "elevation": 6,
@@ -410,7 +449,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
                   "paddingRight": 12,
                   "paddingTop": 12,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -423,17 +462,17 @@ exports[`Page snapshot test suite should render without bug 1`] = `
               <View
                 disabled={false}
                 style={
-                  Array [
-                    Object {},
+                  [
+                    {},
                   ]
                 }
               >
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "scale": 1,
                         },
                       ],
@@ -442,8 +481,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight={24}
-                    bbWidth={24}
+                    bbHeight="24"
+                    bbWidth="24"
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -451,12 +490,12 @@ exports[`Page snapshot test suite should render without bug 1`] = `
                     minX={0}
                     minY={0}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "backgroundColor": "transparent",
                           "borderWidth": 0,
                         },
-                        Object {
+                        {
                           "flex": 0,
                           "height": 24,
                           "width": 24,
@@ -468,9 +507,14 @@ exports[`Page snapshot test suite should render without bug 1`] = `
                     width={24}
                   >
                     <RNSVGGroup
-                      fill={4280361249}
+                      fill={
+                        {
+                          "payload": 4280361249,
+                          "type": 0,
+                        }
+                      }
                       propList={
-                        Array [
+                        [
                           "fill",
                         ]
                       }
@@ -480,7 +524,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
                           <RNSVGRect
                             height="24"
                             matrix={
-                              Array [
+                              [
                                 6.123233995736766e-17,
                                 1,
                                 -1,
@@ -491,8 +535,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x={0}
-                            y={0}
+                            x="0"
+                            y="0"
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -508,8 +552,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginRight": 8,
@@ -521,8 +565,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -534,7 +578,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
             collapsable={false}
             horizontalAlign="flex-end"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -546,8 +590,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -578,7 +622,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
       scrollTo={null}
       statusBarTranslucent={false}
       supportedOrientations={
-        Array [
+        [
           "portrait",
           "landscape",
         ]
@@ -591,7 +635,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
   <RCTScrollView
     alwaysBounceVertical={false}
     contentContainerStyle={
-      Object {
+      {
         "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
@@ -603,13 +647,13 @@ exports[`Page snapshot test suite should render without bug 1`] = `
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
     scrollIndicatorInsets={
-      Object {
+      {
         "right": 1,
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "paddingBottom": 24,
         },
       ]
@@ -619,7 +663,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
       <View
         onLayout={[Function]}
         style={
-          Object {
+          {
             "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
@@ -629,7 +673,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "bottom": 0,
               "left": 0,
               "right": 0,

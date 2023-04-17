@@ -49,8 +49,8 @@ interface OnboardingCarouselState {
 const carouselItems = onboardingCarouselData;
 class OnboardingCarousel extends React.Component {
   private carousel: Carousel<any> | null = null;
-  private props: OnboardingCarouselProps;
-  private state: OnboardingCarouselState;
+  props: OnboardingCarouselProps;
+  state: OnboardingCarouselState;
   constructor(props: OnboardingCarouselProps) {
     super(props);
     this.props = props;

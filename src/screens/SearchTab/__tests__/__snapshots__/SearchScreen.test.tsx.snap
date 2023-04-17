@@ -4,8 +4,8 @@ exports[`Search Screen should render correctly 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
@@ -19,7 +19,7 @@ exports[`Search Screen should render correctly 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "backgroundColor": "rgba(255, 255, 255, 0)",
         "left": 0,
         "paddingHorizontal": 24,
@@ -33,8 +33,8 @@ exports[`Search Screen should render correctly 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "minHeight": 65,
             "paddingBottom": 20,
           },
@@ -46,7 +46,7 @@ exports[`Search Screen should render correctly 1`] = `
         collapsable={false}
         horizontalAlign="space-between"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -58,8 +58,8 @@ exports[`Search Screen should render correctly 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginRight": 8,
@@ -71,8 +71,8 @@ exports[`Search Screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -84,7 +84,7 @@ exports[`Search Screen should render correctly 1`] = `
             collapsable={false}
             horizontalAlign="flex-end"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -96,8 +96,8 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -128,7 +128,7 @@ exports[`Search Screen should render correctly 1`] = `
       scrollTo={null}
       statusBarTranslucent={false}
       supportedOrientations={
-        Array [
+        [
           "portrait",
           "landscape",
         ]
@@ -141,7 +141,7 @@ exports[`Search Screen should render correctly 1`] = `
   <RCTScrollView
     alwaysBounceVertical={false}
     contentContainerStyle={
-      Object {
+      {
         "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
@@ -153,13 +153,13 @@ exports[`Search Screen should render correctly 1`] = `
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
     scrollIndicatorInsets={
-      Object {
+      {
         "right": 1,
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "paddingBottom": 24,
         },
       ]
@@ -169,7 +169,7 @@ exports[`Search Screen should render correctly 1`] = `
       <View
         onLayout={[Function]}
         style={
-          Object {
+          {
             "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
@@ -179,7 +179,7 @@ exports[`Search Screen should render correctly 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "bottom": 0,
               "left": 0,
               "right": 0,
@@ -189,6 +189,23 @@ exports[`Search Screen should render correctly 1`] = `
         >
           <View
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -200,7 +217,7 @@ exports[`Search Screen should render correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "#FFFFFF",
                 "borderColor": "#5E5E5E",
@@ -223,9 +240,9 @@ exports[`Search Screen should render correctly 1`] = `
             <View
               collapsable={false}
               style={
-                Object {
-                  "transform": Array [
-                    Object {
+                {
+                  "transform": [
+                    {
                       "scale": 1,
                     },
                   ],
@@ -234,8 +251,8 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight={24}
-                bbWidth={24}
+                bbHeight="24"
+                bbWidth="24"
                 fill="#5E5E5E"
                 focusable={false}
                 height={24}
@@ -243,12 +260,12 @@ exports[`Search Screen should render correctly 1`] = `
                 minX={0}
                 minY={0}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 24,
                       "width": 24,
@@ -260,9 +277,14 @@ exports[`Search Screen should render correctly 1`] = `
                 width={24}
               >
                 <RNSVGGroup
-                  fill={4284374622}
+                  fill={
+                    {
+                      "payload": 4284374622,
+                      "type": 0,
+                    }
+                  }
                   propList={
-                    Array [
+                    [
                       "fill",
                     ]
                   }
@@ -273,8 +295,8 @@ exports[`Search Screen should render correctly 1`] = `
                         height="24"
                         opacity={0}
                         width="24"
-                        x={0}
-                        y={0}
+                        x="0"
+                        y="0"
                       />
                       <RNSVGPath
                         d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"
@@ -286,8 +308,8 @@ exports[`Search Screen should render correctly 1`] = `
             </View>
             <Text
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#5E5E5E",
                     "marginLeft": 8,
                     "marginRight": 0,
@@ -304,8 +326,8 @@ exports[`Search Screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 19,
@@ -317,7 +339,7 @@ exports[`Search Screen should render correctly 1`] = `
         }
       >
         <Text
-          style={Object {}}
+          style={{}}
         >
           Les fiches les plus recherchées
         </Text>
@@ -327,8 +349,8 @@ exports[`Search Screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 19,
@@ -340,7 +362,7 @@ exports[`Search Screen should render correctly 1`] = `
         }
       >
         <Text
-          style={Object {}}
+          style={{}}
         >
           Les thèmes
         </Text>
@@ -348,7 +370,7 @@ exports[`Search Screen should render correctly 1`] = `
       </Text>
       <RCTScrollView
         contentContainerStyle={
-          Object {
+          {
             "flexDirection": "row",
             "flexWrap": "wrap",
             "paddingBottom": 8,
@@ -361,25 +383,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4282658851,
                   4282658851,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -387,14 +409,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -402,6 +424,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -413,7 +452,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -426,8 +465,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -441,24 +480,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Gérer mes papiers
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -475,25 +514,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4282198148,
                   4282198148,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -501,14 +540,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -516,6 +555,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -527,7 +583,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -540,8 +596,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -555,24 +611,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Apprendre le français
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -589,25 +645,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4278603916,
                   4278603916,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -615,14 +671,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -630,6 +686,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -641,7 +714,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -654,8 +727,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -669,24 +742,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Me loger
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -703,25 +776,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4287695168,
                   4287695168,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -729,14 +802,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -744,6 +817,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -755,7 +845,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -768,8 +858,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -783,24 +873,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Me soigner
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -817,25 +907,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4278801425,
                   4278801425,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -843,14 +933,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -858,6 +948,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -869,7 +976,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -882,8 +989,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -897,24 +1004,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Apprendre un métier
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -931,25 +1038,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4278541914,
                   4278541914,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -957,14 +1064,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -972,6 +1079,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -983,7 +1107,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -996,8 +1120,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -1011,24 +1135,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Trouver un travail
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -1045,25 +1169,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4291646981,
                   4291646981,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -1071,14 +1195,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -1086,6 +1210,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -1097,7 +1238,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -1110,8 +1251,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -1125,24 +1266,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Me déplacer
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -1159,25 +1300,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4285990266,
                   4285990266,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -1185,14 +1326,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -1200,6 +1341,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -1211,7 +1369,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -1224,8 +1382,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -1239,24 +1397,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Famille
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -1273,25 +1431,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4280307457,
                   4280307457,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -1299,14 +1457,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -1314,6 +1472,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -1325,7 +1500,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -1338,8 +1513,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -1353,24 +1528,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Faire des études
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -1387,25 +1562,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4285990473,
                   4285990473,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -1413,14 +1588,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -1428,6 +1603,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -1439,7 +1631,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -1452,8 +1644,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -1467,24 +1659,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Rencontrer des gens
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -1501,25 +1693,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4278661273,
                   4278661273,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -1527,14 +1719,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -1542,6 +1734,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -1553,7 +1762,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -1566,8 +1775,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -1581,24 +1790,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Aider une association
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -1615,25 +1824,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4284482918,
                   4284482918,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -1641,14 +1850,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -1656,6 +1865,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -1667,7 +1893,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -1680,8 +1906,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -1695,24 +1921,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Occuper mon temps libre
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,
@@ -1729,25 +1955,25 @@ exports[`Search Screen should render correctly 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             inline={true}
             proxiedProperties={
-              Object {
-                "colors": Array [
+              {
+                "colors": [
                   4288550922,
                   4288550922,
                 ],
-                "endPoint": Array [
+                "endPoint": [
                   1,
                   0,
                 ],
                 "locations": undefined,
-                "startPoint": Array [
+                "startPoint": [
                   0,
                   1,
                 ],
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 12,
                   "elevation": 6,
                   "marginRight": 16,
@@ -1755,14 +1981,14 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingHorizontal": 16,
                   "paddingVertical": 8,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
                   "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
-                Object {
+                {
                   "paddingVertical": 16,
                 },
               ]
@@ -1770,6 +1996,23 @@ exports[`Search Screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -1781,7 +2024,7 @@ exports[`Search Screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -1794,8 +2037,8 @@ exports[`Search Screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -1809,24 +2052,24 @@ exports[`Search Screen should render correctly 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Découvrir la culture
                 </Text>
                 <View />
               </Text>
               <RNSVGSvgView
-                bbHeight={20}
-                bbWidth={20}
+                bbHeight="20"
+                bbWidth="20"
                 focusable={false}
                 height={20}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 20,
                       "width": 20,

@@ -4,8 +4,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
@@ -19,7 +19,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
@@ -33,8 +33,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "minHeight": 65,
             "paddingBottom": 20,
           },
@@ -46,7 +46,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
         collapsable={false}
         horizontalAlign="space-between"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -58,8 +58,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -70,6 +70,23 @@ exports[`Filter age should render correctly when age selected 1`] = `
           <View>
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={false}
@@ -81,7 +98,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
                   "elevation": 6,
@@ -91,7 +108,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   "paddingRight": 12,
                   "paddingTop": 12,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -104,17 +121,17 @@ exports[`Filter age should render correctly when age selected 1`] = `
               <View
                 disabled={false}
                 style={
-                  Array [
-                    Object {},
+                  [
+                    {},
                   ]
                 }
               >
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "scale": 1,
                         },
                       ],
@@ -123,8 +140,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight={24}
-                    bbWidth={24}
+                    bbHeight="24"
+                    bbWidth="24"
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -132,12 +149,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     minX={0}
                     minY={0}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "backgroundColor": "transparent",
                           "borderWidth": 0,
                         },
-                        Object {
+                        {
                           "flex": 0,
                           "height": 24,
                           "width": 24,
@@ -149,9 +166,14 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     width={24}
                   >
                     <RNSVGGroup
-                      fill={4280361249}
+                      fill={
+                        {
+                          "payload": 4280361249,
+                          "type": 0,
+                        }
+                      }
                       propList={
-                        Array [
+                        [
                           "fill",
                         ]
                       }
@@ -161,7 +183,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                           <RNSVGRect
                             height="24"
                             matrix={
-                              Array [
+                              [
                                 6.123233995736766e-17,
                                 1,
                                 -1,
@@ -172,8 +194,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x={0}
-                            y={0}
+                            x="0"
+                            y="0"
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -189,8 +211,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginRight": 8,
@@ -203,7 +225,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
             collapsable={false}
             horizontalAlign="center"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -215,8 +237,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                     "marginRight": 8,
@@ -227,9 +249,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
               <View
                 collapsable={false}
                 style={
-                  Object {
-                    "transform": Array [
-                      Object {
+                  {
+                    "transform": [
+                      {
                         "scale": 1,
                       },
                     ],
@@ -238,8 +260,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight={24}
-                  bbWidth={24}
+                  bbHeight="24"
+                  bbWidth="24"
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -247,12 +269,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   minX={0}
                   minY={0}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "backgroundColor": "transparent",
                         "borderWidth": 0,
                       },
-                      Object {
+                      {
                         "flex": 0,
                         "height": 24,
                         "width": 24,
@@ -264,9 +286,14 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   width={24}
                 >
                   <RNSVGGroup
-                    fill={4280361249}
+                    fill={
+                      {
+                        "payload": 4280361249,
+                        "type": 0,
+                      }
+                    }
                     propList={
-                      Array [
+                      [
                         "fill",
                       ]
                     }
@@ -277,8 +304,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x={0}
-                          y={0}
+                          x="0"
+                          y="0"
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
@@ -294,8 +321,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -309,8 +336,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 numberOfLines={2}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -322,7 +349,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Créer mon profil
                 </Text>
@@ -333,8 +360,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -346,7 +373,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
             collapsable={false}
             horizontalAlign="flex-end"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -358,8 +385,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -368,8 +395,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "minWidth": 48,
                     },
                   ]
@@ -399,7 +426,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
       scrollTo={null}
       statusBarTranslucent={false}
       supportedOrientations={
-        Array [
+        [
           "portrait",
           "landscape",
         ]
@@ -412,7 +439,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
   <RCTScrollView
     alwaysBounceVertical={false}
     contentContainerStyle={
-      Object {
+      {
         "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
@@ -424,13 +451,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
     scrollIndicatorInsets={
-      Object {
+      {
         "right": 1,
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "paddingBottom": 24,
         },
       ]
@@ -440,7 +467,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
       <View
         onLayout={[Function]}
         style={
-          Object {
+          {
             "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
@@ -450,7 +477,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "bottom": 0,
               "left": 0,
               "right": 0,
@@ -461,8 +488,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
@@ -474,8 +501,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginBottom": 16,
@@ -488,8 +515,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "fontFamily": "circularBold",
                     "fontSize": 25,
@@ -506,8 +533,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#5E5E5E",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
@@ -525,6 +552,23 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <View
                 accessibilityRole="radio"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
@@ -536,7 +580,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
+                  {
                     "backgroundColor": "#DAE0FB",
                     "borderColor": "#0421B1",
                     "borderRadius": 12,
@@ -560,7 +604,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
-                    Object {
+                    {
                       "alignItems": "center",
                       "flexBasis": "auto",
                       "flexDirection": "row",
@@ -572,8 +616,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "marginRight": 8,
@@ -586,8 +630,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       isSelected={true}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -603,8 +647,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": "auto",
                           "flexGrow": 0,
                         },
@@ -614,8 +658,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     <View
                       selected={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "backgroundColor": "#0421B1",
                             "borderColor": "transparent",
@@ -631,9 +675,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       <View
                         collapsable={false}
                         style={
-                          Object {
-                            "transform": Array [
-                              Object {
+                          {
+                            "transform": [
+                              {
                                 "scale": 1,
                               },
                             ],
@@ -642,8 +686,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight={16}
-                          bbWidth={16}
+                          bbHeight="16"
+                          bbWidth="16"
                           fill="#FFFFFF"
                           focusable={false}
                           height={16}
@@ -651,12 +695,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
                           minX={0}
                           minY={0}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "backgroundColor": "transparent",
                                 "borderWidth": 0,
                               },
-                              Object {
+                              {
                                 "flex": 0,
                                 "height": 16,
                                 "width": 16,
@@ -668,9 +712,14 @@ exports[`Filter age should render correctly when age selected 1`] = `
                           width={16}
                         >
                           <RNSVGGroup
-                            fill={4294967295}
+                            fill={
+                              {
+                                "payload": 4294967295,
+                                "type": 0,
+                              }
+                            }
                             propList={
-                              Array [
+                              [
                                 "fill",
                               ]
                             }
@@ -681,8 +730,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x={0}
-                                  y={0}
+                                  x="0"
+                                  y="0"
                                 />
                                 <RNSVGPath
                                   d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
@@ -698,6 +747,23 @@ exports[`Filter age should render correctly when age selected 1`] = `
               </View>
               <View
                 accessibilityRole="radio"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
@@ -709,7 +775,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
+                  {
                     "backgroundColor": "#FFFFFF",
                     "borderColor": "#FFFFFF",
                     "borderRadius": 12,
@@ -726,7 +792,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     "paddingRight": 14,
                     "paddingTop": 14,
                     "shadowColor": "#212121",
-                    "shadowOffset": Object {
+                    "shadowOffset": {
                       "height": 1,
                       "width": 1,
                     },
@@ -741,7 +807,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
-                    Object {
+                    {
                       "alignItems": "center",
                       "flexBasis": "auto",
                       "flexDirection": "row",
@@ -753,8 +819,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "marginRight": 8,
@@ -767,8 +833,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       isSelected={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -784,8 +850,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": "auto",
                           "flexGrow": 0,
                         },
@@ -795,8 +861,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     <View
                       selected={false}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "borderColor": "#5E5E5E",
@@ -814,6 +880,23 @@ exports[`Filter age should render correctly when age selected 1`] = `
               </View>
               <View
                 accessibilityRole="radio"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
@@ -825,7 +908,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
+                  {
                     "backgroundColor": "#FFFFFF",
                     "borderColor": "#FFFFFF",
                     "borderRadius": 12,
@@ -842,7 +925,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     "paddingRight": 14,
                     "paddingTop": 14,
                     "shadowColor": "#212121",
-                    "shadowOffset": Object {
+                    "shadowOffset": {
                       "height": 1,
                       "width": 1,
                     },
@@ -857,7 +940,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
-                    Object {
+                    {
                       "alignItems": "center",
                       "flexBasis": "auto",
                       "flexDirection": "row",
@@ -869,8 +952,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "marginRight": 8,
@@ -883,8 +966,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       isSelected={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -900,8 +983,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": "auto",
                           "flexGrow": 0,
                         },
@@ -911,8 +994,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     <View
                       selected={false}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "borderColor": "#5E5E5E",
@@ -933,8 +1016,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -944,8 +1027,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
           <View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexDirection": "row",
                     "marginHorizontal": -6,
                   },
@@ -954,8 +1037,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
                       "flexBasis": 0,
@@ -972,7 +1055,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#0421B1",
                       "height": "100%",
                       "left": 0,
@@ -985,8 +1068,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
                       "flexBasis": 0,
@@ -1003,7 +1086,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#0421B1",
                       "height": "100%",
                       "left": 0,
@@ -1016,8 +1099,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
                       "flexBasis": 0,
@@ -1034,7 +1117,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#0421B1",
                       "height": "100%",
                       "left": 0,
@@ -1048,8 +1131,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
@@ -1063,7 +1146,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 collapsable={false}
                 horizontalAlign="flex-start"
                 style={
-                  Object {
+                  {
                     "alignItems": "flex-start",
                     "flexBasis": "auto",
                     "flexDirection": "row",
@@ -1075,8 +1158,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
               >
                 <View
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexBasis": 0,
                         "flexGrow": 1,
                         "marginRight": 8,
@@ -1086,6 +1169,23 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     accessibilityRole="button"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
                     accessible={true}
                     collapsable={false}
                     focusable={true}
@@ -1097,7 +1197,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     onResponderTerminationRequest={[Function]}
                     onStartShouldSetResponder={[Function]}
                     style={
-                      Object {
+                      {
                         "alignItems": "center",
                         "borderRadius": 12,
                         "display": "flex",
@@ -1112,8 +1212,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -1121,7 +1221,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                             "lineHeight": 20,
                             "textAlign": "left",
                           },
-                          Object {
+                          {
                             "color": "#0421B1",
                           },
                         ]
@@ -1133,8 +1233,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 </View>
                 <View
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexBasis": 0,
                         "flexGrow": 1,
                       },
@@ -1144,8 +1244,20 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   <View
                     accessibilityRole="button"
                     accessibilityState={
-                      Object {
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
                         "disabled": false,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
                       }
                     }
                     accessible={true}
@@ -1159,7 +1271,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     onResponderTerminationRequest={[Function]}
                     onStartShouldSetResponder={[Function]}
                     style={
-                      Object {
+                      {
                         "alignItems": "center",
                         "backgroundColor": "#0421B1",
                         "borderRadius": 12,
@@ -1170,7 +1282,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         "minHeight": 56,
                         "opacity": 0.4,
                         "shadowColor": "#212121",
-                        "shadowOffset": Object {
+                        "shadowOffset": {
                           "height": 1,
                           "width": 1,
                         },
@@ -1183,9 +1295,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     <View
                       collapsable={false}
                       style={
-                        Object {
-                          "transform": Array [
-                            Object {
+                        {
+                          "transform": [
+                            {
                               "scale": 1,
                             },
                           ],
@@ -1194,8 +1306,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     >
                       <RNSVGSvgView
                         align="xMidYMid"
-                        bbHeight={24}
-                        bbWidth={24}
+                        bbHeight="24"
+                        bbWidth="24"
                         fill="#FFFFFF"
                         focusable={false}
                         height={24}
@@ -1203,12 +1315,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         minX={0}
                         minY={0}
                         style={
-                          Array [
-                            Object {
+                          [
+                            {
                               "backgroundColor": "transparent",
                               "borderWidth": 0,
                             },
-                            Object {
+                            {
                               "flex": 0,
                               "height": 24,
                               "width": 24,
@@ -1220,9 +1332,14 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         width={24}
                       >
                         <RNSVGGroup
-                          fill={4294967295}
+                          fill={
+                            {
+                              "payload": 4294967295,
+                              "type": 0,
+                            }
+                          }
                           propList={
-                            Array [
+                            [
                               "fill",
                             ]
                           }
@@ -1233,8 +1350,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                                 height="24"
                                 opacity={0}
                                 width="24"
-                                x={0}
-                                y={0}
+                                x="0"
+                                y="0"
                               />
                               <RNSVGPath
                                 d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
@@ -1249,8 +1366,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "color": "#FFFFFF",
                             "flexShrink": 1,
@@ -1282,8 +1399,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
@@ -1297,7 +1414,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
@@ -1311,8 +1428,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "minHeight": 65,
             "paddingBottom": 20,
           },
@@ -1324,7 +1441,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         collapsable={false}
         horizontalAlign="space-between"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -1336,8 +1453,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -1348,6 +1465,23 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           <View>
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={false}
@@ -1359,7 +1493,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
                   "elevation": 6,
@@ -1369,7 +1503,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   "paddingRight": 12,
                   "paddingTop": 12,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -1382,17 +1516,17 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               <View
                 disabled={false}
                 style={
-                  Array [
-                    Object {},
+                  [
+                    {},
                   ]
                 }
               >
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "scale": 1,
                         },
                       ],
@@ -1401,8 +1535,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight={24}
-                    bbWidth={24}
+                    bbHeight="24"
+                    bbWidth="24"
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -1410,12 +1544,12 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     minX={0}
                     minY={0}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "backgroundColor": "transparent",
                           "borderWidth": 0,
                         },
-                        Object {
+                        {
                           "flex": 0,
                           "height": 24,
                           "width": 24,
@@ -1427,9 +1561,14 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     width={24}
                   >
                     <RNSVGGroup
-                      fill={4280361249}
+                      fill={
+                        {
+                          "payload": 4280361249,
+                          "type": 0,
+                        }
+                      }
                       propList={
-                        Array [
+                        [
                           "fill",
                         ]
                       }
@@ -1439,7 +1578,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                           <RNSVGRect
                             height="24"
                             matrix={
-                              Array [
+                              [
                                 6.123233995736766e-17,
                                 1,
                                 -1,
@@ -1450,8 +1589,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x={0}
-                            y={0}
+                            x="0"
+                            y="0"
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -1467,8 +1606,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginRight": 8,
@@ -1481,7 +1620,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             collapsable={false}
             horizontalAlign="center"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -1493,8 +1632,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                     "marginRight": 8,
@@ -1505,9 +1644,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               <View
                 collapsable={false}
                 style={
-                  Object {
-                    "transform": Array [
-                      Object {
+                  {
+                    "transform": [
+                      {
                         "scale": 1,
                       },
                     ],
@@ -1516,8 +1655,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight={24}
-                  bbWidth={24}
+                  bbHeight="24"
+                  bbWidth="24"
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -1525,12 +1664,12 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   minX={0}
                   minY={0}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "backgroundColor": "transparent",
                         "borderWidth": 0,
                       },
-                      Object {
+                      {
                         "flex": 0,
                         "height": 24,
                         "width": 24,
@@ -1542,9 +1681,14 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   width={24}
                 >
                   <RNSVGGroup
-                    fill={4280361249}
+                    fill={
+                      {
+                        "payload": 4280361249,
+                        "type": 0,
+                      }
+                    }
                     propList={
-                      Array [
+                      [
                         "fill",
                       ]
                     }
@@ -1555,8 +1699,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x={0}
-                          y={0}
+                          x="0"
+                          y="0"
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
@@ -1572,8 +1716,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -1587,8 +1731,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 numberOfLines={2}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -1600,7 +1744,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Créer mon profil
                 </Text>
@@ -1611,8 +1755,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -1624,7 +1768,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             collapsable={false}
             horizontalAlign="flex-end"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -1636,8 +1780,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -1646,8 +1790,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "minWidth": 48,
                     },
                   ]
@@ -1677,7 +1821,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       scrollTo={null}
       statusBarTranslucent={false}
       supportedOrientations={
-        Array [
+        [
           "portrait",
           "landscape",
         ]
@@ -1690,7 +1834,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
   <RCTScrollView
     alwaysBounceVertical={false}
     contentContainerStyle={
-      Object {
+      {
         "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
@@ -1702,13 +1846,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
     scrollIndicatorInsets={
-      Object {
+      {
         "right": 1,
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "paddingBottom": 24,
         },
       ]
@@ -1718,7 +1862,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       <View
         onLayout={[Function]}
         style={
-          Object {
+          {
             "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
@@ -1728,7 +1872,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "bottom": 0,
               "left": 0,
               "right": 0,
@@ -1739,8 +1883,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
@@ -1752,8 +1896,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginBottom": 16,
@@ -1766,8 +1910,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "fontFamily": "circularBold",
                     "fontSize": 25,
@@ -1784,8 +1928,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#5E5E5E",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
@@ -1803,6 +1947,23 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <View
                 accessibilityRole="radio"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
@@ -1814,7 +1975,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
+                  {
                     "backgroundColor": "#FFFFFF",
                     "borderColor": "#FFFFFF",
                     "borderRadius": 12,
@@ -1831,7 +1992,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     "paddingRight": 14,
                     "paddingTop": 14,
                     "shadowColor": "#212121",
-                    "shadowOffset": Object {
+                    "shadowOffset": {
                       "height": 1,
                       "width": 1,
                     },
@@ -1846,7 +2007,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
-                    Object {
+                    {
                       "alignItems": "center",
                       "flexBasis": "auto",
                       "flexDirection": "row",
@@ -1858,8 +2019,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "marginRight": 8,
@@ -1872,8 +2033,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       isSelected={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -1889,8 +2050,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": "auto",
                           "flexGrow": 0,
                         },
@@ -1900,8 +2061,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     <View
                       selected={false}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "borderColor": "#5E5E5E",
@@ -1919,6 +2080,23 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               </View>
               <View
                 accessibilityRole="radio"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
@@ -1930,7 +2108,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
+                  {
                     "backgroundColor": "#FFFFFF",
                     "borderColor": "#FFFFFF",
                     "borderRadius": 12,
@@ -1947,7 +2125,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     "paddingRight": 14,
                     "paddingTop": 14,
                     "shadowColor": "#212121",
-                    "shadowOffset": Object {
+                    "shadowOffset": {
                       "height": 1,
                       "width": 1,
                     },
@@ -1962,7 +2140,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
-                    Object {
+                    {
                       "alignItems": "center",
                       "flexBasis": "auto",
                       "flexDirection": "row",
@@ -1974,8 +2152,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "marginRight": 8,
@@ -1988,8 +2166,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       isSelected={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -2005,8 +2183,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": "auto",
                           "flexGrow": 0,
                         },
@@ -2016,8 +2194,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     <View
                       selected={false}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "borderColor": "#5E5E5E",
@@ -2035,6 +2213,23 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               </View>
               <View
                 accessibilityRole="radio"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
@@ -2046,7 +2241,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
+                  {
                     "backgroundColor": "#FFFFFF",
                     "borderColor": "#FFFFFF",
                     "borderRadius": 12,
@@ -2063,7 +2258,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     "paddingRight": 14,
                     "paddingTop": 14,
                     "shadowColor": "#212121",
-                    "shadowOffset": Object {
+                    "shadowOffset": {
                       "height": 1,
                       "width": 1,
                     },
@@ -2078,7 +2273,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
-                    Object {
+                    {
                       "alignItems": "center",
                       "flexBasis": "auto",
                       "flexDirection": "row",
@@ -2090,8 +2285,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "marginRight": 8,
@@ -2104,8 +2299,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       isSelected={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -2121,8 +2316,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": "auto",
                           "flexGrow": 0,
                         },
@@ -2132,8 +2327,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     <View
                       selected={false}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "borderColor": "#5E5E5E",
@@ -2154,8 +2349,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -2165,8 +2360,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           <View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexDirection": "row",
                     "marginHorizontal": -6,
                   },
@@ -2175,8 +2370,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
                       "flexBasis": 0,
@@ -2193,7 +2388,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#0421B1",
                       "height": "100%",
                       "left": 0,
@@ -2206,8 +2401,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
                       "flexBasis": 0,
@@ -2224,7 +2419,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#0421B1",
                       "height": "100%",
                       "left": 0,
@@ -2237,8 +2432,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
                       "flexBasis": 0,
@@ -2255,7 +2450,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#0421B1",
                       "height": "100%",
                       "left": 0,
@@ -2269,8 +2464,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
@@ -2284,7 +2479,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 collapsable={false}
                 horizontalAlign="flex-start"
                 style={
-                  Object {
+                  {
                     "alignItems": "flex-start",
                     "flexBasis": "auto",
                     "flexDirection": "row",
@@ -2296,8 +2491,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               >
                 <View
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexBasis": 0,
                         "flexGrow": 1,
                         "marginRight": 8,
@@ -2307,6 +2502,23 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     accessibilityRole="button"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
                     accessible={true}
                     collapsable={false}
                     focusable={true}
@@ -2318,7 +2530,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     onResponderTerminationRequest={[Function]}
                     onStartShouldSetResponder={[Function]}
                     style={
-                      Object {
+                      {
                         "alignItems": "center",
                         "borderRadius": 12,
                         "display": "flex",
@@ -2333,8 +2545,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -2342,7 +2554,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                             "lineHeight": 20,
                             "textAlign": "left",
                           },
-                          Object {
+                          {
                             "color": "#0421B1",
                           },
                         ]
@@ -2354,8 +2566,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 </View>
                 <View
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexBasis": 0,
                         "flexGrow": 1,
                       },
@@ -2365,8 +2577,20 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   <View
                     accessibilityRole="button"
                     accessibilityState={
-                      Object {
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
                         "disabled": true,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
                       }
                     }
                     accessible={true}
@@ -2380,7 +2604,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     onResponderTerminationRequest={[Function]}
                     onStartShouldSetResponder={[Function]}
                     style={
-                      Object {
+                      {
                         "alignItems": "center",
                         "backgroundColor": "#0421B1",
                         "borderRadius": 12,
@@ -2396,9 +2620,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     <View
                       collapsable={false}
                       style={
-                        Object {
-                          "transform": Array [
-                            Object {
+                        {
+                          "transform": [
+                            {
                               "scale": 1,
                             },
                           ],
@@ -2407,8 +2631,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     >
                       <RNSVGSvgView
                         align="xMidYMid"
-                        bbHeight={24}
-                        bbWidth={24}
+                        bbHeight="24"
+                        bbWidth="24"
                         fill="#FFFFFF"
                         focusable={false}
                         height={24}
@@ -2416,12 +2640,12 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         minX={0}
                         minY={0}
                         style={
-                          Array [
-                            Object {
+                          [
+                            {
                               "backgroundColor": "transparent",
                               "borderWidth": 0,
                             },
-                            Object {
+                            {
                               "flex": 0,
                               "height": 24,
                               "width": 24,
@@ -2433,9 +2657,14 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         width={24}
                       >
                         <RNSVGGroup
-                          fill={4294967295}
+                          fill={
+                            {
+                              "payload": 4294967295,
+                              "type": 0,
+                            }
+                          }
                           propList={
-                            Array [
+                            [
                               "fill",
                             ]
                           }
@@ -2446,8 +2675,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                                 height="24"
                                 opacity={0}
                                 width="24"
-                                x={0}
-                                y={0}
+                                x="0"
+                                y="0"
                               />
                               <RNSVGPath
                                 d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
@@ -2462,8 +2691,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "color": "#FFFFFF",
                             "flexShrink": 1,
@@ -2495,8 +2724,8 @@ exports[`Filter age should select age when click on it 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
@@ -2510,7 +2739,7 @@ exports[`Filter age should select age when click on it 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
@@ -2524,8 +2753,8 @@ exports[`Filter age should select age when click on it 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "minHeight": 65,
             "paddingBottom": 20,
           },
@@ -2537,7 +2766,7 @@ exports[`Filter age should select age when click on it 1`] = `
         collapsable={false}
         horizontalAlign="space-between"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -2549,8 +2778,8 @@ exports[`Filter age should select age when click on it 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -2561,6 +2790,23 @@ exports[`Filter age should select age when click on it 1`] = `
           <View>
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={false}
@@ -2572,7 +2818,7 @@ exports[`Filter age should select age when click on it 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
                   "elevation": 6,
@@ -2582,7 +2828,7 @@ exports[`Filter age should select age when click on it 1`] = `
                   "paddingRight": 12,
                   "paddingTop": 12,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -2595,17 +2841,17 @@ exports[`Filter age should select age when click on it 1`] = `
               <View
                 disabled={false}
                 style={
-                  Array [
-                    Object {},
+                  [
+                    {},
                   ]
                 }
               >
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "scale": 1,
                         },
                       ],
@@ -2614,8 +2860,8 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight={24}
-                    bbWidth={24}
+                    bbHeight="24"
+                    bbWidth="24"
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -2623,12 +2869,12 @@ exports[`Filter age should select age when click on it 1`] = `
                     minX={0}
                     minY={0}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "backgroundColor": "transparent",
                           "borderWidth": 0,
                         },
-                        Object {
+                        {
                           "flex": 0,
                           "height": 24,
                           "width": 24,
@@ -2640,9 +2886,14 @@ exports[`Filter age should select age when click on it 1`] = `
                     width={24}
                   >
                     <RNSVGGroup
-                      fill={4280361249}
+                      fill={
+                        {
+                          "payload": 4280361249,
+                          "type": 0,
+                        }
+                      }
                       propList={
-                        Array [
+                        [
                           "fill",
                         ]
                       }
@@ -2652,7 +2903,7 @@ exports[`Filter age should select age when click on it 1`] = `
                           <RNSVGRect
                             height="24"
                             matrix={
-                              Array [
+                              [
                                 6.123233995736766e-17,
                                 1,
                                 -1,
@@ -2663,8 +2914,8 @@ exports[`Filter age should select age when click on it 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x={0}
-                            y={0}
+                            x="0"
+                            y="0"
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -2680,8 +2931,8 @@ exports[`Filter age should select age when click on it 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginRight": 8,
@@ -2694,7 +2945,7 @@ exports[`Filter age should select age when click on it 1`] = `
             collapsable={false}
             horizontalAlign="center"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -2706,8 +2957,8 @@ exports[`Filter age should select age when click on it 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                     "marginRight": 8,
@@ -2718,9 +2969,9 @@ exports[`Filter age should select age when click on it 1`] = `
               <View
                 collapsable={false}
                 style={
-                  Object {
-                    "transform": Array [
-                      Object {
+                  {
+                    "transform": [
+                      {
                         "scale": 1,
                       },
                     ],
@@ -2729,8 +2980,8 @@ exports[`Filter age should select age when click on it 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight={24}
-                  bbWidth={24}
+                  bbHeight="24"
+                  bbWidth="24"
                   fill="#212121"
                   focusable={false}
                   height={24}
@@ -2738,12 +2989,12 @@ exports[`Filter age should select age when click on it 1`] = `
                   minX={0}
                   minY={0}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "backgroundColor": "transparent",
                         "borderWidth": 0,
                       },
-                      Object {
+                      {
                         "flex": 0,
                         "height": 24,
                         "width": 24,
@@ -2755,9 +3006,14 @@ exports[`Filter age should select age when click on it 1`] = `
                   width={24}
                 >
                   <RNSVGGroup
-                    fill={4280361249}
+                    fill={
+                      {
+                        "payload": 4280361249,
+                        "type": 0,
+                      }
+                    }
                     propList={
-                      Array [
+                      [
                         "fill",
                       ]
                     }
@@ -2768,8 +3024,8 @@ exports[`Filter age should select age when click on it 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x={0}
-                          y={0}
+                          x="0"
+                          y="0"
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
@@ -2785,8 +3041,8 @@ exports[`Filter age should select age when click on it 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -2800,8 +3056,8 @@ exports[`Filter age should select age when click on it 1`] = `
                 numberOfLines={2}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -2813,7 +3069,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 }
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Créer mon profil
                 </Text>
@@ -2824,8 +3080,8 @@ exports[`Filter age should select age when click on it 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -2837,7 +3093,7 @@ exports[`Filter age should select age when click on it 1`] = `
             collapsable={false}
             horizontalAlign="flex-end"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -2849,8 +3105,8 @@ exports[`Filter age should select age when click on it 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -2859,8 +3115,8 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "minWidth": 48,
                     },
                   ]
@@ -2890,7 +3146,7 @@ exports[`Filter age should select age when click on it 1`] = `
       scrollTo={null}
       statusBarTranslucent={false}
       supportedOrientations={
-        Array [
+        [
           "portrait",
           "landscape",
         ]
@@ -2903,7 +3159,7 @@ exports[`Filter age should select age when click on it 1`] = `
   <RCTScrollView
     alwaysBounceVertical={false}
     contentContainerStyle={
-      Object {
+      {
         "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
@@ -2915,13 +3171,13 @@ exports[`Filter age should select age when click on it 1`] = `
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
     scrollIndicatorInsets={
-      Object {
+      {
         "right": 1,
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "paddingBottom": 24,
         },
       ]
@@ -2931,7 +3187,7 @@ exports[`Filter age should select age when click on it 1`] = `
       <View
         onLayout={[Function]}
         style={
-          Object {
+          {
             "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
@@ -2941,7 +3197,7 @@ exports[`Filter age should select age when click on it 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "bottom": 0,
               "left": 0,
               "right": 0,
@@ -2952,8 +3208,8 @@ exports[`Filter age should select age when click on it 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
@@ -2965,8 +3221,8 @@ exports[`Filter age should select age when click on it 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginBottom": 16,
@@ -2979,8 +3235,8 @@ exports[`Filter age should select age when click on it 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "fontFamily": "circularBold",
                     "fontSize": 25,
@@ -2997,8 +3253,8 @@ exports[`Filter age should select age when click on it 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#5E5E5E",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
@@ -3016,6 +3272,23 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <View
                 accessibilityRole="radio"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
@@ -3027,7 +3300,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
+                  {
                     "backgroundColor": "#FFFFFF",
                     "borderColor": "#FFFFFF",
                     "borderRadius": 12,
@@ -3044,7 +3317,7 @@ exports[`Filter age should select age when click on it 1`] = `
                     "paddingRight": 14,
                     "paddingTop": 14,
                     "shadowColor": "#212121",
-                    "shadowOffset": Object {
+                    "shadowOffset": {
                       "height": 1,
                       "width": 1,
                     },
@@ -3059,7 +3332,7 @@ exports[`Filter age should select age when click on it 1`] = `
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
-                    Object {
+                    {
                       "alignItems": "center",
                       "flexBasis": "auto",
                       "flexDirection": "row",
@@ -3071,8 +3344,8 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "marginRight": 8,
@@ -3085,8 +3358,8 @@ exports[`Filter age should select age when click on it 1`] = `
                       isSelected={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -3102,8 +3375,8 @@ exports[`Filter age should select age when click on it 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": "auto",
                           "flexGrow": 0,
                         },
@@ -3113,8 +3386,8 @@ exports[`Filter age should select age when click on it 1`] = `
                     <View
                       selected={false}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "borderColor": "#5E5E5E",
@@ -3132,6 +3405,23 @@ exports[`Filter age should select age when click on it 1`] = `
               </View>
               <View
                 accessibilityRole="radio"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
@@ -3143,7 +3433,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
+                  {
                     "backgroundColor": "#FFFFFF",
                     "borderColor": "#FFFFFF",
                     "borderRadius": 12,
@@ -3160,7 +3450,7 @@ exports[`Filter age should select age when click on it 1`] = `
                     "paddingRight": 14,
                     "paddingTop": 14,
                     "shadowColor": "#212121",
-                    "shadowOffset": Object {
+                    "shadowOffset": {
                       "height": 1,
                       "width": 1,
                     },
@@ -3175,7 +3465,7 @@ exports[`Filter age should select age when click on it 1`] = `
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
-                    Object {
+                    {
                       "alignItems": "center",
                       "flexBasis": "auto",
                       "flexDirection": "row",
@@ -3187,8 +3477,8 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "marginRight": 8,
@@ -3201,8 +3491,8 @@ exports[`Filter age should select age when click on it 1`] = `
                       isSelected={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -3218,8 +3508,8 @@ exports[`Filter age should select age when click on it 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": "auto",
                           "flexGrow": 0,
                         },
@@ -3229,8 +3519,8 @@ exports[`Filter age should select age when click on it 1`] = `
                     <View
                       selected={false}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "borderColor": "#5E5E5E",
@@ -3248,6 +3538,23 @@ exports[`Filter age should select age when click on it 1`] = `
               </View>
               <View
                 accessibilityRole="radio"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}
@@ -3259,7 +3566,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
+                  {
                     "backgroundColor": "#DAE0FB",
                     "borderColor": "#0421B1",
                     "borderRadius": 12,
@@ -3283,7 +3590,7 @@ exports[`Filter age should select age when click on it 1`] = `
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
-                    Object {
+                    {
                       "alignItems": "center",
                       "flexBasis": "auto",
                       "flexDirection": "row",
@@ -3295,8 +3602,8 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "marginRight": 8,
@@ -3309,8 +3616,8 @@ exports[`Filter age should select age when click on it 1`] = `
                       isSelected={true}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -3326,8 +3633,8 @@ exports[`Filter age should select age when click on it 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "flexBasis": "auto",
                           "flexGrow": 0,
                         },
@@ -3337,8 +3644,8 @@ exports[`Filter age should select age when click on it 1`] = `
                     <View
                       selected={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "backgroundColor": "#0421B1",
                             "borderColor": "transparent",
@@ -3354,9 +3661,9 @@ exports[`Filter age should select age when click on it 1`] = `
                       <View
                         collapsable={false}
                         style={
-                          Object {
-                            "transform": Array [
-                              Object {
+                          {
+                            "transform": [
+                              {
                                 "scale": 1,
                               },
                             ],
@@ -3365,8 +3672,8 @@ exports[`Filter age should select age when click on it 1`] = `
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
-                          bbHeight={16}
-                          bbWidth={16}
+                          bbHeight="16"
+                          bbWidth="16"
                           fill="#FFFFFF"
                           focusable={false}
                           height={16}
@@ -3374,12 +3681,12 @@ exports[`Filter age should select age when click on it 1`] = `
                           minX={0}
                           minY={0}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "backgroundColor": "transparent",
                                 "borderWidth": 0,
                               },
-                              Object {
+                              {
                                 "flex": 0,
                                 "height": 16,
                                 "width": 16,
@@ -3391,9 +3698,14 @@ exports[`Filter age should select age when click on it 1`] = `
                           width={16}
                         >
                           <RNSVGGroup
-                            fill={4294967295}
+                            fill={
+                              {
+                                "payload": 4294967295,
+                                "type": 0,
+                              }
+                            }
                             propList={
-                              Array [
+                              [
                                 "fill",
                               ]
                             }
@@ -3404,8 +3716,8 @@ exports[`Filter age should select age when click on it 1`] = `
                                   height="24"
                                   opacity={0}
                                   width="24"
-                                  x={0}
-                                  y={0}
+                                  x="0"
+                                  y="0"
                                 />
                                 <RNSVGPath
                                   d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
@@ -3424,8 +3736,8 @@ exports[`Filter age should select age when click on it 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -3435,8 +3747,8 @@ exports[`Filter age should select age when click on it 1`] = `
           <View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexDirection": "row",
                     "marginHorizontal": -6,
                   },
@@ -3445,8 +3757,8 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
                       "flexBasis": 0,
@@ -3463,7 +3775,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#0421B1",
                       "height": "100%",
                       "left": 0,
@@ -3476,8 +3788,8 @@ exports[`Filter age should select age when click on it 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
                       "flexBasis": 0,
@@ -3494,7 +3806,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#0421B1",
                       "height": "100%",
                       "left": 0,
@@ -3507,8 +3819,8 @@ exports[`Filter age should select age when click on it 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
                       "flexBasis": 0,
@@ -3525,7 +3837,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#0421B1",
                       "height": "100%",
                       "left": 0,
@@ -3539,8 +3851,8 @@ exports[`Filter age should select age when click on it 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
@@ -3554,7 +3866,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 collapsable={false}
                 horizontalAlign="flex-start"
                 style={
-                  Object {
+                  {
                     "alignItems": "flex-start",
                     "flexBasis": "auto",
                     "flexDirection": "row",
@@ -3566,8 +3878,8 @@ exports[`Filter age should select age when click on it 1`] = `
               >
                 <View
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexBasis": 0,
                         "flexGrow": 1,
                         "marginRight": 8,
@@ -3577,6 +3889,23 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     accessibilityRole="button"
+                    accessibilityState={
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
+                        "disabled": undefined,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
+                      }
+                    }
                     accessible={true}
                     collapsable={false}
                     focusable={true}
@@ -3588,7 +3917,7 @@ exports[`Filter age should select age when click on it 1`] = `
                     onResponderTerminationRequest={[Function]}
                     onStartShouldSetResponder={[Function]}
                     style={
-                      Object {
+                      {
                         "alignItems": "center",
                         "borderRadius": 12,
                         "display": "flex",
@@ -3603,8 +3932,8 @@ exports[`Filter age should select age when click on it 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#212121",
                             "flexShrink": 1,
                             "fontFamily": "circularBold",
@@ -3612,7 +3941,7 @@ exports[`Filter age should select age when click on it 1`] = `
                             "lineHeight": 20,
                             "textAlign": "left",
                           },
-                          Object {
+                          {
                             "color": "#0421B1",
                           },
                         ]
@@ -3624,8 +3953,8 @@ exports[`Filter age should select age when click on it 1`] = `
                 </View>
                 <View
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexBasis": 0,
                         "flexGrow": 1,
                       },
@@ -3635,8 +3964,20 @@ exports[`Filter age should select age when click on it 1`] = `
                   <View
                     accessibilityRole="button"
                     accessibilityState={
-                      Object {
+                      {
+                        "busy": undefined,
+                        "checked": undefined,
                         "disabled": false,
+                        "expanded": undefined,
+                        "selected": undefined,
+                      }
+                    }
+                    accessibilityValue={
+                      {
+                        "max": undefined,
+                        "min": undefined,
+                        "now": undefined,
+                        "text": undefined,
                       }
                     }
                     accessible={true}
@@ -3650,7 +3991,7 @@ exports[`Filter age should select age when click on it 1`] = `
                     onResponderTerminationRequest={[Function]}
                     onStartShouldSetResponder={[Function]}
                     style={
-                      Object {
+                      {
                         "alignItems": "center",
                         "backgroundColor": "#0421B1",
                         "borderRadius": 12,
@@ -3661,7 +4002,7 @@ exports[`Filter age should select age when click on it 1`] = `
                         "minHeight": 56,
                         "opacity": 0.4,
                         "shadowColor": "#212121",
-                        "shadowOffset": Object {
+                        "shadowOffset": {
                           "height": 1,
                           "width": 1,
                         },
@@ -3674,9 +4015,9 @@ exports[`Filter age should select age when click on it 1`] = `
                     <View
                       collapsable={false}
                       style={
-                        Object {
-                          "transform": Array [
-                            Object {
+                        {
+                          "transform": [
+                            {
                               "scale": 1,
                             },
                           ],
@@ -3685,8 +4026,8 @@ exports[`Filter age should select age when click on it 1`] = `
                     >
                       <RNSVGSvgView
                         align="xMidYMid"
-                        bbHeight={24}
-                        bbWidth={24}
+                        bbHeight="24"
+                        bbWidth="24"
                         fill="#FFFFFF"
                         focusable={false}
                         height={24}
@@ -3694,12 +4035,12 @@ exports[`Filter age should select age when click on it 1`] = `
                         minX={0}
                         minY={0}
                         style={
-                          Array [
-                            Object {
+                          [
+                            {
                               "backgroundColor": "transparent",
                               "borderWidth": 0,
                             },
-                            Object {
+                            {
                               "flex": 0,
                               "height": 24,
                               "width": 24,
@@ -3711,9 +4052,14 @@ exports[`Filter age should select age when click on it 1`] = `
                         width={24}
                       >
                         <RNSVGGroup
-                          fill={4294967295}
+                          fill={
+                            {
+                              "payload": 4294967295,
+                              "type": 0,
+                            }
+                          }
                           propList={
-                            Array [
+                            [
                               "fill",
                             ]
                           }
@@ -3724,8 +4070,8 @@ exports[`Filter age should select age when click on it 1`] = `
                                 height="24"
                                 opacity={0}
                                 width="24"
-                                x={0}
-                                y={0}
+                                x="0"
+                                y="0"
                               />
                               <RNSVGPath
                                 d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
@@ -3740,8 +4086,8 @@ exports[`Filter age should select age when click on it 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "alignItems": "center",
                             "color": "#FFFFFF",
                             "flexShrink": 1,

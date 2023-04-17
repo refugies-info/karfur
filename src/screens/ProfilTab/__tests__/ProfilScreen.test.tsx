@@ -1,9 +1,10 @@
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { fireEvent, act } from "react-native-testing-library";
+import { fireEvent, act } from "@testing-library/react-native";
 import { ProfilScreen } from "../ProfilScreen";
 import { useRoute } from "@react-navigation/core";
 import { initialUserState } from "../../../services/redux/User/user.reducer";
+import { MobileFrenchLevel } from "@refugies-info/api-types";
 
 jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
@@ -111,7 +112,7 @@ describe("Profil screen", () => {
         user: {
           ...initialUserState,
           age: "0 à 17 ans",
-          frenchLevel: "Je parle couramment",
+          frenchLevel: MobileFrenchLevel["Je parle couramment"],
           city: "Paris",
         },
       },

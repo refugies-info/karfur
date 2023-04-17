@@ -3,6 +3,23 @@
 exports[`LanguageDetailsButton snapshot test suite should render not selected 1`] = `
 <View
   accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -14,7 +31,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Object {
+    {
       "backgroundColor": "#FFFFFF",
       "borderColor": "#FFFFFF",
       "borderRadius": 12,
@@ -31,7 +48,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
       "paddingRight": 14,
       "paddingTop": 14,
       "shadowColor": "#212121",
-      "shadowOffset": Object {
+      "shadowOffset": {
         "height": 1,
         "width": 1,
       },
@@ -46,7 +63,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
     collapsable={false}
     horizontalAlign="flex-start"
     style={
-      Object {
+      {
         "alignItems": "center",
         "flexBasis": "auto",
         "flexDirection": "row",
@@ -58,8 +75,8 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "flexBasis": 0,
             "flexGrow": 1,
             "marginRight": 8,
@@ -72,7 +89,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
         collapsable={false}
         horizontalAlign="flex-start"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -84,8 +101,8 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -95,8 +112,8 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 4,
@@ -109,7 +126,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
                   "marginRight": 4,
                   "marginTop": 4,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -128,8 +145,8 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -141,8 +158,8 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
@@ -162,8 +179,8 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
     </View>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "flexBasis": "auto",
             "flexGrow": 0,
           },
@@ -173,8 +190,8 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
       <View
         selected={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "alignItems": "center",
               "backgroundColor": "transparent",
               "borderColor": "#5E5E5E",
@@ -195,6 +212,23 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
 exports[`LanguageDetailsButton snapshot test suite should render with local language 1`] = `
 <View
   accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -206,7 +240,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Object {
+    {
       "backgroundColor": "#DAE0FB",
       "borderColor": "#0421B1",
       "borderRadius": 12,
@@ -230,7 +264,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
     collapsable={false}
     horizontalAlign="flex-start"
     style={
-      Object {
+      {
         "alignItems": "center",
         "flexBasis": "auto",
         "flexDirection": "row",
@@ -242,8 +276,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "flexBasis": 0,
             "flexGrow": 1,
             "marginRight": 8,
@@ -256,7 +290,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
         collapsable={false}
         horizontalAlign="flex-start"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -268,8 +302,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -279,8 +313,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 4,
@@ -293,7 +327,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
                   "marginRight": 4,
                   "marginTop": 4,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -312,8 +346,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -325,8 +359,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
@@ -344,8 +378,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -356,8 +390,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#5E5E5E",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
@@ -374,8 +408,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
     </View>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "flexBasis": "auto",
             "flexGrow": 0,
           },
@@ -385,8 +419,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
       <View
         selected={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "alignItems": "center",
               "backgroundColor": "#0421B1",
               "borderColor": "transparent",
@@ -402,9 +436,9 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
         <View
           collapsable={false}
           style={
-            Object {
-              "transform": Array [
-                Object {
+            {
+              "transform": [
+                {
                   "scale": 1,
                 },
               ],
@@ -413,8 +447,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight={16}
-            bbWidth={16}
+            bbHeight="16"
+            bbWidth="16"
             fill="#FFFFFF"
             focusable={false}
             height={16}
@@ -422,12 +456,12 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
             minX={0}
             minY={0}
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                   "borderWidth": 0,
                 },
-                Object {
+                {
                   "flex": 0,
                   "height": 16,
                   "width": 16,
@@ -439,9 +473,14 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
             width={16}
           >
             <RNSVGGroup
-              fill={4294967295}
+              fill={
+                {
+                  "payload": 4294967295,
+                  "type": 0,
+                }
+              }
               propList={
-                Array [
+                [
                   "fill",
                 ]
               }
@@ -452,8 +491,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
                     height="24"
                     opacity={0}
                     width="24"
-                    x={0}
-                    y={0}
+                    x="0"
+                    y="0"
                   />
                   <RNSVGPath
                     d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
@@ -472,6 +511,23 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
 exports[`LanguageDetailsButton snapshot test suite should render with radio hided 1`] = `
 <View
   accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -483,7 +539,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Object {
+    {
       "backgroundColor": "#DAE0FB",
       "borderColor": "#0421B1",
       "borderRadius": 12,
@@ -507,7 +563,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
     collapsable={false}
     horizontalAlign="flex-start"
     style={
-      Object {
+      {
         "alignItems": "center",
         "flexBasis": "auto",
         "flexDirection": "row",
@@ -519,8 +575,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "flexBasis": 0,
             "flexGrow": 1,
             "marginRight": 8,
@@ -533,7 +589,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
         collapsable={false}
         horizontalAlign="flex-start"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -545,8 +601,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -556,8 +612,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 4,
@@ -570,7 +626,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
                   "marginRight": 4,
                   "marginTop": 4,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -589,8 +645,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -602,8 +658,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
@@ -621,8 +677,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -633,8 +689,8 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#5E5E5E",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
@@ -656,6 +712,23 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
 exports[`LanguageDetailsButton snapshot test suite should render without bug 1`] = `
 <View
   accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -667,7 +740,7 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Object {
+    {
       "backgroundColor": "#DAE0FB",
       "borderColor": "#0421B1",
       "borderRadius": 12,
@@ -691,7 +764,7 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
     collapsable={false}
     horizontalAlign="flex-start"
     style={
-      Object {
+      {
         "alignItems": "center",
         "flexBasis": "auto",
         "flexDirection": "row",
@@ -703,8 +776,8 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "flexBasis": 0,
             "flexGrow": 1,
             "marginRight": 8,
@@ -717,7 +790,7 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
         collapsable={false}
         horizontalAlign="flex-start"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -729,8 +802,8 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -740,8 +813,8 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 4,
@@ -754,7 +827,7 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
                   "marginRight": 4,
                   "marginTop": 4,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -773,8 +846,8 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -786,8 +859,8 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
@@ -807,8 +880,8 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
     </View>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "flexBasis": "auto",
             "flexGrow": 0,
           },
@@ -818,8 +891,8 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
       <View
         selected={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "alignItems": "center",
               "backgroundColor": "#0421B1",
               "borderColor": "transparent",
@@ -835,9 +908,9 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
         <View
           collapsable={false}
           style={
-            Object {
-              "transform": Array [
-                Object {
+            {
+              "transform": [
+                {
                   "scale": 1,
                 },
               ],
@@ -846,8 +919,8 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight={16}
-            bbWidth={16}
+            bbHeight="16"
+            bbWidth="16"
             fill="#FFFFFF"
             focusable={false}
             height={16}
@@ -855,12 +928,12 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
             minX={0}
             minY={0}
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                   "borderWidth": 0,
                 },
-                Object {
+                {
                   "flex": 0,
                   "height": 16,
                   "width": 16,
@@ -872,9 +945,14 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
             width={16}
           >
             <RNSVGGroup
-              fill={4294967295}
+              fill={
+                {
+                  "payload": 4294967295,
+                  "type": 0,
+                }
+              }
               propList={
-                Array [
+                [
                   "fill",
                 ]
               }
@@ -885,8 +963,8 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
                     height="24"
                     opacity={0}
                     width="24"
-                    x={0}
-                    y={0}
+                    x="0"
+                    y="0"
                   />
                   <RNSVGPath
                     d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"

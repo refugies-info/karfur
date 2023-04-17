@@ -4,8 +4,8 @@ exports[`About screen should render correctly 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
@@ -19,7 +19,7 @@ exports[`About screen should render correctly 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
@@ -33,8 +33,8 @@ exports[`About screen should render correctly 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "minHeight": 65,
             "paddingBottom": 20,
           },
@@ -46,7 +46,7 @@ exports[`About screen should render correctly 1`] = `
         collapsable={false}
         horizontalAlign="space-between"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -58,8 +58,8 @@ exports[`About screen should render correctly 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -70,6 +70,23 @@ exports[`About screen should render correctly 1`] = `
           <View>
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -81,7 +98,7 @@ exports[`About screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
                   "elevation": 6,
@@ -91,7 +108,7 @@ exports[`About screen should render correctly 1`] = `
                   "paddingRight": 12,
                   "paddingTop": 12,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -104,17 +121,17 @@ exports[`About screen should render correctly 1`] = `
               <View
                 disabled={false}
                 style={
-                  Array [
-                    Object {},
+                  [
+                    {},
                   ]
                 }
               >
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "scale": 1,
                         },
                       ],
@@ -123,8 +140,8 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight={24}
-                    bbWidth={24}
+                    bbHeight="24"
+                    bbWidth="24"
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -132,12 +149,12 @@ exports[`About screen should render correctly 1`] = `
                     minX={0}
                     minY={0}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "backgroundColor": "transparent",
                           "borderWidth": 0,
                         },
-                        Object {
+                        {
                           "flex": 0,
                           "height": 24,
                           "width": 24,
@@ -149,9 +166,14 @@ exports[`About screen should render correctly 1`] = `
                     width={24}
                   >
                     <RNSVGGroup
-                      fill={4280361249}
+                      fill={
+                        {
+                          "payload": 4280361249,
+                          "type": 0,
+                        }
+                      }
                       propList={
-                        Array [
+                        [
                           "fill",
                         ]
                       }
@@ -161,7 +183,7 @@ exports[`About screen should render correctly 1`] = `
                           <RNSVGRect
                             height="24"
                             matrix={
-                              Array [
+                              [
                                 6.123233995736766e-17,
                                 1,
                                 -1,
@@ -172,8 +194,8 @@ exports[`About screen should render correctly 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x={0}
-                            y={0}
+                            x="0"
+                            y="0"
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -189,8 +211,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginRight": 8,
@@ -202,8 +224,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -215,7 +237,7 @@ exports[`About screen should render correctly 1`] = `
             collapsable={false}
             horizontalAlign="flex-end"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -227,8 +249,8 @@ exports[`About screen should render correctly 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -259,7 +281,7 @@ exports[`About screen should render correctly 1`] = `
       scrollTo={null}
       statusBarTranslucent={false}
       supportedOrientations={
-        Array [
+        [
           "portrait",
           "landscape",
         ]
@@ -272,7 +294,7 @@ exports[`About screen should render correctly 1`] = `
   <RCTScrollView
     alwaysBounceVertical={false}
     contentContainerStyle={
-      Object {
+      {
         "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
@@ -284,13 +306,13 @@ exports[`About screen should render correctly 1`] = `
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
     scrollIndicatorInsets={
-      Object {
+      {
         "right": 1,
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "paddingBottom": 24,
         },
       ]
@@ -300,7 +322,7 @@ exports[`About screen should render correctly 1`] = `
       <View
         onLayout={[Function]}
         style={
-          Object {
+          {
             "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
@@ -310,7 +332,7 @@ exports[`About screen should render correctly 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "bottom": 0,
               "left": 0,
               "right": 0,
@@ -321,8 +343,8 @@ exports[`About screen should render correctly 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
@@ -332,8 +354,8 @@ exports[`About screen should render correctly 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -345,8 +367,8 @@ exports[`About screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 19,
@@ -361,8 +383,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -374,8 +396,8 @@ exports[`About screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
@@ -389,8 +411,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -400,7 +422,7 @@ exports[`About screen should render correctly 1`] = `
         >
           <RCTScrollView
             contentContainerStyle={
-              Object {
+              {
                 "flexDirection": "row",
                 "marginBottom": 8,
                 "paddingBottom": 8,
@@ -413,8 +435,8 @@ exports[`About screen should render correctly 1`] = `
             <View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "elevation": 6,
@@ -423,7 +445,7 @@ exports[`About screen should render correctly 1`] = `
                       "paddingRight": 16,
                       "paddingTop": 16,
                       "shadowColor": "#212121",
-                      "shadowOffset": Object {
+                      "shadowOffset": {
                         "height": 1,
                         "width": 1,
                       },
@@ -431,7 +453,7 @@ exports[`About screen should render correctly 1`] = `
                       "shadowRadius": 8,
                       "width": 280,
                     },
-                    Object {
+                    {
                       "justifyContent": "space-between",
                       "marginLeft": 0,
                       "marginRight": 24,
@@ -442,8 +464,8 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "alignSelf": "center",
                         "height": 176,
                         "marginBottom": 16,
@@ -456,8 +478,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 19,
@@ -473,8 +495,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
@@ -487,8 +509,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "elevation": 6,
@@ -497,7 +519,7 @@ exports[`About screen should render correctly 1`] = `
                       "paddingRight": 16,
                       "paddingTop": 16,
                       "shadowColor": "#212121",
-                      "shadowOffset": Object {
+                      "shadowOffset": {
                         "height": 1,
                         "width": 1,
                       },
@@ -505,7 +527,7 @@ exports[`About screen should render correctly 1`] = `
                       "shadowRadius": 8,
                       "width": 280,
                     },
-                    Object {
+                    {
                       "justifyContent": "space-between",
                       "marginLeft": 0,
                       "marginRight": 24,
@@ -516,8 +538,8 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "alignSelf": "center",
                         "height": 176,
                         "marginBottom": 16,
@@ -530,8 +552,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 19,
@@ -547,8 +569,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
@@ -561,8 +583,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "elevation": 6,
@@ -571,7 +593,7 @@ exports[`About screen should render correctly 1`] = `
                       "paddingRight": 16,
                       "paddingTop": 16,
                       "shadowColor": "#212121",
-                      "shadowOffset": Object {
+                      "shadowOffset": {
                         "height": 1,
                         "width": 1,
                       },
@@ -585,8 +607,8 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "alignSelf": "center",
                         "height": 176,
                         "marginBottom": 16,
@@ -599,8 +621,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 19,
@@ -616,8 +638,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
@@ -633,8 +655,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -646,8 +668,8 @@ exports[`About screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
@@ -661,8 +683,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -672,7 +694,7 @@ exports[`About screen should render correctly 1`] = `
         >
           <RCTScrollView
             contentContainerStyle={
-              Object {
+              {
                 "flexDirection": "row",
                 "marginBottom": 8,
                 "paddingBottom": 8,
@@ -685,8 +707,8 @@ exports[`About screen should render correctly 1`] = `
             <View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "elevation": 6,
@@ -695,7 +717,7 @@ exports[`About screen should render correctly 1`] = `
                       "paddingRight": 16,
                       "paddingTop": 16,
                       "shadowColor": "#212121",
-                      "shadowOffset": Object {
+                      "shadowOffset": {
                         "height": 1,
                         "width": 1,
                       },
@@ -703,7 +725,7 @@ exports[`About screen should render correctly 1`] = `
                       "shadowRadius": 8,
                       "width": 280,
                     },
-                    Object {
+                    {
                       "marginLeft": 0,
                       "marginRight": 24,
                     },
@@ -713,8 +735,8 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "alignSelf": "center",
                         "height": 176,
                         "marginBottom": 16,
@@ -727,8 +749,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 19,
@@ -744,8 +766,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
@@ -758,8 +780,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "elevation": 6,
@@ -768,7 +790,7 @@ exports[`About screen should render correctly 1`] = `
                       "paddingRight": 16,
                       "paddingTop": 16,
                       "shadowColor": "#212121",
-                      "shadowOffset": Object {
+                      "shadowOffset": {
                         "height": 1,
                         "width": 1,
                       },
@@ -776,7 +798,7 @@ exports[`About screen should render correctly 1`] = `
                       "shadowRadius": 8,
                       "width": 280,
                     },
-                    Object {
+                    {
                       "marginLeft": 0,
                       "marginRight": 24,
                     },
@@ -786,8 +808,8 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "alignSelf": "center",
                         "height": 176,
                         "marginBottom": 16,
@@ -800,8 +822,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 19,
@@ -817,8 +839,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
@@ -831,8 +853,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "elevation": 6,
@@ -841,7 +863,7 @@ exports[`About screen should render correctly 1`] = `
                       "paddingRight": 16,
                       "paddingTop": 16,
                       "shadowColor": "#212121",
-                      "shadowOffset": Object {
+                      "shadowOffset": {
                         "height": 1,
                         "width": 1,
                       },
@@ -855,8 +877,8 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "alignSelf": "center",
                         "height": 176,
                         "marginBottom": 16,
@@ -869,8 +891,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 19,
@@ -886,8 +908,8 @@ exports[`About screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
@@ -903,8 +925,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -916,8 +938,8 @@ exports[`About screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
@@ -931,8 +953,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -942,7 +964,7 @@ exports[`About screen should render correctly 1`] = `
         >
           <RCTScrollView
             contentContainerStyle={
-              Object {
+              {
                 "flexDirection": "row",
                 "marginBottom": 8,
                 "paddingBottom": 32,
@@ -955,8 +977,8 @@ exports[`About screen should render correctly 1`] = `
             <View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "elevation": 6,
@@ -965,7 +987,7 @@ exports[`About screen should render correctly 1`] = `
                       "paddingRight": 16,
                       "paddingTop": 16,
                       "shadowColor": "#212121",
-                      "shadowOffset": Object {
+                      "shadowOffset": {
                         "height": 1,
                         "width": 1,
                       },
@@ -973,7 +995,7 @@ exports[`About screen should render correctly 1`] = `
                       "shadowRadius": 8,
                       "width": 280,
                     },
-                    Object {
+                    {
                       "justifyContent": "space-between",
                       "marginLeft": 0,
                       "marginRight": 24,
@@ -985,8 +1007,8 @@ exports[`About screen should render correctly 1`] = `
                   <Image
                     source={1}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "alignSelf": "center",
                           "height": 176,
                           "marginBottom": 16,
@@ -999,8 +1021,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "fontFamily": "circularBold",
                           "fontSize": 19,
@@ -1016,8 +1038,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
@@ -1031,8 +1053,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "elevation": 6,
@@ -1041,7 +1063,7 @@ exports[`About screen should render correctly 1`] = `
                       "paddingRight": 16,
                       "paddingTop": 16,
                       "shadowColor": "#212121",
-                      "shadowOffset": Object {
+                      "shadowOffset": {
                         "height": 1,
                         "width": 1,
                       },
@@ -1049,7 +1071,7 @@ exports[`About screen should render correctly 1`] = `
                       "shadowRadius": 8,
                       "width": 280,
                     },
-                    Object {
+                    {
                       "justifyContent": "space-between",
                       "marginLeft": 0,
                       "marginRight": 24,
@@ -1061,8 +1083,8 @@ exports[`About screen should render correctly 1`] = `
                   <Image
                     source={1}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "alignSelf": "center",
                           "height": 176,
                           "marginBottom": 16,
@@ -1075,8 +1097,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "fontFamily": "circularBold",
                           "fontSize": 19,
@@ -1092,8 +1114,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
@@ -1107,8 +1129,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "elevation": 6,
@@ -1117,7 +1139,7 @@ exports[`About screen should render correctly 1`] = `
                       "paddingRight": 16,
                       "paddingTop": 16,
                       "shadowColor": "#212121",
-                      "shadowOffset": Object {
+                      "shadowOffset": {
                         "height": 1,
                         "width": 1,
                       },
@@ -1125,7 +1147,7 @@ exports[`About screen should render correctly 1`] = `
                       "shadowRadius": 8,
                       "width": 280,
                     },
-                    Object {
+                    {
                       "justifyContent": "space-between",
                     },
                   ]
@@ -1135,8 +1157,8 @@ exports[`About screen should render correctly 1`] = `
                   <Image
                     source={1}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "alignSelf": "center",
                           "height": 176,
                           "marginBottom": 16,
@@ -1149,8 +1171,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "fontFamily": "circularBold",
                           "fontSize": 19,
@@ -1166,8 +1188,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
@@ -1184,8 +1206,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -1197,8 +1219,8 @@ exports[`About screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
@@ -1212,8 +1234,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -1225,8 +1247,8 @@ exports[`About screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
@@ -1240,8 +1262,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -1251,7 +1273,7 @@ exports[`About screen should render correctly 1`] = `
         >
           <RCTScrollView
             contentContainerStyle={
-              Object {
+              {
                 "flexDirection": "row",
                 "marginBottom": 8,
                 "paddingBottom": 8,
@@ -1264,8 +1286,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1281,13 +1303,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/coallia.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1298,8 +1320,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1315,13 +1337,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/konexio.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1332,8 +1354,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1349,13 +1371,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/simplon.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1366,8 +1388,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1383,13 +1405,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/causons.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1400,8 +1422,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1417,13 +1439,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/aurore.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1434,8 +1456,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1451,13 +1473,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/casp.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1468,8 +1490,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1485,13 +1507,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/ifri.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1502,8 +1524,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1519,13 +1541,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/puy_de_dome.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1536,8 +1558,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1553,13 +1575,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/france_terre_asile.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1570,8 +1592,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1587,13 +1609,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/each_one.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1604,8 +1626,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1621,13 +1643,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/wero.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1638,8 +1660,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1655,13 +1677,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/habitat_humanisme.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1672,8 +1694,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1689,13 +1711,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/jrs_france.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1706,8 +1728,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1723,13 +1745,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/cesam.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1740,8 +1762,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1757,13 +1779,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/singa.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1774,8 +1796,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1791,13 +1813,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/fondation_cos.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1808,8 +1830,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1825,13 +1847,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/groupe_sos.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1842,8 +1864,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1859,13 +1881,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/CNAM.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1876,8 +1898,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1893,13 +1915,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/inalco.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1910,8 +1932,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1927,13 +1949,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/france_horizon.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1944,8 +1966,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1961,13 +1983,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/CRF.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -1978,8 +2000,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -1995,13 +2017,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/duo_for_a_job.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -2012,8 +2034,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -2029,13 +2051,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/forum_refugies.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -2046,8 +2068,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -2063,13 +2085,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/benenova.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -2080,8 +2102,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -2097,13 +2119,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/action_emploi_refugies.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -2114,8 +2136,8 @@ exports[`About screen should render correctly 1`] = `
               <View
                 isRTL={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "marginLeft": 0,
@@ -2131,13 +2153,13 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   resizeMode="contain"
                   source={
-                    Object {
+                    {
                       "uri": "https://storage.googleapis.com/refugies-info-assets/logosPartenaires/unml.png",
                     }
                   }
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "height": 80,
                         "width": 104,
                       },
@@ -2150,8 +2172,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -2163,8 +2185,8 @@ exports[`About screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
@@ -2177,8 +2199,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -2188,8 +2210,8 @@ exports[`About screen should render correctly 1`] = `
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
@@ -2199,6 +2221,23 @@ exports[`About screen should render correctly 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -2210,7 +2249,7 @@ exports[`About screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "backgroundColor": "#212121",
                   "borderRadius": 12,
@@ -2226,7 +2265,7 @@ exports[`About screen should render correctly 1`] = `
                   "paddingRight": 18,
                   "paddingTop": 18,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -2240,9 +2279,9 @@ exports[`About screen should render correctly 1`] = `
               <View
                 collapsable={false}
                 style={
-                  Object {
-                    "transform": Array [
-                      Object {
+                  {
+                    "transform": [
+                      {
                         "scale": 1,
                       },
                     ],
@@ -2251,8 +2290,8 @@ exports[`About screen should render correctly 1`] = `
               >
                 <RNSVGSvgView
                   align="xMidYMid"
-                  bbHeight={24}
-                  bbWidth={24}
+                  bbHeight="24"
+                  bbWidth="24"
                   fill="#FFFFFF"
                   focusable={false}
                   height={24}
@@ -2260,13 +2299,13 @@ exports[`About screen should render correctly 1`] = `
                   minX={0}
                   minY={0}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "backgroundColor": "transparent",
                         "borderWidth": 0,
                       },
-                      Object {},
-                      Object {
+                      {},
+                      {
                         "flex": 0,
                         "height": 24,
                         "width": 24,
@@ -2278,9 +2317,14 @@ exports[`About screen should render correctly 1`] = `
                   width={24}
                 >
                   <RNSVGGroup
-                    fill={4294967295}
+                    fill={
+                      {
+                        "payload": 4294967295,
+                        "type": 0,
+                      }
+                    }
                     propList={
-                      Array [
+                      [
                         "fill",
                       ]
                     }
@@ -2291,8 +2335,8 @@ exports[`About screen should render correctly 1`] = `
                           height="24"
                           opacity={0}
                           width="24"
-                          x={0}
-                          y={0}
+                          x="0"
+                          y="0"
                         />
                         <RNSVGRect
                           height="2"
@@ -2305,7 +2349,7 @@ exports[`About screen should render correctly 1`] = `
                         <RNSVGRect
                           height="2"
                           matrix={
-                            Array [
+                            [
                               6.123233995736766e-17,
                               -1,
                               1,
@@ -2323,7 +2367,7 @@ exports[`About screen should render correctly 1`] = `
                         <RNSVGRect
                           height="2"
                           matrix={
-                            Array [
+                            [
                               6.123233995736766e-17,
                               -1,
                               1,
@@ -2355,8 +2399,8 @@ exports[`About screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
@@ -2366,13 +2410,13 @@ exports[`About screen should render correctly 1`] = `
                       "marginRight": 0,
                       "textAlign": "left",
                     },
-                    Object {},
+                    {},
                   ]
                 }
                 textColor="#FFFFFF"
               >
                 <Text
-                  style={Object {}}
+                  style={{}}
                 >
                   Télécharger l’appel [PDF]
                 </Text>
@@ -2383,8 +2427,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginBottom": 16,
@@ -2396,8 +2440,8 @@ exports[`About screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
@@ -2405,7 +2449,7 @@ exports[`About screen should render correctly 1`] = `
                   "marginBottom": 16,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "marginBottom": 24,
                 },
               ]
@@ -2414,8 +2458,8 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -2424,8 +2468,8 @@ exports[`About screen should render correctly 1`] = `
         >
           <RCTScrollView
             style={
-              Array [
-                Object {
+              [
+                {
                   "marginBottom": 24,
                   "paddingHorizontal": 24,
                 },
@@ -2435,8 +2479,8 @@ exports[`About screen should render correctly 1`] = `
             <View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -2456,7 +2500,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -2465,8 +2509,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -2477,7 +2521,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -2487,8 +2531,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -2513,8 +2557,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
@@ -2531,8 +2575,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -2552,7 +2596,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -2561,8 +2605,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -2573,7 +2617,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -2583,8 +2627,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -2609,8 +2653,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
@@ -2627,8 +2671,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -2648,7 +2692,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -2657,8 +2701,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -2669,7 +2713,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -2679,8 +2723,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -2705,8 +2749,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
@@ -2723,8 +2767,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -2744,7 +2788,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -2753,8 +2797,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -2765,7 +2809,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -2775,8 +2819,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -2801,8 +2845,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
@@ -2819,8 +2863,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -2840,7 +2884,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -2849,8 +2893,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -2861,7 +2905,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -2871,8 +2915,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -2897,8 +2941,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
@@ -2915,8 +2959,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -2936,7 +2980,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -2945,8 +2989,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -2957,7 +3001,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -2967,8 +3011,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -2993,8 +3037,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
@@ -3011,8 +3055,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -3032,7 +3076,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -3041,8 +3085,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -3053,7 +3097,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -3063,8 +3107,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -3089,8 +3133,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
@@ -3107,8 +3151,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -3128,7 +3172,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -3137,8 +3181,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -3149,7 +3193,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -3159,8 +3203,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -3185,8 +3229,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
@@ -3203,8 +3247,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -3224,7 +3268,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -3233,8 +3277,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -3245,7 +3289,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -3255,8 +3299,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -3281,8 +3325,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
@@ -3299,8 +3343,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -3320,7 +3364,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -3329,8 +3373,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -3341,7 +3385,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -3351,8 +3395,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -3377,8 +3421,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
@@ -3395,8 +3439,8 @@ exports[`About screen should render correctly 1`] = `
               </View>
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#EEF8FF",
                       "borderColor": "#073099",
@@ -3416,7 +3460,7 @@ exports[`About screen should render correctly 1`] = `
                 <Image
                   source={1}
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -3425,8 +3469,8 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "flexGrow": 0,
                         "flexShrink": 1,
                         "marginLeft": 24,
@@ -3437,7 +3481,7 @@ exports[`About screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "flexDirection": "row",
                         "flexShrink": 1,
                       }
@@ -3447,8 +3491,8 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
                             "flexShrink": 1,
@@ -3473,8 +3517,8 @@ exports[`About screen should render correctly 1`] = `
                     isRTL={false}
                     selectable={true}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#212121",
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",

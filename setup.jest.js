@@ -32,3 +32,13 @@ jest.mock("@react-navigation/core", () => ({
       .mockImplementation(() => (to) => console.log("Navigation to " + to)),
   })),
 }));
+
+jest.mock("react-native-skeleton-content", () => "View");
+
+jest.mock("expo-notifications", () => ({
+  getPermissionsAsync: jest.fn().mockResolvedValue({ status: "granted" }),
+  requestPermissionsAsync: jest.fn().mockResolvedValue({ status: "granted" }),
+  getExpoPushTokenAsync: jest.fn().mockResolvedValue({ data: "data" }),
+  setNotificationChannelAsync: jest.fn(),
+  AndroidImportance: { Max: 7 },
+}));

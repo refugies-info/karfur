@@ -26,7 +26,7 @@ export interface UserState {
   } | null;
 }
 
-export const initialUserState = {
+export const initialUserState: UserState = {
   hasUserSeenOnboarding: null,
   hasUserNewFavorites: false,
   selectedLanguagei18nCode: null,

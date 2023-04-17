@@ -1,7 +1,7 @@
 import { FilterAge } from "../FilterAge";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { act, fireEvent } from "react-native-testing-library";
+import { act, fireEvent } from "@testing-library/react-native";
 import { saveUserAgeActionCreator } from "../../../services/redux/User/user.actions";
 import { initialUserState } from "../../../services/redux/User/user.reducer";
 import { useRoute } from "@react-navigation/native";

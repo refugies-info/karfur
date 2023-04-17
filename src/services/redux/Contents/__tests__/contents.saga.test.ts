@@ -73,7 +73,7 @@ describe("[Saga] contents", () => {
         .next("frenchLevel")
         .call(getContentsForApp, {
           locale: "fr",
-          department: "dep",
+          county: "dep",
           frenchLevel: "frenchLevel",
           age: "age",
         })
@@ -187,7 +187,7 @@ describe("[Saga] contents", () => {
         .call(getContentsForApp, {
           locale: "ar",
           age: null,
-          department: null,
+          county: null,
           frenchLevel: null,
         })
         .next({

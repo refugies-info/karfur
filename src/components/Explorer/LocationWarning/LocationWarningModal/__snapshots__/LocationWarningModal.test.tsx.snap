@@ -19,7 +19,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
   scrollTo={null}
   statusBarTranslucent={true}
   supportedOrientations={
-    Array [
+    [
       "portrait",
       "landscape",
     ]
@@ -29,6 +29,15 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
   visible={true}
 >
   <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
     accessible={true}
     collapsable={false}
     focusable={true}
@@ -41,7 +50,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "#F7F7F7",
         "bottom": 0,
         "height": 1334,
@@ -72,19 +81,19 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
     scrollTo={null}
     statusBarTranslucent={true}
     style={
-      Object {
+      {
         "flex": 1,
         "justifyContent": "center",
         "margin": 37.5,
-        "transform": Array [
-          Object {
+        "transform": [
+          {
             "translateY": 1334,
           },
         ],
       }
     }
     supportedOrientations={
-      Array [
+      [
         "portrait",
         "landscape",
       ]
@@ -93,7 +102,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
   >
     <View
       style={
-        Object {
+        {
           "bottom": 0,
           "left": 0,
           "right": 0,
@@ -104,6 +113,23 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
       <View
         accessibilityLabel="global.close"
         accessibilityRole="button"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
@@ -115,7 +141,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Object {
+          {
             "backgroundColor": "#FFFFFF",
             "borderRadius": 12,
             "elevation": 6,
@@ -127,7 +153,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             "position": "absolute",
             "right": 0,
             "shadowColor": "#212121",
-            "shadowOffset": Object {
+            "shadowOffset": {
               "height": 1,
               "width": 1,
             },
@@ -140,9 +166,9 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         <View
           collapsable={false}
           style={
-            Object {
-              "transform": Array [
-                Object {
+            {
+              "transform": [
+                {
                   "scale": 1,
                 },
               ],
@@ -151,8 +177,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
+            bbHeight="24"
+            bbWidth="24"
             fill="#212121"
             focusable={false}
             height={24}
@@ -160,12 +186,12 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             minX={0}
             minY={0}
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                   "borderWidth": 0,
                 },
-                Object {
+                {
                   "flex": 0,
                   "height": 24,
                   "width": 24,
@@ -177,9 +203,14 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             width={24}
           >
             <RNSVGGroup
-              fill={4280361249}
+              fill={
+                {
+                  "payload": 4280361249,
+                  "type": 0,
+                }
+              }
               propList={
-                Array [
+                [
                   "fill",
                 ]
               }
@@ -189,7 +220,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                   <RNSVGRect
                     height="24"
                     matrix={
-                      Array [
+                      [
                         -1,
                         1.2246467991473532e-16,
                         -1.2246467991473532e-16,
@@ -200,8 +231,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                     }
                     opacity={0}
                     width="24"
-                    x={0}
-                    y={0}
+                    x="0"
+                    y="0"
                   />
                   <RNSVGPath
                     d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
@@ -214,13 +245,13 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "alignItems": "center",
               "display": "flex",
               "flexDirection": "row",
             },
-            Object {
+            {
               "alignItems": "flex-end",
               "justifyContent": "center",
             },
@@ -231,7 +262,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           <react-native-svg
             height={104}
             style={
-              Object {
+              {
                 "marginBottom": 8,
               }
             }
@@ -241,15 +272,15 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "color": "#0421B1",
                   "textAlign": "center",
                 },
@@ -262,8 +293,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
@@ -271,7 +302,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                   "lineHeight": 20,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "color": "#0421B1",
                   "textAlign": "center",
                 },
@@ -284,9 +315,9 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         <View
           collapsable={false}
           style={
-            Object {
-              "transform": Array [
-                Object {
+            {
+              "transform": [
+                {
                   "scale": 1,
                 },
               ],
@@ -295,8 +326,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
+            bbHeight="24"
+            bbWidth="24"
             fill="#0421B1"
             focusable={false}
             height={24}
@@ -304,15 +335,15 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             minX={0}
             minY={0}
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                   "borderWidth": 0,
                 },
-                Object {
+                {
                   "marginHorizontal": 16,
                 },
-                Object {
+                {
                   "flex": 0,
                   "height": 24,
                   "width": 24,
@@ -324,9 +355,14 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             width={24}
           >
             <RNSVGGroup
-              fill={4278460849}
+              fill={
+                {
+                  "payload": 4278460849,
+                  "type": 0,
+                }
+              }
               propList={
-                Array [
+                [
                   "fill",
                 ]
               }
@@ -336,7 +372,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                   <RNSVGRect
                     height="24"
                     matrix={
-                      Array [
+                      [
                         -1,
                         1.2246467991473532e-16,
                         -1.2246467991473532e-16,
@@ -347,8 +383,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                     }
                     opacity={0}
                     width="24"
-                    x={0}
-                    y={0}
+                    x="0"
+                    y="0"
                   />
                   <RNSVGPath
                     d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2z"
@@ -360,6 +396,23 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         </View>
         <View
           accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
           accessible={true}
           collapsable={false}
           focusable={true}
@@ -376,7 +429,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           <react-native-svg
             height={104}
             style={
-              Object {
+              {
                 "marginBottom": 8,
               }
             }
@@ -386,15 +439,15 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "color": "#0421B1",
                   "textAlign": "center",
                   "textDecorationLine": "underline",
@@ -408,8 +461,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
@@ -417,7 +470,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                   "lineHeight": 20,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "color": "#0421B1",
                   "textAlign": "center",
                 },
@@ -430,7 +483,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
       </View>
       <View
         style={
-          Object {
+          {
             "marginTop": 40,
           }
         }
@@ -439,15 +492,15 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 25,
                 "lineHeight": 32,
                 "textAlign": "left",
               },
-              Object {
+              {
                 "textAlign": "center",
               },
             ]
@@ -459,15 +512,15 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 19,
                 "lineHeight": 24,
                 "textAlign": "left",
               },
-              Object {
+              {
                 "marginVertical": 16,
                 "textAlign": "center",
               },
@@ -481,7 +534,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           collapsable={false}
           horizontalAlign="center"
           style={
-            Object {
+            {
               "alignItems": "center",
               "flexBasis": "auto",
               "flexDirection": "row",
@@ -493,8 +546,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "flexBasis": "auto",
                   "flexGrow": 0,
                   "marginRight": 8,
@@ -505,9 +558,9 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             <View
               collapsable={false}
               style={
-                Object {
-                  "transform": Array [
-                    Object {
+                {
+                  "transform": [
+                    {
                       "scale": 1,
                     },
                   ],
@@ -516,8 +569,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight={24}
-                bbWidth={24}
+                bbHeight="24"
+                bbWidth="24"
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -526,12 +579,12 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                 minY={0}
                 size={24}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 24,
                       "width": 24,
@@ -543,9 +596,14 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                 width={24}
               >
                 <RNSVGGroup
-                  fill={4280361249}
+                  fill={
+                    {
+                      "payload": 4280361249,
+                      "type": 0,
+                    }
+                  }
                   propList={
-                    Array [
+                    [
                       "fill",
                     ]
                   }
@@ -556,8 +614,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                         height="24"
                         opacity={0}
                         width="24"
-                        x={0}
-                        y={0}
+                        x="0"
+                        y="0"
                       />
                       <RNSVGPath
                         d="M19 3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h6v2H7a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2h-4v-2h6a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1z"
@@ -570,8 +628,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           </View>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "flexBasis": "auto",
                   "flexGrow": 0,
                 },
@@ -584,8 +642,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
               onPress={[Function]}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "fontFamily": "circularBold",
                     "fontSize": 19,

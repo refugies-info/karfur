@@ -4,8 +4,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
@@ -19,7 +19,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
@@ -33,8 +33,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "minHeight": 65,
             "paddingBottom": 20,
           },
@@ -46,7 +46,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         collapsable={false}
         horizontalAlign="space-between"
         style={
-          Object {
+          {
             "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
@@ -58,8 +58,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
                 "marginRight": 8,
@@ -70,6 +70,23 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View>
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -81,7 +98,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
                   "elevation": 6,
@@ -91,7 +108,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   "paddingRight": 12,
                   "paddingTop": 12,
                   "shadowColor": "#212121",
-                  "shadowOffset": Object {
+                  "shadowOffset": {
                     "height": 1,
                     "width": 1,
                   },
@@ -104,17 +121,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               <View
                 disabled={false}
                 style={
-                  Array [
-                    Object {},
+                  [
+                    {},
                   ]
                 }
               >
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "scale": 1,
                         },
                       ],
@@ -123,8 +140,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 >
                   <RNSVGSvgView
                     align="xMidYMid"
-                    bbHeight={24}
-                    bbWidth={24}
+                    bbHeight="24"
+                    bbWidth="24"
                     fill="#212121"
                     focusable={false}
                     height={24}
@@ -132,12 +149,12 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     minX={0}
                     minY={0}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "backgroundColor": "transparent",
                           "borderWidth": 0,
                         },
-                        Object {
+                        {
                           "flex": 0,
                           "height": 24,
                           "width": 24,
@@ -149,9 +166,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     width={24}
                   >
                     <RNSVGGroup
-                      fill={4280361249}
+                      fill={
+                        {
+                          "payload": 4280361249,
+                          "type": 0,
+                        }
+                      }
                       propList={
-                        Array [
+                        [
                           "fill",
                         ]
                       }
@@ -161,7 +183,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                           <RNSVGRect
                             height="24"
                             matrix={
-                              Array [
+                              [
                                 6.123233995736766e-17,
                                 1,
                                 -1,
@@ -172,8 +194,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                             }
                             opacity={0}
                             width="24"
-                            x={0}
-                            y={0}
+                            x="0"
+                            y="0"
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
@@ -189,8 +211,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "marginRight": 8,
@@ -202,8 +224,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexBasis": "auto",
                 "flexGrow": 0,
               },
@@ -215,7 +237,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             collapsable={false}
             horizontalAlign="flex-end"
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexBasis": "auto",
                 "flexDirection": "row",
@@ -227,8 +249,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "flexBasis": "auto",
                     "flexGrow": 0,
                   },
@@ -259,7 +281,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       scrollTo={null}
       statusBarTranslucent={false}
       supportedOrientations={
-        Array [
+        [
           "portrait",
           "landscape",
         ]
@@ -272,7 +294,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
   <RCTScrollView
     alwaysBounceVertical={false}
     contentContainerStyle={
-      Object {
+      {
         "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
@@ -284,13 +306,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
     scrollIndicatorInsets={
-      Object {
+      {
         "right": 1,
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "paddingBottom": 24,
         },
       ]
@@ -300,7 +322,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       <View
         onLayout={[Function]}
         style={
-          Object {
+          {
             "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
@@ -310,7 +332,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "bottom": 0,
               "left": 0,
               "right": 0,
@@ -323,8 +345,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#212121",
               "fontFamily": "circularBook",
               "fontSize": 16,
@@ -341,8 +363,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#212121",
               "fontFamily": "circularBook",
               "fontSize": 16,
@@ -357,8 +379,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </Text>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "alignItems": "center",
               "display": "flex",
               "flexDirection": "row",
@@ -369,9 +391,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <View
           collapsable={false}
           style={
-            Object {
-              "transform": Array [
-                Object {
+            {
+              "transform": [
+                {
                   "scale": 1,
                 },
               ],
@@ -380,8 +402,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
+            bbHeight="24"
+            bbWidth="24"
             fill="#5E5E5E"
             focusable={false}
             height={24}
@@ -389,16 +411,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             minX={0}
             minY={0}
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                   "borderWidth": 0,
                 },
-                Object {
+                {
                   "marginLeft": 0,
                   "marginRight": 8,
                 },
-                Object {
+                {
                   "flex": 0,
                   "height": 24,
                   "width": 24,
@@ -410,9 +432,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             width={24}
           >
             <RNSVGGroup
-              fill={4284374622}
+              fill={
+                {
+                  "payload": 4284374622,
+                  "type": 0,
+                }
+              }
               propList={
-                Array [
+                [
                   "fill",
                 ]
               }
@@ -422,7 +449,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   <RNSVGRect
                     height="24"
                     matrix={
-                      Array [
+                      [
                         -1,
                         1.2246467991473532e-16,
                         -1.2246467991473532e-16,
@@ -433,8 +460,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     }
                     opacity={0}
                     width="24"
-                    x={0}
-                    y={0}
+                    x="0"
+                    y="0"
                   />
                   <RNSVGPath
                     d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -451,15 +478,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
                 "textAlign": "left",
               },
-              Object {
+              {
                 "color": "#5E5E5E",
               },
             ]
@@ -469,7 +496,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
            
           <Text
             style={
-              Object {
+              {
                 "color": "#008205",
               }
             }
@@ -482,8 +509,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 25,
@@ -499,8 +526,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </Text>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "elevation": 6,
@@ -510,7 +537,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "paddingRight": 24,
               "paddingTop": 24,
               "shadowColor": "#212121",
-              "shadowOffset": Object {
+              "shadowOffset": {
                 "height": 1,
                 "width": 1,
               },
@@ -523,8 +550,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <View
           isRTL={false}
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "marginBottom": 24,
@@ -536,8 +563,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#212121",
                   "borderRadius": 16,
@@ -554,8 +581,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -572,15 +599,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "flex": 1,
                   "flexWrap": "wrap",
                 },
@@ -594,8 +621,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -611,7 +638,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <Image
           source={1}
           style={
-            Object {
+            {
               "alignSelf": "center",
               "height": 92,
               "marginBottom": 24,
@@ -621,8 +648,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         />
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "#ffcecb",
                 "borderRadius": 12,
                 "paddingBottom": 24,
@@ -636,8 +663,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "flexDirection": "row",
                   "marginBottom": 16,
@@ -648,9 +675,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             <View
               collapsable={false}
               style={
-                Object {
-                  "transform": Array [
-                    Object {
+                {
+                  "transform": [
+                    {
                       "scale": 1,
                     },
                   ],
@@ -659,8 +686,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight={24}
-                bbWidth={24}
+                bbHeight="24"
+                bbWidth="24"
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -668,16 +695,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 minX={0}
                 minY={0}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "marginLeft": 0,
                       "marginRight": 8,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 24,
                       "width": 24,
@@ -689,9 +716,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 width={24}
               >
                 <RNSVGGroup
-                  fill={4280361249}
+                  fill={
+                    {
+                      "payload": 4280361249,
+                      "type": 0,
+                    }
+                  }
                   propList={
-                    Array [
+                    [
                       "fill",
                     ]
                   }
@@ -701,7 +733,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       <RNSVGRect
                         height="24"
                         matrix={
-                          Array [
+                          [
                             -1,
                             1.2246467991473532e-16,
                             -1.2246467991473532e-16,
@@ -712,8 +744,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x={0}
-                        y={0}
+                        x="0"
+                        y="0"
                       />
                       <RNSVGPath
                         d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -735,8 +767,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -753,8 +785,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
@@ -771,8 +803,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -780,7 +812,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "marginBottom": 24,
                 "textAlign": "left",
               },
-              Object {
+              {
                 "marginBottom": 0,
                 "marginTop": 24,
               },
@@ -792,8 +824,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "elevation": 6,
@@ -803,7 +835,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "paddingRight": 24,
               "paddingTop": 24,
               "shadowColor": "#212121",
-              "shadowOffset": Object {
+              "shadowOffset": {
                 "height": 1,
                 "width": 1,
               },
@@ -816,8 +848,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <View
           isRTL={false}
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "marginBottom": 24,
@@ -829,8 +861,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#212121",
                   "borderRadius": 16,
@@ -847,8 +879,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -865,15 +897,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "flex": 1,
                   "flexWrap": "wrap",
                 },
@@ -887,8 +919,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -903,13 +935,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </Text>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "display": "flex",
                 "flexDirection": "row",
               },
-              Object {
+              {
                 "marginBottom": 8,
               },
             ]
@@ -918,9 +950,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             collapsable={false}
             style={
-              Object {
-                "transform": Array [
-                  Object {
+              {
+                "transform": [
+                  {
                     "scale": 1,
                   },
                 ],
@@ -929,8 +961,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           >
             <RNSVGSvgView
               align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
+              bbHeight="24"
+              bbWidth="24"
               fill="#212121"
               focusable={false}
               height={24}
@@ -938,16 +970,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               minX={0}
               minY={0}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "backgroundColor": "transparent",
                     "borderWidth": 0,
                   },
-                  Object {
+                  {
                     "marginLeft": 0,
                     "marginRight": 8,
                   },
-                  Object {
+                  {
                     "flex": 0,
                     "height": 24,
                     "width": 24,
@@ -959,9 +991,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               width={24}
             >
               <RNSVGGroup
-                fill={4280361249}
+                fill={
+                  {
+                    "payload": 4280361249,
+                    "type": 0,
+                  }
+                }
                 propList={
-                  Array [
+                  [
                     "fill",
                   ]
                 }
@@ -972,8 +1009,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       height="24"
                       opacity={0}
                       width="24"
-                      x={0}
-                      y={0}
+                      x="0"
+                      y="0"
                     />
                     <RNSVGPath
                       d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
@@ -990,8 +1027,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
@@ -1006,13 +1043,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "display": "flex",
                 "flexDirection": "row",
               },
-              Object {
+              {
                 "marginBottom": 8,
               },
             ]
@@ -1021,9 +1058,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             collapsable={false}
             style={
-              Object {
-                "transform": Array [
-                  Object {
+              {
+                "transform": [
+                  {
                     "scale": 1,
                   },
                 ],
@@ -1032,8 +1069,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           >
             <RNSVGSvgView
               align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
+              bbHeight="24"
+              bbWidth="24"
               fill="#212121"
               focusable={false}
               height={24}
@@ -1041,16 +1078,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               minX={0}
               minY={0}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "backgroundColor": "transparent",
                     "borderWidth": 0,
                   },
-                  Object {
+                  {
                     "marginLeft": 0,
                     "marginRight": 8,
                   },
-                  Object {
+                  {
                     "flex": 0,
                     "height": 24,
                     "width": 24,
@@ -1062,9 +1099,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               width={24}
             >
               <RNSVGGroup
-                fill={4280361249}
+                fill={
+                  {
+                    "payload": 4280361249,
+                    "type": 0,
+                  }
+                }
                 propList={
-                  Array [
+                  [
                     "fill",
                   ]
                 }
@@ -1075,8 +1117,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       height="24"
                       opacity={0}
                       width="24"
-                      x={0}
-                      y={0}
+                      x="0"
+                      y="0"
                     />
                     <RNSVGPath
                       d="M18 4h-1V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zM6 6h1v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h1a1 1 0 0 1 1 1v4H5V7a1 1 0 0 1 1-1zm12 14H6a1 1 0 0 1-1-1v-6h14v6a1 1 0 0 1-1 1z"
@@ -1098,8 +1140,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
@@ -1114,13 +1156,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "display": "flex",
                 "flexDirection": "row",
               },
-              Object {
+              {
                 "marginBottom": 24,
               },
             ]
@@ -1129,9 +1171,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             collapsable={false}
             style={
-              Object {
-                "transform": Array [
-                  Object {
+              {
+                "transform": [
+                  {
                     "scale": 1,
                   },
                 ],
@@ -1140,8 +1182,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           >
             <RNSVGSvgView
               align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
+              bbHeight="24"
+              bbWidth="24"
               fill="#212121"
               focusable={false}
               height={24}
@@ -1149,16 +1191,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               minX={0}
               minY={0}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "backgroundColor": "transparent",
                     "borderWidth": 0,
                   },
-                  Object {
+                  {
                     "marginLeft": 0,
                     "marginRight": 8,
                   },
-                  Object {
+                  {
                     "flex": 0,
                     "height": 24,
                     "width": 24,
@@ -1170,9 +1212,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               width={24}
             >
               <RNSVGGroup
-                fill={4280361249}
+                fill={
+                  {
+                    "payload": 4280361249,
+                    "type": 0,
+                  }
+                }
                 propList={
-                  Array [
+                  [
                     "fill",
                   ]
                 }
@@ -1201,8 +1248,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       height="24"
                       opacity={0}
                       width="24"
-                      x={0}
-                      y={0}
+                      x="0"
+                      y="0"
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>
@@ -1213,8 +1260,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
@@ -1231,8 +1278,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -1247,8 +1294,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </Text>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "#ffcecb",
                 "borderRadius": 12,
                 "paddingBottom": 24,
@@ -1262,8 +1309,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "flexDirection": "row",
                   "marginBottom": 16,
@@ -1274,9 +1321,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             <View
               collapsable={false}
               style={
-                Object {
-                  "transform": Array [
-                    Object {
+                {
+                  "transform": [
+                    {
                       "scale": 1,
                     },
                   ],
@@ -1285,8 +1332,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight={24}
-                bbWidth={24}
+                bbHeight="24"
+                bbWidth="24"
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -1294,16 +1341,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 minX={0}
                 minY={0}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "marginLeft": 0,
                       "marginRight": 8,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 24,
                       "width": 24,
@@ -1315,9 +1362,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 width={24}
               >
                 <RNSVGGroup
-                  fill={4280361249}
+                  fill={
+                    {
+                      "payload": 4280361249,
+                      "type": 0,
+                    }
+                  }
                   propList={
-                    Array [
+                    [
                       "fill",
                     ]
                   }
@@ -1327,7 +1379,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       <RNSVGRect
                         height="24"
                         matrix={
-                          Array [
+                          [
                             -1,
                             1.2246467991473532e-16,
                             -1.2246467991473532e-16,
@@ -1338,8 +1390,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x={0}
-                        y={0}
+                        x="0"
+                        y="0"
                       />
                       <RNSVGPath
                         d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -1361,8 +1413,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -1379,8 +1431,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
@@ -1396,8 +1448,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "elevation": 6,
@@ -1407,7 +1459,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "paddingRight": 24,
               "paddingTop": 24,
               "shadowColor": "#212121",
-              "shadowOffset": Object {
+              "shadowOffset": {
                 "height": 1,
                 "width": 1,
               },
@@ -1420,8 +1472,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <View
           isRTL={false}
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "marginBottom": 24,
@@ -1433,8 +1485,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#212121",
                   "borderRadius": 16,
@@ -1451,8 +1503,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -1469,15 +1521,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "flex": 1,
                   "flexWrap": "wrap",
                 },
@@ -1491,8 +1543,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -1509,8 +1561,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -1527,8 +1579,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -1536,7 +1588,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "marginBottom": 24,
                 "textAlign": "left",
               },
-              Object {
+              {
                 "marginBottom": 0,
               },
             ]
@@ -1547,8 +1599,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "elevation": 6,
@@ -1558,7 +1610,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "paddingRight": 24,
               "paddingTop": 24,
               "shadowColor": "#212121",
-              "shadowOffset": Object {
+              "shadowOffset": {
                 "height": 1,
                 "width": 1,
               },
@@ -1571,8 +1623,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <View
           isRTL={false}
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "marginBottom": 24,
@@ -1584,8 +1636,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#212121",
                   "borderRadius": 16,
@@ -1602,8 +1654,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -1620,15 +1672,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "flex": 1,
                   "flexWrap": "wrap",
                 },
@@ -1642,8 +1694,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -1660,8 +1712,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -1669,7 +1721,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "marginBottom": 24,
                 "textAlign": "left",
               },
-              Object {
+              {
                 "marginBottom": 0,
               },
             ]
@@ -1682,8 +1734,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 25,
@@ -1699,8 +1751,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </Text>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "elevation": 6,
@@ -1710,7 +1762,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "paddingRight": 24,
               "paddingTop": 24,
               "shadowColor": "#212121",
-              "shadowOffset": Object {
+              "shadowOffset": {
                 "height": 1,
                 "width": 1,
               },
@@ -1723,8 +1775,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <View
           isRTL={false}
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "marginBottom": 24,
@@ -1736,8 +1788,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#212121",
                   "borderRadius": 16,
@@ -1754,8 +1806,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -1772,15 +1824,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "flex": 1,
                   "flexWrap": "wrap",
                 },
@@ -1794,8 +1846,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -1811,7 +1863,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <Image
           source={1}
           style={
-            Object {
+            {
               "alignSelf": "center",
               "height": 130,
               "marginBottom": 24,
@@ -1823,8 +1875,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -1832,7 +1884,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "marginBottom": 24,
                 "textAlign": "left",
               },
-              Object {
+              {
                 "marginBottom": 0,
               },
             ]
@@ -1843,8 +1895,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "elevation": 6,
@@ -1854,7 +1906,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "paddingRight": 24,
               "paddingTop": 24,
               "shadowColor": "#212121",
-              "shadowOffset": Object {
+              "shadowOffset": {
                 "height": 1,
                 "width": 1,
               },
@@ -1867,8 +1919,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <View
           isRTL={false}
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "marginBottom": 24,
@@ -1880,8 +1932,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#212121",
                   "borderRadius": 16,
@@ -1898,8 +1950,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -1916,15 +1968,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "flex": 1,
                   "flexWrap": "wrap",
                 },
@@ -1938,8 +1990,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -1956,8 +2008,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -1965,7 +2017,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "marginBottom": 24,
                 "textAlign": "left",
               },
-              Object {
+              {
                 "marginBottom": 0,
               },
             ]
@@ -1976,8 +2028,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "elevation": 6,
@@ -1987,7 +2039,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "paddingRight": 24,
               "paddingTop": 24,
               "shadowColor": "#212121",
-              "shadowOffset": Object {
+              "shadowOffset": {
                 "height": 1,
                 "width": 1,
               },
@@ -2000,8 +2052,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <View
           isRTL={false}
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "marginBottom": 24,
@@ -2013,8 +2065,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#212121",
                   "borderRadius": 16,
@@ -2031,8 +2083,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -2049,15 +2101,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "flex": 1,
                   "flexWrap": "wrap",
                 },
@@ -2071,8 +2123,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -2089,8 +2141,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -2105,8 +2157,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </Text>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "#ffcecb",
                 "borderRadius": 12,
                 "paddingBottom": 24,
@@ -2120,8 +2172,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "flexDirection": "row",
                   "marginBottom": 16,
@@ -2132,9 +2184,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             <View
               collapsable={false}
               style={
-                Object {
-                  "transform": Array [
-                    Object {
+                {
+                  "transform": [
+                    {
                       "scale": 1,
                     },
                   ],
@@ -2143,8 +2195,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight={24}
-                bbWidth={24}
+                bbHeight="24"
+                bbWidth="24"
                 fill="#212121"
                 focusable={false}
                 height={24}
@@ -2152,16 +2204,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 minX={0}
                 minY={0}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {
+                    {
                       "marginLeft": 0,
                       "marginRight": 8,
                     },
-                    Object {
+                    {
                       "flex": 0,
                       "height": 24,
                       "width": 24,
@@ -2173,9 +2225,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 width={24}
               >
                 <RNSVGGroup
-                  fill={4280361249}
+                  fill={
+                    {
+                      "payload": 4280361249,
+                      "type": 0,
+                    }
+                  }
                   propList={
-                    Array [
+                    [
                       "fill",
                     ]
                   }
@@ -2185,7 +2242,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       <RNSVGRect
                         height="24"
                         matrix={
-                          Array [
+                          [
                             -1,
                             1.2246467991473532e-16,
                             -1.2246467991473532e-16,
@@ -2196,8 +2253,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                         }
                         opacity={0}
                         width="24"
-                        x={0}
-                        y={0}
+                        x="0"
+                        y="0"
                       />
                       <RNSVGPath
                         d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
@@ -2219,8 +2276,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -2237,8 +2294,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
@@ -2252,13 +2309,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           </Text>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
                 },
-                Object {
+                {
                   "marginVertical": 16,
                 },
               ]
@@ -2267,7 +2324,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             <react-native-svg
               height={34}
               style={
-                Object {
+                {
                   "marginLeft": 0,
                   "marginRight": 8,
                 }
@@ -2278,8 +2335,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
@@ -2294,17 +2351,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </Text>
           </View>
           <View
-            style={Object {}}
+            style={{}}
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
                   },
-                  Object {
+                  {
                     "alignItems": "flex-start",
                   },
                 ]
@@ -2314,8 +2371,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
@@ -2333,8 +2390,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBook",
@@ -2352,13 +2409,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
                   },
-                  Object {
+                  {
                     "alignItems": "flex-start",
                   },
                 ]
@@ -2368,8 +2425,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
@@ -2387,8 +2444,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBook",
@@ -2406,13 +2463,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
                   },
-                  Object {
+                  {
                     "alignItems": "flex-start",
                   },
                 ]
@@ -2422,8 +2479,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
@@ -2441,8 +2498,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBook",
@@ -2460,13 +2517,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
                   },
-                  Object {
+                  {
                     "alignItems": "flex-start",
                   },
                 ]
@@ -2476,8 +2533,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
@@ -2495,8 +2552,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBook",
@@ -2514,13 +2571,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
                   },
-                  Object {
+                  {
                     "alignItems": "flex-start",
                   },
                 ]
@@ -2530,8 +2587,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
@@ -2549,8 +2606,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBook",
@@ -2571,8 +2628,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   onPress={[Function]}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
@@ -2593,13 +2650,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           </View>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
                 },
-                Object {
+                {
                   "marginVertical": 16,
                 },
               ]
@@ -2608,7 +2665,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             <react-native-svg
               height={32}
               style={
-                Object {
+                {
                   "height": 32,
                   "marginLeft": 0,
                   "marginRight": 8,
@@ -2621,8 +2678,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
@@ -2637,17 +2694,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </Text>
           </View>
           <View
-            style={Object {}}
+            style={{}}
           >
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
                   },
-                  Object {
+                  {
                     "alignItems": "flex-start",
                   },
                 ]
@@ -2657,8 +2714,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
@@ -2676,8 +2733,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBook",
@@ -2695,13 +2752,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
                   },
-                  Object {
+                  {
                     "alignItems": "flex-start",
                   },
                 ]
@@ -2711,8 +2768,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
@@ -2730,8 +2787,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBook",
@@ -2749,13 +2806,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
                   },
-                  Object {
+                  {
                     "alignItems": "flex-start",
                   },
                 ]
@@ -2765,8 +2822,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
@@ -2784,8 +2841,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBook",
@@ -2803,13 +2860,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
                   },
-                  Object {
+                  {
                     "alignItems": "flex-start",
                   },
                 ]
@@ -2819,8 +2876,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
@@ -2838,8 +2895,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#212121",
                       "flexShrink": 1,
                       "fontFamily": "circularBook",
@@ -2860,8 +2917,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   onPress={[Function]}
                   selectable={true}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
@@ -2884,8 +2941,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "elevation": 6,
@@ -2895,7 +2952,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "paddingRight": 24,
               "paddingTop": 24,
               "shadowColor": "#212121",
-              "shadowOffset": Object {
+              "shadowOffset": {
                 "height": 1,
                 "width": 1,
               },
@@ -2908,8 +2965,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <View
           isRTL={false}
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "marginBottom": 24,
@@ -2921,8 +2978,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             isRTL={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignItems": "center",
                   "backgroundColor": "#212121",
                   "borderRadius": 16,
@@ -2939,8 +2996,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
@@ -2957,15 +3014,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
-                Object {
+                {
                   "flex": 1,
                   "flexWrap": "wrap",
                 },
@@ -2979,8 +3036,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -2997,8 +3054,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
@@ -3006,7 +3063,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "marginBottom": 24,
                 "textAlign": "left",
               },
-              Object {
+              {
                 "marginBottom": 0,
               },
             ]
@@ -3019,8 +3076,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 25,
@@ -3038,8 +3095,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#212121",
               "fontFamily": "circularBook",
               "fontSize": 16,
@@ -3047,7 +3104,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "marginBottom": 24,
               "textAlign": "left",
             },
-            Object {
+            {
               "marginBottom": 0,
             },
           ]
@@ -3061,8 +3118,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           onPress={[Function]}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "flexShrink": 1,
                 "fontFamily": "circularBold",
@@ -3085,8 +3142,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 25,
@@ -3104,8 +3161,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#212121",
               "fontFamily": "circularBook",
               "fontSize": 16,
@@ -3120,13 +3177,30 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </Text>
       <View
         style={
-          Object {
+          {
             "alignItems": "flex-start",
           }
         }
       >
         <View
           accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
           accessible={true}
           collapsable={false}
           focusable={true}
@@ -3138,7 +3212,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Object {
+            {
               "alignItems": "center",
               "backgroundColor": "#212121",
               "borderRadius": 12,
@@ -3152,7 +3226,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "paddingRight": 18,
               "paddingTop": 18,
               "shadowColor": "#212121",
-              "shadowOffset": Object {
+              "shadowOffset": {
                 "height": 1,
                 "width": 1,
               },
@@ -3166,9 +3240,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           <View
             collapsable={false}
             style={
-              Object {
-                "transform": Array [
-                  Object {
+              {
+                "transform": [
+                  {
                     "scale": 1,
                   },
                 ],
@@ -3177,8 +3251,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           >
             <RNSVGSvgView
               align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
+              bbHeight="24"
+              bbWidth="24"
               fill="#FFFFFF"
               focusable={false}
               height={24}
@@ -3186,13 +3260,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               minX={0}
               minY={0}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "backgroundColor": "transparent",
                     "borderWidth": 0,
                   },
-                  Object {},
-                  Object {
+                  {},
+                  {
                     "flex": 0,
                     "height": 24,
                     "width": 24,
@@ -3204,9 +3278,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               width={24}
             >
               <RNSVGGroup
-                fill={4294967295}
+                fill={
+                  {
+                    "payload": 4294967295,
+                    "type": 0,
+                  }
+                }
                 propList={
-                  Array [
+                  [
                     "fill",
                   ]
                 }
@@ -3217,8 +3296,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       height="24"
                       opacity={0}
                       width="24"
-                      x={0}
-                      y={0}
+                      x="0"
+                      y="0"
                     />
                     <RNSVGPath
                       d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
@@ -3234,8 +3313,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#FFFFFF",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
@@ -3245,13 +3324,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   "marginRight": 0,
                   "textAlign": "left",
                 },
-                Object {},
+                {},
               ]
             }
             textColor="#FFFFFF"
           >
             <Text
-              style={Object {}}
+              style={{}}
             >
               contact@refugies.info
             </Text>
@@ -3261,13 +3340,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
+          [
+            {
               "alignItems": "center",
               "display": "flex",
               "flexDirection": "row",
             },
-            Object {
+            {
               "marginVertical": 56,
             },
           ]
@@ -3276,9 +3355,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         <View
           collapsable={false}
           style={
-            Object {
-              "transform": Array [
-                Object {
+            {
+              "transform": [
+                {
                   "scale": 1,
                 },
               ],
@@ -3287,8 +3366,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         >
           <RNSVGSvgView
             align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
+            bbHeight="24"
+            bbWidth="24"
             fill="#5E5E5E"
             focusable={false}
             height={24}
@@ -3296,16 +3375,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             minX={0}
             minY={0}
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                   "borderWidth": 0,
                 },
-                Object {
+                {
                   "marginLeft": 0,
                   "marginRight": 8,
                 },
-                Object {
+                {
                   "flex": 0,
                   "height": 24,
                   "width": 24,
@@ -3317,9 +3396,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             width={24}
           >
             <RNSVGGroup
-              fill={4284374622}
+              fill={
+                {
+                  "payload": 4284374622,
+                  "type": 0,
+                }
+              }
               propList={
-                Array [
+                [
                   "fill",
                 ]
               }
@@ -3330,8 +3414,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     height="24"
                     opacity={0}
                     width="24"
-                    x={0}
-                    y={0}
+                    x="0"
+                    y="0"
                   />
                   <RNSVGPath
                     d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"
@@ -3345,15 +3429,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
                 "textAlign": "left",
               },
-              Object {
+              {
                 "color": "#5E5E5E",
               },
             ]
@@ -3362,7 +3446,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           Mise à jour : 
           <Text
             style={
-              Object {
+              {
                 "color": "#008205",
               }
             }

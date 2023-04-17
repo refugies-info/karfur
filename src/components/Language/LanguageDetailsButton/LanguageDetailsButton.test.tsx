@@ -1,5 +1,5 @@
 import React from "react";
-import { act, fireEvent } from "react-native-testing-library";
+import { act, fireEvent } from "@testing-library/react-native";
 import LanguageDetailsButton from "./LanguageDetailsButton";
 import { render } from "../../utils/tests";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";

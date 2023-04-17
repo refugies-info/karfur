@@ -3,8 +3,8 @@
 exports[`Separator snapshot test suite should render without bug 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "alignSelf": "center",
         "backgroundColor": "#EDEBEB",
         "height": 1,

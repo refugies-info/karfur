@@ -43,6 +43,7 @@ import { fetchContentsActionCreator } from "../../Contents/contents.actions";
 import { hasUserSeenOnboardingSelector } from "../user.selectors";
 import { logEventInFirebase } from "../../../../utils/logEvent";
 import { FirebaseEvent } from "../../../../utils/eventsUsedInFirebase";
+import { MobileFrenchLevel } from "@refugies-info/api-types";
 
 describe("[Saga] user", () => {
   describe("pilot", () => {
@@ -55,7 +56,10 @@ describe("[Saga] user", () => {
         .next()
         .takeLatest("SAVE_USER_HAS_NEW_FAVORITES", saveUserHasNewFavorites)
         .next()
-        .takeLatest("SAVE_USER_LOCALIZED_WARNING_HIDDEN", saveUserLocalizedWarningHidden)
+        .takeLatest(
+          "SAVE_USER_LOCALIZED_WARNING_HIDDEN",
+          saveUserLocalizedWarningHidden
+        )
         .next()
         .takeLatest("SAVE_USER_LOCATION", saveUserLocation)
         .next()
@@ -80,7 +84,10 @@ describe("[Saga] user", () => {
         .next()
         .takeLatest("REMOVE_USER_HAS_NEW_FAVORITES", removeUserHasNewFavorites)
         .next()
-        .takeLatest("REMOVE_USER_LOCALIZED_WARNING_HIDDEN", removeUserLocalizedWarningHidden)
+        .takeLatest(
+          "REMOVE_USER_LOCALIZED_WARNING_HIDDEN",
+          removeUserLocalizedWarningHidden
+        )
         .next()
         .takeLatest("ADD_USER_FAVORITE", addUserFavorite)
         .next()
@@ -175,16 +182,21 @@ describe("[Saga] user", () => {
     it("should call functions and set data", () => {
       testSaga(saveUserFrenchLevel, {
         type: "SAVE_USER_FRENCH_LEVEL",
-        payload: { frenchLevel: "level1", shouldFetchContents: false },
+        payload: {
+          frenchLevel: MobileFrenchLevel["Je parle un peu"],
+          shouldFetchContents: false,
+        },
       })
         .next()
-        .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
-        .next()
-        .put(setUserFrenchLevelActionCreator("level1"))
+        .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "Je parle un peu")
         .next()
         .call(logEventInFirebase, FirebaseEvent.VALIDATE_FRENCH_LEVEL, {
-          level: "level1",
+          level: MobileFrenchLevel["Je parle un peu"],
         })
+        .next()
+        .put(
+          setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle un peu"])
+        )
         .next()
         .isDone();
     });
@@ -192,16 +204,25 @@ describe("[Saga] user", () => {
     it("should call functions and set data", () => {
       testSaga(saveUserFrenchLevel, {
         type: "SAVE_USER_FRENCH_LEVEL",
-        payload: { frenchLevel: "level1", shouldFetchContents: true },
+        payload: {
+          frenchLevel: MobileFrenchLevel["Je parle un peu"],
+          shouldFetchContents: true,
+        },
       })
         .next()
-        .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
-        .next()
-        .put(setUserFrenchLevelActionCreator("level1"))
+        .call(
+          saveItemInAsyncStorage,
+          "FRENCH_LEVEL",
+          MobileFrenchLevel["Je parle un peu"]
+        )
         .next()
         .call(logEventInFirebase, FirebaseEvent.VALIDATE_FRENCH_LEVEL, {
-          level: "level1",
+          level: MobileFrenchLevel["Je parle un peu"],
         })
+        .next()
+        .put(
+          setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle un peu"])
+        )
         .next()
         .put(fetchContentsActionCreator())
         .next()
@@ -211,10 +232,17 @@ describe("[Saga] user", () => {
     it("should call functions and set null if saveItemInAsyncStorage throws", () => {
       testSaga(saveUserFrenchLevel, {
         type: "SAVE_USER_FRENCH_LEVEL",
-        payload: { frenchLevel: "level1", shouldFetchContents: false },
+        payload: {
+          frenchLevel: MobileFrenchLevel["Je parle un peu"],
+          shouldFetchContents: false,
+        },
       })
         .next()
-        .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
+        .call(
+          saveItemInAsyncStorage,
+          "FRENCH_LEVEL",
+          MobileFrenchLevel["Je parle un peu"]
+        )
         .throw(new Error("error"))
         .put(setUserFrenchLevelActionCreator(null))
         .next()
@@ -387,8 +415,10 @@ describe("[Saga] user", () => {
         .put(setUserAgeActionCreator("age"))
         .next()
         .call(getItemInAsyncStorage, "FRENCH_LEVEL")
-        .next("frenchLevel")
-        .put(setUserFrenchLevelActionCreator("frenchLevel"))
+        .next(MobileFrenchLevel["Je parle un peu"])
+        .put(
+          setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle un peu"])
+        )
         .next()
         .put(fetchContentsActionCreator())
         .next()

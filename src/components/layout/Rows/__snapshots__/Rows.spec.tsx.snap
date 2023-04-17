@@ -4,8 +4,8 @@ exports[`Rows snapshot test suite should be able to control flex layout 1`] = `
 <View
   horizontalAlign="center"
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flexBasis": "auto",
         "flexDirection": "column",
@@ -18,8 +18,8 @@ exports[`Rows snapshot test suite should be able to control flex layout 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "flexBasis": 0,
           "flexGrow": 1,
           "marginBottom": 16,
@@ -33,8 +33,8 @@ exports[`Rows snapshot test suite should be able to control flex layout 1`] = `
   </View>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "flexBasis": 0,
           "flexGrow": 2,
           "marginBottom": 16,
@@ -48,8 +48,8 @@ exports[`Rows snapshot test suite should be able to control flex layout 1`] = `
   </View>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "flexBasis": 0,
           "flexGrow": 1,
           "marginBottom": 16,
@@ -63,8 +63,8 @@ exports[`Rows snapshot test suite should be able to control flex layout 1`] = `
   </View>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "flexBasis": 0,
           "flexGrow": 2,
         },
@@ -81,8 +81,8 @@ exports[`Rows snapshot test suite should be able to control flex layout 1`] = `
 exports[`Rows snapshot test suite should render without bug 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "flexBasis": "auto",
         "flexDirection": "column",
         "flexGrow": 1,
@@ -92,8 +92,8 @@ exports[`Rows snapshot test suite should render without bug 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "flexBasis": "auto",
           "flexGrow": 0,
           "marginBottom": 16,
@@ -107,8 +107,8 @@ exports[`Rows snapshot test suite should render without bug 1`] = `
   </View>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "flexBasis": "auto",
           "flexGrow": 0,
           "marginBottom": 16,
@@ -122,8 +122,8 @@ exports[`Rows snapshot test suite should render without bug 1`] = `
   </View>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "flexBasis": "auto",
           "flexGrow": 0,
           "marginBottom": 16,
@@ -137,8 +137,8 @@ exports[`Rows snapshot test suite should render without bug 1`] = `
   </View>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "flexBasis": "auto",
           "flexGrow": 0,
         },

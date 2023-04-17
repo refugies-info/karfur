@@ -5,8 +5,8 @@ exports[`Title snapshot test suite should render without bug 1`] = `
   isRTL={false}
   selectable={true}
   style={
-    Array [
-      Object {
+    [
+      {
         "color": "#212121",
         "fontFamily": "circularBold",
         "fontSize": 25,

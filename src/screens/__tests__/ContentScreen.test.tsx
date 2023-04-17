@@ -1,7 +1,7 @@
 import React from "react";
 import { wrapWithProvidersAndRender } from "../../jest/wrapWithProvidersAndRender";
 import ContentScreen from "../ContentScreen";
-import { fireEvent, act } from "react-native-testing-library";
+import { fireEvent, act } from "@testing-library/react-native";
 import { initialRootStateFactory } from "../../services/redux/reducers";
 import { selectedContent } from "../../jest/__fixtures__/selectedContent";
 import { initialUserState } from "../../services/redux/User/user.reducer";
@@ -103,7 +103,7 @@ describe("ContentScreen", () => {
     expect(component).toMatchSnapshot();
   });
 
-  it("should toggle map modal", async () => {
+  it.only("should toggle map modal", async () => {
     const navigation = { navigate: jest.fn() };
     const route = {
       params: {

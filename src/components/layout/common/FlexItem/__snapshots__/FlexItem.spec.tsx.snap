@@ -3,8 +3,8 @@
 exports[`FlexItem snapshot test suite should accept non float value as flex prop 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "flexBasis": 50,
         "flexGrow": 0,
       },
@@ -16,8 +16,8 @@ exports[`FlexItem snapshot test suite should accept non float value as flex prop
 exports[`FlexItem snapshot test suite should render without bug 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "flexBasis": 0,
         "flexGrow": 1,
         "marginBottom": 0,

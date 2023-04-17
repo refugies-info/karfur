@@ -4,8 +4,8 @@ exports[`RadioButton snapshot test suite should render not selected 1`] = `
 <View
   selected={false}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "backgroundColor": "transparent",
         "borderColor": "#5E5E5E",
@@ -24,8 +24,8 @@ exports[`RadioButton snapshot test suite should render without bug 1`] = `
 <View
   selected={true}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "backgroundColor": "#0421B1",
         "borderColor": "transparent",

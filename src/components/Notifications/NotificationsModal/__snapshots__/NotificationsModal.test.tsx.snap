@@ -19,7 +19,7 @@ exports[`NotificationsModal snapshot test suite should render not visible 1`] = 
   scrollTo={null}
   statusBarTranslucent={false}
   supportedOrientations={
-    Array [
+    [
       "portrait",
       "landscape",
     ]
@@ -49,7 +49,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
   scrollTo={null}
   statusBarTranslucent={false}
   supportedOrientations={
-    Array [
+    [
       "portrait",
       "landscape",
     ]
@@ -59,6 +59,15 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
   visible={true}
 >
   <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
     accessible={true}
     collapsable={false}
     focusable={true}
@@ -71,7 +80,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "black",
         "bottom": 0,
         "height": 1334,
@@ -102,19 +111,19 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
     scrollTo={null}
     statusBarTranslucent={false}
     style={
-      Object {
+      {
         "flex": 1,
         "justifyContent": "center",
         "margin": 37.5,
-        "transform": Array [
-          Object {
+        "transform": [
+          {
             "translateY": 1334,
           },
         ],
       }
     }
     supportedOrientations={
-      Array [
+      [
         "portrait",
         "landscape",
       ]
@@ -125,8 +134,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
       <View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "flex-start",
                 "backgroundColor": "#FFFFFF",
                 "borderRadius": 12,
@@ -143,12 +152,12 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "aspectRatio": 1,
                 },
                 undefined,
-                Object {
+                {
                   "height": 160,
                   "width": 160,
                 },
@@ -159,8 +168,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               cacheComposition={true}
               collapsable={false}
               colorFilters={
-                Array [
-                  Object {
+                [
+                  {
                     "color": 4291348680,
                     "keypath": "bell icon",
                   },
@@ -172,23 +181,23 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               onAnimationFinish={[Function]}
               progress={0}
               resizeMode="contain"
-              sourceJson="{\\"v\\":\\"4.8.0\\",\\"meta\\":{\\"g\\":\\"LottieFiles AE \\",\\"a\\":\\"\\",\\"k\\":\\"\\",\\"d\\":\\"\\",\\"tc\\":\\"\\"},\\"fr\\":29.9700012207031,\\"ip\\":0,\\"op\\":65.0000026475043,\\"w\\":700,\\"h\\":700,\\"nm\\":\\"notification\\",\\"ddd\\":0,\\"assets\\":[{\\"id\\":\\"image_0\\",\\"w\\":339,\\"h\\":385,\\"u\\":\\"\\",\\"p\\":\\"data:image/png;base64,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\\",\\"e\\":1},{\\"id\\":\\"comp_0\\",\\"layers\\":[{\\"ddd\\":0,\\"ind\\":1,\\"ty\\":2,\\"nm\\":\\"bell icon\\",\\"refId\\":\\"image_0\\",\\"sr\\":1,\\"ks\\":{\\"o\\":{\\"a\\":0,\\"k\\":100,\\"ix\\":11},\\"r\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":10},\\"p\\":{\\"a\\":0,\\"k\\":[349.226,380.689,0],\\"ix\\":2},\\"a\\":{\\"a\\":0,\\"k\\":[169.09,192.049,0],\\"ix\\":1},\\"s\\":{\\"a\\":0,\\"k\\":[100,100,100],\\"ix\\":6}},\\"ao\\":0,\\"ef\\":[{\\"ty\\":21,\\"nm\\":\\"Fill\\",\\"np\\":9,\\"mn\\":\\"ADBE Fill\\",\\"ix\\":1,\\"en\\":1,\\"ef\\":[{\\"ty\\":10,\\"nm\\":\\"Fill Mask\\",\\"mn\\":\\"ADBE Fill-0001\\",\\"ix\\":1,\\"v\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":1}},{\\"ty\\":7,\\"nm\\":\\"All Masks\\",\\"mn\\":\\"ADBE Fill-0007\\",\\"ix\\":2,\\"v\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":2}},{\\"ty\\":2,\\"nm\\":\\"Color\\",\\"mn\\":\\"ADBE Fill-0002\\",\\"ix\\":3,\\"v\\":{\\"a\\":0,\\"k\\":[0.785098075867,0.785098075867,0.785098075867,1],\\"ix\\":3}},{\\"ty\\":7,\\"nm\\":\\"Invert\\",\\"mn\\":\\"ADBE Fill-0006\\",\\"ix\\":4,\\"v\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":4}},{\\"ty\\":0,\\"nm\\":\\"Horizontal Feather\\",\\"mn\\":\\"ADBE Fill-0003\\",\\"ix\\":5,\\"v\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":5}},{\\"ty\\":0,\\"nm\\":\\"Vertical Feather\\",\\"mn\\":\\"ADBE Fill-0004\\",\\"ix\\":6,\\"v\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":6}},{\\"ty\\":0,\\"nm\\":\\"Opacity\\",\\"mn\\":\\"ADBE Fill-0005\\",\\"ix\\":7,\\"v\\":{\\"a\\":0,\\"k\\":1,\\"ix\\":7}}]}],\\"ip\\":0,\\"op\\":900.000036657751,\\"st\\":0,\\"bm\\":0}]}],\\"fonts\\":{\\"list\\":[{\\"fName\\":\\"Poppins-SemiBold\\",\\"fFamily\\":\\"Poppins\\",\\"fStyle\\":\\"SemiBold\\",\\"ascent\\":73.9990234375}]},\\"layers\\":[{\\"ddd\\":0,\\"ind\\":1,\\"ty\\":5,\\"nm\\":\\"1\\",\\"parent\\":2,\\"sr\\":1,\\"ks\\":{\\"o\\":{\\"a\\":0,\\"k\\":100,\\"ix\\":11},\\"r\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":10},\\"p\\":{\\"a\\":0,\\"k\\":[124.072,-38.784,0],\\"ix\\":2},\\"a\\":{\\"a\\":0,\\"k\\":[-3.111,-46.292,0],\\"ix\\":1},\\"s\\":{\\"a\\":0,\\"k\\":[85.345,85.345,100],\\"ix\\":6}},\\"ao\\":0,\\"t\\":{\\"d\\":{\\"k\\":[{\\"s\\":{\\"s\\":155,\\"f\\":\\"Poppins-SemiBold\\",\\"t\\":\\"1\\",\\"j\\":2,\\"tr\\":0,\\"lh\\":186,\\"ls\\":0,\\"fc\\":[1,1,1]},\\"t\\":0}]},\\"p\\":{},\\"m\\":{\\"g\\":1,\\"a\\":{\\"a\\":0,\\"k\\":[0,0],\\"ix\\":2}},\\"a\\":[]},\\"ip\\":0,\\"op\\":75.0000030548126,\\"st\\":0,\\"bm\\":0},{\\"ddd\\":0,\\"ind\\":2,\\"ty\\":4,\\"nm\\":\\"notification shape\\",\\"sr\\":1,\\"ks\\":{\\"o\\":{\\"a\\":0,\\"k\\":100,\\"ix\\":11},\\"r\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":10},\\"p\\":{\\"a\\":0,\\"k\\":[444.377,230.998,0],\\"ix\\":2},\\"a\\":{\\"a\\":0,\\"k\\":[123.486,-47.495,0],\\"ix\\":1},\\"s\\":{\\"a\\":1,\\"k\\":[{\\"i\\":{\\"x\\":[0.667,0.667,0.667],\\"y\\":[1,1,1]},\\"o\\":{\\"x\\":[0.333,0.333,0.333],\\"y\\":[0,0,0]},\\"t\\":11,\\"s\\":[0,0,100]},{\\"i\\":{\\"x\\":[0.667,0.667,0.667],\\"y\\":[1,1,1]},\\"o\\":{\\"x\\":[0.333,0.333,0.333],\\"y\\":[0,0,0]},\\"t\\":16,\\"s\\":[131.818,131.818,100]},{\\"t\\":20.0000008146167,\\"s\\":[100,100,100]}],\\"ix\\":6}},\\"ao\\":0,\\"shapes\\":[{\\"ty\\":\\"gr\\",\\"it\\":[{\\"d\\":1,\\"ty\\":\\"el\\",\\"s\\":{\\"a\\":0,\\"k\\":[181.211,181.211],\\"ix\\":2},\\"p\\":{\\"a\\":0,\\"k\\":[0,0],\\"ix\\":3},\\"nm\\":\\"Ellipse Path 1\\",\\"mn\\":\\"ADBE Vector Shape - Ellipse\\",\\"hd\\":false},{\\"ty\\":\\"st\\",\\"c\\":{\\"a\\":0,\\"k\\":[1,1,1,1],\\"ix\\":3},\\"o\\":{\\"a\\":0,\\"k\\":100,\\"ix\\":4},\\"w\\":{\\"a\\":0,\\"k\\":16,\\"ix\\":5},\\"lc\\":1,\\"lj\\":1,\\"ml\\":4,\\"bm\\":0,\\"nm\\":\\"Stroke 1\\",\\"mn\\":\\"ADBE Vector Graphic - Stroke\\",\\"hd\\":false},{\\"ty\\":\\"fl\\",\\"c\\":{\\"a\\":0,\\"k\\":[1,0.09803944756,0.225374947342,1],\\"ix\\":4},\\"o\\":{\\"a\\":0,\\"k\\":100,\\"ix\\":5},\\"r\\":1,\\"bm\\":0,\\"nm\\":\\"Fill 1\\",\\"mn\\":\\"ADBE Vector Graphic - Fill\\",\\"hd\\":false},{\\"ty\\":\\"tr\\",\\"p\\":{\\"a\\":0,\\"k\\":[123.486,-47.495],\\"ix\\":2},\\"a\\":{\\"a\\":0,\\"k\\":[0,0],\\"ix\\":1},\\"s\\":{\\"a\\":0,\\"k\\":[100,100],\\"ix\\":3},\\"r\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":6},\\"o\\":{\\"a\\":0,\\"k\\":100,\\"ix\\":7},\\"sk\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":4},\\"sa\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":5},\\"nm\\":\\"Transform\\"}],\\"nm\\":\\"Ellipse 1\\",\\"np\\":3,\\"cix\\":2,\\"bm\\":0,\\"ix\\":1,\\"mn\\":\\"ADBE Vector Group\\",\\"hd\\":false}],\\"ip\\":0,\\"op\\":75.0000030548126,\\"st\\":0,\\"bm\\":0},{\\"ddd\\":0,\\"ind\\":3,\\"ty\\":0,\\"nm\\":\\"bell icon\\",\\"refId\\":\\"comp_0\\",\\"sr\\":1,\\"ks\\":{\\"o\\":{\\"a\\":0,\\"k\\":100,\\"ix\\":11},\\"r\\":{\\"a\\":1,\\"k\\":[{\\"i\\":{\\"x\\":[0.667],\\"y\\":[1]},\\"o\\":{\\"x\\":[1],\\"y\\":[0.008]},\\"t\\":0,\\"s\\":[0]},{\\"i\\":{\\"x\\":[0.667],\\"y\\":[1]},\\"o\\":{\\"x\\":[0.333],\\"y\\":[0]},\\"t\\":1.074,\\"s\\":[37.484]},{\\"i\\":{\\"x\\":[0.667],\\"y\\":[1]},\\"o\\":{\\"x\\":[0.333],\\"y\\":[0]},\\"t\\":3.348,\\"s\\":[-29.598]},{\\"i\\":{\\"x\\":[0.833],\\"y\\":[1]},\\"o\\":{\\"x\\":[0.167],\\"y\\":[0]},\\"t\\":5.824,\\"s\\":[0]},{\\"i\\":{\\"x\\":[0.667],\\"y\\":[1]},\\"o\\":{\\"x\\":[0.167],\\"y\\":[0]},\\"t\\":8.585,\\"s\\":[23]},{\\"t\\":11.0000004480392,\\"s\\":[0]}],\\"ix\\":10},\\"p\\":{\\"a\\":0,\\"k\\":[352.923,146.868,0],\\"ix\\":2},\\"a\\":{\\"a\\":0,\\"k\\":[350,184.864,0],\\"ix\\":1},\\"s\\":{\\"a\\":0,\\"k\\":[100,100,100],\\"ix\\":6}},\\"ao\\":0,\\"ef\\":[{\\"ty\\":21,\\"nm\\":\\"Fill\\",\\"np\\":9,\\"mn\\":\\"ADBE Fill\\",\\"ix\\":1,\\"en\\":1,\\"ef\\":[{\\"ty\\":10,\\"nm\\":\\"Fill Mask\\",\\"mn\\":\\"ADBE Fill-0001\\",\\"ix\\":1,\\"v\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":1}},{\\"ty\\":7,\\"nm\\":\\"All Masks\\",\\"mn\\":\\"ADBE Fill-0007\\",\\"ix\\":2,\\"v\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":2}},{\\"ty\\":2,\\"nm\\":\\"Color\\",\\"mn\\":\\"ADBE Fill-0002\\",\\"ix\\":3,\\"v\\":{\\"a\\":1,\\"k\\":[{\\"i\\":{\\"x\\":[0.833],\\"y\\":[0.833]},\\"o\\":{\\"x\\":[0.167],\\"y\\":[0.167]},\\"t\\":18,\\"s\\":[0.785097956657,0.785097956657,0.785097956657,1]},{\\"t\\":24.00000097754,\\"s\\":[1,0.804216563702,0.19215708971,1]}],\\"ix\\":3}},{\\"ty\\":7,\\"nm\\":\\"Invert\\",\\"mn\\":\\"ADBE Fill-0006\\",\\"ix\\":4,\\"v\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":4}},{\\"ty\\":0,\\"nm\\":\\"Horizontal Feather\\",\\"mn\\":\\"ADBE Fill-0003\\",\\"ix\\":5,\\"v\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":5}},{\\"ty\\":0,\\"nm\\":\\"Vertical Feather\\",\\"mn\\":\\"ADBE Fill-0004\\",\\"ix\\":6,\\"v\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":6}},{\\"ty\\":0,\\"nm\\":\\"Opacity\\",\\"mn\\":\\"ADBE Fill-0005\\",\\"ix\\":7,\\"v\\":{\\"a\\":0,\\"k\\":1,\\"ix\\":7}}]}],\\"w\\":700,\\"h\\":700,\\"ip\\":0,\\"op\\":900.000036657751,\\"st\\":0,\\"bm\\":0},{\\"ddd\\":0,\\"ind\\":4,\\"ty\\":1,\\"nm\\":\\"White Solid 1\\",\\"sr\\":1,\\"ks\\":{\\"o\\":{\\"a\\":0,\\"k\\":100,\\"ix\\":11},\\"r\\":{\\"a\\":0,\\"k\\":0,\\"ix\\":10},\\"p\\":{\\"a\\":0,\\"k\\":[540,540,0],\\"ix\\":2},\\"a\\":{\\"a\\":0,\\"k\\":[540,540,0],\\"ix\\":1},\\"s\\":{\\"a\\":0,\\"k\\":[100,100,100],\\"ix\\":6}},\\"ao\\":0,\\"sw\\":1080,\\"sh\\":1080,\\"sc\\":\\"#ffffff\\",\\"ip\\":0,\\"op\\":75.0000030548126,\\"st\\":0,\\"bm\\":0}],\\"markers\\":[],\\"chars\\":[{\\"ch\\":\\"1\\",\\"size\\":155,\\"style\\":\\"SemiBold\\",\\"w\\":36.2,\\"data\\":{\\"shapes\\":[{\\"ty\\":\\"gr\\",\\"it\\":[{\\"ind\\":0,\\"ty\\":\\"sh\\",\\"ix\\":1,\\"ks\\":{\\"a\\":0,\\"k\\":{\\"i\\":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],\\"o\\":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],\\"v\\":[[13.3,-60],[13.3,0],[27.7,0],[27.7,-72.9],[3.6,-72.9],[3.6,-60]],\\"c\\":true},\\"ix\\":2},\\"nm\\":\\"1\\",\\"mn\\":\\"ADBE Vector Shape - Group\\",\\"hd\\":false}],\\"nm\\":\\"1\\",\\"np\\":3,\\"cix\\":2,\\"bm\\":0,\\"ix\\":1,\\"mn\\":\\"ADBE Vector Group\\",\\"hd\\":false}]},\\"fFamily\\":\\"Poppins\\"}]}"
+              sourceJson="{"v":"4.8.0","meta":{"g":"LottieFiles AE ","a":"","k":"","d":"","tc":""},"fr":29.9700012207031,"ip":0,"op":65.0000026475043,"w":700,"h":700,"nm":"notification","ddd":0,"assets":[{"id":"image_0","w":339,"h":385,"u":"","p":"data:image/png;base64,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","e":1},{"id":"comp_0","layers":[{"ddd":0,"ind":1,"ty":2,"nm":"bell icon","refId":"image_0","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[349.226,380.689,0],"ix":2},"a":{"a":0,"k":[169.09,192.049,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"ef":[{"ty":21,"nm":"Fill","np":9,"mn":"ADBE Fill","ix":1,"en":1,"ef":[{"ty":10,"nm":"Fill Mask","mn":"ADBE Fill-0001","ix":1,"v":{"a":0,"k":0,"ix":1}},{"ty":7,"nm":"All Masks","mn":"ADBE Fill-0007","ix":2,"v":{"a":0,"k":0,"ix":2}},{"ty":2,"nm":"Color","mn":"ADBE Fill-0002","ix":3,"v":{"a":0,"k":[0.785098075867,0.785098075867,0.785098075867,1],"ix":3}},{"ty":7,"nm":"Invert","mn":"ADBE Fill-0006","ix":4,"v":{"a":0,"k":0,"ix":4}},{"ty":0,"nm":"Horizontal Feather","mn":"ADBE Fill-0003","ix":5,"v":{"a":0,"k":0,"ix":5}},{"ty":0,"nm":"Vertical Feather","mn":"ADBE Fill-0004","ix":6,"v":{"a":0,"k":0,"ix":6}},{"ty":0,"nm":"Opacity","mn":"ADBE Fill-0005","ix":7,"v":{"a":0,"k":1,"ix":7}}]}],"ip":0,"op":900.000036657751,"st":0,"bm":0}]}],"fonts":{"list":[{"fName":"Poppins-SemiBold","fFamily":"Poppins","fStyle":"SemiBold","ascent":73.9990234375}]},"layers":[{"ddd":0,"ind":1,"ty":5,"nm":"1","parent":2,"sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[124.072,-38.784,0],"ix":2},"a":{"a":0,"k":[-3.111,-46.292,0],"ix":1},"s":{"a":0,"k":[85.345,85.345,100],"ix":6}},"ao":0,"t":{"d":{"k":[{"s":{"s":155,"f":"Poppins-SemiBold","t":"1","j":2,"tr":0,"lh":186,"ls":0,"fc":[1,1,1]},"t":0}]},"p":{},"m":{"g":1,"a":{"a":0,"k":[0,0],"ix":2}},"a":[]},"ip":0,"op":75.0000030548126,"st":0,"bm":0},{"ddd":0,"ind":2,"ty":4,"nm":"notification shape","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[444.377,230.998,0],"ix":2},"a":{"a":0,"k":[123.486,-47.495,0],"ix":1},"s":{"a":1,"k":[{"i":{"x":[0.667,0.667,0.667],"y":[1,1,1]},"o":{"x":[0.333,0.333,0.333],"y":[0,0,0]},"t":11,"s":[0,0,100]},{"i":{"x":[0.667,0.667,0.667],"y":[1,1,1]},"o":{"x":[0.333,0.333,0.333],"y":[0,0,0]},"t":16,"s":[131.818,131.818,100]},{"t":20.0000008146167,"s":[100,100,100]}],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"d":1,"ty":"el","s":{"a":0,"k":[181.211,181.211],"ix":2},"p":{"a":0,"k":[0,0],"ix":3},"nm":"Ellipse Path 1","mn":"ADBE Vector Shape - Ellipse","hd":false},{"ty":"st","c":{"a":0,"k":[1,1,1,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":16,"ix":5},"lc":1,"lj":1,"ml":4,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"fl","c":{"a":0,"k":[1,0.09803944756,0.225374947342,1],"ix":4},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":"Fill 1","mn":"ADBE Vector Graphic - Fill","hd":false},{"ty":"tr","p":{"a":0,"k":[123.486,-47.495],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Ellipse 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":75.0000030548126,"st":0,"bm":0},{"ddd":0,"ind":3,"ty":0,"nm":"bell icon","refId":"comp_0","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[1],"y":[0.008]},"t":0,"s":[0]},{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":1.074,"s":[37.484]},{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":3.348,"s":[-29.598]},{"i":{"x":[0.833],"y":[1]},"o":{"x":[0.167],"y":[0]},"t":5.824,"s":[0]},{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.167],"y":[0]},"t":8.585,"s":[23]},{"t":11.0000004480392,"s":[0]}],"ix":10},"p":{"a":0,"k":[352.923,146.868,0],"ix":2},"a":{"a":0,"k":[350,184.864,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"ef":[{"ty":21,"nm":"Fill","np":9,"mn":"ADBE Fill","ix":1,"en":1,"ef":[{"ty":10,"nm":"Fill Mask","mn":"ADBE Fill-0001","ix":1,"v":{"a":0,"k":0,"ix":1}},{"ty":7,"nm":"All Masks","mn":"ADBE Fill-0007","ix":2,"v":{"a":0,"k":0,"ix":2}},{"ty":2,"nm":"Color","mn":"ADBE Fill-0002","ix":3,"v":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":18,"s":[0.785097956657,0.785097956657,0.785097956657,1]},{"t":24.00000097754,"s":[1,0.804216563702,0.19215708971,1]}],"ix":3}},{"ty":7,"nm":"Invert","mn":"ADBE Fill-0006","ix":4,"v":{"a":0,"k":0,"ix":4}},{"ty":0,"nm":"Horizontal Feather","mn":"ADBE Fill-0003","ix":5,"v":{"a":0,"k":0,"ix":5}},{"ty":0,"nm":"Vertical Feather","mn":"ADBE Fill-0004","ix":6,"v":{"a":0,"k":0,"ix":6}},{"ty":0,"nm":"Opacity","mn":"ADBE Fill-0005","ix":7,"v":{"a":0,"k":1,"ix":7}}]}],"w":700,"h":700,"ip":0,"op":900.000036657751,"st":0,"bm":0},{"ddd":0,"ind":4,"ty":1,"nm":"White Solid 1","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[540,540,0],"ix":2},"a":{"a":0,"k":[540,540,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"sw":1080,"sh":1080,"sc":"#ffffff","ip":0,"op":75.0000030548126,"st":0,"bm":0}],"markers":[],"chars":[{"ch":"1","size":155,"style":"SemiBold","w":36.2,"data":{"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[13.3,-60],[13.3,0],[27.7,0],[27.7,-72.9],[3.6,-72.9],[3.6,-60]],"c":true},"ix":2},"nm":"1","mn":"ADBE Vector Shape - Group","hd":false}],"nm":"1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}]},"fFamily":"Poppins"}]}"
               speed={1.2}
               style={
-                Object {
+                {
                   "aspectRatio": 1,
                   "height": 160,
                   "width": 160,
                 }
               }
-              textFiltersAndroid={Array []}
-              textFiltersIOS={Array []}
+              textFiltersAndroid={[]}
+              textFiltersIOS={[]}
               useNativeLooping={false}
             />
           </View>
           <View
             style={
-              Object {
+              {
                 "alignSelf": "center",
                 "marginBottom": 16,
               }
@@ -198,8 +207,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "fontFamily": "circularBold",
                     "fontSize": 25,
@@ -213,7 +222,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
             </Text>
             <View
               style={
-                Object {
+                {
                   "marginVertical": 16,
                 }
               }
@@ -222,8 +231,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "fontFamily": "circularBook",
                     "fontSize": 19,
@@ -238,6 +247,23 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
           </View>
           <View
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -249,7 +275,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "#0421B1",
                 "borderRadius": 12,
@@ -263,7 +289,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                 "paddingRight": 18,
                 "paddingTop": 18,
                 "shadowColor": "#212121",
-                "shadowOffset": Object {
+                "shadowOffset": {
                   "height": 1,
                   "width": 1,
                 },
@@ -280,8 +306,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
@@ -290,13 +316,13 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                     "marginRight": 8,
                     "textAlign": "left",
                   },
-                  Object {},
+                  {},
                 ]
               }
               textColor="#FFFFFF"
             >
               <Text
-                style={Object {}}
+                style={{}}
               >
                 notifications.enableNotifications
               </Text>
@@ -305,9 +331,9 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
             <View
               collapsable={false}
               style={
-                Object {
-                  "transform": Array [
-                    Object {
+                {
+                  "transform": [
+                    {
                       "scale": 1,
                     },
                   ],
@@ -316,8 +342,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
             >
               <RNSVGSvgView
                 align="xMidYMid"
-                bbHeight={24}
-                bbWidth={24}
+                bbHeight="24"
+                bbWidth="24"
                 fill="#FFFFFF"
                 focusable={false}
                 height={24}
@@ -325,13 +351,13 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                 minX={0}
                 minY={0}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "borderWidth": 0,
                     },
-                    Object {},
-                    Object {
+                    {},
+                    {
                       "flex": 0,
                       "height": 24,
                       "width": 24,
@@ -343,9 +369,14 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                 width={24}
               >
                 <RNSVGGroup
-                  fill={4294967295}
+                  fill={
+                    {
+                      "payload": 4294967295,
+                      "type": 0,
+                    }
+                  }
                   propList={
-                    Array [
+                    [
                       "fill",
                     ]
                   }
@@ -356,8 +387,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                         height="24"
                         opacity={0}
                         width="24"
-                        x={0}
-                        y={0}
+                        x="0"
+                        y="0"
                       />
                       <RNSVGPath
                         d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
@@ -370,13 +401,30 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
           </View>
           <View
             style={
-              Object {
+              {
                 "marginVertical": 8,
               }
             }
           />
           <View
             accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
             accessible={true}
             collapsable={false}
             focusable={true}
@@ -388,7 +436,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "#FFFFFF",
                 "borderRadius": 12,
@@ -411,8 +459,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               isRTL={false}
               selectable={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#212121",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
@@ -421,13 +469,13 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                     "marginRight": 0,
                     "textAlign": "left",
                   },
-                  Object {},
+                  {},
                 ]
               }
               textColor="#212121"
             >
               <Text
-                style={Object {}}
+                style={{}}
               >
                 notifications.notNow
               </Text>
