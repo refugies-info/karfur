@@ -16,9 +16,8 @@ export type Marker = Poi & { id: number };
 const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
 
 const MapEdit = () => {
-  //@ts-ignore
-  const markers = useWatch<CreateDispositifRequest["map"]>({ name: "map", default: [] }); // FIXME : ts error
   const { setValue } = useFormContext<CreateDispositifRequest>();
+  const markers: CreateDispositifRequest["map"] = useWatch({ name: "map" });
 
   const [hasMap, setHasMap] = useState((markers || []).length > 0);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -100,13 +99,20 @@ const MapEdit = () => {
   const onValidateForm = useCallback(() => {
     if (!poiForm) return;
     const newMarkers = [...(markers || [])];
+    const newPoi: Poi = {
+      title: "",
+      address: "",
+      city: "",
+      lat: 0,
+      lng: 0,
+      ...poiForm,
+    };
     if (selectedMarker !== null) {
-      newMarkers[selectedMarker] = poiForm; // edit
+      newMarkers[selectedMarker] = newPoi; // edit
     } else {
-      newMarkers.push(poiForm); // create
+      newMarkers.push(newPoi); // create
     }
-    //@ts-ignore
-    setValue("map", newMarkers); // TODO: fix type
+    setValue("map", newMarkers);
     setSelectedMarker(null);
     setPoiForm(null);
     setShowSidebar(true);
@@ -115,8 +121,7 @@ const MapEdit = () => {
   const deleteMarker = useCallback(
     (key: number) => {
       const newMarkers = [...(markers || [])].splice(key, 1);
-      //@ts-ignore
-      setValue("map", newMarkers); // TODO: fix type
+      setValue("map", newMarkers);
       setSelectedMarker(null);
       setPoiForm(null);
       setShowSidebar(newMarkers.length > 0);
@@ -146,7 +151,6 @@ const MapEdit = () => {
     <div className={styles.container}>
       <Header onSelectPlace={onSelectPlace} onDelete={() => setShowDeleteModal(true)} />
 
-      {/* @ts-ignore fix useWatch partial type */}
       {showSidebar && <Sidebar markers={markers} onSelectMarker={selectMarker} selectedMarkerId={selectedMarker} />}
       {poiForm && (
         <PoiForm

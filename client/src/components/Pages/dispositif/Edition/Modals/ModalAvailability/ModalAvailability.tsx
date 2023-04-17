@@ -45,7 +45,7 @@ const ModalAvailability = (props: Props) => {
     getValues("metadatas.commitment.hours") || undefined,
   );
   const [commitmentTimeUnit, setCommitmentTimeUnit] = useState<timeUnitType>(
-    getValues("metadatas.commitment.timeUnit") || "weeks",
+    getValues("metadatas.commitment.timeUnit") || "months",
   );
   const [noCommitment, setNoCommitment] = useState<boolean>(false);
   const validateCommitment = () => {

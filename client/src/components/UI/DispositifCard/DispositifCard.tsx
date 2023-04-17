@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { jsUcfirst, jsLcfirst } from "lib";
 import { cls } from "lib/classname";
+import { getCommitmentText, getPriceText } from "lib/dispositif";
 import { getTheme, getThemes } from "lib/getTheme";
 import { themesSelector } from "services/Themes/themes.selectors";
 import ThemeBadge from "components/UI/ThemeBadge";
@@ -52,8 +53,7 @@ const DispositifCard = (props: Props) => {
   const colors = theme.colors;
   const dispositifThemes = [theme, ...getThemes(props.dispositif.secondaryThemes || [], themes)];
 
-  // TODO: what here?
-  const duration = ""; // props.dispositif.metadatas.duration;
+  const commitment = props.dispositif.metadatas.commitment;
   const price = props.dispositif.metadatas.price;
 
   const getDepartement = () => {
@@ -122,21 +122,14 @@ const DispositifCard = (props: Props) => {
           {price !== undefined && (
             <div className={cls(styles.info)}>
               <Image src={iconEuro} width={16} height={16} alt="" />
-              {price?.values?.[0] === 0 ? (
-                <div className="ms-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
-              ) : (
-                <div className="ms-2">
-                  {/* TODO: update here */}
-                  {price?.values?.[0]}€ {price?.details}
-                </div>
-              )}
+              <div className="ms-2">{getPriceText(price)}</div>
             </div>
           )}
 
-          {duration && (
+          {commitment && (
             <div className={cls(styles.info, "mt-1")}>
               <Image src={iconTime} width={16} height={16} alt="" />
-              <div className={cls(styles.ellipsis, "ms-2")} dangerouslySetInnerHTML={{ __html: duration || "" }}></div>
+              <div className={cls(styles.ellipsis, "ms-2")}>{getCommitmentText(commitment)}</div>
             </div>
           )}
         </div>

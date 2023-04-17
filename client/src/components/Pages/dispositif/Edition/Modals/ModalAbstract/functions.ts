@@ -12,11 +12,14 @@ export const getDefaultDispositif = (formValues: DeepPartialSkipArrayKey<CreateD
     secondaryThemes: formValues.secondaryThemes,
     metadatas: {
       location: formValues.metadatas?.location || ["Lieu"],
-      //@ts-ignore
-      price: formValues.metadatas?.price, // FIXME
+      price: !!formValues.metadatas?.price ? {
+        values: formValues.metadatas?.price.values || [0],
+        details: formValues.metadatas?.price.details || undefined,
+      } : null,
     },
     nbMots: 0,
     nbVues: 0,
+    nbVuesMobile: 0,
     availableLanguages: [],
     needs: [],
   }

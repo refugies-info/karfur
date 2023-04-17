@@ -1,4 +1,4 @@
-export { default as AccordionItemEdit } from "./AccordionItemEdit";
+export { default as AccordionsEdit } from "./AccordionsEdit";
 export { default as AddContentButton } from "./AddContentButton";
 export { default as BannerEdition } from "./BannerEdition";
 export { default as ChoiceButton } from "./ChoiceButton";

@@ -18,6 +18,7 @@ import {
   AddSuggestionDispositifRequest,
   AddViewsRequest,
   AdminCommentsRequest,
+  ContentForApp,
   CountDispositifsRequest,
   CreateDispositifRequest,
   DispositifStatusRequest,
@@ -36,6 +37,7 @@ import {
   GetStatisticsResponse,
   GetUserContributionsResponse,
   MainSponsorRequest,
+  MobileFrenchLevel,
   PostDispositifsResponse,
   PublishDispositifRequest,
   ReadSuggestionDispositifRequest,
@@ -58,7 +60,13 @@ import { GetLogResponse } from "./modules/log";
 import { ImprovementsRequest, SubscriptionRequest, AddContactRequest } from "./modules/mail";
 
 // needs
-import { NeedRequest, UpdatePositionsRequest, GetNeedResponse, UpdatePositionsNeedResponse } from "./modules/need";
+import {
+  NeedRequest,
+  NeedTranslation,
+  UpdatePositionsRequest,
+  GetNeedResponse,
+  UpdatePositionsNeedResponse,
+} from "./modules/need";
 
 // notifications
 import { MarkAsSeenRequest, SendNotificationsRequest, GetNotificationResponse } from "./modules/notification";
@@ -133,6 +141,7 @@ export type {
   AddSuggestionDispositifRequest,
   AddViewsRequest,
   AdminCommentsRequest,
+  ContentForApp,
   CountDispositifsRequest,
   CreateDispositifRequest,
   DispositifStatusRequest,
@@ -173,10 +182,11 @@ export type {
   AddContactRequest,
 
   // needs
-  NeedRequest,
-  UpdatePositionsRequest,
   GetNeedResponse,
+  NeedRequest,
+  NeedTranslation,
   UpdatePositionsNeedResponse,
+  UpdatePositionsRequest,
 
   // notifications
   MarkAsSeenRequest,
@@ -236,4 +246,4 @@ export type {
   PatchWidgetResponse,
 };
 
-export { ViewsType };
+export { MobileFrenchLevel, ViewsType };

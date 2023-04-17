@@ -1,17 +1,9 @@
 {
   "scss.lint.unknownAtRules": "ignore",
-  "eslint.workingDirectories": [
-    "./client",
-    "./server"
-  ],
+  "eslint.workingDirectories": ["./client", "./server"],
   "typescript.tsdk": "client/node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "i18n-ally.localesPaths": [
-    "client/src/locales",
-    "server/src/locales"
-  ],
+  "i18n-ally.localesPaths": ["client/src/locales", "server/src/locales"],
   "i18n-ally.keystyle": "nested",
-  "conventionalCommits.scopes": [
-    "api-types"
-  ]
+  "conventionalCommits.scopes": ["api-types", "client", "server"]
 }

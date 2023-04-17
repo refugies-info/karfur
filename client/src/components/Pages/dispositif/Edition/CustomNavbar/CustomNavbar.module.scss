@@ -55,4 +55,6 @@
   @include dsfr-text("small");
   margin-right: u(8);
   cursor: default;
+  display: inline-flex;
+  align-items: baseline;
 }

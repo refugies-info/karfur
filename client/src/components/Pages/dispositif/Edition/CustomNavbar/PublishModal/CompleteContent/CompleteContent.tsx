@@ -9,6 +9,7 @@ import StepBar from "../../StepBar";
 import ChoiceButton from "../../../ChoiceButton";
 import PublicationSteps from "./PublicationSteps";
 import BubbleFlags from "./BubbleFlags";
+import { TOTAL_STEPS } from "../../functions";
 import { getTextContent } from "./functions";
 import { Content } from "./data";
 import PublishImage from "assets/dispositif/publish-image.svg";
@@ -32,8 +33,8 @@ const CompleteContent = (props: Props) => {
 
   useEffect(() => {
     const textContent = getTextContent(status);
-    setTitle(textContent[step].title);
-    setTextContent(textContent);
+    setTitle(textContent[step].title); // TODO: if admin and no changes -> Tout est prêt !
+    setTextContent(textContent); // TODO: if admin and no changes -> Les changements que tu as effectué n'ont pas impacté les traductions. Publier tes modifications ne déclenchera pas un nouveau processus de traduction.
   }, [status, step, setTitle]);
 
   const content = useMemo(() => {
@@ -41,6 +42,7 @@ const CompleteContent = (props: Props) => {
     if (isStatus(status, DispositifStatus.ACTIVE)) {
       // role === admin
       if (user.admin) {
+        // TODO: only if content changes (new API endpoint?)
         return (
           <>
             <ChoiceButton
@@ -69,11 +71,31 @@ const CompleteContent = (props: Props) => {
             </div>
           </>
         );
+
+        // TODO : if admin and no changes, new content (cf https://app.asana.com/0/1200625325783854/1204226726560920/f)
+        /* return (
+          <>
+            <StepBar
+              total={TOTAL_STEPS}
+              progress={TOTAL_STEPS}
+              text={`${TOTAL_STEPS} étapes complétées sur ${TOTAL_STEPS}`}
+            />
+            <div className="text-end">
+              <Button onClick={() => onPublish(false).then(toggle)} icon="arrow-forward-outline" iconPlacement="end">
+                Publier
+              </Button>
+            </div>
+          </>
+        ); */
       }
       // role === user
       return (
         <>
-          <StepBar total={14} progress={14} text={"14 étapes complétées sur 14"} />
+          <StepBar
+            total={TOTAL_STEPS}
+            progress={TOTAL_STEPS}
+            text={`${TOTAL_STEPS} étapes complétées sur ${TOTAL_STEPS}`}
+          />
           <PublicationSteps
             items={[
               {
@@ -105,7 +127,11 @@ const CompleteContent = (props: Props) => {
     if (step === 0) {
       return (
         <>
-          <StepBar total={14} progress={14} text={"14 étapes complétées sur 14"} />
+          <StepBar
+            total={TOTAL_STEPS}
+            progress={TOTAL_STEPS}
+            text={`${TOTAL_STEPS} étapes complétées sur ${TOTAL_STEPS}`}
+          />
           <div className="text-center mb-8 mt-6">
             <Image src={PublishImage} width={345} height={240} alt="" />
           </div>

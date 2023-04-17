@@ -8,7 +8,8 @@ const client = new MongoClient(dbPath);
 const dbName = "heroku_wbj38s57";
 
 const removeHTML = (input) => {
-  return input.replace(/<\/?[^>]+(>|$)/g, "");
+  if (!input) return input;
+  return input.replace(/<\/?[^>]+(>|$)/g, "").replace("&nbsp;", " ");
 };
 
 const getLocalizedContent = (content, ln, root = false) => {
@@ -164,11 +165,11 @@ const getJustificatif = (justificatif) => {
     case "Titre de sejour":
       return "titre sejour";
     case "Diplôme":
-      return "diplome";
-    case "Justificatif de domicile":
-      return "domicile";
+      return "school";
+    // case "Justificatif de domicile":
+    //   return "domicile";
     default:
-      return "";
+      return null;
   }
 };
 
@@ -205,16 +206,21 @@ const getMarkers = (children) => {
 
   return (markers || []).map((m) => {
     const marker = {
-      title: m.nom,
-      address: m.address,
-      city: m.vicinity,
+      title: removeHTML(m.nom),
+      address: removeHTML(m.address),
+      city: removeHTML(m.vicinity),
       lat: m.latitude,
       lng: m.longitude,
     };
 
-    if (m.description) marker.description = m.description;
-    if (m.email) marker.email = m.email;
-    if (m.telephone) marker.phone = m.telephone;
+    if (m.description) {
+      const newDescription = removeHTML(m.description);
+      if (newDescription !== "Saisir des informations complémentaires si besoin") {
+        marker.description = newDescription;
+      }
+    }
+    if (m.email) marker.email = removeHTML(m.email);
+    if (m.telephone) marker.phone = removeHTML(m.telephone);
 
     return marker;
   });
@@ -226,30 +232,43 @@ const getFrenchLevel = (metadata) => {
   const value = metadata.contentTitle?.fr || metadata.contentTitle;
   switch (value) {
     case "Débutant":
-      return ["A1.1", "A1"];
+      return ["alpha", "A1"];
     case "Intermédiaire":
-      return ["A1.1", "A1", "A2", "B1"];
+      return ["A2", "B1"];
     case "Avancé":
-      return ["A1.1", "A1", "A2", "B1", "B2", "C1"];
+      return ["B2", "C1"];
     case "Tous les niveaux":
-      return ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
+      return ["alpha", "A1", "A2", "B1", "B2", "C1", "C2"];
     default:
       console.warn("  frenchLevel non ajouté. Valeur :", metadata.contentTitle);
       return "";
   }
 };
 
-const savedMetadatasIndex = {}; // save index of translated meta to find it in translations then
+const getAge = (metadata) => {
+  const type = getAgeType(metadata.contentTitle?.fr || metadata.contentTitle);
+  let ages = null;
+  if (type === "between") {
+    ages = [parseInt(metadata.bottomValue), parseInt(metadata.topValue)];
+  } else if (type === "moreThan") {
+    ages = [parseInt(metadata.bottomValue)];
+  } else {
+    ages = [parseInt(metadata.topValue)];
+  }
+  return { type, ages };
+};
+
+// const savedMetadatasIndex = {}; // save index of translated meta to find it in translations then
 
 const getMetadatas = (content, id) => {
   const metas = {};
-  const translatedMetas = {};
+  // const translatedMetas = {};
 
-  const titles = (content?.children || []).map((c) => c.title);
-  savedMetadatasIndex[id] = {};
+  // const titles = (content?.children || []).map((c) => c.title);
+  // savedMetadatasIndex[id] = {};
 
-  if (titles.indexOf("Durée") >= 0) savedMetadatasIndex[id].duration = titles.indexOf("Durée");
-  if (titles.indexOf("Important !") >= 0) savedMetadatasIndex[id].important = titles.indexOf("Important !");
+  // if (titles.indexOf("Durée") >= 0) savedMetadatasIndex[id].duration = titles.indexOf("Durée");
+  // if (titles.indexOf("Important !") >= 0) savedMetadatasIndex[id].important = titles.indexOf("Important !");
 
   for (const metadata of content.children) {
     const title = metadata.title?.fr || metadata.title;
@@ -271,10 +290,7 @@ const getMetadatas = (content, id) => {
         metas.frenchLevel = getFrenchLevel(metadata);
         break;
       case "Âge requis":
-        metas.age = {
-          type: getAgeType(metadata.contentTitle?.fr || metadata.contentTitle),
-          ages: [parseInt(metadata.bottomValue), parseInt(metadata.topValue)],
-        };
+        metas.age = getAge(metadata);
         break;
       case "Public visé":
         metas.publicStatus =
@@ -284,32 +300,34 @@ const getMetadatas = (content, id) => {
         break;
       case "Acte de naissance OFPRA":
         if (!metas.conditions) metas.conditions = [];
-        metas.conditions.push("acte naissance");
+        if (!metas.conditions.includes("acte naissance")) metas.conditions.push("acte naissance");
         break;
       case "Titre de séjour":
         if (!metas.conditions) metas.conditions = [];
-        metas.conditions.push("titre sejour");
+        if (!metas.conditions.includes("titre sejour")) metas.conditions.push("titre sejour");
         break;
       case "Justificatif demandé":
-        if (getJustificatif(metadata.contentTitle)) {
+        if (getJustificatif(metadata.contentTitle) !== null) {
           if (!metas.conditions) metas.conditions = [];
-          metas.conditions.push(getJustificatif(metadata.contentTitle));
+          if (!metas.conditions.includes(getJustificatif(metadata.contentTitle)))
+            metas.conditions.push(getJustificatif(metadata.contentTitle));
         }
         break;
       case "Durée":
-        // TODO: what here?
-        translatedMetas.duration = metadata.contentTitle;
+        // translatedMetas.duration = metadata.contentTitle; // do nothing
         break;
       case "Important !":
-        // TODO: what here?
-        translatedMetas.important = metadata.contentTitle;
+        // translatedMetas.important = metadata.contentTitle; // do nothing
         break;
       default:
         console.warn("  À CHECKER ! Meta non ajoutée", metadata.title, id);
     }
   }
 
-  return { metas, translatedMetas };
+  return {
+    metas,
+    // translatedMetas
+  };
 };
 
 const getSponsors = (dispositif) => {
@@ -347,7 +365,6 @@ const getContent = (dispositif, ln, root) => {
       abstract: getLocalizedContent(dispositif.abstract, ln, root),
       what: turnJSONtoHTML(getLocalizedContent(dispositif.contenu?.[0]?.content, ln, root)),
     },
-    metadatas: {},
     created_at: dispositif.created_at,
     validatorId: dispositif.validatorId,
   };
@@ -363,18 +380,18 @@ const getContent = (dispositif, ln, root) => {
   return contentLn;
 };
 
-const getMultilangContent = (dispositif, translatedMetas, validatedTrads) => {
+const getMultilangContent = (dispositif, /* translatedMetas, */ validatedTrads) => {
   const translations = {};
   for (const ln of ["fr", "en", "ps", "fa", "ti", "ru", "uk", "ar"]) {
     if (dispositif.avancement[ln] === 1 || (ln === "fr" && dispositif.avancement === 1)) {
       translations[ln] = getContent(dispositif, ln, false);
 
-      if (translatedMetas.duration) {
+      /* if (translatedMetas.duration) {
         translations[ln].metadatas.duration = getLocalizedContent(translatedMetas.duration, ln, false);
       }
       if (translatedMetas.important) {
         translations[ln].metadatas.important = getLocalizedContent(translatedMetas.important, ln, false);
-      }
+      } */
       translations[ln].created_at = dispositif.updatedAt;
       // console.log(validatedTrads);
       const trad = validatedTrads.find((t) => t.langueCible === ln);
@@ -395,7 +412,7 @@ const getNewDispositif = (dispositif, validatedTrads) => {
   const metadatas = getMetadatas(dispositif.contenu?.[1], dispositif._id);
   const newDispositif = {
     translations: {
-      ...getMultilangContent(dispositif, metadatas.translatedMetas, validatedTrads),
+      ...getMultilangContent(dispositif, /* metadatas.translatedMetas, */ validatedTrads),
     },
     map: getMarkers(dispositif.contenu?.[3].children),
     sponsors: getSponsors(dispositif),
@@ -563,6 +580,7 @@ const findToReview = (trad, newContent, typeContenu) => {
     res.push(...getInfosectionReview(trad, newContent, "how", 2), ...getInfosectionReview(trad, newContent, "next", 3));
   }
 
+  /*
   if (savedMetadatasIndex[trad.articleId]?.important) {
     if (translated.contenu[1]?.children?.[savedMetadatasIndex[trad.articleId]?.important]?.contentTitleModified)
       res.push("metadatas.important");
@@ -570,7 +588,7 @@ const findToReview = (trad, newContent, typeContenu) => {
   if (savedMetadatasIndex[trad.articleId]?.duration) {
     if (translated.contenu[1]?.children?.[savedMetadatasIndex[trad.articleId]?.duration]?.contentTitleModified)
       res.push("metadatas.duration");
-  }
+  } */
 
   return res;
 };
@@ -592,14 +610,14 @@ const getContentFromTrad = (trad) => {
   );
 
   // get metadatas from index
-  if (savedMetadatasIndex[dispositifId]?.duration !== undefined) {
+  /* if (savedMetadatasIndex[dispositifId]?.duration !== undefined) {
     const value = trad.translatedText.contenu[1]?.children?.[savedMetadatasIndex[dispositifId].duration]?.contentTitle;
     if (value) content.metadatas.duration = value;
   }
   if (savedMetadatasIndex[dispositifId]?.important !== undefined) {
     const value = trad.translatedText.contenu[1]?.children?.[savedMetadatasIndex[dispositifId].important]?.contentTitle;
     if (value) content.metadatas.important = value;
-  }
+  } */
 
   if (trad.status === "À revoir") {
     toReview[dispositifId] = findToReview(trad, content, typeContenu);
@@ -806,6 +824,9 @@ const adaptUserFavorites = async (usersColl) => {
   }
 };
 
+const deleteLangues = async (languesColl) => {
+  await languesColl.deleteMany({ avancement: 0 });
+};
 const adaptLangues = async (languesColl) => {
   await languesColl.updateMany(
     {},
@@ -870,6 +891,7 @@ async function main() {
   console.log("FIN Adaptation des utilisateurs");
 
   console.log("Adaptation des langues");
+  await deleteLangues(languesColl);
   await adaptLangues(languesColl);
   console.log("FIN Adaptation des langues");
 

@@ -5,6 +5,7 @@ import imgOfpra from "assets/dispositif/form-icons/conditions-ofpra.svg";
 import imgPoleEmploi from "assets/dispositif/form-icons/conditions-pole-emploi.svg";
 import imgTse from "assets/dispositif/form-icons/conditions-tse.svg";
 import imgOfii from "assets/dispositif/form-icons/conditions-ofii.svg";
+import imgSchool from "assets/dispositif/form-icons/conditions-school.svg";
 
 export const help = {
   title: "À quoi sert cette information ?",
@@ -35,5 +36,9 @@ export const dropdownOptions: Record<conditionType, { text: string, image: any }
   "driver license": {
     text: "Avoir son permis B",
     image: imgDriver
+  },
+  "school": {
+    text: "Avoir le niveau de fin de lycée",
+    image: imgSchool
   },
 };

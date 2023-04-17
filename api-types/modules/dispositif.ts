@@ -42,42 +42,39 @@ export interface GetDispositifsRequest {
 /**
  * @url GET /dispositifs/getContentsForApp
  */
+export enum MobileFrenchLevel {
+  "Je ne lis et n'écris pas le français" = "Je ne lis et n'écris pas le français",
+  "Je parle un peu" = "Je parle un peu",
+  "Je parle bien" = "Je parle bien",
+  "Je parle couramment" = "Je parle couramment",
+}
 export interface GetContentsForAppRequest {
   locale: Languages;
   age?: "0 à 17 ans" | "18 à 25 ans" | "26 ans et plus";
   county?: string;
-  frenchLevel?: string;
+  frenchLevel?: MobileFrenchLevel;
   strictLocation?: boolean;
 }
 
 /**
  * @url GET /dispositifs/getContentsForApp
  */
+export interface ContentForApp {
+  _id: string;
+  titreInformatif: string;
+  titreMarque: string;
+  theme: Id;
+  secondaryThemes: Id[];
+  needs: Id[];
+  nbVues: number;
+  nbVuesMobile: number;
+  typeContenu: ContentType;
+  sponsorUrl: string;
+}
+
 export type GetContentsForAppResponse = {
-  dataFr: {
-    _id: string;
-    titreInformatif: string;
-    titreMarque: string;
-    theme: Id;
-    secondaryThemes: Id[];
-    needs: Id[];
-    nbVues: number;
-    nbVuesMobile: number;
-    typeContenu: ContentType;
-    sponsorUrl: string;
-  }[];
-  data?: {
-    _id: string;
-    titreInformatif: string;
-    titreMarque: string;
-    theme: Id;
-    secondaryThemes: Id[];
-    needs: Id[];
-    nbVues: number;
-    nbVuesMobile: number;
-    typeContenu: ContentType;
-    sponsorUrl: string;
-  }[];
+  dataFr: ContentForApp[];
+  data?: ContentForApp[];
 };
 
 /**
@@ -173,7 +170,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest {}
+export interface UpdateDispositifRequest extends DispositifRequest { }
 
 /**
  * @url PATCH /dispositifs/{id}/publish
@@ -186,7 +183,7 @@ export interface PublishDispositifRequest {
  * @url PATCH /dispositifs/{id}/structure-receive
  */
 export interface StructureReceiveDispositifRequest {
-  accept: boolean
+  accept: boolean;
 }
 
 /**

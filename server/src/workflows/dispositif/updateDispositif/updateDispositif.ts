@@ -26,15 +26,8 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
     if (body.next) (content as DemarcheContent).next = body.next;
   }
 
-  // metadatas
-  const metadatas: TranslationContent["metadatas"] = {};
-  // TODO: what here?
-  // if (body.metadatas?.important) metadatas.important = body.metadatas.important;
-  // if (body.metadatas?.duration) metadatas.duration = body.metadatas.duration;
-
   return {
     content,
-    metadatas,
     created_at: oldDispositif.translations.fr.created_at,
     validatorId: oldDispositif.creatorId._id,
   };
@@ -144,7 +137,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     lastModificationAuthor: user._id,
     themesSelectedByAuthor: !user.isAdmin(),
     translations,
-    ...buildNewDispositif(body, user._id.toString()),
+    ...(await buildNewDispositif(body, user._id.toString())),
   };
 
   // TODO : if published, create draft work version instead

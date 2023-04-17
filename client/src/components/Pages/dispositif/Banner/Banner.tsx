@@ -41,13 +41,7 @@ const Banner = (props: Props) => {
   }, [dispositif, router]);
 
   const onEditClick = useCallback(() => {
-    if (
-      isStatus(dispositif?.status, [
-        DispositifStatus.ACTIVE,
-        DispositifStatus.WAITING_ADMIN,
-        DispositifStatus.WAITING_STRUCTURE,
-      ])
-    ) {
+    if (isStatus(dispositif?.status, DispositifStatus.ACTIVE)) {
       setShowEditModal(true);
     } else {
       navigateToEdit();
@@ -61,20 +55,15 @@ const Banner = (props: Props) => {
     >
       {/* TODO: check that user is authorized to edit */}
       {user && pageContext.mode === "view" && (
-        <>
+        <div className={styles.container}>
           <div className={styles.actions}>
             {status && <Badge text={status.text} type={status.type} hasIcon icon={status.icon} className="me-4" />}
             <Button icon="edit-outline" className={styles.edit} onClick={onEditClick}>
               Modifier la fiche
             </Button>
           </div>
-          <EditModal
-            show={showEditModal}
-            toggle={() => setShowEditModal((o) => !o)}
-            onValidate={navigateToEdit}
-            status={dispositif?.status || null}
-          />
-        </>
+          <EditModal show={showEditModal} toggle={() => setShowEditModal((o) => !o)} onValidate={navigateToEdit} />
+        </div>
       )}
     </div>
   );

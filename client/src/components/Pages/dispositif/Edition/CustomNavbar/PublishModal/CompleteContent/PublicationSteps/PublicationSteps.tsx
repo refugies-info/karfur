@@ -26,7 +26,7 @@ const PublicationSteps = (props: Props) => {
           />
           <div>
             <p className={styles.title}>{item.title}</p>
-            {item.subtitle && <p className={styles.subtitle}>{item.subtitle}</p>}
+            {item.subtitle && <div className={styles.subtitle}>{item.subtitle}</div>}
           </div>
         </div>
       ))}

@@ -13,13 +13,15 @@ export const commitmentDetailsOptions: Record<commitmentDetailsType, string> = {
   between: "Entre"
 };
 export const timeUnitOptions: Record<timeUnitType, string> = {
-  hours: "heures",
-  days: "jours",
-  weeks: "semaines",
-  months: "mois",
-  trimesters: "trimestres",
-  semesters: "semestres",
-  years: "années",
+  "sessions": "séances",
+  "hours": "heures",
+  "half-days": "demi-journées",
+  "days": "jours",
+  "weeks": "semaines",
+  "months": "mois",
+  "trimesters": "trimestres",
+  "semesters": "semestres",
+  "years": "années",
 };
 export const frequencyDetailsOptions: Record<frequencyDetailsType, string> = {
   minimum: "Minimum",
@@ -28,6 +30,7 @@ export const frequencyDetailsOptions: Record<frequencyDetailsType, string> = {
   exactly: "Exactement",
 };
 export const frequencyUnitOptions: Record<frequencyUnitType, string> = {
+  session: "séance",
   day: "jour",
   week: "semaine",
   month: "mois",

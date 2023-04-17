@@ -23,6 +23,8 @@
     border-radius: u(2) u(2) 0 0;
     padding: u(4);
     margin-top: -30px;
+    position: relative;
+    z-index: 1;
   }
 }
 .left {

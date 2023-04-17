@@ -8,6 +8,9 @@ const data: Record<string, string> = {
   en: "en-US-JennyNeural",
   fr: "fr-FR-BrigitteNeural",
   uk: "uk-UA-PolinaNeural",
+  ru: "ru-RU-DariyaNeural",
+  ps: "ps-AF-GulNawazNeural",
+  fa: "fa-IR-FaridNeural"
 };
 
 export default data;

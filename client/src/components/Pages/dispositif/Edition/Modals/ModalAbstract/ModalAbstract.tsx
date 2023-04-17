@@ -3,6 +3,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 import Image from "next/image";
 import { Col, Row } from "reactstrap";
 import { ContentType, CreateDispositifRequest } from "api-types";
+import { useContentType } from "hooks/dispositif";
 import DispositifCard from "components/UI/DispositifCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { BaseModal } from "components/Pages/dispositif";
@@ -23,6 +24,7 @@ const ModalAbstract = (props: Props) => {
   const formContext = useFormContext<CreateDispositifRequest>();
   const values = useWatch<CreateDispositifRequest>();
   const [abstract, setAbstract] = useState<string | undefined>(values.abstract);
+  const typeContenu = useContentType();
 
   const validate = () => {
     formContext.setValue("abstract", abstract || "");
@@ -51,7 +53,7 @@ const ModalAbstract = (props: Props) => {
               </p>
             </div>
           </Col>
-          {values.typeContenu === ContentType.DISPOSITIF && (
+          {typeContenu === ContentType.DISPOSITIF && (
             <>
               <span className={styles.arrow}>
                 <Image src={ArrowRight} width={60} height={29} alt="" />

@@ -116,7 +116,7 @@ interface OpeningHours {
 export interface GetStructureResponse {
   _id: Id;
   acronyme?: string;
-  administrateur: Id;
+  administrateur?: Id;
   adresse?: string;
   authorBelongs?: boolean;
   contact?: string;

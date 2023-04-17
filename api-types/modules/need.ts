@@ -1,6 +1,6 @@
 import { Id, Picture, SimpleTheme } from "../generics";
 
-interface NeedTranslation {
+export interface NeedTranslation {
   text: string;
   subtitle: string;
   updatedAt?: Date;
@@ -43,7 +43,7 @@ export interface GetNeedResponse {
   ti: NeedTranslation;
   ps: NeedTranslation;
   uk: NeedTranslation;
-  image?: Picture
+  image?: Picture;
 }
 
 /**

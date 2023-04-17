@@ -222,7 +222,7 @@ const API = {
   },
   deleteDispositif: (id: Id): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.delete(`/dispositifs/${id}/status`, { headers });
+    return instance.delete(`/dispositifs/${id}`, { headers });
   },
   updateDispositifStatus: (id: Id, body: DispositifStatusRequest): Promise<APIResponse> => {
     const headers = getHeaders();

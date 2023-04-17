@@ -40,10 +40,7 @@ export interface DemarcheContent extends Content {
 
 export interface TranslationContent {
   content: DispositifContent | DemarcheContent;
-  metadatas: {
-    important?: string;
-    duration?: string;
-  };
+  // keep "content" prop to be able to add "metadatas" later
 }
 
 export interface GetTraductionsForReview {
@@ -70,10 +67,6 @@ export interface SaveTranslationRequest {
       how?: { [key: string]: Partial<InfoSection> };
       next?: { [key: string]: Partial<InfoSection> };
     };
-    metadatas: Partial<{
-      important?: string;
-      duration?: string;
-    }>;
   }>;
 }
 

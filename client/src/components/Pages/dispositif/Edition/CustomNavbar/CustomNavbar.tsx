@@ -2,38 +2,44 @@ import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { DispositifStatus } from "api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
 import { useLocale } from "hooks";
+import { useAutosave } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { calculateProgress, getText } from "./functions";
+import { calculateProgress, getText, TOTAL_STEPS } from "./functions";
 import Tooltip from "components/UI/Tooltip";
 import QuitModal from "./QuitModal";
 import PublishModal from "./PublishModal";
 import StepBar from "./StepBar";
 import styles from "./CustomNavbar.module.scss";
 
+interface Props {
+  typeContenu: ContentType;
+}
+
 /**
- * Navbar of edition mode, which shows progress and validate buttons
+ * Navbar of edition mode, which shows progress and validate buttons.
+ * Responsible for autosave
  */
-const CustomNavbar = () => {
+const CustomNavbar = (props: Props) => {
+  const { isSaving } = useAutosave();
   const router = useRouter();
-  const total = 14;
-  const values = useWatch();
+  const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);
-  const [progress, setProgress] = useState<number>(calculateProgress(values));
+  const [progress, setProgress] = useState<number>(calculateProgress(values, props.typeContenu));
 
   const initialLocale = useLocale();
   const [showLanguageWarning, setShowLanguageWarning] = useState(initialLocale !== "fr");
 
   useEffect(() => {
-    setProgress(calculateProgress(values));
-  }, [values]);
+    setProgress(calculateProgress(values, props.typeContenu));
+  }, [values, props.typeContenu]);
 
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
 
@@ -93,7 +99,7 @@ const CustomNavbar = () => {
       )}
       <div className={cls("fr-container", styles.inner)}>
         <div className={styles.steps}>
-          <StepBar total={total} progress={progress} text={`${progress} / ${total}`} />
+          <StepBar total={TOTAL_STEPS} progress={progress} text={`${progress} / ${TOTAL_STEPS}`} />
           <p className={styles.help}>{getText(progress)}</p>
           <Button
             secondary={!showMissingSteps}
@@ -108,8 +114,13 @@ const CustomNavbar = () => {
         </div>
         <div>
           <span id="save-status" className={styles.save}>
-            <EVAIcon name="save" size={16} fill={styles.darkBackgroundElevationContrast} className="me-2" />
-            Sauvegardé il y a quelques secondes
+            <EVAIcon
+              name={isSaving ? "sync-outline" : "save"}
+              size={16}
+              fill={styles.darkBackgroundElevationContrast}
+              className="me-2"
+            />
+            <span>{isSaving ? "Sauvegarde en cours..." : "Sauvegardé il y a quelques secondes"}</span>
           </span>
           <Tooltip target="save-status" placement="top">
             Toutes les modifications sont sauvegardées automatiquement
@@ -118,7 +129,11 @@ const CustomNavbar = () => {
             Quitter
           </Button>
           {!hideValidateButton && (
-            <Button icon="checkmark-circle-2" iconPlacement="end" onClick={togglePublishModal}>
+            <Button
+              icon={progress === TOTAL_STEPS ? "checkmark-circle-2" : undefined}
+              iconPlacement="end"
+              onClick={togglePublishModal}
+            >
               Valider
             </Button>
           )}
@@ -138,6 +153,7 @@ const CustomNavbar = () => {
       />
       <PublishModal
         show={showPublishModal}
+        typeContenu={props.typeContenu}
         toggle={togglePublishModal}
         onQuit={toggleQuitModal}
         onPublish={handlePublish}
