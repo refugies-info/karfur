@@ -120,16 +120,17 @@ instance.interceptors.response.use(
 const CancelToken = axios.CancelToken;
 let cancel: Canceler;
 
-const getHeaders = () => {
+type RequestOptions = {
+  token?: string
+}
+
+const getHeaders = (jwtToken?: string) => {
   const headers: any = {
     "Content-Type": "application/json",
     "site-secret": process.env.NEXT_PUBLIC_REACT_APP_SITE_SECRET || "",
   };
 
-  const token = isInBrowser()
-    ? getAuthToken()
-    //@ts-ignore
-    : axios.defaults.headers["x-access-token"]; // headers set for server calls
+  const token = isInBrowser() ? getAuthToken() : jwtToken;
   if (token) headers["x-access-token"] = token;
   return headers;
 };
@@ -166,8 +167,8 @@ const API = {
   },
 
   // User
-  getUser: (): Promise<APIResponse<GetUserInfoResponse>> => {
-    const headers = getHeaders();
+  getUser: (options?: RequestOptions): Promise<APIResponse<GetUserInfoResponse>> => {
+    const headers = getHeaders(options?.token);
     return instance.get("/user", { headers });
   },
   updateUser: (id: Id, body: UpdateUserRequest): Promise<APIResponse> => {
@@ -210,8 +211,8 @@ const API = {
   },
 
   // Dispositif
-  getDispositif: (id: string, locale: string): Promise<APIResponse<GetDispositifResponse>> => {
-    const headers = getHeaders();
+  getDispositif: (id: string, locale: string, options?: RequestOptions): Promise<APIResponse<GetDispositifResponse>> => {
+    const headers = getHeaders(options?.token);
     return instance.get(`/dispositifs/${id}?locale=${locale}`, { headers });
   },
   countDispositifs: (query: CountDispositifsRequest): Promise<APIResponse<GetCountDispositifsResponse>> => {

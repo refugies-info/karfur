@@ -28,7 +28,7 @@ export function* fetchUser(
     yield put(startLoading(LoadingStatusKey.FETCH_USER));
     const isAuth = yield call(API.isAuth);
     if (isAuth) {
-      const data: APIResponse<GetUserInfoResponse> = yield call(API.getUser);
+      const data: APIResponse<GetUserInfoResponse> = yield call(API.getUser, { token: action.payload?.token });
       const user = data.data.data;
       yield put(setUserActionCreator(user));
       if (user.structures && user.structures.length > 0) {
@@ -45,7 +45,7 @@ export function* fetchUser(
     yield put(finishLoading(LoadingStatusKey.FETCH_USER));
     logger.info("[fetchUser] saga finish");
 
-    if (action.payload && action.payload.shouldRedirect) {
+    if (action.payload?.shouldRedirect) {
       yield call(
         Router.push, "/backend/user-translation"
       )
