@@ -6,7 +6,6 @@ import { getPath } from "routes";
 import { useEditionMode } from "hooks";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import { themesSelector } from "services/Themes/themes.selectors";
-import { logoDIAIR } from "assets";
 
 const Footer = () => {
   const router = useRouter();
