@@ -1,6 +1,7 @@
 import React from "react";
 import { conditionType, Metadatas } from "@refugies-info/api-types";
-import { Rows, RowsSpacing, TextSmallNormal } from "../components";
+import { Rows, RowsSpacing } from "../components/layout";
+import { TextSmallNormal } from "../components/StyledText";
 
 import imgOfpra from "../theme/images/demarche/acte_naissance_OFPRA.png";
 import imgTse from "../theme/images/demarche/titreSejour.png";

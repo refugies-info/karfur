@@ -162,9 +162,29 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                     ]
                   }
                 >
-                  <RNSVGGroup>
-                    <RNSVGGroup>
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
                       <RNSVGRect
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                         height="24"
                         matrix={
                           [
@@ -183,6 +203,12 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                       />
                       <RNSVGPath
                         d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -341,9 +367,29 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                 ]
               }
             >
-              <RNSVGGroup>
-                <RNSVGGroup>
+              <RNSVGGroup
+                fill={
+                  {
+                    "payload": 4278190080,
+                    "type": 0,
+                  }
+                }
+              >
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
                   <RNSVGRect
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
                     height="24"
                     matrix={
                       [
@@ -362,6 +408,12 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                   />
                   <RNSVGPath
                     d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
                   />
                 </RNSVGGroup>
               </RNSVGGroup>

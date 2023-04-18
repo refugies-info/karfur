@@ -2,7 +2,7 @@
   "build": {
     "base": {
       "ios": {
-        "image":"macos-monterey-12.4-xcode-13.4"
+        "image":"latest"
       }
     },
     "production": {
@@ -14,7 +14,7 @@
       "channel": "staging",
       "distribution": "internal",
       "env": {
-        "EXPO_APP_NAME": "Réfugiés.info [Staging]",
+        "EXPO_APP_NAME": "Réfugiés.info - Staging",
         "EAS_BUILD_PROFILE": "staging"
       }
     },

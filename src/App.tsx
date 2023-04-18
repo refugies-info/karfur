@@ -78,18 +78,18 @@ export default function App() {
   }
 
   return (
-    <Suspense fallback={<View>Chargement</View>}>
-      <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
-          <SafeAreaProvider>
+    <SafeAreaProvider>
+      <Suspense fallback={<View>Chargement</View>}>
+        <QueryClientProvider client={queryClient}>
+          <Provider store={store}>
             <ThemeProvider>
               <RootNavigator />
               <ConnexionTest />
               <StatusBar />
             </ThemeProvider>
-          </SafeAreaProvider>
-        </Provider>
-      </QueryClientProvider>
-    </Suspense>
+          </Provider>
+        </QueryClientProvider>
+      </Suspense>
+    </SafeAreaProvider>
   );
 }

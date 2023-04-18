@@ -13,7 +13,7 @@ import { StyledTextSmallBold } from "../../StyledText";
 import Logo from "../../../theme/images/logo.svg";
 import NotificationsIcon from "../../Notifications/NotificationsIcon";
 import { ReadableText } from "../../ReadableText";
-import Columns, { ColumnsSpacing } from "../Columns";
+import Columns from "../Columns";
 import { IconButton } from "../../iconography";
 import { upperFirst } from "lodash";
 import { HeaderContentProps } from "./HeaderContentProps";
@@ -21,6 +21,7 @@ import Spacer from "../Spacer";
 
 const Container = styled.View`
   min-height: ${({ theme }) => theme.layout.header.minHeight}px;
+  padding-top: ${({ theme }) => theme.insets.top}px;
   padding-bottom: ${({ theme }) => theme.layout.header.paddingBottom}px;
 `;
 

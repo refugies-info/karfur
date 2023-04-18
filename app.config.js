@@ -115,7 +115,7 @@ export default {
       "./src/utils/withSimulatorExcludedArchitectures.js",
       "./build-scripts/withGoogleMapsApiKey.js",
       "./build-scripts/withReactNativeMap.js",
-      "./build-scripts/withM1build.js",
+      // "./build-scripts/withM1build.js",
       [
         "expo-build-properties",
         {
@@ -138,7 +138,8 @@ export default {
       // package: "com.refugiesinfo.app",
       package:
         "com.refugiesinfo.app" +
-        (process.env.EAS_BUILD_PROFILE !== "production"
+        (process.env.EAS_BUILD_PROFILE &&
+        process.env.EAS_BUILD_PROFILE !== "production"
           ? `.${process.env.EAS_BUILD_PROFILE}`
           : ""),
       config: {
