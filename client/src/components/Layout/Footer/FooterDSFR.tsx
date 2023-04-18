@@ -1,4 +1,5 @@
 import { Footer as DSFRFooter, FooterProps } from "@codegouvfr/react-dsfr/Footer";
+import { consentModalButtonProps } from "@codegouvfr/react-dsfr/ConsentBanner";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +25,7 @@ const Footer = () => {
   return (
     <DSFRFooter
       accessibility="partially compliant"
+      accessibilityLinkProps={{ href: getPath("/declaration-accessibilite", router.locale) }}
       brandTop="GOUVERNEMENT"
       operatorLogo={{
         alt: "Logo DIAIR",
@@ -37,6 +39,24 @@ const Footer = () => {
       homeLinkProps={{
         href: "/",
         title: "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)",
+      }}
+      // cookiesManagementLinkProps={{
+      //   href: "#",
+      //   // onClick: () => showConsent(),
+      //   title: t("Footer.Gestion des cookies", "Gestion des cookies"),
+      // }}
+      cookiesManagementButtonProps={consentModalButtonProps}
+      personalDataLinkProps={{
+        href: getPath("/politique-de-confidentialite", router.locale),
+        title: t("Politique de confidentialité", "Politique de confidentialité"),
+      }}
+      termsLinkProps={{
+        href: getPath("/mentions-legales", router.locale),
+        title: t("Mentions légales", "Mentions légales"),
+      }}
+      websiteMapLinkProps={{
+        href: getPath("/plan-du-site", router.locale),
+        title: t("Footer.Plan du site", "Plan du site"),
       }}
       linkList={[
         {
