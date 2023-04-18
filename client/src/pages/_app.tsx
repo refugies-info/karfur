@@ -15,6 +15,24 @@ import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatu
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isRoute } from "routes";
 
+import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
+import Link from "next/link";
+import { ConsentBanner } from "@codegouvfr/react-dsfr/ConsentBanner";
+
+// Only in TypeScript projects
+declare module "@codegouvfr/react-dsfr/next-pagesdir" {
+  interface RegisterLink {
+    Link: typeof Link;
+  }
+}
+
+const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
+  defaultColorScheme: "system",
+  Link,
+});
+
+export { dsfrDocumentApi };
+
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
   options: PageOptions;
@@ -85,6 +103,23 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
 
   return (
     <>
+      <ConsentBanner
+        gdprLinkProps={{ href: "#" }}
+        services={[
+          {
+            name: "mandatory-cookie-consumer",
+            title: "Any service consuming 🍪",
+            description: "As a mandatory service, user cannot disable it.",
+            mandatory: true,
+          },
+          {
+            name: "cookie-consumer",
+            title: "Any service consuming 🍪",
+            description: "Here you can describe why this service use cookies.",
+          },
+        ]}
+        siteName={"Réfugiés.info"}
+      />
       <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
 
       {options.cookiesModule && <Script src="//static.axept.io/sdk.js" strategy="lazyOnload" />}
@@ -110,4 +145,4 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   );
 };
 
-export default appWithTranslation(App);
+export default withDsfr(appWithTranslation(App));
