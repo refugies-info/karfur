@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { ComponentType } from "react";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import useToggle from "react-use/lib/useToggle";
 import styled, { useTheme } from "styled-components/native";
@@ -23,6 +23,7 @@ const Container = styled.View`
   min-height: ${({ theme }) => theme.layout.header.minHeight}px;
   padding-top: ${({ theme }) => theme.insets.top}px;
   padding-bottom: ${({ theme }) => theme.layout.header.paddingBottom}px;
+  margin-top: ${Platform.OS === "android" ? 50 : 0}px;
 `;
 
 const HeaderTitle = styled(StyledTextSmallBold)<{
