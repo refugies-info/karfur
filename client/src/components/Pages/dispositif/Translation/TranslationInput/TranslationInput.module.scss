@@ -1,0 +1,52 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/icons";
+@import "src/scss/mixins/responsive";
+
+.view {
+  padding: u(4);
+  border: 1px solid $lightBorderDefaultGrey;
+  background: $lightBackgroundElevationAlt;
+  box-shadow: 0 2px 6px 0 #00001229;
+  border-radius: u(2);
+
+  &:hover {
+    cursor: pointer;
+    background: $lightBackgroundContrastGrey;
+    box-shadow: none;
+  }
+
+  &.open {
+    background: transparent;
+  }
+}
+
+.edit {
+  .input {
+    border: 1px solid $lightTextTitleGrey;
+    border-radius: u(2);
+  }
+  input {
+    padding: u(4);
+    width: 100%;
+  }
+
+  .authors {
+    padding: u(4);
+    border-top: 1px solid $lightBorderDefaultGrey;
+    background: $lightBackgroundContrastGrey;
+    border-radius: 0 0 u(2) u(2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .buttons {
+    margin-top: u(4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

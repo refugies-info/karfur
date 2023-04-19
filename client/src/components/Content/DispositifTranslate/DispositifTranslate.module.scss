@@ -1,0 +1,27 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/responsive";
+
+.container {
+  width: 100%;
+  background-color: $lightBackgroundContrastGrey;
+}
+
+.col {
+  max-height: calc(100vh - 58px);
+  overflow-y: scroll;
+}
+
+.main {
+  padding: u(8) u(10);
+  z-index: 1;
+}
+
+.top {
+  margin-bottom: u(16);
+
+  @media print {
+    display: none;
+  }
+}

@@ -12,6 +12,10 @@
   position: relative;
   z-index: 0;
 
+  &.translate {
+    height: 280px;
+  }
+
   @include media-max("lg-limit") {
     height: 240px;
   }

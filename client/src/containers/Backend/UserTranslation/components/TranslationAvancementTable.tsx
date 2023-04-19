@@ -174,6 +174,7 @@ export const TranslationAvancementTable = (props: Props) => {
                 </td>
                 <td className="align-middle">
                   <div style={{ maxWidth: "350px" }}>
+                    {/* TODO: redirect to new path */}
                     <Link
                       data-test-id={`test-line-${element._id}`}
                       onClick={(e) => goToTraduction(e, element)}

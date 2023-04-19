@@ -6,7 +6,6 @@ import UserNotifications from "containers/Backend/UserNotifications";
 import UserFavorites from "containers/Backend/UserFavorites";
 import { UserStructure, UserAdminStructure } from "containers/Backend/UserStructure";
 import UserTranslation from "containers/Backend/UserTranslation";
-import { NewTranslation } from "containers";
 
 type Role = "Trad" | "ExpertTrad" | "Admin" | "hasStructure" | "User" | "Contrib";
 export type BackendRouteType = {
@@ -18,49 +17,6 @@ export type BackendRouteType = {
 };
 
 export const backendRoutes: BackendRouteType[] = [
-  {
-    path: "/backend/traduction/validation",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: NewTranslation,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/traduction",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: NewTranslation,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-
-  {
-    path: "/backend/traduction/dispositif",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: NewTranslation,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/traduction/demarche",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: NewTranslation,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/validation/dispositif",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: NewTranslation,
-    restriction: ["ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/validation/demarche",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: NewTranslation,
-    restriction: ["ExpertTrad", "Admin"],
-  },
   {
     path: "/backend/dashboard",
     name: "Administration - Réfugiés.info",

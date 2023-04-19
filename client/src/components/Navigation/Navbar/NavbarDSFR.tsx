@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { getPath } from "routes";
+import { useEditionMode } from "hooks";
 import styled from "styled-components";
 import FrontendNavigation from "./FrontendNavigation";
 import { UserToolItem, SpeekToolItem, SubscribeToolItem, TranslationToolItem } from "./NavbarItems";
@@ -17,6 +18,9 @@ const LogoImage = styled(Image)`
 const Navbar = () => {
   const { t } = useTranslation();
   const router = useRouter();
+  const isEditionMode = useEditionMode();
+
+  if (isEditionMode) return null; // TODO: hide with CSS?
 
   return (
     <Header closeButtonLabel={t`Fermeture`}>

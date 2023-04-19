@@ -23,8 +23,7 @@ const FrontendNavigation = () => {
   const router = useRouter();
   const { t } = useTranslation();
 
-  const noNavbar = ["/dispositif", "/demarche", "/dispositif/[id]/edit", "/demarche/[id]/edit"];
-  if (router.pathname.includes("/backend") || noNavbar.includes(router.pathname)) return null;
+  if (router.pathname.includes("/backend")) return null;
 
   return (
     <HeaderNav>

@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Post, Queries, Query, Request, Route, Security } from "tsoa";
 
-import { IRequest, ResponseWithData } from "../types/interface";
+import { IRequest, ResponseWithData, Response } from "../types/interface";
 import {
   deleteTranslations,
   getDefaultTraduction,
@@ -46,7 +46,7 @@ export class TranslationController extends Controller {
   }
 
   /**
-   * Get the default FR transalation for a Dispositif
+   * Get the default FR translation for a Dispositif
    *
    * Used by translation page
    */
@@ -61,7 +61,7 @@ export class TranslationController extends Controller {
 
   @Delete("/")
   @Security({ jwt: ["admin"] })
-  public deleteTraductions(@Queries() queries: DeleteTranslationsRequest) {
+  public deleteTraductions(@Queries() queries: DeleteTranslationsRequest): Response {
     return deleteTranslations(queries.dispositifId, queries.locale).then(() => ({
       text: "success",
     }));
