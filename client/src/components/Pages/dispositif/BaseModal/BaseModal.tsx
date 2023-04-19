@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { useContentLocale } from "hooks";
 import Button from "components/UI/Button";
@@ -25,6 +26,7 @@ interface Props {
  * Modal structure used across the EDIT mode of the page.
  */
 const BaseModal = (props: Props) => {
+  const { t } = useTranslation();
   const { isRTL } = useContentLocale();
 
   return (
@@ -46,7 +48,7 @@ const BaseModal = (props: Props) => {
         <div className={styles.content}>
           <div className="text-end">
             <Button icon="close-outline" iconPlacement="end" tertiary className={styles.close} onClick={props.toggle}>
-              Fermer
+              {t("close")}
             </Button>
           </div>
           <p className={styles.title}>{props.title}</p>

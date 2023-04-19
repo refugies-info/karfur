@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "next-i18next";
 import { Metadatas } from "api-types";
 import BaseCard from "../BaseCard";
 import { getPrice } from "../functions";
@@ -13,15 +14,17 @@ interface Props {
 }
 
 const CardPrice = ({ data, color, onClick }: Props) => {
+  const { t } = useTranslation();
+
   return (
     <BaseCard
-      title="Prix"
+      title={t("Infocards.price")}
       items={
         data === null
           ? null
           : [
               {
-                content: getPrice(data),
+                content: getPrice(data, t),
                 icon: data?.values?.[0] === 0 ? <FreeIcon color={color} /> : <PriceIcon color={color} />,
               },
             ]

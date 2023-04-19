@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getPath, PathNames } from "routes";
 import { useLocale } from "hooks";
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const ReadLanguageModal = (props: Props) => {
+  const { t } = useTranslation();
   const locale = useLocale();
   const router = useRouter();
   const dispositif = useSelector(selectedDispositifSelector);
@@ -41,7 +43,7 @@ const ReadLanguageModal = (props: Props) => {
     .map((ln) => ln.i18nCode)
     .filter((ln) => !(dispositif?.availableLanguages || []).includes(ln));
   return (
-    <MobileModal title="Lire la fiche en" show={props.show} toggle={props.toggle}>
+    <MobileModal title={t("Dispositif.readIn")} show={props.show} toggle={props.toggle}>
       <LangueSelectList selectedLn={selectedLn} setSelectedLn={setSelectedLn} disabledOptions={disabledOptions} />
     </MobileModal>
   );

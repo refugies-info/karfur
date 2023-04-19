@@ -58,14 +58,14 @@ const SMSForm = (props: Props) => {
   return (
     <div className={styles.container}>
       <p className={styles.title}>
-        Envoyer par SMS
+        {t("Dispositif.sendBySMS")}
         <EVAIcon name="info-outline" size={20} fill="black" className="ms-2" id="SMSTooltip" />
-        <Tooltip target="SMSTooltip">Vous restez anonyme : le SMS est envoyé avec un numéro Réfugiés.info.</Tooltip>
+        <Tooltip target="SMSTooltip">{t("Dispositif.smsFormHelp")}</Tooltip>
       </p>
       <Input
         id="sms-phone-input"
         type="tel"
-        label="Numéro de téléphone"
+        label={t("Homepage.mobileAppFormLabel")}
         icon="phone-outline"
         value={tel}
         onChange={(e: any) => setTel(e.target.value)}
@@ -73,7 +73,7 @@ const SMSForm = (props: Props) => {
         className="mb-4"
       />
       <LangueMenu
-        label={`SMS en ${(language?.langueFr || "français").toLowerCase()}`}
+        label={`${t("Dispositif.smsFormLanguageShort")} ${(language?.langueFr || "français").toLowerCase()}`}
         selectedLn={selectedLn}
         setSelectedLn={setSelectedLn}
         className={styles.language}
@@ -86,7 +86,7 @@ const SMSForm = (props: Props) => {
         disabled={!tel}
         onClick={sendSMS}
       >
-        Envoyer
+        {t("Envoyer")}
       </Button>
       {error && (
         <div className={styles.error}>
@@ -94,7 +94,7 @@ const SMSForm = (props: Props) => {
           <p>{error}</p>
         </div>
       )}
-      {showToast && <Toast close={() => setShowToast(false)}>SMS envoyé !</Toast>}
+      {showToast && <Toast close={() => setShowToast(false)}>{t("Dispositif.smsFormSent")}</Toast>}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "next-i18next";
 import {
   commitmentDetailsType,
   CreateDispositifRequest,
@@ -34,6 +35,7 @@ interface Props {
 const MAX_STEP = 3;
 
 const ModalAvailability = (props: Props) => {
+  const { t } = useTranslation();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
   const [step, setStep] = useState<number>(1);
 
@@ -213,7 +215,6 @@ const ModalAvailability = (props: Props) => {
               selected={frequencyTimeUnit}
               setSelected={(key: timeUnitType) => setFrequencyTimeUnit(key)}
             />
-            <p>par</p>
             <DropdownModals<frequencyUnitType>
               options={frequencyUnitOptions}
               selected={frequencyUnit}
@@ -237,7 +238,7 @@ const ModalAvailability = (props: Props) => {
           {timeSlotOptions.map((day) => (
             <ChoiceButton
               key={day}
-              text={day}
+              text={t(`Infocards.${day}`)}
               type="checkbox"
               selected={!!(timeSlots && timeSlots?.includes(day))}
               onSelect={() => selectTimeSlot(day)}

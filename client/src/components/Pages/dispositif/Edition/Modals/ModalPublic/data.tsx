@@ -6,21 +6,15 @@ export const help = {
   content: "Ajoutez-les seulement si ce sont vraiment des critères exluant le cas échéant.",
 };
 
-export const publicStatusOptions: Record<publicStatusType, string> = {
-  asile: "Demandeurs d'asile",
-  refugie: "Réfugiés statutaires",
-  subsidiaire: "Bénéficiaires de la protection subsidiaire",
-  temporaire: "Bénéficiaires de la protection temporaire",
-  apatride: "Apatrides",
-  french: "Citoyens français",
-};
-export const publicOptions: Record<publicType, string> = {
-  family: "Familles et enfants",
-  women: "Femmes",
-  youths: "Jeune",
-  senior: "Séniors",
-  gender: "Minorités de genre",
-};
+export const publicStatusOptions: publicStatusType[] = [
+  "asile",
+  "refugie",
+  "subsidiaire",
+  "temporaire",
+  "apatride",
+  "french",
+];
+export const publicOptions: publicType[] = ["family", "women", "youths", "senior", "gender"];
 export type ChoiceItem = {
   text: React.ReactNode;
   help?: string;

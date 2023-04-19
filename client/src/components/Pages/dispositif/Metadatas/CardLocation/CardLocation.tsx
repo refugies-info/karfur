@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { ContentType, Metadatas } from "api-types";
+import { useTranslation } from "next-i18next";
 import { formatDepartment } from "lib/departments";
 import FRLink from "components/UI/FRLink";
 import BaseCard from "../BaseCard";
@@ -15,10 +16,16 @@ interface Props {
 }
 
 const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
+  const { t } = useTranslation();
+
   const links = useMemo(() => {
     if (!data) return data;
     if (!Array.isArray(data)) {
-      return <FRLink href={getLocationLink(data)}>{data === "france" ? "France entière" : "En ligne"}</FRLink>;
+      return (
+        <FRLink href={getLocationLink(data)}>
+          {data === "france" ? t("Infocards.france") : t("Recherche.online")}
+        </FRLink>
+      );
     }
     return (
       <>
@@ -30,11 +37,11 @@ const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
         ))}
       </>
     );
-  }, [data]);
+  }, [data, t]);
 
   return (
     <BaseCard
-      title="Zone d'action"
+      title={t("Infocards.location")}
       items={
         data === null
           ? null

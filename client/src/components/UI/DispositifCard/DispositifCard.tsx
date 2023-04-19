@@ -61,7 +61,7 @@ const DispositifCard = (props: Props) => {
     if (!location) return null;
     if (!Array.isArray(location)) {
       if (location === "france") return jsUcfirst(t("Recherche.france", "toute la France"));
-      if (location === "online") return "En ligne"; // TODO: translate
+      if (location === "online") return jsUcfirst(t("Recherche.online"));
     }
     if (props.selectedDepartment) return props.selectedDepartment;
     if (Array.isArray(location) && location.length > 1)
@@ -122,14 +122,14 @@ const DispositifCard = (props: Props) => {
           {price !== undefined && (
             <div className={cls(styles.info)}>
               <Image src={iconEuro} width={16} height={16} alt="" />
-              <div className="ms-2">{getPriceText(price)}</div>
+              <div className="ms-2">{getPriceText(price, t)}</div>
             </div>
           )}
 
           {commitment && (
             <div className={cls(styles.info, "mt-1")}>
               <Image src={iconTime} width={16} height={16} alt="" />
-              <div className={cls(styles.ellipsis, "ms-2")}>{getCommitmentText(commitment)}</div>
+              <div className={cls(styles.ellipsis, "ms-2")}>{getCommitmentText(commitment, t)}</div>
             </div>
           )}
         </div>

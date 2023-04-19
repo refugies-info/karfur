@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { ContentType } from "api-types";
 import { useContentLocale, useWindowSize } from "hooks";
 import PageContext from "utils/pageContext";
@@ -41,6 +42,7 @@ const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[
 };
 
 const Dispositif = (props: Props) => {
+  const { t } = useTranslation();
   const { isTablet } = useWindowSize();
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
@@ -82,7 +84,7 @@ const Dispositif = (props: Props) => {
               <LinkedThemes />
 
               <FRLink href="#top" icon="arrow-upward" className={styles.top}>
-                Haut de page
+                {t("topLink")}
               </FRLink>
             </>
           )}

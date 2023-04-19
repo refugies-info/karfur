@@ -12,33 +12,12 @@ export const help = {
   content: "Ajoutez des conditions seulement si elles sont vraiment des critères excluant pour accéder à votre action.",
 };
 
-export const dropdownOptions: Record<conditionType, { text: string, image: any }> = {
-  "acte naissance": {
-    text: "Avoir l’acte de naissance donné par l’OFPRA",
-    image: imgOfpra
-  },
-  "titre sejour": {
-    text: "Avoir son titre de séjour ou son récépissé",
-    image: imgTse
-  },
-  "cir": {
-    text: "Avoir signé le CIR et terminé les cours OFII",
-    image: imgOfii
-  },
-  "bank account": {
-    text: "Avoir un compte bancaire",
-    image: imgCb
-  },
-  "pole emploi": {
-    text: "Être inscrit à Pôle Emploi",
-    image: imgPoleEmploi
-  },
-  "driver license": {
-    text: "Avoir son permis B",
-    image: imgDriver
-  },
-  "school": {
-    text: "Avoir le niveau de fin de lycée",
-    image: imgSchool
-  },
+export const dropdownOptions: Record<conditionType, any> = {
+  "acte naissance": imgOfpra,
+  "titre sejour": imgTse,
+  "cir": imgOfii,
+  "bank account": imgCb,
+  "pole emploi": imgPoleEmploi,
+  "driver license": imgDriver,
+  "school": imgSchool,
 };

@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { DispositifStatus, Sponsor, UpdateDispositifRequest } from "api-types";
 import { cls } from "lib/classname";
@@ -24,6 +25,7 @@ interface Props {
 }
 
 const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
+  const { t } = useTranslation();
   const user = useSelector(userSelector);
   const dispositif = useSelector(selectedDispositifSelector);
   const { setValue } = useFormContext();
@@ -55,7 +57,7 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
         title={
           <>
             <EVAIcon name="home-outline" size={24} fill={color || "#000"} className={"me-2"} />
-            Structure
+            {t("Dispositif.structure")}
           </>
         }
         items={[

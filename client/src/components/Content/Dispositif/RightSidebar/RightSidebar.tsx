@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage } from "hooks";
 import { readAudio, stopAudio } from "lib/readAudio";
 import { getAllPageReadableText } from "lib/getReadableText";
@@ -16,6 +17,7 @@ import { ShareButtons, SMSForm, LangueMenu } from "components/Pages/dispositif";
 import styles from "./RightSidebar.module.scss";
 
 const RightSidebar = () => {
+  const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
   const { contentLocale } = useContentLocale();
@@ -93,10 +95,10 @@ const RightSidebar = () => {
         icon={isPlayingTts ? "stop-circle" : "play-circle"}
         className={cls(styles.btn, isPlayingTts && styles.playing)}
       >
-        {isPlayingTts ? "Arrêter" : "Écouter la fiche"}
+        {isPlayingTts ? t("Dispositif.stop") : t("Dispositif.listen")}
       </Button>
       <Button secondary onClick={toggleFavorite} icon={isFavorite ? "star" : "star-outline"} className={styles.btn}>
-        {isFavorite ? "Ajouté aux favoris" : "Ajouter aux favoris"}
+        {isFavorite ? t("Dispositif.addedToFavorites") : t("Dispositif.addToFavorites")}
       </Button>
       <LangueMenu
         label={`En ${language?.langueLoc?.toLowerCase() || "français"}`}
@@ -108,7 +110,9 @@ const RightSidebar = () => {
       />
       {showFavoriteToast && (
         <Toast close={() => setShowFavoriteToast(null)}>
-          {showFavoriteToast === "added" ? "Fiche ajoutée aux favoris !" : "Fiche retirée des favoris !"}
+          {showFavoriteToast === "added"
+            ? t("Dispositif.messageAddedToFavorites")
+            : t("Dispositif.messageRemovedFromFavorites")}
         </Toast>
       )}
 
