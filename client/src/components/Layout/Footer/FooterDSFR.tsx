@@ -40,11 +40,6 @@ const Footer = () => {
         href: "/",
         title: "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)",
       }}
-      // cookiesManagementLinkProps={{
-      //   href: "#",
-      //   // onClick: () => showConsent(),
-      //   title: t("Footer.Gestion des cookies", "Gestion des cookies"),
-      // }}
       cookiesManagementButtonProps={consentModalButtonProps}
       personalDataLinkProps={{
         href: getPath("/politique-de-confidentialite", router.locale),

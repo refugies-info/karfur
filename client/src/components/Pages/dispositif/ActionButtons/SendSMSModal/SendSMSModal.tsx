@@ -2,9 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
-import { useLocale } from "hooks";
+import { useEvent, useLocale } from "hooks";
 import { isValidPhone } from "lib/validateFields";
-import { Event } from "lib/tracking";
 import { cls } from "lib/classname";
 import API from "utils/API";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
@@ -24,6 +23,7 @@ interface Props {
 const SendSMSModal = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
+  const { Event } = useEvent();
   const [selectedLn, setSelectedLn] = useState<string>(locale);
   const [lnListOpen, setLnListOpen] = useState(false);
   const [tel, setTel] = useState<string>("");

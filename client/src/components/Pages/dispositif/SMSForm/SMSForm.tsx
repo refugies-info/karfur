@@ -2,8 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { colors } from "colors";
-import { useLocale } from "hooks";
-import { Event } from "lib/tracking";
+import { useEvent, useLocale } from "hooks";
 import { isValidPhone } from "lib/validateFields";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
@@ -23,6 +22,7 @@ interface Props {
 const SMSForm = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
+  const { Event } = useEvent();
 
   const [selectedLn, setSelectedLn] = useState<string>(locale);
   const languages = useSelector(allLanguesSelector);
