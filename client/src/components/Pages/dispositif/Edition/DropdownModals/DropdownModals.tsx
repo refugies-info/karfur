@@ -3,6 +3,7 @@ import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import { commitmentDetailsType, frequencyDetailsType, frequencyUnitType, priceDetails, timeUnitType } from "api-types";
 import { cls } from "lib/classname";
+import { jsUcfirst } from "lib";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import ChoiceButton from "../ChoiceButton";
 import styles from "./DropdownModals.module.scss";
@@ -25,13 +26,13 @@ function DropdownModals<T extends Options>(props: Props<T>) {
   return (
     <Dropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen((o) => !o)} className={styles.dropdown}>
       <DropdownToggle className={styles.toggle}>
-        {t(`Infocards.${props.selected}`) || ""}
+        {jsUcfirst(t(`Infocards.${props.selected}`) || "")}
         <EVAIcon name="chevron-down-outline" size={16} fill="dark" className={cls(styles.icon, "ms-4")} />
       </DropdownToggle>
       <DropdownMenu className={styles.menu}>
         {props.options.map((key, i) => (
           <ChoiceButton
-            text={t(`Infocards.${key}`)}
+            text={jsUcfirst(t(`Infocards.${key}`))}
             selected={props.selected === key}
             type="radio"
             key={i}

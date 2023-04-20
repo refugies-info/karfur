@@ -10,6 +10,7 @@ import {
   timeSlotType,
   timeUnitType,
 } from "api-types";
+import { jsUcfirst } from "lib";
 import { BaseModal } from "components/Pages/dispositif";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
@@ -238,7 +239,7 @@ const ModalAvailability = (props: Props) => {
           {timeSlotOptions.map((day) => (
             <ChoiceButton
               key={day}
-              text={t(`Infocards.${day}`)}
+              text={jsUcfirst(t(`Infocards.${day}`))}
               type="checkbox"
               selected={!!(timeSlots && timeSlots?.includes(day))}
               onSelect={() => selectTimeSlot(day)}
