@@ -39,11 +39,11 @@ const ReactionModal = (props: Props) => {
   }, [suggestion, dispositifId, sectionKey, callback, toggle]);
 
   return (
-    <BaseModal show={true} toggle={toggle} title="Vous avez une suggestion ?" small>
-      <p>Signalez-nous toute erreur ou suggestion de modification. Nous en tiendrons compte pour améliorer la page.</p>
+    <BaseModal show={true} toggle={toggle} title={t("Dispositif.suggestionTitle")} small>
+      <p>{t("Dispositif.suggestionSubtitle")}</p>
 
       <textarea
-        placeholder="J'écris ma suggestion ici"
+        placeholder={t("Dispositif.suggestionPlaceholder")}
         value={suggestion}
         onChange={(e: any) => setSuggestion(e.target.value)}
         className={styles.textarea}
@@ -51,7 +51,7 @@ const ReactionModal = (props: Props) => {
 
       <div className={styles.footer}>
         <Button secondary onClick={toggle} icon="close-outline" iconPlacement="end" className="me-4">
-          Annuler
+          {t("Annuler", "Annuler")}
         </Button>
         <Button icon="checkmark-circle-2" iconPlacement="end" onClick={submit}>
           {t("Envoyer", "Envoyer")}

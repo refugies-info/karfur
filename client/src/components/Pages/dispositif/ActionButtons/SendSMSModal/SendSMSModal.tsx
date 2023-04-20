@@ -81,7 +81,7 @@ const SendSMSModal = (props: Props) => {
   return (
     <MobileModal title="Envoyer par SMS" show={props.show} toggle={props.toggle} onClick={onClickOutsideMenu}>
       <div className={styles.form}>
-        <p className={styles.text}>Vous restez anonyme : le SMS est envoyé avec un numéro Réfugiés.info.</p>
+        <p className={styles.text}>{t("Dispositif.smsFormHelp")}</p>
         <form
           onSubmit={(e: any) => {
             e.preventDefault();
@@ -90,7 +90,7 @@ const SendSMSModal = (props: Props) => {
         >
           <input
             type="tel"
-            placeholder="N° de téléphone"
+            placeholder={t("Homepage.mobileAppFormLabel")}
             value={tel}
             onChange={(e: any) => setTel(e.target.value)}
             className={cls(styles.input, !!error && styles.input_error)}
@@ -102,7 +102,7 @@ const SendSMSModal = (props: Props) => {
               className={styles.btn}
             >
               <span>
-                Envoyer le SMS en {selectedLanguage?.langueFr?.toLowerCase()}
+                {t("Dispositif.smsFormLanguage")} {selectedLanguage?.langueFr?.toLowerCase()}
                 <Flag langueCode={selectedLanguage?.langueCode} className="ms-2" />
               </span>
               <EVAIcon
@@ -128,7 +128,7 @@ const SendSMSModal = (props: Props) => {
             </div>
           )}
           <Button icon="paper-plane-outline" iconPlacement="end" className={styles.submit} disabled={!tel} submit>
-            Envoyer
+            {t("Envoyer")}
           </Button>
         </form>
       </div>

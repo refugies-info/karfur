@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "next-i18next";
 import { ageType, CreateDispositifRequest, frenchLevelType, Metadatas, publicStatusType, publicType } from "api-types";
 import { cls } from "lib/classname";
 import { entries } from "lib/typedObjectEntries";
@@ -27,6 +28,7 @@ interface Props {
 const MAX_STEP = 4;
 
 const ModalPublic = (props: Props) => {
+  const { t } = useTranslation();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
   const [step, setStep] = useState<number>(1);
 
@@ -164,10 +166,10 @@ const ModalPublic = (props: Props) => {
               helpTooltip="Les primo-arrivants contiennent également les regroupements familiaux, les personnes exilées, les étudiants étrangers, etc."
             />
             <div>
-              {entries<Record<publicStatusType, string>>(publicStatusOptions).map(([key, text]) => (
+              {publicStatusOptions.map((key) => (
                 <div key={key} className={cls("mb-2", key !== "french" && "ms-6")}>
                   <ChoiceButton
-                    text={text}
+                    text={t(`Infocards.${key}`)}
                     type="checkbox"
                     selected={!!(publicStatus && publicStatus?.includes(key))}
                     onSelect={() => selectPublicStatus(key)}
@@ -293,11 +295,11 @@ const ModalPublic = (props: Props) => {
 
         {step === 4 && (
           <div>
-            {entries<Record<publicType, string>>(publicOptions).map(([key, text]) => (
+            {publicOptions.map((key) => (
               <div key={key}>
                 <ChoiceButton
                   key={key}
-                  text={text}
+                  text={t(`Infocards.${key}`)}
                   type="checkbox"
                   selected={!!(publicType && publicType?.includes(key))}
                   onSelect={() => selectPublicType(key)}

@@ -5,39 +5,40 @@ export const help = {
   content: "Si c’est variable selon le profil : il faut cocher la case “cette question ne me concerne pas”",
 };
 
-export const commitmentDetailsOptions: Record<commitmentDetailsType, string> = {
-  minimum: "Minimum",
-  maximum: "Maximum",
-  approximately: "Environ",
-  exactly: "Exactement",
-  between: "Entre"
-};
-export const timeUnitOptions: Record<timeUnitType, string> = {
-  "sessions": "séances",
-  "hours": "heures",
-  "half-days": "demi-journées",
-  "days": "jours",
-  "weeks": "semaines",
-  "months": "mois",
-  "trimesters": "trimestres",
-  "semesters": "semestres",
-  "years": "années",
-};
-export const frequencyDetailsOptions: Record<frequencyDetailsType, string> = {
-  minimum: "Minimum",
-  maximum: "Maximum",
-  approximately: "Environ",
-  exactly: "Exactement",
-};
-export const frequencyUnitOptions: Record<frequencyUnitType, string> = {
-  session: "séance",
-  day: "jour",
-  week: "semaine",
-  month: "mois",
-  trimester: "trimestre",
-  semester: "semestre",
-  year: "an",
-};
+export const commitmentDetailsOptions: commitmentDetailsType[] = [
+  "minimum",
+  "maximum",
+  "approximately",
+  "exactly",
+  "between",
+]
+export const timeUnitOptions: timeUnitType[] = [
+
+  "sessions",
+  "hours",
+  "half-days",
+  "days",
+  "weeks",
+  "months",
+  "trimesters",
+  "semesters",
+  "years",
+]
+export const frequencyDetailsOptions: frequencyDetailsType[] = [
+  "minimum",
+  "maximum",
+  "approximately",
+  "exactly",
+];
+export const frequencyUnitOptions: frequencyUnitType[] = [
+  "session",
+  "day",
+  "week",
+  "month",
+  "trimester",
+  "semester",
+  "year",
+]
 export const timeSlotOptions: timeSlotType[] = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
 export const modalTitles = [

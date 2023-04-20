@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { ContentType, InfoSections } from "api-types";
 import { getDispositifSectionTitle } from "lib/getDispositifSectionTitle";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
@@ -22,6 +23,7 @@ const DEFAULT_COLOR_30 = "#ccc";
  * Shows a section of a dispositif. Can display a rich text or InfoSections. Can be used in VIEW or EDIT mode.
  */
 const Section = ({ sectionKey, contentType }: Props) => {
+  const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
 
   // content
@@ -53,7 +55,7 @@ const Section = ({ sectionKey, contentType }: Props) => {
           {contentHtml && (
             <SectionButtons
               id={sectionKey}
-              content={{ title: getDispositifSectionTitle(sectionKey), text: contentHtml }}
+              content={{ title: t(getDispositifSectionTitle(sectionKey)), text: contentHtml }}
             />
           )}
         </>

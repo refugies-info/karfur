@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { ContentType } from "api-types";
 import { Event } from "lib/tracking";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
@@ -9,6 +10,7 @@ import Tooltip from "components/UI/Tooltip";
 import styles from "./ShareButtons.module.scss";
 
 const ShareButtons = () => {
+  const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
 
   const shareEmail = useCallback(() => {
@@ -56,17 +58,17 @@ const ShareButtons = () => {
     <div className={styles.container}>
       <Button tertiary onClick={shareEmail} icon="email-outline" className={styles.btn} id="EmailTooltip" />
       <Tooltip target="EmailTooltip" placement="bottom">
-        Envoyer par email
+        {t("Dispositif.tooltipShareEmail")}
       </Tooltip>
 
       <Button tertiary onClick={copyLink} icon="copy-outline" className={styles.btn} id="CopyTooltip" />
       <Tooltip target="CopyTooltip" placement="bottom">
-        Copier le lien de la fiche
+        {t("Dispositif.tooltipShareCopy")}
       </Tooltip>
 
       <Button tertiary onClick={print} icon="printer-outline" className={styles.btn} id="PrintTooltip" />
       <Tooltip target="PrintTooltip" placement="bottom">
-        Imprimer
+        {t("Dispositif.tooltipSharePrint")}
       </Tooltip>
 
       <Button
@@ -77,7 +79,7 @@ const ShareButtons = () => {
         id="FacebookTooltip"
       />
       <Tooltip target="FacebookTooltip" placement="bottom">
-        Partager avec Facebook
+        {t("Dispositif.tooltipShareFacebook")}
       </Tooltip>
 
       <Button
@@ -88,7 +90,7 @@ const ShareButtons = () => {
         id="LinkedinTooltip"
       />
       <Tooltip target="LinkedinTooltip" placement="bottom">
-        Partager avec Linkedin
+        {t("Dispositif.tooltipShareLinkedin")}
       </Tooltip>
 
       {showToastLink && <Toast close={() => setShowToastLink(false)}>Lien copié !</Toast>}

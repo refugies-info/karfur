@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { InfoSection } from "api-types";
 import { cls } from "lib/classname";
 import { changeRate, pauseAudio, readAudio, resumeAudio } from "lib/readAudio";
@@ -22,6 +23,7 @@ interface Props {
  * Suggestion and TTS buttons
  */
 const SectionButtons = (props: Props) => {
+  const { t } = useTranslation();
   const locale = useLocale();
 
   // tts
@@ -89,7 +91,7 @@ const SectionButtons = (props: Props) => {
       />
 
       <Tooltip target={tooltipId} placement="right">
-        Réagir
+        {t("Dispositif.react")}
       </Tooltip>
 
       {showReactionModal && (
@@ -100,7 +102,7 @@ const SectionButtons = (props: Props) => {
           callback={() => setShowToast(true)}
         />
       )}
-      {showToast && <Toast close={() => setShowToast(false)}>Votre réaction a bien été enregistrée, merci !</Toast>}
+      {showToast && <Toast close={() => setShowToast(false)}>{t("Dispositif.reactFeedbackMessage")}</Toast>}
     </div>
   );
 };

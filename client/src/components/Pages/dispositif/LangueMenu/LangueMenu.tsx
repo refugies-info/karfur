@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { useTranslation } from "next-i18next";
 import uniqueId from "lodash/uniqueId";
 import { GetLanguagesResponse } from "api-types";
 import { cls } from "lib/classname";
@@ -23,6 +24,7 @@ interface Props {
  * Dropdown showing a list of languages. Can be used at different places across the page.
  */
 const LangueMenu = (props: Props) => {
+  const { t } = useTranslation();
   const languages = useSelector(allLanguesSelector);
   const [open, setOpen] = useState(false);
   const [tooltipId] = useState(uniqueId("tooltip_"));
@@ -61,7 +63,7 @@ const LangueMenu = (props: Props) => {
               <span>{ln.langueLoc}</span>
               {props.disabledOptions?.includes(ln.i18nCode) && (
                 <Tooltip target={`${tooltipId}_${ln.i18nCode}`} placement="top">
-                  Cette fiche n'est pas encore disponible en {ln.langueLoc}
+                  {t("Dispositif.contentNotTranslated")} {ln.langueLoc}
                 </Tooltip>
               )}
             </DropdownItem>

@@ -10,46 +10,47 @@ import imgOfpra from "assets/dispositif/form-icons/conditions-ofpra.svg";
 import imgPoleEmploi from "assets/dispositif/form-icons/conditions-pole-emploi.svg";
 import imgTse from "assets/dispositif/form-icons/conditions-tse.svg";
 import imgOfii from "assets/dispositif/form-icons/conditions-ofii.svg";
+import { TFunction } from "next-i18next";
 
-export const getPrice = (price: Metadatas["price"] | null | undefined) => {
+export const getPrice = (price: Metadatas["price"] | null | undefined, t: TFunction) => {
   if (!price) return price; // null or undefined
-  return getPriceText(price);
+  return getPriceText(price, t);
 }
-export const getPublicStatus = (publicStatus: Metadatas["publicStatus"] | null | undefined) => {
+export const getPublicStatus = (publicStatus: Metadatas["publicStatus"] | null | undefined, t: TFunction) => {
   if (!publicStatus) return publicStatus;
-  return getPublicStatusText(publicStatus);
+  return getPublicStatusText(publicStatus, t);
 }
-export const getAllPublicStatus = () => {
+export const getAllPublicStatus = (t: TFunction) => {
   return getPublicStatusText([
     "apatride", "asile", "refugie", "subsidiaire", "temporaire", "french"
-  ]);
+  ], t);
 }
-export const getPublic = (publicType: Metadatas["public"] | null | undefined) => {
+export const getPublic = (publicType: Metadatas["public"] | null | undefined, t: TFunction) => {
   if (!publicType) return publicType;
-  return getPublicText(publicType);
+  return getPublicText(publicType, t);
 }
-export const getAge = (age: Metadatas["age"] | null | undefined) => {
+export const getAge = (age: Metadatas["age"] | null | undefined, t: TFunction) => {
   if (!age) return age; // null or undefined
-  return getAgeText(age);
+  return getAgeText(age, t);
 }
-export const getCommitment = (commitment: Metadatas["commitment"] | null | undefined) => {
+export const getCommitment = (commitment: Metadatas["commitment"] | null | undefined, t: TFunction) => {
   if (!commitment) return commitment;
-  return getCommitmentText(commitment);
+  return getCommitmentText(commitment, t);
 }
-export const getFrequency = (frequency: Metadatas["frequency"] | null | undefined) => {
+export const getFrequency = (frequency: Metadatas["frequency"] | null | undefined, t: TFunction) => {
   if (!frequency) return frequency;
-  return getFrequencyText(frequency);
+  return getFrequencyText(frequency, t);
 }
-export const getTimeSlots = (timeSlots: Metadatas["timeSlots"] | null | undefined) => {
+export const getTimeSlots = (timeSlots: Metadatas["timeSlots"] | null | undefined, t: TFunction) => {
   if (!timeSlots) return timeSlots;
-  return getTimeSlotsText(timeSlots);
+  return getTimeSlotsText(timeSlots, t);
 }
-export const getFrenchLevel = (frenchLevel: Metadatas["frenchLevel"]) => {
+export const getFrenchLevel = (frenchLevel: Metadatas["frenchLevel"], t: TFunction) => {
   if (!frenchLevel) return frenchLevel;
-  return getFrenchLevelText(frenchLevel);
+  return getFrenchLevelText(frenchLevel, t);
 }
-export const getAllFrenchLevel = () => {
-  return getFrenchLevelText(["alpha", "A1", "A2", "B1", "B2", "C1", "C2"]);
+export const getAllFrenchLevel = (t: TFunction) => {
+  return getFrenchLevelText(["alpha", "A1", "A2", "B1", "B2", "C1", "C2"], t);
 }
 
 export const getConditionImage = (condition: conditionType) => {
