@@ -21,7 +21,7 @@ interface Props {
 const ModalPrice = (props: Props) => {
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
   const [selected, setSelected] = useState<"free" | "pay" | null | undefined>(
-    getInitialPrice(getValues("metadatas.price")) || undefined,
+    getInitialPrice(getValues("metadatas.price")),
   );
   const [selectedPay, setSelectedPay] = useState<"once" | "between" | "free" | undefined>(
     getInitialType(getValues("metadatas.price")),

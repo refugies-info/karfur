@@ -50,7 +50,7 @@ const ModalAvailability = (props: Props) => {
   const [commitmentTimeUnit, setCommitmentTimeUnit] = useState<timeUnitType>(
     getValues("metadatas.commitment.timeUnit") || "months",
   );
-  const [noCommitment, setNoCommitment] = useState<boolean>(false);
+  const [noCommitment, setNoCommitment] = useState<boolean>(getValues("metadatas.commitment") === null);
   const validateCommitment = () => {
     let commitment: Metadatas["commitment"] = undefined;
     if (noCommitment) commitment = null;
@@ -77,7 +77,7 @@ const ModalAvailability = (props: Props) => {
   const [frequencyUnit, setFrequencyUnit] = useState<frequencyUnitType>(
     getValues("metadatas.frequency.frequencyUnit") || "day",
   );
-  const [noFrequency, setNoFrequency] = useState<boolean>(false);
+  const [noFrequency, setNoFrequency] = useState<boolean>(getValues("metadatas.frequency") === null);
   const validateFrequency = () => {
     let frequency: Metadatas["frequency"] = undefined;
     if (noFrequency) frequency = null;
@@ -93,9 +93,7 @@ const ModalAvailability = (props: Props) => {
   };
 
   // timeSlots
-  const [timeSlots, setTimeSlots] = useState<timeSlotType[] | null | undefined>(
-    getValues("metadatas.timeSlots") || undefined,
-  );
+  const [timeSlots, setTimeSlots] = useState<timeSlotType[] | null | undefined>(getValues("metadatas.timeSlots"));
   const selectTimeSlot = useCallback((option: timeSlotType) => {
     setTimeSlots((options) =>
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],

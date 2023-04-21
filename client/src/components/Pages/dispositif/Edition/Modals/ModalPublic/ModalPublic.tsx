@@ -49,7 +49,7 @@ const ModalPublic = (props: Props) => {
 
   // frenchLevel
   const [frenchLevel, setFrenchLevel] = useState<frenchLevelType[] | null | undefined>(
-    getValues("metadatas.frenchLevel") || undefined,
+    getValues("metadatas.frenchLevel"),
   );
   const selectFrenchLevel = useCallback((option: frenchLevelType) => {
     setFrenchLevel((options) =>
@@ -65,7 +65,7 @@ const ModalPublic = (props: Props) => {
   // age
   const [ageType, setAgeType] = useState<ageType>(getValues("metadatas.age.type") || "moreThan");
   const [ages, setAges] = useState<number[]>(getValues("metadatas.age.ages") || []);
-  const [noAge, setNoAge] = useState(false);
+  const [noAge, setNoAge] = useState(getValues("metadatas.age") === null);
   const validateAge = () => {
     let age: Metadatas["age"] = undefined;
     if (noAge) age = null;
@@ -83,9 +83,7 @@ const ModalPublic = (props: Props) => {
   };
 
   // public
-  const [publicType, setPublicType] = useState<publicType[] | null | undefined>(
-    getValues("metadatas.public") || undefined,
-  );
+  const [publicType, setPublicType] = useState<publicType[] | null | undefined>(getValues("metadatas.public"));
   const selectPublicType = useCallback((option: publicType) => {
     setPublicType((options) =>
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
