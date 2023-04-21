@@ -12,7 +12,6 @@ export const testUser: GetUserInfoResponse = {
   email: "",
   selectedLanguages: [],
   status: UserStatus.ACTIVE,
-  traductionsFaites: []
 };
 
 export const testUserWithRoles: GetUserInfoResponse = {

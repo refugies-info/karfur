@@ -33,7 +33,7 @@ export interface PostWidgetResponse {
   _id: Id;
   name: string;
   tags: string[];
-  themes: string[];
+  themes: Id[];
   typeContenu: ContentType[];
   department: string;
   languages: string[];
@@ -48,7 +48,7 @@ export interface PatchWidgetResponse {
   _id: Id;
   name: string;
   tags: string[];
-  themes: string[];
+  themes: Id[];
   typeContenu: ContentType[];
   department: string;
   languages: string[];

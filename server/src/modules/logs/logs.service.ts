@@ -26,11 +26,11 @@ export const addLog = (
   text: string,
   options?: optionsType,
 ) => {
-  const log: Log = {
-    objectId: new ObjectId(id.toString()),
-    model_object: type,
-    text,
-  };
+  const log = new Log();
+  log.objectId = new ObjectId(id.toString());
+  log.model_object = type;
+  log.text = text;
+
   if (options.author) log.author = new ObjectId(options.author.toString());
   if (options.dynamicId) log.dynamicId = new ObjectId(options.dynamicId.toString());
   if (options.model_dynamic) log.model_dynamic = options.model_dynamic;

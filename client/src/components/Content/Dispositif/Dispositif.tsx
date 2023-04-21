@@ -61,7 +61,7 @@ const Dispositif = (props: Props) => {
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
-        image={theme?.shareImage.secure_url}
+        image={theme?.shareImage?.secure_url}
       />
       {isEditMode && <CustomNavbar typeContenu={typeContenu} />}
       {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}

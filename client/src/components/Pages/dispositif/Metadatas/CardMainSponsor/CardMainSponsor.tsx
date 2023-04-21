@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { useFormContext } from "react-hook-form";
+import { DeepPartialSkipArrayKey, useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { DispositifStatus, Sponsor, UpdateDispositifRequest } from "api-types";
@@ -19,7 +19,7 @@ import defaultStructureImage from "assets/recherche/default-structure-image.svg"
 import styles from "./CardMainSponsor.module.scss";
 
 interface Props {
-  dataMainSponsor: UpdateDispositifRequest["mainSponsor"];
+  dataMainSponsor: DeepPartialSkipArrayKey<UpdateDispositifRequest["mainSponsor"]>;
   color: string;
   onClick?: () => void;
 }

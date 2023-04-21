@@ -25,6 +25,9 @@ class LogLink {
 
 @modelOptions({ schemaOptions: { collection: "logs", timestamps: { createdAt: "created_at" } } })
 export class Log extends Base {
+  @prop()
+  created_at: Date;
+
   @prop({ required: true, refPath: "model_object" })
   public objectId!: Ref<User | Dispositif | Structure>;
 

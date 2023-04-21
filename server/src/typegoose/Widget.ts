@@ -6,6 +6,9 @@ import { User } from "./User";
 
 @modelOptions({ schemaOptions: { collection: "widgets", timestamps: { createdAt: "created_at" } } })
 export class Widget extends Base {
+  @prop()
+  created_at: Date;
+
   @prop({ required: true })
   public name!: string;
 

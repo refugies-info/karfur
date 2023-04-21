@@ -95,7 +95,6 @@ export interface GetUserInfoResponse {
   selectedLanguages: string[];
   status: UserStatus;
   structures: string[];
-  traductionsFaites: string[];
   username: string;
   picture?: Picture;
   favorites?: {

@@ -32,20 +32,6 @@ export function* fetchSelectedDispositif(
       if (dispositif) {
         yield put(setSelectedDispositifActionCreator(dispositif, true));
       }
-
-      /* TODO : handle server side
-      const user = yield select(userSelector);
-      if (
-        dispositif.status !== "Actif" &&
-        !user.admin &&
-        !user.user.contributions.includes(dispositif._id) &&
-        !user.user.structures.includes(dispositif.mainSponsor._id)
-      ) {
-        if (isEmpty(user)) {
-          yield call(Router.push, "/login");
-        }
-        // yield call(Router.push, "/");
-      } */
     }
 
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_DISPOSITIF));

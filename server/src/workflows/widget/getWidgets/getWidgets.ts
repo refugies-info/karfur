@@ -9,8 +9,6 @@ export const getWidgets = async (): ResponseWithData<GetWidgetResponse[]> => {
   const widgets = await getAllWidgets();
   return {
     text: "success",
-    // FIXME: include created_at
-    //@ts-ignore
     data: widgets,
   };
 };

@@ -1,4 +1,5 @@
 import React, { useContext, useMemo } from "react";
+import { useTranslation } from "next-i18next";
 import { DispositifStatus } from "api-types";
 import { Badge } from "@dataesr/react-dsfr";
 import { isStatus } from "lib/dispositif";
@@ -7,7 +8,7 @@ import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import StepBar from "../../StepBar";
 import { Step, TOTAL_STEPS } from "../../functions";
-import { help } from "./data";
+import { help, stepTranslations } from "./data";
 import styles from "./MissingContent.module.scss";
 
 interface Props {
@@ -36,6 +37,7 @@ const STEPS_MODAL: Record<Step, Modals | null> = {
 };
 
 const MissingContent = (props: Props) => {
+  const { t } = useTranslation();
   const pageContext = useContext(PageContext);
 
   const content = useMemo(() => {
@@ -72,7 +74,7 @@ const MissingContent = (props: Props) => {
       <div className={styles.missing}>
         {props.missingSteps.map((step, i) => (
           <button key={i} className={styles.step} onClick={() => goToStep(step)}>
-            <span>{step}</span>
+            <span>{t(stepTranslations[step], stepTranslations[step])}</span>
 
             <span>
               <Badge type="warning" text="Manquant" icon="ri-alert-fill" isSmall className="me-4" />
