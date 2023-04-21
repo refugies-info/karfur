@@ -30,8 +30,8 @@ export const log = async (dispositif: Dispositif, originalDispositif: Dispositif
     }
 
     // sponsor
-    const oldSponsorId = originalDispositif.mainSponsor;
-    const newSponsorId = dispositif.mainSponsor || dispositif.mainSponsor;
+    const oldSponsorId = originalDispositif.getMainSponsor()?._id;
+    const newSponsorId = dispositif.mainSponsor;
     const oldSponsorIdString = (oldSponsorId || "").toString();
     const newSponsorIdString = (newSponsorId || "").toString();
 
@@ -122,6 +122,6 @@ export const log = async (dispositif: Dispositif, originalDispositif: Dispositif
       }
     }
   } catch (e) {
-    logger.error("[addDispositif] error while logging", e);
+    logger.error("[updateDispositif] error while logging", e);
   }
 };
