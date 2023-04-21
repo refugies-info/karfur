@@ -71,6 +71,7 @@ import {
   ReadSuggestionDispositifRequest,
   ResetPasswordRequest,
   ResetPasswordResponse,
+  SaveTranslationRequest,
   SaveTranslationResponse,
   SendNotificationsRequest,
   StructureReceiveDispositifRequest,
@@ -429,7 +430,7 @@ const API = {
   },
 
   // Trads
-  saveTraduction: (query: { dispositifId: string; timeSpent: number; translated: any /*TODO*/; language: string }): Promise<APIResponse<SaveTranslationResponse>> => {
+  saveTraduction: (query: SaveTranslationRequest): Promise<APIResponse<SaveTranslationResponse>> => {
     const headers = getHeaders();
     return instance.post("/traduction", query, {
       headers,

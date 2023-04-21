@@ -92,6 +92,9 @@ export const appReducer: Reducer<any, any> = (state, action) => {
     if (action.payload.selectedDispositif) {
       nextState.selectedDispositif = action.payload.selectedDispositif;
     }
+    if (action.payload.user) {
+      nextState.user = action.payload.user;
+    }
     if (action.payload.selectedStructure) {
       nextState.selectedStructure = action.payload.selectedStructure;
     }

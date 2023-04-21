@@ -1,66 +1,79 @@
 import { useUser } from "hooks";
 import cloneDeep from "lodash/cloneDeep";
-import get from "lodash/get";
 import set from "lodash/set";
-import { useCallback, useMemo, useState } from "react";
-import { useAsync } from "react-use";
-import Swal from "sweetalert2";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import API from "utils/API";
-import { GetTraductionsForReview, GetTraductionsForReviewResponse, TranslationContent } from "api-types";
+import { GetTraductionsForReview, GetTraductionsForReviewResponse, Languages } from "api-types";
 import { useRouter } from "next/router";
-import { logger } from "logger";
 
-const useDispositifTranslation = () => {
+/**
+ * Get all suggestions except mine
+ */
+const getInitialTranslations = (userId: string, traductions: GetTraductionsForReviewResponse) => {
+  return traductions.filter(t => t.author !== userId.toString())
+}
+
+/**
+ * Get only my suggestion
+ */
+const getInitialMyTranslation = (userId: string, username: string, traductions: GetTraductionsForReviewResponse) => {
+  return traductions.find(t => t.author === userId) // user already has a translation
+    || {
+    translated: {},
+    toFinish: [],
+    author: userId,
+    username: username
+  }; // else, create a new empty one
+}
+
+const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse) => {
   const { user } = useUser();
   const router = useRouter();
 
-  const [myTranslation, setMyTranslation] = useState<GetTraductionsForReview & { avancement: number }>({
-    translated: {},
-    avancement: 0,
-    author: "",
-    username: ""
-  });
+  const [translations, _setTranslations] = useState<GetTraductionsForReview[]>(
+    getInitialTranslations(user.userId.toString(), traductions)
+  );
+  const [myTranslation, setMyTranslation] = useState<GetTraductionsForReview>(
+    getInitialMyTranslation(user.userId.toString(), user.user?.username || "", traductions)
+  );
   const dispositifId = useMemo(() => router.query.id as string, [router.query]);
-  const language = useMemo(() => router.query.language as string, [router.query]);
+  const language = useMemo(() => router.query.language as Languages, [router.query]);
 
-  // const [startDate, setStartDate] = useState<Date>(new Date());
-  // useEffect(() => {
-  //   setStartDate(new Date());
-  // }, [section]);
+  const [startDate, setStartDate] = useState<Date>(new Date());
+  useEffect(() => {
+    setStartDate(new Date());
+  }, []);
 
   /**
    * Valide la traduction de la section en cours pour la traduction de l'utilisateur courant
    */
   const validate = useCallback(
-    async (value: string, section: string) => {
+    async (value: string, section: string, unfinished: boolean) => {
       const translated = cloneDeep(myTranslation.translated);
       set(translated, section, value);
 
+      const toFinish = unfinished
+        ? [...myTranslation.toFinish, section]
+        : [...myTranslation.toFinish].filter(t => t !== section)
+
       return API.saveTraduction({
         dispositifId: dispositifId || "",
-        timeSpent: new Date().getTime() /* - startDate.getTime() */,
+        timeSpent: new Date().getTime() - startDate.getTime(),
         translated,
+        toFinish,
         language: language || "",
-      })
-        .then(({ data }) => data.data.translation)
-        .then((translation) => {
-          if (translation.avancement >= 1) {
-            Swal.fire({
-              title: "Yay...",
-              text: "La traduction a bien été enregistrée",
-              icon: "success",
-              timer: 1000,
-            });
-            router.push("/fr/backend/user-translation/" + language);
-          }
-        });
+      }).then(data => {
+        setMyTranslation({ ...myTranslation, translated, toFinish })
+        return data.data.data
+      });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [myTranslation, dispositifId, language],
+
+    [myTranslation, dispositifId, language, startDate],
   );
 
   return {
     locale: language,
+    translations,
     myTranslation,
     validate,
   };

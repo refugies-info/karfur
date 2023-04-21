@@ -101,6 +101,9 @@ export class Traductions extends Base {
   @prop({ type: () => [String] })
   public toReview?: string[];
 
+  @prop({ type: () => [String] })
+  public toFinish?: string[];
+
   @prop()
   public type: TraductionsType;
 

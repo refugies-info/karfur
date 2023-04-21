@@ -26,7 +26,7 @@ const DemarchePage = (props: Props) => {
   const dispositifFormContext = useDispositifTranslateForm();
 
   return (
-    <PageContext.Provider value={{ mode: "translate" }}>
+    <PageContext.Provider value={dispositifFormContext}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <DispositifTranslate traductions={props.traductions} defaultTraduction={props.defaultTraduction} />

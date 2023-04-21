@@ -1,11 +1,11 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useContext, useEffect, useRef } from "react";
 import { Col, Row } from "reactstrap";
 import { useSelector } from "react-redux";
-import some from "lodash/some";
 import get from "lodash/get";
 import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "api-types";
-import { useContentLocale, useUser } from "hooks";
+import { useContentLocale } from "hooks";
 import { useDispositifTranslation } from "hooks/dispositif";
+import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
@@ -14,7 +14,7 @@ import SEO from "components/Seo";
 import { Header, Section, Banner, SectionTitle } from "components/Pages/dispositif";
 import { CustomNavbar } from "components/Pages/dispositif/Edition";
 import FRLink from "components/UI/FRLink";
-import { filterAndTransformTranslations, keys } from "./functions";
+import { filterAndTransformTranslations, keys, transformOneTranslation } from "./functions";
 import styles from "./DispositifTranslate.module.scss";
 
 interface Props {
@@ -34,8 +34,8 @@ const Dispositif = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const { isRTL } = useContentLocale();
-  const { user } = useUser();
-  const { locale, validate } = useDispositifTranslation();
+  const { locale, myTranslation, translations, validate } = useDispositifTranslation(traductions);
+  const pageContext = useContext(PageContext);
 
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
@@ -47,14 +47,24 @@ const Dispositif = (props: Props) => {
       return {
         section: section,
         initialText: get(defaultTraduction, section),
-        suggestions: filterAndTransformTranslations(section, traductions),
-        toReview: some(traductions, (trad) => trad.toReview?.includes(section) || false),
+        mySuggestion: transformOneTranslation(section, myTranslation),
+        suggestions: filterAndTransformTranslations(section, translations),
         locale: locale,
         validate: validate,
       };
     },
-    [defaultTraduction, traductions, locale, validate],
+    [defaultTraduction, translations, locale, validate, myTranslation],
   );
+
+  // Scroll when section active
+  const refContent = useRef<any>(null);
+  useEffect(() => {
+    if (pageContext.activeSection) {
+      refContent.current?.querySelector(`[data-section="${pageContext.activeSection}"]`)?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }, [pageContext.activeSection]);
 
   return (
     <div className={cls(styles.container)} id="top">
@@ -68,10 +78,6 @@ const Dispositif = (props: Props) => {
         <Col xs="6" className={cls(styles.col, "bg-white")}>
           <div>
             <Banner themeId={dispositif?.theme} />
-            {/* <p>{traductions?.length} traductions disponibles</p> */}
-            {/* {user.expertTrad ? <p>Vous êtes traducteur expert</p> : <p>Vous êtes traducteur</p>} */}
-            {/* <ProgressWithValue avancementTrad={myTranslation.avancement} isExpert={user.expertTrad} /> */}
-
             <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
               <TranslationInput {...getInputProps("content.titreInformatif")} />
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
@@ -97,7 +103,7 @@ const Dispositif = (props: Props) => {
         </Col>
 
         <Col xs="6" className={styles.col}>
-          <div>
+          <div ref={refContent}>
             <Banner themeId={dispositif?.theme} />
 
             <div className={styles.main} id="anchor-what" dir={isRTL ? undefined : "ltr"}>

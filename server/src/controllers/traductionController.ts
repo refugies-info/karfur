@@ -81,6 +81,7 @@ export class TranslationController extends Controller {
         author: trad.getUser().id,
         username: trad.getUser().username,
         toReview: trad.toReview,
+        toFinish: trad.toFinish || []
       })),
     }));
   }

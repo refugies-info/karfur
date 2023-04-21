@@ -48,6 +48,7 @@ export interface GetTraductionsForReview {
   translated: Partial<TranslationContent>;
   username: string;
   toReview?: string[];
+  toFinish: string[];
 }
 export type GetTraductionsForReviewResponse = GetTraductionsForReview[];
 
@@ -60,6 +61,7 @@ export interface SaveTranslationRequest {
   dispositifId: string;
   language: Languages;
   timeSpent: number;
+  toFinish: string[];
   translated: Partial<{
     content: Partial<Content> & {
       what?: RichText;
