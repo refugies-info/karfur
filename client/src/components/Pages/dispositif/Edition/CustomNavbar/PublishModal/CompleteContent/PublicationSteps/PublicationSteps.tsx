@@ -1,4 +1,5 @@
 import React from "react";
+import { Badge } from "@dataesr/react-dsfr";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./PublicationSteps.module.scss";
@@ -7,6 +8,7 @@ type Item = {
   title: string;
   subtitle?: string | React.ReactNode;
   done?: boolean;
+  notification?: boolean;
 };
 
 interface Props {
@@ -27,6 +29,15 @@ const PublicationSteps = (props: Props) => {
           <div>
             <p className={styles.title}>{item.title}</p>
             {item.subtitle && <div className={styles.subtitle}>{item.subtitle}</div>}
+            {item.notification && (
+              <Badge
+                type="info"
+                text="Notification par mail"
+                icon="ri-notification-4-line"
+                isSmall
+                className={cls(styles.badge, "mt-2")}
+              />
+            )}
           </div>
         </div>
       ))}
