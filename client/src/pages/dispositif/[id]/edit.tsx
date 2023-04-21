@@ -13,6 +13,7 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import { UpdateDispositifRequest } from "api-types";
 import { getDefaultValue } from "lib/dispositifForm";
 import { useDispositifForm } from "hooks/dispositif";
+import { canEdit } from "lib/dispositif";
 
 interface Props {
   history: string[];
@@ -52,7 +53,8 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 
   // 404
   const dispositif = store.getState().selectedDispositif;
-  if (!dispositif || dispositif.typeContenu !== "dispositif") {
+  const isAllowedToEdit = dispositif ? canEdit(dispositif, store.getState().user.user) : false;
+  if (!dispositif || dispositif.typeContenu !== "dispositif" || !isAllowedToEdit) {
     return { notFound: true };
   }
 
