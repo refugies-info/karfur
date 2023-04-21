@@ -56,7 +56,7 @@ const StructureContainer = styled.div`
 `;
 
 const getStructureNameAndStatus = (
-  sponsor: GetAllDispositifsResponse["mainSponsor"] | null
+  sponsor: GetAllDispositifsResponse["mainSponsor"] | null,
 ): { structureName: string; statusColor: string } => {
   const red = colors.error;
   const orange = colors.orange;
@@ -117,7 +117,7 @@ export const getColorAndStatus = (text: string) => {
     return {
       status: correspondingStatusElement[0].displayedStatus,
       color: correspondingStatusElement[0].color,
-      textColor: correspondingStatusElement[0].textColor
+      textColor: correspondingStatusElement[0].textColor,
     };
 
   const correspondingStatusElementProgression = progressionData.filter((element) => element.storedStatus === text);
@@ -125,7 +125,7 @@ export const getColorAndStatus = (text: string) => {
     return {
       status: correspondingStatusElementProgression[0].displayedStatus,
       color: correspondingStatusElementProgression[0].color,
-      textColor: correspondingStatusElementProgression[0].textColor
+      textColor: correspondingStatusElementProgression[0].textColor,
     };
 
   const correspondingStatusElementPublication = publicationData.filter((element) => element.storedStatus === text);
@@ -133,13 +133,13 @@ export const getColorAndStatus = (text: string) => {
     return {
       status: correspondingStatusElementPublication[0].displayedStatus,
       color: correspondingStatusElementPublication[0].color,
-      textColor: correspondingStatusElementPublication[0].textColor
+      textColor: correspondingStatusElementPublication[0].textColor,
     };
 
   return {
     status: "Nouveau !",
     color: colors.bleuCharte,
-    textColor: colors.white
+    textColor: colors.white,
   };
 };
 
@@ -206,14 +206,6 @@ export const SeeButton = (props: { burl: string }) => (
         <EVAIcon name="eye" fill={colors.white} size={20} />
       </div>
     </a>
-  </ButtonContainer>
-);
-
-export const SeeButtonWithoutNavigation = () => (
-  <ButtonContainer hoverColor={colors.gray90}>
-    <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="eye" fill={colors.white} size={20} />
-    </div>
   </ButtonContainer>
 );
 

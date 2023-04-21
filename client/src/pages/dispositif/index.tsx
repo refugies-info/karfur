@@ -1,12 +1,18 @@
 import { useState } from "react";
+import { END } from "redux-saga";
 import { FormProvider, useForm } from "react-hook-form";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ContentType, CreateDispositifRequest } from "api-types";
-import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
 import { getInitialValue } from "lib/dispositifForm";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import PageContext from "utils/pageContext";
+import { useDispositifForm } from "hooks/dispositif";
+import { wrapper } from "services/configureStore";
+import { fetchThemesActionCreator } from "services/Themes/themes.actions";
+import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
+import { fetchUserActionCreator } from "services/User/user.actions";
 import Dispositif from "components/Content/Dispositif";
 import { ModalWelcome } from "components/Pages/dispositif/Edition/Modals";
-import { useDispositifForm } from "hooks/dispositif";
 
 interface Props {
   history: string[];
@@ -31,6 +37,29 @@ const DispositifPage = (props: Props) => {
   );
 };
 
-export const getStaticProps = defaultStaticPropsWithThemes;
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, query, locale }) => {
+  // must be authenticated to access page
+  if (!req.cookies.authorization) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  store.dispatch(fetchThemesActionCreator());
+  store.dispatch(fetchNeedsActionCreator());
+  store.dispatch(fetchUserActionCreator({ token: req.cookies.authorization }));
+  store.dispatch(END);
+  await store.sagaTask?.toPromise();
+
+  // 200
+  return {
+    props: {
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+    },
+  };
+});
 
 export default DispositifPage;

@@ -18,7 +18,9 @@ interface Props {
 const ModalConditions = (props: Props) => {
   const { t } = useTranslation();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
-  const [selected, setSelected] = useState<conditionType[] | null>(getValues("metadatas.conditions") || []);
+  const [selected, setSelected] = useState<conditionType[] | null>( // if undefined, nothing selected. Else, data or null
+    getValues("metadatas.conditions") === undefined ? [] : getValues("metadatas.conditions") || null,
+  );
   const toggleItem = (item: conditionType) =>
     setSelected((items) => (items?.includes(item) ? items.filter((i) => i !== item) : [...(items || []), item]));
 

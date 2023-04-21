@@ -141,7 +141,6 @@ export class UserController extends Controller {
         "structures",
         "_id",
         "roles",
-        "traductionsFaites",
         "contributions",
         "username",
         "status",

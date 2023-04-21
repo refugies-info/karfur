@@ -2,6 +2,8 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import dynamic from "next/dynamic";
 import PageContext from "utils/pageContext";
+import { cls } from "lib/classname";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Button from "components/UI/Button";
 import Text from "components/Pages/dispositif/Text";
 import AddContentButton from "../../AddContentButton";
@@ -70,7 +72,14 @@ const AccordionItem = (props: Props) => {
           onDelete={props.onDelete}
           hasError={!!getContent() && (!getValues(`${props.id}.title`) || !getValues(`${props.id}.text`))}
         >
-          {props.label || "Argument"}
+          <span className={styles.button_inner}>
+            {props.label || "Argument"}
+            {props.onDelete && (
+              <span className={cls(styles.remove, "me-4")}>
+                <EVAIcon name="trash-2-outline" size={32} fill={styles.lightTextMentionGrey} onClick={props.onDelete} />
+              </span>
+            )}
+          </span>
         </AddContentButton>
       )}
       {isActive && (

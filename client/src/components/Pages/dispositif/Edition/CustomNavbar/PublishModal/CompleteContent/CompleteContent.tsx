@@ -159,12 +159,12 @@ const CompleteContent = (props: Props) => {
               title: "Relecture par l’équipe éditoriale",
               subtitle: "Nous vous contactons s’il manque des informations essentielles.",
             },
-            { title: "Validation par le responsable de la structure" },
-            { title: "Publication de la fiche 🎉" },
+            { title: "Publication de la fiche 🎉", notification: true },
             {
               title: "Traduction en 7 langues",
               subtitle:
                 "Votre fiche est traduite gratuitement par des bénévoles et des experts linguistes en anglais, arabe, pachto, persan, tigrinya, ukrainien et russe.",
+              notification: true,
             },
           ]}
         />

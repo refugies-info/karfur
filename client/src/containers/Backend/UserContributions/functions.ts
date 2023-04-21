@@ -50,9 +50,7 @@ export const formatContributions = (
         titreInformatif: dispositif.titreInformatif || "",
         titreMarque: dispositif.titreMarque || "",
         typeContenu: dispositif.typeContenu,
-        // FIXME
-        //@ts-ignore
-        nbMercis: dispositif.nbMercis || 0,
+        nbMercis: /* dispositif.nbMercis || */ 0, // TODO : get nb mercis
         nbVues: dispositif.nbVues,
         _id: dispositif._id,
         status: dispositif.status,

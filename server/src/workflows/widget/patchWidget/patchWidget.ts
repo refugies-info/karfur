@@ -23,8 +23,6 @@ export const patchWidget = async (
 
   return {
     text: "success",
-    // FIXME: include created_at
-    //@ts-ignore
     data: dbWidget,
   };
 };

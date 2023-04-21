@@ -9,6 +9,6 @@ export const log = async (id: string, authorId: UserId) => {
       author: authorId,
     });
   } catch (e) {
-    logger.error("[addDispositif] error while logging", e);
+    logger.error("[deleteDispositif] error while logging", e);
   }
 };

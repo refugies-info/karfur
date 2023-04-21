@@ -29,7 +29,6 @@ export type Step = "titreInformatif" | "titreMarque" | "what" | "why" | "how" | 
  * return an array with null if complete, or the name of the step if missing
  */
 export const getMissingSteps = (dispositif: DeepPartialSkipArrayKey<CreateDispositifRequest>, typeContenu: ContentType): (Step | null)[] => {
-  /* TODO: translate keys */
   return [
     !!dispositif.titreInformatif ? null : "titreInformatif",
     !!dispositif.titreMarque ? null : "titreMarque",

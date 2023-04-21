@@ -261,7 +261,18 @@ const getAge = (metadata) => {
 // const savedMetadatasIndex = {}; // save index of translated meta to find it in translations then
 
 const getMetadatas = (content, id) => {
-  const metas = {};
+  const metas = {
+    location: null,
+    frenchLevel: null,
+    age: null,
+    price: null,
+    publicStatus: null,
+    public: null,
+    conditions: null,
+    commitment: null,
+    frequency: null,
+    timeSlots: null,
+  };
   // const translatedMetas = {};
 
   // const titles = (content?.children || []).map((c) => c.title);

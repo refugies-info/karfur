@@ -147,8 +147,7 @@ const LeftSidebarEdition = (props: Props) => {
       <div id="step-mainSponsor"></div>
       {values.mainSponsor !== undefined ? (
         <CardMainSponsor
-          /* @ts-ignore */
-          dataMainSponsor={values.mainSponsor} /* FIXME */
+          dataMainSponsor={values.mainSponsor}
           color={color}
           onClick={() => setActiveModal?.("MainSponsor")}
         />

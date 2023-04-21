@@ -26,11 +26,11 @@ export interface GetThemeResponse {
   short: TranslatedText;
   colors: ThemeColors;
   position: number;
-  icon: Picture;
-  banner: Picture;
-  appBanner: Picture;
-  appImage: Picture;
-  shareImage: Picture;
+  icon?: Picture;
+  banner?: Picture;
+  appBanner?: Picture;
+  appImage?: Picture;
+  shareImage?: Picture;
   notificationEmoji: string;
   active: boolean;
   adminComments?: string;

@@ -4,7 +4,7 @@ import { ContentType, GetDispositifResponse } from "api-types";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { getPath } from "routes";
-import { useContentLocale, useWindowSize } from "hooks";
+import { useContentLocale, useLocale, useWindowSize } from "hooks";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { needSelector } from "services/Needs/needs.selectors";
 import { themeSelector } from "services/Themes/themes.selectors";
@@ -25,6 +25,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
   const theme = useSelector(themeSelector(dispositif?.theme));
   const need = useSelector(needSelector(dispositif?.needs?.[0] || null));
   const { isRTL } = useContentLocale();
+  const locale = useLocale();
 
   const chevron = useMemo(
     () => (
@@ -80,8 +81,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
           {dispositif.needs.length === 1 && need && (
             <>
               <Link href={getPath("/recherche", "fr", buildUrlQuery({ needs: [need._id] }))} className={styles.link}>
-                {need.fr.text}
-                {/* TODO: translate */}
+                {need[locale]?.text || need.fr.text}
               </Link>
               {chevron}
             </>
