@@ -9,7 +9,7 @@ import StepBar from "../../StepBar";
 import ChoiceButton from "../../../ChoiceButton";
 import PublicationSteps from "./PublicationSteps";
 import BubbleFlags from "./BubbleFlags";
-import { TOTAL_STEPS } from "../../functions/edit";
+import { TOTAL_STEPS } from "../../CustomNavbarEdit/functions";
 import { getTextContent } from "./functions";
 import { Content } from "./data";
 import PublishImage from "assets/dispositif/publish-image.svg";

@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-types";
 import { BaseModal } from "components/Pages/dispositif";
-import { getMissingStepsEdit, Step } from "../functions/edit";
+import { getMissingStepsEdit, Step } from "../CustomNavbarEdit/functions";
 import CompleteContent from "./CompleteContent";
 import MissingContent from "./MissingContent";
 import styles from "./PublishModal.module.scss";

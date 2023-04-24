@@ -7,17 +7,17 @@ import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
 import { useLocale } from "hooks";
-import { useAutosave } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { calculateProgressEdit, getText, TOTAL_STEPS } from "./functions/edit";
+import { calculateProgressEdit, getText, TOTAL_STEPS } from "./functions";
 import Tooltip from "components/UI/Tooltip";
-import QuitModal from "./QuitModal";
-import PublishModal from "./PublishModal";
-import StepBar from "./StepBar";
-import styles from "./CustomNavbar.module.scss";
+import QuitModal from "../QuitModal";
+import PublishModal from "../PublishModal";
+import StepBar from "../StepBar";
+import styles from "../CustomNavbar.module.scss";
+import useAutosave from "./useAutosave";
 
 interface Props {
   typeContenu: ContentType;

@@ -19,7 +19,7 @@ type FormValues = DeepPartialSkipArrayKey<CreateDispositifRequest>;
 const useAutosave = () => {
   const router = useRouter();
   const data: FormValues = useWatch<CreateDispositifRequest>(); // watch form data
-  const [oldData, setOldData] = useState<FormValues>(data); // save previous form data to comparer changes
+  const [oldData, setOldData] = useState<FormValues>(data); // save previous form data to compare changes
   const dispositif = useSelector(selectedDispositifSelector);
   const id = useMemo(() => dispositif?._id, [dispositif]); // if id: edition, else: creation
   const methods = useFormContext<CreateDispositifRequest>();

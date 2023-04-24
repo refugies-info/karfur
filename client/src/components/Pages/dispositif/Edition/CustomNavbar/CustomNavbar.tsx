@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { ContentType, TranslationContent } from "api-types";
 import PageContext from "utils/pageContext";
-import CustomNavbarEdit from "./CustomNavbarEdit";
 import CustomNavbarTranslate from "./CustomNavbarTranslate";
+import CustomNavbarEdit from "./CustomNavbarEdit";
 
 interface Props {
   typeContenu: ContentType;

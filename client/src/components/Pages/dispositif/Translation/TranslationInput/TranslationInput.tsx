@@ -13,6 +13,8 @@ import UserSuggest from "./UserSuggest";
 import { cls } from "lib/classname";
 import RichTextInput from "components/UI/RichTextInput";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { useFormContext, useWatch } from "react-hook-form";
+import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
 
 export const getAllSuggestions = (mySuggestion: Suggestion, suggestions: Suggestion[]) => {
   return !!mySuggestion.text ? [mySuggestion, ...suggestions] : suggestions;
@@ -24,7 +26,7 @@ interface Props {
   mySuggestion: Suggestion;
   suggestions: Suggestion[]; // all suggestions except mine
   locale: string;
-  validate: (value: string, section: string, unfinished: boolean) => Promise<SaveTranslationResponse>;
+  validate: (section: string, unfinished: boolean) => Promise<void>;
   size?: "xl" | "lg";
   isHTML: boolean;
   noAutoTrad: boolean;
@@ -44,15 +46,25 @@ const TranslationInput = ({
   maxLength,
 }: Props) => {
   const { user } = useUser();
-  const [googleTranslateValue, setGoogleTranslateValue] = useState("");
   const pageContext = useContext(PageContext);
 
   // Index pour parcourir les suggestions de traductions
   const max = useMemo(() => Math.max(suggestions.length, 0), [suggestions]); // suggestions + google translate
   const [index, { inc, dec, set }] = useNumber(-1, max, -1); // -1 : edit mode, n : suggestions, max : google translate
   const [validatedIndex, setValidatedIndex] = useState<number | null>(null);
-  const [value, setValue] = useState<string>(noAutoTrad ? initialText : "");
 
+  // Input value
+  const value: string = useWatch({ name: `translated.${section}` });
+  const formContext = useFormContext<TranslateForm>();
+  const setValue = useCallback(
+    //@ts-ignore
+    (value: string) => formContext.setValue(`translated.${section}`, value),
+    [formContext, section],
+  );
+  const [oldValue, setOldValue] = useState("");
+
+  // Google translate
+  const [googleTranslateValue, setGoogleTranslateValue] = useState("");
   const [{ loading }, translate] = useAsyncFn(() =>
     API.get_translation({ q: initialText, language: locale as Languages }).then((data) => {
       const res = data.data.data;
@@ -61,6 +73,14 @@ const TranslationInput = ({
     }),
   );
 
+  useEffect(() => {
+    // if index = last, get Google Translate value
+    if (!googleTranslateValue && index === max && !loading && !noAutoTrad) {
+      translate();
+    }
+  }, [index, googleTranslateValue, loading, translate, max, noAutoTrad]);
+
+  // Open state
   const openInput = useCallback(() => {
     pageContext.setActiveSection?.(section.replace("content.", ""));
   }, [section, pageContext]);
@@ -70,13 +90,6 @@ const TranslationInput = ({
   }, [pageContext]);
 
   const isOpen = useMemo(() => `content.${pageContext.activeSection}` === section, [pageContext, section]);
-
-  // if index = last, get Google Translate value
-  useEffect(() => {
-    if (!googleTranslateValue && index === max && !loading && !noAutoTrad) {
-      translate();
-    }
-  }, [index, googleTranslateValue, loading, translate, max, noAutoTrad]);
 
   // Calcul de l'affichage du bouton
   const [display, setDisplay] = useState(
@@ -89,7 +102,9 @@ const TranslationInput = ({
     );
   }, [mySuggestion, suggestions, user, pageContext.showMissingSteps]);
 
-  const editTranslation = (text: string) => {
+  // Buttons
+  const clickTranslation = (text: string) => {
+    setOldValue(value);
     openInput();
     // if I'm expert and suggestions are available, show them
     if (user.expertTrad && !mySuggestion.text && suggestions.length > 0) {
@@ -100,7 +115,7 @@ const TranslationInput = ({
       set(-1);
     }
   };
-  const editTranslationAsExpert = (text: string) => {
+  const clickSuggestionAsExpert = (text: string) => {
     setValue(text);
     setValidatedIndex(null); // my own translation -> nothing validated
     set(-1);
@@ -123,30 +138,33 @@ const TranslationInput = ({
 
   const saveTrad = useCallback(
     (unfinished: boolean) => {
-      validate(value, section, unfinished).then((res) => {
-        closeInput();
-      });
+      validate(section, unfinished);
+      closeInput();
     },
-    [validate, value, section, closeInput],
+    [validate, section, closeInput],
   );
 
-  const validateTrad = (text: string) => {
+  const validateSuggestion = (text: string) => {
     if (!user.expertTrad) return;
     setValue(text);
     setValidatedIndex(index);
+  };
+
+  const cancel = () => {
+    setValue(oldValue);
+    closeInput();
   };
 
   const footerStatus = useMemo(
     () => getFooterStatus(index, mySuggestion, suggestions),
     [index, mySuggestion, suggestions],
   );
-
   const remainingChars = useMemo(() => (!maxLength ? null : maxLength - (value || "").length), [value, maxLength]);
 
   return !isOpen ? (
     <div
       className={cls(styles.view, styles[getStatusStyle(display.status).type], size && styles[size])}
-      onClick={() => editTranslation(display.text)}
+      onClick={() => clickTranslation(display.text)}
     >
       <div className={styles.status}>
         <UserSuggest username={display.username} picture={display.picture} />
@@ -182,7 +200,7 @@ const TranslationInput = ({
           ) : (
             <div
               className={styles.text}
-              onClick={user.expertTrad ? () => editTranslationAsExpert(suggestions[index]?.text) : undefined}
+              onClick={user.expertTrad ? () => clickSuggestionAsExpert(suggestions[index]?.text) : undefined}
             >
               {index === max ? (
                 <div dangerouslySetInnerHTML={{ __html: googleTranslateValue }} />
@@ -239,7 +257,7 @@ const TranslationInput = ({
             {user.expertTrad && suggestions.length > 0 && index < max && index >= 0 && (
               <Button
                 secondary
-                onClick={() => validateTrad(suggestions[index].text)}
+                onClick={() => validateSuggestion(suggestions[index].text)}
                 icon="checkmark-outline"
                 className={cls(styles.validate, index === validatedIndex && styles.validated, "ms-2")}
               ></Button>
@@ -249,7 +267,7 @@ const TranslationInput = ({
       </div>
 
       <div className={styles.buttons}>
-        <Button secondary onClick={closeInput} icon="close-outline" iconPlacement="end">
+        <Button secondary onClick={cancel} icon="close-outline" iconPlacement="end">
           Annuler
         </Button>
         <div className="text-end">

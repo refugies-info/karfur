@@ -1,4 +1,4 @@
-import { Step } from "../../functions"
+import { Step } from "../../CustomNavbarEdit/functions"
 
 export const help = {
   draft: "Il reste quelques informations pour envoyer votre fiche pour relecture à l’équipe éditoriale de Réfugiés.info.",

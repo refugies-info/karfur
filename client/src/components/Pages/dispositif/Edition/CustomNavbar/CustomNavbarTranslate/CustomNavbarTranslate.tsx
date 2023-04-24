@@ -4,15 +4,15 @@ import { useRouter } from "next/router";
 import { ContentType, TranslationContent } from "api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
-import { useAutosave } from "hooks/dispositif";
 import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
 import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { calculateProgressTranslate, getMaxStepsTranslate } from "./functions/translate";
+import { calculateProgressTranslate, getMaxStepsTranslate } from "./functions";
 import Tooltip from "components/UI/Tooltip";
-import StepBar from "./StepBar";
-import styles from "./CustomNavbar.module.scss";
+import StepBar from "../StepBar";
+import styles from "../CustomNavbar.module.scss";
+import useAutosave from "./useAutosave";
 
 interface Props {
   typeContenu: ContentType;
