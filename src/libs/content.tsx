@@ -1,6 +1,5 @@
 import React from "react";
 import { conditionType, Metadatas } from "@refugies-info/api-types";
-import { Rows, RowsSpacing } from "../components/layout";
 import { TextSmallNormal } from "../components/StyledText";
 
 import imgOfpra from "../theme/images/demarche/acte_naissance_OFPRA.png";
@@ -88,36 +87,40 @@ const getLocation = (data: Metadatas["location"], t: any) => {
     return t("content_screen.whole_country", "Toute la France");
   }
 
-  return (
-    <Rows layout="1" spacing={RowsSpacing.Text}>
-      {data.map((dep: string) => {
-        const [nbDep, nomDep] = dep.split(" - ");
-        return (
-          <TextSmallNormal key={nbDep}>
-            {`${nomDep} (${nbDep})`}
-          </TextSmallNormal>
-        );
-      })}
-    </Rows>
-  );
+  return data.map((dep: string) => {
+    const [nbDep, nomDep] = dep.split(" - ");
+    return (
+      <TextSmallNormal key={nbDep}>{`${nomDep} (${nbDep})\n`}</TextSmallNormal>
+    );
+  });
 };
 
 const getCommitment = (
-  commitment: Metadatas["commitment"] | null | undefined
+  commitment: Metadatas["commitment"] | null | undefined,
+  t: any
 ) => {
   if (!commitment) return commitment;
-  // TODO : translate
-  return `${commitment.amountDetails} ${commitment.hours} ${commitment.timeUnit}`;
+  return `${t(`Infocards.${commitment.amountDetails}`)} ${t(
+    `Infocards.${commitment.hours}`
+  )} ${t(`Infocards.${commitment.timeUnit}`)}`;
 };
-const getFrequency = (frequency: Metadatas["frequency"] | null | undefined) => {
+const getFrequency = (
+  frequency: Metadatas["frequency"] | null | undefined,
+  t: any
+) => {
   if (!frequency) return frequency;
-  // TODO : translate
-  return `${frequency.amountDetails} ${frequency.hours} ${frequency.timeUnit} par ${frequency.frequencyUnit}`;
+  return `${t(`Infocards.${frequency.amountDetails}`)} ${t(
+    `Infocards.${frequency.hours}`
+  )} ${t(`Infocards.${frequency.timeUnit}`)} ${t(
+    `Infocards.${frequency.frequencyUnit}`
+  )}`;
 };
-const getTimeSlots = (timeSlots: Metadatas["timeSlots"] | null | undefined) => {
+const getTimeSlots = (
+  timeSlots: Metadatas["timeSlots"] | null | undefined,
+  t: any
+) => {
   if (!timeSlots) return timeSlots;
-  // TODO : translate
-  return timeSlots.join(", ");
+  return timeSlots.map((slot) => t(`Infocards.${slot}`)).join(", ");
 };
 
 export const getDescriptionNew = (
@@ -158,11 +161,11 @@ export const getDescriptionNew = (
         ? t("content_screen.free", "Gratuit")
         : metadatas.price?.values[0] + "€ " + metadatas.price?.details;
     case "commitment":
-      return getCommitment(metadatas.commitment);
+      return getCommitment(metadatas.commitment, t);
     case "frequency":
-      return getFrequency(metadatas.frequency);
+      return getFrequency(metadatas.frequency, t);
     case "timeSlots":
-      return getTimeSlots(metadatas.timeSlots);
+      return getTimeSlots(metadatas.timeSlots, t);
     case "location":
       return getLocation(metadatas.location, t);
     default:

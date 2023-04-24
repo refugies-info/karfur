@@ -52,12 +52,12 @@ export interface PageProps extends Partial<HeaderProps> {
   title?: string;
 }
 
+//  padding-top: ${({ theme }) => theme.insets.top}px;
 const FixedContainerForHeader = styled(Animated.View)`
   top: 0;
   left: 0;
   position: absolute;
   z-index: 2;
-  padding-top: ${({ theme }) => theme.insets.top}px;
   padding-horizontal: ${({ theme }) => theme.margin * 3}px;
   width: 100%;
 `;

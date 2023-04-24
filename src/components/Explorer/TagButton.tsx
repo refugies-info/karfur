@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StyleProp, ViewStyle } from "react-native";
-import styled, { useTheme } from "styled-components/native";
+import styled from "styled-components/native";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { StyledTextNormalBold } from "../StyledText";
 import { styles } from "../../theme";
@@ -13,15 +13,16 @@ import { isArray } from "lodash";
 import { Picture } from "@refugies-info/api-types";
 
 interface Props {
-  name?: string;
   backgroundColor: string | Array<any>;
   icon: Picture;
   iconSize?: number;
-  onPress: () => void;
   inline?: boolean;
+  name?: string;
+  onPress: () => void;
   searchItem?: any;
   searchLanguageMatch?: string;
   style?: StyleProp<ViewStyle>;
+  textColor?: string;
 }
 
 const StyledContainer = styled(LinearGradient)<{
@@ -42,8 +43,8 @@ const StyledContainer = styled(LinearGradient)<{
   ${({ theme }) => theme.shadows.lg}
 `;
 
-const StyledText = styled(StyledTextNormalBold)`
-  color: ${({ theme }) => theme.colors.white};
+const StyledText = styled(StyledTextNormalBold)<{ color?: string }>`
+  color: ${({ color, theme }) => (color ? color : theme.colors.white)};
   margin-left: ${({ theme }) => (theme.isRTL ? theme.margin : 0)}px;
   margin-right: ${({ theme }) => (theme.isRTL ? 0 : theme.margin)}px;
   flex-shrink: 1;
@@ -59,43 +60,41 @@ export const TagButton = ({
   searchItem,
   searchLanguageMatch,
   style = {},
-}: Props) => {
-  const theme = useTheme();
-  return (
-    <StyledContainer
-      start={[0, 1]}
-      end={[1, 0]}
-      colors={
-        isArray(backgroundColor)
-          ? backgroundColor
-          : [backgroundColor, backgroundColor]
-      }
-      style={style}
-      inline={inline}
+  textColor,
+}: Props) => (
+  <StyledContainer
+    start={[0, 1]}
+    end={[1, 0]}
+    colors={
+      isArray(backgroundColor)
+        ? backgroundColor
+        : [backgroundColor, backgroundColor]
+    }
+    style={style}
+    inline={inline}
+  >
+    <RTLTouchableOpacity
+      onPress={onPress}
+      accessibilityRole="button"
+      style={{ justifyContent: "space-between", alignItems: "center" }}
     >
-      <RTLTouchableOpacity
-        onPress={onPress}
-        accessibilityRole="button"
-        style={{ justifyContent: "space-between", alignItems: "center" }}
-      >
-        <StyledText>
-          {searchItem ? (
-            <Highlight
-              hit={searchItem}
-              attribute={`name_${searchLanguageMatch || "fr"}`}
-              //@ts-ignore
-              capitalize={true}
-              //@ts-ignore
-              color={backgroundColor}
-              //@ts-ignore
-              colorNotHighlighted={styles.colors.white}
-            />
-          ) : (
-            <ReadableText>{firstLetterUpperCase(name || "")}</ReadableText>
-          )}
-        </StyledText>
-        {icon && <StreamlineIcon icon={icon} size={iconSize} />}
-      </RTLTouchableOpacity>
-    </StyledContainer>
-  );
-};
+      <StyledText color={textColor}>
+        {searchItem ? (
+          <Highlight
+            hit={searchItem}
+            attribute={`name_${searchLanguageMatch || "fr"}`}
+            //@ts-ignore
+            capitalize={true}
+            //@ts-ignore
+            color={backgroundColor}
+            //@ts-ignore
+            colorNotHighlighted={styles.colors.white}
+          />
+        ) : (
+          <ReadableText>{firstLetterUpperCase(name || "")}</ReadableText>
+        )}
+      </StyledText>
+      {icon && <StreamlineIcon icon={icon} size={iconSize} />}
+    </RTLTouchableOpacity>
+  </StyledContainer>
+);

@@ -1,10 +1,8 @@
 import Gratuit from "../../theme/images/infocards/gratuit.png";
 import Payant from "../../theme/images/infocards/payant.png";
-import acte_naissance from "../../theme/images/infocards/acte_naissance.png";
 import duree from "../../theme/images/infocards/duree.png";
 import important from "../../theme/images/infocards/important.png";
 import localisation from "../../theme/images/infocards/localisation.png";
-import titreSejour from "../../theme/images/demarche/titreSejour.png";
 
 import age from "../../theme/images/infocards/age.png";
 import francais from "../../theme/images/infocards/francais.png";
@@ -12,15 +10,17 @@ import francais from "../../theme/images/infocards/francais.png";
 import React from "react";
 import { Image } from "react-native";
 import { Metadatas } from "@refugies-info/api-types";
+import { Icon } from "../iconography";
 
 type metaKeys = keyof Metadatas;
 interface Props {
-  title: metaKeys | "mainSponsor";
+  color: string;
   isFree: boolean;
+  title: metaKeys | "mainSponsor";
 }
 
 export const IMAGE_SIZE = 56;
-export const InfocardImage = ({ title, isFree }: Props) => {
+export const InfocardImage = ({ color, title, isFree }: Props) => {
   if (title === "price" && isFree) {
     return (
       <Image
@@ -40,15 +40,6 @@ export const InfocardImage = ({ title, isFree }: Props) => {
   }
 
   switch (title) {
-    // FIXME
-    // case "Acte de naissance OFPRA":
-    //   return (
-    //     <Image
-    //       source={acte_naissance}
-    //       style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-    //       resizeMode="contain"
-    //     />
-    //   );
     case "duration":
       return (
         <Image
@@ -70,18 +61,6 @@ export const InfocardImage = ({ title, isFree }: Props) => {
           style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
         />
       );
-    // FIXME
-    // case "Titre de séjour":
-    //   return (
-    //     <Image
-    //       source={titreSejour}
-    //       style={{
-    //         height: IMAGE_SIZE,
-    //         width: IMAGE_SIZE,
-    //         resizeMode: "contain",
-    //       }}
-    //     />
-    //   );
     case "age":
       return (
         <Image source={age} style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }} />
@@ -93,6 +72,8 @@ export const InfocardImage = ({ title, isFree }: Props) => {
           style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
         />
       );
+    case "publicStatus":
+      return <Icon color={color} name="infocardStatus" size={IMAGE_SIZE} />;
     default:
       return (
         <Image

@@ -32,7 +32,7 @@ const LinkedThemes = ({ themeId }: LinkedThemesProps) => {
 
   return (
     <TagButton
-      name={theme.name[currentLanguage || "fr"]}
+      name={theme.short[currentLanguage || "fr"]}
       backgroundColor={[theme.colors.color100, theme.colors.color80]}
       icon={theme.appImage}
       iconSize={60}

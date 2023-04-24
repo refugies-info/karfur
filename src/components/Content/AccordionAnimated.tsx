@@ -1,9 +1,8 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { View, StyleSheet, Animated } from "react-native";
-import { ObjectId } from "../../types/interface";
 import { styles } from "../../theme";
-import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
+import { RTLTouchableOpacity } from "../BasicComponents";
 import { TextSmallBold } from "../StyledText";
 import { AccordionHeaderFromHtml } from "./AccordionHeaderFromHtml";
 import { Icon } from "react-native-eva-icons";
@@ -15,6 +14,7 @@ import { ReadableText } from "../ReadableText";
 import { useSelector } from "react-redux";
 import { currentItemSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { Languages } from "@refugies-info/api-types";
+import { Columns } from "../layout";
 
 const TitleContainer = styled(RTLTouchableOpacity)<{
   darkColor: string;
@@ -159,37 +159,37 @@ export const AccordionAnimated = (props: Props) => {
     }
   }, [currentItem]);
 
+  if (!props.title || !props.content) return null;
+
   return (
     <AccordionContainer>
-      <View>
-        <TitleContainer
-          isExpanded={isExpanded}
-          darkColor={props.darkColor}
-          lightColor={props.lightColor}
-          onPress={() => toggleListItem()}
-          accessibilityRole="button"
-          accessibilityLabel={props.title}
-          accessibilityState={{ expanded: isExpanded }}
-        >
-          <RTLView>
-            {props.stepNumber && (
-              <StepContainer darkColor={props.darkColor}>
-                <StepText>{props.stepNumber}</StepText>
-              </StepContainer>
-            )}
-            {!props.isContentTranslated ? (
-              <TitleText width={props.width} darkColor={props.darkColor}>
-                <ReadableText>{props.title}</ReadableText>
-              </TitleText>
-            ) : (
-              <AccordionHeaderFromHtml
-                htmlContent={props.title}
-                width={props.width}
-                windowWidth={props.windowWidth}
-                darkColor={props.darkColor}
-              />
-            )}
-          </RTLView>
+      <TitleContainer
+        isExpanded={isExpanded}
+        darkColor={props.darkColor}
+        lightColor={props.lightColor}
+        onPress={() => toggleListItem()}
+        accessibilityRole="button"
+        accessibilityLabel={props.title}
+        accessibilityState={{ expanded: isExpanded }}
+      >
+        <Columns layout="auto 1 auto" verticalAlign="center" RTLBehaviour>
+          {props.stepNumber && (
+            <StepContainer darkColor={props.darkColor}>
+              <StepText>{props.stepNumber}</StepText>
+            </StepContainer>
+          )}
+          {!props.isContentTranslated ? (
+            <TitleText width={props.width} darkColor={props.darkColor}>
+              <ReadableText>{props.title}</ReadableText>
+            </TitleText>
+          ) : (
+            <AccordionHeaderFromHtml
+              htmlContent={props.title}
+              width={props.width}
+              windowWidth={props.windowWidth}
+              darkColor={props.darkColor}
+            />
+          )}
           <IconContainer isRTL={isRTL}>
             <Icon
               name={isExpanded ? "chevron-up" : "chevron-down"}
@@ -198,31 +198,30 @@ export const AccordionAnimated = (props: Props) => {
               fill={props.darkColor}
             />
           </IconContainer>
-        </TitleContainer>
-        {
-          <Animated.View
-            style={[stylesheet.bodyBackground, { height: bodyHeight }]}
-          >
-            <View
-              onLayout={(event: any) =>
-                setBodySectionHeight(event.nativeEvent.layout.height)
-              }
-              style={stylesheet.bodyContainer}
-            >
-              <ExpandedContentContainer>
-                {!!props.content && (
-                  <ContentFromHtml
-                    ref={currentItemRef}
-                    htmlContent={props.content}
-                    windowWidth={props.windowWidth}
-                    fromAccordion={true}
-                  />
-                )}
-              </ExpandedContentContainer>
-            </View>
-          </Animated.View>
-        }
-      </View>
+        </Columns>
+      </TitleContainer>
+
+      <Animated.View
+        style={[stylesheet.bodyBackground, { height: bodyHeight }]}
+      >
+        <View
+          onLayout={(event: any) =>
+            setBodySectionHeight(event.nativeEvent.layout.height)
+          }
+          style={stylesheet.bodyContainer}
+        >
+          <ExpandedContentContainer>
+            {!!props.content && (
+              <ContentFromHtml
+                ref={currentItemRef}
+                htmlContent={props.content}
+                windowWidth={props.windowWidth}
+                fromAccordion={true}
+              />
+            )}
+          </ExpandedContentContainer>
+        </View>
+      </Animated.View>
     </AccordionContainer>
   );
 };

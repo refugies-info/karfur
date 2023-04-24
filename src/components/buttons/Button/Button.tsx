@@ -48,7 +48,6 @@ const Container = styled.View<{
   border-width: 1px;
   padding: ${({ theme }) => theme.radius * 2}px;
   min-height: 44px;
-  ${({ theme }) => theme.shadows.lg}
 `;
 
 const Button = ({

@@ -60,14 +60,12 @@ import { useVoiceover } from "../../hooks/useVoiceover";
 import { readingListLengthSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { withProps } from "../../utils";
 import {
-  Card,
   Columns,
   CustomButton,
   DemarcheImage,
   ErrorScreen,
   FixSafeAreaView,
   HeaderContentContentScreen,
-  HeaderContentProps,
   Icon,
   IconButton,
   InfocardsSection,
@@ -91,7 +89,7 @@ import {
 import PageSkeleton from "../SearchTab/ContentScreen/PageSkeleton";
 import Section from "./Section";
 import { dateDiffReadable } from "./dateDiff";
-import { LinkedTheme, Mercis } from "./Sections";
+import { LinkedNeed, LinkedTheme, Mercis } from "./Sections";
 import { isEmpty } from "lodash";
 
 const HeaderText = styled(TextBigBold)`
@@ -274,14 +272,6 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
 
   const sponsor = selectedContent?.mainSponsor;
 
-  const HeaderContent = React.useMemo(
-    () =>
-      withProps({
-        content: selectedContent,
-      })(HeaderContentContentScreen) as React.ComponentType<HeaderContentProps>,
-    [selectedContent, sponsor, theme]
-  );
-
   if (isLoading)
     return (
       <Page
@@ -401,7 +391,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         headerTitle={selectedContent.titreInformatif}
         loading={isLoading}
         Skeleton={PageSkeleton}
-        HeaderContent={HeaderContent}
+        HeaderContent={HeaderContentContentScreen}
       >
         <Rows>
           <Title>{selectedContent.titreInformatif}</Title>
@@ -506,27 +496,33 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
 
           <Mercis dispositif={selectedContent} />
 
-          {selectedContent.secondaryThemes &&
-            !isEmpty(selectedContent.secondaryThemes) && (
-              <>
-                <Separator />
+          <Separator />
 
-                <SectionTitle>
-                  {t("content_screen.related_topic", "THÉMATIQUES LIÉES")}
-                </SectionTitle>
+          <SectionTitle>
+            {t("content_screen.related_topic", "THÉMATIQUES LIÉES")}
+          </SectionTitle>
 
-                <Rows spacing={RowsSpacing.NoSpace}>
-                  {selectedContent.secondaryThemes.map(
-                    (secondaryTheme, index) => (
-                      <LinkedTheme
-                        key={secondaryTheme.toString()}
-                        themeId={secondaryTheme}
-                      />
-                    )
-                  )}
-                </Rows>
-              </>
+          <Rows spacing={RowsSpacing.NoSpace}>
+            {selectedContent.theme && !isEmpty(selectedContent.theme) && (
+              <LinkedTheme
+                key={selectedContent.theme.toString()}
+                themeId={selectedContent.theme}
+              />
             )}
+            {selectedContent.secondaryThemes &&
+              !isEmpty(selectedContent.secondaryThemes) &&
+              selectedContent.secondaryThemes.map((secondaryTheme) => (
+                <LinkedTheme
+                  key={secondaryTheme.toString()}
+                  themeId={secondaryTheme}
+                />
+              ))}
+            {selectedContent.needs &&
+              !isEmpty(selectedContent.needs) &&
+              selectedContent.needs.map((need) => (
+                <LinkedNeed key={need.toString()} needId={need} />
+              ))}
+          </Rows>
 
           {selectedContent.sponsors && !isEmpty(selectedContent.sponsors) && (
             <>

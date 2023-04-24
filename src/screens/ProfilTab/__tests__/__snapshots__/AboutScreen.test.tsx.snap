@@ -23,7 +23,6 @@ exports[`About screen should render correctly 1`] = `
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
-        "paddingTop": 0,
         "position": "absolute",
         "top": 0,
         "width": "100%",

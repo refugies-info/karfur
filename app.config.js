@@ -130,6 +130,7 @@ export default {
     ],
     android: {
       versionCode: androidVersionCode,
+      jsEngine: "jsc",
       userInterfaceStyle: "light",
       adaptiveIcon: {
         foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",

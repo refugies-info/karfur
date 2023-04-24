@@ -38,7 +38,6 @@ const SubtitleText = styled(TextSmallBold)`
 
 const DescriptionText = styled(TextSmallNormal)`
   margin-top: 4px;
-  flex-shrink: 1;
 `;
 
 const SectionContainer = styled.View`
@@ -46,16 +45,17 @@ const SectionContainer = styled.View`
 `;
 
 const InfocardTextContainer = styled.View`
-  flex: 1;
   margin-right: ${({ theme }) => (theme.i18n.isRTL ? 0 : 8)}px;
   margin-left: ${({ theme }) => (theme.i18n.isRTL ? 8 : 0)}px;
 `;
 
 const Metadata = ({
+  color,
   metadatas,
   metadataKey,
   withTitle = false,
 }: {
+  color: string;
   metadatas: Metadatas;
   metadataKey: keyof Metadatas;
   withTitle?: boolean;
@@ -76,17 +76,21 @@ const Metadata = ({
     return null;
 
   return (
-    <Columns RTLBehaviour layout="auto 1" horizontalAlign="space-between">
+    <Columns
+      RTLBehaviour
+      layout="auto 1"
+      horizontalAlign="space-between"
+      verticalAlign="flex-start"
+    >
       <InfocardImage
-        title={metadataKey}
+        color={color}
         isFree={metadataKey === "price" && metadatas.price?.values[0] === 0}
+        title={metadataKey}
       />
       <InfocardTextContainer>
         {withTitle && (
           <SubtitleText>
-            <ReadableText>
-              {t("content_screen." + metadataKey, metadataKey)}
-            </ReadableText>
+            {t("content_screen." + metadataKey, metadataKey)}
           </SubtitleText>
         )}
         <DescriptionText>
@@ -113,7 +117,7 @@ const Section = ({
       <ReadableText>{title}</ReadableText>
     </TitleText>
 
-    <Rows>{children}</Rows>
+    <Rows layout="1">{children}</Rows>
   </SectionContainer>
 );
 
@@ -128,21 +132,37 @@ export const InfocardsSection = ({ content, color }: Props) => {
           title={t("content_screen.public", "Public visé")}
         >
           <Metadata
+            color={color}
             metadatas={metadatas}
             metadataKey="publicStatus"
             withTitle
           />
           {metadatas.public && (
-            <Metadata metadatas={metadatas} metadataKey="public" withTitle />
+            <Metadata
+              color={color}
+              metadatas={metadatas}
+              metadataKey="public"
+              withTitle
+            />
           )}
 
-          <Metadata metadatas={metadatas} metadataKey="frenchLevel" withTitle />
-          <Metadata metadatas={metadatas} metadataKey="age" withTitle />
+          <Metadata
+            color={color}
+            metadatas={metadatas}
+            metadataKey="frenchLevel"
+            withTitle
+          />
+          <Metadata
+            color={color}
+            metadatas={metadatas}
+            metadataKey="age"
+            withTitle
+          />
         </Section>
 
         {metadatas.price && (
           <Section color={color} title={t("content_screen.price", "Prix")}>
-            <Metadata metadatas={metadatas} metadataKey="price" />
+            <Metadata color={color} metadatas={metadatas} metadataKey="price" />
           </Section>
         )}
 
@@ -154,13 +174,25 @@ export const InfocardsSection = ({ content, color }: Props) => {
             title={t("content_screen.availability", "Disponibilité demandée")}
           >
             {metadatas.commitment && (
-              <Metadata metadatas={metadatas} metadataKey="commitment" />
+              <Metadata
+                color={color}
+                metadatas={metadatas}
+                metadataKey="commitment"
+              />
             )}
             {metadatas.frequency && (
-              <Metadata metadatas={metadatas} metadataKey="frequency" />
+              <Metadata
+                color={color}
+                metadatas={metadatas}
+                metadataKey="frequency"
+              />
             )}
             {metadatas.timeSlots && (
-              <Metadata metadatas={metadatas} metadataKey="timeSlots" />
+              <Metadata
+                color={color}
+                metadatas={metadatas}
+                metadataKey="timeSlots"
+              />
             )}
           </Section>
         )}
@@ -201,7 +233,11 @@ export const InfocardsSection = ({ content, color }: Props) => {
               color={color}
               title={t("content_screen.location", "Zone d'action")}
             >
-              <Metadata metadatas={metadatas} metadataKey="location" />
+              <Metadata
+                color={color}
+                metadatas={metadatas}
+                metadataKey="location"
+              />
             </Section>
           )}
 

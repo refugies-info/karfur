@@ -1,8 +1,5 @@
 export { default, HeaderProps } from "./Header";
-export {
-  default as HeaderContentContentScreen,
-  HeaderContentContentScreenProps,
-} from "./HeaderContentContentScreen";
+export { default as HeaderContentContentScreen } from "./HeaderContentContentScreen";
 export {
   default as HeaderContentContentsScreen,
   HeaderContentContentsScreenProps,

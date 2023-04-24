@@ -7,13 +7,15 @@ import IconLoader from "./IconLoader";
 
 // icons components
 import IconI from "./icons/IconI";
-import IconThumbUp from "./icons/IconThumbUp";
-import IconThumbDown from "./icons/IconThumbDown";
+import IconInfocardStatus from "./icons/IconInfocardStatus";
 import IconSkeleton from "./icons/IconSkeleton";
+import IconThumbDown from "./icons/IconThumbDown";
+import IconThumbUp from "./icons/IconThumbUp";
 import IconWarning from "./icons/IconWarning";
 
 export const supportedIcons: Record<string, any> = {
   i: IconI,
+  infocardStatus: IconInfocardStatus,
   thumb_up: IconThumbUp,
   thumb_down: IconThumbDown,
   warning: IconWarning,

@@ -1367,7 +1367,6 @@ exports[`Filter french level should render correctly when no french level select
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
-        "paddingTop": 0,
         "position": "absolute",
         "top": 0,
         "width": "100%",
