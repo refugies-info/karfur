@@ -3,7 +3,7 @@ import { Col, Row } from "reactstrap";
 import { useSelector } from "react-redux";
 import get from "lodash/get";
 import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "api-types";
-import { useContentLocale } from "hooks";
+import { useContentLocale, useUser } from "hooks";
 import { useDispositifTranslation } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
@@ -16,6 +16,8 @@ import { CustomNavbar } from "components/Pages/dispositif/Edition";
 import FRLink from "components/UI/FRLink";
 import { filterAndTransformTranslations, getInputSize, isInputHTML, keys, transformOneTranslation } from "./functions";
 import styles from "./DispositifTranslate.module.scss";
+import ModalWelcome from "components/Pages/dispositif/Translation/ModalWelcome";
+import { useToggle } from "react-use";
 
 interface Props {
   typeContenu?: ContentType;
@@ -36,6 +38,8 @@ const Dispositif = (props: Props) => {
   const { isRTL } = useContentLocale();
   const { locale, myTranslation, translations, validate } = useDispositifTranslation(traductions);
   const pageContext = useContext(PageContext);
+  const [showWelcomeModal, toggleWelcomeModal] = useToggle(true);
+  const { user } = useUser();
 
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
@@ -125,6 +129,7 @@ const Dispositif = (props: Props) => {
           </div>
         </Col>
       </Row>
+      {!user.expertTrad && <ModalWelcome show={showWelcomeModal} toggle={toggleWelcomeModal} locale={locale} />}
     </div>
   );
 };

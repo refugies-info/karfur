@@ -1,8 +1,7 @@
 import React from "react";
-import Image from "next/image";
+import { Languages } from "api-types";
 import { useLanguages } from "hooks";
-import Flag from "components/UI/Flag";
-import BubbleFlag from "assets/dispositif/bubble-flag.svg";
+import BubbleFlag from "components/UI/BubbleFlag";
 import styles from "./BubbleFlags.module.scss";
 
 const BubbleFlags = () => {
@@ -10,10 +9,7 @@ const BubbleFlags = () => {
   return (
     <div className={styles.container}>
       {langues.map((ln) => (
-        <div key={ln.i18nCode} className={styles.item}>
-          <Image src={BubbleFlag} width={32} height={32} alt="" className={styles.background} />
-          <Flag langueCode={ln.langueCode} className={styles.flag} />
-        </div>
+        <BubbleFlag key={ln.i18nCode} ln={ln.i18nCode as Languages} className="me-4" />
       ))}
     </div>
   );
