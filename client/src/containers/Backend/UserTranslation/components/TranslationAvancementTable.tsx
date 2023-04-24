@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "colors";
 import { Table } from "reactstrap";
-import { Link } from "react-router-dom";
 import { TypeContenu } from "../../UserContributions/components/SubComponents";
 import { Title, TabHeader } from "../../Admin/sharedComponents/SubComponents";
 import { ProgressWithValue, TradStatus } from "./SubComponents";
@@ -15,9 +14,9 @@ import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/Di
 import { useDispatch } from "react-redux";
 import { sortData } from "./functions";
 import styles from "scss/components/adminTable.module.scss";
-import useRouterLocale from "hooks/useRouterLocale";
-import { GetDispositifsWithTranslationAvancementResponse, GetUserInfoResponse, Id, Languages } from "api-types";
+import { GetDispositifsWithTranslationAvancementResponse, GetUserInfoResponse, Languages } from "api-types";
 import { handleApiError } from "lib/handleApiErrors";
+import { useRouter } from "next/router";
 
 moment.locale("fr");
 
@@ -65,20 +64,18 @@ const defaultSortedHeader = {
 };
 export const TranslationAvancementTable = (props: Props) => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
-  const routerLocale = useRouterLocale();
+  const router = useRouter();
 
-  /**
-   * Cette fonction sert à court circuiter la navigation si le profil
-   * de l'utilisateur n'est pas complet _notamment_
-   * @param event
-   * @param element
-   */
   const goToTraduction = (event: any, element: GetDispositifsWithTranslationAvancementResponse) => {
     if (props.user && props.user.email === "") {
       props.toggleCompleteProfilModal();
       props.setElementToTranslate(element);
       event.preventDefault();
     } else {
+      router.push({
+        pathname: `/${element.type}/${element._id}/translate`,
+        search: `?language=${props.languei18nCode}`,
+      });
       if (!props.languei18nCode || (!props.isExpert && element.tradStatus === "VALIDATED")) {
         event.preventDefault();
       }
@@ -174,28 +171,9 @@ export const TranslationAvancementTable = (props: Props) => {
                 </td>
                 <td className="align-middle">
                   <div style={{ maxWidth: "350px" }}>
-                    {/* TODO: redirect to new path */}
-                    <Link
-                      data-test-id={`test-line-${element._id}`}
-                      onClick={(e) => goToTraduction(e, element)}
-                      target={element.tradStatus === "VALIDATED" ? "_blank" : "_self"}
-                      to={{
-                        pathname:
-                          element.tradStatus === "VALIDATED"
-                            ? `${routerLocale}/${element.type}/${element._id}`
-                            : routerLocale +
-                              "/backend" +
-                              (props.isExpert ? "/validation" : "/traduction") +
-                              "/" +
-                              (element.type || "dispositif"),
-                        search:
-                          element.tradStatus !== "VALIDATED"
-                            ? `?language=${props.languei18nCode}&dispositif=${element._id}`
-                            : "",
-                      }}
-                    >
+                    <button data-test-id={`test-line-${element._id}`} onClick={(e) => goToTraduction(e, element)}>
                       <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
-                    </Link>
+                    </button>
                   </div>
                 </td>
 

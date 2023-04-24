@@ -71,7 +71,7 @@ const Dispositif = (props: Props) => {
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
-        image={theme?.shareImage.secure_url}
+        image={theme?.shareImage?.secure_url}
       />
       <CustomNavbar typeContenu={typeContenu} />
       <Row className="gx-0">

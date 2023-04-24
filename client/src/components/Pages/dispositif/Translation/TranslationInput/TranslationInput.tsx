@@ -6,7 +6,14 @@ import { useUser } from "hooks";
 import API from "utils/API";
 import Button from "components/UI/Button";
 import styles from "./TranslationInput.module.scss";
-import { getDisplay, getStatusStyle, getUserTradStatus, UserTradStatus } from "./functions";
+import {
+  ExpertTradStatus,
+  getDisplay,
+  getFooterStatus,
+  getStatusStyle,
+  getUserTradStatus,
+  UserTradStatus,
+} from "./functions";
 import PageContext from "utils/pageContext";
 import { Suggestion } from "components/Content/DispositifTranslate/functions";
 import TranslationStatus from "./TranslationStatus";
@@ -62,21 +69,6 @@ const TranslationInput = ({ section, initialText, suggestions, mySuggestion, loc
     }
   }, [index, googleTranslateValue, loading, translate, max]);
 
-  const editTranslation = (text: string) => {
-    openInput();
-    if (!user.expertTrad) {
-      setValue(text);
-      set(-1);
-    } else {
-      set(0);
-    }
-  };
-  const editTranslationAsExpert = (text: string) => {
-    setValue(text);
-    setValidatedIndex(null); // my own translation -> nothing validated
-    set(-1);
-  };
-
   // Calcul de l'affichage du bouton
   const [display, setDisplay] = useState(
     getDisplay(mySuggestion, suggestions, user.user?.username || "", pageContext.showMissingSteps, user.expertTrad),
@@ -87,6 +79,23 @@ const TranslationInput = ({ section, initialText, suggestions, mySuggestion, loc
       getDisplay(mySuggestion, suggestions, user.user?.username || "", pageContext.showMissingSteps, user.expertTrad),
     );
   }, [mySuggestion, suggestions, user, pageContext.showMissingSteps]);
+
+  const editTranslation = (text: string) => {
+    openInput();
+    // if I'm expert and suggestions are available, show them
+    if (user.expertTrad && !mySuggestion.text && suggestions.length > 0) {
+      set(0);
+    } else {
+      // else, initialize and show edit form
+      setValue(text);
+      set(-1);
+    }
+  };
+  const editTranslationAsExpert = (text: string) => {
+    setValue(text);
+    setValidatedIndex(null); // my own translation -> nothing validated
+    set(-1);
+  };
 
   // Si il n'y a pas de texte, on utilise la traduction
   // automatique pour en proposer une à l'utilisateur
@@ -100,13 +109,8 @@ const TranslationInput = ({ section, initialText, suggestions, mySuggestion, loc
     }
   }, [display, googleTranslateValue, loading, translate]);
 
-  const next = () => {
-    inc();
-  };
-
-  const prev = () => {
-    dec();
-  };
+  const next = () => inc();
+  const prev = () => dec();
 
   const saveTrad = useCallback(
     (unfinished: boolean) => {
@@ -117,13 +121,16 @@ const TranslationInput = ({ section, initialText, suggestions, mySuggestion, loc
     [validate, value, section, closeInput],
   );
 
-  // TODO: how to remember that we validated 1 specific trad
   const validateTrad = (text: string) => {
     if (!user.expertTrad) return;
     setValue(text);
-    saveTrad(false);
     setValidatedIndex(index);
   };
+
+  const footerStatus = useMemo(
+    () => getFooterStatus(index, mySuggestion, suggestions),
+    [index, mySuggestion, suggestions],
+  );
 
   return !isOpen ? (
     <div
@@ -153,14 +160,17 @@ const TranslationInput = ({ section, initialText, suggestions, mySuggestion, loc
           )}
         </div>
 
-        <div className={styles.authors}>
-          {index === -1 ? (
-            <UserSuggest username={user.user?.username || ""} picture="me" isBig />
-          ) : index === max ? (
-            <UserSuggest username="Google Translate" picture="google" isBig />
-          ) : (
-            <UserSuggest username={suggestions[index]?.username || ""} picture="user" isBig />
-          )}
+        <div className={cls(styles.footer, styles[footerStatus.status])}>
+          <span className={styles.user}>
+            {index === -1 ? (
+              <UserSuggest username={user.user?.username || ""} picture="me" isBig />
+            ) : index === max ? (
+              <UserSuggest username="Google Translate" picture="google" isBig />
+            ) : (
+              <UserSuggest username={suggestions[index]?.username || ""} picture="user" isBig />
+            )}
+            <span className={styles.proposal}>{footerStatus.text}</span>
+          </span>
 
           <div>
             {index >= 0 && (
@@ -195,10 +205,10 @@ const TranslationInput = ({ section, initialText, suggestions, mySuggestion, loc
             )}
             {user.expertTrad && suggestions.length > 0 && index < max && index >= 0 && (
               <Button
-                tertiary={index !== validatedIndex}
-                hasBorder={false}
+                secondary
                 onClick={() => validateTrad(suggestions[index].text)}
-                icon="checkmark-circle-2"
+                icon="checkmark-outline"
+                className={cls(styles.validate, index === validatedIndex && styles.validated, "ms-2")}
               ></Button>
             )}
           </div>
@@ -210,15 +220,17 @@ const TranslationInput = ({ section, initialText, suggestions, mySuggestion, loc
           Annuler
         </Button>
         <div className="text-end">
-          <Button secondary onClick={() => saveTrad(true)} icon="clock-outline" iconPlacement="end" className="me-4">
+          <Button
+            disabled={!value}
+            secondary
+            onClick={() => saveTrad(true)}
+            icon="clock-outline"
+            iconPlacement="end"
+            className="me-4"
+          >
             Finir plus tard
           </Button>
-          <Button
-            disabled={loading && !value}
-            onClick={() => saveTrad(false)}
-            icon="checkmark-circle-2"
-            iconPlacement="end"
-          >
+          <Button disabled={!value} onClick={() => saveTrad(false)} icon="checkmark-circle-2" iconPlacement="end">
             Valider
           </Button>
         </div>

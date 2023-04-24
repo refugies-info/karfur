@@ -48,7 +48,7 @@ export const getExpertTradStatus = (mySuggestion: Suggestion, suggestions: Sugge
   ) return ExpertTradStatus.TO_VALIDATE;
 
   // my text exists
-  if (!mySuggestion.text) return ExpertTradStatus.VALIDATED
+  if (!!mySuggestion.text) return ExpertTradStatus.VALIDATED
 
   // else
   return ExpertTradStatus.TO_TRANSLATE
@@ -131,4 +131,37 @@ export const getStatusStyle = (status: UserTradStatus | ExpertTradStatus): Statu
     type: "info",
     icon: "radio-button-off-outline"
   }
+}
+
+type FooterStatus = {
+  status: "default" | "pending" | "success"
+  text: string
+}
+
+export const getFooterStatus = (index: number, mySuggestion: Suggestion, suggestions: Suggestion[]): FooterStatus => {
+  // My suggestion
+  if (index === -1) {
+    return mySuggestion.toFinish || !mySuggestion.text
+      ? {
+        status: "pending",
+        text: "Proposition en cours",
+      }
+      : {
+        status: "success",
+        text: "Ma proposition",
+      };
+  }
+  // google translate
+  if (index === suggestions.length) {
+    return {
+      status: "default",
+      text: "",
+    };
+  }
+
+  // user suggestions
+  return {
+    status: "default",
+    text: `Proposition ${index + 1}/${suggestions.length} ${suggestions[index].toFinish ? "(non terminée)" : ""}`,
+  };
 }
