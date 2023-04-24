@@ -74,7 +74,13 @@ export default function App() {
    * The app must be upgraded to continue
    */
   if (error) {
-    return <OfflinePage />;
+    return (
+      <SafeAreaProvider>
+        <ThemeProvider>
+          <OfflinePage />
+        </ThemeProvider>
+      </SafeAreaProvider>
+    );
   }
 
   return (

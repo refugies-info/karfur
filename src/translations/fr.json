@@ -315,6 +315,7 @@
     "clear_selection_accessibility": "Effacer la sélection",
     "change_language_accessibility": "Changer la langue",
     "back_button_accessibility": "Retour vers la page précédente",
-    "validate": "Ok"
+    "validate": "Ok",
+    "new_app_version": "Une nouvelle version de l'application Réfugiés.info est disponible."
   }
 }

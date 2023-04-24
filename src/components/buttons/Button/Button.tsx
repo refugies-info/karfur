@@ -8,9 +8,11 @@ const ICON_SIZE = 24;
 
 export interface ButtonProps {
   accessibilityLabel: string;
+  backgroundColor?: string;
   color?: string;
   disabled?: boolean;
   disabledColor?: string;
+  iconAfter?: boolean;
   iconColor?: string;
   iconName?: string;
   loading?: boolean;
@@ -52,9 +54,11 @@ const Container = styled.View<{
 
 const Button = ({
   accessibilityLabel,
+  backgroundColor,
   color,
   disabled = false,
   disabledColor,
+  iconAfter = false,
   iconColor,
   iconName,
   loading = false,
@@ -62,6 +66,14 @@ const Button = ({
   title,
 }: ButtonProps) => {
   const theme = useTheme();
+  const icon = iconName ? (
+    <Icon
+      color={iconColor || theme.colors.black}
+      loading={loading}
+      name={iconName}
+      size={ICON_SIZE}
+    />
+  ) : null;
   return (
     <TouchableOpacity
       accessibilityRole="button"
@@ -71,21 +83,14 @@ const Button = ({
       disabled={disabled || loading}
     >
       <Container
-        backgroundColor="transparent"
+        backgroundColor={backgroundColor || "transparent"}
         disabledBackgroundColor="gray"
         disabled={disabled}
         borderColor={color}
         disabledBorderColor="gray"
       >
         <Columns layout="auto">
-          {iconName && (
-            <Icon
-              color={color || theme.colors.black}
-              loading={loading}
-              name={iconName}
-              size={ICON_SIZE}
-            />
-          )}
+          {!iconAfter && icon}
           <ButtonText
             color={iconColor || color || theme.colors.black}
             disabledColor={disabledColor || theme.colors.greyDisabled}
@@ -93,6 +98,7 @@ const Button = ({
           >
             {title}
           </ButtonText>
+          {iconAfter && icon}
         </Columns>
       </Container>
     </TouchableOpacity>
