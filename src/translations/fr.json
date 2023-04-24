@@ -27,7 +27,8 @@
     "start_searching_button": "Commencer à chercher",
     "skip_step_button": "Passer l'étape",
     "next_button": "Suivant",
-    "continue_button": "Continuer"
+    "continue_button": "Continuer",
+    "startonboarding_screens_start": "C'est parti"
   },
   "tab_bar": {
     "explorer": "Explorer",

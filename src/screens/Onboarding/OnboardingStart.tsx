@@ -59,7 +59,7 @@ export const OnboardingStart = ({
           </ScrollView>
 
           <CustomButton
-            i18nKey="onboarding_screens.startonboarding_screens.start"
+            i18nKey="onboarding_screens.startonboarding_screens_start"
             defaultText="C'est parti"
             textColor={styles.colors.darkBlue}
             onPress={() => navigation.navigate("OnboardingSteps")}
