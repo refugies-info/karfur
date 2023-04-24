@@ -19,7 +19,7 @@ import { upperFirst } from "lodash";
 import { HeaderContentProps } from "./HeaderContentProps";
 import Spacer from "../Spacer";
 
-const Container = styled.View`
+const Container = styled.SafeAreaView`
   min-height: ${({ theme }) => theme.layout.header.minHeight}px;
   padding-top: ${({ theme }) => theme.insets.top}px;
   padding-bottom: ${({ theme }) => theme.layout.header.paddingBottom}px;
