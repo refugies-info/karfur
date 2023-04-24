@@ -12,6 +12,7 @@ import TranslationStatus from "./TranslationStatus";
 import UserSuggest from "./UserSuggest";
 import { cls } from "lib/classname";
 import RichTextInput from "components/UI/RichTextInput";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
 export const getAllSuggestions = (mySuggestion: Suggestion, suggestions: Suggestion[]) => {
   return !!mySuggestion.text ? [mySuggestion, ...suggestions] : suggestions;
@@ -27,6 +28,7 @@ interface Props {
   size?: "xl" | "lg";
   isHTML: boolean;
   noAutoTrad: boolean;
+  maxLength?: number;
 }
 
 const TranslationInput = ({
@@ -39,6 +41,7 @@ const TranslationInput = ({
   size,
   isHTML,
   noAutoTrad,
+  maxLength,
 }: Props) => {
   const { user } = useUser();
   const [googleTranslateValue, setGoogleTranslateValue] = useState("");
@@ -138,6 +141,8 @@ const TranslationInput = ({
     [index, mySuggestion, suggestions],
   );
 
+  const remainingChars = useMemo(() => (!maxLength ? null : maxLength - (value || "").length), [value, maxLength]);
+
   return !isOpen ? (
     <div
       className={cls(styles.view, styles[getStatusStyle(display.status).type], size && styles[size])}
@@ -155,13 +160,22 @@ const TranslationInput = ({
         <div>
           {index === -1 ? (
             !isHTML ? (
-              <textarea
-                className={styles.text}
-                disabled={loading}
-                value={value}
-                onChange={(e) => setValue(e.currentTarget.value)}
-                autoFocus
-              />
+              <>
+                <textarea
+                  className={styles.text}
+                  disabled={loading}
+                  value={value}
+                  onChange={(e) => setValue(e.currentTarget.value)}
+                  autoFocus
+                  maxLength={maxLength}
+                />
+                {maxLength && (
+                  <p className={styles.error}>
+                    <EVAIcon name="alert-triangle" size={16} fill={styles.lightTextDefaultError} className="me-2" />
+                    {remainingChars} sur 110 caractères restants
+                  </p>
+                )}
+              </>
             ) : (
               <RichTextInput value={value} onChange={(html) => setValue(html)} className={styles.richtext} />
             )

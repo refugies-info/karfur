@@ -16,6 +16,20 @@
 .main {
   padding: u(8) u(10);
   z-index: 1;
+
+  .marque {
+    display: flex;
+    align-items: flex-start;
+
+    & > span {
+      margin-top: u(14);
+      margin-right: u(6);
+    }
+
+    & > div {
+      flex-grow: 1;
+    }
+  }
 }
 
 .top {

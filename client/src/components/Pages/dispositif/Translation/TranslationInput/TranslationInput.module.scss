@@ -102,6 +102,12 @@
     .richtext {
       border: none !important;
     }
+
+    .error {
+      @include dsfr-text("very-small");
+      color: $lightTextDefaultError;
+      padding: 0 u(4);
+    }
   }
 
   .footer {

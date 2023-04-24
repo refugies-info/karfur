@@ -1,6 +1,8 @@
 import React, { useMemo, useCallback, useContext, useEffect, useRef } from "react";
 import { Col, Row } from "reactstrap";
 import { useSelector } from "react-redux";
+import { useToggle } from "react-use";
+import { useTranslation } from "next-i18next";
 import get from "lodash/get";
 import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "api-types";
 import { useContentLocale, useUser } from "hooks";
@@ -9,15 +11,13 @@ import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
-import { TranslationInput } from "components/Pages/dispositif/Translation";
+import { ModalWelcome, SectionTitleAbstract, TranslationInput } from "components/Pages/dispositif/Translation";
 import SEO from "components/Seo";
 import { Header, Section, Banner, SectionTitle } from "components/Pages/dispositif";
 import { CustomNavbar } from "components/Pages/dispositif/Edition";
 import FRLink from "components/UI/FRLink";
 import { filterAndTransformTranslations, getInputSize, isInputHTML, keys, transformOneTranslation } from "./functions";
 import styles from "./DispositifTranslate.module.scss";
-import ModalWelcome from "components/Pages/dispositif/Translation/ModalWelcome";
-import { useToggle } from "react-use";
 
 interface Props {
   typeContenu?: ContentType;
@@ -32,6 +32,7 @@ const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[
 
 const Dispositif = (props: Props) => {
   const { defaultTraduction, traductions } = props;
+  const { t } = useTranslation();
   const dispositifSections = useMemo(() => keys(defaultTraduction), [defaultTraduction]);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -58,6 +59,7 @@ const Dispositif = (props: Props) => {
         isHTML: isInputHTML(section),
         size: getInputSize(section),
         noAutoTrad: section.includes("titreMarque"),
+        maxLength: section.includes("abstract") ? 110 : undefined,
       };
     },
     [defaultTraduction, translations, locale, validate, myTranslation],
@@ -87,7 +89,14 @@ const Dispositif = (props: Props) => {
             <Banner themeId={dispositif?.theme} />
             <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
               <TranslationInput {...getInputProps("content.titreInformatif")} />
-              {typeContenu === ContentType.DISPOSITIF && <TranslationInput {...getInputProps("content.titreMarque")} />}
+
+              {typeContenu === ContentType.DISPOSITIF && (
+                <div className={styles.marque}>
+                  <span>{t("Dispositif.with")}</span>
+                  <TranslationInput {...getInputProps("content.titreMarque")} />
+                </div>
+              )}
+
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
                 <section key={i}>
                   <SectionTitle titleKey={section} />
@@ -96,13 +105,12 @@ const Dispositif = (props: Props) => {
                   ) : (
                     dispositifSections
                       .filter((s) => s.startsWith(`content.${section}`))
-                      .map((s) => (
-                        <TranslationInput {...getInputProps(s)} key={s} size={s.includes("title") ? "lg" : undefined} />
-                      ))
+                      .map((s) => <TranslationInput {...getInputProps(s)} key={s} />)
                   )}
                 </section>
               ))}
 
+              <SectionTitleAbstract />
               <TranslationInput {...getInputProps("content.abstract")} />
 
               <FRLink href="#top" icon="arrow-upward" className={styles.top}>
@@ -122,6 +130,7 @@ const Dispositif = (props: Props) => {
                 <Section key={i} sectionKey={section} contentType={typeContenu} />
               ))}
 
+              <SectionTitleAbstract />
               <p>{dispositif?.abstract}</p>
 
               <FRLink href="#top" icon="arrow-upward" className={styles.top}>
