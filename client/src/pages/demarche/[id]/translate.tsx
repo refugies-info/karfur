@@ -21,14 +21,12 @@ interface Props {
 }
 
 const DemarchePage = (props: Props) => {
-  const methods = useForm();
-  const onSubmit = (data: any) => logger.info(data);
-  const dispositifFormContext = useDispositifTranslateForm();
+  const { dispositifFormContext, methods } = useDispositifTranslateForm(props.traductions);
 
   return (
     <PageContext.Provider value={dispositifFormContext}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <form>
           <DispositifTranslate traductions={props.traductions} defaultTraduction={props.defaultTraduction} />
         </form>
       </FormProvider>

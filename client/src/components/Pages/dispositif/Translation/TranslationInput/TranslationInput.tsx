@@ -26,6 +26,7 @@ interface Props {
   validate: (value: string, section: string, unfinished: boolean) => Promise<SaveTranslationResponse>;
   size?: "xl" | "lg";
   isHTML: boolean;
+  noAutoTrad: boolean;
 }
 
 const TranslationInput = ({
@@ -37,6 +38,7 @@ const TranslationInput = ({
   validate,
   size,
   isHTML,
+  noAutoTrad,
 }: Props) => {
   const { user } = useUser();
   const [googleTranslateValue, setGoogleTranslateValue] = useState("");
@@ -46,7 +48,7 @@ const TranslationInput = ({
   const max = useMemo(() => Math.max(suggestions.length, 0), [suggestions]); // suggestions + google translate
   const [index, { inc, dec, set }] = useNumber(-1, max, -1); // -1 : edit mode, n : suggestions, max : google translate
   const [validatedIndex, setValidatedIndex] = useState<number | null>(null);
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>(noAutoTrad ? initialText : "");
 
   const [{ loading }, translate] = useAsyncFn(() =>
     API.get_translation({ q: initialText, language: locale as Languages }).then((data) => {
@@ -68,10 +70,10 @@ const TranslationInput = ({
 
   // if index = last, get Google Translate value
   useEffect(() => {
-    if (!googleTranslateValue && index === max && !loading) {
+    if (!googleTranslateValue && index === max && !loading && !noAutoTrad) {
       translate();
     }
-  }, [index, googleTranslateValue, loading, translate, max]);
+  }, [index, googleTranslateValue, loading, translate, max, noAutoTrad]);
 
   // Calcul de l'affichage du bouton
   const [display, setDisplay] = useState(

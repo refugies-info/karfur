@@ -12,7 +12,7 @@ import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { calculateProgress, getText, TOTAL_STEPS } from "./functions";
+import { calculateProgressEdit, getText, TOTAL_STEPS } from "./functions/edit";
 import Tooltip from "components/UI/Tooltip";
 import QuitModal from "./QuitModal";
 import PublishModal from "./PublishModal";
@@ -28,13 +28,13 @@ const CustomNavbarEdit = (props: Props) => {
   const router = useRouter();
   const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);
-  const [progress, setProgress] = useState<number>(calculateProgress(values, props.typeContenu));
+  const [progress, setProgress] = useState<number>(calculateProgressEdit(values, props.typeContenu));
 
   const initialLocale = useLocale();
   const [showLanguageWarning, setShowLanguageWarning] = useState(initialLocale !== "fr");
 
   useEffect(() => {
-    setProgress(calculateProgress(values, props.typeContenu));
+    setProgress(calculateProgressEdit(values, props.typeContenu));
   }, [values, props.typeContenu]);
 
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);

@@ -5,6 +5,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import API from "utils/API";
 import { GetTraductionsForReview, GetTraductionsForReviewResponse, Languages } from "api-types";
 import { useRouter } from "next/router";
+import { useFormContext } from "react-hook-form";
+import { TranslateForm } from "./useDispositifTranslateForm";
 
 /**
  * Get all suggestions except mine
@@ -29,6 +31,7 @@ const getInitialMyTranslation = (userId: string, username: string, traductions: 
 const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse) => {
   const { user } = useUser();
   const router = useRouter();
+  const { setValue } = useFormContext<TranslateForm>();
 
   const [translations, _setTranslations] = useState<GetTraductionsForReview[]>(
     getInitialTranslations(user.userId.toString(), traductions)
@@ -56,6 +59,10 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse) 
         ? [...myTranslation.toFinish, section]
         : [...myTranslation.toFinish].filter(t => t !== section)
 
+      // used only for calculate progress for now
+      setValue("translated", translated);
+      setValue("toFinish", toFinish);
+
       return API.saveTraduction({
         dispositifId: dispositifId || "",
         timeSpent: new Date().getTime() - startDate.getTime(),
@@ -68,7 +75,7 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse) 
       });
     },
 
-    [myTranslation, dispositifId, language, startDate],
+    [myTranslation, dispositifId, language, startDate, setValue],
   );
 
   return {

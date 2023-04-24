@@ -57,6 +57,7 @@ const Dispositif = (props: Props) => {
         validate: validate,
         isHTML: isInputHTML(section),
         size: getInputSize(section),
+        noAutoTrad: section.includes("titreMarque"),
       };
     },
     [defaultTraduction, translations, locale, validate, myTranslation],
@@ -79,13 +80,14 @@ const Dispositif = (props: Props) => {
         description={dispositif?.abstract || ""}
         image={theme?.shareImage?.secure_url}
       />
-      <CustomNavbar typeContenu={typeContenu} />
+      <CustomNavbar typeContenu={typeContenu} defaultTranslation={defaultTraduction} />
       <Row className="gx-0">
         <Col xs="6" className={cls(styles.col, "bg-white")}>
           <div>
             <Banner themeId={dispositif?.theme} />
             <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
               <TranslationInput {...getInputProps("content.titreInformatif")} />
+              {typeContenu === ContentType.DISPOSITIF && <TranslationInput {...getInputProps("content.titreMarque")} />}
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
                 <section key={i}>
                   <SectionTitle titleKey={section} />

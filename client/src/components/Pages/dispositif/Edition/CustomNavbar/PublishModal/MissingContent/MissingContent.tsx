@@ -7,7 +7,7 @@ import PageContext, { Modals } from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import StepBar from "../../StepBar";
-import { Step, TOTAL_STEPS } from "../../functions";
+import { Step, TOTAL_STEPS } from "../../functions/edit";
 import { help, stepTranslations } from "./data";
 import styles from "./MissingContent.module.scss";
 

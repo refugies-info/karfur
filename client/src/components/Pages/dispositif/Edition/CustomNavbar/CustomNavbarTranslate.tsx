@@ -1,38 +1,36 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
-import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-types";
+import { ContentType, TranslationContent } from "api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
-import { isStatus } from "lib/dispositif";
-import { useLocale } from "hooks";
 import { useAutosave } from "hooks/dispositif";
+import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
 import PageContext from "utils/pageContext";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { calculateProgress, getText, TOTAL_STEPS } from "./functions";
+import { calculateProgressTranslate, getMaxStepsTranslate } from "./functions/translate";
 import Tooltip from "components/UI/Tooltip";
-import QuitModal from "./QuitModal";
-import PublishModal from "./PublishModal";
 import StepBar from "./StepBar";
 import styles from "./CustomNavbar.module.scss";
 
 interface Props {
   typeContenu: ContentType;
+  defaultTranslation?: TranslationContent;
 }
 
 const CustomNavbarTranslate = (props: Props) => {
   const { isSaving } = useAutosave();
   const router = useRouter();
-  const values = useWatch<CreateDispositifRequest>();
-  const dispositif = useSelector(selectedDispositifSelector);
-  const [progress, setProgress] = useState<number>(calculateProgress(values, props.typeContenu));
+  const values = useWatch<TranslateForm>();
+  const max = useMemo(() => getMaxStepsTranslate(props.defaultTranslation), [props.defaultTranslation]);
+  const [progress, setProgress] = useState<number>(
+    calculateProgressTranslate(values, props.typeContenu, props.defaultTranslation),
+  );
 
   useEffect(() => {
-    setProgress(calculateProgress(values, props.typeContenu));
-  }, [values, props.typeContenu]);
+    setProgress(calculateProgressTranslate(values, props.typeContenu, props.defaultTranslation));
+  }, [values, props.typeContenu, props.defaultTranslation]);
 
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
 
@@ -42,45 +40,31 @@ const CustomNavbarTranslate = (props: Props) => {
   const quit = useCallback(() => router.push("/backend/user-dash-contrib"), [router]);
   const handleQuit = useCallback(() => {
     const isComplete = progress === 0;
-    if (
-      // no status
-      !dispositif?.status ||
-      // waiting and complete
-      (isStatus(dispositif.status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE]) &&
-        isComplete) ||
-      // deleted or rejected
-      isStatus(dispositif.status, [DispositifStatus.DELETED, DispositifStatus.KO_STRUCTURE])
-    ) {
+    if (isComplete) {
       quit();
     } else {
       toggleQuitModal();
     }
-  }, [dispositif, progress, toggleQuitModal, quit]);
+  }, [progress, toggleQuitModal, quit]);
 
   // Publish
   const [showPublishModal, setShowPublishModal] = useState(false);
   const togglePublishModal = useCallback(() => setShowPublishModal((o) => !o), []);
-  const hideValidateButton = useMemo(() => {
-    return isStatus(dispositif?.status, [
-      DispositifStatus.KO_STRUCTURE,
-      DispositifStatus.DELETED,
-      DispositifStatus.NO_STRUCTURE,
-    ]);
-  }, [dispositif]);
+
   const handlePublish = useCallback(
     async (keepTranslations: boolean) => {
-      if (!dispositif?._id) return;
-      API.publishDispositif(dispositif._id, { keepTranslations });
+      const id = router.query.id;
+      if (!id) return;
+      API.publishDispositif(id, { keepTranslations });
     },
-    [dispositif],
+    [router.query.id],
   );
 
   return (
     <div className={styles.container}>
       <div className={cls("fr-container", styles.inner)}>
         <div className={styles.steps}>
-          <StepBar total={11} progress={progress} text={`${progress} / ${11}`} />
-          <p className={styles.help}>{getText(progress)}</p>
+          <StepBar total={max} progress={progress} text={`${progress} / ${max}`} />
           <Button
             secondary={!showMissingSteps}
             id="missing-steps-btn"
@@ -108,37 +92,15 @@ const CustomNavbarTranslate = (props: Props) => {
           <Button secondary icon="log-out-outline" iconPlacement="end" onClick={handleQuit} className="me-4">
             Quitter
           </Button>
-          {!hideValidateButton && (
-            <Button
-              icon={progress === TOTAL_STEPS ? "checkmark-circle-2" : undefined}
-              iconPlacement="end"
-              onClick={togglePublishModal}
-            >
-              Sauvegarder au quitter
-            </Button>
-          )}
+          <Button
+            icon={progress === max ? "checkmark-circle-2" : undefined}
+            iconPlacement="end"
+            onClick={togglePublishModal}
+          >
+            Sauvegarder au quitter
+          </Button>
         </div>
       </div>
-
-      <QuitModal
-        show={showQuitModal}
-        toggle={toggleQuitModal}
-        onQuit={quit}
-        onPublish={() => {
-          toggleQuitModal();
-          togglePublishModal();
-        }}
-        status={dispositif?.status || null}
-        isComplete={progress === 0}
-      />
-      <PublishModal
-        show={showPublishModal}
-        typeContenu={props.typeContenu}
-        toggle={togglePublishModal}
-        onQuit={toggleQuitModal}
-        onPublish={handlePublish}
-        status={dispositif?.status || null}
-      />
     </div>
   );
 };

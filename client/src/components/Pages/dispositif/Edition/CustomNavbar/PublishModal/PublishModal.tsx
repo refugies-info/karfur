@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-types";
 import { BaseModal } from "components/Pages/dispositif";
-import { getMissingSteps, Step } from "../functions";
+import { getMissingStepsEdit, Step } from "../functions/edit";
 import CompleteContent from "./CompleteContent";
 import MissingContent from "./MissingContent";
 import styles from "./PublishModal.module.scss";
@@ -19,7 +19,7 @@ interface Props {
 const PublishModal = (props: Props) => {
   const dispositif = useWatch<DeepPartialSkipArrayKey<CreateDispositifRequest>>();
   const missingSteps = useMemo(
-    () => getMissingSteps(dispositif, props.typeContenu).filter((c) => c !== null) as Step[],
+    () => getMissingStepsEdit(dispositif, props.typeContenu).filter((c) => c !== null) as Step[],
     [dispositif, props.typeContenu],
   );
 
