@@ -1,24 +1,17 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { useAsyncFn, useNumber, useToggle } from "react-use";
-import get from "lodash/get";
+import { useAsyncFn, useNumber } from "react-use";
 import { Languages, SaveTranslationResponse } from "api-types";
 import { useUser } from "hooks";
 import API from "utils/API";
 import Button from "components/UI/Button";
 import styles from "./TranslationInput.module.scss";
-import {
-  ExpertTradStatus,
-  getDisplay,
-  getFooterStatus,
-  getStatusStyle,
-  getUserTradStatus,
-  UserTradStatus,
-} from "./functions";
+import { getDisplay, getFooterStatus, getStatusStyle } from "./functions";
 import PageContext from "utils/pageContext";
 import { Suggestion } from "components/Content/DispositifTranslate/functions";
 import TranslationStatus from "./TranslationStatus";
 import UserSuggest from "./UserSuggest";
 import { cls } from "lib/classname";
+import RichTextInput from "components/UI/RichTextInput";
 
 export const getAllSuggestions = (mySuggestion: Suggestion, suggestions: Suggestion[]) => {
   return !!mySuggestion.text ? [mySuggestion, ...suggestions] : suggestions;
@@ -31,9 +24,20 @@ interface Props {
   suggestions: Suggestion[]; // all suggestions except mine
   locale: string;
   validate: (value: string, section: string, unfinished: boolean) => Promise<SaveTranslationResponse>;
+  size?: "xl" | "lg";
+  isHTML: boolean;
 }
 
-const TranslationInput = ({ section, initialText, suggestions, mySuggestion, locale, validate }: Props) => {
+const TranslationInput = ({
+  section,
+  initialText,
+  suggestions,
+  mySuggestion,
+  locale,
+  validate,
+  size,
+  isHTML,
+}: Props) => {
   const { user } = useUser();
   const [googleTranslateValue, setGoogleTranslateValue] = useState("");
   const pageContext = useContext(PageContext);
@@ -134,7 +138,7 @@ const TranslationInput = ({ section, initialText, suggestions, mySuggestion, loc
 
   return !isOpen ? (
     <div
-      className={cls(styles.view, styles[getStatusStyle(display.status).type])}
+      className={cls(styles.view, styles[getStatusStyle(display.status).type], size && styles[size])}
       onClick={() => editTranslation(display.text)}
     >
       <div className={styles.status}>
@@ -144,13 +148,26 @@ const TranslationInput = ({ section, initialText, suggestions, mySuggestion, loc
       <div dangerouslySetInnerHTML={{ __html: display.text }} />
     </div>
   ) : (
-    <div className={styles.edit}>
+    <div className={cls(styles.edit, size && styles[size])}>
       <div className={styles.input}>
-        <div className={styles.text}>
+        <div>
           {index === -1 ? (
-            <input disabled={loading} value={value} onChange={(e) => setValue(e.currentTarget.value)} autoFocus />
+            !isHTML ? (
+              <textarea
+                className={styles.text}
+                disabled={loading}
+                value={value}
+                onChange={(e) => setValue(e.currentTarget.value)}
+                autoFocus
+              />
+            ) : (
+              <RichTextInput value={value} onChange={(html) => setValue(html)} className={styles.richtext} />
+            )
           ) : (
-            <div onClick={user.expertTrad ? () => editTranslationAsExpert(suggestions[index]?.text) : undefined}>
+            <div
+              className={styles.text}
+              onClick={user.expertTrad ? () => editTranslationAsExpert(suggestions[index]?.text) : undefined}
+            >
               {index === max ? (
                 <div dangerouslySetInnerHTML={{ __html: googleTranslateValue }} />
               ) : (

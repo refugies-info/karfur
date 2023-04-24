@@ -47,7 +47,10 @@ const RichTextEdit = (props: Props) => {
       )}
       {isActive && (
         <>
-          <RichTextInput value={formContext.getValues(props.id) || ""} id={props.id} />
+          <RichTextInput
+            value={formContext.getValues(props.id) || ""}
+            onChange={(html) => formContext.setValue(props.id, html)}
+          />
           <div className="text-end mt-6">
             <Button icon="checkmark-circle-2" onClick={closeSection}>
               Fermer la section

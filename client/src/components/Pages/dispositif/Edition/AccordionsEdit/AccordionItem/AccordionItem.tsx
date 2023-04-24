@@ -91,7 +91,10 @@ const AccordionItem = (props: Props) => {
               {...register(`${props.id}.title`)}
               className={styles.input}
             />
-            <RichTextInput value={getValues(`${props.id}.text`)} id={`${props.id}.text`} />
+            <RichTextInput
+              value={getValues(`${props.id}.text`)}
+              onChange={(html) => setValue(`${props.id}.text`, html)}
+            />
           </div>
           <div className="text-end mb-6">
             <Button icon="checkmark-circle-2" onClick={() => setIsActive(false)}>

@@ -44,3 +44,12 @@ export const keys = (translated: TranslationContent) => {
     ...keysForSubSection("content.next", translated),
   ];
 };
+
+export const getInputSize = (section: string): "xl" | "lg" | undefined => {
+  if (section === "content.titreInformatif") return "xl"
+  if (section.includes(".title")) return "lg"
+  return undefined
+}
+export const isInputHTML = (section: string): boolean => {
+  return section === "content.what" || section.includes(".text")
+}

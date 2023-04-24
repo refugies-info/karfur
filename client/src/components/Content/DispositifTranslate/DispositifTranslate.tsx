@@ -14,7 +14,7 @@ import SEO from "components/Seo";
 import { Header, Section, Banner, SectionTitle } from "components/Pages/dispositif";
 import { CustomNavbar } from "components/Pages/dispositif/Edition";
 import FRLink from "components/UI/FRLink";
-import { filterAndTransformTranslations, keys, transformOneTranslation } from "./functions";
+import { filterAndTransformTranslations, getInputSize, isInputHTML, keys, transformOneTranslation } from "./functions";
 import styles from "./DispositifTranslate.module.scss";
 
 interface Props {
@@ -51,6 +51,8 @@ const Dispositif = (props: Props) => {
         suggestions: filterAndTransformTranslations(section, translations),
         locale: locale,
         validate: validate,
+        isHTML: isInputHTML(section),
+        size: getInputSize(section),
       };
     },
     [defaultTraduction, translations, locale, validate, myTranslation],
@@ -88,7 +90,9 @@ const Dispositif = (props: Props) => {
                   ) : (
                     dispositifSections
                       .filter((s) => s.startsWith(`content.${section}`))
-                      .map((s) => <TranslationInput {...getInputProps(s)} key={s} />)
+                      .map((s) => (
+                        <TranslationInput {...getInputProps(s)} key={s} size={s.includes("title") ? "lg" : undefined} />
+                      ))
                   )}
                 </section>
               ))}

@@ -5,6 +5,19 @@
 @import "src/scss/mixins/icons";
 @import "src/scss/mixins/responsive";
 
+.xl.view,
+.xl.edit .text,
+.xl.edit input {
+  @include dsfr-text("h1");
+  font-weight: bold !important;
+}
+.lg.view,
+.lg.edit .text,
+.lg.edit input {
+  @include dsfr-text("chapo");
+  font-weight: bold !important;
+}
+
 .view {
   padding: u(4);
   border: 1px solid $lightBorderDefaultGrey;
@@ -78,13 +91,17 @@
   .input {
     border: 1px solid $lightTextTitleGrey;
     border-radius: u(2);
+
     .text {
       padding: u(4) u(4) u(8) u(4);
     }
-  }
-  input {
-    outline: none !important;
-    width: 100%;
+    textarea {
+      outline: none !important;
+      width: 100%;
+    }
+    .richtext {
+      border: none !important;
+    }
   }
 
   .footer {
