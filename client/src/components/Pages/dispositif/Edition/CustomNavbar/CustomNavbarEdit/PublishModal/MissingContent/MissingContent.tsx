@@ -48,19 +48,10 @@ const MissingContent = (props: Props) => {
     return help.draft;
   }, [props.status]);
 
-  const goToStep = (step: Step) => {
-    pageContext.setShowMissingSteps?.(true);
-    props.onStay();
-    // delay scroll so the modal is closed
-    setTimeout(() => {
-      document.getElementById(`step-${step}`)?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-      if (STEPS_MODAL[step]) {
-        pageContext.setActiveModal?.(STEPS_MODAL[step]);
-      }
-    }, 1000);
+  const navigateCallback = (step: Step) => {
+    if (STEPS_MODAL[step]) {
+      pageContext.setActiveModal?.(STEPS_MODAL[step]);
+    }
   };
 
   return (
@@ -72,7 +63,12 @@ const MissingContent = (props: Props) => {
         text={`${TOTAL_STEPS - props.missingSteps.length} étapes complétées sur ${TOTAL_STEPS}`}
       />
 
-      <MissingSteps missingSteps={props.missingSteps} goToStep={goToStep} />
+      <MissingSteps
+        missingSteps={props.missingSteps.map((s) => ({ step: s, status: "warning" }))}
+        toggle={props.onStay}
+        navigateCallback={navigateCallback}
+        style="warning"
+      />
 
       <div className="text-end">
         <Button secondary onClick={props.onQuit} icon="log-out-outline" iconPlacement="end" className="me-2">

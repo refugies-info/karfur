@@ -1,20 +1,19 @@
-import React, { useCallback, useContext, useMemo } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { Col, Row } from "reactstrap";
 import Image from "next/image";
-import { DispositifStatus, Languages } from "api-types";
-import { isStatus } from "lib/dispositif";
+import { Languages } from "api-types";
+import PageContext from "utils/pageContext";
+import { useUser, useLanguages } from "hooks";
 import Button from "components/UI/Button";
 import { BaseModal } from "components/Pages/dispositif";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import QuitImage from "assets/dispositif/quit-image.svg";
-import { ContentKey, contentTitle, getContentIntro } from "./data";
-import styles from "./QuitModal.module.scss";
-import { useUser, useLanguages } from "hooks";
-import PublishImage from "assets/dispositif/publish-image.svg";
-import { Step } from "../functions";
-import MissingSteps from "../../MissingSteps";
-import PageContext from "utils/pageContext";
 import StepBar from "../../StepBar";
+import MissingSteps from "../../MissingSteps";
+import { Step } from "../functions";
+import { ContentKey, contentTitle, getContentIntro } from "./data";
+import PublishImage from "assets/dispositif/publish-image.svg";
+import QuitImage from "assets/dispositif/quit-image.svg";
+import styles from "./QuitModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -23,6 +22,7 @@ interface Props {
   onPublish: () => void;
   isComplete: boolean;
   missingSteps: Step[];
+  pendingSteps: Step[];
   progress: number;
   locale?: Languages;
 }
@@ -32,27 +32,12 @@ const QuitModal = (props: Props) => {
   const pageContext = useContext(PageContext);
 
   const contentKey: ContentKey = useMemo(() => {
-    const hasToFinish = false;
+    const hasToFinish = props.pendingSteps.length > 0;
     if (user.expertTrad) return "expert";
     if (!props.isComplete && hasToFinish) return "pending";
     if (!props.isComplete) return "incomplete";
     return "complete";
-  }, [props.isComplete, user.expertTrad]);
-
-  const goToStep = useCallback(
-    (step: Step) => {
-      pageContext.setShowMissingSteps?.(true);
-      props.toggle();
-      // delay scroll so the modal is closed
-      setTimeout(() => {
-        document.getElementById(`step-${step}`)?.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      }, 1000);
-    },
-    [pageContext, props],
-  );
+  }, [props.isComplete, props.pendingSteps, user.expertTrad]);
 
   const content = useMemo(() => {
     switch (contentKey) {
@@ -102,8 +87,12 @@ const QuitModal = (props: Props) => {
       case "pending":
         return (
           <>
-            {/* @ts-ignore */}
-            <MissingSteps missingSteps={props.missingSteps} goToStep={goToStep} /> {/* TODO: fix step type */}
+            <MissingSteps
+              missingSteps={props.pendingSteps.map((p) => ({ step: p, status: "new" }))}
+              toggle={props.toggle}
+              noPlusIcon
+              style="new"
+            />
             <div className="text-end">
               <Button
                 secondary
@@ -154,16 +143,16 @@ const QuitModal = (props: Props) => {
               <Image src={PublishImage} width={345} height={240} alt="" />
             </div>
             <div className="text-end">
-              <Button onClick={props.onQuit} icon="log-out-outline" iconPlacement="end">
+              <Button onClick={props.onQuit} icon="checkmark-circle-2" iconPlacement="end">
                 C'est noté
               </Button>
             </div>
           </>
         );
     }
-  }, [contentKey, props, goToStep]);
+  }, [contentKey, props]);
 
-  const nbWords = 12; //TODO: get this
+  const nbWords = 12; // TODO: get this
   const { getLanguageByCode } = useLanguages();
   const language = props.locale ? getLanguageByCode(props.locale)?.langueFr : "";
   return (

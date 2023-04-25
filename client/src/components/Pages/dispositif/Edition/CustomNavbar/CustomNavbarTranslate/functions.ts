@@ -15,9 +15,7 @@ export const getMaxStepsTranslate = (defaultTranslation: TranslationContent | un
   if (!defaultTranslation) return 0;
   return Object.keys(defaultTranslation.content).length;
 }
-/**
- * return an array with null if complete, or the name of the step if missing
- */
+
 export const getMissingStepsTranslate = (
   translation: DeepPartialSkipArrayKey<TranslateForm>,
   typeContenu: ContentType,
@@ -38,10 +36,30 @@ export const getMissingStepsTranslate = (
   ];
 }
 
+export const getPendingStepsTranslate = (
+  translation: DeepPartialSkipArrayKey<TranslateForm>,
+): Step[] => {
+  if (!translation.toFinish) return [];
+  const pendingSteps: Step[] = [];
+  for (const step of translation.toFinish) {
+    if (step.includes(".why.")) pendingSteps.push("why");
+    else if (step.includes(".how.")) pendingSteps.push("how");
+    else if (step.includes(".next.")) pendingSteps.push("next");
+    else pendingSteps.push(step.replace("content.", "") as Step);
+  }
+  return [...new Set(pendingSteps)];
+}
+
 export const calculateProgressTranslate = (
   translation: DeepPartialSkipArrayKey<TranslateForm>,
   typeContenu: ContentType,
   defaultTranslation: TranslationContent | undefined
 ) => {
-  return getMissingStepsTranslate(translation, typeContenu, defaultTranslation).filter(c => c === null).length;
+  const missingSteps = getMissingStepsTranslate(translation, typeContenu, defaultTranslation);
+  const max = missingSteps.length;
+  const missing = [...new Set([
+    ...missingSteps.filter(c => c !== null) as Step[],
+    ...getPendingStepsTranslate(translation)
+  ])].length;
+  return max - missing;
 }

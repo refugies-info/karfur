@@ -1,15 +1,16 @@
-import { useCallback, useContext, useMemo, useState } from "react";
-import { BaseModal } from "components/Pages/dispositif";
-import PublishImage from "assets/dispositif/publish-image.svg";
-import Button from "components/UI/Button";
+import { useCallback, useContext, useMemo } from "react";
 import Image from "next/image";
-import { Step } from "../functions";
-import BubbleFlag from "components/UI/BubbleFlag";
 import { Languages } from "api-types";
-import MissingSteps from "../../MissingSteps";
 import PageContext from "utils/pageContext";
-import styles from "./PublishModal.module.scss";
+import { BaseModal } from "components/Pages/dispositif";
+import BubbleFlag from "components/UI/BubbleFlag";
+import Button from "components/UI/Button";
+import MissingSteps from "../../MissingSteps";
 import StepBar from "../../StepBar";
+import { StepStatus } from "../../MissingSteps/MissingSteps";
+import { Step } from "../functions";
+import PublishImage from "assets/dispositif/publish-image.svg";
+import styles from "./PublishModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -18,6 +19,7 @@ interface Props {
   onPublish: () => Promise<void>;
   isComplete: boolean;
   missingSteps: Step[];
+  pendingSteps: Step[];
   progress: number;
   locale?: Languages;
 }
@@ -31,22 +33,7 @@ const PublishModal = (props: Props) => {
     [props.isComplete, props.missingSteps],
   );
 
-  const pageContext = useContext(PageContext);
-  const goToStep = useCallback(
-    (step: Step) => {
-      pageContext.setShowMissingSteps?.(true);
-      props.toggle();
-      // delay scroll so the modal is closed
-      setTimeout(() => {
-        document.getElementById(`step-${step}`)?.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      }, 1000);
-    },
-    [pageContext, props],
-  );
-
+  const totalSteps = props.missingSteps.length + props.pendingSteps.length + props.progress;
   return (
     <BaseModal show={props.show} toggle={props.toggle} title={title} small>
       {props.isComplete ? (
@@ -71,12 +58,19 @@ const PublishModal = (props: Props) => {
         <>
           <p>Il reste quelques informations à valider pour publier votre fiche.</p>
           <StepBar
-            total={props.progress + props.missingSteps.length}
+            total={totalSteps}
             progress={props.progress}
-            text={`${props.progress} étapes complétées sur ${props.progress + props.missingSteps.length}`}
+            text={`${props.progress} étapes complétées sur ${totalSteps}`}
           />
-          {/* @ts-ignore */}
-          <MissingSteps missingSteps={props.missingSteps} goToStep={goToStep} /> {/* TODO: fix step type */}
+          <MissingSteps
+            missingSteps={[
+              ...props.pendingSteps.map((p) => ({ step: p, status: "new" as StepStatus })),
+              ...props.missingSteps.map((p) => ({ step: p, status: "error" as StepStatus })),
+            ]}
+            toggle={props.toggle}
+            noPlusIcon
+            style="error"
+          />
           <div className="text-end">
             <Button secondary onClick={props.onQuit} icon="log-out-outline" iconPlacement="end" className="me-2">
               Quitter et finir plus tard

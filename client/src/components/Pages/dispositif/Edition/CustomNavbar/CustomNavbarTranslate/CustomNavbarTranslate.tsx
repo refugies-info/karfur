@@ -8,7 +8,13 @@ import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
 import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { calculateProgressTranslate, getMaxStepsTranslate, getMissingStepsTranslate, Step } from "./functions";
+import {
+  calculateProgressTranslate,
+  getMaxStepsTranslate,
+  getMissingStepsTranslate,
+  getPendingStepsTranslate,
+  Step,
+} from "./functions";
 import Tooltip from "components/UI/Tooltip";
 import StepBar from "../StepBar";
 import styles from "../CustomNavbar.module.scss";
@@ -40,7 +46,8 @@ const CustomNavbarTranslate = (props: Props) => {
       getMissingStepsTranslate(values, props.typeContenu, props.defaultTranslation).filter((c) => c !== null) as Step[],
     [values, props.typeContenu, props.defaultTranslation],
   );
-  const isComplete = useMemo(() => missingSteps.length === 0, [missingSteps]);
+  const pendingSteps = useMemo(() => getPendingStepsTranslate(values), [values]);
+  const isComplete = useMemo(() => progress === max, [progress, max]);
 
   // Quit
   const [showQuitModal, toggleQuitModal] = useToggle(false);
@@ -120,6 +127,7 @@ const CustomNavbarTranslate = (props: Props) => {
           togglePublishModal(true);
         }}
         missingSteps={missingSteps}
+        pendingSteps={pendingSteps}
         isComplete={isComplete}
         progress={progress}
         locale={props.locale}
@@ -130,6 +138,7 @@ const CustomNavbarTranslate = (props: Props) => {
         onQuit={quit}
         onPublish={handlePublish}
         missingSteps={missingSteps}
+        pendingSteps={pendingSteps}
         isComplete={isComplete}
         progress={progress}
         locale={props.locale}

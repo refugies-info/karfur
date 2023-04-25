@@ -5,10 +5,19 @@
 
 .missing {
   padding: u(8);
-  background: $lightBackgroundContrastWarning;
   border-radius: u(2);
   margin-top: u(6);
   margin-bottom: u(8);
+
+  &.warning {
+    background: $lightBackgroundContrastWarning;
+  }
+  &.error {
+    background: $lightBackgroundContrastWarning;
+  }
+  &.new {
+    background: var(--yellow-tournesol-975-75);
+  }
 }
 
 .step {
@@ -21,11 +30,20 @@
   justify-content: space-between;
   font-weight: bold;
   margin-bottom: u(2);
-  color: $lightTextDefaultWarning;
   width: 100%;
 
   & > span {
     display: flex;
     align-items: center;
+  }
+
+  &.new {
+    color: var(--yellow-tournesol-407);
+  }
+  &.error {
+    color: var(--error-425);
+  }
+  &.warning {
+    color: var(--warning-425);
   }
 }
