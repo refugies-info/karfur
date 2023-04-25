@@ -5,15 +5,11 @@
 @import "src/scss/mixins/icons";
 @import "src/scss/mixins/responsive";
 
-.xl.view,
-.xl.edit .text,
-.xl.edit input {
+.xl .value {
   @include dsfr-text("h1");
   font-weight: bold !important;
 }
-.lg.view,
-.lg.edit .text,
-.lg.edit input {
+.lg .value {
   @include dsfr-text("chapo");
   font-weight: bold !important;
 }
@@ -98,6 +94,7 @@
     textarea {
       outline: none !important;
       width: 100%;
+      cursor: text;
     }
     .richtext {
       border: none !important;
@@ -190,4 +187,14 @@
       }
     }
   }
+}
+
+.delete {
+  @include iconSize(u(4));
+  width: u(8) !important;
+  height: u(8);
+  min-height: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

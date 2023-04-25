@@ -8,9 +8,48 @@
   background-color: $lightBackgroundContrastGrey;
 }
 
+.banner {
+  position: relative;
+
+  .version {
+    position: absolute;
+    top: u(4);
+    left: u(10);
+    padding: u(2);
+    z-index: 1;
+    border-radius: u(2);
+    text-transform: uppercase;
+    font-weight: bold;
+    @include dsfr-text("very-small");
+    background: $lightBackgroundContrastGrey;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 6px 18px 0 #00001229;
+
+    &.translation {
+      left: inherit;
+      right: u(10);
+      background: $lightBackgroundActionLowBlueFrance;
+      border-color: $lightBorderDefaultBlueFrance;
+      color: $lightBorderDefaultBlueFrance;
+      & > span {
+        outline-color: $lightBorderDefaultBlueFrance;
+      }
+    }
+  }
+}
+
 .col {
   max-height: calc(100vh - 58px);
   overflow-y: scroll;
+
+  &:first-child {
+    border-right: 1px solid $lightBorderDefaultGrey;
+  }
+  &:last-child {
+    border-left: 1px solid $lightBorderDefaultGrey;
+  }
 }
 
 .main {
@@ -33,6 +72,7 @@
 }
 
 .top {
+  margin-top: u(10);
   margin-bottom: u(16);
 
   @media print {

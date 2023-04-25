@@ -5,13 +5,14 @@ import { useToggle } from "react-use";
 import { useTranslation } from "next-i18next";
 import get from "lodash/get";
 import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "api-types";
-import { useContentLocale, useUser } from "hooks";
+import { useContentLocale, useLanguages, useUser } from "hooks";
 import { useDispositifTranslation } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
 import FRLink from "components/UI/FRLink";
+import Flag from "components/UI/Flag";
 import SEO from "components/Seo";
 import { Header, Section, Banner, SectionTitle } from "components/Pages/dispositif";
 import { CustomNavbar } from "components/Pages/dispositif/Edition";
@@ -38,6 +39,8 @@ const Dispositif = (props: Props) => {
   const theme = useSelector(themeSelector(dispositif?.theme));
   const { isRTL } = useContentLocale();
   const { locale, myTranslation, translations, validate } = useDispositifTranslation(traductions);
+  const { getLanguageByCode } = useLanguages();
+  const language = getLanguageByCode(locale);
   const pageContext = useContext(PageContext);
   const [showWelcomeModal, toggleWelcomeModal] = useToggle(true);
   const { user } = useUser();
@@ -85,19 +88,26 @@ const Dispositif = (props: Props) => {
       <Row className="gx-0">
         <Col xs="6" className={cls(styles.col, "bg-white")}>
           <div>
-            <Banner themeId={dispositif?.theme} />
+            <div className={styles.banner}>
+              <div className={cls(styles.version, styles.translation)}>
+                Traduction en {language?.langueFr}
+                <Flag langueCode={language?.langueCode} className="ms-2" />
+              </div>
+              <Banner themeId={dispositif?.theme} />
+            </div>
+
             <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
               <TranslationInput {...getInputProps("content.titreInformatif")} />
 
               {typeContenu === ContentType.DISPOSITIF && (
-                <div className={styles.marque}>
+                <div className={cls(styles.marque, "mb-8")}>
                   <span>{t("Dispositif.with")}</span>
                   <TranslationInput {...getInputProps("content.titreMarque")} />
                 </div>
               )}
 
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
-                <section key={i}>
+                <section key={i} className="mb-8">
                   <SectionTitle titleKey={section} />
                   {section === "what" ? (
                     <TranslationInput {...getInputProps("content.what")} />
@@ -121,7 +131,13 @@ const Dispositif = (props: Props) => {
 
         <Col xs="6" className={styles.col}>
           <div ref={refContent}>
-            <Banner themeId={dispositif?.theme} />
+            <div className={styles.banner}>
+              <div className={styles.version}>
+                Version française
+                <Flag langueCode="fr" className="ms-2" />
+              </div>
+              <Banner themeId={dispositif?.theme} />
+            </div>
 
             <div className={styles.main} id="anchor-what" dir={isRTL ? undefined : "ltr"}>
               <Header typeContenu={typeContenu} />
