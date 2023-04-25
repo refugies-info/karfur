@@ -1,64 +1,65 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useRouter } from "next/router";
-import { ContentType, TranslationContent } from "api-types";
+import { ContentType, Languages, TranslationContent } from "api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
 import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { calculateProgressTranslate, getMaxStepsTranslate } from "./functions";
+import { calculateProgressTranslate, getMaxStepsTranslate, getMissingStepsTranslate, Step } from "./functions";
 import Tooltip from "components/UI/Tooltip";
 import StepBar from "../StepBar";
 import styles from "../CustomNavbar.module.scss";
 import useAutosave from "./useAutosave";
+import { useUser } from "hooks";
+import QuitModal from "./QuitModal";
+import { useToggle } from "react-use";
+import PublishModal from "./PublishModal";
 
 interface Props {
   typeContenu: ContentType;
   defaultTranslation?: TranslationContent;
+  locale?: Languages;
 }
 
 const CustomNavbarTranslate = (props: Props) => {
   const { isSaving } = useAutosave();
+  const { user } = useUser();
   const router = useRouter();
   const values = useWatch<TranslateForm>();
-  const max = useMemo(() => getMaxStepsTranslate(props.defaultTranslation), [props.defaultTranslation]);
-  const [progress, setProgress] = useState<number>(
-    calculateProgressTranslate(values, props.typeContenu, props.defaultTranslation),
-  );
-
-  useEffect(() => {
-    setProgress(calculateProgressTranslate(values, props.typeContenu, props.defaultTranslation));
-  }, [values, props.typeContenu, props.defaultTranslation]);
-
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
+  const max = useMemo(() => getMaxStepsTranslate(props.defaultTranslation), [props.defaultTranslation]);
+  const progress = useMemo(
+    () => calculateProgressTranslate(values, props.typeContenu, props.defaultTranslation),
+    [values, props.typeContenu, props.defaultTranslation],
+  );
+  const missingSteps = useMemo(
+    () =>
+      getMissingStepsTranslate(values, props.typeContenu, props.defaultTranslation).filter((c) => c !== null) as Step[],
+    [values, props.typeContenu, props.defaultTranslation],
+  );
+  const isComplete = useMemo(() => missingSteps.length === 0, [missingSteps]);
 
   // Quit
-  const [showQuitModal, setShowQuitModal] = useState(false);
-  const toggleQuitModal = useCallback(() => setShowQuitModal((o) => !o), []);
-  const quit = useCallback(() => router.push("/backend/user-dash-contrib"), [router]);
+  const [showQuitModal, toggleQuitModal] = useToggle(false);
+  const quit = useCallback(() => router.push("/backend/user-translation"), [router]);
   const handleQuit = useCallback(() => {
-    const isComplete = progress === 0;
-    if (isComplete) {
+    if (user.expertTrad && !isComplete) {
       quit();
     } else {
-      toggleQuitModal();
+      toggleQuitModal(true);
     }
-  }, [progress, toggleQuitModal, quit]);
+  }, [quit, toggleQuitModal, user, isComplete]);
 
   // Publish
-  const [showPublishModal, setShowPublishModal] = useState(false);
-  const togglePublishModal = useCallback(() => setShowPublishModal((o) => !o), []);
-
-  const handlePublish = useCallback(
-    async (keepTranslations: boolean) => {
-      const id = router.query.id;
-      if (!id) return;
-      API.publishDispositif(id, { keepTranslations });
-    },
-    [router.query.id],
-  );
+  const [showPublishModal, togglePublishModal] = useToggle(false);
+  const handlePublish = useCallback(async () => {
+    const id = router.query.id as string;
+    if (!id || !isComplete || !props.locale) return;
+    await API.publishTraduction({ dispositifId: id, language: props.locale });
+  }, [router.query.id, isComplete, props.locale]);
 
   return (
     <div className={styles.container}>
@@ -89,18 +90,50 @@ const CustomNavbarTranslate = (props: Props) => {
           <Tooltip target="save-status" placement="top">
             Toutes les modifications sont sauvegardées automatiquement
           </Tooltip>
-          <Button secondary icon="log-out-outline" iconPlacement="end" onClick={handleQuit} className="me-4">
-            Quitter
-          </Button>
-          <Button
-            icon={progress === max ? "checkmark-circle-2" : undefined}
-            iconPlacement="end"
-            onClick={togglePublishModal}
-          >
-            Sauvegarder au quitter
-          </Button>
+          {user.expertTrad ? (
+            <>
+              <Button secondary icon="log-out-outline" iconPlacement="end" onClick={handleQuit} className="me-4">
+                Finir plus tard
+              </Button>
+              <Button
+                icon={progress === max ? "checkmark-circle-2" : undefined}
+                iconPlacement="end"
+                onClick={togglePublishModal}
+              >
+                Publier
+              </Button>
+            </>
+          ) : (
+            <Button icon="log-out-outline" iconPlacement="end" onClick={handleQuit}>
+              Sauvegarder et quitter
+            </Button>
+          )}
         </div>
       </div>
+
+      <QuitModal
+        show={showQuitModal}
+        toggle={toggleQuitModal}
+        onQuit={quit}
+        onPublish={() => {
+          toggleQuitModal(false);
+          togglePublishModal(true);
+        }}
+        missingSteps={missingSteps}
+        isComplete={isComplete}
+        progress={progress}
+        locale={props.locale}
+      />
+      <PublishModal
+        show={showPublishModal}
+        toggle={togglePublishModal}
+        onQuit={quit}
+        onPublish={handlePublish}
+        missingSteps={missingSteps}
+        isComplete={isComplete}
+        progress={progress}
+        locale={props.locale}
+      />
     </div>
   );
 };

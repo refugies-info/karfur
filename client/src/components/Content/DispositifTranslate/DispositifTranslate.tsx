@@ -81,7 +81,7 @@ const Dispositif = (props: Props) => {
         description={dispositif?.abstract || ""}
         image={theme?.shareImage?.secure_url}
       />
-      <CustomNavbar typeContenu={typeContenu} defaultTranslation={defaultTraduction} />
+      <CustomNavbar typeContenu={typeContenu} defaultTranslation={defaultTraduction} locale={locale} />
       <Row className="gx-0">
         <Col xs="6" className={cls(styles.col, "bg-white")}>
           <div>

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ContentType, TranslationContent } from "api-types";
+import { ContentType, Languages, TranslationContent } from "api-types";
 import PageContext from "utils/pageContext";
 import CustomNavbarTranslate from "./CustomNavbarTranslate";
 import CustomNavbarEdit from "./CustomNavbarEdit";
@@ -9,16 +9,17 @@ interface Props {
 
   // for translation only
   defaultTranslation?: TranslationContent;
+  locale?: Languages;
 }
 
 /**
  * Navbar of edition or translate mode, which shows progress and validate buttons.
  * Responsible for autosave
  */
-const CustomNavbar = ({ typeContenu, defaultTranslation }: Props) => {
+const CustomNavbar = ({ typeContenu, defaultTranslation, locale }: Props) => {
   const { mode } = useContext(PageContext);
   return mode === "translate" ? (
-    <CustomNavbarTranslate typeContenu={typeContenu} defaultTranslation={defaultTranslation} />
+    <CustomNavbarTranslate typeContenu={typeContenu} defaultTranslation={defaultTranslation} locale={locale} />
   ) : (
     <CustomNavbarEdit typeContenu={typeContenu} />
   );

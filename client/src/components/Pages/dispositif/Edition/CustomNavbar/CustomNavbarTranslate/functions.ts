@@ -9,7 +9,7 @@ const isAccordionTranslated = (
   defaultTranslation: InfoSections | undefined
 ) => {
   if (!content || !defaultTranslation) return false;
-  return content && Object.keys(content).length < Object.keys(defaultTranslation).length && !Object.values(content).find(c => !c || !c.title || !c.text)
+  return content && Object.keys(content).length === Object.keys(defaultTranslation).length && !Object.values(content).find(c => !c || !c.title || !c.text)
 }
 export const getMaxStepsTranslate = (defaultTranslation: TranslationContent | undefined) => {
   if (!defaultTranslation) return 0;

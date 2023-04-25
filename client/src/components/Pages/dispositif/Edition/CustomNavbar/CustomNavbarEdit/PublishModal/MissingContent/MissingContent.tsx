@@ -6,10 +6,11 @@ import { isStatus } from "lib/dispositif";
 import PageContext, { Modals } from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import StepBar from "../../StepBar";
-import { Step, TOTAL_STEPS } from "../../CustomNavbarEdit/functions";
+import StepBar from "../../../StepBar";
+import { Step, TOTAL_STEPS } from "../../functions";
 import { help, stepTranslations } from "./data";
 import styles from "./MissingContent.module.scss";
+import MissingSteps from "../../../MissingSteps";
 
 interface Props {
   missingSteps: Step[];
@@ -71,18 +72,8 @@ const MissingContent = (props: Props) => {
         text={`${TOTAL_STEPS - props.missingSteps.length} étapes complétées sur ${TOTAL_STEPS}`}
       />
 
-      <div className={styles.missing}>
-        {props.missingSteps.map((step, i) => (
-          <button key={i} className={styles.step} onClick={() => goToStep(step)}>
-            <span>{t(stepTranslations[step], stepTranslations[step])}</span>
+      <MissingSteps missingSteps={props.missingSteps} goToStep={goToStep} />
 
-            <span>
-              <Badge type="warning" text="Manquant" icon="ri-alert-fill" isSmall className="me-4" />
-              <EVAIcon name="plus-circle" size={24} fill={styles.lightTextMentionGrey} />
-            </span>
-          </button>
-        ))}
-      </div>
       <div className="text-end">
         <Button secondary onClick={props.onQuit} icon="log-out-outline" iconPlacement="end" className="me-2">
           Quitter et finir plus tard
