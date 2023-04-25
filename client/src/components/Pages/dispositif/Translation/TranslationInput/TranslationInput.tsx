@@ -107,7 +107,7 @@ const TranslationInput = ({
   // quand la sections se ferme, si elle était validée mais que le contenu a changé
   // on la passe en toFinish
   useEffect(() => {
-    if (!isOpen && oldSuggestion.text !== value && !oldSuggestion.toFinish) {
+    if (!isOpen && !!value && oldSuggestion.text !== value && !oldSuggestion.toFinish) {
       validate(section, { unfinished: true });
       setOldSuggestion({ ...mySuggestion, text: value, toFinish: true });
     }
@@ -119,10 +119,11 @@ const TranslationInput = ({
 
   const saveTrad = useCallback(
     (unfinished: boolean) => {
+      setOldSuggestion({ ...mySuggestion, text: value, toFinish: unfinished });
       validate(section, { unfinished });
       closeInput();
     },
-    [validate, section, closeInput],
+    [validate, section, closeInput, mySuggestion, value],
   );
 
   const validateSuggestion = (text: string) => {
