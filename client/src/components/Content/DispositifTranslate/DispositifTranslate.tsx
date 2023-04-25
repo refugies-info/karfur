@@ -11,11 +11,11 @@ import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
-import { ModalWelcome, SectionTitleAbstract, TranslationInput } from "components/Pages/dispositif/Translation";
+import FRLink from "components/UI/FRLink";
 import SEO from "components/Seo";
 import { Header, Section, Banner, SectionTitle } from "components/Pages/dispositif";
 import { CustomNavbar } from "components/Pages/dispositif/Edition";
-import FRLink from "components/UI/FRLink";
+import { ModalWelcome, SectionTitleAbstract, TranslationInput } from "components/Pages/dispositif/Translation";
 import { filterAndTransformTranslations, getInputSize, isInputHTML, keys, transformOneTranslation } from "./functions";
 import styles from "./DispositifTranslate.module.scss";
 
@@ -41,7 +41,6 @@ const Dispositif = (props: Props) => {
   const pageContext = useContext(PageContext);
   const [showWelcomeModal, toggleWelcomeModal] = useToggle(true);
   const { user } = useUser();
-
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
     [props.typeContenu, dispositif],
@@ -140,6 +139,7 @@ const Dispositif = (props: Props) => {
           </div>
         </Col>
       </Row>
+
       {!user.expertTrad && <ModalWelcome show={showWelcomeModal} toggle={toggleWelcomeModal} locale={locale} />}
     </div>
   );

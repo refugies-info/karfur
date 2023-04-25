@@ -6,7 +6,7 @@ import useChangeLanguage from "hooks/useChangeLanguage";
 import useUser from "hooks/useUser";
 
 export type TranslateForm = Pick<SaveTranslationRequest, "translated" | "toFinish">;
-const getDefaultValues = (userId: Id | null, traductions: GetTraductionsForReviewResponse): TranslateForm => {
+const getDefaultFormValues = (userId: Id | null, traductions: GetTraductionsForReviewResponse): TranslateForm => {
   const userTrads = traductions.find(t => t.author === userId);
   return {
     translated: userTrads?.translated || {},
@@ -19,7 +19,7 @@ const getDefaultValues = (userId: Id | null, traductions: GetTraductionsForRevie
  */
 const useDispositifTranslateForm = (traductions: GetTraductionsForReviewResponse) => {
   const { user } = useUser();
-  const methods = useForm<TranslateForm>({ defaultValues: getDefaultValues(user?.userId, traductions) });
+  const methods = useForm<TranslateForm>({ defaultValues: getDefaultFormValues(user?.userId, traductions) });
   const [activeSection, setActiveSection] = useState("");
   const [showMissingSteps, setShowMissingSteps] = useState(false);
 

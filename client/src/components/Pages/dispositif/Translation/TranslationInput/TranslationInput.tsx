@@ -1,20 +1,19 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useAsyncFn, useNumber } from "react-use";
-import { Languages, SaveTranslationResponse } from "api-types";
+import { useWatch } from "react-hook-form";
+import { Languages } from "api-types";
 import { useUser } from "hooks";
-import API from "utils/API";
-import Button from "components/UI/Button";
-import styles from "./TranslationInput.module.scss";
-import { getDisplay, getFooterStatus, getStatusStyle } from "./functions";
-import PageContext from "utils/pageContext";
-import { Suggestion } from "components/Content/DispositifTranslate/functions";
-import TranslationStatus from "./TranslationStatus";
-import UserSuggest from "./UserSuggest";
 import { cls } from "lib/classname";
+import API from "utils/API";
+import PageContext from "utils/pageContext";
+import Button from "components/UI/Button";
+import { Suggestion } from "components/Content/DispositifTranslate/functions";
 import RichTextInput from "components/UI/RichTextInput";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { useFormContext, useWatch } from "react-hook-form";
-import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
+import TranslationStatus from "./TranslationStatus";
+import UserSuggest from "./UserSuggest";
+import { getDisplay, getFooterStatus, getStatusStyle } from "./functions";
+import styles from "./TranslationInput.module.scss";
 
 export const getAllSuggestions = (mySuggestion: Suggestion, suggestions: Suggestion[]) => {
   return !!mySuggestion.text ? [mySuggestion, ...suggestions] : suggestions;
@@ -26,7 +25,7 @@ interface Props {
   mySuggestion: Suggestion;
   suggestions: Suggestion[]; // all suggestions except mine
   locale: string;
-  validate: (section: string, unfinished: boolean) => Promise<void>;
+  validate: (section: string, value: { text?: string; unfinished?: boolean }) => Promise<void>;
   size?: "xl" | "lg";
   isHTML: boolean;
   noAutoTrad: boolean;
@@ -55,41 +54,7 @@ const TranslationInput = ({
 
   // Input value
   const value: string = useWatch({ name: `translated.${section}` });
-  const formContext = useFormContext<TranslateForm>();
-  const setValue = useCallback(
-    //@ts-ignore
-    (value: string) => formContext.setValue(`translated.${section}`, value),
-    [formContext, section],
-  );
-  const [oldValue, setOldValue] = useState("");
-
-  // Google translate
-  const [googleTranslateValue, setGoogleTranslateValue] = useState("");
-  const [{ loading }, translate] = useAsyncFn(() =>
-    API.get_translation({ q: initialText, language: locale as Languages }).then((data) => {
-      const res = data.data.data;
-      setGoogleTranslateValue(res);
-      return res;
-    }),
-  );
-
-  useEffect(() => {
-    // if index = last, get Google Translate value
-    if (!googleTranslateValue && index === max && !loading && !noAutoTrad) {
-      translate();
-    }
-  }, [index, googleTranslateValue, loading, translate, max, noAutoTrad]);
-
-  // Open state
-  const openInput = useCallback(() => {
-    pageContext.setActiveSection?.(section.replace("content.", ""));
-  }, [section, pageContext]);
-
-  const closeInput = useCallback(() => {
-    pageContext.setActiveSection?.("");
-  }, [pageContext]);
-
-  const isOpen = useMemo(() => `content.${pageContext.activeSection}` === section, [pageContext, section]);
+  const [oldSuggestion, setOldSuggestion] = useState<Suggestion>(mySuggestion);
 
   // Calcul de l'affichage du bouton
   const [display, setDisplay] = useState(
@@ -102,43 +67,50 @@ const TranslationInput = ({
     );
   }, [mySuggestion, suggestions, user, pageContext.showMissingSteps]);
 
-  // Buttons
-  const clickTranslation = (text: string) => {
-    setOldValue(value);
-    openInput();
-    // if I'm expert and suggestions are available, show them
-    if (user.expertTrad && !mySuggestion.text && suggestions.length > 0) {
-      set(0);
-    } else {
-      // else, initialize and show edit form
-      setValue(text);
-      set(-1);
-    }
-  };
-  const clickSuggestionAsExpert = (text: string) => {
-    setValue(text);
-    setValidatedIndex(null); // my own translation -> nothing validated
-    set(-1);
-  };
+  // Google translate
+  const [googleTranslateValue, setGoogleTranslateValue] = useState("");
+  const [{ loading }, translate] = useAsyncFn(() =>
+    API.get_translation({ q: initialText, language: locale as Languages }).then((data) => {
+      const res = data.data.data;
+      setGoogleTranslateValue(res);
+      return res;
+    }),
+  );
 
   // Si il n'y a pas de texte, on utilise la traduction
   // automatique pour en proposer une à l'utilisateur
   useEffect(() => {
     if (!display.text && !loading) {
-      if (!googleTranslateValue) {
-        translate().then((res) => setDisplay((d) => ({ ...d, text: res })));
+      if (noAutoTrad) {
+        setDisplay((d) => ({ ...d, text: initialText }));
       } else {
-        setDisplay((d) => ({ ...d, text: googleTranslateValue }));
+        if (!googleTranslateValue) {
+          translate().then((res) => setDisplay((d) => ({ ...d, text: res })));
+        } else {
+          setDisplay((d) => ({ ...d, text: googleTranslateValue }));
+        }
       }
     }
-  }, [display, googleTranslateValue, loading, translate]);
+  }, [display, googleTranslateValue, loading, translate, noAutoTrad, initialText]);
 
+  // Open state
+  const openInput = useCallback(() => {
+    pageContext.setActiveSection?.(section.replace("content.", ""));
+  }, [section, pageContext]);
+
+  const closeInput = useCallback(() => {
+    pageContext.setActiveSection?.("");
+  }, [pageContext]);
+
+  const isOpen = useMemo(() => `content.${pageContext.activeSection}` === section, [pageContext, section]);
+
+  // Buttons
   const next = () => inc();
   const prev = () => dec();
 
   const saveTrad = useCallback(
     (unfinished: boolean) => {
-      validate(section, unfinished);
+      validate(section, { unfinished });
       closeInput();
     },
     [validate, section, closeInput],
@@ -146,12 +118,30 @@ const TranslationInput = ({
 
   const validateSuggestion = (text: string) => {
     if (!user.expertTrad) return;
-    setValue(text);
+    validate(section, { text });
     setValidatedIndex(index);
   };
 
+  const clickTranslation = (text: string) => {
+    setOldSuggestion(mySuggestion);
+    openInput();
+    // if I'm expert and suggestions are available, show them
+    if (user.expertTrad && !mySuggestion.text && suggestions.length > 0) {
+      set(0);
+    } else {
+      // else, initialize and show edit form
+      const initialToFinish = !mySuggestion.text || mySuggestion.toFinish;
+      validate(section, { text, unfinished: initialToFinish });
+      set(-1);
+    }
+  };
+  const clickSuggestionAsExpert = (text: string) => {
+    validate(section, { text, unfinished: true });
+    setValidatedIndex(null); // my own translation -> nothing validated
+    set(-1);
+  };
   const cancel = () => {
-    setValue(oldValue);
+    validate(section, { text: oldSuggestion.text, unfinished: oldSuggestion.toFinish });
     closeInput();
   };
 
@@ -183,7 +173,7 @@ const TranslationInput = ({
                   className={styles.text}
                   disabled={loading}
                   value={value}
-                  onChange={(e) => setValue(e.currentTarget.value)}
+                  onChange={(e) => validate(section, { text: e.target.value })}
                   autoFocus
                   maxLength={maxLength}
                 />
@@ -195,7 +185,11 @@ const TranslationInput = ({
                 )}
               </>
             ) : (
-              <RichTextInput value={value} onChange={(html) => setValue(html)} className={styles.richtext} />
+              <RichTextInput
+                value={value}
+                onChange={(html) => validate(section, { text: html })}
+                className={styles.richtext}
+              />
             )
           ) : (
             <div

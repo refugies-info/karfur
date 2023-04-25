@@ -51,11 +51,17 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse) 
    * Valide la traduction de la section en cours pour la traduction de l'utilisateur courant
    */
   const validate = useCallback(
-    async (section: string, unfinished: boolean) => {
-      const toFinish = unfinished
-        ? [...myTranslation.toFinish, section]
-        : [...myTranslation.toFinish].filter(t => t !== section)
-      setValue("toFinish", toFinish);
+    async (section: string, value: { text?: string, unfinished?: boolean }) => {
+      if (value.unfinished !== undefined) {
+        const toFinish = value.unfinished
+          ? [...myTranslation.toFinish, section]
+          : [...myTranslation.toFinish].filter(t => t !== section)
+        setValue("toFinish", toFinish);
+      }
+      if (value.text !== undefined) {
+        //@ts-ignore
+        setValue(`translated.${section}`, value.text) // TODO: type section?
+      }
     },
     [myTranslation, setValue],
   );
