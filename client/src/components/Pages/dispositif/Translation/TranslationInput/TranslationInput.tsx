@@ -104,6 +104,15 @@ const TranslationInput = ({
 
   const isOpen = useMemo(() => `content.${pageContext.activeSection}` === section, [pageContext, section]);
 
+  // quand la sections se ferme, si elle était validée mais que le contenu a changé
+  // on la passe en toFinish
+  useEffect(() => {
+    if (!isOpen && oldSuggestion.text !== value && !oldSuggestion.toFinish) {
+      validate(section, { unfinished: true });
+      setOldSuggestion({ ...mySuggestion, text: value, toFinish: true });
+    }
+  }, [isOpen, oldSuggestion, section, validate, value, mySuggestion]);
+
   // Buttons
   const next = () => inc();
   const prev = () => dec();
