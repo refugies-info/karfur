@@ -139,3 +139,8 @@ export interface Statistics {
 }
 
 export interface TranslationStatisticsResponse extends Statistics { }
+
+export interface PublishTranslationRequest {
+  dispositifId: string;
+  language: Languages;
+}

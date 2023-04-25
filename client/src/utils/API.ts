@@ -90,6 +90,7 @@ import {
   UpdateUserRequest,
   WidgetRequest,
 } from "api-types";
+import { PublishTranslationRequest } from "api-types/modules/translations";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
@@ -432,9 +433,11 @@ const API = {
   // Trads
   saveTraduction: (query: SaveTranslationRequest): Promise<APIResponse<SaveTranslationResponse>> => {
     const headers = getHeaders();
-    return instance.post("/traduction", query, {
-      headers,
-    });
+    return instance.post("/traduction", query, { headers });
+  },
+  publishTraduction: (query: PublishTranslationRequest): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.post("/traduction/publish", query, { headers });
   },
 
   getTraductionsForReview: ({ dispositif, language }: { dispositif: string; language: string }, options?: RequestOptions): Promise<APIResponse<GetTraductionsForReviewResponse>> => {

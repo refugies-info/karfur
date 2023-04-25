@@ -9,6 +9,7 @@ import {
   getTraductionsForReview,
   saveTranslation,
   translate,
+  publishTranslation
 } from "../workflows";
 import {
   DeleteTranslationsRequest,
@@ -17,11 +18,12 @@ import {
   GetProgressionResponse,
   GetTraductionsForReviewResponse,
   Languages,
+  PublishTranslationRequest,
   SaveTranslationRequest,
   SaveTranslationResponse,
   TranslateRequest,
   TranslationStatisticsRequest,
-  TranslationStatisticsResponse,
+  TranslationStatisticsResponse
 } from "@refugies-info/api-types";
 import logger from "../logger";
 
@@ -122,5 +124,17 @@ export class TranslationController extends Controller {
       text: "success",
       data: statistics,
     }));
+  }
+
+  @Post("/publish")
+  @Security({
+    jwt: ["expert"],
+    fromSite: [],
+  })
+  public publishTranslation(
+    @Body() body: PublishTranslationRequest,
+    @Request() request: IRequest,
+  ): Response {
+    return publishTranslation(body, request.user).then(() => ({ text: "success" }));
   }
 }

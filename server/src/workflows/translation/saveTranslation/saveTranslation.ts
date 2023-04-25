@@ -2,7 +2,6 @@ import { SaveTranslationRequest } from "@refugies-info/api-types";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { IndicatorModel, ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { TraductionsType } from "../../../typegoose/Traductions";
-import validateTranslation from "../validateTranslation";
 
 const saveTranslation = (
   { timeSpent, language, dispositifId, translated, toFinish }: SaveTranslationRequest,
@@ -35,25 +34,16 @@ const saveTranslation = (
       wordsCount,
     });
 
-    /**
-     * TODO: only on publish?
-     * Si l'avancement est à 100% + faite par un expert => traduction prête
-     *
-     * Alors il faut publier la traduction de la fiche
-     * puis supprimer l'ensemble des traductions.
-     */
-    return _traduction.avancement >= 1 && user.isExpert()
-      ? validateTranslation(dispositif, language, _traduction).then(() => _traduction)
-      : TraductionsModel.findOneAndUpdate(
-        { dispositifId, userId: user._id, language },
-        { ..._traduction, $inc: { timeSpent } },
-        {
-          upsert: true,
-          setDefaultsOnInsert: true,
-          returnDocument: "after",
-          returnNewDocument: true,
-        },
-      ).then((trad) => trad.toObject());
+    return TraductionsModel.findOneAndUpdate(
+      { dispositifId, userId: user._id, language },
+      { ..._traduction, $inc: { timeSpent } },
+      {
+        upsert: true,
+        setDefaultsOnInsert: true,
+        returnDocument: "after",
+        returnNewDocument: true,
+      },
+    ).then((trad) => trad.toObject());
   });
 
 export default saveTranslation;
