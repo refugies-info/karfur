@@ -30,7 +30,7 @@ exports[`Accessibility screen should render correctly 1`] = `
       }
     }
   >
-    <View
+    <RCTSafeAreaView
       style={
         [
           {
@@ -288,7 +288,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </RCTSafeAreaView>
     <Modal
       animationType="none"
       deviceHeight={null}
@@ -321,7 +321,6 @@ exports[`Accessibility screen should render correctly 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
-        "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
@@ -789,7 +788,6 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
                 "lineHeight": 20,
@@ -849,7 +847,6 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
                 "lineHeight": 20,
@@ -3323,7 +3320,6 @@ exports[`Accessibility screen should render correctly 1`] = `
               [
                 {
                   "color": "#FFFFFF",
-                  "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
@@ -3465,7 +3461,6 @@ exports[`Accessibility screen should render correctly 1`] = `
                 [
                   {
                     "color": "#212121",
-                    "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
                     "lineHeight": 20,
@@ -3543,7 +3538,6 @@ exports[`Accessibility screen should render correctly 1`] = `
                 [
                   {
                     "color": "#212121",
-                    "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
                     "lineHeight": 20,

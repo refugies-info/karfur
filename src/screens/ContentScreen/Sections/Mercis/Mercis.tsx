@@ -40,7 +40,6 @@ export interface MercisProps {
 }
 
 const Mercis = ({ dispositif }: MercisProps) => {
-  const _theme = useTheme();
   const dispatch = useDispatch();
   const currentLanguage = useSelector(currentI18nCodeSelector) || "fr";
   const [{ loading: loadingMerci }, merci] = useAsyncFn(
@@ -89,16 +88,8 @@ const Mercis = ({ dispositif }: MercisProps) => {
   return (
     <Card backgroundColor="#E3E3FD">
       <MercisView>
-        <View
-          style={{
-            flexDirection: "column",
-            flexGrow: 1,
-            justifyContent: "flex-start",
-          }}
-        >
-          <View style={{ minHeight: "40%" }}>
-            <Background />
-          </View>
+        <Rows layout="1">
+          <Background />
           <MySectionTitle>Ces informations sont utiles ?</MySectionTitle>
           <MyTextNormal>
             Remerciez les contributeurs qui l'ont rédigée et traduite pour vous
@@ -126,7 +117,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
               />
             </Columns>
           </View>
-        </View>
+        </Rows>
       </MercisView>
     </Card>
   );

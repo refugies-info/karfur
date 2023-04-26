@@ -30,7 +30,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
       }
     }
   >
-    <View
+    <RCTSafeAreaView
       style={
         [
           {
@@ -218,7 +218,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -277,7 +276,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </RCTSafeAreaView>
     <Modal
       animationType="none"
       deviceHeight={null}
@@ -310,7 +309,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
-        "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
@@ -567,7 +565,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -901,7 +898,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -1246,7 +1242,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -1604,7 +1599,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -2078,7 +2072,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -2440,7 +2433,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -2753,7 +2745,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -3075,7 +3066,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -3288,7 +3278,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -3653,7 +3642,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
       }
     }
   >
-    <View
+    <RCTSafeAreaView
       style={
         [
           {
@@ -3841,7 +3830,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -3900,7 +3888,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </RCTSafeAreaView>
     <Modal
       animationType="none"
       deviceHeight={null}
@@ -3933,7 +3921,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
-        "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
@@ -4190,7 +4177,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -4524,7 +4510,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -4869,7 +4854,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -5227,7 +5211,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -5701,7 +5684,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -6063,7 +6045,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -6376,7 +6357,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -6698,7 +6678,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -6911,7 +6890,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -7276,7 +7254,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
       }
     }
   >
-    <View
+    <RCTSafeAreaView
       style={
         [
           {
@@ -7464,7 +7442,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -7523,7 +7500,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </RCTSafeAreaView>
     <Modal
       animationType="none"
       deviceHeight={null}
@@ -7556,7 +7533,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
-        "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
@@ -7813,7 +7789,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -8147,7 +8122,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -8492,7 +8466,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -8850,7 +8823,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -9324,7 +9296,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -9686,7 +9657,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -9999,7 +9969,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -10321,7 +10290,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -10534,7 +10502,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -11032,7 +10999,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         [
                           {
                             "color": "#FFFFFF",
-                            "flexShrink": 1,
                             "fontFamily": "circularBold",
                             "fontSize": 16,
                             "lineHeight": 20,
@@ -11195,7 +11161,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
                       "display": "flex",
-                      "elevation": 6,
+                      "elevation": 2,
                       "flexDirection": "row",
                       "justifyContent": "center",
                       "opacity": 1,
@@ -11208,8 +11174,8 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         "height": 1,
                         "width": 1,
                       },
-                      "shadowOpacity": 0.16,
-                      "shadowRadius": 8,
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                       "width": "100%",
                     }
                   }

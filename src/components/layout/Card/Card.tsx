@@ -5,6 +5,7 @@ const CardContainer = styled.View<{ backgroundColor: string; shadow: boolean }>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   border-radius: ${({ theme }) => theme.radius * 2}px;
   overflow: hidden;
+  flex: 0;
   ${({ shadow, theme }) => (shadow ? theme.shadows.lg : "")};
 `;
 

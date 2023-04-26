@@ -255,7 +255,6 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                   [
                     {
                       "color": "#0421B1",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,

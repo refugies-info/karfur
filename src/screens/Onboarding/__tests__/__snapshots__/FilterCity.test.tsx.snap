@@ -30,7 +30,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
       }
     }
   >
-    <View
+    <RCTSafeAreaView
       style={
         [
           {
@@ -397,7 +397,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -465,7 +464,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </RCTSafeAreaView>
     <Modal
       animationType="none"
       deviceHeight={null}
@@ -498,7 +497,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
-        "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
@@ -688,7 +686,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
                     [
                       {
                         "color": "#FFFFFF",
-                        "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
@@ -1011,7 +1008,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
                         [
                           {
                             "color": "#212121",
-                            "flexShrink": 1,
                             "fontFamily": "circularBold",
                             "fontSize": 16,
                             "lineHeight": 20,
@@ -1192,7 +1188,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
                           {
                             "alignItems": "center",
                             "color": "#FFFFFF",
-                            "flexShrink": 1,
                             "fontFamily": "circularBold",
                             "fontSize": 16,
                             "lineHeight": 20,
@@ -1247,7 +1242,7 @@ exports[`Filter city should render correctly when no city 1`] = `
       }
     }
   >
-    <View
+    <RCTSafeAreaView
       style={
         [
           {
@@ -1614,7 +1609,6 @@ exports[`Filter city should render correctly when no city 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -1682,7 +1676,7 @@ exports[`Filter city should render correctly when no city 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </RCTSafeAreaView>
     <Modal
       animationType="none"
       deviceHeight={null}
@@ -1715,7 +1709,6 @@ exports[`Filter city should render correctly when no city 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
-        "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
@@ -2199,7 +2192,6 @@ exports[`Filter city should render correctly when no city 1`] = `
                     [
                       {
                         "color": "#0421B1",
-                        "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
@@ -2417,7 +2409,6 @@ exports[`Filter city should render correctly when no city 1`] = `
                         [
                           {
                             "color": "#212121",
-                            "flexShrink": 1,
                             "fontFamily": "circularBold",
                             "fontSize": 16,
                             "lineHeight": 20,
@@ -2590,7 +2581,6 @@ exports[`Filter city should render correctly when no city 1`] = `
                           {
                             "alignItems": "center",
                             "color": "#FFFFFF",
-                            "flexShrink": 1,
                             "fontFamily": "circularBold",
                             "fontSize": 16,
                             "lineHeight": 20,

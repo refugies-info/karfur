@@ -75,7 +75,6 @@ import {
   ReadableText,
   ReadButton,
   Rows,
-  RowsSpacing,
   RTLView,
   SectionTitle,
   Separator,
@@ -95,7 +94,6 @@ import { isEmpty } from "lodash";
 const HeaderText = styled(TextBigBold)`
   margin-top: ${({ theme }) => theme.margin * 2}px;
   margin-bottom: ${({ theme }) => theme.margin * 2}px;
-  flex-shrink: 1;
 `;
 
 const FakeMapButton = styled(RTLView)`
@@ -154,7 +152,6 @@ const LastModifDateText = styled.Text`
   color: #0063cb;
   flex: 1;
   flex-grow: 0;
-  flex-shrink: 0;
 `;
 
 export type ContentScreenType = CompositeScreenProps<
@@ -170,9 +167,7 @@ const CONTENT_STRUCTURES: Record<
   [ContentType.DEMARCHE]: ["what", "how", "next"],
 };
 
-let render = 0;
 const ContentScreen = ({ navigation, route }: ContentScreenType) => {
-  console.log("Render: ", ++render);
   const { contentId, needId, backScreen } = route.params;
   const dispatch = useDispatch();
 
@@ -394,7 +389,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         Skeleton={PageSkeleton}
         HeaderContent={HeaderContentContentScreen}
       >
-        <View>
+        <Rows>
           <Title>{selectedContent.titreInformatif}</Title>
 
           {!isEmpty(selectedContent.titreMarque) && (
@@ -461,7 +456,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             </View>
           )}
 
-          {/* {!!map && map.markers.length > 0 && (
+          {!!map && map.markers.length > 0 && (
             <>
               <HeaderText key={1} color={colors.color100}>
                 <ReadableText>
@@ -493,7 +488,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                 </TouchableOpacity>
               </MiniMap>
             </>
-          )} */}
+          )}
 
           <Mercis dispositif={selectedContent} />
 
@@ -555,7 +550,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
               </Rows>
             </>
           )}
-        </View>
+        </Rows>
         <Spacer height={84} />
       </Page>
 
@@ -675,7 +670,5 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     </>
   );
 };
-
-ContentScreen.whyDidYouRender = true;
 
 export default ContentScreen;

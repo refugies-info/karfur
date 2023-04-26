@@ -92,7 +92,6 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
           [
             {
               "color": "#212121",
-              "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
               "lineHeight": 20,
@@ -220,7 +219,6 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
           [
             {
               "color": "#212121",
-              "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
               "lineHeight": 20,
@@ -238,7 +236,6 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
             [
               {
                 "color": "#212121",
-                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
                 "lineHeight": 20,
@@ -466,7 +463,6 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
           [
             {
               "color": "#212121",
-              "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
               "lineHeight": 20,

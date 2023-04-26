@@ -30,7 +30,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
       }
     }
   >
-    <View
+    <RCTSafeAreaView
       style={
         [
           {
@@ -289,7 +289,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </RCTSafeAreaView>
     <Modal
       animationType="none"
       deviceHeight={null}
@@ -396,7 +396,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
       }
     }
   >
-    <View
+    <RCTSafeAreaView
       style={
         [
           {
@@ -655,7 +655,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </RCTSafeAreaView>
     <Modal
       animationType="none"
       deviceHeight={null}
@@ -688,7 +688,6 @@ exports[`Page snapshot test suite should render without bug 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
-        "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,

@@ -33,7 +33,6 @@ export const StyledTextSmallBold = styled(StyledText)`
   font-size: ${({ theme }) => theme.fonts.sizes.small}px;
   font-family: ${({ theme }) => theme.fonts.families.circularBold};
   line-height: 20px;
-  flex-shrink: 1;
 `;
 
 export const StyledTextVerySmall = styled(StyledText)`

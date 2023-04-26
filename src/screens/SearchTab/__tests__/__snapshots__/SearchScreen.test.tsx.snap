@@ -30,7 +30,7 @@ exports[`Search Screen should render correctly 1`] = `
       }
     }
   >
-    <View
+    <RCTSafeAreaView
       style={
         [
           {
@@ -109,7 +109,7 @@ exports[`Search Screen should render correctly 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </RCTSafeAreaView>
     <Modal
       animationType="none"
       deviceHeight={null}
@@ -142,7 +142,6 @@ exports[`Search Screen should render correctly 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
-        "flexGrow": 1,
         "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,

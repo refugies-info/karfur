@@ -322,7 +322,6 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
               [
                 {
                   "color": "#212121",
-                  "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
@@ -516,7 +515,6 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
               [
                 {
                   "color": "#212121",
-                  "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,

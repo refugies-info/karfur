@@ -52,7 +52,6 @@ export interface HeaderProps {
   HeaderComponent?: ComponentType<HeaderContentProps>;
 }
 
-let render = 0;
 export const Header = ({
   backScreen,
   darkBackground,
@@ -65,19 +64,17 @@ export const Header = ({
 
   HeaderComponent,
 }: HeaderProps) => {
-  console.log("render: ", ++render);
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
   const { name: routeName } = useRoute();
   const navigation = useNavigation<any>(); // FIXME
   const onPress = useCallback(
-    () =>
-      !!backScreen
-        ? () => {
-            navigation.popToTop();
-            navigation.navigate(backScreen);
-          }
-        : navigation.goBack,
+    !!backScreen
+      ? () => {
+          navigation.popToTop();
+          navigation.navigate(backScreen);
+        }
+      : navigation.goBack,
     [navigation, backScreen]
   );
 
@@ -180,7 +177,5 @@ export const Header = ({
     </>
   );
 };
-
-Header.whyDidYouRender = true;
 
 export default Header;
