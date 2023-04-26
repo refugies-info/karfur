@@ -17,8 +17,10 @@ import SEO from "components/Seo";
 import { Header, Section, Banner, SectionTitle } from "components/Pages/dispositif";
 import { CustomNavbar } from "components/Pages/dispositif/Edition";
 import { ModalWelcome, SectionTitleAbstract, TranslationInput } from "components/Pages/dispositif/Translation";
-import { filterAndTransformTranslations, getInputSize, isInputHTML, keys, transformOneTranslation } from "./functions";
+import { filterAndTransformTranslations, getInputSize, isInputHTML, keys, transformMyTranslation } from "./functions";
 import styles from "./DispositifTranslate.module.scss";
+import { useWatch } from "react-hook-form";
+import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
 
 interface Props {
   typeContenu?: ContentType;
@@ -38,7 +40,7 @@ const Dispositif = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const { isRTL } = useContentLocale();
-  const { locale, myTranslation, translations, validate, deleteTrad } = useDispositifTranslation(traductions);
+  const { locale, translations, validate, deleteTrad } = useDispositifTranslation(traductions);
   const { getLanguageByCode } = useLanguages();
   const language = getLanguageByCode(locale);
   const pageContext = useContext(PageContext);
@@ -48,24 +50,25 @@ const Dispositif = (props: Props) => {
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
     [props.typeContenu, dispositif],
   );
+  const data = useWatch<TranslateForm>();
 
   const getInputProps = useCallback(
     (section: string) => {
       return {
-        section: section,
+        section,
         initialText: get(defaultTraduction, section),
-        mySuggestion: transformOneTranslation(section, myTranslation),
+        mySuggestion: transformMyTranslation(section, data, user.user),
         suggestions: filterAndTransformTranslations(section, translations),
-        locale: locale,
-        validate: validate,
-        deleteTrad: deleteTrad,
+        locale,
+        validate,
+        deleteTrad,
         isHTML: isInputHTML(section),
         size: getInputSize(section),
         noAutoTrad: section.includes("titreMarque"),
         maxLength: section.includes("abstract") ? 110 : undefined,
       };
     },
-    [defaultTraduction, translations, locale, validate, deleteTrad, myTranslation],
+    [defaultTraduction, translations, locale, validate, deleteTrad, data, user],
   );
 
   // Scroll when section active

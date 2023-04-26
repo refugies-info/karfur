@@ -1,4 +1,4 @@
-import { ContentType, InfoSection, InfoSections, Languages, RichText, Uuid } from "../generics";
+import { ContentType, InfoSection, InfoSections, Languages, Picture, RichText, Uuid } from "../generics";
 
 export type TraductionsType = "suggestion" | "validation";
 
@@ -44,9 +44,12 @@ export interface TranslationContent {
 }
 
 export interface GetTraductionsForReview {
-  author: string;
   translated: Partial<TranslationContent>;
-  username: string;
+  author: {
+    id: string;
+    username: string;
+    picture?: Picture;
+  }
   toReview?: string[];
   toFinish: string[];
 }

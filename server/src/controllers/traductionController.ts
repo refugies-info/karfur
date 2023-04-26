@@ -80,8 +80,11 @@ export class TranslationController extends Controller {
       text: "success",
       data: traductions.map((trad) => ({
         translated: trad.translated,
-        author: trad.getUser().id,
-        username: trad.getUser().username,
+        author: {
+          id: trad.getUser().id,
+          username: trad.getUser().username,
+          picture: trad.getUser().picture,
+        },
         toReview: trad.toReview,
         toFinish: trad.toFinish || []
       })),

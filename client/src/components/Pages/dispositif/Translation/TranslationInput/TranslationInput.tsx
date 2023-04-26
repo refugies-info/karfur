@@ -231,7 +231,12 @@ const TranslationInput = ({
                 ) : index === max ? (
                   <UserSuggest username="Google Translate" picture="google" isBig />
                 ) : (
-                  <UserSuggest username={suggestions[index]?.username || ""} picture="user" isBig />
+                  <UserSuggest
+                    username={suggestions[index]?.author.username || ""}
+                    picture="user"
+                    pictureUrl={suggestions[index]?.author.picture?.secure_url}
+                    isBig
+                  />
                 )}
                 <span className={styles.proposal}>{footerStatus.text}</span>
                 {index === -1 && (

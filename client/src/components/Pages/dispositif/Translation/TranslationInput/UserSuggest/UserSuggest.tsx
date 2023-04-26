@@ -8,6 +8,7 @@ import styles from "./UserSuggest.module.scss";
 interface Props {
   username: string;
   picture: "me" | "google" | "user";
+  pictureUrl?: string;
   isBig?: boolean;
 }
 
@@ -21,9 +22,12 @@ const UserSuggest = (props: Props) => {
         {props.picture === "google" && (
           <Image src={GoogleLogo} width={props.isBig ? 21 : 16} height={props.isBig ? 21 : 16} alt="" />
         )}
-        {props.picture === "user" && (
-          <Image src={UserAvatar} width={props.isBig ? 32 : 24} height={props.isBig ? 32 : 24} alt="" />
-        )}
+        {props.picture === "user" &&
+          (props.pictureUrl ? (
+            <Image src={props.pictureUrl} width={props.isBig ? 32 : 24} height={props.isBig ? 32 : 24} alt="" />
+          ) : (
+            <Image src={UserAvatar} width={props.isBig ? 32 : 24} height={props.isBig ? 32 : 24} alt="" />
+          ))}
       </span>
       <span className="ms-2">{props.username}</span>
     </div>

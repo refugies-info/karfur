@@ -81,7 +81,7 @@ export const getDisplay = (mySuggestion: Suggestion, suggestions: Suggestion[], 
     const firstTranslated = suggestions.find(s => !s.toFinish) || suggestions[0];
     return {
       text: firstTranslated.text,
-      username: firstTranslated.username,
+      username: firstTranslated.author.username,
       picture: "user",
       status
     };

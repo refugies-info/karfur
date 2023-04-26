@@ -1,22 +1,29 @@
 import get from "lodash/get";
 import isUndefined from "lodash/isUndefined";
 import flattenDeep from "lodash/flattenDeep";
-import { GetTraductionsForReview, TranslationContent } from "api-types";
+import { GetTraductionsForReview, GetUserInfoResponse, Picture, TranslationContent } from "api-types";
+import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
+import { DeepPartialSkipArrayKey } from "react-hook-form";
 
 export type Suggestion = {
-  username: string
-  author: string
+  author: {
+    id: string
+    username: string
+    picture?: Picture
+  }
   text: string
   toFinish: boolean
   toReview: boolean
 }
 
-export const transformOneTranslation = (section: string, traductions: GetTraductionsForReview): Suggestion => {
+export const transformMyTranslation = (section: string, traductions: DeepPartialSkipArrayKey<TranslateForm>, user: GetUserInfoResponse | null): Suggestion => {
   return {
-    username: traductions.username,
-    author: traductions.author,
+    author: {
+      id: user?._id.toString() || "",
+      username: user?.username || ""
+    },
     text: get(traductions.translated, section) || "",
-    toFinish: !!traductions.toFinish.find(t => t === section),
+    toFinish: !!(traductions.toFinish || []).find(t => t === section),
     toReview: !!(traductions.toReview || []).find(t => t === section),
   }
 }
@@ -27,7 +34,12 @@ export const filterAndTransformTranslations = (section: string, traductions: Get
     : traductions
       // Filtre les suggestions non pertinentes pour cette section
       .filter((traduction) => !isUndefined(get(traduction.translated, section)))
-      .map((traduction) => transformOneTranslation(section, traduction));
+      .map((traduction) => ({
+        author: traduction.author,
+        text: get(traduction.translated, section) || "",
+        toFinish: !!traduction.toFinish.find(t => t === section),
+        toReview: !!(traduction.toReview || []).find(t => t === section),
+      }));
 
 export const keysForSubSection = (prefix: string, translated: TranslationContent) =>
   flattenDeep(
