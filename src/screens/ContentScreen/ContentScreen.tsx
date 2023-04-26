@@ -390,11 +390,17 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         HeaderContent={HeaderContentContentScreen}
       >
         <Rows>
-          <Title>{selectedContent.titreInformatif}</Title>
+          <Title>
+            <ReadableText>{selectedContent.titreInformatif}</ReadableText>
+          </Title>
 
           {!isEmpty(selectedContent.titreMarque) && (
             <SectionTitle>
-              {t("content_screen.with", "Avec")} {selectedContent.titreMarque}
+              <ReadableText>
+                {`${t("content_screen.with", "Avec")} ${
+                  selectedContent.titreMarque
+                }`}
+              </ReadableText>
             </SectionTitle>
           )}
 
@@ -413,10 +419,14 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                 <LastModifDateText>
                   <Icon name="i" color="#0063CB" size={10} />
                   <Spacer width={5} />
-                  {t("content_screen.updated_ago", "MISE À JOUR IL Y A")}{" "}
-                  {dateDiffReadable(
-                    new Date(selectedContent.lastModificationDate)
-                  )}
+                  <ReadableText>
+                    {`${t(
+                      "content_screen.updated_ago",
+                      "MISE À JOUR IL Y A"
+                    )} ${dateDiffReadable(
+                      new Date(selectedContent.lastModificationDate)
+                    )}`}
+                  </ReadableText>
                 </LastModifDateText>
               </LastModifDateView>
             </Columns>
@@ -495,7 +505,9 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           <Separator />
 
           <SectionTitle>
-            {t("content_screen.related_topic", "THÉMATIQUES LIÉES")}
+            <ReadableText>
+              {t("content_screen.related_topic", "THÉMATIQUES LIÉES")}
+            </ReadableText>
           </SectionTitle>
 
           <View>
@@ -524,7 +536,12 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             <>
               <Separator fullWidth />
               <SectionTitle>
-                {t("content_screen.in_partnership_with", "En partenariat avec")}
+                <ReadableText>
+                  {t(
+                    "content_screen.in_partnership_with",
+                    "En partenariat avec"
+                  )}
+                </ReadableText>
               </SectionTitle>
               <Rows>
                 {selectedContent.sponsors.map((sponsor, index) => (
@@ -543,7 +560,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                     />
                     <TextSmallNormal>
                       {/* @ts-ignore */}
-                      {sponsor.name || sponsor.nom}
+                      <ReadableText>{sponsor.name || sponsor.nom}</ReadableText>
                     </TextSmallNormal>
                   </Columns>
                 ))}

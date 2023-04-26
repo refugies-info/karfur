@@ -90,7 +90,9 @@ const Metadata = ({
       <InfocardTextContainer>
         {withTitle && (
           <SubtitleText>
-            {t("content_screen." + metadataKey, metadataKey)}
+            <ReadableText>
+              {t("content_screen." + metadataKey, metadataKey)}
+            </ReadableText>
           </SubtitleText>
         )}
         <DescriptionText>

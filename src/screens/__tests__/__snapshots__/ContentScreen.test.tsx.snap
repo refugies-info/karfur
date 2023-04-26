@@ -6056,7 +6056,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 ]
               }
             >
-              Pour une insertion par la culture
+              <Text
+                style={{}}
+              >
+                Pour une insertion par la culture
+              </Text>
+              <View />
             </Text>
           </View>
           <View
@@ -6086,9 +6091,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 ]
               }
             >
-              Avec
-               
-              le Programme Muses
+              <Text
+                style={{}}
+              >
+                Avec le Programme Muses
+              </Text>
+              <View />
             </Text>
           </View>
           <View
@@ -6228,9 +6236,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       }
                       width={5}
                     />
-                    MISE À JOUR IL Y A
-                     
-                    1 ANNÉE
+                    <Text
+                      style={{}}
+                    >
+                      MISE À JOUR IL Y A 1 ANNÉE
+                    </Text>
+                    <View />
                   </Text>
                 </View>
               </View>
@@ -7168,7 +7179,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   ]
                                 }
                               >
-                                publicStatus
+                                <Text
+                                  style={{}}
+                                >
+                                  publicStatus
+                                </Text>
+                                <View />
                               </Text>
                               <Text
                                 isRTL={false}
@@ -7279,7 +7295,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   ]
                                 }
                               >
-                                frenchLevel
+                                <Text
+                                  style={{}}
+                                >
+                                  frenchLevel
+                                </Text>
+                                <View />
                               </Text>
                               <Text
                                 isRTL={false}
@@ -7389,7 +7410,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   ]
                                 }
                               >
-                                age
+                                <Text
+                                  style={{}}
+                                >
+                                  age
+                                </Text>
+                                <View />
                               </Text>
                               <Text
                                 isRTL={false}
@@ -11586,7 +11612,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 ]
               }
             >
-              THÉMATIQUES LIÉES
+              <Text
+                style={{}}
+              >
+                THÉMATIQUES LIÉES
+              </Text>
+              <View />
             </Text>
           </View>
           <View
@@ -11780,7 +11811,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 ]
               }
             >
-              En partenariat avec
+              <Text
+                style={{}}
+              >
+                En partenariat avec
+              </Text>
+              <View />
             </Text>
             <View
               style={
@@ -11868,7 +11904,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         ]
                       }
                     >
-                      Thrasos - Rejoindre la province avec un emploi et un logement 
+                      <Text
+                        style={{}}
+                      >
+                        Thrasos - Rejoindre la province avec un emploi et un logement 
+                      </Text>
+                      <View />
                     </Text>
                   </View>
                 </View>

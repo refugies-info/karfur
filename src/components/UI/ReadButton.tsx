@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import * as Haptics from "expo-haptics";
-import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
+import { deactivateKeepAwake } from "expo-keep-awake";
 import * as Speech from "expo-speech";
 import {
   Image,
@@ -172,8 +172,12 @@ export const ReadButton = (props: Props) => {
   const startToRead = useCallback(() => {
     if (Array.isArray(readingList)) {
       setIsLoading(true);
-      activateKeepAwake("voiceover");
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      deactivateKeepAwake("voiceover").catch((e) => {
+        logger.error(e);
+      });
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch((e) => {
+        logger.error(e);
+      });
 
       logger.info("startToRead, nb items :", readingList.length);
       Promise.all(readingList)

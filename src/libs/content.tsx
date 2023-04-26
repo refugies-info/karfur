@@ -87,12 +87,12 @@ const getLocation = (data: Metadatas["location"], t: any) => {
     return t("content_screen.whole_country", "Toute la France");
   }
 
-  return data.map((dep: string) => {
-    const [nbDep, nomDep] = dep.split(" - ");
-    return (
-      <TextSmallNormal key={nbDep}>{`${nomDep} (${nbDep})\n`}</TextSmallNormal>
-    );
-  });
+  return data
+    .map((dep: string) => {
+      const [nbDep, nomDep] = dep.split(" - ");
+      return `${nomDep} (${nbDep})`;
+    })
+    .join("\n");
 };
 
 const getCommitment = (
