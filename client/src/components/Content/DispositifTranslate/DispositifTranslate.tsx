@@ -38,7 +38,7 @@ const Dispositif = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const { isRTL } = useContentLocale();
-  const { locale, myTranslation, translations, validate } = useDispositifTranslation(traductions);
+  const { locale, myTranslation, translations, validate, deleteTrad } = useDispositifTranslation(traductions);
   const { getLanguageByCode } = useLanguages();
   const language = getLanguageByCode(locale);
   const pageContext = useContext(PageContext);
@@ -58,13 +58,14 @@ const Dispositif = (props: Props) => {
         suggestions: filterAndTransformTranslations(section, translations),
         locale: locale,
         validate: validate,
+        deleteTrad: deleteTrad,
         isHTML: isInputHTML(section),
         size: getInputSize(section),
         noAutoTrad: section.includes("titreMarque"),
         maxLength: section.includes("abstract") ? 110 : undefined,
       };
     },
-    [defaultTraduction, translations, locale, validate, myTranslation],
+    [defaultTraduction, translations, locale, validate, deleteTrad, myTranslation],
   );
 
   // Scroll when section active

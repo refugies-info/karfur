@@ -66,11 +66,22 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse) 
     [myTranslation, setValue],
   );
 
+  const deleteTrad = useCallback(
+    async (section: string) => {
+      const toFinish = [...myTranslation.toFinish].filter(t => t !== section)
+      setValue("toFinish", toFinish);
+      //@ts-ignore
+      setValue(`translated.${section}`, undefined) // TODO: type section?
+    },
+    [myTranslation, setValue],
+  );
+
   return {
     locale: language,
     translations,
     myTranslation,
     validate,
+    deleteTrad
   };
 };
 

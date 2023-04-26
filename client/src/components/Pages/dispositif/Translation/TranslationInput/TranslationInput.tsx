@@ -25,7 +25,8 @@ interface Props {
   mySuggestion: Suggestion;
   suggestions: Suggestion[]; // all suggestions except mine
   locale: string;
-  validate: (section: string, value: { text?: string; unfinished?: boolean }) => Promise<void>;
+  validate: (section: string, value: { text?: string; unfinished?: boolean }) => void;
+  deleteTrad: (section: string) => void;
   size?: "xl" | "lg";
   isHTML: boolean;
   noAutoTrad: boolean;
@@ -39,6 +40,7 @@ const TranslationInput = ({
   mySuggestion,
   locale,
   validate,
+  deleteTrad,
   size,
   isHTML,
   noAutoTrad,
@@ -156,7 +158,8 @@ const TranslationInput = ({
   };
 
   const deleteTranslation = () => {
-    // TODO
+    deleteTrad(section);
+    closeInput();
   };
 
   const footerStatus = useMemo(
