@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { ComponentType } from "react";
-import { View } from "react-native";
+import React, { ComponentType, useCallback } from "react";
+import { Platform, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import useToggle from "react-use/lib/useToggle";
 import styled, { useTheme } from "styled-components/native";
@@ -21,7 +21,10 @@ import Spacer from "../Spacer";
 
 const Container = styled.SafeAreaView`
   min-height: ${({ theme }) => theme.layout.header.minHeight}px;
-  padding-top: ${({ theme }) => theme.insets.top}px;
+  padding-top: ${({ theme }) =>
+    theme.insets.top === 0 && Platform.OS === "android"
+      ? Math.max(theme.insets.top, 40)
+      : theme.insets.top}px;
   padding-bottom: ${({ theme }) => theme.layout.header.paddingBottom}px;
 `;
 
@@ -49,6 +52,7 @@ export interface HeaderProps {
   HeaderComponent?: ComponentType<HeaderContentProps>;
 }
 
+let render = 0;
 export const Header = ({
   backScreen,
   darkBackground,
@@ -61,16 +65,21 @@ export const Header = ({
 
   HeaderComponent,
 }: HeaderProps) => {
+  console.log("render: ", ++render);
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
   const { name: routeName } = useRoute();
   const navigation = useNavigation<any>(); // FIXME
-  const onPress = !!backScreen
-    ? () => {
-        navigation.popToTop();
-        navigation.navigate(backScreen);
-      }
-    : navigation.goBack;
+  const onPress = useCallback(
+    () =>
+      !!backScreen
+        ? () => {
+            navigation.popToTop();
+            navigation.navigate(backScreen);
+          }
+        : navigation.goBack,
+    [navigation, backScreen]
+  );
 
   const [isLanguageModalVisible, toggleLanguageModal] = useToggle(false);
 
@@ -171,5 +180,7 @@ export const Header = ({
     </>
   );
 };
+
+Header.whyDidYouRender = true;
 
 export default Header;

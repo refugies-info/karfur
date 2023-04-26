@@ -167,7 +167,7 @@ export const AccordionAnimated = (props: Props) => {
         isExpanded={isExpanded}
         darkColor={props.darkColor}
         lightColor={props.lightColor}
-        onPress={() => toggleListItem()}
+        onPress={toggleListItem}
         accessibilityRole="button"
         accessibilityLabel={props.title}
         accessibilityState={{ expanded: isExpanded }}

@@ -73,7 +73,6 @@ const MainContainer = styled(SafeAreaViewTopInset)<{
   padding-horizontal: ${({ theme }) => theme.layout.content.normal};
   min-height: ${({ theme }) =>
     theme.layout.header.minHeight + theme.insets.top}px;
-  max-width: 100%;
   width: 100%;
   padding-top: ${({ theme }) => theme.layout.header.minHeight}px;
   border-bottom-right-radius: ${({ rounded }) => (rounded ? 12 : 0)}px;
@@ -188,7 +187,6 @@ const Page = ({
       paddingHorizontal: theme.margin * 3,
       paddingTop: theme.margin * 3,
       paddingBottom: theme.insets.bottom,
-      flexGrow: 1,
     }),
     [theme.margin, theme.insets.bottom]
   );

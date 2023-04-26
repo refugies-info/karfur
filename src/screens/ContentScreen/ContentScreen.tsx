@@ -170,12 +170,13 @@ const CONTENT_STRUCTURES: Record<
   [ContentType.DEMARCHE]: ["what", "how", "next"],
 };
 
+let render = 0;
 const ContentScreen = ({ navigation, route }: ContentScreenType) => {
+  console.log("Render: ", ++render);
   const { contentId, needId, backScreen } = route.params;
   const dispatch = useDispatch();
 
   const insets = useSafeAreaInsets();
-
   const { t, isRTL } = useTranslationWithRTL();
 
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
@@ -393,7 +394,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         Skeleton={PageSkeleton}
         HeaderContent={HeaderContentContentScreen}
       >
-        <Rows>
+        <View>
           <Title>{selectedContent.titreInformatif}</Title>
 
           {!isEmpty(selectedContent.titreMarque) && (
@@ -460,7 +461,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             </View>
           )}
 
-          {!!map && map.markers.length > 0 && (
+          {/* {!!map && map.markers.length > 0 && (
             <>
               <HeaderText key={1} color={colors.color100}>
                 <ReadableText>
@@ -492,7 +493,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                 </TouchableOpacity>
               </MiniMap>
             </>
-          )}
+          )} */}
 
           <Mercis dispositif={selectedContent} />
 
@@ -502,7 +503,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             {t("content_screen.related_topic", "THÉMATIQUES LIÉES")}
           </SectionTitle>
 
-          <Rows spacing={RowsSpacing.NoSpace}>
+          <View>
             {selectedContent.theme && !isEmpty(selectedContent.theme) && (
               <LinkedTheme
                 key={selectedContent.theme.toString()}
@@ -522,7 +523,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
               selectedContent.needs.map((need) => (
                 <LinkedNeed key={need.toString()} needId={need} />
               ))}
-          </Rows>
+          </View>
 
           {selectedContent.sponsors && !isEmpty(selectedContent.sponsors) && (
             <>
@@ -554,7 +555,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
               </Rows>
             </>
           )}
-        </Rows>
+        </View>
         <Spacer height={84} />
       </Page>
 
@@ -674,5 +675,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     </>
   );
 };
+
+ContentScreen.whyDidYouRender = true;
 
 export default ContentScreen;

@@ -165,9 +165,7 @@ export const RootNavigator = () => {
             component={OnboardingStackNavigator}
           />
         ) : (
-          <>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </>
+          <Stack.Screen name="Root" component={BottomTabNavigator} />
         )}
       </Stack.Navigator>
     </NavigationContainer>

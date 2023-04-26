@@ -26,6 +26,15 @@ const MercisView = styled.View`
   align-items: center;
 `;
 
+const MySectionTitle = styled(SectionTitle)`
+  text-align: center;
+`;
+
+const MyTextNormal = styled(TextNormal)`
+  text-align: center;
+  margin-horizontal: ${({ theme }) => theme.margin * 2}px;
+`;
+
 export interface MercisProps {
   dispositif: GetDispositifResponse;
 }
@@ -80,17 +89,21 @@ const Mercis = ({ dispositif }: MercisProps) => {
   return (
     <Card backgroundColor="#E3E3FD">
       <MercisView>
-        <Rows layout="1">
-          <Background />
-          <SectionTitle style={{ textAlign: "center" }}>
-            Ces informations sont utiles ?
-          </SectionTitle>
-          <TextNormal
-            style={{ textAlign: "center", marginHorizontal: _theme.margin * 2 }}
-          >
+        <View
+          style={{
+            flexDirection: "column",
+            flexGrow: 1,
+            justifyContent: "flex-start",
+          }}
+        >
+          <View style={{ minHeight: "40%" }}>
+            <Background />
+          </View>
+          <MySectionTitle>Ces informations sont utiles ?</MySectionTitle>
+          <MyTextNormal>
             Remerciez les contributeurs qui l'ont rédigée et traduite pour vous
             !
-          </TextNormal>
+          </MyTextNormal>
           <View>
             <Columns layout="auto" horizontalAlign="center">
               <Button
@@ -113,7 +126,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
               />
             </Columns>
           </View>
-        </Rows>
+        </View>
       </MercisView>
     </Card>
   );

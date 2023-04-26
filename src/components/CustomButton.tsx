@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { StyleProp, TextStyle } from "react-native";
 import { RTLTouchableOpacity } from "./BasicComponents";
 import { styles } from "../theme";
 import { StyledTextSmallBold, StyledTextSmall } from "./StyledText";
@@ -23,12 +23,8 @@ const ButtonContainer = styled(RTLTouchableOpacity)<{
   border-radius: ${({ isSmall, theme }) => (!isSmall ? theme.radius * 2 : 8)}px;
   align-items: center;
   width: ${({ notFullWidth }) => (notFullWidth ? "auto" : "100%")};
-  ${({ isDisabled, isSmall, backgroundColor, withShadows, theme }) =>
-    isDisabled || !withShadows
-      ? ""
-      : isSmall || !backgroundColor
-      ? theme.shadows.lg
-      : theme.shadows.sm};
+  ${({ isDisabled, withShadows, theme }) =>
+    isDisabled || !withShadows ? "" : theme.shadows.sm};
   opacity: ${({ isDisabled }) => (isDisabled ? 0.4 : 1)};
 `;
 
