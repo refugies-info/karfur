@@ -33,6 +33,7 @@ const defaultProgress: Progress = {
   reviewSteps: [],
   totalWords: 1,
   doneWords: 1,
+  myDoneWords: 1,
 };
 
 const CustomNavbarTranslate = (props: Props) => {
@@ -132,6 +133,7 @@ const CustomNavbarTranslate = (props: Props) => {
         isComplete={progress.isComplete}
         progress={progress.doneSteps}
         locale={locale}
+        nbWords={progress.myDoneWords}
       />
       <PublishModal
         show={showPublishModal}
@@ -144,6 +146,7 @@ const CustomNavbarTranslate = (props: Props) => {
         isComplete={progress.isComplete}
         progress={progress.doneSteps}
         locale={locale}
+        nbWords={progress.totalWords}
       />
     </div>
   );

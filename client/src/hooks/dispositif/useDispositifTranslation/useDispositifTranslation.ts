@@ -39,6 +39,7 @@ export type Progress = {
   doneSteps: number;
   totalWords: number;
   doneWords: number;
+  myDoneWords: number;
   missingSteps: Step[];
   pendingSteps: Step[];
   reviewSteps: Step[];
@@ -78,11 +79,11 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
   const pendingSteps = useMemo(() => getPendingStepsTranslate(data, "toFinish"), [data]);
   const reviewSteps = useMemo(() => getPendingStepsTranslate(data, "toReview"), [data]);
   const wordsCount = useMemo(() => getWordsCount(
-    sectionWordCount,
-    data,
-    translations,
-    user.expertTrad
+    sectionWordCount, data, translations, user.expertTrad
   ), [sectionWordCount, data, translations, user.expertTrad]);
+  const myWordsCount = useMemo(() => getWordsCount(
+    sectionWordCount, data, [], true
+  ), [sectionWordCount, data]);
 
   const progress: Progress = useMemo(() => ({
     totalSteps,
@@ -91,9 +92,10 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
     isComplete,
     doneWords: wordsCount.done,
     totalWords: wordsCount.total,
+    myDoneWords: myWordsCount.done,
     pendingSteps,
     reviewSteps
-  }), [totalSteps, doneSteps, missingSteps, isComplete, wordsCount, pendingSteps, reviewSteps]);
+  }), [totalSteps, doneSteps, missingSteps, isComplete, wordsCount, pendingSteps, reviewSteps, myWordsCount]);
 
   // SAVING
   /**

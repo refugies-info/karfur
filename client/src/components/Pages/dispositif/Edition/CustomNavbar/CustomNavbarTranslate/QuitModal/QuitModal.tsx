@@ -24,6 +24,7 @@ interface Props {
   pendingSteps: Step[];
   progress: number;
   locale?: Languages;
+  nbWords: number;
 }
 
 const QuitModal = (props: Props) => {
@@ -151,13 +152,12 @@ const QuitModal = (props: Props) => {
     }
   }, [contentKey, props]);
 
-  const nbWords = 12; // TODO: get this
   const { getLanguageByCode } = useLanguages();
   const language = props.locale ? getLanguageByCode(props.locale)?.langueFr : "";
   return (
     <BaseModal show={props.show} toggle={props.toggle} title={contentTitle[contentKey]} small>
       <div>
-        <p>{getContentIntro(contentKey, nbWords, language || "")}</p>
+        <p>{getContentIntro(contentKey, props.nbWords, language || "")}</p>
         {content}
       </div>
     </BaseModal>

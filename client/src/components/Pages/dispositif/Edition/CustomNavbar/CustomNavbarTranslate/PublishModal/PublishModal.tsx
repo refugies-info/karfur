@@ -23,6 +23,7 @@ interface Props {
   reviewSteps: Step[];
   progress: number;
   locale?: Languages;
+  nbWords: number;
 }
 
 const PublishModal = (props: Props) => {
@@ -44,7 +45,7 @@ const PublishModal = (props: Props) => {
           </p>
           <div className={styles.done}>
             {props.locale && <BubbleFlag ln={props.locale} className="me-2" />}
-            Félicitations, vous avez validé et traduit 1200 mots !
+            Félicitations, vous avez validé et traduit {props.nbWords} mots !
           </div>
           <div className="text-center mb-8 mt-6">
             <Image src={PublishImage} width={345} height={240} alt="" />

@@ -80,7 +80,7 @@ export const getWordsCount = (
   sectionWordsCount: Record<string, number>,
   values: DeepPartialSkipArrayKey<TranslateForm>,
   suggestions: GetTraductionsForReview[],
-  isExpert: boolean
+  onlyMine: boolean
 ): { done: number, total: number } => {
   let done = 0;
   let total = 0;
@@ -88,8 +88,8 @@ export const getWordsCount = (
     total += count;
 
     // increment if
-    if (isTradDone(section, [values]) // I defined the value and it's validated
-      || (!isExpert && isTradDone(section, suggestions)) // I'm not expert, and someone translated this
+    if (isTradDone(section, [values]) // my text is done
+      || (!onlyMine && isTradDone(section, suggestions)) // someone has done this text
     ) {
       done += count;
     }
