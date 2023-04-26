@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { GetTraductionsForReviewResponse, Id, SaveTranslationRequest } from "api-types";
-import useLocale from "hooks/useLocale";
-import useChangeLanguage from "hooks/useChangeLanguage";
-import useUser from "hooks/useUser";
+import { useLocale, useChangeLanguage, useUser } from "hooks";
 
 export type TranslateForm = Pick<SaveTranslationRequest, "translated" | "toFinish" | "toReview">;
 const getDefaultFormValues = (userId: Id | null, traductions: GetTraductionsForReviewResponse): TranslateForm => {
-  const userTrads = traductions.find(t => t.author === userId);
+  const userTrads = userId ? traductions.find(t => t.author.id === userId.toString()) : null;
   return {
     translated: userTrads?.translated || {},
     toFinish: userTrads?.toFinish || [],

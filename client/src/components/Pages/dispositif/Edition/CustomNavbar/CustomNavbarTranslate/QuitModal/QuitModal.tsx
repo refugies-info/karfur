@@ -9,7 +9,7 @@ import { BaseModal } from "components/Pages/dispositif";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import StepBar from "../../StepBar";
 import MissingSteps from "../../MissingSteps";
-import { Step } from "../functions";
+import { Step } from "hooks/dispositif";
 import { ContentKey, contentTitle, getContentIntro } from "./data";
 import PublishImage from "assets/dispositif/publish-image.svg";
 import QuitImage from "assets/dispositif/quit-image.svg";
@@ -21,7 +21,6 @@ interface Props {
   onQuit: () => void;
   onPublish: () => void;
   isComplete: boolean;
-  missingSteps: Step[];
   pendingSteps: Step[];
   progress: number;
   locale?: Languages;

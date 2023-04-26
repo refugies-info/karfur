@@ -1,21 +1,13 @@
+import { DeepPartialSkipArrayKey } from "react-hook-form";
 import get from "lodash/get";
 import isUndefined from "lodash/isUndefined";
-import flattenDeep from "lodash/flattenDeep";
-import { GetTraductionsForReview, GetUserInfoResponse, Picture, TranslationContent } from "api-types";
-import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
-import { DeepPartialSkipArrayKey } from "react-hook-form";
+import { GetTraductionsForReview, GetTraductionsForReviewResponse, GetUserInfoResponse } from "api-types";
+import { TranslateForm } from "../useDispositifTranslateForm";
+import { Suggestion } from "./useDispositifTranslation";
 
-export type Suggestion = {
-  author: {
-    id: string
-    username: string
-    picture?: Picture
-  }
-  text: string
-  toFinish: boolean
-  toReview: boolean
-}
-
+/**
+ * Returns a Suggestion from the TranslateForm
+ */
 export const transformMyTranslation = (section: string, traductions: DeepPartialSkipArrayKey<TranslateForm>, user: GetUserInfoResponse | null): Suggestion => {
   return {
     author: {
@@ -28,6 +20,9 @@ export const transformMyTranslation = (section: string, traductions: DeepPartial
   }
 }
 
+/**
+ * Returns a list of suggestions from all the translations
+ */
 export const filterAndTransformTranslations = (section: string, traductions: GetTraductionsForReview[] | null): Suggestion[] =>
   !traductions
     ? []
@@ -41,27 +36,25 @@ export const filterAndTransformTranslations = (section: string, traductions: Get
         toReview: !!(traduction.toReview || []).find(t => t === section),
       }));
 
-export const keysForSubSection = (prefix: string, translated: TranslationContent) =>
-  flattenDeep(
-    Object.keys(get(translated, prefix, {})).map((key) => [`${prefix}.${key}.title`, `${prefix}.${key}.text`]),
-  );
-
-export const keys = (translated: TranslationContent) => {
-  return [
-    ...Object.keys(translated.content)
-      .filter((key) => !["how", "why", "next"].includes(key))
-      .map((key) => `content.${key}`),
-    ...keysForSubSection("content.why", translated),
-    ...keysForSubSection("content.how", translated),
-    ...keysForSubSection("content.next", translated),
-  ];
-};
-
+/**
+ * Returns the size of the input, or undefined if default
+ */
 export const getInputSize = (section: string): "xl" | "lg" | undefined => {
   if (section === "content.titreInformatif") return "xl"
   if (section.includes(".title")) return "lg"
   return undefined
 }
+
+/**
+ * Should the input receive HTML or plain text
+ */
 export const isInputHTML = (section: string): boolean => {
   return section === "content.what" || section.includes(".text")
+}
+
+/**
+ * Get all suggestions except mine
+ */
+export const getInitialTranslations = (userId: string, traductions: GetTraductionsForReviewResponse) => {
+  return traductions.filter(t => t.author.id !== userId.toString())
 }

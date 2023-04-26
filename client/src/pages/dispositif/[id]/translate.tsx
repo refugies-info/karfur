@@ -5,7 +5,6 @@ import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositi
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { FormProvider, useForm } from "react-hook-form";
-import { logger } from "logger";
 import PageContext from "utils/pageContext";
 import DispositifTranslate from "components/Content/DispositifTranslate";
 import { useDispositifTranslateForm } from "hooks/dispositif";

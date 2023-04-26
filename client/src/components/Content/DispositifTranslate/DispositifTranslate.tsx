@@ -1,9 +1,8 @@
-import React, { useMemo, useCallback, useContext, useEffect, useRef } from "react";
+import { useMemo, useContext, useEffect, useRef } from "react";
 import { Col, Row } from "reactstrap";
 import { useSelector } from "react-redux";
 import { useToggle } from "react-use";
 import { useTranslation } from "next-i18next";
-import get from "lodash/get";
 import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "api-types";
 import { useContentLocale, useLanguages, useUser } from "hooks";
 import { useDispositifTranslation } from "hooks/dispositif";
@@ -17,10 +16,7 @@ import SEO from "components/Seo";
 import { Header, Section, Banner, SectionTitle } from "components/Pages/dispositif";
 import { CustomNavbar } from "components/Pages/dispositif/Edition";
 import { ModalWelcome, SectionTitleAbstract, TranslationInput } from "components/Pages/dispositif/Translation";
-import { filterAndTransformTranslations, getInputSize, isInputHTML, keys, transformMyTranslation } from "./functions";
 import styles from "./DispositifTranslate.module.scss";
-import { useWatch } from "react-hook-form";
-import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
 
 interface Props {
   typeContenu?: ContentType;
@@ -36,39 +32,22 @@ const CONTENT_STRUCTURES: Record<ContentType, ("what" | "how" | "why" | "next")[
 const Dispositif = (props: Props) => {
   const { defaultTraduction, traductions } = props;
   const { t } = useTranslation();
-  const dispositifSections = useMemo(() => keys(defaultTraduction), [defaultTraduction]);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
-  const { isRTL } = useContentLocale();
-  const { locale, translations, validate, deleteTrad } = useDispositifTranslation(traductions);
-  const { getLanguageByCode } = useLanguages();
-  const language = getLanguageByCode(locale);
-  const pageContext = useContext(PageContext);
-  const [showWelcomeModal, toggleWelcomeModal] = useToggle(true);
-  const { user } = useUser();
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
     [props.typeContenu, dispositif],
   );
-  const data = useWatch<TranslateForm>();
+  const { isRTL } = useContentLocale();
+  const pageContext = useContext(PageContext);
+  const [showWelcomeModal, toggleWelcomeModal] = useToggle(true);
+  const { user } = useUser();
 
-  const getInputProps = useCallback(
-    (section: string) => {
-      return {
-        section,
-        initialText: get(defaultTraduction, section),
-        mySuggestion: transformMyTranslation(section, data, user.user),
-        suggestions: filterAndTransformTranslations(section, translations),
-        locale,
-        validate,
-        deleteTrad,
-        isHTML: isInputHTML(section),
-        size: getInputSize(section),
-        noAutoTrad: section.includes("titreMarque"),
-        maxLength: section.includes("abstract") ? 110 : undefined,
-      };
-    },
-    [defaultTraduction, translations, locale, validate, deleteTrad, data, user],
+  // Input props
+  const { locale, progress, dispositifSections, getInputProps } = useDispositifTranslation(
+    traductions,
+    defaultTraduction,
+    props.typeContenu || ContentType.DISPOSITIF,
   );
 
   // Scroll when section active
@@ -81,6 +60,10 @@ const Dispositif = (props: Props) => {
     }
   }, [pageContext.activeSection]);
 
+  // Language
+  const { getLanguageByCode } = useLanguages();
+  const language = getLanguageByCode(locale);
+
   return (
     <div className={cls(styles.container)} id="top">
       <SEO
@@ -88,7 +71,12 @@ const Dispositif = (props: Props) => {
         description={dispositif?.abstract || ""}
         image={theme?.shareImage?.secure_url}
       />
-      <CustomNavbar typeContenu={typeContenu} defaultTranslation={defaultTraduction} locale={locale} />
+      <CustomNavbar
+        typeContenu={typeContenu}
+        defaultTranslation={defaultTraduction}
+        locale={locale}
+        progress={progress}
+      />
       <Row className="gx-0">
         <Col xs="6" className={cls(styles.col, "bg-white")}>
           <div>

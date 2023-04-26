@@ -1,4 +1,4 @@
-import { Suggestion } from "components/Content/DispositifTranslate/functions"
+import { Suggestion } from "hooks/dispositif";
 
 export enum UserTradStatus {
   TO_TRANSLATE = "À traduire",

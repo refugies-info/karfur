@@ -3,11 +3,11 @@ import { useAsyncFn, useNumber } from "react-use";
 import { useWatch } from "react-hook-form";
 import { Languages } from "api-types";
 import { useUser } from "hooks";
+import { Suggestion } from "hooks/dispositif";
 import { cls } from "lib/classname";
 import API from "utils/API";
 import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
-import { Suggestion } from "components/Content/DispositifTranslate/functions";
 import RichTextInput from "components/UI/RichTextInput";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TranslationStatus from "./TranslationStatus";
@@ -33,19 +33,20 @@ interface Props {
   maxLength?: number;
 }
 
-const TranslationInput = ({
-  section,
-  initialText,
-  suggestions,
-  mySuggestion,
-  locale,
-  validate,
-  deleteTrad,
-  size,
-  isHTML,
-  noAutoTrad,
-  maxLength,
-}: Props) => {
+const TranslationInput = (props: Props) => {
+  const {
+    section,
+    initialText,
+    suggestions,
+    mySuggestion,
+    locale,
+    validate,
+    deleteTrad,
+    size,
+    isHTML,
+    noAutoTrad,
+    maxLength,
+  } = props;
   const { user } = useUser();
   const pageContext = useContext(PageContext);
 
@@ -78,6 +79,13 @@ const TranslationInput = ({
       return res;
     }),
   );
+
+  // if index = last, get Google Translate value as suggestion
+  useEffect(() => {
+    if (!googleTranslateValue && index === max && !loading && !noAutoTrad) {
+      translate();
+    }
+  }, [index, googleTranslateValue, loading, translate, max, noAutoTrad]);
 
   // Si il n'y a pas de texte, on utilise la traduction
   // automatique pour en proposer une à l'utilisateur
@@ -116,24 +124,6 @@ const TranslationInput = ({
   }, [isOpen, oldSuggestion, section, validate, value, mySuggestion]);
 
   // Buttons
-  const next = () => inc();
-  const prev = () => dec();
-
-  const saveTrad = useCallback(
-    (unfinished: boolean) => {
-      setOldSuggestion({ ...mySuggestion, text: value, toFinish: unfinished });
-      validate(section, { unfinished });
-      closeInput();
-    },
-    [validate, section, closeInput, mySuggestion, value],
-  );
-
-  const validateSuggestion = (text: string) => {
-    if (!user.expertTrad) return;
-    validate(section, { text });
-    setValidatedIndex(index);
-  };
-
   const clickTranslation = (text: string) => {
     setOldSuggestion(mySuggestion);
     openInput();
@@ -152,15 +142,30 @@ const TranslationInput = ({
     setValidatedIndex(null); // my own translation -> nothing validated
     set(-1);
   };
-  const cancel = () => {
+  const saveTrad = useCallback(
+    (unfinished: boolean) => {
+      setOldSuggestion({ ...mySuggestion, text: value, toFinish: unfinished });
+      validate(section, { unfinished });
+      closeInput();
+    },
+    [validate, section, closeInput, mySuggestion, value],
+  );
+  const validateSuggestion = useCallback(
+    (text: string) => {
+      if (!user.expertTrad) return;
+      validate(section, { text });
+      setValidatedIndex(index);
+    },
+    [user, section, index, validate],
+  );
+  const cancel = useCallback(() => {
     validate(section, { text: oldSuggestion.text, unfinished: oldSuggestion.toFinish });
     closeInput();
-  };
-
-  const deleteTranslation = () => {
+  }, [section, oldSuggestion, validate, closeInput]);
+  const deleteTranslation = useCallback(() => {
     deleteTrad(section);
     closeInput();
-  };
+  }, [section, closeInput, deleteTrad]);
 
   const footerStatus = useMemo(
     () => getFooterStatus(index, mySuggestion, suggestions),
@@ -255,7 +260,7 @@ const TranslationInput = ({
                     className={cls(styles.nav, "me-4")}
                     tertiary
                     hasBorder={false}
-                    onClick={prev}
+                    onClick={() => dec()}
                     icon="arrow-back-outline"
                   ></Button>
                 )}
@@ -264,7 +269,7 @@ const TranslationInput = ({
                     className={styles.nav}
                     tertiary
                     hasBorder={false}
-                    onClick={next}
+                    onClick={() => inc()}
                     icon="arrow-forward-outline"
                   ></Button>
                 )}

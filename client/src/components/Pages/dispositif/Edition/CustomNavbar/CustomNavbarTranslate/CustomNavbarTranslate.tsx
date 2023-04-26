@@ -1,20 +1,13 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { useWatch } from "react-hook-form";
+import { useCallback, useContext } from "react";
 import { useRouter } from "next/router";
 import { ContentType, Languages, TranslationContent } from "api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
-import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
+import { Progress } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import {
-  calculateProgressTranslate,
-  getMaxStepsTranslate,
-  getMissingStepsTranslate,
-  getPendingStepsTranslate,
-  Step,
-} from "./functions";
+import Camembert from "components/UI/Camembert";
 import Tooltip from "components/UI/Tooltip";
 import StepBar from "../StepBar";
 import styles from "../CustomNavbar.module.scss";
@@ -28,52 +21,55 @@ interface Props {
   typeContenu: ContentType;
   defaultTranslation?: TranslationContent;
   locale?: Languages;
+  progress?: Progress;
 }
 
+const defaultProgress: Progress = {
+  isComplete: false,
+  totalSteps: 6,
+  doneSteps: 0,
+  missingSteps: [],
+  pendingSteps: [],
+  reviewSteps: [],
+  totalWords: 1,
+  doneWords: 1,
+};
+
 const CustomNavbarTranslate = (props: Props) => {
+  const { locale } = props;
+  const progress = props.progress || defaultProgress;
   const { isSaving } = useAutosave();
   const { user } = useUser();
   const router = useRouter();
-  const values = useWatch<TranslateForm>();
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
-  const max = useMemo(() => getMaxStepsTranslate(props.defaultTranslation), [props.defaultTranslation]);
-  const progress = useMemo(
-    () => calculateProgressTranslate(values, props.typeContenu, props.defaultTranslation),
-    [values, props.typeContenu, props.defaultTranslation],
-  );
-  const missingSteps = useMemo(
-    () =>
-      getMissingStepsTranslate(values, props.typeContenu, props.defaultTranslation).filter((c) => c !== null) as Step[],
-    [values, props.typeContenu, props.defaultTranslation],
-  );
-  const pendingSteps = useMemo(() => getPendingStepsTranslate(values, "toFinish"), [values]);
-  const reviewSteps = useMemo(() => getPendingStepsTranslate(values, "toReview"), [values]);
-  const isComplete = useMemo(() => progress === max, [progress, max]);
 
   // Quit
   const [showQuitModal, toggleQuitModal] = useToggle(false);
   const quit = useCallback(() => router.push("/backend/user-translation"), [router]);
   const handleQuit = useCallback(() => {
-    if (user.expertTrad && !isComplete) {
+    if (user.expertTrad && !progress.isComplete) {
       quit();
     } else {
       toggleQuitModal(true);
     }
-  }, [quit, toggleQuitModal, user, isComplete]);
+  }, [quit, toggleQuitModal, user, progress.isComplete]);
 
   // Publish
   const [showPublishModal, togglePublishModal] = useToggle(false);
   const handlePublish = useCallback(async () => {
     const id = router.query.id as string;
-    if (!id || !isComplete || !props.locale) return;
-    await API.publishTraduction({ dispositifId: id, language: props.locale });
-  }, [router.query.id, isComplete, props.locale]);
-
+    if (!id || !progress.isComplete || !locale) return;
+    await API.publishTraduction({ dispositifId: id, language: locale });
+  }, [router.query.id, progress.isComplete, locale]);
   return (
     <div className={styles.container}>
       <div className={cls("fr-container", styles.inner)}>
         <div className={styles.steps}>
-          <StepBar total={max} progress={progress} text={`${progress} / ${max}`} />
+          <StepBar
+            total={progress.totalSteps}
+            progress={progress.doneSteps}
+            text={`${progress.doneSteps} / ${progress.totalSteps}`}
+          />
           <Button
             secondary={!showMissingSteps}
             id="missing-steps-btn"
@@ -84,6 +80,11 @@ const CustomNavbarTranslate = (props: Props) => {
           <Tooltip target="missing-steps-btn" placement="top">
             Voir les étapes restantes
           </Tooltip>
+
+          <div className={styles.progress}>
+            <Camembert progress={progress.doneWords / progress.totalWords} />
+            <p>{`${progress.doneWords}/${progress.totalWords} mots ${user.expertTrad ? "validés" : "traduits"}`}</p>
+          </div>
         </div>
         <div>
           <span id="save-status" className={styles.save}>
@@ -104,7 +105,7 @@ const CustomNavbarTranslate = (props: Props) => {
                 Finir plus tard
               </Button>
               <Button
-                icon={progress === max ? "checkmark-circle-2" : undefined}
+                icon={progress.isComplete ? "checkmark-circle-2" : undefined}
                 iconPlacement="end"
                 onClick={togglePublishModal}
               >
@@ -127,23 +128,22 @@ const CustomNavbarTranslate = (props: Props) => {
           toggleQuitModal(false);
           togglePublishModal(true);
         }}
-        missingSteps={missingSteps}
-        pendingSteps={pendingSteps}
-        isComplete={isComplete}
-        progress={progress}
-        locale={props.locale}
+        pendingSteps={progress.pendingSteps}
+        isComplete={progress.isComplete}
+        progress={progress.doneSteps}
+        locale={locale}
       />
       <PublishModal
         show={showPublishModal}
         toggle={togglePublishModal}
         onQuit={quit}
         onPublish={handlePublish}
-        missingSteps={missingSteps}
-        pendingSteps={pendingSteps}
-        reviewSteps={reviewSteps}
-        isComplete={isComplete}
-        progress={progress}
-        locale={props.locale}
+        missingSteps={progress.missingSteps}
+        pendingSteps={progress.pendingSteps}
+        reviewSteps={progress.reviewSteps}
+        isComplete={progress.isComplete}
+        progress={progress.doneSteps}
+        locale={locale}
       />
     </div>
   );

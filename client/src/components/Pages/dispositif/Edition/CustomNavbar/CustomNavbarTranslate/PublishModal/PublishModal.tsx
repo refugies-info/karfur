@@ -8,7 +8,7 @@ import Button from "components/UI/Button";
 import MissingSteps from "../../MissingSteps";
 import StepBar from "../../StepBar";
 import { StepStatus } from "../../MissingSteps/MissingSteps";
-import { Step } from "../functions";
+import { Step } from "hooks/dispositif";
 import PublishImage from "assets/dispositif/publish-image.svg";
 import styles from "./PublishModal.module.scss";
 
@@ -67,7 +67,9 @@ const PublishModal = (props: Props) => {
             missingSteps={[
               ...props.reviewSteps.map((p) => ({ step: p, status: "warning" as StepStatus })),
               ...props.pendingSteps.map((p) => ({ step: p, status: "new" as StepStatus })),
-              ...props.missingSteps.map((p) => ({ step: p, status: "error" as StepStatus })),
+              ...props.missingSteps
+                .filter((s) => !props.reviewSteps.includes(s) && !props.pendingSteps.includes(s)) // remove steps already in review or pending
+                .map((p) => ({ step: p, status: "error" as StepStatus })),
             ]}
             toggle={props.toggle}
             noPlusIcon

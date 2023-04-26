@@ -47,6 +47,19 @@
   }
 }
 
+.progress {
+  display: flex;
+  align-items: center;
+  margin-left: 80px;
+  @include dsfr-text("small");
+  color: $lightTextActionHighBlueFrance;
+
+  p {
+    margin-bottom: 0;
+    margin-left: u(2);
+  }
+}
+
 .save {
   background: $lightBackgroundElevationAlt;
   border-radius: u(1);
