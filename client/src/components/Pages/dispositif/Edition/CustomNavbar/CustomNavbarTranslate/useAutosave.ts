@@ -39,8 +39,11 @@ const useAutosave = () => {
             await API.saveTraduction({
               dispositifId: id || "",
               timeSpent: new Date().getTime() - startDate.getTime(),
-              translated: data.translated,
+              translated: {
+                content: data.translated.content,
+              },
               toFinish: data.toFinish,
+              toReview: data.toReview,
               language: language || "",
             });
             setIsSaving(false);

@@ -38,10 +38,12 @@ export const getMissingStepsTranslate = (
 
 export const getPendingStepsTranslate = (
   translation: DeepPartialSkipArrayKey<TranslateForm>,
+  key: "toReview" | "toFinish"
 ): Step[] => {
-  if (!translation.toFinish) return [];
+  const steps = translation[key];
+  if (!steps) return [];
   const pendingSteps: Step[] = [];
-  for (const step of translation.toFinish) {
+  for (const step of steps) {
     if (step.includes(".why.")) pendingSteps.push("why");
     else if (step.includes(".how.")) pendingSteps.push("how");
     else if (step.includes(".next.")) pendingSteps.push("next");
@@ -59,7 +61,8 @@ export const calculateProgressTranslate = (
   const max = missingSteps.length;
   const missing = [...new Set([
     ...missingSteps.filter(c => c !== null) as Step[],
-    ...getPendingStepsTranslate(translation)
+    ...getPendingStepsTranslate(translation, "toFinish"),
+    ...getPendingStepsTranslate(translation, "toReview"),
   ])].length;
   return max - missing;
 }

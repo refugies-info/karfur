@@ -70,7 +70,7 @@ export const getDisplay = (mySuggestion: Suggestion, suggestions: Suggestion[], 
   if (!!mySuggestion.text) {
     return {
       text: mySuggestion.text,
-      username: username,
+      username: username, // TODO: when toReview, use validatorId to show infos?
       picture: "me",
       status
     };

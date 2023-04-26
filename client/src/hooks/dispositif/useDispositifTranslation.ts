@@ -3,7 +3,7 @@ import cloneDeep from "lodash/cloneDeep";
 import set from "lodash/set";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import API from "utils/API";
-import { GetTraductionsForReview, GetTraductionsForReviewResponse, Languages } from "api-types";
+import { GetTraductionsForReview, GetTraductionsForReviewResponse, Languages, TranslationContent } from "api-types";
 import { useRouter } from "next/router";
 import { useFormContext, useWatch } from "react-hook-form";
 import { TranslateForm } from "./useDispositifTranslateForm";
@@ -43,8 +43,12 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse) 
   const language = useMemo(() => router.query.language as Languages, [router.query]);
 
   useEffect(() => {
-    //@ts-ignore
-    setMyTranslation(m => ({ ...m, translated: data.translated, toFinish: data.toFinish })); // FIXME partial
+    setMyTranslation(m => ({
+      ...m,
+      translated: data.translated as Partial<TranslationContent>,
+      toFinish: data.toFinish || [],
+      toReview: data.toReview || []
+    }));
   }, [data])
 
   /**
@@ -52,6 +56,12 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse) 
    */
   const validate = useCallback(
     async (section: string, value: { text?: string, unfinished?: boolean }) => {
+      // if section changed, remove from toReview
+      if (myTranslation.toReview && myTranslation.toReview.includes(section)) {
+        const toReview = [...myTranslation.toReview].filter(t => t !== section)
+        setValue("toReview", toReview);
+      }
+
       if (value.unfinished !== undefined) {
         const toFinish = value.unfinished
           ? [...myTranslation.toFinish, section]

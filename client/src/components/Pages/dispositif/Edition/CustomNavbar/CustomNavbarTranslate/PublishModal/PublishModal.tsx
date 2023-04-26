@@ -20,6 +20,7 @@ interface Props {
   isComplete: boolean;
   missingSteps: Step[];
   pendingSteps: Step[];
+  reviewSteps: Step[];
   progress: number;
   locale?: Languages;
 }
@@ -64,6 +65,7 @@ const PublishModal = (props: Props) => {
           />
           <MissingSteps
             missingSteps={[
+              ...props.reviewSteps.map((p) => ({ step: p, status: "warning" as StepStatus })),
               ...props.pendingSteps.map((p) => ({ step: p, status: "new" as StepStatus })),
               ...props.missingSteps.map((p) => ({ step: p, status: "error" as StepStatus })),
             ]}

@@ -4,7 +4,7 @@ import { IndicatorModel, ObjectId, Traductions, TraductionsModel, User } from ".
 import { TraductionsType } from "../../../typegoose/Traductions";
 
 const saveTranslation = (
-  { timeSpent, language, dispositifId, translated, toFinish }: SaveTranslationRequest,
+  { timeSpent, language, dispositifId, translated, toFinish, toReview }: SaveTranslationRequest,
   user: User,
 ): Promise<Traductions> =>
   getDispositifById(dispositifId).then(async (dispositif) => {
@@ -18,6 +18,7 @@ const saveTranslation = (
     // @ts-ignore
     _traduction.translated = translated;
     _traduction.toFinish = toFinish;
+    _traduction.toReview = user.isExpert() ? toReview : [];
     _traduction.type = user.isExpert() ? TraductionsType.VALIDATION : TraductionsType.SUGGESTION;
     _traduction.userId = user._id;
 

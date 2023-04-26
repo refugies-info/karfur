@@ -62,6 +62,7 @@ export interface SaveTranslationRequest {
   language: Languages;
   timeSpent: number;
   toFinish: string[];
+  toReview: string[];
   translated: Partial<{
     content: Partial<Content> & {
       what?: RichText;

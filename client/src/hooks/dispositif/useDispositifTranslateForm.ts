@@ -5,12 +5,13 @@ import useLocale from "hooks/useLocale";
 import useChangeLanguage from "hooks/useChangeLanguage";
 import useUser from "hooks/useUser";
 
-export type TranslateForm = Pick<SaveTranslationRequest, "translated" | "toFinish">;
+export type TranslateForm = Pick<SaveTranslationRequest, "translated" | "toFinish" | "toReview">;
 const getDefaultFormValues = (userId: Id | null, traductions: GetTraductionsForReviewResponse): TranslateForm => {
   const userTrads = traductions.find(t => t.author === userId);
   return {
     translated: userTrads?.translated || {},
     toFinish: userTrads?.toFinish || [],
+    toReview: userTrads?.toReview || [],
   };
 }
 

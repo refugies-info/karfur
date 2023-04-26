@@ -46,7 +46,8 @@ const CustomNavbarTranslate = (props: Props) => {
       getMissingStepsTranslate(values, props.typeContenu, props.defaultTranslation).filter((c) => c !== null) as Step[],
     [values, props.typeContenu, props.defaultTranslation],
   );
-  const pendingSteps = useMemo(() => getPendingStepsTranslate(values), [values]);
+  const pendingSteps = useMemo(() => getPendingStepsTranslate(values, "toFinish"), [values]);
+  const reviewSteps = useMemo(() => getPendingStepsTranslate(values, "toReview"), [values]);
   const isComplete = useMemo(() => progress === max, [progress, max]);
 
   // Quit
@@ -139,6 +140,7 @@ const CustomNavbarTranslate = (props: Props) => {
         onPublish={handlePublish}
         missingSteps={missingSteps}
         pendingSteps={pendingSteps}
+        reviewSteps={reviewSteps}
         isComplete={isComplete}
         progress={progress}
         locale={props.locale}
