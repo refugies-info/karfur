@@ -1,10 +1,11 @@
 {
   "name": "@refugies-info/api-types",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Types defined in the API to be used by the frontend",
   "main": "dist/index.js",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "prepublishOnly": "tsc"
   },
   "author": "Réfugiés.info",
   "license": "ISC",
