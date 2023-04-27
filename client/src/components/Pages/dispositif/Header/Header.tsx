@@ -30,7 +30,7 @@ const Header = (props: Props) => {
   const pageContext = useContext(PageContext);
   return (
     <header className={styles.container}>
-      <Breadcrumb dispositif={dispositif} />
+      {pageContext.mode !== "translate" && <Breadcrumb dispositif={dispositif} />}
       <div className="position-relative">
         <Title />
         {pageContext.mode === "view" && (

@@ -26,6 +26,7 @@ import {
   GetAllStructuresResponse,
   GetAllUsersResponse,
   GetCountDispositifsResponse,
+  GetDefaultTraductionResponse,
   GetDispositifResponse,
   GetDispositifsRequest,
   GetDispositifsResponse,
@@ -33,6 +34,8 @@ import {
   GetLanguagesResponse,
   GetLogResponse,
   GetNeedResponse,
+  GetProgressionRequest,
+  GetProgressionResponse,
   GetRegionStatisticsResponse,
   GetStatisticsRequest,
   GetStatisticsResponse,
@@ -40,6 +43,7 @@ import {
   GetStructureStatisticsRequest,
   GetStructureStatisticsResponse,
   GetThemeResponse,
+  GetTraductionsForReviewResponse,
   GetUserContributionsResponse,
   GetUserFavoritesRequest,
   GetUserFavoritesResponse,
@@ -67,10 +71,13 @@ import {
   ReadSuggestionDispositifRequest,
   ResetPasswordRequest,
   ResetPasswordResponse,
+  SaveTranslationRequest,
+  SaveTranslationResponse,
   SendNotificationsRequest,
   StructureReceiveDispositifRequest,
   SubscriptionRequest,
   ThemeRequest,
+  TranslateRequest,
   TranslationStatisticsRequest,
   TranslationStatisticsResponse,
   TtsRequest,
@@ -83,6 +90,7 @@ import {
   UpdateUserRequest,
   WidgetRequest,
 } from "api-types";
+import { PublishTranslationRequest } from "api-types/modules/translations";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
@@ -423,22 +431,23 @@ const API = {
   },
 
   // Trads
-
-  saveTraduction: (query: { dispositifId: string; timeSpent: number; translated: any /*TODO*/; language: string }) => {
+  saveTraduction: (query: SaveTranslationRequest): Promise<APIResponse<SaveTranslationResponse>> => {
     const headers = getHeaders();
-    return instance.post("/traduction", query, {
-      headers,
-    });
+    return instance.post("/traduction", query, { headers });
+  },
+  publishTraduction: (query: PublishTranslationRequest): Promise<APIResponse> => {
+    const headers = getHeaders();
+    return instance.post("/traduction/publish", query, { headers });
   },
 
-  getTraductionsForReview: ({ dispositif, language }: { dispositif: string; language: string }) => {
-    const headers = getHeaders();
+  getTraductionsForReview: ({ dispositif, language }: { dispositif: string; language: string }, options?: RequestOptions): Promise<APIResponse<GetTraductionsForReviewResponse>> => {
+    const headers = getHeaders(options?.token);
     return instance.get(`/traduction/for_review?dispositif=${dispositif}&language=${language}`, {
       headers,
     });
   },
-  getDefaultTraductionForDispositif: ({ dispositif }: { dispositif: string }) => {
-    const headers = getHeaders();
+  getDefaultTraductionForDispositif: ({ dispositif }: { dispositif: string }, options?: RequestOptions): Promise<APIResponse<GetDefaultTraductionResponse>> => {
+    const headers = getHeaders(options?.token);
     return instance.get(`/traduction?dispositif=${dispositif}`, {
       headers,
     });
@@ -448,12 +457,12 @@ const API = {
     const headers = getHeaders();
     return instance.delete("/traduction", { params: query, headers });
   },
-  get_progression: (query: any = {}) => {
+  get_progression: (query: GetProgressionRequest): Promise<APIResponse<GetProgressionResponse>> => {
     const headers = getHeaders();
     return instance.get("/traduction/get_progression", { params: query, headers }).then((response) => response.data);
   },
 
-  get_translation: (query = {}) => {
+  get_translation: (query: TranslateRequest): Promise<APIResponse<string>> => {
     const headers = getHeaders();
     return instance.post("/traduction/translate", query, {
       headers,

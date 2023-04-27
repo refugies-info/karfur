@@ -34,7 +34,7 @@ const AuthorContact = (props: Props) => {
       />
       <Input
         id="author-contact-phone"
-        label="Votre nom et prénom"
+        label="Votre numéro de téléphone"
         type="text"
         icon="phone-outline"
         value={props.contact.phone}

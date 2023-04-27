@@ -37,7 +37,7 @@ const StructureContact = (props: Props) => {
       />
       <Input
         id="structure-contact-phone"
-        label="Votre nom et prénom"
+        label="Votre numéro de téléphone"
         type="text"
         icon="phone-outline"
         value={props.contact.phone}

@@ -1,5 +1,5 @@
 import { Languages } from "@refugies-info/api-types";
-import { DispositifId, Traductions, TraductionsModel } from "../../typegoose";
+import { DispositifId, Traductions, TraductionsModel, UserId } from "../../typegoose";
 
 type TraductionsKeys = keyof Traductions;
 type TraductionsFieldsRequest = Partial<Record<TraductionsKeys, number>>;
@@ -12,6 +12,12 @@ export const getTraductionsByLanguageAndDispositif = (
   dispositifId: DispositifId,
   neededFields: TraductionsFieldsRequest = {},
 ) => TraductionsModel.find({ language, dispositifId }, neededFields).populate("userId");
+
+export const getValidation = (
+  language: Languages,
+  dispositifId: DispositifId,
+  userId: UserId
+) => TraductionsModel.findOne({ language, dispositifId, userId })
 
 export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages) =>
   TraductionsModel.deleteMany({

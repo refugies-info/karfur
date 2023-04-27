@@ -1,0 +1,20 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+
+.container {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid $lightPrimaryBlueFranceSun;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}

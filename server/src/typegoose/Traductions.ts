@@ -101,6 +101,9 @@ export class Traductions extends Base {
   @prop({ type: () => [String] })
   public toReview?: string[];
 
+  @prop({ type: () => [String] })
+  public toFinish?: string[];
+
   @prop()
   public type: TraductionsType;
 
@@ -117,12 +120,8 @@ export class Traductions extends Base {
       countWords(this.translated.content?.abstract) +
       countWords(this.translated.content?.what) +
       countWordsForInfoSections(this.translated.content?.how) +
-      (this.translated.content instanceof DemarcheContent
-        ? countWordsForInfoSections(this.translated.content?.next)
-        : 0) +
-      (this.translated.content instanceof DispositifContent
-        ? countWordsForInfoSections(this.translated.content?.why)
-        : 0)
+      countWordsForInfoSections((this.translated.content as DemarcheContent)?.next) +
+      countWordsForInfoSections((this.translated.content as DispositifContent)?.why)
     );
   }
 

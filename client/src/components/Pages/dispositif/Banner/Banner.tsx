@@ -5,6 +5,7 @@ import { Badge } from "@dataesr/react-dsfr";
 import { DispositifStatus, Id } from "api-types";
 import { getPath } from "routes";
 import { canEdit, isStatus } from "lib/dispositif";
+import { cls } from "lib/classname";
 import PageContext from "utils/pageContext";
 import { themeSelector } from "services/Themes/themes.selectors";
 import { userSelector } from "services/User/user.selectors";
@@ -50,7 +51,7 @@ const Banner = (props: Props) => {
 
   return (
     <div
-      className={styles.banner}
+      className={cls(styles.banner, pageContext.mode === "translate" && styles.translate)}
       style={theme?.banner?.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}}
     >
       {canEdit(dispositif, user.user) && pageContext.mode === "view" && (
