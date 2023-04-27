@@ -3,6 +3,7 @@ import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-fo
 import { useRouter } from "next/router";
 import debounce from "lodash/debounce";
 import { Languages } from "api-types";
+import { logger } from "logger";
 import PageContext from "utils/pageContext";
 import API from "utils/API";
 import { TranslateForm } from "hooks/dispositif/useDispositifTranslateForm";
@@ -24,6 +25,7 @@ const useAutosave = () => {
   const pageContext = useContext(PageContext);
 
   const [isSaving, setIsSaving] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const [startDate, setStartDate] = useState<Date>(new Date());
   useEffect(() => {
@@ -36,16 +38,22 @@ const useAutosave = () => {
         methods.handleSubmit((data: TranslateForm) => {
           debouncedSave(async () => {
             setIsSaving(true);
-            await API.saveTraduction({
-              dispositifId: id || "",
-              timeSpent: new Date().getTime() - startDate.getTime(),
-              translated: {
-                content: data.translated.content,
-              },
-              toFinish: data.toFinish,
-              toReview: data.toReview,
-              language: language || "",
-            });
+            setHasError(false);
+            try {
+              await API.saveTraduction({
+                dispositifId: id || "",
+                timeSpent: new Date().getTime() - startDate.getTime(),
+                translated: {
+                  content: data.translated.content,
+                },
+                toFinish: data.toFinish,
+                toReview: data.toReview,
+                language: language || "",
+              });
+            } catch (e: any) {
+              setHasError(true);
+              logger.error("[autosave] error:", e.response.data.message);
+            }
             setIsSaving(false);
           });
         })();
@@ -54,7 +62,7 @@ const useAutosave = () => {
     }
   }, [pageContext.mode, id, language, methods, data, oldData, router, startDate]);
 
-  return { isSaving };
+  return { isSaving, hasError };
 }
 
 export default useAutosave;

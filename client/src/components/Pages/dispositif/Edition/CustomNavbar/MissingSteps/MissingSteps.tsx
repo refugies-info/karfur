@@ -6,7 +6,7 @@ import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TranslationStatus from "components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
 import { UserTradStatus } from "components/Pages/dispositif/Translation/TranslationInput/functions";
-import { Step as TranslateStep } from "../CustomNavbarTranslate/functions";
+import { Step as TranslateStep } from "hooks/dispositif";
 import { Step as EditStep } from "../CustomNavbarEdit/functions";
 import { stepTranslations } from "./data";
 import styles from "./MissingSteps.module.scss";

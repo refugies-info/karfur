@@ -1,16 +1,16 @@
 import { DeepPartialSkipArrayKey } from "react-hook-form";
 import get from "lodash/get";
 import flattenDeep from "lodash/flattenDeep";
-import { ContentType, DemarcheContent, DispositifContent, GetTraductionsForReview, GetTraductionsForReviewResponse, InfoSection, InfoSections, TranslationContent } from "api-types";
+import { ContentType, DemarcheContent, DispositifContent, GetTraductionsForReview, InfoSections, TranslationContent } from "api-types";
 import { TranslateForm } from "../useDispositifTranslateForm";
 import { Step } from "./useDispositifTranslation";
 
-export const keysForSubSection = (prefix: string, translated: TranslationContent) =>
+export const keysForSubSection = (prefix: string, translated: DeepPartialSkipArrayKey<TranslationContent>) =>
   flattenDeep(
     Object.keys(get(translated, prefix, {})).map((key) => [`${prefix}.${key}.title`, `${prefix}.${key}.text`]),
   );
 
-export const keys = (translated: TranslationContent | undefined) => {
+export const keys = (translated: DeepPartialSkipArrayKey<TranslationContent> | undefined) => {
   if (!translated) return [];
   return [
     ...Object.keys(translated.content || {})
@@ -59,16 +59,13 @@ const isAccordionTranslated = (
   defaultTranslation: InfoSections | undefined
 ): boolean => {
   if (!translations) return false;
-  return !!translations.find(t => {
-    //@ts-ignore DemarcheContent vs DispositifContent
-    const content: InfoSection = t?.translated?.content?.[section];
-    return !!content
-      && !!defaultTranslation
-      && Object.keys(content).length === Object.keys(defaultTranslation).length
-      && !Object.values(content).find(c => !c || !c.title || !c.text)
-      && !t?.toFinish?.find(s => s.includes(`.${section}.`))
-      && !t?.toReview?.find(s => s.includes(`.${section}.`))
-  });
+
+  const sectionKeys = keys({ content: { [section]: defaultTranslation } });
+  // if one part of the accordion is not done by anyone, return false
+  for (const s of sectionKeys) {
+    if (!isTradDone(s, translations)) return false;
+  }
+  return true;
 }
 
 export const getMaxStepsTranslate = (defaultTranslation: TranslationContent | undefined) => {

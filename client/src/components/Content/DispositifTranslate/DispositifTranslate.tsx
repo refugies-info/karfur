@@ -89,12 +89,12 @@ const Dispositif = (props: Props) => {
             </div>
 
             <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
-              <TranslationInput {...getInputProps("content.titreInformatif")} />
+              <TranslationInput id="step-titreInformatif" {...getInputProps("content.titreInformatif")} />
 
               {typeContenu === ContentType.DISPOSITIF && (
                 <div className={cls(styles.marque, "mb-8")}>
                   <span>{t("Dispositif.with")}</span>
-                  <TranslationInput {...getInputProps("content.titreMarque")} />
+                  <TranslationInput id="step-titreMarque" {...getInputProps("content.titreMarque")} />
                 </div>
               )}
 
@@ -102,17 +102,21 @@ const Dispositif = (props: Props) => {
                 <section key={i} className="mb-8">
                   <SectionTitle titleKey={section} />
                   {section === "what" ? (
-                    <TranslationInput {...getInputProps("content.what")} />
+                    <TranslationInput id="step-what" {...getInputProps("content.what")} />
                   ) : (
-                    dispositifSections
-                      .filter((s) => s.startsWith(`content.${section}`))
-                      .map((s) => <TranslationInput {...getInputProps(s)} key={s} />)
+                    <div id={`step-${section}`}>
+                      {dispositifSections
+                        .filter((s) => s.startsWith(`content.${section}`))
+                        .map((s) => (
+                          <TranslationInput {...getInputProps(s)} key={s} />
+                        ))}
+                    </div>
                   )}
                 </section>
               ))}
 
               <SectionTitleAbstract />
-              <TranslationInput {...getInputProps("content.abstract")} />
+              <TranslationInput id="step-abstract" {...getInputProps("content.abstract")} />
 
               <FRLink href="#top" icon="arrow-upward" className={styles.top}>
                 Haut de page
@@ -133,6 +137,11 @@ const Dispositif = (props: Props) => {
 
             <div className={styles.main} id="anchor-what" dir={isRTL ? undefined : "ltr"}>
               <Header typeContenu={typeContenu} />
+              {typeContenu === ContentType.DISPOSITIF && (
+                <div className="mb-8">
+                  {t("Dispositif.with")} {dispositif?.titreMarque}
+                </div>
+              )}
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
                 <Section key={i} sectionKey={section} contentType={typeContenu} />
               ))}

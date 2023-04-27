@@ -10,6 +10,7 @@ import imgOfpra from "assets/dispositif/form-icons/conditions-ofpra.svg";
 import imgPoleEmploi from "assets/dispositif/form-icons/conditions-pole-emploi.svg";
 import imgTse from "assets/dispositif/form-icons/conditions-tse.svg";
 import imgOfii from "assets/dispositif/form-icons/conditions-ofii.svg";
+import imgDiploma from "assets/dispositif/form-icons/conditions-school.svg";
 import { TFunction } from "next-i18next";
 
 export const getPrice = (price: Metadatas["price"] | null | undefined, t: TFunction) => {
@@ -67,6 +68,8 @@ export const getConditionImage = (condition: conditionType) => {
       return imgPoleEmploi;
     case "driver license":
       return imgDriver;
+    case "school":
+      return imgDiploma;
     default:
       return null;
   }

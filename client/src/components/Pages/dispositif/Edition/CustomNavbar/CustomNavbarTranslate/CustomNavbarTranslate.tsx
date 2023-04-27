@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { useRouter } from "next/router";
 import { ContentType, Languages, TranslationContent } from "api-types";
 import API from "utils/API";
@@ -39,10 +39,17 @@ const defaultProgress: Progress = {
 const CustomNavbarTranslate = (props: Props) => {
   const { locale } = props;
   const progress = props.progress || defaultProgress;
-  const { isSaving } = useAutosave();
   const { user } = useUser();
   const router = useRouter();
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
+
+  // Save
+  const { isSaving, hasError } = useAutosave();
+  const saveText = useMemo(() => {
+    if (isSaving) return "Sauvegarde en cours...";
+    if (hasError) return "Erreur lors de la sauvegarde !";
+    return "Sauvegardé il y a quelques secondes";
+  }, [isSaving, hasError]);
 
   // Quit
   const [showQuitModal, toggleQuitModal] = useToggle(false);
@@ -62,6 +69,7 @@ const CustomNavbarTranslate = (props: Props) => {
     if (!id || !progress.isComplete || !locale) return;
     await API.publishTraduction({ dispositifId: id, language: locale });
   }, [router.query.id, progress.isComplete, locale]);
+
   return (
     <div className={styles.container}>
       <div className={cls("fr-container", styles.inner)}>
@@ -95,7 +103,7 @@ const CustomNavbarTranslate = (props: Props) => {
               fill={styles.darkBackgroundElevationContrast}
               className="me-2"
             />
-            <span>{isSaving ? "Sauvegarde en cours..." : "Sauvegardé il y a quelques secondes"}</span>
+            <span>{saveText}</span>
           </span>
           <Tooltip target="save-status" placement="top">
             Toutes les modifications sont sauvegardées automatiquement

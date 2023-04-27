@@ -20,6 +20,7 @@ export const getAllSuggestions = (mySuggestion: Suggestion, suggestions: Suggest
 };
 
 interface Props {
+  id?: string;
   section: string;
   initialText: string; // french text
   mySuggestion: Suggestion;
@@ -35,6 +36,7 @@ interface Props {
 
 const TranslationInput = (props: Props) => {
   const {
+    id,
     section,
     initialText,
     suggestions,
@@ -174,7 +176,7 @@ const TranslationInput = (props: Props) => {
   const remainingChars = useMemo(() => (!maxLength ? null : maxLength - (value || "").length), [value, maxLength]);
 
   return (
-    <div className={cls(size && styles[size])}>
+    <div id={id} className={cls(size && styles[size])}>
       {!isOpen ? (
         <div
           className={cls(styles.view, styles[getStatusStyle(display.status).type])}

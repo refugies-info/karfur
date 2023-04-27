@@ -51,7 +51,14 @@ const PublishModal = (props: Props) => {
             <Image src={PublishImage} width={345} height={240} alt="" />
           </div>
           <div className="text-end">
-            <Button onClick={props.onPublish} icon="log-out-outline" iconPlacement="end">
+            <Button
+              onClick={() => {
+                props.onPublish();
+                props.onQuit();
+              }}
+              icon="log-out-outline"
+              iconPlacement="end"
+            >
               Publier
             </Button>
           </div>

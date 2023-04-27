@@ -32,7 +32,7 @@ export class StructureController extends Controller {
   }
 
   @Security({
-    jwt: ["admin"],
+    jwt: [],
   })
   @Get("/all")
   public async getAll(): ResponseWithData<GetAllStructuresResponse[]> {
