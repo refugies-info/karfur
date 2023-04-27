@@ -1,3 +1,4 @@
+import { Languages } from "@refugies-info/api-types";
 import { modelOptions, prop } from "@typegoose/typegoose";
 import { Base } from "./Base";
 
@@ -13,7 +14,7 @@ export class Langue extends Base {
   public langueCode?: string;
 
   @prop({ required: true, unique: true })
-  public i18nCode!: string;
+  public i18nCode!: Languages;
 
   @prop({ default: 0 })
   public avancement: number;
