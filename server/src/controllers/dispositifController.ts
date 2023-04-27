@@ -331,10 +331,11 @@ export class DispositifController extends Controller {
 
   // keep in last position to make sure /xyz routes are catched before
   @Security({
+    jwt: ["optional"],
     fromSite: [],
   })
   @Get("/{id}")
-  public async getById(@Path() id: string, @Query() locale: Languages): ResponseWithData<GetDispositifResponse> {
-    return getContentById(id, locale);
+  public async getById(@Path() id: string, @Query() locale: Languages, @Request() request: express.Request): ResponseWithData<GetDispositifResponse> {
+    return getContentById(id, locale, request.user);
   }
 }

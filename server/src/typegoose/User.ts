@@ -43,20 +43,9 @@ export class User extends Base {
   @prop({ ref: () => Langue })
   public selectedLanguages?: Ref<Langue>[];
 
-  // FIXME Faire une jointure si toujours nécessaire
-  // @prop({ ref: () => Traductions })
-  // public traductionsFaites: Ref<Traductions>[];
-
   // FIXME jointure ?
   @prop({ ref: () => Dispositif })
   public contributions?: Ref<Dispositif>[];
-
-  // FIXME toujours utilisé ?
-  //   @prop()
-  //   public noteTraduction: {
-  //     type: Number,
-  //     required: false,
-  //   },
 
   @prop({ enum: UserStatus })
   public status?: UserStatus;
@@ -127,8 +116,8 @@ export class User extends Base {
 
     return this.roles && this.roles.length > 0
       ? this.roles
-          .filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad")
-          .map((role) => role.nom.toString())
+        .filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad")
+        .map((role) => role.nom.toString())
       : [];
   }
 

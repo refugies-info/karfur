@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import moment from "moment";
 // TODO import all locales
 import "moment/locale/fr";
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const Header = (props: Props) => {
+  const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
   useEffect(() => {
@@ -28,13 +30,18 @@ const Header = (props: Props) => {
   const pageContext = useContext(PageContext);
   return (
     <header className={styles.container}>
-      <Breadcrumb dispositif={dispositif} />
+      {pageContext.mode !== "translate" && <Breadcrumb dispositif={dispositif} />}
       <div className="position-relative">
         <Title />
         {pageContext.mode === "view" && (
           <>
             {dispositif?.date && (
-              <Badge text={`Mise à jour ${moment(dispositif.date).fromNow()}`} type="info" isSmall hasIcon />
+              <Badge
+                text={`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}
+                type="info"
+                isSmall
+                hasIcon
+              />
             )}
 
             <Button
@@ -45,7 +52,7 @@ const Header = (props: Props) => {
                 sharingOptions(props.typeContenu, dispositif?.titreInformatif || "", dispositif?.titreMarque || "")
               }
             >
-              Partager la fiche
+              {t("Dispositif.share")}
             </Button>
 
             <SectionButtons id="titreInformatif" content={dispositif?.titreInformatif || ""} />

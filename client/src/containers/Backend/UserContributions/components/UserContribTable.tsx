@@ -3,7 +3,7 @@ import { Table } from "reactstrap";
 import Link from "next/link";
 import { FormattedUserContribution } from "../types";
 import { TypeContenu, Responsabilite, ContribStyledStatus, StatutHeader } from "./SubComponents";
-import { Title, DeleteButton, SeeButtonWithoutNavigation } from "../../Admin/sharedComponents/SubComponents";
+import { Title, DeleteButton, SeeButton } from "../../Admin/sharedComponents/SubComponents";
 import styles from "scss/components/adminTable.module.scss";
 import { Id } from "api-types";
 
@@ -98,7 +98,7 @@ export const UserContribTable = (props: Props) => (
 
             <td className={styles.last + " align-middle"}>
               <div style={{ display: "flex", flexDirection: "row" }}>
-                <SeeButtonWithoutNavigation />
+                <SeeButton burl={burl} />
                 <DeleteButton
                   data-test-id={"test_delete_" + element._id}
                   onClick={(event: any) => props.deleteDispositif(event, element._id, element.isAuthorizedToDelete)}

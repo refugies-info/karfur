@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import { ContentStructure, CreateDispositifRequest, Sponsor } from "api-types";
 import { cls } from "lib/classname";
 import Button from "components/UI/Button";
@@ -16,11 +17,12 @@ interface Props {
  * Show secondary sponsors of a dispositif.
  */
 const Sponsors = (props: Props) => {
+  const { t } = useTranslation();
   const hasSponsors = props.sponsors && props.sponsors.length > 0;
 
   return hasSponsors || props.editMode ? (
     <div className={styles.container}>
-      <span className={styles.label}>En partenariat avec</span>
+      <span className={styles.label}>{t("Dispositif.partners")}</span>
       <div className={styles.sponsors}>
         {(props?.sponsors || [])?.map((sponsor, i) => {
           if (!sponsor) return null;

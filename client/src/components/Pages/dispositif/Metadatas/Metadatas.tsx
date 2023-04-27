@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import { ContentType, GetDispositifResponse } from "api-types";
 import FRLink from "components/UI/FRLink";
 import { getSponsorLink } from "./functions";
@@ -24,28 +25,29 @@ interface Props {
  * Shows the metadatas of a dispositif, with Cards, in VIEW mode
  */
 const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: Props) => {
+  const { t } = useTranslation();
   if (!metadatas) return <></>;
   return (
     <div id="anchor-who">
       <p className={styles.title} style={{ color }}>
-        Informations importantes
+        {t("Dispositif.importantInformations")}
       </p>
       <Card
         title={
           typeContenu === ContentType.DISPOSITIF ? (
             <>
-              Avec{" "}
+              {t("Dispositif.with")}{" "}
               <span className={styles.marque} style={{ backgroundColor: color }}>
                 {titreMarque}
               </span>
             </>
           ) : (
-            "Proposé par"
+            t("Dispositif.proposedBy")
           )
         }
         items={[
           {
-            label: typeContenu === ContentType.DISPOSITIF ? "Proposé par" : undefined,
+            label: typeContenu === ContentType.DISPOSITIF ? t("Dispositif.proposedBy") : undefined,
             content: <FRLink href={getSponsorLink(mainSponsor?._id.toString())}>{mainSponsor?.nom}</FRLink>,
             icon: (
               <Image

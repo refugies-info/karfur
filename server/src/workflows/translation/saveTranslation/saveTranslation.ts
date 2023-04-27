@@ -2,10 +2,9 @@ import { SaveTranslationRequest } from "@refugies-info/api-types";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { IndicatorModel, ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { TraductionsType } from "../../../typegoose/Traductions";
-import validateTranslation from "../validateTranslation";
 
 const saveTranslation = (
-  { timeSpent, language, dispositifId, translated }: SaveTranslationRequest,
+  { timeSpent, language, dispositifId, translated, toFinish, toReview }: SaveTranslationRequest,
   user: User,
 ): Promise<Traductions> =>
   getDispositifById(dispositifId).then(async (dispositif) => {
@@ -18,6 +17,8 @@ const saveTranslation = (
     _traduction.language = language;
     // @ts-ignore
     _traduction.translated = translated;
+    _traduction.toFinish = toFinish;
+    _traduction.toReview = user.isExpert() ? toReview : [];
     _traduction.type = user.isExpert() ? TraductionsType.VALIDATION : TraductionsType.SUGGESTION;
     _traduction.userId = user._id;
 
@@ -34,24 +35,16 @@ const saveTranslation = (
       wordsCount,
     });
 
-    /**
-     * Si l'avancement est à 100% + faite par un expert => traduction prête
-     *
-     * Alors il faut publier la traduction de la fiche
-     * puis supprimer l'ensemble des traductions.
-     */
-    return _traduction.avancement >= 1 && user.isExpert()
-      ? validateTranslation(dispositif, language, _traduction).then(() => _traduction)
-      : TraductionsModel.findOneAndUpdate(
-          { dispositifId, userId: user._id, language },
-          { ..._traduction, $inc: { timeSpent } },
-          {
-            upsert: true,
-            setDefaultsOnInsert: true,
-            returnDocument: "after",
-            returnNewDocument: true,
-          },
-        ).then((trad) => trad.toObject());
+    return TraductionsModel.findOneAndUpdate(
+      { dispositifId, userId: user._id, language },
+      { ..._traduction, $inc: { timeSpent } },
+      {
+        upsert: true,
+        setDefaultsOnInsert: true,
+        returnDocument: "after",
+        returnNewDocument: true,
+      },
+    ).then((trad) => trad.toObject());
   });
 
 export default saveTranslation;

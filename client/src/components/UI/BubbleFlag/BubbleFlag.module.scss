@@ -1,0 +1,31 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.flag {
+  z-index: 1;
+  position: relative;
+
+  .lg & {
+    width: 50px !important;
+    height: 37.5px;
+    outline-width: 2px;
+    border-radius: 5px;
+  }
+  .md & {
+    width: 20px !important;
+  }
+}

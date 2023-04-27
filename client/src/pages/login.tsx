@@ -14,7 +14,7 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { showLangModalSelector, allLanguesSelector } from "services/Langue/langue.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import API from "utils/API";
-import setAuthToken from "utils/setAuthToken";
+import { setAuthToken } from "utils/authToken";
 import LanguageBtn from "components/UI/LanguageBtn/LanguageBtn";
 import FButton from "components/UI/FButton/FButton";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
@@ -140,7 +140,7 @@ const Login = () => {
             router.push("/");
           }
         });
-        localStorage.setItem("token", token);
+
         setAuthToken(token);
         dispatch(fetchUserActionCreator());
       })

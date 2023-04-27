@@ -4,13 +4,15 @@ import { cls } from "lib/classname";
 import { jsUcfirst } from "lib";
 import { GetThemeResponse } from "api-types";
 
-// TODO: replace by FilterButton or FButton
 interface Props {
   theme: GetThemeResponse;
   isSelected: boolean;
   onClick?: () => void;
 }
 
+/**
+ * @deprecated replace by FilterButton or FButton
+ */
 export const TagButton = (props: Props) => {
   const onTagClick = () => {
     if (props.onClick) {

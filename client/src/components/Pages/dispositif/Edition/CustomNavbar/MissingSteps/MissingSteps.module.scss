@@ -1,0 +1,49 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+
+.missing {
+  padding: u(8);
+  border-radius: u(2);
+  margin-top: u(6);
+  margin-bottom: u(8);
+
+  &.warning {
+    background: $lightBackgroundContrastWarning;
+  }
+  &.error {
+    background: $lightBackgroundContrastWarning;
+  }
+  &.new {
+    background: var(--yellow-tournesol-975-75);
+  }
+}
+
+.step {
+  background: white;
+  padding: u(3) u(4);
+  border-radius: u(2);
+  box-shadow: 0 2px 6px 0 #00001229;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: u(2);
+  width: 100%;
+
+  & > span {
+    display: flex;
+    align-items: center;
+  }
+
+  &.new {
+    color: var(--yellow-tournesol-407);
+  }
+  &.error {
+    color: var(--error-425);
+  }
+  &.warning {
+    color: var(--warning-425);
+  }
+}

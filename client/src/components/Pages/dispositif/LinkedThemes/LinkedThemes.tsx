@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { getPath } from "routes";
 import { cls } from "lib/classname";
@@ -30,6 +31,7 @@ const LinkNeed = styled(Link)<LinkNeedProps>`
 `;
 
 const LinkedThemes = () => {
+  const { t } = useTranslation();
   const themes = useSelector(themesSelector);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -38,7 +40,7 @@ const LinkedThemes = () => {
 
   return (
     <div className={styles.container}>
-      <p className={styles.title}>Thématiques liées</p>
+      <p className={styles.title}>{t("Dispositif.linkedThemes")}</p>
       <div className={styles.row}>
         {theme && (
           <SearchThemeButton

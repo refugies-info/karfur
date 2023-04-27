@@ -21,16 +21,17 @@ const DispositifPage = (props: Props) => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query, locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, query, locale }) => {
   if (query.id) {
     const action = fetchSelectedDispositifActionCreator({
       selectedDispositifId: query.id as string,
       locale: locale || "fr",
+      token: req.cookies.authorization,
     });
     store.dispatch(action);
     store.dispatch(fetchThemesActionCreator());
     store.dispatch(fetchNeedsActionCreator());
-    store.dispatch(fetchUserActionCreator());
+    store.dispatch(fetchUserActionCreator({ token: req.cookies.authorization }));
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   }

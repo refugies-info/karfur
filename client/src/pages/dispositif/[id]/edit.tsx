@@ -13,6 +13,7 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import { UpdateDispositifRequest } from "api-types";
 import { getDefaultValue } from "lib/dispositifForm";
 import { useDispositifForm } from "hooks/dispositif";
+import { canEdit } from "lib/dispositif";
 
 interface Props {
   history: string[];
@@ -36,22 +37,24 @@ const DispositifPage = (props: Props) => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query, locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, query, locale }) => {
   if (query.id) {
     const action = fetchSelectedDispositifActionCreator({
       selectedDispositifId: query.id as string,
       locale: locale || "fr",
+      token: req.cookies.authorization,
     });
     store.dispatch(action);
     store.dispatch(fetchThemesActionCreator());
-    store.dispatch(fetchUserActionCreator());
+    store.dispatch(fetchUserActionCreator({ token: req.cookies.authorization }));
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   }
 
   // 404
   const dispositif = store.getState().selectedDispositif;
-  if (!dispositif || dispositif.typeContenu !== "dispositif") {
+  const isAllowedToEdit = dispositif ? canEdit(dispositif, store.getState().user.user) : false;
+  if (!dispositif || dispositif.typeContenu !== "dispositif" || !isAllowedToEdit) {
     return { notFound: true };
   }
 

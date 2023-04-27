@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Post, Queries, Query, Request, Route, Security } from "tsoa";
 
-import { IRequest, ResponseWithData } from "../types/interface";
+import { IRequest, ResponseWithData, Response } from "../types/interface";
 import {
   deleteTranslations,
   getDefaultTraduction,
@@ -9,6 +9,7 @@ import {
   getTraductionsForReview,
   saveTranslation,
   translate,
+  publishTranslation
 } from "../workflows";
 import {
   DeleteTranslationsRequest,
@@ -17,11 +18,12 @@ import {
   GetProgressionResponse,
   GetTraductionsForReviewResponse,
   Languages,
+  PublishTranslationRequest,
   SaveTranslationRequest,
   SaveTranslationResponse,
   TranslateRequest,
   TranslationStatisticsRequest,
-  TranslationStatisticsResponse,
+  TranslationStatisticsResponse
 } from "@refugies-info/api-types";
 import logger from "../logger";
 
@@ -46,7 +48,7 @@ export class TranslationController extends Controller {
   }
 
   /**
-   * Get the default FR transalation for a Dispositif
+   * Get the default FR translation for a Dispositif
    *
    * Used by translation page
    */
@@ -61,7 +63,7 @@ export class TranslationController extends Controller {
 
   @Delete("/")
   @Security({ jwt: ["admin"] })
-  public deleteTraductions(@Queries() queries: DeleteTranslationsRequest) {
+  public deleteTraductions(@Queries() queries: DeleteTranslationsRequest): Response {
     return deleteTranslations(queries.dispositifId, queries.locale).then(() => ({
       text: "success",
     }));
@@ -78,9 +80,13 @@ export class TranslationController extends Controller {
       text: "success",
       data: traductions.map((trad) => ({
         translated: trad.translated,
-        author: trad.getUser().id,
-        username: trad.getUser().username,
+        author: {
+          id: trad.getUser().id,
+          username: trad.getUser().username,
+          picture: trad.getUser().picture,
+        },
         toReview: trad.toReview,
+        toFinish: trad.toFinish || []
       })),
     }));
   }
@@ -121,5 +127,17 @@ export class TranslationController extends Controller {
       text: "success",
       data: statistics,
     }));
+  }
+
+  @Post("/publish")
+  @Security({
+    jwt: ["expert"],
+    fromSite: [],
+  })
+  public publishTranslation(
+    @Body() body: PublishTranslationRequest,
+    @Request() request: IRequest,
+  ): Response {
+    return publishTranslation(body, request.user).then(() => ({ text: "success" }));
   }
 }

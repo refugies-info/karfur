@@ -26,26 +26,12 @@ export function* fetchSelectedDispositif(
       { id: selectedDispositifId, locale }
     );
     if (selectedDispositifId) {
-      const data: APIResponse<GetDispositifResponse> = yield call(API.getDispositif, selectedDispositifId, locale);
+      const data: APIResponse<GetDispositifResponse> = yield call(API.getDispositif, selectedDispositifId, locale, { token: action.payload.token });
 
       const dispositif: GetDispositifResponse = data.data.data;
       if (dispositif) {
         yield put(setSelectedDispositifActionCreator(dispositif, true));
       }
-
-      /* TODO : handle server side
-      const user = yield select(userSelector);
-      if (
-        dispositif.status !== "Actif" &&
-        !user.admin &&
-        !user.user.contributions.includes(dispositif._id) &&
-        !user.user.structures.includes(dispositif.mainSponsor._id)
-      ) {
-        if (isEmpty(user)) {
-          yield call(Router.push, "/login");
-        }
-        // yield call(Router.push, "/");
-      } */
     }
 
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_DISPOSITIF));

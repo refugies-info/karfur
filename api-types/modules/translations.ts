@@ -1,4 +1,4 @@
-import { ContentType, InfoSection, InfoSections, Languages, RichText, Uuid } from "../generics";
+import { ContentType, InfoSection, InfoSections, Languages, Picture, RichText, Uuid } from "../generics";
 
 export type TraductionsType = "suggestion" | "validation";
 
@@ -44,10 +44,14 @@ export interface TranslationContent {
 }
 
 export interface GetTraductionsForReview {
-  author: string;
   translated: Partial<TranslationContent>;
-  username: string;
+  author: {
+    id: string;
+    username: string;
+    picture?: Picture;
+  }
   toReview?: string[];
+  toFinish: string[];
 }
 export type GetTraductionsForReviewResponse = GetTraductionsForReview[];
 
@@ -60,6 +64,8 @@ export interface SaveTranslationRequest {
   dispositifId: string;
   language: Languages;
   timeSpent: number;
+  toFinish: string[];
+  toReview: string[];
   translated: Partial<{
     content: Partial<Content> & {
       what?: RichText;
@@ -137,3 +143,8 @@ export interface Statistics {
 }
 
 export interface TranslationStatisticsResponse extends Statistics { }
+
+export interface PublishTranslationRequest {
+  dispositifId: string;
+  language: Languages;
+}

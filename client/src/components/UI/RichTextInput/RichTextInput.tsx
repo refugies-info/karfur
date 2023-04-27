@@ -1,5 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { FC, useCallback, useState } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
@@ -32,17 +31,17 @@ const theme = {
 
 interface Props {
   value: string;
-  id: string;
+  onChange?: (html: string) => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  className?: string;
 }
 
 /**
  * Input for rich text, using Lexical
  */
 const RichTextInput: FC<Props> = (props: Props) => {
-  const { value, id, onBlur, onFocus } = props;
-  const { setValue } = useFormContext();
+  const { value, onBlur, onFocus } = props;
   const [hasFocus, setHasFocus] = useState(false);
 
   const initialConfig = {
@@ -55,9 +54,9 @@ const RichTextInput: FC<Props> = (props: Props) => {
   };
 
   const onChange = (html: string) => {
-    if (setValue) {
-      if (html === "<p><br></p>") setValue(id, ""); // empty input
-      else setValue(id, html);
+    if (props.onChange) {
+      if (html === "<p><br></p>") props.onChange(""); // empty input
+      else props.onChange(html);
     }
   };
 
@@ -79,7 +78,7 @@ const RichTextInput: FC<Props> = (props: Props) => {
   }, [onFocus]);
 
   return (
-    <div className={cls(styles.container, hasFocus && styles.focus)} ref={onRef}>
+    <div className={cls(styles.container, hasFocus && styles.focus, props.className)} ref={onRef}>
       <LexicalComposer initialConfig={initialConfig}>
         <ToolbarPlugin />
         <LexicalAutoLinkPlugin />

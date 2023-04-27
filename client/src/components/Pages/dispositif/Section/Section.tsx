@@ -1,7 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { ContentType, InfoSections } from "api-types";
 import { getDispositifSectionTitle } from "lib/getDispositifSectionTitle";
+import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
 import Accordions from "../Accordions";
@@ -22,7 +24,10 @@ const DEFAULT_COLOR_30 = "#ccc";
  * Shows a section of a dispositif. Can display a rich text or InfoSections. Can be used in VIEW or EDIT mode.
  */
 const Section = ({ sectionKey, contentType }: Props) => {
+  const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
+  const pageContext = useContext(PageContext);
+  const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
 
   // content
   const contentHtml: string | undefined = useMemo(
@@ -50,10 +55,10 @@ const Section = ({ sectionKey, contentType }: Props) => {
       {contentHtml !== undefined ? (
         <>
           <RichText id={sectionKey} value={contentHtml} />
-          {contentHtml && (
+          {contentHtml && isViewMode && (
             <SectionButtons
               id={sectionKey}
-              content={{ title: getDispositifSectionTitle(sectionKey), text: contentHtml }}
+              content={{ title: t(getDispositifSectionTitle(sectionKey)), text: contentHtml }}
             />
           )}
         </>

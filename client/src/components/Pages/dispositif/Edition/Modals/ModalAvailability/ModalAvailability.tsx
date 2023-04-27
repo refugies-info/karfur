@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "next-i18next";
 import {
   commitmentDetailsType,
   CreateDispositifRequest,
@@ -9,6 +10,7 @@ import {
   timeSlotType,
   timeUnitType,
 } from "api-types";
+import { jsUcfirst } from "lib";
 import { BaseModal } from "components/Pages/dispositif";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
@@ -34,6 +36,7 @@ interface Props {
 const MAX_STEP = 3;
 
 const ModalAvailability = (props: Props) => {
+  const { t } = useTranslation();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
   const [step, setStep] = useState<number>(1);
 
@@ -47,7 +50,7 @@ const ModalAvailability = (props: Props) => {
   const [commitmentTimeUnit, setCommitmentTimeUnit] = useState<timeUnitType>(
     getValues("metadatas.commitment.timeUnit") || "months",
   );
-  const [noCommitment, setNoCommitment] = useState<boolean>(false);
+  const [noCommitment, setNoCommitment] = useState<boolean>(getValues("metadatas.commitment") === null);
   const validateCommitment = () => {
     let commitment: Metadatas["commitment"] = undefined;
     if (noCommitment) commitment = null;
@@ -74,7 +77,7 @@ const ModalAvailability = (props: Props) => {
   const [frequencyUnit, setFrequencyUnit] = useState<frequencyUnitType>(
     getValues("metadatas.frequency.frequencyUnit") || "day",
   );
-  const [noFrequency, setNoFrequency] = useState<boolean>(false);
+  const [noFrequency, setNoFrequency] = useState<boolean>(getValues("metadatas.frequency") === null);
   const validateFrequency = () => {
     let frequency: Metadatas["frequency"] = undefined;
     if (noFrequency) frequency = null;
@@ -90,9 +93,7 @@ const ModalAvailability = (props: Props) => {
   };
 
   // timeSlots
-  const [timeSlots, setTimeSlots] = useState<timeSlotType[] | null | undefined>(
-    getValues("metadatas.timeSlots") || undefined,
-  );
+  const [timeSlots, setTimeSlots] = useState<timeSlotType[] | null | undefined>(getValues("metadatas.timeSlots"));
   const selectTimeSlot = useCallback((option: timeSlotType) => {
     setTimeSlots((options) =>
       options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
@@ -213,7 +214,6 @@ const ModalAvailability = (props: Props) => {
               selected={frequencyTimeUnit}
               setSelected={(key: timeUnitType) => setFrequencyTimeUnit(key)}
             />
-            <p>par</p>
             <DropdownModals<frequencyUnitType>
               options={frequencyUnitOptions}
               selected={frequencyUnit}
@@ -237,7 +237,7 @@ const ModalAvailability = (props: Props) => {
           {timeSlotOptions.map((day) => (
             <ChoiceButton
               key={day}
-              text={day}
+              text={jsUcfirst(t(`Infocards.${day}`))}
               type="checkbox"
               selected={!!(timeSlots && timeSlots?.includes(day))}
               onSelect={() => selectTimeSlot(day)}

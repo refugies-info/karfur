@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "next-i18next";
 import { Metadatas } from "api-types";
 import BaseCard from "../BaseCard";
 import {
@@ -27,34 +28,39 @@ interface Props {
 }
 
 const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, color, onClick }: Props) => {
+  const { t } = useTranslation();
   return (
     <BaseCard
-      title="Public visé"
+      title={t("Infocards.publicTitle")}
       items={[
         {
-          label: "Statut",
-          content: getPublicStatus(dataPublicStatus),
+          label: t("Infocards.publicStatus"),
+          content: getPublicStatus(dataPublicStatus, t),
           icon: <StatusIcon color={color} />,
-          defaultValue: getAllPublicStatus(),
+          defaultValue: getAllPublicStatus(t),
         },
         {
-          label: "Français demandé",
+          label: t("Infocards.frenchLevel"),
           content:
             !dataFrenchLevel || dataFrenchLevel.length === 0 ? (
               dataFrenchLevel
             ) : (
-              <FRLink href={getFrenchLevelLink(dataFrenchLevel)}>{getFrenchLevel(dataFrenchLevel)}</FRLink>
+              <FRLink href={getFrenchLevelLink(dataFrenchLevel)}>{getFrenchLevel(dataFrenchLevel, t)}</FRLink>
             ),
           icon: <FrenchLevelIcon color={color} />,
-          defaultValue: <FRLink href={getFrenchLevelLink([])}>{getAllFrenchLevel()}</FRLink>,
+          defaultValue: <FRLink href={getFrenchLevelLink([])}>{getAllFrenchLevel(t)}</FRLink>,
         },
         {
-          label: "Âge demandé",
-          content: !dataAge ? dataAge : <FRLink href={getAgeLink(dataAge)}>{getAge(dataAge)}</FRLink>,
+          label: t("Infocards.age"),
+          content: !dataAge ? dataAge : <FRLink href={getAgeLink(dataAge)}>{getAge(dataAge, t)}</FRLink>,
           icon: <AgeIcon color={color} />,
           defaultValue: <FRLink href={getAgeLink(undefined)}>Tous les âges</FRLink>,
         },
-        { label: "Public spécifique", content: getPublic(dataPublic), icon: <StatusIcon color={color} /> },
+        {
+          label: t("Infocards.public"),
+          content: getPublic(dataPublic, t),
+          icon: <StatusIcon color={color} />,
+        },
       ]}
       color={color}
       onClick={onClick}

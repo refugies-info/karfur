@@ -27,11 +27,14 @@ const Text = (props: Props) => {
 
   return props.html ? (
     <div
+      data-section={props.id}
       dangerouslySetInnerHTML={{ __html: convertedContent }}
       className={cls(styles.content, pageContext.activeSection === props.id && styles.highlighted)}
     />
   ) : (
-    <span className={pageContext.activeSection === props.id ? styles.highlighted : ""}>{convertedContent}</span>
+    <span className={pageContext.activeSection === props.id ? styles.highlighted : ""} data-section={props.id}>
+      {convertedContent}
+    </span>
   );
 };
 

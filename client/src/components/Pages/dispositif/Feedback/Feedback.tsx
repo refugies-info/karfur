@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import { logger } from "logger";
 import { cls } from "lib/classname";
 import isInBrowser from "lib/isInBrowser";
@@ -17,6 +18,7 @@ import ThumbDownIcon from "assets/dispositif/thumb-down.svg";
 import styles from "./Feedback.module.scss";
 
 const Feedback = () => {
+  const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
   const mercis = useMemo(() => dispositif?.merci || [], [dispositif]);
   const [didThank, setDidThank] = useState(false);
@@ -59,18 +61,18 @@ const Feedback = () => {
     <div className={styles.container}>
       <Image src={FeedbackIllu} width={287} height={204} alt="" className={styles.illu} />
       <div className={styles.content}>
-        <p className={styles.title}>Vous avez trouvé cette fiche utile ?</p>
-        <p>Remerciez les contributeurs qui l’ont rédigée et traduite pour vous !</p>
+        <p className={styles.title}>{t("Dispositif.feedbackTitle")}</p>
+        <p>{t("Dispositif.feedbackSubtitle")}</p>
         <Button secondary={!didThank} onClick={sendPositiveFeedback} className={cls(styles.btn, "me-2")}>
           <Image src={didThank ? ThumbUpFillIcon : ThumbUpIcon} width={24} height={24} alt="" className="me-2" />
-          {nbMercis} mercis
+          {t("Dispositif.nbThanks", { count: nbMercis })}
         </Button>
         <Button secondary onClick={sendNegativeFeedback} className={styles.btn}>
           <Image src={ThumbDownIcon} width={24} height={24} alt="" />
         </Button>
       </div>
 
-      {showToast && <Toast close={() => setShowToast(false)}>Merci pour votre retour !</Toast>}
+      {showToast && <Toast close={() => setShowToast(false)}>{t("Dispositif.feedbackThanks")}</Toast>}
     </div>
   );
 };

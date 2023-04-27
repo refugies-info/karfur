@@ -1,9 +1,14 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
 
 .highlighted {
-  background: lightblue;
+  background: $lightBackgroundActionLowBlueFrance;
+  border-radius: u(2);
+  margin: u(-4);
+  padding: u(4);
+  display: inline-block;
 }
 
 .content {

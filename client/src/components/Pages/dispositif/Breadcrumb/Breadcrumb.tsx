@@ -2,8 +2,9 @@ import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { ContentType, GetDispositifResponse } from "api-types";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { getPath } from "routes";
-import { useContentLocale, useWindowSize } from "hooks";
+import { useContentLocale, useLocale, useWindowSize } from "hooks";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { needSelector } from "services/Needs/needs.selectors";
 import { themeSelector } from "services/Themes/themes.selectors";
@@ -17,12 +18,14 @@ interface Props {
 }
 
 const Breadcrumb = ({ dispositif }: Props) => {
+  const { t } = useTranslation();
   const [showBreadcrumb, setShowBreadcrumb] = useState(false);
   const { isTablet } = useWindowSize();
 
   const theme = useSelector(themeSelector(dispositif?.theme));
   const need = useSelector(needSelector(dispositif?.needs?.[0] || null));
   const { isRTL } = useContentLocale();
+  const locale = useLocale();
 
   const chevron = useMemo(
     () => (
@@ -41,7 +44,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
     <div>
       {isTablet && !showBreadcrumb && (
         <button className={styles.link} onClick={() => setShowBreadcrumb(true)}>
-          Voir le fil d'Ariane
+          {t("showBreadcrumb")}
         </button>
       )}
       {(!isTablet || showBreadcrumb) && (
@@ -56,7 +59,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
             href={getPath("/recherche", "fr", buildUrlQuery({ type: dispositif.typeContenu }))}
             className={styles.link}
           >
-            {dispositif.typeContenu === ContentType.DISPOSITIF ? "Actions" : "Démarches"}
+            {dispositif.typeContenu === ContentType.DISPOSITIF ? t("actions") : t("demarches")}
           </Link>
 
           {chevron}
@@ -78,7 +81,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
           {dispositif.needs.length === 1 && need && (
             <>
               <Link href={getPath("/recherche", "fr", buildUrlQuery({ needs: [need._id] }))} className={styles.link}>
-                {need.fr.text}
+                {need[locale]?.text || need.fr.text}
               </Link>
               {chevron}
             </>
@@ -86,7 +89,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
           {dispositif.typeContenu === ContentType.DISPOSITIF && (
             <span className={styles.current}>
-              {`${dispositif.titreMarque || ""} ${getDepartments(dispositif.metadatas.location)}`}
+              {`${dispositif.titreMarque || ""} ${getDepartments(dispositif.metadatas.location, t)}`}
             </span>
           )}
           {dispositif.typeContenu === ContentType.DEMARCHE && (

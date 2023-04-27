@@ -68,9 +68,9 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     const loadIndicators = async () => {
       if (userFromStore) {
         const data = await API.get_progression({
-          userId: userFromStore._id,
+          userId: userFromStore._id.toString(),
         });
-        setIndicators(data.data);
+        setIndicators(data.data.data);
       }
     };
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Button from "components/UI/Button";
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const Sidebar = ({ markers, onSelectMarker, selectedMarkerId }: Props) => {
+  const { t } = useTranslation();
   const [showSidebar, setShowSidebar] = useState(false);
 
   return (
@@ -40,7 +42,7 @@ const Sidebar = ({ markers, onSelectMarker, selectedMarkerId }: Props) => {
         onClick={() => setShowSidebar((o) => !o)}
         iconPlacement="end"
       >
-        {!showSidebar && "Afficher la liste"}
+        {!showSidebar && t("Dispositif.mapPinList")}
       </Button>
     </div>
   );

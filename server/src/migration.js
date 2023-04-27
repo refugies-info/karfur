@@ -261,7 +261,18 @@ const getAge = (metadata) => {
 // const savedMetadatasIndex = {}; // save index of translated meta to find it in translations then
 
 const getMetadatas = (content, id) => {
-  const metas = {};
+  const metas = {
+    location: null,
+    frenchLevel: null,
+    age: null,
+    price: null,
+    publicStatus: null,
+    public: null,
+    conditions: null,
+    commitment: null,
+    frequency: null,
+    timeSlots: null,
+  };
   // const translatedMetas = {};
 
   // const titles = (content?.children || []).map((c) => c.title);
@@ -557,8 +568,9 @@ const getInfosectionReview = (trad, newContent, section, contenuKey) => {
   let i = 0;
   if (!newContent.content[section]) return [];
   for (const key of Object.keys(newContent.content[section])) {
-    if (trad.translatedText.contenu[contenuKey]?.children[i].titleModified) res.push(`${section}.${key}.title`);
-    if (trad.translatedText.contenu[contenuKey]?.children[i].contentModified) res.push(`${section}.${key}.text`);
+    if (trad.translatedText.contenu[contenuKey]?.children[i].titleModified) res.push(`content.${section}.${key}.title`);
+    if (trad.translatedText.contenu[contenuKey]?.children[i].contentModified)
+      res.push(`content.${section}.${key}.text`);
     i++;
   }
 
@@ -569,11 +581,11 @@ const toReview = {};
 const findToReview = (trad, newContent, typeContenu) => {
   const res = [];
   const translated = trad.translatedText;
-  if (translated.titreInformatifModified) res.push("titreInformatif");
-  if (translated.titreMarqueModified) res.push("titreMarque");
-  if (translated.abstractModified) res.push("abstract");
+  if (translated.titreInformatifModified) res.push("content.titreInformatif");
+  if (translated.titreMarqueModified) res.push("content.titreMarque");
+  if (translated.abstractModified) res.push("content.abstract");
 
-  if (translated.contenu[0].contentModified) res.push("what");
+  if (translated.contenu[0].contentModified) res.push("content.what");
   if (typeContenu === "dispositif") {
     res.push(...getInfosectionReview(trad, newContent, "why", 2), ...getInfosectionReview(trad, newContent, "how", 3));
   } else if (typeContenu === "demarche") {

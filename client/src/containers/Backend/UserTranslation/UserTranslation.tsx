@@ -89,8 +89,8 @@ const UserTranslation = (props: Props) => {
     const loadIndicators = async () => {
       if (user && user.user) {
         try {
-          const data = await API.get_progression();
-          setIndicators(data.data);
+          const data = await API.get_progression({});
+          setIndicators(data.data.data);
         } catch (e) {}
       }
     };
@@ -114,12 +114,8 @@ const UserTranslation = (props: Props) => {
     if (!langue || !elementToTranslate) return;
     if (!user.expertTrad && elementToTranslate.tradStatus === "VALIDATED") return;
     return router.push({
-      pathname:
-        "/backend" +
-        (user.expertTrad ? "/validation" : "/traduction") +
-        "/" +
-        (elementToTranslate.typeContenu || "dispositif"),
-      search: `?language=${langue._id.toString()}&dispositif=${elementToTranslate._id}`,
+      pathname: `/${elementToTranslate.typeContenu || "dispositif"}/${elementToTranslate._id}/translate`,
+      search: `?language=${langue._id.toString()}`,
     });
   };
 

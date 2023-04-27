@@ -38,7 +38,7 @@ const Accordions = ({ content, sectionKey, color100, color30, contentType }: Pro
   const pageContext = useContext(PageContext);
   const [open, setOpen] = useState<number | null>(null);
   const toggle = (id: number) => setOpen((o) => (o === id ? null : id));
-  const isOpen = (index: number) => open === index;
+  const isOpen = (index: number) => open === index || pageContext.mode === "translate";
 
   const withNumber = useMemo(() => contentType === ContentType.DEMARCHE, [contentType]);
 
@@ -72,7 +72,7 @@ const Accordions = ({ content, sectionKey, color100, color30, contentType }: Pro
                 </Text>
               </div>
             </Collapse>
-            <SectionButtons id={`${sectionKey}.${section[0]}`} content={section[1]} />
+            {pageContext.mode === "view" && <SectionButtons id={`${sectionKey}.${section[0]}`} content={section[1]} />}
           </div>
         );
       })}

@@ -10,6 +10,6 @@ export const log = async (dispositif: Dispositif, originalDispositif: Dispositif
       });
     }
   } catch (e) {
-    logger.error("[addDispositif] error while logging", e);
+    logger.error("[publishDispositif] error while logging", e);
   }
 };

@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { useLocale } from "hooks";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import Button from "components/UI/Button";
@@ -12,6 +13,7 @@ import styles from "./ActionButtons.module.scss";
  * Floating action buttons for mobile version
  */
 const ActionButtons = () => {
+  const { t } = useTranslation();
   const locale = useLocale();
   const languages = useSelector(allLanguesSelector);
   const [showSMSModal, setShowSMSModal] = useState(false);
@@ -22,7 +24,7 @@ const ActionButtons = () => {
     <div className={styles.container}>
       <div className={styles.inner}>
         <Button icon="paper-plane-outline" iconPlacement="end" onClick={() => setShowSMSModal(true)}>
-          Envoyer par SMS
+          {t("Dispositif.sendBySMS")}
         </Button>
         <span className={styles.divider} />
         <Button onClick={() => setShowReadModal(true)}>

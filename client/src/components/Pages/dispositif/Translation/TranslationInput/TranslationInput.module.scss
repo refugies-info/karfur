@@ -1,0 +1,200 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/icons";
+@import "src/scss/mixins/responsive";
+
+.xl .value {
+  @include dsfr-text("h1");
+  font-weight: bold !important;
+}
+.lg .value {
+  @include dsfr-text("chapo");
+  font-weight: bold !important;
+}
+
+.view {
+  padding: u(4);
+  border: 1px solid $lightBorderDefaultGrey;
+  background: $lightBackgroundElevationAlt;
+  border-radius: u(2);
+  margin-bottom: u(4);
+
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: u(4);
+    margin-bottom: u(4);
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: none;
+  }
+
+  &.open {
+    background: transparent;
+  }
+
+  // status
+  &.error {
+    background: var(--pink-tuile-975);
+    border-color: var(--error-425);
+    &:hover {
+      background: var(--error-950);
+    }
+  }
+  &.warning {
+    background: var(--pink-macaron-975);
+    border-color: var(--warning-425);
+
+    &:hover {
+      background: var(--warning-950);
+    }
+  }
+  &.new {
+    background: var(--yellow-tournesol-975);
+    border-color: var(--yellow-tournesol-407);
+
+    &:hover {
+      background: var(--yellow-tournesol-950);
+    }
+  }
+  &.success {
+    background: var(--green-emeraude-975);
+    border-color: var(--success-425);
+
+    &:hover {
+      background: var(--green-emeraude-950);
+    }
+  }
+  &.info {
+    background: $lightBackgroundElevationAlt;
+    border-color: $lightBorderDefaultGrey;
+    box-shadow: 0 2px 6px 0 #00001229;
+
+    &:hover {
+      background: $lightBackgroundContrastGrey;
+    }
+  }
+}
+
+.edit {
+  margin-bottom: u(4);
+
+  .input {
+    border: 1px solid $lightTextTitleGrey;
+    border-radius: u(2);
+
+    .text {
+      padding: u(4) u(4) u(8) u(4);
+    }
+    textarea {
+      outline: none !important;
+      width: 100%;
+      cursor: text;
+    }
+    .richtext {
+      border: none !important;
+    }
+
+    .error {
+      @include dsfr-text("very-small");
+      color: $lightTextDefaultError;
+      padding: 0 u(4);
+    }
+  }
+
+  .footer {
+    padding: u(4);
+    border-top: 1px solid $lightBorderDefaultGrey;
+    background: $lightBackgroundContrastGrey;
+    border-radius: 0 0 u(2) u(2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .user {
+      display: flex;
+      align-items: center;
+    }
+
+    .proposal {
+      font-weight: bold;
+      margin-left: u(2);
+    }
+
+    &.default {
+      background: $lightBackgroundContrastGrey;
+      .proposal {
+        font-weight: normal;
+        color: $lightTextMentionGrey;
+      }
+    }
+    &.pending {
+      background: var(--yellow-tournesol-975);
+      border-color: var(--yellow-tournesol-407);
+      .proposal {
+        color: var(--yellow-tournesol-407);
+      }
+    }
+    &.success {
+      background: var(--green-emeraude-975);
+      border-color: var(--success-425);
+      .proposal {
+        color: var(--success-425);
+      }
+    }
+
+    .nav {
+      @include iconSize(u(4));
+      @include dsfr-text("small");
+      height: u(8);
+      min-height: u(8);
+    }
+  }
+
+  .buttons {
+    margin-top: u(4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.validate {
+  @include iconSize(u(4));
+  width: u(8) !important;
+  height: u(8);
+  min-height: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.validated {
+    background-color: $lightTextActionHighBlueFrance;
+    color: white;
+
+    svg {
+      fill: white;
+    }
+
+    &:hover {
+      svg {
+        fill: $lightTextActionHighBlueFrance;
+      }
+    }
+  }
+}
+
+.delete {
+  @include iconSize(u(4));
+  width: u(8) !important;
+  height: u(8);
+  min-height: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

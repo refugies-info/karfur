@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "next-i18next";
 import { conditionType, CreateDispositifRequest } from "api-types";
 import { entries } from "lib/typedObjectEntries";
 import { BaseModal } from "components/Pages/dispositif";
@@ -15,8 +16,11 @@ interface Props {
 }
 
 const ModalConditions = (props: Props) => {
+  const { t } = useTranslation();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
-  const [selected, setSelected] = useState<conditionType[] | null>(getValues("metadatas.conditions") || []);
+  const [selected, setSelected] = useState<conditionType[] | null>( // if undefined, nothing selected. Else, data or null
+    getValues("metadatas.conditions") === undefined ? [] : getValues("metadatas.conditions") || null,
+  );
   const toggleItem = (item: conditionType) =>
     setSelected((items) => (items?.includes(item) ? items.filter((i) => i !== item) : [...(items || []), item]));
 
@@ -31,14 +35,14 @@ const ModalConditions = (props: Props) => {
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Faut-il remplir des conditions ?">
       <div>
         <div>
-          {entries<Record<conditionType, { text: string; image: any }>>(dropdownOptions).map(([key, data]) => (
+          {entries<Record<conditionType, any>>(dropdownOptions).map(([key, image]) => (
             <ChoiceButton
               key={key}
-              text={data.text}
+              text={t(`Infocards.${key}`)}
               type="checkbox"
               selected={!!selected?.includes(key)}
               onSelect={() => toggleItem(key)}
-              image={data.image}
+              image={image}
               className="mb-2"
               size="sm"
             />

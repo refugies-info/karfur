@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import { Badge } from "@dataesr/react-dsfr";
 import { DispositifStatus, Id } from "api-types";
 import { getPath } from "routes";
-import { isStatus } from "lib/dispositif";
+import { canEdit, isStatus } from "lib/dispositif";
+import { cls } from "lib/classname";
 import PageContext from "utils/pageContext";
 import { themeSelector } from "services/Themes/themes.selectors";
 import { userSelector } from "services/User/user.selectors";
@@ -50,11 +51,10 @@ const Banner = (props: Props) => {
 
   return (
     <div
-      className={styles.banner}
-      style={theme?.banner.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}}
+      className={cls(styles.banner, pageContext.mode === "translate" && styles.translate)}
+      style={theme?.banner?.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}}
     >
-      {/* TODO: check that user is authorized to edit */}
-      {user && pageContext.mode === "view" && (
+      {canEdit(dispositif, user.user) && pageContext.mode === "view" && (
         <div className={styles.container}>
           <div className={styles.actions}>
             {status && <Badge text={status.text} type={status.type} hasIcon icon={status.icon} className="me-4" />}

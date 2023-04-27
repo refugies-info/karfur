@@ -1,17 +1,16 @@
 export type titleKeyType = "what" | "why" | "how" | "next" | "abstract";
 
-// TODO: translate
 export const getDispositifSectionTitle = (sectionKey: titleKeyType) => {
   switch (sectionKey) {
     case "what":
-      return "C'est quoi ?"
+      return "Dispositif.sectionWhat"
     case "why":
-      return "Pourquoi c'est intéressant ?"
+      return "Dispositif.sectionWhy"
     case "how":
-      return "Comment faire ?"
+      return "Dispositif.sectionHow"
     case "next":
-      return "Et après ?"
+      return "Dispositif.sectionNext"
     case "abstract":
-      return "Résumé"
+      return "Dispositif.sectionAbstract"
   }
 }

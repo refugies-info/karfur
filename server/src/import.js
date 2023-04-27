@@ -270,7 +270,7 @@ async function main() {
   const tests = [
     dispositifsColl
       .find({
-        "metadatas.commitment": { $exists: true },
+        "metadatas.commitment": { $ne: null },
         "metadatas.commitment.amountDetails": {
           $nin: ["minimum", "maximum", "approximately", "exactly", "between"],
         },
@@ -278,7 +278,7 @@ async function main() {
       .toArray(),
     dispositifsColl
       .find({
-        "metadatas.commitment": { $exists: true },
+        "metadatas.commitment": { $ne: null },
         "metadatas.commitment.timeUnit": {
           $nin: ["sessions", "hours", "half-days", "days", "weeks", "months", "trimesters", "semesters", "years"],
         },
@@ -286,13 +286,13 @@ async function main() {
       .toArray(),
     dispositifsColl
       .find({
-        "metadatas.frequency": { $exists: true },
+        "metadatas.frequency": { $ne: null },
         "metadatas.frequency.amountDetails": { $nin: ["minimum", "maximum", "approximately", "exactly"] },
       })
       .toArray(),
     dispositifsColl
       .find({
-        "metadatas.frequency": { $exists: true },
+        "metadatas.frequency": { $ne: null },
         "metadatas.frequency.timeUnit": {
           $nin: ["sessions", "hours", "half-days", "days", "weeks", "months", "trimesters", "semesters", "years"],
         },
@@ -300,7 +300,7 @@ async function main() {
       .toArray(),
     dispositifsColl
       .find({
-        "metadatas.frequency": { $exists: true },
+        "metadatas.frequency": { $ne: null },
         "metadatas.frequency.frequencyUnit": {
           $nin: ["session", "day", "week", "month", "trimester", "semester", "year"],
         },
