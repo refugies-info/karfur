@@ -244,7 +244,7 @@ export class Dispositif extends Base {
   @prop()
   public adminProgressionStatus?: string;
   @prop()
-  public hasDraftVersion?: boolean;
+  public hasDraftVersion?: boolean; // TODO: use aggregation to get that value?
 
   @prop()
   public draftReminderMailSentDate?: Date;

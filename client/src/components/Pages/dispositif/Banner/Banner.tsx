@@ -26,7 +26,7 @@ const Banner = (props: Props) => {
   const theme = useSelector(themeSelector(props.themeId));
   const user = useSelector(userSelector);
   const dispositif = useSelector(selectedDispositifSelector);
-  const status = getStatus(dispositif?.status, user.admin);
+  const status = getStatus(dispositif?.status, !!dispositif?.hasDraftVersion, user.admin);
   const pageContext = useContext(PageContext);
 
   // edit

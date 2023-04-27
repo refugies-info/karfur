@@ -64,7 +64,9 @@ export const rebuildTranslations = async (
      * et des modifications faites si l'on garde ou pas les traductions actives
      */
     if (!isEmpty(traductionDiff.modified)) {
-      // FIXME implémenter les règles d'exceptions ici
+      // TODO implémenter les règles d'exceptions ici :
+      // - bloc callout <-> important = pas de review
+      // - lien qui change = pas de review
 
       toReview.push(...traductionDiff.modified);
     }
@@ -115,16 +117,29 @@ export const rebuildTranslations = async (
 export const publishDispositif = async (dispositifId: DispositifId, userId: UserId, keepTranslations?: boolean) => {
   const oldDispositif = await getDispositifById(
     dispositifId,
-    { status: 1, creatorId: 1, theme: 1, mainSponsor: 1, translations: 1, typeContenu: 1, metadatas: 1, hasDraftVersion: 1 },
-    "mainSponsor",
+    { status: 1, creatorId: 1, theme: 1, mainSponsor: 1, translations: 1, typeContenu: 1, metadatas: 1, hasDraftVersion: 1 }
   );
 
   let draftDispositif = null;
   if (oldDispositif.hasDraftVersion) {
     draftDispositif = await getDraftDispositifById(
       dispositifId,
-      { status: 1, creatorId: 1, theme: 1, mainSponsor: 1, translations: 1, typeContenu: 1, metadatas: 1, hasDraftVersion: 1 },
-      "mainSponsor",
+      {
+        status: 1,
+        creatorId: 1,
+        theme: 1,
+        secondaryThemes: 1,
+        map: 1,
+        sponsors: 1,
+        mainSponsor: 1,
+        translations: 1,
+        typeContenu: 1,
+        metadatas: 1,
+        hasDraftVersion: 1,
+        lastModificationDate: 1,
+        lastModificationAuthor: 1,
+        needs: 1
+      }
     );
   }
 
@@ -138,7 +153,15 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   if (draftDispositif) {
     const newTranslations = await rebuildTranslations(oldDispositif, draftDispositif.translations.fr, keepTranslations || false);
     newDispositif.translations = newTranslations;
-    // TODO: copy everything which could have change
+    newDispositif.mainSponsor = draftDispositif.mainSponsor;
+    newDispositif.theme = draftDispositif.theme;
+    newDispositif.secondaryThemes = draftDispositif.secondaryThemes;
+    newDispositif.metadatas = draftDispositif.metadatas;
+    newDispositif.map = draftDispositif.map;
+    newDispositif.sponsors = draftDispositif.sponsors;
+    newDispositif.lastModificationDate = draftDispositif.lastModificationDate;
+    newDispositif.lastModificationAuthor = draftDispositif.lastModificationAuthor;
+    newDispositif.needs = draftDispositif.needs;
   }
 
   const newDispo = await updateDispositifInDB(dispositifId, newDispositif);

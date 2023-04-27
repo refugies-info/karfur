@@ -13,6 +13,7 @@ import {
   GetContentsForAppResponse,
   GetCountDispositifsResponse,
   GetDispositifResponse,
+  GetDispositifsHasTextChanges,
   GetDispositifsRequest,
   GetDispositifsResponse,
   GetDispositifsWithTranslationAvancementResponse,
@@ -60,6 +61,7 @@ import {
   updateDispositifStatus,
   updateDispositifTagsOrNeeds,
   updateNbVuesOrFavoritesOnContent,
+  getHasTextChanges
 } from "../workflows";
 import logger from "../logger";
 import { Response, ResponseWithData } from "../types/interface";
@@ -305,6 +307,15 @@ export class DispositifController extends Controller {
   @Delete("/{id}/suggestion/{suggestionId}")
   public async deleteSuggestion(@Path() id: string, @Path() suggestionId: string): Response {
     return deleteSuggestion(id, suggestionId);
+  }
+
+  @Security({
+    jwt: ["admin"],
+    fromSite: [],
+  })
+  @Get("/{id}/has-text-changes")
+  public async getHasChanges(@Path() id: string): ResponseWithData<GetDispositifsHasTextChanges> {
+    return getHasTextChanges(id).then(res => ({ text: "success", data: res }));
   }
 
   @Security({
