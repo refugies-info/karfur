@@ -19,9 +19,9 @@ import Config from "../../libs/getEnvironment";
 import { styles } from "../../theme";
 
 const SearchBoxContainer = styled.View`
-  padding-bottom: ${styles.margin * 3}px;
-  ${styles.shadows.xs}
-  background-color: ${styles.colors.lightGrey};
+  padding-bottom: ${({ theme }) => theme.margin * 3}px;
+  background-color: ${({ theme }) => theme.colors.lightGrey};
+  ${({ theme }) => theme.shadows.xs};
 `;
 
 const searchClient = algoliasearch(

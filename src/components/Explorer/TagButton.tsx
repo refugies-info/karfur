@@ -40,7 +40,8 @@ const StyledContainer = styled(LinearGradient)<{
   padding-horizontal: ${({ theme }) => theme.margin * 2}px;
   margin-vertical: ${({ theme }) => theme.margin}px;
   border-radius: ${({ theme }) => theme.radius * 2}px;
-  ${({ theme }) => theme.shadows.lg}
+  background-color: transparent;
+  ${({ theme }) => theme.shadows.sm}
 `;
 
 const StyledText = styled(StyledTextNormalBold)<{ color?: string }>`

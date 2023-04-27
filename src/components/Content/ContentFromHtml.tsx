@@ -138,7 +138,10 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
               if (_["data-callout"] === "important") {
                 return (
                   <>
-                    <Spacer height={theme.margin} />
+                    <Spacer
+                      key={passProps.key + "_spacer"}
+                      height={theme.margin}
+                    />
                     <Card
                       key={passProps.key}
                       backgroundColor={theme.colors.lightGrey}
@@ -162,7 +165,10 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                         </View>
                       </Columns>
                     </Card>
-                    <Spacer height={theme.margin} />
+                    <Spacer
+                      key={passProps.key + "_spacer_"}
+                      height={theme.margin}
+                    />
                   </>
                 );
               }
@@ -170,7 +176,10 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
               if (_["data-callout"] === "info") {
                 return (
                   <>
-                    <Spacer height={theme.margin} />
+                    <Spacer
+                      key={passProps.key + "_spacer"}
+                      height={theme.margin}
+                    />
                     <Card
                       key={passProps.key}
                       backgroundColor={theme.colors.white}
@@ -202,12 +211,15 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                         </View>
                       </Columns>
                     </Card>
-                    <Spacer height={theme.margin} />
+                    <Spacer
+                      key={passProps.key + "_spacer_"}
+                      height={theme.margin}
+                    />
                   </>
                 );
               }
 
-              return <View>{children}</View>;
+              return <View key={passProps.key}>{children}</View>;
             },
           }}
         />

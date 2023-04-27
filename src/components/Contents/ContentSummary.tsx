@@ -29,7 +29,7 @@ const ContentContainer = styled.TouchableOpacity<{
     isDispo ? theme.colors.white : theme.colors.lightGrey};
   min-height: ${({ isDispo }) => (isDispo ? 80 : 72)}px;
   border-radius: ${({ theme }) => theme.radius * 2}px;
-  ${({ theme }) => theme.shadows.lg}
+  ${({ theme }) => theme.shadows.sm}
   border-width: ${({ isDispo }) => (!isDispo ? 2 : 0)}px;
   border-color: ${({ color }) => color || "transparent"};
   border-style: solid;
