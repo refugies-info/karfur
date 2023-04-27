@@ -111,24 +111,34 @@ export const getContentsForApp = async (req: GetContentsForAppRequest): Promise<
   /**
    * frenchLevel
    */
+  const frenchLevelFilter = [
+    // @ts-ignore
+    { "metadatas.frenchLevel": { $eq: null } },
+    { "metadatas.frenchLevel": { $exists: false } },
+  ];
   switch (frenchLevel) {
     case MobileFrenchLevel["Je ne lis et n'écris pas le français"]:
       // query.push({ "metadatas.frenchLevel": { $eq: "A1.1" } });
-      query.push({ "metadata.frenchLevel": { $eq: "alpha" } });
+      frenchLevelFilter.push({ "metadatas.frenchLevel": { $eq: "alpha" } });
+
       break;
     case MobileFrenchLevel["Je parle un peu"]:
-      query.push({ "metadatas.frenchLevel": { $eq: "A1" } });
-      query.push({ "metadatas.frenchLevel": { $eq: "A2" } });
+      frenchLevelFilter.push({ "metadatas.frenchLevel": { $eq: "A1" } });
+      frenchLevelFilter.push({ "metadatas.frenchLevel": { $eq: "A2" } });
       break;
     case MobileFrenchLevel["Je parle bien"]:
-      query.push({ "metadatas.frenchLevel": { $eq: "B1" } });
-      query.push({ "metadatas.frenchLevel": { $eq: "B2" } });
+      frenchLevelFilter.push({ "metadatas.frenchLevel": { $eq: "B1" } });
+      frenchLevelFilter.push({ "metadatas.frenchLevel": { $eq: "B2" } });
       break;
     case MobileFrenchLevel["Je parle couramment"]:
-      query.push({ "metadatas.frenchLevel": { $eq: "C1" } });
-      query.push({ "metadatas.frenchLevel": { $eq: "C2" } });
+      frenchLevelFilter.push({ "metadatas.frenchLevel": { $eq: "C1" } });
+      frenchLevelFilter.push({ "metadatas.frenchLevel": { $eq: "C2" } });
       break;
   }
+
+  query.push({
+    $or: frenchLevelFilter,
+  });
 
   /**
    * Location
