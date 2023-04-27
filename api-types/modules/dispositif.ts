@@ -70,6 +70,10 @@ export interface ContentForApp {
   nbVuesMobile: number;
   typeContenu: ContentType;
   sponsorUrl: string;
+  /**
+   * The actual locale returned by the server
+   */
+  locale: Languages;
 }
 
 export type GetContentsForAppResponse = {
@@ -170,7 +174,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest { }
+export interface UpdateDispositifRequest extends DispositifRequest {}
 
 /**
  * @url PATCH /dispositifs/{id}/publish
