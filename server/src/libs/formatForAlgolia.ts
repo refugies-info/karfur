@@ -48,7 +48,7 @@ export const formatForAlgolia = (
       ...extractValuesPerLanguage(dispositif.translations, "content.titreMarque", "titreMarque"),
       ...extractValuesPerLanguage(dispositif.translations, "content.abstract", "abstract"),
       theme: dispositif.theme || "",
-      secondaryThemes: (dispositif.secondaryThemes || []).map((t) => t.toString()),
+      secondaryThemes: dispositif.secondaryThemes || [],
       needs: dispositif.needs,
       nbVues: dispositif.nbVues,
       typeContenu: dispositif.typeContenu,
