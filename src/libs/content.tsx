@@ -100,20 +100,35 @@ const getCommitment = (
   t: any
 ) => {
   if (!commitment) return commitment;
-  return `${t(`Infocards.${commitment.amountDetails}`)} ${t(
-    `Infocards.${commitment.hours}`
-  )} ${t(`Infocards.${commitment.timeUnit}`)}`;
+  if (commitment.amountDetails === "between" && commitment.hours.length >= 2) {
+    return capitalizeFirstLetter(
+      t("Infocards.commitmentBetween", {
+        min: commitment.hours[0],
+        max: commitment.hours[1],
+        unit: t(`Infocards.${commitment.timeUnit}`),
+      })
+    );
+  }
+
+  return capitalizeFirstLetter(
+    `${t(`Infocards.${commitment.amountDetails}`)} ${commitment.hours[0]} ${t(
+      `Infocards.${commitment.timeUnit}`
+    )}`
+  );
+  // return `${t(`Infocards.${commitment.amountDetails}`)} ${commitment.hours} ${t(
+  //   `Infocards.${commitment.timeUnit}`
+  // )}`;
 };
 const getFrequency = (
   frequency: Metadatas["frequency"] | null | undefined,
   t: any
 ) => {
   if (!frequency) return frequency;
-  return `${t(`Infocards.${frequency.amountDetails}`)} ${t(
-    `Infocards.${frequency.hours}`
-  )} ${t(`Infocards.${frequency.timeUnit}`)} ${t(
-    `Infocards.${frequency.frequencyUnit}`
-  )}`;
+  return capitalizeFirstLetter(
+    `${t(`Infocards.${frequency.amountDetails}`)} ${frequency.hours} ${t(
+      `Infocards.${frequency.timeUnit}`
+    )} ${t(`Infocards.${frequency.frequencyUnit}`)}`
+  );
 };
 const getTimeSlots = (
   timeSlots: Metadatas["timeSlots"] | null | undefined,

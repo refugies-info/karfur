@@ -6,7 +6,6 @@ import {
   currentI18nCodeSelector,
   userLocationSelector,
 } from "../../../services/redux/User/user.selectors";
-import { SimplifiedContent } from "../../../types/interface";
 import { getContentsForApp } from "../../../utils/API";
 import { ContentSummary } from "../../../components/Contents/ContentSummary";
 import { Page, Rows } from "../../../components";
@@ -17,7 +16,10 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { ErrorScreen } from "../../../components/ErrorScreen";
 import { nbContentsSelector } from "../../../services/redux/Contents/contents.selectors";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
-import { GetContentsForAppResponse } from "@refugies-info/api-types";
+import {
+  ContentForApp,
+  GetContentsForAppResponse,
+} from "@refugies-info/api-types";
 
 export interface PageProps {
   children: React.ReactNode;
@@ -46,8 +48,8 @@ const useNearMeCards = () => {
           if (!data) {
             throw new Error("Empty response from API");
           }
-          return data as SimplifiedContent[];
-        }) as Promise<SimplifiedContent[]>,
+          return data;
+        }) as Promise<ContentForApp[]>,
     [locale]
   );
 
@@ -81,17 +83,11 @@ const NearMeCardsScreen = ({ navigation }: NearMeCardsScreenProps) => {
       }
     >
       <Rows>
-        {nearMeCards.map((content: SimplifiedContent) => (
+        {nearMeCards.map((content: ContentForApp) => (
           <ContentSummary
             backScreen="Search"
-            contentId={content._id}
+            content={content}
             key={content._id}
-            navigation={navigation}
-            sponsorUrl={content.sponsorUrl}
-            theme={content.theme}
-            titreInfo={content.titreInformatif}
-            titreMarque={content.titreMarque}
-            typeContenu={content.typeContenu}
           />
         ))}
       </Rows>

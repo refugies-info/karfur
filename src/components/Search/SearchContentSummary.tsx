@@ -6,6 +6,7 @@ import { logEventInFirebase } from "../../utils/logEvent";
 import { TagButton } from "../Explorer/TagButton";
 import { useSelector } from "react-redux";
 import { themeSelector } from "../../services";
+import { contentSelector } from "../../services/redux/Contents/contents.selectors";
 
 interface Props {
   navigation: any;
@@ -44,20 +45,19 @@ export const SearchContentSummary = (props: Props) => {
     props.item.typeContenu === "dispositif" ||
     props.item.typeContenu === "demarche"
   ) {
+    const content = useSelector(contentSelector(props.item.objectID));
+    if (!content) return null;
     // DISPOSITIF & DEMARCHE
     return (
       <ContentSummary
-        navigation={props.navigation}
-        theme={theme}
-        contentId={props.item.objectID}
-        searchLanguageMatch={props.languageMatch}
-        typeContenu={props.item.typeContenu}
-        sponsorUrl={props.item.sponsorUrl}
-        showAbstract={true}
-        hasSponsorMatch={props.hasSponsorMatch}
-        searchItem={props.item}
         backScreen="Search"
+        content={content}
+        hasSponsorMatch={props.hasSponsorMatch}
         pressCallback={props.pressCallback}
+        searchItem={props.item}
+        searchLanguageMatch={props.languageMatch}
+        showAbstract
+        theme={theme}
       />
     );
   }

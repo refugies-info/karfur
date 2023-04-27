@@ -3,8 +3,8 @@ import * as Updates from "expo-updates";
 // use .env for development
 let Config = {
   envName: process.env.ENV_NAME || "",
-  // dbUrl: "https://backend-stag-4rok5wopuq-ew.a.run.app", // process.env.API_URL || "",
-  dbUrl: process.env.API_URL || "",
+  dbUrl: "https://backend-stag-4rok5wopuq-ew.a.run.app", // process.env.API_URL || "",
+  // dbUrl: process.env.API_URL || "",
   siteUrl: process.env.SITE_URL || "",
   siteSecret: process.env.SITE_SECRET,
   debugModeFirebase: true,

@@ -6,6 +6,9 @@ export const contentsSelector = (state: RootState) =>
     ? state.contents[state.user.currentLanguagei18nCode]
     : [];
 
+export const contentSelector = (id: string) => (state: RootState) =>
+  contentsSelector(state).find((content) => content._id.toString() === id);
+
 export const mostViewedContentsSelector =
   (langue: Languages) => (state: RootState) =>
     state.contents[langue]

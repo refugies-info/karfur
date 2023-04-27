@@ -26,39 +26,45 @@ describe("[Saga] languages", () => {
         .put(startLoading(LoadingStatusKey.FETCH_LANGUAGES))
         .next()
         .call(getLanguages)
-        .next({
-          data: {
-            data: [
-              {
-                _id: "id",
-                langueFr: "langueFr",
-                avancementTrad: 0.6,
-                autre: "autre",
-                i18nCode: "i18nCode",
-              },
-              {
-                _id: "id1",
-                langueFr: "langueFr1",
-                avancementTrad: 0.6,
-                autre: "autre1",
-                i18nCode: "i18nCode1",
-              },
-            ],
+        .next([
+          {
+            _id: "6221e7f13f94e9fb90fab69f",
+            langueFr: "Ukrainien",
+            langueLoc: "Українська",
+            langueCode: "ua",
+            i18nCode: "uk",
+            avancement: 1,
+            avancementTrad: 0.978494623655914,
           },
-        })
+          {
+            _id: "5ce57c969aadae8734c7aedd",
+            langueFr: "Français",
+            langueLoc: "Français",
+            langueCode: "fr",
+            i18nCode: "fr",
+            avancement: 1,
+            avancementTrad: 0,
+          },
+        ])
         .put(
           setLanguagesActionCreator([
             {
-              _id: "id",
-              langueFr: "langueFr",
-              avancementTrad: 0.6,
-              i18nCode: "i18nCode",
+              _id: "6221e7f13f94e9fb90fab69f",
+              langueFr: "Ukrainien",
+              langueLoc: "Українська",
+              langueCode: "ua",
+              i18nCode: "uk",
+              avancement: 1,
+              avancementTrad: 0.978494623655914,
             },
             {
-              _id: "id1",
-              langueFr: "langueFr1",
-              avancementTrad: 0.6,
-              i18nCode: "i18nCode1",
+              _id: "5ce57c969aadae8734c7aedd",
+              langueFr: "Français",
+              langueLoc: "Français",
+              langueCode: "fr",
+              i18nCode: "fr",
+              avancement: 1,
+              avancementTrad: 0,
             },
           ])
         )

@@ -5,6 +5,11 @@ import { styles } from "../../theme";
 //@ts-ignore: not exported by algolia types
 import { connectHitInsights } from "react-instantsearch-native";
 import aa from "search-insights";
+import { useSelector } from "react-redux";
+import {
+  contentSelector,
+  contentsSelector,
+} from "../../services/redux/Contents/contents.selectors";
 
 const getLanguageMatch = (hit: any, selectedLanguage: string) => {
   const props = Object.keys(hit._highlightResult);

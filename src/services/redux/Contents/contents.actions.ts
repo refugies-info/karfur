@@ -4,12 +4,11 @@ import {
   FETCH_CONTENTS,
 } from "./contents.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { SimplifiedContent } from "../../../types/interface";
-import { Languages } from "@refugies-info/api-types";
+import { ContentForApp, Languages } from "@refugies-info/api-types";
 
 export const setContentsActionCreator = (value: {
   langue: Languages;
-  contents: SimplifiedContent[];
+  contents: ContentForApp[];
 }) => action(SET_CONTENTS, value);
 
 export const setNbContentsActionCreator = (value: {

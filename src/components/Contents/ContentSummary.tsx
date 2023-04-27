@@ -17,7 +17,8 @@ import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
 import { defaultColors } from "../../libs/getThemeTag";
 import { Columns } from "../layout";
-import { GetThemeResponse } from "@refugies-info/api-types";
+import { ContentForApp, GetThemeResponse } from "@refugies-info/api-types";
+import { useNavigation } from "@react-navigation/native";
 
 const IMAGE_SIZE = 58;
 
@@ -76,35 +77,33 @@ const ActionButton = styled.TouchableOpacity`
 `;
 
 interface Props {
-  navigation: any;
-  contentId: ObjectId;
-  needId?: ObjectId;
-  theme?: GetThemeResponse | null;
-  titreInfo?: string;
-  titreMarque?: string | undefined;
-  typeContenu: "dispositif" | "demarche";
-  sponsorUrl: string | null;
-  searchItem?: any;
-  searchLanguageMatch?: string;
-  isTextNotBold?: boolean;
-  showAbstract?: boolean;
-  style?: any;
-  actionPress?: any;
   actionIcon?: string;
   actionLabel?: string;
+  actionPress?: any;
   backScreen?: string;
+  content: ContentForApp;
   hasSponsorMatch?: boolean;
+  isTextNotBold?: boolean;
+  needId?: ObjectId;
   pressCallback?: () => void;
+  searchItem?: any;
+  searchLanguageMatch?: string;
+  showAbstract?: boolean;
+  style?: any;
+  theme?: GetThemeResponse;
 }
 
-export const ContentSummary = (props: Props) => {
-  const logEventOnClick = (id: string) => {
-    logEventInFirebase(FirebaseEvent.CLIC_CONTENT, {
-      contentId: id,
-    });
-  };
+const logEventOnClick = (id: string) => {
+  logEventInFirebase(FirebaseEvent.CLIC_CONTENT, {
+    contentId: id,
+  });
+};
 
-  const colors = props.theme?.colors || defaultColors;
+export const ContentSummary = (props: Props) => {
+  const navigation: any = useNavigation();
+  const theme = props.theme || (props.content.theme as GetThemeResponse);
+
+  const colors = theme?.colors || defaultColors;
 
   const actionButton =
     props.actionPress !== undefined ? (
@@ -123,7 +122,7 @@ export const ContentSummary = (props: Props) => {
       </ActionButton>
     ) : null;
 
-  if (props.typeContenu === "dispositif") {
+  if (props.content.typeContenu === "dispositif") {
     return (
       <ContentContainer
         isDispo={true}
@@ -131,25 +130,25 @@ export const ContentSummary = (props: Props) => {
         activeOpacity={0.8}
         accessibilityRole="button"
         onPress={() => {
-          logEventOnClick(props.contentId);
+          logEventOnClick(props.content._id);
           if (props.pressCallback) props.pressCallback();
 
-          props.navigation.navigate("Explorer", {
+          navigation.navigate("Explorer", {
             screen: "ContentScreen",
             params: {
-              contentId: props.contentId,
+              contentId: props.content._id,
               needId: props.needId,
-              theme: props.theme,
+              theme: props.content.theme,
               backScreen: props.backScreen,
             },
           });
         }}
       >
         <Columns layout="auto 1" RTLBehaviour verticalAlign="center">
-          {props.sponsorUrl ? (
+          {props.content.sponsorUrl ? (
             <ImageContainer hasMatch={props.hasSponsorMatch}>
               <Image
-                source={{ uri: props.sponsorUrl }}
+                source={{ uri: props.content.sponsorUrl }}
                 resizeMode={"contain"}
                 style={{
                   height: IMAGE_SIZE,
@@ -173,14 +172,16 @@ export const ContentSummary = (props: Props) => {
                 <Highlight
                   hit={props.searchItem}
                   attribute={`title_${props.searchLanguageMatch || "fr"}`}
-                  //@ts-ignore
+                  // @ts-ignore
                   color={colors.color100}
                 />
               ) : (
-                <ReadableText>{props.titreInfo || ""}</ReadableText>
+                <ReadableText>
+                  {props.content.titreInformatif || ""}
+                </ReadableText>
               )}
             </TitreInfoText>
-            {(!!props.titreMarque ||
+            {(!!props.content.titreMarque ||
               !!props?.searchItem[
                 `titreMarque_${props.searchLanguageMatch || "fr"}`
               ]) && (
@@ -191,11 +192,11 @@ export const ContentSummary = (props: Props) => {
                     attribute={`titreMarque_${
                       props.searchLanguageMatch || "fr"
                     }`}
-                    //@ts-ignore
+                    // @ts-ignore
                     color={colors.color100}
                   />
                 ) : (
-                  <ReadableText>{props.titreMarque || ""}</ReadableText>
+                  <ReadableText>{props.content.titreMarque || ""}</ReadableText>
                 )}
               </TitreMarqueText>
             )}
@@ -208,7 +209,7 @@ export const ContentSummary = (props: Props) => {
             <Highlight
               hit={props.searchItem}
               attribute={`abstract_${props.searchLanguageMatch || "fr"}`}
-              //@ts-ignore
+              // @ts-ignore
               color={colors.color100}
             />
           </DescInfoText>
@@ -224,15 +225,15 @@ export const ContentSummary = (props: Props) => {
       activeOpacity={0.8}
       accessibilityRole="button"
       onPress={() => {
-        logEventOnClick(props.contentId);
+        logEventOnClick(props.content._id);
         if (props.pressCallback) props.pressCallback();
 
-        props.navigation.navigate("Explorer", {
+        navigation.navigate("Explorer", {
           screen: "ContentScreen",
           params: {
-            contentId: props.contentId,
+            contentId: props.content._id,
             needId: props.needId,
-            theme: props.theme,
+            theme: props.content.theme,
             backScreen: props.backScreen,
           },
         });
@@ -241,9 +242,9 @@ export const ContentSummary = (props: Props) => {
       <Columns layout="auto 1" RTLBehaviour verticalAlign="center">
         <ImageContainer lightColor={colors.color30}>
           <DemarcheImage
-            icon={props.theme?.icon}
+            icon={theme?.icon}
             stroke={colors.color100}
-            contentId={props.contentId.toString()}
+            contentId={props.content._id}
             isSmall={true}
           />
         </ImageContainer>
@@ -258,7 +259,7 @@ export const ContentSummary = (props: Props) => {
                 color={colors.color100}
               />
             ) : (
-              <ReadableText>{props.titreInfo}</ReadableText>
+              <ReadableText>{props.content.titreInformatif}</ReadableText>
             )}
           </TitreInfoText>
         </TitlesContainer>
@@ -270,7 +271,7 @@ export const ContentSummary = (props: Props) => {
           <Highlight
             hit={props.searchItem}
             attribute={`abstract_${props.searchLanguageMatch || "fr"}`}
-            //@ts-ignore
+            // @ts-ignore
             color={colors.color100}
           />
         </DescInfoText>

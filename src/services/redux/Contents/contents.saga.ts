@@ -22,6 +22,7 @@ import {
 } from "../User/user.selectors";
 import { groupResultsByNeed } from "./functions";
 import { setGroupedContentsActionCreator } from "../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
+import { GetContentsForAppResponse } from "@refugies-info/api-types";
 
 export function* fetchContents(): SagaIterator {
   try {
@@ -33,7 +34,7 @@ export function* fetchContents(): SagaIterator {
     const frenchLevel = yield select(userFrenchLevelSelector);
 
     if (selectedLanguage) {
-      const data = yield call(getContentsForApp, {
+      const data: GetContentsForAppResponse = yield call(getContentsForApp, {
         locale: selectedLanguage || "fr",
         age,
         county: department,
@@ -45,7 +46,7 @@ export function* fetchContents(): SagaIterator {
         crashlytics().recordError(new Error("No content loaded"));
       }
 
-      if (data && selectedLanguage !== "fr") {
+      if (data.data && selectedLanguage !== "fr") {
         yield put(
           setContentsActionCreator({
             langue: selectedLanguage,

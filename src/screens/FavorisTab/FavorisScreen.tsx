@@ -8,7 +8,6 @@ import { CompositeScreenProps, useFocusEffect } from "@react-navigation/native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { Icon } from "react-native-eva-icons";
 
-import { SimplifiedContent } from "../../types/interface";
 import { BottomTabParamList, FavorisParamList } from "../../../types";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { contentsSelector } from "../../services/redux/Contents/contents.selectors";
@@ -34,6 +33,7 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { Page, Rows } from "../../components";
 import getContentsToDisplay from "./getContentsToDisplay";
 import { ReadableText } from "../../components/ReadableText";
+import { ContentForApp } from "@refugies-info/api-types";
 
 const EmptyContainer = styled.View`
   padding-horizontal: ${({ theme }) => theme.margin * 4}px;
@@ -135,7 +135,7 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
             <View>
               <Rows layout="1" verticalAlign="flex-start">
                 {contentsToDisplay.map(
-                  (content: SimplifiedContent, index: number) => (
+                  (content: ContentForApp, index: number) => (
                     <CardItem key={content._id}>
                       <Swipeable
                         renderRightActions={!isRTL ? renderActions : undefined}
@@ -152,13 +152,7 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
                         containerStyle={{ overflow: "visible" }}
                       >
                         <ContentSummary
-                          navigation={navigation}
-                          theme={content.theme}
-                          contentId={content._id}
-                          titreInfo={content.titreInformatif}
-                          titreMarque={content.titreMarque}
-                          typeContenu={content.typeContenu}
-                          sponsorUrl={content.sponsorUrl}
+                          content={content}
                           actionPress={() => showDeleteModal(content._id)}
                           actionIcon={"trash-2-outline"}
                           actionLabel={t(

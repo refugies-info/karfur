@@ -9,22 +9,15 @@ import { getLanguages } from "../../../utils/API";
 import { logger } from "../../../logger";
 import { setLanguagesActionCreator } from "./languages.actions";
 import { FETCH_LANGUAGES } from "./languages.actionTypes";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 
 export function* fetchLanguages(): SagaIterator {
   try {
     logger.info("[fetchLanguages] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_LANGUAGES));
-    const data = yield call(getLanguages);
-    const formattedLanguages =
-      data && data.data && data.data.data
-        ? data.data.data.map((langue: any) => ({
-            _id: langue._id,
-            langueFr: langue.langueFr,
-            avancementTrad: langue.avancementTrad,
-            i18nCode: langue.i18nCode,
-          }))
-        : [];
-    yield put(setLanguagesActionCreator(formattedLanguages));
+    const data: GetLanguagesResponse[] = yield call(getLanguages);
+
+    yield put(setLanguagesActionCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_LANGUAGES));
   } catch (error: any) {
     logger.error("Error while fetching langues", { error: error.message });

@@ -1,19 +1,19 @@
 import React from "react";
-import { Theme } from "../../types/interface";
 import { getImageUri } from "../../libs/getImageUri";
 import { Image, View } from "react-native";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
-  theme: Theme | null;
+  theme: GetThemeResponse | null;
   height: number;
 }
-export const HeaderImage = (props: Props) => {
-  return props.theme ? (
-    <View style={{height: props.height, display: "flex", alignItems: "center"}}>
+
+export const HeaderImage = ({ height, theme }: Props) =>
+  theme?.appBanner ? (
+    <View style={{ height, display: "flex", alignItems: "center" }}>
       <Image
-        source={{ uri: getImageUri(props.theme.appBanner.secure_url) }}
-        style={{height: props.height, width: "100%"}}
+        source={{ uri: getImageUri(theme.appBanner.secure_url) }}
+        style={{ height, width: "100%" }}
       />
     </View>
   ) : null;
-};

@@ -9,12 +9,13 @@ import { logger } from "../../../logger";
 import { setThemesActionCreator } from "./themes.actions";
 import { FETCH_THEMES } from "./themes.actionTypes";
 import { getThemes } from "../../../utils/API";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 export function* fetchThemes(): SagaIterator {
   try {
     logger.info("[fetchThemes] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_THEMES));
-    const data = yield call(getThemes);
+    const data: GetThemeResponse[] = yield call(getThemes);
     if (data) {
       yield put(setThemesActionCreator(data));
     }

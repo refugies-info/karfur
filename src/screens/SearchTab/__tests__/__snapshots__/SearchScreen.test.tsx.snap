@@ -427,8 +427,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -438,8 +439,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -565,8 +566,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -576,8 +578,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -703,8 +705,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -714,8 +717,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -841,8 +844,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -852,8 +856,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -979,8 +983,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -990,8 +995,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -1117,8 +1122,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -1128,8 +1134,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -1255,8 +1261,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -1266,8 +1273,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -1393,8 +1400,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -1404,8 +1412,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -1531,8 +1539,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -1542,8 +1551,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -1669,8 +1678,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -1680,8 +1690,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -1807,8 +1817,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -1818,8 +1829,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -1945,8 +1956,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -1956,8 +1968,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,
@@ -2083,8 +2095,9 @@ exports[`Search Screen should render correctly 1`] = `
             style={
               [
                 {
+                  "backgroundColor": "transparent",
                   "borderRadius": 12,
-                  "elevation": 6,
+                  "elevation": 2,
                   "marginRight": 16,
                   "marginVertical": 8,
                   "paddingHorizontal": 16,
@@ -2094,8 +2107,8 @@ exports[`Search Screen should render correctly 1`] = `
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 0.16,
-                  "shadowRadius": 8,
+                  "shadowOpacity": 0.4,
+                  "shadowRadius": 2,
                 },
                 {
                   "paddingVertical": 16,

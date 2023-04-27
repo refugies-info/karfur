@@ -40,14 +40,15 @@ export const InfocardImage = ({ color, title, isFree }: Props) => {
   }
 
   switch (title) {
-    case "duration":
+    case "commitment":
+    case "frequency":
       return (
         <Image
           source={duree}
           style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
         />
       );
-    case "important":
+    case "conditions":
       return (
         <Image
           source={important}

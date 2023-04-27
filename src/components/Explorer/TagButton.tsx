@@ -14,7 +14,7 @@ import { Picture } from "@refugies-info/api-types";
 
 interface Props {
   backgroundColor: string | Array<any>;
-  icon: Picture;
+  icon?: Picture;
   iconSize?: number;
   inline?: boolean;
   name?: string;

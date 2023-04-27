@@ -11653,8 +11653,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   [
                     {
+                      "backgroundColor": "transparent",
                       "borderRadius": 12,
-                      "elevation": 6,
+                      "elevation": 2,
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
@@ -11666,8 +11667,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         "height": 1,
                         "width": 1,
                       },
-                      "shadowOpacity": 0.16,
-                      "shadowRadius": 8,
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {},
                   ]

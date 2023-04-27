@@ -1,7 +1,6 @@
 import React from "react";
 import { ScrollView } from "react-native";
 import { styles } from "../../theme";
-import { SimplifiedContent } from "../../types/interface";
 import { sortByOrder } from "../../libs";
 import { ContentSummary } from "../Contents/ContentSummary";
 import { TagButton } from "../Explorer/TagButton";
@@ -12,9 +11,10 @@ import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { SectionTitle } from "../typography";
 import { useTheme } from "styled-components/native";
+import { ContentForApp } from "@refugies-info/api-types";
 
 interface Props {
-  contents: SimplifiedContent[];
+  contents: ContentForApp[];
   navigation: any;
 }
 
@@ -35,19 +35,13 @@ const SearchSuggestions = (props: Props) => {
         </ReadableText>
       </SectionTitle>
 
-      {(props.contents || []).map((content: SimplifiedContent) => {
+      {(props.contents || []).map((content: ContentForApp) => {
         return (
           <ContentSummary
             key={content._id}
-            navigation={props.navigation}
-            theme={content.theme}
-            contentId={content._id}
-            titreInfo={content.titreInformatif}
-            titreMarque={content.titreMarque}
-            typeContenu={content.typeContenu}
-            sponsorUrl={content.sponsorUrl}
-            style={{ marginBottom: styles.margin * 3 }}
             backScreen="Search"
+            content={content}
+            style={{ marginBottom: styles.margin * 3 }}
           />
         );
       })}

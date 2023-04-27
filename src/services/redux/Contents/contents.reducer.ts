@@ -1,21 +1,19 @@
-import {
-  SimplifiedContent,
-} from "../../../types/interface";
+import { ContentForApp } from "@refugies-info/api-types";
 import { ContentsActions } from "./contents.actions";
 import { createReducer } from "typesafe-actions";
 
 export type ContentsState = {
-  fr: SimplifiedContent[],
-  en: SimplifiedContent[],
-  ps: SimplifiedContent[],
-  ti: SimplifiedContent[],
-  fa: SimplifiedContent[],
-  ru: SimplifiedContent[],
-  ar: SimplifiedContent[],
-  uk: SimplifiedContent[],
-  nbLocalizedContent: number|null,
-  nbGlobalContent: number|null,
-}
+  fr: ContentForApp[];
+  en: ContentForApp[];
+  ps: ContentForApp[];
+  ti: ContentForApp[];
+  fa: ContentForApp[];
+  ru: ContentForApp[];
+  ar: ContentForApp[];
+  uk: ContentForApp[];
+  nbLocalizedContent: number | null;
+  nbGlobalContent: number | null;
+};
 
 export const initialContentsState = {
   fr: [],

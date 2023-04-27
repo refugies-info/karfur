@@ -10,12 +10,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TagImage } from "./TagImage";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
-import { Theme } from "../../types/interface";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
-  theme: Theme;
+  theme: GetThemeResponse;
   navigation: any;
   cardWidth: number;
   cardHeight: number;
@@ -89,7 +89,9 @@ export const CarousselCard = (props: Props) => {
               props.theme.name[currentLanguageI18nCode || "fr"]
             )}
           </StyledText>
-          <StreamlineIcon icon={props.theme.icon} size={20} />
+          {props.theme.icon && (
+            <StreamlineIcon icon={props.theme.icon} size={20} />
+          )}
         </StyledContainer>
       </CardGradient>
     </ButtonContainer>

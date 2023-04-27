@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 import styled, { useTheme } from "styled-components/native";
+import { Picture } from "@refugies-info/api-types";
+
 import { firstLetterUpperCase } from "../../../libs";
-import { Picture } from "../../../types/interface";
 import { ReadableText } from "../../ReadableText";
 import { StreamlineIcon } from "../../StreamlineIcon";
 import Columns from "../Columns";

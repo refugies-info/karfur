@@ -1,5 +1,5 @@
-import { Languages } from "@refugies-info/api-types";
-import { ObjectId, SimplifiedContent } from "../../../types/interface";
+import { ContentForApp, Languages } from "@refugies-info/api-types";
+import { ObjectId } from "../../../types/interface";
 import { getContentById } from "../../../utils/API";
 
 /**
@@ -11,10 +11,10 @@ import { getContentById } from "../../../utils/API";
  */
 const getContentsToDisplay = async (
   contentsId: ObjectId[],
-  contents: SimplifiedContent[],
+  contents: ContentForApp[],
   currentLanguageI18nCode: Languages | null
 ) => {
-  let result: SimplifiedContent[] = [];
+  let result: ContentForApp[] = [];
   for (let contentId of contentsId) {
     const contentWithInfosArray = contents.filter(
       (content) => content._id === contentId

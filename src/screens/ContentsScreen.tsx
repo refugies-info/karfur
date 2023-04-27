@@ -11,7 +11,7 @@ import { groupedContentsSelector } from "../services/redux/ContentsGroupedByNeed
 import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
 import { ContentSummary } from "../components/Contents/ContentSummary";
-import { SimplifiedContent, ObjectId } from "../types/interface";
+import { ObjectId } from "../types/interface";
 import { TextBigBold } from "../components/StyledText";
 import styled from "styled-components/native";
 import { registerBackButton } from "../libs/backButton";
@@ -22,7 +22,7 @@ import { Page } from "../components";
 import { withProps } from "../utils";
 import { HeaderContentProps } from "../components/layout/Header/HeaderContentProps";
 import { HeaderContentContentsScreen } from "../components/layout/Header/HeaderContentContentsScreen";
-import { Languages } from "@refugies-info/api-types";
+import { ContentForApp, Languages } from "@refugies-info/api-types";
 
 const SectionHeaderText = styled(TextBigBold)`
   color: ${(props: { color: string }) => props.color};
@@ -30,12 +30,12 @@ const SectionHeaderText = styled(TextBigBold)`
   margin-bottom: ${styles.margin * 3}px;
 `;
 
-const sortByNbVues = (data: SimplifiedContent[]) =>
+const sortByNbVues = (data: ContentForApp[]) =>
   data.sort((a, b) => {
     if (a && b && a.nbVues > b.nbVues) return -1;
     return 1;
   });
-const sortContents = (contents: SimplifiedContent[]) => {
+const sortContents = (contents: ContentForApp[]) => {
   const dispositifs = contents.filter(
     (content) => content && content.typeContenu === "dispositif"
   );
@@ -48,36 +48,30 @@ const sortContents = (contents: SimplifiedContent[]) => {
 };
 
 const getTranslatedContents = (
-  contents: SimplifiedContent[],
+  contents: ContentForApp[],
   currentLanguage: Languages | null
 ) => {
   if (!currentLanguage || currentLanguage === "fr")
     return { translatedContents: contents, nonTranslatedContents: [] };
-  let translatedContents: SimplifiedContent[] = [];
-  let nonTranslatedContents: SimplifiedContent[] = [];
+  let translatedContents: ContentForApp[] = [];
+  let nonTranslatedContents: ContentForApp[] = [];
   contents.forEach((content) => {
     if (!content) return;
-    if (
-      content.avancement &&
-      // @ts-ignore
-      content.avancement[currentLanguage] &&
-      // @ts-ignore
-      content.avancement[currentLanguage] === 1
-    ) {
+    if (content.locale === currentLanguage) {
       translatedContents.push(content);
-      return;
+    } else {
+      nonTranslatedContents.push(content);
     }
-    nonTranslatedContents.push(content);
   });
   return { translatedContents, nonTranslatedContents };
 };
 
 const getContentsToDisplay = (
   contentsId: ObjectId[],
-  contents: SimplifiedContent[]
+  contents: ContentForApp[]
 ) => {
   if (!contentsId) return [];
-  let result: SimplifiedContent[] = [];
+  let result: ContentForApp[] = [];
 
   contentsId.forEach((contentId: ObjectId) => {
     const contentWithInfosArray = contents.filter(
@@ -152,16 +146,11 @@ export const ContentsScreen = ({
       {sortedTranslatedContents.map((content) => {
         return (
           <ContentSummary
+            content={content}
             key={content._id}
-            navigation={navigation}
-            theme={theme}
-            contentId={content._id}
             needId={needId}
-            titreInfo={content.titreInformatif}
-            titreMarque={content.titreMarque}
-            typeContenu={content.typeContenu}
-            sponsorUrl={content.sponsorUrl}
             style={{ marginBottom: styles.margin * 3 }}
+            theme={theme}
           />
         );
       })}
@@ -178,14 +167,9 @@ export const ContentsScreen = ({
             return (
               <ContentSummary
                 key={content._id}
-                navigation={navigation}
                 theme={theme}
-                contentId={content._id}
+                content={content}
                 needId={needId}
-                titreInfo={content.titreInformatif}
-                titreMarque={content.titreMarque}
-                typeContenu={content.typeContenu}
-                sponsorUrl={content.sponsorUrl}
                 style={{ marginBottom: styles.margin * 3 }}
               />
             );

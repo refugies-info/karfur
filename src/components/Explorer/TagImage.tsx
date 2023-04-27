@@ -1,13 +1,14 @@
 import React from "react";
 import { SvgUri } from "react-native-svg";
-import { Theme } from "../../types/interface";
 import { getImageUri } from "../../libs/getImageUri";
 import { View } from "react-native";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
-  theme: Theme;
+  theme: GetThemeResponse;
 }
 export const TagImage = ({ theme }: Props) => {
+  if (!theme.appImage) return null;
   return (
     <View>
       <SvgUri
@@ -16,5 +17,5 @@ export const TagImage = ({ theme }: Props) => {
         uri={getImageUri(theme.appImage.secure_url)}
       />
     </View>
-  )
+  );
 };

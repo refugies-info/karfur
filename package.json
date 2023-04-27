@@ -37,7 +37,7 @@
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/stack": "^6.2.0",
     "@reduxjs/toolkit": "^1.9.3",
-    "@refugies-info/api-types": "1.0.15",
+    "@refugies-info/api-types": "1.0.18",
     "algoliasearch": "^4.14.2",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "expo": "~48.0.15",

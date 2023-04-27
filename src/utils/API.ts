@@ -4,6 +4,7 @@ import {
   GetContentsForAppRequest,
   GetContentsForAppResponse,
   GetDispositifResponse,
+  GetLanguagesResponse,
   GetNbContentsForCountyRequest,
   GetNbContentsForCountyResponse,
   GetNeedResponse,
@@ -17,8 +18,11 @@ import {
 import { makeApiRequest, ResponseWith } from "../hooks/useApi";
 import { apiCaller } from "./ConfigAPI";
 
-// FIXME Return type
-export const getLanguages = () => apiCaller.get("/langues/getLanguages");
+export const getLanguages = (): Promise<GetLanguagesResponse[]> =>
+  makeApiRequest<null, ResponseWith<GetLanguagesResponse[]>>(
+    "/langues/getLanguages",
+    null
+  ).then((response) => response.data);
 
 export const getNeeds = () =>
   makeApiRequest<null, ResponseWith<GetNeedResponse[]>>("/needs", null).then(

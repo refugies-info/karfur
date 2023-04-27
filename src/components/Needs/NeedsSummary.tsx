@@ -38,7 +38,7 @@ const IndicatorContainer = styled(RTLView)`
 interface Props {
   backScreen?: string;
   id: string;
-  image: Picture;
+  image?: Picture;
   needSubtitle?: string;
   needText?: string;
   needTextFr: string;
@@ -114,7 +114,7 @@ export const NeedsSummary = ({
         </Rows>
 
         <IndicatorContainer>
-          <UriImage uri={image.secure_url} />
+          {image && <UriImage uri={image.secure_url} />}
         </IndicatorContainer>
       </Columns>
     </NeedContainer>
