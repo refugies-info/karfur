@@ -60,7 +60,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
 
   // if published and not draft version yet, create draft version
   let newDispositif: Dispositif | null = null;
-  if (oldDispositif.status === DispositifStatus.ACTIVE && !!draftOldDispositif) {
+  if (oldDispositif.status === DispositifStatus.ACTIVE && !draftOldDispositif) {
     newDispositif = await cloneDispositifInDrafts(id, {
       ...editedDispositif,
       status: DispositifStatus.DRAFT
