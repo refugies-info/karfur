@@ -1,11 +1,12 @@
 import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
-import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { getDispositifById, getDraftDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { NotFoundError } from "../../../errors";
 import pick from "lodash/pick";
 import { ContentStructure, GetDispositifResponse, Languages, SimpleUser, Sponsor } from "@refugies-info/api-types";
 import { getRoles } from "../../../modules/role/role.repository";
 import { Role, User } from "../../../typegoose";
+import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 
 const getRoleName = (id: string, roles: Role[]) => roles.find((r) => r._id.toString() === id.toString())?.nom || "";
 const getMetadatas = (metadatas: GetDispositifResponse["metadatas"]): GetDispositifResponse["metadatas"] => {
@@ -42,20 +43,42 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
     map: 1,
     lastModificationDate: 1,
     externalLink: 1,
+    creatorId: 1,
+    hasDraftVersion: 1
   };
-
-  const dispositif = await (
+  let draftDispositif = null;
+  const originalDispositif = await (
     await getDispositifById(id, fields)
   ).populate<{
     mainSponsor: ContentStructure;
     sponsors: (ContentStructure | Sponsor)[];
     participants: SimpleUser[];
   }>([
-    { path: "mainSponsor", select: "_id nom picture" },
+    { path: "mainSponsor", select: "_id nom picture membres" },
     { path: "sponsors", select: "_id nom picture" },
     { path: "participants", select: "_id username picture roles" },
   ]);
-  if (!dispositif) throw new NotFoundError("Dispositif not found");
+  if (!originalDispositif) throw new NotFoundError("Dispositif not found");
+
+  // if user logged in, and allowed to edit, load draft version instead
+  const dispositifForAccessCheck = await getDispositifById( // TODO: improve that
+    id, { mainSponsor: 1, creatorId: 1, status: 1 }, "mainSponsor",
+  );
+  if (user && checkUserIsAuthorizedToModifyDispositif(dispositifForAccessCheck, user) && !!originalDispositif.hasDraftVersion) {
+    draftDispositif = await (
+      await getDraftDispositifById(id, fields)
+    ).populate<{
+      mainSponsor: ContentStructure;
+      sponsors: (ContentStructure | Sponsor)[];
+      participants: SimpleUser[];
+    }>([
+      { path: "mainSponsor", select: "_id nom picture" },
+      { path: "sponsors", select: "_id nom picture" },
+      { path: "participants", select: "_id username picture roles" },
+    ]);
+  }
+
+  const dispositif = draftDispositif || originalDispositif;
   const dataLanguage = dispositif.isTranslatedIn(locale) ? locale : "fr";
 
   const allRoles = await getRoles();
@@ -72,6 +95,7 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
     metadatas: getMetadatas(dispositifObject.metadatas),
     availableLanguages: Object.keys(dispositifObject.translations),
     date: dispositifObject.translations[dataLanguage].created_at || dispositifObject.lastModificationDate,
+    hasDraftVersion: !!draftDispositif,
     ...pick(dispositif, [
       "typeContenu",
       "lastModificationDate",

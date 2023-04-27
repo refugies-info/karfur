@@ -10,6 +10,7 @@ export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsRes
   const dispositifs: GetAllDispositifsResponse[] = (await getDispositifsFromDB()).map((d) => ({
     _id: d._id,
     nbMercis: d.merci.length,
+    hasDraftVersion: !!d.hasDraftVersion,
     ...pick(d.translations.fr.content, ["titreInformatif", "titreMarque"]),
     ...pick(d, [
       "updatedAt",

@@ -1,5 +1,5 @@
 import logger from "../../../logger";
-import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { updateDispositifInDB, getDispositifById, getDraftDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { computePossibleNeeds } from "../../../modules/needs/needs.service";
 import { log } from "./log";
 import { ObjectId, User } from "../../../typegoose";
@@ -18,10 +18,9 @@ export const updateDispositifTagsOrNeeds = async (
   if (body.secondaryThemes?.length) allThemes.push(...body.secondaryThemes);
 
   let newNeeds: string[] = [];
+  const draftOriginalDispositif = await getDraftDispositifById(id, { needs: 1 });
+  const originalDispositif = draftOriginalDispositif || await getDispositifById(id, { needs: 1 });
   if (body.theme || body.secondaryThemes) {
-    const originalDispositif = await getDispositifById(id, {
-      needs: 1,
-    });
     if (body.needs || originalDispositif.needs) {
       // if a need of the content has a tag that is not a tag of the content we remove the need
       newNeeds = await computePossibleNeeds(body.needs || originalDispositif.needs.map((n) => n.toString()), allThemes);
@@ -36,6 +35,6 @@ export const updateDispositifTagsOrNeeds = async (
   };
   await log(id, allThemes.length > 0, user._id);
 
-  await updateDispositifInDB(id, newDispositif);
+  await updateDispositifInDB(id, newDispositif, !!draftOriginalDispositif);
   return { text: "success" };
 };
