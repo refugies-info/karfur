@@ -3563,10 +3563,10 @@
     redux-thunk "^2.4.2"
     reselect "^4.1.7"
 
-"@refugies-info/api-types@1.0.18":
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/@refugies-info/api-types/-/api-types-1.0.18.tgz#d56f34e3f762052bff6afdd1915aa8ef4c3acc71"
-  integrity sha512-mhMCyfukhJyihU322WvrZmMEoq/bwS+EJyKrd1FlTIAbTze0+QTsKckHQAZ6xi44cf/24v9iPGYj8DXCAasmuA==
+"@refugies-info/api-types@1.0.21":
+  version "1.0.21"
+  resolved "https://registry.yarnpkg.com/@refugies-info/api-types/-/api-types-1.0.21.tgz#eba725f22a56f3b63567e4979630c1e14d34dd7a"
+  integrity sha512-HscfDavQ0extZs7sMnkE5/DfL2takmshcp+p1XrlNUa1xROP2dqviidd72nDrfjFGSiG2aEZjAf0vRvG+iGKmw==
   dependencies:
     base64-js "^1.5.1"
     bowser "^2.11.0"

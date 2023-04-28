@@ -26,12 +26,14 @@ const FilterButton = (props: FilterButtonProps) => {
     >
       <StyledText isSelected={props.isSelected}>
         {t("filters." + props.text, props.text)}
-        {props.text !== "french_level_0" && props.details && (
-          <StyledText isSelected={props.isSelected}>
-            {" "}
-            ({props.details.join("/")})
-          </StyledText>
-        )}
+        {props.text !== "french_level_0" &&
+          props.text !== "no_french_level_filter" &&
+          props.details && (
+            <StyledText isSelected={props.isSelected}>
+              {" "}
+              ({props.details.join("/")})
+            </StyledText>
+          )}
       </StyledText>
     </ChoiceButton>
   );

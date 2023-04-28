@@ -31,4 +31,9 @@ export const frenchLevelFilters: {
     cecrCorrespondency: ["C1", "C2"],
     key: MobileFrenchLevel["Je parle couramment"],
   },
+  {
+    name: "no_french_level_filter",
+    cecrCorrespondency: ["alpha", "A1", "A2", "B1", "B2", "C1", "C2"],
+    key: MobileFrenchLevel["Tous les niveaux"],
+  },
 ];

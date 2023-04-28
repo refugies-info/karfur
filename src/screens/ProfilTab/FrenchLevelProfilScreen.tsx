@@ -5,10 +5,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useDispatch, useSelector } from "react-redux";
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
 import { frenchLevelFilters } from "../../data/filtersData";
-import {
-  saveUserFrenchLevelActionCreator,
-  removeUserFrenchLevelActionCreator,
-} from "../../services/redux/User/user.actions";
+import { saveUserFrenchLevelActionCreator } from "../../services/redux/User/user.actions";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import { FilterButton, Page, RadioGroup, Title } from "../../components";
 import { MobileFrenchLevel } from "@refugies-info/api-types";
@@ -32,12 +29,6 @@ export const FrenchLevelProfilScreen = ({
         shouldFetchContents: true,
       })
     );
-    navigation.goBack();
-  };
-
-  const removeFrenchLevel = () => {
-    if (!selectedFrenchLevel) return;
-    dispatch(removeUserFrenchLevelActionCreator(true));
     navigation.goBack();
   };
 
@@ -70,11 +61,6 @@ export const FrenchLevelProfilScreen = ({
             details={frenchLevel.cecrCorrespondency}
           />
         ))}
-        <FilterButton
-          text="no_french_level_filter"
-          isSelected={!selectedFrenchLevel}
-          onPress={removeFrenchLevel}
-        />
       </RadioGroup>
     </Page>
   );
