@@ -91,7 +91,7 @@ const Metadata = ({
         {withTitle && (
           <SubtitleText>
             <ReadableText>
-              {t("content_screen." + metadataKey, metadataKey)}
+              {t("Infocards." + metadataKey, metadataKey)}
             </ReadableText>
           </SubtitleText>
         )}
@@ -180,6 +180,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
                 color={color}
                 metadatas={metadatas}
                 metadataKey="commitment"
+                withTitle
               />
             )}
             {metadatas.frequency && (
@@ -187,6 +188,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
                 color={color}
                 metadatas={metadatas}
                 metadataKey="frequency"
+                withTitle
               />
             )}
             {metadatas.timeSlots && (
@@ -194,6 +196,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
                 color={color}
                 metadatas={metadatas}
                 metadataKey="timeSlots"
+                withTitle
               />
             )}
           </Section>
