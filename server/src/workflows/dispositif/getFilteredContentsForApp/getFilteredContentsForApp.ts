@@ -1,7 +1,7 @@
 import { DispositifStatus, GetContentsForAppRequest, MobileFrenchLevel } from "@refugies-info/api-types";
 import { isEmpty } from "lodash";
-import { getActiveContentsFiltered } from "src/modules/dispositif/dispositif.repository";
-import { Dispositif } from "src/typegoose";
+import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
+import { Dispositif } from "../../../typegoose";
 
 const filterByAge =
   (age: GetContentsForAppRequest["age"] | null) =>
