@@ -47,6 +47,7 @@ export enum MobileFrenchLevel {
   "Je parle un peu" = "Je parle un peu",
   "Je parle bien" = "Je parle bien",
   "Je parle couramment" = "Je parle couramment",
+  "Tous les niveaux" = "Tous les niveaux",
 }
 export interface GetContentsForAppRequest {
   locale: Languages;
@@ -310,7 +311,6 @@ type Author = {
  * @url GET /dispositifs/{id}/has-text-changes
  */
 export type GetDispositifsHasTextChanges = boolean;
-
 
 /**
  * @url GET /dispositifs/all
