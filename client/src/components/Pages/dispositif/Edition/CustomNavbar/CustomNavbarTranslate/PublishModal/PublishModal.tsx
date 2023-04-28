@@ -27,6 +27,8 @@ interface Props {
 }
 
 const PublishModal = (props: Props) => {
+  const { toggle } = props;
+  const pageContext = useContext(PageContext);
   const title = useMemo(
     () =>
       props.isComplete
@@ -36,8 +38,14 @@ const PublishModal = (props: Props) => {
   );
 
   const totalSteps = props.missingSteps.length + props.pendingSteps.length + props.progress;
+  const closeModal = useCallback(() => {
+    if (!props.isComplete) {
+      pageContext?.setShowMissingSteps?.(true);
+    }
+    toggle();
+  }, [pageContext, toggle, props.isComplete]);
   return (
-    <BaseModal show={props.show} toggle={props.toggle} title={title} small>
+    <BaseModal show={props.show} toggle={closeModal} title={title} small>
       {props.isComplete ? (
         <>
           <p>
@@ -79,7 +87,7 @@ const PublishModal = (props: Props) => {
                 .filter((s) => !props.reviewSteps.includes(s) && !props.pendingSteps.includes(s)) // remove steps already in review or pending
                 .map((p) => ({ step: p, status: "error" as StepStatus })),
             ]}
-            toggle={props.toggle}
+            toggle={closeModal}
             noPlusIcon
             style="error"
           />
@@ -87,7 +95,7 @@ const PublishModal = (props: Props) => {
             <Button secondary onClick={props.onQuit} icon="log-out-outline" iconPlacement="end" className="me-2">
               Quitter et finir plus tard
             </Button>
-            <Button onClick={props.toggle} icon="arrow-forward-outline" iconPlacement="end">
+            <Button onClick={closeModal} icon="arrow-forward-outline" iconPlacement="end">
               Compléter ma fiche
             </Button>
           </div>
