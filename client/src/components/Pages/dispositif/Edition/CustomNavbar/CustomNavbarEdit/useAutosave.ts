@@ -3,7 +3,7 @@ import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-fo
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import debounce from "lodash/debounce";
-import { CreateDispositifRequest, PostDispositifsResponse, UpdateDispositifResponse } from "api-types";
+import { CreateDispositifRequest, GetDispositifResponse, PostDispositifsResponse, UpdateDispositifResponse } from "api-types";
 import { getPath } from "routes";
 import { submitCreateForm, submitUpdateForm } from "lib/dispositifForm";
 import PageContext from "utils/pageContext";
@@ -48,12 +48,13 @@ const useAutosave = () => {
             } else { // create
               response = await submitCreateForm(data).then(res => res.data.data);
               if (response) {
-                // TODO: use response to setSelectedDispositif and no redirect?
-                const path = router.pathname === "/demarche" ? "/demarche/[id]/edit" : "/dispositif/[id]/edit";
-                router.replace({
-                  pathname: getPath(path, router.locale),
-                  query: { id: response.id.toString() },
-                });
+                // set partial dispositif in store, and continue edition on this page
+                dispatch(setSelectedDispositifActionCreator({
+                  _id: response.id,
+                  status: response.status,
+                  hasDraftVersion: response.hasDraftVersion,
+                  typeContenu: response.typeContenu,
+                } as GetDispositifResponse));
               }
             }
 
@@ -74,6 +75,13 @@ const useAutosave = () => {
             if (data.contact) {
               methods.setValue("contact", undefined);
               updatedOldData.contact = undefined;
+            }
+
+            // remove typeContenu, only needed for creation
+            if (data.typeContenu) {
+              //@ts-ignore
+              methods.setValue("typeContenu", undefined);
+              updatedOldData.typeContenu = undefined;
             }
             setOldData(updatedOldData);
             setIsSaving(false);
