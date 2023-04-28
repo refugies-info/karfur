@@ -17,7 +17,7 @@ const StructureContact = (props: Props) => {
       <p>Nous avons besoin de contacter un membre de cette structure pour lui faire valider la fiche.</p>
       <Input
         id="structure-contact-name"
-        label="Votre nom et prénom"
+        label="Prénom et nom du contat"
         type="text"
         icon="person-outline"
         value={props.contact.name}
@@ -26,34 +26,33 @@ const StructureContact = (props: Props) => {
         className="mb-4"
       />
       <Input
-        id="structure-contact-email"
-        label="Votre email"
-        type="text"
-        icon="at-outline"
-        value={props.contact.email}
-        onChange={(e: any) => props.setContact({ ...props.contact, email: e.target.value })}
-        valid={!!props.contact.email}
-        className="mb-4"
-      />
-      <Input
-        id="structure-contact-phone"
-        label="Votre numéro de téléphone"
-        type="text"
-        icon="phone-outline"
-        value={props.contact.phone}
-        onChange={(e: any) => props.setContact({ ...props.contact, phone: e.target.value })}
-        valid={!!props.contact.phone}
-        className="mb-4"
-      />
-      <Input
         id="structure-contact-comments"
         label="Commentaires"
         type="textarea"
         value={props.contact.comments}
         onChange={(e: any) => props.setContact({ ...props.contact, comments: e.target.value })}
-        placeholder="Ajoutez ici toutes les précisions nécessaires : fonction, disponibilité, relation avec le contact..."
+        placeholder="Quel est votre lien avec la personne (collègue, partenaire, connaissance...) ? Connaissez-vous son poste ?"
         className="mb-6"
       />
+      <Input
+        id="structure-contact-email"
+        label="Email du contact (optionnel)"
+        type="text"
+        icon="at-outline"
+        value={props.contact.email}
+        onChange={(e: any) => props.setContact({ ...props.contact, email: e.target.value })}
+        className="mb-4"
+      />
+      <Input
+        id="structure-contact-phone"
+        label="Téléphone du contact (optionnel)"
+        type="text"
+        icon="phone-outline"
+        value={props.contact.phone}
+        onChange={(e: any) => props.setContact({ ...props.contact, phone: e.target.value })}
+        className="mb-4"
+      />
+
       <ChoiceButton
         text="Je ne connais personne dans cette structure"
         selected={props.unknownContact === true}

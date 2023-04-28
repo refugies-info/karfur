@@ -10,6 +10,7 @@ interface Requirements {
   mainThemeId: string | null;
 }
 
+// FIXME : refactor
 export const getTitle = (title: string | Record<string, string>, lang: string = "fr") => {
   if (typeof title === "string") {
     return title;

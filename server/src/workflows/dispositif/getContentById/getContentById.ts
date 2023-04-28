@@ -6,7 +6,7 @@ import pick from "lodash/pick";
 import { ContentStructure, GetDispositifResponse, Languages, SimpleUser, Sponsor } from "@refugies-info/api-types";
 import { getRoles } from "../../../modules/role/role.repository";
 import { Role, User } from "../../../typegoose";
-import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
+import { isUserAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 
 const getRoleName = (id: string, roles: Role[]) => roles.find((r) => r._id.toString() === id.toString())?.nom || "";
 const getMetadatas = (metadatas: GetDispositifResponse["metadatas"]): GetDispositifResponse["metadatas"] => {
@@ -64,7 +64,7 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
   const dispositifForAccessCheck = await getDispositifById( // TODO: improve that
     id, { mainSponsor: 1, creatorId: 1, status: 1 }, "mainSponsor",
   );
-  if (user && checkUserIsAuthorizedToModifyDispositif(dispositifForAccessCheck, user) && !!originalDispositif.hasDraftVersion) {
+  if (user && isUserAuthorizedToModifyDispositif(dispositifForAccessCheck, user) && !!originalDispositif.hasDraftVersion) {
     draftDispositif = await (
       await getDraftDispositifById(id, fields)
     ).populate<{

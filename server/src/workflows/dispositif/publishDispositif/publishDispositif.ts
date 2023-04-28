@@ -7,6 +7,7 @@ import { InvalidRequestError } from "../../../errors";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
 import { publishDispositif as publishDispositifService, isDispositifComplete } from "../../../modules/dispositif/dispositif.service";
 import { log } from "./log";
+import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 
 export const publishDispositif = async (id: string, body: PublishDispositifRequest, user: User): Response => {
   logger.info("[publishDispositif] received", { id, body, user: user._id });
@@ -31,16 +32,23 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
     throw new InvalidRequestError("The content is incomplete, it cannot be published");
   }
 
-  const editedDispositif: Partial<Dispositif> = {};
+  checkUserIsAuthorizedToModifyDispositif(dispositif, user);
 
-  if (dispositif.status !== DispositifStatus.DRAFT) {
+  // if deleted or rejected, cannot be published
+  if ([
+    DispositifStatus.DELETED,
+    DispositifStatus.KO_STRUCTURE,
+  ].includes(dispositif.status)) {
     throw new InvalidRequestError("The content cannot be published");
   }
 
-  if (user.isAdmin()) {
-    // admin = publish
-    await publishDispositifService(id, user._id, body.keepTranslations);
-  } else if (dispositif.getMainSponsor()?.membres.find((membre) => membre.userId === user._id)) {
+  const editedDispositif: Partial<Dispositif> = {};
+  // if admin or editing a published dispositif => publish
+  if (user.isAdmin() || (oldDispositif.status === DispositifStatus.ACTIVE && oldDispositif.hasDraftVersion)) {
+    await publishDispositifService(id, user._id, user.isAdmin() ? body.keepTranslations : false);
+  }
+
+  if (dispositif.getMainSponsor()?.membres.find((membre) => membre.userId === user._id)) {
     // dans la structure
     editedDispositif.status = DispositifStatus.WAITING_ADMIN;
   } else {

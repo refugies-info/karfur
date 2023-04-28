@@ -20,7 +20,7 @@ const Navbar = () => {
   const router = useRouter();
   const isEditionMode = useEditionMode();
 
-  if (isEditionMode) return null; // TODO: hide with CSS?
+  if (isEditionMode) return null;
 
   return (
     <Header closeButtonLabel={t`Fermeture`}>

@@ -2,7 +2,7 @@ import { Dispositif, Structure, User } from "../typegoose";
 import logger from "../logger";
 
 // Dispositif edition
-const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User) => {
+export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User) => {
   logger.info("[isUserAuthorizedToModifyDispositif] received");
   if (user.isAdmin()) {
     logger.info("[isUserAuthorizedToModifyDispositif] user is admin");

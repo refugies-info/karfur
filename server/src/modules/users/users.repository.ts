@@ -32,7 +32,7 @@ export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>)
 // update
 export const updateUserInDB = async (
   id: Id,
-  modifiedUser: any, // FIXME in updateUser
+  modifiedUser: Partial<User>, // FIXME in updateUser
 ) =>
   UserModel.findOneAndUpdate({ _id: id }, modifiedUser, {
     upsert: true,

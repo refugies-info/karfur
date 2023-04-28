@@ -283,7 +283,6 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                   autoFocus={false}
                   prepend
                   prependName="smartphone-outline"
-                  inputClassName="phone-input"
                   error={!!phoneError}
                 />
                 {!!phoneError && <p className={styles.error}>{phoneError}</p>}

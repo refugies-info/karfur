@@ -1,3 +1,6 @@
+import { Sponsor } from "api-types";
+import { ContactInfos } from "./ModalMainSponsor";
+
 export const help = {
   title: "À quoi sert cette information ?",
   content: "Ajoutez des conditions seulement si elles sont vraiment des critères excluant pour accéder à votre action.",
@@ -30,3 +33,20 @@ export const noStructureTitles = [
   "Laissez-nous vos coordonnées",
   "Merci pour votre participation",
 ];
+
+export const defaultContact: ContactInfos = {
+  name: "",
+  email: "",
+  phone: "",
+  comments: "",
+};
+
+export const defaultSponsor: Sponsor = {
+  name: "",
+  link: "",
+  logo: {
+    imgId: "",
+    public_id: "",
+    secure_url: "",
+  },
+};

@@ -53,9 +53,7 @@ const VERTICAL_GAP = 10;
 const HORIZONTAL_OFFSET = 5;
 
 export function setFloatingElemPosition(
-  //FIXME
-  // eslint-disable-next-line no-undef
-  targetRect: ClientRect | null,
+  targetRect: DOMRect | null,
   floatingElem: HTMLElement,
   anchorElem: HTMLElement,
   verticalGap: number = VERTICAL_GAP,

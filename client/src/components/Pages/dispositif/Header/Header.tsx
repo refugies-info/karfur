@@ -2,8 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import moment from "moment";
-// TODO import all locales
+import "moment/locale/ar";
+import "moment/locale/en-gb";
+import "moment/locale/fa";
 import "moment/locale/fr";
+import "moment/locale/ru";
+import "moment/locale/uk";
 import { Badge } from "@dataesr/react-dsfr";
 import { useLocale } from "hooks";
 import PageContext from "utils/pageContext";
@@ -30,7 +34,7 @@ const Header = (props: Props) => {
   const pageContext = useContext(PageContext);
   return (
     <header className={styles.container}>
-      {pageContext.mode !== "translate" && <Breadcrumb dispositif={dispositif} />}
+      {pageContext.mode === "view" && <Breadcrumb dispositif={dispositif} />}
       <div className="position-relative">
         <Title />
         {pageContext.mode === "view" && (

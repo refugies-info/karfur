@@ -2,11 +2,12 @@ import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
-import { useLocale } from "hooks";
+import { useLocale, useUser } from "hooks";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
@@ -25,6 +26,7 @@ interface Props {
 
 const CustomNavbarEdit = (props: Props) => {
   const { isSaving } = useAutosave();
+  const { user } = useUser();
   const router = useRouter();
   const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);
@@ -64,19 +66,27 @@ const CustomNavbarEdit = (props: Props) => {
   const [showPublishModal, setShowPublishModal] = useState(false);
   const togglePublishModal = useCallback(() => setShowPublishModal((o) => !o), []);
   const hideValidateButton = useMemo(() => {
-    return isStatus(dispositif?.status, [
-      DispositifStatus.KO_STRUCTURE,
-      DispositifStatus.DELETED,
-      DispositifStatus.NO_STRUCTURE,
-    ]);
+    return isStatus(dispositif?.status, [DispositifStatus.KO_STRUCTURE, DispositifStatus.DELETED]);
   }, [dispositif]);
   const handlePublish = useCallback(
     async (keepTranslations: boolean) => {
       if (!dispositif?._id) return;
-      API.publishDispositif(dispositif._id, { keepTranslations });
+      API.publishDispositif(dispositif._id, { keepTranslations }).catch(() => {
+        Swal.fire("Oh non...", "Une erreur s'est produite. Veuillez réessayer ou contacter un administrateur", "error");
+      });
     },
     [dispositif],
   );
+
+  const validate = useCallback(() => {
+    if (user.admin && !dispositif?.hasDraftVersion) {
+      // if admin and first publication, quit
+      handlePublish(false).then(() => quit());
+    } else {
+      // else show modal
+      togglePublishModal();
+    }
+  }, [togglePublishModal, user.admin, dispositif, quit, handlePublish]);
 
   return (
     <div className={styles.container}>
@@ -128,7 +138,7 @@ const CustomNavbarEdit = (props: Props) => {
             <Button
               icon={progress === TOTAL_STEPS ? "checkmark-circle-2" : undefined}
               iconPlacement="end"
-              onClick={togglePublishModal}
+              onClick={validate}
             >
               Valider
             </Button>
