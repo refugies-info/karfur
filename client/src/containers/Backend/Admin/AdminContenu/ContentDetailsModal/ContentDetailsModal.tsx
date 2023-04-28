@@ -118,7 +118,7 @@ export const ContentDetailsModal = (props: Props) => {
 
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
 
-  const hiddenStatus = ["En attente non prioritaire", "Rejeté structure", "Accepté structure"];
+  const hiddenStatus = ["Rejeté structure", "Accepté structure"];
 
   const sendPushNotification = async () => {
     const res = await Swal.fire({

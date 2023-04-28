@@ -33,10 +33,20 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
 
   const editedDispositif: Partial<Dispositif> = {};
 
-  if (dispositif.status !== DispositifStatus.DRAFT) {
+  // if already published, do nothing
+  if (dispositif.status === DispositifStatus.ACTIVE) {
+    return { text: "success" };
+  }
+
+  // if deleted or rejected, cannot be published
+  if ([
+    DispositifStatus.DELETED,
+    DispositifStatus.KO_STRUCTURE,
+  ].includes(dispositif.status)) {
     throw new InvalidRequestError("The content cannot be published");
   }
 
+  // else, depending on role:
   if (user.isAdmin()) {
     // admin = publish
     await publishDispositifService(id, user._id, body.keepTranslations);

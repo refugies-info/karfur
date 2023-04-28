@@ -34,8 +34,6 @@ export const getStatus = (status: DispositifStatus | undefined, hasDraftVersion:
         type: "error",
         icon: "ri-close-circle-fill"
       };
-    case DispositifStatus.NO_STRUCTURE:
-      return null;
     case DispositifStatus.OK_STRUCTURE:
       return null;
     case DispositifStatus.WAITING_STRUCTURE:
