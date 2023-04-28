@@ -2,8 +2,9 @@
   "build": {
     "base": {
       "ios": {
-        "image":"latest"
-      }
+        "image": "latest"
+      },
+      "channel": "base"
     },
     "production": {
       "extends": "base",
