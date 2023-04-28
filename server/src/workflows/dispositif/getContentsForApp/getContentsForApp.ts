@@ -1,4 +1,5 @@
 import {
+  ContentForApp,
   DispositifStatus,
   GetContentsForAppRequest,
   GetContentsForAppResponse,
@@ -10,23 +11,31 @@ import { Dispositif } from "../../../typegoose";
 import logger from "../../../logger";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 
-const present = (locale: Languages) => (dispositif: Dispositif) => {
-  const translation = dispositif.translations[locale] || dispositif.translations.fr;
-  const sponsorUrl = dispositif.getMainSponsor().picture?.secure_url || null;
+const present =
+  (locale: Languages) =>
+  (dispositif: Dispositif): ContentForApp => {
+    let realLocale: Languages = locale;
+    let translation = dispositif.translations[locale];
+    if (!translation) {
+      translation = dispositif.translations.fr;
+      realLocale = "fr";
+    }
+    const sponsorUrl = dispositif.getMainSponsor().picture?.secure_url || null;
 
-  return {
-    _id: dispositif._id.toString(),
-    titreInformatif: translation.content.titreInformatif,
-    titreMarque: translation.content.titreMarque,
-    theme: dispositif.theme,
-    secondaryThemes: dispositif.secondaryThemes,
-    needs: dispositif.needs,
-    nbVues: dispositif.nbVues,
-    nbVuesMobile: dispositif.nbVuesMobile,
-    typeContenu: dispositif.typeContenu,
-    sponsorUrl,
+    return {
+      _id: dispositif._id.toString(),
+      titreInformatif: translation.content.titreInformatif,
+      titreMarque: translation.content.titreMarque,
+      theme: dispositif.theme,
+      secondaryThemes: dispositif.secondaryThemes,
+      needs: dispositif.needs,
+      nbVues: dispositif.nbVues,
+      nbVuesMobile: dispositif.nbVuesMobile,
+      typeContenu: dispositif.typeContenu,
+      sponsorUrl,
+      locale: realLocale,
+    };
   };
-};
 
 const filterByAge =
   (age: GetContentsForAppRequest["age"] | null) =>

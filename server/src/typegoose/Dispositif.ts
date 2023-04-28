@@ -184,7 +184,6 @@ export class Poi {
 // COLLECTION
 @modelOptions({
   schemaOptions: {
-    collection: "dispositifs",
     timestamps: { createdAt: "created_at" },
     toJSON: { getters: true, virtuals: true },
     toObject: { virtuals: true },
@@ -244,6 +243,8 @@ export class Dispositif extends Base {
   public adminPercentageProgressionStatus?: string;
   @prop()
   public adminProgressionStatus?: string;
+  @prop()
+  public hasDraftVersion?: boolean; // TODO: use aggregation to get that value?
 
   @prop()
   public draftReminderMailSentDate?: Date;

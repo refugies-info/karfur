@@ -70,6 +70,10 @@ export interface ContentForApp {
   nbVuesMobile: number;
   typeContenu: ContentType;
   sponsorUrl: string;
+  /**
+   * The actual locale returned by the server
+   */
+  locale: Languages;
 }
 
 export type GetContentsForAppResponse = {
@@ -170,7 +174,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest { }
+export interface UpdateDispositifRequest extends DispositifRequest {}
 
 /**
  * @url PATCH /dispositifs/{id}/publish
@@ -220,6 +224,7 @@ export type GetDispositifResponse = {
   date: Date;
   lastModificationDate?: Date;
   externalLink?: string;
+  hasDraftVersion: boolean;
 };
 
 /**
@@ -236,6 +241,7 @@ export interface GetUserContributionsResponse {
   nbVues: number;
   nbMercis: number;
   status: DispositifStatus;
+  hasDraftVersion: boolean;
 }
 
 /**
@@ -301,6 +307,12 @@ type Author = {
 };
 
 /**
+ * @url GET /dispositifs/{id}/has-text-changes
+ */
+export type GetDispositifsHasTextChanges = boolean;
+
+
+/**
  * @url GET /dispositifs/all
  */
 export interface GetAllDispositifsResponse {
@@ -332,6 +344,7 @@ export interface GetAllDispositifsResponse {
   themesSelectedByAuthor: boolean;
   webOnly: boolean;
   creatorId: SimpleUser;
+  hasDraftVersion: boolean;
 }
 
 /**

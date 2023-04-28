@@ -8,7 +8,7 @@ type Status = {
   icon?: string;
 }
 
-export const getStatus = (status: DispositifStatus | undefined, isAdmin: boolean): Status | null => {
+export const getStatus = (status: DispositifStatus | undefined, hasDraftVersion: boolean, isAdmin: boolean): Status | null => {
   if (!status) return null;
   switch (status) {
     case DispositifStatus.ACTIVE:
@@ -24,7 +24,7 @@ export const getStatus = (status: DispositifStatus | undefined, isAdmin: boolean
       };
     case DispositifStatus.DRAFT:
       return {
-        text: "Brouillon",
+        text: hasDraftVersion ? "Brouillon de travail" : "Brouillon",
         type: "new",
         icon: "ri-pencil-fill"
       };

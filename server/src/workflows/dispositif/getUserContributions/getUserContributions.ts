@@ -16,6 +16,7 @@ export const getUserContributions = async (userId: any): ResponseWithData<GetUse
     status: 1,
     merci: 1,
     translations: 1,
+    hasDraftVersion: 1
   };
   const dispositifs = await getDispositifsWithCreatorId(userId, neededFields);
 
@@ -23,6 +24,7 @@ export const getUserContributions = async (userId: any): ResponseWithData<GetUse
     ...pick(d, ["_id", "typeContenu", "status", "mainSponsor", "nbVues"]),
     ...pick(d.translations.fr.content, ["titreInformatif", "titreMarque"]),
     nbMercis: d.merci.length,
+    hasDraftVersion: !!d.hasDraftVersion
   }));
 
   return { text: "success", data: res };
