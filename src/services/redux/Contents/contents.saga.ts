@@ -22,7 +22,10 @@ import {
 } from "../User/user.selectors";
 import { groupResultsByNeed } from "./functions";
 import { setGroupedContentsActionCreator } from "../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
-import { GetContentsForAppResponse } from "@refugies-info/api-types";
+import {
+  GetContentsForAppResponse,
+  GetNbContentsForCountyResponse,
+} from "@refugies-info/api-types";
 
 export function* fetchContents(): SagaIterator {
   try {
@@ -68,13 +71,17 @@ export function* fetchContents(): SagaIterator {
     }
 
     // Nb Content
-    let nbContent = {
+    let nbContent: GetNbContentsForCountyResponse = {
       nbGlobalContent: null,
       nbLocalizedContent: null,
     };
     if (department) {
       nbContent = yield call(getNbContents, {
+        locale: selectedLanguage || "fr",
+        age,
         county: department,
+        frenchLevel,
+        strictLocation: true,
       });
     }
     yield put(setNbContentsActionCreator(nbContent));

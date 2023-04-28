@@ -4,17 +4,20 @@ import {
   FETCH_CONTENTS,
 } from "./contents.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { ContentForApp, Languages } from "@refugies-info/api-types";
+import {
+  ContentForApp,
+  GetNbContentsForCountyResponse,
+  Languages,
+} from "@refugies-info/api-types";
 
 export const setContentsActionCreator = (value: {
   langue: Languages;
   contents: ContentForApp[];
 }) => action(SET_CONTENTS, value);
 
-export const setNbContentsActionCreator = (value: {
-  nbLocalizedContent: number | null;
-  nbGlobalContent: number | null;
-}) => action(SET_NB_CONTENTS, value);
+export const setNbContentsActionCreator = (
+  value: GetNbContentsForCountyResponse
+) => action(SET_NB_CONTENTS, value);
 
 export const fetchContentsActionCreator = () => action(FETCH_CONTENTS);
 

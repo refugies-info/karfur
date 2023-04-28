@@ -63,10 +63,10 @@ export const getContentsForApp = (
   );
 
 export const getNbContents = (
-  req: GetNbContentsForCountyRequest
+  req: GetContentsForAppRequest
 ): Promise<GetNbContentsForCountyResponse> =>
   makeApiRequest<
-    GetNbContentsForCountyRequest,
+    GetContentsForAppRequest,
     ResponseWith<GetNbContentsForCountyResponse>
   >("/dispositifs/getNbContentsForCounty", req, "GET").then(
     (response) => response.data
