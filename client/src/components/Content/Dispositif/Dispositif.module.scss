@@ -6,6 +6,10 @@
 .container {
   width: 100%;
   background-color: $lightBackgroundContrastGrey;
+
+  :global(.toolbar-plugin-container) {
+    top: 56px;
+  }
 }
 
 .content {
