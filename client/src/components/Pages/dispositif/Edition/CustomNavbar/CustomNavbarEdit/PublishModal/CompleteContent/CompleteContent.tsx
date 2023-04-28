@@ -36,7 +36,7 @@ const CompleteContent = (props: Props) => {
   const [textContent, setTextContent] = useState<Content[]>(getTextContent(status, !!dispositif?.hasDraftVersion));
   const values = useWatch();
 
-  const [hasChanges, setHasChanges] = useState<boolean | null>(null);
+  const [hasChanges, setHasChanges] = useState<boolean | null>(user.admin ? null : false); // check changes only for admins
   const [{ loading }, getHasChanges] = useAsyncFn(() =>
     dispositif?._id && user.admin
       ? API.getDispositifHasTextChanges(dispositif?._id.toString()).then((res) => res.data.data)
@@ -45,8 +45,8 @@ const CompleteContent = (props: Props) => {
 
   // when form changes, reset hasChange
   useEffect(() => {
-    setHasChanges(null);
-  }, [values]);
+    setHasChanges(user.admin ? null : false);
+  }, [values, user.admin]);
 
   useEffect(() => {
     if (!loading && hasChanges === null) getHasChanges().then((res) => setHasChanges(res));
