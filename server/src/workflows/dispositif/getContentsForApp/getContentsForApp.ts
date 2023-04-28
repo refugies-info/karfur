@@ -119,12 +119,17 @@ export const getContentsForApp = async (req: GetContentsForAppRequest): Promise<
 
   /**
    * frenchLevel
+   *
+   * Pas de filtre si tous niveaux
    */
-  const frenchLevelFilter = [
-    // @ts-ignore
-    { "metadatas.frenchLevel": { $eq: null } },
-    { "metadatas.frenchLevel": { $exists: false } },
-  ];
+  const frenchLevelFilter =
+    frenchLevel === MobileFrenchLevel["Tous les niveaux"]
+      ? []
+      : [
+          // @ts-ignore
+          { "metadatas.frenchLevel": { $eq: null } },
+          { "metadatas.frenchLevel": { $exists: false } },
+        ];
   switch (frenchLevel) {
     case MobileFrenchLevel["Je ne lis et n'écris pas le français"]:
       // query.push({ "metadatas.frenchLevel": { $eq: "A1.1" } });
