@@ -17,7 +17,6 @@ import {
   GetDispositifsRequest,
   GetDispositifsResponse,
   GetDispositifsWithTranslationAvancementResponse,
-  GetNbContentsForCountyRequest,
   GetNbContentsForCountyResponse,
   GetRegionStatisticsResponse,
   GetStatisticsRequest,
@@ -61,7 +60,7 @@ import {
   updateDispositifStatus,
   updateDispositifTagsOrNeeds,
   updateNbVuesOrFavoritesOnContent,
-  getHasTextChanges
+  getHasTextChanges,
 } from "../workflows";
 import logger from "../logger";
 import { Response, ResponseWithData } from "../types/interface";
@@ -114,12 +113,12 @@ export class DispositifController extends Controller {
 
   @Get("/getNbContentsForCounty")
   public async getNbContentsForCounty(
-    @Queries() queries: GetNbContentsForCountyRequest,
+    @Queries() queries: GetContentsForAppRequest,
   ): ResponseWithData<GetNbContentsForCountyResponse> {
     logger.info("[getNbContentsForCounty]", {
       queries,
     });
-    return getNbContentsForCounty(queries.county).then((data) => ({ text: "success", data }));
+    return getNbContentsForCounty(queries).then((data) => ({ text: "success", data }));
   }
 
   @Security({
@@ -315,7 +314,7 @@ export class DispositifController extends Controller {
   })
   @Get("/{id}/has-text-changes")
   public async getHasChanges(@Path() id: string): ResponseWithData<GetDispositifsHasTextChanges> {
-    return getHasTextChanges(id).then(res => ({ text: "success", data: res }));
+    return getHasTextChanges(id).then((res) => ({ text: "success", data: res }));
   }
 
   @Security({
@@ -346,7 +345,11 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Get("/{id}")
-  public async getById(@Path() id: string, @Query() locale: Languages, @Request() request: express.Request): ResponseWithData<GetDispositifResponse> {
+  public async getById(
+    @Path() id: string,
+    @Query() locale: Languages,
+    @Request() request: express.Request,
+  ): ResponseWithData<GetDispositifResponse> {
     return getContentById(id, locale, request.user);
   }
 }
