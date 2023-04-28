@@ -47,6 +47,7 @@ export enum MobileFrenchLevel {
   "Je parle un peu" = "Je parle un peu",
   "Je parle bien" = "Je parle bien",
   "Je parle couramment" = "Je parle couramment",
+  "Tous les niveaux" = "Tous les niveaux",
 }
 export interface GetContentsForAppRequest {
   locale: Languages;
@@ -70,6 +71,10 @@ export interface ContentForApp {
   nbVuesMobile: number;
   typeContenu: ContentType;
   sponsorUrl: string;
+  /**
+   * The actual locale returned by the server
+   */
+  locale: Languages;
 }
 
 export type GetContentsForAppResponse = {
@@ -178,7 +183,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest { }
+export interface UpdateDispositifRequest extends DispositifRequest {}
 
 /**
  * @url PATCH /dispositifs/{id}
@@ -302,12 +307,12 @@ export interface GetNbContentsForCountyResponse {
   /**
    * Nombre total de contenus
    */
-  nbGlobalContent: number;
+  nbGlobalContent: number | null;
 
   /**
    * Nombre de contenus traduits
    */
-  nbLocalizedContent: number;
+  nbLocalizedContent: number | null;
 }
 
 type Author = {
@@ -319,7 +324,6 @@ type Author = {
  * @url GET /dispositifs/{id}/has-text-changes
  */
 export type GetDispositifsHasTextChanges = boolean;
-
 
 /**
  * @url GET /dispositifs/all
