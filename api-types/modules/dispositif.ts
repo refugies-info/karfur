@@ -294,12 +294,12 @@ export interface GetNbContentsForCountyResponse {
   /**
    * Nombre total de contenus
    */
-  nbGlobalContent: number;
+  nbGlobalContent: number | null;
 
   /**
    * Nombre de contenus traduits
    */
-  nbLocalizedContent: number;
+  nbLocalizedContent: number | null;
 }
 
 type Author = {
