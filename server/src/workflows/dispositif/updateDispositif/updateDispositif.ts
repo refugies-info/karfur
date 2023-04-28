@@ -1,12 +1,13 @@
 import logger from "../../../logger";
 import { cloneDispositifInDrafts, getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { Response } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { Dispositif, User } from "../../../typegoose";
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
-import { ContentType, DispositifStatus, UpdateDispositifRequest } from "@refugies-info/api-types";
+import { ContentType, DispositifStatus, UpdateDispositifRequest, UpdateDispositifResponse } from "@refugies-info/api-types";
 import { buildNewDispositif, isDispositifComplete } from "../../../modules/dispositif/dispositif.service";
 import { log } from "./log";
+import { logContact } from "../../../modules/dispositif/log";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
   // content
@@ -31,7 +32,7 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
   };
 };
 
-export const updateDispositif = async (id: string, body: UpdateDispositifRequest, user: User): Response => {
+export const updateDispositif = async (id: string, body: UpdateDispositifRequest, user: User): ResponseWithData<UpdateDispositifResponse> => {
   logger.info("[updateDispositif] received", { id, body, user: user._id });
 
   const draftOldDispositif = await getDraftDispositifById(
@@ -58,9 +59,14 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     ...(await buildNewDispositif(body, user._id.toString())),
   };
 
+  if (body.contact) {
+    await logContact(oldDispositif._id, user._id, body.contact)
+  }
+
   // if published and not draft version yet, create draft version
   let newDispositif: Dispositif | null = null;
-  if (oldDispositif.status === DispositifStatus.ACTIVE && !draftOldDispositif) {
+  const needsDraftVersion = oldDispositif.status === DispositifStatus.ACTIVE && !draftOldDispositif;
+  if (needsDraftVersion) {
     newDispositif = await cloneDispositifInDrafts(id, {
       ...editedDispositif,
       status: DispositifStatus.DRAFT
@@ -79,7 +85,17 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     }
   }
 
-  if (newDispositif) await log(newDispositif, oldDispositif, user._id);
+  if (!newDispositif) throw new Error("dispositif not found");
+  await log(newDispositif, oldDispositif, user._id);
 
-  return { text: "success" };
+  return {
+    text: "success",
+    data: {
+      id: newDispositif._id,
+      mainSponsor: newDispositif.mainSponsor as string || null,
+      typeContenu: newDispositif.typeContenu,
+      status: newDispositif.status,
+      hasDraftVersion: needsDraftVersion || !!draftOldDispositif
+    }
+  };
 };

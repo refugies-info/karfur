@@ -145,7 +145,7 @@ const LeftSidebarEdition = (props: Props) => {
       <p className={styles.title}>À faire en dernier</p>
 
       <div id="step-mainSponsor"></div>
-      {values.mainSponsor !== undefined ? (
+      {!!values.mainSponsor ? (
         <CardMainSponsor
           dataMainSponsor={values.mainSponsor}
           color={color}

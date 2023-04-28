@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ThanksModalImage from "assets/dispositif/thanks-modal-image.svg";
 import styles from "./ThanksMessage.module.scss";
 
-interface Props {}
+interface Props {
+  publish: () => void;
+}
 
-const ThanksMessage = (props: Props) => {
+const ThanksMessage = ({ publish }: Props) => {
+  const [isSaving, setIsSaving] = useState(false);
+  useEffect(() => {
+    if (!isSaving) {
+      setIsSaving(true);
+      publish();
+    }
+  }, [publish, isSaving]);
+
   return (
     <div>
       <p>

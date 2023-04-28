@@ -63,7 +63,8 @@ export const getTitle = (step: number, hasStructure: boolean, isEndModal: boolea
 export const isNextButtonDisabled = (
   step: number,
   hasStructure: boolean,
-  contact: ContactInfos,
+  authorContact: ContactInfos,
+  structureContact: ContactInfos,
   mainSponsor: Sponsor,
   memberOfStructure: boolean | null,
   selectedStructure: Id | null,
@@ -80,8 +81,10 @@ export const isNextButtonDisabled = (
 
   if (isCreateForm) {
     return !mainSponsor.name || !mainSponsor.link || !mainSponsor.logo.secure_url;
-  } else if (isAuthorContactForm || (isStructureContactForm && !unknownContact)) {
-    return !contact.name || !contact.email || !contact.phone;
+  } else if (isAuthorContactForm) {
+    return !authorContact.name || !authorContact.email || !authorContact.phone;
+  } else if (isStructureContactForm && !unknownContact) {
+    return !structureContact.name;
   } else if (isMemberOfStructureForm) {
     return memberOfStructure === null;
   } else if (isChooseStructureForm) {

@@ -11,4 +11,17 @@ export const allStructuresReducer = createReducer<
   AllStructuresActions
 >(initialAllStructuresState, {
   SET_ALL_STRUCTURES: (_, action) => action.payload,
+  ADD_TO_ALL_STRUCTURES: (state, action) => {
+    return [...state, {
+      _id: "",
+      nom: "",
+      nbMembres: 0,
+      createur: null,
+      responsable: null,
+      membres: [],
+      dispositifsIds: [],
+      nbFiches: 0,
+      ...action.payload
+    }]
+  }
 });

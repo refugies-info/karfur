@@ -115,7 +115,10 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
       <DeleteContentModal
         show={showDeleteModal}
         toggle={() => setShowDeleteModal((o) => !o)}
-        onValidate={() => setValue("mainSponsor", undefined)}
+        onValidate={() => {
+          setValue("mainSponsor", null);
+          setShowDeleteModal(false);
+        }}
       />
     </>
   );

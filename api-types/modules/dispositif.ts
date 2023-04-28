@@ -138,19 +138,27 @@ interface DispositifRequest {
   why?: { [key: string]: InfoSection };
   how?: { [key: string]: InfoSection };
   next?: { [key: string]: InfoSection };
-  mainSponsor?: string | Sponsor;
+  mainSponsor?: string | Sponsor | null;
   contact?: {
     name: string;
-    email: string;
-    phone: string;
-    comments: string;
-    isStructureContact: boolean;
+    email?: string;
+    phone?: string;
+    comments?: string;
+    isMember: boolean;
+    isMe: boolean;
   };
   theme?: string;
   secondaryThemes?: string[];
   sponsors?: Sponsor[];
   metadatas?: Metadatas;
   map?: Poi[];
+}
+interface DispositifResponse {
+  id: Id;
+  mainSponsor: string | null;
+  typeContenu: ContentType;
+  status: DispositifStatus;
+  hasDraftVersion: boolean;
 }
 
 /**
@@ -171,6 +179,11 @@ export interface ReadSuggestionDispositifRequest {
  * @url PATCH /dispositifs/{id}
  */
 export interface UpdateDispositifRequest extends DispositifRequest { }
+
+/**
+ * @url PATCH /dispositifs/{id}
+ */
+export interface UpdateDispositifResponse extends DispositifResponse { }
 
 /**
  * @url PATCH /dispositifs/{id}/publish
@@ -346,9 +359,7 @@ export interface GetAllDispositifsResponse {
 /**
  * @url POST /dispositifs
  */
-export interface PostDispositifsResponse {
-  id: Id;
-}
+export interface PostDispositifsResponse extends DispositifResponse { }
 
 /**
  * @url GET /dispositifs

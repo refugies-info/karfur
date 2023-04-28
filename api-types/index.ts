@@ -45,6 +45,7 @@ import {
   StructureReceiveDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
+  UpdateDispositifResponse,
   ViewsType,
 } from "./modules/dispositif";
 
@@ -168,6 +169,7 @@ export type {
   StructureReceiveDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
+  UpdateDispositifResponse,
 
   // images
   PostImageResponse,

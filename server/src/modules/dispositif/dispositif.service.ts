@@ -238,7 +238,9 @@ export const buildNewDispositif = async (
   userId: string,
 ): Promise<Partial<Dispositif>> => {
   const editedDispositif: Partial<Dispositif> = {};
-  if (formContent.mainSponsor) {
+  if (formContent.mainSponsor === null) {
+    editedDispositif.mainSponsor = null;
+  } else if (formContent.mainSponsor) {
     if (typeof formContent.mainSponsor === "string") {
       // existing structure
       editedDispositif.mainSponsor = new ObjectId(formContent.mainSponsor);
@@ -255,9 +257,6 @@ export const buildNewDispositif = async (
       editedDispositif.mainSponsor = newStructure._id;
       await log(newStructure._id, userId);
     }
-  }
-  if (formContent.contact) {
-    // TODO save contact infos somewhere or in new structure. See createStructure.ts
   }
   if (formContent.theme) editedDispositif.theme = new ObjectId(formContent.theme);
   if (formContent.secondaryThemes)

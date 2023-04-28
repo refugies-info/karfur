@@ -1,7 +1,7 @@
 import logger from "../../../logger";
 import { createDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
-import { Dispositif, ObjectId } from "../../../typegoose";
+import { Dispositif, ObjectId, UserId } from "../../../typegoose";
 import {
   ContentType,
   CreateDispositifRequest,
@@ -12,6 +12,7 @@ import {
 import { buildNewDispositif } from "../../../modules/dispositif/dispositif.service";
 import { getRoleByName } from "../../../modules/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
+import { logContact } from "../../../modules/dispositif/log";
 
 export const createDispositif = async (
   body: CreateDispositifRequest,
@@ -44,8 +45,21 @@ export const createDispositif = async (
 
   const dispositif = await createDispositifInDB(newDispositif);
 
+  if (body.contact) {
+    await logContact(dispositif._id, userId as UserId, body.contact)
+  }
+
   const contribRole = await getRoleByName("Contrib");
   await addRoleAndContribToUser(userId, contribRole._id, dispositif._id);
 
-  return { text: "success", data: { id: dispositif._id } };
+  return {
+    text: "success",
+    data: {
+      id: dispositif._id,
+      mainSponsor: dispositif.mainSponsor as string || null,
+      typeContenu: dispositif.typeContenu,
+      status: dispositif.status,
+      hasDraftVersion: false
+    }
+  };
 };
