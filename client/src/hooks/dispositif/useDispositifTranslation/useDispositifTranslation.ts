@@ -117,7 +117,7 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
       }
       if (value.text !== undefined) {
         //@ts-ignore
-        setValue(`translated.${section}`, value.text) // TODO: type section?
+        setValue(`translated.${section}`, value.text)
       }
     },
     [data, setValue],
@@ -128,7 +128,7 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
       const toFinish = [...(data.toFinish || [])].filter(t => t !== section)
       setValue("toFinish", toFinish);
       //@ts-ignore
-      setValue(`translated.${section}`, undefined) // TODO: type section?
+      setValue(`translated.${section}`, undefined)
     },
     [data, setValue],
   );

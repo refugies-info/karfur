@@ -8,6 +8,7 @@ import { DispositifId } from "../../typegoose";
 import { ContentType, UserStatus } from "@refugies-info/api-types";
 import { RefactorTodoError } from "../../errors";
 
+// TODO: refactor
 export const sendPublishedTradMailToTraductors = async (
   traductorIdsList: string[],
   locale: string,

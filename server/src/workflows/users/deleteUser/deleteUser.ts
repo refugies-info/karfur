@@ -21,7 +21,6 @@ export const deleteUser = async (id: string): Response => {
     picture: null,
     roles: [],
     authy_id: "",
-    cookies: null,
     reset_password_token: "",
     structures: [],
     status: UserStatus.DELETED,

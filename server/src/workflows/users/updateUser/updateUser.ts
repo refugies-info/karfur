@@ -6,13 +6,21 @@ import { requestSMSLogin, verifyCode } from "../../../modules/users/login2FA";
 import formatPhoneNumber from "../../../libs/formatPhoneNumber";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
 import { log } from "./log";
-import { User } from "../../../typegoose";
+import { ObjectId, User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
 import { Response } from "../../../types/interface";
 import { UpdateUserRequest } from "@refugies-info/api-types";
 
 export const updateUser = async (id: string, body: UpdateUserRequest, userReq: User): Response => {
-  const { user, action } = body;
+  const { action } = body;
+  const user: Partial<User> = {
+    email: body.user.email,
+    phone: body.user.phone,
+    username: body.user.username,
+    picture: body.user.picture,
+    adminComments: body.user.adminComments,
+    selectedLanguages: body.user.selectedLanguages.map(r => new ObjectId(r)),
+  }
   logger.info("[updateUser] call received", { user, action });
   const userFromDB = await getUserById(id, { username: 1, phone: 1, email: 1, roles: 1 });
 
@@ -35,11 +43,11 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
     );
 
     // add role admin
-    if (user.roles.includes("Admin")) {
+    if (body.user.roles.includes("Admin")) {
       newRoles.push(adminRole._id);
     }
     // add role expert
-    if (user.roles.includes("ExpertTrad")) {
+    if (body.user.roles.includes("ExpertTrad")) {
       newRoles.push(expertRole._id);
     }
 
@@ -62,7 +70,6 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
       throw new UnauthorizedError("Token invalide");
     }
     try {
-      delete user.roles; // for security purposes, do not use roles sent by the client
       if (user.selectedLanguages) {
         const traducteurRole = await getRoleByName("Trad");
         const actualRoles = userFromDB.roles;
@@ -78,9 +85,8 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
       } else if (user.phone) {
         // update phone number with 2FA
         try {
-          if (!user.code) await requestSMSLogin(user.phone);
-          await verifyCode(user.phone, user.code);
-          delete user.code;
+          if (!body.user.code) await requestSMSLogin(user.phone);
+          await verifyCode(user.phone, body.user.code);
           await updateUserInDB(id, user);
         } catch (e) {
           loginExceptionsManager(e);
@@ -99,7 +105,7 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
       throw error;
     }
   }
-  await log(id, user, userFromDB, userReq._id);
+  await log(id, body.user, userFromDB, userReq._id);
 
   return { text: "success" };
 };

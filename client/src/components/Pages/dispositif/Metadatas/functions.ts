@@ -91,7 +91,6 @@ export const getLocationLink = (department: string): LinkProps["href"] => {
 }
 export const getAgeLink = (age: Metadatas["age"]): LinkProps["href"] => {
   const options: AgeOptions[] = [];
-  // TODO: validate rules
   if (age) {
     if (age.ages[0] < 18) options.push("-18");
     if ((age.ages[0] > 18 && age.ages[0] < 25) || (age.ages[1] > 18)) options.push("18-25");
