@@ -1,24 +1,23 @@
-import { DispositifStatus, GetNbContentsForCountyResponse } from "@refugies-info/api-types";
+import { DispositifStatus, GetContentsForAppRequest, GetNbContentsForCountyResponse } from "@refugies-info/api-types";
 import { getCountDispositifs } from "../../../modules/dispositif/dispositif.repository";
+import getFilteredContentsForApp from "../getFilteredContentsForApp";
 
-const getNbContentsForCounty = (county: string): Promise<GetNbContentsForCountyResponse> =>
+const getNbContentsForCounty = (request: GetContentsForAppRequest): Promise<GetNbContentsForCountyResponse> =>
   Promise.all([
+    getFilteredContentsForApp(request).then((dispositifs) => dispositifs.length),
     getCountDispositifs({
       $and: [
         {
+          webOnly: false,
           status: DispositifStatus.ACTIVE,
         },
-        { "metadatas.location": { $regex: ` - ${county}$` } },
-      ],
-    }),
-    getCountDispositifs({
-      $and: [
         {
-          status: DispositifStatus.ACTIVE,
+          $or: [
+            { "metadatas.location": { $exists: false } },
+            { "metadatas.location": { $eq: "france" } },
+            { "metadatas.location": { $eq: "online" } },
+          ],
         },
-        { $or: [{ "metadatas.location": { $exists: false } }, { "metadatas.location": { $eq: "All" } }] },
-        // TODO {$or: [{ "metadatas.location": { $eq: "france" } },
-        // TODO { "metadatas.location": { $eq: "online" } }]}
       ],
     }),
   ]).then(([nbLocalizedContent, nbGlobalContent]) => ({
