@@ -1,11 +1,11 @@
 import { DispositifStatus, PublishDispositifRequest } from "@refugies-info/api-types";
 import logger from "../../../logger";
-import { getDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
+import { getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { Response } from "../../../types/interface";
 import { Dispositif, User } from "../../../typegoose";
 import { InvalidRequestError } from "../../../errors";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
-import { isDispositifComplete } from "../../../modules/dispositif/dispositif.service";
+import { publishDispositif as publishDispositifService, isDispositifComplete } from "../../../modules/dispositif/dispositif.service";
 import { log } from "./log";
 
 export const publishDispositif = async (id: string, body: PublishDispositifRequest, user: User): Response => {
@@ -13,21 +13,34 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
 
   const oldDispositif = await getDispositifById(
     id,
-    { status: 1, creatorId: 1, theme: 1, mainSponsor: 1, translations: 1, typeContenu: 1, metadatas: 1 },
+    { status: 1, creatorId: 1, theme: 1, mainSponsor: 1, translations: 1, typeContenu: 1, metadatas: 1, hasDraftVersion: 1 },
     "mainSponsor",
   );
 
-  if (!isDispositifComplete(oldDispositif)) {
+  let draftDispositif = null;
+  if (oldDispositif.hasDraftVersion) {
+    draftDispositif = await getDraftDispositifById(
+      id,
+      { status: 1, creatorId: 1, theme: 1, mainSponsor: 1, translations: 1, typeContenu: 1, metadatas: 1, hasDraftVersion: 1 },
+      "mainSponsor",
+    );
+  }
+
+  const dispositif = draftDispositif || oldDispositif;
+  if (!isDispositifComplete(dispositif)) {
     throw new InvalidRequestError("The content is incomplete, it cannot be published");
   }
 
   const editedDispositif: Partial<Dispositif> = {};
 
-  if (oldDispositif.status !== DispositifStatus.DRAFT) {
+  if (dispositif.status !== DispositifStatus.DRAFT) {
     throw new InvalidRequestError("The content cannot be published");
   }
 
-  if (oldDispositif.getMainSponsor()?.membres.find((membre) => membre.userId === user._id)) {
+  if (user.isAdmin()) {
+    // admin = publish
+    await publishDispositifService(id, user._id, body.keepTranslations);
+  } else if (dispositif.getMainSponsor()?.membres.find((membre) => membre.userId === user._id)) {
     // dans la structure
     editedDispositif.status = DispositifStatus.WAITING_ADMIN;
   } else {
@@ -39,14 +52,6 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
   if (editedDispositif.status) {
     const newDispositif = await updateDispositifInDB(id, editedDispositif);
     await log(newDispositif, oldDispositif, user._id);
-  }
-
-  if (user.isAdmin() && body.keepTranslations) {
-    // keep translations
-    // do nothing
-  } else {
-    // translate
-    // TODO: revalidate translations if content changed
   }
 
   return { text: "success" };

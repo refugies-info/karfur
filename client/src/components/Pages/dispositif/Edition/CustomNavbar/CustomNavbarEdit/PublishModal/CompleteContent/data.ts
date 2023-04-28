@@ -33,5 +33,11 @@ export const help: Record<string, Content[]> = {
       title: "Faut-il faire traduire les modifications ?",
       intro: "En tant qu’administrateur de Réfugiés.info, tu peux choisir de ne pas faire traduire tes modifications. Fais-le seulement pour des fautes d’orthographe ou de syntaxe, mais pas si tu ajoutes des informations ou si tu modifies le sens des phrases !"
     }
+  ],
+  nochange: [
+    {
+      title: "Tout est prêt !",
+      intro: "Les changements que tu as effectué n'ont pas impacté les traductions. Publier tes modifications ne déclenchera pas un nouveau processus de traduction."
+    }
   ]
 }

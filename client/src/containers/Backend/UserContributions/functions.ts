@@ -58,7 +58,8 @@ export const formatContributions = (
         isAuthorizedToDelete: isResponsableOfStructure,
         mainSponsor: {
           nom: userStructure?.nom || ""
-        }
+        },
+        hasDraftVersion: false
       });
     });
 

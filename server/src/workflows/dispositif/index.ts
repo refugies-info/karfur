@@ -13,6 +13,7 @@ export { getContentsForApp } from "./getContentsForApp";
 export { getCountDispositifs } from "./getCountDispositifs";
 export { getDispositifs } from "./getDispositifs";
 export { getDispositifsWithTranslationAvancement } from "./getDispositifsWithTranslationAvancement";
+export { getHasTextChanges } from "./getHasTextChanges";
 export { default as getNbContentsForCounty } from "./getNbContentsForCounty";
 export { getNbDispositifsByRegion } from "./getNbDispositifsByRegion";
 export { getStatistics } from "./getStatistics";

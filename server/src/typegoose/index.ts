@@ -19,7 +19,16 @@ import { Widget, WidgetId } from "./Widget";
 
 export const AdminOptionsModel = getModelForClass(AdminOptions);
 export const AppUserModel = getModelForClass(AppUser);
-export const DispositifModel = getModelForClass(Dispositif);
+export const DispositifModel = getModelForClass(Dispositif, {
+  options: {
+    customName: "dispositifs",
+  }
+});
+export const DispositifDraftModel = getModelForClass(Dispositif, {
+  options: {
+    customName: "dispositifs_draft",
+  }
+});
 export const ErrorModel = getModelForClass(Error);
 export const ImageModel = getModelForClass(Image);
 export const IndicatorModel = getModelForClass(Indicator);

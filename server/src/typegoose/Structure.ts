@@ -54,7 +54,7 @@ export class Structure extends Base {
   public contact?: string;
   @prop({ required: true, ref: () => User })
   public createur!: Ref<User>;
-  @prop({ ref: () => Dispositif })
+  @prop({ ref: "dispositifs" }) // fix for https://typegoose.github.io/typegoose/docs/guides/advanced/reference-other-classes#common-problems
   public dispositifsAssocies?: Ref<Dispositif>[];
   @prop()
   public link?: string;

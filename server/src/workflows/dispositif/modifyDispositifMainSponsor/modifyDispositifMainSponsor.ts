@@ -10,7 +10,7 @@ import { DispositifStatus, Id, MainSponsorRequest } from "@refugies-info/api-typ
 export const modifyDispositifMainSponsor = async (id: string, body: MainSponsorRequest, userId: Id): Response => {
   logger.info("[modifyDispositifMainSponsor]", body);
 
-  const oldDispositif = await getDispositifById(id, { mainSponsor: 1, status: 1 });
+  const oldDispositif = await getDispositifById(id, { mainSponsor: 1, status: 1, hasDraftVersion: 1 });
   if (!oldDispositif) throw new NotFoundError("Dispositif not found");
 
   const modifiedDispositif: Partial<Dispositif> = {
@@ -19,7 +19,7 @@ export const modifyDispositifMainSponsor = async (id: string, body: MainSponsorR
   if (oldDispositif.status === DispositifStatus.NO_STRUCTURE)
     modifiedDispositif.status = DispositifStatus.WAITING_STRUCTURE;
 
-  await updateDispositifInDB(id, modifiedDispositif);
+  await updateDispositifInDB(id, modifiedDispositif, !!oldDispositif.hasDraftVersion);
 
   await updateAssociatedDispositifsInStructure(id, body.sponsorId);
 

@@ -65,8 +65,6 @@ const getFrequencyAmountDetails = (data, id) => {
       return "minimum";
     case "Maximum":
       return "maximum";
-    case "Entre":
-      return "between";
     default:
       console.log(id, "getFrequencyAmountDetails - not found: ", data);
       return;
@@ -74,7 +72,7 @@ const getFrequencyAmountDetails = (data, id) => {
 };
 const getFrequencyHours = (data) => {
   if (data === "") return null;
-  return data.split(" - ").map((i) => parseInt(i));
+  return parseInt(data);
 };
 const getFrequencyTimeUnit = (data, id) => {
   if (data === "") return null;

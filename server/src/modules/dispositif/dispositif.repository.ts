@@ -3,7 +3,7 @@ import { omit, pick } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
 import { Merci, Suggestion } from "../../typegoose/Dispositif";
-import { Dispositif, DispositifId, DispositifModel, Need, Theme, UserId } from "../../typegoose";
+import { Dispositif, DispositifDraftModel, DispositifId, DispositifModel, Need, Theme, UserId } from "../../typegoose";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
@@ -108,11 +108,20 @@ export const getSimpleDispositifs = async (
 export const updateDispositifInDB = async (
   dispositifId: DispositifId,
   modifiedDispositif: Partial<Dispositif> | { $pull: { [x: string]: { suggestionId: string } } } | { $push: any },
-): Promise<Dispositif> =>
-  DispositifModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
-    upsert: true,
-    new: true,
-  }).populate("theme secondaryThemes");
+  updateDraft: boolean = false
+): Promise<Dispositif> => {
+  return updateDraft ?
+    DispositifDraftModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
+      upsert: true,
+      new: true,
+    }).populate("theme secondaryThemes")
+    : DispositifModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
+      upsert: true,
+      new: true,
+    }).populate("theme secondaryThemes");
+}
+
+export const deleteDraftDispositif = async (id: DispositifId) => DispositifDraftModel.deleteOne({ _id: id });
 
 export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: Merci): Promise<Dispositif> =>
   DispositifModel.findOneAndUpdate(
@@ -213,6 +222,12 @@ export const getDispositifById = async (
   neededFields: DispositifFieldsRequest = {},
   populate: any = "",
 ) => DispositifModel.findById(id, neededFields).populate(populate);
+
+export const getDraftDispositifById = async (
+  id: DispositifId,
+  neededFields: DispositifFieldsRequest = {},
+  populate: any = "",
+) => DispositifDraftModel.findById(id, neededFields).populate(populate);
 
 export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) =>
   await DispositifModel.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate<{
@@ -317,3 +332,11 @@ export const getCountDispositifs = async (query: FilterQuery<Dispositif>) => Dis
 export const deleteNeedFromDispositifs = async (needId: string) => {
   return DispositifModel.updateMany({ needs: needId }, { $pull: { needs: needId } });
 };
+
+export const cloneDispositifInDrafts = async (
+  id: DispositifId,
+  newData: Partial<Dispositif>
+) => {
+  const dispositif = await DispositifModel.findById(id).lean();
+  return DispositifDraftModel.create({ ...dispositif, ...newData });
+}

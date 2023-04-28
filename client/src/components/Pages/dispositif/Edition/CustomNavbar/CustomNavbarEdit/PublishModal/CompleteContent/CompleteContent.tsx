@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { useWatch } from "react-hook-form";
+import { useAsyncFn } from "react-use";
 import Image from "next/image";
 import { DispositifStatus } from "api-types";
 import { userSelector } from "services/User/user.selectors";
-import { isStatus } from "lib/dispositif";
 import Button from "components/UI/Button";
 import ChoiceButton from "components/Pages/dispositif/Edition/ChoiceButton";
 import StepBar from "../../../StepBar";
@@ -15,6 +16,8 @@ import { Content } from "./data";
 import PublishImage from "assets/dispositif/publish-image.svg";
 import YesIcon from "assets/dispositif/yes-icon.svg";
 import NoIcon from "assets/dispositif/no-icon.svg";
+import API from "utils/API";
+import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import styles from "./CompleteContent.module.scss";
 
 interface Props {
@@ -28,22 +31,41 @@ const CompleteContent = (props: Props) => {
   const { status, onPublish, toggle, setTitle } = props;
   const user = useSelector(userSelector);
   const [step, setStep] = useState<0 | 1>(0);
-  const [textContent, setTextContent] = useState<Content[]>(getTextContent(status));
   const [keepTranslations, setKeepTranslations] = useState(false);
+  const dispositif = useSelector(selectedDispositifSelector);
+  const [textContent, setTextContent] = useState<Content[]>(getTextContent(status, !!dispositif?.hasDraftVersion));
+  const values = useWatch();
+
+  const [hasChanges, setHasChanges] = useState<boolean | null>(null);
+  const [{ loading }, getHasChanges] = useAsyncFn(() =>
+    dispositif?._id && user.admin
+      ? API.getDispositifHasTextChanges(dispositif?._id.toString()).then((res) => res.data.data)
+      : Promise.resolve(false),
+  );
+
+  // when form changes, reset hasChange
+  useEffect(() => {
+    setHasChanges(null);
+  }, [values]);
 
   useEffect(() => {
-    const textContent = getTextContent(status);
-    setTitle(textContent[step].title); // TODO: if admin and no changes -> Tout est prêt !
-    setTextContent(textContent); // TODO: if admin and no changes -> Les changements que tu as effectué n'ont pas impacté les traductions. Publier tes modifications ne déclenchera pas un nouveau processus de traduction.
-  }, [status, step, setTitle]);
+    if (!loading && hasChanges === null) getHasChanges().then((res) => setHasChanges(res));
+  }, [hasChanges, loading, getHasChanges]);
+
+  useEffect(() => {
+    if (hasChanges !== null) {
+      const textContent = getTextContent(status, !!dispositif?.hasDraftVersion, hasChanges);
+      setTitle(textContent[step].title);
+      setTextContent(textContent);
+    }
+  }, [status, step, setTitle, hasChanges, dispositif]);
 
   const content = useMemo(() => {
     // status === ACTIVE
-    if (isStatus(status, DispositifStatus.ACTIVE)) {
-      // role === admin
+    if (dispositif?.hasDraftVersion) {
+      // role === admin and changes
       if (user.admin) {
-        // TODO: only if content changes (new API endpoint?)
-        return (
+        return hasChanges ? (
           <>
             <ChoiceButton
               text="Traduire les modifications"
@@ -70,23 +92,23 @@ const CompleteContent = (props: Props) => {
               </Button>
             </div>
           </>
-        );
-
-        // TODO : if admin and no changes, new content (cf https://app.asana.com/0/1200625325783854/1204226726560920/f)
-        /* return (
+        ) : (
           <>
             <StepBar
               total={TOTAL_STEPS}
               progress={TOTAL_STEPS}
               text={`${TOTAL_STEPS} étapes complétées sur ${TOTAL_STEPS}`}
             />
+            <div className="text-center mb-8 mt-6">
+              <Image src={PublishImage} width={345} height={240} alt="" />
+            </div>
             <div className="text-end">
               <Button onClick={() => onPublish(false).then(toggle)} icon="arrow-forward-outline" iconPlacement="end">
                 Publier
               </Button>
             </div>
           </>
-        ); */
+        );
       }
       // role === user
       return (
@@ -175,12 +197,16 @@ const CompleteContent = (props: Props) => {
         </div>
       </>
     );
-  }, [status, step, onPublish, toggle, user.admin, keepTranslations]);
+  }, [step, onPublish, toggle, user.admin, keepTranslations, hasChanges, dispositif]);
 
   return (
     <div>
-      <p>{textContent[step].intro}</p>
-      {content}
+      {hasChanges !== null && (
+        <>
+          <p>{textContent[step].intro}</p>
+          {content}
+        </>
+      )}
     </div>
   );
 };

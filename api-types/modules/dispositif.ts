@@ -220,6 +220,7 @@ export type GetDispositifResponse = {
   date: Date;
   lastModificationDate?: Date;
   externalLink?: string;
+  hasDraftVersion: boolean;
 };
 
 /**
@@ -236,6 +237,7 @@ export interface GetUserContributionsResponse {
   nbVues: number;
   nbMercis: number;
   status: DispositifStatus;
+  hasDraftVersion: boolean;
 }
 
 /**
@@ -301,6 +303,12 @@ type Author = {
 };
 
 /**
+ * @url GET /dispositifs/{id}/has-text-changes
+ */
+export type GetDispositifsHasTextChanges = boolean;
+
+
+/**
  * @url GET /dispositifs/all
  */
 export interface GetAllDispositifsResponse {
@@ -332,6 +340,7 @@ export interface GetAllDispositifsResponse {
   themesSelectedByAuthor: boolean;
   webOnly: boolean;
   creatorId: SimpleUser;
+  hasDraftVersion: boolean;
 }
 
 /**

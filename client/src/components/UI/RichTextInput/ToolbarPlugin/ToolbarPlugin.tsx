@@ -33,6 +33,7 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
+import { cls } from "lib/classname";
 import { $isCalloutNode, INSERT_CALLOUT_COMMAND, REMOVE_CALLOUT_COMMAND } from "../plugins/CalloutPlugin";
 import { getSelectedNode } from "../lib";
 import ToolbarButton from "./ToolbarButton";
@@ -228,7 +229,7 @@ export default function ToolbarPlugin() {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={cls(styles.container, "toolbar-plugin-container")}>
         <ToolbarButton
           disabled={!canUndo || !isEditable}
           onClick={() => activeEditor.dispatchCommand(UNDO_COMMAND, undefined)}

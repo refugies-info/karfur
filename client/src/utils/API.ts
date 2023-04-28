@@ -28,6 +28,7 @@ import {
   GetCountDispositifsResponse,
   GetDefaultTraductionResponse,
   GetDispositifResponse,
+  GetDispositifsHasTextChanges,
   GetDispositifsRequest,
   GetDispositifsResponse,
   GetDispositifsWithTranslationAvancementResponse,
@@ -270,6 +271,10 @@ const API = {
   addDispositifViews: (id: string, body: AddViewsRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.post(`/dispositifs/${id}/view`, body, { headers });
+  },
+  getDispositifHasTextChanges: (id: string): Promise<APIResponse<GetDispositifsHasTextChanges>> => {
+    const headers = getHeaders();
+    return instance.get(`/dispositifs/${id}/has-text-changes`, { headers });
   },
   getDispositifsStatistics: (query: GetStatisticsRequest): Promise<APIResponse<GetStatisticsResponse>> => {
     const headers = getHeaders();
