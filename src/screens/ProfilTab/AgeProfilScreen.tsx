@@ -11,6 +11,7 @@ import {
   removeUserAgeActionCreator,
 } from "../../services/redux/User/user.actions";
 import { FilterButton, Page, RadioGroup, Title } from "../../components";
+import { GetContentsForAppRequest } from "@refugies-info/api-types";
 
 export const AgeProfilScreen = ({
   navigation,
@@ -32,7 +33,7 @@ export const AgeProfilScreen = ({
     return navigation.goBack();
   };
 
-  const onValidateAge = (age: string) => {
+  const onValidateAge = (age: GetContentsForAppRequest["age"]) => {
     if (selectedAge === age) return;
     dispatch(saveUserAgeActionCreator({ age, shouldFetchContents: true }));
     return navigation.goBack();

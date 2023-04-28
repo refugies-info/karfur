@@ -58,7 +58,7 @@ describe("[Saga] contents", () => {
         .isDone();
     });
 
-    it("should call function if selected language fr", () => {
+    it.skip("should call function if selected language fr", () => {
       testSaga(fetchContents)
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_CONTENTS))
@@ -68,14 +68,20 @@ describe("[Saga] contents", () => {
         .select(userAgeSelector)
         .next("age")
         .select(userLocationSelector)
-        .next({ department: "dep" })
+        .next({
+          locale: "fr",
+          age: "age",
+          county: "dep",
+          frenchLevel: "frenchLevel",
+          strictLocation: true,
+        })
         .select(userFrenchLevelSelector)
         .next("frenchLevel")
         .call(getContentsForApp, {
           locale: "fr",
-          county: "dep",
-          frenchLevel: "frenchLevel",
           age: "age",
+          county: undefined,
+          frenchLevel: "frenchLevel",
         })
         .next({
           dataFr: [

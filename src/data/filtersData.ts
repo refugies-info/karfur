@@ -1,6 +1,13 @@
-import { MobileFrenchLevel, frenchLevelType } from "@refugies-info/api-types";
+import {
+  GetContentsForAppRequest,
+  MobileFrenchLevel,
+  frenchLevelType,
+} from "@refugies-info/api-types";
 
-export const ageFilters = [
+export const ageFilters: {
+  name: string;
+  key: GetContentsForAppRequest["age"];
+}[] = [
   { name: "age_10_17", key: "0 à 17 ans" },
   { name: "age_18_25", key: "18 à 25 ans" },
   { name: "age_26_100", key: "26 ans et plus" },

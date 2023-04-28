@@ -174,6 +174,7 @@ export function* saveUserAge(
   try {
     const { age, shouldFetchContents } = action.payload;
     logger.info("[saveUserAge] saga", { age });
+    // @ts-ignore
     yield call(saveItemInAsyncStorage, "AGE", age);
     yield put(setUserAgeActionCreator(age));
     yield call(logEventInFirebase, FirebaseEvent.VALIDATE_AGE, {

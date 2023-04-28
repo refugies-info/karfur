@@ -145,29 +145,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -176,21 +156,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -502,29 +470,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -532,12 +480,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                           y="0"
                         />
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -546,12 +488,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 2a8.19 8.19 0 0 1 1.79.21 2.61 2.61 0 0 1-.78 1c-.22.17-.46.31-.7.46a4.56 4.56 0 0 0-1.85 1.67 6.49 6.49 0 0 0-.62 3.3c0 1.36 0 2.16-.95 2.87-1.37 1.07-3.46.47-4.76-.07A8.33 8.33 0 0 1 4 12a8 8 0 0 1 8-8zM5 15.8a8.42 8.42 0 0 0 2 .27 5 5 0 0 0 3.14-1c1.71-1.34 1.71-3.06 1.71-4.44a4.76 4.76 0 0 1 .37-2.34 2.86 2.86 0 0 1 1.12-.91 9.75 9.75 0 0 0 .92-.61 4.55 4.55 0 0 0 1.4-1.87A8 8 0 0 1 19 8.12c-1.43.2-3.46.67-3.86 2.53A7 7 0 0 0 15 12a2.93 2.93 0 0 1-.29 1.47l-.1.17c-.65 1.08-1.38 2.31-.39 4 .12.21.25.41.38.61a2.29 2.29 0 0 1 .52 1.08A7.89 7.89 0 0 1 12 20a8 8 0 0 1-7-4.2zm11.93 2.52a6.79 6.79 0 0 0-.63-1.14c-.11-.16-.22-.32-.32-.49-.39-.68-.25-1 .38-2l.1-.17a4.77 4.77 0 0 0 .54-2.43 5.42 5.42 0 0 1 .09-1c.16-.73 1.71-.93 2.67-1a7.94 7.94 0 0 1-2.86 8.28z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -662,29 +598,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -703,12 +619,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -839,29 +749,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -870,21 +760,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -995,29 +873,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -1036,12 +894,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -1172,29 +1024,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -1203,32 +1035,14 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M18 4h-1V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zM6 6h1v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h1a1 1 0 0 1 1 1v4H5V7a1 1 0 0 1 1-1zm12 14H6a1 1 0 0 1-1-1v-6h14v6a1 1 0 0 1-1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGCircle
                           cx="8"
                           cy="16"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGPath
                           d="M16 15h-4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -1339,29 +1153,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -1380,12 +1174,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -1516,71 +1304,27 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGCircle
                           cx="12"
                           cy="12"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGCircle
                           cx="16"
                           cy="12"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGCircle
                           cx="8"
                           cy="12"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGPath
                           d="M19.07 4.93a10 10 0 0 0-16.28 11 1.06 1.06 0 0 1 .09.64L2 20.8a1 1 0 0 0 .27.91A1 1 0 0 0 3 22h.2l4.28-.86a1.26 1.26 0 0 1 .64.09 10 10 0 0 0 11-16.28zm.83 8.36a8 8 0 0 1-11 6.08 3.26 3.26 0 0 0-1.25-.26 3.43 3.43 0 0 0-.56.05l-2.82.57.57-2.82a3.09 3.09 0 0 0-.21-1.81 8 8 0 0 1 6.08-11 8 8 0 0 1 9.19 9.19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -1696,29 +1440,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -1737,12 +1461,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -2022,29 +1740,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -2053,12 +1751,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4zM5.51 16l1.18-1.18a2 2 0 0 0 .59-1.42V8.73A4.73 4.73 0 0 1 8.9 5.17 4.67 4.67 0 0 1 12.64 4a4.86 4.86 0 0 1 4.08 4.9v4.5a2 2 0 0 0 .58 1.42L18.49 16z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -2148,29 +1840,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -2189,12 +1861,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -2353,29 +2019,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -2394,31 +2040,13 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGCircle
                           cx="12"
                           cy="17"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                       </RNSVGGroup>
@@ -2509,29 +2137,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -2550,12 +2158,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -2686,29 +2288,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -2717,21 +2299,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M17 8h-1V6.11a4 4 0 1 0-8 0V8H7a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-7-1.89A2.06 2.06 0 0 1 12 4a2.06 2.06 0 0 1 2 2.11V8h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 12a3 3 0 1 0 3 3 3 3 0 0 0-3-3zm0 4a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -2821,29 +2391,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -2862,12 +2412,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -2998,29 +2542,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -3029,30 +2553,12 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M15 16H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M9 14h3a1 1 0 0 0 0-2H9a1 1 0 0 0 0 2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -3142,29 +2648,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -3183,12 +2669,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -3354,29 +2834,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -3395,12 +2855,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -3757,29 +3211,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -3788,21 +3222,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -4114,29 +3536,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -4144,12 +3546,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                           y="0"
                         />
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -4158,12 +3554,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 2a8.19 8.19 0 0 1 1.79.21 2.61 2.61 0 0 1-.78 1c-.22.17-.46.31-.7.46a4.56 4.56 0 0 0-1.85 1.67 6.49 6.49 0 0 0-.62 3.3c0 1.36 0 2.16-.95 2.87-1.37 1.07-3.46.47-4.76-.07A8.33 8.33 0 0 1 4 12a8 8 0 0 1 8-8zM5 15.8a8.42 8.42 0 0 0 2 .27 5 5 0 0 0 3.14-1c1.71-1.34 1.71-3.06 1.71-4.44a4.76 4.76 0 0 1 .37-2.34 2.86 2.86 0 0 1 1.12-.91 9.75 9.75 0 0 0 .92-.61 4.55 4.55 0 0 0 1.4-1.87A8 8 0 0 1 19 8.12c-1.43.2-3.46.67-3.86 2.53A7 7 0 0 0 15 12a2.93 2.93 0 0 1-.29 1.47l-.1.17c-.65 1.08-1.38 2.31-.39 4 .12.21.25.41.38.61a2.29 2.29 0 0 1 .52 1.08A7.89 7.89 0 0 1 12 20a8 8 0 0 1-7-4.2zm11.93 2.52a6.79 6.79 0 0 0-.63-1.14c-.11-.16-.22-.32-.32-.49-.39-.68-.25-1 .38-2l.1-.17a4.77 4.77 0 0 0 .54-2.43 5.42 5.42 0 0 1 .09-1c.16-.73 1.71-.93 2.67-1a7.94 7.94 0 0 1-2.86 8.28z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -4274,29 +3664,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -4315,12 +3685,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -4451,29 +3815,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -4482,21 +3826,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -4607,29 +3939,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -4648,12 +3960,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -4784,29 +4090,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -4815,32 +4101,14 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M18 4h-1V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zM6 6h1v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h1a1 1 0 0 1 1 1v4H5V7a1 1 0 0 1 1-1zm12 14H6a1 1 0 0 1-1-1v-6h14v6a1 1 0 0 1-1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGCircle
                           cx="8"
                           cy="16"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGPath
                           d="M16 15h-4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -4951,29 +4219,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -4992,12 +4240,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -5128,71 +4370,27 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGCircle
                           cx="12"
                           cy="12"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGCircle
                           cx="16"
                           cy="12"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGCircle
                           cx="8"
                           cy="12"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGPath
                           d="M19.07 4.93a10 10 0 0 0-16.28 11 1.06 1.06 0 0 1 .09.64L2 20.8a1 1 0 0 0 .27.91A1 1 0 0 0 3 22h.2l4.28-.86a1.26 1.26 0 0 1 .64.09 10 10 0 0 0 11-16.28zm.83 8.36a8 8 0 0 1-11 6.08 3.26 3.26 0 0 0-1.25-.26 3.43 3.43 0 0 0-.56.05l-2.82.57.57-2.82a3.09 3.09 0 0 0-.21-1.81 8 8 0 0 1 6.08-11 8 8 0 0 1 9.19 9.19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -5308,29 +4506,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -5349,12 +4527,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -5634,29 +4806,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -5665,12 +4817,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4zM5.51 16l1.18-1.18a2 2 0 0 0 .59-1.42V8.73A4.73 4.73 0 0 1 8.9 5.17 4.67 4.67 0 0 1 12.64 4a4.86 4.86 0 0 1 4.08 4.9v4.5a2 2 0 0 0 .58 1.42L18.49 16z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -5760,29 +4906,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -5801,12 +4927,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -5965,29 +5085,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -6006,31 +5106,13 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGCircle
                           cx="12"
                           cy="17"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                       </RNSVGGroup>
@@ -6121,29 +5203,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -6162,12 +5224,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -6298,29 +5354,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -6329,21 +5365,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M17 8h-1V6.11a4 4 0 1 0-8 0V8H7a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-7-1.89A2.06 2.06 0 0 1 12 4a2.06 2.06 0 0 1 2 2.11V8h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 12a3 3 0 1 0 3 3 3 3 0 0 0-3-3zm0 4a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -6433,29 +5457,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -6474,12 +5478,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -6610,29 +5608,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -6641,30 +5619,12 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M15 16H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M9 14h3a1 1 0 0 0 0-2H9a1 1 0 0 0 0 2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -6754,29 +5714,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -6795,12 +5735,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -6966,29 +5900,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -7007,12 +5921,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -7369,29 +6277,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -7400,21 +6288,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -7726,29 +6602,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -7756,12 +6612,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                           y="0"
                         />
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -7770,12 +6620,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 2a8.19 8.19 0 0 1 1.79.21 2.61 2.61 0 0 1-.78 1c-.22.17-.46.31-.7.46a4.56 4.56 0 0 0-1.85 1.67 6.49 6.49 0 0 0-.62 3.3c0 1.36 0 2.16-.95 2.87-1.37 1.07-3.46.47-4.76-.07A8.33 8.33 0 0 1 4 12a8 8 0 0 1 8-8zM5 15.8a8.42 8.42 0 0 0 2 .27 5 5 0 0 0 3.14-1c1.71-1.34 1.71-3.06 1.71-4.44a4.76 4.76 0 0 1 .37-2.34 2.86 2.86 0 0 1 1.12-.91 9.75 9.75 0 0 0 .92-.61 4.55 4.55 0 0 0 1.4-1.87A8 8 0 0 1 19 8.12c-1.43.2-3.46.67-3.86 2.53A7 7 0 0 0 15 12a2.93 2.93 0 0 1-.29 1.47l-.1.17c-.65 1.08-1.38 2.31-.39 4 .12.21.25.41.38.61a2.29 2.29 0 0 1 .52 1.08A7.89 7.89 0 0 1 12 20a8 8 0 0 1-7-4.2zm11.93 2.52a6.79 6.79 0 0 0-.63-1.14c-.11-.16-.22-.32-.32-.49-.39-.68-.25-1 .38-2l.1-.17a4.77 4.77 0 0 0 .54-2.43 5.42 5.42 0 0 1 .09-1c.16-.73 1.71-.93 2.67-1a7.94 7.94 0 0 1-2.86 8.28z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -7886,29 +6730,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -7927,12 +6751,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -8063,29 +6881,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -8094,21 +6892,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -8219,29 +7005,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -8260,12 +7026,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -8396,29 +7156,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -8427,32 +7167,14 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M18 4h-1V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zM6 6h1v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h1a1 1 0 0 1 1 1v4H5V7a1 1 0 0 1 1-1zm12 14H6a1 1 0 0 1-1-1v-6h14v6a1 1 0 0 1-1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGCircle
                           cx="8"
                           cy="16"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGPath
                           d="M16 15h-4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -8563,29 +7285,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -8604,12 +7306,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -8740,71 +7436,27 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGCircle
                           cx="12"
                           cy="12"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGCircle
                           cx="16"
                           cy="12"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGCircle
                           cx="8"
                           cy="12"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGPath
                           d="M19.07 4.93a10 10 0 0 0-16.28 11 1.06 1.06 0 0 1 .09.64L2 20.8a1 1 0 0 0 .27.91A1 1 0 0 0 3 22h.2l4.28-.86a1.26 1.26 0 0 1 .64.09 10 10 0 0 0 11-16.28zm.83 8.36a8 8 0 0 1-11 6.08 3.26 3.26 0 0 0-1.25-.26 3.43 3.43 0 0 0-.56.05l-2.82.57.57-2.82a3.09 3.09 0 0 0-.21-1.81 8 8 0 0 1 6.08-11 8 8 0 0 1 9.19 9.19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -8920,29 +7572,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -8961,12 +7593,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -9246,29 +7872,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -9277,12 +7883,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M20.52 15.21l-1.8-1.81V8.94a6.86 6.86 0 0 0-5.82-6.88 6.74 6.74 0 0 0-7.62 6.67v4.67l-1.8 1.81A1.64 1.64 0 0 0 4.64 18H8v.34A3.84 3.84 0 0 0 12 22a3.84 3.84 0 0 0 4-3.66V18h3.36a1.64 1.64 0 0 0 1.16-2.79zM14 18.34A1.88 1.88 0 0 1 12 20a1.88 1.88 0 0 1-2-1.66V18h4zM5.51 16l1.18-1.18a2 2 0 0 0 .59-1.42V8.73A4.73 4.73 0 0 1 8.9 5.17 4.67 4.67 0 0 1 12.64 4a4.86 4.86 0 0 1 4.08 4.9v4.5a2 2 0 0 0 .58 1.42L18.49 16z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -9372,29 +7972,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -9413,12 +7993,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -9577,29 +8151,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -9618,31 +8172,13 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGCircle
                           cx="12"
                           cy="17"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                       </RNSVGGroup>
@@ -9733,29 +8269,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -9774,12 +8290,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -9910,29 +8420,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -9941,21 +8431,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M17 8h-1V6.11a4 4 0 1 0-8 0V8H7a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-7-1.89A2.06 2.06 0 0 1 12 4a2.06 2.06 0 0 1 2 2.11V8h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 12a3 3 0 1 0 3 3 3 3 0 0 0-3-3zm0 4a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -10045,29 +8523,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -10086,12 +8544,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -10222,29 +8674,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -10253,30 +8685,12 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M15 16H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M9 14h3a1 1 0 0 0 0-2H9a1 1 0 0 0 0 2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -10366,29 +8780,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -10407,12 +8801,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -10578,29 +8966,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -10619,12 +8987,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                         />
                         <RNSVGPath
                           d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -11071,29 +9433,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                             ]
                           }
                         >
-                          <RNSVGGroup
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
-                          >
-                            <RNSVGGroup
-                              fill={
-                                {
-                                  "payload": 4278190080,
-                                  "type": 0,
-                                }
-                              }
-                            >
+                          <RNSVGGroup>
+                            <RNSVGGroup>
                               <RNSVGRect
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
                                 height="24"
                                 matrix={
                                   [
@@ -11112,12 +9454,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                               />
                               <RNSVGPath
                                 d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
                               />
                             </RNSVGGroup>
                           </RNSVGGroup>

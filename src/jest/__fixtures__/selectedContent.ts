@@ -6,6 +6,7 @@ import {
 
 export const selectedContent: GetDispositifResponse = {
   _id: "5dcead872bfef2004f1bcc7a",
+  hasDraftVersion: false,
   titreInformatif: "Pour une insertion par la culture",
   titreMarque: "le Programme Muses",
   abstract:

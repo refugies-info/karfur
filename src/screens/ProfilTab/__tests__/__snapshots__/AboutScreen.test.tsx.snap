@@ -178,29 +178,9 @@ exports[`About screen should render correctly 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
-                        <RNSVGGroup
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
                           <RNSVGRect
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                             height="24"
                             matrix={
                               [
@@ -219,12 +199,6 @@ exports[`About screen should render correctly 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -2353,29 +2327,9 @@ exports[`About screen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -2383,12 +2337,6 @@ exports[`About screen should render correctly 1`] = `
                           y="0"
                         />
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="2"
                           rx="1"
                           ry="1"
@@ -2397,12 +2345,6 @@ exports[`About screen should render correctly 1`] = `
                           y="18"
                         />
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="2"
                           matrix={
                             [
@@ -2421,12 +2363,6 @@ exports[`About screen should render correctly 1`] = `
                           y="17"
                         />
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="2"
                           matrix={
                             [
@@ -2446,21 +2382,9 @@ exports[`About screen should render correctly 1`] = `
                         />
                         <RNSVGPath
                           d="M12 15a1 1 0 0 1-.58-.18l-4-2.82a1 1 0 0 1-.24-1.39 1 1 0 0 1 1.4-.24L12 12.76l3.4-2.56a1 1 0 0 1 1.2 1.6l-4 3a1 1 0 0 1-.6.2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 13a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>

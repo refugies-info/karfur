@@ -102,7 +102,7 @@ export const removeUserLocationActionCreator = (shouldFetchContents: boolean) =>
   action(REMOVE_USER_LOCATION, shouldFetchContents);
 
 export const saveUserAgeActionCreator = (value: {
-  age: string;
+  age: GetContentsForAppRequest["age"];
   shouldFetchContents: boolean;
 }) => action(SAVE_USER_AGE, value);
 

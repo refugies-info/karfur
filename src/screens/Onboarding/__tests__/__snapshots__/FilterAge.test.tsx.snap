@@ -178,29 +178,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
-                        <RNSVGGroup
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
                           <RNSVGRect
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                             height="24"
                             matrix={
                               [
@@ -219,12 +199,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -324,29 +298,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -355,21 +309,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -779,29 +721,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                               ]
                             }
                           >
-                            <RNSVGGroup
-                              fill={
-                                {
-                                  "payload": 4278190080,
-                                  "type": 0,
-                                }
-                              }
-                            >
-                              <RNSVGGroup
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
-                              >
+                            <RNSVGGroup>
+                              <RNSVGGroup>
                                 <RNSVGRect
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
                                   height="24"
                                   opacity={0}
                                   width="24"
@@ -810,12 +732,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
                                 />
                                 <RNSVGPath
                                   d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
                                 />
                               </RNSVGGroup>
                             </RNSVGGroup>
@@ -1422,29 +1338,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                             ]
                           }
                         >
-                          <RNSVGGroup
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
-                          >
-                            <RNSVGGroup
-                              fill={
-                                {
-                                  "payload": 4278190080,
-                                  "type": 0,
-                                }
-                              }
-                            >
+                          <RNSVGGroup>
+                            <RNSVGGroup>
                               <RNSVGRect
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
                                 height="24"
                                 opacity={0}
                                 width="24"
@@ -1453,12 +1349,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
                               />
                               <RNSVGPath
                                 d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
                               />
                             </RNSVGGroup>
                           </RNSVGGroup>
@@ -1676,29 +1566,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
-                        <RNSVGGroup
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
                           <RNSVGRect
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                             height="24"
                             matrix={
                               [
@@ -1717,12 +1587,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -1822,29 +1686,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -1853,21 +1697,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -2824,29 +2656,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                             ]
                           }
                         >
-                          <RNSVGGroup
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
-                          >
-                            <RNSVGGroup
-                              fill={
-                                {
-                                  "payload": 4278190080,
-                                  "type": 0,
-                                }
-                              }
-                            >
+                          <RNSVGGroup>
+                            <RNSVGGroup>
                               <RNSVGRect
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
                                 height="24"
                                 opacity={0}
                                 width="24"
@@ -2855,12 +2667,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                               />
                               <RNSVGPath
                                 d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
                               />
                             </RNSVGGroup>
                           </RNSVGGroup>
@@ -3078,29 +2884,9 @@ exports[`Filter age should select age when click on it 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
-                        <RNSVGGroup
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
                           <RNSVGRect
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                             height="24"
                             matrix={
                               [
@@ -3119,12 +2905,6 @@ exports[`Filter age should select age when click on it 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -3224,29 +3004,9 @@ exports[`Filter age should select age when click on it 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -3255,21 +3015,9 @@ exports[`Filter age should select age when click on it 1`] = `
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -3943,29 +3691,9 @@ exports[`Filter age should select age when click on it 1`] = `
                               ]
                             }
                           >
-                            <RNSVGGroup
-                              fill={
-                                {
-                                  "payload": 4278190080,
-                                  "type": 0,
-                                }
-                              }
-                            >
-                              <RNSVGGroup
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
-                              >
+                            <RNSVGGroup>
+                              <RNSVGGroup>
                                 <RNSVGRect
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
                                   height="24"
                                   opacity={0}
                                   width="24"
@@ -3974,12 +3702,6 @@ exports[`Filter age should select age when click on it 1`] = `
                                 />
                                 <RNSVGPath
                                   d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
                                 />
                               </RNSVGGroup>
                             </RNSVGGroup>
@@ -4322,29 +4044,9 @@ exports[`Filter age should select age when click on it 1`] = `
                             ]
                           }
                         >
-                          <RNSVGGroup
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
-                          >
-                            <RNSVGGroup
-                              fill={
-                                {
-                                  "payload": 4278190080,
-                                  "type": 0,
-                                }
-                              }
-                            >
+                          <RNSVGGroup>
+                            <RNSVGGroup>
                               <RNSVGRect
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
                                 height="24"
                                 opacity={0}
                                 width="24"
@@ -4353,12 +4055,6 @@ exports[`Filter age should select age when click on it 1`] = `
                               />
                               <RNSVGPath
                                 d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
                               />
                             </RNSVGGroup>
                           </RNSVGGroup>

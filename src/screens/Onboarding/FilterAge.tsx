@@ -15,11 +15,14 @@ import {
 } from "../../services/redux/User/user.actions";
 import { userAgeSelector } from "../../services/redux/User/user.selectors";
 import { FilterButton, Page, Rows } from "../../components";
+import { GetContentsForAppRequest } from "@refugies-info/api-types";
 
 export const FilterAge = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterAge">) => {
-  const [selectedAge, setSelectedAge] = React.useState<string | null>(null);
+  const [selectedAge, setSelectedAge] = React.useState<
+    GetContentsForAppRequest["age"] | null
+  >(null);
   const navigateToNextScreen = () => navigation.navigate("FilterFrenchLevel");
 
   const dispatch = useDispatch();
@@ -46,7 +49,7 @@ export const FilterAge = ({
     return navigateToNextScreen();
   };
 
-  const onAgeClick = (age: string) => {
+  const onAgeClick = (age: GetContentsForAppRequest["age"]) => {
     if (selectedAge && selectedAge === age) {
       return setSelectedAge(null);
     }
