@@ -32,6 +32,7 @@ import {
 } from "./user.actionTypes";
 import { ObjectId } from "../../../types/interface";
 import {
+  GetContentsForAppRequest,
   GetThemeResponse,
   Languages,
   MobileFrenchLevel,
@@ -105,8 +106,9 @@ export const saveUserAgeActionCreator = (value: {
   shouldFetchContents: boolean;
 }) => action(SAVE_USER_AGE, value);
 
-export const setUserAgeActionCreator = (value: string | null) =>
-  action(SET_USER_AGE, value);
+export const setUserAgeActionCreator = (
+  value: GetContentsForAppRequest["age"] | null
+) => action(SET_USER_AGE, value);
 
 export const removeUserAgeActionCreator = (shouldFetchContents: boolean) =>
   action(REMOVE_USER_AGE, shouldFetchContents);

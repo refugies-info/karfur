@@ -2,6 +2,7 @@ import { createReducer } from "typesafe-actions";
 import { UserActions } from "./user.actions";
 import { ObjectId } from "../../../types/interface";
 import {
+  GetContentsForAppRequest,
   GetThemeResponse,
   Languages,
   MobileFrenchLevel,
@@ -14,7 +15,7 @@ export interface UserState {
   currentLanguagei18nCode: Languages | null;
   city: string | null;
   department: string | null;
-  age: string | null;
+  age: GetContentsForAppRequest["age"] | null;
   frenchLevel: MobileFrenchLevel | null;
   favorites: string[];
   localizedWarningHidden: boolean;

@@ -4,6 +4,8 @@ import useAsync from "react-use/lib/useAsync";
 
 import {
   currentI18nCodeSelector,
+  userAgeSelector,
+  userFrenchLevelSelector,
   userLocationSelector,
 } from "../../../services/redux/User/user.selectors";
 import { getContentsForApp } from "../../../utils/API";
@@ -29,6 +31,8 @@ export interface PageProps {
 const useNearMeCards = () => {
   const locale = useSelector(currentI18nCodeSelector);
   const { department } = useSelector(userLocationSelector);
+  const age = useSelector(userAgeSelector);
+  const frenchLevel = useSelector(userFrenchLevelSelector);
   const {
     loading,
     error,
@@ -38,6 +42,8 @@ const useNearMeCards = () => {
       getContentsForApp({
         locale: locale || "fr",
         county: department || "",
+        age: age === null ? undefined : age,
+        frenchLevel: frenchLevel === null ? undefined : frenchLevel,
         strictLocation: true,
       })
         .then(
