@@ -94,7 +94,7 @@ export interface StructureMember {
   last_connected: Date;
   roles: string[];
   added_at: Date;
-  mainRole: string;
+  mainRole: "Rédacteur" | "Responsable" | "Exclu";
 }
 
 // Dispositif

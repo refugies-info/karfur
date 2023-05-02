@@ -8,8 +8,11 @@ import imgOfii from "assets/dispositif/form-icons/conditions-ofii.svg";
 import imgSchool from "assets/dispositif/form-icons/conditions-school.svg";
 
 export const help = {
-  title: "À quoi sert cette information ?",
-  content: "Ajoutez des conditions seulement si elles sont vraiment des critères excluant pour accéder à votre action.",
+  title: "Quelques conseils",
+  content: [
+    "Précisez ici les prérequis que les personnes doivent remplir pour accéder à votre dispositif.",
+    "Si vos prérequis ne sont pas indiqués ci- contre, choisissez « Ce n'est pas pertinent pour mon action » et expliquez les détails dans votre fiche."
+  ]
 };
 
 export const dropdownOptions: Record<conditionType, any> = {

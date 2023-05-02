@@ -1,5 +1,4 @@
 import { FilterQuery } from "mongoose";
-import omit from "lodash/omit";
 import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructureById as getStructure } from "../../../modules/structure/structure.repository";
@@ -8,10 +7,17 @@ import { Dispositif, Structure, User } from "../../../typegoose";
 import { NotFoundError } from "../../../errors";
 import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
 import { GetStructureResponse, Languages, StructureMember } from "@refugies-info/api-types";
+import { Membre } from "../../../typegoose/Structure";
+
+const getMainRole = (membre: Membre) => {
+  if (membre.roles.includes("administrateur")) return "Responsable";
+  if (membre.roles.includes("contributeur")) return "Rédacteur";
+  return "Exclu";
+}
 
 const getMembers = async (structure: Structure) => {
   const structureMembres = structure.membres || [];
-  const neededFields = { username: 1, picture: 1, last_connected: 1 };
+  const neededFields = { username: 1, picture: 1, last_connected: 1, roles: 1, added_at: 1 };
 
   const members = await Promise.all(
     structureMembres.map((membre) =>
@@ -23,7 +29,7 @@ const getMembers = async (structure: Structure) => {
           roles: membre.roles,
           added_at: membre.added_at,
           userId: membre.userId.toString(),
-          mainRole: "", // TODO: what here?
+          mainRole: getMainRole(membre)
         };
         return res;
       }),
@@ -46,9 +52,9 @@ export const getStructureById = async (
   const isAdmin = !!(user ? user.isAdmin() : false);
   const isMember = !!(user?._id
     ? (structure.membres || []).find((m) => {
-        if (!m.userId) return false;
-        return m.userId.toString() === user._id.toString();
-      })
+      if (!m.userId) return false;
+      return m.userId.toString() === user._id.toString();
+    })
     : false);
   const shouldIncludeMembers = isAdmin || isMember;
   const structureMembers = shouldIncludeMembers ? await getMembers(structure) : [];
@@ -61,8 +67,8 @@ export const getStructureById = async (
   };
 
   const structureDispositifs = await getSimpleDispositifs(dbQuery, selectedLocale);
-  const result = {
-    ...omit(structure, ["membres", "dispositifsAssocies"]),
+  const result: GetStructureResponse = {
+    ...structure.toObject(),
     membres: structureMembers,
     dispositifsAssocies: structureDispositifs,
   };

@@ -49,13 +49,6 @@ const checkIfUserIsAuthorizedToAddMembers = (isAdmin: boolean, userWithRole: Get
   return false;
 };
 
-const formatRoles = (membres: GetStructureResponse["membres"]) =>
-  membres.map((membre) => {
-    if (membre.roles.includes("administrateur")) return { ...membre, mainRole: "Responsable" };
-    if (membre.roles.includes("contributeur")) return { ...membre, mainRole: "Rédacteur" };
-    return { ...membre, mainRole: "Exclus" };
-  });
-
 export const UserStructureDetails = (props: Props) => {
   const router = useRouter();
   const [showAddMemberModal, setShowAddMemberModal] = useState(false);
@@ -75,8 +68,7 @@ export const UserStructureDetails = (props: Props) => {
 
   const isUserAuthorizedToAddMembers = checkIfUserIsAuthorizedToAddMembers(props.isAdmin, userWithRole);
 
-  const formattedMembres = formatRoles(props.membres);
-  const membres = formattedMembres.filter((membre) => membre.mainRole !== "Exclus");
+  const membres = props.membres.filter((membre) => membre.mainRole !== "Exclu");
   const isMember = props.membres.find((el) => el.userId === props.userId) ? true : false;
 
   return (

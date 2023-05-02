@@ -4,7 +4,7 @@ import { CreateDispositifRequest, Metadatas } from "api-types";
 import { BaseModal } from "components/Pages/dispositif";
 import ChoiceButton from "../../ChoiceButton";
 import { SimpleFooter, StepsFooter } from "../components";
-import { help } from "./data";
+import { help, helpDepartments } from "./data";
 import DepartmentInput from "./DepartmentInput";
 import imgAll from "assets/dispositif/form-icons/location-all.svg";
 import imgDepartment from "assets/dispositif/form-icons/location-department.svg";
@@ -39,20 +39,16 @@ const ModalLocation = (props: Props) => {
     <BaseModal
       show={props.show}
       toggle={props.toggle}
-      help={help}
-      title={step === 1 ? "Où votre action est-elle accessible ?" : "Dans quel(s) département(s) est-elle accessible ?"}
+      help={step === 2 ? helpDepartments : help}
+      title={
+        step === 1
+          ? "Où votre action est-elle accessible ?"
+          : "Quels sont les départements concernés par votre action ?"
+      }
     >
       <div>
         {step === 1 && (
           <>
-            <ChoiceButton
-              text="France entière"
-              type="radio"
-              selected={selected === "france"}
-              onSelect={() => setSelected("france")}
-              image={imgAll}
-              className="mb-2"
-            />
             <ChoiceButton
               text="Départements"
               subtext="Vous pourrez choisir les départements à l’étape suivante."
@@ -60,6 +56,15 @@ const ModalLocation = (props: Props) => {
               selected={selected === "departments"}
               onSelect={() => setSelected("departments")}
               image={imgDepartment}
+              className="mb-2"
+            />
+            <ChoiceButton
+              text="France entière"
+              subtext="Votre action est disponible partout en France."
+              type="radio"
+              selected={selected === "france"}
+              onSelect={() => setSelected("france")}
+              image={imgAll}
               className="mb-2"
             />
             <ChoiceButton
@@ -75,7 +80,7 @@ const ModalLocation = (props: Props) => {
 
         {step === 2 && (
           <>
-            <p>Vous pouvez taper le numéro ou le nom des départements.</p>
+            <p>Indiquez le nom du département ou son numéro.</p>
             <DepartmentInput
               selectedDepartments={selectedDepartments}
               setSelectedDepartments={setSelectedDepartments}

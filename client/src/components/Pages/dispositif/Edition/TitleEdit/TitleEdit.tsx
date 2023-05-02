@@ -33,7 +33,7 @@ const TitleEdit = (props: Props) => {
           size="xl"
           content={formContext.getValues("titreInformatif")}
         >
-          Titre de la fiche
+          Titre informatif
         </AddContentButton>
       )}
       {isTitleActive && (
@@ -55,7 +55,7 @@ const TitleEdit = (props: Props) => {
               size="lg"
               content={formContext.getValues("titreMarque")}
             >
-              Nom de l'action
+              Nom de votre action
             </AddContentButton>
           )}
           {isActionActive && (

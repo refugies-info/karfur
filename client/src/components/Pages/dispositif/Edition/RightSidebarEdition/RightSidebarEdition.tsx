@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useContentType } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import HelpCard from "../HelpCard";
 import { Help } from "./data";
@@ -11,11 +12,12 @@ import styles from "./RightSidebarEdition.module.scss";
 const RightSidebarEdition = () => {
   const pageContext = useContext(PageContext);
   const [help, setHelp] = useState<Help | null>(null);
+  const contentType = useContentType();
 
   useEffect(() => {
     if (!pageContext.activeSection) setHelp(null);
-    setHelp(getHelp(pageContext.activeSection));
-  }, [pageContext.activeSection]);
+    setHelp(getHelp(pageContext.activeSection, contentType));
+  }, [pageContext.activeSection, contentType]);
 
   return (
     <div>

@@ -17,7 +17,7 @@ const StructureContact = (props: Props) => {
       <p>Nous avons besoin de contacter un membre de cette structure pour lui faire valider la fiche.</p>
       <Input
         id="structure-contact-name"
-        label="Prénom et nom du contat"
+        label="Prénom et nom du contact"
         type="text"
         icon="person-outline"
         value={props.contact.name}

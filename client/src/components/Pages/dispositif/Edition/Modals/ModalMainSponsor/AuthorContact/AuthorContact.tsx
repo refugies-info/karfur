@@ -14,7 +14,7 @@ const AuthorContact = (props: Props) => {
       <p>Afin qu'on puisse vous contacter</p>
       <Input
         id="author-contact-name"
-        label="Votre nom et prénom"
+        label="Votre prénom et nom"
         type="text"
         icon="person-outline"
         value={props.contact.name}

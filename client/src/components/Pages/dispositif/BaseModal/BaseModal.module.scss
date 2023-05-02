@@ -39,7 +39,13 @@
     margin-bottom: u(6);
   }
   .text {
-    @include dsfr-text("very-small");
+    &,
+    & > p {
+      @include dsfr-text("very-small");
+    }
+    p {
+      margin-bottom: u(4);
+    }
   }
 }
 

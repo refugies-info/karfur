@@ -41,7 +41,7 @@ const AccordionsEdit = ({ sectionKey, contentType }: Props) => {
 
   return (
     <div id={`step-${sectionKey}`}>
-      {Object.entries(content).map((section, i) => (
+      {Object.entries(content || {}).map((section, i) => (
         <AccordionItem
           key={section[0]}
           id={`${sectionKey}.${section[0]}`}
