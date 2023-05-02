@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { Badge } from "@dataesr/react-dsfr";
 import { DispositifStatus, Id } from "api-types";
 import { getPath } from "routes";
 import { canEdit, isStatus } from "lib/dispositif";
@@ -11,6 +10,7 @@ import { themeSelector } from "services/Themes/themes.selectors";
 import { userSelector } from "services/User/user.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
+import Badge from "components/UI/Badge";
 import { getStatus } from "./functions";
 import EditModal from "./EditModal";
 import styles from "./Banner.module.scss";
@@ -57,7 +57,11 @@ const Banner = (props: Props) => {
       {canEdit(dispositif, user.user) && pageContext.mode === "view" && (
         <div className={styles.container}>
           <div className={styles.actions}>
-            {status && <Badge text={status.text} type={status.type} hasIcon icon={status.icon} className="me-4" />}
+            {status && (
+              <Badge severity={status.type} icon={status.icon} className="me-4">
+                {status.text}
+              </Badge>
+            )}
             <Button icon="edit-outline" className={styles.edit} onClick={onEditClick}>
               Modifier la fiche
             </Button>

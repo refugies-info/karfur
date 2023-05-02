@@ -1,15 +1,12 @@
-import React, { useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { useTranslation } from "next-i18next";
 import { DispositifStatus } from "api-types";
-import { Badge } from "@dataesr/react-dsfr";
 import { isStatus } from "lib/dispositif";
 import PageContext, { Modals } from "utils/pageContext";
 import Button from "components/UI/Button";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import StepBar from "../../../StepBar";
 import { Step, TOTAL_STEPS } from "../../functions";
-import { help, stepTranslations } from "./data";
-import styles from "./MissingContent.module.scss";
+import { help } from "./data";
 import MissingSteps from "../../../MissingSteps";
 
 interface Props {
