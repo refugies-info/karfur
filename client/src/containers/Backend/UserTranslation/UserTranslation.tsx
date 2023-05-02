@@ -75,7 +75,7 @@ const UserTranslation = (props: Props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    if (userFirstTradLanguage && !langueInUrl) {
+    if (userFirstTradLanguage && !langueInUrl && getLanguage(userFirstTradLanguage)) {
       return history.push(routerLocale + "/backend/user-translation/" + getLanguage(userFirstTradLanguage).i18nCode);
     }
 
