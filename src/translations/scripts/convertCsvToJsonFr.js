@@ -8,24 +8,24 @@ const convertCsvToJsonFr = async () => {
   const finalJson = {};
 
   jsonArray.forEach((trad) => {
-    if (trad["nouvelle version du texte"]) {
+    if (trad["fr_nouveau"]) {
       if (!trad.key) {
-        finalJson[trad.title] = trad["nouvelle version du texte"];
+        finalJson[trad.title] = trad["fr_nouveau"];
         return;
       }
       finalJson[trad.title] = {
         ...finalJson[trad.title],
-        [trad.key]: trad["nouvelle version du texte"],
+        [trad.key]: trad["fr_nouveau"],
       };
       return;
     }
     if (!trad.key) {
-      finalJson[trad.title] = trad["texte actuel"];
+      finalJson[trad.title] = trad["français"];
       return;
     }
     finalJson[trad.title] = {
       ...finalJson[trad.title],
-      [trad.key]: trad["texte actuel"],
+      [trad.key]: trad["français"],
     };
     return;
   });
