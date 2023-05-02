@@ -32,8 +32,8 @@ const SponsorsEdit = () => {
       />
 
       <Button
-        icon="plus-circle-outline"
-        secondary
+        evaIcon="plus-circle-outline"
+        priority="secondary"
         className={styles.add}
         onClick={() => {
           setCurrentSponsorIndex(-1);

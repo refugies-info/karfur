@@ -57,23 +57,29 @@ const ShareButtons = () => {
 
   return (
     <div className={styles.container}>
-      <Button tertiary onClick={shareEmail} icon="email-outline" className={styles.btn} id="EmailTooltip" />
+      <Button
+        priority="tertiary"
+        onClick={shareEmail}
+        evaIcon="email-outline"
+        className={styles.btn}
+        id="EmailTooltip"
+      />
       <Tooltip target="EmailTooltip" placement="bottom">
         {t("Dispositif.tooltipShareEmail")}
       </Tooltip>
 
-      <Button tertiary onClick={copyLink} icon="copy-outline" className={styles.btn} id="CopyTooltip" />
+      <Button priority="tertiary" onClick={copyLink} evaIcon="copy-outline" className={styles.btn} id="CopyTooltip" />
       <Tooltip target="CopyTooltip" placement="bottom">
         {t("Dispositif.tooltipShareCopy")}
       </Tooltip>
 
-      <Button tertiary onClick={print} icon="printer-outline" className={styles.btn} id="PrintTooltip" />
+      <Button priority="tertiary" onClick={print} evaIcon="printer-outline" className={styles.btn} id="PrintTooltip" />
       <Tooltip target="PrintTooltip" placement="bottom">
         {t("Dispositif.tooltipSharePrint")}
       </Tooltip>
 
       <Button
-        tertiary
+        priority="tertiary"
         onClick={shareFacebook}
         icon="ri-facebook-circle-line"
         className={styles.btn}
@@ -84,7 +90,7 @@ const ShareButtons = () => {
       </Tooltip>
 
       <Button
-        tertiary
+        priority="tertiary"
         onClick={shareLinkedin}
         icon="ri-linkedin-box-line"
         className={styles.btn}

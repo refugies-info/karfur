@@ -54,7 +54,7 @@ const AccordionsEdit = ({ sectionKey, contentType }: Props) => {
         />
       ))}
 
-      <Button icon="plus-circle-outline" secondary onClick={addElement}>
+      <Button evaIcon="plus-circle-outline" priority="secondary" onClick={addElement}>
         {isLastSection ? "Ajouter une option" : "Ajouter un argument"}
       </Button>
     </div>

@@ -70,21 +70,21 @@ const SectionButtons = (props: Props) => {
   return (
     <div className={cls(styles.container, showTtsButtons && styles.open)}>
       <Button
-        tertiary={!showTtsButtons}
+        priority={showTtsButtons ? "primary" : "tertiary"}
         icon={getPlayIcon(isPlaying, showTtsButtons)}
         className={styles.btn}
         onClick={isPlaying ? pause : startReading}
       />
       <div className={styles.tts_buttons}>
-        <Button tertiary className={cls(styles.btn, styles.speed, "mt-1")} onClick={toggleRateSpeed}>
+        <Button priority="tertiary" className={cls(styles.btn, styles.speed, "mt-1")} onClick={toggleRateSpeed}>
           {rateSpeed === 1 ? "x2" : "x1"}
         </Button>
-        <Button icon="close-outline" className={cls(styles.btn, styles.close, "mt-1")} onClick={stopReading} />
+        <Button evaIcon="close-outline" className={cls(styles.btn, styles.close, "mt-1")} onClick={stopReading} />
       </div>
 
       <Button
-        tertiary
-        icon="message-circle-outline"
+        priority="tertiary"
+        evaIcon="message-circle-outline"
         className={cls(styles.btn, "mt-2")}
         id={tooltipId}
         onClick={() => setShowReactionModal(true)}

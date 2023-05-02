@@ -64,11 +64,15 @@ const Feedback = () => {
       <div className={styles.content}>
         <p className={styles.title}>{t("Dispositif.feedbackTitle")}</p>
         <p>{t("Dispositif.feedbackSubtitle")}</p>
-        <Button secondary={!didThank} onClick={sendPositiveFeedback} className={cls(styles.btn, "me-2")}>
+        <Button
+          priority={didThank ? "primary" : "secondary"}
+          onClick={sendPositiveFeedback}
+          className={cls(styles.btn, "me-2")}
+        >
           <Image src={didThank ? ThumbUpFillIcon : ThumbUpIcon} width={24} height={24} alt="" className="me-2" />
           {t("Dispositif.nbThanks", { count: nbMercis })}
         </Button>
-        <Button secondary onClick={sendNegativeFeedback} className={styles.btn}>
+        <Button priority="secondary" onClick={sendNegativeFeedback} className={styles.btn}>
           <Image src={ThumbDownIcon} width={24} height={24} alt="" />
         </Button>
       </div>

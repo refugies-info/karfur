@@ -47,8 +47,8 @@ const Header = (props: Props) => {
 
             <Button
               className={styles.share}
-              tertiary
-              icon="share-outline"
+              priority="tertiary"
+              evaIcon="share-outline"
               onClick={() =>
                 sharingOptions(props.typeContenu, dispositif?.titreInformatif || "", dispositif?.titreMarque || "")
               }

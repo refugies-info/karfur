@@ -96,11 +96,7 @@ const SendSMSModal = (props: Props) => {
             className={cls(styles.input, !!error && styles.input_error)}
           />
           <div ref={menuRef}>
-            <Button
-              onClick={() => setLnListOpen((o) => !o)}
-              colors={[styles.lightBackgroundElevationAlt, styles.gray90]}
-              className={styles.btn}
-            >
+            <Button onClick={() => setLnListOpen((o) => !o)} className={styles.btn}>
               <span>
                 {t("Dispositif.smsFormLanguage")} {selectedLanguage?.langueFr?.toLowerCase()}
                 <Flag langueCode={selectedLanguage?.langueCode} className="ms-2" />
@@ -127,7 +123,13 @@ const SendSMSModal = (props: Props) => {
               <p>{error}</p>
             </div>
           )}
-          <Button icon="paper-plane-outline" iconPlacement="end" className={styles.submit} disabled={!tel} submit>
+          <Button
+            evaIcon="paper-plane-outline"
+            iconPosition="right"
+            className={styles.submit}
+            disabled={!tel}
+            nativeButtonProps={{ type: "submit" }}
+          >
             {t("Envoyer")}
           </Button>
         </form>

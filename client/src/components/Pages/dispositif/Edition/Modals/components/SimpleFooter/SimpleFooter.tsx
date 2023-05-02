@@ -10,7 +10,7 @@ interface Props {
 const SimpleFooter = (props: Props) => {
   return (
     <div className="text-end mt-6">
-      <Button icon="checkmark-circle-2" iconPlacement="end" onClick={props.onValidate} disabled={props.disabled}>
+      <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={props.onValidate} disabled={props.disabled}>
         {props.text || "Valider"}
       </Button>
     </div>

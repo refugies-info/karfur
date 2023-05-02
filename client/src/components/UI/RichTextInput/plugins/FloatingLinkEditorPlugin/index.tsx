@@ -33,7 +33,13 @@ interface CloseButtonProps {
 
 const CloseButton = (props: CloseButtonProps) => (
   <div className="text-end">
-    <Button icon="close-outline" iconPlacement="end" tertiary className={styles.close} onClick={props.onClick}>
+    <Button
+      evaIcon="close-outline"
+      iconPosition="right"
+      priority="tertiary"
+      className={styles.close}
+      onClick={props.onClick}
+    >
       Fermer
     </Button>
   </div>
@@ -170,7 +176,7 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
         <p className={styles.text}>{linkText}</p>
         <p className={styles.url}>{linkUrl}</p>
         <div className={styles.buttons}>
-          <Button secondary className="me-4" onClick={removeLink}>
+          <Button priority="secondary" className="me-4" onClick={removeLink}>
             Supprimer le lien
           </Button>
           <Button onClick={() => setIsModalOpen(true)}>Modifier</Button>
@@ -197,8 +203,8 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
         </div>
         <div className="text-end">
           <Button
-            icon="checkmark-circle-2"
-            iconPlacement="end"
+            evaIcon="checkmark-circle-2"
+            iconPosition="right"
             onClick={(event) => {
               event.preventDefault();
               validateModal();

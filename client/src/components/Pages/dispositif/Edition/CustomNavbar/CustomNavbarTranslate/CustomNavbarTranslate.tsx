@@ -80,9 +80,9 @@ const CustomNavbarTranslate = (props: Props) => {
             text={`${progress.doneSteps} / ${progress.totalSteps}`}
           />
           <Button
-            secondary={!showMissingSteps}
+            priority={showMissingSteps ? "primary" : "secondary"}
             id="missing-steps-btn"
-            icon={showMissingSteps ? "eye-off-outline" : "eye-outline"}
+            evaIcon={showMissingSteps ? "eye-off-outline" : "eye-outline"}
             className={cls("ms-4", styles.btn)}
             onClick={() => setShowMissingSteps?.(!showMissingSteps)}
           />
@@ -110,19 +110,25 @@ const CustomNavbarTranslate = (props: Props) => {
           </Tooltip>
           {user.expertTrad ? (
             <>
-              <Button secondary icon="log-out-outline" iconPlacement="end" onClick={handleQuit} className="me-4">
+              <Button
+                priority="secondary"
+                evaIcon="log-out-outline"
+                iconPosition="right"
+                onClick={handleQuit}
+                className="me-4"
+              >
                 Finir plus tard
               </Button>
               <Button
-                icon={progress.isComplete ? "checkmark-circle-2" : undefined}
-                iconPlacement="end"
+                evaIcon={progress.isComplete ? "checkmark-circle-2" : undefined}
+                iconPosition="right"
                 onClick={togglePublishModal}
               >
                 Publier
               </Button>
             </>
           ) : (
-            <Button icon="log-out-outline" iconPlacement="end" onClick={handleQuit}>
+            <Button evaIcon="log-out-outline" iconPosition="right" onClick={handleQuit}>
               Sauvegarder et quitter
             </Button>
           )}

@@ -21,8 +21,8 @@ const StepsFooter = (props: Props) => {
       <div className="flex-grow-1 text-end">
         {showPreviousButton && (
           <Button
-            secondary
-            icon="arrow-back-outline"
+            priority="secondary"
+            evaIcon="arrow-back-outline"
             onClick={(e: any) => {
               e.preventDefault();
               props.onPrevious();
@@ -33,8 +33,8 @@ const StepsFooter = (props: Props) => {
           </Button>
         )}
         <Button
-          icon={props.nextIcon || (props.step === props.maxSteps ? "checkmark-circle-2" : "arrow-forward-outline")}
-          iconPlacement="end"
+          evaIcon={props.nextIcon || (props.step === props.maxSteps ? "checkmark-circle-2" : "arrow-forward-outline")}
+          iconPosition="right"
           onClick={(e: any) => {
             e.preventDefault();
             props.onValidate();

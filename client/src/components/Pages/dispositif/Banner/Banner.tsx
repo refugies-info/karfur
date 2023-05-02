@@ -62,7 +62,7 @@ const Banner = (props: Props) => {
                 {status.text}
               </Badge>
             )}
-            <Button icon="edit-outline" className={styles.edit} onClick={onEditClick}>
+            <Button evaIcon="edit-outline" className={styles.edit} onClick={onEditClick}>
               Modifier la fiche
             </Button>
           </div>

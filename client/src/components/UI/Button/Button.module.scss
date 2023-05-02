@@ -7,8 +7,21 @@
   border-radius: u(2);
   @include iconSize(24px);
 
+  /* TODO: remove when dataesr removed */
+  i {
+    display: inline-flex;
+    align-items: center;
+  }
+  [class^="ri-"]::before {
+    --icon-size: 24px !important;
+  }
+
   &.small_icon {
     @include iconSize(16px);
+    /* TODO: remove when dataesr removed */
+    [class^="ri-"]::before {
+      --icon-size: 16px !important;
+    }
   }
 
   &.icon_end {

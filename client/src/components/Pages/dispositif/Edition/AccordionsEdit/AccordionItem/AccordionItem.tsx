@@ -97,7 +97,7 @@ const AccordionItem = (props: Props) => {
             />
           </div>
           <div className="text-end mb-6">
-            <Button icon="checkmark-circle-2" onClick={() => setIsActive(false)}>
+            <Button evaIcon="checkmark-circle-2" onClick={() => setIsActive(false)}>
               Fermer la section
             </Button>
           </div>

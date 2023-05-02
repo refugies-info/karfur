@@ -68,10 +68,16 @@ const MissingContent = (props: Props) => {
       />
 
       <div className="text-end">
-        <Button secondary onClick={props.onQuit} icon="log-out-outline" iconPlacement="end" className="me-2">
+        <Button
+          priority="secondary"
+          onClick={props.onQuit}
+          evaIcon="log-out-outline"
+          iconPosition="right"
+          className="me-2"
+        >
           Quitter et finir plus tard
         </Button>
-        <Button onClick={props.onStay} icon="arrow-forward-outline" iconPlacement="end">
+        <Button onClick={props.onStay} evaIcon="arrow-forward-outline" iconPosition="right">
           Compléter ma fiche
         </Button>
       </div>

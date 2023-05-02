@@ -248,8 +248,8 @@ const TranslationInput = (props: Props) => {
                 <span className={styles.proposal}>{footerStatus.text}</span>
                 {index === -1 && (
                   <Button
-                    secondary
-                    icon="trash-2-outline"
+                    priority="secondary"
+                    evaIcon="trash-2-outline"
                     className={cls(styles.delete, "ms-2")}
                     onClick={deleteTranslation}
                   />
@@ -260,38 +260,35 @@ const TranslationInput = (props: Props) => {
                 {index >= 0 && (
                   <Button
                     className={cls(styles.nav, "me-4")}
-                    tertiary
-                    hasBorder={false}
+                    priority="tertiary no outline"
                     onClick={() => dec()}
-                    icon="arrow-back-outline"
+                    evaIcon="arrow-back-outline"
                   ></Button>
                 )}
                 {suggestions.length > 0 && index < max - 1 && (
                   <Button
                     className={styles.nav}
-                    tertiary
-                    hasBorder={false}
+                    priority="tertiary no outline"
                     onClick={() => inc()}
-                    icon="arrow-forward-outline"
+                    evaIcon="arrow-forward-outline"
                   ></Button>
                 )}
                 {index === max - 1 && (
                   <Button
                     className={styles.nav}
-                    tertiary
-                    hasBorder={false}
+                    priority="tertiary no outline"
                     onClick={() => inc()}
-                    icon="arrow-forward-outline"
-                    iconPlacement="end"
+                    evaIcon="arrow-forward-outline"
+                    iconPosition="right"
                   >
                     Voir Google Translate
                   </Button>
                 )}
                 {user.expertTrad && suggestions.length > 0 && index < max && index >= 0 && (
                   <Button
-                    secondary
+                    priority="secondary"
                     onClick={() => validateSuggestion(suggestions[index].text)}
-                    icon="checkmark-outline"
+                    evaIcon="checkmark-outline"
                     className={cls(styles.validate, index === validatedIndex && styles.validated, "ms-2")}
                   ></Button>
                 )}
@@ -300,21 +297,26 @@ const TranslationInput = (props: Props) => {
           </div>
 
           <div className={styles.buttons}>
-            <Button secondary onClick={cancel} icon="close-outline" iconPlacement="end">
+            <Button priority="secondary" onClick={cancel} evaIcon="close-outline" iconPosition="right">
               Annuler
             </Button>
             <div className="text-end">
               <Button
                 disabled={!value}
-                secondary
+                priority="secondary"
                 onClick={() => saveTrad(true)}
-                icon="clock-outline"
-                iconPlacement="end"
+                evaIcon="clock-outline"
+                iconPosition="right"
                 className="me-4"
               >
                 Finir plus tard
               </Button>
-              <Button disabled={!value} onClick={() => saveTrad(false)} icon="checkmark-circle-2" iconPlacement="end">
+              <Button
+                disabled={!value}
+                onClick={() => saveTrad(false)}
+                evaIcon="checkmark-circle-2"
+                iconPosition="right"
+              >
                 Valider
               </Button>
             </div>

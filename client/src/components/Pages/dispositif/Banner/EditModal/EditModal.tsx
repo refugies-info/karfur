@@ -28,7 +28,7 @@ const EditModal = (props: Props) => {
           <Image src={TutorielImage} width={176} height={120} alt="" />
         </div>
         <div className="text-end">
-          <Button onClick={props.onValidate} icon="checkmark-circle-2" iconPlacement="end">
+          <Button onClick={props.onValidate} evaIcon="checkmark-circle-2" iconPosition="right">
             C'est noté
           </Button>
         </div>

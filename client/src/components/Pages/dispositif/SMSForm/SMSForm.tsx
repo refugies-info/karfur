@@ -80,8 +80,8 @@ const SMSForm = (props: Props) => {
         disabledOptions={props.disabledOptions}
       />
       <Button
-        icon="paper-plane-outline"
-        iconPlacement="end"
+        evaIcon="paper-plane-outline"
+        iconPosition="right"
         className={styles.submit}
         disabled={!tel}
         onClick={sendSMS}
