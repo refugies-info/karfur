@@ -6,8 +6,8 @@ import PageContext, { Modals } from "utils/pageContext";
 import Button from "components/UI/Button";
 import StepBar from "../../../StepBar";
 import { Step, TOTAL_STEPS } from "../../functions";
-import { help } from "./data";
 import MissingSteps from "../../../MissingSteps";
+import { help } from "./data";
 
 interface Props {
   missingSteps: Step[];
@@ -35,7 +35,6 @@ const STEPS_MODAL: Record<Step, Modals | null> = {
 };
 
 const MissingContent = (props: Props) => {
-  const { t } = useTranslation();
   const pageContext = useContext(PageContext);
 
   const content = useMemo(() => {

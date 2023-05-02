@@ -1,7 +1,8 @@
 import React, { useCallback, useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { DispositifStatus, Id } from "api-types";
+import { Badge } from "@dataesr/react-dsfr";
+import { ContentType, DispositifStatus, Id } from "api-types";
 import { getPath } from "routes";
 import { canEdit, isStatus } from "lib/dispositif";
 import { cls } from "lib/classname";
@@ -32,11 +33,13 @@ const Banner = (props: Props) => {
   // edit
   const router = useRouter();
   const [showEditModal, setShowEditModal] = useState(false);
-
   const navigateToEdit = useCallback(() => {
     if (!dispositif?._id) return;
     router.push({
-      pathname: getPath("/dispositif/[id]/edit", router.locale),
+      pathname:
+        dispositif.typeContenu === ContentType.DEMARCHE
+          ? getPath("/demarche/[id]/edit", router.locale)
+          : getPath("/dispositif/[id]/edit", router.locale),
       query: { id: dispositif._id.toString() },
     });
   }, [dispositif, router]);

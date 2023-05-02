@@ -169,6 +169,7 @@ const CustomNavbarEdit = (props: Props) => {
         typeContenu={props.typeContenu}
         toggle={togglePublishModal}
         onQuit={toggleQuitModal}
+        redirectToBo={quit}
         onPublish={handlePublish}
         status={dispositif?.status || null}
       />
