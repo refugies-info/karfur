@@ -50,16 +50,9 @@ export const getIsEndModal = (step: number, hasStructure: boolean) => {
   }
   return isStep(step, [3, 4, 8, 10, 12]);
 };
-export const getTitle = (step: number, hasStructure: boolean, isEndModal: boolean, titleIcon: any) => {
-  const title = hasStructure ? hasStructureTitles[step] : noStructureTitles[step];
-  return isEndModal ? (
-    <>
-      {titleIcon} {title}
-    </>
-  ) : (
-    title
-  );
-};
+export const getTextContent = (step: number, hasStructure: boolean) =>
+  hasStructure ? hasStructureTitles[step] : noStructureTitles[step];
+
 export const isNextButtonDisabled = (
   step: number,
   hasStructure: boolean,

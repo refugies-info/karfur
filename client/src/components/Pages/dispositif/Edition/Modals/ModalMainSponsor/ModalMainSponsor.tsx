@@ -19,7 +19,7 @@ import {
   getDisplayedStep,
   getIsEndModal,
   getPreviousStep,
-  getTitle,
+  getTextContent,
   isNextButtonDisabled,
 } from "./functions";
 import styles from "./ModalMainSponsor.module.scss";
@@ -30,10 +30,6 @@ export type ContactInfos = {
   phone: string;
   comments: string;
 };
-
-const titleIcon = (
-  <EVAIcon name="checkmark-circle-2" size={32} fill={styles.lightTextDefaultSuccess} className="me-2" />
-);
 
 interface Props {
   show: boolean;
@@ -152,10 +148,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   const displayedMaxStep = useMemo(() => getDisplayedMaxStep(step, user.hasStructure), [step, user.hasStructure]);
   const previousStep = useMemo(() => getPreviousStep(step, user.hasStructure), [step, user.hasStructure]);
   const isEndModal = useMemo(() => getIsEndModal(step, user.hasStructure), [step, user.hasStructure]);
-  const title = useMemo(
-    () => getTitle(step, user.hasStructure, isEndModal, titleIcon),
-    [step, user.hasStructure, isEndModal],
-  );
+  const textContent = useMemo(() => getTextContent(step, user.hasStructure), [step, user.hasStructure]);
   const nextButtonDisabled = useMemo(
     () =>
       isNextButtonDisabled(
@@ -185,16 +178,9 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   );
 
   return (
-    <BaseModal
-      show={show}
-      toggle={endForm}
-      help={isEndModal ? undefined : help}
-      title={title}
-      small={isEndModal}
-      className={styles.container}
-    >
+    <BaseModal show={show} toggle={endForm} help={textContent.help} title={textContent.title} small={isEndModal}>
       {user.hasStructure ? (
-        <div>
+        <div className={styles.container}>
           {step === 0 && (
             <ChooseStructure
               selectedStructure={selectedStructure}
@@ -211,7 +197,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
               setCreateStructure={setCreateStructure}
             />
           )}
-          {step === 3 && <ThanksMessage publish={setData} />}
+          {step === 3 && <ThanksMessage publish={setData} content={textContent.content} />}
           {step === 4 && <CreateStructure sponsor={mainSponsor} setSponsor={setMainSponsor} />}
           {step === 5 && (
             <StructureContact
@@ -221,9 +207,9 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
               setUnknownContact={setUnknownContact}
             />
           )}
-          {step === 6 && <ThanksMessage publish={setData} />}
+          {step === 6 && <ThanksMessage publish={setData} content={textContent.content} />}
           {step === 7 && <AuthorContact contact={authorContact} setContact={setAuthorContact} />}
-          {step === 8 && <ThanksMessage publish={setData} />}
+          {step === 8 && <ThanksMessage publish={setData} content={textContent.content} />}
 
           {isEndModal ? (
             <SimpleFooter onValidate={endForm} disabled={false} text="C'est noté&nbsp;!" />
@@ -239,7 +225,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
           )}
         </div>
       ) : (
-        <div>
+        <div className={styles.container}>
           {step === 0 && (
             <SearchStructure
               selectedStructure={selectedStructure}
@@ -252,14 +238,14 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
             <MemberOfStructure memberOfStructure={memberOfStructure} setMemberOfStructure={setMemberOfStructure} />
           )}
           {step === 2 && <AuthorContact contact={authorContact} setContact={setAuthorContact} />}
-          {step === 3 && <ThanksMessage publish={setData} />}
-          {step === 4 && <ThanksMessage publish={setData} />}
+          {step === 3 && <ThanksMessage publish={setData} content={textContent.content} />}
+          {step === 4 && <ThanksMessage publish={setData} content={textContent.content} />}
           {step === 5 && <CreateStructure sponsor={mainSponsor} setSponsor={setMainSponsor} />}
           {step === 6 && (
             <MemberOfStructure memberOfStructure={memberOfStructure} setMemberOfStructure={setMemberOfStructure} />
           )}
           {step === 7 && <AuthorContact contact={authorContact} setContact={setAuthorContact} />}
-          {step === 8 && <ThanksMessage publish={setData} />}
+          {step === 8 && <ThanksMessage publish={setData} content={textContent.content} />}
           {step === 9 && (
             <StructureContact
               contact={structureContact}
@@ -268,9 +254,9 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
               setUnknownContact={setUnknownContact}
             />
           )}
-          {step === 10 && <ThanksMessage publish={setData} />}
+          {step === 10 && <ThanksMessage publish={setData} content={textContent.content} />}
           {step === 11 && <AuthorContact contact={authorContact} setContact={setAuthorContact} />}
-          {step === 12 && <ThanksMessage publish={setData} />}
+          {step === 12 && <ThanksMessage publish={setData} content={textContent.content} />}
 
           {isEndModal ? (
             <SimpleFooter onValidate={endForm} disabled={false} text="C'est noté&nbsp;!" />
