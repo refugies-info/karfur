@@ -465,7 +465,7 @@ const API = {
   },
   get_progression: (query: GetProgressionRequest): Promise<APIResponse<GetProgressionResponse>> => {
     const headers = getHeaders();
-    return instance.get("/traduction/get_progression", { params: query, headers }).then((response) => response.data);
+    return instance.get("/traduction/get_progression", { params: query, headers })
   },
 
   get_translation: (query: TranslateRequest): Promise<APIResponse<string>> => {
