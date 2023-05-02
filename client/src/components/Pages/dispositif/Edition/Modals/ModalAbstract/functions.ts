@@ -4,7 +4,7 @@ import { ContentType, CreateDispositifRequest, DispositifStatus, GetDispositifsR
 export const getDefaultDispositif = (formValues: DeepPartialSkipArrayKey<CreateDispositifRequest>): GetDispositifsResponse => {
   return {
     _id: "",
-    titreInformatif: formValues.titreInformatif || "Titre de la fiche",
+    titreInformatif: formValues.titreInformatif || "Titre informatif",
     titreMarque: formValues.titreMarque || "Structure",
     typeContenu: ContentType.DISPOSITIF,
     status: DispositifStatus.ACTIVE,

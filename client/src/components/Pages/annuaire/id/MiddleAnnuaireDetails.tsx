@@ -62,7 +62,7 @@ const Departement = (props: { departement: string }) => {
   return (
     <div className={styles.white_container}>
       <EVAIcon name="pin-outline" fill="#212121" className="me-2" />
-      {props.departement === "All" ? t("Dispositif.France entière", "France entière") : props.departement}
+      {props.departement === "All" ? t("Infocards.france", "France entière") : props.departement}
     </div>
   );
 };
@@ -198,7 +198,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               <HoursPrecisions
                 text={t(
                   "Annuaire.Cette structure n'accueille pas de public.",
-                  "Cette structure n'accueille pas de public."
+                  "Cette structure n'accueille pas de public.",
                 )}
               />
             )}

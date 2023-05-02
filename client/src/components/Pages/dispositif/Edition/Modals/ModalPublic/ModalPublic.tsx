@@ -131,7 +131,7 @@ const ModalPublic = (props: Props) => {
     <BaseModal
       show={props.show}
       toggle={props.toggle}
-      help={help}
+      help={help[step - 1]}
       title={modalTitles[step - 1]}
       onOpened={navigateToStep}
     >
@@ -150,6 +150,7 @@ const ModalPublic = (props: Props) => {
                 );
               }}
               className="mb-2"
+              helpTooltip="Votre action est ouverte de façon inconditionnelle, à toutes les personnes intéressées."
             />
             <ChoiceButton
               text="Primo-arrivants"
@@ -161,16 +162,17 @@ const ModalPublic = (props: Props) => {
                 );
               }}
               className="mb-2"
-              helpTooltip="Les primo-arrivants contiennent également les regroupements familiaux, les personnes exilées, les étudiants étrangers, etc."
+              helpTooltip="Votre action est ouverte aux étrangers primo-arrivants, c'est-à-dire vivant en France depuis moins de 5 ans."
             />
             <div>
               {publicStatusOptions.map((key) => (
-                <div key={key} className={cls("mb-2", key !== "french" && "ms-6")}>
+                <div key={key.type} className={cls("mb-2", key.type !== "french" && "ms-6")}>
                   <ChoiceButton
-                    text={t(`Infocards.${key}`)}
+                    text={t(`Infocards.${key.type}`)}
                     type="checkbox"
-                    selected={!!(publicStatus && publicStatus?.includes(key))}
-                    onSelect={() => selectPublicStatus(key)}
+                    selected={!!(publicStatus && publicStatus?.includes(key.type))}
+                    onSelect={() => selectPublicStatus(key.type)}
+                    helpTooltip={key.help || undefined}
                   />
                 </div>
               ))}
@@ -201,7 +203,7 @@ const ModalPublic = (props: Props) => {
               </div>
             ))}
             <ChoiceButton
-              text="Cette information n’est pas pertinente pour mon action"
+              text="Ce n'est pas pertinent pour mon action"
               type="radio"
               selected={frenchLevel === null}
               onSelect={() => setFrenchLevel(null)}
@@ -280,7 +282,7 @@ const ModalPublic = (props: Props) => {
               <p>ans</p>
             </InlineForm>
             <ChoiceButton
-              text="Cette information n’est pas pertinente pour mon action"
+              text="Ce n'est pas pertinent pour mon action"
               type="checkbox"
               selected={noAge}
               onSelect={() => setNoAge((o) => !o)}
@@ -306,7 +308,7 @@ const ModalPublic = (props: Props) => {
               </div>
             ))}
             <ChoiceButton
-              text="Cette information n’est pas pertinente pour mon action"
+              text="Ce n'est pas pertinent pour mon action"
               type="radio"
               selected={publicType === null}
               onSelect={() => setPublicType(null)}

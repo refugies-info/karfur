@@ -8,8 +8,8 @@ export const help = {
 
 export const stepTranslations: Record<Step, string> = {
   // no translation available
-  titreInformatif: "Titre de la fiche",
-  titreMarque: "Nom de l'action",
+  titreInformatif: "Titre informatif",
+  titreMarque: "Nom de votre action",
   theme: "Thèmes",
   sponsors: "Partenaires",
   mainSponsor: "Structure",

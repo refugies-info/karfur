@@ -95,7 +95,8 @@ const CustomNavbarEdit = (props: Props) => {
           <div className={cls("fr-container", styles.inner)}>
             <span>
               <EVAIcon name="info" size={24} fill={styles.lightBorderPlainInfo} className="me-4" />
-              L’éditeur de fiche est disponible uniquement en français. Rédigez bien votre fiche en français.
+              L’éditeur de fiche est disponible uniquement en français. Il n’est pas possible de rédiger dans une autre
+              langue.
             </span>
             <button onClick={() => setShowLanguageWarning(false)}>
               <EVAIcon name="close-outline" size={16} fill={styles.lightBorderPlainInfo} />
@@ -132,7 +133,7 @@ const CustomNavbarEdit = (props: Props) => {
             Toutes les modifications sont sauvegardées automatiquement
           </Tooltip>
           <Button secondary icon="log-out-outline" iconPlacement="end" onClick={handleQuit} className="me-4">
-            Quitter
+            Finir plus tard
           </Button>
           {!hideValidateButton && (
             <Button

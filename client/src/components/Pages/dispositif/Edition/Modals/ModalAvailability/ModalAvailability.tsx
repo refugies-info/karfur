@@ -20,6 +20,7 @@ import {
   frequencyDetailsOptions,
   frequencyUnitOptions,
   help,
+  helpDays,
   modalTitles,
   timeSlotOptions,
   timeUnitOptions,
@@ -137,7 +138,7 @@ const ModalAvailability = (props: Props) => {
     <BaseModal
       show={props.show}
       toggle={props.toggle}
-      help={help}
+      help={step === 3 ? helpDays : help}
       title={modalTitles[step - 1]}
       onOpened={navigateToStep}
     >
@@ -182,7 +183,7 @@ const ModalAvailability = (props: Props) => {
             />
           </InlineForm>
           <ChoiceButton
-            text="Cette question ne concerne pas mon action"
+            text="Ce n'est pas pertinent pour mon action"
             type="checkbox"
             selected={noCommitment}
             onSelect={() => setNoCommitment((o) => !o)}
@@ -221,7 +222,7 @@ const ModalAvailability = (props: Props) => {
             />
           </InlineForm>
           <ChoiceButton
-            text="Cette question ne concerne pas mon action"
+            text="Ce n'est pas pertinent pour mon action"
             type="checkbox"
             selected={noFrequency}
             onSelect={() => setNoFrequency((o) => !o)}
@@ -245,7 +246,7 @@ const ModalAvailability = (props: Props) => {
             />
           ))}
           <ChoiceButton
-            text="Cette question ne concerne pas mon action"
+            text="Ce n'est pas pertinent pour mon action"
             type="radio"
             selected={timeSlots === null}
             onSelect={() => setTimeSlots(null)}

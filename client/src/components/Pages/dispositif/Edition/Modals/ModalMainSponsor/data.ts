@@ -3,13 +3,13 @@ import { ContactInfos } from "./ModalMainSponsor";
 
 export const help = {
   title: "À quoi sert cette information ?",
-  content: "Ajoutez des conditions seulement si elles sont vraiment des critères excluant pour accéder à votre action.",
+  content: "Pour assurer la mise à jour des informations, nous devons relier votre fiche à la structure responsable de l’action.",
 };
 
 export const hasStructureTitles = [
-  "Quelle est la structure responsable de cette fiche ?",
+  "Quelle est la structure responsable de cette action ?",
   "",
-  "Cherchez dans notre base si la structure existe déjà",
+  "Cherchez si la structure existe déjà dans notre base",
   "Merci pour votre participation !",
   "Créer une nouvelle structure",
   "Connaissez-vous quelqu’un qui travaille dans cette structure ?",
@@ -19,19 +19,19 @@ export const hasStructureTitles = [
 ];
 
 export const noStructureTitles = [
-  "Vérifions si cette autre structure existe déjà dans notre base",
+  "Cherchez si la structure existe déjà dans notre base",
   "Faites-vous partie de cette structure ?",
   "Laissez-nous vos coordonnées",
-  "Merci, votre structure a bien été créée !",
-  "Merci pour votre participation",
+  "Votre structure a bien été créée !",
+  "Merci pour votre participation !",
   "Créer une nouvelle structure",
   "Faites-vous partie de cette structure ?",
   "Laissez-nous vos coordonnées",
-  "Merci, votre structure a bien été créée !",
+  "Votre structure a bien été créée !",
   "Connaissez-vous quelqu’un qui travaille dans cette structure ?",
-  "Merci pour votre participation",
+  "Merci pour votre participation !",
   "Laissez-nous vos coordonnées",
-  "Merci pour votre participation",
+  "Merci pour votre participation !",
 ];
 
 export const defaultContact: ContactInfos = {
