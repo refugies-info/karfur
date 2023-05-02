@@ -111,6 +111,7 @@
 
 .top {
   margin-bottom: u(16);
+  display: inline-flex !important;
 
   @media print {
     display: none;
