@@ -328,11 +328,11 @@ export const AdminUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {usersToDisplay.map((element, key) => {
+            {usersToDisplay.map((element) => {
               const secureUrl =
                 element && element.picture && element.picture.secure_url ? element.picture.secure_url : marioProfile;
               return (
-                <tr key={key}>
+                <tr key={element._id.toString()}>
                   <td className="align-middle" onClick={() => setSelectedUserIdAndToggleModal(element._id)}>
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
                       <RowContainer>
