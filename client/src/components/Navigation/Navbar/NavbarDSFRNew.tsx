@@ -1,4 +1,4 @@
-import { Header } from "@codegouvfr/react-dsfr/Header";
+/* import { Header } from "@codegouvfr/react-dsfr/Header";
 import { logoRI } from "assets/figma";
 import { BackendNavigation } from "containers";
 import Image from "next/image";
@@ -95,4 +95,8 @@ const Navbar = () => {
   );
 };
 
+export default Navbar;
+ */
+
+const Navbar = () => <></>;
 export default Navbar;

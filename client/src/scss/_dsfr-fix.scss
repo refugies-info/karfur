@@ -1,3 +1,8 @@
+[class^="ri-"]::before,
+[class^="ri-"]::after {
+  --icon-size: 1em !important;
+}
+
 .fr-footer {
   border-top: 1px solid #ddd;
 }
@@ -13,11 +18,11 @@
       left: 0;
     }
     .fr-footer__content {
-        margin-right: auto;
+      margin-right: auto;
     }
 
     .fr-footer__bottom-item:before {
-        margin-left:0.75rem;
+      margin-left: 0.75rem;
     }
   }
 }
@@ -56,7 +61,7 @@
   text-align: right;
 }
 
-[dir="rtl"] [class^=ri-].icon-left {
+[dir="rtl"] [class^="ri-"].icon-left {
   margin-right: 0;
   margin-left: 0.5rem;
 }
@@ -73,7 +78,7 @@
 [dir="rtl"] .fr-translate .fr-translate__btn:after {
   margin-right: auto;
   margin-left: 0;
-} 
+}
 
 .fr-header .fr-header__menu-links .fr-translate__btn {
   padding: 0 1rem !important;
@@ -85,6 +90,6 @@
 
 @media (min-width: 62em) {
   .fr-translate .fr-translate__btn:after {
-      margin-left: 0;
+    margin-left: 0;
   }
 }

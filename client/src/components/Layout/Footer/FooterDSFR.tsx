@@ -1,5 +1,5 @@
 import { Footer as DSFRFooter, FooterProps } from "@codegouvfr/react-dsfr/Footer";
-import { consentModalButtonProps } from "@codegouvfr/react-dsfr/ConsentBanner";
+import { consentModalNativeButtonProps } from "@codegouvfr/react-dsfr/ConsentBanner";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,7 +40,7 @@ const Footer = () => {
         href: "/",
         title: "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)",
       }}
-      cookiesManagementButtonProps={consentModalButtonProps}
+      cookiesManagementButtonProps={{ nativeButtonProps: consentModalNativeButtonProps }}
       personalDataLinkProps={{
         href: getPath("/politique-de-confidentialite", router.locale),
         title: t("Politique de confidentialité", "Politique de confidentialité"),
