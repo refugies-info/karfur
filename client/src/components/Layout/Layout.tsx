@@ -16,7 +16,7 @@ import { ttsActiveSelector } from "services/Tts/tts.selector";
 import { showLangModalSelector, allLanguesSelector } from "services/Langue/langue.selectors";
 import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 
-import Navbar from "components/Navigation/Navbar";
+import Navbar from "components/Navigation/Navbar/NavbarDSFRNew";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import MobileAppModal from "components/Modals/MobileAppModal/MobileAppModal";
 import Footer from "components/Layout/Footer";
