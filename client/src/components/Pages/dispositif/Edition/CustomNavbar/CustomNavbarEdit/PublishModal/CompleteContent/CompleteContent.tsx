@@ -25,6 +25,7 @@ interface Props {
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   toggle: () => void;
   onPublish: (keepTranslations: boolean) => Promise<void>;
+  redirectToBo: () => void;
 }
 
 const CompleteContent = (props: Props) => {
@@ -86,7 +87,7 @@ const CompleteContent = (props: Props) => {
             />
             <div className="text-end mt-8">
               <Button
-                onClick={() => onPublish(keepTranslations).then(toggle)}
+                onClick={() => onPublish(keepTranslations).then(props.redirectToBo)}
                 icon="arrow-forward-outline"
                 iconPlacement="end"
               >
@@ -105,7 +106,11 @@ const CompleteContent = (props: Props) => {
               <Image src={PublishImage} width={345} height={240} alt="" />
             </div>
             <div className="text-end">
-              <Button onClick={() => onPublish(false).then(toggle)} icon="arrow-forward-outline" iconPlacement="end">
+              <Button
+                onClick={() => onPublish(false).then(props.redirectToBo)}
+                icon="arrow-forward-outline"
+                iconPlacement="end"
+              >
                 Publier
               </Button>
             </div>
@@ -139,7 +144,11 @@ const CompleteContent = (props: Props) => {
             ]}
           />
           <div className="text-end">
-            <Button onClick={() => onPublish(false).then(toggle)} icon="arrow-forward-outline" iconPlacement="end">
+            <Button
+              onClick={() => onPublish(false).then(props.redirectToBo)}
+              icon="arrow-forward-outline"
+              iconPlacement="end"
+            >
               Envoyer pour traduction
             </Button>
           </div>

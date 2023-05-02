@@ -14,6 +14,7 @@ interface Props {
   toggle: () => void;
   onQuit: () => void;
   onPublish: (keepTranslations: boolean) => Promise<void>;
+  redirectToBo: () => void;
 }
 
 const PublishModal = (props: Props) => {
@@ -34,7 +35,13 @@ const PublishModal = (props: Props) => {
   return (
     <BaseModal show={props.show} toggle={props.toggle} title={title} small>
       {isComplete ? (
-        <CompleteContent status={props.status} onPublish={props.onPublish} toggle={props.toggle} setTitle={setTitle} />
+        <CompleteContent
+          status={props.status}
+          onPublish={props.onPublish}
+          toggle={props.toggle}
+          redirectToBo={props.redirectToBo}
+          setTitle={setTitle}
+        />
       ) : (
         <MissingContent onQuit={props.onQuit} onStay={props.toggle} status={props.status} missingSteps={missingSteps} />
       )}
