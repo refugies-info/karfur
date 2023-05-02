@@ -13,7 +13,6 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { cls } from "lib/classname";
 import { sortThemes } from "lib/sortThemes";
-import { Event } from "lib/tracking";
 import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
 import useLocale from "hooks/useLocale";
 import NeedsList from "./NeedsList";
@@ -21,6 +20,7 @@ import { getInitialTheme } from "./functions";
 import styles from "./ThemeDropdown.module.scss";
 import ThemeButton from "./ThemeButton";
 import { GetDispositifsResponse, Id } from "api-types";
+import { useEvent } from "hooks";
 
 interface Props {
   search: string;
@@ -43,6 +43,7 @@ const debouncedQuery = debounce(
 const ThemeDropdown = (props: Props) => {
   const locale = useLocale();
   const dispatch = useDispatch();
+  const { Event } = useEvent();
 
   const themes = useSelector(themesSelector);
   const sortedThemes = themes.sort(sortThemes);
@@ -65,7 +66,7 @@ const ThemeDropdown = (props: Props) => {
       });
       Event("USE_SEARCH", "use theme filter", "click theme");
     },
-    [setThemeSelected],
+    [setThemeSelected, Event],
   );
 
   // fetch dispositifs if not done already

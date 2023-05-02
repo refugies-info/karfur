@@ -88,8 +88,8 @@ const CompleteContent = (props: Props) => {
             <div className="text-end mt-8">
               <Button
                 onClick={() => onPublish(keepTranslations).then(props.redirectToBo)}
-                icon="arrow-forward-outline"
-                iconPlacement="end"
+                evaIcon="arrow-forward-outline"
+                iconPosition="right"
               >
                 Valider
               </Button>
@@ -108,8 +108,8 @@ const CompleteContent = (props: Props) => {
             <div className="text-end">
               <Button
                 onClick={() => onPublish(false).then(props.redirectToBo)}
-                icon="arrow-forward-outline"
-                iconPlacement="end"
+                evaIcon="arrow-forward-outline"
+                iconPosition="right"
               >
                 Publier
               </Button>
@@ -144,11 +144,7 @@ const CompleteContent = (props: Props) => {
             ]}
           />
           <div className="text-end">
-            <Button
-              onClick={() => onPublish(false).then(props.redirectToBo)}
-              icon="arrow-forward-outline"
-              iconPlacement="end"
-            >
+            <Button onClick={() => onPublish(false).then(props.redirectToBo)} evaIcon="arrow-forward-outline" iconPosition="right">
               Envoyer pour traduction
             </Button>
           </div>
@@ -171,8 +167,8 @@ const CompleteContent = (props: Props) => {
           <div className="text-end">
             <Button
               onClick={() => onPublish(false).then(() => setStep(1))}
-              icon="arrow-forward-outline"
-              iconPlacement="end"
+              evaIcon="arrow-forward-outline"
+              iconPosition="right"
             >
               Envoyer pour relecture
             </Button>
@@ -202,7 +198,7 @@ const CompleteContent = (props: Props) => {
           ]}
         />
         <div className="text-end">
-          <Button onClick={toggle} icon="checkmark-circle-2" iconPlacement="end">
+          <Button onClick={toggle} evaIcon="checkmark-circle-2" iconPosition="right">
             C'est noté
           </Button>
         </div>

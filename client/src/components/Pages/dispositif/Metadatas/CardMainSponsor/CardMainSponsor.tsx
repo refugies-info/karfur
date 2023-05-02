@@ -77,8 +77,8 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
                 </span>
                 {isAllowedToEdit && (
                   <Button
-                    tertiary
-                    icon="trash-2-outline"
+                    priority="tertiary"
+                    evaIcon="trash-2-outline"
                     onClick={(e: any) => {
                       e.stopPropagation();
                       e.preventDefault();

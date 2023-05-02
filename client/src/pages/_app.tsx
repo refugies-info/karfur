@@ -5,15 +5,33 @@ import { appWithTranslation } from "next-i18next";
 import type { NextPage } from "next";
 import { wrapper } from "services/configureStore";
 import Layout from "components/Layout/Layout";
-import isInBrowser from "lib/isInBrowser";
 import { useRouter } from "next/router";
-import { initGA, PageView } from "lib/tracking";
 import { PageOptions } from "types/interface";
 import "scss/index.scss";
 import { Provider } from "react-redux";
 import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatus.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isRoute } from "routes";
+import Link from "next/link";
+
+import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
+import { DsfrProvider } from "@codegouvfr/react-dsfr/next-appdir/DsfrProvider";
+import { ConsentBanner } from "@codegouvfr/react-dsfr/ConsentBanner";
+import { Analytics } from "components";
+
+// Only in TypeScript projects
+declare module "@codegouvfr/react-dsfr/next-pagesdir" {
+  interface RegisterLink {
+    Link: typeof Link;
+  }
+}
+
+const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
+  defaultColorScheme: "system",
+  Link,
+});
+
+export { dsfrDocumentApi };
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -23,6 +41,15 @@ type NextPageWithLayout = NextPage & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
+
+declare module "@codegouvfr/react-dsfr/ConsentBanner" {
+  interface GdprServiceNames {
+    mandatory: unknown;
+    google_analytics: unknown;
+    facebook_pixel: unknown;
+    youtube: unknown;
+  }
+}
 
 const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const [history, setHistory] = useState<string[]>([]);
@@ -35,16 +62,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   };
   const router = useRouter();
 
-  if (isInBrowser() && options.cookiesModule) {
-    // AXEPTIO
-    window.axeptioSettings = {
-      clientId: process.env.NEXT_PUBLIC_REACT_APP_AXEPTIO_CLIENTID,
-    };
-  }
-
   const handleRouteChange = useCallback((url: string, { shallow }: { shallow: boolean }) => {
-    if (!shallow) PageView();
-
     setHistory((prevHistory) => {
       // add to history if url is new
       if (prevHistory[0] !== url) return [url, ...prevHistory];
@@ -54,7 +72,6 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
 
   // ANALYTICS
   useEffect(() => {
-    initGA();
     handleRouteChange(router.asPath, { shallow: false }); // initial route
 
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -84,10 +101,41 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   }, [store, router.events]);
 
   return (
-    <>
+    <DsfrProvider defaultColorScheme="system">
+      <Analytics />
+
+      {options.cookiesModule && (
+        <ConsentBanner
+          gdprLinkProps={{ href: "#" }}
+          services={[
+            {
+              name: "mandatory-cookie-consumer",
+              title: "Cookies obligatoires",
+              description:
+                "Ce site utilise des cookies nécessaires à son bon fonctionnement qui ne peuvent pas être désactivés.",
+              mandatory: true,
+            },
+            // {
+            //   name: "cookie-consumer",
+            //   title: "Facebook Pixel",
+            //   description: "Identifie les visiteurs en provenance de publications Facebook.",
+            // },
+            {
+              name: "cookie-consumer",
+              title: "Google Analytics",
+              description: "Permet d'analyser les statistiques de consultation de notre site.",
+            },
+            {
+              name: "cookie-consumer",
+              title: "Youtube",
+              description: "Permet d'afficher les vidéos Youtube.",
+            },
+          ]}
+          siteName={"Réfugiés.info"}
+        />
+      )}
       <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
 
-      {options.cookiesModule && <Script src="//static.axept.io/sdk.js" strategy="lazyOnload" />}
       {options.supportModule && (
         <Script
           id="crisp-widget"
@@ -106,8 +154,8 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
           }}
         />
       )}
-    </>
+    </DsfrProvider>
   );
 };
 
-export default appWithTranslation(App);
+export default withDsfr(appWithTranslation(App));

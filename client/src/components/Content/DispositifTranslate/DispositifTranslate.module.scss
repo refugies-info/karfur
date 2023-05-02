@@ -74,6 +74,7 @@
 .top {
   margin-top: u(10);
   margin-bottom: u(16);
+  display: inline-flex !important;
 
   @media print {
     display: none;

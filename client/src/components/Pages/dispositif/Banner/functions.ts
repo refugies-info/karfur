@@ -1,10 +1,9 @@
+import { BadgeProps } from "@codegouvfr/react-dsfr/Badge";
 import { DispositifStatus } from "api-types";
-
-import { BadgeProps } from "reactstrap";
 
 type Status = {
   text: string;
-  type: BadgeProps["type"];
+  type: BadgeProps["severity"];
   icon?: string;
 }
 
@@ -15,6 +14,7 @@ export const getStatus = (status: DispositifStatus | undefined, hasDraftVersion:
       return {
         text: "Fiche publiée",
         type: "success",
+        icon: "ri-checkbox-circle-fill"
       };
     case DispositifStatus.DELETED:
       return {

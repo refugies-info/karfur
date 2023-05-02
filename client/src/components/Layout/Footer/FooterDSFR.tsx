@@ -1,33 +1,20 @@
-import {
-  Footer as DSFRFooter,
-  FooterBody,
-  FooterBodyItem,
-  FooterBottom,
-  FooterCopy,
-  FooterLink,
-  FooterOperator,
-  FooterTop,
-  FooterTopCategory,
-  Link,
-  Logo,
-} from "@dataesr/react-dsfr";
-import { logoDIAIR } from "assets";
-import Image from "next/image";
-import NextLink from "next/link";
+import { Footer as DSFRFooter, FooterProps } from "@codegouvfr/react-dsfr/Footer";
+import { consentModalNativeButtonProps } from "@codegouvfr/react-dsfr/ConsentBanner";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
 import { useEditionMode } from "hooks";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
-import ThemesFooterCategory from "./ThemesFooterCategory";
-import styles from "./FooterDSFR.module.scss";
+import { themesSelector } from "services/Themes/themes.selectors";
 
 const Footer = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isEditionMode = useEditionMode();
+
+  const themes = useSelector(themesSelector);
 
   const openCrisp = () => {
     window.$crisp.push(["do", "chat:open"]);
@@ -36,147 +23,225 @@ const Footer = () => {
   if (isEditionMode) return null;
 
   return (
-    <DSFRFooter className={styles.footer}>
-      <FooterTop>
-        <ThemesFooterCategory />
-        <FooterTopCategory title={t("Footer.Trois types d’information", "Trois types d’information")}>
-          <FooterLink asLink={<NextLink href={getPath("/recherche", router.locale, "?type=dispositif")} />}>
-            {t("Footer.Les fiches actions", "Les fiches actions")}
-          </FooterLink>
-          <FooterLink asLink={<NextLink href={getPath("/recherche", router.locale, "?type=demarche")} />}>
-            {t("Footer.Les fiches démarches", "Les fiches démarches")}
-          </FooterLink>
-          <FooterLink asLink={<NextLink href={getPath("/annuaire", router.locale)} prefetch={false} />}>
-            {t("Footer.L’annuaire des acteurs", "L’annuaire des acteurs")}
-          </FooterLink>
-        </FooterTopCategory>
-        <FooterTopCategory title={t("Footer.Participer", "Participer")}>
-          <FooterLink asLink={<NextLink href={getPath("/publier", router.locale)} prefetch={false} />}>
-            {t("Footer.Recenser mon action", "Recenser mon action")}
-          </FooterLink>
-          <FooterLink asLink={<NextLink href={getPath("/traduire", router.locale)} prefetch={false} />}>
-            {t("Footer.Aider à traduire", "Aider à traduire")}
-          </FooterLink>
-          <FooterLink asLink={<a href="https://avec.refugies.info/" target="_blank" />}>
-            {t("Footer.Rejoindre le Réseau des contributeurs", "Rejoindre le Réseau des contributeurs")}
-          </FooterLink>
-          <FooterLink href="#" onClick={() => dispatch(toggleNewsletterModalAction())}>
-            {t("Footer.S’inscrire à la newsletter", "S’inscrire à la newsletter")}
-          </FooterLink>
-        </FooterTopCategory>
-        <FooterTopCategory title={t("Footer.Ressources", "Ressources")}>
-          <FooterLink asLink={<a href="https://kit.refugies.info/" target="_blank" />}>
-            {t("Toolbar.Kit de communication", "Kit de communication")}
-          </FooterLink>
-          <FooterLink href="https://www.youtube.com/channel/UCdj-KP_whcRiS5XWoAa8HXw" target="_blank">
-            {t("Footer.Chaîne Youtube", "Chaîne Youtube")}
-          </FooterLink>
-          <FooterLink href="https://kit.refugies.info/flyers/" target="_blank">
-            {t("Toolbar.Affiches et dépliants", "Affiches et dépliants")}
-          </FooterLink>
-          <FooterLink href="https://kit.refugies.info/presse/" target="_blank">
-            {t("Toolbar.Pour la presse", "Pour la presse")}
-          </FooterLink>
-          <FooterLink href="https://kit.refugies.info/ambassadeurs/" target="_blank">
-            {t("Toolbar.Pour les ambassadeurs", "Pour les ambassadeurs")}
-          </FooterLink>
-          <FooterLink href="https://www.facebook.com/refugies.info" target="_blank">
-            Facebook
-          </FooterLink>
-          <FooterLink href="https://www.linkedin.com/showcase/r%C3%A9fugi%C3%A9s.info/" target="_blank">
-            LinkedIn
-          </FooterLink>
-          <FooterLink href="https://twitter.com/refugies_info" target="_blank">
-            Twitter
-          </FooterLink>
-        </FooterTopCategory>
-        <FooterTopCategory title={t("Footer.A propos", "A propos")}>
-          <FooterLink asLink={<NextLink href={getPath("/qui-sommes-nous", router.locale)} prefetch={false} />}>
-            {t("Footer.Le projet", "Le projet")}
-          </FooterLink>
-          <FooterLink href="https://accueil-integration-refugies.fr/" target="_blank">
-            {t(
-              "Footer.La Délégation interministérielle à l’accueil et l’intégration des réfugiés",
-              "La Délégation interministérielle à l’accueil et l’intégration des réfugiés",
-            )}
-          </FooterLink>
-          <FooterLink href="https://lamednum.coop/notre-cooperative/" target="_blank">
-            {t("La Mednum", "La Mednum")}
-          </FooterLink>
-          <FooterLink href="https://eig.etalab.gouv.fr/" target="_blank">
-            {t("Footer.Le programme Entrepreneur d’Intérêt Général", "Le programme Entrepreneur d’Intérêt Général")}
-          </FooterLink>
-        </FooterTopCategory>
-        <FooterTopCategory title={t("Aide", "Aide")}>
-          <FooterLink target="_blank" href="https://help.refugies.info/fr/">
-            {t("Footer.Centre d'aide", "Consulter le centre d'aide")}
-          </FooterLink>
-          <FooterLink onClick={openCrisp} href="/">
-            {t("Démarche administrative", "Contacter l'équipe")}
-          </FooterLink>
-          <FooterLink
-            href="https://www.youtube.com/watch?v=h275aGr0r9E&list=PLa8oaTXn0u3QNXX1t9fYL54RElUYuZSqq"
-            target="_blank"
-          >
-            {t("Footer.Comment utiliser l'application", "Comment utiliser l'application")}
-          </FooterLink>
-        </FooterTopCategory>
-      </FooterTop>
-      <FooterBody
-        description={t(
-          "Footer.Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
-          "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
-        )}
-      >
-        <Logo>Gouvernement</Logo>
-        <FooterOperator>
-          <Image key="logo" src={logoDIAIR} alt="logo DIAIR" />
-        </FooterOperator>
-        <FooterBodyItem>
-          <Link href="https://www.legifrance.gouv.fr">legifrance.gouv.fr</Link>
-        </FooterBodyItem>
-        <FooterBodyItem>
-          <Link href="https://www.gouvernement.fr">gouvernement.fr</Link>
-        </FooterBodyItem>
-        <FooterBodyItem>
-          <Link href="https://www.service-public.fr">service-public.fr</Link>
-        </FooterBodyItem>
-        <FooterBodyItem>
-          <Link href="https://www.data.gouv.fr">data.gouv.fr</Link>
-        </FooterBodyItem>
-      </FooterBody>
-      <FooterBottom>
-        <FooterLink asLink={<NextLink href={getPath("/plan-du-site", router.locale)} prefetch={false} />}>
-          {t("Footer.Plan du site", "Plan du site")}
-        </FooterLink>
-        <FooterLink asLink={<NextLink href={getPath("/declaration-accessibilite", router.locale)} prefetch={false} />}>
-          {t("Footer.accessibility_link", "Accessibilité : non conforme")}
-        </FooterLink>
-        <FooterLink asLink={<NextLink href={getPath("/mentions-legales", router.locale)} prefetch={false} />}>
-          {t("Mentions légales", "Mentions légales")}
-        </FooterLink>
-        <FooterLink
-          asLink={<NextLink href={getPath("/politique-de-confidentialite", router.locale)} prefetch={false} />}
-        >
-          {t("Politique de confidentialité", "Politique de confidentialité")}
-        </FooterLink>
-        <FooterLink href="/" onClick={() => window.__axeptioSDK.openCookies && window.__axeptioSDK.openCookies()}>
-          {t("Footer.Gestion des cookies", "Gestion des cookies")}
-        </FooterLink>
-        <FooterCopy>
-          {t(
-            "Footer.Sauf mention contraire, tous les contenus de ce site sont sous",
-            "Sauf mention contraire, tous les contenus de ce site sont sous",
-          )}{" "}
-          <a
-            href="https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"
-            target="_blank"
-          >
-            licence etalab-2.0
-          </a>
-        </FooterCopy>
-      </FooterBottom>
-    </DSFRFooter>
+    <DSFRFooter
+      accessibility="partially compliant"
+      accessibilityLinkProps={{ href: getPath("/declaration-accessibilite", router.locale) }}
+      brandTop="GOUVERNEMENT"
+      operatorLogo={{
+        alt: "Logo DIAIR",
+        imgUrl: "/images/Logo-DIAIR.png",
+        orientation: "horizontal",
+      }}
+      contentDescription={t(
+        "Footer.Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
+        "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
+      )}
+      homeLinkProps={{
+        href: "/",
+        title: "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)",
+      }}
+      cookiesManagementButtonProps={{ nativeButtonProps: consentModalNativeButtonProps }}
+      personalDataLinkProps={{
+        href: getPath("/politique-de-confidentialite", router.locale),
+        title: t("Politique de confidentialité", "Politique de confidentialité"),
+      }}
+      termsLinkProps={{
+        href: getPath("/mentions-legales", router.locale),
+        title: t("Mentions légales", "Mentions légales"),
+      }}
+      websiteMapLinkProps={{
+        href: getPath("/plan-du-site", router.locale),
+        title: t("Footer.Plan du site", "Plan du site"),
+      }}
+      linkList={[
+        {
+          categoryName: "Chercher par thématique",
+          links: themes.map((theme) => ({
+            linkProps: {
+              href: `${getPath("/recherche", router.locale)}?themes=${theme._id}`,
+            },
+            text: theme.short[router.locale || "fr"],
+          })) as FooterProps.LinkList.Links,
+        },
+        {
+          categoryName: t("Footer.Trois types d’information", "Trois types d’information"),
+          links: [
+            {
+              linkProps: {
+                href: getPath("/recherche", router.locale, "?type=dispositif"),
+                hrefLang: router.locale,
+              },
+              text: t("Footer.Les fiches actions", "Les fiches actions"),
+            },
+            {
+              linkProps: {
+                href: getPath("/recherche", router.locale, "?type=demarche"),
+                hrefLang: router.locale,
+              },
+              text: t("Footer.Les fiches démarches", "Les fiches démarches"),
+            },
+            {
+              linkProps: {
+                href: getPath("/annuaire", router.locale),
+                hrefLang: router.locale,
+              },
+              text: t("Footer.L’annuaire des acteurs", "L’annuaire des acteurs"),
+            },
+          ],
+        },
+        {
+          categoryName: t("Footer.Participer", "Participer"),
+          links: [
+            {
+              linkProps: {
+                href: getPath("/publier", router.locale),
+              },
+              text: t("Footer.Recenser mon action", "Recenser mon action"),
+            },
+            {
+              linkProps: {
+                href: getPath("/traduire", router.locale),
+              },
+              text: t("Footer.Aider à traduire", "Aider à traduire"),
+            },
+            {
+              linkProps: {
+                href: "https://avec.refugies.info/",
+                target: "_blank",
+              },
+              text: t("Footer.Rejoindre le Réseau des contributeurs", "Rejoindre le Réseau des contributeurs"),
+            },
+            {
+              linkProps: {
+                href: "/",
+                onClick: () => dispatch(toggleNewsletterModalAction()),
+              },
+              text: t("Footer.S’inscrire à la newsletter", "S’inscrire à la newsletter"),
+            },
+          ],
+        },
+        {
+          categoryName: t("Footer.Ressources", "Ressources"),
+          links: [
+            {
+              linkProps: {
+                href: "https://kit.refugies.info/",
+                target: "_blank",
+              },
+              text: t("Toolbar.Kit de communication", "Kit de communication"),
+            },
+            {
+              linkProps: {
+                href: "https://www.youtube.com/channel/UCdj-KP_whcRiS5XWoAa8HXw",
+                target: "_blank",
+              },
+              text: t("Footer.Chaîne Youtube", "Chaîne Youtube"),
+            },
+            {
+              linkProps: {
+                href: "https://kit.refugies.info/flyers/",
+                target: "_blank",
+              },
+              text: t("Toolbar.Affiches et dépliants", "Affiches et dépliants"),
+            },
+            {
+              linkProps: {
+                href: "https://kit.refugies.info/presse/",
+                target: "_blank",
+              },
+              text: t("Toolbar.Pour la presse", "Pour la presse"),
+            },
+            {
+              linkProps: {
+                href: "https://kit.refugies.info/ambassadeurs/",
+                target: "_blank",
+              },
+              text: t("Toolbar.Pour les ambassadeurs", "Pour les ambassadeurs"),
+            },
+            {
+              linkProps: {
+                href: "https://www.facebook.com/refugies.info",
+                target: "_blank",
+              },
+              text: "Facebook",
+            },
+            {
+              linkProps: {
+                href: "https://www.linkedin.com/showcase/r%C3%A9fugi%C3%A9s.info/",
+                target: "_blank",
+              },
+              text: "LinkedIn",
+            },
+            {
+              linkProps: {
+                href: "https://twitter.com/refugies_info",
+                target: "_blank",
+              },
+              text: "Twitter",
+            },
+          ],
+        },
+        {
+          categoryName: t("Footer.A propos", "A propos"),
+          links: [
+            {
+              linkProps: {
+                href: "https://accueil-integration-refugies.fr/",
+                target: "_blank",
+              },
+              text: t(
+                "Footer.La Délégation interministérielle à l’accueil et l’intégration des réfugiés",
+                "La Délégation interministérielle à l’accueil et l’intégration des réfugiés",
+              ),
+            },
+            {
+              linkProps: {
+                href: "https://lamednum.coop/notre-cooperative/",
+                target: "_blank",
+              },
+              text: t("La Mednum", "La Mednum"),
+            },
+            {
+              linkProps: {
+                href: "https://eig.etalab.gouv.fr/",
+                target: "_blank",
+              },
+              text: t(
+                "Footer.Le programme Entrepreneur d’Intérêt Général",
+                "Le programme Entrepreneur d’Intérêt Général",
+              ),
+            },
+          ],
+        },
+        {
+          categoryName: t("Aide", "Aide"),
+          links: [
+            {
+              linkProps: {
+                href: "https://help.refugies.info/fr/",
+                hrefLang: "fr",
+                target: "_blank",
+              },
+              text: t("Footer.Centre d'aide", "Consulter le centre d'aide"),
+            },
+            {
+              linkProps: {
+                onClick: openCrisp,
+                href: "/",
+              },
+              text: t("Démarche administrative", "Contacter l'équipe"),
+            },
+            {
+              linkProps: {
+                href: "https://www.youtube.com/watch?v=h275aGr0r9E&list=PLa8oaTXn0u3QNXX1t9fYL54RElUYuZSqq",
+                target: "_blank",
+              },
+              text: t("Footer.Comment utiliser l'application", "Comment utiliser l'application"),
+            },
+          ],
+        },
+      ]}
+    />
   );
 };
 

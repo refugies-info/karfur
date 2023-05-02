@@ -1,8 +1,7 @@
 import { useMemo } from "react";
 import { ToolTranslate, ToolTranslateItem } from "@dataesr/react-dsfr";
 import { activatedLanguages } from "data/activatedLanguages";
-import { useChangeLanguage, useEditionMode } from "hooks";
-import { Event } from "lib/tracking";
+import { useChangeLanguage, useEditionMode, useEvent } from "hooks";
 import { useRouter } from "next/router";
 import Tooltip from "components/UI/Tooltip";
 import { cls } from "lib/classname";
@@ -10,6 +9,7 @@ import styles from "./TranslationToolItem.module.scss";
 
 const TranslationToolItem = () => {
   const router = useRouter();
+  const { Event } = useEvent();
 
   const currentLanguage = activatedLanguages.find((ln) => ln.i18nCode === router.locale) || null;
   const { changeLanguage } = useChangeLanguage();

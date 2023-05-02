@@ -12,6 +12,7 @@
     "url": "git@github.com:entrepreneur-interet-general/karfur.git"
   },
   "dependencies": {
+    "@codegouvfr/react-dsfr": "^0.52.1",
     "@dataesr/react-dsfr": "^3.4.12",
     "@hedgedoc/html-to-react": "^1.4.5",
     "@lexical/react": "^0.8.0",
@@ -69,6 +70,8 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
+    "predev": "only-include-used-icons",
+    "prebuild": "only-include-used-icons",
     "dev": "next dev",
     "start": "next start",
     "build": "next build",

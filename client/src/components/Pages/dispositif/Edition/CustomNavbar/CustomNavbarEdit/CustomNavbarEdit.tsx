@@ -109,9 +109,9 @@ const CustomNavbarEdit = (props: Props) => {
           <StepBar total={TOTAL_STEPS} progress={progress} text={`${progress} / ${TOTAL_STEPS}`} />
           <p className={styles.help}>{getText(progress)}</p>
           <Button
-            secondary={!showMissingSteps}
+            priority={showMissingSteps ? "primary" : "secondary"}
             id="missing-steps-btn"
-            icon={showMissingSteps ? "eye-off-outline" : "eye-outline"}
+            evaIcon={showMissingSteps ? "eye-off-outline" : "eye-outline"}
             className={cls("ms-4", styles.btn)}
             onClick={() => setShowMissingSteps?.(!showMissingSteps)}
           />
@@ -132,13 +132,19 @@ const CustomNavbarEdit = (props: Props) => {
           <Tooltip target="save-status" placement="top">
             Toutes les modifications sont sauvegardées automatiquement
           </Tooltip>
-          <Button secondary icon="log-out-outline" iconPlacement="end" onClick={handleQuit} className="me-4">
+          <Button
+            priority="secondary"
+            evaIcon="log-out-outline"
+            iconPosition="right"
+            onClick={handleQuit}
+            className="me-4"
+          >
             Finir plus tard
           </Button>
           {!hideValidateButton && (
             <Button
-              icon={progress === TOTAL_STEPS ? "checkmark-circle-2" : undefined}
-              iconPlacement="end"
+              evaIcon={progress === TOTAL_STEPS ? "checkmark-circle-2" : undefined}
+              iconPosition="right"
               onClick={validate}
             >
               Valider

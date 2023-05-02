@@ -41,7 +41,7 @@ const AddContentButton = (props: Props) => {
   );
   return (
     <Button
-      tertiary
+      priority="tertiary"
       className={cls(
         styles.btn,
         hasContent && styles.has_content,

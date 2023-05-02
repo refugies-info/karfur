@@ -70,15 +70,15 @@ const QuitModal = (props: Props) => {
 
             <div className="text-end">
               <Button
-                secondary
+                priority="secondary"
                 onClick={props.onPublish}
-                icon="arrow-forward-outline"
-                iconPlacement="end"
+                evaIcon="arrow-forward-outline"
+                iconPosition="right"
                 className="me-2"
               >
                 Publier
               </Button>
-              <Button onClick={props.onQuit} icon="log-out-outline" iconPlacement="end">
+              <Button onClick={props.onQuit} evaIcon="log-out-outline" iconPosition="right">
                 Quitter et publier plus tard
               </Button>
             </div>
@@ -95,15 +95,15 @@ const QuitModal = (props: Props) => {
             />
             <div className="text-end">
               <Button
-                secondary
+                priority="secondary"
                 onClick={props.toggle}
-                icon="arrow-forward-outline"
-                iconPlacement="end"
+                evaIcon="arrow-forward-outline"
+                iconPosition="right"
                 className="me-2"
               >
                 Valider les propositions
               </Button>
-              <Button onClick={props.onQuit} icon="log-out-outline" iconPlacement="end">
+              <Button onClick={props.onQuit} evaIcon="log-out-outline" iconPosition="right">
                 Quitter et finir plus tard
               </Button>
             </div>
@@ -117,15 +117,15 @@ const QuitModal = (props: Props) => {
             </div>
             <div className="text-end">
               <Button
-                secondary
+                priority="secondary"
                 onClick={props.toggle}
-                icon="arrow-forward-outline"
-                iconPlacement="end"
+                evaIcon="arrow-forward-outline"
+                iconPosition="right"
                 className="me-2"
               >
                 Continuer à traduire
               </Button>
-              <Button onClick={props.onQuit} icon="log-out-outline" iconPlacement="end">
+              <Button onClick={props.onQuit} evaIcon="log-out-outline" iconPosition="right">
                 Quitter
               </Button>
             </div>
@@ -143,7 +143,7 @@ const QuitModal = (props: Props) => {
               <Image src={PublishImage} width={345} height={240} alt="" />
             </div>
             <div className="text-end">
-              <Button onClick={props.onQuit} icon="checkmark-circle-2" iconPlacement="end">
+              <Button onClick={props.onQuit} evaIcon="checkmark-circle-2" iconPosition="right">
                 C'est noté
               </Button>
             </div>

@@ -4,10 +4,8 @@ import { Row, Col, Container, Button } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
 import { TypeOptions } from "data/searchFilters";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import { themesSelector } from "services/Themes/themes.selectors";
 import { searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import ThemesGrid from "components/Content/ThemesGrid/ThemesGrid";
 import illuDemarche from "assets/recherche/illu-demarche.svg";
@@ -17,6 +15,7 @@ import HomeTypeCard from "../HomeTypeCard";
 import CardSlider from "../CardSlider";
 import styles from "./HomeSearch.module.scss";
 import { ContentType, Id } from "api-types";
+import { useEvent } from "hooks";
 
 export const HOME_MAX_SHOWN_DISPOSITIFS = 15;
 export const HOME_MAX_SHOWN_DEMARCHES = 15;
@@ -57,8 +56,8 @@ const departmentExamples = [
 const HomeSearch = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const { Event } = useEvent();
 
-  const themes = useSelector(themesSelector);
   const filteredResult = useSelector(searchResultsSelector);
 
   const demarches = useMemo(() => filteredResult.demarches.slice(0, HOME_MAX_SHOWN_DEMARCHES), [filteredResult]);

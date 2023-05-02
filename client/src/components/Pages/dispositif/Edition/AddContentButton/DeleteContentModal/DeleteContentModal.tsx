@@ -16,10 +16,16 @@ const DeleteContentModal = (props: Props) => {
         <p>Si vous le supprimez, le contenu sera perdu.</p>
 
         <div className="text-end">
-          <Button secondary onClick={props.toggle} icon="close-outline" iconPlacement="end" className="me-2">
+          <Button
+            priority="secondary"
+            onClick={props.toggle}
+            evaIcon="close-outline"
+            iconPosition="right"
+            className="me-2"
+          >
             Annuler
           </Button>
-          <Button onClick={props.onValidate} icon="trash-2-outline" iconPlacement="end">
+          <Button onClick={props.onValidate} evaIcon="trash-2-outline" iconPosition="right">
             Supprimer
           </Button>
         </div>

@@ -51,7 +51,13 @@ const BaseModal = (props: Props) => {
         )}
         <div className={styles.content}>
           <div className="text-end">
-            <Button icon="close-outline" iconPlacement="end" tertiary className={styles.close} onClick={props.toggle}>
+            <Button
+              evaIcon="close-outline"
+              iconPosition="right"
+              priority="tertiary"
+              className={styles.close}
+              onClick={props.toggle}
+            >
               {t("close")}
             </Button>
           </div>

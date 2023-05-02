@@ -8,11 +8,11 @@ import "moment/locale/fa";
 import "moment/locale/fr";
 import "moment/locale/ru";
 import "moment/locale/uk";
-import { Badge } from "@dataesr/react-dsfr";
 import { useLocale } from "hooks";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
+import Badge from "components/UI/Badge";
 import { sharingOptions } from "../function";
 import Breadcrumb from "../Breadcrumb";
 import SectionButtons from "../SectionButtons";
@@ -40,18 +40,15 @@ const Header = (props: Props) => {
         {pageContext.mode === "view" && (
           <>
             {dispositif?.date && (
-              <Badge
-                text={`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}
-                type="info"
-                isSmall
-                hasIcon
-              />
+              <Badge severity="info" small icon="ri-information-fill">{`${t("Dispositif.updated")} ${moment(
+                dispositif.date,
+              ).fromNow()}`}</Badge>
             )}
 
             <Button
               className={styles.share}
-              tertiary
-              icon="share-outline"
+              priority="tertiary"
+              evaIcon="share-outline"
               onClick={() =>
                 sharingOptions(props.typeContenu, dispositif?.titreInformatif || "", dispositif?.titreMarque || "")
               }

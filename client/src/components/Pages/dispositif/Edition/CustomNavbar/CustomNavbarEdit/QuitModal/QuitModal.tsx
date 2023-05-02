@@ -63,15 +63,15 @@ const QuitModal = (props: Props) => {
 
         <div className="text-end">
           <Button
-            secondary
+            priority="secondary"
             onClick={publishedAndComplete ? props.onPublish : props.toggle}
-            icon="arrow-forward-outline"
-            iconPlacement="end"
+            evaIcon="arrow-forward-outline"
+            iconPosition="right"
             className="me-2"
           >
             {publishedAndComplete ? "Envoyer pour relecture" : "Rester dans l'éditeur"}
           </Button>
-          <Button onClick={props.onQuit} icon="log-out-outline" iconPlacement="end">
+          <Button onClick={props.onQuit} evaIcon="log-out-outline" iconPosition="right">
             Quitter et finir plus tard
           </Button>
         </div>

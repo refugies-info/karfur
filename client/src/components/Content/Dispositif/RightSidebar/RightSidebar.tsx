@@ -92,12 +92,17 @@ const RightSidebar = () => {
     <div className={styles.container}>
       <Button
         onClick={toggleReading}
-        icon={isPlayingTts ? "stop-circle" : "play-circle"}
+        evaIcon={isPlayingTts ? "stop-circle" : "play-circle"}
         className={cls(styles.btn, isPlayingTts && styles.playing)}
       >
         {isPlayingTts ? t("Dispositif.stop") : t("Dispositif.listen")}
       </Button>
-      <Button secondary onClick={toggleFavorite} icon={isFavorite ? "star" : "star-outline"} className={styles.btn}>
+      <Button
+        priority="secondary"
+        onClick={toggleFavorite}
+        evaIcon={isFavorite ? "star" : "star-outline"}
+        className={styles.btn}
+      >
         {isFavorite ? t("Dispositif.addedToFavorites") : t("Dispositif.addToFavorites")}
       </Button>
       <LangueMenu

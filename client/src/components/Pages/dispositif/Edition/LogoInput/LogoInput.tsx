@@ -81,7 +81,7 @@ const LogoInput = (props: Props) => {
           </div>
         ) : (
           <>
-            <Button icon="download-outline" iconPlacement="end" className="position-relative">
+            <Button evaIcon="download-outline" iconPosition="right" className="position-relative">
               <Input
                 className={styles.file_input}
                 type="file"

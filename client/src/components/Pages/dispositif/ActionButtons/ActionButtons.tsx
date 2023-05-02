@@ -23,7 +23,7 @@ const ActionButtons = () => {
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
-        <Button icon="paper-plane-outline" iconPlacement="end" onClick={() => setShowSMSModal(true)}>
+        <Button evaIcon="paper-plane-outline" iconPosition="right" onClick={() => setShowSMSModal(true)}>
           {t("Dispositif.sendBySMS")}
         </Button>
         <span className={styles.divider} />
