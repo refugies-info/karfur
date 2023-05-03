@@ -148,7 +148,11 @@
     "updated_ago": "Оновлено",
     "all_french_levels": "Усі рівні",
     "irrelevant": "Неактуально",
-    "all_ages": "Усі вікові категорії"
+    "all_ages": "Усі вікові категорії",
+    "feedbackTitle": "Чи був цей запис корисним для вас?",
+    "feedbackSubtitle": "Подякуйте контрибуторам, які написали та переклали інформацію для вас!",
+    "nbThanks": "{{count}} дякую",
+    "feedbackThanks": "Дякуємо за ваш відгук!"
   },
   "Infocards": {
     "proposedBy": "Представлено від",

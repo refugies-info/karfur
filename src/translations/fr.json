@@ -148,7 +148,11 @@
     "updated_ago": "MISE À JOUR IL Y A",
     "all_french_levels": "Tous les niveaux",
     "irrelevant": "Pas pertinent",
-    "all_ages": "Tous les âges"
+    "all_ages": "Tous les âges",
+    "feedbackTitle": "Vous avez trouvé cette fiche utile ?",
+    "feedbackSubtitle": "Remerciez les contributeurs qui l’ont rédigée et traduite pour vous !",
+    "nbThanks": "{{count}} mercis",
+    "feedbackThanks": "Merci pour votre retour !"
   },
   "Infocards": {
     "proposedBy": "Proposé par",

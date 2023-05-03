@@ -1,6 +1,6 @@
 import React from "react";
 import { GetDispositifResponse } from "@refugies-info/api-types";
-import styled, { useTheme } from "styled-components/native";
+import styled from "styled-components/native";
 import {
   Button,
   Card,
@@ -18,6 +18,7 @@ import { setSelectedContentActionCreator } from "../../../../services/redux/Sele
 import { useDispatch, useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../../../services";
 import useAsyncFn from "react-use/lib/useAsyncFn";
+import { useTranslationWithRTL } from "../../../../hooks";
 
 const MercisView = styled.View`
   padding: ${({ theme }) => theme.margin * 2}px;
@@ -41,6 +42,7 @@ export interface MercisProps {
 
 const Mercis = ({ dispositif }: MercisProps) => {
   const dispatch = useDispatch();
+  const { t } = useTranslationWithRTL();
   const currentLanguage = useSelector(currentI18nCodeSelector) || "fr";
   const [{ loading: loadingMerci }, merci] = useAsyncFn(
     () =>
@@ -90,11 +92,8 @@ const Mercis = ({ dispositif }: MercisProps) => {
       <MercisView>
         <Rows layout="1">
           <Background />
-          <MySectionTitle>Ces informations sont utiles ?</MySectionTitle>
-          <MyTextNormal>
-            Remerciez les contributeurs qui l'ont rédigée et traduite pour vous
-            !
-          </MyTextNormal>
+          <MySectionTitle>{t("content_screen.feedbackTitle")}</MySectionTitle>
+          <MyTextNormal>{t("content_screen.feedbackSubtitle")}</MyTextNormal>
           <View>
             <Columns layout="auto" horizontalAlign="center">
               <Button
@@ -103,9 +102,9 @@ const Mercis = ({ dispositif }: MercisProps) => {
                 iconName="thumb_up"
                 loading={loadingMerci}
                 onPress={merci}
-                title={`${dispositif.merci.length} merci${
-                  dispositif.merci.length > 1 ? "s" : ""
-                }`}
+                title={t("content_screen.nbThanks", {
+                  count: dispositif.merci.length,
+                })}
               />
               <IconButton
                 accessibilityLabel="Dire non merci"

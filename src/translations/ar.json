@@ -145,7 +145,11 @@
     "updated_ago": "تم التحديث منذ",
     "all_french_levels": "كل المستويات",
     "irrelevant": "نتيجة غير مناسبة",
-    "all_ages": "كل الأعمار"
+    "all_ages": "كل الأعمار",
+    "feedbackTitle": "هل ترى أن هذه الصفحة مفيدة ؟",
+    "feedbackSubtitle": "يُمكنك شكر المساهمين ال ين حرروا هذه الصفحة و ترجموها لأجلك",
+    "nbThanks": "{{count}}  شكر",
+    "feedbackThanks": "شكراً على رأيك !"
   },
   "Infocards": {
     "proposedBy": "تم طرح العرض من خلال",

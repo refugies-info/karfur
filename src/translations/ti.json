@@ -146,7 +146,11 @@
     "updated_ago": "ኣቐድዲሙ ዝነበረ",
     "all_french_levels": "ከም ብሓድሽ",
     "irrelevant": "ተመሳሳሊ ኣይትረኽበን",
-    "all_ages": "ኩሉ ዕድመ"
+    "all_ages": "ኩሉ ዕድመ",
+    "feedbackTitle": "እዚ ፋልይ ጠቓሚ ኮይኑ ዶ ረኺብኩሞ ?",
+    "feedbackSubtitle": "ን ዝተርጎሙን: ርእይቶኦም ዘበርከቱን ኩሎም ነመስግን",
+    "nbThanks": "{{count}} ነመስግን",
+    "feedbackThanks": "ንርኢቶኹም ኣዚና ነመስግን !"
   },
   "Infocards": {
     "proposedBy": "ኣዳላዊ",

@@ -146,7 +146,11 @@
     "updated_ago": "به روز شده",
     "all_french_levels": "همه سطوح",
     "irrelevant": "غیر مرتبط",
-    "all_ages": "تمام سنین"
+    "all_ages": "تمام سنین",
+    "feedbackTitle": "آیا این برگه را مفید یافتید؟",
+    "feedbackSubtitle": "از مشارکت کنندگانی که این برگه را برای شما نوشتند و ترجمه کردند تشکر کنید!",
+    "nbThanks": "{{count}} تشکر",
+    "feedbackThanks": "تشکر از نظر شما!"
   },
   "Infocards": {
     "availability": "در دسترس بودن درخواست شد",

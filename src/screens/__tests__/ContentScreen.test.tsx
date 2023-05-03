@@ -14,7 +14,7 @@ jest.useFakeTimers();
 jest.mock("../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
     i18n: { changeLanguage: jest.fn() },
-    t: jest.fn().mockImplementation((_, arg2) => arg2),
+    t: jest.fn().mockImplementation((_, arg2) => _),
     isRTL: false,
   }),
 }));
@@ -103,7 +103,7 @@ describe("ContentScreen", () => {
     expect(component).toMatchSnapshot();
   });
 
-  it.only("should toggle map modal", async () => {
+  it("should toggle map modal", async () => {
     const navigation = { navigate: jest.fn() };
     const route = {
       params: {

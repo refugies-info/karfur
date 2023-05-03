@@ -148,7 +148,11 @@
     "updated_ago": "Updated on",
     "all_french_levels": "All levels",
     "irrelevant": "Not relevant",
-    "all_ages": "All ages"
+    "all_ages": "All ages",
+    "feedbackTitle": "Did you find this sheet useful?",
+    "feedbackSubtitle": "Thank the contributors who wrote and translated it for you!",
+    "nbThanks": "{{count}} thanks",
+    "feedbackThanks": "Thank you for your feedback!"
   },
   "Infocards": {
     "proposedBy": "Proposed by",
