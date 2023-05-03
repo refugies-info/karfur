@@ -21,12 +21,18 @@ export const AdminOptionsModel = getModelForClass(AdminOptions);
 export const AppUserModel = getModelForClass(AppUser);
 export const DispositifModel = getModelForClass(Dispositif, {
   options: {
-    customName: "dispositifs",
+    customName: "Dispositif",
+  },
+  schemaOptions: {
+    collection: "dispositifs",
   }
 });
 export const DispositifDraftModel = getModelForClass(Dispositif, {
   options: {
-    customName: "dispositifs_draft",
+    customName: "DispositifDraft",
+  },
+  schemaOptions: {
+    collection: "dispositifs_draft",
   }
 });
 export const ErrorModel = getModelForClass(Error);

@@ -74,7 +74,15 @@ const Header = (props: Props) => {
       </Col>
 
       <Col className="text-end">
-        <Button priority="tertiary" evaIcon="trash-2-outline" onClick={props.onDelete} className={styles.btn} />
+        <Button
+          priority="tertiary"
+          evaIcon="trash-2-outline"
+          onClick={(e: any) => {
+            e.preventDefault();
+            props.onDelete();
+          }}
+          className={styles.btn}
+        />
       </Col>
     </Row>
   );

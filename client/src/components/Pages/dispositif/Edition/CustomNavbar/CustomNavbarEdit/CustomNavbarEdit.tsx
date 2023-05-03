@@ -45,22 +45,26 @@ const CustomNavbarEdit = (props: Props) => {
   const [showQuitModal, setShowQuitModal] = useState(false);
   const toggleQuitModal = useCallback(() => setShowQuitModal((o) => !o), []);
   const quit = useCallback(() => router.push("/backend/user-dash-contrib"), [router]);
-  const handleQuit = useCallback(() => {
-    const isComplete = progress === 0;
-    if (
-      // no status
-      !dispositif?.status ||
-      // waiting and complete
-      (isStatus(dispositif.status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE]) &&
-        isComplete) ||
-      // deleted or rejected
-      isStatus(dispositif.status, [DispositifStatus.DELETED, DispositifStatus.KO_STRUCTURE])
-    ) {
-      quit();
-    } else {
-      toggleQuitModal();
-    }
-  }, [dispositif, progress, toggleQuitModal, quit]);
+  const handleQuit = useCallback(
+    (e: any) => {
+      e.preventDefault();
+      const isComplete = progress === 0;
+      if (
+        // no status
+        !dispositif?.status ||
+        // waiting and complete
+        (isStatus(dispositif.status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE]) &&
+          isComplete) ||
+        // deleted or rejected
+        isStatus(dispositif.status, [DispositifStatus.DELETED, DispositifStatus.KO_STRUCTURE])
+      ) {
+        quit();
+      } else {
+        toggleQuitModal();
+      }
+    },
+    [dispositif, progress, toggleQuitModal, quit],
+  );
 
   // Publish
   const [showPublishModal, setShowPublishModal] = useState(false);
@@ -78,15 +82,19 @@ const CustomNavbarEdit = (props: Props) => {
     [dispositif],
   );
 
-  const validate = useCallback(() => {
-    if (user.admin && !dispositif?.hasDraftVersion) {
-      // if admin and first publication, quit
-      handlePublish(false).then(() => quit());
-    } else {
-      // else show modal
-      togglePublishModal();
-    }
-  }, [togglePublishModal, user.admin, dispositif, quit, handlePublish]);
+  const validate = useCallback(
+    (e: any) => {
+      e.preventDefault();
+      if (user.admin && !dispositif?.hasDraftVersion) {
+        // if admin and first publication, quit
+        handlePublish(false).then(() => quit());
+      } else {
+        // else show modal
+        togglePublishModal();
+      }
+    },
+    [togglePublishModal, user.admin, dispositif, quit, handlePublish],
+  );
 
   return (
     <div className={styles.container}>
@@ -98,7 +106,12 @@ const CustomNavbarEdit = (props: Props) => {
               L’éditeur de fiche est disponible uniquement en français. Il n’est pas possible de rédiger dans une autre
               langue.
             </span>
-            <button onClick={() => setShowLanguageWarning(false)}>
+            <button
+              onClick={(e: any) => {
+                e.preventDefault();
+                setShowLanguageWarning(false);
+              }}
+            >
               <EVAIcon name="close-outline" size={16} fill={styles.lightBorderPlainInfo} />
             </button>
           </div>
@@ -113,7 +126,10 @@ const CustomNavbarEdit = (props: Props) => {
             id="missing-steps-btn"
             evaIcon={showMissingSteps ? "eye-off-outline" : "eye-outline"}
             className={cls("ms-4", styles.btn)}
-            onClick={() => setShowMissingSteps?.(!showMissingSteps)}
+            onClick={(e: any) => {
+              e.preventDefault();
+              setShowMissingSteps?.(!showMissingSteps);
+            }}
           />
           <Tooltip target="missing-steps-btn" placement="top">
             Voir les étapes restantes

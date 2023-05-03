@@ -81,7 +81,10 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
           {!!onDelete && (
             <Button
               priority="secondary"
-              onClick={onDelete}
+              onClick={(e: any) => {
+                e.preventDefault();
+                onDelete();
+              }}
               evaIcon="trash-2-outline"
               iconPosition="right"
               className="me-4"
@@ -89,7 +92,15 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
               Supprimer
             </Button>
           )}
-          <Button onClick={onValidate} evaIcon="checkmark-circle-2" iconPosition="right" disabled={!isFormOk}>
+          <Button
+            onClick={(e: any) => {
+              e.preventDefault();
+              onValidate();
+            }}
+            evaIcon="checkmark-circle-2"
+            iconPosition="right"
+            disabled={!isFormOk}
+          >
             Valider
           </Button>
         </div>

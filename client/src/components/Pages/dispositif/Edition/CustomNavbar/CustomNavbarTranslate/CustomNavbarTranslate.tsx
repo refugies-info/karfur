@@ -84,7 +84,10 @@ const CustomNavbarTranslate = (props: Props) => {
             id="missing-steps-btn"
             evaIcon={showMissingSteps ? "eye-off-outline" : "eye-outline"}
             className={cls("ms-4", styles.btn)}
-            onClick={() => setShowMissingSteps?.(!showMissingSteps)}
+            onClick={(e: any) => {
+              e.preventDefault();
+              setShowMissingSteps?.(!showMissingSteps);
+            }}
           />
           <Tooltip target="missing-steps-btn" placement="top">
             Voir les étapes restantes
@@ -114,7 +117,10 @@ const CustomNavbarTranslate = (props: Props) => {
                 priority="secondary"
                 evaIcon="log-out-outline"
                 iconPosition="right"
-                onClick={handleQuit}
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  handleQuit();
+                }}
                 className="me-4"
               >
                 Finir plus tard
@@ -122,13 +128,23 @@ const CustomNavbarTranslate = (props: Props) => {
               <Button
                 evaIcon={progress.isComplete ? "checkmark-circle-2" : undefined}
                 iconPosition="right"
-                onClick={togglePublishModal}
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  togglePublishModal();
+                }}
               >
                 Publier
               </Button>
             </>
           ) : (
-            <Button evaIcon="log-out-outline" iconPosition="right" onClick={handleQuit}>
+            <Button
+              evaIcon="log-out-outline"
+              iconPosition="right"
+              onClick={(e: any) => {
+                e.preventDefault();
+                handleQuit();
+              }}
+            >
               Sauvegarder et quitter
             </Button>
           )}

@@ -60,7 +60,8 @@ const PublishModal = (props: Props) => {
           </div>
           <div className="text-end">
             <Button
-              onClick={() => {
+              onClick={(e: any) => {
+                e.preventDefault();
                 props.onPublish();
                 props.onQuit();
               }}
@@ -94,14 +95,24 @@ const PublishModal = (props: Props) => {
           <div className="text-end">
             <Button
               priority="secondary"
-              onClick={props.onQuit}
+              onClick={(e: any) => {
+                e.preventDefault();
+                props.onQuit();
+              }}
               evaIcon="log-out-outline"
               iconPosition="right"
               className="me-2"
             >
               Quitter et finir plus tard
             </Button>
-            <Button onClick={closeModal} evaIcon="arrow-forward-outline" iconPosition="right">
+            <Button
+              onClick={(e: any) => {
+                e.preventDefault();
+                closeModal();
+              }}
+              evaIcon="arrow-forward-outline"
+              iconPosition="right"
+            >
               Compléter ma fiche
             </Button>
           </div>

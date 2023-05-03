@@ -38,7 +38,10 @@ const Sidebar = ({ markers, onSelectMarker, selectedMarkerId }: Props) => {
         priority="tertiary"
         evaIcon={showSidebar ? "chevron-left" : "chevron-right"}
         className={cls("ms-2 mt-2 p-2", styles.btn)}
-        onClick={() => setShowSidebar((o) => !o)}
+        onClick={(e: any) => {
+          e.preventDefault();
+          setShowSidebar((o) => !o);
+        }}
         iconPosition="right"
       >
         {!showSidebar && t("Dispositif.mapPinList")}
