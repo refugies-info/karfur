@@ -217,6 +217,11 @@ export const modifyReadSuggestionInDispositif = async (dispositifId: DispositifI
     { $set: { ["suggestions.$.read"]: true } },
   );
 
+export const getDispositifName = async (
+  id: Id,
+) => DispositifModel.findById(id, { "translations.fr.content.titreInformatif": 1 })
+  .then(res => res?.translations.fr.content.titreInformatif)
+
 export const getDispositifById = async (
   id: DispositifId,
   neededFields: DispositifFieldsRequest = {},
