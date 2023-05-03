@@ -938,7 +938,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       <Text
                         style={{}}
                       >
-                        Inforcards.publicTitle
+                        Infocards.publicTitle
                       </Text>
                       <View />
                     </Text>
@@ -7858,7 +7858,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       <Text
                         style={{}}
                       >
-                        Inforcards.publicTitle
+                        Infocards.publicTitle
                       </Text>
                       <View />
                     </Text>
