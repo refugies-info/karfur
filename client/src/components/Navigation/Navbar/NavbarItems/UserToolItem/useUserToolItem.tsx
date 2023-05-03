@@ -27,6 +27,10 @@ const useUserToolItem = (): HeaderProps.QuickAccessItem | null => {
     else if (history) history.push(routerLocale + pathName);
   };
 
+  const goToConnexion = () => {
+    router.push(getPath("/login", router.locale));
+  };
+
   // Disabled on mobile devices
   if (isMobileOnly) return null;
 
@@ -40,8 +44,8 @@ const useUserToolItem = (): HeaderProps.QuickAccessItem | null => {
       }
     : {
         iconId: "ri-user-line",
-        linkProps: {
-          href: getPath("/login", router.locale),
+        buttonProps: {
+          onClick: goToConnexion,
         },
         text: t("Toolbar.Connexion", "Connexion"),
       };

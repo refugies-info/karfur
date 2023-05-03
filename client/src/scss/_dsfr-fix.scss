@@ -93,3 +93,7 @@
     margin-left: 0;
   }
 }
+
+.fr-header [class^=ri-], .fr-header [class*=" ri-"] {
+  font-family: inherit !important;
+}

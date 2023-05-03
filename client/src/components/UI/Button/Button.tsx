@@ -46,7 +46,7 @@ const DSFRButton = (props: Props) => {
       disabled={props.disabled}
       onClick={props.onClick}
       title={props.title}
-      /* iconId={props.icon} TODO: restore when dataesr removed */
+      iconId={props.icon}
       size={props.size}
       nativeButtonProps={{ id: props.id, ...(props.nativeButtonProps || {}) }}
     >
