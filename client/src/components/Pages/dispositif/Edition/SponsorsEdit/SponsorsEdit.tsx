@@ -35,7 +35,8 @@ const SponsorsEdit = () => {
         evaIcon="plus-circle-outline"
         priority="secondary"
         className={styles.add}
-        onClick={() => {
+        onClick={(e: any) => {
+          e.preventDefault();
           setCurrentSponsorIndex(-1);
           setShowModal(true);
         }}

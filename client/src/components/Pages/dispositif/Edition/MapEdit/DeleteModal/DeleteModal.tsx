@@ -21,14 +21,24 @@ const Delete = (props: Props) => {
         <div className="text-end">
           <Button
             priority="secondary"
-            onClick={props.toggle}
+            onClick={(e: any) => {
+              e.preventDefault();
+              props.toggle();
+            }}
             evaIcon="close-outline"
             iconPosition="right"
             className="me-2"
           >
             Annuler
           </Button>
-          <Button onClick={props.onValidate} evaIcon="trash-2-outline" iconPosition="right">
+          <Button
+            onClick={(e: any) => {
+              e.preventDefault();
+              props.onValidate();
+            }}
+            evaIcon="trash-2-outline"
+            iconPosition="right"
+          >
             Supprimer
           </Button>
         </div>

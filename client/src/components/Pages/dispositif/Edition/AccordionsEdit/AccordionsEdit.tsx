@@ -25,7 +25,8 @@ const AccordionsEdit = ({ sectionKey, contentType }: Props) => {
   const content: InfoSections = useWatch({ name: sectionKey });
   const { setValue } = useFormContext<CreateDispositifRequest>();
 
-  const addElement = () => {
+  const addElement = (e: any) => {
+    e.preventDefault();
     const key = uuidv4();
     const newContent: InfoSections = {
       ...content,
