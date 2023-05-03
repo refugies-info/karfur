@@ -82,7 +82,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
       onClick: disconnect,
       iconName: "log-out-outline",
       iconColor: "#e55039",
-      access: "admin",
+      access: "all",
     })
   ].filter(n => n !== null) as MainNavigationProps.Item[]);
 };

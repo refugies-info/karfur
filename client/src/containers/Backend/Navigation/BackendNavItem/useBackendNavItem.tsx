@@ -1,7 +1,7 @@
-import { MouseEvent, useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { MouseEvent, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import { getPath, PathNames } from "routes";
+import { useIsomorphicLayoutEffect } from "react-use";
+import { PathNames } from "routes";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useRouterLocale from "hooks/useRouterLocale";
 import { userSelector } from "services/User/user.selectors";
@@ -38,7 +38,7 @@ const useBackendNavItem = ({
     [routerLocale, route],
   );
   const [isActive, setIsActive] = useState(false);
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const unlisten = history?.listen((h) => setIsActive(isCurrent(h.pathname)));
     return unlisten;
   }, [isCurrent]);

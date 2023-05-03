@@ -38,13 +38,17 @@ $btnSize: u(8);
     justify-content: center;
     @include iconSize($iconSize);
 
+    &::before {
+      margin: 0 !important;
+    }
+
     &:global(.fr-btn--tertiary) {
       box-shadow: inset 0 0 0 1px #e5e5e5;
 
       span i svg {
         fill: $lightTextDisabledGrey;
       }
-      :global([class^="ri-"]::before) {
+      &::before {
         background-color: $lightTextDisabledGrey !important;
       }
 
@@ -54,7 +58,7 @@ $btnSize: u(8);
         span i svg {
           fill: $lightTextMentionGrey;
         }
-        :global([class^="ri-"]::before) {
+        &::before {
           background-color: $lightTextMentionGrey !important;
         }
       }

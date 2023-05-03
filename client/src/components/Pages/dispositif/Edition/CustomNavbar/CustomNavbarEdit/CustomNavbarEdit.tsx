@@ -25,7 +25,6 @@ interface Props {
 }
 
 const CustomNavbarEdit = (props: Props) => {
-  const { isSaving } = useAutosave();
   const { user } = useUser();
   const router = useRouter();
   const values = useWatch<CreateDispositifRequest>();
@@ -40,6 +39,14 @@ const CustomNavbarEdit = (props: Props) => {
   }, [values, props.typeContenu]);
 
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
+
+  // Save
+  const { isSaving, hasError } = useAutosave();
+  const saveText = useMemo(() => {
+    if (isSaving) return "Sauvegarde en cours...";
+    if (hasError) return "Erreur lors de la sauvegarde !";
+    return "Sauvegardé il y a quelques secondes";
+  }, [isSaving, hasError]);
 
   // Quit
   const [showQuitModal, setShowQuitModal] = useState(false);
@@ -85,15 +92,9 @@ const CustomNavbarEdit = (props: Props) => {
   const validate = useCallback(
     (e: any) => {
       e.preventDefault();
-      if (user.admin && !dispositif?.hasDraftVersion) {
-        // if admin and first publication, quit
-        handlePublish(false).then(() => quit());
-      } else {
-        // else show modal
-        togglePublishModal();
-      }
+      togglePublishModal();
     },
-    [togglePublishModal, user.admin, dispositif, quit, handlePublish],
+    [togglePublishModal],
   );
 
   return (
@@ -136,18 +137,22 @@ const CustomNavbarEdit = (props: Props) => {
           </Tooltip>
         </div>
         <div>
-          <span id="save-status" className={styles.save}>
-            <EVAIcon
-              name={isSaving ? "sync-outline" : "save"}
-              size={16}
-              fill={styles.darkBackgroundElevationContrast}
-              className="me-2"
-            />
-            <span>{isSaving ? "Sauvegarde en cours..." : "Sauvegardé il y a quelques secondes"}</span>
-          </span>
-          <Tooltip target="save-status" placement="top">
-            Toutes les modifications sont sauvegardées automatiquement
-          </Tooltip>
+          {dispositif?._id && (
+            <>
+              <span id="save-status" className={styles.save}>
+                <EVAIcon
+                  name={isSaving ? "sync-outline" : "save"}
+                  size={16}
+                  fill={styles.darkBackgroundElevationContrast}
+                  className="me-2"
+                />
+                <span>{saveText}</span>
+              </span>
+              <Tooltip target="save-status" placement="top">
+                Toutes les modifications sont sauvegardées automatiquement
+              </Tooltip>
+            </>
+          )}
           <Button
             priority="secondary"
             evaIcon="log-out-outline"
