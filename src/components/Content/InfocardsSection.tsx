@@ -131,7 +131,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
       <Rows separator>
         <Section
           color={color}
-          title={t("Inforcards.publicTitle", "Public visé")}
+          title={t("Infocards.publicTitle", "Public visé")}
         >
           <Metadata
             color={color}
