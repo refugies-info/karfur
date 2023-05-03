@@ -251,17 +251,23 @@ const TranslationInput = (props: Props) => {
                     priority="secondary"
                     evaIcon="trash-2-outline"
                     className={cls(styles.delete, "ms-2")}
-                    onClick={deleteTranslation}
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                      deleteTranslation();
+                    }}
                   />
                 )}
               </span>
 
-              <div>
+              <div className="d-flex">
                 {index >= 0 && (
                   <Button
                     className={cls(styles.nav, "me-4")}
                     priority="tertiary no outline"
-                    onClick={() => dec()}
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                      dec();
+                    }}
                     evaIcon="arrow-back-outline"
                   ></Button>
                 )}
@@ -269,7 +275,10 @@ const TranslationInput = (props: Props) => {
                   <Button
                     className={styles.nav}
                     priority="tertiary no outline"
-                    onClick={() => inc()}
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                      inc();
+                    }}
                     evaIcon="arrow-forward-outline"
                   ></Button>
                 )}
@@ -277,7 +286,10 @@ const TranslationInput = (props: Props) => {
                   <Button
                     className={styles.nav}
                     priority="tertiary no outline"
-                    onClick={() => inc()}
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                      inc();
+                    }}
                     evaIcon="arrow-forward-outline"
                     iconPosition="right"
                   >
@@ -287,7 +299,10 @@ const TranslationInput = (props: Props) => {
                 {user.expertTrad && suggestions.length > 0 && index < max && index >= 0 && (
                   <Button
                     priority="secondary"
-                    onClick={() => validateSuggestion(suggestions[index].text)}
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                      validateSuggestion(suggestions[index].text);
+                    }}
                     evaIcon="checkmark-outline"
                     className={cls(styles.validate, index === validatedIndex && styles.validated, "ms-2")}
                   ></Button>
