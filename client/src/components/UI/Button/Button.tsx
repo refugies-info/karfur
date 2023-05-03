@@ -50,13 +50,11 @@ const DSFRButton = (props: Props) => {
       size={props.size}
       nativeButtonProps={{ id: props.id, ...(props.nativeButtonProps || {}) }}
     >
-      {/* TODO: remove icon from here when dataesr removed */}
-      {(props.children || props.evaIcon || props.icon) && (
+      {(props.children || props.evaIcon) && (
         <>
           {props.evaIcon && (
             <EVAIcon name={props.evaIcon} fill={getIconColor(props)} className={getIconMargin(props)} />
           )}
-          {props.icon && <i className={cls(props.icon, getIconMargin(props))} />}
           {props.children}
         </>
       )}

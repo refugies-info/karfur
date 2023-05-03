@@ -17,30 +17,30 @@
 
   &.error {
     background: $lightBackgroundContrastError;
-    color: var(--error-425);
+    color: var(--text-default-error);
     svg {
-      fill: var(--error-425);
+      fill: var(--text-default-error);
     }
   }
   &.warning {
     background: $lightBackgroundContrastWarning;
-    color: var(--warning-425);
+    color: var(--text-default-warning);
     svg {
-      fill: var(--warning-425);
+      fill: var(--text-default-warning);
     }
   }
   &.new {
-    background: var(--yellow-tournesol-950);
-    color: var(--yellow-tournesol-407);
+    background: var(--background-contrast-yellow-tournesol);
+    color: var(--text-action-high-yellow-tournesol);
     svg {
-      fill: var(--yellow-tournesol-407);
+      fill: var(--text-action-high-yellow-tournesol);
     }
   }
   &.success {
-    background: var(--success-950);
-    color: var(--success-425);
+    background: var(--background-contrast-success);
+    color: var(--text-default-success);
     svg {
-      fill: var(--success-425);
+      fill: var(--text-default-success);
     }
   }
   &.info {

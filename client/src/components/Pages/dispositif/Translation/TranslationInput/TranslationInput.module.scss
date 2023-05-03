@@ -40,34 +40,34 @@
 
   // status
   &.error {
-    background: var(--pink-tuile-975);
-    border-color: var(--error-425);
+    background: var(--background-alt-pink-tuile);
+    border-color: var(--text-default-error);
     &:hover {
-      background: var(--error-950);
+      background: var(--background-contrast-error);
     }
   }
   &.warning {
-    background: var(--pink-macaron-975);
-    border-color: var(--warning-425);
+    background: var(--background-alt-pink-macaron);
+    border-color: var(--text-default-warning);
 
     &:hover {
-      background: var(--warning-950);
+      background: #ffe8e5;
     }
   }
   &.new {
-    background: var(--yellow-tournesol-975);
-    border-color: var(--yellow-tournesol-407);
+    background: var(--background-alt-yellow-tournesol);
+    border-color: var(--text-action-high-yellow-tournesol);
 
     &:hover {
-      background: var(--yellow-tournesol-950);
+      background: var(--background-contrast-yellow-tournesol);
     }
   }
   &.success {
-    background: var(--green-emeraude-975);
-    border-color: var(--success-425);
+    background: var(--background-alt-green-emeraude);
+    border-color: var(--text-default-success);
 
     &:hover {
-      background: var(--green-emeraude-950);
+      background: var(--background-contrast-green-emeraude);
     }
   }
   &.info {
@@ -134,17 +134,17 @@
       }
     }
     &.pending {
-      background: var(--yellow-tournesol-975);
-      border-color: var(--yellow-tournesol-407);
+      background: var(--background-alt-yellow-tournesol);
+      border-color: var(--text-action-high-yellow-tournesol);
       .proposal {
-        color: var(--yellow-tournesol-407);
+        color: var(--text-action-high-yellow-tournesol);
       }
     }
     &.success {
-      background: var(--green-emeraude-975);
-      border-color: var(--success-425);
+      background: var(--background-alt-green-emeraude);
+      border-color: var(--text-default-success);
       .proposal {
-        color: var(--success-425);
+        color: var(--text-default-success);
       }
     }
 

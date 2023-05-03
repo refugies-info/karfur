@@ -12,6 +12,7 @@ import useBackendNavigation from "containers/Backend/Navigation/useBackendNaviga
 import { useLanguageItem } from "./NavbarItems";
 import styled from "styled-components";
 import Image from "next/image";
+import { useEditionMode } from "hooks";
 
 const LogoImage = styled(Image)`
   max-width: 80%;
@@ -21,6 +22,8 @@ const Navbar = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useDispatch();
+  const isEditionMode = useEditionMode();
+  const backendNavigation = useBackendNavigation();
 
   const speekItem = useSpeekToolItem();
   const subscribeItem = useSubscribeToolItem();
@@ -36,8 +39,8 @@ const Navbar = () => {
   const isCurrent = (href: string) =>
     isInBrowser() && (window?.location?.pathname || "") === "/" + router.locale + href;
   const isBackend = router.pathname.includes("/backend");
-  const backendNavigation = useBackendNavigation();
 
+  if (isEditionMode) return null;
   return (
     <Header
       brandTop="GOUVERNEMENT"
@@ -54,7 +57,6 @@ const Navbar = () => {
       navigation={
         !isBackend
           ? [
-              /* TODO: target */
               {
                 linkProps: { href: getPath("/recherche", router.locale) },
                 text: t("Toolbar.Trouver de l'information", "Trouver de l'information"),
