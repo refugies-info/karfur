@@ -16,7 +16,7 @@
     background: $lightBackgroundContrastWarning;
   }
   &.new {
-    background: var(--yellow-tournesol-975-75);
+    background: var(--background-alt-yellow-tournesol);
   }
 }
 
@@ -38,12 +38,12 @@
   }
 
   &.new {
-    color: var(--yellow-tournesol-407);
+    color: var(--text-action-high-yellow-tournesol);
   }
   &.error {
-    color: var(--error-425);
+    color: var(--text-default-error);
   }
   &.warning {
-    color: var(--warning-425);
+    color: var(--text-default-warning);
   }
 }

@@ -1,7 +1,7 @@
-[class^="ri-"]::before,
+/* [class^="ri-"]::before,
 [class^="ri-"]::after {
   --icon-size: 1em !important;
-}
+} */
 
 .fr-footer {
   border-top: 1px solid #ddd;
@@ -94,6 +94,7 @@
   }
 }
 
-.fr-header [class^=ri-], .fr-header [class*=" ri-"] {
+.fr-header [class^="ri-"],
+.fr-header [class*=" ri-"] {
   font-family: inherit !important;
 }
