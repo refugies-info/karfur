@@ -10,6 +10,7 @@ import useUserToolItem from "./NavbarItems/UserToolItem/useUserToolItem";
 import isInBrowser from "lib/isInBrowser";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import { useDispatch } from "react-redux";
+import useBackendNavigation from "containers/Backend/Navigation/useBackendNavigation";
 
 const LogoImage = styled(Image)`
   max-width: 80%;
@@ -29,10 +30,8 @@ const Navbar = () => {
   if (subscribeItem) quickAccessItems.push(subscribeItem);
   if (userItem) quickAccessItems.push(userItem);
 
-  const isCurrent = (href: string) =>
-    isInBrowser() && (window?.location?.pathname || "") === "/" + router.locale + href;
-
   const isBackend = router.pathname.includes("/backend");
+  const backendNavigation = useBackendNavigation();
 
   return (
     <Header
@@ -50,6 +49,7 @@ const Navbar = () => {
       navigation={
         !isBackend
           ? [
+              /* TODO: target */
               {
                 linkProps: { href: getPath("/recherche", router.locale) },
                 text: t("Toolbar.Trouver de l'information", "Trouver de l'information"),
@@ -98,7 +98,7 @@ const Navbar = () => {
                 text: t("Toolbar.S'inscrire à la newsletter", "S'inscrire à la newsletter"),
               },
             ]
-          : []
+          : backendNavigation
       }
     />
   );
