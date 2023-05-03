@@ -8,9 +8,12 @@
       height: $size !important;
     }
   }
-
   :global(.ri-lg) {
     font-size: $size;
     line-height: $size;
+  }
+  &::before {
+    width: $size;
+    height: $size;
   }
 }
