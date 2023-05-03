@@ -69,7 +69,8 @@ const useBackendNavItem = ({
     text: (
       <>
         <EVAIcon fill={color} name={iconName} className={cls(!!title && "me-2")} />
-        <span className="refugies-backend-header-menu-title">{title}</span>
+        <span>{title}</span>
+        {/* TODO: on small screens, hide title */}
       </>
     ),
   };

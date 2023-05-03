@@ -108,6 +108,9 @@ export const rebuildTranslations = async (
       await TraductionsModel.insertMany(translationsReviews).then((result) => {
         logger.info(`[updateDispositif] ${translationsReviews.length} traductions created for review `, result);
       });
+
+      // Retourne les traductions avec uniquement le français à jour, pour faire sauter les autres langues
+      return { fr: translationContent };
     }
   }
 

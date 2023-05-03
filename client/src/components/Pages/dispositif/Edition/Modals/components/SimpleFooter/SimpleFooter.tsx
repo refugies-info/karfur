@@ -15,7 +15,7 @@ const SimpleFooter = (props: Props) => {
         iconPosition="right"
         onClick={(e: any) => {
           e.preventDefault();
-          props.onValidate;
+          props.onValidate();
         }}
         disabled={props.disabled}
       >
