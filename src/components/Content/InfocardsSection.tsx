@@ -131,7 +131,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
       <Rows separator>
         <Section
           color={color}
-          title={t("content_screen.public", "Public visé")}
+          title={t("Inforcards.publicTitle", "Public visé")}
         >
           <Metadata
             color={color}
@@ -163,7 +163,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
         </Section>
 
         {metadatas.price && (
-          <Section color={color} title={t("content_screen.price", "Prix")}>
+          <Section color={color} title={t("Infocards.price", "Prix")}>
             <Metadata color={color} metadatas={metadatas} metadataKey="price" />
           </Section>
         )}
@@ -173,7 +173,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
           metadatas.timeSlots) && (
           <Section
             color={color}
-            title={t("content_screen.availability", "Disponibilité demandée")}
+            title={t("Infocards.availability", "Disponibilité demandée")}
           >
             {metadatas.commitment && (
               <Metadata
@@ -205,7 +205,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
         {metadatas.conditions && (
           <Section
             color={color}
-            title={t("content_screen.conditions", "Conditions")}
+            title={t("Infocards.conditions", "Conditions")}
           >
             {/* <Metadata metadatas={metadatas} metadataKey="conditions" /> */}
             <Rows layout="1" spacing={RowsSpacing.Text}>
@@ -218,10 +218,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
                   <DescriptionText>
                     <ReadableText>
                       {t(
-                        `content_screen.conditions_${condition.replaceAll(
-                          " ",
-                          "_"
-                        )}`,
+                        `Infocards.${condition.replaceAll(" ", "_")}`,
                         condition
                       )}
                     </ReadableText>
@@ -236,7 +233,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
           metadatas.location && (
             <Section
               color={color}
-              title={t("content_screen.location", "Zone d'action")}
+              title={t("Infocards.location", "Zone d'action")}
             >
               <Metadata
                 color={color}
@@ -249,7 +246,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
         {content.mainSponsor && (
           <Section
             color={color}
-            title={t("content_screen.mainSponsor", "Proposé par")}
+            title={t("Infocards.proposedBy", "Proposé par")}
           >
             <Columns
               RTLBehaviour

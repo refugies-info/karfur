@@ -151,6 +151,7 @@
     "all_ages": "All ages"
   },
   "Infocards": {
+    "proposedBy": "Proposed by",
     "availability": "Availability requested",
     "commitment": "Duration of commitment",
     "frequency": "Frequency of participation",

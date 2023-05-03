@@ -150,6 +150,7 @@
   },
   "Infocards": {
     "availability": "در دسترس بودن درخواست شد",
+    "proposedBy": "پیشنهاد شده توسط",
     "commitment": "مدت تعهد",
     "frequency": "تعداد دفعات شرکت در برنامه",
     "weekDays": "روزهای حضور",
