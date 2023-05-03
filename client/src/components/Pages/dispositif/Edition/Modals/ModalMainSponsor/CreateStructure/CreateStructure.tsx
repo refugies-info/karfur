@@ -16,7 +16,16 @@ const CreateStructure = (props: Props) => {
       link={props.sponsor.link}
       onLinkChange={(e: any) => props.setSponsor({ ...props.sponsor, link: e.target.value })}
       logo={props.sponsor.logo}
-      onLogoChange={(img) => (img ? props.setSponsor({ ...props.sponsor, logo: img }) : null)}
+      onLogoChange={(img) =>
+        props.setSponsor({
+          ...props.sponsor,
+          logo: img || {
+            imgId: "",
+            public_id: "",
+            secure_url: "",
+          },
+        })
+      }
     />
   );
 };

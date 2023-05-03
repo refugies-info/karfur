@@ -47,7 +47,7 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
   }, [dataMainSponsor, structures]);
 
   const isAllowedToEdit = useMemo(() => {
-    return user.admin || isStatus(dispositif?.status, DispositifStatus.ACTIVE);
+    return user.admin || (!isStatus(dispositif?.status, DispositifStatus.ACTIVE) && !dispositif?.hasDraftVersion);
   }, [user, dispositif]);
 
   return (

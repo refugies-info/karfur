@@ -24,7 +24,7 @@ export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user:
     return false;
   }
 
-  const sponsor: Structure = dispositif.getMainSponsor();
+  const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
 
   const isUserMembre =
     sponsor &&
