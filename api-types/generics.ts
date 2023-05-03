@@ -135,7 +135,7 @@ export type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "fr
 export interface Poi {
   title: string;
   address: string;
-  city: string;
+  city?: string | null;
   lat: number;
   lng: number;
   description?: string;
