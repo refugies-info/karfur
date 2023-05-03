@@ -51,6 +51,10 @@
     border-radius: u(2);
     padding: u(2) u(3);
 
+    :global([class^="ri-"]::before) {
+      --icon-size: 1em !important;
+    }
+
     input {
       outline: none;
       flex-grow: 1;
