@@ -137,18 +137,22 @@ const CustomNavbarEdit = (props: Props) => {
           </Tooltip>
         </div>
         <div>
-          <span id="save-status" className={styles.save}>
-            <EVAIcon
-              name={isSaving ? "sync-outline" : "save"}
-              size={16}
-              fill={styles.darkBackgroundElevationContrast}
-              className="me-2"
-            />
-            <span>{saveText}</span>
-          </span>
-          <Tooltip target="save-status" placement="top">
-            Toutes les modifications sont sauvegardées automatiquement
-          </Tooltip>
+          {dispositif?._id && (
+            <>
+              <span id="save-status" className={styles.save}>
+                <EVAIcon
+                  name={isSaving ? "sync-outline" : "save"}
+                  size={16}
+                  fill={styles.darkBackgroundElevationContrast}
+                  className="me-2"
+                />
+                <span>{saveText}</span>
+              </span>
+              <Tooltip target="save-status" placement="top">
+                Toutes les modifications sont sauvegardées automatiquement
+              </Tooltip>
+            </>
+          )}
           <Button
             priority="secondary"
             evaIcon="log-out-outline"
