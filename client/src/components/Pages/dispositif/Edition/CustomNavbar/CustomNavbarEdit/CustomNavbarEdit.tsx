@@ -92,15 +92,9 @@ const CustomNavbarEdit = (props: Props) => {
   const validate = useCallback(
     (e: any) => {
       e.preventDefault();
-      if (user.admin && !dispositif?.hasDraftVersion) {
-        // if admin and first publication, quit
-        handlePublish(false).then(() => quit());
-      } else {
-        // else show modal
-        togglePublishModal();
-      }
+      togglePublishModal();
     },
-    [togglePublishModal, user.admin, dispositif, quit, handlePublish],
+    [togglePublishModal],
   );
 
   return (

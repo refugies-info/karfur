@@ -309,5 +309,5 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
     isMetadataOk(dispositif.metadatas?.conditions),
     isMetadataOk(dispositif.metadatas?.location),
   ];
-  return conditions.filter((c) => c).length;
+  return conditions.filter((c) => !c).length === 0;
 };
