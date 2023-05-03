@@ -274,13 +274,13 @@ export const buildNewDispositif = async (
 
 
 
-const isAccordionOk = (content: InfoSections | undefined) => {
+const isAccordionOk = (content: InfoSections | undefined, max: number): boolean => {
   if (!content) return false;
-  return content && Object.keys(content).length >= 3 && !Object.values(content).find((c) => !c.title || !c.text);
+  return Object.keys(content).length >= max && !Object.values(content).find((c) => !c.title || !c.text);
 };
 
-const isMetadataOk = (content: any) => {
-  return content || content === null; // ok if filled or null
+const isMetadataOk = (content: any): boolean => {
+  return !!content || content === null; // ok if filled or null
 };
 
 export const isDispositifComplete = (dispositif: Dispositif) => {
@@ -290,14 +290,14 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
     !!content.titreMarque,
     !!content.what,
     dispositif.typeContenu === ContentType.DISPOSITIF
-      ? isAccordionOk((content as DispositifContent).why)
-      : isAccordionOk((content as DemarcheContent).how),
+      ? isAccordionOk((content as DispositifContent).why, 3)
+      : isAccordionOk((content as DemarcheContent).how, 3),
     dispositif.typeContenu === ContentType.DISPOSITIF
-      ? isAccordionOk((content as DispositifContent).how)
-      : isAccordionOk((content as DemarcheContent).next),
+      ? isAccordionOk((content as DispositifContent).how, 1)
+      : isAccordionOk((content as DemarcheContent).next, 1),
     !!content.abstract,
     !!dispositif.theme,
-    dispositif.mainSponsor,
+    !!dispositif.mainSponsor,
     isMetadataOk(dispositif.metadatas?.publicStatus),
     isMetadataOk(dispositif.metadatas?.age),
     isMetadataOk(dispositif.metadatas?.frenchLevel),
