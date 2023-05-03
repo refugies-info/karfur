@@ -217,10 +217,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
                   />
                   <DescriptionText>
                     <ReadableText>
-                      {t(
-                        `Infocards.${condition.replaceAll(" ", "_")}`,
-                        condition
-                      )}
+                      {t(`Infocards.${condition}`, condition)}
                     </ReadableText>
                   </DescriptionText>
                 </Columns>
