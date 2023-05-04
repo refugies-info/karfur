@@ -31,6 +31,7 @@ import {
   GetStructureStatisticsResponse,
   TranslationStatisticsResponse,
 } from "api-types";
+import { logger } from "logger";
 
 interface Props {
   contentStatistics: GetStatisticsResponse;
@@ -110,8 +111,13 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   const structuresStatistics = (
     await API.getStructuresStatistics({ facets: ["nbStructures", "nbCDA", "nbStructureAdmins"] })
   ).data.data;
-  const translationStatistics = (await API.getTranslationStatistics({ facets: ["nbTranslators", "nbRedactors"] })).data
-    .data;
+  let translationStatistics: TranslationStatisticsResponse = {};
+  try {
+    translationStatistics = (await API.getTranslationStatistics({ facets: ["nbTranslators", "nbRedactors"] })).data
+      .data;
+  } catch (e) {
+    logger.error("[index] build page", e);
+  }
 
   const demarches = (
     await API.getDispositifs({
