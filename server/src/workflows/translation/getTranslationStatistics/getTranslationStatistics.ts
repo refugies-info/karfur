@@ -1,10 +1,28 @@
 import logger from "../../../logger";
 import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
-import { getNbWordsTranslated } from "../../../modules/traductions/traductions.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { Statistics, TranslationStatisticsRequest } from "@refugies-info/api-types";
+import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
+import { Dispositif } from "../../../typegoose";
+import { DemarcheContent, DispositifContent } from "../../../typegoose/Dispositif";
+import { countWords, countWordsForInfoSections } from "../../../typegoose/Traductions";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
+
+const countWordsInDispositif = (dispositif: Dispositif): number =>
+  Object.entries(dispositif.translations)
+    .map(([ln, translation]) =>
+      ln === "fr"
+        ? 0
+        : countWords(translation.content?.titreInformatif) +
+          countWords(translation.content?.titreMarque) +
+          countWords(translation.content?.abstract) +
+          countWords(translation.content?.what) +
+          countWordsForInfoSections(translation.content?.how) +
+          countWordsForInfoSections((translation.content as DemarcheContent)?.next) +
+          countWordsForInfoSections((translation.content as DispositifContent)?.why),
+    )
+    .reduce((acc, count) => acc + count, 0);
 
 const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest): Promise<Statistics> =>
   Promise.all([
@@ -28,8 +46,10 @@ const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest)
 
     // nbWordsTranslated
     if (noFacet || facets.includes("nbWordsTranslated")) {
-      const nbWordsTranslated = await getNbWordsTranslated();
-      stats.nbWordsTranslated = nbWordsTranslated?.[0]?.wordsCount || 0;
+      const nbWordsTranslated = await getActiveContentsFiltered({}, {}).then((dispositifs) =>
+        dispositifs.reduce((acc, dispositif) => acc + countWordsInDispositif(dispositif), 0),
+      );
+      stats.nbWordsTranslated = nbWordsTranslated;
     }
 
     // nbActiveTranslators
