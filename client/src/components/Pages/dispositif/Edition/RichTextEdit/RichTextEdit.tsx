@@ -52,7 +52,13 @@ const RichTextEdit = (props: Props) => {
             onChange={(html) => formContext.setValue(props.id, html)}
           />
           <div className="text-end mt-6">
-            <Button icon="checkmark-circle-2" onClick={closeSection}>
+            <Button
+              evaIcon="checkmark-circle-2"
+              onClick={(e: any) => {
+                e.preventDefault();
+                closeSection();
+              }}
+            >
               Fermer la section
             </Button>
           </div>

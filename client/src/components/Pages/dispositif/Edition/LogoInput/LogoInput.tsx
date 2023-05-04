@@ -42,7 +42,8 @@ const LogoInput = (props: Props) => {
       .catch(handleApiDefaultError);
   };
 
-  const deleteImage = () => {
+  const deleteImage = (e: any) => {
+    e.preventDefault();
     props.onImageUploaded(undefined);
   };
 
@@ -81,7 +82,7 @@ const LogoInput = (props: Props) => {
           </div>
         ) : (
           <>
-            <Button icon="download-outline" iconPlacement="end" className="position-relative">
+            <Button evaIcon="download-outline" iconPosition="right" className="position-relative">
               <Input
                 className={styles.file_input}
                 type="file"

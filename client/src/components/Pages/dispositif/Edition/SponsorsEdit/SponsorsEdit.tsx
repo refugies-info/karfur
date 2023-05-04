@@ -32,10 +32,11 @@ const SponsorsEdit = () => {
       />
 
       <Button
-        icon="plus-circle-outline"
-        secondary
+        evaIcon="plus-circle-outline"
+        priority="secondary"
         className={styles.add}
-        onClick={() => {
+        onClick={(e: any) => {
+          e.preventDefault();
           setCurrentSponsorIndex(-1);
           setShowModal(true);
         }}

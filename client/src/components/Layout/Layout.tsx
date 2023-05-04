@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isMobileOnly } from "react-device-detect";
 import { useRouter } from "next/router";
+import { useIsDark } from "@codegouvfr/react-dsfr/useIsDark";
 
 // actions
 import {
@@ -43,6 +44,8 @@ const Layout = (props: Props) => {
   const isRTL = useRTL();
   const dispatch = useDispatch();
   const router = useRouter();
+  const { setIsDark } = useIsDark();
+  setIsDark(false);
 
   const ttsActive = useSelector(ttsActiveSelector);
   const showLangModal = useSelector(showLangModalSelector);

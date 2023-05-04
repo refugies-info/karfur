@@ -489,7 +489,6 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
       templateName,
       username: data.pseudo,
       email: data.email,
-      // @ts-ignore
       userId: data.userId,
       dispositifId: data.dispositifId
     });

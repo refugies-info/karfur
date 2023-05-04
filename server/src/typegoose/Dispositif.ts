@@ -168,7 +168,7 @@ export class Poi {
   @prop()
   public address!: string;
   @prop()
-  public city!: string;
+  public city?: string | null;
   @prop()
   public lat!: number;
   @prop()

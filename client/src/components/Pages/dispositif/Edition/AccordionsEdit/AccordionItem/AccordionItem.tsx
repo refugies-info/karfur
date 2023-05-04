@@ -76,7 +76,15 @@ const AccordionItem = (props: Props) => {
             {props.label || "Argument"}
             {props.onDelete && (
               <span className={cls(styles.remove, "me-4")}>
-                <EVAIcon name="trash-2-outline" size={32} fill={styles.lightTextMentionGrey} onClick={props.onDelete} />
+                <EVAIcon
+                  name="trash-2-outline"
+                  size={32}
+                  fill={styles.lightTextMentionGrey}
+                  onClick={(e: any) => {
+                    e.preventDefault();
+                    props.onDelete ? props.onDelete() : null;
+                  }}
+                />
               </span>
             )}
           </span>
@@ -97,7 +105,13 @@ const AccordionItem = (props: Props) => {
             />
           </div>
           <div className="text-end mb-6">
-            <Button icon="checkmark-circle-2" onClick={() => setIsActive(false)}>
+            <Button
+              evaIcon="checkmark-circle-2"
+              onClick={(e: any) => {
+                e.preventDefault();
+                setIsActive(false);
+              }}
+            >
               Fermer la section
             </Button>
           </div>

@@ -56,7 +56,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
           {chevron}
 
           <Link
-            href={getPath("/recherche", "fr", buildUrlQuery({ type: dispositif.typeContenu }))}
+            href={getPath("/recherche", "fr", `?${buildUrlQuery({ type: dispositif.typeContenu })}`)}
             className={styles.link}
           >
             {dispositif.typeContenu === ContentType.DISPOSITIF ? t("actions") : t("demarches")}
@@ -67,7 +67,7 @@ const Breadcrumb = ({ dispositif }: Props) => {
           {theme && (
             <>
               <Link
-                href={getPath("/recherche", "fr", buildUrlQuery({ themes: [theme._id] }))}
+                href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
                 className={styles.theme}
                 style={{ backgroundColor: theme.colors.color100 }}
               >
@@ -80,7 +80,10 @@ const Breadcrumb = ({ dispositif }: Props) => {
 
           {dispositif.needs.length === 1 && need && (
             <>
-              <Link href={getPath("/recherche", "fr", buildUrlQuery({ needs: [need._id] }))} className={styles.link}>
+              <Link
+                href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
+                className={styles.link}
+              >
                 {need[locale]?.text || need.fr.text}
               </Link>
               {chevron}

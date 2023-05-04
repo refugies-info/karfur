@@ -164,8 +164,9 @@ export class Traductions extends Base {
 
   public static computeAvancement(dispositif: Dispositif, translation: Traductions): number {
     const dispositifSectionsCounter = keys(dispositif.translations.fr).length;
-    const tranlationSectionsCounter = keys(translation.translated).length;
-    return tranlationSectionsCounter / dispositifSectionsCounter;
+    const translationSectionsCounter = keys(translation.translated).length;
+    const notFinished = [...new Set([...(translation.toFinish || []), ...(translation.toReview || [])])].length;
+    return (translationSectionsCounter - notFinished) / dispositifSectionsCounter;
   }
 }
 

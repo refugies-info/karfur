@@ -14,7 +14,7 @@ export const StructureButton = (props: {
   const additionnalProp = props.additionnalProp || "status";
   const propsToDisplay =
     additionnalProp === "status"
-      ? (props.sponsor as ContentStructure).status || ""
+      ? (props.sponsor as ContentStructure)?.status || ""
       : (props.sponsor as UserStructure)?.role?.[0] || "";
 
   return (

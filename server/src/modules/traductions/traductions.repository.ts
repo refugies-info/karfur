@@ -13,28 +13,13 @@ export const getTraductionsByLanguageAndDispositif = (
   neededFields: TraductionsFieldsRequest = {},
 ) => TraductionsModel.find({ language, dispositifId }, neededFields).populate("userId");
 
-export const getValidation = (
-  language: Languages,
-  dispositifId: DispositifId,
-  userId: UserId
-) => TraductionsModel.findOne({ language, dispositifId, userId })
+export const getValidation = (language: Languages, dispositifId: DispositifId, userId: UserId) =>
+  TraductionsModel.findOne({ language, dispositifId, userId });
 
 export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages) =>
   TraductionsModel.deleteMany({
     dispositifId,
     language,
-  });
-
-/**
- * @deprecated TODO refactor : status not exist anymore
- *
- * @param language
- * @returns
- */
-export const getPublishedTradIds = (language: string) =>
-  TraductionsModel.distinct("dispositifId", {
-    language,
-    status: "Validée",
   });
 
 /**

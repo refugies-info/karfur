@@ -8,11 +8,12 @@
 @import "~rc-time-picker/assets/index.css";
 @import "~react-notifications/src/notifications.scss";
 @import "~react-loading-skeleton/dist/skeleton.css";
-@import "~remixicon/fonts/remixicon.css";
+@import "~remixicon/fonts/remixicon.css"; // TODO : remove but deal with callout first
 
 // Main styles
 @import "./rtl";
 @import "./common";
+@import "./callouts";
 @import "./dsfr-fix";
 @import "./rich-text";
 

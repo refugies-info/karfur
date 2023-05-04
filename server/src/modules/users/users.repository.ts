@@ -12,6 +12,12 @@ export const getUserByUsernameFromDB = (username: string) => UserModel.findOne({
 
 export const getUserFromDB = (query: FilterQuery<User>) => UserModel.findOne(query);
 
+export const getUserName = async (
+  id: Id,
+) => UserModel.findById(id, { "username": 1 })
+  .then(res => res?.username)
+
+
 // find many
 export const getUsersById = async (ids: UserId[], neededFields: NeededFields) =>
   UserModel.find({ _id: { $in: ids } }, neededFields);
@@ -32,7 +38,7 @@ export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>)
 // update
 export const updateUserInDB = async (
   id: Id,
-  modifiedUser: any, // FIXME in updateUser
+  modifiedUser: Partial<User>, // FIXME in updateUser
 ) =>
   UserModel.findOneAndUpdate({ _id: id }, modifiedUser, {
     upsert: true,

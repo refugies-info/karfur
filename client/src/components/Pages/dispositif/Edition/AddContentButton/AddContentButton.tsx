@@ -41,7 +41,7 @@ const AddContentButton = (props: Props) => {
   );
   return (
     <Button
-      tertiary
+      priority="tertiary"
       className={cls(
         styles.btn,
         hasContent && styles.has_content,
@@ -90,6 +90,7 @@ const AddContentButton = (props: Props) => {
                   className={cls(styles.icon, styles.delete, !props.onDelete && styles.disabled)}
                   onClick={(e: any) => {
                     e.stopPropagation();
+                    e.preventDefault();
                     props.onDelete && setShowDeleteModal(true);
                   }}
                   id={tooltipDeleteId}

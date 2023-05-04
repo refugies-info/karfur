@@ -58,6 +58,8 @@
     @include iconSize(u(4));
     @include dsfr-text("small");
     box-shadow: 0 6px 18px 0 #00001229;
+    background-color: white;
+    color: $lightTextActionHighBlueFrance;
 
     @include media-max("lg-limit") {
       display: none;

@@ -4,10 +4,10 @@ import { sendAdminImprovementsMailService } from "../../../modules/mail/mail.ser
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { log } from "./log";
 import { ImprovementsRequest } from "@refugies-info/api-types";
+import { DispositifId, UserId } from "../../../typegoose";
 
 export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userId: string): Response => {
   logger.info("[sendAdminImprovementsMail] received with data", { data: body });
-  // TODO: rewrite with new structure
   const formattedSections = {
     quoi: body.sections.includes("C'est quoi ?"),
     qui: body.sections.includes("C'est pour qui ?"),
@@ -18,10 +18,8 @@ export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userI
 
   await asyncForEach(body.users, async (user) => {
     await sendAdminImprovementsMailService({
-      //@ts-ignore
-      dispositifId: body.dispositifId /* TODO: fix id types */,
-      //@ts-ignore
-      userId: user._id,
+      dispositifId: body.dispositifId as DispositifId,
+      userId: user._id as UserId,
       titreInformatif: body.titreInformatif,
       titreMarque: body.titreMarque,
       lien: "https://refugies.info/dispositif/" + body.dispositifId,

@@ -5,7 +5,6 @@ import { useTranslation } from "next-i18next";
 import { logger } from "logger";
 import { cls } from "lib/classname";
 import isInBrowser from "lib/isInBrowser";
-import { Event } from "lib/tracking";
 import API from "utils/API";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { userSelector } from "services/User/user.selectors";
@@ -16,9 +15,11 @@ import ThumbUpIcon from "assets/dispositif/thumb-up.svg";
 import ThumbUpFillIcon from "assets/dispositif/thumb-up-fill.svg";
 import ThumbDownIcon from "assets/dispositif/thumb-down.svg";
 import styles from "./Feedback.module.scss";
+import { useEvent } from "hooks";
 
 const Feedback = () => {
   const { t } = useTranslation();
+  const { Event } = useEvent();
   const dispositif = useSelector(selectedDispositifSelector);
   const mercis = useMemo(() => dispositif?.merci || [], [dispositif]);
   const [didThank, setDidThank] = useState(false);
@@ -49,7 +50,7 @@ const Feedback = () => {
         })
         .catch((e) => logger.error(e));
     }
-  }, [didThank, dispositif]);
+  }, [Event, didThank, dispositif]);
 
   const sendNegativeFeedback = useCallback(() => {
     if (!isInBrowser()) return;
@@ -63,11 +64,15 @@ const Feedback = () => {
       <div className={styles.content}>
         <p className={styles.title}>{t("Dispositif.feedbackTitle")}</p>
         <p>{t("Dispositif.feedbackSubtitle")}</p>
-        <Button secondary={!didThank} onClick={sendPositiveFeedback} className={cls(styles.btn, "me-2")}>
+        <Button
+          priority={didThank ? "primary" : "secondary"}
+          onClick={sendPositiveFeedback}
+          className={cls(styles.btn, "me-2")}
+        >
           <Image src={didThank ? ThumbUpFillIcon : ThumbUpIcon} width={24} height={24} alt="" className="me-2" />
           {t("Dispositif.nbThanks", { count: nbMercis })}
         </Button>
-        <Button secondary onClick={sendNegativeFeedback} className={styles.btn}>
+        <Button priority="secondary" onClick={sendNegativeFeedback} className={styles.btn}>
           <Image src={ThumbDownIcon} width={24} height={24} alt="" />
         </Button>
       </div>

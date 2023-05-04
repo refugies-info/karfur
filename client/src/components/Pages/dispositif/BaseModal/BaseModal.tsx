@@ -14,7 +14,7 @@ interface Props {
   className?: string;
   help?: {
     title: string;
-    content: string | React.ReactNode;
+    content: string | string[] | React.ReactNode;
   };
   title: string | React.ReactNode;
   children: React.ReactNode;
@@ -42,12 +42,22 @@ const BaseModal = (props: Props) => {
           <div className={styles.sidebar}>
             <Image src={TutoImg} width={47} height={32} alt="" />
             <p className={styles.title}>{props.help.title}</p>
-            <div className={styles.text}>{props.help.content}</div>
+            <div className={styles.text}>
+              {Array.isArray(props.help.content)
+                ? props.help.content.map((p, i) => <p key={i}>{p}</p>)
+                : props.help.content}
+            </div>
           </div>
         )}
         <div className={styles.content}>
           <div className="text-end">
-            <Button icon="close-outline" iconPlacement="end" tertiary className={styles.close} onClick={props.toggle}>
+            <Button
+              evaIcon="close-outline"
+              iconPosition="right"
+              priority="tertiary"
+              className={styles.close}
+              onClick={props.toggle}
+            >
               {t("close")}
             </Button>
           </div>

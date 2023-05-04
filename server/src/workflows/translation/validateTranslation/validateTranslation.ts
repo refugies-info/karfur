@@ -6,6 +6,7 @@ import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPubl
 import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
 import { Dispositif, DispositifModel, ErrorModel, Traductions } from "../../../typegoose";
 import { Languages } from "@refugies-info/api-types";
+import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
 
 const validateTranslation = (dispositif: Dispositif, language: Languages, translation: Traductions) =>
   DispositifModel.updateOne(
@@ -47,11 +48,15 @@ const validateTranslation = (dispositif: Dispositif, language: Languages, transl
         updateLanguagesAvancement(),
         dispositif.isDispositif()
           ? sendPublishedTradMailToStructure(dispositif, language).catch((error) => {
-              logger.error("[validateTranslations] error while sending mails to structure members", {
-                error: error.message,
-              });
-            })
+            logger.error("[validateTranslations] error while sending mails to structure members", {
+              error: error.message,
+            });
+          })
           : null,
+        sendPublishedTradMailToTraductors(
+          language,
+          dispositif
+        )
       ]),
     )
     .catch(async (err) => {

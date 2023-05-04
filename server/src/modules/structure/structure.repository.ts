@@ -13,9 +13,9 @@ export const getStructureFromDB = async (
     .then((structure) =>
       withDispositifsAssocies
         ? structure.populate({
-            path: "dispositifsAssocies",
-            populate: { path: "theme secondaryThemes mainSponsor" },
-          })
+          path: "dispositifsAssocies",
+          populate: { path: "theme secondaryThemes mainSponsor" },
+        })
         : structure,
     )
     .then((structure) => structure.toObject() as Structure)
@@ -128,3 +128,8 @@ export const removeMemberFromStructure = async (structureId: StructureId, userId
 export const getNbStructures = async () => {
   return StructureModel.countDocuments({ status: "Actif" });
 };
+
+export const getStructureName = async (
+  id: Id,
+) => StructureModel.findById(id, { "nom": 1 })
+  .then(res => res?.nom)

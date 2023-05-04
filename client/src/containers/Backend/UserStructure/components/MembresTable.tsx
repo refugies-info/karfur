@@ -61,8 +61,7 @@ export const MembresTable = (props: Props) => (
     </thead>
     <tbody>
       {props.membres.map((element, key) => {
-        const secureUrl =
-          element && element.picture && element.picture.secure_url ? element.picture.secure_url : marioProfile;
+        const secureUrl = element?.picture?.secure_url || marioProfile;
 
         const isUser = props.userId.toString() === element.userId;
         return (
@@ -80,7 +79,9 @@ export const MembresTable = (props: Props) => (
                 <UserName isUser={isUser}>{element.username}</UserName>
               </RowContainer>
             </td>
-            <td className="align-middle">{/* <RoleContainer isUser={isUser}>{element.mainRole}</RoleContainer> */}</td>
+            <td className="align-middle">
+              <RoleContainer isUser={isUser}>{element.mainRole}</RoleContainer>
+            </td>
 
             <td className="align-middle">
               <DateContainer isUser={isUser}>

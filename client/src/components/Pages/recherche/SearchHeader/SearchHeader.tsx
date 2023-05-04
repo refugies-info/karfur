@@ -5,7 +5,6 @@ import { useScrollDirection } from "hooks/useScrollDirection";
 import useWindowSize from "hooks/useWindowSize";
 import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
@@ -13,6 +12,7 @@ import SearchHeaderMobile from "./SearchHeader.mobile";
 import SearchHeaderDesktop from "./SearchHeader.desktop";
 import ResultsFilter from "../ResultsFilter";
 import styles from "./SearchHeader.module.scss";
+import { useEvent } from "hooks";
 
 const SCROLL_LIMIT = parseInt(styles.scrollLimit.replace("px", ""));
 
@@ -26,12 +26,13 @@ const SearchHeader = (props: Props) => {
   const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const { Event } = useEvent();
 
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
       dispatch(addToQueryActionCreator(query));
     },
-    [dispatch]
+    [dispatch],
   );
 
   // KEYWORD
@@ -40,7 +41,7 @@ const SearchHeader = (props: Props) => {
       dispatch(addToQueryActionCreator({ search: e.target.value }));
       Event("USE_SEARCH", "use keyword filter", "use searchbar");
     },
-    [dispatch]
+    [Event, dispatch],
   );
   const resetSearch = useCallback(() => addToQuery({ search: "" }), [addToQuery]);
 
@@ -53,7 +54,7 @@ const SearchHeader = (props: Props) => {
       setThemeSearch(e.target.value);
       Event("USE_SEARCH", "use theme filter", "use searchbar");
     },
-    [setThemeSearch]
+    [Event],
   );
   const resetTheme = useCallback(() => {
     setThemeSearch("");
@@ -68,7 +69,7 @@ const SearchHeader = (props: Props) => {
     (e: any) => {
       setLocationSearch(e.target.value);
     },
-    [setLocationSearch]
+    [setLocationSearch],
   );
   const resetDepartment = useCallback(() => {
     setLocationSearch("");
@@ -83,7 +84,7 @@ const SearchHeader = (props: Props) => {
   }, []);
   const selectAgeOption = useCallback(
     (selected: AgeOptions[]) => addToQuery({ age: selected as AgeOptions[] }),
-    [addToQuery]
+    [addToQuery],
   );
 
   // FRENCH LEVEL
@@ -94,7 +95,7 @@ const SearchHeader = (props: Props) => {
   }, []);
   const selectFrenchLevelOption = useCallback(
     (selected: FrenchOptions[]) => addToQuery({ frenchLevel: selected as FrenchOptions[] }),
-    [addToQuery]
+    [addToQuery],
   );
 
   // LANGUAGE
@@ -111,12 +112,12 @@ const SearchHeader = (props: Props) => {
           />
           {ln.langueFr}
         </>
-      )
+      ),
     }));
   }, [languages, isMobile]);
   const selectLanguageOption = useCallback(
     (selected: string[]) => addToQuery({ language: selected as string[] }),
-    [addToQuery]
+    [addToQuery],
   );
 
   // SCROLL
@@ -149,7 +150,7 @@ const SearchHeader = (props: Props) => {
     languagesOptions,
     selectAgeOption,
     selectFrenchLevelOption,
-    selectLanguageOption
+    selectLanguageOption,
   };
 
   return (

@@ -26,7 +26,7 @@ import { LogList } from "../../Logs/LogList";
 import styles from "./ContentDetailsModal.module.scss";
 import { StatusRow } from "../../sharedComponents/StatusRow";
 import { NotesInput } from "../../sharedComponents/NotesInput";
-import { AdminCommentsRequest, GetAllDispositifsResponse, GetLogResponse, Id } from "api-types";
+import { AdminCommentsRequest, DispositifStatus, GetAllDispositifsResponse, GetLogResponse, Id } from "api-types";
 
 interface Props {
   show: boolean;
@@ -88,7 +88,7 @@ export const ContentDetailsModal = (props: Props) => {
   };
 
   const modifyStatus = async (
-    newStatus: string,
+    newStatus: DispositifStatus | string,
     property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus",
   ) => {
     if (dispositif && newStatus !== dispositif[property]) {
@@ -99,9 +99,7 @@ export const ContentDetailsModal = (props: Props) => {
       }
 
       if (property === "status") {
-        // FIXME type status
-        //@ts-ignore
-        await API.updateDispositifStatus(dispositif._id, { status: newStatus });
+        await API.updateDispositifStatus(dispositif._id, { status: newStatus as DispositifStatus });
       } else {
         const body: AdminCommentsRequest = {
           [property]: newStatus,
@@ -120,7 +118,7 @@ export const ContentDetailsModal = (props: Props) => {
 
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
 
-  const hiddenStatus = ["En attente non prioritaire", "Rejeté structure", "Accepté structure"];
+  const hiddenStatus = ["Rejeté structure", "Accepté structure"];
 
   const sendPushNotification = async () => {
     const res = await Swal.fire({

@@ -25,6 +25,7 @@ import { StructureButton } from "../../sharedComponents/StructureButton";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
 import { GetAllUsersResponse, GetLogResponse, GetProgressionResponse, Id } from "api-types";
 import { handleApiError } from "lib/handleApiErrors";
+import { logger } from "logger";
 
 moment.locale("fr");
 
@@ -54,9 +55,11 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
   const dispatch = useDispatch();
   const updateLogs = useCallback(() => {
     if (selectedUserId) {
-      API.logs(selectedUserId).then((res) => {
-        setLogs(res.data.data);
-      });
+      API.logs(selectedUserId)
+        .then((res) => {
+          setLogs(res.data.data);
+        })
+        .catch((e) => logger.error("[logs] error while getting logs:", e.message));
     }
   }, [selectedUserId]);
 
@@ -283,7 +286,6 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                   autoFocus={false}
                   prepend
                   prependName="smartphone-outline"
-                  inputClassName="phone-input"
                   error={!!phoneError}
                 />
                 {!!phoneError && <p className={styles.error}>{phoneError}</p>}

@@ -97,7 +97,7 @@ const ModalWelcome = (props: Props) => {
 
         {step === 1 ? (
           <div className="text-end">
-            <Button onClick={() => setStep(2)} icon="arrow-forward-outline" iconPlacement="end">
+            <Button onClick={() => setStep(2)} evaIcon="arrow-forward-outline" iconPosition="right">
               C'est parti !
             </Button>
           </div>

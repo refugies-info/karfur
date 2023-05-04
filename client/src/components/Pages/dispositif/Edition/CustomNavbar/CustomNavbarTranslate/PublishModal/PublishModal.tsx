@@ -27,6 +27,8 @@ interface Props {
 }
 
 const PublishModal = (props: Props) => {
+  const { toggle } = props;
+  const pageContext = useContext(PageContext);
   const title = useMemo(
     () =>
       props.isComplete
@@ -36,8 +38,14 @@ const PublishModal = (props: Props) => {
   );
 
   const totalSteps = props.missingSteps.length + props.pendingSteps.length + props.progress;
+  const closeModal = useCallback(() => {
+    if (!props.isComplete) {
+      pageContext?.setShowMissingSteps?.(true);
+    }
+    toggle();
+  }, [pageContext, toggle, props.isComplete]);
   return (
-    <BaseModal show={props.show} toggle={props.toggle} title={title} small>
+    <BaseModal show={props.show} toggle={closeModal} title={title} small>
       {props.isComplete ? (
         <>
           <p>
@@ -52,12 +60,13 @@ const PublishModal = (props: Props) => {
           </div>
           <div className="text-end">
             <Button
-              onClick={() => {
+              onClick={(e: any) => {
+                e.preventDefault();
                 props.onPublish();
                 props.onQuit();
               }}
-              icon="log-out-outline"
-              iconPlacement="end"
+              evaIcon="log-out-outline"
+              iconPosition="right"
             >
               Publier
             </Button>
@@ -79,15 +88,31 @@ const PublishModal = (props: Props) => {
                 .filter((s) => !props.reviewSteps.includes(s) && !props.pendingSteps.includes(s)) // remove steps already in review or pending
                 .map((p) => ({ step: p, status: "error" as StepStatus })),
             ]}
-            toggle={props.toggle}
+            toggle={closeModal}
             noPlusIcon
             style="error"
           />
           <div className="text-end">
-            <Button secondary onClick={props.onQuit} icon="log-out-outline" iconPlacement="end" className="me-2">
+            <Button
+              priority="secondary"
+              onClick={(e: any) => {
+                e.preventDefault();
+                props.onQuit();
+              }}
+              evaIcon="log-out-outline"
+              iconPosition="right"
+              className="me-2"
+            >
               Quitter et finir plus tard
             </Button>
-            <Button onClick={props.toggle} icon="arrow-forward-outline" iconPlacement="end">
+            <Button
+              onClick={(e: any) => {
+                e.preventDefault();
+                closeModal();
+              }}
+              evaIcon="arrow-forward-outline"
+              iconPosition="right"
+            >
               Compléter ma fiche
             </Button>
           </div>

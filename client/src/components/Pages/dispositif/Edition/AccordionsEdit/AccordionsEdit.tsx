@@ -25,7 +25,8 @@ const AccordionsEdit = ({ sectionKey, contentType }: Props) => {
   const content: InfoSections = useWatch({ name: sectionKey });
   const { setValue } = useFormContext<CreateDispositifRequest>();
 
-  const addElement = () => {
+  const addElement = (e: any) => {
+    e.preventDefault();
     const key = uuidv4();
     const newContent: InfoSections = {
       ...content,
@@ -41,7 +42,7 @@ const AccordionsEdit = ({ sectionKey, contentType }: Props) => {
 
   return (
     <div id={`step-${sectionKey}`}>
-      {Object.entries(content).map((section, i) => (
+      {Object.entries(content || {}).map((section, i) => (
         <AccordionItem
           key={section[0]}
           id={`${sectionKey}.${section[0]}`}
@@ -54,7 +55,7 @@ const AccordionsEdit = ({ sectionKey, contentType }: Props) => {
         />
       ))}
 
-      <Button icon="plus-circle-outline" secondary onClick={addElement}>
+      <Button evaIcon="plus-circle-outline" priority="secondary" onClick={addElement}>
         {isLastSection ? "Ajouter une option" : "Ajouter un argument"}
       </Button>
     </div>

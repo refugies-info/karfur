@@ -25,6 +25,7 @@ interface Props {
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   toggle: () => void;
   onPublish: (keepTranslations: boolean) => Promise<void>;
+  redirectToBo: () => void;
 }
 
 const CompleteContent = (props: Props) => {
@@ -33,10 +34,12 @@ const CompleteContent = (props: Props) => {
   const [step, setStep] = useState<0 | 1>(0);
   const [keepTranslations, setKeepTranslations] = useState(false);
   const dispositif = useSelector(selectedDispositifSelector);
-  const [textContent, setTextContent] = useState<Content[]>(getTextContent(status, !!dispositif?.hasDraftVersion));
+  const [textContent, setTextContent] = useState<Content[]>(
+    getTextContent(status, !!dispositif?.hasDraftVersion, undefined, user.admin),
+  );
   const values = useWatch();
 
-  const [hasChanges, setHasChanges] = useState<boolean | null>(null);
+  const [hasChanges, setHasChanges] = useState<boolean | null>(user.admin ? null : false); // check changes only for admins
   const [{ loading }, getHasChanges] = useAsyncFn(() =>
     dispositif?._id && user.admin
       ? API.getDispositifHasTextChanges(dispositif?._id.toString()).then((res) => res.data.data)
@@ -45,8 +48,8 @@ const CompleteContent = (props: Props) => {
 
   // when form changes, reset hasChange
   useEffect(() => {
-    setHasChanges(null);
-  }, [values]);
+    setHasChanges(user.admin ? null : false);
+  }, [values, user.admin]);
 
   useEffect(() => {
     if (!loading && hasChanges === null) getHasChanges().then((res) => setHasChanges(res));
@@ -54,11 +57,11 @@ const CompleteContent = (props: Props) => {
 
   useEffect(() => {
     if (hasChanges !== null) {
-      const textContent = getTextContent(status, !!dispositif?.hasDraftVersion, hasChanges);
+      const textContent = getTextContent(status, !!dispositif?.hasDraftVersion, hasChanges, user.admin);
       setTitle(textContent[step].title);
       setTextContent(textContent);
     }
-  }, [status, step, setTitle, hasChanges, dispositif]);
+  }, [status, step, setTitle, hasChanges, dispositif, user.admin]);
 
   const content = useMemo(() => {
     // status === ACTIVE
@@ -84,9 +87,12 @@ const CompleteContent = (props: Props) => {
             />
             <div className="text-end mt-8">
               <Button
-                onClick={() => onPublish(keepTranslations).then(toggle)}
-                icon="arrow-forward-outline"
-                iconPlacement="end"
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  onPublish(keepTranslations).then(props.redirectToBo);
+                }}
+                evaIcon="arrow-forward-outline"
+                iconPosition="right"
               >
                 Valider
               </Button>
@@ -103,7 +109,14 @@ const CompleteContent = (props: Props) => {
               <Image src={PublishImage} width={345} height={240} alt="" />
             </div>
             <div className="text-end">
-              <Button onClick={() => onPublish(false).then(toggle)} icon="arrow-forward-outline" iconPlacement="end">
+              <Button
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  onPublish(false).then(props.redirectToBo);
+                }}
+                evaIcon="arrow-forward-outline"
+                iconPosition="right"
+              >
                 Publier
               </Button>
             </div>
@@ -137,7 +150,14 @@ const CompleteContent = (props: Props) => {
             ]}
           />
           <div className="text-end">
-            <Button onClick={() => onPublish(false).then(toggle)} icon="arrow-forward-outline" iconPlacement="end">
+            <Button
+              onClick={(e: any) => {
+                e.preventDefault();
+                onPublish(false).then(props.redirectToBo);
+              }}
+              evaIcon="arrow-forward-outline"
+              iconPosition="right"
+            >
               Envoyer pour traduction
             </Button>
           </div>
@@ -159,9 +179,12 @@ const CompleteContent = (props: Props) => {
           </div>
           <div className="text-end">
             <Button
-              onClick={() => onPublish(false).then(() => setStep(1))}
-              icon="arrow-forward-outline"
-              iconPlacement="end"
+              onClick={(e: any) => {
+                e.preventDefault();
+                onPublish(false).then(() => setStep(1));
+              }}
+              evaIcon="arrow-forward-outline"
+              iconPosition="right"
             >
               Envoyer pour relecture
             </Button>
@@ -191,7 +214,14 @@ const CompleteContent = (props: Props) => {
           ]}
         />
         <div className="text-end">
-          <Button onClick={toggle} icon="checkmark-circle-2" iconPlacement="end">
+          <Button
+            onClick={(e: any) => {
+              e.preventDefault();
+              toggle();
+            }}
+            evaIcon="checkmark-circle-2"
+            iconPosition="right"
+          >
             C'est noté
           </Button>
         </div>

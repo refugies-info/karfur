@@ -30,6 +30,7 @@ import {
   StructureReceiveDispositifRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
+  UpdateDispositifResponse,
 } from "@refugies-info/api-types";
 import {
   addMerci,
@@ -326,7 +327,7 @@ export class DispositifController extends Controller {
     @Path() id: string,
     @Body() body: UpdateDispositifRequest,
     @Request() request: express.Request,
-  ): Response {
+  ): ResponseWithData<UpdateDispositifResponse> {
     return updateDispositif(id, body, request.user);
   }
 

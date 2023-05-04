@@ -84,6 +84,7 @@ import {
   TtsRequest,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
+  UpdateDispositifResponse,
   UpdatePasswordRequest,
   UpdatePasswordResponse,
   UpdatePositionsNeedResponse,
@@ -304,7 +305,7 @@ const API = {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}/properties`, body, { headers });
   },
-  updateDispositif: (id: Id, body: UpdateDispositifRequest): Promise<APIResponse> => {
+  updateDispositif: (id: Id, body: UpdateDispositifRequest): Promise<APIResponse<UpdateDispositifResponse>> => {
     const headers = getHeaders();
     return instance.patch(`/dispositifs/${id}`, body, { headers });
   },
@@ -464,7 +465,7 @@ const API = {
   },
   get_progression: (query: GetProgressionRequest): Promise<APIResponse<GetProgressionResponse>> => {
     const headers = getHeaders();
-    return instance.get("/traduction/get_progression", { params: query, headers }).then((response) => response.data);
+    return instance.get("/traduction/get_progression", { params: query, headers })
   },
 
   get_translation: (query: TranslateRequest): Promise<APIResponse<string>> => {

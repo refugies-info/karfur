@@ -116,21 +116,23 @@ export const TranslationsAvancement = (props: Props) => {
     <MainContainer>
       <RowContainer>
         <Row>
-          {userTradLanguages.map((_langue) => (
-            <div key={_langue.toString()}>
-              <Link
-                data-test-id={`test-langue-${_langue}`}
-                onClick={(e) => navigateToLanguage(e, getLanguage(_langue).i18nCode)}
-                to={routerLocale + "/backend/user-translation/" + getLanguage(_langue).i18nCode}
-              >
-                <LanguageTitle
-                  language={getLanguage(_langue)}
-                  isSelected={getLanguage(_langue).i18nCode === props.actualLanguage?.i18nCode}
-                  hasMultipleLanguages={userTradLanguages.length > 1}
-                />
-              </Link>
-            </div>
-          ))}
+          {userTradLanguages.map((_langue) =>
+            getLanguage(_langue) ? (
+              <div key={_langue.toString()}>
+                <Link
+                  data-test-id={`test-langue-${_langue}`}
+                  onClick={(e) => navigateToLanguage(e, getLanguage(_langue).i18nCode)}
+                  to={routerLocale + "/backend/user-translation/" + getLanguage(_langue).i18nCode}
+                >
+                  <LanguageTitle
+                    language={getLanguage(_langue)}
+                    isSelected={getLanguage(_langue).i18nCode === props.actualLanguage?.i18nCode}
+                    hasMultipleLanguages={userTradLanguages.length > 1}
+                  />
+                </Link>
+              </div>
+            ) : null,
+          )}
         </Row>
         <Row>
           <IndicatorText>{`Vous avez traduit ${props.nbWords} mots pendant ${props.timeSpent} minutes.`}</IndicatorText>

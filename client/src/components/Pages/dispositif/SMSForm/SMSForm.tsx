@@ -2,8 +2,9 @@ import React, { useMemo, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { colors } from "colors";
-import { useLocale } from "hooks";
-import { Event } from "lib/tracking";
+import { useEvent, useLocale } from "hooks";
+import { getPath } from "routes";
+import { ContentType } from "api-types";
 import { isValidPhone } from "lib/validateFields";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
@@ -23,6 +24,7 @@ interface Props {
 const SMSForm = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
+  const { Event } = useEvent();
 
   const [selectedLn, setSelectedLn] = useState<string>(locale);
   const languages = useSelector(allLanguesSelector);
@@ -40,7 +42,10 @@ const SMSForm = (props: Props) => {
       API.smsContentLink({
         phone: tel,
         title: dispositif?.titreInformatif || "",
-        url: window.location.href,
+        url: `https://refugies.info/${selectedLn}${getPath(
+          dispositif?.typeContenu === ContentType.DEMARCHE ? "/demarche/[id]" : "/dispositif/[id]",
+          selectedLn,
+        ).replace("[id]", dispositif?._id.toString() || "")}`,
         locale: selectedLn,
       })
         .then(() => {
@@ -80,8 +85,8 @@ const SMSForm = (props: Props) => {
         disabledOptions={props.disabledOptions}
       />
       <Button
-        icon="paper-plane-outline"
-        iconPlacement="end"
+        evaIcon="paper-plane-outline"
+        iconPosition="right"
         className={styles.submit}
         disabled={!tel}
         onClick={sendSMS}

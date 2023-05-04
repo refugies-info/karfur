@@ -21,7 +21,16 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
     <div className={styles.container}>
       <div className={styles.form}>
         <div className="text-end">
-          <Button icon="close-outline" iconPlacement="end" tertiary className={styles.close} onClick={onClose}>
+          <Button
+            evaIcon="close-outline"
+            iconPosition="right"
+            priority="tertiary"
+            className={styles.close}
+            onClick={(e: any) => {
+              e.preventDefault();
+              onClose();
+            }}
+          >
             Fermer
           </Button>
         </div>
@@ -73,11 +82,28 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
         />
         <div className="text-end">
           {!!onDelete && (
-            <Button secondary onClick={onDelete} icon="trash-2-outline" iconPlacement="end" className="me-4">
+            <Button
+              priority="secondary"
+              onClick={(e: any) => {
+                e.preventDefault();
+                onDelete();
+              }}
+              evaIcon="trash-2-outline"
+              iconPosition="right"
+              className="me-4"
+            >
               Supprimer
             </Button>
           )}
-          <Button onClick={onValidate} icon="checkmark-circle-2" iconPlacement="end" disabled={!isFormOk}>
+          <Button
+            onClick={(e: any) => {
+              e.preventDefault();
+              onValidate();
+            }}
+            evaIcon="checkmark-circle-2"
+            iconPosition="right"
+            disabled={!isFormOk}
+          >
             Valider
           </Button>
         </div>

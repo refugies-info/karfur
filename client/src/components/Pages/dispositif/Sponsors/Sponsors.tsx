@@ -48,8 +48,8 @@ const Sponsors = (props: Props) => {
               <div>{name}</div>
               {props.editMode && (
                 <Button
-                  tertiary
-                  icon="trash-2-outline"
+                  priority="tertiary"
+                  evaIcon="trash-2-outline"
                   onClick={(e: any) => {
                     e.stopPropagation();
                     e.preventDefault();

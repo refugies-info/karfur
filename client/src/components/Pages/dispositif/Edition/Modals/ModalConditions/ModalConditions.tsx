@@ -32,8 +32,14 @@ const ModalConditions = (props: Props) => {
   };
 
   return (
-    <BaseModal show={props.show} toggle={props.toggle} help={help} title="Faut-il remplir des conditions ?">
+    <BaseModal
+      show={props.show}
+      toggle={props.toggle}
+      help={help}
+      title="Faut-il remplir des conditions obligatoires ?"
+    >
       <div>
+        <p>Ajoutez des prérequis seulement s’ils sont vraiment nécessaires pour accéder à votre action.</p>
         <div>
           {entries<Record<conditionType, any>>(dropdownOptions).map(([key, image]) => (
             <ChoiceButton
@@ -49,7 +55,7 @@ const ModalConditions = (props: Props) => {
           ))}
 
           <ChoiceButton
-            text="Cette information n’est pas pertinente pour mon action"
+            text="Ce n'est pas pertinent pour mon action"
             type="radio"
             selected={selected === null}
             onSelect={() => setSelected(null)}

@@ -84,13 +84,6 @@ export const correspondingStatus: ContentStatus[] = [
     textColor: colors.gray90,
   },
   {
-    storedStatus: DispositifStatus.NO_STRUCTURE,
-    displayedStatus: "Sans structure",
-    color: red,
-    order: 4,
-    textColor: colors.white,
-  },
-  {
     storedStatus: DispositifStatus.KO_STRUCTURE,
     displayedStatus: "Rejeté",
     color: red,

@@ -59,18 +59,6 @@ $borderRadius: 12px;
       box-shadow: none;
       background: $gray10;
     }
-    // TODO : wont work
-    &.password-input {
-      min-width: 300px;
-      max-width: 900px;
-      padding-right: 38px;
-    }
-    &.phone-input {
-      max-width: 170px;
-    }
-    &.phone-user-input.error::placeholder {
-      color: $error;
-    }
   }
 
   *::-webkit-input-placeholder,

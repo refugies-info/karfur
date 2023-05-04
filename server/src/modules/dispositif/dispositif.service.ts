@@ -108,6 +108,9 @@ export const rebuildTranslations = async (
       await TraductionsModel.insertMany(translationsReviews).then((result) => {
         logger.info(`[updateDispositif] ${translationsReviews.length} traductions created for review `, result);
       });
+
+      // Retourne les traductions avec uniquement le français à jour, pour faire sauter les autres langues
+      return { fr: translationContent };
     }
   }
 
@@ -238,7 +241,9 @@ export const buildNewDispositif = async (
   userId: string,
 ): Promise<Partial<Dispositif>> => {
   const editedDispositif: Partial<Dispositif> = {};
-  if (formContent.mainSponsor) {
+  if (formContent.mainSponsor === null) {
+    editedDispositif.mainSponsor = null;
+  } else if (formContent.mainSponsor) {
     if (typeof formContent.mainSponsor === "string") {
       // existing structure
       editedDispositif.mainSponsor = new ObjectId(formContent.mainSponsor);
@@ -256,29 +261,26 @@ export const buildNewDispositif = async (
       await log(newStructure._id, userId);
     }
   }
-  if (formContent.contact) {
-    // TODO save contact infos somewhere or in new structure. See createStructure.ts
-  }
   if (formContent.theme) editedDispositif.theme = new ObjectId(formContent.theme);
   if (formContent.secondaryThemes)
     editedDispositif.secondaryThemes = formContent.secondaryThemes.map((t) => new ObjectId(t));
   if (formContent.metadatas) editedDispositif.metadatas = formContent.metadatas;
   if (formContent.map) editedDispositif.map = formContent.map;
   //@ts-ignore
-  if (formContent.sponsors) editedDispositif.sponsors = formContent.sponsors; // FIXME picture type
+  if (formContent.sponsors) editedDispositif.sponsors = formContent.sponsors; // TODO picture type
 
   return editedDispositif;
 };
 
 
 
-const isAccordionOk = (content: InfoSections | undefined) => {
+const isAccordionOk = (content: InfoSections | undefined, max: number): boolean => {
   if (!content) return false;
-  return content && Object.keys(content).length >= 3 && !Object.values(content).find((c) => !c.title || !c.text);
+  return Object.keys(content).length >= max && !Object.values(content).find((c) => !c.title || !c.text);
 };
 
-const isMetadataOk = (content: any) => {
-  return content || content === null; // ok if filled or null
+const isMetadataOk = (content: any): boolean => {
+  return !!content || content === null; // ok if filled or null
 };
 
 export const isDispositifComplete = (dispositif: Dispositif) => {
@@ -288,14 +290,14 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
     !!content.titreMarque,
     !!content.what,
     dispositif.typeContenu === ContentType.DISPOSITIF
-      ? isAccordionOk((content as DispositifContent).why)
-      : isAccordionOk((content as DemarcheContent).how),
+      ? isAccordionOk((content as DispositifContent).why, 3)
+      : isAccordionOk((content as DemarcheContent).how, 3),
     dispositif.typeContenu === ContentType.DISPOSITIF
-      ? isAccordionOk((content as DispositifContent).how)
-      : isAccordionOk((content as DemarcheContent).next),
+      ? isAccordionOk((content as DispositifContent).how, 1)
+      : isAccordionOk((content as DemarcheContent).next, 1),
     !!content.abstract,
     !!dispositif.theme,
-    dispositif.mainSponsor,
+    !!dispositif.mainSponsor,
     isMetadataOk(dispositif.metadatas?.publicStatus),
     isMetadataOk(dispositif.metadatas?.age),
     isMetadataOk(dispositif.metadatas?.frenchLevel),
@@ -307,5 +309,5 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
     isMetadataOk(dispositif.metadatas?.conditions),
     isMetadataOk(dispositif.metadatas?.location),
   ];
-  return conditions.filter((c) => c).length;
+  return conditions.filter((c) => !c).length === 0;
 };

@@ -16,7 +16,7 @@ export const formatContributions = (
       "En attente",
       "Rejeté structure",
       "En attente non prioritaire",
-    ].includes(dispositif.status) ? "Moi" : dispositif.mainSponsor.nom;
+    ].includes(dispositif.status) ? "Moi" : dispositif.mainSponsor?.nom || "";
     return formattedContribs.push({
       ...dispositif,
       responsabilite,

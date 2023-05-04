@@ -2,7 +2,7 @@ import { statusCompare } from "lib/statusCompare";
 import { ContentStatus, ProgressionStatus, StructureAdminStatus } from "types/interface";
 import { Label, StyledStatus } from "./SubComponents";
 import styles from "./StatusRow.module.scss";
-import { GetAllDispositifsResponse, GetAllStructuresResponse } from "api-types";
+import { DispositifStatus, GetAllDispositifsResponse, GetAllStructuresResponse } from "api-types";
 
 interface Props {
   element: GetAllDispositifsResponse | GetAllStructuresResponse;
@@ -34,7 +34,7 @@ export const StatusRow = (props: Props) => {
               <div
                 className="me-2"
                 key={status.storedStatus}
-                onClick={() => props.modifyStatus(status.storedStatus, "status")}
+                onClick={() => props.modifyStatus(status.storedStatus as DispositifStatus, "status")}
               >
                 <StyledStatus
                   text={status.storedStatus}

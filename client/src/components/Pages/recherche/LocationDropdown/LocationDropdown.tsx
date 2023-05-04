@@ -6,10 +6,10 @@ import { Button } from "reactstrap";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import { Event } from "lib/tracking";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./LocationDropdown.module.scss";
+import { useEvent } from "hooks";
 
 interface Props {
   mobile?: boolean;
@@ -21,6 +21,7 @@ const LocationDropdown = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const { Event } = useEvent();
   const { locationSearch, resetLocationSearch } = props;
 
   const { placesService, placePredictions, getPlacePredictions } = usePlacesAutocompleteService({
@@ -28,15 +29,15 @@ const LocationDropdown = (props: Props) => {
     //@ts-ignore
     options: {
       componentRestrictions: { country: "fr" },
-      types: ["administrative_area_level_2", "locality", "postal_code"]
-    }
+      types: ["administrative_area_level_2", "locality", "postal_code"],
+    },
   });
   const onSelectPrediction = useCallback(
     (id: string) => {
       Event("USE_SEARCH", "click filter", "location");
       placesService?.getDetails({ placeId: id }, (placeDetails) => {
         const departement = (placeDetails?.address_components || []).find((comp) =>
-          comp.types.includes("administrative_area_level_2")
+          comp.types.includes("administrative_area_level_2"),
         );
         let depName = departement?.long_name;
         if (depName === "Département de Paris") depName = "Paris"; // specific case to fix google API
@@ -44,14 +45,14 @@ const LocationDropdown = (props: Props) => {
           const oldDeps = query.departments;
           dispatch(
             addToQueryActionCreator({
-              departments: [...new Set(depName ? [...oldDeps, depName] : [...oldDeps])]
-            })
+              departments: [...new Set(depName ? [...oldDeps, depName] : [...oldDeps])],
+            }),
           );
         }
       });
       resetLocationSearch();
     },
-    [dispatch, resetLocationSearch, query.departments, placesService]
+    [Event, placesService, resetLocationSearch, query.departments, dispatch],
   );
 
   useEffect(() => {
@@ -65,11 +66,11 @@ const LocationDropdown = (props: Props) => {
     (dep: string) => {
       dispatch(
         addToQueryActionCreator({
-          departments: query.departments.filter((d) => d !== dep)
-        })
+          departments: query.departments.filter((d) => d !== dep),
+        }),
       );
     },
-    [dispatch, query.departments]
+    [dispatch, query.departments],
   );
 
   const getLocation = () => {
@@ -77,14 +78,14 @@ const LocationDropdown = (props: Props) => {
       navigator.geolocation.getCurrentPosition((res) => {
         axios
           .get(
-            `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`
+            `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`,
           )
           .then((response) => {
             if (response.data[0]?.departement?.nom) {
               dispatch(
                 addToQueryActionCreator({
-                  departments: [response.data[0].departement.nom]
-                })
+                  departments: [response.data[0].departement.nom],
+                }),
               );
             }
           });

@@ -31,7 +31,8 @@ const SearchStructureResult = ({
   const matches_second = AutosuggestHighlightMatch(secondPart, query, { insideWords: true });
   const parts_second = AutosuggestHighlightParse(secondPart, matches_second);
 
-  const _onClick = () => {
+  const _onClick = (e: any) => {
+    e.preventDefault();
     onClick(structure);
   };
 

@@ -2,11 +2,12 @@ import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
-import { useLocale } from "hooks";
+import { useLocale, useUser } from "hooks";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
@@ -24,7 +25,7 @@ interface Props {
 }
 
 const CustomNavbarEdit = (props: Props) => {
-  const { isSaving } = useAutosave();
+  const { user } = useUser();
   const router = useRouter();
   const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);
@@ -39,43 +40,61 @@ const CustomNavbarEdit = (props: Props) => {
 
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
 
+  // Save
+  const { isSaving, hasError } = useAutosave();
+  const saveText = useMemo(() => {
+    if (isSaving) return "Sauvegarde en cours...";
+    if (hasError) return "Erreur lors de la sauvegarde !";
+    return "Sauvegardé il y a quelques secondes";
+  }, [isSaving, hasError]);
+
   // Quit
   const [showQuitModal, setShowQuitModal] = useState(false);
   const toggleQuitModal = useCallback(() => setShowQuitModal((o) => !o), []);
   const quit = useCallback(() => router.push("/backend/user-dash-contrib"), [router]);
-  const handleQuit = useCallback(() => {
-    const isComplete = progress === 0;
-    if (
-      // no status
-      !dispositif?.status ||
-      // waiting and complete
-      (isStatus(dispositif.status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE]) &&
-        isComplete) ||
-      // deleted or rejected
-      isStatus(dispositif.status, [DispositifStatus.DELETED, DispositifStatus.KO_STRUCTURE])
-    ) {
-      quit();
-    } else {
-      toggleQuitModal();
-    }
-  }, [dispositif, progress, toggleQuitModal, quit]);
+  const handleQuit = useCallback(
+    (e: any) => {
+      e.preventDefault();
+      const isComplete = progress === 0;
+      if (
+        // no status
+        !dispositif?.status ||
+        // waiting and complete
+        (isStatus(dispositif.status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE]) &&
+          isComplete) ||
+        // deleted or rejected
+        isStatus(dispositif.status, [DispositifStatus.DELETED, DispositifStatus.KO_STRUCTURE])
+      ) {
+        quit();
+      } else {
+        toggleQuitModal();
+      }
+    },
+    [dispositif, progress, toggleQuitModal, quit],
+  );
 
   // Publish
   const [showPublishModal, setShowPublishModal] = useState(false);
   const togglePublishModal = useCallback(() => setShowPublishModal((o) => !o), []);
   const hideValidateButton = useMemo(() => {
-    return isStatus(dispositif?.status, [
-      DispositifStatus.KO_STRUCTURE,
-      DispositifStatus.DELETED,
-      DispositifStatus.NO_STRUCTURE,
-    ]);
+    return isStatus(dispositif?.status, [DispositifStatus.KO_STRUCTURE, DispositifStatus.DELETED]);
   }, [dispositif]);
   const handlePublish = useCallback(
     async (keepTranslations: boolean) => {
       if (!dispositif?._id) return;
-      API.publishDispositif(dispositif._id, { keepTranslations });
+      API.publishDispositif(dispositif._id, { keepTranslations }).catch(() => {
+        Swal.fire("Oh non...", "Une erreur s'est produite. Veuillez réessayer ou contacter un administrateur", "error");
+      });
     },
     [dispositif],
+  );
+
+  const validate = useCallback(
+    (e: any) => {
+      e.preventDefault();
+      togglePublishModal();
+    },
+    [togglePublishModal],
   );
 
   return (
@@ -85,9 +104,15 @@ const CustomNavbarEdit = (props: Props) => {
           <div className={cls("fr-container", styles.inner)}>
             <span>
               <EVAIcon name="info" size={24} fill={styles.lightBorderPlainInfo} className="me-4" />
-              L’éditeur de fiche est disponible uniquement en français. Rédigez bien votre fiche en français.
+              L’éditeur de fiche est disponible uniquement en français. Il n’est pas possible de rédiger dans une autre
+              langue.
             </span>
-            <button onClick={() => setShowLanguageWarning(false)}>
+            <button
+              onClick={(e: any) => {
+                e.preventDefault();
+                setShowLanguageWarning(false);
+              }}
+            >
               <EVAIcon name="close-outline" size={16} fill={styles.lightBorderPlainInfo} />
             </button>
           </div>
@@ -98,37 +123,50 @@ const CustomNavbarEdit = (props: Props) => {
           <StepBar total={TOTAL_STEPS} progress={progress} text={`${progress} / ${TOTAL_STEPS}`} />
           <p className={styles.help}>{getText(progress)}</p>
           <Button
-            secondary={!showMissingSteps}
+            priority={showMissingSteps ? "primary" : "secondary"}
             id="missing-steps-btn"
-            icon={showMissingSteps ? "eye-off-outline" : "eye-outline"}
+            evaIcon={showMissingSteps ? "eye-off-outline" : "eye-outline"}
             className={cls("ms-4", styles.btn)}
-            onClick={() => setShowMissingSteps?.(!showMissingSteps)}
+            onClick={(e: any) => {
+              e.preventDefault();
+              setShowMissingSteps?.(!showMissingSteps);
+            }}
           />
           <Tooltip target="missing-steps-btn" placement="top">
             Voir les étapes restantes
           </Tooltip>
         </div>
         <div>
-          <span id="save-status" className={styles.save}>
-            <EVAIcon
-              name={isSaving ? "sync-outline" : "save"}
-              size={16}
-              fill={styles.darkBackgroundElevationContrast}
-              className="me-2"
-            />
-            <span>{isSaving ? "Sauvegarde en cours..." : "Sauvegardé il y a quelques secondes"}</span>
-          </span>
-          <Tooltip target="save-status" placement="top">
-            Toutes les modifications sont sauvegardées automatiquement
-          </Tooltip>
-          <Button secondary icon="log-out-outline" iconPlacement="end" onClick={handleQuit} className="me-4">
-            Quitter
+          {dispositif?._id && (
+            <>
+              <span id="save-status" className={styles.save}>
+                <EVAIcon
+                  name={isSaving ? "sync-outline" : "save"}
+                  size={16}
+                  fill={styles.darkBackgroundElevationContrast}
+                  className="me-2"
+                />
+                <span>{saveText}</span>
+              </span>
+              <Tooltip target="save-status" placement="top">
+                Toutes les modifications sont sauvegardées automatiquement
+              </Tooltip>
+            </>
+          )}
+          <Button
+            priority="secondary"
+            evaIcon="log-out-outline"
+            iconPosition="right"
+            onClick={handleQuit}
+            className="me-4"
+          >
+            Finir plus tard
           </Button>
           {!hideValidateButton && (
             <Button
-              icon={progress === TOTAL_STEPS ? "checkmark-circle-2" : undefined}
-              iconPlacement="end"
-              onClick={togglePublishModal}
+              evaIcon={progress === TOTAL_STEPS ? "checkmark-circle-2" : undefined}
+              iconPosition="right"
+              onClick={validate}
             >
               Valider
             </Button>
@@ -152,6 +190,7 @@ const CustomNavbarEdit = (props: Props) => {
         typeContenu={props.typeContenu}
         toggle={togglePublishModal}
         onQuit={toggleQuitModal}
+        redirectToBo={quit}
         onPublish={handlePublish}
         status={dispositif?.status || null}
       />

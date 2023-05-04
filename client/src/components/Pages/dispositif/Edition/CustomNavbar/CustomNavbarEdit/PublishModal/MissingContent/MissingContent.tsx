@@ -1,16 +1,13 @@
-import React, { useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { useTranslation } from "next-i18next";
 import { DispositifStatus } from "api-types";
-import { Badge } from "@dataesr/react-dsfr";
 import { isStatus } from "lib/dispositif";
 import PageContext, { Modals } from "utils/pageContext";
 import Button from "components/UI/Button";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import StepBar from "../../../StepBar";
 import { Step, TOTAL_STEPS } from "../../functions";
-import { help, stepTranslations } from "./data";
-import styles from "./MissingContent.module.scss";
 import MissingSteps from "../../../MissingSteps";
+import { help } from "./data";
 
 interface Props {
   missingSteps: Step[];
@@ -38,7 +35,6 @@ const STEPS_MODAL: Record<Step, Modals | null> = {
 };
 
 const MissingContent = (props: Props) => {
-  const { t } = useTranslation();
   const pageContext = useContext(PageContext);
 
   const content = useMemo(() => {
@@ -71,10 +67,26 @@ const MissingContent = (props: Props) => {
       />
 
       <div className="text-end">
-        <Button secondary onClick={props.onQuit} icon="log-out-outline" iconPlacement="end" className="me-2">
+        <Button
+          priority="secondary"
+          onClick={(e: any) => {
+            e.preventDefault();
+            props.onQuit();
+          }}
+          evaIcon="log-out-outline"
+          iconPosition="right"
+          className="me-2"
+        >
           Quitter et finir plus tard
         </Button>
-        <Button onClick={props.onStay} icon="arrow-forward-outline" iconPlacement="end">
+        <Button
+          onClick={(e: any) => {
+            e.preventDefault();
+            props.onStay();
+          }}
+          evaIcon="arrow-forward-outline"
+          iconPosition="right"
+        >
           Compléter ma fiche
         </Button>
       </div>

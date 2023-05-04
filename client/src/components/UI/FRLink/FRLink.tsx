@@ -1,5 +1,4 @@
 import React from "react";
-import { Link as DSFRLink } from "@dataesr/react-dsfr";
 import Link, { LinkProps } from "next/link";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -16,17 +15,17 @@ interface Props {
 
 const FRLink = (props: Props) => {
   return (
-    <DSFRLink
-      as={
-        <Link href={props.href} target={props.target} onClick={props.onClick}>
-          {props.icon && (
-            <EVAIcon name={props.icon} size={20} fill={styles.lightTextActionHighBlueFrance} className="me-2" />
-          )}
-          {props.children}
-        </Link>
-      }
-      className={cls(styles.link, props.className)}
-    />
+    <Link
+      href={props.href}
+      target={props.target}
+      onClick={props.onClick}
+      className={cls("fr-link", styles.link, props.className)}
+    >
+      {props.icon && (
+        <EVAIcon name={props.icon} size={20} fill={styles.lightTextActionHighBlueFrance} className="me-2" />
+      )}
+      {props.children}
+    </Link>
   );
 };
 

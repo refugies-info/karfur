@@ -17,7 +17,7 @@ RUN npm ci
 ADD ./server /usr/src/app
 
 # Build app
-RUN npm run tsc-prod
+RUN npm run tsc
 
 # Install berglas
 COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:latest /bin/berglas /bin/berglas

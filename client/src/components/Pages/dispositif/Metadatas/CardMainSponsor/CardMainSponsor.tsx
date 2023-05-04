@@ -47,7 +47,7 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
   }, [dataMainSponsor, structures]);
 
   const isAllowedToEdit = useMemo(() => {
-    return user.admin || isStatus(dispositif?.status, DispositifStatus.ACTIVE);
+    return user.admin || (!isStatus(dispositif?.status, DispositifStatus.ACTIVE) && !dispositif?.hasDraftVersion);
   }, [user, dispositif]);
 
   return (
@@ -77,8 +77,8 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
                 </span>
                 {isAllowedToEdit && (
                   <Button
-                    tertiary
-                    icon="trash-2-outline"
+                    priority="tertiary"
+                    evaIcon="trash-2-outline"
                     onClick={(e: any) => {
                       e.stopPropagation();
                       e.preventDefault();
@@ -115,7 +115,10 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
       <DeleteContentModal
         show={showDeleteModal}
         toggle={() => setShowDeleteModal((o) => !o)}
-        onValidate={() => setValue("mainSponsor", undefined)}
+        onValidate={() => {
+          setValue("mainSponsor", null);
+          setShowDeleteModal(false);
+        }}
       />
     </>
   );

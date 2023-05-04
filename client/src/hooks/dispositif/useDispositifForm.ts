@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Modals } from "utils/pageContext";
+import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
+import { userStructureSelector } from "services/UserStructure/userStructure.selectors";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
+import useUser from "hooks/useUser";
 import useLocale from "hooks/useLocale";
 import useChangeLanguage from "hooks/useChangeLanguage";
 
@@ -27,6 +30,20 @@ const useDispositifForm = () => {
   useEffect(() => {
     dispatch(fetchAllStructuresActionsCreator());
   }, [dispatch]);
+
+  // load user structure
+  const { user } = useUser();
+  const userStructure = useSelector(userStructureSelector);
+  useEffect(() => {
+    if (user.user?.structures && user.user.structures.length > 0 && !userStructure) {
+      dispatch(
+        fetchUserStructureActionCreator({
+          structureId: user.user.structures[0],
+          shouldRedirect: false,
+        })
+      );
+    }
+  }, [dispatch, user, userStructure]);
 
   return {
     mode: "edit" as "edit" | "view" | "translate",

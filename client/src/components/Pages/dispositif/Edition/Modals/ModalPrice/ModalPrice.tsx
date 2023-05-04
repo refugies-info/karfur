@@ -8,7 +8,7 @@ import ChoiceButton from "../../ChoiceButton";
 import { SimpleFooter, InlineForm } from "../components";
 import PriceFree from "assets/dispositif/form-icons/price-free.svg";
 import PricePay from "assets/dispositif/form-icons/price-pay.svg";
-import { dropdownOptions, help } from "./data";
+import { dropdownOptions, help, helpPay } from "./data";
 import { getInitialPrice, getInitialType, isPriceValue } from "./functions";
 import NoIcon from "assets/dispositif/no-icon.svg";
 import styles from "./ModalPrice.module.scss";
@@ -69,7 +69,12 @@ const ModalPrice = (props: Props) => {
   }, [selected, priceStart, selectedPay, priceEnd]);
 
   return (
-    <BaseModal show={props.show} toggle={props.toggle} help={help} title="Faut-il payer pour accéder au dispositif ?">
+    <BaseModal
+      show={props.show}
+      toggle={props.toggle}
+      help={selected === "pay" ? helpPay : help}
+      title="Faut-il payer pour accéder au dispositif ?"
+    >
       <div>
         <Row className="mb-6">
           <Col>
@@ -170,7 +175,7 @@ const ModalPrice = (props: Props) => {
         )}
 
         <ChoiceButton
-          text="Cette information n’est pas pertinente pour mon action"
+          text="Ce n'est pas pertinent pour mon action"
           type="radio"
           selected={selected === null}
           onSelect={() => setSelected(null)}

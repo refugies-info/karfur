@@ -138,14 +138,14 @@ const LeftSidebarEdition = (props: Props) => {
         />
       ) : (
         <AddContentButton onClick={() => setActiveModal?.("Location")} className="mb-6" size="md">
-          Zone d'action
+          C'est où ?
         </AddContentButton>
       )}
 
       <p className={styles.title}>À faire en dernier</p>
 
       <div id="step-mainSponsor"></div>
-      {values.mainSponsor !== undefined ? (
+      {!!values.mainSponsor ? (
         <CardMainSponsor
           dataMainSponsor={values.mainSponsor}
           color={color}
@@ -176,7 +176,7 @@ const LeftSidebarEdition = (props: Props) => {
           fill={styles.lightTextDisabledGrey}
           className={cls(styles.theme_icon, "me-2")}
         />
-        Résumé
+        En bref
       </AddContentButton>
 
       <ModalAvailability show={activeModal === "Availability"} toggle={toggleModal} />

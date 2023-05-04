@@ -50,10 +50,10 @@ const ReactionModal = (props: Props) => {
       />
 
       <div className={styles.footer}>
-        <Button secondary onClick={toggle} icon="close-outline" iconPlacement="end" className="me-4">
+        <Button priority="secondary" onClick={toggle} evaIcon="close-outline" iconPosition="right" className="me-4">
           {t("Annuler", "Annuler")}
         </Button>
-        <Button icon="checkmark-circle-2" iconPlacement="end" onClick={submit}>
+        <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={submit}>
           {t("Envoyer", "Envoyer")}
         </Button>
       </div>

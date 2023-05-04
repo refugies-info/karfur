@@ -170,7 +170,6 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
           typeContenu: 1,
           theme: 1,
           notificationsSent: 1,
-          // FIXME avancement: 1
         },
         "theme",
       );

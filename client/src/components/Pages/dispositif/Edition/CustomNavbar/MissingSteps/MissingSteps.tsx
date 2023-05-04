@@ -1,9 +1,9 @@
 import { useCallback, useContext } from "react";
 import { useTranslation } from "next-i18next";
-import { Badge } from "@dataesr/react-dsfr";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import Badge from "components/UI/Badge";
 import TranslationStatus from "components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
 import { UserTradStatus } from "components/Pages/dispositif/Translation/TranslationInput/functions";
 import { Step as TranslateStep } from "hooks/dispositif";
@@ -48,12 +48,21 @@ const MissingSteps = (props: Props) => {
   return (
     <div className={cls(styles.missing, styles[props.style])}>
       {props.missingSteps.map((item, i) => (
-        <button key={i} className={cls(styles.step, styles[item.status])} onClick={() => goToStep(item.step)}>
+        <button
+          key={i}
+          className={cls(styles.step, styles[item.status])}
+          onClick={(e: any) => {
+            e.preventDefault();
+            goToStep(item.step);
+          }}
+        >
           <span>{t(stepTranslations[item.step], stepTranslations[item.step])}</span>
 
           <span>
             {pageContext.mode === "edit" ? (
-              <Badge type="warning" text="Manquant" icon="ri-alert-fill" isSmall className="me-4" />
+              <Badge severity="warning" icon="ri-alert-fill" small className="me-4">
+                Manquant
+              </Badge>
             ) : (
               <TranslationStatus status={item.status === "error" ? UserTradStatus.MISSING : UserTradStatus.PENDING} />
             )}

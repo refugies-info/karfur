@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
@@ -7,12 +7,11 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {
   inputFocusedSelector,
   searchQuerySelector,
-  themesDisplayedValueSelector
+  themesDisplayedValueSelector,
 } from "services/SearchResults/searchResults.selector";
 import { addToQueryActionCreator, setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
@@ -21,6 +20,7 @@ import DropdownMenuMobile from "../DropdownMenuMobile";
 import { SecondaryFilterOptions } from "../SecondaryFilter/SecondaryFilter";
 import styles from "./SearchHeader.mobile.module.scss";
 import commonStyles from "scss/components/searchHeader.module.scss";
+import { useEvent } from "hooks";
 
 interface Props {
   nbResults: number;
@@ -47,6 +47,7 @@ interface Props {
 const SearchHeaderMobile = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const { Event } = useEvent();
 
   const {
     locationSearch,
@@ -64,7 +65,7 @@ const SearchHeaderMobile = (props: Props) => {
     frenchLevelOptions,
     selectFrenchLevelOption,
     languagesOptions,
-    selectLanguageOption
+    selectLanguageOption,
   } = props;
 
   const query = useSelector(searchQuerySelector);
@@ -74,13 +75,13 @@ const SearchHeaderMobile = (props: Props) => {
     (query: Partial<SearchQuery>) => {
       dispatch(addToQueryActionCreator(query));
     },
-    [dispatch]
+    [dispatch],
   );
 
   // SEARCH
   const setSearchActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("search", active)),
-    [dispatch]
+    [dispatch],
   );
 
   // LOCATION
@@ -91,7 +92,7 @@ const SearchHeaderMobile = (props: Props) => {
         if (!prevState) Event("USE_SEARCH", "open filter", "location");
         return !prevState;
       }),
-    [setLocationOpen]
+    [Event],
   );
 
   // THEME
@@ -103,7 +104,7 @@ const SearchHeaderMobile = (props: Props) => {
         if (!prevState) Event("USE_SEARCH", "open filter", "theme");
         return !prevState;
       }),
-    [setThemesOpen]
+    [Event],
   );
 
   // FILTERS
@@ -115,20 +116,11 @@ const SearchHeaderMobile = (props: Props) => {
         if (!prevState) Event("USE_SEARCH", "open filter", "mobile filters");
         return !prevState;
       }),
-    [setShowFilters]
+    [Event],
   );
   const resetFilters = useCallback(() => {
     addToQuery({ age: [], frenchLevel: [], language: [] });
   }, [addToQuery]);
-
-  // hide axeptio button when popup opens
-  useEffect(() => {
-    if (showFilters || locationOpen || themesOpen) {
-      if (window.hideAxeptioButton) window.hideAxeptioButton();
-    } else {
-      if (window.showAxeptioButton) window.showAxeptioButton();
-    }
-  }, [locationOpen, themesOpen, showFilters]);
 
   return (
     <>

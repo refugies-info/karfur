@@ -94,7 +94,7 @@ export interface StructureMember {
   last_connected: Date;
   roles: string[];
   added_at: Date;
-  mainRole: string;
+  mainRole: "Rédacteur" | "Responsable" | "Exclu";
 }
 
 // Dispositif
@@ -109,7 +109,6 @@ export enum DispositifStatus {
   DELETED = "Supprimé",
   WAITING_STRUCTURE = "En attente",
   WAITING_ADMIN = "En attente admin",
-  NO_STRUCTURE = "En attente non prioritaire",
   OK_STRUCTURE = "Accepté structure",
   KO_STRUCTURE = "Rejeté structure",
 }
@@ -136,7 +135,7 @@ export type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "fr
 export interface Poi {
   title: string;
   address: string;
-  city: string;
+  city?: string | null;
   lat: number;
   lng: number;
   description?: string;

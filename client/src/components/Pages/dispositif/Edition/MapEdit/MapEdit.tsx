@@ -1,8 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import Image from "next/image";
 import { CreateDispositifRequest, Poi } from "api-types";
+import PageContext from "utils/pageContext";
 import AddContentButton from "../AddContentButton";
 import DeleteModal from "./DeleteModal";
 import Header from "./Header";
@@ -18,6 +19,7 @@ const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualiz
 const MapEdit = () => {
   const { setValue } = useFormContext<CreateDispositifRequest>();
   const markers: CreateDispositifRequest["map"] = useWatch({ name: "map" });
+  const { setActiveSection } = useContext(PageContext);
 
   const [hasMap, setHasMap] = useState((markers || []).length > 0);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -32,6 +34,12 @@ const MapEdit = () => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || "",
     libraries,
   });
+
+  useEffect(() => {
+    if (hasMap || poiForm) {
+      setActiveSection?.("map");
+    }
+  }, [hasMap, poiForm, setActiveSection]);
 
   const onLoad = useCallback(
     (map: google.maps.Map) => {
@@ -168,7 +176,10 @@ const MapEdit = () => {
           zoom={5}
           onLoad={onLoad}
           onUnmount={onUnmount}
-          onClick={() => setSelectedMarker(null)}
+          onClick={(e: any) => {
+            e.preventDefault();
+            setSelectedMarker(null);
+          }}
           options={{
             mapTypeControl: false,
             fullscreenControl: false,
@@ -188,7 +199,10 @@ const MapEdit = () => {
                   url: "/images/map/pin.svg",
                   anchor: new google.maps.Point(30, 42),
                 }}
-                onClick={() => selectMarker(key)}
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  selectMarker(key);
+                }}
               ></MarkerF>
             ) : null,
           )}
