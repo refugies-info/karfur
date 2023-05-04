@@ -23,7 +23,10 @@ const Sidebar = ({ markers, onSelectMarker, selectedMarkerId }: Props) => {
           <span key={i}>
             <button
               className={cls(styles.item, selectedMarkerId === marker.id && styles.active)}
-              onClick={() => onSelectMarker(marker)}
+              onClick={(e: any) => {
+                e.preventDefault();
+                onSelectMarker(marker);
+              }}
             >
               <p className={styles.title}>{marker.title}</p>
               <p className={styles.city}>

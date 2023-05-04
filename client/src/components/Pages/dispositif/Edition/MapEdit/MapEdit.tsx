@@ -176,7 +176,10 @@ const MapEdit = () => {
           zoom={5}
           onLoad={onLoad}
           onUnmount={onUnmount}
-          onClick={() => setSelectedMarker(null)}
+          onClick={(e: any) => {
+            e.preventDefault();
+            setSelectedMarker(null);
+          }}
           options={{
             mapTypeControl: false,
             fullscreenControl: false,
@@ -196,7 +199,10 @@ const MapEdit = () => {
                   url: "/images/map/pin.svg",
                   anchor: new google.maps.Point(30, 42),
                 }}
-                onClick={() => selectMarker(key)}
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  selectMarker(key);
+                }}
               ></MarkerF>
             ) : null,
           )}

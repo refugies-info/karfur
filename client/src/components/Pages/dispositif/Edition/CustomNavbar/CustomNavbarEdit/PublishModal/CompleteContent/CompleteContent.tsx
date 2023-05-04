@@ -87,7 +87,10 @@ const CompleteContent = (props: Props) => {
             />
             <div className="text-end mt-8">
               <Button
-                onClick={() => onPublish(keepTranslations).then(props.redirectToBo)}
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  onPublish(keepTranslations).then(props.redirectToBo);
+                }}
                 evaIcon="arrow-forward-outline"
                 iconPosition="right"
               >
@@ -107,7 +110,10 @@ const CompleteContent = (props: Props) => {
             </div>
             <div className="text-end">
               <Button
-                onClick={() => onPublish(false).then(props.redirectToBo)}
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  onPublish(false).then(props.redirectToBo);
+                }}
                 evaIcon="arrow-forward-outline"
                 iconPosition="right"
               >
@@ -144,7 +150,14 @@ const CompleteContent = (props: Props) => {
             ]}
           />
           <div className="text-end">
-            <Button onClick={() => onPublish(false).then(props.redirectToBo)} evaIcon="arrow-forward-outline" iconPosition="right">
+            <Button
+              onClick={(e: any) => {
+                e.preventDefault();
+                onPublish(false).then(props.redirectToBo);
+              }}
+              evaIcon="arrow-forward-outline"
+              iconPosition="right"
+            >
               Envoyer pour traduction
             </Button>
           </div>
@@ -166,7 +179,10 @@ const CompleteContent = (props: Props) => {
           </div>
           <div className="text-end">
             <Button
-              onClick={() => onPublish(false).then(() => setStep(1))}
+              onClick={(e: any) => {
+                e.preventDefault();
+                onPublish(false).then(() => setStep(1));
+              }}
               evaIcon="arrow-forward-outline"
               iconPosition="right"
             >
@@ -198,7 +214,14 @@ const CompleteContent = (props: Props) => {
           ]}
         />
         <div className="text-end">
-          <Button onClick={toggle} evaIcon="checkmark-circle-2" iconPosition="right">
+          <Button
+            onClick={(e: any) => {
+              e.preventDefault();
+              toggle();
+            }}
+            evaIcon="checkmark-circle-2"
+            iconPosition="right"
+          >
             C'est noté
           </Button>
         </div>

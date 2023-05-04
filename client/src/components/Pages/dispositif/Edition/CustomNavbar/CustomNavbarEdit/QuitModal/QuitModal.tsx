@@ -64,14 +64,25 @@ const QuitModal = (props: Props) => {
         <div className="text-end">
           <Button
             priority="secondary"
-            onClick={publishedAndComplete ? props.onPublish : props.toggle}
+            onClick={(e: any) => {
+              e.preventDefault();
+              if (publishedAndComplete) props.onPublish();
+              else props.toggle();
+            }}
             evaIcon="arrow-forward-outline"
             iconPosition="right"
             className="me-2"
           >
             {publishedAndComplete ? "Envoyer pour relecture" : "Rester dans l'éditeur"}
           </Button>
-          <Button onClick={props.onQuit} evaIcon="log-out-outline" iconPosition="right">
+          <Button
+            onClick={(e: any) => {
+              e.preventDefault();
+              props.onQuit();
+            }}
+            evaIcon="log-out-outline"
+            iconPosition="right"
+          >
             Quitter et finir plus tard
           </Button>
         </div>

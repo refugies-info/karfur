@@ -62,7 +62,14 @@ const DepartmentInput = (props: Props) => {
         {!!(!hidePredictions && placePredictions?.length) && (
           <div className={styles.suggestions} ref={refSuggestions}>
             {placePredictions.slice(0, 5).map((p, i) => (
-              <button key={i} onClick={() => onPlaceSelected(p.place_id)} className={styles.btn}>
+              <button
+                key={i}
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  onPlaceSelected(p.place_id);
+                }}
+                className={styles.btn}
+              >
                 <EVAIcon name="pin-outline" fill="black" size={20} className="me-2" />
                 {formatDepartment(p.structured_formatting.main_text)}
               </button>
