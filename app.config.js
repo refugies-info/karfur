@@ -121,7 +121,7 @@ export default {
         {
           ios: {
             useFrameworks: "static",
-            deploymentTarget: "16.4",
+            // deploymentTarget: "16.4",
           },
         },
       ],
