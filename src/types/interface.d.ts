@@ -21,7 +21,7 @@ export interface MarkerGoogle {
   longitude: number;
   nom: string;
   telephone?: string;
-  vicinity: string;
+  vicinity?: string | null;
   description?: string;
   place_id: string;
 }
