@@ -38,7 +38,10 @@ const CloseButton = (props: CloseButtonProps) => (
       iconPosition="right"
       priority="tertiary"
       className={styles.close}
-      onClick={props.onClick}
+      onClick={(e: any) => {
+        e.preventDefault();
+        props.onClick();
+      }}
     >
       Fermer
     </Button>
@@ -176,10 +179,24 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
         <p className={styles.text}>{linkText}</p>
         <p className={styles.url}>{linkUrl}</p>
         <div className={styles.buttons}>
-          <Button priority="secondary" className="me-4" onClick={removeLink}>
+          <Button
+            priority="secondary"
+            className="me-4"
+            onClick={(e: any) => {
+              e.preventDefault();
+              removeLink();
+            }}
+          >
             Supprimer le lien
           </Button>
-          <Button onClick={() => setIsModalOpen(true)}>Modifier</Button>
+          <Button
+            onClick={(e: any) => {
+              e.preventDefault();
+              setIsModalOpen(true);
+            }}
+          >
+            Modifier
+          </Button>
         </div>
       </div>
 
