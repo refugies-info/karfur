@@ -30,6 +30,7 @@ import HelpIcon2 from "assets/staticPages/publier/help-icon-crisp.svg";
 import StepImage5 from "assets/staticPages/publier/step-image-5.png";
 import MockupsRIMobile from "assets/staticPages/traduire/mockupMobileRI.png";
 import styles from "scss/components/staticPages.module.scss";
+import { logger } from "logger";
 
 export type View = "who" | "steps" | "next" | "faq" | "register";
 export type NeedKey = "strong" | "medium" | "weak";
@@ -340,9 +341,15 @@ const RecensezVotreAction = (props: Props) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const translationStatistics = (
-    await API.getTranslationStatistics({ facets: ["nbTranslators", "nbWordsTranslated", "nbActiveTranslators"] })
-  ).data.data;
+  let translationStatistics: TranslationStatisticsResponse = {};
+
+  try {
+    translationStatistics = (
+      await API.getTranslationStatistics({ facets: ["nbTranslators", "nbWordsTranslated", "nbActiveTranslators"] })
+    ).data.data;
+  } catch (e) {
+    logger.error("[traduire] error while generating page", e);
+  }
 
   return {
     props: {
