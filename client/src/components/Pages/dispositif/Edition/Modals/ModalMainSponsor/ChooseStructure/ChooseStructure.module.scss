@@ -1,0 +1,17 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/input";
+
+.structure {
+  margin-bottom: u(2);
+
+  img {
+    object-fit: contain;
+  }
+}
+
+.other {
+  min-height: 82px;
+}

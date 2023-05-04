@@ -2,89 +2,21 @@ import Dashboard from "containers/Backend/Dashboard/Dashboard";
 import Admin from "containers/Backend/Admin";
 import UserContributions from "containers/Backend/UserContributions";
 import UserProfile from "containers/Backend/UserProfile";
-import Translation from "containers/Translation/Translation";
 import UserNotifications from "containers/Backend/UserNotifications";
 import UserFavorites from "containers/Backend/UserFavorites";
-import {
-  UserStructure,
-  UserAdminStructure,
-} from "containers/Backend/UserStructure";
+import { UserStructure, UserAdminStructure } from "containers/Backend/UserStructure";
 import UserTranslation from "containers/Backend/UserTranslation";
 
 type Role = "Trad" | "ExpertTrad" | "Admin" | "hasStructure" | "User" | "Contrib";
 export type BackendRouteType = {
-  path: string,
-  exact?: boolean,
-  name: string,
-  component: any,
-  restriction: Role[]
-}
+  path: string;
+  exact?: boolean;
+  name: string;
+  component: any;
+  restriction: Role[];
+};
 
 export const backendRoutes: BackendRouteType[] = [
-  {
-    path: "/backend/traduction",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: Translation,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/traduction/validation",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: Translation,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/traduction",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: Translation,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-
-  {
-    path: "/backend/traduction/string",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: Translation,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/traduction/dispositif",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: Translation,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/traduction/demarche",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: Translation,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/validation/string",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: Translation,
-    restriction: ["ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/validation/dispositif",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: Translation,
-    restriction: ["ExpertTrad", "Admin"],
-  },
-  {
-    path: "/backend/validation/demarche",
-    exact: true,
-    name: "Traduction - Réfugiés.info",
-    component: Translation,
-    restriction: ["ExpertTrad", "Admin"],
-  },
   {
     path: "/backend/dashboard",
     name: "Administration - Réfugiés.info",
@@ -149,4 +81,3 @@ export const backendRoutes: BackendRouteType[] = [
     restriction: ["User", "Trad", "ExpertTrad", "Admin"],
   },
 ];
-

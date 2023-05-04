@@ -1,44 +1,40 @@
-import { ObjectId } from "mongoose";
+import { GetLogResponse } from "@refugies-info/api-types";
+import { getDispositifName } from "../../../modules/dispositif/dispositif.repository";
+import { getLangueName } from "../../../modules/langues/langues.repository";
+import { getStructureName } from "../../../modules/structure/structure.repository";
+import { getUserName } from "../../../modules/users/users.repository";
 import logger from "../../../logger";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { findLogs } from "../../../modules/logs/logs.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
+import { ResponseWithData } from "../../../types/interface";
 
-export interface Request {
-  id: ObjectId;
-}
+export const getLogs = async (id: string): ResponseWithData<GetLogResponse[]> => {
+  logger.info("[getLogs] received with id", id);
+  const logs = await findLogs(id);
 
-export const getLogs = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
-  try {
-    logger.info("[getLogs] received with id", req?.query?.id);
-    checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles)
-
-    if (!req.query.id) throw new Error("INVALID_REQUEST");
-
-    const logs = await findLogs(req.query.id);
-    return res.status(200).json({
-      text: "Succès",
-      data: logs,
-    });
-  } catch (error) {
-    logger.error("[getLogs] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Lecture interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
+  const logsResponse: GetLogResponse[] = await Promise.all(logs.map(async (log) => {
+    if (log.dynamicId) {
+      if (log.model_dynamic === "Dispositif") return {
+        ...log.toObject(),
+        dynamicId: { titreInformatif: await getDispositifName(log.dynamicId) }
+      }
+      if (log.model_dynamic === "Langue") return {
+        ...log.toObject(),
+        dynamicId: { langueFr: await getLangueName(log.dynamicId) }
+      }
+      if (log.model_dynamic === "User") return {
+        ...log.toObject(),
+        dynamicId: { username: await getUserName(log.dynamicId) }
+      }
+      if (log.model_dynamic === "Structure") return {
+        ...log.toObject(),
+        dynamicId: { nom: await getStructureName(log.dynamicId) }
+      }
     }
-  }
+    return { ...log.toObject(), dynamicId: undefined };
+  }))
+
+  return {
+    text: "success",
+    data: logsResponse,
+  };
 };

@@ -1,12 +1,11 @@
-import { ObjectId } from "mongodb";
-import { IUserContribution, SearchDispositif, UserStructure } from "../../../types/interface";
+import { GetDispositifsResponse, GetStructureResponse, GetUserContributionsResponse, Id } from "api-types";
 import { FormattedUserContribution } from "./types";
 
 export const formatContributions = (
-  userContributions: IUserContribution[],
-  userStructureContributions: SearchDispositif[],
-  userStructure: UserStructure | null,
-  userId: ObjectId | undefined
+  userContributions: GetUserContributionsResponse[],
+  userStructureContributions: GetDispositifsResponse[],
+  userStructure: GetStructureResponse | null,
+  userId: Id | undefined
 ): FormattedUserContribution[] => {
   let formattedContribs: FormattedUserContribution[] = [];
 
@@ -17,7 +16,7 @@ export const formatContributions = (
       "En attente",
       "Rejeté structure",
       "En attente non prioritaire",
-    ].includes(dispositif.status) ? "Moi" : dispositif.mainSponsor;
+    ].includes(dispositif.status) ? "Moi" : dispositif.mainSponsor?.nom || "";
     return formattedContribs.push({
       ...dispositif,
       responsabilite,
@@ -27,7 +26,7 @@ export const formatContributions = (
 
   // dispositif of structures of user
   const isResponsableOfStructure = (userStructure?.membres || [])
-    .find(m => m._id === userId)?.roles.includes("administrateur") || false;
+    .find(m => m.userId === userId?.toString())?.roles.includes("administrateur") || false;
   userStructureContributions
     .filter((dispositif) => {
       if ( // do not show dispositif with these status
@@ -48,15 +47,19 @@ export const formatContributions = (
     })
     .forEach((dispositif) => {
       return formattedContribs.push({
-        titreInformatif: dispositif.titreInformatif,
-        titreMarque: dispositif.titreMarque,
+        titreInformatif: dispositif.titreInformatif || "",
+        titreMarque: dispositif.titreMarque || "",
         typeContenu: dispositif.typeContenu,
-        nbMercis: dispositif.nbMercis || 0,
+        nbMercis: /* dispositif.nbMercis || */ 0, // TODO : get nb mercis
         nbVues: dispositif.nbVues,
         _id: dispositif._id,
         status: dispositif.status,
         responsabilite: userStructure?.nom || "",
-        isAuthorizedToDelete: isResponsableOfStructure
+        isAuthorizedToDelete: isResponsableOfStructure,
+        mainSponsor: {
+          nom: userStructure?.nom || ""
+        },
+        hasDraftVersion: false
       });
     });
 

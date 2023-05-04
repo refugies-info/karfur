@@ -1,15 +1,15 @@
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";
-import { ObjectId } from "mongodb";
-import { Language, SimplifiedDispositif } from "types/interface";
+import { DispositifStatus, GetAllDispositifsResponse, GetLanguagesResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 // TODO: move function
 export const prepareDeleteContrib = (
-  allDispositifs: SimplifiedDispositif[],
+  allDispositifs: GetAllDispositifsResponse[],
   setAllDispositifsActionsCreator: any,
   dispatch: any,
-  dispositifId: ObjectId | null
+  dispositifId: Id | null
 ) => {
   return Swal.fire({
     title: "Êtes-vous sûr ?",
@@ -21,13 +21,8 @@ export const prepareDeleteContrib = (
     confirmButtonText: "Oui, le supprimer",
     cancelButtonText: "Annuler",
   }).then((result) => {
-    if (result.value) {
-      const newDispositif = {
-        dispositifId: dispositifId,
-        status: "Supprimé",
-      };
-
-      return API.updateDispositifStatus({ query: newDispositif })
+    if (result.value && dispositifId) {
+      return API.deleteDispositif(dispositifId)
         .then(() => {
           Swal.fire({
             title: "Yay...",
@@ -37,23 +32,18 @@ export const prepareDeleteContrib = (
           });
           const dispositifs = [...allDispositifs];
           const newDispositif = dispositifs.find((d) => d._id === dispositifId);
-          if (newDispositif) newDispositif.status = "Supprimé";
+          if (newDispositif) newDispositif.status = DispositifStatus.DELETED;
           dispatch(setAllDispositifsActionsCreator(dispositifs));
         })
         .catch(() => {
-          Swal.fire({
-            title: "Oh non!",
-            text: "Something went wrong",
-            icon: "error",
-            timer: 1500,
-          });
+          handleApiError({ text: "Something went wrong" });
         });
     }
     return;
   });
 };
 
-export const isThemeTitleOk = (title: Record<string, string>, languages: Language[]) => {
+export const isThemeTitleOk = (title: Record<string, string>, languages: GetLanguagesResponse[]) => {
   const emptyLn = languages.filter(ln => !title[ln.i18nCode]);
   return emptyLn.length > 0;
 }

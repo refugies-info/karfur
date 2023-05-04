@@ -1,0 +1,16 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+
+.btn {
+  margin-bottom: u(6);
+  display: block;
+  width: 100%;
+  text-align: left;
+
+  &:disabled {
+    color: inherit;
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}

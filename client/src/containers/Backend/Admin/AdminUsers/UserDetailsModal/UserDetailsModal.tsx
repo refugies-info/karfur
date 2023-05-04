@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Event, Indicators, Log, SimplifiedUser } from "types/interface";
+import { Event } from "types/interface";
 import Image from "next/image";
 import { Spinner, Row, Col } from "reactstrap";
 import moment from "moment";
@@ -10,7 +10,6 @@ import { allUsersSelector, userSelector } from "services/AllUsers/allUsers.selec
 import FInput from "components/UI/FInput/FInput";
 import { RoleCheckBox, LangueDetail } from "../ components/AdminUsersComponents";
 import FButton from "components/UI/FButton/FButton";
-import { ObjectId } from "mongodb";
 import API from "utils/API";
 import { setAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import Swal from "sweetalert2";
@@ -24,14 +23,17 @@ import { NotesInput } from "../../sharedComponents/NotesInput";
 import { LogList } from "../../Logs/LogList";
 import { StructureButton } from "../../sharedComponents/StructureButton";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
+import { GetAllUsersResponse, GetLogResponse, GetProgressionResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
+import { logger } from "logger";
 
 moment.locale("fr");
 
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedUserId: ObjectId | null;
-  setSelectedStructureIdAndToggleModal: (structureId: ObjectId | null) => void;
+  selectedUserId: Id | null;
+  setSelectedStructureIdAndToggleModal: (structureId: Id | null) => void;
 }
 
 export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) => {
@@ -40,22 +42,24 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
   const [phoneError, setPhoneError] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [roles, setRoles] = useState<string[]>([]);
-  const [indicators, setIndicators] = useState<null | Indicators>(null);
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(props.selectedUserId);
+  const [indicators, setIndicators] = useState<null | GetProgressionResponse>(null);
+  const [selectedUserId, setSelectedUserId] = useState<Id | null>(props.selectedUserId);
 
   const allUsers = useSelector(allUsersSelector);
   const userFromStore = useSelector(userSelector(selectedUserId));
   const [adminComments, setAdminComments] = useState<string>(userFromStore?.adminComments || "");
   const [infosSaved, setInfosSaved] = useState(false);
-  const [currentId, setCurrentId] = useState<ObjectId | null>(null);
-  const [logs, setLogs] = useState<Log[]>([]);
+  const [currentId, setCurrentId] = useState<Id | null>(null);
+  const [logs, setLogs] = useState<GetLogResponse[]>([]);
 
   const dispatch = useDispatch();
   const updateLogs = useCallback(() => {
     if (selectedUserId) {
-      API.logs(selectedUserId).then((res) => {
-        setLogs(res.data.data);
-      });
+      API.logs(selectedUserId)
+        .then((res) => {
+          setLogs(res.data.data);
+        })
+        .catch((e) => logger.error("[logs] error while getting logs:", e.message));
     }
   }, [selectedUserId]);
 
@@ -67,9 +71,9 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     const loadIndicators = async () => {
       if (userFromStore) {
         const data = await API.get_progression({
-          userId: userFromStore._id
+          userId: userFromStore._id.toString(),
         });
-        setIndicators(data.data);
+        setIndicators(data.data.data);
       }
     };
 
@@ -89,7 +93,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     }
   }, [userFromStore, currentId, selectedUserId, updateLogs]);
 
-  const updateUserStore = (userId: ObjectId, user: Partial<SimplifiedUser>) => {
+  const updateUserStore = (userId: Id, user: Partial<GetAllUsersResponse>) => {
     const users = [...allUsers];
     let newUser = users.find((u) => u._id === userId);
     if (newUser) newUser = { ...newUser, ...user };
@@ -107,7 +111,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       }
       setEmail(e.target.value);
     },
-    [infosSaved]
+    [infosSaved],
   );
   const onChangePhone = useCallback(
     (e: Event) => {
@@ -119,14 +123,14 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       }
       setPhone(e.target.value);
     },
-    [infosSaved]
+    [infosSaved],
   );
   const onNotesChange = useCallback(
     (e: any) => {
       if (infosSaved) setInfosSaved(false);
       setAdminComments(e.target.value);
     },
-    [infosSaved]
+    [infosSaved],
   );
 
   const handleCheckBoxChange = (name: string) => {
@@ -161,11 +165,9 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         }
         if (!!phoneError || !!emailError) return;
         setPhoneError("");
-        await API.updateUser({
-          query: {
-            user: { _id: userFromStore._id, roles, email, phone, adminComments },
-            action: "modify-with-roles"
-          }
+        await API.updateUser(userFromStore._id, {
+          user: { roles, email, phone, adminComments },
+          action: "modify-with-roles",
         });
         setInfosSaved(true);
         updateUserStore(userFromStore._id, {
@@ -173,17 +175,12 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
           phone: phone,
           // name: name,
           adminComments: adminComments,
-          roles: roles
+          roles: roles,
         });
         updateLogs();
       }
     } catch (error) {
-      Swal.fire({
-        title: "Oh non",
-        text: "Erreur lors de la modification",
-        icon: "error",
-        timer: 1500
-      });
+      handleApiError({ text: "Erreur lors de la modification" });
     }
   };
 
@@ -198,7 +195,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
           confirmButtonColor: colors.rouge,
           cancelButtonColor: colors.vert,
           confirmButtonText: "Oui, le supprimer",
-          cancelButtonText: "Annuler"
+          cancelButtonText: "Annuler",
         });
         if (!res.value) return;
         await API.deleteUser(userFromStore._id);
@@ -206,18 +203,13 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
           title: "Yay...",
           text: "Utilisateur supprimé",
           icon: "success",
-          timer: 1500
+          timer: 1500,
         });
         dispatch(setAllUsersActionsCreator([...allUsers.filter((u) => u._id !== userFromStore._id)]));
         props.toggleModal();
       }
     } catch (error) {
-      Swal.fire({
-        title: "Oh non",
-        text: "Erreur lors de la suppression",
-        icon: "error",
-        timer: 1500
-      });
+      handleApiError({ text: "Erreur lors de la suppression" });
       props.toggleModal();
     }
   };
@@ -294,7 +286,6 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                   autoFocus={false}
                   prepend
                   prependName="smartphone-outline"
-                  inputClassName="phone-input"
                   error={!!phoneError}
                 />
                 {!!phoneError && <p className={styles.error}>{phoneError}</p>}
@@ -352,8 +343,8 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
               <div className="mt-4">
                 <Label>Langues de traduction activées</Label>
                 <div>
-                  {(userFromStore.langues || []).map((langue) => (
-                    <LangueDetail key={langue.langueCode} langue={langue} />
+                  {(userFromStore.selectedLanguages || []).map((langue, i) => (
+                    <LangueDetail key={i} langue={langue} />
                   ))}
                 </div>
               </div>
@@ -363,10 +354,10 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                   <Label>Minutes passées à traduire</Label>
                   {indicators ? (
                     <>
-                      <div>3 derniers mois : {getMinutes(indicators?.threeMonthsIndicator?.[0]?.timeSpent)}</div>
-                      <div>6 derniers mois : {getMinutes(indicators?.sixMonthsIndicator?.[0]?.timeSpent)}</div>
-                      <div>12 derniers mois : {getMinutes(indicators?.twelveMonthsIndicator?.[0]?.timeSpent)}</div>
-                      <div>Toujours : {getMinutes(indicators?.totalIndicator?.[0]?.timeSpent)}</div>
+                      <div>3 derniers mois : {getMinutes(indicators?.threeMonthsIndicator?.timeSpent)}</div>
+                      <div>6 derniers mois : {getMinutes(indicators?.sixMonthsIndicator?.timeSpent)}</div>
+                      <div>12 derniers mois : {getMinutes(indicators?.twelveMonthsIndicator?.timeSpent)}</div>
+                      <div>Toujours : {getMinutes(indicators?.totalIndicator?.timeSpent)}</div>
                     </>
                   ) : (
                     <Spinner />
@@ -376,10 +367,10 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                   <Label>Nombre de mots traduits</Label>
                   {indicators ? (
                     <>
-                      <div>3 derniers mois : {indicators?.threeMonthsIndicator?.[0]?.wordsCount || 0}</div>
-                      <div>6 derniers mois : {indicators?.sixMonthsIndicator?.[0]?.wordsCount || 0}</div>
-                      <div>12 derniers mois : {indicators?.twelveMonthsIndicator?.[0]?.wordsCount || 0}</div>
-                      <div>Toujours : {indicators?.totalIndicator?.[0]?.wordsCount || 0}</div>
+                      <div>3 derniers mois : {indicators?.threeMonthsIndicator?.wordsCount || 0}</div>
+                      <div>6 derniers mois : {indicators?.sixMonthsIndicator?.wordsCount || 0}</div>
+                      <div>12 derniers mois : {indicators?.twelveMonthsIndicator?.wordsCount || 0}</div>
+                      <div>Toujours : {indicators?.totalIndicator?.wordsCount || 0}</div>
                     </>
                   ) : (
                     <Spinner />

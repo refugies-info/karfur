@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
 import {
   fetchAllDispositifsActionsCreator,
-  setAllDispositifsActionsCreator
+  setAllDispositifsActionsCreator,
 } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { prepareDeleteContrib } from "../Needs/lib";
@@ -20,8 +20,7 @@ import {
   StyledHeader,
   Content,
   FigureContainer,
-  SearchBarContainer,
-  StyledHeaderInner
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import { colors } from "colors";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
@@ -38,9 +37,9 @@ import {
   DeleteButton,
   FilterButton,
   TabHeader,
-  ColoredRound
+  ColoredRound,
 } from "../sharedComponents/SubComponents";
-import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import CustomSearchBar from "components/UI/CustomSeachBar";
 import FButton from "components/UI/FButton/FButton";
 import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
 import { ContentDetailsModal } from "./ContentDetailsModal/ContentDetailsModal";
@@ -53,11 +52,11 @@ import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModa
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 import { needsSelector } from "services/Needs/needs.selectors";
 import styles from "./AdminContenu.module.scss";
-import { ContentStatusType, SimplifiedDispositif } from "types/interface";
-import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
+import { DispositifStatus, GetAllDispositifsResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 
@@ -65,16 +64,11 @@ const normalize = (value: string) => {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 };
 
-const getDispositif = (dispositifs: SimplifiedDispositif[], id: ObjectId | null) => {
-  if (!id) return null;
-  return dispositifs.find((d) => d._id && d._id.toString() === id.toString()) || null;
-};
-
 export const AdminContenu = () => {
   const defaultSortedHeader = {
     name: "none",
     sens: "none",
-    orderColumn: "none"
+    orderColumn: "none",
   };
   const dispositifs = useSelector(allDispositifsSelector);
 
@@ -82,8 +76,8 @@ export const AdminContenu = () => {
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "contenus");
-  const [filter, setFilter] = useState<ContentStatusType>(
-    (initialFilters.filter as ContentStatusType) || "En attente admin"
+  const [filter, setFilter] = useState<DispositifStatus>(
+    (initialFilters.filter as DispositifStatus) || DispositifStatus.WAITING_ADMIN,
   );
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
@@ -98,9 +92,9 @@ export const AdminContenu = () => {
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [showWriteModal, setShowWriteModal] = useState(false);
 
-  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
-  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
+  const [selectedContentId, setSelectedContentId] = useState<Id | null>(initialFilters.selectedDispositifId);
+  const [selectedUserId, setSelectedUserId] = useState<Id | null>(initialFilters.selectedUserId);
+  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(initialFilters.selectedStructureId);
 
   const [isExportLoading, setIsExportLoading] = useState(false);
 
@@ -116,12 +110,12 @@ export const AdminContenu = () => {
 
   const toggleUserDetailsModal = () => setShowUserDetailsModal(!showUserDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+  const setSelectedUserIdAndToggleModal = (userId: Id | null) => {
     setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
 
-  const setSelectedDispositifAndToggleModal = (id: ObjectId | null) => {
+  const setSelectedDispositifAndToggleModal = (id: Id | null) => {
     setSelectedContentId(id);
     toggleDetailsModal();
   };
@@ -136,16 +130,16 @@ export const AdminContenu = () => {
         filter,
         selectedUserId,
         selectedContentId,
-        selectedStructureId
+        selectedStructureId,
       );
 
       router.replace(
         {
           pathname: locale + "/backend/admin",
-          search: params
+          search: params,
         },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -159,12 +153,12 @@ export const AdminContenu = () => {
     );
   }
 
-  const getNbDispositifsByStatus = (dispositifsToDisplay: SimplifiedDispositif[], status: string) =>
+  const getNbDispositifsByStatus = (dispositifsToDisplay: GetAllDispositifsResponse[], status: string) =>
     dispositifsToDisplay && dispositifsToDisplay.length > 0
       ? dispositifsToDisplay.filter((dispo) => dispo.status === status).length
       : 0;
 
-  const filterAndSortDispositifs = (dispositifs: SimplifiedDispositif[]) => {
+  const filterAndSortDispositifs = (dispositifs: GetAllDispositifsResponse[]) => {
     const dispositifsFilteredBySearch = !!search
       ? dispositifs.filter(
           (dispo) =>
@@ -185,7 +179,7 @@ export const AdminContenu = () => {
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
-                .includes(removeAccents(search.toLowerCase())))
+                .includes(removeAccents(search.toLowerCase()))),
         )
       : dispositifs;
 
@@ -193,7 +187,7 @@ export const AdminContenu = () => {
     if (sortedHeader.name === "none")
       return {
         dispositifsToDisplay: filteredDispositifs,
-        dispositifsForCount: dispositifsFilteredBySearch
+        dispositifsForCount: dispositifsFilteredBySearch,
       };
 
     const dispositifsToDisplay = filteredDispositifs.sort((a, b) => {
@@ -226,7 +220,7 @@ export const AdminContenu = () => {
     });
     return {
       dispositifsToDisplay,
-      dispositifsForCount: dispositifsFilteredBySearch
+      dispositifsForCount: dispositifsFilteredBySearch,
     };
   };
 
@@ -240,7 +234,7 @@ export const AdminContenu = () => {
       setSortedHeader({
         name: element.name,
         sens: "up",
-        orderColumn: element.order || ""
+        orderColumn: element.order || "",
       });
     }
   };
@@ -248,50 +242,44 @@ export const AdminContenu = () => {
   const exportToAirtable = async () => {
     try {
       setIsExportLoading(true);
-      await API.exportFiches();
+      await API.exportDispositifs();
       setIsExportLoading(false);
 
       Swal.fire({
         title: "Yay...",
         text: "Export en cours",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
     } catch (error) {
-      Swal.fire({
-        title: "Oh non!",
-        text: "Something went wrong",
-        icon: "error",
-        timer: 1500
-      });
+      handleApiError({ text: "Something went wrong" });
     }
   };
 
-  const onFilterClick = (status: ContentStatusType) => {
+  const onFilterClick = (status: DispositifStatus) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
 
   const toggleStructureDetailsModal = () => setShowStructureDetailsModal(!showStructureDetailsModal);
 
-  const setSelectedContentIdAndToggleModal = (element: ObjectId | null, _status: string | null = null) => {
+  const setSelectedContentIdAndToggleModal = (element: Id | null, _status: string | null = null) => {
     setSelectedDispositifAndToggleModal(element || null);
   };
 
-  const setSelectedStructureIdAndToggleModal = (structureId: ObjectId | null) => {
+  const setSelectedStructureIdAndToggleModal = (structureId: Id | null) => {
     setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
   const handleChange = (e: any) => setSearch(e.target.value);
 
-  const publishDispositif = async (dispositif: SimplifiedDispositif, status = "Actif", disabled: boolean) => {
+  const publishDispositif = async (dispositif: GetAllDispositifsResponse, disabled: boolean) => {
     if (disabled) return;
-    const newDispositif = { status: status, dispositifId: dispositif._id };
     let question: any = { value: true };
     const link = `/${dispositif.typeContenu}/${dispositif._id}`;
 
     const text =
-      dispositif.status === "En attente" || dispositif.status === "Accepté structure"
+      dispositif.status === "En attente" || dispositif.status === DispositifStatus.OK_STRUCTURE
         ? "Cette fiche n'a pas encore été validée par sa structure d'appartenance"
         : "Cette fiche sera visible par tous.";
 
@@ -304,34 +292,29 @@ export const AdminContenu = () => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le valider",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     });
 
     if (question.value) {
       try {
-        await API.updateDispositifStatus({ query: newDispositif });
+        await API.updateDispositifStatus(dispositif._id, { status: DispositifStatus.ACTIVE });
 
         Swal.fire({
           title: "Yay...",
           text: "Contenu publié",
           icon: "success",
           timer: 5500,
-          footer: `<a target='_blank' href=${link}>Voir le contenu</a>`
+          footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
         });
         dispatch(fetchAllDispositifsActionsCreator());
         dispatch(fetchActiveDispositifsActionsCreator());
       } catch (error) {
-        Swal.fire({
-          title: "Oh non!",
-          text: "Something went wrong",
-          icon: "error",
-          timer: 1500
-        });
+        handleApiError({ text: "Something went wrong" });
       }
     }
   };
 
-  const checkIfNeedsAreCompatibleWithTags = (element: SimplifiedDispositif) => {
+  const checkIfNeedsAreCompatibleWithTags = (element: GetAllDispositifsResponse) => {
     if (allNeeds.length === 0) {
       return false;
     }
@@ -344,7 +327,7 @@ export const AdminContenu = () => {
     });
 
     const uniqueNeedsTheme = [...new Set(formattedNeedsTheme)];
-    const uniqueThemes = [element.theme, ...element.secondaryThemes].map((theme) => theme.name.fr);
+    const uniqueThemes = [element.theme, ...(element.secondaryThemes || [])];
 
     return uniqueNeedsTheme.sort().join(",") === uniqueThemes.sort().join(",");
   };
@@ -468,7 +451,7 @@ export const AdminContenu = () => {
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />
                       <ValidateButton
-                        onClick={() => publishDispositif(element, "Actif", validationDisabled)}
+                        onClick={() => publishDispositif(element, validationDisabled)}
                         disabled={validationDisabled}
                       />
                       <DeleteButton
@@ -488,7 +471,7 @@ export const AdminContenu = () => {
       <ContentDetailsModal
         show={showDetailsModal}
         toggleModal={() => setSelectedDispositifAndToggleModal(null)}
-        toggleRespoModal={(structureId: ObjectId) => {
+        toggleRespoModal={(structureId: Id) => {
           setSelectedStructureId(structureId);
           setSelectFirstRespoModal(true);
         }}
@@ -520,7 +503,6 @@ export const AdminContenu = () => {
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
         dispositifId={selectedContentId}
-        dispositifStatus={getDispositif(dispositifs, selectedContentId)?.status || null}
       />
 
       {selectedStructureId && (

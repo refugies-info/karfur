@@ -1,1 +1,1 @@
-export { sendSubscriptionReminderMail } from "./sendSubscriptionReminderMail";
+export * from "./sendSubscriptionReminderMail";

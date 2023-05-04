@@ -4,13 +4,13 @@ import Image from "next/image";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
-  updateUserStructureActionCreator
+  updateUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
 import { userStructureIdSelector } from "services/User/user.selectors";
 import {
   userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
-  userStructureSelector
+  userStructureSelector,
 } from "services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -75,8 +75,8 @@ const UserNotifications = (props: Props) => {
       dispatch(
         fetchSelectedStructureActionCreator({
           id: userStructure._id.toString(),
-          locale: locale
-        })
+          locale: locale,
+        }),
       );
     }
   }, [userStructure, dispatch, locale]);
@@ -118,27 +118,26 @@ const UserNotifications = (props: Props) => {
       if (!notif.dispositifId || !notif.suggestionId || !structureId) return;
       dispatch(
         updateDispositifReactionActionCreator({
-          dispositif: {
+          suggestion: {
             dispositifId: notif.dispositifId,
             suggestionId: notif.suggestionId,
-            fieldName: "suggestions",
-            type: "remove"
+            type: "remove",
           },
-          structureId
-        })
+          structureId,
+        }),
       );
       Swal.fire({
         title: "Yay...",
         text: "La réaction a bien été supprimée",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
     } catch (error) {
       Swal.fire({
         title: "Oops",
         text: "Erreur lors de la suppression",
         icon: "error",
-        timer: 1500
+        timer: 1500,
       });
     }
 
@@ -151,27 +150,26 @@ const UserNotifications = (props: Props) => {
       if (!notif.dispositifId || !notif.suggestionId || !structureId) return;
       dispatch(
         updateDispositifReactionActionCreator({
-          dispositif: {
+          suggestion: {
             dispositifId: notif.dispositifId,
             suggestionId: notif.suggestionId,
-            fieldName: "suggestions.$.read",
-            type: "read"
+            type: "read",
           },
-          structureId
-        })
+          structureId,
+        }),
       );
       Swal.fire({
         title: "Yay...",
         text: "La réaction a été marquée comme lue",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
     } catch (error) {
       Swal.fire({
         title: "Oops",
         text: "Erreur lors de l'enregistrement",
         icon: "error",
-        timer: 1500
+        timer: 1500,
       });
     }
 
@@ -179,19 +177,12 @@ const UserNotifications = (props: Props) => {
   };
 
   const updateStructureWithNotificationSeen = () => {
-    dispatch(
-      // @ts-ignore
-      setUserStructureActionCreator({
-        ...userStructure,
-        hasResponsibleSeenNotification: true
-      })
-    );
-    dispatch(updateUserStructureActionCreator({ modifyMembres: false }));
+    dispatch(updateUserStructureActionCreator({ structure: { hasResponsibleSeenNotification: true } }));
     Swal.fire({
       title: "Yay...",
       text: "La notification a été supprimée",
       icon: "success",
-      timer: 1500
+      timer: 1500,
     });
   };
 

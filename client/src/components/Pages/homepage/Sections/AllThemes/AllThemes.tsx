@@ -1,11 +1,11 @@
 import React from "react";
-import { ObjectId } from "mongodb";
 import { useRouter } from "next/router";
 import { cls } from "lib/classname";
 import { getPath } from "routes";
 import ThemesGrid from "components/Content/ThemesGrid";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./AllThemes.module.scss";
+import { Id } from "api-types";
 
 interface Props {
   id: string;
@@ -14,7 +14,7 @@ interface Props {
 const AllThemes = (props: Props) => {
   const router = useRouter();
 
-  const navigateTheme = (themeId: ObjectId) => {
+  const navigateTheme = (themeId: Id) => {
     router.push({
       pathname: getPath("/recherche", router.locale),
       query: {

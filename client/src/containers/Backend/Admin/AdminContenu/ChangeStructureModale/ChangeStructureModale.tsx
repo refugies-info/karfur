@@ -4,11 +4,9 @@ import { Modal, Spinner } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { SimplifiedStructureForAdmin, Structure } from "types/interface";
 import { colors } from "colors";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
-import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import styles from "./ChangeStructureModale.module.scss";
@@ -17,12 +15,13 @@ import { NewStructureModal } from "../../AdminStructures/NewStructureModal";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { SearchStructures } from "components";
+import { GetAllStructuresResponse, Id } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
 
 interface Props {
   show: boolean;
   toggle: () => void;
-  dispositifId: ObjectId | null;
-  dispositifStatus: string | null;
+  dispositifId: Id | null;
 }
 
 const Content = styled.div`
@@ -59,10 +58,10 @@ const Warning = styled.div`
 
 export const ChangeStructureModal = (props: Props) => {
   const [showNewStructureModal, toggleNewStructureModal] = useToggle(false);
-  const [selectedStructure, setSelectedStructure] = useState<SimplifiedStructureForAdmin | Structure | null>(null);
+  const [selectedStructure, setSelectedStructure] = useState<GetAllStructuresResponse | null>(null);
   const dispatch = useDispatch();
   const structures = useSelector(allStructuresSelector).filter(
-    (structure) => structure.status === "Actif" || structure.status === "En attente"
+    (structure) => structure.status === "Actif" || structure.status === "En attente",
   );
   useEffect(() => {
     const loadStructures = () => {
@@ -77,30 +76,21 @@ export const ChangeStructureModal = (props: Props) => {
   };
   const validateStructureChange = () => {
     if (selectedStructure && props.dispositifId) {
-      API.modifyDispositifMainSponsor({
-        query: {
-          dispositifId: props.dispositifId,
-          sponsorId: selectedStructure._id,
-          status: props.dispositifStatus
-        }
+      API.updateDispositifMainSponsor(props.dispositifId.toString(), {
+        sponsorId: selectedStructure._id.toString(),
       })
         .then(() => {
           Swal.fire({
             title: "Yay...",
             text: "Structure modifiée",
             icon: "success",
-            timer: 1500
+            timer: 1500,
           });
           toggleModal();
           dispatch(fetchAllDispositifsActionsCreator());
         })
         .catch(() => {
-          Swal.fire({
-            title: "Oh non",
-            text: "Erreur lors de la modification",
-            icon: "error",
-            timer: 1500
-          });
+          handleApiError({ text: "Erreur lors de la modification" });
         });
     }
   };

@@ -1,12 +1,11 @@
+import { GetWidgetResponse, Id } from "api-types";
 import { colors } from "colors";
 import FButton from "components/UI/FButton";
 import isInBrowser from "lib/isInBrowser";
 import moment from "moment";
-import { ObjectId } from "mongodb";
 import { useDispatch } from "react-redux";
 import { deleteWidgetActionCreator } from "services/Widgets/widgets.actions";
 import Swal from "sweetalert2";
-import { Widget } from "types/interface";
 import { copyToClipboard, generateIframe } from "../functions";
 import styles from "./WidgetLine.module.scss";
 
@@ -17,8 +16,8 @@ if (isInBrowser()) {
 }
 
 interface Props {
-  widget: Widget;
-  onClick: (id: ObjectId) => void;
+  widget: GetWidgetResponse;
+  onClick: (id: Id) => void;
 }
 
 export const WidgetLine = (props: Props) => {

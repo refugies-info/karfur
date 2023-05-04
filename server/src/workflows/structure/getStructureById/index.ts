@@ -1,1 +1,1 @@
-export { getStructureById } from "./getStructureById";
+export * from "./getStructureById";

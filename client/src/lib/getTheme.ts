@@ -1,10 +1,9 @@
-import { ObjectId } from "mongodb";
-import { Theme } from "types/interface";
+import { GetThemeResponse, Id } from "api-types";
 
-const defaultTheme: Theme = {
-  _id: "id" as unknown as ObjectId,
+const defaultTheme: GetThemeResponse = {
+  _id: "default",
   name: {
-    fr: "",
+    fr: "Thème",
     en: "",
     ar: "",
     fa: "",
@@ -14,7 +13,7 @@ const defaultTheme: Theme = {
     ti: ""
   },
   short: {
-    fr: "",
+    fr: "Thème",
     en: "",
     ar: "",
     fa: "",
@@ -24,15 +23,15 @@ const defaultTheme: Theme = {
     ti: ""
   },
   colors: {
-    color100: "#055E5A",
+    color100: "#3A3A3A",
     color80: "#27A8A5",
     color60: "#82F2DB",
     color40: "#D7FAF2",
-    color30: "#EDFDF9"
+    color30: "#EEEEEE"
   },
   position: 4,
   icon: {
-    secure_url: "/images/icon_briefcase.svg",
+    secure_url: "/images/icon_default.svg",
     public_id: "",
     imgId: ""
   },
@@ -61,10 +60,11 @@ const defaultTheme: Theme = {
   active: true,
 }
 
-export const getTheme = (id: ObjectId, allThemes: Theme[]) => {
+export const getTheme = (id: Id | undefined, allThemes: GetThemeResponse[]) => {
+  if (!id) return defaultTheme;
   return allThemes.find(theme => theme._id === id) || defaultTheme;
 }
 
-export const getThemes = (ids: ObjectId[], allThemes: Theme[]) => {
+export const getThemes = (ids: Id[], allThemes: GetThemeResponse[]) => {
   return ids.map(id => allThemes.find(theme => theme._id === id) || defaultTheme);
 }

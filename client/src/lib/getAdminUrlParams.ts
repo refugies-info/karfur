@@ -1,9 +1,9 @@
-import { ObjectId } from "mongodb";
+import { DispositifStatus, StructureStatus, Id } from "api-types";
 import { NextRouter } from "next/router";
-import { ContentStatusType, StructureStatusType, UserStatusType } from "types/interface";
+import { UserStatusType } from "types/interface";
 
 export type TabQuery = "contenus" | "structures" | "utilisateurs" | "divers" | "categories" | "widgets" | undefined;
-type Status = ContentStatusType | StructureStatusType | UserStatusType;
+type Status = DispositifStatus | StructureStatus | UserStatusType;
 
 type AdminUrlParams = {
   tab?: string
@@ -16,9 +16,9 @@ type AdminUrlParams = {
 export const getAdminUrlParams = (
   tab: TabQuery,
   filter: Status,
-  selectedUserId: string | ObjectId | undefined | null,
-  selectedDispositifId: string | ObjectId | undefined | null,
-  selectedStructureId: string | ObjectId | undefined | null,
+  selectedUserId: string | Id | undefined | null,
+  selectedDispositifId: string | Id | undefined | null,
+  selectedStructureId: string | Id | undefined | null,
 ) => {
   const urlParams: AdminUrlParams = {};
 
@@ -84,12 +84,9 @@ export const getInitialFilters = (router: NextRouter, currentTab: TabQuery) => {
 
     return {
       filter: filterQuery,
-      //@ts-ignore
-      selectedUserId: router.query.userId as ObjectId || null,
-      //@ts-ignore
-      selectedDispositifId: router.query.contentId as ObjectId || null,
-      //@ts-ignore
-      selectedStructureId: router.query.structureId as ObjectId || null,
+      selectedUserId: router.query.userId as Id || null,
+      selectedDispositifId: router.query.contentId as Id || null,
+      selectedStructureId: router.query.structureId as Id || null,
     }
   }
 
@@ -100,16 +97,13 @@ export const getInitialFilters = (router: NextRouter, currentTab: TabQuery) => {
 
     if (initialTab && initialTab === currentTab) {
       const filterQuery = savedQuery.get("filter") ?
-      decodeURI(savedQuery.get("filter") as string) as Status : undefined;
+        decodeURI(savedQuery.get("filter") as string) as Status : undefined;
 
       return {
         filter: filterQuery,
-        //@ts-ignore
-        selectedUserId: savedQuery.get("userId") as ObjectId || null,
-        //@ts-ignore
-        selectedDispositifId: savedQuery.get("contentId") as ObjectId || null,
-        //@ts-ignore
-        selectedStructureId: savedQuery.get("structureId") as ObjectId || null,
+        selectedUserId: savedQuery.get("userId") as Id || null,
+        selectedDispositifId: savedQuery.get("contentId") as Id || null,
+        selectedStructureId: savedQuery.get("structureId") as Id || null,
       }
     }
     return DEFAULT_FILTERS;

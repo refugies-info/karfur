@@ -9,10 +9,7 @@ import { END } from "redux-saga";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { activeStructuresSelector } from "services/ActiveStructures/activeStructures.selector";
 import { wrapper } from "services/configureStore";
-
-import { SimplifiedStructure } from "types/interface";
 import { getPath } from "routes";
-import { Event } from "lib/tracking";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { filterStructuresByType, filterStructuresByKeword, filterStructuresByLoc } from "lib/filterStructures";
 
@@ -23,6 +20,8 @@ import SEO from "components/Seo";
 
 import styles from "scss/pages/annuaire.module.scss";
 import isInBrowser from "lib/isInBrowser";
+import { GetActiveStructuresResponse } from "api-types";
+import { useEvent } from "hooks";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   let typeSelectedFromUrl: string[] = [];
@@ -56,6 +55,7 @@ const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
 
 const Annuaire = () => {
   const router = useRouter();
+  const { Event } = useEvent();
 
   const [keyword, setKeyword] = useState((router.query.keyword as string) || "");
   const [typeSelected, setTypeSelected] = useState<string[]>(computeTypeFromUrl(router.query) || []);
@@ -75,7 +75,7 @@ const Annuaire = () => {
     setKeyword("");
   }, []);
 
-  const defineLettersClickable = useCallback((sortedStructureByAlpha: SimplifiedStructure[]) => {
+  const defineLettersClickable = useCallback((sortedStructureByAlpha: GetActiveStructuresResponse[]) => {
     let lettersClickable: string[] = [];
     sortedStructureByAlpha.forEach((structure) => {
       let letter = structure.nom[0];
@@ -104,10 +104,10 @@ const Annuaire = () => {
         router.push(
           {
             pathname: getPath("/annuaire", router.locale),
-            search: qs.stringify(query)
+            search: qs.stringify(query),
           },
           undefined,
-          { shallow: true }
+          { shallow: true },
         );
     };
 
@@ -162,14 +162,18 @@ const Annuaire = () => {
 
     // filter structures
     const initialFilteredStructures = (structures || []).filter(
-      (structure) => structure._id.toString() !== "5f69cb9c0aab6900460c0f3f"
+      (structure) => structure._id.toString() !== "5f69cb9c0aab6900460c0f3f",
     );
     const filterByType = filterStructuresByType(initialFilteredStructures, typeSelected);
     const filterByTypeAndLoc = filterStructuresByLoc(filterByType, isCitySelected, depNumber, depName);
     const filterByTypeAndLocAndKeyword = filterStructuresByKeword(filterByTypeAndLoc, keyword);
     const sortedStructureByAlpha = filterByTypeAndLocAndKeyword
       ? filterByTypeAndLocAndKeyword.sort((a, b) =>
-          a.nom[0].toLowerCase() < b.nom[0].toLowerCase() ? -1 : a.nom[0].toLowerCase() > b.nom[0].toLowerCase() ? 1 : 0
+          a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
+            ? -1
+            : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
+            ? 1
+            : 0,
         )
       : [];
 
@@ -223,9 +227,9 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
 
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
     },
-    revalidate: 30
+    revalidate: 30,
   };
 });
 

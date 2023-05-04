@@ -1,1 +1,1 @@
-export { postWidgets } from "./postWidgets";
+export * from "./postWidgets";

@@ -1,44 +1,30 @@
 import {
   FETCH_SELECTED_DISPOSITIF,
   SET_SELECTED_DISPOSITIF,
-  UPDATE_UI_ARRAY,
-  SET_UI_ARRAY,
   UPDATE_SELECTED_DISPOSITIF,
 } from "./selectedDispositif.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { IDispositif } from "../../types/interface";
-import { UiElement } from "./selectedDispositif.reducer";
+import { GetDispositifResponse } from "api-types";
 
 export const fetchSelectedDispositifActionCreator = (value: {
   selectedDispositifId: string;
   locale: string;
+  token?: string;
 }) => action(FETCH_SELECTED_DISPOSITIF, value);
 
 export const setSelectedDispositifActionCreator = (
-  value: IDispositif,
+  value: GetDispositifResponse,
   reset: boolean = false,
-  openAccordions: boolean = false
 ) =>
-  action(SET_SELECTED_DISPOSITIF, {value, reset, openAccordions});
-
-export const updateUiArrayActionCreator = (value: {
-  subkey: number|null;
-  key: number;
-  node: string;
-  value: boolean;
-  updateOthers: boolean;
-}) => action(UPDATE_UI_ARRAY, value);
-
-export const setUiArrayActionCreator = (value: UiElement[]) => action(SET_UI_ARRAY, value);
+  action(SET_SELECTED_DISPOSITIF, { value, reset });
 
 export const updateSelectedDispositifActionCreator = (
-  value: Partial<IDispositif>
+  value: Partial<GetDispositifResponse>
 ) => action(UPDATE_SELECTED_DISPOSITIF, value);
 
 const actions = {
   fetchSelectedDispositifActionCreator,
   setSelectedDispositifActionCreator,
-  updateUiArrayActionCreator,
   updateSelectedDispositifActionCreator,
 };
 

@@ -1,19 +1,18 @@
-import { DispositifNotPopulateDoc } from "../../schema/schemaDispositif";
-import { USER_STATUS_DELETED } from "../../schema/schemaUser";
 import { getUserById } from "../users/users.repository";
 import logger from "../../logger";
 import {
   sendPublishedFicheMailToStructureMembersService,
   sendPublishedFicheMailToCreatorService,
 } from "./mail.service";
-import { asyncForEach } from "../../libs/asyncForEach";
-import { ObjectId } from "mongoose";
+import { User } from "../../typegoose/User";
+import { Dispositif } from "../../typegoose";
+import { UserStatus } from "@refugies-info/api-types";
 
 export const sendPublishedMailToCreator = async (
-  newDispo: DispositifNotPopulateDoc,
+  newDispo: Dispositif,
   titreInformatif: string,
   titreMarque: string,
-  lien: string
+  lien: string,
 ) => {
   const userNeededFields = {
     username: 1,
@@ -21,8 +20,8 @@ export const sendPublishedMailToCreator = async (
     status: 1,
   };
 
-  const creator = await getUserById(newDispo.creatorId, userNeededFields);
-  if (creator.status === USER_STATUS_DELETED) return;
+  const creator = await getUserById(newDispo.creatorId._id, userNeededFields);
+  if (creator.status === UserStatus.DELETED) return;
   if (creator.email) {
     logger.info("[publish dispositif] creator has email");
 
@@ -39,17 +38,17 @@ export const sendPublishedMailToCreator = async (
 };
 
 export const sendPublishedMailToStructureMembers = async (
-  membres: { username: string; _id: ObjectId; email: string }[],
+  membres: User[],
   titreInformatif: string,
   titreMarque: string,
   lien: string,
-  dispositifId: ObjectId
-) => {
-  await asyncForEach(membres, async (membre) => {
+  dispositifId: Dispositif["_id"],
+) =>
+  membres.map((membre) => {
     logger.info("[sendPublishedMailToStructureMembers] send mail to membre", {
       membreId: membre._id,
     });
-    await sendPublishedFicheMailToStructureMembersService({
+    return sendPublishedFicheMailToStructureMembersService({
       pseudo: membre.username,
       titreInformatif: titreInformatif,
       titreMarque: titreMarque,
@@ -60,4 +59,3 @@ export const sendPublishedMailToStructureMembers = async (
       userId: membre._id,
     });
   });
-};

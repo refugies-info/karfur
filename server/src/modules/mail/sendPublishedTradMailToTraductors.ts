@@ -1,30 +1,23 @@
 import logger from "../../logger";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { getUserById } from "../users/users.repository";
-import { ObjectId } from "mongoose";
-import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
-import { USER_STATUS_DELETED } from "../../schema/schemaUser";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
+import { Dispositif } from "../../typegoose";
+import { ContentType, Languages, UserStatus } from "@refugies-info/api-types";
 
 export const sendPublishedTradMailToTraductors = async (
-  traductorIdsList: string[],
-  locale: string,
-  typeContenu: "dispositif" | "demarche",
-  titreInformatif: string | Record<string, string>,
-  titreMarque: string | undefined | Record<string, string>,
-  dispositifId: ObjectId
+  locale: Languages,
+  dispositif: Dispositif,
 ) => {
   logger.info("[sendPublishedTradMailToTraductors] received for language", {
     locale,
   });
   try {
-    const titreInformatifFormatted = getTitreInfoOrMarque(titreInformatif);
-    const titreMarqueFormatted = getTitreInfoOrMarque(titreMarque);
     const langue = getFormattedLocale(locale);
-    const lien = "https://refugies.info/" + typeContenu + "/" + dispositifId;
-
-    await asyncForEach(traductorIdsList, async (tradId) => {
+    const lien = "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id.toString();
+    // FIXME : choose the users to send email to
+    await asyncForEach([], async (tradId) => {
       try {
         const userNeededFields = {
           username: 1,
@@ -32,28 +25,24 @@ export const sendPublishedTradMailToTraductors = async (
           status: 1,
         };
 
-        // @ts-ignore
         const membreFromDB = await getUserById(tradId, userNeededFields);
-        if (membreFromDB.status !== USER_STATUS_DELETED && membreFromDB.email) {
+        if (membreFromDB.status !== UserStatus.DELETED && membreFromDB.email) {
           await sendPublishedTradMailToTraductorsService({
-            dispositifId,
+            dispositifId: dispositif._id.toString(),
             userId: tradId,
-            titreInformatif: titreInformatifFormatted,
-            titreMarque: titreMarqueFormatted,
+            titreInformatif: dispositif.translations.fr.content.titreInformatif,
+            titreMarque: dispositif.translations.fr.content.titreMarque,
             lien,
             email: membreFromDB.email,
             pseudo: membreFromDB.username,
             langue,
-            isDispositif: typeContenu === "dispositif",
+            isDispositif: dispositif.typeContenu === ContentType.DISPOSITIF,
           });
         }
       } catch (error) {
-        logger.info(
-          "[sendPublishedTradMailToTraductors] error while sending mail to user",
-          {
-            userId: tradId,
-          }
-        );
+        logger.info("[sendPublishedTradMailToTraductors] error while sending mail to user", {
+          userId: tradId,
+        });
       }
     });
   } catch (e) {

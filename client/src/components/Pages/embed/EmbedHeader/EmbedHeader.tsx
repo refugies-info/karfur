@@ -2,15 +2,15 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { Theme } from "types/interface";
 import { getThemeName } from "lib/getThemeName";
 import useRTL from "hooks/useRTL";
 import ThemeIcon from "components/UI/ThemeIcon";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import styles from "./EmbedHeader.module.scss";
+import { GetThemeResponse } from "api-types";
 
 interface Props {
-  themes: Theme[];
+  themes: GetThemeResponse[];
   departments: string[];
   languages: string[];
 }

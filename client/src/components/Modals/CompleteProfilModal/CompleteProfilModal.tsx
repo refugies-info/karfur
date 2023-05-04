@@ -31,17 +31,17 @@ export const CompleteProfilModal = (props: Props) => {
     const isEmail = !!email.match(regex);
     if (isEmail) {
       dispatch(
-        saveUserActionCreator({
-          user: { email: email, _id: props.user._id },
-          type: "modify-my-details"
-        })
+        saveUserActionCreator(props.user._id, {
+          user: { email },
+          action: "modify-my-details",
+        }),
       );
 
       Swal.fire({
         title: "Yay...",
         text: "Votre email a bien été modifié",
         icon: "success",
-        timer: 1500
+        timer: 1500,
       });
       props.onComplete();
     } else {

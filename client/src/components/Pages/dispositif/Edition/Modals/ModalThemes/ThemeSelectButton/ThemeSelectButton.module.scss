@@ -1,0 +1,52 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+
+.btn {
+  background: $gray40;
+  padding: u(2) u(3);
+  border-radius: u(2);
+  margin-right: u(2);
+  margin-bottom: u(4);
+  display: inline-flex;
+  align-items: center;
+
+  .name {
+    color: $darkBackgroundElevationContrast;
+    margin-left: u(2);
+    font-weight: bold;
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &:not(:disabled) {
+    &.selected,
+    &:hover {
+      .name {
+        color: white;
+      }
+      .theme_icon {
+        svg {
+          path,
+          g,
+          rect {
+            stroke: white !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.badge {
+  @include dsfr-text("very-small");
+  font-weight: bold;
+  padding: 2px u(1);
+  border-radius: u(10);
+  margin-left: u(2);
+  display: inline-flex;
+  align-items: center;
+}

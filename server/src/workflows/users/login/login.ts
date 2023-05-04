@@ -1,84 +1,58 @@
 import logger from "../../../logger";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { getRoleByName } from "../../../controllers/role/role.repository";
+import { ResponseWithData } from "../../../types/interface";
+import { getRoleByName } from "../../../modules/role/role.repository";
 import { getUserByUsernameFromDB } from "../../../modules/users/users.repository";
 import { register } from "../../../modules/users/register";
 import { login2FA } from "../../../modules/users/login2FA";
 import LoginError from "../../../modules/users/LoginError";
 import { proceedWithLogin } from "../../../modules/users/users.service";
 import { userRespoStructureId } from "../../../modules/structure/structure.service";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { USER_STATUS_DELETED } from "../../../schema/schemaUser";
 import { loginExceptionsManager } from "./login.exceptions.manager";
 import { logRegister, logLogin } from "./log";
+import { LoginRequest, LoginResponse, UserStatus } from "@refugies-info/api-types";
 
-interface User {
-  username: string;
-  password: string;
-  code?: string;
-  email?: string;
-  phone?: string;
-}
-
-// route called when login or register
-export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
+export const login = async (body: LoginRequest): ResponseWithData<LoginResponse> => {
   try {
-    if (!req.body.username || !req.body.password) {
-      throw new LoginError("INVALID_REQUEST");
-    }
+    logger.info("[Login] login attempt", { username: body.username });
+    const user = await getUserByUsernameFromDB(body.username).populate("roles");
 
-    checkRequestIsFromSite(req.fromSite);
-
-    logger.info("[Login] login attempt", {
-      username: req.body && req.body.username,
-    });
-
-    const user = await getUserByUsernameFromDB(req.body.username);
-
-    if (user && user.status === USER_STATUS_DELETED) {
+    if (user && user.status === UserStatus.DELETED) {
       throw new LoginError("USER_DELETED");
     }
 
+    // register
     if (!user) {
       const userRole = await getRoleByName("User");
-      const { user, token } = await register(req.body, userRole);
+      const { user, token } = await register(body, userRole);
       await logRegister(user._id);
-      return res.status(200).json({
-        text: "Succès",
-        token,
-        data: user,
-      });
+      return {
+        text: "success",
+        data: { token },
+      };
     }
 
-    // @ts-ignore : no authenticate on user Model from mongodb
-    if (!user.authenticate(req.body.password)) {
-      logger.error("[Login] incorrect password", {
-        username: req.body && req.body.username,
-      });
-
+    // login
+    if (!user.authenticate(body.password)) {
+      logger.error("[Login] incorrect password", { username: body.username });
       throw new LoginError("INVALID_PASSWORD");
     }
 
-    logger.info("[Login] password correct for user", {
-      username: req.body && req.body.username,
-    });
+    logger.info("[Login] password correct for user", { username: body.username });
 
     // check if user is admin
-    const adminRoleId = req.roles.find((x) => x.nom === "Admin")._id.toString();
-    const userIsAdmin = (user.roles || []).some((x) => x && x.toString() === adminRoleId);
-    const userStructureId = await userRespoStructureId(user.structures || [], user._id);
-
+    const userIsAdmin = user.isAdmin();
+    const userStructureId = await userRespoStructureId(user.structures.map((s) => s._id) || [], user._id);
     if (userIsAdmin || userStructureId) {
-      await login2FA(req.body, user, userIsAdmin ? "admin" : userStructureId);
+      await login2FA(body, user, userIsAdmin ? "admin" : userStructureId);
     }
     await proceedWithLogin(user);
     await logLogin(user._id);
-    return res.status(200).json({
-      // @ts-ignore
-      token: user.getToken(),
-      text: "Authentification réussi",
-    });
+
+    return {
+      text: "success",
+      data: { token: user.getToken() },
+    };
   } catch (error) {
-    return loginExceptionsManager(error, res);
+    loginExceptionsManager(error);
   }
 };

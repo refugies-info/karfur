@@ -135,7 +135,6 @@ describe("login", () => {
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({
       text: "Mot de passe incorrect",
-      data: "no-alert",
     });
   });
 

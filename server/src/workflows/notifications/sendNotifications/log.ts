@@ -1,19 +1,11 @@
-import { ObjectId } from "mongoose";
 import { addLog } from "../../../modules/logs/logs.service";
 import logger from "../../../logger";
+import { DispositifId, UserId } from "../../../typegoose";
 
-export const log = async (
-  demarcheId: ObjectId,
-  authorId: ObjectId
-) => {
+export const log = async (demarcheId: DispositifId, authorId: UserId) => {
   try {
-    await addLog(
-      demarcheId,
-      "Dispositif",
-      "Notification push envoyée",
-      { author: authorId }
-    );
+    await addLog(demarcheId, "Dispositif", "Notification push envoyée", { author: authorId });
   } catch (e) {
     logger.error("[sendNotifications] error while logging", e);
   }
-}
+};

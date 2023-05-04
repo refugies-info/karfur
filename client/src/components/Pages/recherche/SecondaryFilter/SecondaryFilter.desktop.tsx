@@ -1,11 +1,11 @@
 import React, { ReactElement, useCallback, useState } from "react";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Checkbox from "components/UI/Checkbox";
 import { Selected } from "./SecondaryFilter";
 import styles from "./SecondaryFilter.desktop.module.scss";
+import { useEvent } from "hooks";
 
 interface Props {
   options: { key: Selected; value: string | React.ReactNode }[];
@@ -16,6 +16,7 @@ interface Props {
 }
 
 const SecondaryFilterDesktop = (props: Props) => {
+  const { Event } = useEvent();
   const { selectItem, gaType } = props;
   const [open, setOpen] = useState(false);
 
@@ -24,14 +25,14 @@ const SecondaryFilterDesktop = (props: Props) => {
       if (!o) Event("USE_SEARCH", "open filter", gaType);
       return !o;
     });
-  }, [setOpen, gaType]);
+  }, [Event, gaType]);
 
   const onSelectItem = useCallback(
     (key: string) => {
       selectItem(key);
       Event("USE_SEARCH", "click filter", gaType);
     },
-    [selectItem, gaType]
+    [selectItem, Event, gaType],
   );
 
   return (

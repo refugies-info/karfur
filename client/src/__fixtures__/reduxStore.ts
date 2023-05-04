@@ -30,7 +30,6 @@ const initialMockTranslationState = {
 
 const initialUserFavoritesState: UserFavoritesState = {
   favorites: [],
-  showFavoriteModal: false
 };
 
 const initialMockSearchReults: SearchResultsState = {

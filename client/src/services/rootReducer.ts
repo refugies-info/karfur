@@ -8,6 +8,7 @@ import { ttsReducer, TtsState } from "./Tts/tts.reducer";
 import { SelectedDispositifState, selectedDispositifReducer } from "./SelectedDispositif/selectedDispositif.reducer";
 import { LoadingStatusState, loadingStatusReducer } from "./LoadingStatus/loadingStatus.reducer";
 import { ActiveStructuresState, activeStructuresReducer } from "./ActiveStructures/activeStructures.reducer";
+import { ActiveUsersState, activeUsersReducer } from "./ActiveUsers/activeUsers.reducer";
 import { SelectedStructureState, selectedStructureReducer } from "./SelectedStructure/selectedStructure.reducer";
 import { AllDispositifsState, allDispositifsReducer } from "./AllDispositifs/allDispositifs.reducer";
 import { AllStructuresState, allStructuresReducer } from "./AllStructures/allStructures.reducer";
@@ -29,6 +30,7 @@ import { miscellaneousReducer, MiscellaneousState } from "./Miscellaneous/miscel
 export interface RootState {
   activeDispositifs: ActiveDispositifsState;
   activeStructures: ActiveStructuresState;
+  activeUsers: ActiveUsersState;
   allDispositifs: AllDispositifsState;
   allStructures: AllStructuresState;
   dispositifsWithTranslations: DispositifsWithTranslationsStatusState;
@@ -53,6 +55,7 @@ export interface RootState {
 const combinedReducer = combineReducers({
   activeDispositifs: activeDispositifsReducer,
   activeStructures: activeStructuresReducer,
+  activeUsers: activeUsersReducer,
   allDispositifs: allDispositifsReducer,
   allStructures: allStructuresReducer,
   dispositifsWithTranslations: dispositifsWithTranslationsStatusReducer,
@@ -88,6 +91,9 @@ export const appReducer: Reducer<any, any> = (state, action) => {
     }
     if (action.payload.selectedDispositif) {
       nextState.selectedDispositif = action.payload.selectedDispositif;
+    }
+    if (action.payload.user) {
+      nextState.user = action.payload.user;
     }
     if (action.payload.selectedStructure) {
       nextState.selectedStructure = action.payload.selectedStructure;

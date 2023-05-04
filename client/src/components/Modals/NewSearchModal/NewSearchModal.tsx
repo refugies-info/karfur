@@ -6,13 +6,31 @@ import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Modal from "../Modal";
 import styles from "./NewSearchModal.module.scss";
+import { useConsentContext } from "hooks";
+import Link from "next/link";
 
 interface Props {
   show: boolean;
   toggle: any;
 }
 
+const NoConsentPlaceholder = () => {
+  return (
+    <div>
+      <p style={{ textAlign: "center" }}>
+        Cette vidéo Youtube n'est pas affichée car vous n'avez pas donné votre consentement
+      </p>
+      <p style={{ textAlign: "center" }}>
+        <Link target="_blank" href="https://www.youtube.com/watch?v=l_lAnr_v7Co">
+          Voir la vidéo sur Youtube
+        </Link>
+      </p>
+    </div>
+  );
+};
+
 const NewSearchModal = (props: Props) => {
+  const { isAccepted } = useConsentContext();
   const { t } = useTranslation();
 
   return (
@@ -26,12 +44,16 @@ const NewSearchModal = (props: Props) => {
         <p className={styles.text}>On vous explique tout dans cette courte vidéo.</p>
 
         <div className={styles.video}>
-          <iframe
-            src="https://www.youtube.com/embed/l_lAnr_v7Co?controls=0"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+          {isAccepted("youtube") ? (
+            <iframe
+              src="https://www.youtube.com/embed/l_lAnr_v7Co?controls=0"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <NoConsentPlaceholder />
+          )}
         </div>
       </ModalBody>
       <ModalFooter className={styles.modal_footer}>

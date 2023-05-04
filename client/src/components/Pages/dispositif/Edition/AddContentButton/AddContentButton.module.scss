@@ -1,0 +1,127 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/icons";
+
+.btn {
+  &:global(.fr-btn) {
+    background-color: white;
+    box-shadow: 0 2px 6px 0 #00001229;
+    color: $lightTextDisabledGrey;
+    width: 100%;
+    padding: u(4);
+    border-radius: u(2);
+    border: 1px solid transparent;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      border-color: $lightBorderDefaultGrey;
+      box-shadow: none;
+      background-color: white;
+    }
+    &:active {
+      background: $lightBackgroundElevationAlt;
+    }
+
+    .icon {
+      @include iconSize(24px);
+    }
+
+    &.md {
+      @include dsfr-text("h6");
+      font-weight: bold;
+    }
+    &.lg {
+      @include dsfr-text("chapo");
+      font-weight: bold;
+    }
+    &.xl {
+      @include dsfr-text("h1");
+      font-weight: bold;
+    }
+
+    &.has_content {
+      position: relative;
+      background: transparent;
+      box-shadow: none;
+      color: $lightTextTitleGrey;
+      border: 1px solid $lightBorderDefaultGrey;
+      padding-right: u(10);
+      align-items: flex-start;
+
+      .icons {
+        position: absolute;
+        top: u(4);
+        right: u(3);
+        width: u(8);
+        text-align: center;
+
+        .ok {
+          display: block;
+        }
+        .edit {
+          display: none;
+        }
+        .delete {
+          @include iconSize(16px);
+          padding: u(2);
+          border-radius: u(2);
+          margin-top: u(2);
+          border: 1px solid $lightBorderDefaultGrey;
+
+          &:hover:not(.disabled) {
+            background: $lightBorderDefaultGrey;
+          }
+        }
+      }
+
+      &:hover {
+        background-color: $lightBackgroundContrastGrey;
+
+        .icons {
+          .edit {
+            display: block;
+          }
+          .ok {
+            display: none;
+          }
+        }
+      }
+
+      .sm {
+        @include dsfr-text("normal");
+        font-weight: normal;
+      }
+      .md {
+        @include dsfr-text("h6");
+        font-weight: bold;
+      }
+      .lg {
+        @include dsfr-text("chapo");
+        font-weight: bold;
+      }
+      .xl {
+        @include dsfr-text("h1");
+        font-weight: bold;
+      }
+    }
+
+    &.has_error {
+      border-color: $lightTextDefaultError;
+      color: $lightTextDefaultError;
+
+      & > span svg {
+        fill: $lightTextDefaultError;
+      }
+    }
+
+    .empty {
+      width: 100%;
+    }
+  }
+}

@@ -4,15 +4,14 @@ import FButton from "components/UI/FButton/FButton";
 import styled from "styled-components";
 import { colors } from "colors";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
+import { fetchActiveUsersActionCreator } from "services/ActiveUsers/activeUsers.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
-import { SimplifiedUser } from "types/interface";
+import { activeUsersSelector } from "services/ActiveUsers/activeUsers.selector";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { ObjectId } from "mongodb";
 import { CustomUserSearchBar } from "components/Backend/CustomUserSearchBar";
 import styles from "./MemberModal.module.scss";
+import { GetActiveUsersResponse, Id } from "api-types";
 
 const Title = styled.div`
   font-weight: normal;
@@ -43,17 +42,17 @@ const InformationContainer = styled.div`
 interface Props {
   show: boolean;
   toggle: () => void;
-  addUserInStructure: (arg: ObjectId) => void;
+  addUserInStructure: (arg: Id) => void;
 }
 
 const AddMemberModal = (props: Props) => {
-  const [selectedUser, setSelectedUser] = useState<SimplifiedUser | null>(null);
+  const [selectedUser, setSelectedUser] = useState<GetActiveUsersResponse | null>(null);
 
-  const onSelectItem = (data: SimplifiedUser | null) => setSelectedUser(data);
+  const onSelectItem = (data: GetActiveUsersResponse | null) => setSelectedUser(data);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAllUsersActionsCreator());
+    dispatch(fetchActiveUsersActionCreator());
   }, []);
 
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS));

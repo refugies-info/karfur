@@ -1,6 +1,7 @@
-import { Language, AvailableLanguageI18nCode } from "types/interface";
+import { GetLanguagesResponse } from "api-types";
+import { AvailableLanguageI18nCode } from "types/interface";
 
-export const activatedLanguages: Language[] = [
+export const activatedLanguages: GetLanguagesResponse[] = [
   {
     langueFr: "Français",
     langueLoc: "Français",
@@ -8,6 +9,7 @@ export const activatedLanguages: Language[] = [
     i18nCode: "fr",
     avancement: 1,
     avancementTrad: 0,
+    _id: "a",
   },
   {
     langueFr: "Ukrainien",
@@ -16,6 +18,7 @@ export const activatedLanguages: Language[] = [
     i18nCode: "uk",
     avancement: 1,
     avancementTrad: 0,
+    _id: "b",
   },
   {
     langueFr: "Pachto",
@@ -24,6 +27,7 @@ export const activatedLanguages: Language[] = [
     i18nCode: "ps",
     avancement: 1,
     avancementTrad: 0,
+    _id: "c",
   },
   {
     langueFr: "Anglais",
@@ -32,6 +36,7 @@ export const activatedLanguages: Language[] = [
     i18nCode: "en",
     avancement: 1,
     avancementTrad: 0,
+    _id: "d",
   },
   {
     langueFr: "Persan/Dari",
@@ -40,6 +45,7 @@ export const activatedLanguages: Language[] = [
     i18nCode: "fa",
     avancement: 1,
     avancementTrad: 0,
+    _id: "e",
   },
   {
     langueFr: "Tigrinya",
@@ -48,6 +54,7 @@ export const activatedLanguages: Language[] = [
     i18nCode: "ti",
     avancement: 1,
     avancementTrad: 0,
+    _id: "f",
   },
   {
     langueFr: "Russe",
@@ -56,6 +63,7 @@ export const activatedLanguages: Language[] = [
     i18nCode: "ru",
     avancement: 1,
     avancementTrad: 0,
+    _id: "i",
   },
   {
     langueFr: "Arabe",
@@ -64,7 +72,8 @@ export const activatedLanguages: Language[] = [
     i18nCode: "ar",
     avancement: 1,
     avancementTrad: 0,
+    _id: "j",
   },
-]
+];
 
-export const hasTTSAvailable: AvailableLanguageI18nCode[] = ["fr", "en", "ar", "ru", "uk"];
+export const hasTTSAvailable: AvailableLanguageI18nCode[] = ["fr", "en", "ar", "ru", "uk", "ps", "fa"];

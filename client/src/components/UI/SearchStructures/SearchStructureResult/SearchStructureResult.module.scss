@@ -1,0 +1,46 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/input";
+
+.container {
+  border-radius: u(2);
+  background-color: white;
+  margin-top: u(2);
+  padding: u(2);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 2px solid transparent;
+
+  &:hover {
+    cursor: pointer;
+    border-color: black;
+  }
+
+  &.on_hold {
+    background-color: #ffe2b8;
+  }
+
+  &.selected {
+    background-color: #bdf0c7;
+    border-color: #008205;
+  }
+
+  .name,
+  .name_2 {
+    color: #828282;
+    margin-left: 1rem;
+
+    .highlight {
+      color: #212121;
+      font-weight: 700;
+    }
+  }
+
+  .tag {
+    margin-left: auto;
+  }
+}

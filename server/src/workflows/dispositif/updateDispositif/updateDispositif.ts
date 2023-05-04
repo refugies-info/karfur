@@ -1,51 +1,101 @@
 import logger from "../../../logger";
-import { celebrate, Joi, Segments } from "celebrate";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { checkIfUserIsAdmin, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { cloneDispositifInDrafts, getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
+import { ResponseWithData } from "../../../types/interface";
+import { Dispositif, User } from "../../../typegoose";
+import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
+import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
+import { ContentType, DispositifStatus, UpdateDispositifRequest, UpdateDispositifResponse } from "@refugies-info/api-types";
+import { buildNewDispositif, isDispositifComplete } from "../../../modules/dispositif/dispositif.service";
+import { log } from "./log";
+import { logContact } from "../../../modules/dispositif/log";
 
-/* TODO: support all dispositif properties */
-const validator = celebrate({
-  [Segments.BODY]: Joi.object({
-    webOnly: Joi.boolean(),
-  }),
-  [Segments.PARAMS]: Joi.object({
-    id: Joi.string(),
-  })
-});
+const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
+  // content
+  const content = { ...oldDispositif.translations.fr.content };
+  if (body.titreInformatif) content.titreInformatif = body.titreInformatif;
+  if (body.titreMarque) content.titreMarque = body.titreMarque;
+  if (body.abstract) content.abstract = body.abstract;
+  if (body.what) content.what = body.what;
 
-interface Query {
-  webOnly: boolean;
-}
-const handler = async (
-  req: RequestFromClientWithBody<Query>,
-  res: Res
-) => {
-  try {
-    logger.info("[updateDispositif] received", req.params.id);
-    checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
-
-    const editedDispositif = {
-      webOnly: req.body.webOnly,
-      lastAdminUpdate: Date.now(),
-    };
-
-    await updateDispositifInDB(req.params.id, editedDispositif);
-
-    res.status(200).json({ text: "OK" });
-  } catch (error) {
-    logger.error("[updateDispositif] error", {
-      error: error.message,
-    });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
+  if (oldDispositif.typeContenu === ContentType.DISPOSITIF) {
+    if (body.why) (content as DispositifContent).why = body.why;
+    if (body.how) content.how = body.how;
+  } else {
+    if (body.how) content.how = body.how;
+    if (body.next) (content as DemarcheContent).next = body.next;
   }
+
+  return {
+    content,
+    created_at: oldDispositif.translations.fr.created_at,
+    validatorId: oldDispositif.creatorId._id,
+  };
 };
 
-export default [validator, handler];
+export const updateDispositif = async (id: string, body: UpdateDispositifRequest, user: User): ResponseWithData<UpdateDispositifResponse> => {
+  logger.info("[updateDispositif] received", { id, body, user: user._id });
+
+  const draftOldDispositif = await getDraftDispositifById(
+    id,
+    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1 },
+    "mainSponsor",
+  );
+
+  const oldDispositif = draftOldDispositif || await getDispositifById(
+    id,
+    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1 },
+    "mainSponsor",
+  );
+  checkUserIsAuthorizedToModifyDispositif(oldDispositif, user);
+
+  const translationContent = buildDispositifContent(body, oldDispositif);
+  const editedDispositif: Partial<Dispositif> = {
+    lastModificationAuthor: user._id,
+    themesSelectedByAuthor: !user.isAdmin(),
+    translations: {
+      ...oldDispositif.translations,
+      fr: translationContent
+    },
+    ...(await buildNewDispositif(body, user._id.toString())),
+  };
+
+  if (body.contact) {
+    await logContact(oldDispositif._id, user._id, body.contact)
+  }
+
+  // if published and not draft version yet, create draft version
+  let newDispositif: Dispositif | null = null;
+  const needsDraftVersion = oldDispositif.status === DispositifStatus.ACTIVE && !draftOldDispositif;
+  if (needsDraftVersion) {
+    newDispositif = await cloneDispositifInDrafts(id, {
+      ...editedDispositif,
+      status: DispositifStatus.DRAFT
+    });
+    await updateDispositifInDB(id, { hasDraftVersion: true }, false);
+  } else {
+    // else, we save in the current or draft version
+    newDispositif = await updateDispositifInDB(id, editedDispositif, !!draftOldDispositif);
+
+    // if dispositif becomes incomplete, revert it to DRAFT
+    const isStatusWaiting =
+      newDispositif.status === DispositifStatus.WAITING_ADMIN ||
+      newDispositif.status === DispositifStatus.WAITING_STRUCTURE;
+    if (isStatusWaiting && !isDispositifComplete(newDispositif)) {
+      await updateDispositifInDB(id, { status: DispositifStatus.DRAFT });
+    }
+  }
+
+  if (!newDispositif) throw new Error("dispositif not found");
+  await log(newDispositif, oldDispositif, user._id);
+
+  return {
+    text: "success",
+    data: {
+      id: newDispositif._id,
+      mainSponsor: newDispositif.mainSponsor as string || null,
+      typeContenu: newDispositif.typeContenu,
+      status: newDispositif.status,
+      hasDraftVersion: needsDraftVersion || !!draftOldDispositif
+    }
+  };
+};

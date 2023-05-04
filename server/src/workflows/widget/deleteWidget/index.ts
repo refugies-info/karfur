@@ -1,1 +1,1 @@
-export { deleteWidget } from "./deleteWidget";
+export * from "./deleteWidget";

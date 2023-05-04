@@ -9,12 +9,14 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
+import { GetAllStructuresResponse } from "api-types";
+import { APIResponse } from "types/interface";
 
 export function* fetchAllStructures(): SagaIterator {
   try {
     logger.info("[fetchAllStructures saga]");
     yield put(startLoading(LoadingStatusKey.FETCH_ALL_STRUCTURES));
-    const data = yield call(API.getAllStructures);
+    const data: APIResponse<GetAllStructuresResponse[]> = yield call(API.getAllStructures);
     yield put(setAllStructuresActionCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_ALL_STRUCTURES));
   } catch (error) {

@@ -3,47 +3,4 @@
   overflow: scroll;
   width: 100%;
   padding: 0;
-
-  &__result {
-    border-radius: 8px;
-    background-color: white;
-    margin-top: 8px;
-    padding: 8px;
-
-    display: flex;
-    align-items: center;
-    border: 2px solid transparent;
-
-    &:hover {
-      cursor: pointer;
-      border-color: black;
-    }
-
-    &.on_hold {
-      background-color: #FFE2B8;
-    }
-
-    &.selected {
-      background-color: #BDF0C7;
-      border-color: #008205;
-    }
-
-    img {
-      width: 127px;
-    }
-
-    .name, .name_2 {
-      color: #828282;
-      margin-left: 1rem;
-
-      .highlight {
-        color: #212121;
-        font-weight: 700;
-      }
-    }
-
-    .tag {
-      margin-left: auto;
-    }
-  }
 }

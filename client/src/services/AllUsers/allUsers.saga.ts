@@ -9,12 +9,14 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { setAllUsersActionsCreator } from "./allUsers.actions";
 import { FETCH_ALL_USERS } from "./allUsers.actionTypes";
+import { APIResponse } from "types/interface";
+import { GetAllUsersResponse } from "api-types";
 
 export function* fetchAllUsers(): SagaIterator {
   try {
     logger.info("[fetchAllUsers saga]");
     yield put(startLoading(LoadingStatusKey.FETCH_ALL_USERS));
-    const data = yield call(API.getAllUsers);
+    const data: APIResponse<GetAllUsersResponse[]> = yield call(API.getAllUsers);
     yield put(setAllUsersActionsCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_ALL_USERS));
   } catch (error) {

@@ -1,0 +1,74 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+
+.container {
+  margin-top: u(10);
+  border: 1px solid $lightBorderDefaultGrey;
+  padding: u(4);
+  border-radius: u(2);
+}
+
+.title {
+  @include dsfr-text("h6");
+  font-weight: bold;
+  margin-bottom: u(6);
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  background: $lightBackgroundElevationAlt;
+  border-radius: u(2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: u(2);
+
+  input {
+    width: 155px;
+    padding: u(2) u(3);
+    outline: none !important;
+    border-radius: u(2);
+    border: 1px solid transparent;
+
+    &.input_error {
+      border-color: $error;
+    }
+  }
+}
+
+.language {
+  margin-bottom: u(4);
+
+  & > button {
+    width: 100%;
+    justify-content: center;
+    border-radius: u(2);
+    background: $lightBackgroundElevationAlt !important;
+    text-align: left;
+
+    @include rtl() {
+      text-align: right;
+    }
+  }
+}
+
+.submit {
+  width: 100% !important;
+  justify-content: center;
+}
+
+.error {
+  color: $red;
+  margin-top: u(4);
+  display: flex;
+  align-items: center;
+
+  p {
+    @include dsfr-text("very-small");
+    margin-bottom: 0;
+  }
+}

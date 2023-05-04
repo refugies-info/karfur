@@ -6,6 +6,7 @@ import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
+  setError,
 } from "../LoadingStatus/loadingStatus.actions";
 import { GET_THEMES, SAVE_THEME, CREATE_THEME, DELETE_THEME } from "./themes.actionTypes";
 import {
@@ -14,16 +15,17 @@ import {
   createThemeActionCreator,
   deleteThemeActionCreator
 } from "./themes.actions";
-import { allThemesSelector} from "./themes.selectors";
-import { Theme } from "types/interface";
+import { allThemesSelector } from "./themes.selectors";
+import { APIResponse } from "types/interface";
+import { GetThemeResponse, PostThemeResponse } from "api-types";
 
 export function* fetchThemes(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_THEMES));
     logger.info("[fetchThemes] start fetching themes");
-    const data = yield call(API.getThemes);
+    const data: APIResponse<GetThemeResponse[]> = yield call(API.getThemes);
 
-    const themes = data?.data?.data || [];
+    const themes = data.data?.data || [];
     yield put(setThemesActionCreator(themes));
 
     yield put(finishLoading(LoadingStatusKey.FETCH_THEMES));
@@ -33,7 +35,7 @@ export function* fetchThemes(): SagaIterator {
       error: message,
     });
     yield put(setThemesActionCreator([]));
-    yield put(finishLoading(LoadingStatusKey.FETCH_THEMES));
+    yield put(setError(LoadingStatusKey.FETCH_THEMES, "Error while fetching"));
   }
 }
 
@@ -42,13 +44,14 @@ export function* saveTheme(
 ): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_THEME));
-    const newTheme = action.payload;
+    const newTheme = action.payload.value;
+    const id = action.payload.id;
     logger.info("[saveTheme] start saving theme");
 
-    const data = yield call(API.patchTheme, newTheme);
+    const data = yield call(API.patchTheme, id, newTheme);
     if (data.data.data) {
-      const newThemes: Theme[] = [...(yield select(allThemesSelector))];
-      const editedThemeIndex = newThemes.findIndex(w => w._id === action.payload._id);
+      const newThemes: GetThemeResponse[] = [...(yield select(allThemesSelector))];
+      const editedThemeIndex = newThemes.findIndex(w => w._id === id);
       newThemes[editedThemeIndex] = data.data.data;
       yield put(setThemesActionCreator(newThemes));
     }
@@ -71,8 +74,8 @@ export function* createTheme(
     const newTheme = action.payload;
     logger.info("[createTheme] start creating theme");
 
-    const data = yield call(API.postThemes, newTheme);
-    const themes: Theme[] = [...(yield select(allThemesSelector))];
+    const data: APIResponse<PostThemeResponse> = yield call(API.postThemes, newTheme);
+    const themes: GetThemeResponse[] = [...(yield select(allThemesSelector))];
     yield put(setThemesActionCreator([data.data.data, ...themes]));
 
     yield put(finishLoading(LoadingStatusKey.CREATE_THEME));
@@ -93,7 +96,7 @@ export function* deleteTheme(
     logger.info("[deleteTheme] start deleting theme");
     yield call(API.deleteTheme, action.payload);
 
-    const themes: Theme[] = [...(yield select(allThemesSelector))];
+    const themes: GetThemeResponse[] = [...(yield select(allThemesSelector))];
     yield put(setThemesActionCreator(themes.filter(w => w._id !== action.payload)));
 
     yield put(finishLoading(LoadingStatusKey.DELETE_THEME));

@@ -1,2 +1,2 @@
-import downloadApp from "./downloadApp";
-export default downloadApp;
+export * from "./downloadApp";
+

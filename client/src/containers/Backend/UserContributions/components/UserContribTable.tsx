@@ -3,16 +3,16 @@ import { Table } from "reactstrap";
 import Link from "next/link";
 import { FormattedUserContribution } from "../types";
 import { TypeContenu, Responsabilite, ContribStyledStatus, StatutHeader } from "./SubComponents";
-import { Title, DeleteButton, SeeButtonWithoutNavigation } from "../../Admin/sharedComponents/SubComponents";
-import { ObjectId } from "mongodb";
+import { Title, DeleteButton, SeeButton } from "../../Admin/sharedComponents/SubComponents";
 import styles from "scss/components/adminTable.module.scss";
+import { Id } from "api-types";
 
 const headers = ["Type", "Titre", "Responsabilité", "Statut", "Merci", "Vues"];
 interface Props {
   contributions: FormattedUserContribution[];
   toggleTutoModal: () => void;
   setTutoModalDisplayed: (arg: string) => void;
-  deleteDispositif: (arg1: any, arg: ObjectId, arg2: boolean) => void;
+  deleteDispositif: (arg1: any, arg: Id, arg2: boolean) => void;
 }
 
 export const UserContribTable = (props: Props) => (
@@ -98,7 +98,7 @@ export const UserContribTable = (props: Props) => (
 
             <td className={styles.last + " align-middle"}>
               <div style={{ display: "flex", flexDirection: "row" }}>
-                <SeeButtonWithoutNavigation />
+                <SeeButton burl={burl} />
                 <DeleteButton
                   data-test-id={"test_delete_" + element._id}
                   onClick={(event: any) => props.deleteDispositif(event, element._id, element.isAuthorizedToDelete)}

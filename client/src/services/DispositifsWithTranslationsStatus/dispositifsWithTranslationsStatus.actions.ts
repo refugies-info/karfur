@@ -3,14 +3,13 @@ import {
   FETCH_DISPOSITIFS_TRANSLATIONS_STATUS,
   SET_DISPOSITIFS_TRANSLATIONS_STATUS,
 } from "./dispositifsWithTranslationsStatus.actionTypes";
-import { IDispositifTranslation } from "../../types/interface";
+import { GetDispositifsWithTranslationAvancementResponse } from "api-types";
 
-export const fetchDispositifsWithTranslationsStatusActionCreator = (
-  value: string
-) => action(FETCH_DISPOSITIFS_TRANSLATIONS_STATUS, value);
+export const fetchDispositifsWithTranslationsStatusActionCreator = (value: string) =>
+  action(FETCH_DISPOSITIFS_TRANSLATIONS_STATUS, value);
 
 export const setDispositifsWithTranslationsStatusActionCreator = (
-  value: IDispositifTranslation[]
+  value: GetDispositifsWithTranslationAvancementResponse[],
 ) => action(SET_DISPOSITIFS_TRANSLATIONS_STATUS, value);
 
 const actions = {
@@ -18,6 +17,4 @@ const actions = {
   setDispositifsWithTranslationsStatusActionCreator,
 };
 
-export type DispositifsWithTranslationsStatusActions = ActionType<
-  typeof actions
->;
+export type DispositifsWithTranslationsStatusActions = ActionType<typeof actions>;

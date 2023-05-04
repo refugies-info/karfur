@@ -6,7 +6,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {
   inputFocusedSelector,
   searchQuerySelector,
-  themesDisplayedValueSelector
+  themesDisplayedValueSelector,
 } from "services/SearchResults/searchResults.selector";
 import { setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
 import { cls } from "lib/classname";
@@ -49,7 +49,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
     resetTheme,
     onChangeThemeInput,
     resetSearch,
-    onChangeSearchInput
+    onChangeSearchInput,
   } = props;
 
   const query = useSelector(searchQuerySelector);
@@ -58,7 +58,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
   // SEARCH
   const setSearchActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("search", active)),
-    [dispatch]
+    [dispatch],
   );
 
   // LOCATION
@@ -69,15 +69,6 @@ const HomeSearchHeaderMobile = (props: Props) => {
   const [themesOpen, setThemesOpen] = useState(false);
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
   const toggleThemes = useCallback(() => setThemesOpen((o) => !o), []);
-
-  // hide axeptio button when popup opens
-  useEffect(() => {
-    if (locationOpen || themesOpen) {
-      if (window.hideAxeptioButton) window.hideAxeptioButton();
-    } else {
-      if (window.showAxeptioButton) window.showAxeptioButton();
-    }
-  }, [locationOpen, themesOpen]);
 
   return (
     <>
@@ -215,7 +206,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
         onClick={() => {
           router.push({
             pathname: getPath("/recherche", router.locale),
-            query: qs.stringify({ ...query }, { arrayFormat: "comma" })
+            query: qs.stringify({ ...query }, { arrayFormat: "comma" }),
           });
         }}
         className={commonStyles.submit}

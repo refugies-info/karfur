@@ -4,8 +4,6 @@ import styles from "./FSearchBtn.module.scss";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 
-// TODO: replace by FilterButton or FButton
-
 interface Props {
   className?: string;
   active?: boolean;
@@ -24,6 +22,9 @@ interface Props {
   [x: string]: any;
 }
 
+/**
+ * @deprecated replace by FilterButton or FButton
+ */
 const FSearchBtn = (props: Props) => {
   let {
     className,
@@ -57,7 +58,7 @@ const FSearchBtn = (props: Props) => {
         !!noHover && styles.no_hover,
         !!smallFont && styles.small_font,
         !!color && styles.color,
-        className || ""
+        className || "",
       )}
       {...bProps}
       style={{ backgroundColor: color || "" }}

@@ -18,16 +18,15 @@ import {
   setError,
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
+import { APIResponse } from "types/interface";
+import { GetDispositifsResponse } from "api-types";
 
 export function* fetchActiveDispositifs(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
 
     const langue = yield select(languei18nSelector);
-    const data = yield call(API.getDispositifs, {
-      query: { status: "Actif" },
-      locale: langue,
-    });
+    const data: APIResponse<GetDispositifsResponse[]> = yield call(API.getDispositifs, { locale: langue });
 
     yield put(setActiveDispositifsActionsCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
@@ -42,12 +41,17 @@ export function* updateDispositifReaction(
   action: ReturnType<typeof updateDispositifReactionActionCreator>
 ): SagaIterator {
   try {
-    const { dispositif, structureId } = action.payload;
+    const { suggestion, structureId } = action.payload;
     logger.info("[updateDispositifReaction] updating dispositif reaction", {
-      dispositif,
+      suggestion,
       structureId,
     });
-    yield call(API.updateDispositifReactions, dispositif);
+    if (suggestion.type === "remove") {
+      yield call(API.deleteDispositifSuggestion, suggestion.dispositifId.toString(), suggestion.suggestionId);
+    }
+    if (suggestion.type === "read") {
+      yield call(API.readDispositifSuggestion, suggestion.dispositifId.toString(), { suggestionId: suggestion.suggestionId });
+    }
     yield put(
       fetchUserStructureActionCreator({
         structureId,

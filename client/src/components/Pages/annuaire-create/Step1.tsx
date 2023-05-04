@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Input, Spinner } from "reactstrap";
 import FInput from "components/UI/FInput/FInput";
-import { Structure } from "types/interface";
 import PlaceholderLogo from "assets/Placeholder_logo.png";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Image from "next/image";
+import { GetStructureResponse } from "api-types";
+import { handleApiDefaultError } from "lib/handleApiErrors";
 
 const Title = styled.div`
   font-weight: bold;
@@ -55,7 +56,7 @@ const FileInput = styled(Input)`
 `;
 
 interface Props {
-  structure: Structure | null;
+  structure: GetStructureResponse | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }
@@ -68,7 +69,7 @@ export const Step1 = (props: Props) => {
     if (!structure?.hasResponsibleSeenNotification) {
       setStructure({
         ...structure,
-        hasResponsibleSeenNotification: true
+        hasResponsibleSeenNotification: true,
       });
     }
   }, [structure, setStructure]);
@@ -77,7 +78,7 @@ export const Step1 = (props: Props) => {
     props.setHasModifications(true);
     return props.setStructure({
       ...props.structure,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
   const handleFileInputChange = (event: any) => {
@@ -86,18 +87,20 @@ export const Step1 = (props: Props) => {
     // @ts-ignore
     formData.append(0, event.target.files[0]);
 
-    API.set_image(formData).then((data_res: any) => {
-      const imgData = data_res.data.data;
-      props.setStructure({
-        ...props.structure,
-        picture: {
-          secure_url: imgData.secure_url,
-          public_id: imgData.public_id,
-          imgId: imgData.imgId
-        }
-      });
-      setUploading(false);
-    });
+    API.postImage(formData)
+      .then((data_res) => {
+        const imgData = data_res.data.data;
+        props.setStructure({
+          ...props.structure,
+          picture: {
+            secure_url: imgData.secure_url,
+            public_id: imgData.public_id,
+            imgId: imgData.imgId,
+          },
+        });
+        setUploading(false);
+      })
+      .catch(handleApiDefaultError);
     props.setHasModifications(true);
   };
   const secureUrl = props.structure && props.structure.picture && props.structure.picture.secure_url;
@@ -108,7 +111,7 @@ export const Step1 = (props: Props) => {
       <div
         style={{
           marginBottom: "16px",
-          width: "440px"
+          width: "440px",
         }}
       >
         <FInput
@@ -136,7 +139,7 @@ export const Step1 = (props: Props) => {
           {secureUrl ? (
             <Image
               src={secureUrl}
-              alt={props.structure ? props.structure.acronyme : ""}
+              alt={props.structure?.acronyme || ""}
               width={200}
               height={200}
               style={{ objectFit: "contain" }}

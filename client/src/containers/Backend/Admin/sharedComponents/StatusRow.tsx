@@ -1,22 +1,17 @@
 import { statusCompare } from "lib/statusCompare";
-import {
-  ContentStatus,
-  ProgressionStatus,
-  SimplifiedDispositif,
-  SimplifiedStructureForAdmin,
-  StructureStatus
-} from "types/interface";
+import { ContentStatus, ProgressionStatus, StructureAdminStatus } from "types/interface";
 import { Label, StyledStatus } from "./SubComponents";
 import styles from "./StatusRow.module.scss";
+import { DispositifStatus, GetAllDispositifsResponse, GetAllStructuresResponse } from "api-types";
 
 interface Props {
-  element: SimplifiedDispositif | SimplifiedStructureForAdmin;
-  status: ContentStatus[] | StructureStatus[];
+  element: GetAllDispositifsResponse | GetAllStructuresResponse;
+  status: ContentStatus[] | StructureAdminStatus[];
   publicationStatus: ProgressionStatus[];
   progressionStatus: ProgressionStatus[];
   modifyStatus: (
     newStatus: string,
-    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus"
+    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus",
   ) => void;
   hiddenStatus?: string[];
 }
@@ -39,7 +34,7 @@ export const StatusRow = (props: Props) => {
               <div
                 className="me-2"
                 key={status.storedStatus}
-                onClick={() => props.modifyStatus(status.storedStatus, "status")}
+                onClick={() => props.modifyStatus(status.storedStatus as DispositifStatus, "status")}
               >
                 <StyledStatus
                   text={status.storedStatus}
@@ -64,7 +59,7 @@ export const StatusRow = (props: Props) => {
               onClick={() =>
                 props.modifyStatus(
                   status.storedStatus !== props.element.adminProgressionStatus ? status.storedStatus : "",
-                  "adminProgressionStatus"
+                  "adminProgressionStatus",
                 )
               }
             >
@@ -89,7 +84,7 @@ export const StatusRow = (props: Props) => {
               onClick={() =>
                 props.modifyStatus(
                   status.storedStatus !== props.element.adminPercentageProgressionStatus ? status.storedStatus : "",
-                  "adminPercentageProgressionStatus"
+                  "adminPercentageProgressionStatus",
                 )
               }
             >

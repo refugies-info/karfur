@@ -1,0 +1,20 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/input";
+
+.input {
+  @include baseInput();
+  font-weight: bold;
+}
+
+.marque {
+  @include dsfr-text("chapo");
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  margin-top: u(6);
+}

@@ -1,12 +1,10 @@
 import React, { memo } from "react";
 import styled from "styled-components";
-import { ObjectId } from "mongodb";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { needsSelector } from "services/Needs/needs.selectors";
-import { Need } from "types/interface";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import useLocale from "hooks/useLocale";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -14,8 +12,9 @@ import TagName from "components/UI/TagName";
 import Checkbox from "components/UI/Checkbox";
 import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
 import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
 import styles from "./ThemeDropdown.module.scss";
+import { GetNeedResponse, GetThemeResponse, Id } from "api-types";
+import { useEvent } from "hooks";
 
 type ButtonNeedProps = {
   color100: string;
@@ -32,8 +31,8 @@ const ButtonNeed = styled.button`
 
 interface Props {
   search: string;
-  displayedNeeds: Need[];
-  themeSelected: ObjectId | null;
+  displayedNeeds: GetNeedResponse[];
+  themeSelected: Id | null;
   nbDispositifsByNeed: Record<string, number>;
   nbDispositifsByTheme: Record<string, number>;
 }
@@ -42,6 +41,7 @@ const NeedsList = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
   const dispatch = useDispatch();
+  const { Event } = useEvent();
 
   const themes = useSelector(themesSelector);
   const allNeeds = useSelector(needsSelector);
@@ -51,8 +51,8 @@ const NeedsList = (props: Props) => {
 
   const isThemeSelected = !!(props.themeSelected && query.themes.includes(props.themeSelected));
 
-  const selectNeed = (id: ObjectId) => {
-    let allSelectedNeeds: ObjectId[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
+  const selectNeed = (id: Id) => {
+    let allSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
 
     if (allSelectedNeeds.includes(id)) {
       // if need selected, remove
@@ -67,18 +67,18 @@ const NeedsList = (props: Props) => {
     dispatch(
       addToQueryActionCreator({
         needs: res.needs,
-        themes: res.themes
-      })
+        themes: res.themes,
+      }),
     );
   };
 
-  const selectTheme = (id: ObjectId | null) => {
+  const selectTheme = (id: Id | null) => {
     if (!id) return;
     if (query.themes.includes(id)) {
       dispatch(
         addToQueryActionCreator({
-          themes: query.themes.filter((n) => n !== id)
-        })
+          themes: query.themes.filter((n) => n !== id),
+        }),
       );
     } else {
       const newNeeds = allNeeds
@@ -90,8 +90,8 @@ const NeedsList = (props: Props) => {
       dispatch(
         addToQueryActionCreator({
           needs: newNeeds,
-          themes: [...query.themes, id]
-        })
+          themes: [...query.themes, id],
+        }),
       );
       Event("USE_SEARCH", "use theme filter", "select all needs");
     }
@@ -115,7 +115,7 @@ const NeedsList = (props: Props) => {
                 className={styles.badge}
                 style={{
                   backgroundColor: colors?.color30,
-                  color: colors?.color100
+                  color: colors?.color100,
                 }}
               >
                 {props.nbDispositifsByTheme[props.themeSelected.toString()] || 0}
@@ -133,7 +133,7 @@ const NeedsList = (props: Props) => {
               // check if this need has a different theme from previous one
               (i === 0 || props.displayedNeeds[i - 1].theme._id !== need.theme._id) && (
                 <div className={styles.list_theme}>
-                  <TagName theme={need.theme} colored={true} size={20} />
+                  <TagName theme={need.theme as GetThemeResponse} colored={true} size={20} />
                 </div>
               )}
             <ButtonNeed
@@ -149,7 +149,7 @@ const NeedsList = (props: Props) => {
                   className={styles.badge}
                   style={{
                     backgroundColor: need.theme.colors.color30,
-                    color: need.theme.colors.color100
+                    color: need.theme.colors.color100,
                   }}
                 >
                   {props.nbDispositifsByNeed[need._id.toString()] || 0}

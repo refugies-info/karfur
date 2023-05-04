@@ -1,0 +1,60 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/input";
+@import "src/scss/mixins/icons";
+.item,
+.content {
+  margin-bottom: u(4);
+  border-radius: u(2);
+  width: 100%;
+}
+
+.item {
+  padding: u(4);
+  background: $lightBackgroundContrastGrey;
+}
+
+.button_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .remove {
+    width: u(6);
+    height: u(6);
+    @include iconSize(u(5));
+    border-radius: u(2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: $lightBackgroundContrastGrey;
+    }
+  }
+}
+
+.content {
+  padding-right: u(4);
+
+  .title {
+    background: white;
+    padding: u(4);
+    border-radius: u(2);
+  }
+  .text {
+    padding: u(4);
+    font-weight: normal;
+  }
+}
+
+.input {
+  @include dsfr-text("chapo");
+  @include baseInput();
+  margin-bottom: u(4);
+  font-weight: bold;
+}

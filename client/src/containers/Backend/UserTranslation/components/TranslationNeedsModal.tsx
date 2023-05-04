@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Modal, Table } from "reactstrap";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { ObjectId } from "mongodb";
-import { Need } from "types/interface";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { TagButton } from "../../Admin/Needs/TagButton";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
@@ -14,14 +12,15 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import FrameModal from "components/Modals/FrameModal/FrameModal";
 import { getStatusColorAndText } from "./functions";
 import styles from "./TranslationNeedsModal.module.scss";
+import { GetNeedResponse, Id } from "api-types";
 
 interface Props {
   show: boolean;
   toggle: () => void;
   toggleOneNeedTranslationModal: () => void;
-  setSelectedNeedId: (arg: ObjectId) => void;
-  langueSelectedFr: null | string;
-  langueI18nCode: null | string;
+  setSelectedNeedId: (arg: Id) => void;
+  langueSelectedFr?: string;
+  langueI18nCode?: string;
 }
 const Header = styled.div`
   font-weight: bold;
@@ -59,7 +58,7 @@ export const TranslationNeedsModal = (props: Props) => {
     const { statusColor, statusText } = getStatusColorAndText(
       need,
       // @ts-ignore
-      props.langueI18nCode
+      props.langueI18nCode,
     );
     return { ...need, statusText, statusColor };
   });
@@ -77,7 +76,7 @@ export const TranslationNeedsModal = (props: Props) => {
     return 1;
   });
 
-  const onNeedClick = (need: Need) => {
+  const onNeedClick = (need: GetNeedResponse) => {
     props.setSelectedNeedId(need._id);
     props.toggleOneNeedTranslationModal();
   };
@@ -140,7 +139,7 @@ export const TranslationNeedsModal = (props: Props) => {
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "flex-end"
+            justifyContent: "flex-end",
           }}
         >
           <FButton className="me-2" type="white" name="arrow-back-outline" onClick={props.toggle}>
@@ -186,7 +185,7 @@ export const TranslationNeedsModal = (props: Props) => {
                 </td>
                 <td className="align-middle">
                   <div style={{ marginLeft: -4, width: 130 }}>
-                    <TagButton theme={need.theme} isSelected={true} />
+                    <TagButton theme={{ ...need.theme, active: true }} isSelected={true} />
                   </div>
                 </td>
                 <td className="align-middle">{translatedNeed}</td>
@@ -202,7 +201,7 @@ export const TranslationNeedsModal = (props: Props) => {
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
         }}
       >
         <FButton type="tuto" name={"play-circle-outline"} onClick={toggleTutorielModal}>

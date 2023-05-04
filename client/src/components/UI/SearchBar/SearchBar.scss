@@ -147,31 +147,6 @@
     }
   }
 
-  .loupe-btn {
-    position: absolute;
-    padding: 10px;
-    right: 5px;
-    font-size: 24px;
-    transform: matrix(-1, 0, 0, 1, 0, 0) translateY(-50%);
-    color: $gray90;
-    top: 25px;
-
-    &.icon-only {
-      position: relative;
-      right: 0;
-      transform: matrix(-1, 0, 0, 1, 0, 0);
-    }
-    &:hover {
-      color: rgba(0, 0, 0, 0.1);
-    }
-    &:active {
-      display: none;
-    }
-    &:focus {
-      display: none;
-    }
-  }
-
   &.isArray {
     .react-autosuggest__suggestions-container--open {
       background: transparent;

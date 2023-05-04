@@ -1,8 +1,8 @@
 import { createReducer } from "typesafe-actions";
 import { StructuresActions } from "./activeStructures.actions";
-import { SimplifiedStructure } from "../../types/interface";
+import { GetActiveStructuresResponse } from "api-types";
 
-export type ActiveStructuresState = SimplifiedStructure[];
+export type ActiveStructuresState = GetActiveStructuresResponse[];
 
 const initialActiveStructuresState: ActiveStructuresState = [];
 

@@ -1,8 +1,8 @@
 import { SET_ALL_USERS, FETCH_ALL_USERS } from "./allUsers.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { SimplifiedUser } from "../../types/interface";
+import { GetAllUsersResponse } from "api-types";
 
-export const setAllUsersActionsCreator = (value: SimplifiedUser[]) =>
+export const setAllUsersActionsCreator = (value: GetAllUsersResponse[]) =>
   action(SET_ALL_USERS, value);
 
 export const fetchAllUsersActionsCreator = () => action(FETCH_ALL_USERS);

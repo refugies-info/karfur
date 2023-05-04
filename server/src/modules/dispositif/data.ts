@@ -1,4 +1,9 @@
-export const departmentRegionCorrespondency = [
+export interface RegionData {
+  department: string;
+  region: string;
+}
+
+export const departmentRegionCorrespondency: RegionData[] = [
   { department: "1 - Ain", region: "Auvergne-Rhône-Alpes" },
   { department: "2 - Aisne", region: "Hauts-de-France" },
   { department: "3 - Allier", region: "Auvergne-Rhône-Alpes" },

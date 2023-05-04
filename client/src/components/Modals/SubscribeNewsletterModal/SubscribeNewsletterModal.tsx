@@ -116,7 +116,7 @@ export const SubscribeNewsletterModal = () => {
     const isEmail = !!email.match(regex);
     if (isEmail) {
       toggle();
-      API.set_mail({ mail: email })
+      API.contacts({ email })
         .then(() => {
           Swal.fire({
             title: "Yay...",

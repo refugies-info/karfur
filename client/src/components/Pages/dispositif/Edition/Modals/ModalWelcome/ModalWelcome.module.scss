@@ -1,0 +1,29 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+
+.modal {
+  height: 584px;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  p {
+    margin-bottom: u(6);
+  }
+}
+
+.error {
+  color: $lightTextDefaultError;
+  font-weight: bold;
+}
+
+.success {
+  color: $lightTextDefaultSuccess;
+  font-weight: bold;
+}

@@ -1,0 +1,30 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/input";
+
+.form {
+  border: 1px solid $lightBorderDefaultGrey;
+  padding: u(4);
+  border-radius: u(2);
+  margin-bottom: u(8);
+
+  .title {
+    @include dsfr-text("h6");
+    font-weight: bold;
+    margin-bottom: u(6);
+  }
+}
+
+.price {
+  &::after {
+    content: "€";
+    position: absolute;
+    right: u(2);
+    top: u(2);
+  }
+  input[type="number"] {
+    padding-right: u(5) !important;
+  }
+}
