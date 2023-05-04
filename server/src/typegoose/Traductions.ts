@@ -70,9 +70,9 @@ const keys = (translated: any) => {
  * @param str string
  * @returns number of words
  */
-const countWords = (str?: string): number => (isString(str) ? str.split(/\s+/).length : 0);
+export const countWords = (str?: string): number => (isString(str) ? str.split(/\s+/).length : 0);
 
-const countWordsForInfoSections = (infoSections: InfoSections): number =>
+export const countWordsForInfoSections = (infoSections: InfoSections): number =>
   Object.values(infoSections || {}).reduce(
     (acc, { title, text }: InfoSection) => acc + countWords(title) + countWords(text),
     0,
