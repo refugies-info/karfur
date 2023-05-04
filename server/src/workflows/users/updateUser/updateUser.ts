@@ -19,7 +19,7 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
     username: body.user.username,
     picture: body.user.picture,
     adminComments: body.user.adminComments,
-    selectedLanguages: body.user.selectedLanguages.map(r => new ObjectId(r)),
+    selectedLanguages: (body.user.selectedLanguages || []).map(r => new ObjectId(r)),
   }
   logger.info("[updateUser] call received", { user, action });
   const userFromDB = await getUserById(id, { username: 1, phone: 1, email: 1, roles: 1 });
