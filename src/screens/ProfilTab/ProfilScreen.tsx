@@ -33,6 +33,7 @@ import { ageFilters } from "../../data/filtersData";
 import { updateAppUser } from "../../utils/API";
 import { firstLetterUpperCase } from "../../libs";
 import { Page, SectionTitle } from "../../components";
+import { frenchLevelFilters } from "../../data/filtersData";
 
 const DeleteDataContainer = styled.TouchableOpacity`
   align-items: center;
@@ -70,6 +71,9 @@ export const ProfilScreen = ({
   const selectedLocation = useSelector(userLocationSelector);
   const selectedAge = useSelector(userAgeSelector);
   const selectedFrenchLevel = useSelector(userFrenchLevelSelector);
+  const formattedLevel = frenchLevelFilters.find(
+    (frenchLevelFilter) => frenchLevelFilter.key === selectedFrenchLevel
+  );
 
   const dispatch = useDispatch();
 
@@ -162,7 +166,7 @@ export const ProfilScreen = ({
           category={t("profile_screens.french", "Français")}
           userChoice={
             selectedFrenchLevel
-              ? t("filters." + selectedFrenchLevel, selectedFrenchLevel)
+              ? t("filters." + formattedLevel?.name, selectedFrenchLevel)
               : t("profile_screens.all_levels", "Tous les niveaux")
           }
           isFirst={false}
