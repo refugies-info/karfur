@@ -2,10 +2,10 @@ import logger from "../../../logger";
 import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { Statistics, TranslationStatisticsRequest } from "@refugies-info/api-types";
-import { getActiveContentsFiltered } from "src/modules/dispositif/dispositif.repository";
-import { Dispositif } from "src/typegoose";
-import { DemarcheContent, DispositifContent } from "src/typegoose/Dispositif";
-import { countWords, countWordsForInfoSections } from "src/typegoose/Traductions";
+import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
+import { Dispositif } from "../../../typegoose";
+import { DemarcheContent, DispositifContent } from "../../../typegoose/Dispositif";
+import { countWords, countWordsForInfoSections } from "../../../typegoose/Traductions";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 
