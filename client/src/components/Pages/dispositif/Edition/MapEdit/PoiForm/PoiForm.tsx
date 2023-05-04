@@ -26,7 +26,10 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
             iconPosition="right"
             priority="tertiary"
             className={styles.close}
-            onClick={onClose}
+            onClick={(e: any) => {
+              e.preventDefault();
+              onClose();
+            }}
           >
             Fermer
           </Button>

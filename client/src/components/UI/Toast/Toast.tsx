@@ -28,7 +28,13 @@ const Toast = (props: Props) => {
         <EVAIcon name="checkmark-circle-2" fill={styles.lightTextDefaultSuccess} size={24} className="me-2" />
         {props.children}
       </ToastBody>
-      <button onClick={props.close} className={styles.close}>
+      <button
+        onClick={(e: any) => {
+          e.preventDefault();
+          props.close();
+        }}
+        className={styles.close}
+      >
         <EVAIcon name="close-outline" fill={styles.lightTextMentionGrey} size={24} />
       </button>
     </ToastTS>

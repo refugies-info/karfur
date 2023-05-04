@@ -12,7 +12,13 @@ interface Props {
 
 const RemovableItem = (props: Props) => {
   return (
-    <button className={styles.btn} onClick={props.onClick}>
+    <button
+      className={styles.btn}
+      onClick={(e: any) => {
+        e.preventDefault();
+        props.onClick();
+      }}
+    >
       {props.image && (
         <Image
           src={props.image}

@@ -42,7 +42,8 @@ const LogoInput = (props: Props) => {
       .catch(handleApiDefaultError);
   };
 
-  const deleteImage = () => {
+  const deleteImage = (e: any) => {
+    e.preventDefault();
     props.onImageUploaded(undefined);
   };
 

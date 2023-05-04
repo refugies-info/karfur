@@ -48,7 +48,14 @@ const MissingSteps = (props: Props) => {
   return (
     <div className={cls(styles.missing, styles[props.style])}>
       {props.missingSteps.map((item, i) => (
-        <button key={i} className={cls(styles.step, styles[item.status])} onClick={() => goToStep(item.step)}>
+        <button
+          key={i}
+          className={cls(styles.step, styles[item.status])}
+          onClick={(e: any) => {
+            e.preventDefault();
+            goToStep(item.step);
+          }}
+        >
           <span>{t(stepTranslations[item.step], stepTranslations[item.step])}</span>
 
           <span>

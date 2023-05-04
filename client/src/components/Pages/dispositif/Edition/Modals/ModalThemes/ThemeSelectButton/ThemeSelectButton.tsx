@@ -45,7 +45,10 @@ const ThemeSelectButton = (props: Props) => {
         backgroundColorHover={props.theme.colors.color80}
         selected={selected}
         className={cls(styles.btn, selected && styles.selected)}
-        onClick={props.onClick}
+        onClick={(e: any) => {
+          e.preventDefault();
+          props.onClick();
+        }}
         disabled={props.disabled}
       >
         <span className={styles.theme_icon}>
