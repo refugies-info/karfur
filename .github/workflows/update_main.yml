@@ -5,12 +5,12 @@ on:
       - main
 
 env:
-  # ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+  ALGOLIA_API_KEY: ${{ secrets.PROD_ALGOLIA_API_KEY }}
   ALGOLIA_INDEX: prod_refugies
   API_URL: https://api.refugies.info
   ENV_NAME: PROD
-  # GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-  # SITE_SECRET: ${{ secrets.SITE_SECRET }}
+  GOOGLE_API_KEY: ${{ secrets.PROD_GOOGLE_API_KEY }}
+  SITE_SECRET: ${{ secrets.PROD_SITE_SECRET }}
   SITE_URL: https://refugies.info
 
 jobs:
@@ -55,5 +55,5 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Publish update
-        run: eas update --auto --non-interactive
+      # - name: Publish update
+      #   run: eas update --auto --non-interactive
