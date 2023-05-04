@@ -1,56 +1,30 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
-import { RequestFromClient, Res } from "../../../types/interface";
 import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { log } from "./log";
+import { Dispositif } from "../../../typegoose";
+import { Response } from "../../../types/interface";
+import { AdminCommentsRequest } from "@refugies-info/api-types";
 
-interface QueryModifyAdmin {
-  dispositifId: ObjectId;
-  adminComments: string;
-  adminProgressionStatus: string;
-  adminPercentageProgressionStatus: string;
-}
-export const updateDispositifAdminComments = async (
-  req: RequestFromClient<QueryModifyAdmin>,
-  res: Res
-) => {
-  try {
-    if (!req.fromSite) {
-      return res.status(405).json({ text: "Requête bloquée par API" });
-    } else if (!req.body || !req.body.query || !req.body.query.dispositifId) {
-      return res.status(400).json({ text: "Requête invalide" });
-    }
+export const updateDispositifAdminComments = async (id: string, body: AdminCommentsRequest, userId: any): Response => {
+  const { adminComments, adminProgressionStatus, adminPercentageProgressionStatus } = body;
 
-    const {
-      dispositifId,
-      adminComments,
-      adminProgressionStatus,
-      adminPercentageProgressionStatus,
-    } = req.body.query;
+  logger.info("[updateDispositifAdminComments] data", {
+    id,
+    adminComments,
+    adminProgressionStatus,
+    adminPercentageProgressionStatus,
+  });
 
-    logger.info("[updateDispositifAdminComments] data", {
-      dispositifId,
-      adminComments,
-      adminProgressionStatus,
-      adminPercentageProgressionStatus,
-    });
+  const modifiedDispositif: Partial<Dispositif> = {
+    adminComments,
+    adminProgressionStatus,
+    adminPercentageProgressionStatus,
+    lastAdminUpdate: new Date(),
+  };
 
-    const modifiedDispositif = {
-      adminComments,
-      adminProgressionStatus,
-      adminPercentageProgressionStatus,
-      lastAdminUpdate: Date.now(),
-    };
+  const oldDispositif = await getDispositifById(id, { adminComments: 1 });
+  const newDispositif = await updateDispositifInDB(id, modifiedDispositif);
+  await log(id, newDispositif, oldDispositif, userId);
 
-    const oldDispositif = await getDispositifById(dispositifId, { adminComments: 1 });
-    const newDispositif = await updateDispositifInDB(dispositifId, modifiedDispositif);
-    await log(dispositifId, newDispositif, oldDispositif, req.user._id);
-
-    res.status(200).json({ text: "OK" });
-  } catch (error) {
-    logger.error("[updateDispositifAdminComments] error", {
-      error: error.message,
-    });
-    return res.status(500).json({ text: "Erreur interne" });
-  }
+  return { text: "success" };
 };

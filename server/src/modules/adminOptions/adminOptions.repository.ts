@@ -1,14 +1,8 @@
-import { AdminOption, AdminOptionDoc } from "../../schema/schemaAdminOption";
+import { AdminOptions, AdminOptionsModel } from "../../typegoose";
 
-export const getAdminOption = async (key: string) => {
-  return AdminOption.findOne({ key: key });
-}
+export const getAdminOption = async (key: string) => AdminOptionsModel.findOne({ key: key });
 
-export const createAdminOption = async (adminOption: AdminOptionDoc) => {
-  return new AdminOption(adminOption).save();
-}
+export const createAdminOption = async (adminOption: AdminOptions) => AdminOptionsModel.create(adminOption);
 
-export const updateAdminOption = async (key: string, value: any) => {
-  return AdminOption.findOneAndUpdate({ key }, {value}, { upsert: true, new: true });
-}
-
+export const updateAdminOption = async (key: string, value: any) =>
+  AdminOptionsModel.findOneAndUpdate({ key }, { value }, { upsert: true, new: true });

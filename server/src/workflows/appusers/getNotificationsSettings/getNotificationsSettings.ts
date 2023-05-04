@@ -1,36 +1,16 @@
-import { celebrate, Joi, Segments } from "celebrate";
-import { Request, Response } from "express";
-
+import { ResponseWithData } from "../../../types/interface";
+import { NotFoundError } from "../../../errors";
 import logger from "../../../logger";
+import { getNotificationsSettings as getSettings } from "../../../modules/appusers/appusers.repository";
+import { GetNotificationsSettingsResponse } from "@refugies-info/api-types";
 
-import { getNotificationsSettings } from "../../../modules/appusers/appusers.repository";
-
-const validator = celebrate({
-  [Segments.HEADERS]: Joi.object({
-    "x-app-uid": Joi.string()
-      .required()
-      .regex(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i)
-  }).unknown()
-});
-
-const handler = async (req: Request, res: Response) => {
+export const getNotificationsSettings = async (appUid: string): ResponseWithData<GetNotificationsSettingsResponse> => {
   logger.info("[getNotificationsSettings] received");
-  const uid = req.headers["x-app-uid"];
+  const settings = await getSettings(appUid);
+  if (!settings) throw new NotFoundError("Settings not found");
 
-  try {
-    const settings = await getNotificationsSettings(uid as string);
-    if (!settings) {
-      return res.status(404).json({
-        error: "Settings not found"
-      });
-    }
-    res.status(200).json(settings);
-  } catch (err) {
-    logger.error("[getNotificationsSettings] error", err);
-    res.status(500).json({
-      error: "Internal server error"
-    });
-  }
+  return {
+    text: "success",
+    data: settings,
+  };
 };
-
-export default [validator, handler];

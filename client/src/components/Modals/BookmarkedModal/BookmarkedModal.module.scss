@@ -1,5 +1,6 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
+@import "src/scss/mixins/unit";
 
 .bookmark_modal {
   width: 400px;
@@ -22,6 +23,11 @@
       line-height: 51px;
       font-weight: 600;
       background: inherit;
+    }
+    :global(.btn-close) {
+      position: absolute;
+      top: u(4);
+      right: u(4);
     }
   }
   .modal_body {
@@ -47,7 +53,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 7px;
     margin-bottom: 20px;
   }
 }

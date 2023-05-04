@@ -1,11 +1,9 @@
-import { AppUser, AppUserType, NotificationsSettings } from "../../schema/schemaAppUser";
+import { AppUser, AppUserModel, NotificationsSettings } from "../../typegoose";
 
-export const getAllAppUsers = async () => {
-  return await AppUser.find();
-};
+export const getAllAppUsers = async () => AppUserModel.find();
 
 export const getNotificationsSettings = async (uid: string) => {
-  const appUser = await AppUser.findOne({ uid });
+  const appUser = await AppUserModel.findOne({ uid });
   if (!appUser) {
     return null;
   }
@@ -13,7 +11,7 @@ export const getNotificationsSettings = async (uid: string) => {
 };
 
 export const updateNotificationsSettings = async (uid: string, payload: Partial<NotificationsSettings>) => {
-  const appUser = await AppUser.findOne({ uid });
+  const appUser = await AppUserModel.findOne({ uid });
   if (!appUser) {
     return null;
   }
@@ -30,18 +28,19 @@ export const updateNotificationsSettings = async (uid: string, payload: Partial<
   return appUser.notificationsSettings;
 };
 
-export const updateOrCreateAppUser = async (payload: AppUserType, themeIds: string[]) => {
-  const appUser = await AppUser.findOne({ uid: payload.uid });
+export const updateOrCreateAppUser = async (payload: AppUser, themeIds: string[]) => {
+  const appUser = await AppUserModel.findOne({ uid: payload.uid });
 
   if (appUser) {
-    return AppUser.updateOne({ uid: payload.uid }, payload, { upsert: true, new: true });
+    await AppUserModel.updateOne({ uid: payload.uid }, payload, { upsert: true, new: true });
+    return AppUserModel.findOne({ uid: payload.uid }); // fix wrong type after updateOne
   }
 
   const themes: Record<string, boolean> = {};
   for (const themeId of themeIds) {
-    themes[themeId] = true
+    themes[themeId] = true;
   }
-  return AppUser.create({
+  return AppUserModel.create({
     ...payload,
     notificationsSettings: {
       global: true,

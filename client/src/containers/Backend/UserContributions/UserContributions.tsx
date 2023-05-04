@@ -21,11 +21,11 @@ import { ContribContainer } from "./components/SubComponents";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import FButton from "components/UI/FButton/FButton";
 import { UserContribTable } from "./components/UserContribTable";
-import { ObjectId } from "mongodb";
 import { colors } from "colors";
 import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
+import { Id } from "api-types";
 
 const MainContainer = styled.div`
   display: flex;
@@ -89,7 +89,7 @@ const UserContributions = (props: Props) => {
   const user = useSelector(userDetailsSelector);
   const contributions = formatContributions(userContributions, userStructureContributions, userStructure, user?._id);
 
-  const deleteDispositif = (event: any, dispositifId: ObjectId, isAuthorizedToDelete: boolean) => {
+  const deleteDispositif = (event: any, dispositifId: Id, isAuthorizedToDelete: boolean) => {
     event.stopPropagation();
     if (!isAuthorizedToDelete) {
       return;

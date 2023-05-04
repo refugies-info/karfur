@@ -1,52 +1,17 @@
-import { ObjectId } from "mongoose";
+import { UpdatePositionsNeedResponse, UpdatePositionsRequest } from "@refugies-info/api-types";
 import logger from "../../../logger";
-import { celebrate, Joi, Segments } from "celebrate";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { updatePositions } from "../../../modules/needs/needs.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
+import { updatePositions as updatePositionsInDb } from "../../../modules/needs/needs.repository";
+import { ResponseWithData } from "../../../types/interface";
 
-const validator = celebrate({
-  [Segments.BODY]: Joi.object({
-    orderedNeedIds: Joi.array().items(Joi.string())
-  })
-});
+export const updatePositions = async (
+  body: UpdatePositionsRequest,
+): ResponseWithData<UpdatePositionsNeedResponse[]> => {
+  logger.info("[updatePositions] received");
 
-export interface Request {
-  orderedNeedIds: ObjectId[]
-}
+  const data = await updatePositionsInDb(body.orderedNeedIds);
 
-const handler = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
-  try {
-    logger.info("[updatePositions] received");
-    checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
-
-    const data = await updatePositions(req.body.orderedNeedIds);
-
-    return res.status(200).json({
-      text: "Succès",
-      data
-    });
-  } catch (error) {
-    logger.error("[updatePositions] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Création interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
-  }
+  return {
+    text: "success",
+    data,
+  };
 };
-
-export default [validator, handler];

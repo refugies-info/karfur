@@ -1,11 +1,10 @@
-import { ObjectId } from "mongodb";
-import { Need, Theme } from "types/interface";
+import { GetNeedResponse, GetThemeResponse, Id } from "api-types";
 
 export const getInitialTheme = (
-  allNeeds: Need[],
-  themes: Theme[],
-  needsSelected: ObjectId[],
-  themesSelected: ObjectId[],
+  allNeeds: GetNeedResponse[],
+  themes: GetThemeResponse[],
+  needsSelected: Id[],
+  themesSelected: Id[],
   isMobile: boolean
 ) => {
   if (isMobile) return null;

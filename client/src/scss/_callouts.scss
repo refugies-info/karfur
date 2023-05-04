@@ -1,0 +1,87 @@
+@import "colors";
+@import "variables";
+@import "mixins/unit";
+@import "mixins/text";
+@import "mixins/rtl";
+@import "mixins/responsive";
+
+/**
+* Global style for content callouts so they can be used in input or view mode
+*/
+.callout {
+  margin-top: u(6);
+  margin-bottom: u(6);
+
+  &.callout--info {
+    @include pl-ltr(u(8));
+    @include ml-ltr(u(8));
+    $border: 4px solid $lightBorderDefaultBlueFrance;
+
+    @include media-max("lg-limit") {
+      @include pl-ltr(u(4));
+      @include ml-ltr(u(2));
+    }
+
+    @include rtl() {
+      border-right: $border;
+      border-left: none;
+    }
+    @include ltr() {
+      border-left: $border;
+      border-right: none;
+    }
+
+    &::before {
+      content: attr(data-title);
+      display: block;
+      margin-bottom: u(2);
+      @include dsfr-text("h6");
+      font-weight: bold;
+      color: $lightBorderDefaultBlueFrance;
+
+      @include media-max("lg-limit") {
+        @include dsfr-text("large");
+      }
+    }
+  }
+
+  &.callout--important {
+    background: $lightBackgroundContrastGrey;
+    position: relative;
+    border-radius: u(2);
+    overflow: hidden;
+    @include rtl() {
+      padding: u(4) u(14) u(4) u(2);
+    }
+    @include ltr() {
+      padding: u(4) u(2) u(4) u(14);
+    }
+
+    &::before {
+      content: attr(data-title);
+      display: block;
+      margin-bottom: u(1);
+      @include dsfr-text("h6");
+      font-weight: bold;
+
+      @include media-max("lg-limit") {
+        @include dsfr-text("large");
+      }
+    }
+
+    &::after {
+      content: "\ea20";
+      font-family: "remixicon" !important;
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      padding-top: u(4);
+      width: u(10);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      @include l-ltr(0);
+      background: $lightBorderDefaultBlueFrance;
+    }
+  }
+}

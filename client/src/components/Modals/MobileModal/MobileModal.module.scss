@@ -1,0 +1,31 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+
+.modal {
+  &:global(.modal-dialog) {
+    margin: 0;
+  }
+
+  :global(.modal-content) {
+    --bs-modal-border-radius: 0;
+    height: 100vh;
+  }
+
+  .header {
+    --bs-modal-header-padding: 24px;
+    border: none;
+
+    h5 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      @include dsfr-text("h6");
+    }
+  }
+  .content {
+    --bs-modal-padding: 24px;
+    padding-top: 0;
+  }
+}

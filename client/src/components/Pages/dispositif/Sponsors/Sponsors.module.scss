@@ -1,0 +1,64 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/icons";
+@import "src/scss/mixins/responsive";
+
+.container {
+  display: flex;
+  align-items: center;
+
+  @include media-max("lg-limit") {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.label {
+  @include dsfr-text("small");
+  font-weight: bold;
+  flex-shrink: 0;
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("normal");
+    margin-bottom: u(4);
+  }
+}
+
+.sponsors {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sponsor {
+  @include dsfr-text("small");
+  margin-left: u(10);
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+
+  @include media-max("lg-limit") {
+    @include dsfr-text("normal");
+    margin-left: 0;
+    margin-bottom: u(4);
+    max-width: none;
+  }
+
+  &.edit {
+    padding: u(1) u(2);
+    border-radius: u(2);
+    border: 1px solid $lightBorderDefaultGrey;
+    cursor: pointer;
+    &:hover {
+      background: $lightBackgroundContrastGrey;
+    }
+  }
+}
+
+.delete {
+  @include iconSize(u(4));
+  padding: u(2) !important;
+  min-height: u(8) !important;
+}

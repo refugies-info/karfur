@@ -1,1 +1,1 @@
-export { getUserContributions } from "./getUserContributions";
+export * from "./getUserContributions";

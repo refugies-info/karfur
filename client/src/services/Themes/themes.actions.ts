@@ -6,22 +6,21 @@ import {
   DELETE_THEME
 } from "./themes.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { Theme } from "../../types/interface";
-import { ObjectId } from "mongodb";
+import { GetThemeResponse, Id, ThemeRequest } from "api-types";
 
 export const fetchThemesActionCreator = () => action(GET_THEMES);
 
-export const setThemesActionCreator = (value: Theme[]) =>
+export const setThemesActionCreator = (value: GetThemeResponse[]) =>
   action(SET_THEMES, value);
 
-export const saveThemeActionCreator = (value: Partial<Theme>) =>
-  action(SAVE_THEME, value);
+export const saveThemeActionCreator = (id: Id, value: Partial<ThemeRequest>) =>
+  action(SAVE_THEME, { id, value });
 
-export const createThemeActionCreator = (value: Partial<Theme>) =>
+export const createThemeActionCreator = (value: ThemeRequest) =>
   action(CREATE_THEME, value);
 
-export const deleteThemeActionCreator = (value: ObjectId) =>
-    action(DELETE_THEME, value);
+export const deleteThemeActionCreator = (value: Id) =>
+  action(DELETE_THEME, value);
 
 const actions = {
   fetchThemesActionCreator,

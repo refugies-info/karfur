@@ -1,4 +1,4 @@
-import { ObjectId } from "mongoose";
+import { DispositifId, UserId } from "../../../typegoose";
 import { addLog } from "../../../modules/logs/logs.service";
 
 export interface LogOptions {
@@ -6,37 +6,30 @@ export interface LogOptions {
   sections: string[];
   users: {
     username: string;
-    _id: ObjectId;
+    _id: UserId;
     email: string;
   }[];
 }
 
-export const log = async (
-  dispositifId: ObjectId,
-  authorId: ObjectId,
-  options?: LogOptions
-) => {
+export const log = async (dispositifId: DispositifId, authorId: UserId, options?: LogOptions) => {
   const { message, sections, users } = options;
 
-  const recipients = users.map((user) => { return user.username; });
+  const recipients = users.map((user) => {
+    return user.username;
+  });
 
   const text = `Envoyé à : ${recipients.join(", ")}<br/>
     <br/>
     ${sections.length} section(s) à revoir : <br/>
-    <ul>${sections.map(s => `<li>${s}</li>`).join("")}</ul>
+    <ul>${sections.map((s) => `<li>${s}</li>`).join("")}</ul>
     Message personnalisé : ${message}<br/>`;
 
-  await addLog(
-    dispositifId,
-    "Dispositif",
-    text,
-    {
-      link: {
-        id: dispositifId,
-        model_link: "Dispositif",
-        next: "ModalImprovements"
-      },
-      author: authorId
-    }
-  );
-}
+  await addLog(dispositifId, "Dispositif", text, {
+    link: {
+      id: dispositifId,
+      model_link: "Dispositif",
+      next: "ModalImprovements"
+    },
+    author: authorId
+  });
+};

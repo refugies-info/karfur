@@ -2,12 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { END } from "redux-saga";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import { ObjectId } from "mongodb";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { debounce } from "lodash";
-import qs from "query-string";
+import debounce from "lodash/debounce";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetDispositifsResponse, Id } from "api-types";
 import { wrapper } from "services/configureStore";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
@@ -21,25 +20,25 @@ import { Results, SearchQuery } from "services/SearchResults/searchResults.reduc
 import { cls } from "lib/classname";
 import { queryDispositifs, queryDispositifsWithAlgolia } from "lib/recherche/queryContents";
 import decodeQuery from "lib/recherche/decodeUrlQuery";
+import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { isHomeSearchVisible } from "lib/recherche/isHomeSearchVisible";
 import { getDepartmentsNotDeployed } from "lib/recherche/functions";
 import { generateLightResults } from "lib/recherche/generateLightResults";
 import isInBrowser from "lib/isInBrowser";
-import { SearchDispositif } from "types/interface";
 import SEO from "components/Seo";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import SearchHeader from "components/Pages/recherche/SearchHeader";
 import HomeSearch from "components/Pages/recherche/HomeSearch";
 import NewSearchModal from "components/Modals/NewSearchModal/NewSearchModal";
-import { getPath } from "routes";
+import { getPath, isRoute } from "routes";
 import styles from "scss/pages/recherche.module.scss";
 
 export type UrlSearchQuery = {
   departments?: string | string[];
-  needs?: string | ObjectId[];
-  themes?: string | ObjectId[];
+  needs?: string | Id[];
+  themes?: string | Id[];
   age?: string | AgeOptions[];
   frenchLevel?: string | FrenchOptions[];
   language?: string | string[];
@@ -51,10 +50,10 @@ export type UrlSearchQuery = {
 const MODAL_STORAGE_KEY = "hideNewModal";
 
 const debouncedQuery = debounce(
-  (query: SearchQuery, dispositifs: SearchDispositif[], locale: string, callback: (res: Results) => void) => {
+  (query: SearchQuery, dispositifs: GetDispositifsResponse[], locale: string, callback: (res: Results) => void) => {
     return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res: Results) => callback(res));
   },
-  500
+  500,
 );
 
 const Recherche = () => {
@@ -77,6 +76,18 @@ const Recherche = () => {
     localStorage.setItem(MODAL_STORAGE_KEY, "true");
   }, [setShowModal]);
 
+  // when navigating, save state to prevent loop on search page
+  const [isNavigating, setIsNavigating] = useState(false);
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (!isRoute(url, "/recherche")) setIsNavigating(true);
+    };
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [router]);
+
   useEffect(() => {
     // toggle home screen
     setShowHome(isHomeSearchVisible(query));
@@ -85,29 +96,31 @@ const Recherche = () => {
     const updateUrl = () => {
       const locale = router.locale;
       const oldQueryString = router.asPath.split("?")[1] || "";
-      const newQueryString = qs.stringify({ ...query }, { arrayFormat: "comma", sort: (a, b) => a.localeCompare(b) });
+      const newQueryString = buildUrlQuery(query);
       if (oldQueryString !== newQueryString) {
         router.push(
           {
             pathname: getPath("/recherche", router.locale),
-            search: newQueryString
+            search: newQueryString,
           },
           undefined,
-          { locale: locale, shallow: true }
+          { locale: locale, shallow: true },
         );
       }
     };
 
     // query dispositifs
-    debouncedQuery(query, dispositifs, languei18nCode, (res) => {
-      updateUrl();
-      dispatch(setSearchResultsActionCreator(res));
-    });
-  }, [query, dispositifs, dispatch, router, languei18nCode]);
+    if (!isNavigating) {
+      debouncedQuery(query, dispositifs, languei18nCode, (res) => {
+        updateUrl();
+        dispatch(setSearchResultsActionCreator(res));
+      });
+    }
+  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode]);
 
   // check if department deployed
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
-    getDepartmentsNotDeployed(query.departments, dispositifs)
+    getDepartmentsNotDeployed(query.departments, dispositifs),
   );
   useEffect(() => {
     setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
@@ -156,8 +169,8 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
-    }
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+    },
   };
 });
 

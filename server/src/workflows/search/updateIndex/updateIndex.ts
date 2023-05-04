@@ -1,4 +1,8 @@
-import { RequestFromClient, Res, AlgoliaObject } from "../../../types/interface";
+import { UpdateIndexResponse } from "@refugies-info/api-types";
+
+import { Langue } from "../../../typegoose";
+
+import { AlgoliaObject, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 import { getNeedsFromDB } from "../../../modules/needs/needs.repository";
@@ -7,9 +11,6 @@ import { updateAlgoliaIndex } from "../../../modules/search/search.service";
 import { getAllAlgoliaObjects } from "../../../connectors/algolia/updateAlgoliaData";
 import { formatForAlgolia } from "../../../libs/formatForAlgolia";
 import { getAllThemes } from "../../../modules/themes/themes.repository";
-
-interface Query {
-}
 
 const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
   const neededFields = {
@@ -24,55 +25,34 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
     webOnly: 1,
   };
 
-  const contentsArray = await getActiveContentsFiltered(
-    neededFields,
-    { status: "Actif" }
-  );
-  //@ts-ignore
+  const contentsArray = await getActiveContentsFiltered(neededFields, { status: "Actif" });
   return contentsArray.map((content) => formatForAlgolia(content, [], "dispositif"));
-}
+};
 
-const getNeedsForAlgolia = async (): Promise<AlgoliaObject[]> => {
+const getNeedsForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
   const needs = await getNeedsFromDB();
-  const activeLanguages = await getActiveLanguagesFromDB();
   //@ts-ignore
   return needs.map((content) => formatForAlgolia(content, activeLanguages, "need"));
-}
+};
 
-const getThemesForAlgolia = async (): Promise<AlgoliaObject[]> => {
+const getThemesForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
   const themes = await getAllThemes();
-  const activeLanguages = await getActiveLanguagesFromDB();
   return themes.map((theme) => formatForAlgolia(theme, activeLanguages, "theme"));
-}
+};
 
-// REQUEST
-export const updateIndex = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
-  try {
-    logger.info("[updateIndex] received");
+export const updateIndex = async (): ResponseWithData<UpdateIndexResponse> => {
+  logger.info("[updateIndex] received");
+  const activeLanguages = await getActiveLanguagesFromDB();
+  const themes = await getThemesForAlgolia(activeLanguages);
+  const needs = await getNeedsForAlgolia(activeLanguages);
+  const dispositifs = await getDispositifsForAlgolia();
+  const localContents = [...themes, ...needs, ...dispositifs];
 
-    const themes = await getThemesForAlgolia();
-    const needs = await getNeedsForAlgolia();
-    const dispositifs = await getDispositifsForAlgolia();
-    const localContents = [
-      ...themes,
-      ...needs,
-      ...dispositifs
-    ];
+  const algoliaContents = await getAllAlgoliaObjects();
+  const result = await updateAlgoliaIndex(localContents, algoliaContents);
 
-    const algoliaContents = await getAllAlgoliaObjects();
-    const result = await updateAlgoliaIndex(localContents, algoliaContents);
-
-    res.status(200).json({
-      text: "Succès",
-      result
-    });
-  } catch (error) {
-    logger.error("[updateIndex] error", {
-      error: error.message,
-    });
-    res.status(500).json({ text: "KO" });
-  }
+  return {
+    text: "success",
+    data: result,
+  };
 };

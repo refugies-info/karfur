@@ -8,15 +8,10 @@ import { fetchUserActionCreator } from "services/User/user.actions";
 import styled from "styled-components";
 import { colors } from "colors";
 
-import {
-  fetchLanguesActionCreator,
-  toggleLangueActionCreator,
-  toggleLangueModalActionCreator
-} from "services/Langue/langue.actions";
+import { fetchLanguesActionCreator, toggleLangueModalActionCreator } from "services/Langue/langue.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { showLangModalSelector, allLanguesSelector } from "services/Langue/langue.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import { Gauge } from "components/UI/Gauge/Gauge";
 import LanguageBtn from "components/UI/LanguageBtn/LanguageBtn";
@@ -27,12 +22,13 @@ import UsernameField from "components/Pages/register/UsernameField";
 import EmailField from "components/Pages/register/EmailField";
 import Footer from "components/Pages/register/Footer";
 import API from "utils/API";
-import setAuthToken from "utils/setAuthToken";
+import { setAuthToken } from "utils/authToken";
 import { logger } from "logger";
 import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { getPath, PathNames } from "routes";
+import { LoginRequest } from "api-types";
+import { useChangeLanguage } from "hooks";
 
 const StyledHeader = styled.h4`
   font-weight: 600;
@@ -90,51 +86,35 @@ const Register = () => {
     setPseudoAlreadyTaken(false);
   };
 
-  const changeLanguage = (lng: string) => {
-    dispatch(toggleLangueActionCreator(lng));
-    const { pathname, query } = router;
-    router.push(
-      {
-        pathname: getPath(pathname as PathNames, lng),
-        query
-      },
-      undefined,
-      { locale: lng }
-    );
-
+  const { changeLanguage } = useChangeLanguage();
+  const changeLanguageCallback = (lng: string) => {
+    changeLanguage(lng, "push");
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
   };
 
-  /**
-   * Codes returned by login when register
-   * 401 : weak password
-   * 403 : user creation not possible from api
-   * 500 : internal error
-   * 200: ok
-   */
   const login = () => {
-    const user = {
+    const user: LoginRequest = {
       username,
       password,
-      email
+      email,
     };
     logger.info("[Register] register attempt for user", {
       username: user.username,
-      email: user.email
+      email: user.email,
     });
     API.login(user)
       .then((data) => {
-        const token = data.data.token;
+        const token = data.data.data.token;
         logger.info("[Register] user successfully registered", {
-          username: user.username
+          username: user.username,
         });
         Swal.fire({
           title: "Yay...",
           text: t("Authentification réussie !", "Authentification réussie !"),
           icon: "success",
-          timer: 1500
+          timer: 1500,
         }).then(() => {
           const { query } = router;
           if (query.redirect) {
@@ -144,16 +124,15 @@ const Register = () => {
           }
         });
 
-        localStorage.setItem("token", token);
         setAuthToken(token);
         dispatch(fetchUserActionCreator());
       })
       .catch((e) => {
         logger.error("[Register] error while registering", {
           username: user.username,
-          error: e
+          error: e,
         });
-        if (e.response.status === 401) {
+        if (e.response?.data?.code === "PASSWORD_TOO_WEAK") {
           setWeakPasswordError(true);
           setStep(1);
         } else {
@@ -172,25 +151,20 @@ const Register = () => {
           title: "Oops...",
           text: "Aucun nom d'utilisateur n'est renseigné !",
           icon: "error",
-          timer: 1500
+          timer: 1500,
         });
         return;
       }
-      API.checkUserExists({ username: username }).then((data) => {
-        logger.info("[Register] check if pseudo already exists", { username });
-        const userExists = data.status === 200;
-        // if user, go to next step (password)
-        if (userExists) {
-          logger.info("[Register] pseudo already exists", {
-            username: username
-          });
+      API.checkUserExists(username)
+        .then(() => {
+          logger.info("[Register] check if pseudo already exists", { username });
+          logger.info("[Register] pseudo already exists", { username });
           setPseudoAlreadyTaken(true);
-        } else {
+        })
+        .catch(() => {
           logger.info("[Register] pseudo available", { username });
-          // if no user: display error
           setStep(1);
-        }
-      });
+        });
     } else if (step === 1) {
       // password check
       if (password.length === 0) {
@@ -198,7 +172,7 @@ const Register = () => {
           title: "Oops...",
           text: "Aucun mot de passe n'est renseigné !",
           icon: "error",
-          timer: 1500
+          timer: 1500,
         });
         return;
       }
@@ -209,7 +183,7 @@ const Register = () => {
       if (email) {
         logger.info("[Register] checking email", {
           username: username,
-          email: email
+          email: email,
         });
         // if there is an email, check that the string is an email
         const regex = /^\S+@\S+\.\S+$/;
@@ -334,7 +308,7 @@ const Register = () => {
           show={showLangModal}
           currentLanguage={router.locale || "fr"}
           toggle={() => dispatch(toggleLangueModalActionCreator())}
-          changeLanguage={changeLanguage}
+          changeLanguage={changeLanguageCallback}
           languages={langues}
           isLanguagesLoading={isLanguagesLoading}
         />

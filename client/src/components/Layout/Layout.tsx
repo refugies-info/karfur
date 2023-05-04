@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isMobileOnly } from "react-device-detect";
 import { useRouter } from "next/router";
+import { useIsDark } from "@codegouvfr/react-dsfr/useIsDark";
 
 // actions
 import {
   fetchLanguesActionCreator,
   toggleLangueModalActionCreator,
-  toggleLangueActionCreator
+  toggleLangueActionCreator,
 } from "services/Langue/langue.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 
@@ -24,14 +25,10 @@ import { readAudio, stopAudio } from "lib/readAudio";
 import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
-import useRTL from "hooks/useRTL";
+import { useChangeLanguage, useRTL } from "hooks";
 import locale from "utils/locale";
-import { getPath, PathNames } from "routes";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
-import { BookmarkedModal } from "components/Modals";
-import { isFavoriteModalVisibleSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
-import { toggleUserFavoritesModalActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import styles from "./Layout.module.scss";
 import AppLoader from "./AppLoader";
@@ -47,27 +44,15 @@ const Layout = (props: Props) => {
   const isRTL = useRTL();
   const dispatch = useDispatch();
   const router = useRouter();
+  const { setIsDark } = useIsDark();
+  setIsDark(false);
 
   const ttsActive = useSelector(ttsActiveSelector);
   const showLangModal = useSelector(showLangModalSelector);
 
-  const changeLanguage = (lng: string) => {
-    dispatch(toggleLangueActionCreator(lng));
-
-    const { pathname, query } = router;
-    router
-      .replace(
-        {
-          pathname: getPath(pathname as PathNames, lng),
-          query
-        },
-        undefined,
-        { locale: lng }
-      )
-      .then(() => {
-        setLanguageLoaded(true);
-      });
-
+  const { changeLanguage } = useChangeLanguage();
+  const changeLanguageCallback = (lng: string) => {
+    changeLanguage(lng, "replace", () => setLanguageLoaded(true));
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
@@ -81,7 +66,7 @@ const Layout = (props: Props) => {
     // Language popup
     const storedLanguei18nCode = locale.getFromCache();
     if (storedLanguei18nCode && storedLanguei18nCode !== "fr" && storedLanguei18nCode !== router.locale) {
-      changeLanguage(storedLanguei18nCode);
+      changeLanguageCallback(storedLanguei18nCode);
     } else if (!storedLanguei18nCode) {
       if (!showLangModal) {
         dispatch(toggleLangueModalActionCreator());
@@ -162,14 +147,12 @@ const Layout = (props: Props) => {
         : e?.target?.textContent || null;
 
       if (sentence) {
-        readAudio(sentence, router.locale, null, false, ttsActive, (val: boolean) => dispatch(toggleSpinner(val)));
+        readAudio(sentence, router.locale, null, ttsActive, (val: boolean) => dispatch(toggleSpinner(val)));
       } else {
         stopAudio();
       }
     }
   };
-
-  const isFavoriteModalVisible = useSelector(isFavoriteModalVisibleSelector);
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
@@ -184,18 +167,11 @@ const Layout = (props: Props) => {
         show={showLangModal}
         currentLanguage={router.locale || "fr"}
         toggle={() => dispatch(toggleLangueModalActionCreator())}
-        changeLanguage={changeLanguage}
+        changeLanguage={changeLanguageCallback}
         languages={langues}
         isLanguagesLoading={isLanguagesLoading}
       />
       <MobileAppModal show={!!showMobileModal} toggle={toggleMobileAppModal} />
-      <BookmarkedModal
-        success={!!user}
-        show={isFavoriteModalVisible}
-        toggle={() => {
-          dispatch(toggleUserFavoritesModalActionCreator(!isFavoriteModalVisible));
-        }}
-      />
       <SubscribeNewsletterModal />
     </div>
   );

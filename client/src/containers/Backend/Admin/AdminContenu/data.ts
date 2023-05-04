@@ -1,5 +1,6 @@
 import { colors } from "colors";
 import { ContentStatus, ProgressionStatus } from "types/interface";
+import { DispositifStatus } from "api-types";
 
 type TableContenu = {
   title: string
@@ -63,55 +64,48 @@ const lightGreen = "#8BC34A";
 
 export const correspondingStatus: ContentStatus[] = [
   {
-    storedStatus: "Actif",
+    storedStatus: DispositifStatus.ACTIVE,
     displayedStatus: "Publié",
     color: green,
     order: 5
   },
   {
-    storedStatus: "En attente",
+    storedStatus: DispositifStatus.WAITING_STRUCTURE,
     displayedStatus: "En attente",
     color: orange,
     order: 1,
     textColor: colors.white,
   },
   {
-    storedStatus: "Brouillon",
+    storedStatus: DispositifStatus.DRAFT,
     displayedStatus: "Brouillon",
     color: yellow,
     order: 3,
     textColor: colors.gray90,
   },
   {
-    storedStatus: "En attente non prioritaire",
-    displayedStatus: "Sans structure",
-    color: red,
-    order: 4,
-    textColor: colors.white,
-  },
-  {
-    storedStatus: "Rejeté structure",
+    storedStatus: DispositifStatus.KO_STRUCTURE,
     displayedStatus: "Rejeté",
     color: red,
     order: 6,
     textColor: colors.white,
   },
   {
-    storedStatus: "En attente admin",
+    storedStatus: DispositifStatus.WAITING_ADMIN,
     displayedStatus: "À valider",
     color: lightGreen,
     order: 0,
     textColor: colors.white,
   },
   {
-    storedStatus: "Accepté structure",
+    storedStatus: DispositifStatus.OK_STRUCTURE,
     displayedStatus: "Accepté",
     color: orange,
     order: 2,
     textColor: colors.white,
   },
   {
-    storedStatus: "Supprimé",
+    storedStatus: DispositifStatus.DELETED,
     displayedStatus: "Supprimé",
     color: red,
     order: 7,

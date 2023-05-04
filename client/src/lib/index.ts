@@ -1,7 +1,7 @@
-export const jsUcfirst = (string: string) =>
+export const jsUcfirst = (string: string | null | undefined) =>
   string &&
   string.length > 1 &&
-  string.charAt(0).toUpperCase() + string.slice(1, string.length);
+  string.charAt(0).toUpperCase() + string.slice(1, string.length) || "";
 
 export const jsLcfirst = (string: string) =>
   string &&

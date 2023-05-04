@@ -1,0 +1,19 @@
+/* Set size for EVA Icon and remixicons */
+@mixin iconSize($size) {
+  i {
+    line-height: $size !important;
+    height: $size !important;
+    svg {
+      width: $size !important;
+      height: $size !important;
+    }
+  }
+  :global(.ri-lg) {
+    font-size: $size;
+    line-height: $size;
+  }
+  &::before {
+    width: $size;
+    height: $size;
+  }
+}

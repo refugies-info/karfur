@@ -1,5 +1,4 @@
-import { ObjectId } from "mongodb";
-import { Need, Theme } from "types/interface";
+import { GetNeedResponse, GetThemeResponse, Id } from "api-types";
 
 /**
  * Get themes from selected needs
@@ -7,19 +6,19 @@ import { Need, Theme } from "types/interface";
  * @param allNeeds - all needs
  * @returns - themes and needs
  */
-export const getThemesFromNeeds = (needsSelected: ObjectId[], allNeeds: Need[]): { themes: ObjectId[]; needs: ObjectId[] } => {
-  const needs = needsSelected.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as Need[];
+export const getThemesFromNeeds = (needsSelected: Id[], allNeeds: GetNeedResponse[]): { themes: Id[]; needs: Id[] } => {
+  const needs = needsSelected.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as GetNeedResponse[];
 
   // get all themes displayed
-  const themesDisplayed: Theme[] = [];
+  const themesDisplayed: GetThemeResponse[] = [];
   for (const need of needs) {
     if (need.theme && !themesDisplayed.find((t) => t._id === need.theme._id)) {
-      themesDisplayed.push(need.theme);
+      themesDisplayed.push({ ...need.theme, active: true });
     }
   }
 
   // for each theme displayed, if all needs selected, set theme selected
-  const themesSelected: ObjectId[] = [];
+  const themesSelected: Id[] = [];
   for (const themeDisplayed of themesDisplayed) {
     const totalNeedsOfTheme = allNeeds.filter((n) => n.theme._id === themeDisplayed._id).length;
     const countNeedsOfThemeSelected = needs.filter((n) => n.theme._id === themeDisplayed._id).length;
@@ -40,8 +39,8 @@ export const getThemesFromNeeds = (needsSelected: ObjectId[], allNeeds: Need[]):
  * @param allNeeds - all needs
  * @returns - need ids
  */
-export const getNeedsFromThemes = (themesSelected: ObjectId[], allNeeds: Need[]): ObjectId[] => {
-   return allNeeds
-     .filter(need => themesSelected.includes(need.theme._id))
-     .map(n => n._id);
+export const getNeedsFromThemes = (themesSelected: Id[], allNeeds: GetNeedResponse[]): Id[] => {
+  return allNeeds
+    .filter(need => themesSelected.includes(need.theme._id))
+    .map(n => n._id);
 };

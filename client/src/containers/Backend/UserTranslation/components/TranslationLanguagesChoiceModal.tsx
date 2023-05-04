@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Modal } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
 import { useSelector, useDispatch } from "react-redux";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { userSelector } from "services/User/user.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { Language, UserLanguage } from "types/interface";
 import { saveUserActionCreator } from "services/User/user.actions";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-// import { ObjectId } from "mongodb";
 import styles from "./TranslationLanguagesChoiceModal.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
+import { GetLanguagesResponse, Id } from "api-types";
+import { useLanguages } from "hooks";
+import isUndefined from "lodash/isUndefined";
 
 const Header = styled.div`
   font-weight: bold;
@@ -78,20 +78,26 @@ interface Props extends RouteComponentProps {
   toggle: () => void;
 }
 
-const LangueItem = (props: { langue: Language; isSelected: boolean; onClick: () => void }) => (
-  <LangueItemContainer isSelected={props.isSelected} onClick={props.onClick}>
+interface LangueItemProps {
+  langue: GetLanguagesResponse;
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+const LangueItem = ({ langue, isSelected, onClick }: LangueItemProps) => (
+  <LangueItemContainer isSelected={isSelected} onClick={onClick}>
     <div
       style={{
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
       }}
     >
       <div className="me-2">
-        <span title={props.langue.langueCode} className={" fi fi-" + props.langue.langueCode} />
+        <span title={langue.langueCode} className={" fi fi-" + langue.langueCode} />
       </div>
-      {props.langue.langueFr === "Persan" ? "Persan/Dari" : props.langue.langueFr}
+      {langue.langueFr === "Persan" ? "Persan/Dari" : langue.langueFr}
     </div>
-    <CheckBoxContainer isSelected={props.isSelected}>
+    <CheckBoxContainer isSelected={isSelected}>
       <div style={{ position: "absolute", bottom: "-2px" }}>
         <EVAIcon name="checkmark-outline" />
       </div>
@@ -100,9 +106,9 @@ const LangueItem = (props: { langue: Language; isSelected: boolean; onClick: () 
 );
 
 const TranslationLanguagesChoiceModalComponent = (props: Props) => {
-  const [selectedLangues, setSelectedLangues] = useState<UserLanguage[]>([]);
+  const [selectedLangues, setSelectedLangues] = useState<string[]>([]);
 
-  const langues = useSelector(allLanguesSelector);
+  const { langues, userTradLanguages } = useLanguages();
   const user = useSelector(userSelector);
   const isLoadingLangues = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
   const isLoadingUser = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
@@ -112,11 +118,8 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   const routerLocale = useRouterLocale();
 
   useEffect(() => {
-    const selectedLanguages = user?.user?.selectedLanguages;
-    if (selectedLanguages && selectedLanguages.length > 0) {
-      setSelectedLangues(selectedLanguages);
-    }
-  }, [isLoading, user]);
+    setSelectedLangues(userTradLanguages.map((t) => t.toString()));
+  }, [userTradLanguages]);
 
   if (isLoading)
     return (
@@ -143,23 +146,15 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
       </Modal>
     );
 
-  const handleCheck = (langue: Language) => {
-    const isLangueSelected = !!selectedLangues.find((selectedLangue) => selectedLangue._id === langue._id);
+  const handleCheck = (langue: GetLanguagesResponse) => {
+    const isLangueSelected = !!selectedLangues.find((selectedLangue) => selectedLangue === langue._id);
 
     if (isLangueSelected) {
-      return setSelectedLangues(selectedLangues.filter((selectedLangue) => selectedLangue._id !== langue._id));
+      return setSelectedLangues(selectedLangues.filter((selectedLangue) => selectedLangue !== langue._id));
     }
 
     if (!isLangueSelected) {
-      const newSelectedLangue: UserLanguage = {
-        //@ts-ignore
-        _id: langue._id,
-        i18nCode: langue.i18nCode,
-        langueCode: langue.langueCode,
-        langueFr: langue.langueFr,
-        langueLoc: langue.langueLoc
-      };
-      setSelectedLangues([...selectedLangues, newSelectedLangue]);
+      setSelectedLangues([...selectedLangues, langue._id]);
     }
   };
 
@@ -168,18 +163,19 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   const onValidate = () => {
     if (!user || !user.user) return;
     dispatch(
-      saveUserActionCreator({
+      saveUserActionCreator(user.user._id, {
         user: {
           selectedLanguages: selectedLangues,
-          _id: user.user._id
         },
-        type: "modify-my-details"
-      })
+        action: "modify-my-details",
+      }),
     );
 
     props.toggle();
-    return props.history.push(routerLocale + "/backend/user-translation/" + selectedLangues[0].i18nCode);
+    const firstLangue = langues.find((langue) => langue._id === selectedLangues[0]);
+    return props.history.push(routerLocale + "/backend/user-translation/" + firstLangue?.i18nCode);
   };
+
   return (
     <Modal
       isOpen={props.show}
@@ -194,8 +190,9 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
         {langues
           .filter((langue) => langue.i18nCode !== "fr")
           .map((langue) => {
-            const isLangueSelected =
-              selectedLangues.filter((selectedLangue) => selectedLangue._id === langue._id).length > 0;
+            const isLangueSelected = !isUndefined(
+              selectedLangues.find((selectedLangue) => selectedLangue === langue._id),
+            );
             return (
               <LangueItem
                 langue={langue}

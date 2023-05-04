@@ -1,2 +1,1 @@
-import getNotificationsSettings from "./getNotificationsSettings";
-export default getNotificationsSettings;
+export * from "./getNotificationsSettings";

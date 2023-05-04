@@ -1,1 +1,1 @@
-export { getContentById } from "./getContentById";
+export * from "./getContentById";

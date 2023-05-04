@@ -1,30 +1,13 @@
-import { celebrate, Joi, Segments } from "celebrate";
-import { Request, Response } from "express";
+import { Response } from "../../../types/interface";
 import logger from "../../../logger";
-
 import { markNotificationAsSeen } from "../../../modules/notifications/notifications.service";
+import { MarkAsSeenRequest } from "@refugies-info/api-types";
 
-const validator = celebrate({
-  [Segments.HEADERS]: Joi.object({
-    "x-app-uid": Joi.string()
-      .required()
-      .regex(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i)
-  }).unknown(),
-  [Segments.BODY]: Joi.object({
-    notificationId: Joi.string().required()
-  })
-});
-
-const handler = async (req: Request, res: Response) => {
+export const markAsSeen = async (appUid: string, body: MarkAsSeenRequest): Response => {
   logger.info("[markAsSeen] received");
-  const uid = req.headers["x-app-uid"];
-  const { notificationId } = req.body;
 
-  const success = await markNotificationAsSeen(notificationId, uid as string);
+  const success = await markNotificationAsSeen(body.notificationId, appUid);
+  if (!success) throw new Error("Unexpected error");
 
-  res.status(200).json({
-    error: !success
-  });
+  return { text: "success" };
 };
-
-export default [validator, handler];

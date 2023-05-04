@@ -1,1 +1,1 @@
-export { default } from "./NavbarDSFR";
+export { default } from "./NavbarDSFRNew";

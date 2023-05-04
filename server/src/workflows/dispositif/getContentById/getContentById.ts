@@ -1,85 +1,115 @@
-import { RequestFromClient, Res } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
-import { getDispositifByIdWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { getDispositifById, getDraftDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { NotFoundError } from "../../../errors";
+import pick from "lodash/pick";
+import { ContentStructure, GetDispositifResponse, Languages, SimpleUser, Sponsor } from "@refugies-info/api-types";
+import { getRoles } from "../../../modules/role/role.repository";
+import { Role, User } from "../../../typegoose";
+import { isUserAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 
-import { ObjectId } from "mongoose";
-import { DispositifPopulatedMainSponsorDoc } from "../../../schema/schemaDispositif";
-import {
-  turnToLocalized,
-  turnJSONtoHTML,
-} from "../../../controllers/dispositif/functions";
+const getRoleName = (id: string, roles: Role[]) => roles.find((r) => r._id.toString() === id.toString())?.nom || "";
+const getMetadatas = (metadatas: GetDispositifResponse["metadatas"]): GetDispositifResponse["metadatas"] => {
+  // remove empty metas
+  const newMetas = { ...metadatas };
+  if (Array.isArray(newMetas.frenchLevel) && newMetas.frenchLevel.length === 0) delete newMetas.frenchLevel;
+  if (Array.isArray(newMetas.publicStatus) && newMetas.publicStatus.length === 0) delete newMetas.publicStatus;
+  if (Array.isArray(newMetas.location) && newMetas.location.length === 0) delete newMetas.location;
+  if (Array.isArray(newMetas.public) && newMetas.public.length === 0) delete newMetas.public;
+  if (Array.isArray(newMetas.conditions) && newMetas.conditions.length === 0) delete newMetas.conditions;
+  if (Array.isArray(newMetas.timeSlots) && newMetas.timeSlots.length === 0) delete newMetas.timeSlots;
+  return newMetas;
+};
 
-interface Query {
-  locale: string;
-  contentId: ObjectId;
-}
+export const getContentById = async (id: string, locale: Languages, user?: User | undefined): ResponseWithData<GetDispositifResponse> => {
+  logger.info("[getContentById] called", {
+    locale,
+    id,
+    user: user?._id
+  });
 
-export const getContentById = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
-  try {
-    checkRequestIsFromSite(req.fromSite);
+  const fields = {
+    typeContenu: 1,
+    status: 1,
+    mainSponsor: 1,
+    theme: 1,
+    secondaryThemes: 1,
+    needs: 1,
+    sponsors: 1,
+    participants: 1,
+    merci: 1,
+    translations: 1,
+    metadatas: 1,
+    map: 1,
+    lastModificationDate: 1,
+    externalLink: 1,
+    creatorId: 1,
+    hasDraftVersion: 1
+  };
+  let draftDispositif = null;
+  const originalDispositif = await (
+    await getDispositifById(id, fields)
+  ).populate<{
+    mainSponsor: ContentStructure;
+    sponsors: (ContentStructure | Sponsor)[];
+    participants: SimpleUser[];
+  }>([
+    { path: "mainSponsor", select: "_id nom picture membres" },
+    { path: "sponsors", select: "_id nom picture" },
+    { path: "participants", select: "_id username picture roles" },
+  ]);
+  if (!originalDispositif) throw new NotFoundError("Dispositif not found");
 
-    if (!req.query || !req.query.locale || !req.query.contentId) {
-      throw new Error("INVALID_REQUEST");
-    }
-
-    const { locale, contentId } = req.query;
-
-    logger.info("[getContentById] called", {
-      locale,
-      contentId,
-    });
-
-    const neededFields = {
-      titreInformatif: 1,
-      titreMarque: 1,
-      avancement: 1,
-      contenu: 1,
-      theme: 1,
-      secondaryThemes: 1,
-      typeContenu: 1,
-      externalLink: 1,
-      lastModificationDate: 1,
-      nbVuesMobile: 1,
-      nbFavoritesMobile: 1,
-    };
-
-    // @ts-ignore
-    const content: DispositifPopulatedMainSponsorDoc = await getDispositifByIdWithMainSponsor(
-      contentId,
-      neededFields
-    );
-
-    const sponsor = content.mainSponsor
-      ? { picture: content.mainSponsor.picture, nom: content.mainSponsor.nom }
-      : null;
-
-    // @ts-ignore
-    content.mainSponsor = sponsor;
-
-    turnToLocalized(content, locale);
-    turnJSONtoHTML(content.contenu);
-
-    res.status(200).json({
-      text: "Succès",
-      data: content,
-    });
-  } catch (error) {
-    logger.error("[getContentById] error while getting dispositif", {
-      error: error.message,
-    });
-    switch (error.message) {
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      default:
-        return res.status(500).json({
-          text: "Erreur interne",
-        });
-    }
+  // if user logged in, and allowed to edit, load draft version instead
+  const dispositifForAccessCheck = await getDispositifById( // TODO: improve that
+    id, { mainSponsor: 1, creatorId: 1, status: 1 }, "mainSponsor",
+  );
+  if (user && isUserAuthorizedToModifyDispositif(dispositifForAccessCheck, user) && !!originalDispositif.hasDraftVersion) {
+    draftDispositif = await (
+      await getDraftDispositifById(id, fields)
+    ).populate<{
+      mainSponsor: ContentStructure;
+      sponsors: (ContentStructure | Sponsor)[];
+      participants: SimpleUser[];
+    }>([
+      { path: "mainSponsor", select: "_id nom picture" },
+      { path: "sponsors", select: "_id nom picture" },
+      { path: "participants", select: "_id username picture roles" },
+    ]);
   }
+
+  const dispositif = draftDispositif || originalDispositif;
+  const dataLanguage = dispositif.isTranslatedIn(locale) ? locale : "fr";
+
+  const allRoles = await getRoles();
+  const participantsWithRoles = dispositif.participants.map((p) => ({
+    ...pick(p, ["_id", "username", "picture"]),
+    roles: p.roles.filter((r) => !!r).map((r) => getRoleName(r, allRoles)),
+  }));
+
+  const dispositifObject = dispositif.toObject();
+  const response: GetDispositifResponse = {
+    _id: dispositifObject._id,
+    ...dispositifObject.translations[dataLanguage].content,
+    participants: participantsWithRoles,
+    metadatas: getMetadatas(dispositifObject.metadatas),
+    availableLanguages: Object.keys(dispositifObject.translations),
+    date: dispositifObject.translations[dataLanguage].created_at || dispositifObject.lastModificationDate,
+    hasDraftVersion: !!draftDispositif,
+    ...pick(dispositif, [
+      "typeContenu",
+      "lastModificationDate",
+      "mainSponsor",
+      "map",
+      "merci",
+      "needs",
+      "secondaryThemes",
+      "sponsors",
+      "status",
+      "theme",
+      "externalLink",
+    ]),
+  };
+
+  return { text: "success", data: response };
 };

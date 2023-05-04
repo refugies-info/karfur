@@ -1,7 +1,6 @@
 import { Moment } from "moment";
-import { ThemeDoc } from "../../schema/schemaTheme";
 
-export const theme: ThemeDoc = {
+export const theme = {
   //@ts-ignore
   _id: "theme1",
   short: {

@@ -1,15 +1,15 @@
-import { SimplifiedUser } from "types/interface";
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import marioProfile from "assets/mario-profile.jpg";
+import { GetActiveUsersResponse } from "api-types";
 
 interface Props {
-  user: SimplifiedUser;
+  user: GetActiveUsersResponse;
   isSelected: boolean;
-  onSelectItem: (data: SimplifiedUser) => void;
+  onSelectItem: (data: GetActiveUsersResponse) => void;
 }
 
 const UserDetailContainer = styled.div`

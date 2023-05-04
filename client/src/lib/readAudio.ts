@@ -1,7 +1,8 @@
 import API from "utils/API";
 
 let audio: HTMLAudioElement | null;
-if(typeof Audio !== "undefined") { // for browsers
+if (typeof Audio !== "undefined") {
+  // for browsers
   audio = new Audio();
 }
 
@@ -9,47 +10,38 @@ const readAudio = function (
   text: string,
   locale: string = "fr-fr",
   callback: any = null,
-  inDispositif: boolean = false,
   isActive: boolean = true,
-  startLoader: any = () => {}
+  startLoader: any = () => { },
 ) {
   if (!text || text === "null") return;
-  !inDispositif && startLoader(true);
+  startLoader(true);
   API.cancel_tts_subscription();
-  return API.get_tts({ text, locale })
-    .then((data) => {
+  return API.getTts({ text, locale })
+    .then((audioData) => {
       if (!audio) return;
-      let audioData = data.data.data;
       audio.pause();
       audio.currentTime = 0;
 
       try {
-        var len = audioData.length;
-        var buf = new ArrayBuffer(len);
-        var view = new Uint8Array(buf);
-        for (var i = 0; i < len + 10; i++) {
-          view[i] = audioData.charCodeAt(i) & 0xff;
-        }
-        var blob = new Blob([view], { type: "audio/wav" });
-        //@ts-ignore
-        var url = window.URL.createObjectURL(blob);
-        audio.src = url;
+        var blob = new Blob([audioData], { type: "audio/wav" });
+        var blobUrl = window.URL.createObjectURL(blob);
+        audio.src = blobUrl;
         audio.onended = function () {
           callback && callback();
         };
         //On ne le joue que si l'audio est toujours activé
-        if (isActive || inDispositif) {
+        if (isActive) {
           audio.load();
-          audio.play().catch(() => {});
+          audio.play().catch(() => { });
         }
-        !inDispositif && startLoader(false);
+        startLoader(false);
         return true;
       } catch (e) {
-        !inDispositif && startLoader(false);
+        startLoader(false);
         return false;
       }
     })
-    .catch(() => {});
+    .catch(() => { });
 };
 
 const stopAudio = function () {
@@ -58,4 +50,20 @@ const stopAudio = function () {
   audio.currentTime = 0;
 };
 
-export { readAudio, stopAudio };
+const pauseAudio = function () {
+  if (!audio) return;
+  audio.pause();
+};
+
+const resumeAudio = function () {
+  if (!audio) return;
+  audio.play();
+};
+
+const changeRate = function (rate: 1 | 2) {
+  if (!audio) return;
+  const customRate = rate === 2 ? 1.5 : rate;
+  audio.playbackRate = customRate;
+};
+
+export { readAudio, stopAudio, pauseAudio, resumeAudio, changeRate };

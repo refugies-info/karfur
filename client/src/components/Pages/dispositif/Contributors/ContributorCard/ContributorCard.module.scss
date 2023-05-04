@@ -1,0 +1,47 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+
+.container {
+  background: $darkBackgroundElevationContrast;
+  width: 152px;
+  height: 212px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: u(4);
+  border-radius: u(2);
+}
+
+.username {
+  height: u(12);
+  margin-top: u(2);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.role {
+  @include dsfr-text("small");
+  margin-top: u(2);
+  color: white;
+  background: $darkBackgroundContrastGrey;
+  padding: u(1) u(3);
+  border-radius: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.image {
+  width: u(22);
+  height: u(22);
+  flex-shrink: 0;
+
+  &.profile {
+    border: 4px solid white;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}

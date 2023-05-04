@@ -1,0 +1,72 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/input";
+
+.choice {
+  padding: u(2);
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: u(2);
+  align-items: center;
+  width: 100%;
+
+  &.has_image,
+  &.lg {
+    border: 1px solid $lightBorderDefaultGrey;
+    padding-right: u(6);
+    padding-left: u(6);
+  }
+
+  &.has_image {
+    padding-top: u(4);
+    padding-bottom: u(4);
+
+    &.sm {
+      padding-top: u(1);
+      padding-bottom: u(1);
+    }
+  }
+
+  &.lg {
+    padding-top: u(3);
+    padding-bottom: u(3);
+  }
+
+  .text,
+  .subtext {
+    text-align: left;
+    flex: auto;
+  }
+  .subtext {
+    display: block;
+    @include dsfr-text("very-small");
+    color: $lightTextMentionGrey;
+  }
+
+  &:hover {
+    background: $lightBackgroundElevationAlt;
+  }
+
+  &.selected {
+    background: $lightBackgroundActionLowBlueFrance;
+    border-color: $lightBackgroundActionLowBlueFrance;
+    color: $lightTextActionHighBlueFrance;
+
+    .subtext {
+      color: $lightTextActionHighBlueFrance;
+    }
+
+    &:hover {
+      background: $lightBackgroundActionLowBlueFrance;
+
+      &.has_image,
+      &.lg {
+        border-color: $lightTextActionHighBlueFrance;
+      }
+    }
+  }
+}

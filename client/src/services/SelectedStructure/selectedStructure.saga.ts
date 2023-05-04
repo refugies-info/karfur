@@ -14,6 +14,8 @@ import {
   updateSelectedStructureActionCreator
 } from "./selectedStructure.actions";
 import { selectedStructureSelector } from "./selectedStructure.selector";
+import { APIResponse } from "types/interface";
+import { GetStructureResponse, PatchStructureRequest } from "api-types";
 
 export function* fetchSelectedStructure(
   action: ReturnType<typeof fetchSelectedStructureActionCreator>
@@ -22,7 +24,7 @@ export function* fetchSelectedStructure(
     const { id, locale } = action.payload;
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
     logger.info("[fetchSelectedStructure] fetching structure", { id, locale });
-    const data = yield call(API.getStructureById, id, true, locale, true);
+    const data: APIResponse<GetStructureResponse> = yield call(API.getStructureById, id, locale);
     yield put(setSelectedStructureActionCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
   } catch (error) {
@@ -40,19 +42,20 @@ export function* updateSelectedStructure(
   try {
     yield put(startLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE));
     logger.info("[updateSelectedStructure] updating user structure");
-    let structureId;
-    const structure = yield select(selectedStructureSelector);
-    structureId = structure._id;
+    const structure: GetStructureResponse = yield select(selectedStructureSelector);
+    const structureId = structure._id;
     if (!structure) {
       logger.info("[updateSelectedStructure] no structure to update");
       return;
     }
-    delete structure.membres;
-    yield call(API.updateStructure, { query: structure });
+    const updatedStructure: PatchStructureRequest = { ...structure };
+    // @ts-ignore
+    delete updatedStructure.membres;
+    yield call(API.updateStructure, structureId, updatedStructure);
 
     yield put(
       fetchSelectedStructureActionCreator({
-        id: structureId,
+        id: structureId.toString(),
         locale: action.payload.locale
       })
     );

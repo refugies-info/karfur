@@ -1,6 +1,6 @@
 import { RootState } from "../rootReducer";
-import { SimplifiedStructure } from "../../types/interface";
+import { GetActiveStructuresResponse } from "api-types";
 
 export const activeStructuresSelector = (
   state: RootState
-): SimplifiedStructure[] => state.activeStructures;
+): GetActiveStructuresResponse[] => state.activeStructures;

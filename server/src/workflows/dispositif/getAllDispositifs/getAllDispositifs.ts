@@ -1,113 +1,47 @@
 import logger from "../../../logger";
-import { Res, Picture } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { getDispositifsFromDB } from "../../../modules/dispositif/dispositif.repository";
-import { adaptDispositifMainSponsorAndCreatorId, countDispositifMercis } from "../../../modules/dispositif/dispositif.adapter";
-import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
-import { ObjectId } from "mongoose";
+import pick from "lodash/pick";
+import { GetAllDispositifsResponse } from "@refugies-info/api-types";
 
-interface SponsorMainInfo {
-  _id: ObjectId;
-  nom: string;
-  status: string;
-  picture: Picture;
-}
+export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsResponse[]> => {
+  logger.info("[getAllDispositifs] called");
 
-interface CreatorMainInfo {
-  username: string;
-  picture: Picture;
-  _id: ObjectId;
-  email: string;
-}
-export interface DispositifMainInfo {
-  titreInformatif: string | Record<string, string>;
-  titreMarque?: string | Record<string, string>;
-  updatedAt: number;
-  status: string;
-  typeContenu: string;
-  created_at: number;
-  publishedAt?: number;
-  adminComments?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
-  lastAdminUpdate?: number;
-  draftReminderMailSentDate?: number;
-  draftSecondReminderMailSentDate?: number;
-  lastModificationDate?: number;
-  mainSponsor?: SponsorMainInfo;
-  creatorId: CreatorMainInfo;
-  nbMercis: number
-  nbVues: number
-  webOnly?: boolean;
-}
+  const dispositifs: GetAllDispositifsResponse[] = (await getDispositifsFromDB()).map((d) => ({
+    _id: d._id,
+    nbMercis: d.merci.length,
+    hasDraftVersion: !!d.hasDraftVersion,
+    ...pick(d.translations.fr.content, ["titreInformatif", "titreMarque"]),
+    ...pick(d, [
+      "updatedAt",
+      "status",
+      "typeContenu",
+      "creatorId",
+      "created_at",
+      "publishedAt",
+      "publishedAtAuthor",
+      "adminComments",
+      "adminProgressionStatus",
+      "adminPercentageProgressionStatus",
+      "lastAdminUpdate",
+      "draftReminderMailSentDate",
+      "draftSecondReminderMailSentDate",
+      "lastReminderMailSentToUpdateContentDate",
+      "lastModificationDate",
+      "lastModificationAuthor",
+      "needs",
+      "theme",
+      "secondaryThemes",
+      "nbVues",
+      "nbMots",
+      "mainSponsor",
+      "themesSelectedByAuthor",
+      "webOnly",
+    ]),
+  }));
 
-export const getAllDispositifs = async (req: {}, res: Res) => {
-  try {
-    logger.info("[getAllDispositifs] called");
-
-    const neededFields = {
-      titreInformatif: 1,
-      titreMarque: 1,
-      updatedAt: 1,
-      status: 1,
-      typeContenu: 1,
-      created_at: 1,
-      publishedAt: 1,
-      publishedAtAuthor: 1,
-      adminComments: 1,
-      adminProgressionStatus: 1,
-      adminPercentageProgressionStatus: 1,
-      lastAdminUpdate: 1,
-      draftReminderMailSentDate: 1,
-      draftSecondReminderMailSentDate: 1,
-      lastReminderMailSentToUpdateContentDate: 1,
-      lastModificationDate: 1,
-      lastModificationAuthor: 1,
-      needs: 1,
-      theme: 1,
-      secondaryThemes: 1,
-      merci: 1,
-      nbVues: 1,
-      themesSelectedByAuthor: 1,
-      webOnly: 1
-    };
-
-    const dispositifs = await getDispositifsFromDB(neededFields);
-
-    // @ts-ignore
-    const adaptedDispositifs: DispositifMainInfo[] =
-      adaptDispositifMainSponsorAndCreatorId(dispositifs);
-
-    // @ts-ignore
-    const dispositifsResult: DispositifMainInfo[] =
-      countDispositifMercis(adaptedDispositifs);
-
-    const array: string[] = [];
-
-    array.forEach.call(dispositifsResult, (dispositif: DispositifMainInfo) => {
-      turnToLocalizedTitles(dispositif, "fr");
-    });
-
-    res.status(200).json({
-      text: "Succès",
-      data: dispositifsResult,
-    });
-  } catch (error) {
-    logger.error("[getAllDispositifs] error while getting dispositifs", error);
-    switch (error) {
-      case 500:
-        res.status(500).json({
-          text: "Erreur interne",
-        });
-        break;
-      case 404:
-        res.status(404).json({
-          text: "Pas de résultat",
-        });
-        break;
-      default:
-        res.status(500).json({
-          text: "Erreur interne",
-        });
-    }
-  }
+  return {
+    text: "success",
+    data: dispositifs,
+  };
 };

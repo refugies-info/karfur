@@ -1,11 +1,11 @@
 import React from "react";
-import { Theme } from "types/interface";
 import useLocale from "hooks/useLocale";
 import styles from "./TagName.module.scss";
 import ThemeIcon from "../ThemeIcon";
+import { GetThemeResponse } from "api-types";
 
 interface Props {
-  theme: Theme;
+  theme: GetThemeResponse;
   colored?: boolean;
   size?: number;
 }

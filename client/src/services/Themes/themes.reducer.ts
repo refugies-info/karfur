@@ -1,11 +1,11 @@
+import { GetThemeResponse } from "api-types";
 import { createReducer } from "typesafe-actions";
-import { Theme } from "../../types/interface";
 import { ThemesActions } from "./themes.actions";
 
 // separate themes here to avoid filtering at request time and improve perfs
 export type ThemesState = {
-  activeThemes: Theme[],
-  inactiveThemes: Theme[],
+  activeThemes: GetThemeResponse[],
+  inactiveThemes: GetThemeResponse[],
 };
 
 const initialThemesState: ThemesState = {

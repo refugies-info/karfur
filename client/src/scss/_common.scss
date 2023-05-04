@@ -156,3 +156,13 @@ html body {
 .btn-secondary:hover {
   color: $dark;
 }
+
+// Print
+@media print {
+  body {
+    width: 1200px;
+  }
+  .axeptio_mount {
+    display: none;
+  }
+}

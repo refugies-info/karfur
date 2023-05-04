@@ -1,9 +1,8 @@
 import { RootState } from "../rootReducer";
-import { Structure } from "../../types/interface";
-import { ObjectId } from "mongodb";
+import { GetStructureResponse, Id } from "api-types";
 
-export const selectedStructureSelector = (state: RootState): Structure | null =>
+export const selectedStructureSelector = (state: RootState): GetStructureResponse | null =>
   state.selectedStructure;
 
-export const selectedStructureIdSelector = (state: RootState): ObjectId | null =>
+export const selectedStructureIdSelector = (state: RootState): Id | null =>
   state.selectedStructure?._id || null

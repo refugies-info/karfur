@@ -7,10 +7,10 @@
 .btn {
   width: u(8);
   height: u(8);
-  border-radius: 50%;
-  padding: 0;
-  background: $white;
-  border: none;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  background: $white !important;
+  border: none !important;
 
   @include isMobile() {
     display: none !important;

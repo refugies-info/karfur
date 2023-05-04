@@ -6,22 +6,21 @@ import {
   DELETE_WIDGET
 } from "./widgets.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { Widget } from "../../types/interface";
-import { ObjectId } from "mongodb";
+import { GetWidgetResponse, Id, WidgetRequest } from "api-types";
 
 export const fetchWidgetsActionCreator = () => action(GET_WIDGETS);
 
-export const setWidgetsActionCreator = (value: Widget[]) =>
+export const setWidgetsActionCreator = (value: GetWidgetResponse[]) =>
   action(SET_WIDGETS, value);
 
-export const saveWidgetActionCreator = (value: Partial<Widget>) =>
-  action(SAVE_WIDGET, value);
+export const saveWidgetActionCreator = (id: Id, value: Partial<WidgetRequest>) =>
+  action(SAVE_WIDGET, { id, value });
 
-export const createWidgetActionCreator = (value: Partial<Widget>) =>
+export const createWidgetActionCreator = (value: WidgetRequest) =>
   action(CREATE_WIDGET, value);
 
-export const deleteWidgetActionCreator = (value: ObjectId) =>
-    action(DELETE_WIDGET, value);
+export const deleteWidgetActionCreator = (value: Id) =>
+  action(DELETE_WIDGET, value);
 
 const actions = {
   fetchWidgetsActionCreator,

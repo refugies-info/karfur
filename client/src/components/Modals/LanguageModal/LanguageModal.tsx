@@ -4,13 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "next-i18next";
-import { Language } from "types/interface";
 import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { Event } from "lib/tracking";
 import { activatedLanguages } from "data/activatedLanguages";
 import styles from "./LanguageModal.module.scss";
 import { getPath } from "routes";
+import { GetLanguagesResponse } from "api-types";
+import { useEvent } from "hooks";
 
 interface Props {
   show: boolean;
@@ -18,12 +18,13 @@ interface Props {
   currentLanguage: string;
   changeLanguage: (ln: string) => void;
   isLanguagesLoading: boolean;
-  languages: Language[];
+  languages: GetLanguagesResponse[];
 }
 
 const LanguageModal = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const { Event } = useEvent();
 
   const getAvancementTrad = (i18nCode: string) => {
     if (i18nCode === "fr") return 1;

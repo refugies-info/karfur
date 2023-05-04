@@ -11,14 +11,14 @@ jest.mock("next/router", () => require("next-router-mock"));
 
 jest.mock("utils/API", () => ({
   __esModule: true, // this property makes it work
-  default: { updateUser: jest.fn(), changePassword: jest.fn() }
+  default: { updateUser: jest.fn(), updatePassword: jest.fn() },
 }));
 
 jest.mock("services/User/user.actions", () => {
   const actions = jest.requireActual("services/User/user.actions");
   return {
     saveUserActionCreator: jest.fn(actions.saveUserActionCreator),
-    fetchUserActionCreator: jest.fn(actions.fetchUserActionCreator)
+    fetchUserActionCreator: jest.fn(actions.fetchUserActionCreator),
   };
 });
 
@@ -35,9 +35,9 @@ describe("UserProfile", () => {
         Component: UserProfile,
         reduxState: {
           ...initialMockStore,
-          loadingStatus: { FETCH_USER: { isLoading: true } }
+          loadingStatus: { FETCH_USER: { isLoading: true } },
         },
-        compProps: { t: (_: string, element2: string) => element2 }
+        compProps: { t: (_: string, element2: string) => element2 },
       });
     });
     expect(component.toJSON()).toMatchSnapshot();
@@ -51,9 +51,9 @@ describe("UserProfile", () => {
         Component: UserProfile,
         reduxState: {
           ...initialMockStore,
-          user: { user: { email: "email@gmail.com", username: "username" } }
+          user: { user: { email: "email@gmail.com", username: "username" } },
         },
-        compProps: { t: (_: string, element2: string) => element2 }
+        compProps: { t: (_: string, element2: string) => element2 },
       });
     });
     expect(component.root.findByProps({ "data-test-id": "test-save-email" }).props.disabled).toBe(true);
@@ -69,9 +69,9 @@ describe("UserProfile", () => {
         Component: UserProfile,
         reduxState: {
           ...initialMockStore,
-          user: { user: { email: "email@gmail.com", username: "username" } }
+          user: { user: { email: "email@gmail.com", username: "username" } },
         },
-        compProps: { t: (_: string, element2: string) => element2 }
+        compProps: { t: (_: string, element2: string) => element2 },
       });
     });
     act(() => {
@@ -96,11 +96,11 @@ describe("UserProfile", () => {
             user: {
               email: "email@gmail.com",
               username: "username",
-              _id: "userId"
-            }
-          }
+              _id: "userId",
+            },
+          },
         },
-        compProps: { t: (_: string, element2: string) => element2 }
+        compProps: { t: (_: string, element2: string) => element2 },
       });
     });
     act(() => {
@@ -113,8 +113,8 @@ describe("UserProfile", () => {
     expect(API.updateUser).toHaveBeenCalledWith({
       query: {
         user: { username: "pseudo", _id: "userId" },
-        action: "modify-my-details"
-      }
+        action: "modify-my-details",
+      },
     });
 
     await act(() => promise);
@@ -132,16 +132,16 @@ describe("UserProfile", () => {
             user: {
               email: "email@gmail.com",
               username: "username",
-              _id: "userId"
-            }
-          }
+              _id: "userId",
+            },
+          },
         },
-        compProps: { t: (_: string, element2: string) => element2 }
+        compProps: { t: (_: string, element2: string) => element2 },
       });
     });
     act(() => {
       component.root.findByProps({ id: "username" }).props.onChange({
-        target: { id: "email", value: "newEmail@gmail.com" }
+        target: { id: "email", value: "newEmail@gmail.com" },
       });
     });
     expect(component.root.findByProps({ "data-test-id": "test-save-email" }).props.disabled).toBe(false);
@@ -152,14 +152,14 @@ describe("UserProfile", () => {
 
     expect(saveUserActionCreator).toHaveBeenLastCalledWith({
       user: { email: "newEmail@gmail.com", _id: "userId" },
-      type: "modify-my-details"
+      type: "modify-my-details",
     });
 
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Yay...",
       text: "Votre email a bien été modifié",
       icon: "success",
-      timer: 1500
+      timer: 1500,
     });
   });
 
@@ -175,11 +175,11 @@ describe("UserProfile", () => {
             user: {
               email: "email@gmail.com",
               username: "username",
-              _id: "userId"
-            }
-          }
+              _id: "userId",
+            },
+          },
         },
-        compProps: { t: (_: string, element2: string) => element2 }
+        compProps: { t: (_: string, element2: string) => element2 },
       });
     });
 
@@ -191,10 +191,10 @@ describe("UserProfile", () => {
 
     act(() => {
       component.root.findByProps({ id: "new-password" }).props.onChange({
-        target: { id: "new-password", value: "a" }
+        target: { id: "new-password", value: "a" },
       });
       component.root.findByProps({ id: "current-password" }).props.onChange({
-        target: { id: "current-password", value: "current" }
+        target: { id: "current-password", value: "current" },
       });
     });
     expect(component.root.findByProps({ "data-test-id": "test-save-password" }).props.disabled).toBe(true);
@@ -202,7 +202,7 @@ describe("UserProfile", () => {
   });
 
   it("should change password", async () => {
-    API.changePassword.mockResolvedValueOnce("test");
+    API.updatePassword.mockResolvedValueOnce("test");
     // onPseudoModificationValidate is async and use useState --> https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning
     const promise = Promise.resolve();
 
@@ -217,11 +217,11 @@ describe("UserProfile", () => {
             user: {
               email: "email@gmail.com",
               username: "username",
-              _id: "userId"
-            }
-          }
+              _id: "userId",
+            },
+          },
         },
-        compProps: { t: (_: string, element2: string) => element2 }
+        compProps: { t: (_: string, element2: string) => element2 },
       });
     });
     act(() => {
@@ -230,10 +230,10 @@ describe("UserProfile", () => {
 
     act(() => {
       component.root.findByProps({ id: "new-password" }).props.onChange({
-        target: { id: "new-password", value: "testNewPassword1&" }
+        target: { id: "new-password", value: "testNewPassword1&" },
       });
       component.root.findByProps({ id: "current-password" }).props.onChange({
-        target: { id: "current-password", value: "current" }
+        target: { id: "current-password", value: "current" },
       });
     });
 
@@ -242,10 +242,9 @@ describe("UserProfile", () => {
     act(() => {
       component.root.findByProps({ "data-test-id": "test-save-password" }).props.onClick();
     });
-    expect(API.changePassword).toHaveBeenCalledWith({
-      userId: "userId",
+    expect(API.updatePassword).toHaveBeenCalledWith("userId", {
       currentPassword: "current",
-      newPassword: "testNewPassword1&"
+      newPassword: "testNewPassword1&",
     });
 
     await act(() => promise);

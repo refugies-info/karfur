@@ -20,21 +20,18 @@ import {
   Content,
   FigureContainer,
   StyledSort,
-  SearchBarContainer,
-  StyledHeaderInner
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import { TabHeader, StyledStatus, FilterButton } from "../sharedComponents/SubComponents";
 import moment from "moment";
 import "moment/locale/fr";
 import { headers, correspondingStatus } from "./data";
 import { RowContainer, StructureName, ResponsableComponent } from "./components/AdminStructureComponents";
-import { SimplifiedStructureForAdmin, Responsable, StructureStatusType } from "types/interface";
-import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import CustomSearchBar from "components/UI/CustomSeachBar";
 import FButton from "components/UI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
-import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 import { ContentDetailsModal } from "../AdminContenu/ContentDetailsModal/ContentDetailsModal";
 import styles from "./AdminStructures.module.scss";
@@ -42,6 +39,7 @@ import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
+import { GetAllStructuresResponse, Id, StructureStatus } from "api-types";
 
 moment.locale("fr");
 
@@ -49,15 +47,15 @@ export const AdminStructures = () => {
   const defaultSortedHeader = {
     name: "none",
     sens: "none",
-    orderColumn: "none"
+    orderColumn: "none",
   };
 
   // filters
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "structures");
-  const [filter, setFilter] = useState<StructureStatusType>(
-    (initialFilters.filter as StructureStatusType) || "En attente"
+  const [filter, setFilter] = useState<StructureStatus>(
+    (initialFilters.filter as StructureStatus) || StructureStatus.WAITING,
   );
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
@@ -71,9 +69,9 @@ export const AdminStructures = () => {
   const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(false);
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
 
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
-  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
-  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
+  const [selectedUserId, setSelectedUserId] = useState<Id | null>(initialFilters.selectedUserId);
+  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(initialFilters.selectedStructureId);
+  const [selectedContentId, setSelectedContentId] = useState<Id | null>(initialFilters.selectedDispositifId);
   const [selectedContentStatus, setSelectedContentStatus] = useState<string | null>(null);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
 
@@ -87,16 +85,16 @@ export const AdminStructures = () => {
         filter,
         selectedUserId,
         selectedContentId,
-        selectedStructureId
+        selectedStructureId,
       );
 
       router.replace(
         {
           pathname: locale + "/backend/admin",
-          search: params
+          search: params,
         },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -120,12 +118,12 @@ export const AdminStructures = () => {
     toggleShowNewStructureModal();
   };
 
-  const setSelectedStructureIdAndToggleModal = (structureId: ObjectId | null) => {
+  const setSelectedStructureIdAndToggleModal = (structureId: Id | null) => {
     setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
 
-  const onFilterClick = (status: StructureStatusType) => {
+  const onFilterClick = (status: StructureStatus) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -144,7 +142,7 @@ export const AdminStructures = () => {
       setSortedHeader({
         name: element.name,
         sens: "up",
-        orderColumn: element.order
+        orderColumn: element.order,
       });
     }
   };
@@ -153,17 +151,17 @@ export const AdminStructures = () => {
 
   const toggleContentDetailsModal = () => setShowContentDetailsModal(!showContentDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+  const setSelectedUserIdAndToggleModal = (userId: Id | null) => {
     setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
-  const setSelectedContentIdAndToggleModal = (element: ObjectId | null, status: string | null = null) => {
+  const setSelectedContentIdAndToggleModal = (element: Id | null, status: string | null = null) => {
     setSelectedContentId(element ? element : null);
     if (status) setSelectedContentStatus(status);
     toggleContentDetailsModal();
   };
 
-  const filterAndSortStructures = (structures: SimplifiedStructureForAdmin[]) => {
+  const filterAndSortStructures = (structures: GetAllStructuresResponse[]) => {
     const structuresFilteredBySearch = !!search
       ? structures.filter(
           (structure) =>
@@ -172,7 +170,7 @@ export const AdminStructures = () => {
               .normalize("NFD")
               .replace(/[\u0300-\u036f]/g, "")
               .toLowerCase()
-              .includes(removeAccents(search.toLowerCase()))
+              .includes(removeAccents(search.toLowerCase())),
         )
       : structures;
 
@@ -182,57 +180,55 @@ export const AdminStructures = () => {
     if (sortedHeader.name === "none")
       return {
         structuresToDisplay: filteredStructures,
-        structuresForCount: structuresFilteredBySearch
+        structuresForCount: structuresFilteredBySearch,
       };
 
-    const structuresToDisplay = filteredStructures.sort(
-      (a: SimplifiedStructureForAdmin, b: SimplifiedStructureForAdmin) => {
-        // @ts-ignore
-        const orderColumn: "nom" | "status" | "nbMembres" | "responsable" | "nbFiches" | "created_at" =
-          sortedHeader.orderColumn;
+    const structuresToDisplay = filteredStructures.sort((a: GetAllStructuresResponse, b: GetAllStructuresResponse) => {
+      // @ts-ignore
+      const orderColumn: "nom" | "status" | "nbMembres" | "responsable" | "nbFiches" | "created_at" =
+        sortedHeader.orderColumn;
 
-        if (orderColumn === "nbMembres") {
-          if (a[orderColumn] > b[orderColumn]) return sortedHeader.sens === "up" ? 1 : -1;
-          return sortedHeader.sens === "up" ? -1 : 1;
-        }
-
-        if (orderColumn === "nbFiches") {
-          const nbFichesA = a.nbFiches;
-          const nbFichesB = b.nbFiches;
-
-          if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
-          return sortedHeader.sens === "up" ? -1 : 1;
-        }
-
-        if (orderColumn === "responsable") {
-          const respoA = a.responsable && a.responsable.username ? a.responsable.username.toLowerCase() : "";
-          const respoB = b.responsable && b.responsable.username ? b.responsable.username.toLowerCase() : "";
-
-          if (respoA > respoB) return sortedHeader.sens === "up" ? 1 : -1;
-          return sortedHeader.sens === "up" ? -1 : 1;
-        }
-
-        if (orderColumn === "created_at") {
-          if (moment(a.created_at).diff(moment(b.created_at)) > 0) return sortedHeader.sens === "up" ? 1 : -1;
-          return sortedHeader.sens === "up" ? -1 : 1;
-        }
-
-        const valueA = a[orderColumn] ? a[orderColumn].toLowerCase() : "";
-        const valueAWithoutAccent = valueA.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        const valueB = b[orderColumn] ? b[orderColumn].toLowerCase() : "";
-        const valueBWithoutAccent = valueB.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        if (valueAWithoutAccent > valueBWithoutAccent) return sortedHeader.sens === "up" ? 1 : -1;
-
+      if (orderColumn === "nbMembres") {
+        if (a[orderColumn] > b[orderColumn]) return sortedHeader.sens === "up" ? 1 : -1;
         return sortedHeader.sens === "up" ? -1 : 1;
       }
-    );
+
+      if (orderColumn === "nbFiches") {
+        const nbFichesA = a.nbFiches;
+        const nbFichesB = b.nbFiches;
+
+        if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
+        return sortedHeader.sens === "up" ? -1 : 1;
+      }
+
+      if (orderColumn === "responsable") {
+        const respoA = a.responsable && a.responsable.username ? a.responsable.username.toLowerCase() : "";
+        const respoB = b.responsable && b.responsable.username ? b.responsable.username.toLowerCase() : "";
+
+        if (respoA > respoB) return sortedHeader.sens === "up" ? 1 : -1;
+        return sortedHeader.sens === "up" ? -1 : 1;
+      }
+
+      if (orderColumn === "created_at") {
+        if (moment(a.created_at).diff(moment(b.created_at)) > 0) return sortedHeader.sens === "up" ? 1 : -1;
+        return sortedHeader.sens === "up" ? -1 : 1;
+      }
+
+      const valueA = a[orderColumn]?.toLowerCase() || "";
+      const valueAWithoutAccent = valueA.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const valueB = b[orderColumn]?.toLowerCase() || "";
+      const valueBWithoutAccent = valueB.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (valueAWithoutAccent > valueBWithoutAccent) return sortedHeader.sens === "up" ? 1 : -1;
+
+      return sortedHeader.sens === "up" ? -1 : 1;
+    });
     return {
       structuresToDisplay,
-      structuresForCount: structuresFilteredBySearch
+      structuresForCount: structuresFilteredBySearch,
     };
   };
 
-  const getNbStructuresByStatus = (structures: SimplifiedStructureForAdmin[], status: string) =>
+  const getNbStructuresByStatus = (structures: GetAllStructuresResponse[], status: string) =>
     structures && structures.length > 0 ? structures.filter((structure) => structure.status === status).length : 0;
 
   const { structuresToDisplay, structuresForCount } = filterAndSortStructures(structures);
@@ -303,7 +299,7 @@ export const AdminStructures = () => {
                     {element.picture && element.picture.secure_url && (
                       <Image
                         className={styles.sponsor_img + " me-2"}
-                        src={(element.picture || {}).secure_url}
+                        src={(element.picture || {}).secure_url || ""}
                         alt=""
                         width={90}
                         height={35}
@@ -314,7 +310,7 @@ export const AdminStructures = () => {
                   </RowContainer>
                 </td>
                 <td className="align-middle" onClick={() => setSelectedStructureIdAndToggleModal(element._id)}>
-                  <StyledStatus text={element.status} textToDisplay={element.status} />
+                  <StyledStatus text={element.status || ""} textToDisplay={element.status} />
                 </td>
                 <td
                   className="align-middle cursor-pointer"
@@ -374,7 +370,7 @@ export const AdminStructures = () => {
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
-          toggleRespoModal={(structureId: ObjectId) => {
+          toggleRespoModal={(structureId: Id) => {
             setSelectedStructureId(structureId);
             setSelectFirstRespoModal(true);
           }}
@@ -406,7 +402,6 @@ export const AdminStructures = () => {
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
         dispositifId={selectedContentId}
-        dispositifStatus={selectedContentStatus}
       />
     </div>
   );

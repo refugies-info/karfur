@@ -5,68 +5,51 @@
 html body div[dir="rtl"] {
   text-align: right;
 
-  .dispositif.vue {
-    .people-footer .people-header .navigate-btns {
-      justify-content: flex-start;
-      direction: ltr;
-    }
-    &.reading-mode .contenu.isHovered {
-      @include media-min("tablet-up") {
-        border-right: none;
-        border-left: 4px solid $gray90;
-        &:after,
-        &:before {
-          right: 100%;
-          left: 0;
-        }
-        &:before {
-          border-right-color: inherit;
-          border-left-color: $white;
-        }
+  @each $prop, $abbrev in (margin: m, padding: p) {
+    @each $size, $length in $spacers {
+      .#{$abbrev}e-#{$size} {
+        #{$prop}-right: 0 !important;
+        #{$prop}-left: $length !important;
+      }
+      .#{$abbrev}s-#{$size} {
+        #{$prop}-right: $length !important;
+        #{$prop}-left: 0 !important;
       }
     }
-    .contenu-wrapper .toolbar-col {
-      left: 15px;
-      -webkit-transform: translateX(-100%);
-      transform: translateX(-100%);
-      right: inherit;
-    }
+  }
+
+  // Some special margin utils
+  .me-auto {
+    margin-left: auto !important;
+  }
+  .ms-auto {
+    margin-right: auto !important;
   }
 }
-html body {
-  .dispositif.vue div[dir="rtl"] .toolbar-editeur {
-    .blc-gh.bloc-gauche-list {
-      border-radius: 12px 0 0 12px;
-      padding-right: 0;
-      padding-left: 10px;
-    }
-    .blc-gh.bloc-gauche-inline {
-      border-radius: 0 12px 12px 0;
-      padding-left: 0;
-      padding-right: 10px;
+
+html body div[dir="ltr"] {
+  text-align: left;
+
+  @each $prop, $abbrev in (margin: m, padding: p) {
+    @each $size, $length in $spacers {
+      .#{$abbrev}e-#{$size} {
+        #{$prop}-left: 0 !important;
+        #{$prop}-right: $length !important;
+      }
+      .#{$abbrev}s-#{$size} {
+        #{$prop}-left: $length !important;
+        #{$prop}-right: 0 !important;
+      }
     }
   }
 
-  @include rtl() {
-    @each $prop, $abbrev in (margin: m, padding: p) {
-      @each $size, $length in $spacers {
-        .#{$abbrev}e-#{$size} {
-          #{$prop}-right: 0 !important;
-          #{$prop}-left: $length !important;
-        }
-        .#{$abbrev}s-#{$size} {
-          #{$prop}-right: $length !important;
-          #{$prop}-left: 0 !important;
-        }
-      }
-    }
-
-    // Some special margin utils
-    .me-auto {
-      margin-left: auto !important;
-    }
-    .ms-auto {
-      margin-right: auto !important;
-    }
+  // Some special margin utils
+  .me-auto {
+    margin-right: auto !important;
+    margin-left: inherit !important;
+  }
+  .ms-auto {
+    margin-left: auto !important;
+    margin-right: inherit !important;
   }
 }

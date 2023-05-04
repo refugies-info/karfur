@@ -1,11 +1,10 @@
-import { SearchDispositif } from "./interface";
-import { ObjectId } from "mongodb";
+import { GetDispositifsResponse, Id } from "api-types";
 
 export const areDispositifsAssociesPopulate = (
-  toBeDetermined: SearchDispositif[] | ObjectId[]
-): toBeDetermined is SearchDispositif[] => {
+  toBeDetermined: GetDispositifsResponse[] | Id[]
+): toBeDetermined is GetDispositifsResponse[] => {
   if (toBeDetermined && !toBeDetermined[0]) return true;
-  if (toBeDetermined && (toBeDetermined as SearchDispositif[])[0].status) {
+  if (toBeDetermined && (toBeDetermined as GetDispositifsResponse[])[0].status) {
     return true;
   }
   return false;

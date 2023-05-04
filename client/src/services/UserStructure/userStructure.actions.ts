@@ -3,24 +3,25 @@ import {
   FETCH_USER_STRUCTURE,
   UPDATE_USER_STRUCTURE,
 } from "./userStructure.actionTypes";
-import { UserStructure } from "../../types/interface";
 import { action, ActionType } from "typesafe-actions";
-import { ObjectId } from "mongodb";
+import { GetStructureResponse, Id } from "api-types";
 
-export const setUserStructureActionCreator = (value: UserStructure | null) =>
+export const setUserStructureActionCreator = (value: GetStructureResponse | null) =>
   action(SET_USER_STRUCTURE, value);
 
 export const fetchUserStructureActionCreator = (value: {
-  structureId: ObjectId | null;
+  structureId: Id | null;
   shouldRedirect: boolean;
 }) => action(FETCH_USER_STRUCTURE, value);
 
 export const updateUserStructureActionCreator = (value: {
-  modifyMembres: boolean;
-  data?: {
+  structure?: {
+    hasResponsibleSeenNotification: boolean
+  },
+  membres?: {
     type: "modify" | "delete" | "create";
-    userId: ObjectId;
-    structureId: ObjectId;
+    userId: Id;
+    structureId: Id;
     newRole?: "contributeur" | "administrateur";
   };
 }) => action(UPDATE_USER_STRUCTURE, value);

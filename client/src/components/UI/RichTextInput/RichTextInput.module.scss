@@ -1,0 +1,24 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/variables";
+
+.container {
+  border: 1px solid $lightBorderDefaultGrey;
+  position: relative;
+  background: white;
+  border-radius: u(2);
+
+  &.focus {
+    border-color: $lightTextTitleGrey;
+  }
+}
+
+.content {
+  padding: u(6);
+  outline: none !important;
+
+  p {
+    margin-bottom: u(1);
+  }
+}

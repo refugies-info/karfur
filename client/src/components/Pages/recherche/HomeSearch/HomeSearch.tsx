@@ -1,14 +1,11 @@
 import React, { memo, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ObjectId } from "mongodb";
 import { Row, Col, Container, Button } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
 import { TypeOptions } from "data/searchFilters";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
-import { themesSelector } from "services/Themes/themes.selectors";
 import { searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import ThemesGrid from "components/Content/ThemesGrid/ThemesGrid";
 import illuDemarche from "assets/recherche/illu-demarche.svg";
@@ -17,6 +14,8 @@ import illuLocation from "assets/recherche/illu-location.png";
 import HomeTypeCard from "../HomeTypeCard";
 import CardSlider from "../CardSlider";
 import styles from "./HomeSearch.module.scss";
+import { ContentType, Id } from "api-types";
+import { useEvent } from "hooks";
 
 export const HOME_MAX_SHOWN_DISPOSITIFS = 15;
 export const HOME_MAX_SHOWN_DEMARCHES = 15;
@@ -26,14 +25,14 @@ const demarchesExamples = [
   "Recherche.demarcheExample2",
   "Recherche.demarcheExample3",
   "Recherche.demarcheExample4",
-  "..."
+  "...",
 ];
 const dispositifsExamples = [
   "Recherche.dispositifExample1",
   "Recherche.dispositifExample2",
   "Recherche.dispositifExample3",
   "Recherche.dispositifExample4",
-  "..."
+  "...",
 ];
 
 const departmentExamples = [
@@ -51,20 +50,20 @@ const departmentExamples = [
   "Puy-de-Dôme",
   "Ille-et-Vilaine",
   "Gironde",
-  "Isère"
+  "Isère",
 ];
 
 const HomeSearch = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const { Event } = useEvent();
 
-  const themes = useSelector(themesSelector);
   const filteredResult = useSelector(searchResultsSelector);
 
   const demarches = useMemo(() => filteredResult.demarches.slice(0, HOME_MAX_SHOWN_DEMARCHES), [filteredResult]);
   const dispositifs = useMemo(() => filteredResult.dispositifs.slice(0, HOME_MAX_SHOWN_DISPOSITIFS), [filteredResult]);
 
-  const selectTheme = (themeId: ObjectId) => {
+  const selectTheme = (themeId: Id) => {
     dispatch(addToQueryActionCreator({ themes: [themeId] }));
     Event("USE_SEARCH", "use home search", "click theme");
   };
@@ -122,12 +121,12 @@ const HomeSearch = () => {
             <h2 className="h3">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
             <Button onClick={() => selectType("demarche")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
-          <CardSlider cards={demarches} type="demarche" />
+          <CardSlider cards={demarches} type={ContentType.DEMARCHE} />
           <div className={styles.title_line}>
             <h2 className="h3">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
             <Button onClick={() => selectType("dispositif")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
-          <CardSlider cards={dispositifs} type="dispositif" />
+          <CardSlider cards={dispositifs} type={ContentType.DISPOSITIF} />
         </Container>
       </div>
 

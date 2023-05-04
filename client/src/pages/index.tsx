@@ -14,7 +14,7 @@ import {
   MainFigures,
   MobileApp,
   NewContent,
-  WhyAccordions
+  WhyAccordions,
 } from "components/Pages/homepage/Sections";
 import API from "utils/API";
 import { wrapper } from "services/configureStore";
@@ -22,16 +22,22 @@ import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { DispositifStatistics, SearchDispositif, StructuresStatistics, TranslationStatistics } from "types/interface";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import commonStyles from "scss/components/staticPages.module.scss";
+import {
+  ContentType,
+  GetDispositifsResponse,
+  GetStatisticsResponse,
+  GetStructureStatisticsResponse,
+  TranslationStatisticsResponse,
+} from "api-types";
 
 interface Props {
-  contentStatistics: DispositifStatistics;
-  structuresStatistics: StructuresStatistics;
-  translationStatistics: TranslationStatistics;
-  demarches: SearchDispositif[];
-  dispositifs: SearchDispositif[];
+  contentStatistics: GetStatisticsResponse;
+  structuresStatistics: GetStructureStatisticsResponse;
+  translationStatistics: TranslationStatisticsResponse;
+  demarches: GetDispositifsResponse[];
+  dispositifs: GetDispositifsResponse[];
 }
 
 const Homepage = (props: Props) => {
@@ -97,33 +103,30 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   await store.sagaTask?.toPromise();
 
   const contentStatistics = (
-    await API.getDispositifsStatistics([
-      "nbMercis",
-      "nbVues",
-      "nbVuesMobile",
-      "nbDispositifs",
-      "nbDemarches",
-      "nbUpdatedRecently"
-    ])
+    await API.getDispositifsStatistics({
+      facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"],
+    })
   ).data.data;
-  const structuresStatistics = (await API.getStructuresStatistics(["nbStructures", "nbCDA", "nbStructureAdmins"])).data
+  const structuresStatistics = (
+    await API.getStructuresStatistics({ facets: ["nbStructures", "nbCDA", "nbStructureAdmins"] })
+  ).data.data;
+  const translationStatistics = (await API.getTranslationStatistics({ facets: ["nbTranslators", "nbRedactors"] })).data
     .data;
-  const translationStatistics = (await API.getTranslationStatistics(["nbTranslators", "nbRedactors"])).data.data;
 
   const demarches = (
     await API.getDispositifs({
-      query: { status: "Actif", typeContenu: "demarche" },
+      type: ContentType.DEMARCHE,
       limit: 15,
       sort: "publishedAt",
-      locale: locale
+      locale: locale || "fr",
     })
   ).data.data;
   const dispositifs = (
     await API.getDispositifs({
-      query: { status: "Actif", typeContenu: "dispositif" },
+      type: ContentType.DISPOSITIF,
       limit: 15,
       sort: "publishedAt",
-      locale: locale
+      locale: locale || "fr",
     })
   ).data.data;
 
@@ -134,9 +137,9 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
       structuresStatistics,
       translationStatistics,
       demarches,
-      dispositifs
+      dispositifs,
     },
-    revalidate: 60 * 10
+    revalidate: 60 * 10,
   };
 });
 

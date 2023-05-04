@@ -8,13 +8,13 @@ export class logger {
 
   static warn = (message: string, data?: any) => {
     if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
-      console.log(message, data);
+      console.warn(message, data);
     }
   };
 
   static error = (message: string, data?: any) => {
     if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
-      console.log(message, data);
+      console.error(message, data);
     }
   };
 }

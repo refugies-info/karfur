@@ -1,0 +1,17 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/icons";
+
+.title {
+  @include dsfr-text("h3");
+  font-weight: bold;
+  margin-top: u(10);
+  margin-bottom: u(6);
+}
+
+.container {
+  .theme_icon {
+    @include iconSize(24px);
+  }
+}

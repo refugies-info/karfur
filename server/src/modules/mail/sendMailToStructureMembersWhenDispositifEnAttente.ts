@@ -1,42 +1,29 @@
-import { ObjectId } from "mongoose";
 import logger from "../../logger";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
-import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";
-import { asyncForEach } from "../../libs/asyncForEach";
 import { sendNewFicheEnAttenteMail } from "./mail.service";
+import { Dispositif, Structure } from "../../typegoose";
 
-export const sendMailToStructureMembersWhenDispositifEnAttente = async (
-  sponsorId: ObjectId,
-  dispositifId: ObjectId,
-  titreInformatif: string,
-  titreMarque: string,
-  typeContenu: "dispositif"
-) => {
+export const sendMailToStructureMembersWhenDispositifEnAttente = async (dispositif: Dispositif) => {
   logger.info("[sendMailToStructureMembersWhenDispositifEnAttente] received");
-  const structureMembres = await getStructureMembers(sponsorId);
-  const membresToSendMail = await getUsersFromStructureMembres(
-    structureMembres
-  );
-  const titreInformatifFormatted = getTitreInfoOrMarque(titreInformatif);
-  const titreMarqueFormatted = getTitreInfoOrMarque(titreMarque);
-  const lien = "https://refugies.info/" + typeContenu + "/" + dispositifId;
+  const structureMembres = await getStructureMembers((dispositif.mainSponsor as Structure)?._id.toString());
+  const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
+  const lien = "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id.toString();
 
-  await asyncForEach(membresToSendMail, async (membre) => {
-    logger.info(
-      "[sendMailToStructureMembersWhenDispositifEnAttente] send mail to membre",
-      {
-        membreId: membre._id,
-      }
-    );
-    await sendNewFicheEnAttenteMail({
-      pseudo: membre.username,
-      titreInformatif: titreInformatifFormatted,
-      titreMarque: titreMarqueFormatted,
-      lien,
-      email: membre.email,
-      dispositifId,
-      userId: membre._id,
-    });
-  });
+  return Promise.all(
+    membresToSendMail.map((membre) => {
+      logger.info("[sendMailToStructureMembersWhenDispositifEnAttente] send mail to membre", {
+        membreId: membre._id
+      });
+      return sendNewFicheEnAttenteMail({
+        pseudo: membre.username,
+        titreInformatif: dispositif.translations.fr.content.titreInformatif,
+        titreMarque: dispositif.translations.fr.content.titreMarque,
+        lien,
+        email: membre.email,
+        dispositifId: dispositif._id,
+        userId: membre._id
+      });
+    })
+  );
 };

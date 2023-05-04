@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { IDispositifTranslation } from "types/interface";
 import styled from "styled-components";
 import { colors } from "colors";
 import { Table } from "reactstrap";
-import { Link } from "react-router-dom";
 import { TypeContenu } from "../../UserContributions/components/SubComponents";
 import { Title, TabHeader } from "../../Admin/sharedComponents/SubComponents";
 import { ProgressWithValue, TradStatus } from "./SubComponents";
@@ -14,24 +12,23 @@ import API from "utils/API";
 import FButton from "components/UI/FButton/FButton";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { useDispatch } from "react-redux";
-import { ObjectId } from "mongodb";
 import { sortData } from "./functions";
-import { User } from "types/interface";
 import styles from "scss/components/adminTable.module.scss";
-import useRouterLocale from "hooks/useRouterLocale";
+import { GetDispositifsWithTranslationAvancementResponse, GetUserInfoResponse, Languages } from "api-types";
+import { handleApiError } from "lib/handleApiErrors";
+import { useRouter } from "next/router";
 
 moment.locale("fr");
 
 interface Props {
   isExpert: boolean;
-  data: IDispositifTranslation[];
+  data: GetDispositifsWithTranslationAvancementResponse[];
   history: any;
-  langueId: ObjectId | null;
   isAdmin: boolean;
   languei18nCode: string;
   setElementToTranslate: any;
   toggleCompleteProfilModal: () => void;
-  user: User | null;
+  user: GetUserInfoResponse | null;
 }
 
 const TableContainer = styled.div`
@@ -41,41 +38,45 @@ const TableContainer = styled.div`
 `;
 
 const headers = [
-  { name: "Type", order: "typeContenu" },
+  { name: "Type", order: "type" },
   { name: "Titre", order: "titreInformatif" },
   { name: "Progression", order: "avancementTrad" },
   { name: "Mots", order: "nbMots" },
   { name: "Depuis", order: "created_at" },
   { name: "Statut", order: "tradStatus" },
-  { name: "Dernière trad", order: "lastTradUpdatedAt" }
+  { name: "Dernière trad", order: "lastTradUpdatedAt" },
 ];
 
 const headersExpert = [
-  { name: "Type", order: "typeContenu" },
+  { name: "Type", order: "type" },
   { name: "Titre", order: "titreInformatif" },
   { name: "Progression", order: "avancementTrad" },
   { name: "Validation", order: "avancementExpert" },
   { name: "Mots", order: "nbMots" },
   { name: "Depuis", order: "created_at" },
   { name: "Statut", order: "tradStatus" },
-  { name: "Dernière trad", order: "lastTradUpdatedAt" }
+  { name: "Dernière trad", order: "lastTradUpdatedAt" },
 ];
 const defaultSortedHeader = {
   name: "none",
   sens: "none",
-  order: "none"
+  order: "none",
 };
 export const TranslationAvancementTable = (props: Props) => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
-  const routerLocale = useRouterLocale();
+  const router = useRouter();
 
-  const goToTraduction = (event: any, element: IDispositifTranslation) => {
+  const goToTraduction = (event: any, element: GetDispositifsWithTranslationAvancementResponse) => {
     if (props.user && props.user.email === "") {
       props.toggleCompleteProfilModal();
       props.setElementToTranslate(element);
       event.preventDefault();
     } else {
-      if (!props.langueId || (!props.isExpert && element.tradStatus === "Validée")) {
+      router.push({
+        pathname: `/${element.type}/${element._id}/translate`,
+        search: `?language=${props.languei18nCode}`,
+      });
+      if (!props.languei18nCode || (!props.isExpert && element.tradStatus === "VALIDATED")) {
         event.preventDefault();
       }
     }
@@ -88,13 +89,13 @@ export const TranslationAvancementTable = (props: Props) => {
       setSortedHeader({
         name: element.name,
         sens: "up",
-        order: element.order
+        order: element.order,
       });
     }
   };
 
   const dispatch = useDispatch();
-  const deleteTrad = (e: any, element: IDispositifTranslation) => {
+  const deleteTrad = (e: any, element: GetDispositifsWithTranslationAvancementResponse) => {
     e.stopPropagation();
     Swal.fire({
       title: "Êtes-vous sûr ?",
@@ -104,12 +105,12 @@ export const TranslationAvancementTable = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, les supprimer",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     }).then((result: any) => {
       if (result.value) {
-        API.delete_trads({
-          articleId: element._id,
-          langueCible: props.languei18nCode
+        API.deleteTrads({
+          dispositifId: element._id,
+          locale: props.languei18nCode as Languages,
         })
           .then(() => {
             dispatch(fetchDispositifsWithTranslationsStatusActionCreator(props.languei18nCode));
@@ -117,16 +118,11 @@ export const TranslationAvancementTable = (props: Props) => {
               title: "Yay...",
               text: "Suppression effectuée",
               icon: "success",
-              timer: 1500
+              timer: 1500,
             });
           })
           .catch(() => {
-            Swal.fire({
-              title: "Oh non!",
-              text: "Something went wrong",
-              icon: "error",
-              timer: 1500
-            });
+            handleApiError({ text: "Something went wrong" });
           });
       }
     });
@@ -171,41 +167,29 @@ export const TranslationAvancementTable = (props: Props) => {
             return (
               <tr key={key} className={styles.line}>
                 <td className={styles.first + " align-middle"}>
-                  <TypeContenu type={element.typeContenu || "dispositif"} isDetailedVue={false} />
+                  <TypeContenu type={element.type || "dispositif"} isDetailedVue={false} />
                 </td>
                 <td className="align-middle">
                   <div style={{ maxWidth: "350px" }}>
-                    <Link
-                      data-test-id={`test-line-${element._id}`}
-                      onClick={(e) => goToTraduction(e, element)}
-                      to={{
-                        pathname:
-                          routerLocale +
-                          "/backend" +
-                          (props.isExpert ? "/validation" : "/traduction") +
-                          "/" +
-                          (element.typeContenu || "dispositif"),
-                        search: `?language=${props.langueId}&dispositif=${element._id}`
-                      }}
-                    >
+                    <button data-test-id={`test-line-${element._id}`} onClick={(e) => goToTraduction(e, element)}>
                       <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
-                    </Link>
+                    </button>
                   </div>
                 </td>
 
                 <td className="align-middle">
-                  {(!props.isExpert || element.tradStatus === "À traduire") && (
+                  {(!props.isExpert || element.tradStatus === "TO_TRANSLATE") && (
                     <ProgressWithValue avancementTrad={element.avancementTrad} isExpert={props.isExpert} />
                   )}
                 </td>
                 {props.isExpert && (
                   <td className="align-middle">
-                    <ProgressWithValue avancementTrad={element.avancementExpert} isExpert={props.isExpert} />
+                    <ProgressWithValue avancementTrad={element.avancementValidation} isExpert={props.isExpert} />
                   </td>
                 )}
 
                 <td className="align-middle">
-                  {Math.round((element.nbMots || 0) * (element.avancementTrad || 0)) + " / " + element.nbMots}
+                  {Math.ceil((element.nbMots || 0) * (element.avancementTrad || 0)) + " / " + element.nbMots}
                 </td>
                 <td className="align-middle">{element.created_at ? nbDays : "Non disponible"}</td>
                 <td className="align-middle">

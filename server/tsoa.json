@@ -1,0 +1,32 @@
+{
+  "entryFile": "src/server.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": [
+    "src/controllers/*Controller.ts"
+  ],
+  "spec": {
+    "outputDirectory": "dist",
+    "specVersion": 3,
+    "securityDefinitions": {
+      "tsoa_auth": {
+        "type": "oauth2",
+        "authorizationUrl": "http://swagger.io/api/oauth/dialog",
+        "flow": "implicit",
+        "scopes": {
+          "admin": "admin of RI",
+          "expert": "translation expert"
+        }
+      }
+    }
+  },
+  "routes": {
+    "routesDir": "dist",
+    "authenticationModule": "./src/authentication.ts"
+  },
+  "compilerOptions": {
+    "baseUrl": "./",
+    "include": [
+      "src"
+    ]
+  }
+}
