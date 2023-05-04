@@ -21,3 +21,10 @@ export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages)
     dispositifId,
     language,
   });
+
+export const findTraductors = (dispositifId: DispositifId, language: Languages) =>
+  TraductionsModel.find({
+    dispositifId,
+    language,
+    type: "suggestion"
+  }, { userId: 1 }).lean();
