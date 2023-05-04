@@ -21,22 +21,3 @@ export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages)
     dispositifId,
     language,
   });
-
-/**
- * @deprecated TODO refactor : status not exist anymore
- * @returns
- */
-export const getNbWordsTranslated = () =>
-  TraductionsModel.aggregate([
-    {
-      $match: {
-        status: "Validée",
-      },
-    },
-    {
-      $group: {
-        _id: null,
-        wordsCount: { $sum: "$nbMots" },
-      },
-    },
-  ]);
