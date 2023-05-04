@@ -30,13 +30,6 @@
   align-items: center;
   align-self: center;
   padding: 0;
-  button {
-    max-height: 2.4rem;
-    max-width: 3.4rem;
-    &::before {
-      font-size: 2.2rem;
-    }
-  }
 }
 [dir="ltr"] .fr-header .fr-header__navbar {
   padding-right: 1rem;

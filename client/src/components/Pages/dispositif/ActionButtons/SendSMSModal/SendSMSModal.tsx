@@ -3,6 +3,8 @@ import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
 import { useEvent, useLocale } from "hooks";
+import { getPath } from "routes";
+import { ContentType } from "api-types";
 import { isValidPhone } from "lib/validateFields";
 import { cls } from "lib/classname";
 import API from "utils/API";
@@ -38,7 +40,10 @@ const SendSMSModal = (props: Props) => {
       API.smsContentLink({
         phone: tel,
         title: dispositif?.titreInformatif || "",
-        url: window.location.href,
+        url: `https://refugies.info/${selectedLn}${getPath(
+          dispositif?.typeContenu === ContentType.DEMARCHE ? "/demarche/[id]" : "/dispositif/[id]",
+          selectedLn,
+        ).replace("[id]", dispositif?._id.toString() || "")}`,
         locale: selectedLn,
       })
         .then(() => {
