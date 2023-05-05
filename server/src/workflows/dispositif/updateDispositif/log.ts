@@ -30,7 +30,7 @@ export const log = async (dispositif: Dispositif, originalDispositif: Dispositif
     }
 
     // sponsor
-    const oldSponsorId = originalDispositif.getMainSponsor()?._id;
+    const oldSponsorId = originalDispositif.mainSponsor ? originalDispositif.getMainSponsor()?._id : null;
     const newSponsorId = dispositif.mainSponsor;
     const oldSponsorIdString = (oldSponsorId || "").toString();
     const newSponsorIdString = (newSponsorId || "").toString();

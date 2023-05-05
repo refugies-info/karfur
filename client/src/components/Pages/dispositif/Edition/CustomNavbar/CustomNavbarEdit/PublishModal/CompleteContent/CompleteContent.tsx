@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useWatch } from "react-hook-form";
 import { useAsyncFn } from "react-use";
 import Image from "next/image";
+import { useContentType } from "hooks/dispositif";
 import { DispositifStatus } from "api-types";
 import { userSelector } from "services/User/user.selectors";
 import Button from "components/UI/Button";
@@ -10,7 +11,7 @@ import ChoiceButton from "components/Pages/dispositif/Edition/ChoiceButton";
 import StepBar from "../../../StepBar";
 import PublicationSteps from "./PublicationSteps";
 import BubbleFlags from "./BubbleFlags";
-import { TOTAL_STEPS } from "../../functions";
+import { getTotalSteps } from "../../functions";
 import { getTextContent } from "./functions";
 import { Content } from "./data";
 import PublishImage from "assets/dispositif/publish-image.svg";
@@ -29,7 +30,7 @@ interface Props {
 }
 
 const CompleteContent = (props: Props) => {
-  const { status, onPublish, toggle, setTitle } = props;
+  const { status, onPublish, toggle, setTitle, redirectToBo } = props;
   const user = useSelector(userSelector);
   const [step, setStep] = useState<0 | 1>(0);
   const [keepTranslations, setKeepTranslations] = useState(false);
@@ -45,6 +46,9 @@ const CompleteContent = (props: Props) => {
       ? API.getDispositifHasTextChanges(dispositif?._id.toString()).then((res) => res.data.data)
       : Promise.resolve(false),
   );
+
+  const contentType = useContentType();
+  const totalSteps = useMemo(() => getTotalSteps(contentType), [contentType]);
 
   // when form changes, reset hasChange
   useEffect(() => {
@@ -89,7 +93,7 @@ const CompleteContent = (props: Props) => {
               <Button
                 onClick={(e: any) => {
                   e.preventDefault();
-                  onPublish(keepTranslations).then(props.redirectToBo);
+                  onPublish(keepTranslations).then(redirectToBo);
                 }}
                 evaIcon="arrow-forward-outline"
                 iconPosition="right"
@@ -101,9 +105,9 @@ const CompleteContent = (props: Props) => {
         ) : (
           <>
             <StepBar
-              total={TOTAL_STEPS}
-              progress={TOTAL_STEPS}
-              text={`${TOTAL_STEPS} étapes complétées sur ${TOTAL_STEPS}`}
+              total={totalSteps}
+              progress={totalSteps}
+              text={`${totalSteps} étapes complétées sur ${totalSteps}`}
             />
             <div className="text-center mb-8 mt-6">
               <Image src={PublishImage} width={345} height={240} alt="" />
@@ -112,7 +116,7 @@ const CompleteContent = (props: Props) => {
               <Button
                 onClick={(e: any) => {
                   e.preventDefault();
-                  onPublish(false).then(props.redirectToBo);
+                  onPublish(false).then(redirectToBo);
                 }}
                 evaIcon="arrow-forward-outline"
                 iconPosition="right"
@@ -127,9 +131,9 @@ const CompleteContent = (props: Props) => {
       return (
         <>
           <StepBar
-            total={TOTAL_STEPS}
-            progress={TOTAL_STEPS}
-            text={`${TOTAL_STEPS} étapes complétées sur ${TOTAL_STEPS}`}
+            total={totalSteps}
+            progress={totalSteps}
+            text={`${totalSteps} étapes complétées sur ${totalSteps}`}
           />
           <PublicationSteps
             items={[
@@ -153,7 +157,7 @@ const CompleteContent = (props: Props) => {
             <Button
               onClick={(e: any) => {
                 e.preventDefault();
-                onPublish(false).then(props.redirectToBo);
+                onPublish(false).then(redirectToBo);
               }}
               evaIcon="arrow-forward-outline"
               iconPosition="right"
@@ -170,9 +174,9 @@ const CompleteContent = (props: Props) => {
       return (
         <>
           <StepBar
-            total={TOTAL_STEPS}
-            progress={TOTAL_STEPS}
-            text={`${TOTAL_STEPS} étapes complétées sur ${TOTAL_STEPS}`}
+            total={totalSteps}
+            progress={totalSteps}
+            text={`${totalSteps} étapes complétées sur ${totalSteps}`}
           />
           <div className="text-center mb-8 mt-6">
             <Image src={PublishImage} width={345} height={240} alt="" />
@@ -227,7 +231,7 @@ const CompleteContent = (props: Props) => {
         </div>
       </>
     );
-  }, [step, onPublish, toggle, user.admin, keepTranslations, hasChanges, dispositif]);
+  }, [step, onPublish, toggle, user.admin, keepTranslations, hasChanges, dispositif, totalSteps, redirectToBo]);
 
   return (
     <div>

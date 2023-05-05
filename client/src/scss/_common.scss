@@ -65,16 +65,6 @@ html body {
   }
 
   // Links and buttons
-  a {
-    &,
-    &[href],
-    &:hover {
-      text-decoration: none;
-      color: inherit;
-      background-image: none;
-    }
-  }
-
   :not([class^="fr-link"])[target="_blank"]::after {
     content: none !important;
   }
