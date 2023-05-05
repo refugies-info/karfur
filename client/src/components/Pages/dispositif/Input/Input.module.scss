@@ -78,6 +78,11 @@
   .error & {
     border-color: $lightTextDefaultError;
   }
+
+  .valid &,
+  .error & {
+    padding-right: u(11) !important;
+  }
 }
 
 .error_msg {

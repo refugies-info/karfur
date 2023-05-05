@@ -265,7 +265,7 @@ export const buildNewDispositif = async (
   if (formContent.secondaryThemes)
     editedDispositif.secondaryThemes = formContent.secondaryThemes.map((t) => new ObjectId(t));
   if (formContent.metadatas) editedDispositif.metadatas = formContent.metadatas;
-  if (formContent.map) editedDispositif.map = formContent.map;
+  if (formContent.map !== undefined) editedDispositif.map = formContent.map;
   //@ts-ignore
   if (formContent.sponsors) editedDispositif.sponsors = formContent.sponsors; // TODO picture type
 

@@ -91,7 +91,7 @@ const MapEdit = () => {
     if (lat && lng) {
       const newMarker: Poi = {
         title: "",
-        address: place.vicinity || "",
+        address: place.formatted_address || "",
         city: place.address_components?.find((c) => c.types.includes("locality"))?.short_name || "",
         lat,
         lng,
@@ -128,7 +128,8 @@ const MapEdit = () => {
 
   const deleteMarker = useCallback(
     (key: number) => {
-      const newMarkers = [...(markers || [])].splice(key, 1);
+      const newMarkers = [...(markers || [])];
+      newMarkers.splice(key, 1);
       setValue("map", newMarkers);
       setSelectedMarker(null);
       setPoiForm(null);
@@ -141,7 +142,7 @@ const MapEdit = () => {
    * Delete map section
    */
   const deleteMap = useCallback(() => {
-    setValue("map", undefined);
+    setValue("map", null);
     setHasMap(false);
     setSelectedMarker(null);
     setShowDeleteModal(false);
@@ -165,7 +166,10 @@ const MapEdit = () => {
           poiForm={poiForm}
           setPoiForm={setPoiForm}
           onValidate={onValidateForm}
-          onClose={() => setPoiForm(null)}
+          onClose={() => {
+            setShowSidebar(true);
+            setPoiForm(null);
+          }}
           onDelete={selectedMarker !== null ? () => deleteMarker(selectedMarker) : undefined}
         />
       )}

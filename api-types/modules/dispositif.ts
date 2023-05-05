@@ -156,7 +156,7 @@ interface DispositifRequest {
   secondaryThemes?: string[];
   sponsors?: Sponsor[];
   metadatas?: Metadatas;
-  map?: Poi[];
+  map?: Poi[] | null;
 }
 interface DispositifResponse {
   id: Id;
@@ -183,7 +183,7 @@ export interface ReadSuggestionDispositifRequest {
 /**
  * @url PATCH /dispositifs/{id}
  */
-export interface UpdateDispositifRequest extends DispositifRequest {}
+export interface UpdateDispositifRequest extends DispositifRequest { }
 
 /**
  * @url PATCH /dispositifs/{id}
@@ -233,7 +233,7 @@ export type GetDispositifResponse = {
   participants: SimpleUser[];
   merci: { created_at: Date; userId?: Id }[];
   metadatas: Metadatas;
-  map: Poi[];
+  map: Poi[] | null;
   availableLanguages: string[];
   date: Date;
   lastModificationDate?: Date;
