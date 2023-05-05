@@ -181,8 +181,8 @@ export const ContentSummary = (props: Props) => {
                 </ReadableText>
               )}
             </TitreInfoText>
-            {(!!props.content.titreMarque ||
-              !!props?.searchItem[
+            {(!!props.content?.titreMarque ||
+              !!props?.searchItem?.[
                 `titreMarque_${props.searchLanguageMatch || "fr"}`
               ]) && (
               <TitreMarqueText color={colors.color100}>
