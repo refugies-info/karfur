@@ -35,6 +35,7 @@ interface Props {
   onBlur?: () => void;
   onFocus?: () => void;
   className?: string;
+  placeholder?: string;
 }
 
 /**
@@ -89,7 +90,7 @@ const RichTextInput: FC<Props> = (props: Props) => {
         <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem || undefined} />
         <RichTextPlugin
           contentEditable={<ContentEditable className={styles.content} />}
-          placeholder={<div></div>}
+          placeholder={!value ? <div className={styles.placeholder}>{props.placeholder}</div> : null}
           ErrorBoundary={LexicalErrorBoundary}
         />
         <OnHtmlChangePlugin value={value} onHtmlChanged={onChange} />
