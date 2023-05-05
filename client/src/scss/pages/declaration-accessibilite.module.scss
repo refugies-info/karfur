@@ -1,11 +1,16 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
+@import "src/scss/mixins/links";
 
 .container {
   background: $white;
   max-width: 544px;
   margin: auto;
   padding: 30px 10px;
+
+  a[href] {
+    @include dsfr-link();
+  }
 
   h1 {
     margin-bottom: 56px;
@@ -15,7 +20,7 @@
     margin-bottom: 24px;
 
     &.text_muted {
-      color: #5E5E5E;
+      color: #5e5e5e;
     }
 
     .icon {
@@ -26,10 +31,6 @@
 
   ul {
     padding-left: 24px;
-
-    li a {
-        text-decoration: underline;
-    }
   }
 
   .h4 {
@@ -69,13 +70,12 @@
       height: 24px;
       border-radius: 4px;
       margin-right: 8px;
-
     }
     .box_color_valid {
-      background: #27A8A5;
+      background: #27a8a5;
     }
     .box_color_invalid {
-      background: #D64B71;
+      background: #d64b71;
     }
   }
 
