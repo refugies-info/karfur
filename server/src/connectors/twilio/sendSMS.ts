@@ -3,8 +3,10 @@ import logger from "../../logger";
 const { accountSid, authToken } = process.env;
 const client = require("twilio")(accountSid, authToken);
 
-export const sendSMS = async (text: string, phone: string): Promise<boolean> => {
-  if (!text || !phone) return false;
+type Res = { status: number, sent: boolean }
+
+export const sendSMS = async (text: string, phone: string): Promise<Res> => {
+  if (!text || !phone) return { status: 400, sent: false };
 
   return client.messages
     .create({
@@ -13,11 +15,11 @@ export const sendSMS = async (text: string, phone: string): Promise<boolean> => 
       to: phone,
     })
     .then((message: any) => {
-      logger.info("[sendSMS] Message envoyé", { sid: message.sid });
-      return true;
+      logger.info("[sendSMS] Message envoyé: ", { sid: message.sid });
+      return { status: message.status, sent: true };
     })
     .catch((e: any) => {
-      logger.error("[sendSMS] erreur", e);
-      return false;
+      logger.error("[sendSMS] erreur: ", e);
+      return { status: e.status, sent: false };
     });
 }
