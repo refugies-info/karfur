@@ -17,6 +17,7 @@ const useSubscribeToolItem = (): HeaderProps.QuickAccessItem | null => {
     iconId: "ri-user-add-line",
     linkProps: {
       href: getPath("/register", router.locale),
+      prefetch: false,
     },
     text: t("Toolbar.Inscription", "Inscription"),
   };

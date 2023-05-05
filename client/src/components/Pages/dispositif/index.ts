@@ -1,3 +1,4 @@
+import AccordionBadge from "./AccordionBadge";
 import Accordions from "./Accordions";
 import ActionButtons from "./ActionButtons";
 import Banner from "./Banner";
@@ -23,6 +24,7 @@ import Text from "./Text";
 import Title from "./Title";
 
 export {
+  AccordionBadge,
   Accordions,
   ActionButtons,
   Banner,

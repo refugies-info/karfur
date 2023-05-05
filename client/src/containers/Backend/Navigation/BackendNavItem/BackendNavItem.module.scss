@@ -1,1 +1,18 @@
 @import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/unit";
+
+.item {
+  @include ml-ltr(u(2));
+
+  @include media-min("lg-limit") {
+    display: none;
+    @include ml-ltr(0);
+  }
+  @include media-min("xl-limit") {
+    display: inline-block;
+    @include ml-ltr(u(2));
+  }
+}

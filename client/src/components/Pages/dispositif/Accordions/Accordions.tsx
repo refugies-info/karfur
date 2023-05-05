@@ -8,6 +8,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { AccordionsEdit } from "../Edition";
 import SectionButtons from "../SectionButtons";
 import Text from "../Text";
+import AccordionBadge from "../AccordionBadge";
 import styles from "./Accordions.module.scss";
 
 interface ColoredButtonProps {
@@ -40,8 +41,6 @@ const Accordions = ({ content, sectionKey, color100, color30, contentType }: Pro
   const toggle = (id: number) => setOpen((o) => (o === id ? null : id));
   const isOpen = (index: number) => open === index || pageContext.mode === "translate";
 
-  const withNumber = useMemo(() => contentType === ContentType.DEMARCHE, [contentType]);
-
   return pageContext.mode !== "edit" ? (
     <div className={styles.container}>
       {Object.entries(content || []).map((section, i) => {
@@ -56,11 +55,7 @@ const Accordions = ({ content, sectionKey, color100, color30, contentType }: Pro
               border={color100}
             >
               <h2 className={styles.title} style={{ color: color100 }}>
-                {withNumber && (
-                  <span className={styles.badge} style={{ backgroundColor: color100 }}>
-                    {i + 1}
-                  </span>
-                )}
+                <AccordionBadge index={i + 1} sectionKey={sectionKey} contentType={contentType} color100={color100} />
                 <Text id={`${sectionKey}.${section[0]}.title`}>{section[1].title}</Text>
               </h2>
               <EVAIcon name="arrow-ios-downward-outline" fill={color100} size={32} className={styles.icon} />
