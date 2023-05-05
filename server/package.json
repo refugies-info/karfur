@@ -33,7 +33,6 @@
     "expo-server-sdk": "^3.6.0",
     "express": "^4.16.4",
     "express-form-data": "^2.0.18",
-    "himalaya": "^1.1.0",
     "jwt-simple": "^0.5.5",
     "lodash": "^4.17.21",
     "microsoft-cognitiveservices-speech-sdk": "^1.25.1",
