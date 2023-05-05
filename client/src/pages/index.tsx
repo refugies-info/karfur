@@ -103,16 +103,19 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 
-  const contentStatistics = (
-    await API.getDispositifsStatistics({
-      facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"],
-    })
-  ).data.data;
-  const structuresStatistics = (
-    await API.getStructuresStatistics({ facets: ["nbStructures", "nbCDA", "nbStructureAdmins"] })
-  ).data.data;
   let translationStatistics: TranslationStatisticsResponse = {};
+  let contentStatistics: GetStatisticsResponse = {};
+  let structuresStatistics: GetStructureStatisticsResponse = {};
+
   try {
+    contentStatistics = (
+      await API.getDispositifsStatistics({
+        facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"],
+      })
+    ).data.data;
+    structuresStatistics = (
+      await API.getStructuresStatistics({ facets: ["nbStructures", "nbCDA", "nbStructureAdmins"] })
+    ).data.data;
     translationStatistics = (await API.getTranslationStatistics({ facets: ["nbTranslators", "nbRedactors"] })).data
       .data;
   } catch (e) {
