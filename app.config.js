@@ -1,8 +1,8 @@
 import deepLinks from "./androidDeepLinks";
 
-const version = "2.0.1";
-const displayVersionNumber = "2023.05.3";
-const androidVersionCode = 23;
+const version = "2.0.2";
+const displayVersionNumber = "2023.05.4";
+const androidVersionCode = 24;
 
 export default {
   name: "Réfugiés.info",
