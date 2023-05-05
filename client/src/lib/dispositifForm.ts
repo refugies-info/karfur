@@ -5,9 +5,7 @@ import { logger } from "logger";
 import API from "utils/API";
 
 export const getMaxAccordions = (contentType: ContentType, sectionKey: string) => {
-  const isLastSection = (contentType === ContentType.DISPOSITIF && sectionKey === "how") ||
-    (contentType === ContentType.DEMARCHE && sectionKey === "next");
-  return isLastSection ? 1 : 3;
+  return contentType === ContentType.DISPOSITIF && sectionKey === "why" ? 3 : 1;
 }
 
 const generateAccordions = (contentType: ContentType, sectionKey: string) => {

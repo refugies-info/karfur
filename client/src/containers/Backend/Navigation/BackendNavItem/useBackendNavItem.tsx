@@ -68,9 +68,8 @@ const useBackendNavItem = ({
     },
     text: (
       <>
-        <EVAIcon fill={color} name={iconName} className={cls(!!title && "me-2")} />
-        <span>{title}</span>
-        {/* TODO: on small screens, hide title */}
+        <EVAIcon fill={color} name={iconName} />
+        <span className={styles.item}>{title}</span>
       </>
     ),
   };

@@ -25,7 +25,7 @@ const Map = () => {
   });
 
   const markers = useMemo(() => {
-    if (!dispositif || dispositif.map?.length === 0) return [];
+    if (!dispositif?.map || dispositif.map?.length === 0) return [];
     return dispositif.map.map((marker, i) => ({ ...marker, id: i }));
   }, [dispositif]);
 
