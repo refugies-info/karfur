@@ -47,7 +47,7 @@ const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
           ? null
           : [
               {
-                content: typeContenu === ContentType.DISPOSITIF ? links : undefined,
+                content: links,
                 icon: <LocationIcon color={color} />,
               },
             ]

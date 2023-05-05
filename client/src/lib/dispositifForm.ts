@@ -29,6 +29,10 @@ export const getInitialValue = (contentType: ContentType): CreateDispositifReque
     })
   };
 
+  if (contentType === ContentType.DEMARCHE) {
+    defaultValues.metadatas = { location: "france" };
+  }
+
   return defaultValues;
 }
 

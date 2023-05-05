@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import isUndefined from "lodash/isUndefined";
 import { ContentType, GetDispositifResponse } from "api-types";
 import FRLink from "components/UI/FRLink";
 import { getSponsorLink } from "./functions";
@@ -64,7 +65,10 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
         color={color}
       />
 
-      {(metadatas.publicStatus || metadatas.public || metadatas.frenchLevel || metadatas.age) && (
+      {(!isUndefined(metadatas.publicStatus) ||
+        !isUndefined(metadatas.public) ||
+        !isUndefined(metadatas.frenchLevel) ||
+        !isUndefined(metadatas.age)) && (
         <CardPublic
           dataPublicStatus={metadatas.publicStatus}
           dataPublic={metadatas.public}
