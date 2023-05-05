@@ -49,7 +49,7 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
   let draftDispositif = null;
   const originalDispositif = await (
     await getDispositifById(id, fields)
-  ).populate<{
+  )?.populate<{
     mainSponsor: ContentStructure;
     sponsors: (ContentStructure | Sponsor)[];
     participants: SimpleUser[];
@@ -67,7 +67,7 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
   if (user && isUserAuthorizedToModifyDispositif(dispositifForAccessCheck, user) && !!originalDispositif.hasDraftVersion) {
     draftDispositif = await (
       await getDraftDispositifById(id, fields)
-    ).populate<{
+    )?.populate<{
       mainSponsor: ContentStructure;
       sponsors: (ContentStructure | Sponsor)[];
       participants: SimpleUser[];
