@@ -111,6 +111,7 @@ export default {
       fr: "./src/translations/fr.json",
     },
     description: "",
+    jsEngine: "hermes",
     plugins: [
       "./src/utils/withSimulatorExcludedArchitectures.js",
       "./build-scripts/withGoogleMapsApiKey.js",
@@ -130,7 +131,6 @@ export default {
     ],
     android: {
       versionCode: androidVersionCode,
-      jsEngine: "jsc",
       userInterfaceStyle: "light",
       adaptiveIcon: {
         foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
