@@ -76,7 +76,7 @@ html body {
   }
 
   :not([class^="fr-link"])[target="_blank"]::after {
-    content: none !important;
+    content: none;
   }
 
   .reset-btn {
