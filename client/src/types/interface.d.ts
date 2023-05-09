@@ -10,27 +10,6 @@ export interface Event {
   target: { id: string; value: string };
 }
 
-export interface Indicator {
-  _id: Id;
-  wordsCount: number;
-  timeSpent: number;
-}
-
-type iconName = "house" | "search" | "message" | "menu" | "tag" | "";
-
-export interface Translation {
-  _id?: Id;
-  initialText?: object;
-  translatedText?: object;
-  langueCible?: string;
-  articleId?: Id;
-  timeSpent?: string;
-  isStructure?: boolean;
-  avancement?: number;
-  type?: string;
-  isExpert?: boolean;
-}
-
 export type AvailableLanguageI18nCode = "fr" | "en" | "ps" | "ar" | "ti" | "ru" | "uk" | "fa";
 
 export type Status = {
