@@ -5,8 +5,8 @@ import Search from "./Search";
 import Message from "./Message";
 import Menu from "./Menu";
 import Tag from "./Tag";
-import { iconName } from "types/interface";
 
+type iconName = "house" | "search" | "message" | "menu" | "tag" | "";
 interface Props {
   name?: iconName;
   stroke?: string;

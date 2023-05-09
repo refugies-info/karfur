@@ -3,10 +3,7 @@ import moment from "moment";
 import styled from "styled-components";
 import TimePicker from "rc-time-picker";
 import { CustomCheckBox } from "./CustomCheckBox";
-import {
-  OpeningHours,
-  DetailedOpeningHours,
-} from "types/interface";
+import { DetailedOpeningHours, OpeningHours } from "api-types";
 
 interface Props {
   day: string;
@@ -16,7 +13,7 @@ interface Props {
 }
 
 const MainContainer = styled.div`
-  background: ${(props: {isDayChecked: boolean}) => (props.isDayChecked ? "#DEF7C2" : "#f2f2f2")};
+  background: ${(props: { isDayChecked: boolean }) => (props.isDayChecked ? "#DEF7C2" : "#f2f2f2")};
   border-radius: 12px;
   padding: 12px;
   margin-top: 4px;
@@ -43,19 +40,15 @@ export const HoursDetails = (props: Props) => {
   };
   const correspondingDay =
     props.openingHours && props.openingHours.details
-      ? props.openingHours.details.filter(
-          (element) => element.day === props.day
-        )
+      ? props.openingHours.details.filter((element) => element.day === props.day)
       : [];
-  const [isPuisDeChecked, setIsPuisDeCheck] = useState(
-    getInitialPuisDeValue(correspondingDay)
-  );
+  const [isPuisDeChecked, setIsPuisDeCheck] = useState(getInitialPuisDeValue(correspondingDay));
   const isDayChecked = correspondingDay.length > 0;
 
   const getInitialValue = (
     isDayChecked: boolean,
     correspondingDay: DetailedOpeningHours[],
-    index: "from0" | "to0" | "from1" | "to1"
+    index: "from0" | "to0" | "from1" | "to1",
   ) => {
     const defaultValue = moment("00:00", "HH:mm");
     if (!isDayChecked || !correspondingDay[0][index]) return defaultValue;
@@ -70,10 +63,7 @@ export const HoursDetails = (props: Props) => {
 
   return (
     <MainContainer isDayChecked={isDayChecked}>
-      <CustomCheckBox
-        checked={isDayChecked}
-        onClick={() => props.onClick(props.day)}
-      />
+      <CustomCheckBox checked={isDayChecked} onClick={() => props.onClick(props.day)} />
       {`${props.day} `}
       <Text>de</Text>
       <TimePicker
@@ -105,11 +95,7 @@ export const HoursDetails = (props: Props) => {
             // @ts-ignore
             style={{ width: 100 }}
             showSecond={false}
-            defaultValue={getInitialValue(
-              isDayChecked,
-              correspondingDay,
-              "from1"
-            )}
+            defaultValue={getInitialValue(isDayChecked, correspondingDay, "from1")}
             className="xxx"
             disabled={!isDayChecked}
             onChange={(value) => props.onChange(value, "from1", props.day)}
@@ -119,11 +105,7 @@ export const HoursDetails = (props: Props) => {
             // @ts-ignore
             style={{ width: 100 }}
             showSecond={false}
-            defaultValue={getInitialValue(
-              isDayChecked,
-              correspondingDay,
-              "to1"
-            )}
+            defaultValue={getInitialValue(isDayChecked, correspondingDay, "to1")}
             className="xxx"
             disabled={!isDayChecked}
             onChange={(value) => props.onChange(value, "to1", props.day)}
