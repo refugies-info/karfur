@@ -3,7 +3,6 @@ import { langueReducer, LangueState } from "./Langue/langue.reducer";
 import { activeDispositifsReducer, ActiveDispositifsState } from "./ActiveDispositifs/activeDispositifs.reducer";
 import { structureReducer, UserStructureState } from "./UserStructure/userStructure.reducer";
 import { userReducer, UserState } from "./User/user.reducer";
-import { translationReducer, TranslationState } from "./Translation/translation.reducer";
 import { ttsReducer, TtsState } from "./Tts/tts.reducer";
 import { SelectedDispositifState, selectedDispositifReducer } from "./SelectedDispositif/selectedDispositif.reducer";
 import { LoadingStatusState, loadingStatusReducer } from "./LoadingStatus/loadingStatus.reducer";
@@ -42,7 +41,6 @@ export interface RootState {
   selectedDispositif: SelectedDispositifState;
   selectedStructure: SelectedStructureState;
   themes: ThemesState;
-  translation: TranslationState;
   tts: TtsState;
   user: UserState;
   userContributions: UserContributionsState;
@@ -67,7 +65,6 @@ const combinedReducer = combineReducers({
   selectedDispositif: selectedDispositifReducer,
   selectedStructure: selectedStructureReducer,
   themes: themesReducer,
-  translation: translationReducer,
   tts: ttsReducer,
   user: userReducer,
   userContributions: userContributionsReducer,

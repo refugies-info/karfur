@@ -135,11 +135,11 @@ export const Step4 = (props: Props) => {
       return setDepartments([]);
     }
     const departmentsDataFiltered = departmentsData.filter((department) =>
-      props.structure && props.structure.departments ? !props.structure.departments.includes(department) : false
+      props.structure && props.structure.departments ? !props.structure.departments.includes(department) : false,
     );
 
     const filteredDepartments = departmentsDataFiltered.filter((department) =>
-      department.toLowerCase().includes(e.target.value.toLowerCase())
+      department.toLowerCase().includes(e.target.value.toLowerCase()),
     );
 
     setDepartments(filteredDepartments);
@@ -149,7 +149,7 @@ export const Step4 = (props: Props) => {
     props.setHasModifications(true);
     return props.setStructure({
       ...props.structure,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
 
@@ -168,12 +168,12 @@ export const Step4 = (props: Props) => {
     if (props.structure && props.structure.departments && props.structure.departments[0] === "All") {
       return props.setStructure({
         ...props.structure,
-        departments: []
+        departments: [],
       });
     }
     return props.setStructure({
       ...props.structure,
-      departments: ["All"]
+      departments: ["All"],
     });
   };
 
@@ -183,12 +183,12 @@ export const Step4 = (props: Props) => {
     if (props.structure && props.structure.onlyWithRdv) {
       return props.setStructure({
         ...props.structure,
-        onlyWithRdv: false
+        onlyWithRdv: false,
       });
     } else if (props.structure && !props.structure.onlyWithRdv) {
       return props.setStructure({
         ...props.structure,
-        onlyWithRdv: true
+        onlyWithRdv: true,
       });
     }
   };
@@ -203,13 +203,13 @@ export const Step4 = (props: Props) => {
           openingHours: {
             details: [],
             noPublic: false,
-            precisions: props.structure.openingHours.precisions
-          }
+            precisions: props.structure.openingHours.precisions,
+          },
         });
       }
       return props.setStructure({
         ...props.structure,
-        openingHours: { details: [], noPublic: false }
+        openingHours: { details: [], noPublic: false },
       });
     }
 
@@ -219,14 +219,14 @@ export const Step4 = (props: Props) => {
         openingHours: {
           details: [],
           noPublic: true,
-          precisions: props.structure.openingHours.precisions
-        }
+          precisions: props.structure.openingHours.precisions,
+        },
       });
     }
 
     return props.setStructure({
       ...props.structure,
-      openingHours: { details: [], noPublic: true }
+      openingHours: { details: [], noPublic: true },
     });
   };
 
@@ -284,8 +284,8 @@ export const Step4 = (props: Props) => {
       ...props.structure,
       openingHours: {
         ...props.structure?.openingHours,
-        precisions: e.target.value
-      }
+        precisions: e.target.value,
+      },
     });
   };
 
@@ -317,7 +317,7 @@ export const Step4 = (props: Props) => {
   const phones = props.structure && props.structure.phonesPublic ? props.structure.phonesPublic : [];
 
   const mails = props.structure && props.structure.mailsPublic ? props.structure.mailsPublic : [];
-  const noPublicChecked = !!props.structure && !!props.structure.openingHours && props.structure.openingHours.noPublic;
+  const noPublicChecked = !!props.structure?.openingHours?.noPublic;
 
   const onlyWithRdv = !!props.structure && !!props.structure.onlyWithRdv;
 
@@ -359,7 +359,7 @@ export const Step4 = (props: Props) => {
     if (dayRegistered) {
       const updatedDay = {
         ...dayRegistered[0],
-        [index]: value.format("HH:mm")
+        [index]: value.format("HH:mm"),
       };
       const openingHoursWithoutDayRegistered =
         props.structure.openingHours && props.structure.openingHours.details
@@ -368,12 +368,12 @@ export const Step4 = (props: Props) => {
       const openingHours = props.structure.openingHours
         ? {
             ...props.structure.openingHours,
-            details: openingHoursWithoutDayRegistered.concat([updatedDay])
+            details: openingHoursWithoutDayRegistered.concat([updatedDay]),
           }
         : { noPublic: false, details: [] };
       props.setStructure({
         ...props.structure,
-        openingHours
+        openingHours,
       });
     }
     props.setHasModifications(true);
@@ -440,13 +440,13 @@ export const Step4 = (props: Props) => {
             <div
               style={{
                 display: "flex",
-                flexDirection: "row"
+                flexDirection: "row",
               }}
             >
               <div
                 style={{
                   width: "300px",
-                  marginRight: "4px"
+                  marginRight: "4px",
                 }}
               >
                 <FInput
@@ -471,7 +471,7 @@ export const Step4 = (props: Props) => {
           <div
             style={{
               display: "flex",
-              flexDirection: "row"
+              flexDirection: "row",
             }}
           >
             <div style={{ width: "300px", marginRight: "4px" }}>
@@ -499,13 +499,13 @@ export const Step4 = (props: Props) => {
             <div
               style={{
                 display: "flex",
-                flexDirection: "row"
+                flexDirection: "row",
               }}
             >
               <div
                 style={{
                   width: "130px",
-                  marginRight: "4px"
+                  marginRight: "4px",
                 }}
               >
                 <FInput
@@ -531,7 +531,7 @@ export const Step4 = (props: Props) => {
           <div
             style={{
               display: "flex",
-              flexDirection: "row"
+              flexDirection: "row",
             }}
           >
             <div style={{ width: "130px", marginRight: "4px" }}>
@@ -556,7 +556,7 @@ export const Step4 = (props: Props) => {
       <div
         style={{
           marginBottom: "16px",
-          width: "640px"
+          width: "640px",
         }}
       >
         <FInput
@@ -599,7 +599,7 @@ export const Step4 = (props: Props) => {
         style={{
           marginTop: "16px",
           width: "640px",
-          marginBottom: "32px"
+          marginBottom: "32px",
         }}
       >
         <Input

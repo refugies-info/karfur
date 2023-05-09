@@ -29,10 +29,10 @@ class DetailedOpeningHours {
 }
 
 class OpeningHours {
-  @prop({ required: true, type: () => [DetailedOpeningHours] })
+  @prop({ required: true, type: () => [DetailedOpeningHours], _id: false })
   public details!: DetailedOpeningHours[];
-  @prop({ required: true })
-  public noPublic!: boolean;
+  @prop()
+  public noPublic?: boolean;
   @prop()
   public precisions?: string;
 }
@@ -94,7 +94,7 @@ export class Structure extends Base {
   public mailsPublic?: string[];
   @prop()
   public adressPublic?: string;
-  @prop({ type: () => OpeningHours })
+  @prop({ type: () => OpeningHours, _id: false })
   public openingHours?: OpeningHours;
   @prop()
   public onlyWithRdv?: boolean;

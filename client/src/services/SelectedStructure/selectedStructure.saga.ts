@@ -1,5 +1,6 @@
 import { SagaIterator } from "redux-saga";
 import { takeLatest, put, call, select } from "redux-saga/effects";
+import pick from "lodash/pick";
 import API from "../../utils/API";
 import { logger } from "../../logger";
 import {
@@ -48,9 +49,7 @@ export function* updateSelectedStructure(
       logger.info("[updateSelectedStructure] no structure to update");
       return;
     }
-    const updatedStructure: PatchStructureRequest = { ...structure };
-    // @ts-ignore
-    delete updatedStructure.membres;
+    const updatedStructure: PatchStructureRequest = pick(structure, ["picture", "contact", "phone_contact", "mail_contact", "responsable", "nom", "hasResponsibleSeenNotification", "acronyme", "adresse", "authorBelongs", "link", "mail_generique", "siren", "siret", "structureTypes", "websites", "facebook", "linkedin", "twitter", "activities", "departments", "phonesPublic", "mailsPublic", "adressPublic", "openingHours", "onlyWithRdv", "description"]);
     yield call(API.updateStructure, structureId, updatedStructure);
 
     yield put(
