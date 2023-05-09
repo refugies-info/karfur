@@ -322,7 +322,7 @@ export const AdminContenu = () => {
 
     const formattedNeedsTheme = element.needs.map((needId) => {
       const needArray = allNeeds.filter((need) => need._id === needId);
-      const needTheme = needArray.length > 0 ? needArray[0].theme.name.fr : null;
+      const needTheme = needArray.length > 0 ? needArray[0].theme._id : null;
       return needTheme;
     });
 

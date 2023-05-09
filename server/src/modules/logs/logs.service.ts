@@ -52,7 +52,7 @@ const datesAreOnSameDay = (first: Date, second: Date) =>
 
 export const groupLogs = (logs: GetLogResponse[]): GetLogResponse[] => {
   return logs.reduceRight((prev, curr) => {
-    if (prev.find(l => datesAreOnSameDay(l.created_at, curr.created_at) && l.author.username === curr.author.username && l.text === curr.text)) return prev;
+    if (prev.find(l => datesAreOnSameDay(l.created_at, curr.created_at) && l.author?.username === curr.author?.username && l.text === curr.text)) return prev;
     return [curr, ...prev];
   }, [] as GetLogResponse[]);
 }
