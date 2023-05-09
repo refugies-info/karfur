@@ -1,5 +1,6 @@
 import { SagaIterator } from "redux-saga";
 import { takeLatest, put, call, select } from "redux-saga/effects";
+import pick from "lodash/pick";
 import API from "../../utils/API";
 import { FETCH_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "./userStructure.actionTypes";
 import {
@@ -61,7 +62,7 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
         logger.info("[updateUserStructure] no structure to update");
         return;
       }
-      const updatedStructure: PatchStructureRequest = { ...structure };
+      const updatedStructure: PatchStructureRequest = pick(structure, ["picture", "contact", "phone_contact", "mail_contact", "responsable", "nom", "hasResponsibleSeenNotification", "acronyme", "adresse", "authorBelongs", "link", "mail_generique", "siren", "siret", "structureTypes", "websites", "facebook", "linkedin", "twitter", "activities", "departments", "phonesPublic", "mailsPublic", "adressPublic", "openingHours", "onlyWithRdv", "description"]);
       yield call(API.updateStructure, structureId, updatedStructure);
       yield put(setUserStructureActionCreator({ ...structureFromStore, ...structure }))
     } else if (membres) {

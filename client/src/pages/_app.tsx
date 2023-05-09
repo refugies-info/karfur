@@ -42,12 +42,11 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-declare module "@codegouvfr/react-dsfr/ConsentBanner" {
-  interface GdprServiceNames {
-    mandatory: unknown;
-    google_analytics: unknown;
-    facebook_pixel: unknown;
-    youtube: unknown;
+declare module "@codegouvfr/react-dsfr/gdpr" {
+  interface RegisterGdprServices {
+    mandatory: true;
+    google_analytics: never;
+    youtube: never;
   }
 }
 
@@ -109,26 +108,21 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
           gdprLinkProps={{ href: "#" }}
           services={[
             {
-              name: "mandatory-cookie-consumer",
+              name: "mandatory",
               title: "Cookies obligatoires",
               description:
                 "Ce site utilise des cookies nécessaires à son bon fonctionnement qui ne peuvent pas être désactivés.",
               mandatory: true,
             },
-            // {
-            //   name: "cookie-consumer",
-            //   title: "Facebook Pixel",
-            //   description: "Identifie les visiteurs en provenance de publications Facebook.",
-            // },
             {
-              name: "cookie-consumer",
-              title: "Google Analytics",
-              description: "Permet d'analyser les statistiques de consultation de notre site.",
-            },
-            {
-              name: "cookie-consumer",
+              name: "youtube",
               title: "Youtube",
               description: "Permet d'afficher les vidéos Youtube.",
+            },
+            {
+              name: "google_analytics",
+              title: "Google Analytics",
+              description: "Permet d'analyser les statistiques de consultation de notre site.",
             },
           ]}
           siteName={"Réfugiés.info"}

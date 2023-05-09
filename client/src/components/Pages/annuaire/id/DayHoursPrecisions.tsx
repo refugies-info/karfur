@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-import { OpeningHours, DetailedOpeningHours } from "types/interface";
+import { DetailedOpeningHours, OpeningHours } from "api-types";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./DayHoursPrecisions.module.scss";
 
@@ -30,7 +30,7 @@ const getOpeningHours = (
   to0: string | undefined,
   from1: string | undefined,
   to1: string | undefined,
-  t: any
+  t: any,
 ) => {
   if (!from0 || !to0) return " : " + t("Annuaire.ouvert", "ouvert");
 
