@@ -1,11 +1,15 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
+import { useContentType } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
+import { themeSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Button from "components/UI/Button";
 import Text from "components/Pages/dispositif/Text";
+import AccordionBadge from "components/Pages/dispositif/AccordionBadge";
 import AddContentButton from "../../AddContentButton";
 import styles from "./AccordionItem.module.scss";
 
@@ -13,8 +17,11 @@ const RichTextInput = dynamic(() => import("components/UI/RichTextInput"), { ssr
 
 interface Props {
   id: string;
+  index: number;
   onDelete?: (() => void) | false;
-  label?: string;
+  label: string;
+  placeholderTitle: string;
+  placeholderText?: string;
 }
 
 /**
@@ -24,6 +31,10 @@ const AccordionItem = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { unregister, register, getValues, setValue } = useFormContext();
 
+  const currentTheme = useSelector(themeSelector(getValues("theme")));
+  const color = currentTheme?.colors.color100 || "#000";
+  const contentType = useContentType();
+
   const getContent = () => {
     const title = getValues(`${props.id}.title`);
     const text = getValues(`${props.id}.text`);
@@ -31,7 +42,10 @@ const AccordionItem = (props: Props) => {
 
     return (
       <div className={styles.content}>
-        <div className={styles.title}>{title}</div>
+        <div className={styles.title}>
+          <AccordionBadge index={props.index + 1} sectionKey={props.id} contentType={contentType} color100={color} />
+          {title}
+        </div>
         <div className={styles.text}>
           <Text id={`${props.id}.text`} html>
             {text}
@@ -73,7 +87,15 @@ const AccordionItem = (props: Props) => {
           hasError={!!getContent() && (!getValues(`${props.id}.title`) || !getValues(`${props.id}.text`))}
         >
           <span className={styles.button_inner}>
-            {props.label || "Argument"}
+            <span className="d-flex align-items-center">
+              <AccordionBadge
+                index={props.index + 1}
+                sectionKey={props.id}
+                contentType={contentType}
+                color100={color}
+              />
+              {props.label}
+            </span>
             {props.onDelete && (
               <span className={cls(styles.remove, "me-4")}>
                 <EVAIcon
@@ -93,15 +115,24 @@ const AccordionItem = (props: Props) => {
       {isActive && (
         <>
           <div className={styles.item}>
-            <input
-              type="text"
-              placeholder="Titre de l'argument"
-              {...register(`${props.id}.title`)}
-              className={styles.input}
-            />
+            <div className={styles.title}>
+              <AccordionBadge
+                index={props.index + 1}
+                sectionKey={props.id}
+                contentType={contentType}
+                color100={color}
+              />
+              <input
+                type="text"
+                placeholder={props.placeholderTitle}
+                {...register(`${props.id}.title`)}
+                className={styles.input}
+              />
+            </div>
             <RichTextInput
               value={getValues(`${props.id}.text`)}
               onChange={(html) => setValue(`${props.id}.text`, html)}
+              placeholder={props.placeholderText}
             />
           </div>
           <div className="text-end mb-6">

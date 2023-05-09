@@ -2,6 +2,7 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/links";
 
 .highlighted {
   background: $lightBackgroundActionLowBlueFrance;
@@ -13,4 +14,9 @@
 
 .content {
   @include dsfr-text("normal");
+
+  a[href] {
+    --underline-img: linear-gradient(0deg, currentColor, currentColor); // force underline
+    @include dsfr-link();
+  }
 }

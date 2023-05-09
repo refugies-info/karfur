@@ -15,7 +15,10 @@ interface Props {
 
 const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) => {
   const isFormOk =
-    !!poiForm?.title && !!poiForm?.address && isValidEmail(poiForm?.email) && isValidPhone(poiForm?.phone);
+    !!poiForm?.title &&
+    !!poiForm?.address &&
+    (!poiForm?.email || isValidEmail(poiForm?.email)) &&
+    (!poiForm?.phone || isValidPhone(poiForm?.phone));
 
   return (
     <div className={styles.container}>
@@ -54,23 +57,21 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
         />
         <Input
           id="input-poi-email"
-          label="Email de contact"
+          label="Email de contact (optionnel)"
           value={poiForm?.email || ""}
           onChange={(e) => setPoiForm({ ...poiForm, email: e.target.value || "" })}
           className="mb-4"
           icon="at-outline"
-          valid={isValidEmail(poiForm?.email)}
-          error={!isValidEmail(poiForm?.email) ? "Le format n'est pas valide." : undefined}
+          error={poiForm?.email && !isValidEmail(poiForm?.email) ? "Le format n'est pas valide." : undefined}
         />
         <Input
           id="input-poi-phone"
-          label="Téléphone"
+          label="Téléphone (optionnel)"
           value={poiForm?.phone || ""}
           onChange={(e) => setPoiForm({ ...poiForm, phone: e.target.value || "" })}
           className="mb-4"
           icon="phone-outline"
-          valid={isValidPhone(poiForm?.phone)}
-          error={!isValidPhone(poiForm?.phone) ? "Le format n'est pas valide." : undefined}
+          error={poiForm?.phone && !isValidPhone(poiForm?.phone) ? "Le format n'est pas valide." : undefined}
         />
         <Input
           id="input-poi-description"

@@ -6,12 +6,13 @@ import { getUserName } from "../../../modules/users/users.repository";
 import logger from "../../../logger";
 import { findLogs } from "../../../modules/logs/logs.repository";
 import { ResponseWithData } from "../../../types/interface";
+import { groupLogs } from "../../../modules/logs/logs.service";
 
 export const getLogs = async (id: string): ResponseWithData<GetLogResponse[]> => {
   logger.info("[getLogs] received with id", id);
   const logs = await findLogs(id);
 
-  const logsResponse: GetLogResponse[] = await Promise.all(logs.map(async (log) => {
+  const allLogs: GetLogResponse[] = await Promise.all(logs.map(async (log) => {
     if (log.dynamicId) {
       if (log.model_dynamic === "Dispositif") return {
         ...log.toObject(),
@@ -35,6 +36,6 @@ export const getLogs = async (id: string): ResponseWithData<GetLogResponse[]> =>
 
   return {
     text: "success",
-    data: logsResponse,
+    data: groupLogs(allLogs),
   };
 };

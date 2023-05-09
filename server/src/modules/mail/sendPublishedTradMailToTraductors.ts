@@ -1,10 +1,11 @@
 import logger from "../../logger";
-import { asyncForEach } from "../../libs/asyncForEach";
+import { uniq } from "lodash";
 import { getUserById } from "../users/users.repository";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
 import { Dispositif } from "../../typegoose";
 import { ContentType, Languages, UserStatus } from "@refugies-info/api-types";
+import { findTraductors } from "../traductions/traductions.repository";
 
 export const sendPublishedTradMailToTraductors = async (
   locale: Languages,
@@ -16,8 +17,9 @@ export const sendPublishedTradMailToTraductors = async (
   try {
     const langue = getFormattedLocale(locale);
     const lien = "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id.toString();
-    // FIXME : choose the users to send email to
-    await asyncForEach([], async (tradId) => {
+    const allTraductors = await findTraductors(dispositif._id, locale);
+    const traductors = uniq(allTraductors.map(t => t.userId.toString()));
+    await Promise.all(traductors.map(async (tradId) => {
       try {
         const userNeededFields = {
           username: 1,
@@ -44,7 +46,7 @@ export const sendPublishedTradMailToTraductors = async (
           userId: tradId,
         });
       }
-    });
+    }));
   } catch (e) {
     logger.info("[sendPublishedTradMailToTraductors] error", e);
   }

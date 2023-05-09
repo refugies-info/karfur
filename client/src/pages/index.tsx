@@ -31,6 +31,7 @@ import {
   GetStructureStatisticsResponse,
   TranslationStatisticsResponse,
 } from "api-types";
+import { logger } from "logger";
 
 interface Props {
   contentStatistics: GetStatisticsResponse;
@@ -102,16 +103,24 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 
-  const contentStatistics = (
-    await API.getDispositifsStatistics({
-      facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"],
-    })
-  ).data.data;
-  const structuresStatistics = (
-    await API.getStructuresStatistics({ facets: ["nbStructures", "nbCDA", "nbStructureAdmins"] })
-  ).data.data;
-  const translationStatistics = (await API.getTranslationStatistics({ facets: ["nbTranslators", "nbRedactors"] })).data
-    .data;
+  let translationStatistics: TranslationStatisticsResponse = {};
+  let contentStatistics: GetStatisticsResponse = {};
+  let structuresStatistics: GetStructureStatisticsResponse = {};
+
+  try {
+    contentStatistics = (
+      await API.getDispositifsStatistics({
+        facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"],
+      })
+    ).data.data;
+    structuresStatistics = (
+      await API.getStructuresStatistics({ facets: ["nbStructures", "nbCDA", "nbStructureAdmins"] })
+    ).data.data;
+    translationStatistics = (await API.getTranslationStatistics({ facets: ["nbTranslators", "nbRedactors"] })).data
+      .data;
+  } catch (e) {
+    logger.error("[index] build page", e);
+  }
 
   const demarches = (
     await API.getDispositifs({

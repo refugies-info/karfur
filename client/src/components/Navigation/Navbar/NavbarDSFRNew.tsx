@@ -63,12 +63,12 @@ const Navbar = () => {
                 isActive: isCurrent(getPath("/recherche", router.locale)),
               },
               {
-                linkProps: { href: getPath("/publier", router.locale) },
+                linkProps: { href: getPath("/publier", router.locale), prefetch: false },
                 text: t("Toolbar.Publier une fiche", "Publier une fiche"),
                 isActive: isCurrent(getPath("/publier", router.locale)),
               },
               {
-                linkProps: { href: getPath("/traduire", router.locale) },
+                linkProps: { href: getPath("/traduire", router.locale), prefetch: false },
                 text: t("Toolbar.Traduire", "Traduire"),
                 isActive: isCurrent(getPath("/traduire", router.locale)),
               },

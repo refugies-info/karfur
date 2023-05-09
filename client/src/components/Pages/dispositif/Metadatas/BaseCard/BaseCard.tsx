@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import { cls } from "lib/classname";
+import isUndefined from "lodash/isUndefined";
 import PageContext from "utils/pageContext";
 import { useUniqueId } from "hooks";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -74,7 +75,7 @@ const BaseCard = ({ id, title, items, color, onClick }: Props) => {
   const tooltipId = useUniqueId("tooltip_card_");
 
   const noContent = useMemo(() => {
-    return pageContext.mode === "view" && !(items || []).find((item) => !!item.content);
+    return pageContext.mode === "view" && !(items || []).find((item) => !isUndefined(item.content));
   }, [items, pageContext.mode]);
 
   const status = useMemo(() => getStatus(items, pageContext.mode === "edit"), [pageContext.mode, items]);
