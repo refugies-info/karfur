@@ -19,20 +19,21 @@ const MentionsLegales = () => {
 
       <h2>Directeur de la publication</h2>
 
-      <strong>Yannick Prost</strong>
+      <p>
+        <strong>Yannick Prost</strong>
+      </p>
 
       <h2>Droit d’accès</h2>
 
-      <p>
-        En application de la loi Informatique et liberté, vous disposez d’un droit d’accès, de rectification, de
-        modification et de suppression concernant des données qui vous concernent personnellement. Ce droit peut être
-        exercé par voie électronique à l’adresse email suivante :{" "}
-        <a title="Email" href="mailto:contact@email.refugies.info">
-          contact@email.refugies.info
-        </a>
-        .
+      <div>
         <p>
-          Ou par courrier postal, daté et signé, accompagné d&apos;une copie d’un titre d’identité, à l&apos;adresse
+          En application de la loi Informatique et liberté, vous disposez d’un droit d’accès, de rectification, de
+          modification et de suppression concernant des données qui vous concernent personnellement. Ce droit peut être
+          exercé par voie électronique à l’adresse email suivante :{" "}
+          <a title="Email" href="mailto:contact@email.refugies.info">
+            contact@email.refugies.info
+          </a>
+          . Ou par courrier postal, daté et signé, accompagné d&apos;une copie d’un titre d’identité, à l&apos;adresse
           suivante :
         </p>
         <p>
@@ -42,7 +43,7 @@ const MentionsLegales = () => {
           <br />
           75020 Paris
         </p>
-      </p>
+      </div>
 
       <h2>Politique de confidentialité</h2>
 
@@ -74,9 +75,9 @@ const MentionsLegales = () => {
 
       <p>
         Le site Refugies.info est hébergé par la société{" "}
-        <Link legacyBehavior href="https://www.ovh.com">
-          <a>OVH</a>
-        </Link>
+        <a href="https://www.ovh.com" target="_blank">
+          OVH
+        </a>
         . 2 rue Kellermann – 59100 Roubaix – France Téléphone : 08 90 39 09 75 (France)
       </p>
     </div>
