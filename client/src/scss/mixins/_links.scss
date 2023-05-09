@@ -10,4 +10,7 @@
   &:hover {
     color: var(--bs-link-hover-color);
   }
+  &::after {
+    content: "" !important;
+  }
 }

@@ -53,11 +53,11 @@ const DispositifCard = (props: Props) => {
   const colors = theme.colors;
   const dispositifThemes = [theme, ...getThemes(props.dispositif.secondaryThemes || [], themes)];
 
-  const commitment = props.dispositif.metadatas.commitment;
-  const price = props.dispositif.metadatas.price;
+  const commitment = props.dispositif.metadatas?.commitment;
+  const price = props.dispositif.metadatas?.price;
 
   const getDepartement = () => {
-    const location = props.dispositif.metadatas.location;
+    const location = props.dispositif.metadatas?.location;
     if (!location) return null;
     if (!Array.isArray(location)) {
       if (location === "france") return jsUcfirst(t("Recherche.france", "toute la France"));

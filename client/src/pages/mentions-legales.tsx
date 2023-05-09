@@ -75,9 +75,9 @@ const MentionsLegales = () => {
 
       <p>
         Le site Refugies.info est hébergé par la société{" "}
-        <Link legacyBehavior href="https://www.ovh.com">
-          <a>OVH</a>
-        </Link>
+        <a href="https://www.ovh.com" target="_blank">
+          OVH
+        </a>
         . 2 rue Kellermann – 59100 Roubaix – France Téléphone : 08 90 39 09 75 (France)
       </p>
     </div>
