@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import { GetLogResponse, Id } from "@refugies-info/api-types";
 import logger from "../../logger";
 import { DispositifId, LangueId, Log, StructureId, UserId, ObjectId } from "../../typegoose";
 import { createLog } from "./logs.repository";
@@ -44,3 +44,15 @@ export const addLog = async (
     return;
   }
 };
+
+const datesAreOnSameDay = (first: Date, second: Date) =>
+  first.getFullYear() === second.getFullYear() &&
+  first.getMonth() === second.getMonth() &&
+  first.getDate() === second.getDate();
+
+export const groupLogs = (logs: GetLogResponse[]): GetLogResponse[] => {
+  return logs.reduceRight((prev, curr) => {
+    if (prev.find(l => datesAreOnSameDay(l.created_at, curr.created_at) && l.author?.username === curr.author?.username && l.text === curr.text)) return prev;
+    return [curr, ...prev];
+  }, [] as GetLogResponse[]);
+}

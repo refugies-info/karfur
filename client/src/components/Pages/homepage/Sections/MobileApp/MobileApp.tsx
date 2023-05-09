@@ -26,15 +26,15 @@ const MobileApp = () => {
   const storeLinks = useMemo(
     () => (
       <>
-        <a href={iosStoreLink} rel="noopener noreferrer" target="_blank">
+        <a className={styles.links} href={iosStoreLink} rel="noopener noreferrer" target="_blank">
           <Image src={appStoreBadge} alt="Get it on App Store" width={160} height={50} />
         </a>
-        <a href={androidStoreLink} rel="noopener noreferrer" target="_blank">
+        <a className={styles.links} href={androidStoreLink} rel="noopener noreferrer" target="_blank">
           <Image src={playStoreBadge} alt="Get it on Play Store" width={160} height={50} />
         </a>
       </>
     ),
-    [appStoreBadge, playStoreBadge]
+    [appStoreBadge, playStoreBadge],
   );
 
   const review = useMemo(
@@ -51,7 +51,7 @@ const MobileApp = () => {
       </div>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 
   return (

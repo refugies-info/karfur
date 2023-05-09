@@ -7,12 +7,13 @@ import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-type
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
+import { useContentType } from "hooks/dispositif";
 import { useLocale, useUser } from "hooks";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { calculateProgressEdit, getText, TOTAL_STEPS } from "./functions";
+import { calculateProgressEdit, getText, getTotalSteps } from "./functions";
 import Tooltip from "components/UI/Tooltip";
 import QuitModal from "./QuitModal";
 import PublishModal from "./PublishModal";
@@ -33,6 +34,9 @@ const CustomNavbarEdit = (props: Props) => {
 
   const initialLocale = useLocale();
   const [showLanguageWarning, setShowLanguageWarning] = useState(initialLocale !== "fr");
+
+  const contentType = useContentType();
+  const totalSteps = useMemo(() => getTotalSteps(contentType), [contentType]);
 
   useEffect(() => {
     setProgress(calculateProgressEdit(values, props.typeContenu));
@@ -120,8 +124,8 @@ const CustomNavbarEdit = (props: Props) => {
       )}
       <div className={cls("fr-container", styles.inner)}>
         <div className={styles.steps}>
-          <StepBar total={TOTAL_STEPS} progress={progress} text={`${progress} / ${TOTAL_STEPS}`} />
-          <p className={styles.help}>{getText(progress)}</p>
+          <StepBar total={totalSteps} progress={progress} text={`${progress} / ${totalSteps}`} />
+          <p className={styles.help}>{getText(progress, totalSteps)}</p>
           <Button
             priority={showMissingSteps ? "primary" : "secondary"}
             id="missing-steps-btn"
@@ -164,7 +168,7 @@ const CustomNavbarEdit = (props: Props) => {
           </Button>
           {!hideValidateButton && (
             <Button
-              evaIcon={progress === TOTAL_STEPS ? "checkmark-circle-2" : undefined}
+              evaIcon={progress === totalSteps ? "checkmark-circle-2" : undefined}
               iconPosition="right"
               onClick={validate}
             >

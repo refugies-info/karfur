@@ -1,11 +1,11 @@
 import { useContext, useMemo } from "react";
-import { useTranslation } from "next-i18next";
+import { useContentType } from "hooks/dispositif";
 import { DispositifStatus } from "api-types";
 import { isStatus } from "lib/dispositif";
 import PageContext, { Modals } from "utils/pageContext";
 import Button from "components/UI/Button";
 import StepBar from "../../../StepBar";
-import { Step, TOTAL_STEPS } from "../../functions";
+import { getTotalSteps, Step } from "../../functions";
 import MissingSteps from "../../../MissingSteps";
 import { help } from "./data";
 
@@ -50,13 +50,16 @@ const MissingContent = (props: Props) => {
     }
   };
 
+  const contentType = useContentType();
+  const totalSteps = useMemo(() => getTotalSteps(contentType), [contentType]);
+
   return (
     <div>
       <p>{content}</p>
       <StepBar
-        total={TOTAL_STEPS}
-        progress={TOTAL_STEPS - props.missingSteps.length}
-        text={`${TOTAL_STEPS - props.missingSteps.length} étapes complétées sur ${TOTAL_STEPS}`}
+        total={totalSteps}
+        progress={totalSteps - props.missingSteps.length}
+        text={`${totalSteps - props.missingSteps.length} étapes complétées sur ${totalSteps}`}
       />
 
       <MissingSteps

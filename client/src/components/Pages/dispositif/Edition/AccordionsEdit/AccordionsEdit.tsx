@@ -5,6 +5,7 @@ import { ContentType, CreateDispositifRequest, InfoSections } from "api-types";
 import Button from "components/UI/Button";
 import { getMaxAccordions } from "lib/dispositifForm";
 import AccordionItem from "./AccordionItem";
+import { getTexts } from "./functions";
 import styles from "./AccordionsEdit.module.scss";
 
 interface Props {
@@ -42,21 +43,27 @@ const AccordionsEdit = ({ sectionKey, contentType }: Props) => {
 
   return (
     <div id={`step-${sectionKey}`}>
-      {Object.entries(content || {}).map((section, i) => (
-        <AccordionItem
-          key={section[0]}
-          id={`${sectionKey}.${section[0]}`}
-          onDelete={
-            Object.keys(content).length > getMaxAccordions(contentType, sectionKey)
-              ? () => deleteElement(section[0])
-              : false
-          }
-          label={isLastSection ? "Contact et modalités d’inscription" : undefined}
-        />
-      ))}
+      {Object.entries(content || {}).map((section, i) => {
+        const texts = getTexts(contentType, isLastSection, i);
+        return (
+          <AccordionItem
+            key={section[0]}
+            index={i}
+            id={`${sectionKey}.${section[0]}`}
+            onDelete={
+              Object.keys(content).length > getMaxAccordions(contentType, sectionKey)
+                ? () => deleteElement(section[0])
+                : false
+            }
+            label={texts.buttonText}
+            placeholderTitle={texts.placeholderTitle}
+            placeholderText={texts.placeholderText}
+          />
+        );
+      })}
 
       <Button evaIcon="plus-circle-outline" priority="secondary" onClick={addElement}>
-        {isLastSection ? "Ajouter une option" : "Ajouter un argument"}
+        {getTexts(contentType, isLastSection, 0).addButtonText}
       </Button>
     </div>
   );

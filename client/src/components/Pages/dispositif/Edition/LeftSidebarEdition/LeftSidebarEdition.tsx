@@ -1,7 +1,8 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { ContentType, Metadatas, UpdateDispositifRequest } from "api-types";
+import { useContentType } from "hooks/dispositif";
 import { themeSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import PageContext from "utils/pageContext";
@@ -38,6 +39,7 @@ const LeftSidebarEdition = (props: Props) => {
   const values = useWatch<UpdateDispositifRequest>();
   const currentTheme = useSelector(themeSelector(values.theme));
   const color = currentTheme?.colors.color100 || "#000";
+  const contentType = useContentType();
 
   const { activeModal, setActiveModal } = useContext(PageContext);
   const toggleModal = useCallback(() => setActiveModal?.(null), [setActiveModal]);
@@ -98,21 +100,25 @@ const LeftSidebarEdition = (props: Props) => {
         </AddContentButton>
       )}
 
-      <div id="step-commitment"></div>
-      {values.metadatas?.commitment !== undefined ||
-      values.metadatas?.frequency !== undefined ||
-      values.metadatas?.timeSlots !== undefined ? (
-        <CardAvailability
-          dataCommitment={values.metadatas.commitment as Metadatas["commitment"]}
-          dataFrequency={values.metadatas.frequency as Metadatas["frequency"]}
-          dataTimeSlots={values.metadatas.timeSlots}
-          color={color}
-          onClick={() => setActiveModal?.("Availability")}
-        />
-      ) : (
-        <AddContentButton onClick={() => setActiveModal?.("Availability")} className="mb-6" size="md">
-          Disponibilité demandée
-        </AddContentButton>
+      {contentType === ContentType.DISPOSITIF && (
+        <>
+          <div id="step-commitment"></div>
+          {values.metadatas?.commitment !== undefined ||
+          values.metadatas?.frequency !== undefined ||
+          values.metadatas?.timeSlots !== undefined ? (
+            <CardAvailability
+              dataCommitment={values.metadatas.commitment as Metadatas["commitment"]}
+              dataFrequency={values.metadatas.frequency as Metadatas["frequency"]}
+              dataTimeSlots={values.metadatas.timeSlots}
+              color={color}
+              onClick={() => setActiveModal?.("Availability")}
+            />
+          ) : (
+            <AddContentButton onClick={() => setActiveModal?.("Availability")} className="mb-6" size="md">
+              Disponibilité demandée
+            </AddContentButton>
+          )}
+        </>
       )}
 
       <div id="step-conditions"></div>
@@ -128,18 +134,22 @@ const LeftSidebarEdition = (props: Props) => {
         </AddContentButton>
       )}
 
-      <div id="step-location"></div>
-      {values.metadatas?.location !== undefined ? (
-        <CardLocation
-          data={values.metadatas.location}
-          typeContenu={props.typeContenu || ContentType.DISPOSITIF}
-          color={color}
-          onClick={() => setActiveModal?.("Location")}
-        />
-      ) : (
-        <AddContentButton onClick={() => setActiveModal?.("Location")} className="mb-6" size="md">
-          C'est où ?
-        </AddContentButton>
+      {contentType === ContentType.DISPOSITIF && (
+        <>
+          <div id="step-location"></div>
+          {values.metadatas?.location !== undefined ? (
+            <CardLocation
+              data={values.metadatas.location}
+              typeContenu={props.typeContenu || ContentType.DISPOSITIF}
+              color={color}
+              onClick={() => setActiveModal?.("Location")}
+            />
+          ) : (
+            <AddContentButton onClick={() => setActiveModal?.("Location")} className="mb-6" size="md">
+              C'est où ?
+            </AddContentButton>
+          )}
+        </>
       )}
 
       <p className={styles.title}>À faire en dernier</p>

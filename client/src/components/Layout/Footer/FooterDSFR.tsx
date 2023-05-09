@@ -25,7 +25,7 @@ const Footer = () => {
   return (
     <DSFRFooter
       accessibility="partially compliant"
-      accessibilityLinkProps={{ href: getPath("/declaration-accessibilite", router.locale) }}
+      accessibilityLinkProps={{ href: getPath("/declaration-accessibilite", router.locale), prefetch: false }}
       brandTop="GOUVERNEMENT"
       operatorLogo={{
         alt: "Logo DIAIR",
@@ -44,14 +44,17 @@ const Footer = () => {
       personalDataLinkProps={{
         href: getPath("/politique-de-confidentialite", router.locale),
         title: t("Politique de confidentialité", "Politique de confidentialité"),
+        prefetch: false,
       }}
       termsLinkProps={{
         href: getPath("/mentions-legales", router.locale),
         title: t("Mentions légales", "Mentions légales"),
+        prefetch: false,
       }}
       websiteMapLinkProps={{
         href: getPath("/plan-du-site", router.locale),
         title: t("Footer.Plan du site", "Plan du site"),
+        prefetch: false,
       }}
       linkList={[
         {
@@ -84,6 +87,7 @@ const Footer = () => {
               linkProps: {
                 href: getPath("/annuaire", router.locale),
                 hrefLang: router.locale,
+                prefetch: false,
               },
               text: t("Footer.L’annuaire des acteurs", "L’annuaire des acteurs"),
             },
@@ -95,12 +99,14 @@ const Footer = () => {
             {
               linkProps: {
                 href: getPath("/publier", router.locale),
+                prefetch: false,
               },
               text: t("Footer.Recenser mon action", "Recenser mon action"),
             },
             {
               linkProps: {
                 href: getPath("/traduire", router.locale),
+                prefetch: false,
               },
               text: t("Footer.Aider à traduire", "Aider à traduire"),
             },
@@ -184,6 +190,13 @@ const Footer = () => {
         {
           categoryName: t("Footer.A propos", "A propos"),
           links: [
+            {
+              linkProps: {
+                href: getPath("/qui-sommes-nous", router.locale),
+                prefetch: false,
+              },
+              text: t("Footer.Le projet", "Le projet"),
+            },
             {
               linkProps: {
                 href: "https://accueil-integration-refugies.fr/",

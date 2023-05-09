@@ -265,7 +265,7 @@ export const buildNewDispositif = async (
   if (formContent.secondaryThemes)
     editedDispositif.secondaryThemes = formContent.secondaryThemes.map((t) => new ObjectId(t));
   if (formContent.metadatas) editedDispositif.metadatas = formContent.metadatas;
-  if (formContent.map) editedDispositif.map = formContent.map;
+  if (formContent.map !== undefined) editedDispositif.map = formContent.map;
   //@ts-ignore
   if (formContent.sponsors) editedDispositif.sponsors = formContent.sponsors; // TODO picture type
 
@@ -287,11 +287,11 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
   const content = dispositif.translations.fr.content;
   const conditions: boolean[] = [
     !!content.titreInformatif,
-    !!content.titreMarque,
+    dispositif.typeContenu === ContentType.DEMARCHE || !!content.titreMarque,
     !!content.what,
     dispositif.typeContenu === ContentType.DISPOSITIF
       ? isAccordionOk((content as DispositifContent).why, 3)
-      : isAccordionOk((content as DemarcheContent).how, 3),
+      : isAccordionOk((content as DemarcheContent).how, 1),
     dispositif.typeContenu === ContentType.DISPOSITIF
       ? isAccordionOk((content as DispositifContent).how, 1)
       : isAccordionOk((content as DemarcheContent).next, 1),
@@ -303,11 +303,12 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
     isMetadataOk(dispositif.metadatas?.frenchLevel),
     isMetadataOk(dispositif.metadatas?.public),
     isMetadataOk(dispositif.metadatas?.price),
-    isMetadataOk(dispositif.metadatas?.commitment),
-    isMetadataOk(dispositif.metadatas?.frequency),
-    isMetadataOk(dispositif.metadatas?.timeSlots),
+    dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.commitment),
+    dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.frequency),
+    dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.timeSlots),
     isMetadataOk(dispositif.metadatas?.conditions),
-    isMetadataOk(dispositif.metadatas?.location),
+    dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.location),
   ];
+  logger.info("test", conditions)
   return conditions.filter((c) => !c).length === 0;
 };
