@@ -17,24 +17,6 @@ export interface Indicator {
 }
 
 type iconName = "house" | "search" | "message" | "menu" | "tag" | "";
-/**
- * @deprecated
- */
-export interface DetailedOpeningHours {
-  day: string;
-  from0?: string;
-  to0?: string;
-  from1?: string;
-  to1?: string;
-}
-/**
- * @deprecated
- */
-export interface OpeningHours {
-  details: DetailedOpeningHours[];
-  noPublic: boolean;
-  precisions?: string;
-}
 
 export interface Translation {
   _id?: Id;
