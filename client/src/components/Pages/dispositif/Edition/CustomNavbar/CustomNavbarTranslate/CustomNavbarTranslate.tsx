@@ -12,7 +12,7 @@ import Tooltip from "components/UI/Tooltip";
 import StepBar from "../StepBar";
 import styles from "../CustomNavbar.module.scss";
 import useAutosave from "./useAutosave";
-import { useUser } from "hooks";
+import { useEvent, useUser } from "hooks";
 import QuitModal from "./QuitModal";
 import { useToggle } from "react-use";
 import PublishModal from "./PublishModal";
@@ -38,6 +38,7 @@ const defaultProgress: Progress = {
 
 const CustomNavbarTranslate = (props: Props) => {
   const { locale } = props;
+  const { Event } = useEvent();
   const progress = props.progress || defaultProgress;
   const { user } = useUser();
   const router = useRouter();
@@ -87,6 +88,7 @@ const CustomNavbarTranslate = (props: Props) => {
             onClick={(e: any) => {
               e.preventDefault();
               setShowMissingSteps?.(!showMissingSteps);
+              Event("DISPO_TRAD", "click show missing steps", "Navbar");
             }}
           />
           <Tooltip target="missing-steps-btn" placement="top">
@@ -120,6 +122,7 @@ const CustomNavbarTranslate = (props: Props) => {
                 onClick={(e: any) => {
                   e.preventDefault();
                   handleQuit();
+                  Event("DISPO_CREATE", "click finish later", "Navbar");
                 }}
                 className="me-4"
               >
@@ -143,6 +146,7 @@ const CustomNavbarTranslate = (props: Props) => {
               onClick={(e: any) => {
                 e.preventDefault();
                 handleQuit();
+                Event("DISPO_CREATE", "click save and quit", "Navbar");
               }}
             >
               Sauvegarder et quitter
