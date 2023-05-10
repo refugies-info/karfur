@@ -5,11 +5,16 @@ import { Consents } from "./types";
 
 /**
  * Temp function to override corrupted store from localStorage:
- * 1rst fix : get value from "mandatory-cookie-consumer" (old wrong key) and store the new one in local storage
+ * 1rst fix : get value from "cookie-consumer" or "mandatory-cookie-consumer" (old wrong key) and store the new one in local storage
  * 2nd fix : get value from google_analytics -> only the last item is stored in the store.
  * cf: https://github.com/codegouvfr/react-dsfr/issues/114
  */
 const getFixConsent = (context: GdprStore) => {
+  if (Object.keys((context?.consents || {})).includes("cookie-consumer")) {
+    const oldAccepted = !!context.consents?.["cookie-consumer"];
+    localStorage.setItem("dsfr-gdpr-consent", `{\"consents\":{\"google_analytics\":${oldAccepted ? "true" : "false"}},\"firstChoiceMade\":true}`);
+    return oldAccepted;
+  }
   if (Object.keys((context?.consents || {})).includes("mandatory-cookie-consumer")) {
     const oldAccepted = !!context.consents?.["mandatory-cookie-consumer"];
     localStorage.setItem("dsfr-gdpr-consent", `{\"consents\":{\"google_analytics\":${oldAccepted ? "true" : "false"}},\"firstChoiceMade\":true}`);
