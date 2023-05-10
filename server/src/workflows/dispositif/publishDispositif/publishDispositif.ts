@@ -32,7 +32,7 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
     throw new InvalidRequestError("The content is incomplete, it cannot be published");
   }
 
-  checkUserIsAuthorizedToModifyDispositif(dispositif, user);
+  checkUserIsAuthorizedToModifyDispositif(dispositif, user, oldDispositif.hasDraftVersion);
 
   // if deleted or rejected, cannot be published
   if ([

@@ -1,26 +1,31 @@
 import { Dispositif, Structure, User } from "../typegoose";
 import logger from "../logger";
+import { UnauthorizedError } from "../errors";
+import { DispositifStatus } from "@refugies-info/api-types";
 
 // Dispositif edition
-export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User) => {
+export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User, hasDraftVersion: boolean) => {
   logger.info("[isUserAuthorizedToModifyDispositif] received");
   if (user.isAdmin()) {
     logger.info("[isUserAuthorizedToModifyDispositif] user is admin");
     return true;
   }
 
-  const authorCanModifyStatusList = ["Brouillon", "En attente", "Rejeté structure", "En attente non prioritaire"];
-  if (
-    authorCanModifyStatusList.includes(dispositif.status) &&
-    dispositif.creatorId.toString() === user._id.toString()
-  ) {
-    logger.info(`[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is author`);
-    return true;
-  }
+  // only author can moodify
+  const firstDraftVersion = dispositif.status === DispositifStatus.DRAFT && !hasDraftVersion; // the never published draft
+  const onlyAuthorCanModify = [ // or waiting content
+    DispositifStatus.WAITING_STRUCTURE,
+    DispositifStatus.KO_STRUCTURE,
+  ];
+  const isOnlyEditableByAuthor = firstDraftVersion || onlyAuthorCanModify.includes(dispositif.status);
+  const isAuthor = dispositif.creatorId.toString() === user._id.toString();
+  if (isOnlyEditableByAuthor) {
+    if (isAuthor) {
+      logger.info(`[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is author`);
+      return true;
+    }
 
-  if (authorCanModifyStatusList.includes(dispositif.status)) {
     logger.info(`[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} but user is not author`);
-
     return false;
   }
 
@@ -38,9 +43,9 @@ export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user:
   return false;
 };
 
-export const checkUserIsAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User): boolean => {
-  if (!isUserAuthorizedToModifyDispositif(dispositif, user)) {
-    throw new Error("NOT_AUTHORIZED");
+export const checkUserIsAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User, hasDraftVersion: boolean): boolean => {
+  if (!isUserAuthorizedToModifyDispositif(dispositif, user, hasDraftVersion)) {
+    throw new UnauthorizedError("The user is not authorized to edit content");
   }
   return true;
 };
