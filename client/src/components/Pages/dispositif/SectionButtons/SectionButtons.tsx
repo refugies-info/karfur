@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { InfoSection } from "api-types";
 import { cls } from "lib/classname";
 import { changeRate, pauseAudio, readAudio, resumeAudio } from "lib/readAudio";
-import { useLocale } from "hooks";
+import { useEvent, useLocale } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 
@@ -25,6 +25,7 @@ interface Props {
 const SectionButtons = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
+  const { Event } = useEvent();
 
   // tts
   const [showTtsButtons, setShowTtsButtons] = useState(false);
@@ -36,12 +37,13 @@ const SectionButtons = (props: Props) => {
       // start
       readAudio(getReadableText(props.content), locale, () => setIsPlaying(false));
       setShowTtsButtons(true);
+      Event("VOICEOVER", "click section button", "Dispo View");
     } else {
       // resume
       resumeAudio();
     }
     setIsPlaying(true);
-  }, [locale, props.content, showTtsButtons]);
+  }, [locale, props.content, showTtsButtons, Event]);
 
   const pause = useCallback(() => {
     pauseAudio();

@@ -1,7 +1,8 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button as RSButton, Collapse } from "reactstrap";
 import styled from "styled-components";
 import { ContentType, InfoSections } from "api-types";
+import { useEvent } from "hooks";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -36,9 +37,15 @@ interface Props {
  * Displays a list of InfoSection in VIEW or EDIT mode
  */
 const Accordions = ({ content, sectionKey, color100, color30, contentType }: Props) => {
+  const { Event } = useEvent();
   const pageContext = useContext(PageContext);
   const [open, setOpen] = useState<number | null>(null);
-  const toggle = (id: number) => setOpen((o) => (o === id ? null : id));
+  const toggle = (id: number) => {
+    setOpen((o) => (o === id ? null : id));
+    if (pageContext.mode === "view") {
+      Event("DISPO_VIEW", "open", "Accordion");
+    }
+  };
   const isOpen = (index: number) => open === index || pageContext.mode === "translate";
 
   return pageContext.mode !== "edit" ? (

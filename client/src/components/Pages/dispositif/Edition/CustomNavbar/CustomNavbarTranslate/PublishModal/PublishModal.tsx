@@ -1,6 +1,7 @@
-import { useCallback, useContext, useMemo } from "react";
+import { useCallback, useContext, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { Languages } from "api-types";
+import { useEvent } from "hooks";
 import PageContext from "utils/pageContext";
 import { BaseModal } from "components/Pages/dispositif";
 import BubbleFlag from "components/UI/BubbleFlag";
@@ -28,6 +29,7 @@ interface Props {
 
 const PublishModal = (props: Props) => {
   const { toggle } = props;
+  const { Event } = useEvent();
   const pageContext = useContext(PageContext);
   const title = useMemo(
     () =>
@@ -44,6 +46,17 @@ const PublishModal = (props: Props) => {
     }
     toggle();
   }, [pageContext, toggle, props.isComplete]);
+
+  // send event with missing steps
+  useEffect(() => {
+    if (props.show) {
+      Event(
+        "DISPO_CREATE",
+        `${props.missingSteps.length} missing steps: ${props.missingSteps.join(", ")}`,
+        "Missing Steps",
+      );
+    }
+  }, [props.show, Event, props.missingSteps]);
   return (
     <BaseModal show={props.show} toggle={closeModal} title={title} small>
       {props.isComplete ? (

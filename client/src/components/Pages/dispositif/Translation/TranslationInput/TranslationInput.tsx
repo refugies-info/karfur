@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useAsyncFn, useNumber } from "react-use";
 import { useWatch } from "react-hook-form";
 import { Languages } from "api-types";
-import { useUser } from "hooks";
+import { useEvent, useUser } from "hooks";
 import { Suggestion } from "hooks/dispositif";
 import { cls } from "lib/classname";
 import API from "utils/API";
@@ -50,6 +50,7 @@ const TranslationInput = (props: Props) => {
     maxLength,
   } = props;
   const { user } = useUser();
+  const { Event } = useEvent();
   const pageContext = useContext(PageContext);
 
   // Index pour parcourir les suggestions de traductions
@@ -143,6 +144,7 @@ const TranslationInput = (props: Props) => {
     validate(section, { text, unfinished: true });
     setValidatedIndex(null); // my own translation -> nothing validated
     set(-1);
+    Event("DISPO_TRAD", "edit suggestion as expert", "Translation Input");
   };
   const saveTrad = useCallback(
     (unfinished: boolean) => {
@@ -163,7 +165,8 @@ const TranslationInput = (props: Props) => {
   const cancel = useCallback(() => {
     validate(section, { text: oldSuggestion.text, unfinished: oldSuggestion.toFinish });
     closeInput();
-  }, [section, oldSuggestion, validate, closeInput]);
+    Event("DISPO_TRAD", "cancel", "Translation Input");
+  }, [section, oldSuggestion, validate, closeInput, Event]);
   const deleteTranslation = useCallback(() => {
     deleteTrad(section);
     closeInput();
@@ -319,7 +322,10 @@ const TranslationInput = (props: Props) => {
               <Button
                 disabled={!value}
                 priority="secondary"
-                onClick={() => saveTrad(true)}
+                onClick={() => {
+                  saveTrad(true);
+                  Event("DISPO_TRAD", "finish later", "Translation Input");
+                }}
                 evaIcon="clock-outline"
                 iconPosition="right"
                 className="me-4"
