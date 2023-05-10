@@ -20,6 +20,7 @@
     "transform": {}
   },
   "dependencies": {
+    "@expo/config-plugins": "~6.0.0",
     "@expo/vector-icons": "^13.0.0",
     "@formatjs/intl-datetimeformat": "^6.6.0",
     "@formatjs/intl-getcanonicallocales": "^2.1.0",
@@ -52,7 +53,6 @@
     "expo-linear-gradient": "~12.1.2",
     "expo-linking": "~4.0.1",
     "expo-location": "~15.1.1",
-    "expo-modules-core": "~1.2.6",
     "expo-notifications": "~0.18.1",
     "expo-speech": "~11.1.1",
     "expo-splash-screen": "~0.18.2",

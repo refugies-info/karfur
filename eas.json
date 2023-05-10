@@ -19,6 +19,16 @@
         "EAS_BUILD_PROFILE": "staging"
       }
     },
+    "development": {
+      "extends": "base",
+      "developmentClient": true,
+      "channel": "staging",
+      "distribution": "internal",
+      "env": {
+        "EXPO_APP_NAME": "Réfugiés.info - Dev",
+        "EAS_BUILD_PROFILE": "staging"
+      }
+    },
     "preview": {
       "extends": "base",
       "channel": "preview",
