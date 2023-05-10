@@ -10,45 +10,6 @@ export interface Event {
   target: { id: string; value: string };
 }
 
-export interface Indicator {
-  _id: Id;
-  wordsCount: number;
-  timeSpent: number;
-}
-
-type iconName = "house" | "search" | "message" | "menu" | "tag" | "";
-/**
- * @deprecated
- */
-export interface DetailedOpeningHours {
-  day: string;
-  from0?: string;
-  to0?: string;
-  from1?: string;
-  to1?: string;
-}
-/**
- * @deprecated
- */
-export interface OpeningHours {
-  details: DetailedOpeningHours[];
-  noPublic: boolean;
-  precisions?: string;
-}
-
-export interface Translation {
-  _id?: Id;
-  initialText?: object;
-  translatedText?: object;
-  langueCible?: string;
-  articleId?: Id;
-  timeSpent?: string;
-  isStructure?: boolean;
-  avancement?: number;
-  type?: string;
-  isExpert?: boolean;
-}
-
 export type AvailableLanguageI18nCode = "fr" | "en" | "ps" | "ar" | "ti" | "ru" | "uk" | "fa";
 
 export type Status = {
