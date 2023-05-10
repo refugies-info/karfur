@@ -38,7 +38,7 @@ const SMSForm = (props: Props) => {
   const sendSMS = () => {
     setError(null);
     if (isValidPhone(tel)) {
-      Event("Share", "SMS", "from dispositif sidebar");
+      Event("SEND_SMS", selectedLn, "Dispo View");
       API.smsContentLink({
         phone: tel,
         title: dispositif?.titreInformatif || "",

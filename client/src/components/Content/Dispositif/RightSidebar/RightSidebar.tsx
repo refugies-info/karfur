@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
-import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage } from "hooks";
+import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage, useEvent } from "hooks";
 import { readAudio, stopAudio } from "lib/readAudio";
 import { getAllPageReadableText } from "lib/getReadableText";
 import { cls } from "lib/classname";
@@ -22,6 +22,7 @@ const RightSidebar = () => {
   const locale = useLocale();
   const { contentLocale } = useContentLocale();
   const { isAuth } = useAuth();
+  const { Event } = useEvent();
 
   // favorites
   const [showNoAuthModal, setShowNoAuthModal] = useState(false);
@@ -40,8 +41,9 @@ const RightSidebar = () => {
     } else {
       addToFavorites();
       setShowFavoriteToast("added");
+      Event("FAVORITES", "add", "Dispo View");
     }
-  }, [addToFavorites, deleteFromFavorites, isFavorite, isAuth, noAuthModalToggle]);
+  }, [addToFavorites, deleteFromFavorites, isFavorite, isAuth, noAuthModalToggle, Event]);
 
   // tts
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -54,11 +56,12 @@ const RightSidebar = () => {
       const readableText = getAllPageReadableText(dispositif, theme, secondaryThemes, needs);
       readAudio(readableText, locale, () => setIsPlayingTts(false));
       setIsPlayingTts(true);
+      Event("VOICEOVER", "click sidebar button", "Dispo View");
     } else {
       stopAudio();
       setIsPlayingTts(false);
     }
-  }, [isPlayingTts, dispositif, locale, theme, secondaryThemes, needs]);
+  }, [isPlayingTts, dispositif, locale, theme, secondaryThemes, needs, Event]);
 
   // available languages
   const router = useRouter();
@@ -70,7 +73,8 @@ const RightSidebar = () => {
   useEffect(() => {
     // selected language changes -> change site locale
     if (selectedLn !== locale && dispositif?.availableLanguages.includes(selectedLn)) {
-      changeLanguage(selectedLn, "push");
+      changeLanguage(selectedLn, "replace");
+      Event("CHANGE_LANGUAGE", selectedLn, "Dispo View");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLn]);

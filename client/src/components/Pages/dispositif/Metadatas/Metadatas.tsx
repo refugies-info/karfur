@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import isUndefined from "lodash/isUndefined";
+import { useEvent } from "hooks";
 import { ContentType, GetDispositifResponse } from "api-types";
 import FRLink from "components/UI/FRLink";
 import { getSponsorLink } from "./functions";
@@ -27,6 +28,8 @@ interface Props {
  */
 const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: Props) => {
   const { t } = useTranslation();
+  const { Event } = useEvent();
+
   if (!metadatas) return <></>;
   return (
     <div id="anchor-who">
@@ -49,7 +52,14 @@ const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: 
         items={[
           {
             label: typeContenu === ContentType.DISPOSITIF ? t("Dispositif.proposedBy") : undefined,
-            content: <FRLink href={getSponsorLink(mainSponsor?._id.toString())}>{mainSponsor?.nom}</FRLink>,
+            content: (
+              <FRLink
+                href={getSponsorLink(mainSponsor?._id.toString())}
+                onClick={() => Event("DISPO_VIEW", "click main sponsor", "Left sidebar")}
+              >
+                {mainSponsor?.nom}
+              </FRLink>
+            ),
             icon: (
               <Image
                 src={mainSponsor?.picture?.secure_url || defaultStructureImage}

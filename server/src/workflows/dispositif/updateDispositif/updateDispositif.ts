@@ -46,7 +46,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1 },
     "mainSponsor",
   );
-  checkUserIsAuthorizedToModifyDispositif(oldDispositif, user);
+  checkUserIsAuthorizedToModifyDispositif(oldDispositif, user, !!draftOldDispositif);
 
   const translationContent = buildDispositifContent(body, oldDispositif);
   const editedDispositif: Partial<Dispositif> = {

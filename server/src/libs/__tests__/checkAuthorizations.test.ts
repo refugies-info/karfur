@@ -6,15 +6,15 @@ describe("checkAuthorizations", () => {
     jest.clearAllMocks();
   });
   describe("checkUserIsAuthorizedToModifyDispositif", () => {
-    const userRolesAdmin = [{ nom: "Admin" }];
-    const userRolesNotAdmin = [{ nom: "User" }];
+    const userAdmin = { _id: "userId", isAdmin: () => true };
+    const userNotAdmin = { _id: "userId", isAdmin: () => false };
     it("should return true if status Brouillon and user admin", () => {
       const dispositif = { status: "Brouillon" };
 
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesAdmin
+        userAdmin,
+        false
       );
       expect(result).toBe(true);
     });
@@ -23,8 +23,8 @@ describe("checkAuthorizations", () => {
       const dispositif = { status: "Brouillon", creatorId: "userId" };
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesNotAdmin
+        userNotAdmin,
+        false
       );
       expect(result).toBe(true);
     });
@@ -34,8 +34,8 @@ describe("checkAuthorizations", () => {
 
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesAdmin
+        userAdmin,
+        false
       );
       expect(result).toBe(true);
     });
@@ -44,8 +44,8 @@ describe("checkAuthorizations", () => {
       const dispositif = { status: "En attente", creatorId: "userId" };
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesNotAdmin
+        userNotAdmin,
+        false
       );
       expect(result).toBe(true);
     });
@@ -60,11 +60,11 @@ describe("checkAuthorizations", () => {
       try {
         checkUserIsAuthorizedToModifyDispositif(
           dispositif,
-          "userId",
-          userRolesNotAdmin
+          userNotAdmin,
+          false
         );
       } catch (error) {
-        expect(error.message).toBe("NOT_AUTHORIZED");
+        expect(error.message).toBe("The user is not authorized to edit content");
       }
       expect.assertions(1);
     });
@@ -74,42 +74,87 @@ describe("checkAuthorizations", () => {
 
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesAdmin
+        userAdmin,
+        false
       );
       expect(result).toBe(true);
     });
 
     it("should return true if status En attente admin and user in structure", () => {
+      const mainSponsor = { membres: [{ userId: "membre1" }, { userId: "userId" }] };
       const dispositif = {
         status: "En attente admin",
         creatorId: "userId1",
-        mainSponsor: { membres: [{ userId: "membre1" }, { userId: "userId" }] },
+        getMainSponsor: () => {
+          return mainSponsor
+        },
+        mainSponsor,
       };
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesNotAdmin
+        userNotAdmin,
+        false
+      );
+      expect(result).toBe(true);
+    });
+
+    it("should return true if status Brouillon de travail and user not author", () => {
+      const mainSponsor = {
+        membres: [{ userId: "membre1" }, { userId: "userId" }],
+      },
+      const dispositif = {
+        status: "Brouillon", creatorId: "userId2",
+        getMainSponsor: () => {
+          return mainSponsor
+        },
+        mainSponsor
+      };
+      const result = checkUserIsAuthorizedToModifyDispositif(
+        dispositif,
+        userNotAdmin,
+        true
+      );
+      expect(result).toBe(true);
+    });
+    it("should return true if status Brouillon de travail and user author", () => {
+      const mainSponsor = {
+        membres: [{ userId: "membre1" }, { userId: "userId" }],
+      },
+      const dispositif = {
+        status: "Brouillon", creatorId: "userId",
+        getMainSponsor: () => {
+          return mainSponsor
+        },
+        mainSponsor
+      };
+      const result = checkUserIsAuthorizedToModifyDispositif(
+        dispositif,
+        userNotAdmin,
+        true
       );
       expect(result).toBe(true);
     });
 
     it("should throw if status En attente admin and user not in structure", () => {
+      const mainSponsor = {
+        membres: [{ userId: "membre1" }, { userId: "userId1" }],
+      },
       const dispositif = {
         status: "En attente admin",
         creatorId: "userId",
-        mainSponsor: {
-          membres: [{ userId: "membre1" }, { userId: "userId1" }],
+        getMainSponsor: () => {
+          return mainSponsor
         },
+        mainSponsor
       };
       try {
         checkUserIsAuthorizedToModifyDispositif(
           dispositif,
-          "userId",
-          userRolesNotAdmin
+          userNotAdmin,
+          false
         );
       } catch (error) {
-        expect(error.message).toBe("NOT_AUTHORIZED");
+        expect(error.message).toBe("The user is not authorized to edit content");
       }
       expect.assertions(1);
     });
@@ -119,42 +164,50 @@ describe("checkAuthorizations", () => {
 
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesAdmin
+        userAdmin,
+        false
       );
       expect(result).toBe(true);
     });
 
     it("should return true if status Actif and user in structure", () => {
+      const mainSponsor = { membres: [{ userId: "membre1" }, { userId: "userId" }] };
       const dispositif = {
         status: "En attenteadmin",
         creatorId: "userId1",
-        mainSponsor: { membres: [{ userId: "membre1" }, { userId: "userId" }] },
+        getMainSponsor: () => {
+          return mainSponsor
+        },
+        mainSponsor
       };
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesNotAdmin
+        userNotAdmin,
+        false
       );
       expect(result).toBe(true);
     });
 
     it("should throw if status Actif and user not in structure", () => {
+      const mainSponsor = {
+        membres: [{ userId: "membre1" }, { userId: "userId1" }],
+      };
       const dispositif = {
         status: "Actif",
         creatorId: "userId",
-        mainSponsor: {
-          membres: [{ userId: "membre1" }, { userId: "userId1" }],
+        getMainSponsor: () => {
+          return mainSponsor
         },
+        mainSponsor
       };
       try {
         checkUserIsAuthorizedToModifyDispositif(
           dispositif,
-          "userId",
-          userRolesNotAdmin
+          userNotAdmin,
+          false
         );
       } catch (error) {
-        expect(error.message).toBe("NOT_AUTHORIZED");
+        expect(error.message).toBe("The user is not authorized to edit content");
       }
       expect.assertions(1);
     });
@@ -164,8 +217,8 @@ describe("checkAuthorizations", () => {
 
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesAdmin
+        userAdmin,
+        false
       );
       expect(result).toBe(true);
     });
@@ -174,28 +227,32 @@ describe("checkAuthorizations", () => {
       const dispositif = { status: "Rejeté structure", creatorId: "userId" };
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesNotAdmin
+        userNotAdmin,
+        false
       );
       expect(result).toBe(true);
     });
 
     it("should throw if status Rejeté and user not author", () => {
+      const mainSponsor = {
+        membres: [{ userId: "membre1" }, { userId: "userId" }],
+      },
       const dispositif = {
         status: "Rejeté structure",
         creatorId: "userId1",
-        mainSponsor: {
-          membres: [{ userId: "membre1" }, { userId: "userId" }],
+        getMainSponsor: () => {
+          return mainSponsor
         },
+        mainSponsor
       };
       try {
         checkUserIsAuthorizedToModifyDispositif(
           dispositif,
-          "userId",
-          userRolesNotAdmin
+          userNotAdmin,
+          false
         );
       } catch (error) {
-        expect(error.message).toBe("NOT_AUTHORIZED");
+        expect(error.message).toBe("The user is not authorized to edit content");
       }
       expect.assertions(1);
     });
@@ -205,40 +262,16 @@ describe("checkAuthorizations", () => {
 
       const result = checkUserIsAuthorizedToModifyDispositif(
         dispositif,
-        "userId",
-        userRolesAdmin
-      );
-      expect(result).toBe(true);
-    });
-
-    it("should return true if status En attente non prioritaire and user admin", () => {
-      const dispositif = { status: "En attente non prioritaire" };
-
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        "userId",
-        userRolesAdmin
-      );
-      expect(result).toBe(true);
-    });
-
-    it("should return true if status En attente non prioritaire and user author", () => {
-      const dispositif = {
-        status: "En attente non prioritaire",
-        creatorId: "userId",
-      };
-      const result = checkUserIsAuthorizedToModifyDispositif(
-        dispositif,
-        "userId",
-        userRolesNotAdmin
+        userAdmin,
+        false
       );
       expect(result).toBe(true);
     });
   });
 
   describe("checkUserIsAuthorizedToDeleteDispositif", () => {
-    const userRolesAdmin = [{ nom: "Admin" }];
-    const userRolesNotAdmin = [{ nom: "User" }];
+    const userAdmin = { _id: "userId", isAdmin: () => true };
+    const userNotAdmin = { _id: "userId", isAdmin: () => false };
 
     it("should return true if user admin", () => {
       const dispositif = {
@@ -247,65 +280,73 @@ describe("checkAuthorizations", () => {
 
       const result = checkUserIsAuthorizedToDeleteDispositif(
         dispositif,
-        "userId",
-        userRolesAdmin
+        userAdmin
       );
       expect(result).toBe(true);
     });
 
     it("should return true if user responsable of structure", () => {
+      const mainSponsor = {
+        creatorId: "otherUser",
+        membres: [
+          { userId: "userId", roles: ["contributeur", "administrateur"] },
+          { userId: "userId2", roles: ["contributeur"] }
+        ],
+      }
       const dispositif = {
-        mainSponsor: {
-          creatorId: "otherUser",
-          membres: [
-            { userId: "userId", roles: ["contributeur", "administrateur"] },
-            { userId: "userId2", roles: ["contributeur"] }
-          ],
+        getMainSponsor: () => {
+          return mainSponsor
         },
+        mainSponsor
       };
 
       const result = checkUserIsAuthorizedToDeleteDispositif(
         dispositif,
-        "userId",
-        userRolesNotAdmin
+        userNotAdmin
       );
       expect(result).toBe(true);
     });
 
     it("should return true if user redacteur of structure and author", () => {
+      const mainSponsor = {
+        membres: [
+          { userId: "userId", roles: ["contributeur"] },
+          { userId: "userId2", roles: ["contributeur"] }
+        ],
+      }
       const dispositif = {
         creatorId: "userId",
-        mainSponsor: {
-          membres: [
-            { userId: "userId", roles: ["contributeur"] },
-            { userId: "userId2", roles: ["contributeur"] }
-          ],
+        getMainSponsor: () => {
+          return mainSponsor
         },
+        mainSponsor
       };
 
       const result = checkUserIsAuthorizedToDeleteDispositif(
         dispositif,
-        "userId",
-        userRolesNotAdmin
+        userNotAdmin
       );
       expect(result).toBe(true);
     });
 
     it("should throw if user not in structure", () => {
+      const mainSponsor = {
+        membres: [
+          { userId: "userId1", roles: ["contributeur"] },
+          { userId: "userId2", roles: ["contributeur"] }
+        ],
+      },
       const dispositif = {
         creatorId: "otherUser",
-        mainSponsor: {
-          membres: [
-            { userId: "userId1", roles: ["contributeur"] },
-            { userId: "userId2", roles: ["contributeur"] }
-          ],
+        getMainSponsor: () => {
+          return mainSponsor
         },
+        mainSponsor
       };
       try {
         checkUserIsAuthorizedToDeleteDispositif(
           dispositif,
-          "userId",
-          userRolesNotAdmin
+          userNotAdmin
         );
       } catch (error) {
         expect(error.message).toBe("NOT_AUTHORIZED");
@@ -314,20 +355,21 @@ describe("checkAuthorizations", () => {
     });
 
     it("should throw if redacteur but not author", () => {
+      const mainSponsor = {
+        membres: [
+          { userId: "userId", roles: ["contributeur"] },
+          { userId: "userId2", roles: ["contributeur"] }
+        ],
+      };
       const dispositif = {
         creatorId: "otherUser",
-        mainSponsor: {
-          membres: [
-            { userId: "userId", roles: ["contributeur"] },
-            { userId: "userId2", roles: ["contributeur"] }
-          ],
-        },
+        getMainSponsor: () => mainSponsor,
+        mainSponsor
       };
       try {
         checkUserIsAuthorizedToDeleteDispositif(
           dispositif,
-          "userId",
-          userRolesNotAdmin
+          userNotAdmin
         );
       } catch (error) {
         expect(error.message).toBe("NOT_AUTHORIZED");

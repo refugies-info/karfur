@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { getPath } from "routes";
+import { useEvent } from "hooks";
 import { cls } from "lib/classname";
 import { getLinkedThemesReadableText } from "lib/getReadableText";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
@@ -32,6 +33,7 @@ const LinkNeed = styled(Link)<LinkNeedProps>`
 
 const LinkedThemes = () => {
   const { t } = useTranslation();
+  const { Event } = useEvent();
   const themes = useSelector(themesSelector);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -48,6 +50,7 @@ const LinkedThemes = () => {
             href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
             small
             className={styles.btn}
+            onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
           />
         )}
         {secondaryThemes.map((theme, i) => (
@@ -57,6 +60,7 @@ const LinkedThemes = () => {
             href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
             small
             className={styles.btn}
+            onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
           />
         ))}
         {needs.map((need, i) => {
@@ -69,6 +73,7 @@ const LinkedThemes = () => {
               color100={theme?.colors.color100 || "black"}
               color40={theme?.colors.color40 || "#DDD"}
               color30={theme?.colors.color30 || "#EEE"}
+              onClick={() => Event("DISPO_VIEW", "click need", "Linked themes")}
             >
               {need.fr.text}
               <Image src={need.image?.secure_url || ""} width={32} height={32} alt="" className="ms-3" />

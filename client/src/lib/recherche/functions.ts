@@ -42,7 +42,7 @@ const getCountDispositifsForDepartment = (
 ): number => {
   return [...dispositifs]
     .filter(dispositif => {
-      const location = dispositif.metadatas.location;
+      const location = dispositif.metadatas?.location;
       if (!location || !Array.isArray(location)) return false;
       return location.map(dep => dep.split(" - ")[1]).includes(department)
     }).length

@@ -54,7 +54,7 @@ const LanguageModal = (props: Props) => {
                 action
                 key={ln.i18nCode}
                 onClick={() => {
-                  Event("CHANGE_LANGUAGE", ln.i18nCode, "label");
+                  Event("CHANGE_LANGUAGE", ln.i18nCode, "Global Modal");
                   props.changeLanguage(ln.i18nCode);
                 }}
                 className={styles.list_group_item + "  " + (isSelected && styles.active)}

@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
+import { useEvent } from "hooks";
 import { Metadatas } from "api-types";
 import BaseCard from "../BaseCard";
 import {
@@ -29,6 +30,8 @@ interface Props {
 
 const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, color, onClick }: Props) => {
   const { t } = useTranslation();
+  const { Event } = useEvent();
+
   return (
     <BaseCard
       title={t("Infocards.publicTitle")}
@@ -45,16 +48,32 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
             !dataFrenchLevel || dataFrenchLevel.length === 0 ? (
               dataFrenchLevel
             ) : (
-              <FRLink href={getFrenchLevelLink(dataFrenchLevel)}>{getFrenchLevel(dataFrenchLevel, t)}</FRLink>
+              <FRLink
+                href={getFrenchLevelLink(dataFrenchLevel)}
+                onClick={() => Event("DISPO_VIEW", "click french level", "Left sidebar")}
+              >
+                {getFrenchLevel(dataFrenchLevel, t)}
+              </FRLink>
             ),
           icon: <FrenchLevelIcon color={color} />,
-          defaultValue: <FRLink href={getFrenchLevelLink([])}>{getAllFrenchLevel(t)}</FRLink>,
+          defaultValue: (
+            <FRLink
+              href={getFrenchLevelLink([])}
+              onClick={() => Event("DISPO_VIEW", "click french level", "Left sidebar")}
+            >
+              {getAllFrenchLevel(t)}
+            </FRLink>
+          ),
         },
         {
           label: t("Infocards.age"),
           content: !dataAge ? dataAge : <FRLink href={getAgeLink(dataAge)}>{getAge(dataAge, t)}</FRLink>,
           icon: <AgeIcon color={color} />,
-          defaultValue: <FRLink href={getAgeLink(undefined)}>Tous les âges</FRLink>,
+          defaultValue: (
+            <FRLink href={getAgeLink(undefined)} onClick={() => Event("DISPO_VIEW", "click age", "Left sidebar")}>
+              Tous les âges
+            </FRLink>
+          ),
         },
         {
           label: t("Infocards.public"),

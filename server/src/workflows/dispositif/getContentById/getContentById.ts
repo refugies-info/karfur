@@ -64,7 +64,7 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
   const dispositifForAccessCheck = await getDispositifById( // TODO: improve that
     id, { mainSponsor: 1, creatorId: 1, status: 1 }, "mainSponsor",
   );
-  if (user && isUserAuthorizedToModifyDispositif(dispositifForAccessCheck, user) && !!originalDispositif.hasDraftVersion) {
+  if (user && isUserAuthorizedToModifyDispositif(dispositifForAccessCheck, user, !!originalDispositif.hasDraftVersion) && !!originalDispositif.hasDraftVersion) {
     draftDispositif = await (
       await getDraftDispositifById(id, fields)
     )?.populate<{
