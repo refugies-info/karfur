@@ -34,8 +34,28 @@ export interface PatchStructureRequest {
   adminComments?: string;
   status?: StructureStatus;
   adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string
-  hasResponsibleSeenNotification?: boolean
+  adminPercentageProgressionStatus?: string;
+  hasResponsibleSeenNotification?: boolean;
+  acronyme?: string;
+  adresse?: string;
+  authorBelongs?: boolean;
+  link?: string;
+  mail_generique?: string;
+  siren?: string;
+  siret?: string;
+  structureTypes?: string[];
+  websites?: string[];
+  facebook?: string;
+  linkedin?: string;
+  twitter?: string;
+  activities?: string[];
+  departments?: string[];
+  phonesPublic?: string[];
+  mailsPublic?: string[];
+  adressPublic?: string;
+  openingHours?: OpeningHours;
+  onlyWithRdv?: boolean;
+  description?: string;
 }
 
 /**
@@ -96,7 +116,7 @@ export interface GetStructureStatisticsResponse {
 }
 
 
-interface DetailedOpeningHours {
+export interface DetailedOpeningHours {
   day: string;
   from0?: string;
   to0?: string;
@@ -104,9 +124,9 @@ interface DetailedOpeningHours {
   to1?: string;
 }
 
-interface OpeningHours {
+export interface OpeningHours {
   details: DetailedOpeningHours[];
-  noPublic: boolean;
+  noPublic?: boolean;
   precisions?: string;
 }
 
