@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getPath, PathNames } from "routes";
-import { useLocale } from "hooks";
+import { useEvent, useLocale } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import MobileModal from "components/Modals/MobileModal";
@@ -17,6 +17,7 @@ interface Props {
 
 const ReadLanguageModal = (props: Props) => {
   const { t } = useTranslation();
+  const { Event } = useEvent();
   const locale = useLocale();
   const router = useRouter();
   const dispositif = useSelector(selectedDispositifSelector);
@@ -34,6 +35,7 @@ const ReadLanguageModal = (props: Props) => {
         undefined,
         { locale: selectedLn },
       );
+      Event("CHANGE_LANGUAGE", selectedLn, "Dispo View");
       props.toggle();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

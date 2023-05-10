@@ -72,6 +72,7 @@ const SearchThemeButton = (props: Props) => {
       color80={props.theme.colors.color80}
       color30={props.theme.colors.color30}
       href={props.href}
+      onClick={props.onClick}
     >
       {content}
     </ThemeLink>
