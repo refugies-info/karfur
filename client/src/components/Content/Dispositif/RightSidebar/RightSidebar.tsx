@@ -73,7 +73,7 @@ const RightSidebar = () => {
   useEffect(() => {
     // selected language changes -> change site locale
     if (selectedLn !== locale && dispositif?.availableLanguages.includes(selectedLn)) {
-      changeLanguage(selectedLn, "push");
+      changeLanguage(selectedLn, "replace");
       Event("CHANGE_LANGUAGE", selectedLn, "Dispo View");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
