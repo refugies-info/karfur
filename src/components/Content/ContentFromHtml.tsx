@@ -137,7 +137,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
             div: (_, children, _cssStyles, passProps) => {
               if (_["data-callout"] === "important") {
                 return (
-                  <>
+                  <View key={passProps.key}>
                     <Spacer
                       key={passProps.key + "_spacer"}
                       height={theme.margin}
@@ -169,13 +169,13 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                       key={passProps.key + "_spacer_"}
                       height={theme.margin}
                     />
-                  </>
+                  </View>
                 );
               }
 
               if (_["data-callout"] === "info") {
                 return (
-                  <>
+                  <View key={passProps.key}>
                     <Spacer
                       key={passProps.key + "_spacer"}
                       height={theme.margin}
@@ -215,7 +215,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                       key={passProps.key + "_spacer_"}
                       height={theme.margin}
                     />
-                  </>
+                  </View>
                 );
               }
 
