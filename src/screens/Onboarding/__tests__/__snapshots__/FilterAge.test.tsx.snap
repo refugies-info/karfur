@@ -1131,6 +1131,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                    "marginBottom": 24,
                     "marginTop": 24,
                   },
                 ]
@@ -2457,6 +2458,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                    "marginBottom": 24,
                     "marginTop": 24,
                   },
                 ]
@@ -3837,6 +3839,7 @@ exports[`Filter age should select age when click on it 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                    "marginBottom": 24,
                     "marginTop": 24,
                   },
                 ]

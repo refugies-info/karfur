@@ -2741,6 +2741,7 @@ exports[`Filter french level should render correctly when no french level select
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                    "marginBottom": 24,
                     "marginTop": 24,
                   },
                 ]

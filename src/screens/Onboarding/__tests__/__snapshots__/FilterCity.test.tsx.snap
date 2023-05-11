@@ -845,6 +845,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                    "marginBottom": 24,
                     "marginTop": 24,
                   },
                 ]
@@ -2104,6 +2105,7 @@ exports[`Filter city should render correctly when no city 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                    "marginBottom": 24,
                     "marginTop": 24,
                   },
                 ]
