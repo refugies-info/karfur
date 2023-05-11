@@ -38,6 +38,7 @@
     "microsoft-cognitiveservices-speech-sdk": "^1.25.1",
     "moment": "^2.29.1",
     "mongoose": "^6.1.4",
+    "node-cache": "^5.1.2",
     "password-hash": "^1.2.2",
     "ts-node": "^8.10.2",
     "tsoa": "^5.0.0",
