@@ -1,7 +1,8 @@
-import Button from "components/UI/Button";
-import Image from "next/image";
 import React, { useState } from "react";
+import Image from "next/image";
+import { useEvent } from "hooks";
 import { BaseModal } from "components/Pages/dispositif";
+import Button from "components/UI/Button";
 import { StepsFooter } from "../components";
 import { modalTitles } from "./data";
 import TextExampleLine from "./TextExampleLine";
@@ -18,6 +19,7 @@ interface Props {
 const MAX_STEP = 5;
 
 const ModalWelcome = (props: Props) => {
+  const { Event } = useEvent();
   const [step, setStep] = useState<number>(1);
 
   const validate = () => {
@@ -29,7 +31,16 @@ const ModalWelcome = (props: Props) => {
   };
 
   return (
-    <BaseModal show={props.show} toggle={props.toggle} title={modalTitles[step - 1]} small className={styles.modal}>
+    <BaseModal
+      show={props.show}
+      toggle={() => {
+        props.toggle();
+        Event("DISPO_CREATE", "close welcome modal", "Modals");
+      }}
+      title={modalTitles[step - 1]}
+      small
+      className={styles.modal}
+    >
       <div className={styles.content}>
         {step === 1 && (
           <>

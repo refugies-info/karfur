@@ -12,6 +12,7 @@ export { default as useOutsideClick } from "./useOutsideClick";
 export { default as useParamsFromHistory } from "./useParamsFromHistory";
 export { default as useRouterLocale } from "./useRouterLocale";
 export { default as useRTL } from "./useRTL";
+export { default as useScrolledBottomEvent } from "./useScrolledBottomEvent";
 export { default as useThemeIcon } from "./useThemeIcon";
 export { default as useUniqueId } from "./useUniqueId";
 export { default as useUser } from "./useUser";

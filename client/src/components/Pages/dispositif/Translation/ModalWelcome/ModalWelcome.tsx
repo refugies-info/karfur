@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Languages } from "api-types";
+import { useEvent } from "hooks";
 import Button from "components/UI/Button";
 import { BaseModal } from "components/Pages/dispositif";
 import BubbleFlag from "components/UI/BubbleFlag";
@@ -21,6 +22,7 @@ interface Props {
 const MAX_STEP = 5;
 
 const ModalWelcome = (props: Props) => {
+  const { Event } = useEvent();
   const [step, setStep] = useState<number>(1);
 
   const validate = () => {
@@ -34,7 +36,10 @@ const ModalWelcome = (props: Props) => {
   return (
     <BaseModal
       show={props.show}
-      toggle={props.toggle}
+      toggle={() => {
+        props.toggle();
+        Event("DISPO_TRAD", "close welcome modal", "Modals");
+      }}
       title={modalContent[step - 1].title}
       small
       className={styles.modal}
