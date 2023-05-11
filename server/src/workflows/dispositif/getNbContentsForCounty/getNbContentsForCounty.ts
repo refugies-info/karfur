@@ -16,6 +16,7 @@ const getNbContentsForCounty = (request: GetContentsForAppRequest): Promise<GetN
             { "metadatas.location": { $exists: false } },
             { "metadatas.location": { $eq: "france" } },
             { "metadatas.location": { $eq: "online" } },
+            { "metadatas.location": { $eq: null } },
           ],
         },
       ],

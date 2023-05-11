@@ -22,7 +22,7 @@ export const filterByThemeOrNeed = (dispositif: GetDispositifsResponse, themesSe
 
 export const filterByLocations = (dispositif: GetDispositifsResponse, departments: string[]) => {
   if (departments.length === 0) return true;
-  const location = dispositif.metadatas.location;
+  const location = dispositif.metadatas?.location;
   if (!location) return false;
   for (const dep of location) {
     if (departments.includes(dep.split(" - ")[1]) || dep === "All") {

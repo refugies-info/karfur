@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { ContentType, Metadatas } from "api-types";
 import { useTranslation } from "next-i18next";
+import { useEvent } from "hooks";
 import { formatDepartment } from "lib/departments";
 import FRLink from "components/UI/FRLink";
 import BaseCard from "../BaseCard";
@@ -17,12 +18,13 @@ interface Props {
 
 const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
   const { t } = useTranslation();
+  const { Event } = useEvent();
 
   const links = useMemo(() => {
     if (!data) return data;
     if (!Array.isArray(data)) {
       return (
-        <FRLink href={getLocationLink(data)}>
+        <FRLink href={getLocationLink(data)} onClick={() => Event("DISPO_VIEW", "click location", "Left sidebar")}>
           {data === "france" ? t("Infocards.france") : t("Recherche.online")}
         </FRLink>
       );
@@ -31,13 +33,15 @@ const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
       <>
         {data.map((dep, i) => (
           <span key={i}>
-            <FRLink href={getLocationLink(dep)}>{formatDepartment(dep)}</FRLink>
+            <FRLink href={getLocationLink(dep)} onClick={() => Event("DISPO_VIEW", "click location", "Left sidebar")}>
+              {formatDepartment(dep)}
+            </FRLink>
             <br />
           </span>
         ))}
       </>
     );
-  }, [data, t]);
+  }, [data, t, Event]);
 
   return (
     <BaseCard

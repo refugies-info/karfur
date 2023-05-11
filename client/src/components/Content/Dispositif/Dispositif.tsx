@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { ContentType } from "api-types";
-import { useContentLocale, useWindowSize } from "hooks";
+import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "hooks";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
@@ -48,6 +48,7 @@ const Dispositif = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const { isRTL } = useContentLocale();
+  useScrolledBottomEvent(pageContext.mode === "view");
 
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
