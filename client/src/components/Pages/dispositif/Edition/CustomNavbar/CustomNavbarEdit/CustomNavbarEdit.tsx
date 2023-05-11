@@ -8,7 +8,7 @@ import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
 import { useContentType } from "hooks/dispositif";
-import { useLocale, useUser } from "hooks";
+import { useEvent, useLocale } from "hooks";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
@@ -26,7 +26,7 @@ interface Props {
 }
 
 const CustomNavbarEdit = (props: Props) => {
-  const { user } = useUser();
+  const { Event } = useEvent();
   const router = useRouter();
   const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);
@@ -59,6 +59,7 @@ const CustomNavbarEdit = (props: Props) => {
   const handleQuit = useCallback(
     (e: any) => {
       e.preventDefault();
+      Event("DISPO_CREATE", "click quit", "Navbar");
       const isComplete = progress === 0;
       if (
         // no status
@@ -74,7 +75,7 @@ const CustomNavbarEdit = (props: Props) => {
         toggleQuitModal();
       }
     },
-    [dispositif, progress, toggleQuitModal, quit],
+    [dispositif, progress, toggleQuitModal, quit, Event],
   );
 
   // Publish
@@ -97,8 +98,9 @@ const CustomNavbarEdit = (props: Props) => {
     (e: any) => {
       e.preventDefault();
       togglePublishModal();
+      Event("DISPO_CREATE", "click validate", "Navbar");
     },
-    [togglePublishModal],
+    [togglePublishModal, Event],
   );
 
   return (
@@ -134,6 +136,7 @@ const CustomNavbarEdit = (props: Props) => {
             onClick={(e: any) => {
               e.preventDefault();
               setShowMissingSteps?.(!showMissingSteps);
+              Event("DISPO_CREATE", "click show missing steps", "Navbar");
             }}
           />
           <Tooltip target="missing-steps-btn" placement="top">

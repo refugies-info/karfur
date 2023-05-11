@@ -36,7 +36,7 @@ const SendSMSModal = (props: Props) => {
   const sendSMS = () => {
     setError(null);
     if (isValidPhone(tel)) {
-      Event("Share", "SMS", "from dispositif sidebar");
+      Event("SEND_SMS", selectedLn, "Dispo View");
       API.smsContentLink({
         phone: tel,
         title: dispositif?.titreInformatif || "",
@@ -101,7 +101,13 @@ const SendSMSModal = (props: Props) => {
             className={cls(styles.input, !!error && styles.input_error)}
           />
           <div ref={menuRef}>
-            <Button onClick={() => setLnListOpen((o) => !o)} className={styles.btn}>
+            <Button
+              onClick={(e: any) => {
+                e.preventDefault();
+                setLnListOpen((o) => !o);
+              }}
+              className={styles.btn}
+            >
               <span>
                 {t("Dispositif.smsFormLanguage")} {selectedLanguage?.langueFr?.toLowerCase()}
                 <Flag langueCode={selectedLanguage?.langueCode} className="ms-2" />

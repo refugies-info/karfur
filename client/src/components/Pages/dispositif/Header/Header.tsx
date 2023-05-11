@@ -8,7 +8,7 @@ import "moment/locale/fa";
 import "moment/locale/fr";
 import "moment/locale/ru";
 import "moment/locale/uk";
-import { useLocale } from "hooks";
+import { useEvent, useLocale } from "hooks";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
@@ -25,6 +25,7 @@ interface Props {
 
 const Header = (props: Props) => {
   const { t } = useTranslation();
+  const { Event } = useEvent();
   const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
   useEffect(() => {
@@ -49,9 +50,10 @@ const Header = (props: Props) => {
               className={styles.share}
               priority="tertiary"
               evaIcon="share-outline"
-              onClick={() =>
-                sharingOptions(props.typeContenu, dispositif?.titreInformatif || "", dispositif?.titreMarque || "")
-              }
+              onClick={() => {
+                sharingOptions(props.typeContenu, dispositif?.titreInformatif || "", dispositif?.titreMarque || "");
+                Event("Share", "mobile", "from dispositif header");
+              }}
             >
               {t("Dispositif.share")}
             </Button>

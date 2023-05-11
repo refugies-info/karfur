@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { GoogleMap, useJsApiLoader, MarkerF, InfoBox } from "@react-google-maps/api";
 import { Poi } from "api-types";
+import { useEvent } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import PopupContent from "./PopupContent";
 import Sidebar from "./Sidebar";
@@ -13,6 +14,7 @@ const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualiz
 
 const Map = () => {
   const dispositif = useSelector(selectedDispositifSelector);
+  const { Event } = useEvent();
 
   const [popup, setPopup] = useState<Marker | null>(null);
   const [maxZoom, setMaxZoom] = useState(12);
@@ -56,8 +58,9 @@ const Map = () => {
     (marker: Marker) => {
       setPopup(marker);
       map?.setCenter({ lat: marker.lat, lng: marker.lng });
+      Event("DISPO_VIEW", "click marker", "Map");
     },
-    [map],
+    [map, Event],
   );
 
   return (

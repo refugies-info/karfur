@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import dynamic from "next/dynamic";
+import { useEvent } from "hooks";
 import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import AddContentButton from "../AddContentButton";
@@ -19,6 +20,7 @@ interface Props {
 const RichTextEdit = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
   const formContext = useFormContext();
+  const { Event } = useEvent();
 
   const pageContext = useContext(PageContext);
   useEffect(() => {
@@ -57,6 +59,7 @@ const RichTextEdit = (props: Props) => {
               onClick={(e: any) => {
                 e.preventDefault();
                 closeSection();
+                Event("DISPO_CREATE", "close section", "Section");
               }}
             >
               Fermer la section
