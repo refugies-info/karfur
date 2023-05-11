@@ -74,13 +74,18 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
     markAsSeen();
   };
 
+  // fix for "Fatal Exception: Error: Requiring unknown module "./locale/ti" error
+  const momentLocale = ["ps", "ti"].includes(i18n.language)
+    ? "fr"
+    : i18n.language;
+
   return (
     <Container activeOpacity={0.8} onPress={navigateToContent} seen={seen}>
       {!seen && <Dot />}
       <Rows spacing={RowsSpacing.Text}>
         <CardTitle seen={seen}>{title}</CardTitle>
         <TextVerySmallNormal>
-          {moment(createdAt).locale(i18n.language).fromNow()}
+          {moment(createdAt).locale(momentLocale).fromNow()}
         </TextVerySmallNormal>
         <Columns horizontalAlign="space-between" RTLBehaviour>
           <CustomButton
