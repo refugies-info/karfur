@@ -118,14 +118,13 @@ const getFilteredContentsForApp = async (req: GetContentsForAppRequest) => {
    */
   const locationFilter = [];
   if (county) {
-    if (strictLocation) {
-      locationFilter.push({ "metadatas.location": { $regex: ` - ${county}$` } });
-    }
-  } else {
+    locationFilter.push({ "metadatas.location": { $regex: ` - ${county}$` } });
+
     if (!strictLocation) {
       locationFilter.push({ "metadatas.location": { $exists: false } });
       locationFilter.push({ "metadatas.location": { $eq: "france" } });
       locationFilter.push({ "metadatas.location": { $eq: "online" } });
+      locationFilter.push({ "metadatas.location": { $eq: null } });
     }
   }
   if (!isEmpty(locationFilter)) {
