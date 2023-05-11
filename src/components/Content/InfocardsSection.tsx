@@ -250,10 +250,12 @@ export const InfocardsSection = ({ content, color }: Props) => {
               layout="auto 1"
               horizontalAlign="space-between"
             >
-              <Image
-                source={{ uri: content.mainSponsor.picture.secure_url }}
-                style={{ width: IMAGE_SIZE, height: IMAGE_SIZE }}
-              />
+              {content.mainSponsor.picture?.secure_url && (
+                <Image
+                  source={{ uri: content.mainSponsor.picture.secure_url }}
+                  style={{ width: IMAGE_SIZE, height: IMAGE_SIZE }}
+                />
+              )}
               <DescriptionText>
                 <ReadableText>{content.mainSponsor.nom}</ReadableText>
               </DescriptionText>
