@@ -138,7 +138,9 @@ export const NotificationsScreen = () => {
           </Text>
         </View>
       ) : (
-        <Rows>{(notifications?.notifications || []).map(renderCard)}</Rows>
+        <Rows style={{ paddingBottom: styles.margin * 3 }}>
+          {(notifications?.notifications || []).map(renderCard)}
+        </Rows>
       )}
     </Page>
   );

@@ -31,6 +31,7 @@ const RightButtonContainer = styled(RTLTouchableOpacity)`
 
 const BottomButtonsContainer = styled(RowContainer)`
   margin-top: ${styles.margin * 3}px;
+  margin-bottom: ${styles.margin * 3}px;
 `;
 
 const TextBold = styled(StyledTextSmallBold)`

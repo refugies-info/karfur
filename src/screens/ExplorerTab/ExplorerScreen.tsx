@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as Linking from "expo-linking";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useFocusEffect } from "@react-navigation/native";
-import styled, { useTheme } from "styled-components/native";
+import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -50,7 +50,6 @@ export const ExplorerScreen = ({
   navigation,
 }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
   const dispatch = useDispatch();
-  const theme = useTheme();
 
   const [tabSelected, setTabSelected] = useState("galery");
   const themes = useSelector(themesSelector);

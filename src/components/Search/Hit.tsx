@@ -53,7 +53,6 @@ const Hit = ({
       key={hit.objectID}
       style={{
         flex: 1,
-        marginBottom: styles.margin * 2,
         paddingHorizontal: styles.margin * 3,
       }}
     >

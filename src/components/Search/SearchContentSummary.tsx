@@ -7,6 +7,7 @@ import { TagButton } from "../Explorer/TagButton";
 import { useSelector } from "react-redux";
 import { themeSelector } from "../../services";
 import { contentSelector } from "../../services/redux/Contents/contents.selectors";
+import { styles } from "../../theme";
 
 interface Props {
   navigation: any;
@@ -39,6 +40,7 @@ export const SearchContentSummary = (props: Props) => {
         searchItem={props.item}
         backScreen="Search"
         pressCallback={props.pressCallback}
+        style={{ marginBottom: styles.margin * 2 }}
       />
     );
   } else if (
@@ -58,6 +60,7 @@ export const SearchContentSummary = (props: Props) => {
         searchLanguageMatch={props.languageMatch}
         showAbstract
         theme={theme}
+        style={{ marginBottom: styles.margin * 2 }}
       />
     );
   }
@@ -86,6 +89,7 @@ export const SearchContentSummary = (props: Props) => {
         });
         return;
       }}
+      style={{ marginBottom: styles.margin * 2 }}
     />
   );
 };

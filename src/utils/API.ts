@@ -29,7 +29,7 @@ export const getNeeds = () =>
     (response) => response.data
   );
 
-export const getThemes = (): Promise<GetThemeResponse[]> =>
+export const getThemes = () =>
   makeApiRequest<null, ResponseWith<GetThemeResponse[]>>("/themes", null).then(
     (response) => response.data
   );

@@ -1,5 +1,6 @@
 /* eslint-disable react/require-default-props */ // props are optionnal
 import React, { ReactNode } from "react";
+import { ViewStyle, StyleProp } from "react-native";
 import styled from "styled-components/native";
 import { FlexItem, getFlexValue } from "../common";
 import { isLastChild } from "../../utils";
@@ -32,6 +33,7 @@ export interface RowsProps {
   layout?: string;
   spacing?: RowsSpacing;
   separator?: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 
 const Rows = ({
@@ -40,6 +42,7 @@ const Rows = ({
   verticalAlign,
   layout = "auto",
   spacing = RowsSpacing.Default,
+  style,
   separator = false,
 }: RowsProps) => {
   const _children = React.Children.toArray(children).filter(
@@ -49,6 +52,8 @@ const Rows = ({
     <RowsWrapper
       horizontalAlign={horizontalAlign}
       verticalAlign={verticalAlign}
+      //@ts-ignore
+      style={style}
     >
       {React.Children.map(
         _children,
