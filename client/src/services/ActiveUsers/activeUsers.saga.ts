@@ -6,14 +6,13 @@ import { startLoading, LoadingStatusKey, finishLoading } from "../LoadingStatus/
 import { setActiveUsersActionCreator } from "./activeUsers.actions";
 import { FETCH_ACTIVE_USERS } from "./activeUsers.actionTypes";
 import { GetActiveUsersResponse } from "api-types";
-import { APIResponse } from "types/interface";
 
 export function* fetchActiveUsers(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_USERS));
     logger.info("[fetchActiveUsers] fetching structures");
-    const data: APIResponse<GetActiveUsersResponse[]> = yield call(API.getActiveUsers);
-    yield put(setActiveUsersActionCreator(data.data.data));
+    const data: GetActiveUsersResponse[] = yield call(API.getActiveUsers);
+    yield put(setActiveUsersActionCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_USERS));
   } catch (error) {
     logger.error("[fetchActiveUsers] Error while fetching structures", {

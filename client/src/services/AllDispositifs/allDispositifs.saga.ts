@@ -9,15 +9,14 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { APIResponse } from "types/interface";
 import { GetAllDispositifsResponse } from "api-types";
 
 export function* fetchAllDispositifs(): SagaIterator {
   try {
     logger.info("[fetchAllDispositifs saga]");
     yield put(startLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
-    const data: APIResponse<GetAllDispositifsResponse[]> = yield call(API.getAllDispositifs);
-    yield put(setAllDispositifsActionsCreator(data.data.data));
+    const data: GetAllDispositifsResponse[] = yield call(API.getAllDispositifs);
+    yield put(setAllDispositifsActionsCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
   } catch (error) {
     logger.error(
