@@ -6,8 +6,10 @@ import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositi
 import { Dispositif } from "../../../typegoose";
 import { DemarcheContent, DispositifContent } from "../../../typegoose/Dispositif";
 import { countWords, countWordsForInfoSections } from "../../../typegoose/Traductions";
+import { cache } from "../../../libs/cache";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
+const NB_WORDS_CACHE = "nbWordsCache";
 
 const countWordsInDispositif = (dispositif: Dispositif): number =>
   Object.entries(dispositif.translations)
@@ -15,12 +17,12 @@ const countWordsInDispositif = (dispositif: Dispositif): number =>
       ln === "fr"
         ? 0
         : countWords(translation.content?.titreInformatif) +
-          countWords(translation.content?.titreMarque) +
-          countWords(translation.content?.abstract) +
-          countWords(translation.content?.what) +
-          countWordsForInfoSections(translation.content?.how) +
-          countWordsForInfoSections((translation.content as DemarcheContent)?.next) +
-          countWordsForInfoSections((translation.content as DispositifContent)?.why),
+        countWords(translation.content?.titreMarque) +
+        countWords(translation.content?.abstract) +
+        countWords(translation.content?.what) +
+        countWordsForInfoSections(translation.content?.how) +
+        countWordsForInfoSections((translation.content as DemarcheContent)?.next) +
+        countWordsForInfoSections((translation.content as DispositifContent)?.why),
     )
     .reduce((acc, count) => acc + count, 0);
 
@@ -46,9 +48,18 @@ const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest)
 
     // nbWordsTranslated
     if (noFacet || facets.includes("nbWordsTranslated")) {
-      const nbWordsTranslated = await getActiveContentsFiltered({}, {}).then((dispositifs) =>
-        dispositifs.reduce((acc, dispositif) => acc + countWordsInDispositif(dispositif), 0),
-      );
+      let nbWordsTranslated = 0;
+      // use cache to prevent multiple calculations, especially at build time
+      if (cache.has(NB_WORDS_CACHE)) {
+        const promiseCalculation = (await cache.get(NB_WORDS_CACHE)) as number;
+        nbWordsTranslated = promiseCalculation;
+      } else {
+        const promiseCalculation = getActiveContentsFiltered({}, {}).then((dispositifs) =>
+          dispositifs.reduce((acc, dispositif) => acc + countWordsInDispositif(dispositif), 0)
+        );
+        cache.set(NB_WORDS_CACHE, promiseCalculation, 120);
+        nbWordsTranslated = await promiseCalculation;
+      }
       stats.nbWordsTranslated = nbWordsTranslated;
     }
 
