@@ -19,6 +19,7 @@ This project is based on [Node@16](https://nodejs.org/en/). It includes the foll
 - [Typescript](https://www.typescriptlang.org/)
 - [Express](https://expressjs.com/)
 - [Mongoose](https://mongoosejs.com/)
+- [TSOA](https://github.com/lukeautry/tsoa)
 - [ESLint](https://eslint.org/)
 - [Jest](https://jestjs.io/)
 
@@ -49,10 +50,10 @@ Please note that you need mongo, the server and the client to run concurrently i
 3. Copy the `/example-env-file.env` to `.env` and replace `demo` with the right values.
 4. In `server/src/config` create a config.js with:
 
-```bash
+```javascript
 module.exports = {
-  "secret" : "XXX"
-}
+  secret: "XXX",
+};
 ```
 
 Ask to an administrator for the right secret.
