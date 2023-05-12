@@ -51,6 +51,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
   const translationContent = buildDispositifContent(body, oldDispositif);
   const editedDispositif: Partial<Dispositif> = {
     lastModificationAuthor: user._id,
+    lastModificationDate: new Date(),
     themesSelectedByAuthor: !user.isAdmin(),
     translations: {
       ...oldDispositif.translations,
