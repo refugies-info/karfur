@@ -17,6 +17,7 @@ export class MustBePopulatedError extends Error {
 class APIError extends Error {
   code: string | undefined;
   data: any | undefined;
+  status: number;
 
   constructor(message: string, code?: string, data?: any) {
     super(message);
@@ -25,15 +26,25 @@ class APIError extends Error {
   }
 }
 
-export class InternalError extends APIError { }
+export class InternalError extends APIError {
+  status = 500;
+}
 
-export class UnauthorizedError extends APIError { }
+export class UnauthorizedError extends APIError {
+  status = 401;
+}
 
-export class AuthenticationError extends APIError { }
+export class AuthenticationError extends APIError {
+  status = 403;
+}
 
-export class NotFoundError extends APIError { }
+export class NotFoundError extends APIError {
+  status = 404;
+}
 
-export class InvalidRequestError extends APIError { }
+export class InvalidRequestError extends APIError {
+  status = 400;
+}
 
 /**
  * Returns the right error code depending on the type of the error
@@ -44,52 +55,42 @@ export class InvalidRequestError extends APIError { }
  * @returns
  */
 export const serverErrorHandler = (err: unknown, req: Request, res: Response, next: NextFunction): Response | void => {
-  logger.error("[serverErrorHandler]", { path: req.path, error: (err as any).message })
   // eslint-disable-next-line no-console
   if (process.env.NODE_ENV !== "production") console.error(err);
 
   if (err instanceof ValidateError) {
+    logger.error("[serverErrorHandler] Validation failed", {
+      status: 422,
+      path: req.url,
+      fields: err.fields,
+    })
     return res.status(422).json({
       message: "Validation Failed",
-      data: err?.fields,
+      data: err.fields,
     });
   }
-  if (err instanceof AuthenticationError) {
-    return res.status(403).json({
+
+  if (err instanceof APIError) {
+    logger.error(`[serverErrorHandler] ${err.message}`, {
+      status: err.status,
+      path: req.url,
+      error: err.message,
+      data: err.data,
+    })
+
+    return res.status(err.status).json({
       message: err.message,
       code: err.code,
       data: err.data
     });
   }
-  if (err instanceof NotFoundError) {
-    return res.status(404).json({
-      message: err.message,
-      code: err.code,
-      data: err.data
-    });
-  }
-  if (err instanceof UnauthorizedError) {
-    return res.status(401).json({
-      message: err.message,
-      code: err.code,
-      data: err.data
-    });
-  }
-  if (err instanceof InvalidRequestError) {
-    return res.status(400).json({
-      message: err.message,
-      code: err.code,
-      data: err.data
-    });
-  }
-  if (err instanceof InternalError) {
-    return res.status(500).json({
-      message: err.message,
-      code: err.code,
-      data: err.data
-    });
-  }
+
   if (err instanceof Error) {
+    logger.error("[serverErrorHandler] Unknown error", {
+      status: 500,
+      path: req.url,
+      error: err,
+    })
     return res.status(500).json({
       message: err.message || "Internal Server Error",
     });
