@@ -4,6 +4,7 @@ import { useWatch } from "react-hook-form";
 import { Languages } from "api-types";
 import { useEvent, useUser } from "hooks";
 import { Suggestion } from "hooks/dispositif";
+import { checkIsRTL } from "hooks/useRTL";
 import { cls } from "lib/classname";
 import API from "utils/API";
 import PageContext from "utils/pageContext";
@@ -52,6 +53,7 @@ const TranslationInput = (props: Props) => {
   const { user } = useUser();
   const { Event } = useEvent();
   const pageContext = useContext(PageContext);
+  const isRTL = useMemo(() => checkIsRTL(locale), [locale]);
 
   // Index pour parcourir les suggestions de traductions
   const max = useMemo(() => Math.max(suggestions.length, 0), [suggestions]);
@@ -188,7 +190,11 @@ const TranslationInput = (props: Props) => {
             <UserSuggest username={display.username} picture={display.picture} />
             <TranslationStatus status={display.status} />
           </div>
-          <div className={styles.value} dangerouslySetInnerHTML={{ __html: display.text }} />
+          <div
+            className={styles.value}
+            dangerouslySetInnerHTML={{ __html: display.text }}
+            dir={isRTL ? "rtl" : "ltr"}
+          />
         </div>
       ) : (
         <div className={cls(styles.edit)}>
@@ -204,6 +210,7 @@ const TranslationInput = (props: Props) => {
                       onChange={(e) => validate(section, { text: e.target.value })}
                       autoFocus
                       maxLength={maxLength}
+                      dir={isRTL ? "rtl" : "ltr"}
                     />
                     {maxLength && (
                       <p className={styles.error}>
@@ -225,9 +232,9 @@ const TranslationInput = (props: Props) => {
                   onClick={user.expertTrad ? () => clickSuggestionAsExpert(suggestions[index]?.text) : undefined}
                 >
                   {index === max ? (
-                    <div dangerouslySetInnerHTML={{ __html: googleTranslateValue }} />
+                    <div dangerouslySetInnerHTML={{ __html: googleTranslateValue }} dir={isRTL ? "rtl" : "ltr"} />
                   ) : (
-                    <div dangerouslySetInnerHTML={{ __html: suggestions[index]?.text }} />
+                    <div dangerouslySetInnerHTML={{ __html: suggestions[index]?.text }} dir={isRTL ? "rtl" : "ltr"} />
                   )}
                 </div>
               )}
