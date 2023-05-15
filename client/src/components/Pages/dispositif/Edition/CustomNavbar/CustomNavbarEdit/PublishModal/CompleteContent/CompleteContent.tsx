@@ -43,7 +43,7 @@ const CompleteContent = (props: Props) => {
   const [hasChanges, setHasChanges] = useState<boolean | null>(user.admin ? null : false); // check changes only for admins
   const [{ loading }, getHasChanges] = useAsyncFn(() =>
     dispositif?._id && user.admin
-      ? API.getDispositifHasTextChanges(dispositif?._id.toString()).then((res) => res.data.data)
+      ? API.getDispositifHasTextChanges(dispositif?._id.toString())
       : Promise.resolve(false),
   );
 

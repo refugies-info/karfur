@@ -108,36 +108,29 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   let structuresStatistics: GetStructureStatisticsResponse = {};
 
   try {
-    contentStatistics = (
-      await API.getDispositifsStatistics({
-        facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"],
-      })
-    ).data.data;
-    structuresStatistics = (
-      await API.getStructuresStatistics({ facets: ["nbStructures", "nbCDA", "nbStructureAdmins"] })
-    ).data.data;
-    translationStatistics = (await API.getTranslationStatistics({ facets: ["nbTranslators", "nbRedactors"] })).data
-      .data;
+    contentStatistics = await API.getDispositifsStatistics({
+      facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"],
+    });
+    structuresStatistics = await API.getStructuresStatistics({
+      facets: ["nbStructures", "nbCDA", "nbStructureAdmins"],
+    });
+    translationStatistics = await API.getTranslationStatistics({ facets: ["nbTranslators", "nbRedactors"] });
   } catch (e) {
     logger.error("[index] build page", e);
   }
 
-  const demarches = (
-    await API.getDispositifs({
-      type: ContentType.DEMARCHE,
-      limit: 15,
-      sort: "publishedAt",
-      locale: locale || "fr",
-    })
-  ).data.data;
-  const dispositifs = (
-    await API.getDispositifs({
-      type: ContentType.DISPOSITIF,
-      limit: 15,
-      sort: "publishedAt",
-      locale: locale || "fr",
-    })
-  ).data.data;
+  const demarches = await API.getDispositifs({
+    type: ContentType.DEMARCHE,
+    limit: 15,
+    sort: "publishedAt",
+    locale: locale || "fr",
+  });
+  const dispositifs = await API.getDispositifs({
+    type: ContentType.DISPOSITIF,
+    limit: 15,
+    sort: "publishedAt",
+    locale: locale || "fr",
+  });
 
   return {
     props: {

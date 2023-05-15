@@ -154,8 +154,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
     formData.append(0, event.target.files[0]);
 
     API.postImage(formData)
-      .then((data_res) => {
-        const imgData = data_res.data.data;
+      .then((imgData) => {
         setStructure({
           ...structure,
           picture: {

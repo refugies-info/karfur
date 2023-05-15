@@ -7,7 +7,7 @@
 
 ## Typing
 
-Every new server file should be **fully typed**. If possible, type existing files.
+Every file should be **fully typed**.
 
 ## Testing
 

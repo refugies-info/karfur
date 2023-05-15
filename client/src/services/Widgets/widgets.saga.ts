@@ -15,16 +15,15 @@ import {
   deleteWidgetActionCreator
 } from "./widgets.actions";
 import { widgetsSelector } from "./widgets.selectors";
-import { APIResponse } from "types/interface";
 import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse } from "api-types";
 
 export function* fetchWidgets(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_WIDGETS));
     logger.info("[fetchWidgets] start fetching widgets");
-    const data: APIResponse<GetWidgetResponse[]> = yield call(API.getWidgets);
+    const data: GetWidgetResponse[] = yield call(API.getWidgets);
 
-    const widgets = data?.data?.data || [];
+    const widgets = data || [];
     yield put(setWidgetsActionCreator(widgets));
 
     yield put(finishLoading(LoadingStatusKey.FETCH_WIDGETS));
@@ -47,12 +46,11 @@ export function* saveWidget(
     const id = action.payload.id;
     logger.info("[saveWidget] start saving widget");
 
-    const data: APIResponse<PatchWidgetResponse> = yield call(API.patchWidget, id, newWidget);
-    const res = data.data.data;
-    if (res) {
+    const data: PatchWidgetResponse = yield call(API.patchWidget, id, newWidget);
+    if (data) {
       const newWidgets: GetWidgetResponse[] = [...(yield select(widgetsSelector))];
       const editedWidgetIndex = newWidgets.findIndex(w => w._id === id);
-      newWidgets[editedWidgetIndex] = res;
+      newWidgets[editedWidgetIndex] = data;
       yield put(setWidgetsActionCreator(newWidgets));
     }
 
@@ -74,9 +72,9 @@ export function* createWidget(
     const newWidget = action.payload;
     logger.info("[createWidget] start creating widget");
 
-    const data: APIResponse<PostWidgetResponse> = yield call(API.postWidgets, newWidget);
+    const data: PostWidgetResponse = yield call(API.postWidgets, newWidget);
     const widgets: GetWidgetResponse[] = [...(yield select(widgetsSelector))];
-    yield put(setWidgetsActionCreator([data.data.data, ...widgets]));
+    yield put(setWidgetsActionCreator([data, ...widgets]));
 
     yield put(finishLoading(LoadingStatusKey.CREATE_WIDGET));
   } catch (error) {

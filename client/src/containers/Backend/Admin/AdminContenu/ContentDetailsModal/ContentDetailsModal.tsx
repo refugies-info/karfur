@@ -61,7 +61,7 @@ export const ContentDetailsModal = (props: Props) => {
   const updateLogs = useCallback(() => {
     if (selectedDispositifId) {
       API.logs(selectedDispositifId).then((res) => {
-        setLogs(res.data.data);
+        setLogs(res);
       });
     }
   }, [selectedDispositifId]);

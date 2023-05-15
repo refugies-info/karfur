@@ -13,7 +13,6 @@ import {
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
 import { GetDispositifResponse } from "api-types";
-import { APIResponse } from "types/interface";
 
 export function* fetchSelectedDispositif(
   action: ReturnType<typeof fetchSelectedDispositifActionCreator>
@@ -26,11 +25,9 @@ export function* fetchSelectedDispositif(
       { id: selectedDispositifId, locale }
     );
     if (selectedDispositifId) {
-      const data: APIResponse<GetDispositifResponse> = yield call(API.getDispositif, selectedDispositifId, locale, { token: action.payload.token });
-
-      const dispositif: GetDispositifResponse = data.data.data;
-      if (dispositif) {
-        yield put(setSelectedDispositifActionCreator(dispositif, true));
+      const data: GetDispositifResponse = yield call(API.getDispositif, selectedDispositifId, locale, { token: action.payload.token });
+      if (data) {
+        yield put(setSelectedDispositifActionCreator(data, true));
       }
     }
 

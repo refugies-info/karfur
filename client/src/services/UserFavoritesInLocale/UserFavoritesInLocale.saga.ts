@@ -16,7 +16,6 @@ import {
   FETCH_USER_FAVORITES,
   UPDATE_USER_FAVORITES,
 } from "./UserFavoritesInLocale.actionTypes";
-import { APIResponse } from "types/interface";
 import { DeleteUserFavoriteRequest, GetUserFavoritesResponse } from "api-types";
 
 export function* fetchUserFavorites(
@@ -25,8 +24,8 @@ export function* fetchUserFavorites(
   try {
     logger.info("[fetchUserFavorites] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER_FAVORITES));
-    const data: APIResponse<GetUserFavoritesResponse[]> = yield call(API.getUserFavorites, { locale: action.payload });
-    yield put(setUserFavoritesActionCreator(data.data.data));
+    const data: GetUserFavoritesResponse[] = yield call(API.getUserFavorites, { locale: action.payload });
+    yield put(setUserFavoritesActionCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_FAVORITES));
   } catch (error) {
     logger.error("[fetchUserFavorites] saga error", { error });

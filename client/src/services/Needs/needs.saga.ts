@@ -17,18 +17,14 @@ import {
   orderNeedsActionCreator
 } from "./needs.actions";
 import { needsSelector } from "./needs.selectors";
-import { APIResponse } from "types/interface";
 import { GetNeedResponse, UpdatePositionsNeedResponse } from "api-types";
 
 export function* fetchNeeds(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_NEEDS));
     logger.info("[fetchNeeds] start fetching needs");
-    const data: APIResponse<GetNeedResponse[]> = yield call(API.getNeeds);
-
-    const needs = data.data?.data || [];
-    yield put(setNeedsActionCreator(needs));
-
+    const data: GetNeedResponse[] = yield call(API.getNeeds);
+    yield put(setNeedsActionCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_NEEDS));
   } catch (error) {
     const { message } = error as Error;
@@ -66,11 +62,10 @@ export function* orderNeeds(
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_NEED));
     logger.info("[saveNeed] start saving need order");
-    const data: APIResponse<UpdatePositionsNeedResponse[]> = yield call(API.orderNeeds, action.payload);
-    const res = data.data.data;
-    if (res) {
+    const data: UpdatePositionsNeedResponse[] = yield call(API.orderNeeds, action.payload);
+    if (data) {
       const newNeeds: GetNeedResponse[] = [...(yield select(needsSelector))];
-      for (const newNeed of res) {
+      for (const newNeed of data) {
         const editedNeedIndex = newNeeds.findIndex(n => n._id === newNeed._id);
         newNeeds[editedNeedIndex] = newNeed;
       }
