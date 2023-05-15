@@ -35,10 +35,11 @@ import {
 } from "lexical";
 import { cls } from "lib/classname";
 import { $isCalloutNode, INSERT_CALLOUT_COMMAND, REMOVE_CALLOUT_COMMAND } from "../plugins/CalloutPlugin";
+import { CalloutLevel, CalloutNode } from "../plugins/CalloutPlugin/CalloutNode";
 import { getSelectedNode } from "../lib";
 import ToolbarButton from "./ToolbarButton";
+import ToolbarDropdown from "./ToolbarDropdown";
 import styles from "./ToolbarPlugin.module.scss";
-import { CalloutLevel, CalloutNode } from "../plugins/CalloutPlugin/CalloutNode";
 
 const blockTypeToBlockName = {
   bullet: "Liste à puces",
@@ -248,14 +249,14 @@ export default function ToolbarPlugin() {
           onClick={formatParagraph}
           isPressed={blockType === "paragraph"}
           title="Paragraphe"
-          icon="ri-text"
+          text="Normal"
         />
         <ToolbarButton
           disabled={!isEditable}
           onClick={() => formatHeading()}
           isPressed={blockType === "h3"}
           title="Titre"
-          icon="ri-h-1"
+          text="Titre"
         />
         <span className={styles.divider} />
         <ToolbarButton
@@ -308,26 +309,26 @@ export default function ToolbarPlugin() {
           isPressed={isLink}
           icon="ri-link"
         />
-        <ToolbarButton
-          onClick={clearFormatting}
-          title="Réinitialiser le formattage"
-          isPressed={false}
-          icon="ri-file-text-line"
-        />
         <span className={styles.divider} />
-        <ToolbarButton
+        <ToolbarDropdown
           disabled={!isEditable}
-          onClick={() => formatCallout("important")}
-          title="Bloc 'Important'"
-          isPressed={blockType === "important"}
-          icon="ri-alert-fill"
-        />
-        <ToolbarButton
-          disabled={!isEditable}
-          onClick={() => formatCallout("info")}
-          title="Bloc 'Bon à savoir'"
-          isPressed={blockType === "info"}
-          icon="ri-side-bar-fill"
+          name="callout-menu"
+          title="Insérer un bloc"
+          toggleElement={<ToolbarButton title="Insérer" icon="ri-add-line" text="Insérer" noButton />}
+          items={[
+            {
+              text: "Bloc Important",
+              icon: "ri-alert-fill",
+              onClick: () => formatCallout("important"),
+              selected: blockType === "important",
+            },
+            {
+              text: "Bloc Bon à savoir",
+              icon: "ri-side-bar-fill",
+              onClick: () => formatCallout("info"),
+              selected: blockType === "info",
+            },
+          ]}
         />
       </div>
     </>

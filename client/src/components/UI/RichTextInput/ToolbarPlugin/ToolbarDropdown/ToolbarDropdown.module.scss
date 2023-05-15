@@ -1,0 +1,16 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+
+.toggle {
+  padding: 0;
+  background: transparent !important;
+  border-radius: 0;
+  border: none;
+}
+
+.menu {
+  width: 215px;
+  padding: u(4);
+  border-radius: u(2);
+  box-shadow: 0 2px 6px 0 #00001229;
+}
