@@ -12,7 +12,7 @@ Backend app built with Node
 Located in `/client`  
 Frontend app built with NextJS
 
-## [API Types](apy-types/)
+## [API Types](api-types/)
 
 Located in `/api-types`  
 Typescript types shared between front, back and app

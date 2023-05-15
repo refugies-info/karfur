@@ -11,7 +11,7 @@
 
 ## `controllers`
 
-To learn more, read the [`controllers`](/controllers.md) documentation.
+To learn more, read the [`controllers`](./controllers.md) documentation.
 
 ### Responsibility
 
