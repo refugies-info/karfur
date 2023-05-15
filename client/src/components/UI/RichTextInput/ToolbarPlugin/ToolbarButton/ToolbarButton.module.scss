@@ -1,13 +1,32 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 
 .btn {
-  width: u(8);
   height: u(8);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 6px;
+
+  .icon {
+    line-height: u(4);
+    height: u(4);
+    display: flex;
+    align-items: center;
+  }
+
+  &.icon_btn {
+    width: u(8);
+  }
+
+  &.text_btn {
+    @include dsfr-text("small");
+    font-weight: 500;
+    justify-content: flex-start;
+    padding-left: u(2);
+    padding-right: u(2);
+  }
 
   &:hover {
     background-color: $gray40b;
@@ -15,6 +34,10 @@
 
   &.selected {
     background-color: $lightBackgroundActionLowBlueFrance;
+
+    &.text_btn {
+      color: $lightTextActionHighBlueFrance;
+    }
 
     &:hover {
       background-color: darken($lightBackgroundActionLowBlueFrance, 5%);
