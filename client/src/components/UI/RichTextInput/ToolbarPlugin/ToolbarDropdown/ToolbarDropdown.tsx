@@ -35,7 +35,10 @@ const ToolbarDropdown = (props: Props) => {
         {props.items.map((item, i) => (
           <ToolbarButton
             key={i}
-            onClick={item.onClick}
+            onClick={() => {
+              item.onClick();
+              toggleMenu();
+            }}
             isPressed={item.selected}
             hasSelectedIcon={true}
             icon={item.icon}
