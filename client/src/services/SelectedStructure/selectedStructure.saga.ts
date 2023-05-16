@@ -15,7 +15,6 @@ import {
   updateSelectedStructureActionCreator
 } from "./selectedStructure.actions";
 import { selectedStructureSelector } from "./selectedStructure.selector";
-import { APIResponse } from "types/interface";
 import { GetStructureResponse, PatchStructureRequest } from "api-types";
 
 export function* fetchSelectedStructure(
@@ -25,8 +24,8 @@ export function* fetchSelectedStructure(
     const { id, locale } = action.payload;
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
     logger.info("[fetchSelectedStructure] fetching structure", { id, locale });
-    const data: APIResponse<GetStructureResponse> = yield call(API.getStructureById, id, locale);
-    yield put(setSelectedStructureActionCreator(data.data.data));
+    const data: GetStructureResponse = yield call(API.getStructureById, id, locale);
+    yield put(setSelectedStructureActionCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
   } catch (error) {
     logger.error("[fetchSelectedStructure] Error while fetching structure", {

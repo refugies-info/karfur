@@ -61,6 +61,7 @@ import {
   NewPasswordResponse,
   PatchStructureRequest,
   PatchStructureRolesRequest,
+  PatchThemeResponse,
   PatchWidgetResponse,
   PostAdminOptionResponse,
   PostDispositifsResponse,
@@ -147,26 +148,26 @@ const getHeaders = (jwtToken?: string) => {
 
 const API = {
   // Auth
-  login: (body: LoginRequest): Promise<APIResponse<LoginResponse>> => {
+  login: (body: LoginRequest): Promise<LoginResponse> => {
     const headers = getHeaders();
-    return instance.post("/user/login", body, { headers });
+    return instance.post<any, APIResponse<LoginResponse>>("/user/login", body, { headers }).then(response => response.data.data)
   },
-  checkUserExists: (username: string): Promise<APIResponse> => {
-    return instance.get(`/user/exists?username=${username}`);
+  checkUserExists: (username: string): Promise<null> => {
+    return instance.get<any, null>(`/user/exists?username=${username}`).then(() => null);
   },
-  updatePassword: (id: Id, body: UpdatePasswordRequest): Promise<APIResponse<UpdatePasswordResponse>> => {
+  updatePassword: (id: Id, body: UpdatePasswordRequest): Promise<UpdatePasswordResponse> => {
     const headers = getHeaders();
-    return instance.patch(`/user/${id}/password`, body, { headers });
+    return instance.patch<any, APIResponse<UpdatePasswordResponse>>(`/user/${id}/password`, body, { headers }).then(response => response.data.data)
   },
-  resetPassword: (body: ResetPasswordRequest): Promise<APIResponse<ResetPasswordResponse>> => {
-    return instance.post("/user/password/reset", body);
+  resetPassword: (body: ResetPasswordRequest): Promise<ResetPasswordResponse> => {
+    return instance.post<any, APIResponse<ResetPasswordResponse>>("/user/password/reset", body).then(response => response.data.data)
   },
-  checkResetToken: (token: String): Promise<APIResponse> => {
-    return instance.get(`/user/password/reset?token=${token}`);
+  checkResetToken: (token: String): Promise<null> => {
+    return instance.get<any, null>(`/user/password/reset?token=${token}`).then(() => null);
   },
-  setNewPassword: (body: NewPasswordRequest): Promise<APIResponse<NewPasswordResponse>> => {
+  setNewPassword: (body: NewPasswordRequest): Promise<NewPasswordResponse> => {
     const headers = getHeaders();
-    return instance.post("/user/password/new", body, { headers });
+    return instance.post<any, APIResponse<NewPasswordResponse>>("/user/password/new", body, { headers }).then(response => response.data.data)
   },
   isAuth: () => {
     if (!isInBrowser()) return false;
@@ -177,337 +178,327 @@ const API = {
   },
 
   // User
-  getUser: (options?: RequestOptions): Promise<APIResponse<GetUserInfoResponse>> => {
+  getUser: (options?: RequestOptions): Promise<GetUserInfoResponse> => {
     const headers = getHeaders(options?.token);
-    return instance.get("/user", { headers });
+    return instance.get<any, APIResponse<GetUserInfoResponse>>("/user", { headers }).then(response => response.data.data)
   },
-  updateUser: (id: Id, body: UpdateUserRequest): Promise<APIResponse> => {
+  updateUser: (id: Id, body: UpdateUserRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/user/${id}`, body, { headers });
+    return instance.patch<any, null>(`/user/${id}`, body, { headers }).then(() => null);
   },
-  deleteUser: (query: Id): Promise<APIResponse> => {
+  deleteUser: (query: Id): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete(`/user/${query}`, { headers });
+    return instance.delete<any, null>(`/user/${query}`, { headers }).then(() => null);
   },
-  getUserContributions: (): Promise<APIResponse<GetUserContributionsResponse>> => {
+  getUserContributions: (): Promise<GetUserContributionsResponse> => {
     const headers = getHeaders();
-    return instance.get("/dispositifs/user-contributions", { headers });
+    return instance.get<any, APIResponse<GetUserContributionsResponse>>("/dispositifs/user-contributions", { headers }).then(response => response.data.data)
   },
-  getUserFavorites: (query: GetUserFavoritesRequest): Promise<APIResponse<GetUserFavoritesResponse>> => {
+  getUserFavorites: (query: GetUserFavoritesRequest): Promise<GetUserFavoritesResponse> => {
     const headers = getHeaders();
-    return instance.get(`/user/favorites?locale=${query.locale}`, { headers });
+    return instance.get<any, APIResponse<GetUserFavoritesResponse>>(`/user/favorites?locale=${query.locale}`, { headers }).then(response => response.data.data)
   },
-  addUserFavorite: (body: AddUserFavoriteRequest): Promise<APIResponse> => {
+  addUserFavorite: (body: AddUserFavoriteRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.put("/user/favorites", body, { headers });
+    return instance.put<any, null>("/user/favorites", body, { headers }).then(() => null);
   },
-  deleteUserFavorites: (query: DeleteUserFavoriteRequest): Promise<APIResponse> => {
+  deleteUserFavorites: (query: DeleteUserFavoriteRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete("/user/favorites", { params: query, headers });
+    return instance.delete<any, null>("/user/favorites", { params: query, headers }).then(() => null);
   },
 
   // Users
-  getUsersStatistics: (): Promise<APIResponse<GetUserStatisticsResponse>> => {
+  getUsersStatistics: (): Promise<GetUserStatisticsResponse> => {
     const headers = getHeaders();
-    return instance.get("/user/statistics", { headers });
+    return instance.get<any, APIResponse<GetUserStatisticsResponse>>("/user/statistics", { headers }).then(response => response.data.data)
   },
-  getActiveUsers: (): Promise<APIResponse<GetActiveUsersResponse[]>> => {
+  getActiveUsers: (): Promise<GetActiveUsersResponse[]> => {
     const headers = getHeaders();
-    return instance.get("/user/actives", { headers });
+    return instance.get<any, APIResponse<GetActiveUsersResponse[]>>("/user/actives", { headers }).then(response => response.data.data)
   },
-  getAllUsers: (): Promise<APIResponse<GetAllUsersResponse[]>> => {
+  getAllUsers: (): Promise<GetAllUsersResponse[]> => {
     const headers = getHeaders();
-    return instance.get("/user/all", { headers });
+    return instance.get<any, APIResponse<GetAllUsersResponse[]>>("/user/all", { headers }).then(response => response.data.data)
   },
 
   // Dispositif
-  getDispositif: (id: string, locale: string, options?: RequestOptions): Promise<APIResponse<GetDispositifResponse>> => {
+  getDispositif: (id: string, locale: string, options?: RequestOptions): Promise<GetDispositifResponse> => {
     const headers = getHeaders(options?.token);
-    return instance.get(`/dispositifs/${id}?locale=${locale}`, { headers });
+    return instance.get<any, APIResponse<GetDispositifResponse>>(`/dispositifs/${id}?locale=${locale}`, { headers }).then(response => response.data.data)
   },
-  countDispositifs: (query: CountDispositifsRequest): Promise<APIResponse<GetCountDispositifsResponse>> => {
+  countDispositifs: (query: CountDispositifsRequest): Promise<GetCountDispositifsResponse> => {
     const headers = getHeaders();
-    return instance.get("/dispositifs/count", { params: query, headers });
+    return instance.get<any, APIResponse<GetCountDispositifsResponse>>("/dispositifs/count", { params: query, headers }).then(response => response.data.data)
   },
-  deleteDispositif: (id: Id): Promise<APIResponse> => {
+  deleteDispositif: (id: Id): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete(`/dispositifs/${id}`, { headers });
+    return instance.delete<any, null>(`/dispositifs/${id}`, { headers }).then(() => null);
   },
-  updateDispositifStatus: (id: Id, body: DispositifStatusRequest): Promise<APIResponse> => {
+  updateDispositifStatus: (id: Id, body: DispositifStatusRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/dispositifs/${id}/status`, body, { headers });
+    return instance.patch<any, null>(`/dispositifs/${id}/status`, body, { headers }).then(() => null);
   },
-  structureReceiveDispositifStatus: (id: Id, body: StructureReceiveDispositifRequest): Promise<APIResponse> => {
+  structureReceiveDispositifStatus: (id: Id, body: StructureReceiveDispositifRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/dispositifs/${id}/structure-receive`, body, { headers });
+    return instance.patch<any, null>(`/dispositifs/${id}/structure-receive`, body, { headers }).then(() => null);
   },
-  updateDispositifThemesOrNeeds: (id: Id, body: DispositifThemeNeedsRequest) => {
+  updateDispositifThemesOrNeeds: (id: Id, body: DispositifThemeNeedsRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/dispositifs/${id}/themes-needs`, body, { headers });
+    return instance.patch<any, null>(`/dispositifs/${id}/themes-needs`, body, { headers }).then(() => null);
   },
-  updateDispositifMainSponsor: (id: string, body: MainSponsorRequest): Promise<APIResponse> => {
+  updateDispositifMainSponsor: (id: string, body: MainSponsorRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/dispositifs/${id}/main-sponsor`, body, { headers });
+    return instance.patch<any, null>(`/dispositifs/${id}/main-sponsor`, body, { headers }).then(() => null);
   },
-  updateDispositifAdminComments: (id: string, body: AdminCommentsRequest): Promise<APIResponse> => {
+  updateDispositifAdminComments: (id: string, body: AdminCommentsRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/dispositifs/${id}/admin-comments`, body, { headers });
+    return instance.patch<any, null>(`/dispositifs/${id}/admin-comments`, body, { headers }).then(() => null);
   },
   getDispositifsWithTranslationAvancement: (
     locale: string,
-  ): Promise<APIResponse<GetDispositifsWithTranslationAvancementResponse>> => {
+  ): Promise<GetDispositifsWithTranslationAvancementResponse[]> => {
     const headers = getHeaders();
-    return instance.get(`/dispositifs/with-translations-status?locale=${locale}`, { headers });
+    return instance.get<any, APIResponse<GetDispositifsWithTranslationAvancementResponse[]>>(`/dispositifs/with-translations-status?locale=${locale}`, { headers }).then(response => response.data.data)
   },
-  getDispositifs: (query: GetDispositifsRequest): Promise<APIResponse<GetDispositifsResponse[]>> => {
-    return instance.get("/dispositifs", { params: query });
+  getDispositifs: (query: GetDispositifsRequest): Promise<GetDispositifsResponse[]> => {
+    return instance.get<any, APIResponse<GetDispositifsResponse[]>>("/dispositifs", { params: query }).then(response => response.data.data)
   },
-  getAllDispositifs: (): Promise<APIResponse<GetAllDispositifsResponse[]>> => {
+  getAllDispositifs: (): Promise<GetAllDispositifsResponse[]> => {
     const headers = getHeaders();
-    return instance.get("/dispositifs/all", { headers });
+    return instance.get<any, APIResponse<GetAllDispositifsResponse[]>>("/dispositifs/all", { headers }).then(response => response.data.data)
   },
-  getNbDispositifsByRegion: (): Promise<APIResponse<GetRegionStatisticsResponse>> => {
-    return instance.get("/dispositifs/region-statistics");
+  getNbDispositifsByRegion: (): Promise<GetRegionStatisticsResponse> => {
+    return instance.get<any, APIResponse<GetRegionStatisticsResponse>>("/dispositifs/region-statistics").then(response => response.data.data)
   },
-  addDispositifViews: (id: string, body: AddViewsRequest): Promise<APIResponse> => {
+  addDispositifViews: (id: string, body: AddViewsRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post(`/dispositifs/${id}/view`, body, { headers });
+    return instance.post<any, null>(`/dispositifs/${id}/view`, body, { headers }).then(() => null);
   },
-  getDispositifHasTextChanges: (id: string): Promise<APIResponse<GetDispositifsHasTextChanges>> => {
+  getDispositifHasTextChanges: (id: string): Promise<GetDispositifsHasTextChanges> => {
     const headers = getHeaders();
-    return instance.get(`/dispositifs/${id}/has-text-changes`, { headers });
+    return instance.get<any, APIResponse<GetDispositifsHasTextChanges>>(`/dispositifs/${id}/has-text-changes`, { headers }).then(response => response.data.data)
   },
-  getDispositifsStatistics: (query: GetStatisticsRequest): Promise<APIResponse<GetStatisticsResponse>> => {
+  getDispositifsStatistics: (query: GetStatisticsRequest): Promise<GetStatisticsResponse> => {
     const headers = getHeaders();
-    return instance.get("/dispositifs/statistics", { params: query, headers });
+    return instance.get<any, APIResponse<GetStatisticsResponse>>("/dispositifs/statistics", { params: query, headers }).then(response => response.data.data)
   },
-  addDispositifMerci: (id: string): Promise<APIResponse> => {
+  addDispositifMerci: (id: string): Promise<null> => {
     const headers = getHeaders();
-    return instance.put(`/dispositifs/${id}/merci`, {}, { headers });
+    return instance.put<any, null>(`/dispositifs/${id}/merci`, {}, { headers }).then(() => null);
   },
-  deleteDispositifMerci: (id: string): Promise<APIResponse> => {
+  deleteDispositifMerci: (id: string): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete(`/dispositifs/${id}/merci`, { headers });
+    return instance.delete<any, null>(`/dispositifs/${id}/merci`, { headers }).then(() => null);
   },
-  addDispositifSuggestion: (id: string, body: AddSuggestionDispositifRequest): Promise<APIResponse> => {
+  addDispositifSuggestion: (id: string, body: AddSuggestionDispositifRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.put(`/dispositifs/${id}/suggestion`, body, { headers });
+    return instance.put<any, null>(`/dispositifs/${id}/suggestion`, body, { headers }).then(() => null);
   },
-  readDispositifSuggestion: (id: string, body: ReadSuggestionDispositifRequest): Promise<APIResponse> => {
+  readDispositifSuggestion: (id: string, body: ReadSuggestionDispositifRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/dispositifs/${id}/suggestion`, body, { headers });
+    return instance.patch<any, null>(`/dispositifs/${id}/suggestion`, body, { headers }).then(() => null);
   },
-  deleteDispositifSuggestion: (id: string, suggestionId: string): Promise<APIResponse> => {
+  deleteDispositifSuggestion: (id: string, suggestionId: string): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete(`/dispositifs/${id}/suggestion/${suggestionId}`, { headers });
+    return instance.delete<any, null>(`/dispositifs/${id}/suggestion/${suggestionId}`, { headers }).then(() => null);
   },
-  updateDispositifProperties: (id: Id, body: UpdateDispositifPropertiesRequest): Promise<APIResponse> => {
+  updateDispositifProperties: (id: Id, body: UpdateDispositifPropertiesRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/dispositifs/${id}/properties`, body, { headers });
+    return instance.patch<any, null>(`/dispositifs/${id}/properties`, body, { headers }).then(() => null);
   },
-  updateDispositif: (id: Id, body: UpdateDispositifRequest): Promise<APIResponse<UpdateDispositifResponse>> => {
+  updateDispositif: (id: Id, body: UpdateDispositifRequest): Promise<UpdateDispositifResponse> => {
     const headers = getHeaders();
-    return instance.patch(`/dispositifs/${id}`, body, { headers });
+    return instance.patch<any, APIResponse<UpdateDispositifResponse>>(`/dispositifs/${id}`, body, { headers }).then(response => response.data.data)
   },
-  publishDispositif: (id: Id, body: PublishDispositifRequest): Promise<APIResponse> => {
+  publishDispositif: (id: Id, body: PublishDispositifRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/dispositifs/${id}/publish`, body, { headers });
+    return instance.patch<any, null>(`/dispositifs/${id}/publish`, body, { headers }).then(() => null);
   },
-  createDispositif: (body: CreateDispositifRequest): Promise<APIResponse<PostDispositifsResponse>> => {
+  createDispositif: (body: CreateDispositifRequest): Promise<PostDispositifsResponse> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs", body, { headers });
+    return instance.post<any, APIResponse<PostDispositifsResponse>>("/dispositifs", body, { headers }).then(response => response.data.data)
   },
 
   // Mail
-  sendAdminImprovementsMail: (body: ImprovementsRequest): Promise<APIResponse> => {
+  sendAdminImprovementsMail: (body: ImprovementsRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/mail/sendAdminImprovementsMail", body, {
-      headers,
-    });
+    return instance.post<any, null>("/mail/sendAdminImprovementsMail", body, { headers }).then(() => null);
   },
-  sendSubscriptionReminderMail: (body: SubscriptionRequest): Promise<APIResponse> => {
+  sendSubscriptionReminderMail: (body: SubscriptionRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/mail/sendSubscriptionReminderMail", body, {
-      headers,
-    });
+    return instance.post<any, null>("/mail/sendSubscriptionReminderMail", body, { headers }).then(() => null);
   },
-  contacts: (body: AddContactRequest): Promise<APIResponse> => {
+  contacts: (body: AddContactRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/mail/contacts", body, { headers });
+    return instance.post<any, null>("/mail/contacts", body, { headers }).then(() => null);
   },
 
   // Structure
-  createStructure: (body: PostStructureRequest): Promise<APIResponse> => {
+  createStructure: (body: PostStructureRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/structures", body, { headers });
+    return instance.post<any, null>("/structures", body, { headers }).then(() => null);
   },
-  updateStructure: (id: Id, body: PatchStructureRequest): Promise<APIResponse> => {
+  updateStructure: (id: Id, body: PatchStructureRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/structures/${id}`, body, { headers });
+    return instance.patch<any, null>(`/structures/${id}`, body, { headers }).then(() => null);
   },
-  updateStructureRoles: (id: Id, body: PatchStructureRolesRequest): Promise<APIResponse> => {
+  updateStructureRoles: (id: Id, body: PatchStructureRolesRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/structures/${id}/roles`, body, { headers });
+    return instance.patch<any, null>(`/structures/${id}/roles`, body, { headers }).then(() => null);
   },
-  getStructureById: (id: string, locale: string): Promise<APIResponse<GetStructureResponse>> => {
+  getStructureById: (id: string, locale: string): Promise<GetStructureResponse> => {
     const headers = getHeaders();
-    return instance.get(`/structures/${id}?locale=${locale}`, { headers });
+    return instance.get<any, APIResponse<GetStructureResponse>>(`/structures/${id}?locale=${locale}`, { headers }).then(response => response.data.data)
   },
-  getActiveStructures: (): Promise<APIResponse<GetActiveStructuresResponse[]>> => {
-    return instance.get("/structures/getActiveStructures");
+  getActiveStructures: (): Promise<GetActiveStructuresResponse[]> => {
+    return instance.get<any, APIResponse<GetActiveStructuresResponse[]>>("/structures/getActiveStructures").then(response => response.data.data)
   },
-  getAllStructures: (): Promise<APIResponse<GetAllStructuresResponse[]>> => {
+  getAllStructures: (): Promise<GetAllStructuresResponse[]> => {
     const headers = getHeaders();
-    return instance.get("/structures/all", { headers });
+    return instance.get<any, APIResponse<GetAllStructuresResponse[]>>("/structures/all", { headers }).then(response => response.data.data)
   },
   getStructuresStatistics: (
     query: GetStructureStatisticsRequest,
-  ): Promise<APIResponse<GetStructureStatisticsResponse>> => {
-    return instance.get("/structures/statistics", { params: query });
+  ): Promise<GetStructureStatisticsResponse> => {
+    return instance.get<any, APIResponse<GetStructureStatisticsResponse>>("/structures/statistics", { params: query }).then(response => response.data.data)
   },
 
   // Needs
-  getNeeds: (): Promise<APIResponse<GetNeedResponse>> => {
-    return instance.get("/needs");
+  getNeeds: (): Promise<GetNeedResponse> => {
+    return instance.get<any, APIResponse<GetNeedResponse>>("/needs").then(response => response.data.data)
   },
-  postNeeds: (body: NeedRequest): Promise<APIResponse> => {
+  postNeeds: (body: NeedRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/needs", body, { headers });
+    return instance.post<any, null>("/needs", body, { headers }).then(() => null);
   },
-  patchNeed: (id: Id, body: Partial<NeedRequest>): Promise<APIResponse> => {
+  patchNeed: (id: Id, body: Partial<NeedRequest>): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch(`/needs/${id}`, body, { headers });
+    return instance.patch<any, null>(`/needs/${id}`, body, { headers }).then(() => null);
   },
-  orderNeeds: (body: UpdatePositionsRequest): Promise<APIResponse<UpdatePositionsNeedResponse[]>> => {
+  orderNeeds: (body: UpdatePositionsRequest): Promise<UpdatePositionsNeedResponse[]> => {
     const headers = getHeaders();
-    return instance.post("/needs/positions", body, { headers });
+    return instance.post<any, APIResponse<UpdatePositionsNeedResponse[]>>("/needs/positions", body, { headers }).then(response => response.data.data)
   },
-  deleteNeed: (query: Id): Promise<APIResponse> => {
+  deleteNeed: (query: Id): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete(`/needs/${query}`, { headers });
+    return instance.delete<any, null>(`/needs/${query}`, { headers }).then(() => null);
   },
 
   // Themes
-  getThemes: (): Promise<APIResponse<GetThemeResponse[]>> => {
-    return instance.get("/themes");
+  getThemes: (): Promise<GetThemeResponse[]> => {
+    return instance.get<any, APIResponse<GetThemeResponse[]>>("/themes").then(response => response.data.data)
   },
-  postThemes: (body: ThemeRequest): Promise<APIResponse<PostThemeResponse>> => {
+  postThemes: (body: ThemeRequest): Promise<PostThemeResponse> => {
     const headers = getHeaders();
-    return instance.post("/themes", body, { headers });
+    return instance.post<any, APIResponse<PostThemeResponse>>("/themes", body, { headers }).then(response => response.data.data)
   },
-  patchTheme: (id: Id, body: Partial<ThemeRequest>) => {
+  patchTheme: (id: Id, body: Partial<ThemeRequest>): Promise<PatchThemeResponse> => {
     const headers = getHeaders();
-    return instance.patch(`/themes/${id}`, body, { headers });
+    return instance.patch<any, APIResponse<PatchThemeResponse>>(`/themes/${id}`, body, { headers }).then(response => response.data.data);
   },
-  deleteTheme: (query: Id): Promise<APIResponse> => {
+  deleteTheme: (query: Id): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete(`/themes/${query}`, { headers });
+    return instance.delete<any, null>(`/themes/${query}`, { headers }).then(() => null);
   },
 
   // Widgets
-  getWidgets: (): Promise<APIResponse<GetWidgetResponse>> => {
+  getWidgets: (): Promise<GetWidgetResponse> => {
     const headers = getHeaders();
-    return instance.get("/widgets", { headers });
+    return instance.get<any, APIResponse<GetWidgetResponse>>("/widgets", { headers }).then(response => response.data.data)
   },
-  postWidgets: (body: WidgetRequest): Promise<APIResponse<PostWidgetResponse>> => {
+  postWidgets: (body: WidgetRequest): Promise<PostWidgetResponse> => {
     const headers = getHeaders();
-    return instance.post("/widgets", body, { headers });
+    return instance.post<any, APIResponse<PostWidgetResponse>>("/widgets", body, { headers }).then(response => response.data.data)
   },
-  patchWidget: (id: Id, body: Partial<WidgetRequest>): Promise<APIResponse<PatchWidgetResponse>> => {
+  patchWidget: (id: Id, body: Partial<WidgetRequest>): Promise<PatchWidgetResponse> => {
     const headers = getHeaders();
-    return instance.patch(`/widgets/${id}`, body, { headers });
+    return instance.patch<any, APIResponse<PatchWidgetResponse>>(`/widgets/${id}`, body, { headers }).then(response => response.data.data)
   },
-  deleteWidget: (query: Id): Promise<APIResponse> => {
+  deleteWidget: (query: Id): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete(`/widgets/${query}`, { headers });
+    return instance.delete<any, null>(`/widgets/${query}`, { headers }).then(() => null);
   },
 
   // Export
-  exportUsers: (): Promise<APIResponse> => {
+  exportUsers: (): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/user/export", {}, { headers });
+    return instance.post<any, null>("/user/export", {}, { headers }).then(() => null);
   },
-  exportDispositifs: (): Promise<APIResponse> => {
+  exportDispositifs: (): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/export", {}, { headers });
+    return instance.post<any, null>("/dispositifs/export", {}, { headers }).then(() => null);
   },
-  exportDispositifsGeolocalisation: (): Promise<APIResponse> => {
+  exportDispositifsGeolocalisation: (): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/export-geoloc", {}, { headers });
+    return instance.post<any, null>("/dispositifs/export-geoloc", {}, { headers }).then(() => null);
   },
 
   // Trads
-  saveTraduction: (query: SaveTranslationRequest): Promise<APIResponse<SaveTranslationResponse>> => {
+  saveTraduction: (query: SaveTranslationRequest): Promise<SaveTranslationResponse> => {
     const headers = getHeaders();
-    return instance.post("/traduction", query, { headers });
+    return instance.post<any, APIResponse<SaveTranslationResponse>>("/traduction", query, { headers }).then(response => response.data.data)
   },
-  publishTraduction: (query: PublishTranslationRequest): Promise<APIResponse> => {
+  publishTraduction: (query: PublishTranslationRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/traduction/publish", query, { headers });
+    return instance.post<any, null>("/traduction/publish", query, { headers }).then(() => null);
   },
 
-  getTraductionsForReview: ({ dispositif, language }: { dispositif: string; language: string }, options?: RequestOptions): Promise<APIResponse<GetTraductionsForReviewResponse>> => {
+  getTraductionsForReview: ({ dispositif, language }: { dispositif: string; language: string }, options?: RequestOptions): Promise<GetTraductionsForReviewResponse> => {
     const headers = getHeaders(options?.token);
-    return instance.get(`/traduction/for_review?dispositif=${dispositif}&language=${language}`, {
-      headers,
-    });
+    return instance.get<any, APIResponse<GetTraductionsForReviewResponse>>(`/traduction/for_review?dispositif=${dispositif}&language=${language}`, { headers }).then(response => response.data.data)
   },
-  getDefaultTraductionForDispositif: ({ dispositif }: { dispositif: string }, options?: RequestOptions): Promise<APIResponse<GetDefaultTraductionResponse>> => {
+  getDefaultTraductionForDispositif: ({ dispositif }: { dispositif: string }, options?: RequestOptions): Promise<GetDefaultTraductionResponse> => {
     const headers = getHeaders(options?.token);
-    return instance.get(`/traduction?dispositif=${dispositif}`, {
-      headers,
-    });
+    return instance.get<any, APIResponse<GetDefaultTraductionResponse>>(`/traduction?dispositif=${dispositif}`, { headers }).then(response => response.data.data)
   },
 
-  deleteTrads: (query: DeleteTranslationsRequest) => {
+  deleteTrads: (query: DeleteTranslationsRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete("/traduction", { params: query, headers });
+    return instance.delete<any, null>("/traduction", { params: query, headers }).then(() => null);
   },
-  get_progression: (query: GetProgressionRequest): Promise<APIResponse<GetProgressionResponse>> => {
+  get_progression: (query: GetProgressionRequest): Promise<GetProgressionResponse> => {
     const headers = getHeaders();
-    return instance.get("/traduction/get_progression", { params: query, headers })
+    return instance.get<any, APIResponse<GetProgressionResponse>>("/traduction/get_progression", { params: query, headers }).then(response => response.data.data)
   },
 
-  get_translation: (query: TranslateRequest): Promise<APIResponse<string>> => {
+  get_translation: (query: TranslateRequest): Promise<string> => {
     const headers = getHeaders();
-    return instance.post("/traduction/translate", query, {
-      headers,
-    });
+    return instance.post<any, APIResponse<string>>("/traduction/translate", query, { headers }).then(response => response.data.data)
   },
-  getTranslationStatistics: (query: TranslationStatisticsRequest): Promise<APIResponse<TranslationStatisticsResponse>> => {
-    return instance.get("/traduction/statistics", { params: query });
+  getTranslationStatistics: (query: TranslationStatisticsRequest): Promise<TranslationStatisticsResponse> => {
+    return instance.get<any, APIResponse<any>>("/traduction/statistics", { params: query }).then(response => response.data.data)
   },
 
   // langues
-  getLanguages: (): Promise<APIResponse<GetLanguagesResponse>> => {
-    return instance.get("/langues");
+  getLanguages: (): Promise<GetLanguagesResponse> => {
+    return instance.get<any, APIResponse<GetLanguagesResponse>>("/langues").then(response => response.data.data)
   },
 
   // Misc
-  postImage: (query: any): Promise<APIResponse<PostImageResponse>> => {
+  postImage: (query: any): Promise<PostImageResponse> => {
     const headers = getHeaders();
-    return instance.post("/images", query, { headers });
+    return instance.post<any, APIResponse<PostImageResponse>>("/images", query, { headers }).then(response => response.data.data)
   },
   // Logs
-  logs: (id: Id): Promise<APIResponse<GetLogResponse[]>> => {
+  logs: (id: Id): Promise<GetLogResponse[]> => {
     const headers = getHeaders();
-    return instance.get(`/logs?id=${id}`, { headers });
+    return instance.get<any, APIResponse<GetLogResponse[]>>(`/logs?id=${id}`, { headers }).then(response => response.data.data)
   },
 
   // Notifications
-  sendNotification: (body: SendNotificationsRequest): Promise<APIResponse> => {
+  sendNotification: (body: SendNotificationsRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/notifications/send", body, { headers });
+    return instance.post<any, null>("/notifications/send", body, { headers }).then(() => null);
   },
 
   // AdminOptions
-  getAdminOption: (key: string): Promise<APIResponse<GetAdminOptionResponse>> => {
+  getAdminOption: (key: string): Promise<GetAdminOptionResponse> => {
     const headers = getHeaders();
-    return instance.get(`/options/${key}`, { headers });
+    return instance.get<any, APIResponse<GetAdminOptionResponse>>(`/options/${key}`, { headers }).then(response => response.data.data)
   },
-  setAdminOption: (key: string, body: AdminOptionRequest): Promise<APIResponse<PostAdminOptionResponse>> => {
+  setAdminOption: (key: string, body: AdminOptionRequest): Promise<PostAdminOptionResponse> => {
     const headers = getHeaders();
-    return instance.post(`/options/${key}`, body, { headers });
+    return instance.post<any, APIResponse<PostAdminOptionResponse>>(`/options/${key}`, body, { headers }).then(response => response.data.data)
   },
 
   // tts
@@ -534,12 +525,12 @@ const API = {
   cancel_tts_subscription: () => cancel && cancel("Cancelled by user"),
 
   // sms
-  smsDownloadApp: (body: DownloadAppRequest): Promise<APIResponse> => {
-    return instance.post("/sms/download-app", body);
+  smsDownloadApp: (body: DownloadAppRequest): Promise<null> => {
+    return instance.post<any, null>("/sms/download-app", body).then(() => null);
   },
-  smsContentLink: (body: ContentLinkRequest): Promise<APIResponse> => {
+  smsContentLink: (body: ContentLinkRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post("/sms/content-link", body, { headers });
+    return instance.post<any, null>("/sms/content-link", body, { headers }).then(() => null);
   },
 };
 

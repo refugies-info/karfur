@@ -19,7 +19,7 @@ import {
   InlineLink,
   Register,
   HeroArrow,
-  CountUpFigure
+  CountUpFigure,
 } from "components/Pages/staticPages/common";
 import { TestimonySlider, CardExample } from "components/Pages/staticPages/publier";
 import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
@@ -74,7 +74,7 @@ const RecensezVotreAction = (props: Props) => {
       { inView: inViewRequired, id: "required" },
       { inView: inViewSteps, id: "steps" },
       { inView: inViewFaq, id: "faq" },
-      { inView: inViewRegister, id: "register" }
+      { inView: inViewRegister, id: "register" },
     ];
     for (const view of views.reverse()) {
       if (view.inView) {
@@ -117,12 +117,12 @@ const RecensezVotreAction = (props: Props) => {
           { id: "why", color: "green", text: t("Publish.navbarItem1") },
           { id: "required", color: "purple", text: t("Publish.navbarItem2") },
           { id: "steps", color: "orange", text: t("Publish.navbarItem3") },
-          { id: "faq", color: "red", text: t("Publish.navbarItem4") }
+          { id: "faq", color: "red", text: t("Publish.navbarItem4") },
         ]}
         rightLink={{
           id: "register",
           color: "blue",
-          text: t("Publish.navbarItem5")
+          text: t("Publish.navbarItem5"),
         }}
         activeView={activeView}
         isSticky={!inViewHero}
@@ -143,16 +143,16 @@ const RecensezVotreAction = (props: Props) => {
                   video: "/video/publier-video-why2.mp4",
                   mediaWidth: 217,
                   mediaHeight: 442,
-                  className: styles.video2
+                  className: styles.video2,
                 },
                 {
                   title: t("Publish.whyAccordionTitle3"),
                   text: t("Publish.whyAccordionText3"),
                   video: "/video/publier-video-why3.mp4",
                   mediaWidth: 350,
-                  noShadow: true
+                  noShadow: true,
                 },
-                { title: t("Publish.whyAccordionTitle4"), text: t("Publish.whyAccordionText4"), image: WhyImage4 }
+                { title: t("Publish.whyAccordionTitle4"), text: t("Publish.whyAccordionText4"), image: WhyImage4 },
               ]}
               withImages
               initOpen
@@ -171,20 +171,20 @@ const RecensezVotreAction = (props: Props) => {
                   text: t("Publish.testimony1"),
                   image: TestimonyLogo1,
                   name: "Vincent Le Lann",
-                  position: "Compagnons du Tour de France à Nantes"
+                  position: "Compagnons du Tour de France à Nantes",
                 },
                 {
                   text: t("Publish.testimony2"),
                   image: TestimonyLogo2,
                   name: "Rémi Crouzel",
-                  position: "Mission Locale de Dijon & Conseiller IPeRACTIFS21"
+                  position: "Mission Locale de Dijon & Conseiller IPeRACTIFS21",
                 },
                 {
                   text: t("Publish.testimony3"),
                   image: TestimonyLogo3,
                   name: "Paola Salazar",
-                  position: "Directrice adjointe UniR"
-                }
+                  position: "Directrice adjointe UniR",
+                },
               ]}
             />
           </Container>
@@ -275,7 +275,7 @@ const RecensezVotreAction = (props: Props) => {
               texts={[t("Publish.stepsText2a"), t("Publish.stepsText2b")]}
               cta={{
                 text: t("Publish.stepsCTA2"),
-                link: "https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
+                link: "https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/",
               }}
               video="/video/publier-video-step2.mp4"
             />
@@ -399,7 +399,7 @@ const RecensezVotreAction = (props: Props) => {
                 { title: t("Publish.faqAccordionTitle2"), text: t("Publish.faqAccordionText2") },
                 { title: t("Publish.faqAccordionTitle3"), text: t("Publish.faqAccordionText3") },
                 { title: t("Publish.faqAccordionTitle4"), text: t("Publish.faqAccordionText4") },
-                { title: t("Publish.faqAccordionTitle5"), text: t("Publish.faqAccordionText5") }
+                { title: t("Publish.faqAccordionTitle5"), text: t("Publish.faqAccordionText5") },
               ]}
               multiOpen
             />
@@ -428,19 +428,19 @@ const RecensezVotreAction = (props: Props) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const dispStatistics = (
-    await API.getDispositifsStatistics({ facets: ["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"] })
-  ).data.data;
-  const structStatistics = (await API.getStructuresStatistics({ facets: ["nbStructures"] })).data.data;
+  const dispStatistics = await API.getDispositifsStatistics({
+    facets: ["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"],
+  });
+  const structStatistics = await API.getStructuresStatistics({ facets: ["nbStructures"] });
 
   return {
     props: {
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
       nbVues: (dispStatistics.nbVues || 0) + (dispStatistics.nbVuesMobile || 0),
       nbFiches: (dispStatistics.nbDispositifs || 0) + (dispStatistics.nbDemarches || 0),
-      nbStructures: structStatistics.nbStructures
+      nbStructures: structStatistics.nbStructures,
     },
-    revalidate: 60
+    revalidate: 60,
   };
 });
 

@@ -14,11 +14,7 @@ steps:
       ]
   # Push the container image to Container Registry
   - name: "gcr.io/cloud-builders/docker"
-    args:
-      [
-        "push",
-        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
-      ]
+    args: ["push", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA"]
   # Deploy container image to Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
@@ -45,3 +41,7 @@ steps:
         "${_SA}",
         "--allow-unauthenticated",
       ]
+
+options:
+  dynamic_substitutions: true
+  machineType: "E2_HIGHCPU_8"

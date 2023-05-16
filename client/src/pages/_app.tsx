@@ -27,7 +27,7 @@ declare module "@codegouvfr/react-dsfr/next-pagesdir" {
 }
 
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
-  defaultColorScheme: "system",
+  defaultColorScheme: "light",
   Link,
 });
 
@@ -100,7 +100,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   }, [store, router.events]);
 
   return (
-    <DsfrProvider defaultColorScheme="system">
+    <DsfrProvider defaultColorScheme="light">
       <Analytics />
 
       {options.cookiesModule && (

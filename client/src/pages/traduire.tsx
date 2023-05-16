@@ -344,9 +344,9 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   let translationStatistics: TranslationStatisticsResponse = {};
 
   try {
-    translationStatistics = (
-      await API.getTranslationStatistics({ facets: ["nbTranslators", "nbWordsTranslated", "nbActiveTranslators"] })
-    ).data.data;
+    translationStatistics = await API.getTranslationStatistics({
+      facets: ["nbTranslators", "nbWordsTranslated", "nbActiveTranslators"],
+    });
   } catch (e) {
     logger.error("[traduire] error while generating page", e);
   }

@@ -8,10 +8,11 @@
   border-bottom: 1px solid $lightBorderDefaultGrey;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 2px;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
 
   :global([class^="ri-"]::before) {
     --icon-size: 1em !important;

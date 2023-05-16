@@ -45,12 +45,12 @@ const useAutosave = () => {
               let response: UpdateDispositifResponse | PostDispositifsResponse | null = null;
 
               if (id) { // update
-                response = await submitUpdateForm(id, data).then(res => res.data.data);
+                response = await submitUpdateForm(id, data)
                 if (response && dispositif) {
                   dispatch(setSelectedDispositifActionCreator({ ...dispositif, status: response.status, hasDraftVersion: response.hasDraftVersion }))
                 }
               } else { // create
-                response = await submitCreateForm(data).then(res => res.data.data);
+                response = await submitCreateForm(data)
                 if (response) {
                   // set partial dispositif in store, and continue edition on this page
                   dispatch(setSelectedDispositifActionCreator({

@@ -52,32 +52,32 @@ const Dashboard = (props: Props) => {
         API.countDispositifs({
           type: ContentType.DISPOSITIF,
           publishedOnly: false,
-        }).then((data) => setNbDispositifs(data.data.data.count)),
+        }).then((data) => setNbDispositifs(data.count)),
         API.countDispositifs({
           type: ContentType.DISPOSITIF,
           publishedOnly: true,
-        }).then((data) => setNbDispositifsActifs(data.data.data.count)),
+        }).then((data) => setNbDispositifsActifs(data.count)),
         API.countDispositifs({
           type: ContentType.DEMARCHE,
           publishedOnly: false,
-        }).then((data) => setNbDemarches(data.data.data.count)),
+        }).then((data) => setNbDemarches(data.count)),
         API.countDispositifs({
           type: ContentType.DEMARCHE,
           publishedOnly: true,
-        }).then((data) => setNbDemarchesActives(data.data.data.count)),
+        }).then((data) => setNbDemarchesActives(data.count)),
         API.getUsersStatistics().then((data) => {
-          setNbContributors(data.data.data.nbContributors);
-          setNbTraductors(data.data.data.nbTraductors);
+          setNbContributors(data.nbContributors);
+          setNbTraductors(data.nbTraductors);
         }),
         API.getNbDispositifsByRegion().then((data) => {
-          setFiguresByRegion(data.data.data.regionFigures);
-          setDispositifsWithoutGeoloc(data.data.data.dispositifsWithoutGeoloc);
+          setFiguresByRegion(data.regionFigures);
+          setDispositifsWithoutGeoloc(data.dispositifsWithoutGeoloc);
         }),
         API.getDispositifsStatistics({ facets: ["nbMercis", "nbVues", "nbVuesMobile"] }).then((data) => {
-          setStatistics(data.data.data);
+          setStatistics(data);
         }),
         API.getAdminOption(ACTIVES_NOTIFICATIONS).then((data) => {
-          const res = data.data.data?.value;
+          const res = data?.value;
           setNotificationsActive(res === null ? true : res);
         }),
       ];
@@ -91,7 +91,7 @@ const Dashboard = (props: Props) => {
           }).then((data) => {
             setNbDispositifsByTheme((prev) => ({
               ...prev,
-              [theme.name.fr]: data.data.data.count,
+              [theme.name.fr]: data.count,
             }));
           }),
           API.countDispositifs({
@@ -101,7 +101,7 @@ const Dashboard = (props: Props) => {
           }).then((data) => {
             setNbDemarchesByTheme((prev) => ({
               ...prev,
-              [theme.name.fr]: data.data.data.count,
+              [theme.name.fr]: data.count,
             }));
           }),
         );
@@ -145,7 +145,7 @@ const Dashboard = (props: Props) => {
     if (!res.value) return;
 
     return API.setAdminOption(ACTIVES_NOTIFICATIONS, { value: !notificationsActive }).then((data) => {
-      const res = data.data.data?.value;
+      const res = data?.value;
       setNotificationsActive(res === null ? true : res);
     });
   };

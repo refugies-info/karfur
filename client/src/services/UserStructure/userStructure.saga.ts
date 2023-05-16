@@ -14,7 +14,6 @@ import { userStructureSelector } from "./userStructure.selectors";
 import { userSelector } from "../User/user.selectors";
 import Router from "next/router";
 import { setUserRoleInStructureActionCreator } from "../User/user.actions";
-import { APIResponse } from "types/interface";
 import { GetStructureResponse, PatchStructureRequest, PatchStructureRolesRequest } from "api-types";
 import { UserState } from "services/User/user.reducer";
 
@@ -24,11 +23,11 @@ export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructure
     logger.info("[fetchUserStructure] fetching user structure");
     const { structureId, shouldRedirect } = action.payload;
     if (!structureId) return;
-    const data: APIResponse<GetStructureResponse> = yield call(API.getStructureById, structureId.toString(), "fr");
-    yield put(setUserStructureActionCreator(data.data.data));
+    const data: GetStructureResponse = yield call(API.getStructureById, structureId.toString(), "fr");
+    yield put(setUserStructureActionCreator(data));
     const user: UserState = yield select(userSelector);
     const userId = user.userId;
-    const structureMembers = data.data.data ? data.data.data.membres : [];
+    const structureMembers = data ? data.membres : [];
     const userInStructure = structureMembers.filter((member) => member.userId === userId);
     const userRoles = userInStructure.length > 0 ? userInStructure[0].roles : [];
     const isUserContribOrAdmin = userRoles.includes("administrateur") || userRoles.includes("contributeur");

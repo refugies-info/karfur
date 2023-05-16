@@ -26,14 +26,17 @@ const app = express();
 mongoose.set("debug", true);
 mongoose.set("strictQuery", true);
 const db_path = MONGODB_URI;
-mongoose
-  .connect(db_path)
-  .then(() => {
-    logger.info("Connected to mongoDB");
-  })
-  .catch((e) => {
-    logger.error("Error while DB connecting", { error: e.message });
-  });
+
+const connectWithRetry = async () => {
+  return mongoose
+    .connect(db_path)
+    .then(() => logger.info("[mongoose] Connected to mongoDB"))
+    .catch((e) => {
+      logger.error("[mongoose] Error while DB connecting. Retrying in 5 seconds...", { message: e.message, error: e });
+      setTimeout(connectWithRetry, 5000);
+    });
+};
+connectWithRetry().catch(e => logger.error("[mongoose] error", { error: e }));
 
 //Body Parser
 app.use(compression());
