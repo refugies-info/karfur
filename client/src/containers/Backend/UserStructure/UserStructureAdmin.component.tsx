@@ -36,7 +36,7 @@ export const UserStructureAdminComponent = (props: Props) => {
       if (structureId) {
         setIsLoading(true);
         const data = await API.getStructureById(structureId, "fr");
-        setStructure(data.data.data);
+        setStructure(data);
         setIsLoading(false);
       }
     };

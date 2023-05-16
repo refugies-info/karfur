@@ -60,20 +60,20 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   }
 
   const authOptions = { token: req.cookies.authorization };
-  const traductions = await API.getTraductionsForReview(
+  const traductions: GetTraductionsForReviewResponse = await API.getTraductionsForReview(
     {
       dispositif: dispositifId || "",
       language: (query.language as string) || "",
     },
     authOptions,
-  ).then(({ data }) => data.data);
+  );
 
   const defaultTraduction = await API.getDefaultTraductionForDispositif(
     {
       dispositif: dispositifId || "",
     },
     authOptions,
-  ).then(({ data }) => data.data.translation);
+  ).then((data) => data.translation);
 
   // 200
   return {

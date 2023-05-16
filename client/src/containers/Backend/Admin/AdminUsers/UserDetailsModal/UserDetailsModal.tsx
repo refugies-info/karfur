@@ -57,7 +57,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     if (selectedUserId) {
       API.logs(selectedUserId)
         .then((res) => {
-          setLogs(res.data.data);
+          setLogs(res);
         })
         .catch((e) => logger.error("[logs] error while getting logs:", e.message));
     }
@@ -73,7 +73,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         const data = await API.get_progression({
           userId: userFromStore._id.toString(),
         });
-        setIndicators(data.data.data);
+        setIndicators(data);
       }
     };
 

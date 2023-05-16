@@ -29,7 +29,7 @@ export const getAllUrls = async (type: string, locale: string): Promise<string[]
         type: ContentType.DISPOSITIF,
         locale: locale
       });
-      return dispositifs.data.data
+      return dispositifs
         .map((d) => getUrl("/dispositif/[id]", locale, d._id));
 
     // DEMARCHES
@@ -38,13 +38,13 @@ export const getAllUrls = async (type: string, locale: string): Promise<string[]
         type: ContentType.DEMARCHE,
         locale: locale
       });
-      return demarches.data.data
+      return demarches
         .map((d) => getUrl("/demarche/[id]", locale, d._id));
 
     // STRUCTURES
     case "structures":
       const structures = await API.getActiveStructures();
-      return structures.data.data
+      return structures
         .map((s: GetActiveStructuresResponse) => getUrl("/annuaire/[id]", locale, s._id));
 
     // PAGES
