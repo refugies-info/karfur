@@ -98,7 +98,7 @@ const Login = () => {
     API.resetPassword({ username })
       .then((data) => {
         setResetPasswordPossible(true);
-        setEmail(data.data.data.email);
+        setEmail(data.email);
       })
       .catch((e) => {
         if (e.response.status === 403) {
@@ -125,7 +125,7 @@ const Login = () => {
     };
     API.login(user)
       .then((data) => {
-        const token = data.data.data.token;
+        const token = data.token;
 
         Swal.fire({
           title: "Yay...",

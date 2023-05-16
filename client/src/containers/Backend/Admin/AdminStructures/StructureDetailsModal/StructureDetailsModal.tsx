@@ -83,7 +83,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   const updateLogs = useCallback(() => {
     if (selectedStructureId) {
       API.logs(selectedStructureId).then((res) => {
-        setLogs(res.data.data);
+        setLogs(res);
       });
     }
   }, [selectedStructureId]);

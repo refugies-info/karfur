@@ -11,14 +11,13 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchActiveDispositifsActionsCreator } from "../ActiveDispositifs/activeDispositifs.actions";
 import { logger } from "../../logger";
-import { APIResponse } from "types/interface";
 import { GetLanguagesResponse } from "api-types";
 
 export function* fetchLangues(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_LANGUES));
-    const data: APIResponse<GetLanguagesResponse[]> = yield call(API.getLanguages);
-    yield put(setLanguesActionCreator(data.data.data));
+    const data: GetLanguagesResponse[] = yield call(API.getLanguages);
+    yield put(setLanguesActionCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_LANGUES));
   } catch (error) {
     const { message } = error as Error;

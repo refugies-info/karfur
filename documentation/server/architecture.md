@@ -11,13 +11,21 @@
 
 ## `controllers`
 
+To learn more, read the [`controllers`](./controllers.md) documentation.
+
 ### Responsibility
 
-A controller is where we declare the routes for every business entity (user, dispositif, structure etc)
+A controller is where we declare the routes for every business entity (user, dispositif, structure etc).  
+It uses TSOA decorators to associate the route to a workflow.
 
 ### Collaborators
 
 - import only **workflows**
+
+### Checks
+
+- ✅ Each method response must by typed
+- ✅ Each methods must return a `Response` or a `ResponseWithData`
 
 ## `workflows`
 
@@ -32,8 +40,10 @@ A workflow is where the logic of a route is orchestrated
 
 ### Checks
 
+- ✅ Fully typed, and the type must be written in `api-types` to be shared with the frontend
 - ✅ Fully unit tested
-- ✅ Throw http code for the client
+- ✅ Throw an error from `src/errors` for the client
+- ✅ Returns only the useful data. The full response data is returned to the client by the controller.
 
 ## `modules`
 
@@ -89,11 +99,11 @@ A lib is a singleton with the intelligence to do non business related stuff. For
 - ✅ Can be used by any other project without modification
 - ✅ Fully tested
 
-## `schemas`
+## `typegoose`
 
 ### Responsibility
 
-Schema are use to declare mongodb collections. There is one schema per collection.
+Typescript classes annotated are use to declare mongodb collections. There is one class per collection.
 
 ### Checks
 

@@ -12,6 +12,7 @@ import {
   fetchDispositifsWithTranslationsStatusActionCreator,
   setDispositifsWithTranslationsStatusActionCreator,
 } from "./dispositifsWithTranslationsStatus.actions";
+import { GetDispositifsWithTranslationAvancementResponse } from "api-types";
 
 export function* fetchDispositifTranslationsStatus(
   action: ReturnType<typeof fetchDispositifsWithTranslationsStatusActionCreator>
@@ -23,12 +24,9 @@ export function* fetchDispositifTranslationsStatus(
     yield put(
       startLoading(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS)
     );
-    const data = yield call(
-      API.getDispositifsWithTranslationAvancement,
-      action.payload
-    );
+    const data: GetDispositifsWithTranslationAvancementResponse[] = yield call(API.getDispositifsWithTranslationAvancement, action.payload);
     yield put(
-      setDispositifsWithTranslationsStatusActionCreator(data.data.data)
+      setDispositifsWithTranslationsStatusActionCreator(data)
     );
     yield put(
       finishLoading(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS)

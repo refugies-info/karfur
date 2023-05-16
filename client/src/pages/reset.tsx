@@ -138,7 +138,7 @@ const Reset = () => {
           icon: "success",
           timer: 1500,
         }).then(() => {
-          setAuthToken(data.data.data.token);
+          setAuthToken(data.token);
           dispatch(fetchUserActionCreator());
           router.push("/");
         });

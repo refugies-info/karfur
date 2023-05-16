@@ -90,7 +90,7 @@ const UserTranslation = (props: Props) => {
       if (user && user.user) {
         try {
           const data = await API.get_progression({});
-          setIndicators(data.data.data);
+          setIndicators(data);
         } catch (e) {}
       }
     };
