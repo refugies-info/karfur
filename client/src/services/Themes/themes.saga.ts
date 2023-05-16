@@ -16,17 +16,14 @@ import {
   deleteThemeActionCreator
 } from "./themes.actions";
 import { allThemesSelector } from "./themes.selectors";
-import { APIResponse } from "types/interface";
-import { GetThemeResponse, PostThemeResponse } from "api-types";
+import { GetThemeResponse, PatchThemeResponse, PostThemeResponse } from "api-types";
 
 export function* fetchThemes(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_THEMES));
     logger.info("[fetchThemes] start fetching themes");
-    const data: APIResponse<GetThemeResponse[]> = yield call(API.getThemes);
-
-    const themes = data.data?.data || [];
-    yield put(setThemesActionCreator(themes));
+    const data: GetThemeResponse[] = yield call(API.getThemes);
+    yield put(setThemesActionCreator(data));
 
     yield put(finishLoading(LoadingStatusKey.FETCH_THEMES));
   } catch (error) {
@@ -48,11 +45,11 @@ export function* saveTheme(
     const id = action.payload.id;
     logger.info("[saveTheme] start saving theme");
 
-    const data = yield call(API.patchTheme, id, newTheme);
-    if (data.data.data) {
+    const data: PatchThemeResponse = yield call(API.patchTheme, id, newTheme);
+    if (data) {
       const newThemes: GetThemeResponse[] = [...(yield select(allThemesSelector))];
       const editedThemeIndex = newThemes.findIndex(w => w._id === id);
-      newThemes[editedThemeIndex] = data.data.data;
+      newThemes[editedThemeIndex] = data;
       yield put(setThemesActionCreator(newThemes));
     }
 
@@ -74,9 +71,9 @@ export function* createTheme(
     const newTheme = action.payload;
     logger.info("[createTheme] start creating theme");
 
-    const data: APIResponse<PostThemeResponse> = yield call(API.postThemes, newTheme);
+    const data: PostThemeResponse = yield call(API.postThemes, newTheme);
     const themes: GetThemeResponse[] = [...(yield select(allThemesSelector))];
-    yield put(setThemesActionCreator([data.data.data, ...themes]));
+    yield put(setThemesActionCreator([data, ...themes]));
 
     yield put(finishLoading(LoadingStatusKey.CREATE_THEME));
   } catch (error) {

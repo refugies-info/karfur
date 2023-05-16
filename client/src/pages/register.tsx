@@ -106,7 +106,7 @@ const Register = () => {
     });
     API.login(user)
       .then((data) => {
-        const token = data.data.data.token;
+        const token = data.token;
         logger.info("[Register] user successfully registered", {
           username: user.username,
         });

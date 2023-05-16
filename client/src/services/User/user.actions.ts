@@ -20,8 +20,6 @@ export const updateUserActionCreator = (value: GetUserInfoResponse) =>
 export const saveUserActionCreator = (id: Id, value: UpdateUserRequest) => action(SAVE_USER, { id, value });
 
 export const fetchUserActionCreator = (value?: {
-  shouldRedirect?: boolean;
-  user?: GetUserInfoResponse;
   token?: string
 }) => action(FETCH_USER, value);
 

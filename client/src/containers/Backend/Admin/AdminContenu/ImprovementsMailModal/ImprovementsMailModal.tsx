@@ -42,7 +42,7 @@ export const ImprovementsMailModal = (props: Props) => {
     if (selectedDispositifId) {
       API.logs(selectedDispositifId).then((res) => {
         setLogs(
-          res.data.data
+          res
             // keep only improvement logs
             .filter((log: GetLogResponse) => log?.link?.next === "ModalImprovements"),
         );

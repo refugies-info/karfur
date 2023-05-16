@@ -2,6 +2,7 @@ import { Request } from "express";
 import jwt from "jwt-simple";
 import { User, UserModel } from "./typegoose";
 import { AuthenticationError } from "./errors";
+import logger from "./logger";
 
 // type Role = "optional" | "admin" | "expert";
 
@@ -50,7 +51,8 @@ export async function expressAuthentication(request: Request, securityName: stri
 
       return user;
     } catch (e) {
-      throw new Error("There was a problem finding the user");
+      logger.error("[authentication]", { error: e, userId: request.userId, roles: roles });
+      throw new Error("[authentication] problem finding the user");
     }
   }
   return null;

@@ -76,8 +76,7 @@ const TranslationInput = (props: Props) => {
   // Google translate
   const [googleTranslateValue, setGoogleTranslateValue] = useState("");
   const [{ loading }, translate] = useAsyncFn(() =>
-    API.get_translation({ q: initialText, language: locale as Languages }).then((data) => {
-      const res = data.data.data;
+    API.get_translation({ q: initialText, language: locale as Languages }).then((res) => {
       setGoogleTranslateValue(res);
       return res;
     }),

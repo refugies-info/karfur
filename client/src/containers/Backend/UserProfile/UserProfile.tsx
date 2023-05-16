@@ -204,7 +204,7 @@ export const UserProfile = (props: Props) => {
         timer: 1500,
       });
 
-      setAuthToken(data.data.data.token);
+      setAuthToken(data.token);
       setCurrentPassword("");
       setNewPasswordOk(false);
       setNewPassword("");
@@ -225,8 +225,7 @@ export const UserProfile = (props: Props) => {
     formData.append(0, event.target.files[0]);
 
     API.postImage(formData)
-      .then((data_res) => {
-        const imgData = data_res.data.data;
+      .then((imgData) => {
         dispatch(
           saveUserActionCreator(user._id, {
             user: {

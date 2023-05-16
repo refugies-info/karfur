@@ -17,7 +17,6 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
 import { AxiosError } from "axios";
-import { APIResponse } from "types/interface";
 import { GetUserInfoResponse } from "api-types";
 
 export function* fetchUser(
@@ -28,13 +27,12 @@ export function* fetchUser(
     yield put(startLoading(LoadingStatusKey.FETCH_USER));
     const isAuth = API.isAuth() || action.payload?.token;
     if (isAuth) {
-      const data: APIResponse<GetUserInfoResponse> = yield call(API.getUser, { token: action.payload?.token });
-      const user = data.data.data;
-      yield put(setUserActionCreator(user));
-      if (user.structures && user.structures.length > 0) {
+      const data: GetUserInfoResponse = yield call(API.getUser, { token: action.payload?.token });
+      yield put(setUserActionCreator(data));
+      if (data.structures && data.structures.length > 0) {
         yield put(
           fetchUserStructureActionCreator({
-            structureId: user.structures[0],
+            structureId: data.structures[0],
             shouldRedirect: false,
           })
         );
@@ -44,12 +42,6 @@ export function* fetchUser(
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_USER));
     logger.info("[fetchUser] saga finish");
-
-    if (action.payload?.shouldRedirect) {
-      yield call(
-        Router.push, "/backend/user-translation"
-      )
-    }
   } catch (error) {
     logger.error("Error while fetching user", { error });
     yield put(setUserActionCreator(null));
