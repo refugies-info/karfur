@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useCallback, useEffect, useMemo, useState } from "react";
+import React, { ChangeEventHandler, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
 import { Id } from "api-types";
@@ -55,6 +55,10 @@ const SearchStructure = (props: Props) => {
     return structures.find((s) => s._id === selectedStructure);
   }, [selectedStructure, structures]);
 
+  // show structure does not exist
+  const [showCreateButton, setShowCreateButton] = useState(false);
+  const onFocus = useCallback(() => setShowCreateButton(true), []);
+
   return (
     <div className="position-relative">
       <p>Tapez le nom de la structure</p>
@@ -63,6 +67,7 @@ const SearchStructure = (props: Props) => {
         placeholder="Exemple: ..."
         type="text"
         onChange={onChangeNeedle}
+        onFocus={onFocus}
         value={needle}
         icon="search-outline"
         className="mb-6"
@@ -94,17 +99,19 @@ const SearchStructure = (props: Props) => {
         ))}
       </Collapse>
 
-      <ChoiceButton
-        text="Cette structure n’existe pas encore dans notre base de données. Créez-la !"
-        selected={createStructure}
-        onSelect={() => {
-          setCreateStructure(true);
-          if (selectedStructure) setSelectedStructure(null);
-        }}
-        type="radio"
-        className="mt-6"
-        image={StructureImage}
-      />
+      {showCreateButton && (
+        <ChoiceButton
+          text="Cette structure n’existe pas encore dans notre base de données. Créez-la !"
+          selected={createStructure}
+          onSelect={() => {
+            setCreateStructure(true);
+            if (selectedStructure) setSelectedStructure(null);
+          }}
+          type="radio"
+          className="mt-6"
+          image={StructureImage}
+        />
+      )}
     </div>
   );
 };
