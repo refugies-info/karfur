@@ -44,7 +44,7 @@ export async function expressAuthentication(request: Request, securityName: stri
         if (roles?.includes("admin") && !user.isAdmin()) {
           throw new AuthenticationError("Not allowed");
         }
-        if (roles?.includes("expert") && (!user.isExpert() || !user.isAdmin())) {
+        if (roles?.includes("expert") && !(user.isExpert() || user.isAdmin())) {
           throw new AuthenticationError("Not allowed");
         }
       }
