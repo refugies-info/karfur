@@ -28,7 +28,7 @@ export enum ExpertTradStatus {
 }
 
 export const getExpertTradStatus = (mySuggestion: Suggestion, suggestions: Suggestion[], showMissingSteps: boolean | undefined): ExpertTradStatus => {
-  // no text, show missing steps
+  // no text, showMissingSteps is active
   if (!mySuggestion.text && suggestions.length === 0 && showMissingSteps) return ExpertTradStatus.MISSING
 
   // my text is pending if I have one, if I don't, all the others are pending
@@ -133,7 +133,7 @@ export const getStatusStyle = (status: UserTradStatus | ExpertTradStatus): Statu
   }
 }
 
-type FooterStatus = {
+export type FooterStatus = {
   status: "default" | "pending" | "success"
   text: string
 }
