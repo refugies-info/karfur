@@ -29,6 +29,8 @@ export const TypeContenu = (props: { type: string; isDetailedVue: boolean }) => 
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;

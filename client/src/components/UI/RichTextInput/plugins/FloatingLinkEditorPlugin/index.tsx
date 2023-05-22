@@ -12,11 +12,9 @@ import Button from "components/UI/Button";
 import {
   $getSelection,
   $isRangeSelection,
-  CLICK_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
   COMMAND_PRIORITY_HIGH,
   COMMAND_PRIORITY_LOW,
-  CONTROLLED_TEXT_INSERTION_COMMAND,
   KEY_ESCAPE_COMMAND,
   LexicalEditor,
   SELECTION_CHANGE_COMMAND,
@@ -166,10 +164,13 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
   }, [editor, setIsLink]);
 
   const validateModal = () => {
-    editor.dispatchCommand(TOGGLE_LINK_COMMAND, sanitizeUrl(linkUrl));
-    // TODO: how to insert text
-    // editor.dispatchCommand(CONTROLLED_TEXT_INSERTION_COMMAND, linkText);
-    setIsModalOpen(false);
+    editor.update(() => {
+      const node = $getSelection();
+      const childTextNode = node?.getNodes()?.[0];
+      if (childTextNode) childTextNode.setTextContent(linkText);
+      editor.dispatchCommand(TOGGLE_LINK_COMMAND, sanitizeUrl(linkUrl));
+      setIsModalOpen(false);
+    });
   };
 
   return (
