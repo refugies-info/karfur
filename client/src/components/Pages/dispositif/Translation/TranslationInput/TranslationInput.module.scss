@@ -96,9 +96,6 @@
       width: 100%;
       cursor: text;
     }
-    .richtext {
-      border: none !important;
-    }
 
     .error {
       @include dsfr-text("very-small");
@@ -116,85 +113,16 @@
     align-items: center;
     justify-content: space-between;
 
-    .user {
-      display: flex;
-      align-items: center;
-    }
-
-    .proposal {
-      font-weight: bold;
-      margin-left: u(2);
-    }
-
     &.default {
       background: $lightBackgroundContrastGrey;
-      .proposal {
-        font-weight: normal;
-        color: $lightTextMentionGrey;
-      }
     }
     &.pending {
       background: var(--background-alt-yellow-tournesol);
       border-color: var(--text-action-high-yellow-tournesol);
-      .proposal {
-        color: var(--text-action-high-yellow-tournesol);
-      }
     }
     &.success {
       background: var(--background-alt-green-emeraude);
       border-color: var(--text-default-success);
-      .proposal {
-        color: var(--text-default-success);
-      }
-    }
-
-    .nav {
-      @include iconSize(u(4));
-      @include dsfr-text("small");
-      height: u(8);
-      min-height: u(8);
     }
   }
-
-  .buttons {
-    margin-top: u(4);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
-.validate {
-  @include iconSize(u(4));
-  width: u(8) !important;
-  height: u(8);
-  min-height: 0 !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &.validated {
-    background-color: $lightTextActionHighBlueFrance;
-    color: white;
-
-    svg {
-      fill: white;
-    }
-
-    &:hover {
-      svg {
-        fill: $lightTextActionHighBlueFrance;
-      }
-    }
-  }
-}
-
-.delete {
-  @include iconSize(u(4));
-  width: u(8) !important;
-  height: u(8);
-  min-height: 0 !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

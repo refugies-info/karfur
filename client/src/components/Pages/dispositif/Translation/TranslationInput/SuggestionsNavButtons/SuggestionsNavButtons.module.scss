@@ -1,0 +1,37 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/icons";
+@import "src/scss/mixins/text";
+
+.nav {
+  @include iconSize(u(4));
+  @include dsfr-text("small");
+  height: u(8);
+  min-height: u(8);
+}
+
+.validate {
+  @include iconSize(u(4));
+  width: u(8) !important;
+  height: u(8);
+  min-height: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.validated {
+    background-color: $lightTextActionHighBlueFrance;
+    color: white;
+
+    svg {
+      fill: white;
+    }
+
+    &:hover {
+      svg {
+        fill: $lightTextActionHighBlueFrance;
+      }
+    }
+  }
+}

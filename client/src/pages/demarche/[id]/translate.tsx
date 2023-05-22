@@ -8,6 +8,8 @@ import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { FormProvider, useForm } from "react-hook-form";
 import { logger } from "logger";
+import { getPath } from "routes";
+import { canTranslate, getTranslationPageData } from "lib/dispositif";
 import PageContext from "utils/pageContext";
 import { useDispositifTranslateForm } from "hooks/dispositif";
 import DispositifTranslate from "components/Content/DispositifTranslate";
@@ -35,8 +37,9 @@ const DemarchePage = (props: Props) => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, query, locale }) => {
-  if (!req.cookies.authorization) {
-    return { notFound: true }; // TODO: not authorized? redirect to login?
+  const queryLanguage = query.language as string;
+  if (!req.cookies.authorization || !queryLanguage) {
+    return { notFound: true };
   }
 
   const dispositifId: string | undefined = query.id as string;
@@ -59,21 +62,25 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     return { notFound: true };
   }
 
-  const authOptions = { token: req.cookies.authorization };
-  const traductions: GetTraductionsForReviewResponse = await API.getTraductionsForReview(
-    {
-      dispositif: dispositifId || "",
-      language: (query.language as string) || "",
-    },
-    authOptions,
-  );
+  // already translated and not expert -> redirect
+  const isExpert = store.getState().user?.expertTrad || store.getState().user?.admin;
+  if (!canTranslate(dispositif, queryLanguage, isExpert)) {
+    const path = getPath("/demarche/[id]", locale).replace("[id]", dispositifId);
+    return {
+      redirect: {
+        destination: path,
+        permanent: false,
+      },
+    };
+  }
 
-  const defaultTraduction = await API.getDefaultTraductionForDispositif(
-    {
-      dispositif: dispositifId || "",
-    },
-    authOptions,
-  ).then((data) => data.translation);
+  // get data
+  const { traductions, defaultTraduction } = await getTranslationPageData(
+    dispositif,
+    queryLanguage,
+    req.cookies.authorization,
+    store.getState().user.user,
+  );
 
   // 200
   return {
