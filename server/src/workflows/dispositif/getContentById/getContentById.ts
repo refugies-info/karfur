@@ -3,7 +3,7 @@ import logger from "../../../logger";
 import { getDispositifById, getDraftDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { NotFoundError } from "../../../errors";
 import pick from "lodash/pick";
-import { ContentStructure, GetDispositifResponse, Languages, SimpleUser, Sponsor } from "@refugies-info/api-types";
+import { ContentStructure, GetDispositifResponse, Id, Languages, SimpleUser, Sponsor } from "@refugies-info/api-types";
 import { getRoles } from "../../../modules/role/role.repository";
 import { Role, User } from "../../../typegoose";
 import { isUserAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
@@ -44,7 +44,7 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
     lastModificationDate: 1,
     externalLink: 1,
     creatorId: 1,
-    hasDraftVersion: 1
+    hasDraftVersion: 1,
   };
   let draftDispositif = null;
   const originalDispositif = await (
@@ -53,10 +53,12 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
     mainSponsor: ContentStructure;
     sponsors: (ContentStructure | Sponsor)[];
     participants: SimpleUser[];
+    creatorId: { _id: Id, username: string };
   }>([
     { path: "mainSponsor", select: "_id nom picture membres" },
     { path: "sponsors", select: "_id nom picture" },
     { path: "participants", select: "_id username picture roles" },
+    { path: "creatorId", select: "_id username" },
   ]);
   if (!originalDispositif) throw new NotFoundError("Dispositif not found");
 
@@ -71,10 +73,12 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
       mainSponsor: ContentStructure;
       sponsors: (ContentStructure | Sponsor)[];
       participants: SimpleUser[];
+      creatorId: { _id: Id, username: string };
     }>([
       { path: "mainSponsor", select: "_id nom picture" },
       { path: "sponsors", select: "_id nom picture" },
       { path: "participants", select: "_id username picture roles" },
+      { path: "creatorId", select: "_id username" },
     ]);
   }
 
@@ -108,6 +112,7 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
       "status",
       "theme",
       "externalLink",
+      "creatorId"
     ]),
   };
 
