@@ -3,9 +3,9 @@ import logger from "../../../logger";
 import { getDispositifById, getDraftDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { NotFoundError } from "../../../errors";
 import pick from "lodash/pick";
-import { ContentStructure, GetDispositifResponse, Id, Languages, SimpleUser, Sponsor } from "@refugies-info/api-types";
+import { ContentStructure, DispositifStatus, GetDispositifResponse, Id, Languages, SimpleUser, Sponsor } from "@refugies-info/api-types";
 import { getRoles } from "../../../modules/role/role.repository";
-import { Role, User } from "../../../typegoose";
+import { Dispositif, Role, Structure, User } from "../../../typegoose";
 import { isUserAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 
 const getRoleName = (id: string, roles: Role[]) => roles.find((r) => r._id.toString() === id.toString())?.nom || "";
@@ -20,6 +20,24 @@ const getMetadatas = (metadatas: GetDispositifResponse["metadatas"]): GetDisposi
   if (Array.isArray(newMetas.timeSlots) && newMetas.timeSlots.length === 0) delete newMetas.timeSlots;
   return newMetas;
 };
+
+const canViewDispositif = (dispositif: Dispositif, user?: User): boolean => {
+  if (dispositif.status === DispositifStatus.ACTIVE) return true;
+  if (user?.isAdmin()) return true;
+
+  const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
+  const isMemberOfStructure = !!(sponsor?.membres || []).find((membre) => membre.userId && membre.userId.toString() === user._id.toString());
+  if (isMemberOfStructure) return true;
+
+  const isAuthor = dispositif.creatorId.toString() === user._id.toString();
+  if (isAuthor && [
+    DispositifStatus.DRAFT,
+    DispositifStatus.DELETED,
+    DispositifStatus.WAITING_STRUCTURE,
+  ].includes(dispositif.status)) return true;
+
+  return false;
+}
 
 export const getContentById = async (id: string, locale: Languages, user?: User | undefined): ResponseWithData<GetDispositifResponse> => {
   logger.info("[getContentById] called", {
@@ -63,9 +81,10 @@ export const getContentById = async (id: string, locale: Languages, user?: User 
   if (!originalDispositif) throw new NotFoundError("Dispositif not found");
 
   // if user logged in, and allowed to edit, load draft version instead
-  const dispositifForAccessCheck = await getDispositifById( // TODO: improve that
+  const dispositifForAccessCheck = await getDispositifById(
     id, { mainSponsor: 1, creatorId: 1, status: 1 }, "mainSponsor",
   );
+  if (!canViewDispositif(dispositifForAccessCheck, user)) throw new NotFoundError("Dispositif not found");
   if (user && isUserAuthorizedToModifyDispositif(dispositifForAccessCheck, user, !!originalDispositif.hasDraftVersion) && !!originalDispositif.hasDraftVersion) {
     draftDispositif = await (
       await getDraftDispositifById(id, fields)
