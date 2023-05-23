@@ -1,7 +1,7 @@
 import { deleteDraftDispositif, getDispositifById, getDispositifByIdWithMainSponsor, getDraftDispositifById, updateDispositifInDB } from "./dispositif.repository";
 import { updateLanguagesAvancement } from "../langues/langues.service";
 import logger from "../../logger";
-import { cloneDeep, isEmpty, omit, unset } from "lodash";
+import { cloneDeep, isEmpty, omit, unset, set } from "lodash";
 import { TraductionsType } from "../../typegoose/Traductions";
 import { addOrUpdateDispositifInContenusAirtable } from "../../controllers/miscellaneous/airtable";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
@@ -25,6 +25,34 @@ import { log } from "./log";
 import { TranslationContent } from "../../typegoose/Dispositif";
 import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
 
+const deleteLineBreaks = (htmlContent: string) => {
+  const regexp = /<p dir=\\"(ltr|rtl)\\"><br><\/p>|(<p><br><\/p>)/g;
+  return htmlContent.replace(regexp, "");
+}
+
+const deleteLineBreaksInInfosections = (sections: InfoSections): InfoSections => {
+  const newSections: InfoSections = {};
+  for (const [key, section] of Object.entries(sections)) {
+    newSections[key] = {
+      title: section.title,
+      text: deleteLineBreaks(section.text)
+    }
+  }
+  return newSections;
+}
+
+const deleteLineBreaksInDispositif = async (dispositif: Dispositif) => {
+  const newDispositif = cloneDeep(dispositif.translations);
+  set(newDispositif, "fr.content.what", deleteLineBreaks(newDispositif.fr.content.what));
+  set(newDispositif, "fr.content.how", deleteLineBreaksInInfosections(newDispositif.fr.content.how));
+
+  if (dispositif.typeContenu === ContentType.DISPOSITIF) {
+    set(newDispositif, "fr.content.why", deleteLineBreaksInInfosections((newDispositif.fr.content as DispositifContent).why));
+  } else {
+    set(newDispositif, "fr.content.next", deleteLineBreaksInInfosections((newDispositif.fr.content as DemarcheContent).next));
+  }
+  await updateDispositifInDB(dispositif._id, { translations: newDispositif });
+}
 
 const rebuildTranslations = async (
   dispositif: Dispositif,
@@ -178,6 +206,12 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
 
   const newDispo = await updateDispositifInDB(dispositifId, newDispositif);
   if (draftDispositif) await deleteDraftDispositif(dispositifId);
+
+  try {
+    await deleteLineBreaksInDispositif(newDispo);
+  } catch (error) {
+    logger.error("[publishDispositif] error while deleting line breaks", { error: error.message });
+  }
 
   try {
     await updateLanguagesAvancement();
