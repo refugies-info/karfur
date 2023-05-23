@@ -46,7 +46,8 @@ export const getTranslationPageData = async (
 
   // if dispositif is already translated, build an object from original text to be able to edit it
   if (traductions.length === 0 && dispositif.availableLanguages.includes(queryLanguage)) {
-    traductions = buildTranslationsObject(dispositif, user);
+    const translatedDispositif = await API.getDispositif(dispositif._id.toString(), queryLanguage, { token });
+    traductions = buildTranslationsObject(translatedDispositif, user);
   }
 
   const defaultTraduction = await API.getDefaultTraductionForDispositif(

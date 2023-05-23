@@ -1,0 +1,20 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
+
+.container {
+  padding: u(4);
+  background: white;
+  border-radius: u(2);
+  border: 1px solid $lightBorderDefaultGrey;
+  box-shadow: 0 6px 18px 0 #00001229;
+}
+
+.title {
+  @include dsfr-text("large");
+  font-weight: bold;
+  margin-bottom: u(4);
+  margin-top: u(4);
+}
