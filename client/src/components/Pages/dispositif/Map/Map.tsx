@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { GoogleMap, useJsApiLoader, MarkerF, InfoBox } from "@react-google-maps/api";
-import { Poi } from "api-types";
+import { Poi } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import PopupContent from "./PopupContent";

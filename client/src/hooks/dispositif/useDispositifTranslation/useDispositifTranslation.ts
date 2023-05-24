@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useFormContext, useWatch } from "react-hook-form";
 import get from "lodash/get";
 import { useUser } from "hooks";
-import { ContentType, GetTraductionsForReview, GetTraductionsForReviewResponse, Languages, Picture, TranslationContent } from "api-types";
+import { ContentType, GetTraductionsForReview, GetTraductionsForReviewResponse, Languages, Picture, TranslationContent } from "@refugies-info/api-types";
 import { TranslateForm } from "../useDispositifTranslateForm";
 import {
   filterAndTransformTranslations,

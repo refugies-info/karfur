@@ -2,7 +2,7 @@ import React from "react";
 import useLocale from "hooks/useLocale";
 import styles from "./TagName.module.scss";
 import ThemeIcon from "../ThemeIcon";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
   theme: GetThemeResponse;

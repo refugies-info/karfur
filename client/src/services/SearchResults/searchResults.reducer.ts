@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, Id } from "api-types";
+import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import { createReducer } from "typesafe-actions";
 import { SearchResultsActions } from "./searchResults.actions";

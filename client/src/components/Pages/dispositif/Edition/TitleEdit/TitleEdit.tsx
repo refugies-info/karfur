@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 import { useContentType } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import AddContentButton from "../AddContentButton";

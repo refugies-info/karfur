@@ -23,9 +23,10 @@ import { checkUserIsAuthorizedToDeleteDispositif } from "../../libs/checkAuthori
 import { getDispositifDepartments } from "../../libs/getDispositifDepartments";
 import { log } from "./log";
 import { TranslationContent } from "../../typegoose/Dispositif";
+import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
 
 
-export const rebuildTranslations = async (
+const rebuildTranslations = async (
   dispositif: Dispositif,
   translationContent: TranslationContent,
   keepTranslations: boolean
@@ -43,7 +44,7 @@ export const rebuildTranslations = async (
    * On retire les sections supprimées de la nouvelle traduction
    * de l'ensemble des traductions existantes validées.
    *
-   * TODO Supprimer aussi dans les traductions proposées + update avancement
+   * Supprimer aussi dans les traductions proposées + update avancement
    *
    * Pas de nouvelle traduction nécessaire si uniquement des suppressions.
    */
@@ -54,6 +55,7 @@ export const rebuildTranslations = async (
       });
     });
     translationContent.created_at = new Date();
+    await removeTraductionsSections(dispositif._id, traductionDiff.removed, dispositif);
   }
 
   if (!keepTranslations) {
@@ -84,6 +86,8 @@ export const rebuildTranslations = async (
      * Supprimer les traductions hors fr dans le dispositif
      * +
      * Créer des traductions "validation" avec la section toReview correctement renseignée
+     * +
+     * Mettre à jour les traductions "validation" existantes si la fiche modifiée à nouveau
      */
     if (!isEmpty(toReview)) {
       // Invalidation des traductions
@@ -107,6 +111,11 @@ export const rebuildTranslations = async (
 
       await TraductionsModel.insertMany(translationsReviews).then((result) => {
         logger.info(`[updateDispositif] ${translationsReviews.length} traductions created for review `, result);
+      });
+
+      // Mise à jour des validations existantes avec le toReview si ce n'est pas la première modification
+      await addToReview(dispositif._id, toReview, dispositif).then((result) => {
+        logger.info("[updateDispositif] existing validations updated ", result);
       });
 
       // Retourne les traductions avec uniquement le français à jour, pour faire sauter les autres langues

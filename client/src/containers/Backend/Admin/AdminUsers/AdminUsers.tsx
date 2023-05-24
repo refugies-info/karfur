@@ -43,7 +43,7 @@ import styles from "./AdminUsers.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { GetAllUsersResponse, Id } from "api-types";
+import { GetAllUsersResponse, Id } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");

@@ -10,7 +10,7 @@ import DispositifTranslate from "components/Content/DispositifTranslate";
 import { useDispositifTranslateForm } from "hooks/dispositif";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import API from "utils/API";
-import { GetTraductionsForReviewResponse, TranslationContent } from "api-types";
+import { GetTraductionsForReviewResponse, TranslationContent } from "@refugies-info/api-types";
 import { canTranslate, getTranslationPageData } from "lib/dispositif";
 import { getPath } from "routes";
 

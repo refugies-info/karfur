@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Input } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse } from "@refugies-info/api-types";
 
 interface Props {
   structure: GetStructureResponse | null;
@@ -77,7 +77,7 @@ export const Step5 = (props: Props) => {
       props.setHasModifications(true);
       return props.setStructure({
         ...props.structure,
-        [e.target.id]: e.target.value
+        [e.target.id]: e.target.value,
       });
     }
   };

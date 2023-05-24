@@ -4,7 +4,7 @@ import Image from "next/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import marioProfile from "assets/mario-profile.jpg";
-import { GetActiveUsersResponse } from "api-types";
+import { GetActiveUsersResponse } from "@refugies-info/api-types";
 
 interface Props {
   user: GetActiveUsersResponse;

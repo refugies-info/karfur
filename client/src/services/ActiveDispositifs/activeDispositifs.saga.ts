@@ -18,7 +18,7 @@ import {
   setError,
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
-import { GetDispositifsResponse } from "api-types";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 
 export function* fetchActiveDispositifs(): SagaIterator {
   try {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";

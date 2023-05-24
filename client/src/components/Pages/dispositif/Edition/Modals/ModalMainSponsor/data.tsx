@@ -1,4 +1,4 @@
-import { Sponsor } from "api-types";
+import { Sponsor } from "@refugies-info/api-types";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import React from "react";
 import { ContactInfos } from "./ModalMainSponsor";

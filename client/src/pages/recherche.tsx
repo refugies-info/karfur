@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import debounce from "lodash/debounce";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { GetDispositifsResponse, Id } from "api-types";
+import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 import { wrapper } from "services/configureStore";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";

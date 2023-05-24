@@ -14,7 +14,7 @@ import styled from "styled-components";
 import { colors } from "colors";
 import { userSelector } from "services/User/user.selectors";
 import Swal from "sweetalert2";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;

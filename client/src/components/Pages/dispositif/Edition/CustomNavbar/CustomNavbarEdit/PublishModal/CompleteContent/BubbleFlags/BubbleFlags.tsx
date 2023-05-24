@@ -1,5 +1,5 @@
 import React from "react";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { useLanguages } from "hooks";
 import BubbleFlag from "components/UI/BubbleFlag";
 import styles from "./BubbleFlags.module.scss";

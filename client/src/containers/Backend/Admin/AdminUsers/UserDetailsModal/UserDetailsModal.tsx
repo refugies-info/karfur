@@ -23,7 +23,7 @@ import { NotesInput } from "../../sharedComponents/NotesInput";
 import { LogList } from "../../Logs/LogList";
 import { StructureButton } from "../../sharedComponents/StructureButton";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
-import { GetAllUsersResponse, GetLogResponse, GetProgressionResponse, Id } from "api-types";
+import { GetAllUsersResponse, GetLogResponse, GetProgressionResponse, Id } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 import { logger } from "logger";
 

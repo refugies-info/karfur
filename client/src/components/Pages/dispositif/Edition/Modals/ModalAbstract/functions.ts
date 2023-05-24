@@ -1,5 +1,5 @@
 import { DeepPartialSkipArrayKey } from "react-hook-form";
-import { ContentType, CreateDispositifRequest, DispositifStatus, GetDispositifsResponse } from "api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus, GetDispositifsResponse } from "@refugies-info/api-types";
 
 export const getDefaultDispositif = (formValues: DeepPartialSkipArrayKey<CreateDispositifRequest>): GetDispositifsResponse => {
   return {

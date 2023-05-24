@@ -18,7 +18,7 @@ import { TypeContenuInput } from "./components/TypeContenuInput";
 import { LanguageInput } from "./components/LanguageInput";
 import { EditWidgetModal } from "./EditWidgetModal/EditWidgetModal";
 import styles from "./Widgets.module.scss";
-import { ContentType, GetThemeResponse, Id } from "api-types";
+import { ContentType, GetThemeResponse, Id } from "@refugies-info/api-types";
 
 let NotificationContainer: any = null;
 if (isInBrowser()) {

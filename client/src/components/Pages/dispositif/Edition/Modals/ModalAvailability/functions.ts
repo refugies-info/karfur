@@ -1,4 +1,4 @@
-import { commitmentDetailsType } from "api-types";
+import { commitmentDetailsType } from "@refugies-info/api-types";
 
 
 export const getInputValues = (inputValues: (string | undefined)[]) => {

@@ -3,7 +3,7 @@ import {
   FETCH_ALL_DISPOSITIFS,
 } from "./allDispositifs.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { GetAllDispositifsResponse } from "api-types";
+import { GetAllDispositifsResponse } from "@refugies-info/api-types";
 
 export const setAllDispositifsActionsCreator = (
   value: GetAllDispositifsResponse[]

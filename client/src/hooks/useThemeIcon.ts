@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 type fetchPromise = Record<string, Promise<string>>;
 const fetching: fetchPromise = {};

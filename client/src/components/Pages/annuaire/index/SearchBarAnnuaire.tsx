@@ -8,7 +8,7 @@ import FButton from "components/UI/FButton/FButton";
 import Autocomplete from "react-google-autocomplete";
 import styles from "./SearchBarAnnuaire.module.scss";
 import { cls } from "lib/classname";
-import { GetActiveStructuresResponse } from "api-types";
+import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 interface Props {
   t: any;
   filteredStructures: GetActiveStructuresResponse[] | null;
@@ -50,7 +50,7 @@ export const SearchBarAnnuaire = (props: Props) => {
   const onPlaceSelected: any = (place: any) => {
     if (place.address_components.find((item: any) => item.types.includes("postal_code"))) {
       props.setDepNumber(
-        place.address_components.find((item: any) => item.types.includes("postal_code")).long_name.substr(0, 2)
+        place.address_components.find((item: any) => item.types.includes("postal_code")).long_name.substr(0, 2),
       );
     }
     if (place.address_components.find((item: any) => item.types.includes("administrative_area_level_2"))) {
@@ -61,7 +61,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         props.setDepName("Paris");
       } else {
         props.setDepName(
-          place.address_components.find((item: any) => item.types.includes("administrative_area_level_2")).long_name
+          place.address_components.find((item: any) => item.types.includes("administrative_area_level_2")).long_name,
         );
       }
     }
@@ -165,7 +165,7 @@ export const SearchBarAnnuaire = (props: Props) => {
               onPlaceSelected={onPlaceSelected}
               ref={autocompleteRef}
               options={{
-                componentRestrictions: { country: "fr" }
+                componentRestrictions: { country: "fr" },
               }}
             />
             <EVAIcon name="close-circle" size="large" className="ms-2" onClick={() => {}} />

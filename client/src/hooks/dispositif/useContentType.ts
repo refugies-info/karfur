@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { SelectedDispositifState } from "services/SelectedDispositif/selectedDispositif.reducer";
 

@@ -6,7 +6,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import moment from "moment";
 import styles from "../Admin.module.scss";
-import { GetAllDispositifsResponse, Id } from "api-types";
+import { GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
 
 const Container = styled.div`
   font-weight: normal;

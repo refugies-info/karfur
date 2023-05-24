@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ThemeButton } from "components/UI/ThemeButton/ThemeButton";
 import placeholder from "assets/placeholder_annuaire.png";
 import useRTL from "hooks/useRTL";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
   activity: string;

@@ -3,7 +3,7 @@ import useLocale from "hooks/useLocale";
 import styles from "./ThemeBadge.module.scss";
 import ThemeIcon from "../ThemeIcon";
 import { cls } from "lib/classname";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
   theme: GetThemeResponse;

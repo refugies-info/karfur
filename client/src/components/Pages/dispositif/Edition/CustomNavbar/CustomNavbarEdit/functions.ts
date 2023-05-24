@@ -1,5 +1,5 @@
 import { DeepPartialSkipArrayKey } from "react-hook-form";
-import { ContentType, CreateDispositifRequest, InfoSections } from "api-types";
+import { ContentType, CreateDispositifRequest, InfoSections } from "@refugies-info/api-types";
 
 export const getText = (progress: number, total: number) => {
   const progressPercentage = progress / (total || 1);

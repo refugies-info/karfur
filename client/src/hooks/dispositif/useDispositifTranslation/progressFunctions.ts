@@ -1,7 +1,7 @@
 import { DeepPartialSkipArrayKey } from "react-hook-form";
 import get from "lodash/get";
 import flattenDeep from "lodash/flattenDeep";
-import { ContentType, DemarcheContent, DispositifContent, GetTraductionsForReview, InfoSections, TranslationContent } from "api-types";
+import { ContentType, DemarcheContent, DispositifContent, GetTraductionsForReview, InfoSections, TranslationContent } from "@refugies-info/api-types";
 import { TranslateForm } from "../useDispositifTranslateForm";
 import { Step } from "./useDispositifTranslation";
 

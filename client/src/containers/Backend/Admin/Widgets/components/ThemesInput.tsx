@@ -1,4 +1,4 @@
-import { GetThemeResponse, Id } from "api-types";
+import { GetThemeResponse, Id } from "@refugies-info/api-types";
 import FilterButton from "components/UI/FilterButton";
 import TagName from "components/UI/TagName";
 import { cls } from "lib/classname";

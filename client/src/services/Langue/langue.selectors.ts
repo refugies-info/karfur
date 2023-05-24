@@ -1,5 +1,5 @@
 import { RootState } from "../rootReducer";
-import { GetLanguagesResponse, Id } from "api-types";
+import { GetLanguagesResponse, Id } from "@refugies-info/api-types";
 
 export const languei18nSelector = (state: RootState): string =>
   state.langue.languei18nCode;

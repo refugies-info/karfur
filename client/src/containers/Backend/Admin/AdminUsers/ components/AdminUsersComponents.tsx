@@ -3,7 +3,7 @@ import checkStyles from "scss/components/checkbox.module.scss";
 import { cls } from "lib/classname";
 import styles from "./AdminUsersComponent.module.scss";
 import { Button } from "reactstrap";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 interface RoleProps {
   role: string;
 }

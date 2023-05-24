@@ -27,7 +27,7 @@ import {
   StyledSort,
   StyledTitle,
 } from "../sharedComponents/StyledAdmin";
-import { GetNeedResponse, GetThemeResponse, Id } from "api-types";
+import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
 
 let NotificationContainer: any = null;
 let NotificationManager: any = null;

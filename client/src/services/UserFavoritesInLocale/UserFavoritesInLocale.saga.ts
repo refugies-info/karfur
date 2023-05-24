@@ -16,7 +16,7 @@ import {
   FETCH_USER_FAVORITES,
   UPDATE_USER_FAVORITES,
 } from "./UserFavoritesInLocale.actionTypes";
-import { DeleteUserFavoriteRequest, GetUserFavoritesResponse } from "api-types";
+import { DeleteUserFavoriteRequest, GetUserFavoritesResponse } from "@refugies-info/api-types";
 
 export function* fetchUserFavorites(
   action: ReturnType<typeof fetchUserFavoritesActionCreator>

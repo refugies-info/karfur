@@ -20,7 +20,7 @@ import SEO from "components/Seo";
 
 import styles from "scss/pages/annuaire.module.scss";
 import isInBrowser from "lib/isInBrowser";
-import { GetActiveStructuresResponse } from "api-types";
+import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {

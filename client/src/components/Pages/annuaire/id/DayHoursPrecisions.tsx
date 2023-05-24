@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-import { DetailedOpeningHours, OpeningHours } from "api-types";
+import { DetailedOpeningHours, OpeningHours } from "@refugies-info/api-types";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./DayHoursPrecisions.module.scss";
 

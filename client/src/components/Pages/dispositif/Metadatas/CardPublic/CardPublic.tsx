@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 import { useEvent } from "hooks";
-import { Metadatas } from "api-types";
+import { Metadatas } from "@refugies-info/api-types";
 import BaseCard from "../BaseCard";
 import {
   getAge,

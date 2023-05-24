@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
-import { DispositifStatus } from "api-types";
+import { DispositifStatus } from "@refugies-info/api-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage, useEvent, useUser } from "hooks";

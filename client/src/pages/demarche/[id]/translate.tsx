@@ -14,7 +14,7 @@ import PageContext from "utils/pageContext";
 import { useDispositifTranslateForm } from "hooks/dispositif";
 import DispositifTranslate from "components/Content/DispositifTranslate";
 import API from "utils/API";
-import { GetTraductionsForReviewResponse, TranslationContent } from "api-types";
+import { GetTraductionsForReviewResponse, TranslationContent } from "@refugies-info/api-types";
 
 interface Props {
   history: string[];

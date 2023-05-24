@@ -5,7 +5,7 @@ import { Progress } from "reactstrap";
 import { colors } from "colors";
 import FSwitch from "components/UI/FSwitch/FSwitch";
 import styles from "./SubComponents.module.scss";
-import { GetLanguagesResponse, TraductionsStatus } from "api-types";
+import { GetLanguagesResponse, TraductionsStatus } from "@refugies-info/api-types";
 
 interface Props {
   language: GetLanguagesResponse;
