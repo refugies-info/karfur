@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { ContentType, Metadatas, UpdateDispositifRequest } from "api-types";
+import { ContentType, Metadatas, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { useContentType } from "hooks/dispositif";
 import { themeSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";

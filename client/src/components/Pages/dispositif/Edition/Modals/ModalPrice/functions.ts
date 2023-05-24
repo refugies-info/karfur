@@ -1,4 +1,4 @@
-import { Metadatas } from "api-types";
+import { Metadatas } from "@refugies-info/api-types";
 
 export const getInitialPrice = (price: Metadatas["price"] | undefined): "free" | "pay" | null | undefined => {
   if (!price) return price;

@@ -2,7 +2,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
 import { useRouter } from "next/router";
 import debounce from "lodash/debounce";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { logger } from "logger";
 import PageContext from "utils/pageContext";
 import API from "utils/API";

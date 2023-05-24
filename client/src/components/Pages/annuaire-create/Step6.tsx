@@ -6,7 +6,7 @@ import Image from "next/image";
 import styles from "./Step6.module.scss";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 interface Props {
   structureId: string | Id;
@@ -26,7 +26,7 @@ export const Step6 = (props: Props) => {
         legacyBehavior
         href={{
           pathname: getPath("/annuaire/[id]", router.locale),
-          query: { id: props.structureId.toString() }
+          query: { id: props.structureId.toString() },
         }}
         passHref
       >

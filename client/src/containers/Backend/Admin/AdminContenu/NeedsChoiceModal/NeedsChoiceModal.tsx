@@ -14,7 +14,7 @@ import { themesSelector } from "services/Themes/themes.selectors";
 import AdminThemeButton from "components/UI/AdminThemeButton";
 import AdminNeedButton from "components/UI/AdminNeedButton";
 import { cls } from "lib/classname";
-import { DispositifThemeNeedsRequest, GetAllDispositifsResponse, GetNeedResponse, Id } from "api-types";
+import { DispositifThemeNeedsRequest, GetAllDispositifsResponse, GetNeedResponse, Id } from "@refugies-info/api-types";
 
 interface Props {
   show: boolean;

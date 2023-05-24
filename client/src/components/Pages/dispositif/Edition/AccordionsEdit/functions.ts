@@ -1,4 +1,4 @@
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 
 type Texts = {
   addButtonText: string

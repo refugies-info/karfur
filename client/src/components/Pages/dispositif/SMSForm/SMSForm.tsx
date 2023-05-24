@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { colors } from "colors";
 import { useEvent, useLocale } from "hooks";
 import { getPath } from "routes";
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 import { isValidPhone } from "lib/validateFields";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { allLanguesSelector } from "services/Langue/langue.selectors";

@@ -1,7 +1,7 @@
 import { useCallback, useContext, useMemo } from "react";
 import { Col, Row } from "reactstrap";
 import Image from "next/image";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import PageContext from "utils/pageContext";
 import { useUser, useLanguages } from "hooks";
 import Button from "components/UI/Button";

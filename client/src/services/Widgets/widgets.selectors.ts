@@ -1,5 +1,5 @@
 import { RootState } from "../rootReducer";
-import { GetWidgetResponse, Id } from "api-types";
+import { GetWidgetResponse, Id } from "@refugies-info/api-types";
 
 export const widgetsSelector = (state: RootState): GetWidgetResponse[] => state.widgets;
 

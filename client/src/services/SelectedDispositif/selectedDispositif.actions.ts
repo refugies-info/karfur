@@ -4,7 +4,7 @@ import {
   UPDATE_SELECTED_DISPOSITIF,
 } from "./selectedDispositif.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { GetDispositifResponse } from "api-types";
+import { GetDispositifResponse } from "@refugies-info/api-types";
 
 export const fetchSelectedDispositifActionCreator = (value: {
   selectedDispositifId: string;

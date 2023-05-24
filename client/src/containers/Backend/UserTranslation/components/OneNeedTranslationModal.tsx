@@ -8,7 +8,7 @@ import FButton from "components/UI/FButton/FButton";
 import { Label } from "containers/Backend/Admin/sharedComponents/SubComponents";
 import { saveNeedActionCreator } from "services/Needs/needs.actions";
 import styles from "./TranslationNeedsModal.module.scss";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 interface Props {
   show: boolean;

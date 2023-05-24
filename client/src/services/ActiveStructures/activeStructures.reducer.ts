@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { StructuresActions } from "./activeStructures.actions";
-import { GetActiveStructuresResponse } from "api-types";
+import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 
 export type ActiveStructuresState = GetActiveStructuresResponse[];
 

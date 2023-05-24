@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useMemo } from "react";
 import Image from "next/image";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 import PageContext from "utils/pageContext";
 import { BaseModal } from "components/Pages/dispositif";

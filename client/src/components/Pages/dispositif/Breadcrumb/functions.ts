@@ -1,4 +1,4 @@
-import { Metadatas } from "api-types/generics";
+import { Metadatas } from "@refugies-info/api-types";
 import { TFunction } from "next-i18next";
 
 export const getDepartments = (location: Metadatas["location"], t: TFunction) => {

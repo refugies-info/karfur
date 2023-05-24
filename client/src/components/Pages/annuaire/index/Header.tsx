@@ -6,7 +6,7 @@ import styles from "./Header.module.scss";
 import useRTL from "hooks/useRTL";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
-import { GetActiveStructuresResponse } from "api-types";
+import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 
 interface Props {
   letters: string[];
@@ -69,7 +69,7 @@ export const Header = (props: Props) => {
                 href={getPath(
                   "/annuaire",
                   router.locale,
-                  props.lettersClickable.includes(letter.toLocaleUpperCase()) ? "#" + letter.toUpperCase() : ""
+                  props.lettersClickable.includes(letter.toLocaleUpperCase()) ? "#" + letter.toUpperCase() : "",
                 )}
                 key={letter}
               >

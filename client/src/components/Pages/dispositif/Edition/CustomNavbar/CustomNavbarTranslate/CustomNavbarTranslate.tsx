@@ -1,6 +1,6 @@
 import { useCallback, useContext, useMemo } from "react";
 import { useRouter } from "next/router";
-import { ContentType, Languages, TranslationContent } from "api-types";
+import { ContentType, Languages, TranslationContent } from "@refugies-info/api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { Progress } from "hooks/dispositif";

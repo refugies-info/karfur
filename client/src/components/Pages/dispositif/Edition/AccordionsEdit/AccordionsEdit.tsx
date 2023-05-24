@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
-import { ContentType, CreateDispositifRequest, InfoSections } from "api-types";
+import { ContentType, CreateDispositifRequest, InfoSections } from "@refugies-info/api-types";
 import Button from "components/UI/Button";
 import { getMaxAccordions } from "lib/dispositifForm";
 import AccordionItem from "./AccordionItem";

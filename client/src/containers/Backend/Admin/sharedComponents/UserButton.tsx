@@ -5,7 +5,7 @@ import marioProfile from "assets/mario-profile.jpg";
 import styles from "../Admin.module.scss";
 import { cls } from "lib/classname";
 import { StyledStatus } from "./SubComponents";
-import { SimpleUser } from "api-types";
+import { SimpleUser } from "@refugies-info/api-types";
 
 export const UserButton = (props: {
   user?: SimpleUser | null;
@@ -51,7 +51,7 @@ export const UserButton = (props: {
         )}
       </>
     ),
-    [noImage, user, text, tags, condensed]
+    [noImage, user, text, tags, condensed],
   );
 
   if (props.link) {

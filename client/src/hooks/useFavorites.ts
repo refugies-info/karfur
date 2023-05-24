@@ -3,7 +3,7 @@ import API from "utils/API";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { useCallback, useEffect, useState } from "react";
 import { fetchUserActionCreator } from "services/User/user.actions";
-import { GetUserInfoResponse, Id } from "api-types";
+import { GetUserInfoResponse, Id } from "@refugies-info/api-types";
 
 const isContentFavorite = (userDetails: GetUserInfoResponse | null, id: Id | null) => {
   if (id === null) return false;

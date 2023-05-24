@@ -13,7 +13,7 @@ import { removeAccents } from "lib";
 
 import { colors } from "colors";
 import Image from "next/image";
-import { GetActiveUsersResponse, GetAllUsersResponse } from "api-types";
+import { GetActiveUsersResponse, GetAllUsersResponse } from "@refugies-info/api-types";
 
 type Suggestion = GetActiveUsersResponse;
 

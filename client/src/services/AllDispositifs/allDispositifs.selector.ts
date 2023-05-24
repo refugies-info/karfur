@@ -1,5 +1,5 @@
 import { RootState } from "../rootReducer";
-import { GetAllDispositifsResponse, Id } from "api-types";
+import { GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
 
 export const allDispositifsSelector = (
   state: RootState

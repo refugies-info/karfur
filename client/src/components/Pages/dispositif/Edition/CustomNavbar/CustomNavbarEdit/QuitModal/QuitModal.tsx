@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Col, Row } from "reactstrap";
 import Image from "next/image";
-import { DispositifStatus } from "api-types";
+import { DispositifStatus } from "@refugies-info/api-types";
 import { isStatus } from "lib/dispositif";
 import Button from "components/UI/Button";
 import { BaseModal } from "components/Pages/dispositif";

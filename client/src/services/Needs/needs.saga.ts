@@ -17,7 +17,7 @@ import {
   orderNeedsActionCreator
 } from "./needs.actions";
 import { needsSelector } from "./needs.selectors";
-import { GetNeedResponse, UpdatePositionsNeedResponse } from "api-types";
+import { GetNeedResponse, UpdatePositionsNeedResponse } from "@refugies-info/api-types";
 
 export function* fetchNeeds(): SagaIterator {
   try {

@@ -11,7 +11,7 @@ import { useTranslation } from "next-i18next";
 
 import styles from "./SearchStructures.module.scss";
 import SearchStructureResult from "./SearchStructureResult";
-import { GetAllStructuresResponse } from "api-types";
+import { GetAllStructuresResponse } from "@refugies-info/api-types";
 
 export interface SearchStructuresProps {
   onChange: (structure: GetAllStructuresResponse | null) => void;

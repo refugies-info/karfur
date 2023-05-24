@@ -4,7 +4,7 @@ import {
   UPDATE_USER_STRUCTURE,
 } from "./userStructure.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { GetStructureResponse, Id } from "api-types";
+import { GetStructureResponse, Id } from "@refugies-info/api-types";
 
 export const setUserStructureActionCreator = (value: GetStructureResponse | null) =>
   action(SET_USER_STRUCTURE, value);

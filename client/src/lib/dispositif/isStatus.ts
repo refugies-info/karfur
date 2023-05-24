@@ -1,4 +1,4 @@
-import { DispositifStatus } from "api-types";
+import { DispositifStatus } from "@refugies-info/api-types";
 
 export const isStatus = (dispositifStatus: DispositifStatus | undefined | null, status: DispositifStatus | DispositifStatus[]) => {
   if (!dispositifStatus) return false;

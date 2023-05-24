@@ -1,4 +1,4 @@
-import { SimpleUser } from "api-types";
+import { SimpleUser } from "@refugies-info/api-types";
 
 export const escapeRegexCharacters = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 

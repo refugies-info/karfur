@@ -15,7 +15,7 @@ import {
   updateSelectedStructureActionCreator
 } from "./selectedStructure.actions";
 import { selectedStructureSelector } from "./selectedStructure.selector";
-import { GetStructureResponse, PatchStructureRequest } from "api-types";
+import { GetStructureResponse, PatchStructureRequest } from "@refugies-info/api-types";
 
 export function* fetchSelectedStructure(
   action: ReturnType<typeof fetchSelectedStructureActionCreator>

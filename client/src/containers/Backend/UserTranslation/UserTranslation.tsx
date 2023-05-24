@@ -21,7 +21,7 @@ import { activatedLanguages } from "data/activatedLanguages";
 import useRouterLocale from "hooks/useRouterLocale";
 import { useRouter } from "next/router";
 import { useLanguages, useUser } from "hooks";
-import { GetProgressionResponse, Id } from "api-types";
+import { GetProgressionResponse, Id } from "@refugies-info/api-types";
 
 const availableLanguages = activatedLanguages.map((l) => l.i18nCode).filter((ln) => ln !== "fr");
 

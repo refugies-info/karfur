@@ -5,7 +5,7 @@ import { logger } from "../../logger";
 import { startLoading, LoadingStatusKey, finishLoading } from "../LoadingStatus/loadingStatus.actions";
 import { setActiveStructuresActionCreator } from "./activeStructures.actions";
 import { FETCH_ACTIVE_STRUCTURES } from "./activeStructures.actionTypes";
-import { GetActiveStructuresResponse } from "api-types";
+import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 
 export function* fetchActiveStructures(): SagaIterator {
   try {

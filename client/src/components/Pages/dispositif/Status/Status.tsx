@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { DispositifStatus } from "api-types";
+import { DispositifStatus } from "@refugies-info/api-types";
 import Badge from "components/UI/Badge";
 import { getStatus } from "./functions";
 import styles from "./Status.module.scss";

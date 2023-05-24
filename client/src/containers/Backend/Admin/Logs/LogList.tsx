@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { LogLine } from "./LogLine";
 import styles from "./LogList.module.scss";
-import { GetLogResponse, Id } from "api-types";
+import { GetLogResponse, Id } from "@refugies-info/api-types";
 
 type GroupedLogs = { [key: string]: GetLogResponse[] };
 

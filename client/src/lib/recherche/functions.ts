@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, GetNeedResponse, GetThemeResponse, Id } from "api-types";
+import { GetDispositifsResponse, GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
 
 /**
  * Get themes to display based on query filters

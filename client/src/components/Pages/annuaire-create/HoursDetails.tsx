@@ -3,7 +3,7 @@ import moment from "moment";
 import styled from "styled-components";
 import TimePicker from "rc-time-picker";
 import { CustomCheckBox } from "./CustomCheckBox";
-import { DetailedOpeningHours, OpeningHours } from "api-types";
+import { DetailedOpeningHours, OpeningHours } from "@refugies-info/api-types";
 
 interface Props {
   day: string;

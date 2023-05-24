@@ -11,7 +11,7 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchActiveDispositifsActionsCreator } from "../ActiveDispositifs/activeDispositifs.actions";
 import { logger } from "../../logger";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 
 export function* fetchLangues(): SagaIterator {
   try {

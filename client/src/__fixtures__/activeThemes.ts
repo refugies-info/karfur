@@ -1,4 +1,4 @@
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 export const activeThemesMock = [
   {

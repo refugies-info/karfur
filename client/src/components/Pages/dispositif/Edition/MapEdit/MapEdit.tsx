@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import Image from "next/image";
-import { CreateDispositifRequest, Poi } from "api-types";
+import { CreateDispositifRequest, Poi } from "@refugies-info/api-types";
 import PageContext from "utils/pageContext";
 import AddContentButton from "../AddContentButton";
 import DeleteModal from "./DeleteModal";

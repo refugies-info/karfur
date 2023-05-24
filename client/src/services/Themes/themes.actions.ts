@@ -6,7 +6,7 @@ import {
   DELETE_THEME
 } from "./themes.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { GetThemeResponse, Id, ThemeRequest } from "api-types";
+import { GetThemeResponse, Id, ThemeRequest } from "@refugies-info/api-types";
 
 export const fetchThemesActionCreator = () => action(GET_THEMES);
 

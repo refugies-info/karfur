@@ -9,7 +9,7 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { GetAllDispositifsResponse } from "api-types";
+import { GetAllDispositifsResponse } from "@refugies-info/api-types";
 
 export function* fetchAllDispositifs(): SagaIterator {
   try {

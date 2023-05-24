@@ -15,7 +15,7 @@ import {
   GetLanguagesResponse,
   GetUserInfoResponse,
   TraductionsStatus,
-} from "api-types";
+} from "@refugies-info/api-types";
 import isUndefined from "lodash/isUndefined";
 
 interface Props {

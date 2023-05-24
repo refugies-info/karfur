@@ -1,4 +1,4 @@
-import { publicStatusType } from "api-types";
+import { publicStatusType } from "@refugies-info/api-types";
 
 export const includeAllRefugees = (publicStatus: publicStatusType[] | undefined) => {
   return !!(

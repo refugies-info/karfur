@@ -1,4 +1,4 @@
-import { commitmentDetailsType, frequencyDetailsType, frequencyUnitType, timeSlotType, timeUnitType } from "api-types";
+import { commitmentDetailsType, frequencyDetailsType, frequencyUnitType, timeSlotType, timeUnitType } from "@refugies-info/api-types";
 
 export const help = {
   title: "C’est variable selon le profil ?",

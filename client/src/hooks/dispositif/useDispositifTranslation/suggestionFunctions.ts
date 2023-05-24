@@ -1,7 +1,7 @@
 import { DeepPartialSkipArrayKey } from "react-hook-form";
 import get from "lodash/get";
 import isUndefined from "lodash/isUndefined";
-import { GetTraductionsForReview, GetTraductionsForReviewResponse, GetUserInfoResponse } from "api-types";
+import { GetTraductionsForReview, GetTraductionsForReviewResponse, GetUserInfoResponse } from "@refugies-info/api-types";
 import { TranslateForm } from "../useDispositifTranslateForm";
 import { Suggestion } from "./useDispositifTranslation";
 

@@ -10,7 +10,7 @@ import {
 } from "./filterContents";
 import { sortDispositifs } from "./sortContents";
 import { getSearchableAttributes, Hit } from "./getAlgoliaSearchableAttributes";
-import { GetDispositifsResponse } from "api-types";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 
 const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
 const indexName = (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production") ?

@@ -1,4 +1,4 @@
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 import { ageFilters, AgeOptions, filterType, frenchLevelFilter, FrenchOptions, sortOptions } from "data/searchFilters";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 

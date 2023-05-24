@@ -1,4 +1,4 @@
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse } from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
 import { SelectedStructureActions } from "./selectedStructure.actions";
 

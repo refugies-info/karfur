@@ -1,5 +1,5 @@
 import React from "react";
-import { Sponsor } from "api-types";
+import { Sponsor } from "@refugies-info/api-types";
 import { SponsorForm } from "../../components";
 import styles from "./CreateStructure.module.scss";
 

@@ -1,4 +1,4 @@
-import { GetDispositifResponse, GetTraductionsForReviewResponse, GetUserInfoResponse } from "api-types";
+import { GetDispositifResponse, GetTraductionsForReviewResponse, GetUserInfoResponse } from "@refugies-info/api-types";
 import API from "utils/API";
 
 /**

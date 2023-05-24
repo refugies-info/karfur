@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Picture } from "api-types";
+import { Picture } from "@refugies-info/api-types";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,7 @@ import { allLanguesSelector } from "services/Langue/langue.selectors";
 import toArray from "lodash/toArray";
 // import { isThemeTitleOk } from "./lib";
 import { allThemesSelector } from "services/Themes/themes.selectors";
-import { GetLanguagesResponse, GetThemeResponse, ThemeRequest } from "api-types";
+import { GetLanguagesResponse, GetThemeResponse, ThemeRequest } from "@refugies-info/api-types";
 
 interface Props {
   show: boolean;

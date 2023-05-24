@@ -15,7 +15,7 @@ import { NewStructureModal } from "../../AdminStructures/NewStructureModal";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { SearchStructures } from "components";
-import { GetAllStructuresResponse, Id } from "api-types";
+import { GetAllStructuresResponse, Id } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 interface Props {
