@@ -1,4 +1,5 @@
 import ModalAbstract from "./ModalAbstract";
+import ModalAccordionsCount from "./ModalAccordionsCount";
 import ModalAvailability from "./ModalAvailability";
 import ModalConditions from "./ModalConditions";
 import ModalLocation from "./ModalLocation";
@@ -11,6 +12,7 @@ import ModalWelcome from "./ModalWelcome";
 
 export {
   ModalAbstract,
+  ModalAccordionsCount,
   ModalAvailability,
   ModalConditions,
   ModalLocation,

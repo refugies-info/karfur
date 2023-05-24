@@ -1,19 +1,21 @@
-import Dispositif from "components/Content/Dispositif";
-import { wrapper } from "services/configureStore";
+import { useState } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { UpdateDispositifRequest } from "@refugies-info/api-types";
+import { getDefaultValue, hasMissingAccordions } from "lib/dispositifForm";
+import { canEdit } from "lib/dispositif";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+import { useDispositifForm } from "hooks/dispositif";
+import PageContext from "utils/pageContext";
+import { wrapper } from "services/configureStore";
 import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
-import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
-import { useForm, FormProvider } from "react-hook-form";
-import PageContext from "utils/pageContext";
-import { useSelector } from "react-redux";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { UpdateDispositifRequest } from "@refugies-info/api-types";
-import { getDefaultValue } from "lib/dispositifForm";
-import { useDispositifForm } from "hooks/dispositif";
-import { canEdit } from "lib/dispositif";
+import Dispositif from "components/Content/Dispositif";
+import { ModalAccordionsCount } from "components/Pages/dispositif/Edition/Modals";
 
 interface Props {
   history: string[];
@@ -23,6 +25,7 @@ const DispositifPage = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const methods = useForm<UpdateDispositifRequest>({ defaultValues: getDefaultValue(dispositif) });
   const dispositifFormContext = useDispositifForm();
+  const [showAccordionsCountModal, setShowAccordionsCountModal] = useState(hasMissingAccordions(dispositif, "why"));
 
   return (
     <PageContext.Provider value={dispositifFormContext}>
@@ -33,6 +36,7 @@ const DispositifPage = (props: Props) => {
           </form>
         </div>
       </FormProvider>
+      <ModalAccordionsCount show={showAccordionsCountModal} toggle={() => setShowAccordionsCountModal((o) => !o)} />
     </PageContext.Provider>
   );
 };
