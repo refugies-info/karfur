@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useFormContext } from "react-hook-form";
-import { CreateDispositifRequest, Metadatas, priceDetails } from "api-types";
+import { CreateDispositifRequest, Metadatas, priceDetails } from "@refugies-info/api-types";
 import { BaseModal } from "components/Pages/dispositif";
 import DropdownModals from "../../DropdownModals";
 import ChoiceButton from "../../ChoiceButton";

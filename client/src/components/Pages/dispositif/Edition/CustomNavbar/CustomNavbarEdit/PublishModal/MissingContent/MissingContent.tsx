@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
 import { useContentType } from "hooks/dispositif";
-import { DispositifStatus } from "api-types";
+import { DispositifStatus } from "@refugies-info/api-types";
 import { isStatus } from "lib/dispositif";
 import PageContext, { Modals } from "utils/pageContext";
 import Button from "components/UI/Button";

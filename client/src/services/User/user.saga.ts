@@ -17,7 +17,7 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
 import { AxiosError } from "axios";
-import { GetUserInfoResponse } from "api-types";
+import { GetUserInfoResponse } from "@refugies-info/api-types";
 
 export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>

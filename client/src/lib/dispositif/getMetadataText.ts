@@ -1,4 +1,4 @@
-import { Metadatas } from "api-types"
+import { Metadatas } from "@refugies-info/api-types"
 import { jsUcfirst } from "lib";
 import { TFunction } from "next-i18next";
 

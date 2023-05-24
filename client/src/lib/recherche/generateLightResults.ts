@@ -1,4 +1,4 @@
-import { GetDispositifsResponse } from "api-types";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 import { HOME_MAX_SHOWN_DEMARCHES, HOME_MAX_SHOWN_DISPOSITIFS } from "components/Pages/recherche/HomeSearch/HomeSearch";
 import { MAX_SHOWN_DEMARCHES, MAX_SHOWN_DISPOSITIFS } from "components/Pages/recherche/SearchResults/SearchResults";
 import { Results } from "services/SearchResults/searchResults.reducer";

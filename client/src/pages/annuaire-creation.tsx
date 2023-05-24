@@ -14,7 +14,7 @@ import { Modifications } from "components/Pages/annuaire-create/Modifications";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectedStructureIdSelector,
-  selectedStructureSelector
+  selectedStructureSelector,
 } from "services/SelectedStructure/selectedStructure.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -23,9 +23,9 @@ import styles from "scss/pages/annuaire-create.module.scss";
 import SEO from "components/Seo";
 import {
   setSelectedStructureActionCreator,
-  updateSelectedStructureActionCreator
+  updateSelectedStructureActionCreator,
 } from "services/SelectedStructure/selectedStructure.actions";
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse } from "@refugies-info/api-types";
 
 const AnnuaireCreate = () => {
   const router = useRouter();

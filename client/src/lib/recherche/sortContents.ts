@@ -1,6 +1,6 @@
 import { SortOptions } from "data/searchFilters";
 import get from "lodash/get";
-import { GetDispositifsResponse } from "api-types";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 
 const sortOptionsValues = {
   "date": "publishedAt",

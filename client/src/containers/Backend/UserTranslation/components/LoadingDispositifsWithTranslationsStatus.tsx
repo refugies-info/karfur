@@ -6,7 +6,7 @@ import FButton from "../../../../components/UI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
 import CustomSearchBar from "components/UI/CustomSeachBar";
-import { TraductionsStatus } from "api-types";
+import { TraductionsStatus } from "@refugies-info/api-types";
 
 const RowContainer = styled.div`
   display: flex;

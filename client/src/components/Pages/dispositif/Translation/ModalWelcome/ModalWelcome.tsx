@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 import Button from "components/UI/Button";
 import { BaseModal } from "components/Pages/dispositif";

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Flag from "components/UI/Flag";

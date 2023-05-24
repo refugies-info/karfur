@@ -14,7 +14,11 @@ import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/Di
 import { useDispatch } from "react-redux";
 import { sortData } from "./functions";
 import styles from "scss/components/adminTable.module.scss";
-import { GetDispositifsWithTranslationAvancementResponse, GetUserInfoResponse, Languages } from "api-types";
+import {
+  GetDispositifsWithTranslationAvancementResponse,
+  GetUserInfoResponse,
+  Languages,
+} from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 import { useRouter } from "next/router";
 

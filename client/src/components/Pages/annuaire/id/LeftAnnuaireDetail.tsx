@@ -2,14 +2,14 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { Picture } from "api-types";
+import { Picture } from "@refugies-info/api-types";
 import { StructureType } from "./StructureType";
 import { SocialsLink } from "./SocialsLink";
 import FButton from "components/UI/FButton/FButton";
 import placeholder from "assets/no_results_alt.svg";
 import styles from "./LeftAnnuaireDetail.module.scss";
 import { getPath, isRoute } from "routes";
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse } from "@refugies-info/api-types";
 
 interface Props {
   structure: GetStructureResponse | null;

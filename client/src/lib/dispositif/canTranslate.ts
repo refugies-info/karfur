@@ -1,4 +1,4 @@
-import { GetDispositifResponse } from "api-types";
+import { GetDispositifResponse } from "@refugies-info/api-types";
 
 export const canTranslate = (
   dispositif: GetDispositifResponse,

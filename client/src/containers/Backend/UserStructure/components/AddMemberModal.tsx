@@ -11,7 +11,7 @@ import { activeUsersSelector } from "services/ActiveUsers/activeUsers.selector";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { CustomUserSearchBar } from "components/Backend/CustomUserSearchBar";
 import styles from "./MemberModal.module.scss";
-import { GetActiveUsersResponse, Id } from "api-types";
+import { GetActiveUsersResponse, Id } from "@refugies-info/api-types";
 
 const Title = styled.div`
   font-weight: normal;

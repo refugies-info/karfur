@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { ContentType, DispositifStatus, Id } from "api-types";
+import { ContentType, DispositifStatus, Id } from "@refugies-info/api-types";
 import { getPath } from "routes";
 import { canEdit, isStatus } from "lib/dispositif";
 import { cls } from "lib/classname";

@@ -6,7 +6,7 @@ import { sortThemes } from "lib/sortThemes";
 import { themesSelector } from "services/Themes/themes.selectors";
 import SearchThemeButton from "components/UI/SearchThemeButton";
 import styles from "./ThemesGrid.module.scss";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 interface Props {
   className?: string;

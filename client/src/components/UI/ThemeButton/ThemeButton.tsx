@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getThemeName } from "lib/getThemeName";
 import ThemeIcon from "../ThemeIcon";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 const ThemeButtonContainer = styled.div`
   background-color: ${(props: { color: string }) => props.color};

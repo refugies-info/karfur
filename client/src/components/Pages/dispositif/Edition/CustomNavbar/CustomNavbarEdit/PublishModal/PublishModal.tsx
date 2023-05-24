@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
-import { ContentType, CreateDispositifRequest, DispositifStatus } from "api-types";
+import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 import { BaseModal } from "components/Pages/dispositif";
 import { getMissingStepsEdit, Step } from "../functions";

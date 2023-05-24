@@ -5,7 +5,7 @@ import FButton from "components/UI/FButton/FButton";
 import { structureTypes } from "data/structureTypes";
 import { CustomDropDown } from "./CustomDropdown";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse } from "@refugies-info/api-types";
 
 const Title = styled.div`
   font-weight: bold;
@@ -114,7 +114,7 @@ export const Step2 = (props: Props) => {
   };
 
   const availableStructureTypes = structureTypes.filter((structureType) =>
-    props.structure && props.structure.structureTypes ? !props.structure.structureTypes.includes(structureType) : true
+    props.structure && props.structure.structureTypes ? !props.structure.structureTypes.includes(structureType) : true,
   );
 
   const getUpdatedWebsites = (websites: string[], index: number) =>
@@ -133,7 +133,7 @@ export const Step2 = (props: Props) => {
     props.setHasModifications(true);
     return props.setStructure({
       ...props.structure,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
   return (
@@ -141,7 +141,7 @@ export const Step2 = (props: Props) => {
       <Title>Type de structure</Title>
       <div
         style={{
-          marginBottom: "16px"
+          marginBottom: "16px",
         }}
       >
         {props.structure && props.structure.structureTypes && props.structure.structureTypes.length > 0 && (
@@ -155,7 +155,7 @@ export const Step2 = (props: Props) => {
                   className="ms-2"
                   onClick={() =>
                     removeDropdowElement(
-                      props.structure && props.structure.structureTypes ? props.structure.structureTypes[0] : ""
+                      props.structure && props.structure.structureTypes ? props.structure.structureTypes[0] : "",
                     )
                   }
                 />
@@ -181,7 +181,7 @@ export const Step2 = (props: Props) => {
                     className="ms-2"
                     onClick={() =>
                       removeDropdowElement(
-                        props.structure && props.structure.structureTypes ? props.structure.structureTypes[1] : ""
+                        props.structure && props.structure.structureTypes ? props.structure.structureTypes[1] : "",
                       )
                     }
                   />
@@ -206,13 +206,13 @@ export const Step2 = (props: Props) => {
             <div
               style={{
                 display: "flex",
-                flexDirection: "row"
+                flexDirection: "row",
               }}
             >
               <div
                 style={{
                   width: "300px",
-                  marginRight: "4px"
+                  marginRight: "4px",
                 }}
               >
                 <FInput
@@ -237,7 +237,7 @@ export const Step2 = (props: Props) => {
           <div
             style={{
               display: "flex",
-              flexDirection: "row"
+              flexDirection: "row",
             }}
           >
             <div style={{ width: "300px", marginRight: "4px" }}>
@@ -261,7 +261,7 @@ export const Step2 = (props: Props) => {
       <div
         style={{
           marginBottom: "16px",
-          width: "240px"
+          width: "240px",
         }}
       >
         <FInput
@@ -277,7 +277,7 @@ export const Step2 = (props: Props) => {
       <div
         style={{
           marginBottom: "16px",
-          width: "240px"
+          width: "240px",
         }}
       >
         <FInput
@@ -293,7 +293,7 @@ export const Step2 = (props: Props) => {
       <div
         style={{
           marginBottom: "16px",
-          width: "240px"
+          width: "240px",
         }}
       >
         <FInput

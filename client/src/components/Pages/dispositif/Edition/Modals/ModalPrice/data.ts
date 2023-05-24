@@ -1,4 +1,4 @@
-import { priceDetails } from "api-types";
+import { priceDetails } from "@refugies-info/api-types";
 
 export const help = {
   title: "Comment choisir ?",

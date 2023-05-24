@@ -6,7 +6,7 @@ import { jsUcfirst } from "lib";
 import { cls } from "lib/classname";
 import useLocale from "hooks/useLocale";
 import styles from "./SearchThemeButton.module.scss";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 type ThemeButtonProps = {
   color100: string;

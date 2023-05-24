@@ -39,7 +39,7 @@ import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { GetAllStructuresResponse, Id, StructureStatus } from "api-types";
+import { GetAllStructuresResponse, Id, StructureStatus } from "@refugies-info/api-types";
 
 moment.locale("fr");
 

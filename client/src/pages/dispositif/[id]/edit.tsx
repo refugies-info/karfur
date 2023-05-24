@@ -10,7 +10,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import PageContext from "utils/pageContext";
 import { useSelector } from "react-redux";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { UpdateDispositifRequest } from "api-types";
+import { UpdateDispositifRequest } from "@refugies-info/api-types";
 import { getDefaultValue } from "lib/dispositifForm";
 import { useDispositifForm } from "hooks/dispositif";
 import { canEdit } from "lib/dispositif";

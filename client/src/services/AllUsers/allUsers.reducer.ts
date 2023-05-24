@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { AllUsersActions } from "./allUsers.actions";
-import { GetAllUsersResponse } from "api-types";
+import { GetAllUsersResponse } from "@refugies-info/api-types";
 
 export type AllUsersState = GetAllUsersResponse[];
 

@@ -7,7 +7,7 @@ import useRTL from "hooks/useRTL";
 import ThemeIcon from "components/UI/ThemeIcon";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import styles from "./EmbedHeader.module.scss";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
   themes: GetThemeResponse[];

@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import styles from "./NoGeolocModal.module.scss";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 interface Props {
   show: boolean;

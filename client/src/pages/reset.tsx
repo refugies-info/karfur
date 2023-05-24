@@ -31,7 +31,7 @@ import { getPath } from "routes";
 import PhoneAndEmailFields from "components/Pages/login/PhoneAndEmailFields";
 import CodeField from "components/Pages/login/CodeField";
 import Footer from "components/Pages/login/Footer";
-import { NewPasswordRequest } from "api-types";
+import { NewPasswordRequest } from "@refugies-info/api-types";
 import { useChangeLanguage } from "hooks";
 
 const StyledHeader = styled.div`

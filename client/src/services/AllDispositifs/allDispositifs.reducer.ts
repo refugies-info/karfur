@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { AllDispositifsActions } from "./allDispositifs.actions";
-import { GetAllDispositifsResponse } from "api-types";
+import { GetAllDispositifsResponse } from "@refugies-info/api-types";
 
 export type AllDispositifsState = GetAllDispositifsResponse[];
 

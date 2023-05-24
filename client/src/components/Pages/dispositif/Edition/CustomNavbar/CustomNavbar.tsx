@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ContentType, Languages, TranslationContent } from "api-types";
+import { ContentType, Languages, TranslationContent } from "@refugies-info/api-types";
 import PageContext from "utils/pageContext";
 import { Progress } from "hooks/dispositif";
 import CustomNavbarTranslate from "./CustomNavbarTranslate";

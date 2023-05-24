@@ -4,7 +4,7 @@ import {
   UPDATE_SELECTED_STRUCTURE
 } from "./selectedStructure.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse } from "@refugies-info/api-types";
 
 export const setSelectedStructureActionCreator = (value: GetStructureResponse | null) =>
   action(SET_SELECTED_STRUCTURE, value);

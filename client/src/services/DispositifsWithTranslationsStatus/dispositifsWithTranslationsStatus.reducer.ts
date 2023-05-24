@@ -1,5 +1,5 @@
 import { createReducer } from "typesafe-actions";
-import { GetDispositifsWithTranslationAvancementResponse } from "api-types";
+import { GetDispositifsWithTranslationAvancementResponse } from "@refugies-info/api-types";
 import { DispositifsWithTranslationsStatusActions } from "./dispositifsWithTranslationsStatus.actions";
 
 export type DispositifsWithTranslationsStatusState = GetDispositifsWithTranslationAvancementResponse[];

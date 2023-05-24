@@ -4,7 +4,7 @@ import Image from "next/image";
 import marioProfile from "assets/mario-profile.jpg";
 import FButton from "components/UI/FButton/FButton";
 import styles from "./AdminStructureComponents.module.scss";
-import { GetAllStructuresResponse } from "api-types";
+import { GetAllStructuresResponse } from "@refugies-info/api-types";
 
 export const RowContainer = styled.div`
   display: flex;
@@ -58,7 +58,7 @@ export const ResponsableComponent = (props: Props) => {
             style={{
               cursor: "pointer",
               textDecoration: "underline",
-              marginLeft: 16
+              marginLeft: 16,
             }}
           >
             {props.responsable.username}

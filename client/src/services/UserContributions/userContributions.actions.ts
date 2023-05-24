@@ -5,7 +5,7 @@ import {
   DELETE_DISPOSITIF,
 } from "./userContributions.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { GetUserContributionsResponse, Id } from "api-types";
+import { GetUserContributionsResponse, Id } from "@refugies-info/api-types";
 
 export const fetchUserContributionsActionCreator = () =>
   action(FETCH_USER_CONTRIBUTIONS);

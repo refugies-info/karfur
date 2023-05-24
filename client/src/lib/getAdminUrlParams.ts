@@ -1,4 +1,4 @@
-import { DispositifStatus, StructureStatus, Id } from "api-types";
+import { DispositifStatus, StructureStatus, Id } from "@refugies-info/api-types";
 import { NextRouter } from "next/router";
 import { UserStatusType } from "types/interface";
 

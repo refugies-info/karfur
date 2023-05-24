@@ -1,4 +1,4 @@
-import { GetWidgetResponse, Id } from "api-types";
+import { GetWidgetResponse, Id } from "@refugies-info/api-types";
 import { colors } from "colors";
 import FButton from "components/UI/FButton";
 import isInBrowser from "lib/isInBrowser";
@@ -31,7 +31,7 @@ export const WidgetLine = (props: Props) => {
     NotificationManager.success(
       "Le code d'intégration du widget a été copié dans ton presse-papiers.",
       "Copié dans le presse-papiers",
-      5000
+      5000,
     );
   };
 
@@ -46,7 +46,7 @@ export const WidgetLine = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le supprimer",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     }).then((res) => {
       if (res.value) {
         dispatch(deleteWidgetActionCreator(widget._id));

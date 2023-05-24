@@ -9,7 +9,7 @@ import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
-import { UpdateDispositifRequest } from "api-types";
+import { UpdateDispositifRequest } from "@refugies-info/api-types";
 import { getDefaultValue } from "lib/dispositifForm";
 import Dispositif from "components/Content/Dispositif";
 import { useDispositifForm } from "hooks/dispositif";

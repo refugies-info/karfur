@@ -3,7 +3,7 @@ import moment from "moment";
 import styles from "./LogLine.module.scss";
 import { getLogText } from "./functions";
 import { cls } from "lib/classname";
-import { GetLogResponse, Id } from "api-types";
+import { GetLogResponse, Id } from "@refugies-info/api-types";
 
 interface Props {
   log: GetLogResponse;

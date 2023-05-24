@@ -6,7 +6,7 @@ import {
   DELETE_WIDGET
 } from "./widgets.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { GetWidgetResponse, Id, WidgetRequest } from "api-types";
+import { GetWidgetResponse, Id, WidgetRequest } from "@refugies-info/api-types";
 
 export const fetchWidgetsActionCreator = () => action(GET_WIDGETS);
 

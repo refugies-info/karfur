@@ -55,7 +55,7 @@ import styles from "./AdminContenu.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
-import { DispositifStatus, GetAllDispositifsResponse, Id } from "api-types";
+import { DispositifStatus, GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");

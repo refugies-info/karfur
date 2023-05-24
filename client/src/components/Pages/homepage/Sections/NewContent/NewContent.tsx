@@ -7,7 +7,7 @@ import { getPath } from "routes";
 import CardSlider from "components/Pages/recherche/CardSlider";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./NewContent.module.scss";
-import { ContentType, GetDispositifsResponse } from "api-types";
+import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
 
 interface Props {
   nbDemarches: number;

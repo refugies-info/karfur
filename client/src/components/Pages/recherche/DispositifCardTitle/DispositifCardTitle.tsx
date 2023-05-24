@@ -8,7 +8,7 @@ import ThemeBadge from "components/UI/ThemeBadge";
 import iconMap from "assets/recherche/icon-map.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DispositifCardTitle.module.scss";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
   color?: string;

@@ -7,7 +7,7 @@ import {
   ORDER_NEEDS
 } from "./needs.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { Id, GetNeedResponse, NeedRequest, UpdatePositionsRequest } from "api-types";
+import { Id, GetNeedResponse, NeedRequest, UpdatePositionsRequest } from "@refugies-info/api-types";
 
 export const fetchNeedsActionCreator = () => action(GET_NEEDS);
 

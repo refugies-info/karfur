@@ -1,4 +1,4 @@
-import { GetLogResponse } from "api-types";
+import { GetLogResponse } from "@refugies-info/api-types";
 
 const getText = (log: GetLogResponse) => {
   if (!log.dynamicId) return log.text;

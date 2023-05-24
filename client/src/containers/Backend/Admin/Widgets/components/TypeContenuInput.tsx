@@ -1,4 +1,4 @@
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 import FilterButton from "components/UI/FilterButton";
 import { cls } from "lib/classname";
 import parentStyles from "../Widgets.module.scss";

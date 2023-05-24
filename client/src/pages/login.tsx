@@ -28,7 +28,7 @@ import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { LoginRequest } from "api-types";
+import { LoginRequest } from "@refugies-info/api-types";
 import { useChangeLanguage } from "hooks";
 
 type Structure = {

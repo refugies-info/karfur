@@ -1,6 +1,6 @@
 import React from "react";
 import { useWatch } from "react-hook-form";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 import Banner from "../../Banner";
 
 /**

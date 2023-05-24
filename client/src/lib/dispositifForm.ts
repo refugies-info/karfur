@@ -1,6 +1,6 @@
 import pick from "lodash/pick";
 import { v4 as uuidv4 } from "uuid";
-import { ContentType, CreateDispositifRequest, GetDispositifResponse, Id, InfoSections, UpdateDispositifRequest } from "api-types";
+import { ContentType, CreateDispositifRequest, GetDispositifResponse, Id, InfoSections, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { logger } from "logger";
 import API from "utils/API";
 

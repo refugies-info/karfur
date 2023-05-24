@@ -6,7 +6,7 @@ import { colors } from "colors";
 import { userSelector } from "services/User/user.selectors";
 import API from "utils/API";
 import Swal from "sweetalert2";
-import { GetStructureResponse, Id, PatchStructureRolesRequest } from "api-types";
+import { GetStructureResponse, Id, PatchStructureRolesRequest } from "@refugies-info/api-types";
 
 declare const window: Window;
 

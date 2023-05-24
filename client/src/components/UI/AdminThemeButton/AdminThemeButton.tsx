@@ -1,4 +1,4 @@
-import { GetThemeResponse, Id } from "api-types";
+import { GetThemeResponse, Id } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import Image from "next/image";
 import React from "react";

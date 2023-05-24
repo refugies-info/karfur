@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { WidgetsActions } from "./widgets.actions";
-import { GetWidgetResponse } from "api-types";
+import { GetWidgetResponse } from "@refugies-info/api-types";
 
 export type WidgetsState = GetWidgetResponse[];
 

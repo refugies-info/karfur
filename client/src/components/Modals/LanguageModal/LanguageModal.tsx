@@ -9,7 +9,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { activatedLanguages } from "data/activatedLanguages";
 import styles from "./LanguageModal.module.scss";
 import { getPath } from "routes";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 
 interface Props {

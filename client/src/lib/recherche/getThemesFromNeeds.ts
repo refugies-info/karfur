@@ -1,4 +1,4 @@
-import { GetNeedResponse, GetThemeResponse, Id } from "api-types";
+import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
 
 /**
  * Get themes from selected needs
