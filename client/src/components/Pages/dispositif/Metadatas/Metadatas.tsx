@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import isUndefined from "lodash/isUndefined";
 import { useEvent } from "hooks";
-import { ContentType, GetDispositifResponse } from "api-types";
+import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
 import FRLink from "components/UI/FRLink";
 import { getSponsorLink } from "./functions";
 import Card from "./BaseCard";

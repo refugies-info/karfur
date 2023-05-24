@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 import { removeAccents } from "lib";
 import { escapeRegexCharacters } from "lib/search";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import marioProfile from "assets/mario-profile.jpg";
 import { Role } from "./Role";
 import styles from "./MemberModal.module.scss";
-import { Id, StructureMember } from "api-types";
+import { Id, StructureMember } from "@refugies-info/api-types";
 
 const Title = styled.div`
   font-weight: normal;

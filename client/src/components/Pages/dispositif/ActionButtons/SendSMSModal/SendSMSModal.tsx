@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
 import { useEvent, useLocale } from "hooks";
 import { getPath } from "routes";
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 import { isValidPhone } from "lib/validateFields";
 import { cls } from "lib/classname";
 import API from "utils/API";

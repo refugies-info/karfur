@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import { CreateDispositifRequest } from "api-types";
+import { CreateDispositifRequest } from "@refugies-info/api-types";
 import Button from "components/UI/Button";
 import { ModalSponsors } from "../Modals";
 import Sponsors from "../../Sponsors";

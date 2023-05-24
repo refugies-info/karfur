@@ -3,7 +3,7 @@ import { useToggle } from "react-use";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { ContentType, DispositifStatus } from "api-types";
+import { ContentType, DispositifStatus } from "@refugies-info/api-types";
 import { getPath } from "routes";
 import API from "utils/API";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";

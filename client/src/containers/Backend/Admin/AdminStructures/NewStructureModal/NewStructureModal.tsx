@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Event } from "types/interface";
-import { Picture } from "api-types";
+import { Picture } from "@refugies-info/api-types";
 import { Modal, Input, Spinner } from "reactstrap";
 import Image from "next/image";
 import FInput from "components/UI/FInput/FInput";
@@ -25,7 +25,12 @@ import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStru
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import styles from "./NewStructureModal.module.scss";
-import { GetActiveUsersResponse, GetAllStructuresResponse, GetAllUsersResponse, PostStructureRequest } from "api-types";
+import {
+  GetActiveUsersResponse,
+  GetAllStructuresResponse,
+  GetAllUsersResponse,
+  PostStructureRequest,
+} from "@refugies-info/api-types";
 import { handleApiDefaultError, handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");

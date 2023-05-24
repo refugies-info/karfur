@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-import { Metadatas } from "api-types";
+import { Metadatas } from "@refugies-info/api-types";
 import BaseCard from "../BaseCard";
 import { getPrice } from "../functions";
 import FreeIcon from "assets/dispositif/metadatas/Free";

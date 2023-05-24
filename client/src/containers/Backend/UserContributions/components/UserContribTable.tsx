@@ -5,7 +5,7 @@ import { FormattedUserContribution } from "../types";
 import { TypeContenu, Responsabilite, ContribStyledStatus, StatutHeader } from "./SubComponents";
 import { Title, DeleteButton, SeeButton } from "../../Admin/sharedComponents/SubComponents";
 import styles from "scss/components/adminTable.module.scss";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 const headers = ["Type", "Titre", "Responsabilité", "Statut", "Merci", "Vues"];
 interface Props {

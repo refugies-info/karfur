@@ -11,7 +11,7 @@ import { LanguageInput } from "../components/LanguageInput";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import { copyToClipboard, generateIframe } from "../functions";
 import styles from "./EditWidgetModal.module.scss";
-import { ContentType, GetWidgetResponse, Id, WidgetRequest } from "api-types";
+import { ContentType, GetWidgetResponse, Id, WidgetRequest } from "@refugies-info/api-types";
 
 interface Props {
   show: boolean;

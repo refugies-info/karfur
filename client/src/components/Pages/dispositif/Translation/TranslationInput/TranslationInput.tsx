@@ -1,7 +1,7 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useAsyncFn, useNumber } from "react-use";
 import { useWatch } from "react-hook-form";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { useEvent, useUser } from "hooks";
 import { Suggestion } from "hooks/dispositif";
 import { checkIsRTL } from "hooks/useRTL";

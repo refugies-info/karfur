@@ -1,5 +1,5 @@
 import { LinkProps } from "next/link";
-import { conditionType, Metadatas } from "api-types";
+import { conditionType, Metadatas } from "@refugies-info/api-types";
 import { getPath } from "routes";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { getAgeText, getCommitmentText, getFrenchLevelText, getFrequencyText, getPriceText, getPublicStatusText, getPublicText, getTimeSlotsText } from "lib/dispositif";

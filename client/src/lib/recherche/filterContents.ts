@@ -1,5 +1,5 @@
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
-import { GetDispositifsResponse, Id } from "api-types";
+import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 
 export const filterByThemeOrNeed = (dispositif: GetDispositifsResponse, themesSelected: Id[], needs: Id[], withSecondaryTheme: boolean) => {
   if (themesSelected.length === 0 && needs.length === 0) return true;

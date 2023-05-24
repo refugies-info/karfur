@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 import styles from "./AccordionBadge.module.scss";
 
 interface Props {

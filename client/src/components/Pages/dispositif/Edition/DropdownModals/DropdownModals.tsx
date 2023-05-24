@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { useTranslation } from "next-i18next";
-import { commitmentDetailsType, frequencyDetailsType, frequencyUnitType, priceDetails, timeUnitType } from "api-types";
+import {
+  commitmentDetailsType,
+  frequencyDetailsType,
+  frequencyUnitType,
+  priceDetails,
+  timeUnitType,
+} from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import { jsUcfirst } from "lib";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";

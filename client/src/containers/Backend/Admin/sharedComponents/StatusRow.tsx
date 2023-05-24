@@ -2,7 +2,7 @@ import { statusCompare } from "lib/statusCompare";
 import { ContentStatus, ProgressionStatus, StructureAdminStatus } from "types/interface";
 import { Label, StyledStatus } from "./SubComponents";
 import styles from "./StatusRow.module.scss";
-import { DispositifStatus, GetAllDispositifsResponse, GetAllStructuresResponse } from "api-types";
+import { DispositifStatus, GetAllDispositifsResponse, GetAllStructuresResponse } from "@refugies-info/api-types";
 
 interface Props {
   element: GetAllDispositifsResponse | GetAllStructuresResponse;

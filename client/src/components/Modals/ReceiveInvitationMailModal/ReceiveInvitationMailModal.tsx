@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
-import { SubscriptionRequest } from "api-types";
+import { SubscriptionRequest } from "@refugies-info/api-types";
 import { Modal } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";

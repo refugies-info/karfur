@@ -1,7 +1,14 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
-import { ageType, CreateDispositifRequest, frenchLevelType, Metadatas, publicStatusType, publicType } from "api-types";
+import {
+  ageType,
+  CreateDispositifRequest,
+  frenchLevelType,
+  Metadatas,
+  publicStatusType,
+  publicType,
+} from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import { entries } from "lib/typedObjectEntries";
 import { BaseModal } from "components/Pages/dispositif";

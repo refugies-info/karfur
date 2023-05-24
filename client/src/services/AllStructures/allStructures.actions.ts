@@ -4,7 +4,7 @@ import {
   ADD_TO_ALL_STRUCTURES
 } from "./allStructures.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { GetAllStructuresResponse } from "api-types";
+import { GetAllStructuresResponse } from "@refugies-info/api-types";
 
 export const setAllStructuresActionCreator = (
   value: GetAllStructuresResponse[]

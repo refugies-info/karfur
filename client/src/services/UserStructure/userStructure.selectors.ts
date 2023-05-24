@@ -1,6 +1,6 @@
 import { RootState } from "../rootReducer";
 import { areDispositifsAssociesPopulate } from "../../types/typeGuards";
-import { GetDispositifsResponse, GetStructureResponse } from "api-types";
+import { GetDispositifsResponse, GetStructureResponse } from "@refugies-info/api-types";
 
 export const userStructureSelector = (state: RootState): GetStructureResponse | null =>
   state.userStructure;

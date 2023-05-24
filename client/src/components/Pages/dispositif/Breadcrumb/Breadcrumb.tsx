@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { ContentType, GetDispositifResponse } from "api-types";
+import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { getPath } from "routes";

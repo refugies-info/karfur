@@ -92,8 +92,8 @@ import {
   UpdatePositionsRequest,
   UpdateUserRequest,
   WidgetRequest,
-} from "api-types";
-import { PublishTranslationRequest } from "api-types/modules/translations";
+  PublishTranslationRequest
+} from "@refugies-info/api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 

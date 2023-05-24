@@ -15,7 +15,7 @@ import {
   deleteWidgetActionCreator
 } from "./widgets.actions";
 import { widgetsSelector } from "./widgets.selectors";
-import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse } from "api-types";
+import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse } from "@refugies-info/api-types";
 
 export function* fetchWidgets(): SagaIterator {
   try {

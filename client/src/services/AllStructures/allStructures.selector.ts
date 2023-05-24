@@ -1,5 +1,5 @@
 import { RootState } from "../rootReducer";
-import { GetAllStructuresResponse, Id } from "api-types";
+import { GetAllStructuresResponse, Id } from "@refugies-info/api-types";
 
 export const allStructuresSelector = (
   state: RootState

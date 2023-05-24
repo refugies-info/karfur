@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
-import { conditionType, CreateDispositifRequest } from "api-types";
+import { conditionType, CreateDispositifRequest } from "@refugies-info/api-types";
 import { entries } from "lib/typedObjectEntries";
 import { BaseModal } from "components/Pages/dispositif";
 import ChoiceButton from "../../ChoiceButton";

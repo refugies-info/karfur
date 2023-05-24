@@ -6,7 +6,7 @@ import {
   SAVE_USER,
 } from "./user.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { GetUserInfoResponse, Id, UpdateUserRequest } from "api-types";
+import { GetUserInfoResponse, Id, UpdateUserRequest } from "@refugies-info/api-types";
 
 export const setUserActionCreator = (value: GetUserInfoResponse | null) =>
   action(SET_USER, value);

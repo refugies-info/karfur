@@ -2,7 +2,7 @@ import { useState } from "react";
 import { END } from "redux-saga";
 import { FormProvider, useForm } from "react-hook-form";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ContentType, CreateDispositifRequest } from "api-types";
+import { ContentType, CreateDispositifRequest } from "@refugies-info/api-types";
 import { getInitialValue } from "lib/dispositifForm";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import PageContext from "utils/pageContext";

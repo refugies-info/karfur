@@ -14,7 +14,7 @@ import { userStructureSelector } from "./userStructure.selectors";
 import { userSelector } from "../User/user.selectors";
 import Router from "next/router";
 import { setUserRoleInStructureActionCreator } from "../User/user.actions";
-import { GetStructureResponse, PatchStructureRequest, PatchStructureRolesRequest } from "api-types";
+import { GetStructureResponse, PatchStructureRequest, PatchStructureRolesRequest } from "@refugies-info/api-types";
 import { UserState } from "services/User/user.reducer";
 
 export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructureActionCreator>): SagaIterator {

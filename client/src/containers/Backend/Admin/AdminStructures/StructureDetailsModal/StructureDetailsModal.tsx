@@ -28,7 +28,7 @@ import { colors } from "colors";
 import { useRouter } from "next/router";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { useToggle } from "react-use";
-import { GetLogResponse, Id, PatchStructureRequest, StructureStatus } from "api-types";
+import { GetLogResponse, Id, PatchStructureRequest, StructureStatus } from "@refugies-info/api-types";
 import { allThemesSelector } from "services/Themes/themes.selectors";
 
 moment.locale("fr");

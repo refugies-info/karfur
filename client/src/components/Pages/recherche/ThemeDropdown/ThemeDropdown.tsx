@@ -19,7 +19,7 @@ import NeedsList from "./NeedsList";
 import { getInitialTheme } from "./functions";
 import styles from "./ThemeDropdown.module.scss";
 import ThemeButton from "./ThemeButton";
-import { GetDispositifsResponse, Id } from "api-types";
+import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 
 interface Props {

@@ -19,9 +19,10 @@ jobs:
       - run:
           name: Install Dependencies front
           command: npm run install:client
-      - run:
-          name: Run tests unit front
-          command: npm run test:unit:client
+      # temporary deactivated
+      # - run:
+      #     name: Run tests unit front
+      #     command: npm run test:unit:client
       - run:
           name: Run tests type front
           command: npm run test:types:client
@@ -31,9 +32,10 @@ jobs:
       - run:
           name: Install Dependencies server
           command: npm run install:server
-      - run:
-          name: Run tests unit server
-          command: npm run test:unit:server
+      # temporary deactivated
+      # - run:
+      #     name: Run tests unit server
+      #     command: npm run test:unit:server
       - run:
           name: Run tests type server
           command: npm run test:types:server

@@ -3,7 +3,7 @@ import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-fo
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import debounce from "lodash/debounce";
-import { CreateDispositifRequest, GetDispositifResponse, PostDispositifsResponse, UpdateDispositifResponse } from "api-types";
+import { CreateDispositifRequest, GetDispositifResponse, PostDispositifsResponse, UpdateDispositifResponse } from "@refugies-info/api-types";
 import { getPath } from "routes";
 import { submitCreateForm, submitUpdateForm } from "lib/dispositifForm";
 import PageContext from "utils/pageContext";

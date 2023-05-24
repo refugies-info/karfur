@@ -1,4 +1,4 @@
-import { InfoSection } from "api-types";
+import { InfoSection } from "@refugies-info/api-types";
 import { getSectionReadableText } from "lib/getReadableText";
 
 export const getPlayIcon = (isPlaying: boolean, isOpen: boolean) => {

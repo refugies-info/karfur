@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Picture } from "api-types";
+import { Picture } from "@refugies-info/api-types";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,7 @@ import FilterButton from "components/UI/FilterButton";
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { GetNeedResponse, Id, NeedRequest } from "api-types";
+import { GetNeedResponse, Id, NeedRequest } from "@refugies-info/api-types";
 
 interface Props {
   show: boolean;

@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
-import { InfoSection } from "api-types";
+import { InfoSection } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import { changeRate, pauseAudio, readAudio, resumeAudio } from "lib/readAudio";
 import { useEvent, useLocale } from "hooks";

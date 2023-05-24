@@ -4,7 +4,7 @@ import { cls } from "lib/classname";
 import useFavorites from "hooks/useFavorites";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./FavoriteButton.module.scss";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 interface Props {
   contentId: Id;

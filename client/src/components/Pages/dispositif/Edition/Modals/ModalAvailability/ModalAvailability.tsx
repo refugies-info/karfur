@@ -9,7 +9,7 @@ import {
   Metadatas,
   timeSlotType,
   timeUnitType,
-} from "api-types";
+} from "@refugies-info/api-types";
 import { jsUcfirst } from "lib";
 import { BaseModal } from "components/Pages/dispositif";
 import ChoiceButton from "../../ChoiceButton";

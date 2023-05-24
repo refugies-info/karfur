@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, GetStructureResponse, GetUserContributionsResponse, Id } from "api-types";
+import { GetDispositifsResponse, GetStructureResponse, GetUserContributionsResponse, Id } from "@refugies-info/api-types";
 import { FormattedUserContribution } from "./types";
 
 export const formatContributions = (

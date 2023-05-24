@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "next-i18next";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 import API from "utils/API";
 import { handleApiError } from "lib/handleApiErrors";
 import Button from "components/UI/Button";

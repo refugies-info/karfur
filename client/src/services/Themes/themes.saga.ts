@@ -16,7 +16,7 @@ import {
   deleteThemeActionCreator
 } from "./themes.actions";
 import { allThemesSelector } from "./themes.selectors";
-import { GetThemeResponse, PatchThemeResponse, PostThemeResponse } from "api-types";
+import { GetThemeResponse, PatchThemeResponse, PostThemeResponse } from "@refugies-info/api-types";
 
 export function* fetchThemes(): SagaIterator {
   try {

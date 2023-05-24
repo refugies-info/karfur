@@ -13,7 +13,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import styles from "./TranslationLanguagesChoiceModal.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
-import { GetLanguagesResponse, Id } from "api-types";
+import { GetLanguagesResponse, Id } from "@refugies-info/api-types";
 import { useLanguages } from "hooks";
 import isUndefined from "lodash/isUndefined";
 

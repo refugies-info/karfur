@@ -13,7 +13,7 @@ import Checkbox from "components/UI/Checkbox";
 import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
 import { cls } from "lib/classname";
 import styles from "./ThemeDropdown.module.scss";
-import { GetNeedResponse, GetThemeResponse, Id } from "api-types";
+import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 
 type ButtonNeedProps = {

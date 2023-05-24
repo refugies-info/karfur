@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { DeepPartialSkipArrayKey, useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { DispositifStatus, Sponsor, UpdateDispositifRequest } from "api-types";
+import { DispositifStatus, Sponsor, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";

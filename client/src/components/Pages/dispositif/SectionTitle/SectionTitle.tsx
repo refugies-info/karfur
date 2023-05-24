@@ -3,7 +3,7 @@ import React, { useContext, useMemo } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
-import { CreateDispositifRequest } from "api-types";
+import { CreateDispositifRequest } from "@refugies-info/api-types";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "services/Themes/themes.selectors";
 import PageContext from "utils/pageContext";

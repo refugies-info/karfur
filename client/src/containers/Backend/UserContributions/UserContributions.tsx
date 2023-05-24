@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
   fetchUserContributionsActionCreator,
-  deleteDispositifActionCreator
+  deleteDispositifActionCreator,
 } from "services/UserContributions/userContributions.actions";
 import { userContributionsSelector } from "services/UserContributions/userContributions.selectors";
 import {
   userStructureDisposAssociesSelector,
-  userStructureSelector
+  userStructureSelector,
 } from "services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -25,7 +25,7 @@ import { colors } from "colors";
 import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 const MainContainer = styled.div`
   display: flex;
@@ -79,8 +79,8 @@ const UserContributions = (props: Props) => {
       dispatch(
         fetchUserStructureActionCreator({
           structureId: userStructure._id,
-          shouldRedirect: false
-        })
+          shouldRedirect: false,
+        }),
       );
     }
     window.scrollTo(0, 0);
@@ -102,7 +102,7 @@ const UserContributions = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le supprimer",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     }).then((result) => {
       if (result.value) {
         dispatch(deleteDispositifActionCreator(dispositifId));
@@ -110,7 +110,7 @@ const UserContributions = (props: Props) => {
           title: "Yay...",
           text: "Le dispositif a été supprimé",
           icon: "success",
-          timer: 1500
+          timer: 1500,
         });
       }
     });

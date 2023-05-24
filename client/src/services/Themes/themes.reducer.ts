@@ -1,4 +1,4 @@
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
 import { ThemesActions } from "./themes.actions";
 

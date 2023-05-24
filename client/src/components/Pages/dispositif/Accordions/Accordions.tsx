@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Button as RSButton, Collapse } from "reactstrap";
 import styled from "styled-components";
-import { ContentType, InfoSections } from "api-types";
+import { ContentType, InfoSections } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";

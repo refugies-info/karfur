@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { UserActions } from "./user.actions";
-import { GetUserInfoResponse, Id } from "api-types";
+import { GetUserInfoResponse, Id } from "@refugies-info/api-types";
 
 export interface UserState {
   user: GetUserInfoResponse | null;
