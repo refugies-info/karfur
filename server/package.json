@@ -14,7 +14,7 @@
     "tsc": "tsc",
     "test": "npm run test:lint && npm run test:types",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
-    "test:types": "tsc --noEmit",
+    "test:types": "tsoa spec-and-routes && tsc --noEmit",
     "test:unit": "jest --runInBand",
     "pr:stg": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
     "pr:prod": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''"
