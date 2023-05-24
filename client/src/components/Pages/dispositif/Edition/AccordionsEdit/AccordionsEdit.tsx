@@ -41,8 +41,11 @@ const AccordionsEdit = ({ sectionKey, contentType }: Props) => {
     setValue(sectionKey, newContent);
   };
 
+  const maxAccordions = useMemo(() => getMaxAccordions(contentType, sectionKey), [contentType, sectionKey]);
+
   return (
     <div id={`step-${sectionKey}`}>
+      {maxAccordions > 1 && <p className={styles.subtitle}>Développez minimum {maxAccordions} arguments.</p>}
       {Object.entries(content || {}).map((section, i) => {
         const texts = getTexts(contentType, isLastSection, i);
         return (
@@ -50,11 +53,7 @@ const AccordionsEdit = ({ sectionKey, contentType }: Props) => {
             key={section[0]}
             index={i}
             id={`${sectionKey}.${section[0]}`}
-            onDelete={
-              Object.keys(content).length > getMaxAccordions(contentType, sectionKey)
-                ? () => deleteElement(section[0])
-                : false
-            }
+            onDelete={Object.keys(content).length > maxAccordions ? () => deleteElement(section[0]) : false}
             label={texts.buttonText}
             placeholderTitle={texts.placeholderTitle}
             placeholderText={texts.placeholderText}
