@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "start": "node dist/src/server.js",
-    "tsc": "tsoa spec-and-routes && tsc",
+    "pretsc": "tsoa spec-and-routes",
+    "tsc": "tsc",
     "test": "npm run test:lint && npm run test:types",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
     "test:types": "tsc --noEmit",
