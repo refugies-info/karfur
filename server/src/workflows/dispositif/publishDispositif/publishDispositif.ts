@@ -47,7 +47,7 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
   if (user.isAdmin() || (oldDispositif.status === DispositifStatus.ACTIVE && oldDispositif.hasDraftVersion)) {
     await publishDispositifService(id, user._id, user.isAdmin() ? body.keepTranslations : false);
   } else {
-    if (dispositif.getMainSponsor()?.membres.find((membre) => membre.userId === user._id)) {
+    if (dispositif.getMainSponsor()?.membres.find((membre) => membre.userId.toString() === user._id.toString())) {
       // dans la structure
       editedDispositif.status = DispositifStatus.WAITING_ADMIN;
     } else {
