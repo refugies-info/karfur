@@ -70,7 +70,8 @@ const isAccordionTranslated = (
 
 export const getMaxStepsTranslate = (defaultTranslation: TranslationContent | undefined) => {
   if (!defaultTranslation) return 0;
-  return Object.keys(defaultTranslation.content).length;
+  const removeTitreMarque = defaultTranslation.content.titreMarque === "" ? 1 : 0;
+  return Object.keys(defaultTranslation.content).length - removeTitreMarque;
 }
 
 export const getWordsCount = (

@@ -17,7 +17,7 @@ const buildTranslationsObject = (
           titreMarque: dispositif.titreMarque,
           abstract: dispositif.abstract,
           what: dispositif.what,
-          why: dispositif.why,
+          why: dispositif.why || {},
           how: dispositif.how,
           next: dispositif.next || {},
         }
