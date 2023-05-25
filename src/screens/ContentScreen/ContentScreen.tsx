@@ -406,8 +406,6 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
 
           {selectedContent.typeContenu === ContentType.DEMARCHE && (
             <DemarcheImage
-              icon={selectedContent.mainSponsor?.picture}
-              stroke={colors.color100}
               contentId={selectedContent._id.toString()}
               isSmall={false}
             />

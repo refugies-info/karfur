@@ -16,6 +16,7 @@ export const StreamlineIcon = ({
   size = 22,
   stroke = "white",
 }: StreamlineIconProps) => {
+  if (!icon.secure_url?.endsWith(".svg")) return null;
   const { value: imgXml = "<svg></svg>" } = useAsync(
     () =>
       apiCaller
