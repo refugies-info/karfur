@@ -45,6 +45,11 @@ export interface TranslationContent {
 
 export interface GetTraductionsForReview {
   translated: Partial<TranslationContent>;
+  validator?: {
+    id: string;
+    username: string;
+    picture?: Picture;
+  }
   author: {
     id: string;
     username: string;

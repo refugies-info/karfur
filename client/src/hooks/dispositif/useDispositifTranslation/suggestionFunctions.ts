@@ -1,15 +1,22 @@
 import { DeepPartialSkipArrayKey } from "react-hook-form";
 import get from "lodash/get";
 import isUndefined from "lodash/isUndefined";
-import { GetTraductionsForReview, GetTraductionsForReviewResponse, GetUserInfoResponse } from "@refugies-info/api-types";
+import { GetTraductionsForReview, GetTraductionsForReviewResponse, GetUserInfoResponse, Picture } from "@refugies-info/api-types";
 import { TranslateForm } from "../useDispositifTranslateForm";
 import { Suggestion } from "./useDispositifTranslation";
+
+type Validator = {
+  id: string;
+  username: string;
+  picture?: Picture;
+}
 
 /**
  * Returns a Suggestion from the TranslateForm
  */
-export const transformMyTranslation = (section: string, traductions: DeepPartialSkipArrayKey<TranslateForm>, user: GetUserInfoResponse | null): Suggestion => {
+export const transformMyTranslation = (section: string, traductions: DeepPartialSkipArrayKey<TranslateForm>, user: GetUserInfoResponse | null, validator: Validator | undefined): Suggestion => {
   return {
+    validator,
     author: {
       id: user?._id.toString() || "",
       username: user?.username || ""
