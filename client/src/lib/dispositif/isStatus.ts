@@ -11,3 +11,12 @@ export const isStatus = (dispositifStatus: DispositifStatus | undefined | null, 
   }
   return false;
 }
+
+export const isNotStatus = (dispositifStatus: DispositifStatus | undefined | null, status: DispositifStatus | DispositifStatus[]) => {
+  if (!dispositifStatus) return false;
+  if (Array.isArray(status)) {
+    return !status.includes(dispositifStatus);
+  }
+  if (status !== dispositifStatus) return true;
+  return false;
+}

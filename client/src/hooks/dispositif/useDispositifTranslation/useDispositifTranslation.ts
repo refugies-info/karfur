@@ -102,9 +102,9 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
    * Valide la traduction de la section en cours pour la traduction de l'utilisateur courant
    */
   const validate = useCallback(
-    async (section: string, value: { text?: string, unfinished?: boolean }) => {
+    async (section: string, value: { text?: string, unfinished?: boolean, reviewDone?: boolean }) => {
       // if section changed, remove from toReview
-      if (data.toReview && data.toReview.includes(section)) {
+      if (value.reviewDone && data.toReview && data.toReview.includes(section)) {
         const toReview = [...data.toReview].filter(t => t !== section)
         setValue("toReview", toReview);
       }
