@@ -1,12 +1,27 @@
 import logger from "../../../logger";
+import { cloneDeep, set } from "lodash";
+import { DemarcheContent, DispositifContent, Languages, TranslationContent } from "@refugies-info/api-types";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { deleteTradsInDB } from "../../../modules/traductions/traductions.repository";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
 import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
 import { Dispositif, DispositifModel, ErrorModel, Traductions } from "../../../typegoose";
-import { Languages } from "@refugies-info/api-types";
 import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
+import { deleteLineBreaks, deleteLineBreaksInInfosections } from "../../../modules/dispositif/dispositif.service";
+
+const deleteLineBreaksInTranslation = (translation: Partial<TranslationContent>) => {
+  const newTranslation = cloneDeep(translation);
+  set(newTranslation, "content.what", deleteLineBreaks(newTranslation.content.what));
+  set(newTranslation, "content.how", deleteLineBreaksInInfosections(newTranslation.content.how));
+
+  const why = (newTranslation.content as DispositifContent).why;
+  if (why) set(newTranslation, "content.why", deleteLineBreaksInInfosections(why));
+  const next = (newTranslation.content as DemarcheContent).next;
+  if (next) set(newTranslation, "content.next", deleteLineBreaksInInfosections(next));
+
+  return newTranslation;
+}
 
 const validateTranslation = (dispositif: Dispositif, language: Languages, translation: Traductions) => {
   const isFirstValidation = !dispositif.translations[language]; // else, expert is just changing validated translation
@@ -15,7 +30,7 @@ const validateTranslation = (dispositif: Dispositif, language: Languages, transl
     {
       $set: {
         [`translations.${language}`]: {
-          ...translation.translated,
+          ...deleteLineBreaksInTranslation(translation.translated),
           created_at: new Date(),
           validatorId: translation.userId,
         },

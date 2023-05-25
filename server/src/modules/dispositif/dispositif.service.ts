@@ -25,12 +25,12 @@ import { log } from "./log";
 import { TranslationContent } from "../../typegoose/Dispositif";
 import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
 
-const deleteLineBreaks = (htmlContent: string) => {
-  const regexp = /<p dir=\\"(ltr|rtl)\\"><br><\/p>|(<p><br><\/p>)/g;
+export const deleteLineBreaks = (htmlContent: string) => {
+  const regexp = /<p dir=(\\|)"(ltr|rtl)(\\|)"><br><\/p>|(<p><br><\/p>)/g;
   return htmlContent.replace(regexp, "");
 }
 
-const deleteLineBreaksInInfosections = (sections: InfoSections): InfoSections => {
+export const deleteLineBreaksInInfosections = (sections: InfoSections): InfoSections => {
   const newSections: InfoSections = {};
   for (const [key, section] of Object.entries(sections)) {
     newSections[key] = {
