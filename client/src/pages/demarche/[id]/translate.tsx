@@ -14,7 +14,7 @@ import PageContext from "utils/pageContext";
 import { useDispositifTranslateForm } from "hooks/dispositif";
 import DispositifTranslate from "components/Content/DispositifTranslate";
 import API from "utils/API";
-import { GetTraductionsForReviewResponse, TranslationContent } from "@refugies-info/api-types";
+import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "@refugies-info/api-types";
 
 interface Props {
   history: string[];
@@ -29,7 +29,11 @@ const DemarchePage = (props: Props) => {
     <PageContext.Provider value={dispositifFormContext}>
       <FormProvider {...methods}>
         <form>
-          <DispositifTranslate traductions={props.traductions} defaultTraduction={props.defaultTraduction} />
+          <DispositifTranslate
+            traductions={props.traductions}
+            defaultTraduction={props.defaultTraduction}
+            typeContenu={ContentType.DEMARCHE}
+          />
         </form>
       </FormProvider>
     </PageContext.Provider>

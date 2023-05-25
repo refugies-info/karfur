@@ -10,7 +10,7 @@ import {
 } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $createHeadingNode, $isHeadingNode } from "@lexical/rich-text";
-import { $isParentElementRTL, $setBlocksType_experimental, $selectAll } from "@lexical/selection";
+import { $isParentElementRTL, $setBlocksType, $selectAll } from "@lexical/selection";
 import {
   $findMatchingParent,
   $getNearestNodeOfType,
@@ -141,7 +141,7 @@ export default function ToolbarPlugin() {
       editor.update(() => {
         const selection = $getSelection();
         if ($isRangeSelection(selection) || DEPRECATED_$isGridSelection(selection))
-          $setBlocksType_experimental(selection, () => $createParagraphNode());
+          $setBlocksType(selection, () => $createParagraphNode());
       });
     }
   };
@@ -151,9 +151,9 @@ export default function ToolbarPlugin() {
       const selection = $getSelection();
       if ($isRangeSelection(selection) || DEPRECATED_$isGridSelection(selection)) {
         if (blockType !== "h3") {
-          $setBlocksType_experimental(selection, () => $createHeadingNode("h3"));
+          $setBlocksType(selection, () => $createHeadingNode("h3"));
         } else {
-          $setBlocksType_experimental(selection, () => $createParagraphNode());
+          $setBlocksType(selection, () => $createParagraphNode());
         }
       }
     });

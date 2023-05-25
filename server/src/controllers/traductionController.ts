@@ -78,16 +78,7 @@ export class TranslationController extends Controller {
   ): ResponseWithData<GetTraductionsForReviewResponse> {
     return getTraductionsForReview(dispositif, language as Languages, request.user).then((traductions) => ({
       text: "success",
-      data: traductions.map((trad) => ({
-        translated: trad.translated,
-        author: {
-          id: trad.getUser().id,
-          username: trad.getUser().username,
-          picture: trad.getUser().picture,
-        },
-        toReview: trad.toReview,
-        toFinish: trad.toFinish || []
-      })),
+      data: traductions
     }));
   }
 

@@ -1,6 +1,6 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $findMatchingParent, mergeRegister } from "@lexical/utils";
-import { $setBlocksType_experimental } from "@lexical/selection";
+import { $setBlocksType } from "@lexical/selection";
 import {
   $createParagraphNode,
   $getSelection,
@@ -12,6 +12,7 @@ import {
   KEY_ARROW_DOWN_COMMAND,
   KEY_ARROW_UP_COMMAND,
   createCommand,
+  $isParagraphNode,
 } from "lexical";
 import { useEffect } from "react";
 
@@ -107,15 +108,28 @@ export default function CalloutPlugin() {
           editor.update(() => {
             const selection = $getSelection();
             if (!$isRangeSelection(selection)) return;
-            const matchingParent = $findMatchingParent(selection.anchor.getNode(), $isCalloutNode) as CalloutNode | null;
-            if (matchingParent) {
-              if (matchingParent.getLevel() !== level) { // just change level
-                matchingParent.setLevel(level);
+            // just change callout level
+            const matchingCalloutParent = $findMatchingParent(selection.anchor.getNode(), $isCalloutNode) as CalloutNode | null;
+            if (matchingCalloutParent) {
+              if (matchingCalloutParent.getLevel() !== level) {
+                matchingCalloutParent.setLevel(level);
               }
               return; // or return to not nest callouts
             }
 
-            $setBlocksType_experimental(selection, () => $createCalloutNode(level));
+            // if text selected, transform block into callout
+            const matchingParagraphParent = $findMatchingParent(selection.anchor.getNode(), $isParagraphNode);
+            if (matchingParagraphParent?.getTextContent()) {
+              $setBlocksType(selection, () => $createCalloutNode(level));
+              editor.update(() => {
+                const selection = $getSelection();
+                selection?.insertNodes([$createParagraphNode()]);
+              });
+              return;
+            }
+
+            // else, insert new one with line breaks
+            selection.insertNodes([$createParagraphNode(), $createCalloutNode(level), $createParagraphNode()])
           });
 
           return true;
@@ -128,7 +142,7 @@ export default function CalloutPlugin() {
           editor.update(() => {
             const selection = $getSelection();
             if (!$isRangeSelection(selection)) return;
-            $setBlocksType_experimental(selection, () => $createParagraphNode());
+            $setBlocksType(selection, () => $createParagraphNode());
           });
 
           return true;
