@@ -9,7 +9,7 @@ import Input from "components/UI/Input";
 import FButton from "components/UI/FButton";
 import LanguageDropdown from "../LanguageDropdown";
 import styles from "./MobileAppSmsForm.module.scss";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 
 const MobileAppSmsForm = () => {
   const { t } = useTranslation();
@@ -38,7 +38,7 @@ const MobileAppSmsForm = () => {
             title: "Yay...",
             text: "SMS envoyé !",
             icon: "success",
-            timer: 1500
+            timer: 1500,
           });
           setPhone("");
         })

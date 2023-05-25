@@ -3,7 +3,7 @@ import {
   FETCH_ACTIVE_USERS,
 } from "./activeUsers.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { GetActiveUsersResponse } from "api-types";
+import { GetActiveUsersResponse } from "@refugies-info/api-types";
 
 export const setActiveUsersActionCreator = (value: GetActiveUsersResponse[]) =>
   action(SET_ACTIVE_USERS, value);

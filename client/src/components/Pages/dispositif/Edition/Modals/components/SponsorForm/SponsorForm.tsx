@@ -1,5 +1,5 @@
 import React from "react";
-import { Picture } from "api-types";
+import { Picture } from "@refugies-info/api-types";
 import Input from "components/Pages/dispositif/Input";
 import LogoInput from "../../../LogoInput";
 import styles from "./SponsorForm.module.scss";

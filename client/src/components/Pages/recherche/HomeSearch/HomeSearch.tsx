@@ -14,7 +14,7 @@ import illuLocation from "assets/recherche/illu-location.png";
 import HomeTypeCard from "../HomeTypeCard";
 import CardSlider from "../CardSlider";
 import styles from "./HomeSearch.module.scss";
-import { ContentType, Id } from "api-types";
+import { ContentType, Id } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 
 export const HOME_MAX_SHOWN_DISPOSITIFS = 15;

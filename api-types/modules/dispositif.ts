@@ -232,6 +232,7 @@ export type GetDispositifResponse = {
   sponsors?: (Sponsor | ContentStructure)[];
   participants: SimpleUser[];
   merci: { created_at: Date; userId?: Id }[];
+  creatorId: { _id: Id, username: string };
   metadatas: Metadatas;
   map: Poi[] | null;
   availableLanguages: string[];

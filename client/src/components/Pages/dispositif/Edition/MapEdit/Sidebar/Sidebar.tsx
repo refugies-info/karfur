@@ -1,5 +1,5 @@
 import React from "react";
-import { CreateDispositifRequest } from "api-types";
+import { CreateDispositifRequest } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./Sidebar.module.scss";

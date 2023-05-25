@@ -1,0 +1,10 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+
+.buttons {
+  margin-top: u(4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

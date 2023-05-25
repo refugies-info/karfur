@@ -1,4 +1,4 @@
-import { GetThemeResponse, Id } from "api-types";
+import { GetThemeResponse, Id } from "@refugies-info/api-types";
 
 const defaultTheme: GetThemeResponse = {
   _id: "default",

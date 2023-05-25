@@ -12,7 +12,7 @@ import {
   fetchDispositifsWithTranslationsStatusActionCreator,
   setDispositifsWithTranslationsStatusActionCreator,
 } from "./dispositifsWithTranslationsStatus.actions";
-import { GetDispositifsWithTranslationAvancementResponse } from "api-types";
+import { GetDispositifsWithTranslationAvancementResponse } from "@refugies-info/api-types";
 
 export function* fetchDispositifTranslationsStatus(
   action: ReturnType<typeof fetchDispositifsWithTranslationsStatusActionCreator>

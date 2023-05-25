@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { GetTraductionsForReviewResponse, Id, SaveTranslationRequest } from "api-types";
+import { GetTraductionsForReviewResponse, Id, SaveTranslationRequest } from "@refugies-info/api-types";
 import { useLocale, useChangeLanguage, useUser } from "hooks";
 
 export type TranslateForm = Pick<SaveTranslationRequest, "translated" | "toFinish" | "toReview">;

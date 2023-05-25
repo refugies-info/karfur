@@ -3,7 +3,7 @@ import Image from "next/image";
 import useThemeIcon from "hooks/useThemeIcon";
 import { cls } from "lib/classname";
 import styles from "./ThemeIcon.module.scss";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
   theme: GetThemeResponse | undefined | null;
@@ -25,8 +25,8 @@ const ThemeIcon = (props: Props) => {
         dangerouslySetInnerHTML={{
           __html: imgXml.replace(
             /stroke="((#[0-9a-f]{6})|(#[0-9a-f]{3})|([a-z]+))"/g,
-            `stroke="${props.color || "white"}"`
-          )
+            `stroke="${props.color || "white"}"`,
+          ),
         }}
         style={{ width: size, height: size }}
       ></span>

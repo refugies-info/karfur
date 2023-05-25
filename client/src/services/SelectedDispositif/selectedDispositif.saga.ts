@@ -12,7 +12,7 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { GetDispositifResponse } from "api-types";
+import { GetDispositifResponse } from "@refugies-info/api-types";
 
 export function* fetchSelectedDispositif(
   action: ReturnType<typeof fetchSelectedDispositifActionCreator>

@@ -3,7 +3,7 @@ import {
   GetDispositifsWithTranslationAvancementResponse,
   GetNeedResponse,
   TraductionsStatus,
-} from "api-types";
+} from "@refugies-info/api-types";
 import { colors } from "colors";
 import { AvailableLanguageI18nCode } from "types/interface";
 

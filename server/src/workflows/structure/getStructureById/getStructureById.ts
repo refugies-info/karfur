@@ -6,7 +6,7 @@ import { getUserById } from "../../../modules/users/users.repository";
 import { Dispositif, Structure, User } from "../../../typegoose";
 import { NotFoundError } from "../../../errors";
 import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
-import { GetStructureResponse, Languages, StructureMember } from "@refugies-info/api-types";
+import { DispositifStatus, GetStructureResponse, Languages, StructureMember } from "@refugies-info/api-types";
 import { Membre } from "../../../typegoose/Structure";
 
 const getMainRole = (membre: Membre) => {
@@ -62,7 +62,9 @@ export const getStructureById = async (
   // dispositifs
   const selectedLocale = (locale || "fr") as Languages;
   const dbQuery: FilterQuery<Dispositif> = {
-    status: "Actif",
+    status: isAdmin || isMember
+      ? { $in: [DispositifStatus.WAITING_STRUCTURE, DispositifStatus.WAITING_ADMIN, DispositifStatus.ACTIVE] }
+      : DispositifStatus.ACTIVE,
     mainSponsor: structure._id,
   };
 

@@ -16,7 +16,7 @@ import {
   deleteDispositifActionCreator,
   fetchUserContributionsActionCreator,
 } from "./userContributions.actions";
-import { GetUserContributionsResponse } from "api-types";
+import { GetUserContributionsResponse } from "@refugies-info/api-types";
 
 export function* fetchUserContributions(): SagaIterator {
   try {

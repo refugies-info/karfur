@@ -1,4 +1,4 @@
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 export const getThemeName = (
   theme: GetThemeResponse | undefined,

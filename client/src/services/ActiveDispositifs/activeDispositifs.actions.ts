@@ -4,7 +4,7 @@ import {
   UPDATE_DISPOSITIF_REACTION,
 } from "./activeDispositifs.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { GetDispositifsResponse, Id } from "api-types";
+import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 
 export const setActiveDispositifsActionsCreator = (value: GetDispositifsResponse[]) =>
   action(SET_ACTIVE_DISPOSITIFS, value);

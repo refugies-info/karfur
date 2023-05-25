@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { ContentType, Metadatas } from "api-types";
+import { ContentType, Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useEvent } from "hooks";
 import { formatDepartment } from "lib/departments";

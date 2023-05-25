@@ -1,5 +1,5 @@
 import { RootState } from "../rootReducer";
-import { GetAllUsersResponse, Id } from "api-types";
+import { GetAllUsersResponse, Id } from "@refugies-info/api-types";
 
 export const allUsersSelector = (state: RootState): GetAllUsersResponse[] =>
   state.users;

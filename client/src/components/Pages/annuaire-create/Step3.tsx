@@ -8,7 +8,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { colors } from "colors";
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse } from "@refugies-info/api-types";
 
 const MainContainer = styled.div``;
 const HelpContainer = styled.div`
@@ -94,7 +94,7 @@ export const Step3 = (props: Props) => {
   const selectActivity = (selectedActivity: string) => {
     props.setStructure({
       ...props.structure,
-      activities: getUpdatedActivities(selectedActivity)
+      activities: getUpdatedActivities(selectedActivity),
     });
     props.setHasModifications(true);
   };

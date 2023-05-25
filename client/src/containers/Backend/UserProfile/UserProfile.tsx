@@ -23,7 +23,7 @@ import { colors } from "colors";
 import styles from "./UserProfile.module.scss";
 import { useTranslation } from "next-i18next";
 import { isValidPhone } from "lib/validateFields";
-import { GetUserInfoResponse } from "api-types";
+import { GetUserInfoResponse } from "@refugies-info/api-types";
 import { handleApiDefaultError, handleApiError } from "lib/handleApiErrors";
 
 export const MainContainer = styled.div`

@@ -1,4 +1,4 @@
-import { GetDispositifsResponse } from "api-types";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 import { FormattedNotification } from "./types";
 
 export const formatNotifications = (

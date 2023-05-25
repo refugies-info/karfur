@@ -3,7 +3,7 @@ import FInput from "components/UI/FInput";
 import { UserDetail } from "components/Backend/UserDetail";
 import { removeAccents } from "lib";
 import styles from "./CustomUserSearchBar.module.scss";
-import { GetActiveUsersResponse, Id } from "api-types";
+import { GetActiveUsersResponse, Id } from "@refugies-info/api-types";
 
 interface Props {
   dataArray: GetActiveUsersResponse[];
@@ -20,7 +20,7 @@ const filterUser = (data: GetActiveUsersResponse[], search: string) => {
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase()
-        .includes(removeAccents(search.toLowerCase()))
+        .includes(removeAccents(search.toLowerCase())),
   );
 };
 export const CustomUserSearchBar = (props: Props) => {

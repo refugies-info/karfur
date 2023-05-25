@@ -2,7 +2,7 @@ import { cls } from "lib/classname";
 import FilterButton from "components/UI/FilterButton";
 import LanguageText from "components/UI/Language";
 import parentStyles from "../Widgets.module.scss";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 
 interface Props {
   selectedLanguages: string[];

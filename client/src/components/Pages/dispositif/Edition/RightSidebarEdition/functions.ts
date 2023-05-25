@@ -1,4 +1,4 @@
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 import { contentHelp, mapHelp, nextHelp, titleHelp, titreMarqueHelp, whatHelp } from "./data"
 
 export const getHelp = (activeSection: string | undefined, typeContenu: ContentType) => {

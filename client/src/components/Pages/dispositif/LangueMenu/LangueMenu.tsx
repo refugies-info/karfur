@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import uniqueId from "lodash/uniqueId";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import Flag from "components/UI/Flag";

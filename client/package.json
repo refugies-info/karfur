@@ -17,7 +17,7 @@
     "@lexical/react": "^0.8.0",
     "@react-google-maps/api": "^2.17.0",
     "algoliasearch": "^4.14.2",
-    "api-types": "file:../api-types",
+    "@refugies-info/api-types": "^1.0.29",
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.26.0",
     "bootstrap": "^5.2.3",

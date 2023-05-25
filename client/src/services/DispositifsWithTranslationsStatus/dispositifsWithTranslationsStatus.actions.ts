@@ -3,7 +3,7 @@ import {
   FETCH_DISPOSITIFS_TRANSLATIONS_STATUS,
   SET_DISPOSITIFS_TRANSLATIONS_STATUS,
 } from "./dispositifsWithTranslationsStatus.actionTypes";
-import { GetDispositifsWithTranslationAvancementResponse } from "api-types";
+import { GetDispositifsWithTranslationAvancementResponse } from "@refugies-info/api-types";
 
 export const fetchDispositifsWithTranslationsStatusActionCreator = (value: string) =>
   action(FETCH_DISPOSITIFS_TRANSLATIONS_STATUS, value);

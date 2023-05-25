@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
-import { Languages } from "api-types";
+import { Languages } from "@refugies-info/api-types";
 import { useLanguages } from "hooks";
 import { cls } from "lib/classname";
 import Flag from "components/UI/Flag";

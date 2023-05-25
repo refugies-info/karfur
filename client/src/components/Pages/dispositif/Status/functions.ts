@@ -1,5 +1,5 @@
 import { BadgeProps } from "@codegouvfr/react-dsfr/Badge";
-import { DispositifStatus } from "api-types";
+import { DispositifStatus } from "@refugies-info/api-types";
 
 type Status = {
   text: string;

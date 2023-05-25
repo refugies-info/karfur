@@ -30,7 +30,7 @@ import {
   GetStatisticsResponse,
   GetStructureStatisticsResponse,
   TranslationStatisticsResponse,
-} from "api-types";
+} from "@refugies-info/api-types";
 import { logger } from "logger";
 
 interface Props {

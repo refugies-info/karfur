@@ -1,6 +1,6 @@
 import { colors } from "colors";
 import { ContentStatus, ProgressionStatus } from "types/interface";
-import { DispositifStatus } from "api-types";
+import { DispositifStatus } from "@refugies-info/api-types";
 
 type TableContenu = {
   title: string

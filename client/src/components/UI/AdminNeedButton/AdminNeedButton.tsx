@@ -1,4 +1,4 @@
-import { GetNeedResponse } from "api-types";
+import { GetNeedResponse } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import Image from "next/image";
 import React from "react";
@@ -23,7 +23,7 @@ const AdminThemeButton = (props: Props) => (
     style={{
       background: props.need.theme.colors.color30,
       borderColor: props.selected || props.opened ? props.need.theme.colors.color100 : "transparent",
-      color: props.need.theme.colors.color100
+      color: props.need.theme.colors.color100,
     }}
   >
     {props.draggable && <EVAIcon name="menu" size={20} fill={props.need.theme.colors.color100} className="me-4" />}

@@ -8,8 +8,9 @@ import { Dispositif, DispositifModel, ErrorModel, Traductions } from "../../../t
 import { Languages } from "@refugies-info/api-types";
 import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
 
-const validateTranslation = (dispositif: Dispositif, language: Languages, translation: Traductions) =>
-  DispositifModel.updateOne(
+const validateTranslation = (dispositif: Dispositif, language: Languages, translation: Traductions) => {
+  const isFirstValidation = !dispositif.translations[language]; // else, expert is just changing validated translation
+  return DispositifModel.updateOne(
     { _id: dispositif._id },
     {
       $set: {
@@ -42,21 +43,21 @@ const validateTranslation = (dispositif: Dispositif, language: Languages, transl
             error,
           });
         }),
-        sendNotificationsForDispositif(dispositif._id, language).catch((error) => {
+        isFirstValidation ? sendNotificationsForDispositif(dispositif._id, language).catch((error) => {
           logger.error("[validateTranslations] error while sending notifications", error);
-        }),
-        updateLanguagesAvancement(),
-        dispositif.isDispositif()
+        }) : null,
+        isFirstValidation ? updateLanguagesAvancement() : null,
+        dispositif.isDispositif() && isFirstValidation
           ? sendPublishedTradMailToStructure(dispositif, language).catch((error) => {
             logger.error("[validateTranslations] error while sending mails to structure members", {
               error: error.message,
             });
           })
           : null,
-        sendPublishedTradMailToTraductors(
+        isFirstValidation ? sendPublishedTradMailToTraductors(
           language,
           dispositif
-        )
+        ) : null
       ]),
     )
     .catch(async (err) => {
@@ -68,5 +69,5 @@ const validateTranslation = (dispositif: Dispositif, language: Languages, transl
 
       throw err;
     });
-
+}
 export default validateTranslation;

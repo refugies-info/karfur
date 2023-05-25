@@ -3,7 +3,7 @@ import { Col, Row } from "reactstrap";
 import { useSelector } from "react-redux";
 import { useToggle } from "react-use";
 import { useTranslation } from "next-i18next";
-import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "api-types";
+import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "@refugies-info/api-types";
 import { useContentLocale, useLanguages, useUser } from "hooks";
 import { useDispositifTranslation } from "hooks/dispositif";
 import PageContext from "utils/pageContext";

@@ -4,7 +4,7 @@ import { StyledStatus } from "./SubComponents";
 import { cls } from "lib/classname";
 import noStructure from "assets/noStructure.png";
 import styles from "../Admin.module.scss";
-import { ContentStructure, UserStructure } from "api-types";
+import { ContentStructure, UserStructure } from "@refugies-info/api-types";
 
 export const StructureButton = (props: {
   sponsor: UserStructure | ContentStructure | null;

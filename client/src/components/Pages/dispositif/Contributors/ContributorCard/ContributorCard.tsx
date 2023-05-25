@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
-import { SimpleUser } from "api-types";
+import { SimpleUser } from "@refugies-info/api-types";
 import DefaultAvatar from "assets/dispositif/default-avatar.png";
 import { cls } from "lib/classname";
 import { getRole } from "./functions";

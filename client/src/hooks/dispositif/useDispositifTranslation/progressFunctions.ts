@@ -1,7 +1,7 @@
 import { DeepPartialSkipArrayKey } from "react-hook-form";
 import get from "lodash/get";
 import flattenDeep from "lodash/flattenDeep";
-import { ContentType, DemarcheContent, DispositifContent, GetTraductionsForReview, InfoSections, TranslationContent } from "api-types";
+import { ContentType, DemarcheContent, DispositifContent, GetTraductionsForReview, InfoSections, TranslationContent } from "@refugies-info/api-types";
 import { TranslateForm } from "../useDispositifTranslateForm";
 import { Step } from "./useDispositifTranslation";
 
@@ -70,7 +70,8 @@ const isAccordionTranslated = (
 
 export const getMaxStepsTranslate = (defaultTranslation: TranslationContent | undefined) => {
   if (!defaultTranslation) return 0;
-  return Object.keys(defaultTranslation.content).length;
+  const removeTitreMarque = defaultTranslation.content.titreMarque === "" ? 1 : 0;
+  return Object.keys(defaultTranslation.content).length - removeTitreMarque;
 }
 
 export const getWordsCount = (

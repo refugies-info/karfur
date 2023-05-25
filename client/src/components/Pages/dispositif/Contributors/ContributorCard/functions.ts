@@ -1,4 +1,4 @@
-import { SimpleUser } from "api-types";
+import { SimpleUser } from "@refugies-info/api-types";
 
 export const getRole = (roles: SimpleUser["roles"]) => {
   if (!roles || roles.length === 0) return "redactor";

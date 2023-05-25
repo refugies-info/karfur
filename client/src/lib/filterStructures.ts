@@ -1,4 +1,4 @@
-import { GetActiveStructuresResponse } from "api-types";
+import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 
 export const filterStructuresByType = (arrayTofilter: GetActiveStructuresResponse[], typeSelected: string[]) => {
   if (!typeSelected || typeSelected.length === 0) {

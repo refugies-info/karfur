@@ -3,7 +3,7 @@ import styled from "styled-components";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
 import styles from "./ThemeDropdown.module.scss";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 type ButtonThemeProps = {
   color100: string;
@@ -54,7 +54,7 @@ const ThemeButton = ({ theme, selected, disabled, nbNeeds, mobile, onClick }: Pr
           <span
             style={{
               backgroundColor: !selected ? theme.colors.color100 : "white",
-              color: !selected ? "white" : theme.colors.color100
+              color: !selected ? "white" : theme.colors.color100,
             }}
             className={styles.theme_badge}
           >

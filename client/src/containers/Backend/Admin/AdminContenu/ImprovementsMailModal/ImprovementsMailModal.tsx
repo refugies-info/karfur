@@ -17,7 +17,7 @@ import { UserButton } from "../../sharedComponents/UserButton";
 import { getUsersToSendMail, getFormattedStatus, getTitle } from "./functions";
 import modalStyles from "../../sharedComponents/DetailsModal.module.scss";
 import styles from "./ImprovementsMailModal.module.scss";
-import { GetLogResponse, Id, ImprovementsRequest } from "api-types";
+import { GetLogResponse, Id, ImprovementsRequest } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 interface Props {

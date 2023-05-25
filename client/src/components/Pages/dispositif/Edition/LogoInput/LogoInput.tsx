@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input, Spinner } from "reactstrap";
 import Image from "next/image";
-import { Picture } from "api-types";
+import { Picture } from "@refugies-info/api-types";
 import API from "utils/API";
 import { handleApiDefaultError } from "lib/handleApiErrors";
 import Button from "components/UI/Button";
