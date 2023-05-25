@@ -141,7 +141,7 @@ export type FooterStatus = {
 export const getFooterStatus = (index: number, mySuggestion: Suggestion, suggestions: Suggestion[]): FooterStatus => {
   // My suggestion
   if (index === -1) {
-    return mySuggestion.toFinish || !mySuggestion.text
+    return mySuggestion.toFinish || mySuggestion.toReview || !mySuggestion.text
       ? {
         status: "pending",
         text: "Proposition en cours",

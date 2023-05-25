@@ -28,7 +28,7 @@ interface Props {
   mySuggestion: Suggestion;
   suggestions: Suggestion[]; // all suggestions except mine
   locale: string;
-  validate: (section: string, value: { text?: string; unfinished?: boolean }) => void;
+  validate: (section: string, value: { text?: string; unfinished?: boolean; reviewDone?: boolean }) => void;
   deleteTrad: (section: string) => void;
   size?: "xl" | "lg";
   isHTML: boolean;
@@ -151,7 +151,7 @@ const TranslationInput = (props: Props) => {
   const saveTrad = useCallback(
     (unfinished: boolean) => {
       setOldSuggestion({ ...mySuggestion, text: value, toFinish: unfinished });
-      validate(section, { unfinished });
+      validate(section, { unfinished, reviewDone: true });
       closeInput();
     },
     [validate, section, closeInput, mySuggestion, value],
