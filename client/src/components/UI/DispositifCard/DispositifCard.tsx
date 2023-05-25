@@ -19,7 +19,7 @@ import iconEuro from "assets/recherche/icon-euro.svg";
 import defaultStructureImage from "assets/recherche/default-structure-image.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DispositifCard.module.scss";
-import { GetDispositifsResponse } from "api-types";
+import { GetDispositifsResponse } from "@refugies-info/api-types";
 
 type DispositifLinkProps = {
   background: string;

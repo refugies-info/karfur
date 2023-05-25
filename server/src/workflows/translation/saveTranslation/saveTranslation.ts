@@ -8,7 +8,8 @@ const saveTranslation = (
   user: User,
 ): Promise<Traductions> =>
   getDispositifById(dispositifId).then(async (dispositif) => {
-    if (dispositif.isTranslatedIn(language)) {
+    const userIsExpert = user.isExpert() || user.isAdmin();
+    if (dispositif.isTranslatedIn(language) && !userIsExpert) {
       throw new Error(`Dispositif is already translated in ${language}`);
     }
 

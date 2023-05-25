@@ -1,6 +1,6 @@
 import { RootState } from "../rootReducer";
 import { UserState } from "./user.reducer";
-import { GetUserInfoResponse, Id } from "api-types";
+import { GetUserInfoResponse, Id } from "@refugies-info/api-types";
 
 export const userSelector = (state: RootState): UserState => state.user;
 

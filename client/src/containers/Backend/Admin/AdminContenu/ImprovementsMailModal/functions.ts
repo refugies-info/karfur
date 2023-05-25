@@ -1,5 +1,5 @@
 import { correspondingStatus } from "../data";
-import { ContentStructure, GetAllStructuresResponse, GetAllUsersResponse, SimpleUser } from "api-types";
+import { ContentStructure, GetAllStructuresResponse, GetAllUsersResponse, SimpleUser } from "@refugies-info/api-types";
 
 export const getUsersToSendMail = (
   status: string,

@@ -1,4 +1,4 @@
-import { GetDispositifResponse, GetUserInfoResponse } from "api-types";
+import { GetDispositifResponse, GetUserInfoResponse } from "@refugies-info/api-types";
 
 export const canEdit = (dispositif: GetDispositifResponse | null, user: GetUserInfoResponse | null) => {
   if (!user || !dispositif) return false;

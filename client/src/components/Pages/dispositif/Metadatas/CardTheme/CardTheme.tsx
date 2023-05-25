@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
-import { GetDispositifResponse } from "api-types";
+import { GetDispositifResponse } from "@refugies-info/api-types";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
 import TagName from "components/UI/TagName";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";

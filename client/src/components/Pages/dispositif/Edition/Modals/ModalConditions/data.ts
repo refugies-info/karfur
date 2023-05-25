@@ -1,4 +1,4 @@
-import { conditionType } from "api-types";
+import { conditionType } from "@refugies-info/api-types";
 import imgCb from "assets/dispositif/form-icons/conditions-cb.svg";
 import imgDriver from "assets/dispositif/form-icons/conditions-driver.svg";
 import imgOfpra from "assets/dispositif/form-icons/conditions-ofpra.svg";

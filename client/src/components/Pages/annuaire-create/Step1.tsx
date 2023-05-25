@@ -6,7 +6,7 @@ import PlaceholderLogo from "assets/Placeholder_logo.png";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Image from "next/image";
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse } from "@refugies-info/api-types";
 import { handleApiDefaultError } from "lib/handleApiErrors";
 
 const Title = styled.div`

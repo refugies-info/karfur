@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
-import { ContentStructure, CreateDispositifRequest, Sponsor } from "api-types";
+import { ContentStructure, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import Button from "components/UI/Button";
 import styles from "./Sponsors.module.scss";

@@ -1,5 +1,5 @@
 import h2p from "html2plaintext";
-import { GetNeedResponse, GetThemeResponse, GetDispositifResponse, InfoSection, InfoSections } from "api-types";
+import { GetNeedResponse, GetThemeResponse, GetDispositifResponse, InfoSection, InfoSections } from "@refugies-info/api-types";
 
 export const getSectionReadableText = (section: InfoSection | undefined): string => {
   if (!section) return "";

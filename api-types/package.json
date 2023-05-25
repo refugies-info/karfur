@@ -1,6 +1,6 @@
 {
   "name": "@refugies-info/api-types",
-  "version": "1.0.27",
+  "version": "1.0.29",
   "description": "Types defined in the API to be used by the frontend",
   "main": "dist/index.js",
   "scripts": {
@@ -9,13 +9,12 @@
   },
   "author": "Réfugiés.info",
   "license": "ISC",
-  "devDependencies": {
-    "mongoose": "^6.10.0"
-  },
+  "devDependencies": {},
   "peerDependencies": {
     "typescript": "*"
   },
   "dependencies": {
+    "mongoose": "^6.10.0",
     "bson": "^4.7.2",
     "buffer": "^5.7.1",
     "debug": "^4.3.4",

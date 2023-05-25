@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import ThemeIcon from "components/UI/ThemeIcon";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";

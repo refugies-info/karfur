@@ -8,7 +8,7 @@ import { colors } from "../../../../colors";
 // import "./MembresTable.scss";
 import moment from "moment";
 import "moment/locale/fr";
-import { GetStructureResponse, Id, StructureMember } from "api-types";
+import { GetStructureResponse, Id, StructureMember } from "@refugies-info/api-types";
 
 moment.locale("fr");
 const RowContainer = styled.div`

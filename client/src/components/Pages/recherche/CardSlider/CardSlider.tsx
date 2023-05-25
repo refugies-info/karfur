@@ -1,5 +1,5 @@
 import React from "react";
-import { ContentType, GetDispositifsResponse } from "api-types";
+import { ContentType, GetDispositifsResponse } from "@refugies-info/api-types";
 import DemarcheCard from "components/UI/DemarcheCard";
 import DispositifCard from "components/UI/DispositifCard";
 import ContentSlider from "components/UI/ContentSlider";

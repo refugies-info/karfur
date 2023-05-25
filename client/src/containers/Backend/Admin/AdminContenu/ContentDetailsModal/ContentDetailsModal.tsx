@@ -26,7 +26,13 @@ import { LogList } from "../../Logs/LogList";
 import styles from "./ContentDetailsModal.module.scss";
 import { StatusRow } from "../../sharedComponents/StatusRow";
 import { NotesInput } from "../../sharedComponents/NotesInput";
-import { AdminCommentsRequest, DispositifStatus, GetAllDispositifsResponse, GetLogResponse, Id } from "api-types";
+import {
+  AdminCommentsRequest,
+  DispositifStatus,
+  GetAllDispositifsResponse,
+  GetLogResponse,
+  Id,
+} from "@refugies-info/api-types";
 
 interface Props {
   show: boolean;

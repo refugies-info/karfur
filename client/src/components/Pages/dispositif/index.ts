@@ -19,6 +19,8 @@ import SectionTitle from "./SectionTitle";
 import ShareButtons from "./ShareButtons";
 import SMSForm from "./SMSForm";
 import Sponsors from "./Sponsors";
+import Status from "./Status";
+import StructureReceiveDispositif from "./StructureReceiveDispositif";
 import Summary from "./Summary";
 import Text from "./Text";
 import Title from "./Title";
@@ -45,6 +47,8 @@ export {
   ShareButtons,
   SMSForm,
   Sponsors,
+  Status,
+  StructureReceiveDispositif,
   Summary,
   Text,
   Title

@@ -1,4 +1,4 @@
-import { ContentType, GetActiveStructuresResponse, Id } from "api-types";
+import { ContentType, GetActiveStructuresResponse, Id } from "@refugies-info/api-types";
 import { getPath, PathNames } from "routes";
 import API from "utils/API";
 

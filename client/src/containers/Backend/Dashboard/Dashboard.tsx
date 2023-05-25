@@ -13,7 +13,7 @@ import styles from "./Dashboard.module.scss";
 import { colors } from "colors";
 import { Spinner } from "reactstrap";
 import { themesSelector } from "services/Themes/themes.selectors";
-import { ContentType, GetRegionStatisticsResponse, GetStatisticsResponse, Id } from "api-types";
+import { ContentType, GetRegionStatisticsResponse, GetStatisticsResponse, Id } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");

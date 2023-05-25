@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { ContentType, DispositifStatus, Id } from "api-types";
+import { ContentType, DispositifStatus, Id } from "@refugies-info/api-types";
 import { getPath } from "routes";
 import { canEdit, isStatus } from "lib/dispositif";
 import { cls } from "lib/classname";
@@ -10,8 +10,7 @@ import { themeSelector } from "services/Themes/themes.selectors";
 import { userSelector } from "services/User/user.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
-import Badge from "components/UI/Badge";
-import { getStatus } from "./functions";
+import Status from "../Status";
 import EditModal from "./EditModal";
 import styles from "./Banner.module.scss";
 
@@ -26,7 +25,6 @@ const Banner = (props: Props) => {
   const theme = useSelector(themeSelector(props.themeId));
   const user = useSelector(userSelector);
   const dispositif = useSelector(selectedDispositifSelector);
-  const status = getStatus(dispositif?.status, !!dispositif?.hasDraftVersion, user.admin);
   const pageContext = useContext(PageContext);
 
   // edit
@@ -59,11 +57,12 @@ const Banner = (props: Props) => {
       {canEdit(dispositif, user.user) && pageContext.mode === "view" && (
         <div className={styles.container}>
           <div className={styles.actions}>
-            {status && (
-              <Badge severity={status.type} icon={status.icon} className="me-4">
-                {status.text}
-              </Badge>
-            )}
+            <Status
+              status={dispositif?.status}
+              hasDraftVersion={!!dispositif?.hasDraftVersion}
+              isAdmin={user.admin}
+              className="me-4"
+            />
             <Button evaIcon="edit-outline" className={styles.edit} onClick={onEditClick}>
               Modifier la fiche
             </Button>

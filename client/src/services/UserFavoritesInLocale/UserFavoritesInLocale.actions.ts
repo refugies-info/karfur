@@ -4,7 +4,7 @@ import {
   UPDATE_USER_FAVORITES,
 } from "./UserFavoritesInLocale.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { GetUserFavoritesResponse, Id } from "api-types";
+import { GetUserFavoritesResponse, Id } from "@refugies-info/api-types";
 
 export const fetchUserFavoritesActionCreator = (value: string) =>
   action(FETCH_USER_FAVORITES, value);

@@ -1,4 +1,4 @@
-import { Id, Sponsor } from "api-types";
+import { Id, Sponsor } from "@refugies-info/api-types";
 import { hasStructureTitles, noStructureTitles } from "./data";
 import { ContactInfos } from "./ModalMainSponsor";
 

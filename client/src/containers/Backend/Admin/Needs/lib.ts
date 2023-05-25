@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";
-import { DispositifStatus, GetAllDispositifsResponse, GetLanguagesResponse, Id } from "api-types";
+import { DispositifStatus, GetAllDispositifsResponse, GetLanguagesResponse, Id } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 // TODO: move function

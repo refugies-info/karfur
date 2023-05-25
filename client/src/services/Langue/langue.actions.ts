@@ -5,7 +5,7 @@ import {
   FETCH_LANGUES,
 } from "../Langue/langue.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { GetLanguagesResponse } from "api-types";
+import { GetLanguagesResponse } from "@refugies-info/api-types";
 
 export const setLanguesActionCreator = (value: GetLanguagesResponse[]) =>
   action(SET_LANGUES, value);

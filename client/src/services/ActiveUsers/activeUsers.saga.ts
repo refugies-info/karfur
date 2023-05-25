@@ -5,7 +5,7 @@ import { logger } from "../../logger";
 import { startLoading, LoadingStatusKey, finishLoading } from "../LoadingStatus/loadingStatus.actions";
 import { setActiveUsersActionCreator } from "./activeUsers.actions";
 import { FETCH_ACTIVE_USERS } from "./activeUsers.actionTypes";
-import { GetActiveUsersResponse } from "api-types";
+import { GetActiveUsersResponse } from "@refugies-info/api-types";
 
 export function* fetchActiveUsers(): SagaIterator {
   try {

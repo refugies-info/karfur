@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import Toast from "components/UI/Toast";

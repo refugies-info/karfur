@@ -14,6 +14,7 @@ interface Props {
   valid?: boolean;
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 const Input = (props: Props) => {
@@ -28,6 +29,7 @@ const Input = (props: Props) => {
             className={cls(styles.input, styles.textarea)}
             value={props.value || ""}
             onChange={props.onChange}
+            onFocus={props.onFocus}
           />
         ) : (
           <input
@@ -37,6 +39,7 @@ const Input = (props: Props) => {
             className={styles.input}
             value={props.value || ""}
             onChange={props.onChange}
+            onFocus={props.onFocus}
           />
         )}
         {props.icon && (

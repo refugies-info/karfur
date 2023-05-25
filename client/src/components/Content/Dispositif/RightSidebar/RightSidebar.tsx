@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
+import { DispositifStatus } from "@refugies-info/api-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
-import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage, useEvent } from "hooks";
+import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage, useEvent, useUser } from "hooks";
 import { readAudio, stopAudio } from "lib/readAudio";
 import { getAllPageReadableText } from "lib/getReadableText";
 import { cls } from "lib/classname";
@@ -13,7 +14,7 @@ import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import Button from "components/UI/Button";
 import Toast from "components/UI/Toast";
 import BookmarkedModal from "components/Modals/BookmarkedModal";
-import { ShareButtons, SMSForm, LangueMenu } from "components/Pages/dispositif";
+import { ShareButtons, SMSForm, LangueMenu, StructureReceiveDispositif } from "components/Pages/dispositif";
 import styles from "./RightSidebar.module.scss";
 
 const RightSidebar = () => {
@@ -92,43 +93,61 @@ const RightSidebar = () => {
     () => languages.map((ln) => ln.i18nCode).filter((ln) => !(dispositif?.availableLanguages || []).includes(ln)),
     [dispositif, languages],
   );
+
+  // dispositif is waiting for structure approval
+  const { user } = useUser();
+  const needsApproval = useMemo(() => {
+    const userStructureId = user.user?.structures?.[0];
+    return (
+      !!userStructureId && // user has structure
+      dispositif?.mainSponsor?._id.toString() === userStructureId && // dispo is for user structure
+      dispositif?.status === DispositifStatus.WAITING_STRUCTURE // and waiting for validation
+    );
+  }, [dispositif, user]);
+
   return (
     <div className={styles.container}>
-      <Button
-        onClick={toggleReading}
-        evaIcon={isPlayingTts ? "stop-circle" : "play-circle"}
-        className={cls(styles.btn, isPlayingTts && styles.playing)}
-      >
-        {isPlayingTts ? t("Dispositif.stop") : t("Dispositif.listen")}
-      </Button>
-      <Button
-        priority="secondary"
-        onClick={toggleFavorite}
-        evaIcon={isFavorite ? "star" : "star-outline"}
-        className={styles.btn}
-      >
-        {isFavorite ? t("Dispositif.addedToFavorites") : t("Dispositif.addToFavorites")}
-      </Button>
-      <LangueMenu
-        label={`En ${language?.langueLoc?.toLowerCase() || "français"}`}
-        selectedLn={selectedLn}
-        setSelectedLn={setSelectedLn}
-        className={styles.read}
-        disabledOptions={disabledOptions}
-        withFlag
-      />
-      {showFavoriteToast && (
-        <Toast close={() => setShowFavoriteToast(null)}>
-          {showFavoriteToast === "added"
-            ? t("Dispositif.messageAddedToFavorites")
-            : t("Dispositif.messageRemovedFromFavorites")}
-        </Toast>
+      {!needsApproval ? (
+        <>
+          <Button
+            onClick={toggleReading}
+            evaIcon={isPlayingTts ? "stop-circle" : "play-circle"}
+            className={cls(styles.btn, isPlayingTts && styles.playing)}
+          >
+            {isPlayingTts ? t("Dispositif.stop") : t("Dispositif.listen")}
+          </Button>
+          <Button
+            priority="secondary"
+            onClick={toggleFavorite}
+            evaIcon={isFavorite ? "star" : "star-outline"}
+            className={styles.btn}
+          >
+            {isFavorite ? t("Dispositif.addedToFavorites") : t("Dispositif.addToFavorites")}
+          </Button>
+          <LangueMenu
+            label={`En ${language?.langueLoc?.toLowerCase() || "français"}`}
+            selectedLn={selectedLn}
+            setSelectedLn={setSelectedLn}
+            className={styles.read}
+            disabledOptions={disabledOptions}
+            withFlag
+          />
+          {showFavoriteToast && (
+            <Toast close={() => setShowFavoriteToast(null)}>
+              {showFavoriteToast === "added"
+                ? t("Dispositif.messageAddedToFavorites")
+                : t("Dispositif.messageRemovedFromFavorites")}
+            </Toast>
+          )}
+
+          <SMSForm disabledOptions={disabledOptions} />
+          <ShareButtons />
+
+          {!isAuth && <BookmarkedModal show={showNoAuthModal} toggle={noAuthModalToggle} />}
+        </>
+      ) : (
+        <StructureReceiveDispositif />
       )}
-
-      <SMSForm disabledOptions={disabledOptions} />
-      <ShareButtons />
-
-      {!isAuth && <BookmarkedModal show={showNoAuthModal} toggle={noAuthModalToggle} />}
     </div>
   );
 };

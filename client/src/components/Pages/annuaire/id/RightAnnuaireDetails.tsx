@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import DispositifCard from "components/UI/DispositifCard";
 import DemarcheCard from "components/UI/DemarcheCard";
 import styles from "./RightAnnuaireDetails.module.scss";
-import { GetDispositifsResponse, Id } from "api-types";
+import { GetDispositifsResponse, Id } from "@refugies-info/api-types";
 
 // on firefox behaviour is strange with overflow, we have to add an empty container to have margin
 const BottomContainer = styled.div`
@@ -20,7 +20,7 @@ interface Props {
 
 export const RightAnnuaireDetails = (props: Props) => {
   const activeDispositifsAssocies = (props.dispositifsAssocies || []).filter(
-    (dispositif) => dispositif.status === "Actif"
+    (dispositif) => dispositif.status === "Actif",
   );
   const nbActiveDispositifs = activeDispositifsAssocies.length;
   const { t } = useTranslation();

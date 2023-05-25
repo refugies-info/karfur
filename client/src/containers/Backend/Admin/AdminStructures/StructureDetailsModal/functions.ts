@@ -1,4 +1,4 @@
-import { GetAllDispositifsResponse, GetThemeResponse, Id, SimpleUser } from "api-types";
+import { GetAllDispositifsResponse, GetThemeResponse, Id, SimpleUser } from "@refugies-info/api-types";
 
 export type Dispositif = {
   _id: Id;

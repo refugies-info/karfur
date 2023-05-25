@@ -18,7 +18,7 @@ import { getPath } from "routes";
 
 import styles from "./MiddleAnnuaireDetails.module.scss";
 import { themesSelector } from "services/Themes/themes.selectors";
-import { GetStructureResponse, GetThemeResponse } from "api-types";
+import { GetStructureResponse, GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
   structure: GetStructureResponse | null;

@@ -1,4 +1,4 @@
-import { ageType, frenchLevelType, publicStatusType, publicType } from "api-types";
+import { ageType, frenchLevelType, publicStatusType, publicType } from "@refugies-info/api-types";
 import React from "react";
 
 export const help = [

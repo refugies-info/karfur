@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./TagButton.module.scss";
 import { cls } from "lib/classname";
 import { jsUcfirst } from "lib";
-import { GetThemeResponse } from "api-types";
+import { GetThemeResponse } from "@refugies-info/api-types";
 
 interface Props {
   theme: GetThemeResponse;

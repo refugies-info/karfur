@@ -9,7 +9,7 @@ import { HoursDetails } from "./HoursDetails";
 import { CustomDropDown } from "./CustomDropdown";
 import { CustomCheckBox } from "./CustomCheckBox";
 import { AddButton } from "./Step2";
-import { GetStructureResponse } from "api-types";
+import { GetStructureResponse } from "@refugies-info/api-types";
 
 interface Props {
   structure: GetStructureResponse | null;

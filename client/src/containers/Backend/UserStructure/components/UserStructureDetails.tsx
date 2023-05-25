@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MainContainer, StructurePictureContainer, StructureContainer } from "./SubComponents";
 import Image from "next/image";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
-import { Picture } from "api-types";
+import { Picture } from "@refugies-info/api-types";
 import placeholder from "assets/no_results_alt.svg";
 import styled from "styled-components";
 import FButton from "components/UI/FButton/FButton";
@@ -13,7 +13,7 @@ import styles from "./UserStructureDetails.module.scss";
 import Link from "next/link";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
-import { GetStructureResponse, Id, StructureMember } from "api-types";
+import { GetStructureResponse, Id, StructureMember } from "@refugies-info/api-types";
 
 const StructureName = styled.div`
   font-weight: bold;

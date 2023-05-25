@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useFormContext } from "react-hook-form";
-import { CreateDispositifRequest } from "api-types";
+import { CreateDispositifRequest } from "@refugies-info/api-types";
 import { themesSelector } from "services/Themes/themes.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { BaseModal } from "components/Pages/dispositif";

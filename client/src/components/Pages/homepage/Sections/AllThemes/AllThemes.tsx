@@ -5,7 +5,7 @@ import { getPath } from "routes";
 import ThemesGrid from "components/Content/ThemesGrid";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./AllThemes.module.scss";
-import { Id } from "api-types";
+import { Id } from "@refugies-info/api-types";
 
 interface Props {
   id: string;
@@ -18,8 +18,8 @@ const AllThemes = (props: Props) => {
     router.push({
       pathname: getPath("/recherche", router.locale),
       query: {
-        themes: themeId.toString()
-      }
+        themes: themeId.toString(),
+      },
     });
   };
 

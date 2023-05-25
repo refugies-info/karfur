@@ -12,7 +12,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import FrameModal from "components/Modals/FrameModal/FrameModal";
 import { getStatusColorAndText } from "./functions";
 import styles from "./TranslationNeedsModal.module.scss";
-import { GetNeedResponse, Id } from "api-types";
+import { GetNeedResponse, Id } from "@refugies-info/api-types";
 
 interface Props {
   show: boolean;

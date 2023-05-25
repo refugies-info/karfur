@@ -1,4 +1,4 @@
-import { StructureStatus } from "api-types";
+import { StructureStatus } from "@refugies-info/api-types";
 import { colors } from "colors";
 import { ProgressionStatus, StructureAdminStatus } from "types/interface";
 

@@ -4,7 +4,7 @@ import { useWatch } from "react-hook-form";
 import { useAsyncFn } from "react-use";
 import Image from "next/image";
 import { useContentType } from "hooks/dispositif";
-import { DispositifStatus } from "api-types";
+import { DispositifStatus } from "@refugies-info/api-types";
 import { userSelector } from "services/User/user.selectors";
 import Button from "components/UI/Button";
 import ChoiceButton from "components/Pages/dispositif/Edition/ChoiceButton";

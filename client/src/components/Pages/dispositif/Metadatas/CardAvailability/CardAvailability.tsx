@@ -1,5 +1,5 @@
 import React from "react";
-import { Metadatas } from "api-types";
+import { Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import BaseCard from "../BaseCard";
 import { getCommitment, getFrequency, getTimeSlots } from "../functions";

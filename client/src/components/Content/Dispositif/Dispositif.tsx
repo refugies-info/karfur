@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
-import { ContentType } from "api-types";
+import { ContentType } from "@refugies-info/api-types";
 import { useContentLocale, useScrolledBottomEvent, useWindowSize } from "hooks";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";

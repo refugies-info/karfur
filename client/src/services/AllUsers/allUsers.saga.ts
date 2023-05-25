@@ -9,7 +9,7 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { setAllUsersActionsCreator } from "./allUsers.actions";
 import { FETCH_ALL_USERS } from "./allUsers.actionTypes";
-import { GetAllUsersResponse } from "api-types";
+import { GetAllUsersResponse } from "@refugies-info/api-types";
 
 export function* fetchAllUsers(): SagaIterator {
   try {

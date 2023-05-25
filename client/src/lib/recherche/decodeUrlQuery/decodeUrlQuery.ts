@@ -2,7 +2,7 @@ import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/search
 import { UrlSearchQuery } from "pages/recherche";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { backwardCompatibility } from "./decodeUrlQuery.compatibility";
-import { GetThemeResponse, Id } from "api-types";
+import { GetThemeResponse, Id } from "@refugies-info/api-types";
 
 export const decodeQuery = (
   routerQuery: any,

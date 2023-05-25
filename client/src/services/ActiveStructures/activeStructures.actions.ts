@@ -3,7 +3,7 @@ import {
   FETCH_ACTIVE_STRUCTURES,
 } from "./activeStructures.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { GetActiveStructuresResponse } from "api-types";
+import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 
 export const setActiveStructuresActionCreator = (value: GetActiveStructuresResponse[]) =>
   action(SET_ACTIVE_STRUCTURES, value);
