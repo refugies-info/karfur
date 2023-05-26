@@ -7,7 +7,7 @@
   position: relative;
   font-family: $font-family-sans-serif;
   width: 240px;
-  height: 180px;
+  max-height: 180px;
   padding: u(2);
   z-index: 1;
 

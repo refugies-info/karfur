@@ -146,9 +146,25 @@ html body {
   }
 }
 
-// GMap Autocomplete
+// Google Map
 .pac-container {
   z-index: 2000 !important;
+}
+// fix for: https://github.com/JustFly1984/react-google-maps-api/issues/2906
+.gm-style-moc {
+  height: unset !important;
+}
+@media print {
+  .gm-style .gmnoprint,
+  .gmnoprint {
+    display: none;
+  }
+}
+@media screen {
+  .gm-style .gmnoscreen,
+  .gmnoscreen {
+    display: none;
+  }
 }
 
 // Bootstrap btn fix
