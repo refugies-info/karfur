@@ -112,7 +112,7 @@ export const login2FA = async (
   // CASE 4: missing contact infos
   let structure: any = {};
   if (role !== "admin") {
-    structure = await getStructureFromDB(role, false, { nom: 1, picture: 1 });
+    structure = await getStructureFromDB(role, { nom: 1, picture: 1 });
   }
   throw new LoginError("NO_CONTACT", {
     role,

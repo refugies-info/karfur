@@ -18,9 +18,7 @@ export const checkIfUserIsAuthorizedToModifyStructure = async (structureId: Stru
   logger.info("[checkIfUserIsAuthorizedToModifyStructure] received", {
     id: structureId
   });
-  const fetchedStructure = await getStructureFromDB(structureId, false, {
-    membres: 1
-  });
+  const fetchedStructure = await getStructureFromDB(structureId, { membres: 1 });
   if (!fetchedStructure) {
     logger.info("[checkIfUserIsAuthorizedToModifyStructure] no structure with this id", {
       id: structureId
@@ -43,9 +41,7 @@ export const checkIfUserIsAuthorizedToModifyStructure = async (structureId: Stru
 
 export const getStructureMembers = async (structureId: StructureId) => {
   try {
-    const structureNeededFields = { membres: 1 };
-    const structure = await getStructureFromDB(structureId, false, structureNeededFields);
-
+    const structure = await getStructureFromDB(structureId, { membres: 1 });
     if (!structure || !structure.membres || structure.membres.length === 0) {
       return [];
     }
