@@ -66,7 +66,7 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
     getInitialTranslations(user.userId.toString(), traductions)
   );
   const language = useMemo(() => router.query.language as Languages, [router.query]);
-  const validator = useMemo(() => traductions?.[0].validator, [traductions]);
+  const validator = useMemo(() => traductions?.[0]?.validator, [traductions]);
 
   // PROGRESS
   const dispositifSections = useMemo(() => keys(defaultTraduction), [defaultTraduction]);

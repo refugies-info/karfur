@@ -75,6 +75,7 @@ const Map = () => {
           onLoad={onLoad}
           onUnmount={onUnmount}
           onClick={() => setPopup(null)}
+          clickableIcons={false}
           options={{
             mapTypeControl: false,
             fullscreenControl: false,

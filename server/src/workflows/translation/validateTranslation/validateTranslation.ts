@@ -3,12 +3,14 @@ import { cloneDeep, set } from "lodash";
 import { DemarcheContent, DispositifContent, Languages, TranslationContent } from "@refugies-info/api-types";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { deleteTradsInDB } from "../../../modules/traductions/traductions.repository";
+import { getLanguageByCode } from "../../../modules/langues/langues.repository";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
 import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
-import { Dispositif, DispositifModel, ErrorModel, Traductions } from "../../../typegoose";
+import { Dispositif, DispositifModel, ErrorModel, Traductions, UserId } from "../../../typegoose";
 import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
 import { deleteLineBreaks, deleteLineBreaksInInfosections } from "../../../modules/dispositif/dispositif.service";
+import { log } from "./log";
 
 const deleteLineBreaksInTranslation = (translation: Partial<TranslationContent>) => {
   const newTranslation = cloneDeep(translation);
@@ -44,6 +46,7 @@ const validateTranslation = (dispositif: Dispositif, language: Languages, transl
        */
       Promise.all([
         deleteTradsInDB(dispositif._id, language),
+        getLanguageByCode(language).then(langue => log(dispositif._id, translation.userId as UserId, langue._id)),
         addOrUpdateDispositifInContenusAirtable(
           "",
           "",

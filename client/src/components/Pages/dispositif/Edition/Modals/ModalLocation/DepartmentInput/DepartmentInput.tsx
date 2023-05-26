@@ -1,4 +1,5 @@
-import { useState, Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { useState, Dispatch, SetStateAction, useEffect, useRef, useMemo } from "react";
+import uniqBy from "lodash/uniqBy";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { formatDepartment, getDbDepartment } from "lib/departments";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -17,10 +18,10 @@ const DepartmentInput = (props: Props) => {
 
   const { placesService, placePredictions, getPlacePredictions } = usePlacesAutocompleteService({
     apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,
-    //@ts-ignore
     options: {
+      input: search,
       componentRestrictions: { country: "fr" },
-      types: ["administrative_area_level_2"],
+      types: ["administrative_area_level_2", "postal_code"],
       language: "fr",
     },
   });
@@ -33,10 +34,13 @@ const DepartmentInput = (props: Props) => {
       if (!departement) return;
       let depName = departement.long_name;
       if (depName === "Département de Paris") depName = "Paris";
-      if (depName && !props.selectedDepartments?.includes(depName)) {
-        const newDeps = [...(props.selectedDepartments || []), getDbDepartment(depName)];
-        props.setSelectedDepartments(newDeps);
-        setHidePredictions(true);
+      if (depName) {
+        const dbDepartmentName = getDbDepartment(depName);
+        if (!props.selectedDepartments?.includes(dbDepartmentName)) {
+          const newDeps = [...(props.selectedDepartments || []), dbDepartmentName];
+          props.setSelectedDepartments(newDeps);
+          setHidePredictions(true);
+        }
       }
     });
   };
@@ -51,6 +55,21 @@ const DepartmentInput = (props: Props) => {
 
   const handleChange = (e: any) => setSearch(e.target.value);
 
+  /**
+   * Re-calculate predictions to fix GMap autocomplete issues:
+   * - use postal_code and departement research.
+   * - if postal code, keep only first 2 digits. Then remove duplicates
+   */
+  const predictions = useMemo(() => {
+    return uniqBy(
+      placePredictions.map((p) => ({
+        id: p.place_id,
+        text: formatDepartment(p.structured_formatting.main_text),
+      })),
+      "text",
+    );
+  }, [placePredictions]);
+
   return (
     <div>
       <div className="position-relative w-100">
@@ -61,17 +80,17 @@ const DepartmentInput = (props: Props) => {
 
         {!!(!hidePredictions && placePredictions?.length) && (
           <div className={styles.suggestions} ref={refSuggestions}>
-            {placePredictions.slice(0, 5).map((p, i) => (
+            {predictions.slice(0, 5).map((p, i) => (
               <button
                 key={i}
                 onClick={(e: any) => {
                   e.preventDefault();
-                  onPlaceSelected(p.place_id);
+                  onPlaceSelected(p.id);
                 }}
                 className={styles.btn}
               >
                 <EVAIcon name="pin-outline" fill="black" size={20} className="me-2" />
-                {formatDepartment(p.structured_formatting.main_text)}
+                {p.text}
               </button>
             ))}
           </div>
