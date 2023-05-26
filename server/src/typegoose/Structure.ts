@@ -98,7 +98,7 @@ export class Structure extends Base {
   public description?: string;
   @prop()
   public hasResponsibleSeenNotification?: boolean;
-  @prop({ type: () => [String] })
+  @prop({ type: () => [String] }) // TODO: remove?
   public disposAssociesLocalisation?: string[];
   @prop()
   public adminComments?: string;

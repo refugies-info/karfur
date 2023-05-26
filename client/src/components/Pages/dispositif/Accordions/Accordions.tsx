@@ -39,14 +39,15 @@ interface Props {
 const Accordions = ({ content, sectionKey, color100, color30, contentType }: Props) => {
   const { Event } = useEvent();
   const pageContext = useContext(PageContext);
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<number[]>([]);
+
   const toggle = (id: number) => {
-    setOpen((o) => (o === id ? null : id));
+    setOpen((o) => (o.includes(id) ? o.filter((item) => item !== id) : [...o, id]));
     if (pageContext.mode === "view") {
       Event("DISPO_VIEW", "open", "Accordion");
     }
   };
-  const isOpen = (index: number) => open === index || pageContext.mode === "translate";
+  const isOpen = (index: number) => open.includes(index) || pageContext.mode === "translate";
 
   return pageContext.mode !== "edit" ? (
     <div className={styles.container}>
