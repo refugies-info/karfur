@@ -38,18 +38,9 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
         ? structure.membres.filter((user) => user.roles && user.userId && user.roles.includes("administrateur"))
         : [];
       const responsableId = responsablesArray.length > 0 ? responsablesArray[0].userId : null;
-
+      const createur: SimpleUser | null = structure.createur[0] || null;
       return {
-        _id: structure._id,
-        nom: structure.nom || "",
-        membres: structure.membres || [],
-        createur: structure.createur || null,
-        nbMembres,
-        nbFiches,
-        dispositifsIds,
-        responsable: responsableId?.toString() || null,
         ...pick(structure, [
-          "nom",
           "acronyme",
           "status",
           "picture",
@@ -58,6 +49,14 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
           "adminProgressionStatus",
           "adminPercentageProgressionStatus",
         ]),
+        _id: structure._id,
+        nom: structure.nom || "",
+        membres: structure.membres || [],
+        nbMembres,
+        nbFiches,
+        dispositifsIds,
+        createur,
+        responsable: responsableId?.toString() || null,
       };
     });
 

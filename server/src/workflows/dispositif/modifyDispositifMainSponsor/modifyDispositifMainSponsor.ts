@@ -1,7 +1,6 @@
 import logger from "../../../logger";
 import { Response } from "../../../types/interface";
 import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 import { log } from "./log";
 import { Dispositif } from "../../../typegoose";
 import { NotFoundError } from "../../../errors";
@@ -18,8 +17,6 @@ export const modifyDispositifMainSponsor = async (id: string, body: MainSponsorR
   };
 
   await updateDispositifInDB(id, modifiedDispositif, !!oldDispositif.hasDraftVersion);
-
-  await updateAssociatedDispositifsInStructure(id, body.sponsorId);
 
   await log(oldDispositif, id, body.sponsorId, userId);
 
