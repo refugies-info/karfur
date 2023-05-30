@@ -68,7 +68,7 @@ const CustomNavbarEdit = (props: Props) => {
     (e: any) => {
       e.preventDefault();
       Event("DISPO_CREATE", "click quit", "Navbar");
-      const isComplete = progress === 0;
+      const isComplete = totalSteps - progress === 0;
       if (
         // no status
         !dispositif?.status ||
@@ -83,7 +83,7 @@ const CustomNavbarEdit = (props: Props) => {
         toggleQuitModal();
       }
     },
-    [dispositif, progress, toggleQuitModal, quit, Event],
+    [dispositif, progress, totalSteps, toggleQuitModal, quit, Event],
   );
 
   // Publish
