@@ -221,7 +221,7 @@ const CompleteContent = (props: Props) => {
           <Button
             onClick={(e: any) => {
               e.preventDefault();
-              toggle();
+              redirectToBo();
             }}
             evaIcon="checkmark-circle-2"
             iconPosition="right"
@@ -231,7 +231,7 @@ const CompleteContent = (props: Props) => {
         </div>
       </>
     );
-  }, [step, onPublish, toggle, user.admin, keepTranslations, hasChanges, dispositif, totalSteps, redirectToBo]);
+  }, [step, onPublish, user.admin, keepTranslations, hasChanges, dispositif, totalSteps, redirectToBo]);
 
   return (
     <div>
