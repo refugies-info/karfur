@@ -236,18 +236,21 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     logger.error("[publishDispositif] error while updating contenu in airtable", { error: error.message });
   }
 
-  try {
-    await sendNotificationsForDispositif(dispositifId, "fr");
-  } catch (error) {
-    logger.error("[publishDispositif] error while sending notifications", error);
-  }
+  // only if first publication
+  if (!draftDispositif) {
+    try {
+      await sendNotificationsForDispositif(dispositifId, "fr");
+    } catch (error) {
+      logger.error("[publishDispositif] error while sending notifications", error);
+    }
 
-  try {
-    await sendMailWhenDispositifPublished(newDispo);
-  } catch (error) {
-    logger.error("[publishDispositif] error while sending email", {
-      error: error.message,
-    });
+    try {
+      await sendMailWhenDispositifPublished(newDispo);
+    } catch (error) {
+      logger.error("[publishDispositif] error while sending email", {
+        error: error.message,
+      });
+    }
   }
 };
 

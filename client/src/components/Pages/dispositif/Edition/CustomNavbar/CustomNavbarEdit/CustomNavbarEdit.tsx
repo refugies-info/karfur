@@ -8,7 +8,7 @@ import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
 import { useContentType } from "hooks/dispositif";
-import { useEvent, useLocale } from "hooks";
+import { useEvent, useLocale, useUser } from "hooks";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
@@ -55,7 +55,15 @@ const CustomNavbarEdit = (props: Props) => {
   // Quit
   const [showQuitModal, setShowQuitModal] = useState(false);
   const toggleQuitModal = useCallback(() => setShowQuitModal((o) => !o), []);
-  const quit = useCallback(() => router.push("/backend/user-dash-contrib"), [router]);
+  const { user } = useUser();
+  const dispositifId = useMemo(() => dispositif?._id, [dispositif]);
+  const quit = useCallback(() => {
+    if (user.admin) {
+      router.push(`/backend/admin?tab=contenus&contentId=${dispositifId}`);
+    } else {
+      router.push("/backend/user-dash-contrib");
+    }
+  }, [router, user.admin, dispositifId]);
   const handleQuit = useCallback(
     (e: any) => {
       e.preventDefault();
