@@ -6,6 +6,8 @@ if (typeof Audio !== "undefined") {
   audio = new Audio();
 }
 
+const BASE_RATE = 0.75;
+
 const readAudio = function (
   text: string,
   locale: string = "fr-fr",
@@ -32,6 +34,7 @@ const readAudio = function (
         //On ne le joue que si l'audio est toujours activé
         if (isActive) {
           audio.load();
+          audio.playbackRate = BASE_RATE;
           audio.play().catch(() => { });
         }
         startLoader(false);
@@ -46,6 +49,7 @@ const readAudio = function (
 
 const stopAudio = function () {
   if (!audio) return;
+  API.cancel_tts_subscription();
   audio.pause();
   audio.currentTime = 0;
 };
@@ -62,7 +66,7 @@ const resumeAudio = function () {
 
 const changeRate = function (rate: 1 | 2) {
   if (!audio) return;
-  const customRate = rate === 2 ? 1.5 : rate;
+  const customRate = rate === 2 ? 1.5 : BASE_RATE;
   audio.playbackRate = customRate;
 };
 
