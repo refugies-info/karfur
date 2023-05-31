@@ -43,15 +43,21 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
   }
 
   const editedDispositif: Partial<Dispositif> = {};
-  // if admin or editing a published dispositif => publish
-  if (user.isAdmin() || (oldDispositif.status === DispositifStatus.ACTIVE && oldDispositif.hasDraftVersion)) {
+  // if editing a published dispositif => publish
+  if (oldDispositif.status === DispositifStatus.ACTIVE && oldDispositif.hasDraftVersion) {
     await publishDispositifService(id, user._id, user.isAdmin() ? body.keepTranslations : false);
   } else {
-    if (dispositif.getMainSponsor()?.membres.find((membre) => membre.userId.toString() === user._id.toString())) {
+    const isInStructure = dispositif.getMainSponsor()?.membres.find((membre) => membre.userId.toString() === user._id.toString());
+    if (isInStructure) {
       // dans la structure
       editedDispositif.status = DispositifStatus.WAITING_ADMIN;
+    } else if (user.isAdmin()) {
+      // admin et brouillon
+      if ([DispositifStatus.DRAFT].includes(oldDispositif.status)) {
+        editedDispositif.status = DispositifStatus.WAITING_ADMIN;
+      }
     } else {
-      // pas dans la structure
+      // pas dans la structure et pas admin
       editedDispositif.status = DispositifStatus.WAITING_STRUCTURE;
       await sendMailToStructureMembersWhenDispositifEnAttente(oldDispositif);
     }

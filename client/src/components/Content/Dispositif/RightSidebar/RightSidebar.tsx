@@ -1,16 +1,12 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { useRouter } from "next/router";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { DispositifStatus } from "@refugies-info/api-types";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage, useEvent, useUser } from "hooks";
-import { readAudio, stopAudio } from "lib/readAudio";
-import { getAllPageReadableText } from "lib/getReadableText";
+import { useDispositifTts } from "hooks/dispositif";
 import { cls } from "lib/classname";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
-import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
-import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import Button from "components/UI/Button";
 import Toast from "components/UI/Toast";
 import BookmarkedModal from "components/Modals/BookmarkedModal";
@@ -47,26 +43,9 @@ const RightSidebar = () => {
   }, [addToFavorites, deleteFromFavorites, isFavorite, isAuth, noAuthModalToggle, Event]);
 
   // tts
-  const theme = useSelector(themeSelector(dispositif?.theme));
-  const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
-  const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
-
-  const [isPlayingTts, setIsPlayingTts] = useState(false);
-  const toggleReading = useCallback(() => {
-    if (!isPlayingTts) {
-      const readableText = getAllPageReadableText(dispositif, theme, secondaryThemes, needs);
-      readAudio(readableText, locale, () => setIsPlayingTts(false));
-      setIsPlayingTts(true);
-      Event("VOICEOVER", "click sidebar button", "Dispo View");
-    } else {
-      stopAudio();
-      setIsPlayingTts(false);
-    }
-  }, [isPlayingTts, dispositif, locale, theme, secondaryThemes, needs, Event]);
+  const { isPlayingTts, isLoadingTts, toggleReading } = useDispositifTts();
 
   // available languages
-  const router = useRouter();
-  const dispatch = useDispatch();
   const languages = useSelector(allLanguesSelector);
   const [selectedLn, setSelectedLn] = useState<string>(contentLocale);
 
@@ -112,6 +91,7 @@ const RightSidebar = () => {
           <Button
             onClick={toggleReading}
             evaIcon={isPlayingTts ? "stop-circle" : "play-circle"}
+            isLoading={isLoadingTts}
             className={cls(styles.btn, isPlayingTts && styles.playing)}
           >
             {isPlayingTts ? t("Dispositif.stop") : t("Dispositif.listen")}
