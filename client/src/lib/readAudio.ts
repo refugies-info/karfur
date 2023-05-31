@@ -49,6 +49,7 @@ const readAudio = function (
 
 const stopAudio = function () {
   if (!audio) return;
+  API.cancel_tts_subscription();
   audio.pause();
   audio.currentTime = 0;
 };

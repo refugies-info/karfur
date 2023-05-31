@@ -32,8 +32,8 @@ export const getAllPageReadableText = (
   theme: GetThemeResponse | null,
   secondaryThemes: GetThemeResponse[],
   needs: GetNeedResponse[]
-): string => {
-  if (!dispositif) return "";
+): string[] => {
+  if (!dispositif) return [];
   return [
     dispositif.titreInformatif || "",
     getReadableText(dispositif.what),
@@ -43,5 +43,4 @@ export const getAllPageReadableText = (
     getLinkedThemesReadableText(theme, secondaryThemes, needs)
   ]
     .filter(t => !!t)
-    .join(". ")
 }
