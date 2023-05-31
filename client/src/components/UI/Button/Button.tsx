@@ -18,6 +18,7 @@ interface Props {
   children?: string | React.ReactNode;
   nativeButtonProps?: ButtonProps["nativeButtonProps"];
   size?: ButtonProps["size"];
+  isLoading?: boolean;
 }
 
 const getIconColor = (props: Props) => {
@@ -46,13 +47,20 @@ const DSFRButton = (props: Props) => {
       disabled={props.disabled}
       onClick={props.onClick}
       title={props.title}
-      iconId={props.icon}
+      iconId={props.isLoading ? undefined : props.icon}
       size={props.size}
       nativeButtonProps={{ id: props.id, ...(props.nativeButtonProps || {}) }}
     >
+      {props.isLoading && (
+        <EVAIcon
+          name="loader-outline"
+          fill={getIconColor(props)}
+          className={cls(getIconMargin(props), styles.loading)}
+        />
+      )}
       {(props.children || props.evaIcon) && (
         <>
-          {props.evaIcon && (
+          {props.evaIcon && !props.isLoading && (
             <EVAIcon name={props.evaIcon} fill={getIconColor(props)} className={getIconMargin(props)} />
           )}
           {props.children}

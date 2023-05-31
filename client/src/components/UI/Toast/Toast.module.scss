@@ -15,10 +15,10 @@
   width: auto !important;
   position: fixed;
   z-index: 1049;
-  bottom: 32px;
+  bottom: 56px;
   left: 50%;
   transform: translate(-50%, 200%);
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 
   &:global(.show) {
     transform: translate(-50%, 0);
