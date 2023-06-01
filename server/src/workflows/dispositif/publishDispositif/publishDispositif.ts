@@ -9,6 +9,25 @@ import { publishDispositif as publishDispositifService, isDispositifComplete } f
 import { log } from "./log";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 
+const getWaitingStatus = async (dispositif: Dispositif, oldDispositif: Dispositif, user: User): Promise<DispositifStatus | null> => {
+  const isInStructure = dispositif.getMainSponsor()?.membres.find((membre) => membre.userId.toString() === user._id.toString());
+  const isNewStructure = dispositif.getMainSponsor()?.membres.length === 0;
+  if (isInStructure || isNewStructure) {
+    // dans la structure
+    return DispositifStatus.WAITING_ADMIN;
+  } else if (user.isAdmin()) {
+    // admin et brouillon
+    if ([DispositifStatus.DRAFT].includes(oldDispositif.status)) {
+      return DispositifStatus.WAITING_ADMIN;
+    }
+  } else {
+    // pas dans la structure et pas admin
+    await sendMailToStructureMembersWhenDispositifEnAttente(oldDispositif);
+    return DispositifStatus.WAITING_STRUCTURE;
+  }
+  return null;
+}
+
 export const publishDispositif = async (id: string, body: PublishDispositifRequest, user: User): Response => {
   logger.info("[publishDispositif] received", { id, body, user: user._id });
 
@@ -47,20 +66,8 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
   if (oldDispositif.status === DispositifStatus.ACTIVE && oldDispositif.hasDraftVersion) {
     await publishDispositifService(id, user._id, user.isAdmin() ? body.keepTranslations : false);
   } else {
-    const isInStructure = dispositif.getMainSponsor()?.membres.find((membre) => membre.userId.toString() === user._id.toString());
-    if (isInStructure) {
-      // dans la structure
-      editedDispositif.status = DispositifStatus.WAITING_ADMIN;
-    } else if (user.isAdmin()) {
-      // admin et brouillon
-      if ([DispositifStatus.DRAFT].includes(oldDispositif.status)) {
-        editedDispositif.status = DispositifStatus.WAITING_ADMIN;
-      }
-    } else {
-      // pas dans la structure et pas admin
-      editedDispositif.status = DispositifStatus.WAITING_STRUCTURE;
-      await sendMailToStructureMembersWhenDispositifEnAttente(oldDispositif);
-    }
+    const status = await getWaitingStatus(dispositif, oldDispositif, user);
+    if (status) editedDispositif.status = status;
   }
 
 
