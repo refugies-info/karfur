@@ -66,7 +66,7 @@ const resumeAudio = function () {
 
 const changeRate = function (rate: 1 | 2) {
   if (!audio) return;
-  const customRate = rate === 2 ? 1.5 : BASE_RATE;
+  const customRate = rate === 2 ? 1.15 : BASE_RATE;
   audio.playbackRate = customRate;
 };
 
