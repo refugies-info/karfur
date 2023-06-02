@@ -59,7 +59,7 @@ export const formatContributions = (
         mainSponsor: {
           nom: userStructure?.nom || ""
         },
-        hasDraftVersion: false
+        hasDraftVersion: dispositif.hasDraftVersion
       });
     });
 
