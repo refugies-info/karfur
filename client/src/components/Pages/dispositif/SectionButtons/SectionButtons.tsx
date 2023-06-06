@@ -30,12 +30,19 @@ const SectionButtons = (props: Props) => {
   // tts
   const [showTtsButtons, setShowTtsButtons] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoadingTts, setIsLoadingTts] = useState(false);
   const [rateSpeed, setRateSpeed] = useState<1 | 2>(1);
 
   const startReading = useCallback(() => {
     if (!showTtsButtons) {
       // start
-      readAudio(getReadableText(props.content), locale, () => setIsPlaying(false));
+      readAudio(
+        getReadableText(props.content),
+        locale,
+        () => setIsPlaying(false),
+        true,
+        (val: boolean) => setIsLoadingTts(val),
+      );
       setShowTtsButtons(true);
       Event("VOICEOVER", "click section button", "Dispo View");
     } else {
@@ -75,6 +82,7 @@ const SectionButtons = (props: Props) => {
         priority={showTtsButtons ? "primary" : "tertiary"}
         icon={getPlayIcon(isPlaying, showTtsButtons)}
         className={styles.btn}
+        isLoading={isLoadingTts}
         onClick={isPlaying ? pause : startReading}
       />
       <div className={styles.tts_buttons}>

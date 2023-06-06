@@ -26,10 +26,10 @@ const canViewDispositif = (dispositif: Dispositif, user?: User): boolean => {
   if (user?.isAdmin()) return true;
 
   const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
-  const isMemberOfStructure = !!(sponsor?.membres || []).find((membre) => membre.userId && membre.userId.toString() === user._id.toString());
+  const isMemberOfStructure = user && !!(sponsor?.membres || []).find((membre) => membre.userId && membre.userId.toString() === user._id.toString());
   if (isMemberOfStructure) return true;
 
-  const isAuthor = dispositif.creatorId.toString() === user._id.toString();
+  const isAuthor = user && dispositif.creatorId.toString() === user._id.toString();
   if (isAuthor && [
     DispositifStatus.DRAFT,
     DispositifStatus.DELETED,

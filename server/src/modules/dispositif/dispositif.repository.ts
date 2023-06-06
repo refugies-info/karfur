@@ -86,6 +86,7 @@ export const getSimpleDispositifs = async (
       needs: 1,
       translations: 1,
       nbVuesMobile: 1,
+      hasDraftVersion: 1,
     },
     "",
     limit,
@@ -99,6 +100,7 @@ export const getSimpleDispositifs = async (
         metadatas: dispositif.metadatas,
         ...omit(dispositif, ["translations"]),
         availableLanguages: Object.keys(dispositif.translations),
+        hasDraftVersion: dispositif.hasDraftVersion
       };
       return resDisp;
     }),

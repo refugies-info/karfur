@@ -193,4 +193,5 @@ export interface SimpleDispositif {
     picture: Picture;
   };
   availableLanguages: string[];
+  hasDraftVersion: boolean;
 }
