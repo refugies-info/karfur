@@ -96,6 +96,7 @@ const MapEdit = () => {
         lat,
         lng,
       };
+      setSelectedMarker(null);
       setPoiForm(newMarker);
       setShowSidebar(false);
     }
