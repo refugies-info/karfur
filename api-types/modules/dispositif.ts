@@ -20,6 +20,15 @@ export enum ViewsType {
 }
 type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
 
+export type Suggestion = {
+  created_at: Date;
+  username?: string;
+  read: boolean;
+  suggestion: string;
+  suggestionId: string;
+  section: string;
+}
+
 /**
  * @url GET /dispositifs/count
  */

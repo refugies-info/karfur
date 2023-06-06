@@ -1,8 +1,8 @@
-import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { GetStructureDispositifResponse } from "@refugies-info/api-types";
 import { FormattedNotification } from "./types";
 
 export const formatNotifications = (
-  dispositifs: GetDispositifsResponse[],
+  dispositifs: GetStructureDispositifResponse[],
   hasResponsibleSeenAnnuaireNotif: boolean
 ): FormattedNotification[] => {
   let result: FormattedNotification[] = [];
@@ -19,21 +19,20 @@ export const formatNotifications = (
         createdAt: dispo.created_at,
       });
     }
-    /* TODO: add suggestions to dispositif?
     if (!dispo.suggestions) return;
     dispo.suggestions.forEach((suggestion) => {
       result.push({
         type: "reaction",
         username: suggestion.username,
-        createdAt: suggestion.createdAt,
+        createdAt: suggestion.created_at,
         suggestionId: suggestion.suggestionId,
-        read: !!suggestion.read,
+        read: suggestion.read,
         text: suggestion.suggestion,
         title: dispo.titreInformatif,
         dispositifId: dispo._id,
         typeContenu: dispo.typeContenu,
       });
-    }); */
+    });
   });
   result.sort((a, b) => {
     if (a.read && !b.read) {
@@ -77,7 +76,7 @@ export const formatNotifications = (
 };
 
 export const getNbNewNotifications = (
-  dispositifs: GetDispositifsResponse[],
+  dispositifs: GetStructureDispositifResponse[],
   hasResponsibleSeenAnnuaireNotif: boolean
 ) => {
   const formattedNotifications = formatNotifications(

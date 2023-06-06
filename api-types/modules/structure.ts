@@ -1,4 +1,5 @@
 import { Id, Picture, SimpleDispositif, SimpleUser, StructureMember, StructureStatus } from "../generics";
+import { Suggestion } from "./dispositif";
 
 type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
 /**
@@ -130,6 +131,11 @@ export interface OpeningHours {
   precisions?: string;
 }
 
+export type GetStructureDispositifResponse = SimpleDispositif & {
+  nbMercis?: number;
+  suggestions?: Suggestion[];
+}
+
 /**
  * @url GET /structures/{id}
  */
@@ -170,5 +176,5 @@ export interface GetStructureResponse {
   adminPercentageProgressionStatus: string;
 
   membres: StructureMember[];
-  dispositifsAssocies: SimpleDispositif[];
+  dispositifsAssocies: GetStructureDispositifResponse[];
 }
