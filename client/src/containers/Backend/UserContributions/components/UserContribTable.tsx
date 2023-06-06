@@ -64,7 +64,10 @@ export const UserContribTable = (props: Props) => (
               }}
               className="align-middle"
             >
-              <ContribStyledStatus text={element.status} />
+              <ContribStyledStatus
+                text={element.status}
+                textToDisplay={element.hasDraftVersion ? "Nouvelle version en cours" : undefined}
+              />
             </td>
 
             <td className="align-middle">

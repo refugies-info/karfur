@@ -115,7 +115,7 @@ export const addOrUpdateDispositifInContenusAirtable = async (
   departments: Metadatas["location"],
   hasContentBeenDeleted: boolean,
 ) => {
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV === "dev") {
     logger.info("[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable", {
       env: process.env.NODE_ENV,
       data: { titleInformatif, titreMarque, id, themesList, locale, departments },
@@ -160,7 +160,9 @@ export const addOrUpdateDispositifInContenusAirtable = async (
             return;
           }
           // add content in airtable
-          await addDispositifInContenusAirtable(title, link, themesList, type, departments);
+          if (!hasContentBeenDeleted) {
+            await addDispositifInContenusAirtable(title, link, themesList, type, departments);
+          }
           return;
         }
         if (hasContentBeenDeleted) {

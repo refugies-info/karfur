@@ -198,7 +198,8 @@ const CustomNavbarEdit = (props: Props) => {
           togglePublishModal();
         }}
         status={dispositif?.status || null}
-        isComplete={progress === 0}
+        hasDraftVersion={!!dispositif?.hasDraftVersion}
+        isComplete={progress === totalSteps}
       />
       <PublishModal
         show={showPublishModal}
