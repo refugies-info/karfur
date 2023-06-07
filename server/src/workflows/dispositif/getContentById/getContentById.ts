@@ -25,16 +25,24 @@ const canViewDispositif = (dispositif: Dispositif, user?: User): boolean => {
   if (dispositif.status === DispositifStatus.ACTIVE) return true;
   if (user?.isAdmin()) return true;
 
+  // is part of structure: OK
   const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
   const isMemberOfStructure = user && !!(sponsor?.membres || []).find((membre) => membre.userId && membre.userId.toString() === user._id.toString());
   if (isMemberOfStructure) return true;
 
+  // if author: OK while the structure has not accepted the dispositif
   const isAuthor = user && dispositif.creatorId.toString() === user._id.toString();
   if (isAuthor && [
     DispositifStatus.DRAFT,
     DispositifStatus.DELETED,
     DispositifStatus.WAITING_STRUCTURE,
   ].includes(dispositif.status)) return true;
+
+  // if no members yet, user just created the structure: OK
+  const noMembersYet = sponsor && (sponsor.membres || []).length === 0;
+  if (isAuthor && noMembersYet && dispositif.status === DispositifStatus.WAITING_ADMIN) {
+    return true;
+  }
 
   return false;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { useUser } from "hooks";
 import {
   fetchUserContributionsActionCreator,
   deleteDispositifActionCreator,
@@ -12,7 +13,6 @@ import {
 } from "services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { userDetailsSelector } from "services/User/user.selectors";
 import { formatContributions } from "./functions";
 import { NoContribution } from "./components/NoContribution";
 import { FrameModal } from "components/Modals";
@@ -86,8 +86,13 @@ const UserContributions = (props: Props) => {
     window.scrollTo(0, 0);
   }, [dispatch]);
 
-  const user = useSelector(userDetailsSelector);
-  const contributions = formatContributions(userContributions, userStructureContributions, userStructure, user?._id);
+  const { user } = useUser();
+  const contributions = formatContributions(
+    userContributions,
+    userStructureContributions,
+    userStructure,
+    user?.user?._id,
+  );
 
   const deleteDispositif = (event: any, dispositifId: Id, isAuthorizedToDelete: boolean) => {
     event.stopPropagation();
@@ -183,6 +188,7 @@ const UserContributions = (props: Props) => {
               toggleTutoModal={toggleTutoModal}
               setTutoModalDisplayed={setTutoModalDisplayed}
               deleteDispositif={deleteDispositif}
+              isAdmin={user.admin}
             />
           </WhiteContainer>
         </ContribContainer>

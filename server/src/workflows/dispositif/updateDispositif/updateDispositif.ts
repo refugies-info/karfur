@@ -8,21 +8,23 @@ import { ContentType, DispositifStatus, UpdateDispositifRequest, UpdateDispositi
 import { buildNewDispositif, isDispositifComplete } from "../../../modules/dispositif/dispositif.service";
 import { log } from "./log";
 import { logContact } from "../../../modules/dispositif/log";
+import { isString } from "lodash";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
   // content
   const content = { ...oldDispositif.translations.fr.content };
-  if (body.titreInformatif) content.titreInformatif = body.titreInformatif;
-  if (body.titreMarque) content.titreMarque = body.titreMarque;
-  if (body.abstract) content.abstract = body.abstract;
-  if (body.what) content.what = body.what;
+  // check isString to allow empty values
+  if (isString(body.titreInformatif)) content.titreInformatif = body.titreInformatif;
+  if (isString(body.titreMarque)) content.titreMarque = body.titreMarque;
+  if (isString(body.abstract)) content.abstract = body.abstract;
+  if (isString(body.what)) content.what = body.what;
 
   if (oldDispositif.typeContenu === ContentType.DISPOSITIF) {
-    if (body.why) (content as DispositifContent).why = body.why;
-    if (body.how) content.how = body.how;
+    if (isString(body.why)) (content as DispositifContent).why = body.why;
+    if (isString(body.how)) content.how = body.how;
   } else {
-    if (body.how) content.how = body.how;
-    if (body.next) (content as DemarcheContent).next = body.next;
+    if (isString(body.how)) content.how = body.how;
+    if (isString(body.next)) (content as DemarcheContent).next = body.next;
   }
 
   return {

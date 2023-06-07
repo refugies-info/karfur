@@ -92,7 +92,8 @@ export const correspondingStatus: ContentStatus[] = [
   },
   {
     storedStatus: DispositifStatus.WAITING_ADMIN,
-    displayedStatus: "À valider",
+    displayedStatus: "Relecture en cours",
+    adminStatus: "À valider",
     color: lightGreen,
     order: 0,
     textColor: colors.white,
