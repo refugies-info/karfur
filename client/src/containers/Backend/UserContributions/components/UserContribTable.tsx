@@ -13,6 +13,7 @@ interface Props {
   toggleTutoModal: () => void;
   setTutoModalDisplayed: (arg: string) => void;
   deleteDispositif: (arg1: any, arg: Id, arg2: boolean) => void;
+  isAdmin: boolean;
 }
 
 export const UserContribTable = (props: Props) => (
@@ -67,6 +68,7 @@ export const UserContribTable = (props: Props) => (
               <ContribStyledStatus
                 text={element.status}
                 textToDisplay={element.hasDraftVersion ? "Nouvelle version en cours" : undefined}
+                isAdmin={props.isAdmin}
               />
             </td>
 
