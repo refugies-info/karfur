@@ -39,7 +39,6 @@ export const StatusRow = (props: Props) => {
                 <StyledStatus
                   text={status.storedStatus}
                   overrideColor={status.storedStatus !== props.element.status}
-                  textToDisplay={status.displayedStatus}
                   color={status.color}
                   disabled={status.storedStatus === props.element.status}
                 />
