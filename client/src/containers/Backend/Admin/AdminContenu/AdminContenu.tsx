@@ -372,7 +372,7 @@ export const AdminContenu = () => {
               <FilterButton
                 key={status.storedStatus}
                 onClick={() => onFilterClick(status.storedStatus)}
-                text={`${status.displayedStatus} (${nbContent})`}
+                text={`${status.adminStatus || status.displayedStatus} (${nbContent})`}
                 isSelected={filter === status.storedStatus}
               />
             );

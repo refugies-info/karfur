@@ -5,9 +5,10 @@ import { getStructureById as getStructure } from "../../../modules/structure/str
 import { getUserById } from "../../../modules/users/users.repository";
 import { Dispositif, Structure, User } from "../../../typegoose";
 import { NotFoundError } from "../../../errors";
-import { getSimpleDispositifs } from "../../../modules/dispositif/dispositif.repository";
+import { getStructureDispositifs } from "../../../modules/dispositif/dispositif.repository";
 import { DispositifStatus, GetStructureResponse, Languages, StructureMember } from "@refugies-info/api-types";
 import { Membre } from "../../../typegoose/Structure";
+import { omit } from "lodash";
 
 const getMainRole = (membre: Membre) => {
   if (membre.roles.includes("administrateur")) return "Responsable";
@@ -68,11 +69,11 @@ export const getStructureById = async (
     mainSponsor: structure._id,
   };
 
-  const structureDispositifs = await getSimpleDispositifs(dbQuery, selectedLocale);
+  const structureDispositifs = await getStructureDispositifs(dbQuery, selectedLocale);
   const result: GetStructureResponse = {
     ...structure.toObject(),
     membres: structureMembers,
-    dispositifsAssocies: structureDispositifs,
+    dispositifsAssocies: structureDispositifs.map(dispositif => (!isAdmin && !isMember) ? omit(dispositif, ["nbMercis", "suggestions"]) : dispositif),
   };
 
   return {
