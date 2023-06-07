@@ -131,10 +131,14 @@ export const getStructureDispositifs = async (
     sort,
   )
     .then(async (dispositifs) => {
-      const usernames = await Promise.all(dispositifs.map(dispositif => getUsersById(
-        uniq(dispositif.suggestions.map(s => s.userId).filter(id => !!id)),
-        { username: 1 }
-      )));
+      const usernames = await Promise.all(
+        dispositifs.map(dispositif => dispositif.suggestions.length > 0 ?
+          getUsersById(
+            uniq(dispositif.suggestions.map(s => s.userId).filter(id => !!id)),
+            { username: 1 }
+          ) :
+          []
+        ));
       return { dispositifs, usernames: union(...usernames) }
     })
     .then(({ dispositifs, usernames }) => dispositifs.map((dispositif) => {
