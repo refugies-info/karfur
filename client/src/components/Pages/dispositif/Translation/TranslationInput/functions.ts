@@ -138,7 +138,15 @@ export type FooterStatus = {
   text: string
 }
 
-export const getFooterStatus = (index: number, mySuggestion: Suggestion, suggestions: Suggestion[]): FooterStatus => {
+export const getFooterStatus = (index: number, mySuggestion: Suggestion, suggestions: Suggestion[], validatedIndex: number | null): FooterStatus => {
+  // validated suggestion
+  if (index === validatedIndex) {
+    return {
+      status: "success",
+      text: "Proposition retenue",
+    }
+  }
+
   // My suggestion
   if (index === -1) {
     return mySuggestion.toFinish || mySuggestion.toReview || !mySuggestion.text

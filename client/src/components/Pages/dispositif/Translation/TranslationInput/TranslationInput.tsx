@@ -173,8 +173,8 @@ const TranslationInput = (props: Props) => {
   }, [section, closeInput, deleteTrad]);
 
   const footerStatus = useMemo(
-    () => getFooterStatus(index, mySuggestion, suggestions),
-    [index, mySuggestion, suggestions],
+    () => getFooterStatus(index, mySuggestion, suggestions, validatedIndex),
+    [index, mySuggestion, suggestions, validatedIndex],
   );
 
   return (
