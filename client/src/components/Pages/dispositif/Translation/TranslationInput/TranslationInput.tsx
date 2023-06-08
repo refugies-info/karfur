@@ -169,6 +169,7 @@ const TranslationInput = (props: Props) => {
   }, [section, oldSuggestion, validate, closeInput, Event]);
   const deleteTranslation = useCallback(() => {
     deleteTrad(section);
+    setValidatedIndex(null);
     closeInput();
   }, [section, closeInput, deleteTrad]);
 
