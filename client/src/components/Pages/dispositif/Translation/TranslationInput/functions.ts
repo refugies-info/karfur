@@ -29,7 +29,7 @@ export enum ExpertTradStatus {
 
 export const getExpertTradStatus = (mySuggestion: Suggestion, suggestions: Suggestion[], showMissingSteps: boolean | undefined): ExpertTradStatus => {
   // no text, showMissingSteps is active
-  if (!mySuggestion.text && suggestions.length === 0 && showMissingSteps) return ExpertTradStatus.MISSING
+  if ((!mySuggestion.text || mySuggestion.toReview) && showMissingSteps) return ExpertTradStatus.MISSING
 
   // my text is pending if I have one, if I don't, all the others are pending
   if (
