@@ -53,9 +53,9 @@ const AddMemberModal = (props: Props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchActiveUsersActionCreator());
-  }, []);
+  }, [dispatch]);
 
-  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS));
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USERS));
 
   const activeUsers = useSelector(activeUsersSelector);
 
