@@ -202,6 +202,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     newDispositif.lastModificationDate = draftDispositif.lastModificationDate;
     newDispositif.lastModificationAuthor = draftDispositif.lastModificationAuthor;
     newDispositif.needs = draftDispositif.needs;
+    newDispositif.nbMots = draftDispositif.nbMots;
   }
 
   const newDispo = await updateDispositifInDB(dispositifId, newDispositif);
