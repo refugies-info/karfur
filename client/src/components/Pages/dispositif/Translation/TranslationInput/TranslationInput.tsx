@@ -241,6 +241,7 @@ const TranslationInput = (props: Props) => {
                 validatedIndex={validatedIndex}
                 suggestionsCount={suggestions.length}
                 isExpert={user.expertTrad}
+                hasOwnSuggestion={!!mySuggestion.text}
                 prev={() => dec()}
                 next={() => inc()}
                 validateSuggestion={validateSuggestion}
