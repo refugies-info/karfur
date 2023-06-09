@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import debounce from "lodash/debounce";
 import FInput from "components/UI/FInput";
 import { UserDetail } from "components/Backend/UserDetail";
@@ -8,26 +8,33 @@ import { GetActiveUsersResponse, Id } from "@refugies-info/api-types";
 
 interface Props {
   dataArray: GetActiveUsersResponse[];
+  excludedUsers?: Id[];
   onSelectItem: (data: GetActiveUsersResponse | null) => void;
   selectedItemId: Id | null;
 }
 
-const filterUser = (data: GetActiveUsersResponse[], search: string) => {
+const filterUser = (data: GetActiveUsersResponse[], excludedUsers: Id[], search: string) => {
+  const normalizedSearch = removeAccents(search.toLowerCase());
   return data.filter(
     (element) =>
       element.username &&
-      element.username &&
+      !excludedUsers.includes(element._id) &&
       removeAccents(element.username)
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase()
-        .includes(removeAccents(search.toLowerCase())),
+        .includes(normalizedSearch),
   );
 };
 
 const debouncedQuery = debounce(
-  (data: GetActiveUsersResponse[], search: string, callback: (res: GetActiveUsersResponse[]) => void) => {
-    const res = filterUser(data, search);
+  (
+    data: GetActiveUsersResponse[],
+    excludedUsers: Id[],
+    search: string,
+    callback: (res: GetActiveUsersResponse[]) => void,
+  ) => {
+    const res = filterUser(data, excludedUsers, search);
     callback(res);
   },
   500,
@@ -39,12 +46,9 @@ export const CustomUserSearchBar = (props: Props) => {
 
   const onValueChange = (e: any) => {
     setValue(e.target.value);
+    debouncedQuery(props.dataArray, props.excludedUsers || [], value, (res) => setFilteredUsers(res));
     props.onSelectItem(null);
   };
-
-  useEffect(() => {
-    debouncedQuery(props.dataArray, value, (res) => setFilteredUsers(res));
-  }, [props.dataArray, value]);
 
   return (
     <div>
