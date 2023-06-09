@@ -10,6 +10,7 @@ import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./LocationDropdown.module.scss";
 import { useEvent } from "hooks";
+import { getPlaceName } from "./functions";
 
 interface Props {
   mobile?: boolean;
@@ -30,6 +31,7 @@ const LocationDropdown = (props: Props) => {
     options: {
       componentRestrictions: { country: "fr" },
       types: ["administrative_area_level_2", "locality", "postal_code"],
+      language: "fr",
     },
   });
   const onSelectPrediction = useCallback(
@@ -118,7 +120,7 @@ const LocationDropdown = (props: Props) => {
           <span className={styles.icon}>
             <EVAIcon name="pin-outline" fill="black" size={!props.mobile ? 16 : 24} />
           </span>
-          {p.description}
+          {getPlaceName(p)}
         </Button>
       ))}
     </div>

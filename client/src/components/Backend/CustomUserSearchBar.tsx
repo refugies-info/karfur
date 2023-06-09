@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import debounce from "lodash/debounce";
 import FInput from "components/UI/FInput";
 import { UserDetail } from "components/Backend/UserDetail";
 import { removeAccents } from "lib";
@@ -23,15 +24,28 @@ const filterUser = (data: GetActiveUsersResponse[], search: string) => {
         .includes(removeAccents(search.toLowerCase())),
   );
 };
+
+const debouncedQuery = debounce(
+  (data: GetActiveUsersResponse[], search: string, callback: (res: GetActiveUsersResponse[]) => void) => {
+    const res = filterUser(data, search);
+    callback(res);
+  },
+  500,
+);
+
 export const CustomUserSearchBar = (props: Props) => {
   const [value, setValue] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState<GetActiveUsersResponse[]>([]);
 
   const onValueChange = (e: any) => {
     setValue(e.target.value);
     props.onSelectItem(null);
   };
 
-  const filteredUsers = filterUser(props.dataArray, value);
+  useEffect(() => {
+    debouncedQuery(props.dataArray, value, (res) => setFilteredUsers(res));
+  }, [props.dataArray, value]);
+
   return (
     <div>
       <FInput
