@@ -11,7 +11,7 @@ import { activeUsersSelector } from "services/ActiveUsers/activeUsers.selector";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { CustomUserSearchBar } from "components/Backend/CustomUserSearchBar";
 import styles from "./MemberModal.module.scss";
-import { GetActiveUsersResponse, Id } from "@refugies-info/api-types";
+import { GetActiveUsersResponse, Id, StructureMember } from "@refugies-info/api-types";
 
 const Title = styled.div`
   font-weight: normal;
@@ -43,6 +43,7 @@ interface Props {
   show: boolean;
   toggle: () => void;
   addUserInStructure: (arg: Id) => void;
+  membres: StructureMember[];
 }
 
 const AddMemberModal = (props: Props) => {
@@ -80,6 +81,7 @@ const AddMemberModal = (props: Props) => {
       {!isLoading && (
         <CustomUserSearchBar
           dataArray={activeUsers}
+          excludedUsers={props.membres.map((m) => m.userId)}
           onSelectItem={onSelectItem}
           selectedItemId={selectedUser ? selectedUser._id : null}
         />
