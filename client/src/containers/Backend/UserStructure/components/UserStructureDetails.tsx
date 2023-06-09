@@ -135,6 +135,7 @@ export const UserStructureDetails = (props: Props) => {
           toggle={toggleAddMemberModal}
           show={showAddMemberModal}
           addUserInStructure={props.addUserInStructure}
+          membres={membres}
         />
       )}
       {isUserAuthorizedToAddMembers && (
