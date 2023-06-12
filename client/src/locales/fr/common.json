@@ -379,6 +379,7 @@
     "nbThanks": "{{count}} mercis",
     "feedbackThanks": "Merci pour votre retour !",
     "contentNotTranslated": "Cette fiche n'est pas encore disponible en :",
+    "infoContentNotTranslated": "Cette fiche n’est pas encore disponible en {{language}}. Nos traducteurs travaillent dessus !",
     "linkedThemes": "Thématiques liées",
     "mapPinList": "Afficher la liste",
     "react": "Réagir",
