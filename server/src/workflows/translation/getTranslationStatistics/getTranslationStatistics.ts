@@ -4,8 +4,7 @@ import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repos
 import { Statistics, TranslationStatisticsRequest } from "@refugies-info/api-types";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 import { Dispositif } from "../../../typegoose";
-import { DemarcheContent, DispositifContent } from "../../../typegoose/Dispositif";
-import { countWords, countWordsForInfoSections } from "../../../typegoose/Traductions";
+import { countDispositifWords } from "../../../libs/wordCounter";
 import { cache } from "../../../libs/cache";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
@@ -13,17 +12,7 @@ const NB_WORDS_CACHE = "nbWordsCache";
 
 const countWordsInDispositif = (dispositif: Dispositif): number =>
   Object.entries(dispositif.translations)
-    .map(([ln, translation]) =>
-      ln === "fr"
-        ? 0
-        : countWords(translation.content?.titreInformatif) +
-        countWords(translation.content?.titreMarque) +
-        countWords(translation.content?.abstract) +
-        countWords(translation.content?.what) +
-        countWordsForInfoSections(translation.content?.how) +
-        countWordsForInfoSections((translation.content as DemarcheContent)?.next) +
-        countWordsForInfoSections((translation.content as DispositifContent)?.why),
-    )
+    .map(([ln, translation]) => ln === "fr" ? 0 : countDispositifWords(translation.content))
     .reduce((acc, count) => acc + count, 0);
 
 const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest): Promise<Statistics> =>

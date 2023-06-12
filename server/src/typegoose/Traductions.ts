@@ -1,17 +1,14 @@
 import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Languages } from "@refugies-info/api-types";
-import { difference, flattenDeep, get, intersection, isEmpty, isString } from "lodash";
+import { difference, flattenDeep, get, intersection, isEmpty } from "lodash";
 import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
 import {
-  DemarcheContent,
   Dispositif,
-  DispositifContent,
-  InfoSection,
-  InfoSections,
   TranslationContent,
 } from "./Dispositif";
 import { User } from "./User";
+import { countDispositifWords } from "../libs/wordCounter";
 
 export enum TraductionsType {
   SUGGESTION = "suggestion",
@@ -62,22 +59,6 @@ const keys = (translated: any) => {
   ];
 };
 
-/**
- * Basic word counter
- *
- * TODO améliorer le compteur lorsque l'on passera en markdown pour retirer les marqueurs markdown
- * @todo
- * @param str string
- * @returns number of words
- */
-export const countWords = (str?: string): number => (isString(str) ? str.split(/\s+/).length : 0);
-
-export const countWordsForInfoSections = (infoSections: InfoSections): number =>
-  Object.values(infoSections || {}).reduce(
-    (acc, { title, text }: InfoSection) => acc + countWords(title) + countWords(text),
-    0,
-  );
-
 @modelOptions({ schemaOptions: { collection: "traductions", timestamps: { createdAt: "created_at" } } })
 export class Traductions extends Base {
   @prop({ ref: () => Dispositif })
@@ -114,15 +95,7 @@ export class Traductions extends Base {
   public updatedAt: Date;
 
   public countWords(): number {
-    return (
-      countWords(this.translated.content?.titreInformatif) +
-      countWords(this.translated.content?.titreMarque) +
-      countWords(this.translated.content?.abstract) +
-      countWords(this.translated.content?.what) +
-      countWordsForInfoSections(this.translated.content?.how) +
-      countWordsForInfoSections((this.translated.content as DemarcheContent)?.next) +
-      countWordsForInfoSections((this.translated.content as DispositifContent)?.why)
-    );
+    return countDispositifWords(this.translated.content)
   }
 
   /**

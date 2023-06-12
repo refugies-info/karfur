@@ -29,7 +29,7 @@ export enum ExpertTradStatus {
 
 export const getExpertTradStatus = (mySuggestion: Suggestion, suggestions: Suggestion[], showMissingSteps: boolean | undefined): ExpertTradStatus => {
   // no text, showMissingSteps is active
-  if (!mySuggestion.text && suggestions.length === 0 && showMissingSteps) return ExpertTradStatus.MISSING
+  if ((!mySuggestion.text || mySuggestion.toReview) && showMissingSteps) return ExpertTradStatus.MISSING
 
   // my text is pending if I have one, if I don't, all the others are pending
   if (
@@ -138,7 +138,15 @@ export type FooterStatus = {
   text: string
 }
 
-export const getFooterStatus = (index: number, mySuggestion: Suggestion, suggestions: Suggestion[]): FooterStatus => {
+export const getFooterStatus = (index: number, mySuggestion: Suggestion, suggestions: Suggestion[], validatedIndex: number | null): FooterStatus => {
+  // validated suggestion
+  if (index === validatedIndex) {
+    return {
+      status: "success",
+      text: "Proposition retenue",
+    }
+  }
+
   // My suggestion
   if (index === -1) {
     return mySuggestion.toFinish || mySuggestion.toReview || !mySuggestion.text

@@ -9,6 +9,7 @@ import { buildNewDispositif, isDispositifComplete } from "../../../modules/dispo
 import { log } from "./log";
 import { logContact } from "../../../modules/dispositif/log";
 import { isString } from "lodash";
+import { countDispositifWords } from "../../../libs/wordCounter";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
   // content
@@ -59,6 +60,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
       ...oldDispositif.translations,
       fr: translationContent
     },
+    nbMots: countDispositifWords(translationContent.content),
     ...(await buildNewDispositif(body, user._id.toString())),
   };
 
