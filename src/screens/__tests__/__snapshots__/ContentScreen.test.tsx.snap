@@ -408,6 +408,17 @@ exports[`ContentScreen should render correctly 1`] = `
                 },
               ]
             }
+          />
+          <View
+            style={
+              [
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                  "marginBottom": 16,
+                },
+              ]
+            }
           >
             <Text
               isRTL={false}
@@ -7318,6 +7329,17 @@ exports[`ContentScreen should toggle map modal 1`] = `
             ]
           }
         >
+          <View
+            style={
+              [
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                  "marginBottom": 16,
+                },
+              ]
+            }
+          />
           <View
             style={
               [
