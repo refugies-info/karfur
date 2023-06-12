@@ -152,7 +152,8 @@
     "feedbackTitle": "Vous avez trouvé cette fiche utile ?",
     "feedbackSubtitle": "Remerciez les contributeurs qui l’ont rédigée et traduite pour vous !",
     "nbThanks": "{{count}} mercis",
-    "feedbackThanks": "Merci pour votre retour !"
+    "feedbackThanks": "Merci pour votre retour !",
+    "languageUnavailable": "Cette fiche n’est pas encore disponible en {{language}}. Nos traducteurs travaillent dessus !"
   },
   "Infocards": {
     "proposedBy": "Proposé par",

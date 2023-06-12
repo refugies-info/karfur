@@ -90,6 +90,7 @@ import Section from "./Section";
 import { dateDiffReadable } from "./dateDiff";
 import { LinkedNeed, LinkedTheme, Mercis } from "./Sections";
 import { isEmpty } from "lodash";
+import LanguageUnavailable from "./LanguageUnavailable";
 
 const HeaderText = styled(TextBigBold)`
   margin-top: ${({ theme }) => theme.margin * 2}px;
@@ -390,6 +391,8 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         HeaderContent={HeaderContentContentScreen}
       >
         <Rows>
+          <LanguageUnavailable />
+
           <Title>
             <ReadableText>{selectedContent.titreInformatif}</ReadableText>
           </Title>
