@@ -78,9 +78,9 @@ export class Suggestion {
   @prop()
   userId?: Types.ObjectId;
   @prop()
-  read: Boolean;
+  read: boolean;
   @prop()
-  suggestion: String;
+  suggestion: string;
   @prop()
   suggestionId: Uuid;
   @prop()

@@ -24,7 +24,7 @@ export const getStatus = (status: DispositifStatus | undefined, hasDraftVersion:
       };
     case DispositifStatus.DRAFT:
       return {
-        text: hasDraftVersion ? "Brouillon de travail" : "Brouillon",
+        text: hasDraftVersion ? "Nouvelle version en cours" : "Brouillon",
         type: "new",
         icon: "ri-pencil-fill"
       };

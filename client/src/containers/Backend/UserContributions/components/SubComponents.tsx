@@ -83,10 +83,15 @@ const ContribStyledStatusContainer = styled.div`
   color: ${(props: ContribStyledStatusContainerProps) => (props.textColor ? props.textColor : colors.white)};
 `;
 
-export const ContribStyledStatus = (props: { text: string; size?: string }) => {
+export const ContribStyledStatus = (props: {
+  text: string;
+  textToDisplay?: string;
+  size?: string;
+  isAdmin?: boolean;
+}) => {
   const [onMouseHover, setOnMouseHover] = useState(false);
 
-  const { status, color, textColor } = getColorAndStatus(props.text);
+  const { status, color, textColor } = getColorAndStatus(props.text, props.isAdmin);
   return (
     <div style={{ width: props.size === "large" ? "" : "120px" }}>
       <ContribStyledStatusContainer
@@ -96,7 +101,7 @@ export const ContribStyledStatus = (props: { text: string; size?: string }) => {
         onMouseLeave={() => setOnMouseHover(false)}
         size={props.size}
       >
-        {status}
+        {props.textToDisplay || status}
         {onMouseHover && <EVAIcon name={"question-mark-circle"} size={20} fill={textColor} className="ms-2" />}
       </ContribStyledStatusContainer>
     </div>

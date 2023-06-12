@@ -5,9 +5,17 @@ export const getDbDepartment = (depName: string) => {
   return index > -1 ? departments[index] : depName;
 }
 
+/**
+ * Get department name or postal code from GMap autocomplete
+ * @returns a department number or name formatted
+ */
 export const formatDepartment = (depName: string) => {
   let depDbFormat = depName;
 
+  // postal code
+  if (depName.match(/\d{5}/g)) return depName.slice(0, 2);
+
+  // department
   if (!depDbFormat.includes(" - ")) {
     depDbFormat = getDbDepartment(depName);
   }

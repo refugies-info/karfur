@@ -24,6 +24,11 @@ import {
 
 export type Step = "titreInformatif" | "titreMarque" | "what" | "why" | "how" | "how" | "next" | "abstract";
 export type Suggestion = {
+  validator?: {
+    id: string
+    username: string
+    picture?: Picture
+  }
   author: {
     id: string
     username: string
@@ -61,6 +66,7 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
     getInitialTranslations(user.userId.toString(), traductions)
   );
   const language = useMemo(() => router.query.language as Languages, [router.query]);
+  const validator = useMemo(() => traductions?.[0]?.validator, [traductions]);
 
   // PROGRESS
   const dispositifSections = useMemo(() => keys(defaultTraduction), [defaultTraduction]);
@@ -101,10 +107,12 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
   /**
    * Valide la traduction de la section en cours pour la traduction de l'utilisateur courant
    */
+  const [hasChangeForm, setHasChangeForm] = useState(false); // used to show validator name or not
   const validate = useCallback(
     async (section: string, value: { text?: string, unfinished?: boolean, reviewDone?: boolean }) => {
       // if section changed, remove from toReview
       if (value.reviewDone && data.toReview && data.toReview.includes(section)) {
+        setHasChangeForm(true);
         const toReview = [...data.toReview].filter(t => t !== section)
         setValue("toReview", toReview);
       }
@@ -116,6 +124,7 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
         setValue("toFinish", toFinish);
       }
       if (value.text !== undefined) {
+        if (value.text !== get(data, `translated.${section}`)) setHasChangeForm(true);
         //@ts-ignore
         setValue(`translated.${section}`, value.text)
       }
@@ -139,7 +148,7 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
       return {
         section,
         initialText: get(defaultTraduction, section),
-        mySuggestion: transformMyTranslation(section, data, user.user),
+        mySuggestion: transformMyTranslation(section, data, user.user, !hasChangeForm ? validator : undefined),
         suggestions: filterAndTransformTranslations(section, translations),
         locale: language,
         validate,
@@ -150,7 +159,7 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
         maxLength: section.includes("abstract") ? 110 : undefined,
       };
     },
-    [defaultTraduction, translations, language, validate, deleteTrad, data, user],
+    [defaultTraduction, translations, language, validate, deleteTrad, data, user, validator, hasChangeForm],
   );
 
   return {

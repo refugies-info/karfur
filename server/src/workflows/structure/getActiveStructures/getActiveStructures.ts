@@ -31,9 +31,11 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
     if (item.dispositifsAssocies && item.dispositifsAssocies.length) {
       item.dispositifsAssocies.map((el) => {
         if (el.metadatas?.location) {
-          for (var i = 0; i < el.metadatas?.location.length; i++) {
-            if (!newStructure.disposAssociesLocalisation.includes(el.metadatas?.location[i])) {
-              newStructure.disposAssociesLocalisation.push(el.metadatas?.location[i]);
+          if (Array.isArray(el.metadatas?.location)) {
+            for (var i = 0; i < el.metadatas?.location.length; i++) {
+              if (!newStructure.disposAssociesLocalisation.includes(el.metadatas?.location[i])) {
+                newStructure.disposAssociesLocalisation.push(el.metadatas?.location[i]);
+              }
             }
           }
         }

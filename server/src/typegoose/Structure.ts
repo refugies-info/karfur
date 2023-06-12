@@ -1,8 +1,6 @@
-import { isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { StructureStatus } from "@refugies-info/api-types";
-import { MustBePopulatedError } from "../errors";
 import { Base } from "./Base";
-import { Dispositif } from "./Dispositif";
 import { ImageSchema } from "./generics";
 import { User, UserId } from "./User";
 
@@ -54,8 +52,6 @@ export class Structure extends Base {
   public contact?: string;
   @prop({ required: true, ref: () => User })
   public createur!: Ref<User>;
-  @prop({ ref: () => Dispositif })
-  public dispositifsAssocies?: Ref<Dispositif>[];
   @prop()
   public link?: string;
   @prop()
@@ -102,7 +98,7 @@ export class Structure extends Base {
   public description?: string;
   @prop()
   public hasResponsibleSeenNotification?: boolean;
-  @prop({ type: () => [String] })
+  @prop({ type: () => [String] }) // TODO: remove?
   public disposAssociesLocalisation?: string[];
   @prop()
   public adminComments?: string;
@@ -110,14 +106,6 @@ export class Structure extends Base {
   public adminProgressionStatus?: string;
   @prop()
   public adminPercentageProgressionStatus: string;
-
-  public getDispositifsAssocies(): Dispositif[] {
-    if (!this.dispositifsAssocies) return [];
-    if (!isDocumentArray(this.dispositifsAssocies)) {
-      throw new MustBePopulatedError("dispositifsAssocies");
-    }
-    return this.dispositifsAssocies;
-  }
 }
 
 export type StructureId = Structure["_id"] | Structure["id"];

@@ -1,23 +1,13 @@
 import logger from "../../logger";
-import { asyncForEach } from "../../libs/asyncForEach";
-import { DispositifId, Structure, StructureId, StructureModel, UserId } from "../../typegoose";
+import { Structure, StructureId, StructureModel, UserId } from "../../typegoose";
 import { FilterQuery, ProjectionFields } from "mongoose";
 import { Id, Metadatas, Picture } from "@refugies-info/api-types";
 
 export const getStructureFromDB = async (
   id: StructureId,
-  withDispositifsAssocies: boolean,
   fields: "all" | Record<string, number>,
 ): Promise<Structure> =>
   StructureModel.findOne({ _id: id }, fields === "all" ? {} : fields)
-    .then((structure) =>
-      withDispositifsAssocies
-        ? structure.populate({
-          path: "dispositifsAssocies",
-          populate: { path: "theme secondaryThemes mainSponsor" },
-        })
-        : structure,
-    )
     .then((structure) => structure.toObject() as Structure)
     .catch((e) => {
       logger.error("[getStructureFromDB] error", e);
@@ -31,57 +21,64 @@ export const getStructuresFromDB = async (query: FilterQuery<Structure>, neededF
   return StructureModel.find(query, neededFields);
 };
 
+type PopulatedDispositif = {
+  _id: Id;
+  status: string;
+  metadatas: Metadatas
+}
+
+type PopulatedCreateur = {
+  _id: Id;
+  username: string;
+  email: string;
+  picture: Picture | null;
+}
+
+type StructureWithDispos = Omit<Structure, "createur"> & {
+  dispositifsAssocies: PopulatedDispositif[];
+  createur: PopulatedCreateur[];
+}
+
 export const getStructuresWithDispos = async (
   query: FilterQuery<Structure>,
   neededFields: ProjectionFields<Structure>,
-) => {
+): Promise<StructureWithDispos[]> => {
   logger.info("[getStructuresWithDispos] with dispositifs associes");
-  return StructureModel.find(query, neededFields).populate<{
-    dispositifsAssocies: { _id: Id; status: string; metadatas: Metadatas }[];
-    createur: { _id: Id; username: string; email: string; picture: Picture | null };
-  }>([
-    { path: "dispositifsAssocies", select: "_id status metadatas" },
-    { path: "createur", select: "_id username email picture" },
-  ]);
-};
-
-export const updateAssociatedDispositifsInStructure = async (dispositifId: DispositifId, structureId: StructureId) => {
-  logger.info("[updateAssociatedDispositifsInStructure] updating", {
-    dispositifId,
-    structureId,
-  });
-
-  // we add if not the case the dispositif to the correct structure
-  await StructureModel.findByIdAndUpdate(
-    { _id: structureId },
-    { $addToSet: { dispositifsAssocies: dispositifId } },
-    { new: true },
-  );
-
-  const structureArrayWithDispoAssocie = await StructureModel.find({
-    dispositifsAssocies: dispositifId,
-  });
-
-  // if one structure it is the correct one
-  if (structureArrayWithDispoAssocie.length === 1) return;
-
-  // if more than 1, we have to remove the dispo from the wrong structures
-  await asyncForEach(structureArrayWithDispoAssocie, async (structure) => {
-    if (structure._id.toString() === structureId.toString()) return;
-    logger.info("[updateAssociatedDispositifsInStructure] remove dispositif associe from structure", {
-      structure: structure._id,
-      dispositifId,
-    });
-    await StructureModel.findByIdAndUpdate(
-      { _id: structure._id },
-      { $pull: { dispositifsAssocies: dispositifId } },
-      { new: true },
-    );
-    return;
-  });
-
-  logger.info("[updateAssociatedDispositifsInStructure] successfully updated structures");
-  return;
+  return StructureModel.aggregate([
+    { $match: query },
+    {
+      $lookup: {
+        from: "dispositifs",
+        localField: "_id",
+        foreignField: "mainSponsor",
+        as: "dispositifsAssocies"
+      }
+    },
+    {
+      $lookup: {
+        from: "users",
+        localField: "createur",
+        foreignField: "_id",
+        as: "createur"
+      }
+    },
+    {
+      $project: {
+        ...neededFields,
+        dispositifsAssocies: {
+          _id: 1,
+          status: 1,
+          metadatas: 1
+        },
+        createur: {
+          _id: 1,
+          username: 1,
+          email: 1,
+          picture: 1,
+        }
+      }
+    }
+  ])
 };
 
 export const createStructureInDB = (structure: Partial<Structure>) => StructureModel.create(structure);

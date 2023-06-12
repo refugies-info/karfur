@@ -22,6 +22,7 @@ export const getDefaultDispositif = (formValues: DeepPartialSkipArrayKey<CreateD
     nbVuesMobile: 0,
     availableLanguages: [],
     needs: [],
+    hasDraftVersion: false
   }
 }
 

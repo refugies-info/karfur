@@ -12,7 +12,7 @@ export const updateStructure = async (id: string, body: PatchStructureRequest, u
   await checkIfUserIsAuthorizedToModifyStructure(id, user);
   logger.info("[modifyStructure] updating stucture", { structureId: id });
 
-  const oldStructure = await getStructureFromDB(id, false, {
+  const oldStructure = await getStructureFromDB(id, {
     picture: 1,
     nom: 1,
     status: 1,
