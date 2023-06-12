@@ -79,6 +79,7 @@
 }
 .right {
   width: 320px;
+  z-index: 1;
 
   @include media-max("lg-limit") {
     display: none;

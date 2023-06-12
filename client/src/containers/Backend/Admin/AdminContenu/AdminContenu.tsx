@@ -372,7 +372,7 @@ export const AdminContenu = () => {
               <FilterButton
                 key={status.storedStatus}
                 onClick={() => onFilterClick(status.storedStatus)}
-                text={`${status.displayedStatus} (${nbContent})`}
+                text={`${status.adminStatus || status.displayedStatus} (${nbContent})`}
                 isSelected={filter === status.storedStatus}
               />
             );
@@ -443,7 +443,10 @@ export const AdminContenu = () => {
                     </div>
                   </td>
                   <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
-                    <StyledStatus text={element.status} />
+                    <StyledStatus
+                      text={element.status}
+                      textToDisplay={element.hasDraftVersion ? "Nouvelle version en cours" : undefined}
+                    />
                   </td>
                   <td className="align-middle fw-bold">{element.nbMercis} 🙏</td>
                   <td className="align-middle fw-bold">{element.nbVues || 0} 📈</td>

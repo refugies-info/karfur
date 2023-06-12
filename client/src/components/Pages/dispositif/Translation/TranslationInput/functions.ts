@@ -70,8 +70,8 @@ export const getDisplay = (mySuggestion: Suggestion, suggestions: Suggestion[], 
   if (!!mySuggestion.text) {
     return {
       text: mySuggestion.text,
-      username: username, // TODO: when toReview, use validatorId to show infos?
-      picture: "me",
+      username: mySuggestion.validator?.username || username,
+      picture: !!mySuggestion.validator ? "user" : "me",
       status
     };
   }
@@ -141,7 +141,7 @@ export type FooterStatus = {
 export const getFooterStatus = (index: number, mySuggestion: Suggestion, suggestions: Suggestion[]): FooterStatus => {
   // My suggestion
   if (index === -1) {
-    return mySuggestion.toFinish || !mySuggestion.text
+    return mySuggestion.toFinish || mySuggestion.toReview || !mySuggestion.text
       ? {
         status: "pending",
         text: "Proposition en cours",

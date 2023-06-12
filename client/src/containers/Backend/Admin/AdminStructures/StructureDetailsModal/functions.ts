@@ -9,6 +9,7 @@ export type Dispositif = {
   color: string;
   color30: string;
   hasCreatedStructure: boolean;
+  hasDraftVersion: boolean;
 };
 
 export const getDispositifsWithAllInformationRequired = (
@@ -23,7 +24,7 @@ export const getDispositifsWithAllInformationRequired = (
     );
     if (simplifiedDispositif) {
       const theme = themes.find(t => simplifiedDispositif?.theme === t._id);
-      let element = {
+      let element: Dispositif = {
         titreInformatif: simplifiedDispositif.titreInformatif,
         creator: simplifiedDispositif.creatorId,
         created_at: simplifiedDispositif.created_at,
@@ -31,7 +32,8 @@ export const getDispositifsWithAllInformationRequired = (
         status: simplifiedDispositif.status,
         color: theme?.colors?.color100 || "#000000",
         color30: theme?.colors?.color30 || "#CCCCCC",
-        hasCreatedStructure: index === 0
+        hasCreatedStructure: index === 0,
+        hasDraftVersion: simplifiedDispositif.hasDraftVersion
       };
       dispositifsWithAllInformation.push(element);
     }

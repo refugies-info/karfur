@@ -1,13 +1,13 @@
 import { RootState } from "../rootReducer";
 import { areDispositifsAssociesPopulate } from "../../types/typeGuards";
-import { GetDispositifsResponse, GetStructureResponse } from "@refugies-info/api-types";
+import { GetStructureDispositifResponse, GetStructureResponse } from "@refugies-info/api-types";
 
 export const userStructureSelector = (state: RootState): GetStructureResponse | null =>
   state.userStructure;
 
 export const userStructureDisposAssociesSelector = (
   state: RootState
-): GetDispositifsResponse[] => {
+): GetStructureDispositifResponse[] => {
   if (!state.userStructure) return [];
   if (areDispositifsAssociesPopulate(state.userStructure.dispositifsAssocies)) {
     return state.userStructure.dispositifsAssocies;

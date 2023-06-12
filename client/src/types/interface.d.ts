@@ -20,6 +20,7 @@ export type Status = {
 
 export type ContentStatus = {
   storedStatus: DispositifStatus;
+  adminStatus?: string;
   order: number;
 } & Status;
 

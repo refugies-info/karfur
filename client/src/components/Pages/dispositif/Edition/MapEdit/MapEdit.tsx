@@ -23,7 +23,7 @@ const MapEdit = () => {
 
   const [hasMap, setHasMap] = useState((markers || []).length > 0);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState((markers || []).length > 0);
 
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
@@ -96,6 +96,7 @@ const MapEdit = () => {
         lat,
         lng,
       };
+      setSelectedMarker(null);
       setPoiForm(newMarker);
       setShowSidebar(false);
     }
@@ -180,10 +181,8 @@ const MapEdit = () => {
           zoom={5}
           onLoad={onLoad}
           onUnmount={onUnmount}
-          onClick={(e: any) => {
-            e.preventDefault();
-            setSelectedMarker(null);
-          }}
+          onClick={() => setSelectedMarker(null)}
+          clickableIcons={false}
           options={{
             mapTypeControl: false,
             fullscreenControl: false,
@@ -203,10 +202,7 @@ const MapEdit = () => {
                   url: "/images/map/pin.svg",
                   anchor: new google.maps.Point(30, 42),
                 }}
-                onClick={(e: any) => {
-                  e.preventDefault();
-                  selectMarker(key);
-                }}
+                onClick={() => selectMarker(key)}
               ></MarkerF>
             ) : null,
           )}

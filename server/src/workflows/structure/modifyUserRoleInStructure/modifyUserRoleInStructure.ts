@@ -56,7 +56,7 @@ export const modifyUserRoleInStructure = async (id: string, body: PatchStructure
 
   await log(action, role, membreId, id, user._id);
 
-  const structureData = await getStructureFromDB(structure._id, false, { nom: 1, status: 1 });
+  const structureData = await getStructureFromDB(structure._id, { nom: 1, status: 1 });
   if ((action === "create" || action === "modify") && role === "administrateur") {
     const user = await getUserById(membreId, { email: 1, username: 1, roles: 1 });
     const adminRole = await getRoleByName("Admin");

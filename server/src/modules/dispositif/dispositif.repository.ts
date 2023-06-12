@@ -1,9 +1,10 @@
-import { Id, Picture, ContentType, SimpleDispositif, DispositifStatus, Languages } from "@refugies-info/api-types";
-import { omit, pick } from "lodash";
+import { Id, Picture, ContentType, SimpleDispositif, DispositifStatus, Languages, GetStructureDispositifResponse, Suggestion as SuggestionAPIType } from "@refugies-info/api-types";
+import { omit, pick, uniq, union } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
 import { Merci, Suggestion } from "../../typegoose/Dispositif";
 import { Dispositif, DispositifDraftModel, DispositifId, DispositifModel, Need, Theme, UserId } from "../../typegoose";
+import { getUsersById } from "../users/users.repository";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
@@ -86,6 +87,7 @@ export const getSimpleDispositifs = async (
       needs: 1,
       translations: 1,
       nbVuesMobile: 1,
+      hasDraftVersion: 1,
     },
     "",
     limit,
@@ -99,10 +101,67 @@ export const getSimpleDispositifs = async (
         metadatas: dispositif.metadatas,
         ...omit(dispositif, ["translations"]),
         availableLanguages: Object.keys(dispositif.translations),
+        hasDraftVersion: dispositif.hasDraftVersion
       };
       return resDisp;
     }),
   );
+};
+
+export const getStructureDispositifs = async (
+  query: FilterQuery<Dispositif>,
+  locale: Languages,
+  limit: number = 0,
+  sort: any = {},
+) => {
+  return getDispositifArray(
+    query,
+    {
+      lastModificationDate: 1,
+      mainSponsor: 1,
+      needs: 1,
+      translations: 1,
+      nbVuesMobile: 1,
+      hasDraftVersion: 1,
+      merci: 1,
+      suggestions: 1
+    },
+    "suggestions.userId",
+    limit,
+    sort,
+  )
+    .then(async (dispositifs) => {
+      const usernames = await Promise.all(
+        dispositifs.map(dispositif => dispositif.suggestions.length > 0 ?
+          getUsersById(
+            uniq(dispositif.suggestions.map(s => s.userId).filter(id => !!id)),
+            { username: 1 }
+          ) :
+          []
+        ));
+      return { dispositifs, usernames: union(...usernames) }
+    })
+    .then(({ dispositifs, usernames }) => dispositifs.map((dispositif) => {
+      const translation = dispositif.translations[locale] || dispositif.translations.fr;
+      const suggestions: SuggestionAPIType[] = dispositif.suggestions.map(s => {
+        return {
+          ...pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]),
+          username: usernames.find(u => u._id.toString() === s.userId?.toString())?.username || ""
+        }
+      });
+      const resDisp: GetStructureDispositifResponse = {
+        _id: dispositif._id,
+        ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
+        metadatas: dispositif.metadatas,
+        ...omit(dispositif, ["translations", "merci"]),
+        availableLanguages: Object.keys(dispositif.translations),
+        hasDraftVersion: dispositif.hasDraftVersion,
+        nbMercis: dispositif.merci.length,
+        suggestions
+      };
+      return resDisp;
+    }),
+    );
 };
 
 export const updateDispositifInDB = async (

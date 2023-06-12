@@ -7,6 +7,7 @@ import { colors } from "colors";
 import moment from "moment";
 import styles from "../Admin.module.scss";
 import { GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
+import { useUser } from "hooks";
 
 const Container = styled.div`
   font-weight: normal;
@@ -113,29 +114,32 @@ export const StyledStatusContainer = styled.div`
   cursor: ${(props: StyledStatusContainer) => (props.disabled ? "not-allowed" : "pointer")};
   color: ${(props: StyledStatusContainer) => (props.textColor ? props.textColor : colors.white)};
 `;
-export const getColorAndStatus = (text: string) => {
-  const correspondingStatusElement = correspondingStatus.filter((element) => element.storedStatus === text);
-  if (correspondingStatusElement.length > 0)
+export const getColorAndStatus = (text: string, isAdmin?: boolean) => {
+  const correspondingStatusElement = correspondingStatus.find((element) => element.storedStatus === text);
+  if (correspondingStatusElement)
     return {
-      status: correspondingStatusElement[0].displayedStatus,
-      color: correspondingStatusElement[0].color,
-      textColor: correspondingStatusElement[0].textColor,
+      status:
+        isAdmin && correspondingStatusElement.adminStatus
+          ? correspondingStatusElement.adminStatus
+          : correspondingStatusElement.displayedStatus,
+      color: correspondingStatusElement.color,
+      textColor: correspondingStatusElement.textColor,
     };
 
-  const correspondingStatusElementProgression = progressionData.filter((element) => element.storedStatus === text);
-  if (correspondingStatusElementProgression.length > 0)
+  const correspondingStatusElementProgression = progressionData.find((element) => element.storedStatus === text);
+  if (correspondingStatusElementProgression)
     return {
-      status: correspondingStatusElementProgression[0].displayedStatus,
-      color: correspondingStatusElementProgression[0].color,
-      textColor: correspondingStatusElementProgression[0].textColor,
+      status: correspondingStatusElementProgression.displayedStatus,
+      color: correspondingStatusElementProgression.color,
+      textColor: correspondingStatusElementProgression.textColor,
     };
 
-  const correspondingStatusElementPublication = publicationData.filter((element) => element.storedStatus === text);
-  if (correspondingStatusElementPublication.length > 0)
+  const correspondingStatusElementPublication = publicationData.find((element) => element.storedStatus === text);
+  if (correspondingStatusElementPublication)
     return {
-      status: correspondingStatusElementPublication[0].displayedStatus,
-      color: correspondingStatusElementPublication[0].color,
-      textColor: correspondingStatusElementPublication[0].textColor,
+      status: correspondingStatusElementPublication.displayedStatus,
+      color: correspondingStatusElementPublication.color,
+      textColor: correspondingStatusElementPublication.textColor,
     };
 
   return {
@@ -153,15 +157,13 @@ export const StyledStatus = (props: {
   textColor?: string;
   disabled?: boolean;
 }) => {
-  const color = props.overrideColor ? colors.gray70 : props.color ? props.color : getColorAndStatus(props.text).color;
+  const { user } = useUser();
+  const colorsAndStatus = getColorAndStatus(props.text, user.admin);
 
-  const status = props.textToDisplay ? props.textToDisplay : getColorAndStatus(props.text).status;
+  const color = props.overrideColor ? colors.gray70 : props.color ? props.color : colorsAndStatus.color;
+  const status = props.textToDisplay ? props.textToDisplay : colorsAndStatus.status;
+  const textColor = props.overrideColor ? colors.white : props.textColor ? props.textColor : colorsAndStatus.textColor;
 
-  const textColor = props.overrideColor
-    ? colors.white
-    : props.textColor
-    ? props.textColor
-    : getColorAndStatus(props.text).textColor;
   return (
     <StyledStatusContainer color={color} textColor={textColor} disabled={!!props.disabled}>
       {status}

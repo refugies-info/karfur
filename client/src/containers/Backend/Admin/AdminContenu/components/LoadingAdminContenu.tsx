@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  StyledHeader,
-  StyledTitle,
-  Content,
-  FigureContainer,
-  StyledSort,
-} from "../../sharedComponents/StyledAdmin";
+import { StyledHeader, StyledTitle, Content, FigureContainer, StyledSort } from "../../sharedComponents/StyledAdmin";
 import { Table } from "reactstrap";
 import { table_contenu, correspondingStatus } from "../data";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
@@ -32,7 +26,7 @@ export const LoadingAdminContenu = () => {
             <FilterButton
               key={status.storedStatus}
               onClick={() => {}}
-              text={`${status.displayedStatus} (...)`}
+              text={`${status.adminStatus || status.displayedStatus} (...)`}
               isSelected={false}
             />
           ))}
