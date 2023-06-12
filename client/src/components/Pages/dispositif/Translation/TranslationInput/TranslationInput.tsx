@@ -169,12 +169,13 @@ const TranslationInput = (props: Props) => {
   }, [section, oldSuggestion, validate, closeInput, Event]);
   const deleteTranslation = useCallback(() => {
     deleteTrad(section);
+    setValidatedIndex(null);
     closeInput();
   }, [section, closeInput, deleteTrad]);
 
   const footerStatus = useMemo(
-    () => getFooterStatus(index, mySuggestion, suggestions),
-    [index, mySuggestion, suggestions],
+    () => getFooterStatus(index, mySuggestion, suggestions, validatedIndex),
+    [index, mySuggestion, suggestions, validatedIndex],
   );
 
   return (
@@ -240,6 +241,7 @@ const TranslationInput = (props: Props) => {
                 validatedIndex={validatedIndex}
                 suggestionsCount={suggestions.length}
                 isExpert={user.expertTrad}
+                hasOwnSuggestion={!!mySuggestion.text}
                 prev={() => dec()}
                 next={() => inc()}
                 validateSuggestion={validateSuggestion}

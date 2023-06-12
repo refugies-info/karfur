@@ -14,6 +14,11 @@
   @include media-max("lg-limit") {
     @include dsfr-text("large");
   }
+  // for highlighted texts
+  & > [data-section] {
+    margin: u(-3);
+    padding: u(3);
+  }
 }
 
 .accordion {

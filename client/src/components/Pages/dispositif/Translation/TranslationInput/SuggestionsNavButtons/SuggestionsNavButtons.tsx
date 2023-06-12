@@ -8,6 +8,7 @@ interface Props {
   validatedIndex: number | null;
   suggestionsCount: number;
   isExpert: boolean;
+  hasOwnSuggestion: boolean;
   prev: () => void;
   next: () => void;
   validateSuggestion: () => void;
@@ -19,13 +20,14 @@ const SuggestionsNavButtons = ({
   validatedIndex,
   suggestionsCount,
   isExpert,
+  hasOwnSuggestion,
   prev,
   next,
   validateSuggestion,
 }: Props) => {
   return (
     <div className="d-flex">
-      {index >= 0 && (
+      {index >= 0 && (hasOwnSuggestion || !isExpert) && (
         // previous
         <Button
           className={cls(styles.nav, "me-4")}
