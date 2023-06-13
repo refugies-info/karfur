@@ -27,7 +27,7 @@ import styles from "./ModalMainSponsor.module.scss";
 export type ContactInfos = {
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   comments: string;
 };
 
@@ -48,7 +48,6 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   const [authorContact, setAuthorContact] = useState<ContactInfos>({
     ...defaultContact,
     email: user.user?.email || "",
-    phone: user.user?.phone || "",
   });
   const [structureContact, setStructureContact] = useState<ContactInfos>(defaultContact);
   const [mainSponsor, setMainSponsor] = useState<Sponsor>(defaultSponsor);
@@ -144,8 +143,14 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
     }
   };
 
-  const displayedStep = useMemo(() => getDisplayedStep(step, user.hasStructure), [step, user.hasStructure]);
-  const displayedMaxStep = useMemo(() => getDisplayedMaxStep(step, user.hasStructure), [step, user.hasStructure]);
+  const displayedStep = useMemo(
+    () => getDisplayedStep(step, user.hasStructure, createStructure, unknownContact, memberOfStructure),
+    [step, user.hasStructure, createStructure, unknownContact, memberOfStructure],
+  );
+  const displayedMaxStep = useMemo(
+    () => getDisplayedMaxStep(step, user.hasStructure, createStructure, unknownContact, memberOfStructure),
+    [step, user.hasStructure, createStructure, unknownContact, memberOfStructure],
+  );
   const previousStep = useMemo(() => getPreviousStep(step, user.hasStructure), [step, user.hasStructure]);
   const isEndModal = useMemo(() => getIsEndModal(step, user.hasStructure), [step, user.hasStructure]);
   const textContent = useMemo(() => getTextContent(step, user.hasStructure), [step, user.hasStructure]);
