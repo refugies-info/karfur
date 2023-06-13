@@ -20,11 +20,11 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
   if (isString(body.what)) content.what = body.what;
 
   if (oldDispositif.typeContenu === ContentType.DISPOSITIF) {
-    if (isString(body.why)) (content as DispositifContent).why = body.why;
-    if (isString(body.how)) content.how = body.how;
+    if (body.why) (content as DispositifContent).why = body.why;
+    if (body.how) content.how = body.how;
   } else {
-    if (isString(body.how)) content.how = body.how;
-    if (isString(body.next)) (content as DemarcheContent).next = body.next;
+    if (body.how) content.how = body.how;
+    if (body.next) (content as DemarcheContent).next = body.next;
   }
 
   return {
