@@ -6,12 +6,24 @@ export const isStep = (currentStep: number, step: number | number[]) => {
   return typeof step === "number" ? currentStep === step : step.includes(currentStep);
 };
 
-export const getDisplayedStep = (step: number, hasStructure: boolean) => {
+export const getDisplayedStep = (
+  step: number,
+  hasStructure: boolean,
+  createStructure: boolean,
+  unknownContact: boolean | null,
+  memberOfStructure: boolean | null,
+) => {
   if (hasStructure) {
-    if (isStep(step, 4)) return 1;
-    if (isStep(step, 5)) return 2;
+    if (isStep(step, 2) && createStructure) return 1;
+    if (isStep(step, 2)) return 0;
+    if (isStep(step, 4)) return 2;
+    if (isStep(step, 5)) return 3;
+    if (isStep(step, 7)) return 4;
     if (step) return 3;
   } else {
+    if (isStep(step, 0) && createStructure) return 0;
+    if (isStep(step, 1) && memberOfStructure) return 1;
+    if (isStep(step, 2)) return 2;
     if (isStep(step, 5)) return 1;
     if (isStep(step, 6)) return 2;
     if (isStep(step, [7, 9])) return 3;
@@ -19,13 +31,25 @@ export const getDisplayedStep = (step: number, hasStructure: boolean) => {
   }
   return 0;
 };
-export const getDisplayedMaxStep = (step: number, hasStructure: boolean) => {
+export const getDisplayedMaxStep = (
+  step: number,
+  hasStructure: boolean,
+  createStructure: boolean,
+  unknownContact: boolean | null,
+  memberOfStructure: boolean | null,
+) => {
   if (hasStructure) {
+    if (isStep(step, 2) && createStructure) return 3;
     if (isStep(step, [0, 2])) return 0;
-    if (isStep(step, [4, 5])) return 2;
-    if (isStep(step, 7)) return 3;
+    if (isStep(step, 5) && unknownContact) return 4;
+    if (isStep(step, [4, 5])) return 3;
+    if (isStep(step, 7)) return 4;
   } else {
+    if (isStep(step, 0) && createStructure) return 3;
+    if (isStep(step, 1) && memberOfStructure) return 2;
+    if (isStep(step, 2)) return 2;
     if (isStep(step, 0)) return 0;
+    if (isStep(step, 9) && unknownContact) return 4;
     if (isStep(step, [5, 6, 7, 9])) return 3;
     if (isStep(step, 11)) return 4;
   }
@@ -75,9 +99,9 @@ export const isNextButtonDisabled = (
   if (isCreateForm) {
     return !mainSponsor.name || !mainSponsor.link || !mainSponsor.logo.secure_url;
   } else if (isAuthorContactForm) {
-    return !authorContact.name || !authorContact.email || !authorContact.phone;
+    return !authorContact.name || !authorContact.email;
   } else if (isStructureContactForm && !unknownContact) {
-    return !structureContact.name;
+    return !structureContact.name || !structureContact.comments;
   } else if (isMemberOfStructureForm) {
     return memberOfStructure === null;
   } else if (isChooseStructureForm) {

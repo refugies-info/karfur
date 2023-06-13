@@ -3,3 +3,7 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/input";
+
+.textarea textarea {
+  min-height: 100px;
+}
