@@ -13,7 +13,10 @@ interface Props {
 const MemberOfStructure = (props: Props) => {
   return (
     <div>
-      <p>Oui si vous y travaillez, non si vous avez rédigé ça par solidarité / bénévolat.</p>
+      <p>
+        Cochez oui si vous travaillez dans cette structure. Si vous avez rédigé cette fiche de votre propre initiative
+        ou par solidarité, cochez non.
+      </p>
       <Row>
         <Col>
           <ChoiceButton

@@ -1,4 +1,5 @@
 import React from "react";
+import { cls } from "lib/classname";
 import Input from "components/Pages/dispositif/Input";
 import { ContactInfos } from "../ModalMainSponsor";
 import styles from "./AuthorContact.module.scss";
@@ -11,7 +12,6 @@ interface Props {
 const AuthorContact = (props: Props) => {
   return (
     <div>
-      <p>Afin qu'on puisse vous contacter</p>
       <Input
         id="author-contact-name"
         label="Votre prénom et nom"
@@ -33,23 +33,13 @@ const AuthorContact = (props: Props) => {
         className="mb-4"
       />
       <Input
-        id="author-contact-phone"
-        label="Votre numéro de téléphone"
-        type="text"
-        icon="phone-outline"
-        value={props.contact.phone}
-        onChange={(e: any) => props.setContact({ ...props.contact, phone: e.target.value })}
-        valid={!!props.contact.phone}
-        className="mb-4"
-      />
-      <Input
         id="author-contact-comments"
-        label="Commentaires"
+        label="Pourquoi avez-vous proposé cette fiche ?"
         type="textarea"
         value={props.contact.comments}
         onChange={(e: any) => props.setContact({ ...props.contact, comments: e.target.value })}
-        placeholder="Ajoutez ici toutes les précisions nécessaires : fonction, disponibilité, relation avec le contact..."
-        className="mb-4"
+        placeholder="Êtes-vous bénévole dans cette structure ? S’agit-il d’une structure partenaire ? Vous aviez connaissance de cette action près de chez vous ?"
+        className={cls(styles.textarea, "mb-4")}
       />
     </div>
   );
