@@ -69,7 +69,7 @@ const Banner = (props: Props) => {
           <Notice
             isClosable
             title={t("Dispositif.infoContentNotTranslated", {
-              language: currentLocale?.langueLoc?.toLowerCase() || "",
+              language: currentLocale?.langueFr?.toLowerCase() || "",
             })}
           />
         )}

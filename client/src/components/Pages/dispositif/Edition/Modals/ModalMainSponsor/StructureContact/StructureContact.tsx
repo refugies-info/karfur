@@ -38,7 +38,7 @@ const StructureContact = (props: Props) => {
       />
       <Input
         id="structure-contact-comments"
-        label="Informations"
+        label="Commentaires"
         type="textarea"
         value={props.contact.comments}
         onChange={(e: any) => {

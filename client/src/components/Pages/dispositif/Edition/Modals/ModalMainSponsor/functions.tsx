@@ -99,7 +99,7 @@ export const isNextButtonDisabled = (
   if (isCreateForm) {
     return !mainSponsor.name || !mainSponsor.link || !mainSponsor.logo.secure_url;
   } else if (isAuthorContactForm) {
-    return !authorContact.name || !authorContact.email;
+    return !authorContact.name || !authorContact.email || !authorContact.comments;
   } else if (isStructureContactForm && !unknownContact) {
     return !structureContact.name || !structureContact.comments;
   } else if (isMemberOfStructureForm) {
