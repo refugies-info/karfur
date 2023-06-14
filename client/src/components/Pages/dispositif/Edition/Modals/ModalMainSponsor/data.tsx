@@ -9,9 +9,12 @@ type Help = { title: string; content: string | React.ReactNode | (string | React
 
 export const help: Help = {
   title: "À quoi sert cette information ?",
-  content:
+  content: [
     "Pour assurer la mise à jour des informations, nous devons relier votre fiche à la structure responsable de l’action.",
+    "Interrogez notre base de données et ajoutez votre structure si elle n’existe pas encore.",
+  ],
 };
+
 export const helpSearch: Help = {
   title: "Comment faire ?",
   content: [
