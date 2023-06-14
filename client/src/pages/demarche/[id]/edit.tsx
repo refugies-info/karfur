@@ -28,7 +28,7 @@ const DemarchePage = (props: Props) => {
     <PageContext.Provider value={dispositifFormContext}>
       <FormProvider {...methods}>
         <div className="w-100">
-          <form>
+          <form onKeyDown={dispositifFormContext.preventSubmissionOnEnter}>
             <Dispositif />
           </form>
         </div>
