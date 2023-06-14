@@ -23,7 +23,7 @@ import {
   publicOptions,
   publicStatusOptions,
 } from "./data";
-import { includeAllRefugees } from "./functions";
+import { addAllRefugeeTypes, includeAllRefugees, removeAllRefugeeTypes } from "./functions";
 import NoIcon from "assets/dispositif/no-icon.svg";
 import styles from "./ModalPublic.module.scss";
 
@@ -165,7 +165,9 @@ const ModalPublic = (props: Props) => {
               selected={includeAllRefugees(publicStatus)}
               onSelect={() => {
                 setPublicStatus(
-                  includeAllRefugees(publicStatus) ? [] : ["apatride", "asile", "refugie", "temporaire", "subsidiaire"],
+                  includeAllRefugees(publicStatus)
+                    ? removeAllRefugeeTypes(publicStatus)
+                    : addAllRefugeeTypes(publicStatus),
                 );
               }}
               className="mb-2"
