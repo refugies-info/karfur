@@ -8,6 +8,7 @@ interface Props {
   target: string | HTMLElement | React.RefObject<HTMLElement>;
   placement?: TooltipProps["placement"];
   className?: string;
+  hide?: boolean;
 }
 
 const Tooltip = (props: Props) => {
@@ -17,7 +18,7 @@ const Tooltip = (props: Props) => {
   return (
     <TooltipTS
       target={props.target}
-      isOpen={tooltipOpen}
+      isOpen={!props.hide && tooltipOpen}
       toggle={toggle}
       placement={props.placement}
       className={cls(styles.container, props.className)}

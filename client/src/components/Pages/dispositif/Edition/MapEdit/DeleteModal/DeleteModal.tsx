@@ -11,7 +11,7 @@ interface Props {
 
 const Delete = (props: Props) => {
   return (
-    <BaseModal show={props.show} toggle={props.toggle} title="Êtes-vous sûrs de vouloir supprimer la carte ?" small>
+    <BaseModal show={props.show} toggle={props.toggle} title="Êtes-vous sûr de vouloir supprimer la carte ?" small>
       <div>
         <p>
           Si vous la supprimez, tous les lieux que vous avez ajoutés seront supprimés (nom, email, téléphone,

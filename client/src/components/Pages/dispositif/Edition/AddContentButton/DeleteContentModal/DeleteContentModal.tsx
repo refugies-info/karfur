@@ -11,7 +11,7 @@ interface Props {
 
 const DeleteContentModal = (props: Props) => {
   return (
-    <BaseModal show={props.show} toggle={props.toggle} title="Êtes-vous sûrs de vouloir supprimer cet élément ?" small>
+    <BaseModal show={props.show} toggle={props.toggle} title="Êtes-vous sûr de vouloir supprimer cet élément ?" small>
       <div>
         <p>Si vous le supprimez, le contenu sera perdu.</p>
 
