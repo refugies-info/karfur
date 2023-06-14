@@ -70,13 +70,15 @@ const ModalPublic = (props: Props) => {
   };
 
   // age
-  const [ageType, setAgeType] = useState<ageType>(getValues("metadatas.age.type") || "moreThan");
+  const [ageType, setAgeType] = useState<ageType | undefined>(
+    getValues("metadatas.age") === null ? undefined : getValues("metadatas.age.type") || "moreThan",
+  );
   const [ages, setAges] = useState<number[]>(getValues("metadatas.age.ages") || []);
   const [noAge, setNoAge] = useState(getValues("metadatas.age") === null);
   const validateAge = () => {
     let age: Metadatas["age"] = undefined;
     if (noAge) age = null;
-    else if (!noAge && ages.length > 0) {
+    else if (!noAge && !!ageType && ages.length > 0) {
       const betweenFormError = ageType === "between" && (!ages[0] || !ages[1]);
       const formError = !ages[0];
       if (!betweenFormError && !formError) {
@@ -122,10 +124,10 @@ const ModalPublic = (props: Props) => {
     return [
       publicStatus === undefined || publicStatus?.length === 0, // step 1
       frenchLevel === undefined || frenchLevel?.length === 0, // step 2
-      !noAge && !ages[0], // step 3
+      !noAge && (!ages[0] || !ageType), // step 3
       publicType === undefined || publicType?.length === 0, // step 4
     ];
-  }, [publicStatus, publicType, frenchLevel, noAge, ages]);
+  }, [publicStatus, publicType, ageType, frenchLevel, noAge, ages]);
 
   const navigateToStep = useCallback(() => {
     const firstEmpty = emptySteps.indexOf(true);
@@ -233,68 +235,76 @@ const ModalPublic = (props: Props) => {
                     text={text}
                     type="radio"
                     selected={!!(ageType && ageType?.includes(key))}
-                    onSelect={() => setAgeType(key)}
+                    onSelect={() => {
+                      setAgeType(key);
+                      setNoAge(false);
+                    }}
                     className="mb-2"
                   />
                 </div>
               ))}
             </div>
-            <InlineForm border className="mt-4">
-              {ageType === "moreThan" && (
-                <>
-                  <p>Plus de </p>
-                  <span>
-                    <input
-                      type="number"
-                      placeholder={"0"}
-                      value={ages[0] || ""}
-                      onChange={(e: any) => setAges([parseInt(e.target.value)])}
-                    />
-                  </span>
-                </>
-              )}
-              {ageType === "between" && (
-                <>
-                  <p>Entre </p>
-                  <span>
-                    <input
-                      type="number"
-                      placeholder={"0"}
-                      value={ages[0] || ""}
-                      onChange={(e: any) => setAges((a) => [parseInt(e.target.value), a[1]])}
-                    />
-                  </span>
-                  <p>et</p>
-                  <span>
-                    <input
-                      type="number"
-                      placeholder={"0"}
-                      value={ages[1] || ""}
-                      onChange={(e: any) => setAges((a) => [a[0], parseInt(e.target.value)])}
-                    />
-                  </span>
-                </>
-              )}
-              {ageType === "lessThan" && (
-                <>
-                  <p>Moins de </p>
-                  <span>
-                    <input
-                      type="number"
-                      placeholder={"0"}
-                      value={ages[0] || ""}
-                      onChange={(e: any) => setAges([parseInt(e.target.value)])}
-                    />
-                  </span>
-                </>
-              )}
-              <p>ans</p>
-            </InlineForm>
+            {!!ageType && (
+              <InlineForm border className="mt-4">
+                {ageType === "moreThan" && (
+                  <>
+                    <p>Plus de </p>
+                    <span>
+                      <input
+                        type="number"
+                        placeholder={"0"}
+                        value={ages[0] || ""}
+                        onChange={(e: any) => setAges([parseInt(e.target.value)])}
+                      />
+                    </span>
+                  </>
+                )}
+                {ageType === "between" && (
+                  <>
+                    <p>Entre </p>
+                    <span>
+                      <input
+                        type="number"
+                        placeholder={"0"}
+                        value={ages[0] || ""}
+                        onChange={(e: any) => setAges((a) => [parseInt(e.target.value), a[1]])}
+                      />
+                    </span>
+                    <p>et</p>
+                    <span>
+                      <input
+                        type="number"
+                        placeholder={"0"}
+                        value={ages[1] || ""}
+                        onChange={(e: any) => setAges((a) => [a[0], parseInt(e.target.value)])}
+                      />
+                    </span>
+                  </>
+                )}
+                {ageType === "lessThan" && (
+                  <>
+                    <p>Moins de </p>
+                    <span>
+                      <input
+                        type="number"
+                        placeholder={"0"}
+                        value={ages[0] || ""}
+                        onChange={(e: any) => setAges([parseInt(e.target.value)])}
+                      />
+                    </span>
+                  </>
+                )}
+                <p>ans</p>
+              </InlineForm>
+            )}
             <ChoiceButton
               text="Ce n'est pas pertinent pour mon action"
               type="checkbox"
               selected={noAge}
-              onSelect={() => setNoAge((o) => !o)}
+              onSelect={() => {
+                setAgeType(undefined);
+                setNoAge((o) => !o);
+              }}
               size="lg"
               className="mt-6"
               image={NoIcon}
