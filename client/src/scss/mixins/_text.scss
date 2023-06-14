@@ -107,6 +107,13 @@ $dsfr-texts: (
     li {
       padding-bottom: u(2);
     }
+    ul {
+      margin-bottom: 0;
+    }
+  }
+  ul li:has(ul),
+  ol li:has(ol) {
+    list-style: none;
   }
   h3 {
     margin-top: u(8);
