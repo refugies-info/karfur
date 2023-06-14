@@ -67,3 +67,9 @@
     }
   }
 }
+
+.tooltip {
+  :global(.tooltip-inner) {
+    text-align: left;
+  }
+}
