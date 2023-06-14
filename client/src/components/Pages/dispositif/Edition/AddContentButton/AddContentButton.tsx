@@ -17,6 +17,7 @@ interface Props {
   contentSize?: "sm" | "md" | "lg" | "xl";
   className?: string;
   hasError?: boolean;
+  optional?: boolean;
 }
 
 /**
@@ -32,8 +33,8 @@ const AddContentButton = (props: Props) => {
 
   const hasContent = useMemo(() => !!props.content, [props.content]);
   const hasErrorStatus = useMemo(
-    () => props.hasError || (showMissingSteps && !hasContent),
-    [props.hasError, showMissingSteps, hasContent],
+    () => props.hasError || (showMissingSteps && !props.optional && !hasContent),
+    [props.hasError, showMissingSteps, hasContent, props.optional],
   );
   const errorIcon = useMemo(
     () => <EVAIcon name="alert-triangle" fill={styles.lightTextDefaultError} className={cls(styles.icon, styles.ok)} />,

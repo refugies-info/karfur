@@ -151,7 +151,7 @@ const MapEdit = () => {
   }, [setValue]);
 
   return !hasMap ? (
-    <AddContentButton onClick={() => setHasMap(true)} className="mb-8">
+    <AddContentButton onClick={() => setHasMap(true)} className="mb-8" optional>
       <span className={styles.add}>
         <Image src={MapIcon} width={48} height={32} alt="Map" className="me-4" />
         <span>Lieux d'accueil (optionnel)</span>
