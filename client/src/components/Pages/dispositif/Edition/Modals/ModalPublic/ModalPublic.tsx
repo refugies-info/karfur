@@ -23,7 +23,7 @@ import {
   publicOptions,
   publicStatusOptions,
 } from "./data";
-import { addAllRefugeeTypes, includeAllRefugees, removeAllRefugeeTypes } from "./functions";
+import { addAllRefugeeTypes, includeAllFrenchLevels, includeAllRefugees, removeAllRefugeeTypes } from "./functions";
 import NoIcon from "assets/dispositif/no-icon.svg";
 import styles from "./ModalPublic.module.scss";
 
@@ -197,7 +197,11 @@ const ModalPublic = (props: Props) => {
               text="Tous les niveaux"
               type="checkbox"
               selected={frenchLevel?.length === 7}
-              onSelect={() => setFrenchLevel(["alpha", "A1", "A2", "B1", "B2", "C1", "C2"])}
+              onSelect={() => {
+                includeAllFrenchLevels(frenchLevel)
+                  ? setFrenchLevel([])
+                  : setFrenchLevel(["alpha", "A1", "A2", "B1", "B2", "C1", "C2"]);
+              }}
               className="mb-2"
             />
             {entries<Record<frenchLevelType, ChoiceItem>>(frenchLevelOptions).map(([key, item]) => (
