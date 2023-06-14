@@ -77,6 +77,13 @@ const AccordionItem = (props: Props) => {
 
   const toggleIsActive = useCallback(() => setIsActive(true), []);
 
+  const closeSection = (e: any) => {
+    e.preventDefault();
+    setIsActive(false);
+    pageContext.setActiveSection?.("");
+    Event("DISPO_CREATE", "close section", "Section");
+  };
+
   return (
     <div>
       {!isActive && (
@@ -138,14 +145,7 @@ const AccordionItem = (props: Props) => {
             />
           </div>
           <div className="text-end mb-6">
-            <Button
-              evaIcon="checkmark-circle-2"
-              onClick={(e: any) => {
-                e.preventDefault();
-                setIsActive(false);
-                Event("DISPO_CREATE", "close section", "Section");
-              }}
-            >
+            <Button evaIcon="checkmark-circle-2" onClick={closeSection}>
               Fermer la section
             </Button>
           </div>
