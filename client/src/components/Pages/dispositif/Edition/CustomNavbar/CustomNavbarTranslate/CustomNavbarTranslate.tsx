@@ -1,21 +1,22 @@
 import { useCallback, useContext, useMemo } from "react";
+import { useToggle } from "react-use";
 import { useRouter } from "next/router";
+import { useEvent, useUser } from "hooks";
+import { Progress } from "hooks/dispositif";
 import { ContentType, Languages, TranslationContent } from "@refugies-info/api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
-import { Progress } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Camembert from "components/UI/Camembert";
 import Tooltip from "components/UI/Tooltip";
 import StepBar from "../StepBar";
-import styles from "../CustomNavbar.module.scss";
+import SaveErrorModal from "../SaveErrorModal";
 import useAutosave from "./useAutosave";
-import { useEvent, useUser } from "hooks";
 import QuitModal from "./QuitModal";
-import { useToggle } from "react-use";
 import PublishModal from "./PublishModal";
+import styles from "../CustomNavbar.module.scss";
 
 interface Props {
   typeContenu: ContentType;
@@ -182,6 +183,7 @@ const CustomNavbarTranslate = (props: Props) => {
         locale={locale}
         nbWords={progress.totalWords}
       />
+      <SaveErrorModal show={hasError} />
     </div>
   );
 };
