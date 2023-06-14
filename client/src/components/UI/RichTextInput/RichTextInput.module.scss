@@ -2,6 +2,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
 
 .container {
@@ -20,10 +21,7 @@
   outline: none !important;
   position: relative;
   z-index: 1;
-
-  p {
-    margin-bottom: u(1);
-  }
+  @include content-text();
 }
 
 .placeholder {

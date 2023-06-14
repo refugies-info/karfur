@@ -94,3 +94,22 @@ $dsfr-texts: (
   font-size: nth($sizes, 1);
   line-height: nth($sizes, 2);
 }
+
+@mixin content-text() {
+  p {
+    margin-bottom: u(6);
+  }
+  p + ul {
+    margin-top: u(-2);
+  }
+  ul {
+    margin-bottom: u(6);
+    li {
+      padding-bottom: u(2);
+    }
+  }
+  h3 {
+    margin-top: u(8);
+    margin-bottom: u(6);
+  }
+}
