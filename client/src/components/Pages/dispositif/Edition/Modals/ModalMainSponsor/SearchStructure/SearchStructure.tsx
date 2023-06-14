@@ -68,6 +68,7 @@ const SearchStructure = (props: Props) => {
         type="text"
         onChange={onChangeNeedle}
         onFocus={onFocus}
+        reset={() => setNeedle("")}
         value={needle}
         icon="search-outline"
         className="mb-6"

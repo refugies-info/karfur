@@ -13,6 +13,7 @@ interface Props {
   error?: string | null;
   valid?: boolean;
   value?: string;
+  reset?: () => void;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
@@ -26,7 +27,7 @@ const Input = (props: Props) => {
           <textarea
             id={props.id}
             placeholder={props.placeholder}
-            className={cls(styles.input, styles.textarea)}
+            className={cls(styles.input)}
             value={props.value || ""}
             onChange={props.onChange}
             onFocus={props.onFocus}
@@ -65,6 +66,11 @@ const Input = (props: Props) => {
             size={20}
             className={cls(styles.icon, styles.append)}
           />
+        )}
+        {props.reset && props.value && (
+          <div className={styles.empty_btn}>
+            <EVAIcon name="close-outline" fill="dark" onClick={props.reset} size={20} />
+          </div>
         )}
       </div>
       {props.error && <div className={styles.error_msg}>{props.error}</div>}
