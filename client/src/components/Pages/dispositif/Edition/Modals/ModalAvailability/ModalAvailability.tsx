@@ -26,7 +26,7 @@ import {
   timeUnitOptions,
 } from "./data";
 import NoIcon from "assets/dispositif/no-icon.svg";
-import { getInputValue, getInputValues, isCommitmentHoursKo } from "./functions";
+import { getInputValue, getInputValues, includesAllDays, isCommitmentHoursKo } from "./functions";
 import styles from "./ModalAvailability.module.scss";
 
 interface Props {
@@ -235,6 +235,17 @@ const ModalAvailability = (props: Props) => {
 
       {step === 3 && (
         <div>
+          <ChoiceButton
+            text="Tous les jours"
+            type="checkbox"
+            selected={includesAllDays(timeSlots)}
+            onSelect={() => {
+              includesAllDays(timeSlots)
+                ? setTimeSlots([])
+                : setTimeSlots(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
+            }}
+            className="mb-2"
+          />
           {timeSlotOptions.map((day) => (
             <ChoiceButton
               key={day}
