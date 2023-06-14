@@ -188,6 +188,7 @@ const MapEdit = () => {
             fullscreenControl: false,
             streetViewControl: false,
             maxZoom: 12,
+            controlSize: 32,
           }}
         >
           {(markers || []).map((marker, key) =>
