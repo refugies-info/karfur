@@ -6,6 +6,14 @@ export const isStep = (currentStep: number, step: number | number[]) => {
   return typeof step === "number" ? currentStep === step : step.includes(currentStep);
 };
 
+export const getInitialStep = (selectedStructure: Id | null, userStructure: Id | null): number => {
+  // not member, sponsor selected
+  if (selectedStructure && userStructure && selectedStructure.toString() !== userStructure.toString()) {
+    return 2;
+  }
+  return 0;
+};
+
 export const getDisplayedStep = (
   step: number,
   hasStructure: boolean,
