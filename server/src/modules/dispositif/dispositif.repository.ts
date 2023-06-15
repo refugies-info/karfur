@@ -192,6 +192,12 @@ export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: 
     },
   );
 
+export const addNewParticipant = async (dispositifId: DispositifId, userId: Id) =>
+  DispositifModel.findOneAndUpdate(
+    { _id: dispositifId },
+    { $addToSet: { participants: userId } }
+  );
+
 export const removeMerciDispositifInDB = async (dispositifId: DispositifId, userId: UserId): Promise<Dispositif> => {
   if (userId) {
     // remove merci of user
