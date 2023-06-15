@@ -61,7 +61,7 @@ const SearchStructure = (props: Props) => {
 
   return (
     <div className="position-relative">
-      <p>Tapez le nom de la structure</p>
+      <p>Indiquez le nom de la structure</p>
       <Input
         id="search-structure-input"
         placeholder="Exemple: ..."
