@@ -10,7 +10,7 @@ import styles from "./BaseModal.module.scss";
 
 interface Props {
   show: boolean;
-  toggle: () => void;
+  toggle?: () => void;
   className?: string;
   help?: {
     title: string;
@@ -50,18 +50,20 @@ const BaseModal = (props: Props) => {
           </div>
         )}
         <div className={styles.content}>
-          <div className="text-end">
-            <Button
-              evaIcon="close-outline"
-              iconPosition="right"
-              priority="tertiary"
-              className={styles.close}
-              onClick={props.toggle}
-            >
-              {t("close")}
-            </Button>
-          </div>
-          <p className={styles.title}>{props.title}</p>
+          {props.toggle && (
+            <div className="text-end">
+              <Button
+                evaIcon="close-outline"
+                iconPosition="right"
+                priority="tertiary"
+                className={styles.close}
+                onClick={props.toggle}
+              >
+                {t("close")}
+              </Button>
+            </div>
+          )}
+          <p className={cls(styles.title, !props.toggle && "mt-4")}>{props.title}</p>
           {props.children}
         </div>
       </div>

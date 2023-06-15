@@ -40,7 +40,10 @@ const TitleEdit = (props: Props) => {
         <input
           type="text"
           {...formContext.register("titreInformatif")}
-          onBlur={() => setIsTitleActive(false)}
+          onBlur={() => {
+            pageContext.setActiveSection?.("");
+            setIsTitleActive(false);
+          }}
           className={styles.input}
           autoFocus
         />
@@ -62,7 +65,10 @@ const TitleEdit = (props: Props) => {
             <input
               type="text"
               {...formContext.register("titreMarque")}
-              onBlur={() => setIsActionActive(false)}
+              onBlur={() => {
+                pageContext.setActiveSection?.("");
+                setIsActionActive(false);
+              }}
               className={styles.input}
               autoFocus
             />

@@ -1,7 +1,7 @@
 import logger from "../../../logger";
-import { cloneDispositifInDrafts, getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
+import { addNewParticipant, cloneDispositifInDrafts, getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
-import { Dispositif, User } from "../../../typegoose";
+import { Dispositif, ObjectId, User } from "../../../typegoose";
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 import { ContentType, DispositifStatus, UpdateDispositifRequest, UpdateDispositifResponse } from "@refugies-info/api-types";
@@ -91,6 +91,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
   }
 
   if (!newDispositif) throw new Error("dispositif not found");
+  await addNewParticipant(new ObjectId(id), user._id);
   await log(newDispositif, oldDispositif, user._id);
 
   return {

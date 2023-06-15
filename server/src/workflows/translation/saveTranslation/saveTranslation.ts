@@ -1,5 +1,5 @@
 import { SaveTranslationRequest } from "@refugies-info/api-types";
-import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { addNewParticipant, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { IndicatorModel, ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { TraductionsType } from "../../../typegoose/Traductions";
 
@@ -35,6 +35,8 @@ const saveTranslation = (
       timeSpent,
       wordsCount,
     });
+
+    await addNewParticipant(dispositifId, user._id);
 
     return TraductionsModel.findOneAndUpdate(
       { dispositifId, userId: user._id, language },

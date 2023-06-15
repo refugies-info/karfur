@@ -1,6 +1,6 @@
 import { DispositifStatus, PublishDispositifRequest } from "@refugies-info/api-types";
 import logger from "../../../logger";
-import { getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
+import { addNewParticipant, getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { Response } from "../../../types/interface";
 import { Dispositif, User } from "../../../typegoose";
 import { InvalidRequestError } from "../../../errors";
@@ -70,11 +70,12 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
     if (status) editedDispositif.status = status;
   }
 
-
   if (editedDispositif.status) {
     const newDispositif = await updateDispositifInDB(id, editedDispositif);
     await log(newDispositif, oldDispositif, user._id);
   }
+
+  await addNewParticipant(id, user._id);
 
   return { text: "success" };
 };

@@ -1,7 +1,8 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 @import "src/scss/mixins/responsive";
 
 .banner {
@@ -27,6 +28,7 @@
   justify-content: flex-end;
   padding-top: u(4);
   padding-right: u(4);
+  @include pr-ltr(u(4));
 
   @include media-max("lg-limit") {
     display: none;
