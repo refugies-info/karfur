@@ -1,7 +1,7 @@
 import logger from "../../../logger";
 import { addNewParticipant, cloneDispositifInDrafts, getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
-import { Dispositif, ObjectId, User } from "../../../typegoose";
+import { Dispositif, ObjectId, StructureId, User } from "../../../typegoose";
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 import { ContentType, DispositifStatus, UpdateDispositifRequest, UpdateDispositifResponse } from "@refugies-info/api-types";
@@ -64,10 +64,6 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     ...(await buildNewDispositif(body, user._id.toString())),
   };
 
-  if (body.contact) {
-    await logContact(oldDispositif._id, user._id, body.contact)
-  }
-
   // if published and not draft version yet, create draft version
   let newDispositif: Dispositif | null = null;
   const needsDraftVersion = oldDispositif.status === DispositifStatus.ACTIVE && !draftOldDispositif;
@@ -88,6 +84,10 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     if (isStatusWaiting && !isDispositifComplete(newDispositif)) {
       await updateDispositifInDB(id, { status: DispositifStatus.DRAFT });
     }
+  }
+
+  if (body.contact) {
+    await logContact(user._id, newDispositif.mainSponsor as StructureId, body.contact)
   }
 
   if (!newDispositif) throw new Error("dispositif not found");
