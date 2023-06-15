@@ -26,7 +26,7 @@
 
 .placeholder {
   position: absolute;
-  bottom: u(6);
+  bottom: u(12);
   @include l-ltr(u(6));
   color: $lightTextDisabledGrey;
 }
