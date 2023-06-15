@@ -27,7 +27,6 @@
   align-items: center;
   justify-content: flex-end;
   padding-top: u(4);
-  padding-right: u(4);
   @include pr-ltr(u(4));
 
   @include media-max("lg-limit") {
