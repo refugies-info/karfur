@@ -1,6 +1,6 @@
 import { PublishTranslationRequest } from "@refugies-info/api-types";
 import { getValidation } from "../../../modules/traductions/traductions.repository";
-import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { addNewParticipant, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
 import validateTranslation from "../validateTranslation";
@@ -28,6 +28,7 @@ const publishTranslation = (
      * puis supprimer l'ensemble des traductions.
      */
     await validateTranslation(dispositif, language, traduction);
+    await addNewParticipant(dispositifId, user._id);
   });
 
 export default publishTranslation;
