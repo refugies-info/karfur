@@ -5,26 +5,20 @@
 
 .dropdown {
   .toggle {
-    background: $gray30;
+    background: $lightBackgroundElevationAlt;
     padding: u(2) u(3);
-    color: $lightTextTitleGrey;
+    color: $darkBackgroundAltGrey;
     border-radius: u(2);
     white-space: nowrap;
-    border: 1px solid transparent;
+    border: 1px solid $lightBorderDefaultGrey;
 
     &:hover,
     &:active {
       background: $lightBackgroundContrastGrey !important;
-      border-color: transparent;
     }
     &:focus {
-      background: $lightBackgroundContrastGrey !important;
-      border-color: $lightTextTitleGrey;
-    }
-
-    &:hover,
-    &:focus {
-      color: $lightTextTitleGrey !important;
+      background: $lightBackgroundElevationAlt !important;
+      border-color: $darkBackgroundAltGrey;
     }
 
     &:global([aria-expanded="true"]) {
