@@ -17,6 +17,7 @@ interface Props {
   contentSize?: "sm" | "md" | "lg" | "xl";
   className?: string;
   hasError?: boolean;
+  optional?: boolean;
 }
 
 /**
@@ -27,13 +28,14 @@ const AddContentButton = (props: Props) => {
   const tooltipDeleteId = useUniqueId("tooltip_delete_");
   const tooltipId = useUniqueId("tooltip_");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [hideEditTooltip, setHideEditTooltip] = useState(false);
   const toggleDeleteModal = useCallback(() => setShowDeleteModal((o) => !o), []);
   const { showMissingSteps } = useContext(PageContext);
 
   const hasContent = useMemo(() => !!props.content, [props.content]);
   const hasErrorStatus = useMemo(
-    () => props.hasError || (showMissingSteps && !hasContent),
-    [props.hasError, showMissingSteps, hasContent],
+    () => props.hasError || (showMissingSteps && !props.optional && !hasContent),
+    [props.hasError, showMissingSteps, hasContent, props.optional],
   );
   const errorIcon = useMemo(
     () => <EVAIcon name="alert-triangle" fill={styles.lightTextDefaultError} className={cls(styles.icon, styles.ok)} />,
@@ -84,22 +86,29 @@ const AddContentButton = (props: Props) => {
             />
             {props.onDelete !== undefined && (
               <>
-                <EVAIcon
-                  name="trash-2-outline"
-                  fill={props.onDelete ? styles.lightTextActionHighBlueFrance : styles.lightTextDisabledGrey}
-                  className={cls(styles.icon, styles.delete, !props.onDelete && styles.disabled)}
-                  onClick={(e: any) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    props.onDelete && setShowDeleteModal(true);
-                  }}
-                  id={tooltipDeleteId}
-                />
-                {props.onDelete === false && tooltipDeleteId && (
+                <div onMouseEnter={() => setHideEditTooltip(true)} onMouseLeave={() => setHideEditTooltip(false)}>
+                  <EVAIcon
+                    name="trash-2-outline"
+                    fill={props.onDelete ? styles.lightTextActionHighBlueFrance : styles.lightTextDisabledGrey}
+                    className={cls(styles.icon, styles.delete, !props.onDelete && styles.disabled)}
+                    onClick={(e: any) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      props.onDelete && setShowDeleteModal(true);
+                    }}
+                    id={tooltipDeleteId}
+                  />
+                </div>
+                {tooltipDeleteId && (
                   <Tooltip target={tooltipDeleteId} placement="right">
-                    Vous ne pouvez pas supprimer cet élément : il en faut au moins trois pour valider la fiche.
+                    {props.onDelete === false ? (
+                      <>Vous ne pouvez pas supprimer cet élément : il en faut au moins trois pour valider la fiche.</>
+                    ) : (
+                      <>Supprimer</>
+                    )}
                   </Tooltip>
                 )}
+
                 <DeleteContentModal
                   show={showDeleteModal}
                   toggle={toggleDeleteModal}
@@ -121,7 +130,7 @@ const AddContentButton = (props: Props) => {
       )}
 
       {tooltipId && (
-        <Tooltip target={tooltipId} placement="right">
+        <Tooltip target={tooltipId} placement="right" hide={hideEditTooltip}>
           {!hasContent ? "Ajouter" : "Modifier"}
         </Tooltip>
       )}

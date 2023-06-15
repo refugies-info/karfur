@@ -3,6 +3,7 @@ import uniqBy from "lodash/uniqBy";
 import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { formatDepartment, getDbDepartment } from "lib/departments";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import Input from "components/Pages/dispositif/Input";
 import { RemovableItem } from "../../components";
 import styles from "./DepartmentInput.module.scss";
 
@@ -73,10 +74,18 @@ const DepartmentInput = (props: Props) => {
   return (
     <div>
       <div className="position-relative w-100">
-        <div className={styles.input}>
-          <EVAIcon name="search-outline" size={20} fill={styles.lightTextMentionGrey} className="me-2" />
-          <input type="text" value={search} onChange={handleChange} placeholder="Exemple : “Paris” ou “75”" autoFocus />
-        </div>
+        <Input
+          id="search-department-input"
+          placeholder="Exemple : “Paris” ou “75”"
+          type="text"
+          onChange={handleChange}
+          reset={() => {
+            setSearch("");
+            setHidePredictions(true);
+          }}
+          value={search}
+          icon="search-outline"
+        />
 
         {!!(!hidePredictions && placePredictions?.length) && (
           <div className={styles.suggestions} ref={refSuggestions}>

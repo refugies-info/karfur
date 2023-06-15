@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useFormContext } from "react-hook-form";
 import { CreateDispositifRequest, Metadatas, priceDetails } from "@refugies-info/api-types";
+import { cls } from "lib/classname";
 import { BaseModal } from "components/Pages/dispositif";
 import DropdownModals from "../../DropdownModals";
 import ChoiceButton from "../../ChoiceButton";
@@ -107,6 +108,7 @@ const ModalPrice = (props: Props) => {
                   type="radio"
                   selected={selectedPay === "once"}
                   onSelect={() => setSelectedPay("once")}
+                  className={styles.choice}
                 />
               </Col>
               <Col>
@@ -115,6 +117,7 @@ const ModalPrice = (props: Props) => {
                   type="radio"
                   selected={selectedPay === "between"}
                   onSelect={() => setSelectedPay("between")}
+                  className={styles.choice}
                 />
               </Col>
               <Col>
@@ -123,19 +126,22 @@ const ModalPrice = (props: Props) => {
                   type="radio"
                   selected={selectedPay === "free"}
                   onSelect={() => setSelectedPay("free")}
+                  className={styles.choice}
                 />
               </Col>
             </Row>
             {selectedPay === "once" && (
-              <InlineForm className="mt-6">
-                <span className={styles.price}>
+              <InlineForm className={cls(styles.inline_form, "mt-6")}>
+                <span>
                   <input
                     type="number"
                     placeholder={"0"}
                     value={priceStart || ""}
                     onChange={(e: any) => (isPriceValue(e.target.value) ? setPriceStart(e.target.value) : null)}
+                    className="spinner"
                   />
                 </span>
+                <p>€ (euros)</p>
                 <DropdownModals<priceDetails>
                   options={dropdownOptions}
                   selected={selectedRecurent}
@@ -145,25 +151,28 @@ const ModalPrice = (props: Props) => {
             )}
 
             {selectedPay === "between" && (
-              <InlineForm className="mt-6">
+              <InlineForm className={cls(styles.inline_form, "mt-6")}>
                 <p>entre</p>
-                <span className={styles.price}>
+                <span>
                   <input
                     type="number"
                     placeholder={"0"}
                     value={priceStart || ""}
                     onChange={(e: any) => (isPriceValue(e.target.value) ? setPriceStart(e.target.value) : null)}
+                    className="spinner"
                   />
                 </span>
                 <p>et</p>
-                <span className={styles.price}>
+                <span>
                   <input
                     type="number"
                     placeholder={"0"}
                     value={priceEnd || ""}
                     onChange={(e: any) => (isPriceValue(e.target.value) ? setPriceEnd(e.target.value) : null)}
+                    className="spinner"
                   />
                 </span>
+                <p>€ (euros)</p>
                 <DropdownModals<priceDetails>
                   options={dropdownOptions}
                   selected={selectedRecurent}

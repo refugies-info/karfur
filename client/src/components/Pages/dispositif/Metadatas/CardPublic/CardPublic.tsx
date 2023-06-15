@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext, useMemo } from "react";
 import { useTranslation } from "next-i18next";
 import { useEvent } from "hooks";
 import { Metadatas } from "@refugies-info/api-types";
+import PageContext from "utils/pageContext";
 import BaseCard from "../BaseCard";
 import {
   getAge,
@@ -31,6 +32,8 @@ interface Props {
 const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, color, onClick }: Props) => {
   const { t } = useTranslation();
   const { Event } = useEvent();
+  const { mode } = useContext(PageContext);
+  const isEditMode = useMemo(() => mode === "edit", [mode]);
 
   return (
     <BaseCard
@@ -49,7 +52,7 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
               dataFrenchLevel
             ) : (
               <FRLink
-                href={getFrenchLevelLink(dataFrenchLevel)}
+                href={isEditMode ? "#" : getFrenchLevelLink(dataFrenchLevel)}
                 onClick={() => Event("DISPO_VIEW", "click french level", "Left sidebar")}
               >
                 {getFrenchLevel(dataFrenchLevel, t)}
@@ -58,7 +61,7 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
           icon: <FrenchLevelIcon color={color} />,
           defaultValue: (
             <FRLink
-              href={getFrenchLevelLink([])}
+              href={isEditMode ? "#" : getFrenchLevelLink([])}
               onClick={() => Event("DISPO_VIEW", "click french level", "Left sidebar")}
             >
               {getAllFrenchLevel(t)}
@@ -67,10 +70,17 @@ const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, co
         },
         {
           label: t("Infocards.age"),
-          content: !dataAge ? dataAge : <FRLink href={getAgeLink(dataAge)}>{getAge(dataAge, t)}</FRLink>,
+          content: !dataAge ? (
+            dataAge
+          ) : (
+            <FRLink href={isEditMode ? "#" : getAgeLink(dataAge)}>{getAge(dataAge, t)}</FRLink>
+          ),
           icon: <AgeIcon color={color} />,
           defaultValue: (
-            <FRLink href={getAgeLink(undefined)} onClick={() => Event("DISPO_VIEW", "click age", "Left sidebar")}>
+            <FRLink
+              href={isEditMode ? "#" : getAgeLink(undefined)}
+              onClick={() => Event("DISPO_VIEW", "click age", "Left sidebar")}
+            >
               Tous les âges
             </FRLink>
           ),

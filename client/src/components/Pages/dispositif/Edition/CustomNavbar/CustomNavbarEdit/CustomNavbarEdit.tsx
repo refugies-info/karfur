@@ -18,6 +18,7 @@ import Tooltip from "components/UI/Tooltip";
 import QuitModal from "./QuitModal";
 import PublishModal from "./PublishModal";
 import StepBar from "../StepBar";
+import SaveErrorModal from "../SaveErrorModal";
 import styles from "../CustomNavbar.module.scss";
 import useAutosave from "./useAutosave";
 
@@ -210,6 +211,7 @@ const CustomNavbarEdit = (props: Props) => {
         onPublish={handlePublish}
         status={dispositif?.status || null}
       />
+      <SaveErrorModal show={hasError} />
     </div>
   );
 };

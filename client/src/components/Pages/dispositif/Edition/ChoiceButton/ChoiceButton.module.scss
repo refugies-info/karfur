@@ -13,6 +13,7 @@
   border-radius: u(2);
   align-items: center;
   width: 100%;
+  border: 1px solid transparent;
 
   &.has_image,
   &.lg {
@@ -61,12 +62,14 @@
     }
 
     &:hover {
-      background: $lightBackgroundActionLowBlueFrance;
-
-      &.has_image,
-      &.lg {
-        border-color: $lightTextActionHighBlueFrance;
-      }
+      background: $lightBackgroundActionLowBlueFrance !important;
+      border-color: $lightTextActionHighBlueFrance !important;
     }
+  }
+}
+
+.tooltip {
+  :global(.tooltip-inner) {
+    text-align: left;
   }
 }

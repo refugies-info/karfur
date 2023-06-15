@@ -35,6 +35,7 @@ export const createDispositif = async (
     status: DispositifStatus.DRAFT,
     typeContenu: body.typeContenu,
     creatorId: new ObjectId(userId.toString()),
+    participants: [new ObjectId(userId.toString())],
     lastModificationAuthor: new ObjectId(userId.toString()),
     themesSelectedByAuthor: true,
     translations: {
