@@ -162,6 +162,7 @@ const ModalAvailability = (props: Props) => {
                       : getInputValues([e.target.value]),
                   )
                 }
+                className="spinner"
               />
               {commitmentAmountDetails === "between" && (
                 <>
@@ -171,6 +172,7 @@ const ModalAvailability = (props: Props) => {
                     placeholder={"0"}
                     value={getInputValue(commitmentHours?.[1])}
                     onChange={(e: any) => setCommitmentHours(getInputValues([commitmentHours?.[0], e.target.value]))}
+                    className="spinner"
                   />
                 </>
               )}
@@ -208,6 +210,7 @@ const ModalAvailability = (props: Props) => {
                 placeholder={"0"}
                 value={frequencyHours || ""}
                 onChange={(e: any) => setFrequencyHours(e.target.value)}
+                className="spinner"
               />
             </span>
             <DropdownModals<timeUnitType>

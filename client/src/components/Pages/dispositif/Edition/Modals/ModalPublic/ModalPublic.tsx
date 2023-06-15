@@ -259,6 +259,7 @@ const ModalPublic = (props: Props) => {
                         placeholder={"0"}
                         value={ages[0] || ""}
                         onChange={(e: any) => setAges([parseInt(e.target.value)])}
+                        className="spinner"
                       />
                     </span>
                   </>
@@ -272,6 +273,7 @@ const ModalPublic = (props: Props) => {
                         placeholder={"0"}
                         value={ages[0] || ""}
                         onChange={(e: any) => setAges((a) => [parseInt(e.target.value), a[1]])}
+                        className="spinner"
                       />
                     </span>
                     <p>et</p>
@@ -281,6 +283,7 @@ const ModalPublic = (props: Props) => {
                         placeholder={"0"}
                         value={ages[1] || ""}
                         onChange={(e: any) => setAges((a) => [a[0], parseInt(e.target.value)])}
+                        className="spinner"
                       />
                     </span>
                   </>
@@ -294,6 +297,7 @@ const ModalPublic = (props: Props) => {
                         placeholder={"0"}
                         value={ages[0] || ""}
                         onChange={(e: any) => setAges([parseInt(e.target.value)])}
+                        className="spinner"
                       />
                     </span>
                   </>
