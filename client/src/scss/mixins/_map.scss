@@ -1,0 +1,13 @@
+@mixin zoom-controls() {
+  :global(.gm-bundled-control) {
+    :global(.gmnoprint) {
+      & > div {
+        border-radius: 8px !important;
+      }
+    }
+    button img {
+      width: 12px !important;
+      height: 12px !important;
+    }
+  }
+}

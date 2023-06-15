@@ -22,23 +22,29 @@ const RichTextEdit = (props: Props) => {
   const formContext = useFormContext();
   const { Event } = useEvent();
 
-  const pageContext = useContext(PageContext);
+  const { setActiveSection, activeSection } = useContext(PageContext);
   useEffect(() => {
     if (isActive) {
-      pageContext.setActiveSection?.(props.id);
+      setActiveSection?.(props.id);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive, props.id]);
 
   useEffect(() => {
-    if (pageContext.activeSection !== props.id) {
+    if (activeSection !== props.id) {
       setIsActive(false);
     }
-  }, [pageContext.activeSection, props.id]);
+  }, [activeSection, props.id]);
 
-  const closeSection = useCallback(() => {
-    setIsActive(false);
-  }, []);
+  const closeSection = useCallback(
+    (e: any) => {
+      e.preventDefault();
+      setIsActive(false);
+      setActiveSection?.("");
+      Event("DISPO_CREATE", "close section", "Section");
+    },
+    [setActiveSection, Event],
+  );
 
   return (
     <div id={`step-${props.id}`}>
@@ -54,14 +60,7 @@ const RichTextEdit = (props: Props) => {
             onChange={(html) => formContext.setValue(props.id, html)}
           />
           <div className="text-end mt-6">
-            <Button
-              evaIcon="checkmark-circle-2"
-              onClick={(e: any) => {
-                e.preventDefault();
-                closeSection();
-                Event("DISPO_CREATE", "close section", "Section");
-              }}
-            >
+            <Button evaIcon="checkmark-circle-2" onClick={closeSection}>
               Fermer la section
             </Button>
           </div>

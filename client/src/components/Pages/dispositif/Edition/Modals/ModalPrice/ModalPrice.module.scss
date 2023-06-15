@@ -17,14 +17,13 @@
   }
 }
 
-.price {
-  &::after {
-    content: "€";
-    position: absolute;
-    right: u(2);
-    top: u(2);
+.inline_form {
+  p {
+    white-space: nowrap;
+    color: black;
   }
-  input[type="number"] {
-    padding-right: u(5) !important;
-  }
+}
+
+.choice {
+  white-space: nowrap;
 }

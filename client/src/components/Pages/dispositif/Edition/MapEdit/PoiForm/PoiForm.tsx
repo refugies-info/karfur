@@ -75,7 +75,7 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
         />
         <Input
           id="input-poi-description"
-          label="Informations pratiques"
+          label="Informations pratiques (optionnel)"
           value={poiForm?.description || ""}
           onChange={(e) => setPoiForm({ ...poiForm, description: e.target.value || "" })}
           placeholder="Exemple : jours et horaires d’ouverture"

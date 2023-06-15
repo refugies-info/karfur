@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modals } from "utils/pageContext";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
@@ -45,6 +45,12 @@ const useDispositifForm = () => {
     }
   }, [dispatch, user, userStructure]);
 
+  const preventSubmissionOnEnter = useCallback((e: any) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+    }
+  }, []);
+
   return {
     mode: "edit" as "edit" | "view" | "translate",
     activeSection,
@@ -53,6 +59,7 @@ const useDispositifForm = () => {
     setShowMissingSteps,
     activeModal,
     setActiveModal,
+    preventSubmissionOnEnter,
   };
 }
 

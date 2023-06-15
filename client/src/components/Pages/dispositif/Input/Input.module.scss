@@ -51,21 +51,16 @@
 }
 
 .input {
-  border: 1px solid transparent;
+  border: 1px solid $lightBorderDefaultGrey;
   outline: none !important;
-  background: $gray30;
+  background: $lightBackgroundElevationAlt;
   border-radius: u(2);
   padding: u(2) u(4);
   width: 100%;
 
-  &.textarea {
-    border-color: $lightBorderDefaultGrey;
-  }
-
   &:focus {
     border-color: $lightTextTitleGrey;
     color: $lightTextTitleGrey;
-    background: $gray30 !important;
   }
 
   .with_icon & {
@@ -90,4 +85,28 @@
   display: inline-block;
   margin-top: u(2);
   color: $lightTextDefaultError;
+}
+
+.empty_btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: u(2);
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: u(6);
+  height: u(6);
+  border-radius: 50%;
+
+  @include rtl() {
+    right: inherit;
+    left: 0;
+  }
+
+  &:hover {
+    background: $gray30;
+  }
 }
