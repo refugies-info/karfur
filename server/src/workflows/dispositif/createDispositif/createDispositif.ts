@@ -1,7 +1,7 @@
 import logger from "../../../logger";
 import { createDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
-import { Dispositif, ObjectId, UserId } from "../../../typegoose";
+import { Dispositif, ObjectId, StructureId, UserId } from "../../../typegoose";
 import {
   ContentType,
   CreateDispositifRequest,
@@ -52,7 +52,7 @@ export const createDispositif = async (
   const dispositif = await createDispositifInDB(newDispositif);
 
   if (body.contact) {
-    await logContact(dispositif._id, userId as UserId, body.contact)
+    await logContact(userId as UserId, dispositif.mainSponsor as StructureId, body.contact)
   }
 
   const contribRole = await getRoleByName("Contrib");
