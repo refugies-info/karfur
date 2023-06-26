@@ -3,5 +3,6 @@
     "newOffer": "عرض جديد",
     "with": "مع"
   },
-  "downloadApp": "تفضّل هذا الرابط من أجل تنزيل برنامج  Réfugiés.info"
+  "downloadApp": "تفضّل هذا الرابط من أجل تنزيل برنامج  Réfugiés.info",
+  "contentLink": "مرحباً. اليك رابط الصفحة {{title}} : {{link}}"
 }
