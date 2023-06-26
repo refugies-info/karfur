@@ -2,5 +2,7 @@
   "notifications": {
     "newOffer": "ሓደሽቲ ዕድመንታትን፣ ዕድላትን",
     "with": "ምስ"
-  }
+  },
+  "downloadApp": "ኣብዚ ንኣፕ Refugies.info ንምውራድ ዝሕግዝ ሊንክ ኣብዚ ኣሎ፡ ",
+  "contentLink": "ሰላማት፣. ኣብዚ ኣለኩም እቲ ሊንክ ፍይል {{title}}: {{link}}"
 }

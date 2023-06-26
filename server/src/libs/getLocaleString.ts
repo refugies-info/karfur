@@ -20,4 +20,14 @@ const languageStrings: Record<string, {}> = {
   ti
 };
 
-export const getLocaleString = (locale: string, key: string) => get(languageStrings, `${locale}.${key}`) || key;
+const replaceParams = (params: any, text: string | undefined): string | undefined => {
+  if (!text) return undefined;
+  if (!params) return text;
+  let newText = text;
+  for (const [key, value] of Object.entries(params)) {
+    newText = newText.replace(`{{${key}}}`, value as string);
+  }
+  return newText;
+}
+
+export const getLocaleString = (locale: string, key: string, params?: any) => replaceParams(params, get(languageStrings, `${locale}.${key}`) as string) || key;
