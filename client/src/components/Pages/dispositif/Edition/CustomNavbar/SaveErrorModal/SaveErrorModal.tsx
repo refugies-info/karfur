@@ -14,8 +14,8 @@ const SaveErrorModal = (props: Props) => {
   return (
     <BaseModal show={props.show} title={"Oups, il y a un problème avec la sauvegarde automatique !"} small>
       <p>
-        Pas d’inquiétudes, seules vos dernières modifications n’ont pas été prises en compte. Cliquez sur « Rafraîchir
-        la page ».
+        Pas d’inquiétude, seules vos dernières modifications n’ont pas été prises en compte. Cliquez sur « Rafraîchir la
+        page ».
       </p>
       <p>
         Si cela ne fonctionne toujours pas, vous pouvez quitter l’éditeur et revenir ensuite sur votre fiche.

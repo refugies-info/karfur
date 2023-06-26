@@ -22,7 +22,7 @@
     &:hover {
       border-color: $lightBorderDefaultGrey;
       box-shadow: none;
-      background-color: white;
+      background-color: $lightBackgroundContrastGrey !important;
     }
     &:active {
       background: $lightBackgroundElevationAlt;

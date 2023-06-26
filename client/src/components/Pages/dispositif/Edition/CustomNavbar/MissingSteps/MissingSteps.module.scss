@@ -4,27 +4,15 @@
 @import "src/scss/mixins/rtl";
 
 .missing {
-  padding: u(8);
   border-radius: u(2);
   margin-top: u(6);
   margin-bottom: u(8);
-
-  &.warning {
-    background: $lightBackgroundContrastWarning;
-  }
-  &.error {
-    background: $lightBackgroundContrastWarning;
-  }
-  &.new {
-    background: var(--background-alt-yellow-tournesol);
-  }
 }
 
 .step {
-  background: white;
-  padding: u(3) u(4);
+  padding: u(4);
   border-radius: u(2);
-  box-shadow: 0 2px 6px 0 #00001229;
+  border: 1px solid transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,11 +27,20 @@
 
   &.new {
     color: var(--text-action-high-yellow-tournesol);
+    border-color: var(--text-action-high-yellow-tournesol);
+    background: var(--background-alt-yellow-tournesol);
+
+    &:hover {
+      background: var(--background-contrast-yellow-tournesol) !important;
+    }
   }
   &.error {
     color: var(--text-default-error);
-  }
-  &.warning {
-    color: var(--text-default-warning);
+    border-color: var(--text-default-error);
+    background: var(--pink-tuile-975-75);
+
+    &:hover {
+      background: var(--background-contrast-error) !important;
+    }
   }
 }

@@ -90,8 +90,6 @@ const QuitModal = (props: Props) => {
             <MissingSteps
               missingSteps={props.pendingSteps.map((p) => ({ step: p, status: "new" }))}
               toggle={props.toggle}
-              noPlusIcon
-              style="new"
             />
             <div className="text-end">
               <Button

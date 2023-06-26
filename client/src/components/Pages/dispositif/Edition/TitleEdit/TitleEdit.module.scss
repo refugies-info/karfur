@@ -9,6 +9,7 @@
 .input {
   @include baseInput();
   font-weight: bold;
+  height: 82px; // fix for firefox
 }
 
 .marque {

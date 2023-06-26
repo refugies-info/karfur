@@ -3,5 +3,6 @@
     "newOffer": "پیشنهاد جدید",
     "with": "با"
   },
-  "downloadApp": "برای دانلود اپلیکیشن Refugies.info اینجا کلیک کنید"
+  "downloadApp": "برای دانلود اپلیکیشن Refugies.info اینجا کلیک کنید",
+  "contentLink": "سلام. این هم لینک برگه {{title}}: {{link}}"
 }
