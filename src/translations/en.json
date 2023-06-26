@@ -235,9 +235,7 @@
     "fiche": "cards",
     "no_result": "Sorry, we don't have any cards here yet."
   },
-  "contents_screen": {
-    "non_translated_content": "Cards not translated"
-  },
+  "contents_screen": { "non_translated_content": "Cards not translated" },
   "favorites_screen": {
     "my_content": "My cards",
     "empty": "0 card",
@@ -320,6 +318,7 @@
     "clear_selection_accessibility": "Clear selection",
     "change_language_accessibility": "Change language",
     "back_button_accessibility": "Return to previous page",
-    "validate": "Ok"
+    "validate": "Ok",
+    "new_app_version": "A new version of the Réfugiés.info app is available."
   }
 }

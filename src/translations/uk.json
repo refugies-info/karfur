@@ -235,9 +235,7 @@
     "fiche": "запис",
     "no_result": "На жаль, у нас ще немає жодного запису тут."
   },
-  "contents_screen": {
-    "non_translated_content": "Записи без перекладу"
-  },
+  "contents_screen": { "non_translated_content": "Записи без перекладу" },
   "favorites_screen": {
     "my_content": "Мої записи",
     "empty": "0 записів",
@@ -289,6 +287,7 @@
     "clear_selection_accessibility": "Очистити обране",
     "change_language_accessibility": "Змінити мову",
     "back_button_accessibility": "Повернутися до попередньої сторінки",
-    "validate": "Ок"
+    "validate": "Ок",
+    "new_app_version": "Нова версія застосунку Réfugiés.info вже доступна."
   }
 }

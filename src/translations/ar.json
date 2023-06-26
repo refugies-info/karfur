@@ -1,4 +1,6 @@
 {
+  "NSLocationWhenInUseUsageDescription": "ليس اجبارياً و سيتم استعماله فقط ليتم عرض المنظمات المحيطة بك و التي يمكنها مساعدتك. هذه المعلومة ستبقى في هاتفك و لن يكون بإمكاننا استعمالها.",
+  "NSLocationUsageDescription": "ليس اجبارياً و سيتم استعماله فقط ليتم عرض المنظمات المحيطة بك و التي يمكنها مساعدتك. هذه المعلومة ستبقى في هاتفك و لن يكون بإمكاننا استعمالها.",
   "onboarding_screens": {
     "start_button": "ابدأ",
     "bonjour": "أهلاً بك في برنامج Réfugiés.info .",
@@ -120,6 +122,7 @@
     "phone_number_accessibility": "رقم الهاتف",
     "not_set": "غير معلوم",
     "see_map_button": "رؤية الخريطة",
+    "favorite_added": "تم اضافة الصفحة الى قائمة \"صفحاتي المفضلة\"",
     "favorite_deleted": "تم الحذف من « مفضّلاتي »",
     "back_content_accessibility": "عودة الى الصفحة",
     "close_map_accessibility": "أغلق الخريطة",
@@ -232,9 +235,7 @@
     "fiche": "نتيجة",
     "no_result": "عذراً، لم نعثرعلى نتائج مطابقة لحالتكم في هذا المجال. يمكنكم تغيير الفلاتر من \"معلوماتي\""
   },
-  "contents_screen": {
-    "non_translated_content": "نتائج غير مترجمة"
-  },
+  "contents_screen": { "non_translated_content": "نتائج غير مترجمة" },
   "favorites_screen": {
     "my_content": "قائمة مفضّلاتي",
     "empty": "لم تحفظ أي نتيجة ك \"مفضّلة\" بعد !",
@@ -317,6 +318,7 @@
     "clear_selection_accessibility": "الغاء التحديد",
     "change_language_accessibility": "أبدل اللغة",
     "back_button_accessibility": "عودة الى الصفحة السابقة",
-    "validate": "موافق"
+    "validate": "موافق",
+    "new_app_version": "نسخة محدثة لتطبيق اللاجئين الرسمي في فرنسا متاحة للتنزيل."
   }
 }

@@ -1,4 +1,6 @@
 {
+  "NSLocationWhenInUseUsageDescription": "እዚ ምግባር ግዴታ ኣይኮነን ኣብ ከባቢኻ ዘሎ ማሕበራትን ተግባራትን ንምርኣይ ጥራይ ኢና ንጥቀመሉ። እዚ ሓበሬታ ኣብ ስልክኹም ስለ ዝጸንሕ ኣብ ዝኾነ እዋን ክንጥቀመሉ ኣይንኽእልን ኢና።",
+  "NSLocationUsageDescription": "እዚ ምግባር ግዴታ ኣይኮነን ኣብ ከባቢኻ ዘሎ ማሕበራትን ተግባራትን ንምርኣይ ጥራይ ኢና ንጥቀመሉ። እዚ ሓበሬታ ኣብ ስልክኹም ስለ ዝጸንሕ ኣብ ዝኾነ እዋን ክንጥቀመሉ ኣይንኽእልን ኢና።",
   "onboarding_screens": {
     "start_button": "ምጅማር",
     "bonjour": "ሰላም  እንቃዕ ብደሓን መጻኹም\\ኽን ናብ ክፍሊ ሓበሬታ ረፍጂ ኣንፎ",
@@ -233,9 +235,7 @@
     "fiche": "ሰነድ",
     "no_result": "ይቕረታ ኣብዚ ገጽ   ክሳብ ሕጂ ሰነዳት  የብልናን"
   },
-  "contents_screen": {
-    "non_translated_content": "ዘይተተርጎሙ ሰናዳት"
-  },
+  "contents_screen": { "non_translated_content": "ዘይተተርጎሙ ሰናዳት" },
   "favorites_screen": {
     "my_content": "ሰነዳተይ",
     "empty": "ዜሮ ሰነድ",
@@ -318,6 +318,7 @@
     "clear_selection_accessibility": "ነቲ ምርጫ ዕጸውዎ",
     "change_language_accessibility": "ቋንቋ ቀይሩ",
     "back_button_accessibility": "ንድሕሪት ተመለሱ",
-    "validate": "ሕራይ"
+    "validate": "ሕራይ",
+    "new_app_version": "ኣብዚ ሓድሽ ስሪት ናይ Refugees.info ዝበሃል መተግበሪ ወይ መጽሓፊ ተዳልዩልኩም ኣሎ።"
   }
 }
