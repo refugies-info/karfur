@@ -83,15 +83,13 @@ const PublishModal = (props: Props) => {
           />
           <MissingSteps
             missingSteps={[
-              ...props.reviewSteps.map((p) => ({ step: p, status: "warning" as StepStatus })),
+              ...props.reviewSteps.map((p) => ({ step: p, status: "error" as StepStatus })),
               ...props.pendingSteps.map((p) => ({ step: p, status: "new" as StepStatus })),
               ...props.missingSteps
                 .filter((s) => !props.reviewSteps.includes(s) && !props.pendingSteps.includes(s)) // remove steps already in review or pending
                 .map((p) => ({ step: p, status: "error" as StepStatus })),
             ]}
             toggle={closeModal}
-            noPlusIcon
-            style="error"
           />
           <div className="text-end">
             <Button
