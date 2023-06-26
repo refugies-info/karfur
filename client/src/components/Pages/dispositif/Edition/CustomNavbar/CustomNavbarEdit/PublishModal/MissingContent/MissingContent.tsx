@@ -63,10 +63,9 @@ const MissingContent = (props: Props) => {
       />
 
       <MissingSteps
-        missingSteps={props.missingSteps.map((s) => ({ step: s, status: "warning" }))}
+        missingSteps={props.missingSteps.map((s) => ({ step: s, status: "error" }))}
         toggle={props.onStay}
         navigateCallback={navigateCallback}
-        style="warning"
       />
 
       <div className="text-end">
