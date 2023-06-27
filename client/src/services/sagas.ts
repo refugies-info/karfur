@@ -10,6 +10,7 @@ import allDispositifsSaga from "./AllDispositifs/allDispositifs.saga";
 import allStructuresSaga from "./AllStructures/allStructures.saga";
 import selectedDispositifSaga from "./SelectedDispositif/selectedDispositif.saga";
 import allUsersSaga from "./AllUsers/allUsers.saga";
+import activeUsersSaga from "./ActiveUsers/activeUsers.saga";
 import userFavoritesSaga from "./UserFavoritesInLocale/UserFavoritesInLocale.saga";
 import userContributionsSaga from "./UserContributions/userContributions.saga";
 import dispositifsWithTranslationsStatus from "./DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.saga";
@@ -28,6 +29,7 @@ export function* rootSaga(): SagaIterator {
   yield fork(allDispositifsSaga);
   yield fork(allStructuresSaga);
   yield fork(allUsersSaga);
+  yield fork(activeUsersSaga);
   yield fork(userFavoritesSaga);
   yield fork(userContributionsSaga);
   yield fork(dispositifsWithTranslationsStatus);

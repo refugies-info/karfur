@@ -27,7 +27,7 @@ const DispositifPage = (props: Props) => {
     <PageContext.Provider value={dispositifFormContext}>
       <FormProvider {...methods}>
         <div className="w-100">
-          <form>
+          <form onKeyDown={dispositifFormContext.preventSubmissionOnEnter}>
             <Dispositif typeContenu={ContentType.DISPOSITIF} />
           </form>
         </div>

@@ -134,8 +134,8 @@ html body {
   }
 
   // Inputs
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
+  input[type="number"]:not(.spinner)::-webkit-inner-spin-button,
+  input[type="number"]:not(.spinner)::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }

@@ -38,6 +38,7 @@ export const modifyUserRoleInStructure = async (id: string, body: PatchStructure
       $pull: { membres: { userId: membreId } },
     };
   } else if (action === "create" && role) {
+    // FIXME: if create and already in members -> bug
     structure = {
       _id: id,
       $addToSet: {

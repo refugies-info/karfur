@@ -26,9 +26,9 @@
 
     & > input {
       @include baseInput();
-      background: $gray30;
+      background: $lightBackgroundElevationAlt;
       color: $lightTextTitleGrey;
-      border: 1px solid transparent;
+      border: 1px solid $lightBorderDefaultGrey;
       padding: u(2) u(1);
       max-width: 72px;
       min-width: 25px;
@@ -37,11 +37,11 @@
       &:hover,
       &:active {
         background: $lightBackgroundContrastGrey !important;
-        border-color: transparent;
       }
       &:focus {
-        background: $lightBackgroundContrastGrey !important;
-        border-color: $lightTextTitleGrey;
+        background: $lightBackgroundElevationAlt !important;
+        border-color: $darkBackgroundAltGrey;
+        color: $darkBackgroundAltGrey;
       }
     }
   }

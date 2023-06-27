@@ -1,7 +1,7 @@
 import logger from "../../../logger";
-import { cloneDispositifInDrafts, getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
+import { addNewParticipant, cloneDispositifInDrafts, getDispositifById, getDraftDispositifById, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
-import { Dispositif, User } from "../../../typegoose";
+import { Dispositif, ObjectId, StructureId, User } from "../../../typegoose";
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
 import { ContentType, DispositifStatus, UpdateDispositifRequest, UpdateDispositifResponse } from "@refugies-info/api-types";
@@ -9,6 +9,7 @@ import { buildNewDispositif, isDispositifComplete } from "../../../modules/dispo
 import { log } from "./log";
 import { logContact } from "../../../modules/dispositif/log";
 import { isString } from "lodash";
+import { countDispositifWords } from "../../../libs/wordCounter";
 
 const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
   // content
@@ -59,12 +60,9 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
       ...oldDispositif.translations,
       fr: translationContent
     },
+    nbMots: countDispositifWords(translationContent.content),
     ...(await buildNewDispositif(body, user._id.toString())),
   };
-
-  if (body.contact) {
-    await logContact(oldDispositif._id, user._id, body.contact)
-  }
 
   // if published and not draft version yet, create draft version
   let newDispositif: Dispositif | null = null;
@@ -88,7 +86,12 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
     }
   }
 
+  if (body.contact) {
+    await logContact(user._id, newDispositif.mainSponsor as StructureId, body.contact)
+  }
+
   if (!newDispositif) throw new Error("dispositif not found");
+  await addNewParticipant(new ObjectId(id), user._id);
   await log(newDispositif, oldDispositif, user._id);
 
   return {

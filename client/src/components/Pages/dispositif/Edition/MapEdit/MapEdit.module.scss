@@ -4,6 +4,7 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/icons";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/map";
 
 .add {
   @include dsfr-text("chapo");
@@ -19,4 +20,5 @@
   border: 1px solid $lightBorderDefaultGrey;
   overflow: hidden;
   margin-bottom: u(14);
+  @include zoom-controls();
 }

@@ -5,18 +5,21 @@ import { ContactInfos } from "./ModalMainSponsor";
 import styles from "./ModalMainSponsor.module.scss";
 
 // Help
-type Help = { title: string; content: string | string[] };
+type Help = { title: string; content: string | React.ReactNode | (string | React.ReactNode)[] };
 
 export const help: Help = {
   title: "À quoi sert cette information ?",
-  content:
+  content: [
     "Pour assurer la mise à jour des informations, nous devons relier votre fiche à la structure responsable de l’action.",
+    "Interrogez notre base de données et ajoutez votre structure si elle n’existe pas encore.",
+  ],
 };
+
 export const helpSearch: Help = {
   title: "Comment faire ?",
   content: [
-    "Renseignez le nom de la structure responsable de cette fiche pour interroger notre base de données.",
-    "Si elle n’apparaît pas, vous pourrez l’ajouter à la base.",
+    "Pour assurer la mise à jour des informations, nous devons relier votre fiche à la structure responsable de l’action.",
+    "Interrogez notre base de données et ajoutez votre structure si elle n’existe pas encore.",
   ],
 };
 export const helpCreate: Help = {
@@ -50,8 +53,14 @@ export const helpAuthor: Help = {
 export const helpMember: Help = {
   title: "Qu’est-ce que ça change ?",
   content: [
-    "Oui : Vous vous engagez à mettre à jour votre fiche au fil du temps et à prendre en compte les réactions des internautes.",
-    "Non : Vous acceptez de transmettre la fiche à la structure responsable pour qu’elle valide et mette à jour les informations.",
+    <>
+      <strong>Oui</strong> : Vous vous engagez à mettre à jour votre fiche au fil du temps et à prendre en compte les
+      réactions des internautes.
+    </>,
+    <>
+      <strong>Non</strong> : Vous acceptez de transmettre la fiche à la structure responsable pour qu’elle valide et
+      mette à jour les informations.
+    </>,
   ],
 };
 

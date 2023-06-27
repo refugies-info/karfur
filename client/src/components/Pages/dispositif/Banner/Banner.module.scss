@@ -1,7 +1,8 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 @import "src/scss/mixins/responsive";
 
 .banner {
@@ -21,18 +22,16 @@
   }
 }
 
-.container {
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: u(4);
+  @include pr-ltr(u(4));
+
   @include media-max("lg-limit") {
     display: none;
   }
-}
-
-.actions {
-  position: absolute;
-  top: u(4);
-  right: u(4);
-  display: flex;
-  align-items: center;
 
   .edit {
     box-shadow: 0 6px 18px 0 #00001252;

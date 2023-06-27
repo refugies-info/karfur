@@ -2,7 +2,6 @@ import { useCallback, useContext } from "react";
 import { useTranslation } from "next-i18next";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Badge from "components/UI/Badge";
 import TranslationStatus from "components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
 import { UserTradStatus } from "components/Pages/dispositif/Translation/TranslationInput/functions";
@@ -13,14 +12,12 @@ import styles from "./MissingSteps.module.scss";
 
 type Step = TranslateStep | EditStep;
 
-export type StepStatus = "new" | "warning" | "error";
+export type StepStatus = "new" | "error";
 
 interface Props {
   missingSteps: { step: Step; status: StepStatus }[];
   toggle: () => void;
   navigateCallback?: (step: Step) => void;
-  noPlusIcon?: boolean;
-  style: "new" | "error" | "warning";
 }
 
 const MissingSteps = (props: Props) => {
@@ -46,7 +43,7 @@ const MissingSteps = (props: Props) => {
   );
 
   return (
-    <div className={cls(styles.missing, styles[props.style])}>
+    <div className={cls(styles.missing)}>
       {props.missingSteps.map((item, i) => (
         <button
           key={i}
@@ -60,13 +57,12 @@ const MissingSteps = (props: Props) => {
 
           <span>
             {pageContext.mode === "edit" ? (
-              <Badge severity="warning" icon="ri-alert-fill" small className="me-4">
+              <Badge severity="error" icon="ri-alert-fill" small className="me-4">
                 Manquant
               </Badge>
             ) : (
               <TranslationStatus status={item.status === "error" ? UserTradStatus.MISSING : UserTradStatus.PENDING} />
             )}
-            {!props.noPlusIcon && <EVAIcon name="plus-circle" size={24} fill={styles.lightTextMentionGrey} />}
           </span>
         </button>
       ))}

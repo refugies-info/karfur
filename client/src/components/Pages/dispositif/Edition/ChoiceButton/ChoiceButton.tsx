@@ -60,7 +60,7 @@ const ChoiceButton = (props: Props) => {
               className="ms-2"
               id={tooltipId}
             />
-            <Tooltip target={tooltipId} placement="right">
+            <Tooltip target={tooltipId} placement="right" className={styles.tooltip}>
               {props.helpTooltip}
             </Tooltip>
           </>

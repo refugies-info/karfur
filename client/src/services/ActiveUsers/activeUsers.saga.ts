@@ -10,12 +10,12 @@ import { GetActiveUsersResponse } from "@refugies-info/api-types";
 export function* fetchActiveUsers(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_USERS));
-    logger.info("[fetchActiveUsers] fetching structures");
+    logger.info("[fetchActiveUsers] fetching users");
     const data: GetActiveUsersResponse[] = yield call(API.getActiveUsers);
     yield put(setActiveUsersActionCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_USERS));
   } catch (error) {
-    logger.error("[fetchActiveUsers] Error while fetching structures", {
+    logger.error("[fetchActiveUsers] Error while fetching users", {
       error
     });
     yield put(setActiveUsersActionCreator([]));

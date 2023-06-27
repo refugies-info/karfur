@@ -24,7 +24,7 @@ const Footer = () => {
 
   return (
     <DSFRFooter
-      accessibility="partially compliant"
+      accessibility="non compliant"
       accessibilityLinkProps={{ href: getPath("/declaration-accessibilite", router.locale), prefetch: false }}
       brandTop="GOUVERNEMENT"
       operatorLogo={{

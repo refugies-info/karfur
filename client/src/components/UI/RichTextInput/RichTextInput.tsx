@@ -2,6 +2,7 @@ import { FC, useCallback, useState } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
@@ -84,6 +85,7 @@ const RichTextInput: FC<Props> = (props: Props) => {
         <ToolbarPlugin />
         <LexicalAutoLinkPlugin />
         <ListPlugin />
+        <TabIndentationPlugin />
         <LinkPlugin />
         <CalloutPlugin />
         <FocusPlugin onFocus={onFocusCallback} onBlur={onBlurCallback} />

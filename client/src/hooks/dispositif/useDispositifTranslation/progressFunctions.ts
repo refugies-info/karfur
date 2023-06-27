@@ -24,7 +24,9 @@ export const keys = (translated: DeepPartialSkipArrayKey<TranslationContent> | u
 
 const countWords = (text: string | undefined) => !text ? 0 : text
   .replace(/<\/?[^>]+(>|$)/g, "") // remove html
-  .split(/\s+/).length;
+  .split(/\s+/)
+  .filter(w => !!w)
+  .length;
 
 export const getSectionWordCount = (defaultTranslation: TranslationContent | undefined): Record<string, number> => {
   const sections = keys(defaultTranslation);
