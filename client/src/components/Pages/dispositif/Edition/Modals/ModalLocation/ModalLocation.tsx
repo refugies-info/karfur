@@ -69,6 +69,7 @@ const ModalLocation = (props: Props) => {
             />
             <ChoiceButton
               text="Ressource en ligne"
+              subtext="Plateformes, applications, numéros d’urgence"
               type="radio"
               selected={selected === "online"}
               onSelect={() => setSelected("online")}

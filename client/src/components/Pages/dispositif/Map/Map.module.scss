@@ -4,6 +4,7 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/icons";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/map";
 
 .container {
   height: 320px;
@@ -12,19 +13,7 @@
   border: 1px solid $lightBorderDefaultGrey;
   overflow: hidden;
   margin-bottom: u(14);
-
-  // map zoom controls
-  :global(.gm-bundled-control) {
-    :global(.gmnoprint) {
-      & > div {
-        border-radius: 8px !important;
-      }
-    }
-    button img {
-      width: 12px !important;
-      height: 12px !important;
-    }
-  }
+  @include zoom-controls();
 
   @include media-max("lg-limit") {
     height: 75vh;

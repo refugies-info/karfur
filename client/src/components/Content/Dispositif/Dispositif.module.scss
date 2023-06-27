@@ -100,6 +100,13 @@
   }
 }
 .edit {
+  .right,
+  .left {
+    flex-shrink: 0;
+  }
+  .main {
+    min-width: 0;
+  }
   .right > div {
     top: 56px;
   }

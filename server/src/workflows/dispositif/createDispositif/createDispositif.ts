@@ -1,10 +1,12 @@
 import logger from "../../../logger";
 import { createDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { ResponseWithData } from "../../../types/interface";
-import { Dispositif, ObjectId, UserId } from "../../../typegoose";
+import { Dispositif, ObjectId, StructureId, UserId } from "../../../typegoose";
 import {
   ContentType,
   CreateDispositifRequest,
+  DemarcheContent,
+  DispositifContent,
   DispositifStatus,
   Id,
   PostDispositifsResponse,
@@ -13,6 +15,7 @@ import { buildNewDispositif } from "../../../modules/dispositif/dispositif.servi
 import { getRoleByName } from "../../../modules/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { logContact } from "../../../modules/dispositif/log";
+import { countDispositifWords } from "../../../libs/wordCounter";
 
 export const createDispositif = async (
   body: CreateDispositifRequest,
@@ -20,33 +23,36 @@ export const createDispositif = async (
 ): ResponseWithData<PostDispositifsResponse> => {
   logger.info("[createDispositif] received", { body });
 
+  const translation: DispositifContent | DemarcheContent = {
+    titreInformatif: body.titreInformatif || "",
+    titreMarque: body.titreMarque || "",
+    abstract: body.abstract || "",
+    what: body.what || "",
+    how: body.how || {},
+    ...(body.typeContenu === ContentType.DISPOSITIF ? { why: body.why || {} } : { next: body.next || {} }),
+  };
   const newDispositif: Partial<Dispositif> = {
     status: DispositifStatus.DRAFT,
     typeContenu: body.typeContenu,
     creatorId: new ObjectId(userId.toString()),
+    participants: [new ObjectId(userId.toString())],
     lastModificationAuthor: new ObjectId(userId.toString()),
     themesSelectedByAuthor: true,
     translations: {
       fr: {
-        content: {
-          titreInformatif: body.titreInformatif || "",
-          titreMarque: body.titreMarque || "",
-          abstract: body.abstract || "",
-          what: body.what || "",
-          how: body.how || {},
-          ...(body.typeContenu === ContentType.DISPOSITIF ? { why: body.why || {} } : { next: body.next || {} }),
-        },
+        content: translation,
         created_at: new Date(),
         validatorId: new ObjectId(userId.toString()),
       },
     },
+    nbMots: countDispositifWords(translation),
     ...(await buildNewDispositif(body, userId.toString())),
   };
 
   const dispositif = await createDispositifInDB(newDispositif);
 
   if (body.contact) {
-    await logContact(dispositif._id, userId as UserId, body.contact)
+    await logContact(userId as UserId, dispositif.mainSponsor as StructureId, body.contact)
   }
 
   const contribRole = await getRoleByName("Contrib");

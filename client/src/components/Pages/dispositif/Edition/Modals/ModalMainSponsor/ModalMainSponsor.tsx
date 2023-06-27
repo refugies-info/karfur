@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { CreateDispositifRequest, Id, Sponsor } from "@refugies-info/api-types";
 import { userSelector } from "services/User/user.selectors";
+import { userStructureSelector } from "services/UserStructure/userStructure.selectors";
 import { BaseModal } from "components/Pages/dispositif";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { defaultContact, defaultSponsor, help } from "./data";
+import { defaultContact, defaultSponsor } from "./data";
 import SearchStructure from "./SearchStructure";
 import ChooseStructure from "./ChooseStructure";
 import StructureContact from "./StructureContact";
@@ -17,6 +17,7 @@ import { SimpleFooter, StepsFooter } from "../components";
 import {
   getDisplayedMaxStep,
   getDisplayedStep,
+  getInitialStep,
   getIsEndModal,
   getPreviousStep,
   getTextContent,
@@ -27,7 +28,7 @@ import styles from "./ModalMainSponsor.module.scss";
 export type ContactInfos = {
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   comments: string;
 };
 
@@ -39,8 +40,9 @@ interface Props {
 const ModalMainSponsor = ({ show, toggle }: Props) => {
   const user = useSelector(userSelector);
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
-  const [step, setStep] = useState(0);
+  const userStructure = useSelector(userStructureSelector);
   const [selectedStructure, setSelectedStructure] = useState<Id | null>(getValues("mainSponsor") || null);
+  const [step, setStep] = useState(getInitialStep(selectedStructure, userStructure?._id || null));
   const [createStructure, setCreateStructure] = useState(false);
   const [memberOfStructure, setMemberOfStructure] = useState<boolean | null>(null);
   const [otherStructure, setOtherStructure] = useState<boolean | null>(null);
@@ -48,10 +50,13 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   const [authorContact, setAuthorContact] = useState<ContactInfos>({
     ...defaultContact,
     email: user.user?.email || "",
-    phone: user.user?.phone || "",
   });
   const [structureContact, setStructureContact] = useState<ContactInfos>(defaultContact);
   const [mainSponsor, setMainSponsor] = useState<Sponsor>(defaultSponsor);
+
+  const goToInitialStep = useCallback(() => {
+    setStep(getInitialStep(selectedStructure, userStructure?._id || null));
+  }, [selectedStructure, userStructure]);
 
   const setData = useCallback(() => {
     if (selectedStructure) {
@@ -144,8 +149,14 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
     }
   };
 
-  const displayedStep = useMemo(() => getDisplayedStep(step, user.hasStructure), [step, user.hasStructure]);
-  const displayedMaxStep = useMemo(() => getDisplayedMaxStep(step, user.hasStructure), [step, user.hasStructure]);
+  const displayedStep = useMemo(
+    () => getDisplayedStep(step, user.hasStructure, createStructure, unknownContact, memberOfStructure),
+    [step, user.hasStructure, createStructure, unknownContact, memberOfStructure],
+  );
+  const displayedMaxStep = useMemo(
+    () => getDisplayedMaxStep(step, user.hasStructure, createStructure, unknownContact, memberOfStructure),
+    [step, user.hasStructure, createStructure, unknownContact, memberOfStructure],
+  );
   const previousStep = useMemo(() => getPreviousStep(step, user.hasStructure), [step, user.hasStructure]);
   const isEndModal = useMemo(() => getIsEndModal(step, user.hasStructure), [step, user.hasStructure]);
   const textContent = useMemo(() => getTextContent(step, user.hasStructure), [step, user.hasStructure]);
@@ -178,7 +189,14 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   );
 
   return (
-    <BaseModal show={show} toggle={endForm} help={textContent.help} title={textContent.title} small={isEndModal}>
+    <BaseModal
+      show={show}
+      toggle={endForm}
+      help={textContent.help}
+      title={textContent.title}
+      small={isEndModal}
+      onOpened={goToInitialStep}
+    >
       {user.hasStructure ? (
         <div className={styles.container}>
           {step === 0 && (

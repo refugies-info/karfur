@@ -3,5 +3,6 @@
     "newOffer": "New offer",
     "with": "with"
   },
-  "downloadApp": "Here is the link to download the Refugies.info app:"
+  "downloadApp": "Here is the link to download the Refugies.info app:",
+  "contentLink": "Hello. Here is the link to the {{title}} file: {{link}}"
 }
