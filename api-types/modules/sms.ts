@@ -11,7 +11,7 @@ export interface DownloadAppRequest {
  */
 export interface ContentLinkRequest {
   phone: string;
-  title: string;
+  id: string;
   url: string;
   locale: string;
 }
