@@ -41,7 +41,7 @@ const SMSForm = (props: Props) => {
       Event("SEND_SMS", selectedLn, "Dispo View");
       API.smsContentLink({
         phone: tel,
-        title: dispositif?.titreInformatif || "",
+        id: dispositif?._id.toString() || "",
         url: `https://refugies.info/${selectedLn}${getPath(
           dispositif?.typeContenu === ContentType.DEMARCHE ? "/demarche/[id]" : "/dispositif/[id]",
           selectedLn,
