@@ -1,4 +1,5 @@
-import { SaveTranslationRequest } from "@refugies-info/api-types";
+import { ContentType, SaveTranslationRequest } from "@refugies-info/api-types";
+import { isUndefined } from "lodash";
 import { addNewParticipant, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { IndicatorModel, ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { TraductionsType } from "../../../typegoose/Traductions";
@@ -22,6 +23,11 @@ const saveTranslation = (
     _traduction.toReview = user.isExpert() ? toReview : [];
     _traduction.type = user.isExpert() ? TraductionsType.VALIDATION : TraductionsType.SUGGESTION;
     _traduction.userId = user._id;
+
+    // ensure titreMarque is saved empty for demarches, to calculate progress properly
+    if (dispositif.typeContenu === ContentType.DEMARCHE && isUndefined(_traduction.translated.content.titreMarque)) {
+      _traduction.translated.content.titreMarque = "";
+    }
 
     _traduction.avancement = Traductions.computeAvancement(dispositif, _traduction);
 
