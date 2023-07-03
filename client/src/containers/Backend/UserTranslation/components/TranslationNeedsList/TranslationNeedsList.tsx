@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Table } from "reactstrap";
+import { Table } from "reactstrap";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { GetNeedResponse, Id } from "@refugies-info/api-types";
 import { needsSelector } from "services/Needs/needs.selectors";
-import { TagButton } from "../../Admin/Needs/TagButton";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import FButton from "components/UI/FButton/FButton";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import FrameModal from "components/Modals/FrameModal/FrameModal";
+import { TagButton } from "../../../Admin/Needs/TagButton";
 import { getStatusColorAndText } from "./functions";
-import styles from "./TranslationNeedsModal.module.scss";
-import { GetNeedResponse, Id } from "@refugies-info/api-types";
+import styles from "./TranslationNeedsList.module.scss";
 
 interface Props {
   show: boolean;
   toggle: () => void;
-  toggleOneNeedTranslationModal: () => void;
   setSelectedNeedId: (arg: Id) => void;
   langueSelectedFr?: string;
   langueI18nCode?: string;
@@ -40,7 +39,7 @@ const StatusContainer = styled.div`
   white-space: nowrap;
 `;
 
-export const TranslationNeedsModal = (props: Props) => {
+const TranslationNeedsList = (props: Props) => {
   const arrayLines = new Array(6).fill("a");
   const arrayContent = new Array(3).fill("a");
   const [showTutorielModal, setShowTutorielModal] = useState(false);
@@ -50,7 +49,7 @@ export const TranslationNeedsModal = (props: Props) => {
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
   useEffect(() => {
     dispatch(fetchNeedsActionCreator());
-  }, []);
+  }, [dispatch]);
   const toggleTutorielModal = () => setShowTutorielModal(!showTutorielModal);
   const needs = useSelector(needsSelector);
 
@@ -78,31 +77,13 @@ export const TranslationNeedsModal = (props: Props) => {
 
   const onNeedClick = (need: GetNeedResponse) => {
     props.setSelectedNeedId(need._id);
-    props.toggleOneNeedTranslationModal();
   };
 
-  if (!props.langueSelectedFr || !props.langueI18nCode)
-    return (
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggle}
-        className={styles.modal}
-        contentClassName={styles.modal_content}
-        size="lg"
-      >
-        Erreur
-      </Modal>
-    );
+  if (!props.langueSelectedFr || !props.langueI18nCode) return <div>Erreur</div>;
 
   if (isLoading) {
     return (
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggle}
-        className={styles.modal}
-        contentClassName={styles.modal_content}
-        size="lg"
-      >
+      <div>
         <Header>{"Traduction des besoins"}</Header>
         <Table responsive borderless>
           <thead>
@@ -135,29 +116,12 @@ export const TranslationNeedsModal = (props: Props) => {
             })}
           </tbody>
         </Table>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-end",
-          }}
-        >
-          <FButton className="me-2" type="white" name="arrow-back-outline" onClick={props.toggle}>
-            Retour
-          </FButton>
-        </div>
-      </Modal>
+      </div>
     );
   }
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-      size="lg"
-    >
+    <div>
       <Header>{"Traduction des besoins en " + props.langueSelectedFr}</Header>
       <Table responsive borderless>
         <thead>
@@ -212,6 +176,8 @@ export const TranslationNeedsModal = (props: Props) => {
         </FButton>
       </div>
       <FrameModal show={showTutorielModal} toggle={toggleTutorielModal} section={"Traduction besoin"} />
-    </Modal>
+    </div>
   );
 };
+
+export default TranslationNeedsList;

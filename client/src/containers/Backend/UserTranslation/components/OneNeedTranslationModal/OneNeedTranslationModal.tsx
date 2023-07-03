@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
+import { Id } from "@refugies-info/api-types";
 import { needSelector } from "services/Needs/needs.selectors";
 import { AvailableLanguageI18nCode } from "types/interface";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { Label } from "containers/Backend/Admin/sharedComponents/SubComponents";
 import { saveNeedActionCreator } from "services/Needs/needs.actions";
-import styles from "./TranslationNeedsModal.module.scss";
-import { Id } from "@refugies-info/api-types";
+import styles from "./OneNeedTranslationModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -17,7 +17,7 @@ interface Props {
   langueI18nCode: string;
 }
 
-export const OneNeedTranslationModal = (props: Props) => {
+const OneNeedTranslationModal = (props: Props) => {
   const need = useSelector(needSelector(props.selectedNeedId));
   const dispatch = useDispatch();
 
@@ -110,3 +110,5 @@ export const OneNeedTranslationModal = (props: Props) => {
     </Modal>
   );
 };
+
+export default OneNeedTranslationModal;

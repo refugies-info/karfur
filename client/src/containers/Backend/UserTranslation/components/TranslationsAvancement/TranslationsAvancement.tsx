@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { LanguageTitle, FilterButton, TypeContenuFilterButton } from "./SubComponents";
-import { TranslationAvancementTable } from "./TranslationAvancementTable";
-import { filterData } from "./functions";
-import FButton from "components/UI/FButton/FButton";
-import { colors } from "colors";
-import CustomSearchBar from "components/UI/CustomSeachBar";
-import { useLanguages } from "hooks";
-import useRouterLocale from "hooks/useRouterLocale";
 import { Link } from "react-router-dom";
 import {
   ContentType,
   GetDispositifsWithTranslationAvancementResponse,
   GetLanguagesResponse,
   GetUserInfoResponse,
+  Id,
   TraductionsStatus,
 } from "@refugies-info/api-types";
 import isUndefined from "lodash/isUndefined";
+import { useLanguages, useRouterLocale } from "hooks";
+import FButton from "components/UI/FButton/FButton";
+import { colors } from "colors";
+import CustomSearchBar from "components/UI/CustomSeachBar";
+import { LanguageTitle, FilterButton, TypeContenuFilterButton } from "../SubComponents";
+import { filterData } from "./functions";
+import { TranslationAvancementTable } from "../TranslationAvancementTable";
+import TranslationNeedsList from "../TranslationNeedsList";
 
 interface Props {
   history: any;
@@ -31,7 +32,8 @@ interface Props {
   timeSpent: number;
   setElementToTranslate: any;
   user: GetUserInfoResponse | null;
-  toggleNeedsModal: () => void;
+  nbNeedsToTranslate: number;
+  setSelectedNeedId: (id: Id) => void;
 }
 
 const RowContainer = styled.div`
@@ -73,7 +75,7 @@ const getInitialFilterStatus = (isExpert: boolean, data: GetDispositifsWithTrans
   if (nbARevoir > 0) return TraductionsStatus.TO_REVIEW;
   return TraductionsStatus.PENDING;
 };
-export const TranslationsAvancement = (props: Props) => {
+const TranslationsAvancement = (props: Props) => {
   const routerLocale = useRouterLocale();
   const { getLanguage, userTradLanguages } = useLanguages();
 
@@ -82,6 +84,8 @@ export const TranslationsAvancement = (props: Props) => {
     getInitialFilterStatus(props.isExpert, props.data),
   );
   const [typeContenuFilter, setTypeContenuFilter] = useState<ContentType | "all">(ContentType.DISPOSITIF);
+  const [showNeedsList, setShowNeedsList] = useState(false);
+  const toggleNeedsList = () => setShowNeedsList(!showNeedsList);
 
   if (isUndefined(props.actualLanguage)) {
     return null;
@@ -139,6 +143,11 @@ export const TranslationsAvancement = (props: Props) => {
           <FButton type="tuto" onClick={props.toggleTutoModal} name="video-outline" className="me-2">
             Explications
           </FButton>
+          {props.isExpert && (
+            <FButton type={props.nbNeedsToTranslate ? "error" : "dark"} onClick={toggleNeedsList} className="me-2">
+              Besoins ({props.nbNeedsToTranslate})
+            </FButton>
+          )}
           <FButton type="dark" onClick={props.toggleTraducteurModal} name="settings-2-outline">
             Mes langues
           </FButton>
@@ -190,16 +199,29 @@ export const TranslationsAvancement = (props: Props) => {
 
         <CustomSearchBar value={search} onChange={handleChange} placeholder="Rechercher..." withMargin={false} />
       </FilterBarContainer>
-      <TranslationAvancementTable
-        isExpert={props.isExpert}
-        data={dataToDisplay}
-        history={props.history}
-        isAdmin={props.isAdmin}
-        languei18nCode={props.actualLanguage.i18nCode}
-        toggleCompleteProfilModal={props.toggleCompleteProfilModal}
-        setElementToTranslate={props.setElementToTranslate}
-        user={props.user}
-      />
+
+      {showNeedsList ? (
+        <TranslationNeedsList
+          show={showNeedsList}
+          toggle={toggleNeedsList}
+          setSelectedNeedId={props.setSelectedNeedId}
+          langueSelectedFr={props.actualLanguage.langueFr}
+          langueI18nCode={props.actualLanguage.i18nCode}
+        />
+      ) : (
+        <TranslationAvancementTable
+          isExpert={props.isExpert}
+          data={dataToDisplay}
+          history={props.history}
+          isAdmin={props.isAdmin}
+          languei18nCode={props.actualLanguage.i18nCode}
+          toggleCompleteProfilModal={props.toggleCompleteProfilModal}
+          setElementToTranslate={props.setElementToTranslate}
+          user={props.user}
+        />
+      )}
     </MainContainer>
   );
 };
+
+export default TranslationsAvancement;
