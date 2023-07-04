@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { colorAvancement } from "lib/colors";
 import { Progress } from "reactstrap";
 import { colors } from "colors";
-import FSwitch from "components/UI/FSwitch/FSwitch";
 import styles from "./SubComponents.module.scss";
 import { GetLanguagesResponse, TraductionsStatus } from "@refugies-info/api-types";
 
@@ -109,19 +108,23 @@ const TradStatusContainer = styled.div`
 `;
 
 const getStatus = (status: TraductionsStatus, isSingular: boolean) => {
-  if (status === "PENDING") return { formattedStatus: "À valider", color: colors.orangeDark };
-  if (status === "TO_REVIEW") return { formattedStatus: "À revoir", color: colors.redDark };
-  if (status === "VALIDATED")
-    return {
-      formattedStatus: isSingular ? "Publiée" : "Publiées",
-      color: colors.green,
-    };
-  if (status === "TO_TRANSLATE") return { formattedStatus: "À traduire", color: colors.blue };
-  return { formattedStatus: "No status", color: colors.erreur };
+  if (status === "PENDING") return "À valider";
+  if (status === "TO_REVIEW") return "À revoir";
+  if (status === "VALIDATED") return isSingular ? "Publiée" : "Publiées";
+  if (status === "TO_TRANSLATE") return "À traduire";
+  return "No status";
+};
+const getColor = (status: TraductionsStatus) => {
+  if (status === "PENDING") return colors.orangeDark;
+  if (status === "TO_REVIEW") return colors.redDark;
+  if (status === "VALIDATED") return colors.green;
+  if (status === "TO_TRANSLATE") return colors.blue;
+  return colors.erreur;
 };
 
 export const TradStatus = (props: TradStatusProps) => {
-  const { formattedStatus, color } = getStatus(props.status, true);
+  const formattedStatus = getStatus(props.status, true);
+  const color = getColor(props.status);
   return <TradStatusContainer backgroundColor={color}>{formattedStatus}</TradStatusContainer>;
 };
 
@@ -129,61 +132,34 @@ interface FilterButtonContainerProps {
   isSelected: boolean;
   color: string;
 }
-const FilterButtonContainer = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
+const FilterButtonContainer = styled.button`
   color: ${(props: FilterButtonContainerProps) => (props.isSelected ? colors.white : props.color)};
-  padding: 17px;
   background-color: ${(props: FilterButtonContainerProps) => (props.isSelected ? props.color : colors.white)};
-  border-radius: 12px;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+
+  &:hover {
+    background-color: ${(props: FilterButtonContainerProps) =>
+      props.isSelected ? styles.lightTextMentionGrey : "inherit"} !important;
+  }
 `;
 
 interface FilterButtonProps {
-  status: TraductionsStatus;
+  status?: TraductionsStatus;
+  name?: string;
   isSelected: boolean;
   nbContent: number | string;
   onClick: () => void;
 }
 export const FilterButton = (props: FilterButtonProps) => {
-  const { formattedStatus, color } = getStatus(props.status, false);
+  const content = props.status ? getStatus(props.status, false) : props.name || "";
+  const color = props.status ? getColor(props.status) : colors.gray90;
   return (
-    <FilterButtonContainer color={color} isSelected={props.isSelected} onClick={props.onClick}>
-      {formattedStatus + " (" + props.nbContent + ")"}
+    <FilterButtonContainer
+      className={styles.filter}
+      color={color}
+      isSelected={props.isSelected}
+      onClick={props.onClick}
+    >
+      {content + " (" + props.nbContent + ")"}
     </FilterButtonContainer>
   );
 };
-
-interface TypeContenuFilterButtonProps {
-  isSelected: boolean;
-  name: "Dispositifs" | "Démarches";
-  onClick: () => void;
-  nbContent: number | string;
-}
-
-const TypeContenuFilterButtonContainer = styled.div`
-  padding: 15px;
-  background-color: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.gray90 : colors.white)};
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.white : colors.gray90)};
-  cursor: pointer;
-  border-radius: 12px;
-  margin-right: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-export const TypeContenuFilterButton = (props: TypeContenuFilterButtonProps) => (
-  <TypeContenuFilterButtonContainer isSelected={props.isSelected} onClick={props.onClick}>
-    {props.name + " (" + props.nbContent + ")"}
-    <FSwitch className="ms-2" checked={props.isSelected} />
-  </TypeContenuFilterButtonContainer>
-);

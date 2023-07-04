@@ -7,6 +7,7 @@ import {
   GetLanguagesResponse,
   GetUserInfoResponse,
   Id,
+  Languages,
   TraductionsStatus,
 } from "@refugies-info/api-types";
 import isUndefined from "lodash/isUndefined";
@@ -14,7 +15,7 @@ import { useLanguages, useRouterLocale } from "hooks";
 import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import CustomSearchBar from "components/UI/CustomSeachBar";
-import { LanguageTitle, FilterButton, TypeContenuFilterButton } from "../SubComponents";
+import { LanguageTitle, FilterButton } from "../SubComponents";
 import { filterData } from "./functions";
 import { TranslationAvancementTable } from "../TranslationAvancementTable";
 import TranslationNeedsList from "../TranslationNeedsList";
@@ -98,13 +99,19 @@ const TranslationsAvancement = (props: Props) => {
   };
 
   const onFilterClick = (status: TraductionsStatus | "all") => {
+    setShowNeedsList(false);
     if (status === statusFilter) return setStatusFilter("all");
     return setStatusFilter(status);
   };
 
   const onTypeContenuFilterClick = (status: ContentType | "all") => {
-    if (status === typeContenuFilter) return setTypeContenuFilter("all");
-    return setTypeContenuFilter(status);
+    if (showNeedsList) {
+      setShowNeedsList(false);
+      setTypeContenuFilter(status);
+    } else {
+      if (status === typeContenuFilter) return setTypeContenuFilter("all");
+      setTypeContenuFilter(status);
+    }
   };
   const handleChange = (e: any) => setSearch(e.target.value);
 
@@ -143,11 +150,6 @@ const TranslationsAvancement = (props: Props) => {
           <FButton type="tuto" onClick={props.toggleTutoModal} name="video-outline" className="me-2">
             Explications
           </FButton>
-          {props.isExpert && (
-            <FButton type={props.nbNeedsToTranslate ? "error" : "dark"} onClick={toggleNeedsList} className="me-2">
-              Besoins ({props.nbNeedsToTranslate})
-            </FButton>
-          )}
           <FButton type="dark" onClick={props.toggleTraducteurModal} name="settings-2-outline">
             Mes langues
           </FButton>
@@ -183,18 +185,26 @@ const TranslationsAvancement = (props: Props) => {
             nbContent={nbPubliees}
             onClick={() => onFilterClick(TraductionsStatus.VALIDATED)}
           />
-          <TypeContenuFilterButton
-            isSelected={typeContenuFilter === ContentType.DISPOSITIF}
+          <FilterButton
+            isSelected={typeContenuFilter === ContentType.DISPOSITIF && !showNeedsList}
             name="Dispositifs"
             onClick={() => onTypeContenuFilterClick(ContentType.DISPOSITIF)}
             nbContent={nbDispositifs}
           />
-          <TypeContenuFilterButton
-            isSelected={typeContenuFilter === ContentType.DEMARCHE}
+          <FilterButton
+            isSelected={typeContenuFilter === ContentType.DEMARCHE && !showNeedsList}
             name="Démarches"
             onClick={() => onTypeContenuFilterClick(ContentType.DEMARCHE)}
             nbContent={nbDemarches}
           />
+          {props.isExpert && (
+            <FilterButton
+              isSelected={showNeedsList}
+              name="Besoins"
+              onClick={toggleNeedsList}
+              nbContent={props.nbNeedsToTranslate}
+            />
+          )}
         </Row>
 
         <CustomSearchBar value={search} onChange={handleChange} placeholder="Rechercher..." withMargin={false} />
@@ -206,7 +216,7 @@ const TranslationsAvancement = (props: Props) => {
           toggle={toggleNeedsList}
           setSelectedNeedId={props.setSelectedNeedId}
           langueSelectedFr={props.actualLanguage.langueFr}
-          langueI18nCode={props.actualLanguage.i18nCode}
+          langueI18nCode={props.actualLanguage.i18nCode as Languages}
         />
       ) : (
         <TranslationAvancementTable
