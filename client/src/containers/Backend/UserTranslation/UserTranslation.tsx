@@ -11,6 +11,7 @@ import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selector
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { dispositifsWithTranslationsStatusSelector } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.selectors";
 import { needsSelector } from "services/Needs/needs.selectors";
+import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import { LoadingDispositifsWithTranslationsStatus } from "./components/LoadingDispositifsWithTranslationsStatus";
 import { StartTranslating } from "./components/StartTranslating";
 import { TranslationsAvancement, OneNeedTranslationModal, TranslationLanguagesChoiceModal } from "./components";
@@ -29,7 +30,7 @@ const UserTranslation = (props: Props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const routerLocale = useRouterLocale();
-  const langueInUrl = useParams<{ id: string }>()?.id;
+  const langueInUrl = useParams<{ id: string }>()?.id as Languages;
   const { getLanguage, getLanguageByCode, userTradLanguages } = useLanguages();
   const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS));
 
@@ -57,8 +58,10 @@ const UserTranslation = (props: Props) => {
 
   const userFirstTradLanguage = userTradLanguages.length > 0 ? userTradLanguages[0] : null;
   const isLoadingUser = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
+  const isLoadingNeeds = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
   const isLoading = isLoadingDispositifs || isLoadingUser;
   const dispositifsWithTranslations = useSelector(dispositifsWithTranslationsStatusSelector);
+  const needs = useSelector(needsSelector);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -84,11 +87,22 @@ const UserTranslation = (props: Props) => {
     };
 
     if (langueInUrl) {
-      if (!isLoadingDispositifs) dispatch(fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl));
+      if (!isLoadingDispositifs && dispositifsWithTranslations.length === 0)
+        dispatch(fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl));
+      if (!isLoadingNeeds && needs.length === 0) dispatch(fetchNeedsActionCreator());
       loadIndicators();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [langueInUrl, userFirstTradLanguage, isLoadingUser, user]);
+  }, [
+    langueInUrl,
+    userFirstTradLanguage,
+    isLoadingUser,
+    user,
+    dispositifsWithTranslations,
+    isLoadingDispositifs,
+    isLoadingNeeds,
+    needs,
+  ]);
 
   const nbWords = indicators?.totalIndicator?.wordsCount || 0;
   const timeSpent = indicators?.totalIndicator?.timeSpent
@@ -107,7 +121,6 @@ const UserTranslation = (props: Props) => {
     });
   };
 
-  const needs = useSelector(needsSelector);
   const nbNeedsToTranslate = needs.filter((need) => langue && !need[langue.i18nCode as Languages]?.text).length;
 
   if (isLoading)

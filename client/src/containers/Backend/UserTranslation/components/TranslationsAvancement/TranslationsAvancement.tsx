@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import {
   ContentType,
   GetDispositifsWithTranslationAvancementResponse,
   GetLanguagesResponse,
+  GetNeedResponse,
   GetUserInfoResponse,
   Id,
   Languages,
   TraductionsStatus,
 } from "@refugies-info/api-types";
+import { useSelector } from "react-redux";
 import isUndefined from "lodash/isUndefined";
 import { useLanguages, useRouterLocale } from "hooks";
+import { needsSelector } from "services/Needs/needs.selectors";
 import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import CustomSearchBar from "components/UI/CustomSeachBar";
 import { LanguageTitle, FilterButton } from "../SubComponents";
-import { filterData } from "./functions";
+import { filterData, getStatus } from "./functions";
 import { TranslationAvancementTable } from "../TranslationAvancementTable";
 import TranslationNeedsList from "../TranslationNeedsList";
+import { NeedTradStatus } from "../../types";
+import { ExpertTradStatus } from "components/Pages/dispositif/Translation/TranslationInput/functions";
+
+export type SortedNeed = GetNeedResponse & { status: NeedTradStatus };
 
 interface Props {
   history: any;
@@ -76,6 +83,7 @@ const getInitialFilterStatus = (isExpert: boolean, data: GetDispositifsWithTrans
   if (nbARevoir > 0) return TraductionsStatus.TO_REVIEW;
   return TraductionsStatus.PENDING;
 };
+
 const TranslationsAvancement = (props: Props) => {
   const routerLocale = useRouterLocale();
   const { getLanguage, userTradLanguages } = useLanguages();
@@ -87,10 +95,6 @@ const TranslationsAvancement = (props: Props) => {
   const [typeContenuFilter, setTypeContenuFilter] = useState<ContentType | "all">(ContentType.DISPOSITIF);
   const [showNeedsList, setShowNeedsList] = useState(false);
   const toggleNeedsList = () => setShowNeedsList(!showNeedsList);
-
-  if (isUndefined(props.actualLanguage)) {
-    return null;
-  }
 
   const navigateToLanguage = (e: any, langue: string) => {
     if (props.actualLanguage?.i18nCode === langue) {
@@ -114,6 +118,32 @@ const TranslationsAvancement = (props: Props) => {
     }
   };
   const handleChange = (e: any) => setSearch(e.target.value);
+
+  const needs = useSelector(needsSelector);
+  const sortedNeeds = useMemo<SortedNeed[]>(() => {
+    if (isUndefined(props.actualLanguage)) return [];
+    return needs
+      .map((need) => {
+        const status = getStatus(need, (props.actualLanguage?.i18nCode || "fr") as Languages);
+        return { ...need, status };
+      })
+      .sort((a, b) => {
+        if (a.status === b.status) {
+          return a.theme.name.fr > b.theme.name.fr ? 1 : -1;
+        }
+        if (a.status === "À traduire") return -1;
+        if (b.status === "À traduire") return 1;
+
+        if (a.status === "À revoir") return -1;
+        if (b.status === "À revoir") return 1;
+
+        return 1;
+      });
+  }, [needs, props.actualLanguage]);
+
+  if (isUndefined(props.actualLanguage)) {
+    return null;
+  }
 
   const { dataToDisplay, nbARevoir, nbATraduire, nbAValider, nbPubliees, nbDispositifs, nbDemarches } = filterData(
     props.data,
@@ -202,7 +232,7 @@ const TranslationsAvancement = (props: Props) => {
               isSelected={showNeedsList}
               name="Besoins"
               onClick={toggleNeedsList}
-              nbContent={props.nbNeedsToTranslate}
+              nbContent={sortedNeeds.filter((n) => n.status !== NeedTradStatus.TRANSLATED).length}
             />
           )}
         </Row>
@@ -212,11 +242,10 @@ const TranslationsAvancement = (props: Props) => {
 
       {showNeedsList ? (
         <TranslationNeedsList
-          show={showNeedsList}
-          toggle={toggleNeedsList}
           setSelectedNeedId={props.setSelectedNeedId}
           langueSelectedFr={props.actualLanguage.langueFr}
           langueI18nCode={props.actualLanguage.i18nCode as Languages}
+          sortedNeeds={sortedNeeds}
         />
       ) : (
         <TranslationAvancementTable
