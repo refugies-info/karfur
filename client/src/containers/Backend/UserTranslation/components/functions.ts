@@ -1,11 +1,4 @@
-import {
-  ContentType,
-  GetDispositifsWithTranslationAvancementResponse,
-  GetNeedResponse,
-  TraductionsStatus,
-} from "@refugies-info/api-types";
-import { colors } from "colors";
-import { AvailableLanguageI18nCode } from "types/interface";
+import { GetDispositifsWithTranslationAvancementResponse } from "@refugies-info/api-types";
 
 const compare = (valueA: any, valueB: any, sens: string) => {
   if (valueA > valueB) return sens === "up" ? 1 : -1;

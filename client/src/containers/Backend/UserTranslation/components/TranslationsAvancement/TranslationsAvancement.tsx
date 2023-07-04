@@ -23,7 +23,6 @@ import { filterData, getStatus } from "./functions";
 import { TranslationAvancementTable } from "../TranslationAvancementTable";
 import TranslationNeedsList from "../TranslationNeedsList";
 import { NeedTradStatus } from "../../types";
-import { ExpertTradStatus } from "components/Pages/dispositif/Translation/TranslationInput/functions";
 
 export type SortedNeed = GetNeedResponse & { status: NeedTradStatus };
 

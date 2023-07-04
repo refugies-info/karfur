@@ -4,7 +4,7 @@ import { Languages } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import TranslationStatus from "components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
 import { getClassStatus } from "./functions";
-import { SortedNeed } from "../TranslationNeedsList";
+import { SortedNeed } from "../../TranslationsAvancement/TranslationsAvancement";
 import styles from "./NeedButton.module.scss";
 
 interface Props {
