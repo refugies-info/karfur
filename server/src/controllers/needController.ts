@@ -1,17 +1,20 @@
-import { Route, Controller, Post, Body, Delete, Path, Security, Get } from "tsoa";
+import { Route, Controller, Post, Body, Delete, Path, Security, Get, Patch, Request } from "tsoa";
 import {
   GetNeedResponse,
   NeedRequest,
   UpdatePositionsNeedResponse,
   UpdatePositionsRequest,
 } from "@refugies-info/api-types";
+import * as express from "express";
 
-import { postNeeds } from "../workflows/needs/postNeeds";
-import { deleteNeed } from "../workflows/needs/deleteNeed";
-import { addView } from "../workflows/needs/addView";
-import { updatePositions } from "../workflows/needs/updatePositions";
+import {
+  postNeeds, deleteNeed,
+  addView,
+  updatePositions,
+  getNeeds,
+  patchNeed
+} from "../workflows/needs";
 import { Response, ResponseWithData } from "../types/interface";
-import { getNeeds } from "../workflows/needs/getNeeds";
 
 @Route("needs")
 export class NeedController extends Controller {
@@ -41,6 +44,14 @@ export class NeedController extends Controller {
   @Post("{id}/views")
   public async views(@Path() id: string): Response {
     return addView(id);
+  }
+
+  @Security({
+    jwt: ["expert"],
+  })
+  @Patch("{id}")
+  public async patch(@Path() id: string, @Body() body: Partial<NeedRequest>, @Request() request: express.Request): Response {
+    return patchNeed(id, body, request.user);
   }
 
   @Security({
