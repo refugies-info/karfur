@@ -22,9 +22,6 @@ interface Props {
   onOpened?: () => void;
 }
 
-/**
- * Modal structure used across the EDIT mode of the page.
- */
 const BaseModal = (props: Props) => {
   const { t } = useTranslation();
   const { isRTL } = useContentLocale();
