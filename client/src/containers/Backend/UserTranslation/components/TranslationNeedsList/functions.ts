@@ -1,5 +1,5 @@
 import { GetNeedResponse, Languages } from "@refugies-info/api-types";
-import { colors } from "colors";
+import { NeedTradStatus } from "../../types";
 
 const isNotTranslated = (need: GetNeedResponse, ln: Languages) => {
   return (
@@ -14,14 +14,8 @@ const isTranslationOutdated = (need: GetNeedResponse, ln: Languages) => {
   return need.fr.updatedAt > translationUpdatedAt;
 };
 
-export const getStatusColorAndText = (need: GetNeedResponse, langueI18nCode: Languages) => {
-  if (isNotTranslated(need, langueI18nCode)) {
-    return { statusColor: colors.blue, statusText: "À traduire" };
-  }
-
-  if (isTranslationOutdated(need, langueI18nCode)) {
-    return { statusColor: colors.rouge, statusText: "À revoir" };
-  }
-
-  return { statusColor: colors.green, statusText: "Traduit" };
+export const getStatus = (need: GetNeedResponse, langueI18nCode: Languages): NeedTradStatus => {
+  if (isNotTranslated(need, langueI18nCode)) return NeedTradStatus.TO_TRANSLATE;
+  if (isTranslationOutdated(need, langueI18nCode)) return NeedTradStatus.TO_REVIEW;
+  return NeedTradStatus.TRANSLATED;
 };

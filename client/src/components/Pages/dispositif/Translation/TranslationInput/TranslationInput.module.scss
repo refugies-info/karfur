@@ -3,6 +3,7 @@
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/icons";
+@import "src/scss/mixins/btn";
 @import "src/scss/mixins/responsive";
 
 .xl .value {
@@ -40,44 +41,20 @@
 
   // status
   &.error {
-    background: var(--background-alt-pink-tuile);
-    border-color: var(--text-default-error);
-    &:hover {
-      background: var(--background-contrast-error);
-    }
+    @include buttonStatus("error");
   }
   &.warning {
-    background: var(--background-alt-pink-macaron);
-    border-color: var(--text-default-warning);
-
-    &:hover {
-      background: #ffe8e5;
-    }
+    @include buttonStatus("warning");
   }
   &.new {
-    background: var(--background-alt-yellow-tournesol);
-    border-color: var(--text-action-high-yellow-tournesol);
-
-    &:hover {
-      background: var(--background-contrast-yellow-tournesol);
-    }
+    @include buttonStatus("new");
   }
   &.success {
-    background: var(--background-alt-green-emeraude);
-    border-color: var(--text-default-success);
-
-    &:hover {
-      background: var(--background-contrast-green-emeraude);
-    }
+    @include buttonStatus("success");
   }
   &.info {
-    background: $lightBackgroundElevationAlt;
-    border-color: $lightBorderDefaultGrey;
+    @include buttonStatus("info");
     box-shadow: 0 2px 6px 0 #00001229;
-
-    &:hover {
-      background: $lightBackgroundContrastGrey;
-    }
   }
 }
 

@@ -1,13 +1,18 @@
 import React, { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { Id, Languages } from "@refugies-info/api-types";
+import { GetNeedResponse, Id, Languages } from "@refugies-info/api-types";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { getStatusColorAndText } from "./functions";
+import { NeedTradStatus } from "../../types";
+import { getStatus } from "./functions";
+import NeedButton from "./NeedButton";
 import styles from "./TranslationNeedsList.module.scss";
+
+const arrayLines = new Array(6).fill("a");
+export type SortedNeed = GetNeedResponse & { status: NeedTradStatus };
 
 interface Props {
   show: boolean;
@@ -16,8 +21,6 @@ interface Props {
   langueSelectedFr?: string;
   langueI18nCode: Languages;
 }
-
-const arrayLines = new Array(6).fill("a");
 
 const TranslationNeedsList = (props: Props) => {
   const dispatch = useDispatch();
@@ -28,21 +31,21 @@ const TranslationNeedsList = (props: Props) => {
   }, [dispatch]);
 
   const needs = useSelector(needsSelector);
-  const sortedNeeds = useMemo(() => {
+  const sortedNeeds = useMemo<SortedNeed[]>(() => {
     return needs
       .map((need) => {
-        const { statusColor, statusText } = getStatusColorAndText(need, props.langueI18nCode);
-        return { ...need, statusText, statusColor };
+        const status = getStatus(need, props.langueI18nCode);
+        return { ...need, status };
       })
       .sort((a, b) => {
-        if (a.statusText === b.statusText) {
+        if (a.status === b.status) {
           return a.theme.name.fr > b.theme.name.fr ? 1 : -1;
         }
-        if (a.statusText === "À revoir") return -1;
-        if (b.statusText === "À revoir") return 1;
+        if (a.status === "À traduire") return -1;
+        if (b.status === "À traduire") return 1;
 
-        if (a.statusText === "À traduire") return -1;
-        if (a.statusText === "À traduire") return 1;
+        if (a.status === "À revoir") return -1;
+        if (b.status === "À revoir") return 1;
 
         return 1;
       });
@@ -72,11 +75,12 @@ const TranslationNeedsList = (props: Props) => {
         ) : (
           <>
             {sortedNeeds.map((need, key) => (
-              <div key={key} onClick={() => props.setSelectedNeedId(need._id)}>
-                <div>{need[props.langueI18nCode]?.text || need.fr.text}</div>
-                <div>{need[props.langueI18nCode]?.subtitle || need.fr.subtitle}</div>
-                <span>{need.statusText}</span>
-              </div>
+              <NeedButton
+                key={key}
+                onClick={() => props.setSelectedNeedId(need._id)}
+                need={need}
+                langueI18nCode={props.langueI18nCode}
+              />
             ))}
           </>
         )}
