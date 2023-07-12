@@ -3,7 +3,7 @@ import { Col, Row } from "reactstrap";
 import { useFormContext } from "react-hook-form";
 import { CreateDispositifRequest, Metadatas, priceDetails } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import DropdownModals from "../../DropdownModals";
 import ChoiceButton from "../../ChoiceButton";
 import { SimpleFooter, InlineForm } from "../components";
