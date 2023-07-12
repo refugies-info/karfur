@@ -1,4 +1,5 @@
 @import "src/scss/mixins/unit";
+@import "src/scss/colors";
 
 /* Base input design */
 @mixin baseInput() {
@@ -11,5 +12,23 @@
 
   &:focus {
     border-color: $lightTextTitleGrey;
+  }
+}
+
+@mixin styledInput() {
+  @include baseInput();
+  background: $lightBackgroundElevationAlt;
+  color: $lightTextTitleGrey;
+  border: 1px solid $lightBorderDefaultGrey;
+  padding: u(2) u(4);
+
+  &:hover,
+  &:active {
+    background: $lightBackgroundContrastGrey !important;
+  }
+  &:focus {
+    background: $lightBackgroundElevationAlt !important;
+    border-color: $darkBackgroundAltGrey;
+    color: $darkBackgroundAltGrey;
   }
 }

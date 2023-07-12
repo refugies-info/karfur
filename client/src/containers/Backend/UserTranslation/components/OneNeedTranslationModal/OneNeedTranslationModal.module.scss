@@ -1,13 +1,38 @@
 @import "src/scss/colors";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/input";
 
-.modal {
-  .modal_content {
-    box-shadow: 0 0 40px #3c3434;
-    box-sizing: border-box;
-    border-radius: 8px;
-    background: #fbfbfb;
-    color: #3d3d3d;
-    border: none;
-    padding: 32px;
+.theme {
+  color: white;
+  font-weight: bold;
+  padding: u(2) u(3);
+  border-radius: u(2);
+  width: fit-content;
+  margin-bottom: u(6);
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  @include dsfr-text("h4");
+  font-weight: bold;
+  margin-bottom: u(4);
+}
+
+.input {
+  @include styledInput();
+  padding-left: 44px;
+}
+
+.flag_input {
+  position: relative;
+  margin-bottom: u(4);
+
+  .flag {
+    position: absolute;
+    left: u(4);
+    top: u(2);
+    margin-top: 6px;
   }
 }
