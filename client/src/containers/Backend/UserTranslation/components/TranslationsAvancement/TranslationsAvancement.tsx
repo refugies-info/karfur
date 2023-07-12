@@ -39,7 +39,6 @@ interface Props {
   timeSpent: number;
   setElementToTranslate: any;
   user: GetUserInfoResponse | null;
-  nbNeedsToTranslate: number;
   setSelectedNeedId: (id: Id) => void;
 }
 

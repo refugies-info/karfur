@@ -2,6 +2,7 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/input";
+@import "src/scss/mixins/rtl";
 
 .theme {
   color: white;
@@ -20,19 +21,30 @@
   margin-bottom: u(4);
 }
 
-.input {
-  @include styledInput();
-  padding-left: 44px;
-}
-
 .flag_input {
   position: relative;
   margin-bottom: u(4);
 
   .flag {
     position: absolute;
-    left: u(4);
     top: u(2);
     margin-top: 6px;
+    left: u(4);
+  }
+
+  .input {
+    @include styledInput();
+    padding-left: 44px;
+  }
+
+  &[dir="rtl"] {
+    .input {
+      padding-left: inherit;
+      padding-right: 44px;
+    }
+    .flag {
+      left: inherit;
+      right: u(4);
+    }
   }
 }

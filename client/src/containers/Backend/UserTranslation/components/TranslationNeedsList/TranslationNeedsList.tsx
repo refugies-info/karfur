@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Id, Languages } from "@refugies-info/api-types";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";

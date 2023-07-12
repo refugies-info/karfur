@@ -74,7 +74,7 @@ const OneNeedTranslationModal = (props: Props) => {
               <Flag langueCode="fr" className={styles.flag} />
               <input id="titleFr" className={styles.input} value={need.fr.text} disabled={true} autoFocus={false} />
             </div>
-            <div className={styles.flag_input}>
+            <div className={styles.flag_input} dir={isRTL ? "rtl" : undefined}>
               <Flag langueCode={props.countryCode} className={styles.flag} />
               <input id="title" className={styles.input} value={text} onChange={onTextChange} autoFocus={false} />
             </div>
@@ -93,7 +93,7 @@ const OneNeedTranslationModal = (props: Props) => {
                 autoFocus={false}
               />
             </div>
-            <div className={styles.flag_input}>
+            <div className={styles.flag_input} dir={isRTL ? "rtl" : undefined}>
               <Flag langueCode={props.countryCode} className={styles.flag} />
               <input
                 id="subtitle"

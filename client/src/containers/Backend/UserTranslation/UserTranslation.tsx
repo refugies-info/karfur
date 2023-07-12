@@ -121,8 +121,6 @@ const UserTranslation = (props: Props) => {
     });
   };
 
-  const nbNeedsToTranslate = needs.filter((need) => langue && !need[langue.i18nCode as Languages]?.text).length;
-
   if (isLoading)
     return (
       <div className={styles.main}>
@@ -162,7 +160,6 @@ const UserTranslation = (props: Props) => {
           toggleCompleteProfilModal={toggleCompleteProfilModal}
           setElementToTranslate={setElementToTranslate}
           user={user.user}
-          nbNeedsToTranslate={nbNeedsToTranslate}
           setSelectedNeedId={setSelectedNeedId}
         />
 
