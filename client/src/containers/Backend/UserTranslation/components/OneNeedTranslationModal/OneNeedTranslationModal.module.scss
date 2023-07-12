@@ -1,0 +1,50 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/input";
+@import "src/scss/mixins/rtl";
+
+.theme {
+  color: white;
+  font-weight: bold;
+  padding: u(2) u(3);
+  border-radius: u(2);
+  width: fit-content;
+  margin-bottom: u(6);
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  @include dsfr-text("h4");
+  font-weight: bold;
+  margin-bottom: u(4);
+}
+
+.flag_input {
+  position: relative;
+  margin-bottom: u(4);
+
+  .flag {
+    position: absolute;
+    top: u(2);
+    margin-top: 6px;
+    left: u(4);
+  }
+
+  .input {
+    @include styledInput();
+    padding-left: 44px;
+  }
+
+  &[dir="rtl"] {
+    .input {
+      padding-left: inherit;
+      padding-right: 44px;
+    }
+    .flag {
+      left: inherit;
+      right: u(4);
+    }
+  }
+}

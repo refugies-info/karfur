@@ -1,3 +1,4 @@
+import { NeedTradStatus } from "containers/Backend/UserTranslation/types";
 import { Suggestion } from "hooks/dispositif";
 
 export enum UserTradStatus {
@@ -102,26 +103,26 @@ type StatusStyle = {
   icon: string;
 }
 
-export const getStatusStyle = (status: UserTradStatus | ExpertTradStatus): StatusStyle => {
-  if ([UserTradStatus.MISSING, ExpertTradStatus.MISSING].includes(status)) {
+export const getStatusStyle = (status: UserTradStatus | ExpertTradStatus | NeedTradStatus): StatusStyle => {
+  if (status === UserTradStatus.MISSING || status === ExpertTradStatus.MISSING) {
     return {
       type: "error",
       icon: "close-circle"
     }
   }
-  if ([UserTradStatus.PENDING, ExpertTradStatus.PENDING].includes(status)) {
+  if (status === UserTradStatus.PENDING || status === ExpertTradStatus.PENDING) {
     return {
       type: "new",
       icon: "pause-circle-outline"
     }
   }
-  if (ExpertTradStatus.TO_REVIEW === status) {
+  if (status === ExpertTradStatus.TO_REVIEW || status === NeedTradStatus.TO_REVIEW) {
     return {
       type: "warning",
       icon: "alert-circle"
     }
   }
-  if ([UserTradStatus.TRANSLATED, ExpertTradStatus.VALIDATED].includes(status)) {
+  if ([UserTradStatus.TRANSLATED, ExpertTradStatus.VALIDATED, NeedTradStatus.TRANSLATED].includes(status)) {
     return {
       type: "success",
       icon: "checkmark-circle-2"

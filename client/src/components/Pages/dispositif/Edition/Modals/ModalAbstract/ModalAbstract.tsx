@@ -6,7 +6,7 @@ import { ContentType, CreateDispositifRequest } from "@refugies-info/api-types";
 import { useContentType } from "hooks/dispositif";
 import DispositifCard from "components/UI/DispositifCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import { SimpleFooter } from "../components";
 import { getDefaultDispositif } from "./functions";
 import { help } from "./data";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useEvent } from "hooks";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import Button from "components/UI/Button";
 import { StepsFooter } from "../components";
 import { modalTitles } from "./data";

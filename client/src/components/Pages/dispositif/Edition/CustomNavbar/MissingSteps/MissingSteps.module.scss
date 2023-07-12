@@ -2,6 +2,7 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/btn";
 
 .missing {
   border-radius: u(2);
@@ -26,21 +27,11 @@
   }
 
   &.new {
+    @include buttonStatus("new");
     color: var(--text-action-high-yellow-tournesol);
-    border-color: var(--text-action-high-yellow-tournesol);
-    background: var(--background-alt-yellow-tournesol);
-
-    &:hover {
-      background: var(--background-contrast-yellow-tournesol) !important;
-    }
   }
   &.error {
+    @include buttonStatus("error");
     color: var(--text-default-error);
-    border-color: var(--text-default-error);
-    background: var(--pink-tuile-975-75);
-
-    &:hover {
-      background: var(--background-contrast-error) !important;
-    }
   }
 }

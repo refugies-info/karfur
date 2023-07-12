@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { CreateDispositifRequest, Metadatas } from "@refugies-info/api-types";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import ChoiceButton from "../../ChoiceButton";
 import { SimpleFooter, StepsFooter } from "../components";
 import { help, helpDepartments } from "./data";

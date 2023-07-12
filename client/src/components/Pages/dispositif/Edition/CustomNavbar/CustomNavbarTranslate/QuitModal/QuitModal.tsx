@@ -5,7 +5,7 @@ import { Languages } from "@refugies-info/api-types";
 import PageContext from "utils/pageContext";
 import { useUser, useLanguages } from "hooks";
 import Button from "components/UI/Button";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import StepBar from "../../StepBar";
 import MissingSteps from "../../MissingSteps";

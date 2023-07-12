@@ -11,7 +11,7 @@ import {
 } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import { entries } from "lib/typedObjectEntries";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import ChoiceButton from "../../ChoiceButton";
 import { StepsFooter, InlineForm } from "../components";
 import {
