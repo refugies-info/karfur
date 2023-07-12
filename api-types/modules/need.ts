@@ -8,12 +8,20 @@ export interface NeedTranslation {
 
 /**
  * @url POST /needs
+ * @url PATCH /needs/{id}
  */
 export interface NeedRequest {
   fr: {
     text: string;
     subtitle: string;
   };
+  ar?: NeedTranslation;
+  en?: NeedTranslation;
+  ru?: NeedTranslation;
+  fa?: NeedTranslation;
+  ti?: NeedTranslation;
+  ps?: NeedTranslation;
+  uk?: NeedTranslation;
   theme?: string;
   image?: Picture;
   adminComments: string;

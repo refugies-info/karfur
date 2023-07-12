@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { Languages } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 import PageContext from "utils/pageContext";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import Button from "components/UI/Button";
 import MissingSteps from "../../MissingSteps";
 import StepBar from "../../StepBar";

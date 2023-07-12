@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import { conditionType, CreateDispositifRequest } from "@refugies-info/api-types";
 import { entries } from "lib/typedObjectEntries";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import ChoiceButton from "../../ChoiceButton";
 import { SimpleFooter } from "../components";
 import { dropdownOptions, help } from "./data";

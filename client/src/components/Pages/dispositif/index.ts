@@ -2,7 +2,6 @@ import AccordionBadge from "./AccordionBadge";
 import Accordions from "./Accordions";
 import ActionButtons from "./ActionButtons";
 import Banner from "./Banner";
-import BaseModal from "./BaseModal";
 import Breadcrumb from "./Breadcrumb";
 import Contributors from "./Contributors";
 import Feedback from "./Feedback";
@@ -30,7 +29,6 @@ export {
   Accordions,
   ActionButtons,
   Banner,
-  BaseModal,
   Breadcrumb,
   Contributors,
   Header,

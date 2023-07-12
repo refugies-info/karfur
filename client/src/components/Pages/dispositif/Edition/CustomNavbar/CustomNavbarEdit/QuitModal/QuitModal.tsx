@@ -4,7 +4,7 @@ import Image from "next/image";
 import { DispositifStatus } from "@refugies-info/api-types";
 import { isStatus } from "lib/dispositif";
 import Button from "components/UI/Button";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import QuitImage from "assets/dispositif/quit-image.svg";
 import { contents } from "./data";

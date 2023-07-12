@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Languages } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
 import Button from "components/UI/Button";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import BubbleFlag from "components/UI/BubbleFlag";
 import { StepsFooter } from "../../Edition/Modals/components";
 import { expertImages, modalContent } from "./data";

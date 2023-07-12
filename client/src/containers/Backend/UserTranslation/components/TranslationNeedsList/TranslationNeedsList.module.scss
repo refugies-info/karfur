@@ -1,0 +1,26 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+
+.container {
+  width: 940px;
+  margin: u(6) auto;
+}
+
+.title {
+  @include text("normal");
+  font-weight: bold;
+}
+
+.content {
+  padding: u(4);
+  background: white;
+  border-radius: u(2);
+}
+
+.badge {
+  padding: u(1) u(2);
+  background-color: white;
+  border-radius: u(1);
+  margin-left: u(2);
+}

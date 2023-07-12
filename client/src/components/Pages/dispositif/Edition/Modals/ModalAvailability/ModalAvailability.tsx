@@ -11,7 +11,7 @@ import {
   timeUnitType,
 } from "@refugies-info/api-types";
 import { jsUcfirst } from "lib";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import ChoiceButton from "../../ChoiceButton";
 import DropdownModals from "../../DropdownModals";
 import { StepsFooter, InlineForm } from "../components";
