@@ -163,6 +163,10 @@ export class DispositifController extends Controller {
   public async export(): Response {
     return exportFiches();
   }
+
+  @Security({
+    jwt: ["admin"],
+  })
   @Post("/export-geoloc")
   public async exportGeolocalisation(): Response {
     return exportDispositifsGeolocalisation();
