@@ -214,6 +214,8 @@ export const ContentDetailsModal = (props: Props) => {
       >
         <>
           <StatusRow
+            title="Statut de la fiche"
+            type="content"
             element={dispositif}
             status={correspondingStatus}
             publicationStatus={publicationData}
