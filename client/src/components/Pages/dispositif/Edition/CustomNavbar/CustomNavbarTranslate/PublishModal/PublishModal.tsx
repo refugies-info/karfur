@@ -27,26 +27,30 @@ interface Props {
 }
 
 const PublishModal = (props: Props) => {
-  const { toggle } = props;
+  const { toggle, onQuit, isComplete } = props;
   const { Event } = useEvent();
   const pageContext = useContext(PageContext);
   const [screenStep, setScreenStep] = useState(0);
   const title = useMemo(() => {
-    if (props.isComplete) {
+    if (isComplete) {
       return screenStep === 0
         ? "Tout est prêt, vous pouvez publier la fiche !"
         : "Pensez à bien remplir le formulaire sur Airtable !";
     }
     return `Plus que ${props.missingSteps.length} étapes`;
-  }, [props.isComplete, props.missingSteps, screenStep]);
+  }, [isComplete, props.missingSteps, screenStep]);
 
   const totalSteps = props.missingSteps.length + props.pendingSteps.length + props.progress;
   const closeModal = useCallback(() => {
-    if (!props.isComplete) {
+    if (!isComplete) {
       pageContext?.setShowMissingSteps?.(true);
+    } else {
+      if (screenStep === 1) {
+        onQuit();
+      }
     }
     toggle();
-  }, [pageContext, toggle, props.isComplete]);
+  }, [pageContext, toggle, isComplete, screenStep, onQuit]);
 
   // send event with missing steps
   useEffect(() => {
@@ -60,7 +64,7 @@ const PublishModal = (props: Props) => {
   }, [props.show, Event, props.missingSteps]);
   return (
     <BaseModal show={props.show} toggle={closeModal} title={title} small>
-      {props.isComplete ? (
+      {isComplete ? (
         screenStep === 0 ? (
           <CompleteContent
             locale={props.locale}
@@ -96,7 +100,7 @@ const PublishModal = (props: Props) => {
               priority="secondary"
               onClick={(e: any) => {
                 e.preventDefault();
-                props.onQuit();
+                onQuit();
               }}
               evaIcon="log-out-outline"
               iconPosition="right"
