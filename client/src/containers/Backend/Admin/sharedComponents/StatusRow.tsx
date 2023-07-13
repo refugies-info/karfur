@@ -5,6 +5,8 @@ import styles from "./StatusRow.module.scss";
 import { DispositifStatus, GetAllDispositifsResponse, GetAllStructuresResponse } from "@refugies-info/api-types";
 
 interface Props {
+  title: string;
+  type: "content" | "structure";
   element: GetAllDispositifsResponse | GetAllStructuresResponse;
   status: ContentStatus[] | StructureAdminStatus[];
   publicationStatus: ProgressionStatus[];
@@ -20,7 +22,7 @@ export const StatusRow = (props: Props) => {
   return (
     <div className={styles.status_row}>
       <div>
-        <Label>Statut de la fiche</Label>
+        <Label>{props.title}</Label>
         <div className="d-flex">
           {props.status.sort(statusCompare).map((status) => {
             if (
@@ -38,6 +40,7 @@ export const StatusRow = (props: Props) => {
               >
                 <StyledStatus
                   text={status.storedStatus}
+                  textToDisplay={props.type === "structure" ? status.displayedStatus : undefined}
                   overrideColor={status.storedStatus !== props.element.status}
                   color={status.color}
                   disabled={status.storedStatus === props.element.status}
