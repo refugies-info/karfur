@@ -212,6 +212,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
         }
       >
         <StatusRow
+          title="Statut de la structure"
+          type="structure"
           element={structure}
           status={correspondingStatus}
           publicationStatus={publicationStatus}
