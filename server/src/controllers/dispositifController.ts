@@ -106,7 +106,9 @@ export class DispositifController extends Controller {
     return getStatistics(query);
   }
 
-  @Security("jwt")
+  @Security({
+    jwt: ["admin"],
+  })
   @Get("/region-statistics")
   public async getRegionStatistics(): ResponseWithData<GetRegionStatisticsResponse> {
     return getNbDispositifsByRegion();
