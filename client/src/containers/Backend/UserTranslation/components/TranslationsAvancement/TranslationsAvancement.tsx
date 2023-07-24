@@ -225,6 +225,8 @@ const TranslationsAvancement = (props: Props) => {
             onClick={() => onTypeContenuFilterClick(ContentType.DEMARCHE)}
             nbContent={nbDemarches}
           />
+        </Row>
+        <Row>
           {props.isExpert && (
             <FilterButton
               isSelected={showNeedsList}
@@ -233,9 +235,8 @@ const TranslationsAvancement = (props: Props) => {
               nbContent={sortedNeeds.filter((n) => n.status !== NeedTradStatus.TRANSLATED).length}
             />
           )}
+          <CustomSearchBar value={search} onChange={handleChange} placeholder="Rechercher..." withMargin={false} />
         </Row>
-
-        <CustomSearchBar value={search} onChange={handleChange} placeholder="Rechercher..." withMargin={false} />
       </FilterBarContainer>
 
       {showNeedsList ? (
