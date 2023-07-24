@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { getPath } from "routes";
-import { useEvent } from "hooks";
+import { useEvent, useLocale } from "hooks";
 import { cls } from "lib/classname";
 import { getLinkedThemesReadableText } from "lib/getReadableText";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
@@ -34,6 +34,7 @@ const LinkNeed = styled(Link)<LinkNeedProps>`
 const LinkedThemes = () => {
   const { t } = useTranslation();
   const { Event } = useEvent();
+  const locale = useLocale();
   const themes = useSelector(themesSelector);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
@@ -75,7 +76,7 @@ const LinkedThemes = () => {
               color30={theme?.colors.color30 || "#EEE"}
               onClick={() => Event("DISPO_VIEW", "click need", "Linked themes")}
             >
-              {need.fr.text}
+              {need[locale]?.text || need.fr.text}
               <Image src={need.image?.secure_url || ""} width={32} height={32} alt="" className="ms-3" />
             </LinkNeed>
           );
