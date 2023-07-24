@@ -1,10 +1,11 @@
 import { cls } from "lib/classname";
+import { NeedTradStatus } from "containers/Backend/UserTranslation/types";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { ExpertTradStatus, getStatusStyle, UserTradStatus } from "../functions";
 import styles from "./TranslationStatus.module.scss";
 
 interface Props {
-  status: UserTradStatus | ExpertTradStatus;
+  status: UserTradStatus | ExpertTradStatus | NeedTradStatus;
 }
 
 const TranslationStatus = (props: Props) => {

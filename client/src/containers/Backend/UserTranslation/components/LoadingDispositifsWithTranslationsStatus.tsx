@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
-import { FilterButton, TypeContenuFilterButton } from "./SubComponents";
+import { FilterButton } from "./SubComponents";
 import FButton from "../../../../components/UI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
@@ -77,8 +77,8 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
           />
 
           <FilterButton status={TraductionsStatus.VALIDATED} isSelected={false} nbContent={"..."} onClick={() => {}} />
-          <TypeContenuFilterButton isSelected={true} name="Dispositifs" onClick={() => {}} nbContent={"..."} />
-          <TypeContenuFilterButton isSelected={false} name="Démarches" onClick={() => {}} nbContent={"..."} />
+          <FilterButton isSelected={true} name="Dispositifs" onClick={() => {}} nbContent={"..."} />
+          <FilterButton isSelected={false} name="Démarches" onClick={() => {}} nbContent={"..."} />
         </Row>
 
         <CustomSearchBar

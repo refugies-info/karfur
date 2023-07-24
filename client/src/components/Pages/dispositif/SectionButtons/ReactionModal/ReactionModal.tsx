@@ -3,8 +3,8 @@ import { useTranslation } from "next-i18next";
 import { Id } from "@refugies-info/api-types";
 import API from "utils/API";
 import { handleApiError } from "lib/handleApiErrors";
+import BaseModal from "components/UI/BaseModal";
 import Button from "components/UI/Button";
-import BaseModal from "../../BaseModal";
 import styles from "./ReactionModal.module.scss";
 
 interface Props {

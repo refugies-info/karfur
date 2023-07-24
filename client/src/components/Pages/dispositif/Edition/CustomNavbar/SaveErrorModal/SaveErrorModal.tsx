@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import Image from "next/image";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import Button from "components/UI/Button";
 import TutorielImage from "assets/dispositif/tutoriel-image.svg";
 

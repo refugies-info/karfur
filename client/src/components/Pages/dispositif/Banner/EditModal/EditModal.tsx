@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Button from "components/UI/Button";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import TutorielImage from "assets/dispositif/tutoriel-image.svg";
 import styles from "./EditModal.module.scss";
 

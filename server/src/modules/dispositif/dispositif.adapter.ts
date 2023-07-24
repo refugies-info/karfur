@@ -116,7 +116,7 @@ export const adaptDispositifDepartement = (dispositifs: Dispositif[]): Result[] 
 
   for (const dispositif of dispositifs) {
     const location = dispositif.metadatas.location;
-    const departments = location && location.length > 0 ? location : null;
+    const departments = location && Array.isArray(location) && location.length > 0 ? location : null;
     if (!departments) {
       result.push({
         _id: dispositif._id,

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { CreateDispositifRequest, Id, Sponsor } from "@refugies-info/api-types";
 import { userSelector } from "services/User/user.selectors";
 import { userStructureSelector } from "services/UserStructure/userStructure.selectors";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import { defaultContact, defaultSponsor } from "./data";
 import SearchStructure from "./SearchStructure";
 import ChooseStructure from "./ChooseStructure";
