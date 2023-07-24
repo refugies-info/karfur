@@ -97,8 +97,8 @@ export const NoFavorites = (props: { t: any; toggleTutoModal: () => void }) => (
     <CardsContainer>
       <HelpCard>
         {props.t("UserFavorites.Comment ajouter", "Comment ajouter des fiches en favoris ?")}
-        <FButton type="tuto" name={"video"} className="me-2" onClick={props.toggleTutoModal}>
-          {props.t("UserFavorites.Voir la vidéo", "Voir la vidéo")}
+        <FButton type="tuto" name={"question-mark-circle-outline"} className="me-2" onClick={props.toggleTutoModal}>
+          {props.t("UserFavorites.tutoriel", "Lire le tutoriel")}
         </FButton>
       </HelpCard>
       <EmptyCard />

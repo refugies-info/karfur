@@ -1,0 +1,40 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/btn";
+
+.need {
+  padding: u(2);
+  border-radius: u(2);
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: u(2);
+  width: 100%;
+
+  &.warning {
+    @include buttonStatus("warning");
+  }
+  &.success {
+    @include buttonStatus("success");
+  }
+  &.info {
+    @include buttonStatus("info");
+  }
+
+  .content {
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+
+  .title {
+    font-weight: bold;
+    display: block;
+  }
+  .subtitle {
+    @include dsfr-text("small");
+    display: block;
+  }
+}

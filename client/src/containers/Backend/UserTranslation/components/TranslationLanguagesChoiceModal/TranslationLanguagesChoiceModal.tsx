@@ -10,12 +10,12 @@ import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-import styles from "./TranslationLanguagesChoiceModal.module.scss";
+import { useHistory } from "react-router-dom";
 import useRouterLocale from "hooks/useRouterLocale";
 import { GetLanguagesResponse, Id } from "@refugies-info/api-types";
 import { useLanguages } from "hooks";
 import isUndefined from "lodash/isUndefined";
+import styles from "./TranslationLanguagesChoiceModal.module.scss";
 
 const Header = styled.div`
   font-weight: bold;
@@ -73,7 +73,7 @@ const ButtonsContainer = styled.div`
   margin: 0px 50px 0px 50px;
   margin-top: 70px;
 `;
-interface Props extends RouteComponentProps {
+interface Props {
   show: boolean;
   toggle: () => void;
 }
@@ -105,7 +105,8 @@ const LangueItem = ({ langue, isSelected, onClick }: LangueItemProps) => (
   </LangueItemContainer>
 );
 
-const TranslationLanguagesChoiceModalComponent = (props: Props) => {
+const TranslationLanguagesChoiceModal = (props: Props) => {
+  const history = useHistory();
   const [selectedLangues, setSelectedLangues] = useState<string[]>([]);
 
   const { langues, userTradLanguages } = useLanguages();
@@ -173,7 +174,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
 
     props.toggle();
     const firstLangue = langues.find((langue) => langue._id === selectedLangues[0]);
-    return props.history.push(routerLocale + "/backend/user-translation/" + firstLangue?.i18nCode);
+    return history.push(routerLocale + "/backend/user-translation/" + firstLangue?.i18nCode);
   };
 
   return (
@@ -218,4 +219,4 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   );
 };
 
-export const TranslationLanguagesChoiceModal = withRouter(TranslationLanguagesChoiceModalComponent);
+export default TranslationLanguagesChoiceModal;

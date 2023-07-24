@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "components/UI/Button";
-import { BaseModal } from "components/Pages/dispositif";
+import BaseModal from "components/UI/BaseModal";
 import styles from "./Delete.module.scss";
 
 interface Props {

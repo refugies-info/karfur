@@ -268,7 +268,8 @@ const API = {
     return instance.get<any, APIResponse<GetAllDispositifsResponse[]>>("/dispositifs/all", { headers }).then(response => response.data.data)
   },
   getNbDispositifsByRegion: (): Promise<GetRegionStatisticsResponse> => {
-    return instance.get<any, APIResponse<GetRegionStatisticsResponse>>("/dispositifs/region-statistics").then(response => response.data.data)
+    const headers = getHeaders();
+    return instance.get<any, APIResponse<GetRegionStatisticsResponse>>("/dispositifs/region-statistics", { headers }).then(response => response.data.data)
   },
   addDispositifViews: (id: string, body: AddViewsRequest): Promise<null> => {
     const headers = getHeaders();

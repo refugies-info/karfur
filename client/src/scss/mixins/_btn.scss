@@ -7,3 +7,37 @@
     align-items: center;
   }
 }
+
+@mixin buttonStatus($status) {
+  @if ($status == "success") {
+    background: var(--background-alt-green-emeraude);
+    border-color: var(--text-default-success);
+    &:hover {
+      background: var(--background-contrast-green-emeraude) !important;
+    }
+  } @else if ($status == "new") {
+    background: var(--background-alt-yellow-tournesol);
+    border-color: var(--text-action-high-yellow-tournesol);
+    &:hover {
+      background: var(--background-contrast-yellow-tournesol) !important;
+    }
+  } @else if ($status == "error") {
+    background: var(--background-alt-pink-tuile);
+    border-color: var(--text-default-error);
+    &:hover {
+      background: var(--background-contrast-error) !important;
+    }
+  } @else if ($status == "warning") {
+    background: var(--background-alt-pink-macaron);
+    border-color: var(--text-default-warning);
+    &:hover {
+      background: #ffe8e5 !important;
+    }
+  } @else if ($status == "info") {
+    background: $lightBackgroundElevationAlt;
+    border-color: $lightBorderDefaultGrey;
+    &:hover {
+      background: $lightBackgroundContrastGrey !important;
+    }
+  }
+}
