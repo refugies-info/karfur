@@ -186,7 +186,7 @@ const Login = () => {
         });
         return;
       }
-      API.checkUserExists(username)
+      API.checkUserExists(encodeURIComponent(username))
         .then(() => setStep(1))
         .catch(() => setNoUserError(true));
     } else {
