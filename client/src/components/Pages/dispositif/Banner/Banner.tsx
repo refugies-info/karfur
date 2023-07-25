@@ -39,8 +39,8 @@ const Banner = (props: Props) => {
     router.push({
       pathname:
         dispositif.typeContenu === ContentType.DEMARCHE
-          ? getPath("/demarche/[id]/edit", router.locale)
-          : getPath("/dispositif/[id]/edit", router.locale),
+          ? getPath("/demarche/[id]/edit", "fr")
+          : getPath("/dispositif/[id]/edit", "fr"),
       query: { id: dispositif._id.toString() },
     });
   }, [dispositif, router]);

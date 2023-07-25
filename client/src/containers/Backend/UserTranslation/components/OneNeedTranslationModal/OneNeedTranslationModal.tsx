@@ -55,6 +55,8 @@ const OneNeedTranslationModal = (props: Props) => {
   };
 
   const hasError = !need || !props.selectedNeedId;
+  const validateDisabled = !text || (!!need && !!need.fr.subtitle && !subtitle);
+
   return (
     <BaseModal show={props.show} toggle={props.toggle} small title="">
       {need?.theme && (
@@ -119,7 +121,7 @@ const OneNeedTranslationModal = (props: Props) => {
         >
           Annuler
         </Button>
-        <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={onSave} disabled={!text}>
+        <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={onSave} disabled={validateDisabled}>
           Valider
         </Button>
       </div>
