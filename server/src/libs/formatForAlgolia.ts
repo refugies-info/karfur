@@ -41,18 +41,18 @@ export const formatForAlgolia = (
 ): AlgoliaObject => {
   if (type === "dispositif") {
     const dispositif = content as Dispositif;
-    const mainSponsor = dispositif.getMainSponsor();
+    const mainSponsor = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
     return {
       objectID: dispositif._id,
       ...extractValuesPerLanguage(dispositif.translations, "content.titreInformatif", "title"),
       ...extractValuesPerLanguage(dispositif.translations, "content.titreMarque", "titreMarque"),
       ...extractValuesPerLanguage(dispositif.translations, "content.abstract", "abstract"),
-      theme: dispositif.theme || "",
-      secondaryThemes: dispositif.secondaryThemes || [],
+      theme: { _id: (dispositif.theme as Theme)?._id || dispositif.theme || "" }, // TODO: revert to keeping only id (change on mobile app too)
+      secondaryThemes: (dispositif.secondaryThemes || []).map(t => ({ _id: (t as Theme)?._id || t })), // TODO: revert to keeping only id (change on mobile app too)
       needs: dispositif.needs,
       nbVues: dispositif.nbVues,
       typeContenu: dispositif.typeContenu,
-      sponsorUrl: mainSponsor?.picture?.secure_url,
+      sponsorUrl: mainSponsor?.picture?.secure_url || "",
       sponsorName: mainSponsor?.nom,
       priority: dispositif.typeContenu === "dispositif" ? 30 : 40,
       webOnly: dispositif.webOnly || false,
@@ -62,7 +62,7 @@ export const formatForAlgolia = (
     return {
       objectID: need._id,
       ...getAllNeedTitles(need, activeLanguages),
-      theme: need.theme,
+      theme: { _id: (need.theme as Theme)?._id || need.theme || "" }, // TODO: revert to keeping only id (change on mobile app too)
       typeContenu: "besoin",
       priority: 20,
       webOnly: false,
