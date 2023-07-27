@@ -15,17 +15,17 @@ const push = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: jest.fn(),
-  useHistory: () => ({ push })
+  useHistory: () => ({ push }),
 }));
 
 jest.mock("services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions", () => {
   const actions = jest.requireActual(
-    "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions"
+    "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions",
   );
   return {
     fetchDispositifsWithTranslationsStatusActionCreator: jest.fn(
-      actions.fetchDispositifsWithTranslationsStatusActionCreator
-    )
+      actions.fetchDispositifsWithTranslationsStatusActionCreator,
+    ),
   };
 });
 jest.mock("utils/API");
@@ -45,16 +45,16 @@ describe("user translation", () => {
         reduxState: {
           ...initialMockStore,
           loadingStatus: {
-            FETCH_DISPOSITIFS_TRANSLATIONS_STATUS: { isLoading: true }
+            FETCH_DISPOSITIFS_TRANSLATIONS_STATUS: { isLoading: false },
           },
           user: {
-            user: { selectedLanguages: [{ i18nCode: "en" }], _id: "userId" }
-          }
-        }
+            user: { selectedLanguages: ["en"], _id: "userId" },
+          },
+        },
       });
     });
     expect(fetchDispositifsWithTranslationsStatusActionCreator).toHaveBeenCalledWith("en");
-    expect(API.get_progression).toHaveBeenCalledWith({ userId: "userId" });
+    expect(API.get_progression).toHaveBeenCalledWith({});
     expect(component.toJSON()).toMatchSnapshot();
   });
 
@@ -68,8 +68,8 @@ describe("user translation", () => {
         reduxState: {
           ...initialMockStore,
           user: { user: { selectedLanguages: [{ i18nCode: "en" }] } },
-          dispositifsWithTranslations: []
-        }
+          dispositifsWithTranslations: [],
+        },
       });
     });
     expect(push).toHaveBeenCalledWith("/fr/backend/user-translation/en");
@@ -86,8 +86,8 @@ describe("user translation", () => {
         reduxState: {
           ...initialMockStore,
           user: { user: { selectedLanguages: [] } },
-          dispositifsWithTranslations: []
-        }
+          dispositifsWithTranslations: [],
+        },
       });
     });
     expect(fetchDispositifsWithTranslationsStatusActionCreator).not.toHaveBeenCalled();
@@ -105,8 +105,8 @@ describe("user translation", () => {
         reduxState: {
           ...initialMockStore,
           user: { user: { selectedLanguages: [] } },
-          dispositifsWithTranslations: [{ _id: "id" }]
-        }
+          dispositifsWithTranslations: [{ _id: "id" }],
+        },
       });
     });
     expect(fetchDispositifsWithTranslationsStatusActionCreator).not.toHaveBeenCalled();
@@ -126,10 +126,10 @@ describe("user translation", () => {
           ...initialMockStore,
           user: {
             user: { selectedLanguages: [{ i18nCode: "en", _id: "idEn" }] },
-            expertTrad: false
+            expertTrad: false,
           },
-          dispositifsWithTranslations
-        }
+          dispositifsWithTranslations,
+        },
       });
     });
     expect(component.toJSON()).toMatchSnapshot();
@@ -146,10 +146,10 @@ describe("user translation", () => {
           ...initialMockStore,
           user: {
             user: { selectedLanguages: [{ i18nCode: "en", _id: "idEn" }] },
-            expertTrad: true
+            expertTrad: true,
           },
-          dispositifsWithTranslations
-        }
+          dispositifsWithTranslations,
+        },
       });
     });
     expect(component.toJSON()).toMatchSnapshot();
@@ -167,11 +167,11 @@ describe("user translation", () => {
           user: {
             user: { selectedLanguages: [{ i18nCode: "en" }] },
             expertTrad: true,
-            admin: true
+            admin: true,
           },
-          dispositifsWithTranslations
+          dispositifsWithTranslations,
         },
-        compProps: {}
+        compProps: {},
       });
     });
 

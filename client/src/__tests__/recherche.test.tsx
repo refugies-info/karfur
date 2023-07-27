@@ -7,7 +7,6 @@ import { setupGoogleMock } from "../__mocks__/react-google-autocomplete";
 import "jest-styled-components";
 
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("components/Modals/NewSearchModal/NewSearchModal", () => jest.fn().mockReturnValue(<></>));
 
 describe("recherche", () => {
   beforeEach(() => {
@@ -22,8 +21,8 @@ describe("recherche", () => {
       component = wrapWithProvidersAndRender({
         Component: recherche,
         reduxState: {
-          ...initialMockStore
-        }
+          ...initialMockStore,
+        },
       });
     });
     expect(component.toJSON()).toMatchSnapshot();
@@ -41,7 +40,7 @@ describe("recherche", () => {
             results: {
               dispositifs: [],
               demarches: [],
-              dispositifsSecondaryTheme: []
+              dispositifsSecondaryTheme: [],
             },
             query: {
               search: "",
@@ -52,15 +51,15 @@ describe("recherche", () => {
               frenchLevel: [],
               language: [],
               sort: "date",
-              type: "all"
+              type: "all",
             },
             inputFocused: {
               search: false,
               location: false,
-              theme: false
-            }
-          }
-        }
+              theme: false,
+            },
+          },
+        },
       });
     });
     expect(component.toJSON()).toMatchSnapshot();

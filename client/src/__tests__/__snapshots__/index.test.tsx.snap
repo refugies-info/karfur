@@ -2221,7 +2221,50 @@ exports[`homepage renders homepage 1`] = `
                     className="menu dropdown-menu"
                     role="menu"
                     tabIndex="-1"
-                  />
+                  >
+                    <button
+                      className="item selected dropdown-item"
+                      onClick={[Function]}
+                      role="menuitem"
+                      tabIndex="0"
+                      type="button"
+                    >
+                      <span
+                        className="flag fi fi-fr mx-2"
+                        title="fr"
+                      />
+                      <span
+                        className="item_locale"
+                      >
+                        Français
+                         -
+                      </span>
+                      <span>
+                        Français
+                      </span>
+                    </button>
+                    <button
+                      className="item dropdown-item"
+                      onClick={[Function]}
+                      role="menuitem"
+                      tabIndex="0"
+                      type="button"
+                    >
+                      <span
+                        className="flag fi fi-en mx-2"
+                        title="en"
+                      />
+                      <span
+                        className="item_locale"
+                      >
+                        Anglais
+                         -
+                      </span>
+                      <span>
+                        English
+                      </span>
+                    </button>
+                  </div>
                 </div>
                 <button
                   className="btn validate submit"
