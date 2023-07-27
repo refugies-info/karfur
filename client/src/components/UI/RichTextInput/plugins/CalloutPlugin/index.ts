@@ -44,7 +44,7 @@ export default function CalloutPlugin() {
           }
           const anchorNode = selection.anchor.getNode().getTopLevelElement();
           const previousSibling = anchorNode?.getPreviousSibling();
-          if (anchorNode && previousSibling === null) {
+          if (anchorNode && previousSibling === null && $isCalloutNode(anchorNode)) {
             $setSelection(null);
             anchorNode?.insertBefore($createParagraphNode());
             anchorNode.remove();
