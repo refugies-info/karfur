@@ -2072,6 +2072,11 @@ exports[`recherche renders home search 1`] = `
           </button>
           <div
             className="slider demarches"
+            style={
+              {
+                "gap": 24,
+              }
+            }
           />
         </div>
         <div
@@ -2118,6 +2123,11 @@ exports[`recherche renders home search 1`] = `
           </button>
           <div
             className="slider dispositifs"
+            style={
+              {
+                "gap": 32,
+              }
+            }
           />
         </div>
       </div>

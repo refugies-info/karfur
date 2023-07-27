@@ -851,6 +851,11 @@ exports[`should render Title with titre marque 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  text-align: left;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
@@ -882,6 +887,11 @@ exports[`should render Title without titre marque 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  text-align: left;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;

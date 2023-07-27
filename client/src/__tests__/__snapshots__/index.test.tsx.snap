@@ -271,15 +271,15 @@ exports[`homepage renders homepage 1`] = `
 }
 
 .c27:hover {
-  background-color: #EDFDF9 !important;
-  border-color: #055E5A !important;
-  color: #055E5A !important;
+  background-color: #EEEEEE !important;
+  border-color: #3A3A3A !important;
+  color: #3A3A3A !important;
 }
 
 .c28:hover {
-  background-color: #EDFDF9 !important;
-  border-color: #055E5A !important;
-  color: #055E5A !important;
+  background-color: #EEEEEE !important;
+  border-color: #3A3A3A !important;
+  color: #3A3A3A !important;
 }
 
 @media screen and (max-width:767px) {
@@ -2000,6 +2000,7 @@ exports[`homepage renders homepage 1`] = `
             className="store"
           >
             <a
+              className="links"
               href="https://apps.apple.com/app/id1595597429"
               rel="noopener noreferrer"
               target="_blank"
@@ -2022,6 +2023,7 @@ exports[`homepage renders homepage 1`] = `
               />
             </a>
             <a
+              className="links"
               href="https://play.google.com/store/apps/details?id=com.refugiesinfo.app"
               rel="noopener noreferrer"
               target="_blank"
@@ -2192,8 +2194,7 @@ exports[`homepage renders homepage 1`] = `
                     >
                       en français
                       <span
-                        className="flag fi fi-fr"
-                        id="fr"
+                        className="flag fi fi-fr mx-2"
                         title="fr"
                       />
                     </span>
@@ -2316,6 +2317,11 @@ exports[`homepage renders homepage 1`] = `
         </button>
         <div
           className="slider demarches"
+          style={
+            {
+              "gap": 24,
+            }
+          }
         >
           <div
             className="card"
@@ -2395,7 +2401,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -2406,7 +2412,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -2431,16 +2437,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -2465,16 +2473,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -2499,10 +2509,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -2585,7 +2597,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -2596,7 +2608,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -2621,16 +2633,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -2655,16 +2669,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -2689,10 +2705,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -2782,7 +2800,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -2793,7 +2811,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -2818,16 +2836,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -2852,10 +2872,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -2938,7 +2960,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -2949,7 +2971,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -2974,10 +2996,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -3060,7 +3084,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -3071,7 +3095,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3096,16 +3120,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3130,10 +3156,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -3216,7 +3244,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -3227,7 +3255,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3252,10 +3280,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -3345,7 +3375,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -3356,7 +3386,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3381,16 +3411,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3415,10 +3447,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -3508,7 +3542,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -3519,7 +3553,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3544,10 +3578,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -3630,7 +3666,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -3641,7 +3677,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3666,10 +3702,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -3759,7 +3797,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -3770,7 +3808,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3795,16 +3833,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3829,16 +3869,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3863,10 +3905,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -3949,7 +3993,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -3960,7 +4004,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -3985,10 +4029,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -4071,7 +4117,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -4082,7 +4128,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -4107,16 +4153,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -4141,10 +4189,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -4227,7 +4277,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -4238,7 +4288,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -4263,10 +4313,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -4356,7 +4408,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -4367,7 +4419,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -4392,10 +4444,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -4478,7 +4532,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -4489,7 +4543,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -4514,10 +4568,12 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
             </a>
@@ -4568,6 +4624,11 @@ exports[`homepage renders homepage 1`] = `
         </button>
         <div
           className="slider dispositifs"
+          style={
+            {
+              "gap": 32,
+            }
+          }
         >
           <div
             className="card"
@@ -4643,12 +4704,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  69 - Rhône
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -4659,7 +4718,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -4672,7 +4731,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -4680,66 +4739,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-                <div
-                  className="info mt-1"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ellipsis ms-2"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "2 à 5 mois",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -4747,7 +4750,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -4772,16 +4775,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -4806,17 +4811,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -4851,7 +4858,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -4932,12 +4939,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  2 dispositif.Départements
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -4948,7 +4953,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -4961,7 +4966,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -4969,66 +4974,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-                <div
-                  className="info mt-1"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ellipsis ms-2"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "1 à 3 mois",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -5036,7 +4985,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -5061,16 +5010,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -5095,16 +5046,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -5129,17 +5082,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -5174,7 +5129,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -5255,12 +5210,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  8 dispositif.Départements
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -5271,7 +5224,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -5284,7 +5237,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -5292,37 +5245,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -5330,7 +5256,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -5355,17 +5281,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -5400,7 +5328,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -5481,12 +5409,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  5 dispositif.Départements
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -5497,7 +5423,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -5510,7 +5436,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -5518,66 +5444,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-                <div
-                  className="info mt-1"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ellipsis ms-2"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "6 à 12 mois",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -5585,7 +5455,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -5610,16 +5480,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -5644,17 +5516,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -5689,7 +5563,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -5770,12 +5644,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  31 - Haute-Garonne
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -5786,7 +5658,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -5799,7 +5671,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -5807,66 +5679,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-                <div
-                  className="info mt-1"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ellipsis ms-2"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "10 mois&nbsp;",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -5874,7 +5690,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -5899,16 +5715,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -5933,16 +5751,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -5967,17 +5787,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -6012,7 +5834,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -6093,12 +5915,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  85 - Vendée
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -6109,7 +5929,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -6122,7 +5942,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -6130,37 +5950,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -6168,7 +5961,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -6193,17 +5986,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -6238,7 +6033,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -6319,12 +6114,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  8 dispositif.Départements
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -6335,7 +6128,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -6348,7 +6141,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -6356,66 +6149,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-                <div
-                  className="info mt-1"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ellipsis ms-2"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "4 semaines <br>",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -6423,7 +6160,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -6448,16 +6185,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -6482,17 +6221,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -6527,7 +6268,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -6608,12 +6349,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  Recherche.france
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -6624,7 +6363,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -6637,7 +6376,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -6645,37 +6384,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -6683,7 +6395,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -6708,17 +6420,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -6753,7 +6467,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -6834,12 +6548,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  93 - Seine-Saint-Denis
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -6850,7 +6562,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -6863,7 +6575,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -6871,66 +6583,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-                <div
-                  className="info mt-1"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ellipsis ms-2"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "6 mois",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -6938,7 +6594,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -6963,16 +6619,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -6997,16 +6655,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -7031,17 +6691,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -7076,7 +6738,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -7157,12 +6819,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  26 - Drôme
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -7173,7 +6833,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -7186,7 +6846,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -7194,68 +6854,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    0
-                    € 
-                    une seule fois
-                  </div>
-                </div>
-                <div
-                  className="info mt-1"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ellipsis ms-2"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "8 mois",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -7263,7 +6865,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -7288,16 +6890,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -7322,17 +6926,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -7367,7 +6973,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -7448,12 +7054,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  21 - Côte-d'Or
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -7464,7 +7068,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -7477,7 +7081,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -7485,66 +7089,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-                <div
-                  className="info mt-1"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ellipsis ms-2"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "3 mois",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -7552,7 +7100,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -7577,16 +7125,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -7611,16 +7161,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -7645,17 +7197,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -7690,7 +7244,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -7771,12 +7325,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  95 - Val-d'Oise
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -7787,7 +7339,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -7800,7 +7352,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -7808,37 +7360,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -7846,7 +7371,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -7871,17 +7396,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -7916,7 +7443,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -7997,12 +7524,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  67 - Bas-Rhin
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -8013,7 +7538,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -8026,7 +7551,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -8034,66 +7559,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-                <div
-                  className="info mt-1"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ellipsis ms-2"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "Selon les besoins",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -8101,7 +7570,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -8126,16 +7595,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -8160,16 +7631,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -8194,17 +7667,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -8239,7 +7714,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -8320,12 +7795,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  41 - Loir-et-Cher
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -8336,7 +7809,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -8349,7 +7822,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -8357,37 +7830,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -8395,7 +7841,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -8420,17 +7866,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -8465,7 +7913,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
@@ -8546,12 +7994,10 @@ exports[`homepage renders homepage 1`] = `
                   className="ms-1"
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
-                >
-                  59 - Nord
-                </span>
+                />
               </div>
               <h3
                 className="title"
@@ -8562,7 +8008,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -8575,7 +8021,7 @@ exports[`homepage renders homepage 1`] = `
                 }
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
               />
@@ -8583,66 +8029,10 @@ exports[`homepage renders homepage 1`] = `
                 className="infos text my-3"
                 style={
                   {
-                    "color": "#055E5A",
+                    "color": "#3A3A3A",
                   }
                 }
-              >
-                <div
-                  className="info"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ms-2"
-                  >
-                    Dispositif.Gratuit
-                  </div>
-                </div>
-                <div
-                  className="info mt-1"
-                >
-                  <img
-                    alt=""
-                    data-nimg="1"
-                    decoding="async"
-                    height={16}
-                    loading="lazy"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                    style={
-                      {
-                        "color": "transparent",
-                      }
-                    }
-                    width={16}
-                  />
-                  <div
-                    className="ellipsis ms-2"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "7 semaines&nbsp;",
-                      }
-                    }
-                  />
-                </div>
-              </div>
+              />
               <div
                 className="themes"
               >
@@ -8650,7 +8040,7 @@ exports[`homepage renders homepage 1`] = `
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -8675,16 +8065,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -8709,16 +8101,18 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
                 <div
                   className="container badges theme-badge"
                   style={
                     {
-                      "backgroundColor": "#EDFDF9",
+                      "backgroundColor": "#EEEEEE",
                     }
                   }
                 >
@@ -8743,17 +8137,19 @@ exports[`homepage renders homepage 1`] = `
                   <span
                     style={
                       {
-                        "color": "#055E5A",
+                        "color": "#3A3A3A",
                       }
                     }
-                  />
+                  >
+                    Thème
+                  </span>
                 </div>
               </div>
               <div
                 className="sponsor"
                 style={
                   {
-                    "borderColor": "#055E5A",
+                    "borderColor": "#3A3A3A",
                   }
                 }
               >
@@ -8788,7 +8184,7 @@ exports[`homepage renders homepage 1`] = `
                   }
                   style={
                     {
-                      "color": "#055E5A",
+                      "color": "#3A3A3A",
                     }
                   }
                 />
