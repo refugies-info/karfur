@@ -29,7 +29,7 @@ describe("[Saga] Structures", () => {
         .put(startLoading(LoadingStatusKey.FETCH_STRUCTURES))
         .next()
         .call(API.getActiveStructures)
-        .next({ data: { data: [{ id: "id" }] } })
+        .next([{ id: "id" }])
         .put(setActiveStructuresActionCreator([{ id: "id" }]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_STRUCTURES))

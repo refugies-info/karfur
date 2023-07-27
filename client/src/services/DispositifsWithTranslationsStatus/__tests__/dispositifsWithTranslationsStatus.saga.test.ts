@@ -38,7 +38,7 @@ describe("[Saga] dispositifsWithTranslationsStatus", () => {
         )
         .next()
         .call(API.getDispositifsWithTranslationAvancement, "ps")
-        .next({ data: { data: [{ _id: "id" }] } })
+        .next([{ _id: "id" }])
         .put(setDispositifsWithTranslationsStatusActionCreator([{ _id: "id" }]))
         .next()
         .put(
