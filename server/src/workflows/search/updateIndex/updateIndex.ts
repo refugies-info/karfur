@@ -1,4 +1,4 @@
-import { UpdateIndexResponse } from "@refugies-info/api-types";
+import { DispositifStatus, UpdateIndexResponse } from "@refugies-info/api-types";
 
 import { Langue } from "../../../typegoose";
 
@@ -14,18 +14,17 @@ import { getAllThemes } from "../../../modules/themes/themes.repository";
 
 const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
   const neededFields = {
-    titreInformatif: 1,
-    titreMarque: 1,
-    abstract: 1,
+    translations: 1,
     theme: 1,
     secondaryThemes: 1,
     needs: 1,
-    typeContenu: 1,
     nbVues: 1,
+    typeContenu: 1,
     webOnly: 1,
+    mainSponsor: 1
   };
 
-  const contentsArray = await getActiveContentsFiltered(neededFields, { status: "Actif" });
+  const contentsArray = await getActiveContentsFiltered(neededFields, { status: DispositifStatus.ACTIVE });
   return contentsArray.map((content) => formatForAlgolia(content, [], "dispositif"));
 };
 
