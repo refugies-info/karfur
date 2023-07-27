@@ -163,7 +163,15 @@ export default function ToolbarPlugin() {
     if (blockType !== "bullet") {
       editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined);
     } else {
-      editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
+      // removes list only for the selection
+      editor.update(() => {
+        const selection = $getSelection();
+        if ($isRangeSelection(selection)) {
+          $setBlocksType(selection, () => $createParagraphNode());
+        }
+      });
+      // removes the whole list block
+      // editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
     }
   };
 
@@ -171,7 +179,15 @@ export default function ToolbarPlugin() {
     if (blockType !== "number") {
       editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined);
     } else {
-      editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
+      // removes list only for the selection
+      editor.update(() => {
+        const selection = $getSelection();
+        if ($isRangeSelection(selection)) {
+          $setBlocksType(selection, () => $createParagraphNode());
+        }
+      });
+      // removes the whole list block
+      // editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
     }
   };
 
