@@ -46,67 +46,18 @@ describe("[Saga] User", () => {
         .next()
         .call(API.isAuth)
         .next(true)
-        .call(API.getUser)
-        .next({ data: { data: { ...testUser, structures: ["testObjectId"] } } })
+        .call(API.getUser, { token: undefined })
+        .next({ ...testUser, structures: ["testObjectId"] })
         .put(setUserActionCreator({ ...testUser, structures: ["testObjectId"] }))
         .next()
         .put(
           fetchUserStructureActionCreator({
-            structureId: "746573744f626a6563744964",
+            structureId: "testObjectId",
             shouldRedirect: false
           })
         )
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER))
-        .next()
-        .isDone();
-    });
-
-    it("should call api.isAuth and dispatch set user action with user in payload if authentified and redirect if action received with redirect payload", () => {
-      testSaga(fetchUser, {
-        type: FETCH_USER,
-        payload: { shouldRedirect: true, user: testUser }
-      })
-        .next()
-        .put(startLoading(LoadingStatusKey.FETCH_USER))
-        .next()
-        .call(API.isAuth)
-        .next(true)
-        .call(API.getUser)
-        .next({ data: { data: testUser } })
-        .put(setUserActionCreator(testUser))
-        .next()
-        .put(finishLoading(LoadingStatusKey.FETCH_USER))
-        .next()
-        .call(mockRouter.push, "/backend/user-translation")
-        .next()
-        .isDone();
-    });
-
-    it("should call api.isAuth and dispatch set user action with user (with structures) in payload if authentified and redirect if action received with redirect payload", () => {
-      testSaga(fetchUser, {
-        type: FETCH_USER,
-        payload: { shouldRedirect: true, user: { ...testUser, structures: [{ _id: "dummy" }] } }
-      })
-        .next()
-        .put(startLoading(LoadingStatusKey.FETCH_USER))
-        .next()
-        .call(API.isAuth)
-        .next(true)
-        .call(API.getUser)
-        .next({ data: { data: { ...testUser, structures: ["testObjectId"] } } })
-        .put(setUserActionCreator({ ...testUser, structures: ["testObjectId"] }))
-        .next()
-        .put(
-          fetchUserStructureActionCreator({
-            structureId: "746573744f626a6563744964",
-            shouldRedirect: false
-          })
-        )
-        .next()
-        .put(finishLoading(LoadingStatusKey.FETCH_USER))
-        .next()
-        .call(mockRouter.push, "/backend/user-translation")
         .next()
         .isDone();
     });
@@ -130,7 +81,7 @@ describe("[Saga] User", () => {
         .next()
         .call(API.isAuth)
         .next(true)
-        .call(API.getUser)
+        .call(API.getUser, { token: undefined })
         .throw(new Error("test"))
         .put(setUserActionCreator(null))
         .next()
@@ -142,14 +93,12 @@ describe("[Saga] User", () => {
     it("should call update user and fetch user", () => {
       testSaga(saveUser, {
         type: SAVE_USER,
-        payload: { user: { _id: "id" }, type: "type" }
+        payload: { id: "id", value: { username: "new" } }
       })
         .next()
         .put(startLoading(LoadingStatusKey.SAVE_USER))
         .next()
-        .call(API.updateUser, {
-          query: { user: { _id: "id" }, action: "type" }
-        })
+        .call(API.updateUser, "id", { username: "new" })
         .next()
         .put(fetchUserActionCreator())
         .next()
@@ -161,14 +110,12 @@ describe("[Saga] User", () => {
     it("should call update user and set user null if update user throws", () => {
       testSaga(saveUser, {
         type: SAVE_USER,
-        payload: { user: { _id: "id" }, type: "type" }
+        payload: { id: "id", value: { username: "new" } }
       })
         .next()
         .put(startLoading(LoadingStatusKey.SAVE_USER))
         .next()
-        .call(API.updateUser, {
-          query: { user: { _id: "id" }, action: "type" }
-        })
+        .call(API.updateUser, "id", { username: "new" })
         .throw(new Error("test"))
         .put(setUserActionCreator(null))
         .next()

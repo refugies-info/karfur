@@ -110,11 +110,9 @@ describe("UserProfile", () => {
     act(() => {
       component.root.findByProps({ "data-test-id": "test-save-pseudo" }).props.onClick();
     });
-    expect(API.updateUser).toHaveBeenCalledWith({
-      query: {
-        user: { username: "pseudo", _id: "userId" },
-        action: "modify-my-details",
-      },
+    expect(API.updateUser).toHaveBeenCalledWith("userId", {
+      user: { username: "pseudo" },
+      action: "modify-my-details",
     });
 
     await act(() => promise);
@@ -150,9 +148,9 @@ describe("UserProfile", () => {
       component.root.findByProps({ "data-test-id": "test-save-email" }).props.onClick();
     });
 
-    expect(saveUserActionCreator).toHaveBeenLastCalledWith({
-      user: { email: "newEmail@gmail.com", _id: "userId" },
-      type: "modify-my-details",
+    expect(saveUserActionCreator).toHaveBeenLastCalledWith("userId", {
+      user: { email: "newEmail@gmail.com" },
+      action: "modify-my-details",
     });
 
     expect(Swal.fire).toHaveBeenCalledWith({

@@ -1,3 +1,5 @@
+import { ContentType, DispositifStatus } from "@refugies-info/api-types"
+
 export const lastDemarches = [
   {
     "_id": "6392ff59bcd2075a379203a9",
@@ -22,7 +24,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -37,14 +41,14 @@ export const lastDemarches = [
       "63450dd43e23cd7181ba0b26",
       "63286a015d31b2c0cad9960c"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 1803,
     "avancement": {
       "fr": 1,
       "ti": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-12-12T16:21:19.179Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-12-12T16:21:19.179Z"),
     "nbVues": 32,
     "needs": [
       "613721a409c5190dfa70d067",
@@ -53,8 +57,9 @@ export const lastDemarches = [
       "63450e14f14a373d5af2814e",
       "635a85fdd43c4d1a3f2b7d3c"
     ],
-    "created_at": "2022-12-09T09:23:49.422Z",
-    "publishedAt": "2022-12-12T16:33:49.409Z"
+    "created_at": new Date("2022-12-09T09:23:49.422Z"),
+    "publishedAt": new Date("2022-12-12T16:33:49.409Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "63972dcb98b670cc4bae76e6",
@@ -79,7 +84,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -94,14 +101,14 @@ export const lastDemarches = [
       "63450dd43e23cd7181ba0b26",
       "63286a015d31b2c0cad9960b"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 1894,
     "avancement": {
       "fr": 1,
       "ti": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-12-12T16:01:03.274Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-12-12T16:01:03.274Z"),
     "nbVues": 27,
     "needs": [
       "613721a409c5190dfa70d088",
@@ -109,8 +116,9 @@ export const lastDemarches = [
       "613721a409c5190dfa70d06a",
       "63450e14f14a373d5af2814e"
     ],
-    "created_at": "2022-12-12T13:31:03.110Z",
-    "publishedAt": "2022-12-12T16:11:07.501Z"
+    "created_at": new Date("2022-12-12T13:31:03.110Z"),
+    "publishedAt": new Date("2022-12-12T16:11:07.501Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "5e1c8c0e0742580052a33972",
@@ -135,17 +143,20 @@ export const lastDemarches = [
       "uk": 1,
       "ti": 1
     },
-    "status": "Actif",
-    "typeContenu": "demarche",
+    "status": DispositifStatus.ACTIVE,
+    "typeContenu": ContentType.DEMARCHE,
     "nbMots": 1967,
-    "created_at": "2020-01-13T15:26:06.424Z",
+    "created_at": new Date("2020-01-13T15:26:06.424Z"),
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
-    "publishedAt": "2022-12-05T15:55:31.676Z",
+    "publishedAt": new Date("2022-12-05T15:55:31.676Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false,
     "audienceAge": [
       {
         "contentTitle": "Plus de ** ans",
@@ -158,7 +169,7 @@ export const lastDemarches = [
       "613721a409c5190dfa70d052",
       "613721a409c5190dfa70d069"
     ],
-    "lastModificationDate": "2022-12-09T15:17:27.411Z",
+    "lastModificationDate": new Date("2022-12-09T15:17:27.411Z"),
     "secondaryThemes": [
       "63286a015d31b2c0cad9960e"
     ],
@@ -188,7 +199,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -199,24 +212,25 @@ export const lastDemarches = [
       }
     ],
     "secondaryThemes": [],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 1471,
     "avancement": {
       "fr": 1,
       "fa": 1,
       "ti": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-11-18T14:31:37.504Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-11-18T14:31:37.504Z"),
     "nbVues": 127,
     "needs": [
       "614d938b95b9b700142eee01",
       "613721a409c5190dfa70d061",
       "61928f890cbab30014d4c769"
     ],
-    "created_at": "2022-11-18T12:56:49.992Z",
+    "created_at": new Date("2022-11-18T12:56:49.992Z"),
     "theme": "63286a015d31b2c0cad99611",
-    "publishedAt": "2022-11-18T14:30:55.746Z"
+    "publishedAt": new Date("2022-11-18T14:30:55.746Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "6123a82c6bf6bc00148a5176",
@@ -245,12 +259,14 @@ export const lastDemarches = [
       "ps": 1,
       "uk": 1
     },
-    "status": "Actif",
-    "typeContenu": "demarche",
+    "status": DispositifStatus.ACTIVE,
+    "typeContenu": ContentType.DEMARCHE,
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -260,10 +276,11 @@ export const lastDemarches = [
         "topValue": 999
       }
     ],
-    "lastModificationDate": "2022-11-10T12:57:27.566Z",
+    "lastModificationDate": new Date("2022-11-10T12:57:27.566Z"),
     "nbMots": 1124,
-    "created_at": "2021-08-23T13:52:44.614Z",
-    "publishedAt": "2022-11-10T12:58:49.427Z",
+    "created_at": new Date("2021-08-23T13:52:44.614Z"),
+    "publishedAt": new Date("2022-11-10T12:58:49.427Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false,
     "nbVues": 5700,
     "needs": [
       "613721a409c5190dfa70d072",
@@ -302,17 +319,20 @@ export const lastDemarches = [
       "ru": 1,
       "uk": 1
     },
-    "status": "Actif",
-    "typeContenu": "demarche",
+    "status": DispositifStatus.ACTIVE,
+    "typeContenu": ContentType.DEMARCHE,
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "nbMots": 1190,
-    "created_at": "2019-11-22T11:21:20.706Z",
-    "publishedAt": "2022-11-03T16:53:59.829Z",
+    "created_at": new Date("2019-11-22T11:21:20.706Z"),
+    "publishedAt": new Date("2022-11-03T16:53:59.829Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false,
     "audienceAge": [
       {
         "contentTitle": "Plus de ** ans",
@@ -324,7 +344,7 @@ export const lastDemarches = [
     "needs": [
       "613721a409c5190dfa70d069"
     ],
-    "lastModificationDate": "2022-11-04T13:44:23.143Z",
+    "lastModificationDate": new Date("2022-11-04T13:44:23.143Z"),
     "titreMarque": "",
     "secondaryThemes": [],
     "theme": "63286a015d31b2c0cad9960b"
@@ -352,7 +372,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -366,7 +388,7 @@ export const lastDemarches = [
     "secondaryThemes": [
       "63286a015d31b2c0cad9960d"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 854,
     "avancement": {
       "fr": 1,
@@ -376,16 +398,17 @@ export const lastDemarches = [
       "ru": 1,
       "uk": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-10-31T11:36:05.885Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-10-31T11:36:05.885Z"),
     "nbVues": 686,
     "needs": [
       "613721a409c5190dfa70d067",
       "614d9d7b95b9b700142ef970",
       "613721a409c5190dfa70d064"
     ],
-    "created_at": "2022-10-21T12:15:07.364Z",
-    "publishedAt": "2022-10-24T13:35:07.221Z"
+    "created_at": new Date("2022-10-21T12:15:07.364Z"),
+    "publishedAt": new Date("2022-10-24T13:35:07.221Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "63401d8783f485a025e88388",
@@ -410,7 +433,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -422,7 +447,7 @@ export const lastDemarches = [
     ],
     "theme": "63286a015d31b2c0cad9960b",
     "secondaryThemes": [],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 1054,
     "avancement": {
       "fr": 1,
@@ -433,15 +458,16 @@ export const lastDemarches = [
       "en": 1,
       "uk": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-10-25T09:02:17.970Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-10-25T09:02:17.970Z"),
     "nbVues": 1067,
     "needs": [
       "613721a409c5190dfa70d067",
       "613721a409c5190dfa70d06a"
     ],
-    "created_at": "2022-10-07T12:34:25.649Z",
-    "publishedAt": "2022-10-10T14:09:36.612Z"
+    "created_at": new Date("2022-10-07T12:34:25.649Z"),
+    "publishedAt": new Date("2022-10-10T14:09:36.612Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "630337ddf2087e2b25ac7609",
@@ -466,7 +492,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -476,7 +504,7 @@ export const lastDemarches = [
         "topValue": 999
       }
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 988,
     "avancement": {
       "fr": 1,
@@ -487,16 +515,17 @@ export const lastDemarches = [
       "en": 1,
       "uk": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-10-07T09:34:05.513Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-10-07T09:34:05.513Z"),
     "nbVues": 145,
     "needs": [
       "613721a409c5190dfa70d065"
     ],
-    "created_at": "2022-08-22T07:58:32.751Z",
+    "created_at": new Date("2022-08-22T07:58:32.751Z"),
     "secondaryThemes": [],
     "theme": "63286a015d31b2c0cad9960d",
-    "publishedAt": "2022-10-07T09:43:06.747Z"
+    "publishedAt": new Date("2022-10-07T09:43:06.747Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "62f265d81119eede87fb1ae2",
@@ -520,7 +549,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -530,7 +561,7 @@ export const lastDemarches = [
         "topValue": 999
       }
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 702,
     "avancement": {
       "fr": 1,
@@ -541,8 +572,8 @@ export const lastDemarches = [
       "ru": 1,
       "en": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-11-07T00:28:38.814Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-11-07T00:28:38.814Z"),
     "nbVues": 625,
     "needs": [
       "613721a409c5190dfa70d06b",
@@ -550,8 +581,9 @@ export const lastDemarches = [
       "613721a409c5190dfa70d069",
       "63450e14f14a373d5af2814e"
     ],
-    "created_at": "2022-08-09T13:46:11.469Z",
-    "publishedAt": "2022-08-16T15:00:46.012Z",
+    "created_at": new Date("2022-08-09T13:46:11.469Z"),
+    "publishedAt": new Date("2022-08-16T15:00:46.012Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false,
     "secondaryThemes": [
       "63286a015d31b2c0cad9960b",
       "63450dd43e23cd7181ba0b26"
@@ -582,7 +614,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -592,7 +626,7 @@ export const lastDemarches = [
         "topValue": 999
       }
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 717,
     "avancement": {
       "fr": 1,
@@ -603,14 +637,15 @@ export const lastDemarches = [
       "en": 1,
       "uk": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-07-13T17:16:47.752Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-07-13T17:16:47.752Z"),
     "nbVues": 202,
     "needs": [
       "613721a409c5190dfa70d064"
     ],
-    "created_at": "2022-06-27T10:01:10.992Z",
-    "publishedAt": "2022-07-13T17:17:55.961Z",
+    "created_at": new Date("2022-06-27T10:01:10.992Z"),
+    "publishedAt": new Date("2022-07-13T17:17:55.961Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false,
     "secondaryThemes": [],
     "theme": "63286a015d31b2c0cad9960d"
   },
@@ -637,7 +672,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -647,7 +684,7 @@ export const lastDemarches = [
         "topValue": 999
       }
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 1161,
     "avancement": {
       "fr": 1,
@@ -658,15 +695,16 @@ export const lastDemarches = [
       "en": 1,
       "uk": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-06-28T12:39:02.089Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-06-28T12:39:02.089Z"),
     "nbVues": 177,
     "needs": [
       "613721a409c5190dfa70d06b",
       "61faa899df999700139acc27"
     ],
-    "created_at": "2022-06-28T07:48:02.799Z",
-    "publishedAt": "2022-06-28T12:42:31.536Z",
+    "created_at": new Date("2022-06-28T07:48:02.799Z"),
+    "publishedAt": new Date("2022-06-28T12:42:31.536Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false,
     "secondaryThemes": [
       "63286a015d31b2c0cad9960b"
     ],
@@ -695,7 +733,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -705,7 +745,7 @@ export const lastDemarches = [
         "topValue": 999
       }
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 735,
     "avancement": {
       "fr": 1,
@@ -716,14 +756,15 @@ export const lastDemarches = [
       "en": 1,
       "uk": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-06-27T09:08:13.084Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-06-27T09:08:13.084Z"),
     "nbVues": 120,
     "needs": [
       "613721a409c5190dfa70d064"
     ],
-    "created_at": "2022-06-24T14:34:10.159Z",
-    "publishedAt": "2022-06-27T09:10:43.505Z",
+    "created_at": new Date("2022-06-24T14:34:10.159Z"),
+    "publishedAt": new Date("2022-06-27T09:10:43.505Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false,
     "secondaryThemes": [],
     "theme": "63286a015d31b2c0cad9960d"
   },
@@ -750,7 +791,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -760,7 +803,7 @@ export const lastDemarches = [
         "topValue": 999
       }
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 1765,
     "avancement": {
       "fr": 1,
@@ -771,14 +814,15 @@ export const lastDemarches = [
       "en": 1,
       "uk": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-11-07T01:11:05.359Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-11-07T01:11:05.359Z"),
     "nbVues": 354,
     "needs": [
       "613721a409c5190dfa70d064"
     ],
-    "created_at": "2022-06-14T14:11:04.473Z",
-    "publishedAt": "2022-06-17T15:11:57.156Z",
+    "created_at": new Date("2022-06-14T14:11:04.473Z"),
+    "publishedAt": new Date("2022-06-17T15:11:57.156Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false,
     "secondaryThemes": [],
     "theme": "63286a015d31b2c0cad9960d"
   },
@@ -805,7 +849,9 @@ export const lastDemarches = [
     "mainSponsor": {
       "nom": "Comité de la Démarche Accessible",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -815,7 +861,7 @@ export const lastDemarches = [
         "topValue": 999
       }
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 746,
     "avancement": {
       "fr": 1,
@@ -826,14 +872,15 @@ export const lastDemarches = [
       "en": 1,
       "uk": 1
     },
-    "typeContenu": "demarche",
-    "lastModificationDate": "2022-06-17T14:41:40.302Z",
+    "typeContenu": ContentType.DEMARCHE,
+    "lastModificationDate": new Date("2022-06-17T14:41:40.302Z"),
     "nbVues": 290,
     "needs": [
       "613721a409c5190dfa70d064"
     ],
-    "created_at": "2022-06-14T15:47:12.224Z",
-    "publishedAt": "2022-06-17T14:43:31.937Z",
+    "created_at": new Date("2022-06-14T15:47:12.224Z"),
+    "publishedAt": new Date("2022-06-17T14:43:31.937Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false,
     "secondaryThemes": [],
     "theme": "63286a015d31b2c0cad9960d"
   }
@@ -877,7 +924,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "FACE GRAND LYON",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -890,26 +939,27 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Intermédiaire"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 197,
     "avancement": {
       "fr": 1,
       "ti": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-12-13T19:04:42.427Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-12-13T19:04:42.427Z"),
     "nbVues": 5,
     "needs": [
       "613721a409c5190dfa70d058",
       "613721a409c5190dfa70d057",
       "613721a409c5190dfa70d054"
     ],
-    "created_at": "2022-09-06T10:54:20.231Z",
+    "created_at": new Date("2022-09-06T10:54:20.231Z"),
     "secondaryThemes": [
       "63286a015d31b2c0cad9960a"
     ],
     "theme": "63286a015d31b2c0cad9960e",
-    "publishedAt": "2022-12-13T19:06:44.195Z"
+    "publishedAt": new Date("2022-12-13T19:06:44.195Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "638dcbbaf0b1a31177cf9602",
@@ -949,7 +999,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "ABC FORMATION",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1670237766/pictures/jdivlio5x1iasjnawmun.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1670237766/pictures/jdivlio5x1iasjnawmun.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -966,14 +1018,14 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Débutant"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 225,
     "avancement": {
       "fr": 1,
       "ti": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-12-13T15:50:32.338Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-12-13T15:50:32.338Z"),
     "nbVues": 21,
     "needs": [
       "613721a409c5190dfa70d058",
@@ -981,9 +1033,10 @@ export const lastDispositifs = [
       "613721a409c5190dfa70d07b",
       "613721a409c5190dfa70d053"
     ],
-    "created_at": "2022-12-05T10:12:14.343Z",
+    "created_at": new Date("2022-12-05T10:12:14.343Z"),
     "theme": "63286a015d31b2c0cad9960a",
-    "publishedAt": "2022-12-13T15:53:46.814Z"
+    "publishedAt": new Date("2022-12-13T15:53:46.814Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "638613c54730d143903ca9ca",
@@ -1024,7 +1077,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "Réseau Alpha",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1041,14 +1096,14 @@ export const lastDispositifs = [
       "Avancé",
       "Tous les niveaux"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 218,
     "avancement": {
       "fr": 1,
       "ti": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-12-09T13:33:22.074Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-12-09T13:33:22.074Z"),
     "nbVues": 50,
     "needs": [
       "613721a409c5190dfa70d058",
@@ -1057,9 +1112,10 @@ export const lastDispositifs = [
       "613721a409c5190dfa70d084",
       "613721a409c5190dfa70d05e"
     ],
-    "created_at": "2022-11-29T14:11:28.888Z",
+    "created_at": new Date("2022-11-29T14:11:28.888Z"),
     "theme": "63286a015d31b2c0cad9960a",
-    "publishedAt": "2022-12-09T13:38:12.573Z"
+    "publishedAt": new Date("2022-12-09T13:38:12.573Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "63873a586fd089c3dad298f2",
@@ -1102,7 +1158,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "AIME ONG",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1669902286/pictures/rdx992fstuftcndifsb3.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1669902286/pictures/rdx992fstuftcndifsb3.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1119,7 +1177,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Intermédiaire"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 184,
     "avancement": {
       "fr": 1,
@@ -1127,16 +1185,17 @@ export const lastDispositifs = [
       "ps": 1,
       "ti": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-12-01T13:59:45.677Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-12-01T13:59:45.677Z"),
     "nbVues": 35,
     "needs": [
       "613721a409c5190dfa70d056",
       "613721a409c5190dfa70d076",
       "6398a49d7740ebfaa2141807"
     ],
-    "created_at": "2022-11-30T11:08:20.552Z",
-    "publishedAt": "2022-12-01T14:00:56.778Z"
+    "created_at": new Date("2022-11-30T11:08:20.552Z"),
+    "publishedAt": new Date("2022-12-01T14:00:56.778Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "635a71c8d43c4d1a3f25227f",
@@ -1176,7 +1235,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "Université fédérale de Toulouse",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1193,7 +1254,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Débutant"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 325,
     "avancement": {
       "fr": 1,
@@ -1202,8 +1263,8 @@ export const lastDispositifs = [
       "ps": 1,
       "en": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-11-25T15:29:44.826Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-11-25T15:29:44.826Z"),
     "nbVues": 45,
     "needs": [
       "614d938b95b9b700142eee01",
@@ -1212,9 +1273,10 @@ export const lastDispositifs = [
       "614d91a595b9b700142eeade",
       "613721a409c5190dfa70d060"
     ],
-    "created_at": "2022-10-27T11:55:06.541Z",
+    "created_at": new Date("2022-10-27T11:55:06.541Z"),
     "theme": "63286a015d31b2c0cad99611",
-    "publishedAt": "2022-11-25T15:32:02.760Z"
+    "publishedAt": new Date("2022-11-25T15:32:02.760Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "6376470705f74970c5342371",
@@ -1248,7 +1310,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "FACE Vendée",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1262,7 +1326,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Intermédiaire"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 85,
     "avancement": {
       "fr": 1,
@@ -1270,16 +1334,17 @@ export const lastDispositifs = [
       "ti": 1,
       "ps": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-11-21T10:12:16.925Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-11-21T10:12:16.925Z"),
     "nbVues": 30,
     "needs": [
       "614d9d7b95b9b700142ef970",
       "613721a409c5190dfa70d066"
     ],
-    "created_at": "2022-11-17T14:33:55.495Z",
+    "created_at": new Date("2022-11-17T14:33:55.495Z"),
     "theme": "63286a015d31b2c0cad9960b",
-    "publishedAt": "2022-11-21T10:20:01.637Z"
+    "publishedAt": new Date("2022-11-21T10:20:01.637Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "634d28bd9d3bda3be5cfd979",
@@ -1325,7 +1390,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "Habitat et Humanisme",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1341,7 +1408,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Intermédiaire"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 134,
     "avancement": {
       "fr": 1,
@@ -1349,17 +1416,18 @@ export const lastDispositifs = [
       "fa": 1,
       "ps": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-11-15T17:02:06.010Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-11-15T17:02:06.010Z"),
     "nbVues": 116,
     "needs": [
       "613721a409c5190dfa70d057",
       "613721a409c5190dfa70d058",
       "613721a409c5190dfa70d064"
     ],
-    "created_at": "2022-10-17T10:01:45.540Z",
+    "created_at": new Date("2022-10-17T10:01:45.540Z"),
     "theme": "63286a015d31b2c0cad9960a",
-    "publishedAt": "2022-11-15T17:04:04.157Z"
+    "publishedAt": new Date("2022-11-15T17:04:04.157Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "6332c0e6a36f411314ba4ca3",
@@ -1393,7 +1461,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "fable-Lab",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665386364/pictures/lqntfdymui845jb5jc2y.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665386364/pictures/lqntfdymui845jb5jc2y.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1408,21 +1478,22 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Tous les niveaux"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 332,
     "avancement": {
       "fr": 1,
       "ti": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-12-14T10:37:30.248Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-12-14T10:37:30.248Z"),
     "nbVues": 255,
     "needs": [
       "613721a409c5190dfa70d084",
       "613721a409c5190dfa70d058"
     ],
-    "created_at": "2022-09-27T09:20:37.062Z",
-    "publishedAt": "2022-11-15T11:31:36.987Z"
+    "created_at": new Date("2022-09-27T09:20:37.062Z"),
+    "publishedAt": new Date("2022-11-15T11:31:36.987Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "636cd4572c725bfbf72d6302",
@@ -1461,7 +1532,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "Habitat-Cité",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1668078132/pictures/etoivbrifagwdyzycckz.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1668078132/pictures/etoivbrifagwdyzycckz.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1478,7 +1551,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Tous les niveaux"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 173,
     "avancement": {
       "fr": 1,
@@ -1488,8 +1561,8 @@ export const lastDispositifs = [
       "ti": 1,
       "ps": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-11-10T14:39:22.121Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-11-10T14:39:22.121Z"),
     "nbVues": 65,
     "needs": [
       "613721a409c5190dfa70d058",
@@ -1499,9 +1572,10 @@ export const lastDispositifs = [
       "613721a409c5190dfa70d056",
       "614d9d7b95b9b700142ef970"
     ],
-    "created_at": "2022-11-10T10:34:00.960Z",
+    "created_at": new Date("2022-11-10T10:34:00.960Z"),
     "theme": "63286a015d31b2c0cad9960a",
-    "publishedAt": "2022-11-10T14:43:58.640Z"
+    "publishedAt": new Date("2022-11-10T14:43:58.640Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "63231e68d585c0849a9bb2b1",
@@ -1540,7 +1614,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "Unis-Cité",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1553,7 +1629,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Débutant"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 129,
     "avancement": {
       "fr": 1,
@@ -1563,20 +1639,21 @@ export const lastDispositifs = [
       "ti": 1,
       "ps": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-11-10T12:19:42.259Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-11-10T12:19:42.259Z"),
     "nbVues": 39,
     "needs": [
       "613721a409c5190dfa70d076",
       "6398a49d7740ebfaa2141807",
       "6398a4b27740ebfaa2141861"
     ],
-    "created_at": "2022-09-15T12:42:25.585Z",
+    "created_at": new Date("2022-09-15T12:42:25.585Z"),
     "secondaryThemes": [
       "63286a015d31b2c0cad99615"
     ],
     "theme": "63286a015d31b2c0cad9960e",
-    "publishedAt": "2022-11-10T12:21:47.467Z"
+    "publishedAt": new Date("2022-11-10T12:21:47.467Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "634e7269313f6183f3510709",
@@ -1615,7 +1692,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "BSB(Re)Connect",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1633,7 +1712,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Tous les niveaux"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 162,
     "avancement": {
       "fr": 1,
@@ -1643,8 +1722,8 @@ export const lastDispositifs = [
       "ti": 1,
       "ps": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-11-10T11:34:22.589Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-11-10T11:34:22.589Z"),
     "nbVues": 58,
     "needs": [
       "613721a409c5190dfa70d058",
@@ -1652,8 +1731,9 @@ export const lastDispositifs = [
       "613721a409c5190dfa70d054",
       "6398a49d7740ebfaa2141807"
     ],
-    "created_at": "2022-10-18T09:28:21.106Z",
-    "publishedAt": "2022-11-10T11:36:01.476Z"
+    "created_at": new Date("2022-10-18T09:28:21.106Z"),
+    "publishedAt": new Date("2022-11-10T11:36:01.476Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "634fba2814dbd7acb5c4f759",
@@ -1687,7 +1767,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "Unis-Cité",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1701,7 +1783,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Tous les niveaux"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 155,
     "avancement": {
       "fr": 1,
@@ -1711,15 +1793,16 @@ export const lastDispositifs = [
       "ti": 1,
       "ps": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-11-09T17:09:58.793Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-11-09T17:09:58.793Z"),
     "nbVues": 48,
     "needs": [
       "613721a409c5190dfa70d076"
     ],
-    "created_at": "2022-10-19T08:46:44.242Z",
+    "created_at": new Date("2022-10-19T08:46:44.242Z"),
     "theme": "63286a015d31b2c0cad9960e",
-    "publishedAt": "2022-11-09T17:11:37.335Z"
+    "publishedAt": new Date("2022-11-09T17:11:37.335Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "6317495572a7091286cfbd68",
@@ -1759,7 +1842,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "Stamtish",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1772,7 +1857,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Tous les niveaux"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 252,
     "avancement": {
       "fr": 1,
@@ -1782,8 +1867,8 @@ export const lastDispositifs = [
       "ti": 1,
       "ps": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-11-09T16:38:17.205Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-11-09T16:38:17.205Z"),
     "nbVues": 24,
     "needs": [
       "613721a409c5190dfa70d054",
@@ -1792,13 +1877,14 @@ export const lastDispositifs = [
       "613721a409c5190dfa70d07b",
       "6398a49d7740ebfaa2141807"
     ],
-    "created_at": "2022-09-06T12:42:25.379Z",
+    "created_at": new Date("2022-09-06T12:42:25.379Z"),
     "secondaryThemes": [
       "63286a015d31b2c0cad99610",
       "63286a015d31b2c0cad99615"
     ],
     "theme": "63286a015d31b2c0cad9960e",
-    "publishedAt": "2022-11-09T16:40:41.825Z"
+    "publishedAt": new Date("2022-11-09T16:40:41.825Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "6336f551bf68aaed7fe0f8b4",
@@ -1832,7 +1918,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher ",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1847,7 +1935,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Tous les niveaux"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 168,
     "avancement": {
       "fr": 1,
@@ -1857,14 +1945,15 @@ export const lastDispositifs = [
       "ti": 1,
       "ps": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-11-07T17:32:26.358Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-11-07T17:32:26.358Z"),
     "nbVues": 242,
     "needs": [
       "613721a409c5190dfa70d057"
     ],
-    "created_at": "2022-09-30T13:52:29.440Z",
-    "publishedAt": "2022-11-07T17:34:44.157Z"
+    "created_at": new Date("2022-09-30T13:52:29.440Z"),
+    "publishedAt": new Date("2022-11-07T17:34:44.157Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   },
   {
     "_id": "63623b16a2a5bf7006723347",
@@ -1903,7 +1992,9 @@ export const lastDispositifs = [
     "mainSponsor": {
       "nom": "Simplon.co",
       "picture": {
-        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1570439852/pictures/xblmdsm8aly06enczcrx.png"
+        "secure_url": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1570439852/pictures/xblmdsm8aly06enczcrx.png",
+        public_id: "",
+        imgId: ""
       }
     },
     "audienceAge": [
@@ -1920,7 +2011,7 @@ export const lastDispositifs = [
     "niveauFrancais": [
       "Intermédiaire"
     ],
-    "status": "Actif",
+    "status": DispositifStatus.ACTIVE,
     "nbMots": 298,
     "avancement": {
       "fr": 1,
@@ -1930,8 +2021,8 @@ export const lastDispositifs = [
       "ti": 1,
       "ps": 1
     },
-    "typeContenu": "dispositif",
-    "lastModificationDate": "2022-11-04T14:59:45.371Z",
+    "typeContenu": ContentType.DISPOSITIF,
+    "lastModificationDate": new Date("2022-11-04T14:59:45.371Z"),
     "nbVues": 43,
     "needs": [
       "613721a409c5190dfa70d058",
@@ -1940,8 +2031,9 @@ export const lastDispositifs = [
       "613721a409c5190dfa70d079",
       "613721a409c5190dfa70d07a"
     ],
-    "created_at": "2022-11-02T09:37:37.433Z",
+    "created_at": new Date("2022-11-02T09:37:37.433Z"),
     "theme": "63286a015d31b2c0cad99610",
-    "publishedAt": "2022-11-04T15:02:34.883Z"
+    "publishedAt": new Date("2022-11-04T15:02:34.883Z"),
+    metadatas: {}, nbVuesMobile: 0, availableLanguages: [], hasDraftVersion: false
   }
 ]
