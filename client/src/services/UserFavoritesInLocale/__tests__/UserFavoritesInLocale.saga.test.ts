@@ -44,9 +44,28 @@ describe("[Saga] UserFavorites", () => {
         .next()
         .put(startLoading(LoadingStatusKey.UPDATE_USER_FAVORITES))
         .next()
-        .call(API.updateUserFavorites, {
+        .call(API.deleteUserFavorites, {
           dispositifId: "id",
-          type: "remove",
+        })
+        .next()
+        .put(fetchUserFavoritesActionCreator("fr"))
+        .next()
+        .put(finishLoading(LoadingStatusKey.UPDATE_USER_FAVORITES))
+        .next()
+        .isDone();
+    });
+
+    it("should call update user favorites all and fetch user favorites", () => {
+      testSaga(updateUserFavorites, {
+        type: UPDATE_USER_FAVORITES,
+        payload: { dispositifId: "id", type: "remove-all", locale: "fr" },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_FAVORITES))
+        .next()
+        .call(API.deleteUserFavorites, {
+          dispositifId: "id",
+          all: true
         })
         .next()
         .put(fetchUserFavoritesActionCreator("fr"))
@@ -64,9 +83,8 @@ describe("[Saga] UserFavorites", () => {
         .next()
         .put(startLoading(LoadingStatusKey.UPDATE_USER_FAVORITES))
         .next()
-        .call(API.updateUserFavorites, {
+        .call(API.deleteUserFavorites, {
           dispositifId: "id",
-          type: "remove",
         })
         .throw(new Error("test"))
         .put(finishLoading(LoadingStatusKey.UPDATE_USER_FAVORITES))
@@ -85,7 +103,7 @@ describe("[Saga] UserFavorites", () => {
         .put(startLoading(LoadingStatusKey.FETCH_USER_FAVORITES))
         .next()
         .call(API.getUserFavorites, { locale: "fr" })
-        .next({ data: { data: [{ _id: "id" }] } })
+        .next([{ _id: "id" }])
         .put(setUserFavoritesActionCreator([{ _id: "id" }]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_FAVORITES))

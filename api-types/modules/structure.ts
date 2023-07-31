@@ -19,6 +19,7 @@ export interface PostStructureRequest {
   mail_contact: string;
   responsable: string | null;
   nom: string;
+  status: StructureStatus;
 }
 
 // TODO: refactor when rebuild add structure

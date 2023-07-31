@@ -28,16 +28,16 @@ describe("getAdminUrlParams", () => {
 
 describe("getInitialTab", () => {
   it("should return default", () => {
-    const res = getInitialTab({query: {}});
+    const res = getInitialTab({ query: {} });
     expect(res).toEqual("contenus")
   });
   it("should return value from localStorage", () => {
-    global.Storage.prototype.getItem = jest.fn((key) =>"tab=structures&filter=Actif")
-    const res = getInitialTab({query: {}});
+    global.Storage.prototype.getItem = jest.fn((key) => "tab=structures&filter=Actif")
+    const res = getInitialTab({ query: {} });
     expect(res).toEqual("structures")
   });
   it("should return query param", () => {
-    const res = getInitialTab({query: {tab: "structures"}});
+    const res = getInitialTab({ query: { tab: "structures" } });
     expect(res).toEqual("structures")
   });
 });
@@ -68,7 +68,7 @@ describe("getInitialFilters", () => {
     })
   });
   it("prefer query over localStorage", () => {
-    global.Storage.prototype.getItem = jest.fn((key) =>"tab=utilisateurs&filter=Actif")
+    global.Storage.prototype.getItem = jest.fn((key) => "tab=utilisateurs&filter=Actif")
     const res = getInitialFilters(
       { query: { tab: "utilisateurs", filter: "En%2520attente", contentId: "abc" } },
       "utilisateurs"
@@ -81,9 +81,9 @@ describe("getInitialFilters", () => {
     })
   });
   it("should use localStorage if no query", () => {
-    global.Storage.prototype.getItem = jest.fn((key) =>"tab=utilisateurs&filter=Actif&contentId=abc")
+    global.Storage.prototype.getItem = jest.fn((key) => "tab=utilisateurs&filter=Actif&contentId=abc")
     const res = getInitialFilters(
-      { query: { } },
+      { query: {} },
       "utilisateurs"
     );
     expect(res).toEqual({

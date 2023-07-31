@@ -27,7 +27,7 @@ describe("[Saga] All dispositifs", () => {
         .put(startLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
         .next()
         .call(API.getAllDispositifs)
-        .next({ data: { data: [{ id: "id" }] } })
+        .next([{ id: "id" }])
         .put(setAllDispositifsActionsCreator([{ id: "id" }]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))

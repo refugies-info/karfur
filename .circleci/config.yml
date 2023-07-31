@@ -19,10 +19,9 @@ jobs:
       - run:
           name: Install Dependencies front
           command: npm run install:client
-      # temporary deactivated
-      # - run:
-      #     name: Run tests unit front
-      #     command: npm run test:unit:client
+      - run:
+          name: Run tests unit front
+          command: npm run test:unit:client
       - run:
           name: Run tests type front
           command: npm run test:types:client

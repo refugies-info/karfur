@@ -37,11 +37,8 @@ describe("[Saga] Active dispositifs", () => {
         .next()
         .select(languei18nSelector)
         .next("langue")
-        .call(API.getDispositifs, {
-          query: { status: "Actif" },
-          locale: "langue",
-        })
-        .next({ data: { data: [{ id: "id" }] } })
+        .call(API.getDispositifs, { locale: "langue" })
+        .next([{ id: "id" }])
         .put(setActiveDispositifsActionsCreator([{ id: "id" }]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS))
@@ -56,10 +53,7 @@ describe("[Saga] Active dispositifs", () => {
         .next()
         .select(languei18nSelector)
         .next("langue")
-        .call(API.getDispositifs, {
-          query: { status: "Actif" },
-          locale: "langue",
-        })
+        .call(API.getDispositifs, { locale: "langue" })
         .throw(new Error("error"))
         .put(setActiveDispositifsActionsCreator([]))
         .next()
@@ -76,16 +70,44 @@ describe("[Saga] Active dispositifs", () => {
       type: "read",
       fieldName: "suggestions",
     };
-    it("should callupdateDispositifReactions", () => {
+    it("should call updateDispositifReactions remove", () => {
       testSaga(updateDispositifReaction, {
         type: UPDATE_DISPOSITIF_REACTION,
         payload: {
           structureId: "id",
-          dispositif,
+          suggestion: {
+            dispositifId: "idDisp",
+            suggestionId: "idSugg",
+            type: "remove"
+          },
         },
       })
         .next()
-        .call(API.updateDispositifReactions, dispositif)
+        .call(API.deleteDispositifSuggestion, "idDisp", "idSugg")
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: "id",
+            shouldRedirect: true,
+          })
+        )
+        .next()
+        .isDone();
+    });
+    it("should call updateDispositifReactions read", () => {
+      testSaga(updateDispositifReaction, {
+        type: UPDATE_DISPOSITIF_REACTION,
+        payload: {
+          structureId: "id",
+          suggestion: {
+            dispositifId: "idDisp",
+            suggestionId: "idSugg",
+            type: "read"
+          },
+        },
+      })
+        .next()
+        .call(API.readDispositifSuggestion, "idDisp", { suggestionId: "idSugg" })
         .next()
         .put(
           fetchUserStructureActionCreator({

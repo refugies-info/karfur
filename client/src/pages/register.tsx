@@ -155,7 +155,7 @@ const Register = () => {
         });
         return;
       }
-      API.checkUserExists(username)
+      API.checkUserExists(encodeURIComponent(username))
         .then(() => {
           logger.info("[Register] check if pseudo already exists", { username });
           logger.info("[Register] pseudo already exists", { username });

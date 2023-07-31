@@ -201,6 +201,11 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  text-align: left;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
@@ -678,31 +683,37 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                     <div
                       className="c11"
                     >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                      <a
+                        href="/dispositif/id1"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
-                        <span
-                          className="icon"
+                        <div
+                          style={
+                            {
+                              "marginBottom": "4px",
+                            }
+                          }
                         >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                          <span
+                            className="icon"
+                          >
+                            <i
+                              dangerouslySetInnerHTML={
+                                {
+                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                                }
                               }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
+                              style={
+                                {
+                                  "height": "20px",
+                                  "lineHeight": "20px",
+                                }
                               }
-                            }
-                          />
-                        </span>
-                      </div>
+                            />
+                          </span>
+                        </div>
+                      </a>
                     </div>
                     <div
                       className="c12"
@@ -757,6 +768,11 @@ exports[`userContributions should render correctly when contributions 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  text-align: left;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
@@ -1367,31 +1383,37 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     <div
                       className="c11"
                     >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                      <a
+                        href="/dispositif/id1"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
-                        <span
-                          className="icon"
+                        <div
+                          style={
+                            {
+                              "marginBottom": "4px",
+                            }
+                          }
                         >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                          <span
+                            className="icon"
+                          >
+                            <i
+                              dangerouslySetInnerHTML={
+                                {
+                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                                }
                               }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
+                              style={
+                                {
+                                  "height": "20px",
+                                  "lineHeight": "20px",
+                                }
                               }
-                            }
-                          />
-                        </span>
-                      </div>
+                            />
+                          </span>
+                        </div>
+                      </a>
                     </div>
                     <div
                       className="c12"
@@ -1549,31 +1571,37 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     <div
                       className="c11"
                     >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                      <a
+                        href="/demarche/id2"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
-                        <span
-                          className="icon"
+                        <div
+                          style={
+                            {
+                              "marginBottom": "4px",
+                            }
+                          }
                         >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                          <span
+                            className="icon"
+                          >
+                            <i
+                              dangerouslySetInnerHTML={
+                                {
+                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                                }
                               }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
+                              style={
+                                {
+                                  "height": "20px",
+                                  "lineHeight": "20px",
+                                }
                               }
-                            }
-                          />
-                        </span>
-                      </div>
+                            />
+                          </span>
+                        </div>
+                      </a>
                     </div>
                     <div
                       className="c12"
@@ -1644,37 +1672,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c7"
-                  >
-                    <div
-                      style={
-                        {
-                          "marginBottom": "4px",
-                          "marginRight": "8px",
-                        }
-                      }
-                    >
-                      <span
-                        className="icon"
-                      >
-                        <i
-                          dangerouslySetInnerHTML={
-                            {
-                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-briefcase-outline" fill="#212121"><g data-name="Layer 2"><g data-name="briefcase"><rect width="24" height="24" opacity="0"/><path d="M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z"/></g></g></svg>",
-                            }
-                          }
-                          style={
-                            {
-                              "height": "20px",
-                              "lineHeight": "20px",
-                            }
-                          }
-                        />
-                      </span>
-                    </div>
-                    sponsor
-                  </div>
+                  <div />
                 </td>
                 <td
                   className="align-middle"
@@ -1693,7 +1691,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       onMouseEnter={[Function]}
                       onMouseLeave={[Function]}
                     >
-                      À valider
+                      Relecture en cours
                     </div>
                   </div>
                 </td>
@@ -1731,31 +1729,37 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     <div
                       className="c11"
                     >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                      <a
+                        href="/demarche/id3"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
-                        <span
-                          className="icon"
+                        <div
+                          style={
+                            {
+                              "marginBottom": "4px",
+                            }
+                          }
                         >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                          <span
+                            className="icon"
+                          >
+                            <i
+                              dangerouslySetInnerHTML={
+                                {
+                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                                }
                               }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
+                              style={
+                                {
+                                  "height": "20px",
+                                  "lineHeight": "20px",
+                                }
                               }
-                            }
-                          />
-                        </span>
-                      </div>
+                            />
+                          </span>
+                        </div>
+                      </a>
                     </div>
                     <div
                       className="c12"
@@ -1826,37 +1830,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c7"
-                  >
-                    <div
-                      style={
-                        {
-                          "marginBottom": "4px",
-                          "marginRight": "8px",
-                        }
-                      }
-                    >
-                      <span
-                        className="icon"
-                      >
-                        <i
-                          dangerouslySetInnerHTML={
-                            {
-                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-briefcase-outline" fill="#212121"><g data-name="Layer 2"><g data-name="briefcase"><rect width="24" height="24" opacity="0"/><path d="M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z"/></g></g></svg>",
-                            }
-                          }
-                          style={
-                            {
-                              "height": "20px",
-                              "lineHeight": "20px",
-                            }
-                          }
-                        />
-                      </span>
-                    </div>
-                    sponsor
-                  </div>
+                  <div />
                 </td>
                 <td
                   className="align-middle"
@@ -1913,31 +1887,37 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     <div
                       className="c11"
                     >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                      <a
+                        href="/demarche/id4"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
-                        <span
-                          className="icon"
+                        <div
+                          style={
+                            {
+                              "marginBottom": "4px",
+                            }
+                          }
                         >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                          <span
+                            className="icon"
+                          >
+                            <i
+                              dangerouslySetInnerHTML={
+                                {
+                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                                }
                               }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
+                              style={
+                                {
+                                  "height": "20px",
+                                  "lineHeight": "20px",
+                                }
                               }
-                            }
-                          />
-                        </span>
-                      </div>
+                            />
+                          </span>
+                        </div>
+                      </a>
                     </div>
                     <div
                       className="c12"
@@ -2095,31 +2075,37 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     <div
                       className="c11"
                     >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                      <a
+                        href="/demarche/id5"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
-                        <span
-                          className="icon"
+                        <div
+                          style={
+                            {
+                              "marginBottom": "4px",
+                            }
+                          }
                         >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                          <span
+                            className="icon"
+                          >
+                            <i
+                              dangerouslySetInnerHTML={
+                                {
+                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                                }
                               }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
+                              style={
+                                {
+                                  "height": "20px",
+                                  "lineHeight": "20px",
+                                }
                               }
-                            }
-                          />
-                        </span>
-                      </div>
+                            />
+                          </span>
+                        </div>
+                      </a>
                     </div>
                     <div
                       className="c12"
@@ -2190,37 +2176,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c7"
-                  >
-                    <div
-                      style={
-                        {
-                          "marginBottom": "4px",
-                          "marginRight": "8px",
-                        }
-                      }
-                    >
-                      <span
-                        className="icon"
-                      >
-                        <i
-                          dangerouslySetInnerHTML={
-                            {
-                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-briefcase-outline" fill="#212121"><g data-name="Layer 2"><g data-name="briefcase"><rect width="24" height="24" opacity="0"/><path d="M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z"/></g></g></svg>",
-                            }
-                          }
-                          style={
-                            {
-                              "height": "20px",
-                              "lineHeight": "20px",
-                            }
-                          }
-                        />
-                      </span>
-                    </div>
-                    sponsor
-                  </div>
+                  <div />
                 </td>
                 <td
                   className="align-middle"
@@ -2283,31 +2239,37 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     <div
                       className="c11"
                     >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                      <a
+                        href="/demarche/id6"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
-                        <span
-                          className="icon"
+                        <div
+                          style={
+                            {
+                              "marginBottom": "4px",
+                            }
+                          }
                         >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                          <span
+                            className="icon"
+                          >
+                            <i
+                              dangerouslySetInnerHTML={
+                                {
+                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                                }
                               }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
+                              style={
+                                {
+                                  "height": "20px",
+                                  "lineHeight": "20px",
+                                }
                               }
-                            }
-                          />
-                        </span>
-                      </div>
+                            />
+                          </span>
+                        </div>
+                      </a>
                     </div>
                     <div
                       className="c12"
@@ -2471,31 +2433,37 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     <div
                       className="c11"
                     >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                      <a
+                        href="/demarche/id7"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
-                        <span
-                          className="icon"
+                        <div
+                          style={
+                            {
+                              "marginBottom": "4px",
+                            }
+                          }
                         >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                          <span
+                            className="icon"
+                          >
+                            <i
+                              dangerouslySetInnerHTML={
+                                {
+                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
+                                }
                               }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
+                              style={
+                                {
+                                  "height": "20px",
+                                  "lineHeight": "20px",
+                                }
                               }
-                            }
-                          />
-                        </span>
-                      </div>
+                            />
+                          </span>
+                        </div>
+                      </a>
                     </div>
                     <div
                       className="c18"

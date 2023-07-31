@@ -70,16 +70,7 @@ exports[`user translation should redirect if user has language but not langue in
 }
 
 <div
-  style={
-    {
-      "backgroundColor": "#f2f2f2",
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-      "marginTop": "-95px",
-      "paddingTop": "100px",
-    }
-  }
+  className="main"
 >
   <div
     className="container"
@@ -231,16 +222,7 @@ exports[`user translation should redirect if user has no language but langue in 
 }
 
 <div
-  style={
-    {
-      "backgroundColor": "#f2f2f2",
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-      "marginTop": "-95px",
-      "paddingTop": "100px",
-    }
-  }
+  className="main"
 >
   <div
     className="container"
@@ -323,235 +305,61 @@ exports[`user translation should redirect if user has no language but langue in 
 `;
 
 exports[`user translation should render correctly with expert, admin 1`] = `
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  margin-right: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: default;
+.c5 {
+  color: #B50437;
+  background-color: #ffffff;
 }
 
-.c4 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
+.c5:hover {
+  background-color: inherit !important;
 }
 
-.c17 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  width: 100px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c6 {
+  color: #0A54BF;
+  background-color: #ffffff;
 }
 
-.c18 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  width: 100%;
-  margin-left: 8px;
-}
-
-.c19 {
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
-  color: #ffffff;
-  padding: 8px;
-  background-color: #B50437;
-  border-radius: 8px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+.c6:hover {
+  background-color: inherit !important;
 }
 
 .c7 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   color: #ffffff;
-  padding: 17px;
-  background-color: #B50437;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  background-color: #EA6206;
+}
+
+.c7:hover {
+  background-color: lightTextMentionGrey !important;
 }
 
 .c8 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0A54BF;
-  padding: 17px;
+  color: #137F3A;
   background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+}
+
+.c8:hover {
+  background-color: inherit !important;
 }
 
 .c9 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #EA6206;
-  padding: 17px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  color: #ffffff;
+  background-color: #212121;
+}
+
+.c9:hover {
+  background-color: lightTextMentionGrey !important;
 }
 
 .c10 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #137F3A;
-  padding: 17px;
+  color: #212121;
   background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
 }
 
-.c11 {
-  padding: 15px;
-  background-color: #212121;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 12px;
-  margin-right: 10px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c10:hover {
+  background-color: inherit !important;
 }
 
 .c12 {
-  padding: 15px;
-  background-color: #ffffff;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  cursor: pointer;
-  border-radius: 12px;
-  margin-right: 10px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c16 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 20px;
-  max-width: 370px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  cursor: pointer;
-}
-
-.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -563,22 +371,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
   cursor: pointer;
 }
 
-.c15 {
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  color: #ffffff;
-  background-color: #212121;
-  padding: 8px;
-  border-radius: 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  cursor: default;
-  border: 1px solid #212121;
-}
-
-.c13 {
+.c11 {
   background: #ffffff;
   border-radius: 12px;
   padding: 32px;
@@ -624,7 +417,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
   align-self: center;
 }
 
-.c6 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -643,23 +436,14 @@ exports[`user translation should render correctly with expert, admin 1`] = `
   justify-content: space-between;
 }
 
-.c5 {
+.c3 {
   font-weight: bold;
   color: #5e5e5e;
   margin-right: 8px;
 }
 
 <div
-  style={
-    {
-      "backgroundColor": "#f2f2f2",
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-      "marginTop": "-95px",
-      "paddingTop": "100px",
-    }
-  }
+  className="main"
 >
   <div
     className="container"
@@ -672,31 +456,12 @@ exports[`user translation should render correctly with expert, admin 1`] = `
       >
         <div
           className="c2"
-        >
-          <div>
-            <a
-              data-test-id="test-langue-undefined"
-              href="/fr/backend/user-translation/en"
-              onClick={[Function]}
-            >
-              <div
-                className="c3 language_title"
-              >
-                <span
-                  className="selected fi fi-undefined"
-                />
-                <div
-                  className="c4"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
+        />
         <div
           className="c2"
         >
           <div
-            className="c5"
+            className="c3"
           >
             Vous avez traduit 0 mots pendant 0 minutes.
           </div>
@@ -724,12 +489,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
             Explications
           </button>
           <button
-            className="btn dark me-2"
-            onClick={[Function]}
-          >
-            Besoins
-          </button>
-          <button
             className="btn dark"
             onClick={[Function]}
           >
@@ -755,1817 +514,93 @@ exports[`user translation should render correctly with expert, admin 1`] = `
         </div>
       </div>
       <div
-        className="c6"
+        className="c4"
       >
         <div
           className="c2"
         >
-          <div
-            className="c7"
+          <button
+            className="c5 filter"
             color="#B50437"
             onClick={[Function]}
           >
-            À revoir (2)
-          </div>
-          <div
-            className="c8"
+            À revoir (0)
+          </button>
+          <button
+            className="c6 filter"
             color="#0A54BF"
             onClick={[Function]}
           >
-            À traduire (2)
-          </div>
-          <div
-            className="c9"
+            À traduire (0)
+          </button>
+          <button
+            className="c7 filter"
             color="#EA6206"
             onClick={[Function]}
           >
-            À valider (1)
-          </div>
-          <div
-            className="c10"
+            À valider (0)
+          </button>
+          <button
+            className="c8 filter"
             color="#137F3A"
             onClick={[Function]}
           >
-            Publiées (1)
-          </div>
-          <div
-            className="c11"
+            Publiées (0)
+          </button>
+          <button
+            className="c9 filter"
+            color="#212121"
             onClick={[Function]}
           >
-            Dispositifs (1)
-            <div
-              className="switch"
-            >
-              <div
-                className="form-check form-switch"
-              >
-                <input
-                  aria-checked={true}
-                  checked={true}
-                  className="form-check-input"
-                  readOnly={true}
-                  role="switch"
-                  type="checkbox"
-                />
-                <label
-                  className="form-check-label ms-2ms-2"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="c12"
+            Dispositifs (0)
+          </button>
+          <button
+            className="c10 filter"
+            color="#212121"
             onClick={[Function]}
           >
-            Démarches (1)
-            <div
-              className="switch"
-            >
-              <div
-                className="form-check form-switch"
-              >
-                <input
-                  aria-checked={false}
-                  checked={false}
-                  className="form-check-input"
-                  readOnly={true}
-                  role="switch"
-                  type="checkbox"
-                />
-                <label
-                  className="form-check-label ms-2ms-2"
-                />
-              </div>
-            </div>
-          </div>
+            Démarches (0)
+          </button>
         </div>
         <div
-          className="container no_margin"
+          className="c2"
         >
-          <input
-            className="input form-control-plaintext"
-            onChange={[Function]}
-            placeholder="Rechercher..."
-            type="text"
-            value=""
-          />
-          <span
-            className="icon"
-            id="bookmarkBtn"
+          <button
+            className="c10 filter"
+            color="#212121"
+            onClick={[Function]}
           >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "24px",
-                  "lineHeight": "24px",
-                }
-              }
+            Besoins (0)
+          </button>
+          <div
+            className="container no_margin"
+          >
+            <input
+              className="input form-control-plaintext"
+              onChange={[Function]}
+              placeholder="Rechercher..."
+              type="text"
+              value=""
             />
-          </span>
-        </div>
-      </div>
-      <div
-        className="c13"
-      >
-        <div
-          className="table-responsive"
-        >
-          <table
-            className="avancement-table table table-borderless"
-          >
-            <thead>
-              <tr>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Type
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Titre
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Progression
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Validation
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Mots
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Depuis
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Statut
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Dernière trad
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                className="line"
-              >
-                <td
-                  className="first align-middle"
-                >
-                  <div
-                    className="c15"
-                  >
-                    Dispositif
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    style={
-                      {
-                        "maxWidth": "350px",
-                      }
-                    }
-                  >
-                    <a
-                      data-test-id="test-line-id6"
-                      href="/fr/backend/validation/dispositif?language=undefined&dispositif=id6"
-                      onClick={[Function]}
-                    >
-                      <div
-                        className="c16"
-                      >
-                        <b>
-                          TI6
-                        </b>
-                        <span>
-                          avec TM6
-                        </span>
-                      </div>
-                    </a>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                />
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    className="c17"
-                  >
-                    <div
-                      className="c18"
-                    >
-                      <div
-                        className="text-danger"
-                      >
-                        0
-                         %
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  595 / 812
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  5 jours
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    className="c19"
-                  >
-                    À revoir
-                  </div>
-                </td>
-                <td
-                  className="align-middle "
-                >
-                  1612514769665
-                </td>
-                <td
-                  className="last align-middle"
-                >
-                  <button
-                    className="btn error"
-                    data-test-id="test-trash"
-                    onClick={[Function]}
-                  >
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash-2" fill="#fff"><g data-name="Layer 2"><g data-name="trash-2"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0zm0-11.67c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM16 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`user translation should render correctly with expert, non admin 1`] = `
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  margin-right: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: default;
-}
-
-.c4 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-}
-
-.c17 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  width: 100px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c18 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  width: 100%;
-  margin-left: 8px;
-}
-
-.c19 {
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
-  color: #ffffff;
-  padding: 8px;
-  background-color: #B50437;
-  border-radius: 8px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c7 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #ffffff;
-  padding: 17px;
-  background-color: #B50437;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c8 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0A54BF;
-  padding: 17px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c9 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #EA6206;
-  padding: 17px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c10 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #137F3A;
-  padding: 17px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c11 {
-  padding: 15px;
-  background-color: #212121;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 12px;
-  margin-right: 10px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c12 {
-  padding: 15px;
-  background-color: #ffffff;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  cursor: pointer;
-  border-radius: 12px;
-  margin-right: 10px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c16 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 20px;
-  max-width: 370px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  cursor: pointer;
-}
-
-.c14 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.c15 {
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  color: #ffffff;
-  background-color: #212121;
-  padding: 8px;
-  border-radius: 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  cursor: default;
-  border: 1px solid #212121;
-}
-
-.c13 {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 32px;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c0 {
-  margin: 26px 12px 26px 12px;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  margin-bottom: 10px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c5 {
-  font-weight: bold;
-  color: #5e5e5e;
-  margin-right: 8px;
-}
-
-<div
-  style={
-    {
-      "backgroundColor": "#f2f2f2",
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-      "marginTop": "-95px",
-      "paddingTop": "100px",
-    }
-  }
->
-  <div
-    className="container"
-  >
-    <div
-      className="c0"
-    >
-      <div
-        className="c1"
-      >
-        <div
-          className="c2"
-        >
-          <div>
-            <a
-              data-test-id="test-langue-idEn"
-              href="/fr/backend/user-translation/en"
-              onClick={[Function]}
-            >
-              <div
-                className="c3 language_title"
-              >
-                <span
-                  className="selected fi fi-undefined"
-                />
-                <div
-                  className="c4"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-        <div
-          className="c2"
-        >
-          <div
-            className="c5"
-          >
-            Vous avez traduit 0 mots pendant 0 minutes.
-          </div>
-          <button
-            className="btn tuto me-2"
-            onClick={[Function]}
-          >
             <span
-              className="me-2 icon"
+              className="icon"
+              id="bookmarkBtn"
             >
               <i
                 dangerouslySetInnerHTML={
                   {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
                   }
                 }
                 style={
                   {
-                    "height": "20px",
-                    "lineHeight": "20px",
+                    "height": "24px",
+                    "lineHeight": "24px",
                   }
                 }
               />
             </span>
-            Explications
-          </button>
-          <button
-            className="btn dark me-2"
-            onClick={[Function]}
-          >
-            Besoins
-          </button>
-          <button
-            className="btn dark"
-            onClick={[Function]}
-          >
-            <span
-              className="me-2 icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-settings-2-outline" fill="#fff"><g data-name="Layer 2"><g data-name="settings-2"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z" data-name="&lt;Group&gt;"/><path d="M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Mes langues
-          </button>
-        </div>
-      </div>
-      <div
-        className="c6"
-      >
-        <div
-          className="c2"
-        >
-          <div
-            className="c7"
-            color="#B50437"
-            onClick={[Function]}
-          >
-            À revoir (2)
           </div>
-          <div
-            className="c8"
-            color="#0A54BF"
-            onClick={[Function]}
-          >
-            À traduire (2)
-          </div>
-          <div
-            className="c9"
-            color="#EA6206"
-            onClick={[Function]}
-          >
-            À valider (1)
-          </div>
-          <div
-            className="c10"
-            color="#137F3A"
-            onClick={[Function]}
-          >
-            Publiées (1)
-          </div>
-          <div
-            className="c11"
-            onClick={[Function]}
-          >
-            Dispositifs (1)
-            <div
-              className="switch"
-            >
-              <div
-                className="form-check form-switch"
-              >
-                <input
-                  aria-checked={true}
-                  checked={true}
-                  className="form-check-input"
-                  readOnly={true}
-                  role="switch"
-                  type="checkbox"
-                />
-                <label
-                  className="form-check-label ms-2ms-2"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="c12"
-            onClick={[Function]}
-          >
-            Démarches (1)
-            <div
-              className="switch"
-            >
-              <div
-                className="form-check form-switch"
-              >
-                <input
-                  aria-checked={false}
-                  checked={false}
-                  className="form-check-input"
-                  readOnly={true}
-                  role="switch"
-                  type="checkbox"
-                />
-                <label
-                  className="form-check-label ms-2ms-2"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="container no_margin"
-        >
-          <input
-            className="input form-control-plaintext"
-            onChange={[Function]}
-            placeholder="Rechercher..."
-            type="text"
-            value=""
-          />
-          <span
-            className="icon"
-            id="bookmarkBtn"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "24px",
-                  "lineHeight": "24px",
-                }
-              }
-            />
-          </span>
-        </div>
-      </div>
-      <div
-        className="c13"
-      >
-        <div
-          className="table-responsive"
-        >
-          <table
-            className="avancement-table table table-borderless"
-          >
-            <thead>
-              <tr>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Type
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Titre
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Progression
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Validation
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Mots
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Depuis
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Statut
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th
-                  onClick={[Function]}
-                >
-                  <div
-                    className="c14"
-                    order={1}
-                  >
-                    Dernière trad
-                    <span
-                      className="icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                className="line"
-              >
-                <td
-                  className="first align-middle"
-                >
-                  <div
-                    className="c15"
-                  >
-                    Dispositif
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    style={
-                      {
-                        "maxWidth": "350px",
-                      }
-                    }
-                  >
-                    <a
-                      data-test-id="test-line-id6"
-                      href="/fr/backend/validation/dispositif?language=idEn&dispositif=id6"
-                      onClick={[Function]}
-                    >
-                      <div
-                        className="c16"
-                      >
-                        <b>
-                          TI6
-                        </b>
-                        <span>
-                          avec TM6
-                        </span>
-                      </div>
-                    </a>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                />
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    className="c17"
-                  >
-                    <div
-                      className="c18"
-                    >
-                      <div
-                        className="text-danger"
-                      >
-                        0
-                         %
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  595 / 812
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  5 jours
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    className="c19"
-                  >
-                    À revoir
-                  </div>
-                </td>
-                <td
-                  className="last align-middle"
-                >
-                  1612514769665
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`user translation should render correctly with non expert, non admin 1`] = `
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  margin-right: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: default;
-}
-
-.c4 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-}
-
-.c15 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  width: 100px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c16 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  width: 100%;
-  margin-left: 8px;
-}
-
-.c17 {
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
-  color: #ffffff;
-  padding: 8px;
-  background-color: #0A54BF;
-  border-radius: 8px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c7 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #ffffff;
-  padding: 17px;
-  background-color: #0A54BF;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c8 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #137F3A;
-  padding: 17px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c9 {
-  padding: 15px;
-  background-color: #212121;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 12px;
-  margin-right: 10px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c10 {
-  padding: 15px;
-  background-color: #ffffff;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  cursor: pointer;
-  border-radius: 12px;
-  margin-right: 10px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c14 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 20px;
-  max-width: 370px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  cursor: pointer;
-}
-
-.c12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.c13 {
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  color: #ffffff;
-  background-color: #212121;
-  padding: 8px;
-  border-radius: 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  cursor: default;
-  border: 1px solid #212121;
-}
-
-.c11 {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 32px;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c0 {
-  margin: 26px 12px 26px 12px;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  margin-bottom: 10px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c5 {
-  font-weight: bold;
-  color: #5e5e5e;
-  margin-right: 8px;
-}
-
-<div
-  style={
-    {
-      "backgroundColor": "#f2f2f2",
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-      "marginTop": "-95px",
-      "paddingTop": "100px",
-    }
-  }
->
-  <div
-    className="container"
-  >
-    <div
-      className="c0"
-    >
-      <div
-        className="c1"
-      >
-        <div
-          className="c2"
-        >
-          <div>
-            <a
-              data-test-id="test-langue-idEn"
-              href="/fr/backend/user-translation/en"
-              onClick={[Function]}
-            >
-              <div
-                className="c3 language_title"
-              >
-                <span
-                  className="selected fi fi-undefined"
-                />
-                <div
-                  className="c4"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-        <div
-          className="c2"
-        >
-          <div
-            className="c5"
-          >
-            Vous avez traduit 0 mots pendant 0 minutes.
-          </div>
-          <button
-            className="btn tuto me-2"
-            onClick={[Function]}
-          >
-            <span
-              className="me-2 icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Explications
-          </button>
-          <button
-            className="btn dark"
-            onClick={[Function]}
-          >
-            <span
-              className="me-2 icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-settings-2-outline" fill="#fff"><g data-name="Layer 2"><g data-name="settings-2"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z" data-name="&lt;Group&gt;"/><path d="M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Mes langues
-          </button>
-        </div>
-      </div>
-      <div
-        className="c6"
-      >
-        <div
-          className="c2"
-        >
-          <div
-            className="c7"
-            color="#0A54BF"
-            onClick={[Function]}
-          >
-            À traduire (2)
-          </div>
-          <div
-            className="c8"
-            color="#137F3A"
-            onClick={[Function]}
-          >
-            Publiées (1)
-          </div>
-          <div
-            className="c9"
-            onClick={[Function]}
-          >
-            Dispositifs (1)
-            <div
-              className="switch"
-            >
-              <div
-                className="form-check form-switch"
-              >
-                <input
-                  aria-checked={true}
-                  checked={true}
-                  className="form-check-input"
-                  readOnly={true}
-                  role="switch"
-                  type="checkbox"
-                />
-                <label
-                  className="form-check-label ms-2ms-2"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="c10"
-            onClick={[Function]}
-          >
-            Démarches (1)
-            <div
-              className="switch"
-            >
-              <div
-                className="form-check form-switch"
-              >
-                <input
-                  aria-checked={false}
-                  checked={false}
-                  className="form-check-input"
-                  readOnly={true}
-                  role="switch"
-                  type="checkbox"
-                />
-                <label
-                  className="form-check-label ms-2ms-2"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="container no_margin"
-        >
-          <input
-            className="input form-control-plaintext"
-            onChange={[Function]}
-            placeholder="Rechercher..."
-            type="text"
-            value=""
-          />
-          <span
-            className="icon"
-            id="bookmarkBtn"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "24px",
-                  "lineHeight": "24px",
-                }
-              }
-            />
-          </span>
         </div>
       </div>
       <div
@@ -2667,6 +702,33 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                     className="c12"
                     order={1}
                   >
+                    Validation
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c12"
+                    order={1}
+                  >
                     Mots
                     <span
                       className="icon"
@@ -2770,116 +832,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr
-                className="line"
-              >
-                <td
-                  className="first align-middle"
-                >
-                  <div
-                    className="c13"
-                  >
-                    Dispositif
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    style={
-                      {
-                        "maxWidth": "350px",
-                      }
-                    }
-                  >
-                    <a
-                      data-test-id="test-line-id3"
-                      href="/fr/backend/traduction/dispositif?language=idEn&dispositif=id3"
-                      onClick={[Function]}
-                    >
-                      <div
-                        className="c14"
-                      >
-                        <b>
-                          T3
-                        </b>
-                        <span>
-                          avec TM3
-                        </span>
-                      </div>
-                    </a>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    className="c15"
-                  >
-                    <div
-                      style={
-                        {
-                          "width": "100%",
-                        }
-                      }
-                    >
-                      <div
-                        className="progress"
-                        style={{}}
-                      >
-                        <div
-                          aria-valuemax={100}
-                          aria-valuemin={0}
-                          aria-valuenow={0}
-                          className="progress-bar bg-danger"
-                          role="progressbar"
-                          style={
-                            {
-                              "width": "0%",
-                            }
-                          }
-                        />
-                      </div>
-                    </div>
-                    <div
-                      className="c16"
-                    >
-                      <div
-                        className="text-danger"
-                      >
-                        0
-                         %
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  0 / 812
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  5 jours
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    className="c17"
-                  >
-                    À traduire
-                  </div>
-                </td>
-                <td
-                  className="last align-middle"
-                >
-                  1612514769665
-                </td>
-              </tr>
-            </tbody>
+            <tbody />
           </table>
         </div>
       </div>
@@ -2888,92 +841,62 @@ exports[`user translation should render correctly with non expert, non admin 1`]
 </div>
 `;
 
-exports[`user translation should return loader langue in url = first selected langue 1`] = `
-.c4 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0A54BF;
-  padding: 17px;
+exports[`user translation should render correctly with expert, non admin 1`] = `
+.c5 {
+  color: #B50437;
   background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
 }
 
-.c5 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #137F3A;
-  padding: 17px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c5:hover {
+  background-color: inherit !important;
 }
 
 .c6 {
-  padding: 15px;
-  background-color: #212121;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #ffffff;
-  cursor: pointer;
-  border-radius: 12px;
-  margin-right: 10px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  color: #0A54BF;
+  background-color: #ffffff;
+}
+
+.c6:hover {
+  background-color: inherit !important;
 }
 
 .c7 {
-  padding: 15px;
+  color: #ffffff;
+  background-color: #EA6206;
+}
+
+.c7:hover {
+  background-color: lightTextMentionGrey !important;
+}
+
+.c8 {
+  color: #137F3A;
   background-color: #ffffff;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
+}
+
+.c8:hover {
+  background-color: inherit !important;
+}
+
+.c9 {
+  color: #ffffff;
+  background-color: #212121;
+}
+
+.c9:hover {
+  background-color: lightTextMentionGrey !important;
+}
+
+.c10 {
   color: #212121;
-  cursor: pointer;
-  border-radius: 12px;
-  margin-right: 10px;
+  background-color: #ffffff;
+}
+
+.c10:hover {
+  background-color: inherit !important;
+}
+
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2981,10 +904,14 @@ exports[`user translation should return loader langue in url = first selected la
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.c11 {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
 }
 
 .c1 {
@@ -3021,16 +948,13 @@ exports[`user translation should return loader langue in url = first selected la
 }
 
 .c0 {
-  margin: 26px 80px 30px 80px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  margin: 26px 12px 26px 12px;
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
 }
 
-.c3 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3043,25 +967,20 @@ exports[`user translation should return loader langue in url = first selected la
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
-.c8 {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 32px;
+.c3 {
+  font-weight: bold;
+  color: #5e5e5e;
+  margin-right: 8px;
 }
 
 <div
-  style={
-    {
-      "backgroundColor": "#f2f2f2",
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-      "marginTop": "-95px",
-      "paddingTop": "100px",
-    }
-  }
+  className="main"
 >
   <div
     className="container"
@@ -3074,29 +993,15 @@ exports[`user translation should return loader langue in url = first selected la
       >
         <div
           className="c2"
-        >
-          <span
-            aria-busy={true}
-            aria-live="polite"
-          >
-            <span
-              className="react-loading-skeleton"
-              style={
-                {
-                  "--base-color": "#ffffff",
-                  "height": 50,
-                  "width": 120,
-                }
-              }
-            >
-              ‌
-            </span>
-            <br />
-          </span>
-        </div>
+        />
         <div
           className="c2"
         >
+          <div
+            className="c3"
+          >
+            Vous avez traduit 0 mots pendant 0 minutes.
+          </div>
           <button
             className="btn tuto me-2"
             onClick={[Function]}
@@ -3122,6 +1027,7 @@ exports[`user translation should return loader langue in url = first selected la
           </button>
           <button
             className="btn dark"
+            onClick={[Function]}
           >
             <span
               className="me-2 icon"
@@ -3145,108 +1051,97 @@ exports[`user translation should return loader langue in url = first selected la
         </div>
       </div>
       <div
-        className="c3"
+        className="c4"
       >
         <div
           className="c2"
         >
-          <div
-            className="c4"
+          <button
+            className="c5 filter"
+            color="#B50437"
+            onClick={[Function]}
+          >
+            À revoir (0)
+          </button>
+          <button
+            className="c6 filter"
             color="#0A54BF"
             onClick={[Function]}
           >
-            À traduire (...)
-          </div>
-          <div
-            className="c5"
+            À traduire (0)
+          </button>
+          <button
+            className="c7 filter"
+            color="#EA6206"
+            onClick={[Function]}
+          >
+            À valider (0)
+          </button>
+          <button
+            className="c8 filter"
             color="#137F3A"
             onClick={[Function]}
           >
-            Publiées (...)
-          </div>
-          <div
-            className="c6"
+            Publiées (0)
+          </button>
+          <button
+            className="c9 filter"
+            color="#212121"
             onClick={[Function]}
           >
-            Dispositifs (...)
-            <div
-              className="switch"
-            >
-              <div
-                className="form-check form-switch"
-              >
-                <input
-                  aria-checked={true}
-                  checked={true}
-                  className="form-check-input"
-                  readOnly={true}
-                  role="switch"
-                  type="checkbox"
-                />
-                <label
-                  className="form-check-label ms-2ms-2"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="c7"
+            Dispositifs (0)
+          </button>
+          <button
+            className="c10 filter"
+            color="#212121"
             onClick={[Function]}
           >
-            Démarches (...)
-            <div
-              className="switch"
-            >
-              <div
-                className="form-check form-switch"
-              >
-                <input
-                  aria-checked={false}
-                  checked={false}
-                  className="form-check-input"
-                  readOnly={true}
-                  role="switch"
-                  type="checkbox"
-                />
-                <label
-                  className="form-check-label ms-2ms-2"
-                />
-              </div>
-            </div>
-          </div>
+            Démarches (0)
+          </button>
         </div>
         <div
-          className="container no_margin"
+          className="c2"
         >
-          <input
-            className="input form-control-plaintext"
-            onChange={[Function]}
-            placeholder="Rechercher..."
-            type="text"
-            value=""
-          />
-          <span
-            className="icon"
-            id="bookmarkBtn"
+          <button
+            className="c10 filter"
+            color="#212121"
+            onClick={[Function]}
           >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "24px",
-                  "lineHeight": "24px",
-                }
-              }
+            Besoins (0)
+          </button>
+          <div
+            className="container no_margin"
+          >
+            <input
+              className="input form-control-plaintext"
+              onChange={[Function]}
+              placeholder="Rechercher..."
+              type="text"
+              value=""
             />
-          </span>
+            <span
+              className="icon"
+              id="bookmarkBtn"
+            >
+              <i
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "24px",
+                    "lineHeight": "24px",
+                  }
+                }
+              />
+            </span>
+          </div>
         </div>
       </div>
       <div
-        className="c8"
+        className="c11"
       >
         <div
           className="table-responsive"
@@ -3255,1679 +1150,850 @@ exports[`user translation should return loader langue in url = first selected la
             className="avancement-table table table-borderless"
           >
             <thead>
-              <tr
-                className="tr-test"
-              >
-                <th>
-                  Type
+              <tr>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c12"
+                    order={1}
+                  >
+                    Type
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
                 </th>
-                <th>
-                  Titre
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c12"
+                    order={1}
+                  >
+                    Titre
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
                 </th>
-                <th>
-                  Progression
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c12"
+                    order={1}
+                  >
+                    Progression
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
                 </th>
-                <th>
-                  Mots
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c12"
+                    order={1}
+                  >
+                    Validation
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
                 </th>
-                <th>
-                  Depuis
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c12"
+                    order={1}
+                  >
+                    Mots
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
                 </th>
-                <th>
-                  Statut
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c12"
+                    order={1}
+                  >
+                    Depuis
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
                 </th>
-                <th>
-                  Dernière trad
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c12"
+                    order={1}
+                  >
+                    Statut
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c12"
+                    order={1}
+                  >
+                    Dernière trad
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 50,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 270,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-                <td>
-                  <span
-                    aria-busy={true}
-                    aria-live="polite"
-                  >
-                    <span
-                      className="react-loading-skeleton"
-                      style={
-                        {
-                          "--base-color": "#CDCDCD",
-                          "width": 70,
-                        }
-                      }
-                    >
-                      ‌
-                    </span>
-                    <br />
-                  </span>
-                </td>
-              </tr>
-            </tbody>
+            <tbody />
           </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`user translation should render correctly with non expert, non admin 1`] = `
+.c5 {
+  color: #ffffff;
+  background-color: #0A54BF;
+}
+
+.c5:hover {
+  background-color: lightTextMentionGrey !important;
+}
+
+.c6 {
+  color: #137F3A;
+  background-color: #ffffff;
+}
+
+.c6:hover {
+  background-color: inherit !important;
+}
+
+.c7 {
+  color: #ffffff;
+  background-color: #212121;
+}
+
+.c7:hover {
+  background-color: lightTextMentionGrey !important;
+}
+
+.c8 {
+  color: #212121;
+  background-color: #ffffff;
+}
+
+.c8:hover {
+  background-color: inherit !important;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.c9 {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 {
+  margin: 26px 12px 26px 12px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 10px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  font-weight: bold;
+  color: #5e5e5e;
+  margin-right: 8px;
+}
+
+<div
+  className="main"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="c0"
+    >
+      <div
+        className="c1"
+      >
+        <div
+          className="c2"
+        />
+        <div
+          className="c2"
+        >
+          <div
+            className="c3"
+          >
+            Vous avez traduit 0 mots pendant 0 minutes.
+          </div>
+          <button
+            className="btn tuto me-2"
+            onClick={[Function]}
+          >
+            <span
+              className="me-2 icon"
+            >
+              <i
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
+                  }
+                }
+              />
+            </span>
+            Explications
+          </button>
+          <button
+            className="btn dark"
+            onClick={[Function]}
+          >
+            <span
+              className="me-2 icon"
+            >
+              <i
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-settings-2-outline" fill="#fff"><g data-name="Layer 2"><g data-name="settings-2"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z" data-name="&lt;Group&gt;"/><path d="M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
+                  }
+                }
+              />
+            </span>
+            Mes langues
+          </button>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <button
+            className="c5 filter"
+            color="#0A54BF"
+            onClick={[Function]}
+          >
+            À traduire (0)
+          </button>
+          <button
+            className="c6 filter"
+            color="#137F3A"
+            onClick={[Function]}
+          >
+            Publiées (0)
+          </button>
+          <button
+            className="c7 filter"
+            color="#212121"
+            onClick={[Function]}
+          >
+            Dispositifs (0)
+          </button>
+          <button
+            className="c8 filter"
+            color="#212121"
+            onClick={[Function]}
+          >
+            Démarches (0)
+          </button>
+        </div>
+        <div
+          className="c2"
+        >
+          <div
+            className="container no_margin"
+          >
+            <input
+              className="input form-control-plaintext"
+              onChange={[Function]}
+              placeholder="Rechercher..."
+              type="text"
+              value=""
+            />
+            <span
+              className="icon"
+              id="bookmarkBtn"
+            >
+              <i
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "24px",
+                    "lineHeight": "24px",
+                  }
+                }
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c9"
+      >
+        <div
+          className="table-responsive"
+        >
+          <table
+            className="avancement-table table table-borderless"
+          >
+            <thead>
+              <tr>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c10"
+                    order={1}
+                  >
+                    Type
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c10"
+                    order={1}
+                  >
+                    Titre
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c10"
+                    order={1}
+                  >
+                    Progression
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c10"
+                    order={1}
+                  >
+                    Mots
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c10"
+                    order={1}
+                  >
+                    Depuis
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c10"
+                    order={1}
+                  >
+                    Statut
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c10"
+                    order={1}
+                  >
+                    Dernière trad
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
+                          }
+                        }
+                      />
+                    </span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody />
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`user translation should return loader langue in url = first selected langue 1`] = `
+.c1 {
+  font-weight: bold;
+  font-size: 27.7097px;
+  line-height: 35px;
+  margin-bottom: 40px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 40px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c2 {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 1040px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c3 {
+  font-size: 32px;
+  line-height: 40px;
+  color: #5e5e5e;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.c4 {
+  font-size: 18px;
+  line-height: 23px;
+  color: #5e5e5e;
+  margin-bottom: 40px;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 60px;
+}
+
+<div
+  className="main"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="c0"
+    >
+      <div
+        className="c1"
+      >
+        Vous n'avez pas traduit de fiches pour le moment.
+      </div>
+      <div
+        className="c2"
+      >
+        <div
+          className="c3"
+        >
+          Vous parlez une autre langue ?
+        </div>
+        <div
+          className="c4"
+        >
+          Aidez à traduire les contenus à votre rythme.
+        </div>
+        <div
+          className="c5"
+        >
+          <button
+            className="btn dark me-2"
+            onClick={[Function]}
+          >
+            <img
+              alt="a"
+              data-nimg="1"
+              decoding="async"
+              height={21}
+              loading="lazy"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="/_next/image?url=%2Fimg.jpg&w=48&q=75"
+              srcSet="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=48&q=75 2x"
+              style={
+                {
+                  "color": "transparent",
+                }
+              }
+              width={21}
+            />
+            Commencer à traduire
+          </button>
+          <button
+            className="btn tuto ms-2"
+            onClick={[Function]}
+          >
+            <span
+              className="me-2 icon"
+            >
+              <i
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
+                  }
+                }
+              />
+            </span>
+            Explications
+          </button>
         </div>
       </div>
     </div>
