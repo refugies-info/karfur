@@ -2072,6 +2072,11 @@ exports[`recherche renders home search 1`] = `
           </button>
           <div
             className="slider demarches"
+            style={
+              {
+                "gap": 24,
+              }
+            }
           />
         </div>
         <div
@@ -2118,6 +2123,11 @@ exports[`recherche renders home search 1`] = `
           </button>
           <div
             className="slider dispositifs"
+            style={
+              {
+                "gap": 32,
+              }
+            }
           />
         </div>
       </div>
@@ -3916,7 +3926,98 @@ exports[`recherche renders search results 1`] = `
                 className="menu dropdown-menu"
                 role="menu"
                 tabIndex="-1"
-              />
+              >
+                <button
+                  className="item dropdown-item"
+                  onClick={[Function]}
+                  role="menuitem"
+                  tabIndex="0"
+                  type="button"
+                >
+                  <div
+                    className="checkbox"
+                  >
+                    <input
+                      defaultChecked={false}
+                      type="checkbox"
+                    />
+                    <span
+                      className="check"
+                    >
+                      <span
+                        className="icon"
+                      >
+                        <i
+                          dangerouslySetInnerHTML={
+                            {
+                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="black"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
+                            }
+                          }
+                        />
+                      </span>
+                    </span>
+                    <label>
+                      <span
+                        className="flag fi fi-fr"
+                        id="fr"
+                        title="fr"
+                      />
+                      Français
+                    </label>
+                  </div>
+                </button>
+                <button
+                  className="item dropdown-item"
+                  onClick={[Function]}
+                  role="menuitem"
+                  tabIndex="0"
+                  type="button"
+                >
+                  <div
+                    className="checkbox"
+                  >
+                    <input
+                      defaultChecked={false}
+                      type="checkbox"
+                    />
+                    <span
+                      className="check"
+                    >
+                      <span
+                        className="icon"
+                      >
+                        <i
+                          dangerouslySetInnerHTML={
+                            {
+                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="black"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
+                            }
+                          }
+                        />
+                      </span>
+                    </span>
+                    <label>
+                      <span
+                        className="flag fi fi-en"
+                        id="en"
+                        title="en"
+                      />
+                      Anglais
+                    </label>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
           <button

@@ -443,7 +443,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 <div
                   className="c10"
                 >
-                  Responsable
+                  Rédacteur
                 </div>
               </td>
               <td
@@ -452,7 +452,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 <div
                   className="c11"
                 >
-                  Non disponible
+                  undefined undefined
                 </div>
               </td>
               <td
@@ -460,9 +460,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
               >
                 <div
                   className="c11"
-                >
-                  Non disponible
-                </div>
+                />
               </td>
               <td
                 className="align-middle"
@@ -590,7 +588,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 <div
                   className="c16"
                 >
-                  Non disponible
+                  undefined undefined
                 </div>
               </td>
               <td
@@ -598,9 +596,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
               >
                 <div
                   className="c16"
-                >
-                  Non disponible
-                </div>
+                />
               </td>
               <td
                 className="align-middle"
@@ -1294,7 +1290,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 <div
                   className="c10"
                 >
-                  Responsable
+                  Rédacteur
                 </div>
               </td>
               <td
@@ -1303,7 +1299,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 <div
                   className="c11"
                 >
-                  Non disponible
+                  undefined undefined
                 </div>
               </td>
               <td
@@ -1311,9 +1307,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               >
                 <div
                   className="c11"
-                >
-                  Non disponible
-                </div>
+                />
               </td>
               <td
                 className="align-middle"
@@ -1441,7 +1435,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 <div
                   className="c16"
                 >
-                  Non disponible
+                  undefined undefined
                 </div>
               </td>
               <td
@@ -1449,9 +1443,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               >
                 <div
                   className="c16"
-                >
-                  Non disponible
-                </div>
+                />
               </td>
               <td
                 className="align-middle"
@@ -2217,7 +2209,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 <div
                   className="c10"
                 >
-                  Responsable
+                  Rédacteur
                 </div>
               </td>
               <td
@@ -2226,7 +2218,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 <div
                   className="c11"
                 >
-                  Non disponible
+                  undefined undefined
                 </div>
               </td>
               <td
@@ -2234,9 +2226,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               >
                 <div
                   className="c11"
-                >
-                  Non disponible
-                </div>
+                />
               </td>
               <td
                 className="align-middle"
@@ -2364,7 +2354,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 <div
                   className="c16"
                 >
-                  Non disponible
+                  undefined undefined
                 </div>
               </td>
               <td
@@ -2372,9 +2362,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               >
                 <div
                   className="c16"
-                >
-                  Non disponible
-                </div>
+                />
               </td>
               <td
                 className="align-middle"
@@ -3233,7 +3221,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 <div
                   className="c11"
                 >
-                  Non disponible
+                  undefined undefined
                 </div>
               </td>
               <td
@@ -3241,9 +3229,7 @@ exports[`UserStructure should render correctly when structure with membres when 
               >
                 <div
                   className="c11"
-                >
-                  Non disponible
-                </div>
+                />
               </td>
             </tr>
             <tr
@@ -3287,7 +3273,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 <div
                   className="c13"
                 >
-                  Responsable
+                  Rédacteur
                 </div>
               </td>
               <td
@@ -3296,7 +3282,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 <div
                   className="c14"
                 >
-                  Non disponible
+                  undefined undefined
                 </div>
               </td>
               <td
@@ -3304,9 +3290,7 @@ exports[`UserStructure should render correctly when structure with membres when 
               >
                 <div
                   className="c14"
-                >
-                  Non disponible
-                </div>
+                />
               </td>
             </tr>
           </tbody>
@@ -3727,7 +3711,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 <div
                   className="c10"
                 >
-                  Responsable
+                  Rédacteur
                 </div>
               </td>
               <td
@@ -3736,7 +3720,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 <div
                   className="c11"
                 >
-                  Non disponible
+                  undefined undefined
                 </div>
               </td>
               <td
@@ -3744,9 +3728,7 @@ exports[`UserStructure should render correctly when structure with membres when 
               >
                 <div
                   className="c11"
-                >
-                  Non disponible
-                </div>
+                />
               </td>
               <td
                 className="align-middle"
@@ -3874,7 +3856,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 <div
                   className="c16"
                 >
-                  Non disponible
+                  undefined undefined
                 </div>
               </td>
               <td
@@ -3882,9 +3864,7 @@ exports[`UserStructure should render correctly when structure with membres when 
               >
                 <div
                   className="c16"
-                >
-                  Non disponible
-                </div>
+                />
               </td>
               <td
                 className="align-middle"

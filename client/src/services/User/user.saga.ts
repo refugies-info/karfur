@@ -25,8 +25,9 @@ export function* fetchUser(
   try {
     logger.info("[fetchUser] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER));
-    const isAuth = API.isAuth() || action.payload?.token;
-    if (isAuth) {
+    const isAuth = yield call(API.isAuth);
+    const authenticated = isAuth || action.payload?.token;
+    if (authenticated) {
       const data: GetUserInfoResponse = yield call(API.getUser, { token: action.payload?.token });
       yield put(setUserActionCreator(data));
       if (data.structures && data.structures.length > 0) {

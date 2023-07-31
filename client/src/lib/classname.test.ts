@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { cls } from "./classname";
 
 describe("classname", () => {

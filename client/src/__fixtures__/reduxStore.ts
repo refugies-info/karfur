@@ -1,3 +1,4 @@
+import { LangueState } from "services/Langue/langue.reducer";
 import { SearchResultsState } from "services/SearchResults/searchResults.reducer";
 import { UserFavoritesState } from "services/UserFavoritesInLocale/UserFavoritesInLocale.reducer";
 import { activeThemesMock } from "./activeThemes";
@@ -13,8 +14,27 @@ const initialMockUserState = {
   userFetched: false,
   rolesInStructure: []
 };
-const initialMockLangueState = {
-  langues: [],
+const initialMockLangueState: LangueState = {
+  langues: [
+    {
+      _id: "fr",
+      langueFr: "Français",
+      langueLoc: "Français",
+      langueCode: "fr",
+      i18nCode: "fr",
+      avancement: 1,
+      avancementTrad: 1,
+    }
+    , {
+      _id: "en",
+      langueFr: "Anglais",
+      langueLoc: "English",
+      langueCode: "en",
+      i18nCode: "en",
+      avancement: 1,
+      avancementTrad: 1,
+    }
+  ],
   languei18nCode: "fr",
   showLanguageModal: false,
   showLangModal: false
@@ -69,6 +89,7 @@ export const initialMockStore = {
   selectedStructure: null,
   allDispositifs: [],
   allStructures: [],
+  dispositifsWithTranslations: [],
   users: [],
   userFavorites: initialUserFavoritesState,
   userContributions: [],

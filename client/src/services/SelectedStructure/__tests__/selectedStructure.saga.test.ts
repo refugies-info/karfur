@@ -43,7 +43,7 @@ describe("[Saga] Structures", () => {
         .put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE))
         .next()
         .call(API.getStructureById, "id", "locale")
-        .next({ data: { data: { id: "id" } } })
+        .next({ id: "id" })
         .put(setSelectedStructureActionCreator({ id: "id" }))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE))
@@ -92,8 +92,8 @@ describe("[Saga] Structures", () => {
         .put(startLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE))
         .next()
         .select(selectedStructureSelector)
-        .next({ _id: "structureId", membres: "membres" })
-        .call(API.updateStructure, { query: { _id: "structureId" } })
+        .next({ _id: "structureId", nom: "ma structure" })
+        .call(API.updateStructure, "structureId", { nom: "ma structure" })
         .next()
         .put(
           fetchSelectedStructureActionCreator({
