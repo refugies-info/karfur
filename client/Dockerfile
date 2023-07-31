@@ -2,10 +2,6 @@
 FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 
-WORKDIR /usr/src/api-types
-COPY ./api-types ./
-RUN npm ci
-
 WORKDIR /usr/src/app
 COPY ./client/package*.json ./
 RUN npm ci --legacy-peer-deps
@@ -16,8 +12,6 @@ ENV NODE_ENV production
 ARG APP_ENV=production
 ARG APP_SERVER_URL=http://localhost:8000
 ARG APP_SITE_URL=http://localhost:3000
-WORKDIR /usr/src/api-types
-COPY --from=deps /usr/src/api-types .
 WORKDIR /usr/src/app
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY ./client .
