@@ -44,7 +44,7 @@ describe("[Saga] Widgets", () => {
         .put(startLoading(LoadingStatusKey.FETCH_WIDGETS))
         .next()
         .call(API.getWidgets)
-        .next({ data: { data: [{ _id: "id" }] } })
+        .next([{ _id: "id" }])
         .put(setWidgetsActionCreator([{ _id: "id" }]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_WIDGETS))
@@ -72,21 +72,18 @@ describe("[Saga] Widgets", () => {
       testSaga(saveWidget, {
         type: SAVE_WIDGET,
         payload: {
-          _id: "id3",
-          name: "new"
+          id: "id3",
+          value: { name: "new" }
         },
       })
         .next()
         .put(startLoading(LoadingStatusKey.SAVE_WIDGET))
         .next()
-        .call(API.patchWidget, {
-          _id: "id3",
-          name: "new"
-        })
-        .next({ data: { data: {_id: "id3",name:"new"} } })
+        .call(API.patchWidget, "id3", { name: "new" })
+        .next({ _id: "id3", name: "new" })
         .select(widgetsSelector)
-        .next([{_id: "id1"}, {_id: "id2"}, {_id: "id3", name: "old"}])
-        .put(setWidgetsActionCreator([{_id: "id1"}, {_id: "id2"}, {_id: "id3", name: "new"}]))
+        .next([{ _id: "id1" }, { _id: "id2" }, { _id: "id3", name: "old" }])
+        .put(setWidgetsActionCreator([{ _id: "id1" }, { _id: "id2" }, { _id: "id3", name: "new" }]))
         .next()
         .put(finishLoading(LoadingStatusKey.SAVE_WIDGET))
         .next()
@@ -98,22 +95,16 @@ describe("[Saga] Widgets", () => {
     it("should call api", () => {
       testSaga(createWidget, {
         type: CREATE_WIDGET,
-        payload: {
-          _id: "id3",
-          name: "new"
-        },
+        payload: { name: "new" },
       })
         .next()
         .put(startLoading(LoadingStatusKey.CREATE_WIDGET))
         .next()
-        .call(API.postWidgets, {
-          _id: "id3",
-          name: "new"
-        })
-        .next({ data: { data: { _id: "id3", name:"new" } } })
+        .call(API.postWidgets, { name: "new" })
+        .next({ _id: "id3", name: "new" })
         .select(widgetsSelector)
-        .next([{_id: "id1"}, {_id: "id2"}])
-        .put(setWidgetsActionCreator([{_id: "id3", name: "new"}, {_id: "id1"}, {_id: "id2"}]))
+        .next([{ _id: "id1" }, { _id: "id2" }])
+        .put(setWidgetsActionCreator([{ _id: "id3", name: "new" }, { _id: "id1" }, { _id: "id2" }]))
         .next()
         .put(finishLoading(LoadingStatusKey.CREATE_WIDGET))
         .next()
@@ -133,8 +124,8 @@ describe("[Saga] Widgets", () => {
         .call(API.deleteWidget, "id2")
         .next()
         .select(widgetsSelector)
-        .next([{_id: "id1"}, {_id: "id2"}])
-        .put(setWidgetsActionCreator([{_id: "id1"}]))
+        .next([{ _id: "id1" }, { _id: "id2" }])
+        .put(setWidgetsActionCreator([{ _id: "id1" }]))
         .next()
         .put(finishLoading(LoadingStatusKey.DELETE_WIDGET))
         .next()

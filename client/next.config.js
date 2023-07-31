@@ -7,9 +7,6 @@ module.exports = {
   images: {
     domains: ["storage.googleapis.com", "res.cloudinary.com"],
   },
-  experimental: {
-    externalDir: true,
-  },
   webpack: (config) => {
     config.resolve.fallback = {
       events: false,
