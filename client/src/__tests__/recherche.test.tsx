@@ -1,13 +1,11 @@
-//@ts-nocheck
 import { wrapWithProvidersAndRender } from "../../jest/lib/wrapWithProvidersAndRender";
 import recherche from "../pages/recherche";
 import { initialMockStore } from "__fixtures__/reduxStore";
-import { act } from "react-test-renderer";
+import { act, ReactTestRenderer } from "react-test-renderer";
 import { setupGoogleMock } from "../__mocks__/react-google-autocomplete";
 import "jest-styled-components";
 
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("components/Modals/NewSearchModal/NewSearchModal", () => jest.fn().mockReturnValue(<></>));
 
 describe("recherche", () => {
   beforeEach(() => {
@@ -15,15 +13,16 @@ describe("recherche", () => {
     setupGoogleMock();
   });
 
+  let component: ReactTestRenderer;
+
   it("renders home search", () => {
     window.scrollTo = jest.fn();
-    let component;
     act(() => {
       component = wrapWithProvidersAndRender({
         Component: recherche,
         reduxState: {
-          ...initialMockStore
-        }
+          ...initialMockStore,
+        },
       });
     });
     expect(component.toJSON()).toMatchSnapshot();
@@ -31,7 +30,7 @@ describe("recherche", () => {
 
   it("renders search results", () => {
     window.scrollTo = jest.fn();
-    let component;
+
     act(() => {
       component = wrapWithProvidersAndRender({
         Component: recherche,
@@ -41,7 +40,7 @@ describe("recherche", () => {
             results: {
               dispositifs: [],
               demarches: [],
-              dispositifsSecondaryTheme: []
+              dispositifsSecondaryTheme: [],
             },
             query: {
               search: "",
@@ -52,15 +51,15 @@ describe("recherche", () => {
               frenchLevel: [],
               language: [],
               sort: "date",
-              type: "all"
+              type: "all",
             },
             inputFocused: {
               search: false,
               location: false,
-              theme: false
-            }
-          }
-        }
+              theme: false,
+            },
+          },
+        },
       });
     });
     expect(component.toJSON()).toMatchSnapshot();

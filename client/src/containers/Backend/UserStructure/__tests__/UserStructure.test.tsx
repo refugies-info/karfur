@@ -1,15 +1,15 @@
-// @ts-nocheck
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import { UserStructureComponent } from "../UserStructure.component";
 import "jest-styled-components";
-import { act } from "react-test-renderer";
+import { act, ReactTestRenderer } from "react-test-renderer";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import {
   fetchUserStructureActionCreator,
-  updateUserStructureActionCreator
+  updateUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
 import { colors } from "colors";
+import { GetStructureResponse, StructureStatus, UserStatus } from "@refugies-info/api-types";
 jest.mock("next/router", () => require("next-router-mock"));
 
 // need to mock react strap because issue with modal
@@ -24,7 +24,7 @@ jest.mock("services/UserStructure/userStructure.actions", () => {
   const actions = jest.requireActual("services/UserStructure/userStructure.actions");
   return {
     fetchUserStructureActionCreator: jest.fn(actions.fetchUserStructureActionCreator),
-    updateUserStructureActionCreator: jest.fn(actions.updateUserStructureActionCreator)
+    updateUserStructureActionCreator: jest.fn(actions.updateUserStructureActionCreator),
   };
 });
 
@@ -35,55 +35,82 @@ describe("UserStructure", () => {
 
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    let component;
+    let component: ReactTestRenderer;
     act(() => {
       component = wrapWithProvidersAndRender({
         Component: UserStructureComponent,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
-          userStructure: { _id: "structureId", dispositifsAssocies: [] }
-        }
+          userStructure: {
+            _id: "structureId",
+            createur: "",
+            nom: "",
+            adminPercentageProgressionStatus: "",
+            membres: [],
+            dispositifsAssocies: [],
+          },
+        },
       });
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
-      shouldRedirect: true
+      shouldRedirect: true,
     });
 
+    //@ts-ignore
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should render correctly when no structure", () => {
     window.scrollTo = jest.fn();
-    let component;
+    let component: ReactTestRenderer;
     act(() => {
       component = wrapWithProvidersAndRender({
         Component: UserStructureComponent,
         reduxState: {
           ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } }
-        }
+          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        },
       });
     });
     expect(fetchUserStructureActionCreator).not.toHaveBeenCalled();
+    //@ts-ignore
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  const structure = {
-    status: "Actif",
+  const structure: GetStructureResponse = {
+    status: StructureStatus.ACTIVE,
     _id: "structureId",
     nom: "structureTest",
     acronyme: "ACRO",
+    createur: "",
+    adminPercentageProgressionStatus: "",
     membres: [
-      { _id: "id1", roles: ["contributeur"], username: "membre1" },
-      { _id: "id2", roles: ["administrateur"], username: "membre2" }
+      {
+        userId: "id1",
+        roles: ["contributeur"],
+        username: "membre1",
+        picture: { secure_url: "", public_id: "", imgId: "" },
+        last_connected: new Date(),
+        added_at: new Date(),
+        mainRole: "Rédacteur",
+      },
+      {
+        userId: "id2",
+        roles: ["administrateur"],
+        username: "membre2",
+        picture: { secure_url: "", public_id: "", imgId: "" },
+        last_connected: new Date(),
+        added_at: new Date(),
+        mainRole: "Rédacteur",
+      },
     ],
-    dispositifsAssocies: []
+    dispositifsAssocies: [],
   };
   it("should render correctly when structure with membres when user is respo", () => {
     window.scrollTo = jest.fn();
-    let component;
+    let component: ReactTestRenderer;
 
     act(() => {
       component = wrapWithProvidersAndRender({
@@ -92,16 +119,37 @@ describe("UserStructure", () => {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
           userStructure: structure,
-          user: { userId: "id2" }
-        }
+          user: {
+            userId: "id2",
+            user: {
+              _id: "id2",
+              contributions: [],
+              email: "",
+              phone: "",
+              roles: [],
+              selectedLanguages: [],
+              status: UserStatus.ACTIVE,
+              username: "membre2",
+              structures: [],
+            },
+            admin: false,
+            traducteur: false,
+            expertTrad: false,
+            contributeur: false,
+            hasStructure: false,
+            userFetched: true,
+            rolesInStructure: ["administrateur"],
+          },
+        },
       });
     });
+    //@ts-ignore
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should render correctly when structure with membres when user is redacteur", () => {
     window.scrollTo = jest.fn();
-    let component;
+    let component: ReactTestRenderer;
 
     act(() => {
       component = wrapWithProvidersAndRender({
@@ -110,16 +158,37 @@ describe("UserStructure", () => {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
           userStructure: structure,
-          user: { userId: "id1" }
-        }
+          user: {
+            userId: "id1",
+            user: {
+              _id: "id1",
+              contributions: [],
+              email: "",
+              phone: "",
+              roles: [],
+              selectedLanguages: [],
+              status: UserStatus.ACTIVE,
+              username: "membre1",
+              structures: [],
+            },
+            admin: false,
+            traducteur: false,
+            expertTrad: false,
+            contributeur: false,
+            hasStructure: false,
+            userFetched: true,
+            rolesInStructure: ["administrateur"],
+          },
+        },
       });
     });
+    //@ts-ignore
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should render correctly when add member modal is open", () => {
     window.scrollTo = jest.fn();
-    let component;
+    let component: ReactTestRenderer;
 
     act(() => {
       component = wrapWithProvidersAndRender({
@@ -128,19 +197,40 @@ describe("UserStructure", () => {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
           userStructure: structure,
-          user: { userId: "id2" }
-        }
+          user: {
+            userId: "id2",
+            user: {
+              _id: "id2",
+              contributions: [],
+              email: "",
+              phone: "",
+              roles: [],
+              selectedLanguages: [],
+              status: UserStatus.ACTIVE,
+              username: "membre2",
+              structures: [],
+            },
+            admin: false,
+            traducteur: false,
+            expertTrad: false,
+            contributeur: false,
+            hasStructure: false,
+            userFetched: true,
+            rolesInStructure: ["administrateur"],
+          },
+        },
       });
     });
     act(() => {
       component.root.findByProps({ "data-test-id": "test-add-member" }).props.onClick();
     });
+    //@ts-ignore
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should render correctly when edit member modal is open, select respo and validate", () => {
     window.scrollTo = jest.fn();
-    let component;
+    let component: ReactTestRenderer;
 
     act(() => {
       component = wrapWithProvidersAndRender({
@@ -149,40 +239,62 @@ describe("UserStructure", () => {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
           userStructure: structure,
-          user: { userId: "id2" }
-        }
+          user: {
+            userId: "id2",
+            user: {
+              _id: "id2",
+              contributions: [],
+              email: "",
+              phone: "",
+              roles: [],
+              selectedLanguages: [],
+              status: UserStatus.ACTIVE,
+              username: "membre2",
+              structures: [],
+            },
+            admin: false,
+            traducteur: false,
+            expertTrad: false,
+            contributeur: false,
+            hasStructure: false,
+            userFetched: true,
+            rolesInStructure: ["administrateur"],
+          },
+        },
       });
     });
     act(() => {
       component.root.findByProps({ "data-test-id": "test_see_id1" }).props.onClick();
     });
+    //@ts-ignore
     expect(component.toJSON()).toMatchSnapshot();
     act(() => {
       component.root.findByProps({ "data-test-id": "test-role-Responsable" }).props.onClick();
     });
+    //@ts-ignore
     expect(component.toJSON()).toMatchSnapshot();
 
     act(() => {
       component.root.findByProps({ "data-test-id": "test-validate-edit" }).props.onClick();
     });
     expect(updateUserStructureActionCreator).toHaveBeenCalledWith({
-      modifyMembres: true,
-      data: {
+      membres: {
         structureId: "structureId",
         userId: "id1",
         newRole: "administrateur",
-        type: "modify"
-      }
+        type: "modify",
+      },
     });
   });
 
   it("should delete user ", async () => {
     const promise = Promise.resolve();
 
+    //@ts-ignore
     Swal.fire.mockResolvedValueOnce({ value: true });
 
     window.scrollTo = jest.fn();
-    let component;
+    let component: ReactTestRenderer;
 
     act(() => {
       component = wrapWithProvidersAndRender({
@@ -191,8 +303,28 @@ describe("UserStructure", () => {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
           userStructure: structure,
-          user: { userId: "id2" }
-        }
+          user: {
+            userId: "id2",
+            user: {
+              _id: "id2",
+              contributions: [],
+              email: "",
+              phone: "",
+              roles: [],
+              selectedLanguages: [],
+              status: UserStatus.ACTIVE,
+              username: "membre2",
+              structures: [],
+            },
+            admin: false,
+            traducteur: false,
+            expertTrad: false,
+            contributeur: false,
+            hasStructure: false,
+            userFetched: true,
+            rolesInStructure: ["administrateur"],
+          },
+        },
       });
     });
     act(() => {
@@ -206,7 +338,7 @@ describe("UserStructure", () => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, l'enlever",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     });
     await act(() => promise);
   });

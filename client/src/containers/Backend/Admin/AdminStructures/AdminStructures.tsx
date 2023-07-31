@@ -346,7 +346,7 @@ export const AdminStructures = () => {
         setSelectedContentIdAndToggleModal={setSelectedContentIdAndToggleModal}
       />
       <NewStructureModal
-        defaults={{ status: "En attente" }}
+        defaultStatus={StructureStatus.WAITING}
         show={showNewStructureModal}
         toggleModal={toggleShowNewStructureModal}
       />

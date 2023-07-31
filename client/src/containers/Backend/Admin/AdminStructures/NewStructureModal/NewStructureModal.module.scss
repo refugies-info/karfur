@@ -1,5 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
 
 .modal {
   .modal_content {
@@ -28,4 +30,49 @@
       height: 100%;
     }
   }
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: u(4);
+  @include dsfr-text("h2");
+}
+
+.label {
+  font-weight: bold;
+  @include dsfr-text("normal");
+  margin: 0 0 u(2) 0;
+}
+
+.input {
+  margin-bottom: u(2);
+  width: 440px;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-top: u(4);
+  justify-content: flex-end;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+
+  .wrapper {
+    width: 160px;
+    max-height: 200px;
+  }
+  .right {
+    margin-left: u(8);
+    margin-bottom: u(6);
+  }
+}
+
+.responsable {
+  border: 2px solid;
+  border-radius: u(4);
+  padding: u(2);
+  margin-bottom: u(2);
+  border-color: $gray70;
 }

@@ -3,11 +3,6 @@
 ARG NODE_VERSION=16
 FROM node:${NODE_VERSION}-alpine
 
-# Copy api-types package
-WORKDIR /usr/src/api-types
-COPY ./api-types ./
-RUN npm ci
-
 # Copy package.json and install node modules
 WORKDIR /usr/src/app
 COPY ./server/package*.json ./

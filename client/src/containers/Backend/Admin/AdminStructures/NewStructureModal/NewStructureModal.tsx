@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { Event } from "types/interface";
-import { Picture } from "@refugies-info/api-types";
+import { SimpleUser, StructureStatus } from "@refugies-info/api-types";
 import { Modal, Input, Spinner } from "reactstrap";
 import Image from "next/image";
 import FInput from "components/UI/FInput/FInput";
@@ -20,94 +19,34 @@ import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selector
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { allActiveUsersSelector } from "services/AllUsers/allUsers.selector";
 import { ChooseResponsableComponent } from "./ChooseResponsableComponent";
-import { colors } from "colors";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import styles from "./NewStructureModal.module.scss";
-import {
-  GetActiveUsersResponse,
-  GetAllStructuresResponse,
-  GetAllUsersResponse,
-  PostStructureRequest,
-} from "@refugies-info/api-types";
+import { GetActiveUsersResponse, GetAllUsersResponse, PostStructureRequest } from "@refugies-info/api-types";
 import { handleApiDefaultError, handleApiError } from "lib/handleApiErrors";
 
 moment.locale("fr");
 
-const Header = styled.div`
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 40px;
-  margin-bottom: 16px;
-`;
-const Title = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin: 0px 0px 8px 0px;
-`;
-
-const InputContainer = styled.div`
-  margin-bottom: 8px;
-  width: 440px;
-`;
-const BottomRowContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 16px;
-  justify-content: flex-end;
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-const LogoWrapper = styled.div`
-  width: 160px;
-  max-height: 200px;
-`;
-const RightLogoContainer = styled.div`
-  margin-left: 32px;
-  margin-bottom: 24px;
-`;
-
-const ResponsableContainer = styled.div`
-  border: 2px solid;
-  border-radius: 16px;
-  padding: 8px;
-  margin-bottom: 8px;
-  border-color: ${colors.gray70};
-`;
-
-interface InitialStructure {
-  picture: Picture | null;
-  status: string;
-  contact: string;
-  phone_contact: string;
-  mail_contact: string;
-  responsable?: null | GetAllStructuresResponse["responsable"];
-  nom: string;
-}
-
 interface Props {
-  defaults: Partial<InitialStructure>;
+  defaultStatus: StructureStatus;
   show: boolean;
   toggleModal: () => void;
 }
 
-export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) => {
-  const initialStructure = {
-    nom: "",
-    responsable: null,
-    picture: null,
-    status: "En attente",
-    contact: "",
-    phone_contact: "",
-    mail_contact: "",
-    ...props.defaults,
-  };
-  const [structure, setStructure] = useState<InitialStructure>(initialStructure);
+const initialStructure: PostStructureRequest = {
+  nom: "",
+  responsable: null,
+  picture: null,
+  contact: "",
+  phone_contact: "",
+  mail_contact: "",
+  status: StructureStatus.WAITING,
+};
+
+export const NewStructureModal = (props: Props) => {
+  const [structure, setStructure] = useState<PostStructureRequest>(initialStructure);
+  const [responsable, setResponsable] = useState<SimpleUser | null>(null);
   const [uploading, setUploading] = useState(false);
 
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS));
@@ -130,11 +69,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
   const onValidate = async () => {
     try {
       if (!structure.nom) return;
-      const structureToSave: PostStructureRequest = {
-        ...structure,
-        responsable: structure.responsable?._id.toString() || null,
-      };
-      await API.createStructure(structureToSave);
+      await API.createStructure(structure);
 
       Swal.fire({
         title: "Yay...",
@@ -174,7 +109,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
       .catch(handleApiDefaultError);
   };
 
-  const modifyStatus = (status: string) => {
+  const modifyStatus = (status: StructureStatus) => {
     if (!structure) return;
     const updatedStructure = { ...structure, status };
     return setStructure(updatedStructure);
@@ -185,23 +120,23 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
     setStructure({ ...structure, [e.target.id]: e.target.value });
   };
 
-  const onSelectItem = (data: GetAllUsersResponse | GetActiveUsersResponse) =>
+  const onSelectItem = (data: GetAllUsersResponse | GetActiveUsersResponse) => {
     setStructure({
       ...structure,
-      responsable: {
-        _id: data._id,
-        picture: data.picture,
-        username: data.username,
-        email: data.email,
-      },
+      responsable: data._id.toString(),
     });
+    const responsable: SimpleUser = !data.picture
+      ? ({ ...data, picture: { secure_url: "", public_id: "", imgId: "" } } as SimpleUser)
+      : (data as SimpleUser);
+    setResponsable(responsable);
+  };
 
   const secureUrl = structure && structure.picture && structure.picture.secure_url;
 
   return (
     <Modal isOpen={props.show} toggle={toggle} className={styles.modal} contentClassName={styles.modal_content}>
-      <Header>Création d'une nouvelle structure</Header>
-      <InputContainer>
+      <h2 className={styles.title}>Création d'une nouvelle structure</h2>
+      <div className={styles.input}>
         <FInput
           id="nom"
           value={structure.nom}
@@ -210,9 +145,9 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
           autoFocus={false}
           placeholder="Nom de la structure"
         />
-      </InputContainer>
-      <LogoContainer>
-        <LogoWrapper>
+      </div>
+      <div className={styles.logo}>
+        <div className={styles.wrapper}>
           <Image
             className={styles.sponsor_img}
             src={secureUrl || noStructure}
@@ -221,28 +156,28 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
             height={60}
             style={{ objectFit: "contain" }}
           />
-        </LogoWrapper>
-        <RightLogoContainer>
+        </div>
+        <div className={styles.right}>
           <FButton className="position-relative" type="theme" name="upload-outline">
             <Input type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
             {secureUrl ? <span>Choisir une autre image</span> : <span>Ajouter un logo</span>}
 
             {uploading && <Spinner color="success" className="ms-2" />}
           </FButton>
-        </RightLogoContainer>
-      </LogoContainer>
-      <Title>Premier responsable</Title>
-      <ResponsableContainer>
+        </div>
+      </div>
+      <label className={styles.label}>Premier responsable</label>
+      <div className={styles.responsable}>
         <ChooseResponsableComponent
           isLoading={isLoading}
           activeUsers={activeUsers}
           onSelectItem={onSelectItem}
-          responsable={structure.responsable || null}
+          responsable={responsable}
           removeRespo={() => setStructure({ ...structure, responsable: null })}
         />
-      </ResponsableContainer>
-      <Title>Coordonnées du contact unique</Title>
-      <InputContainer>
+      </div>
+      <label className={styles.label}>Coordonnées du contact unique</label>
+      <div className={styles.input}>
         <FInput
           id="contact"
           value={structure.contact}
@@ -251,8 +186,8 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
           autoFocus={false}
           placeholder="Coordonnées"
         />
-      </InputContainer>
-      <InputContainer>
+      </div>
+      <div className={styles.input}>
         <FInput
           id="mail_contact"
           value={structure.mail_contact}
@@ -261,8 +196,8 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
           autoFocus={false}
           placeholder="Adresse email"
         />
-      </InputContainer>
-      <InputContainer>
+      </div>
+      <div className={styles.input}>
         <FInput
           id="phone_contact"
           value={structure.phone_contact}
@@ -271,8 +206,8 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
           autoFocus={false}
           placeholder="Numéro de téléphone"
         />
-      </InputContainer>
-      <Title>Statut</Title>
+      </div>
+      <label className={styles.label}>Statut</label>
       <RowContainer>
         {correspondingStatus
           .sort(statusCompare)
@@ -299,7 +234,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
           })}
       </RowContainer>
 
-      <BottomRowContainer>
+      <div className={styles.row}>
         <FButton className="me-2" type="white" name="close-outline" onClick={toggle}>
           Annuler
         </FButton>
@@ -312,7 +247,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
         >
           Créer
         </FButton>
-      </BottomRowContainer>
+      </div>
     </Modal>
   );
 };

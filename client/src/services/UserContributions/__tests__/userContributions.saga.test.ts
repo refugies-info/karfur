@@ -36,7 +36,7 @@ describe("[Saga] UserContributions", () => {
         .put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS))
         .next()
         .call(API.getUserContributions)
-        .next({ data: { data: [{ _id: "id" }] } })
+        .next([{ _id: "id" }])
         .put(setUserContributionsActionCreator([{ _id: "id" }]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS))
@@ -68,9 +68,7 @@ describe("[Saga] UserContributions", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS))
         .next()
-        .call(API.updateDispositifStatus, {
-          query: { dispositifId: "dispoId", status: "Supprimé" },
-        })
+        .call(API.deleteDispositif, "dispoId")
         .next()
         .put(fetchUserContributionsActionCreator())
         .next()
@@ -87,9 +85,7 @@ describe("[Saga] UserContributions", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS))
         .next()
-        .call(API.updateDispositifStatus, {
-          query: { dispositifId: "dispoId", status: "Supprimé" },
-        })
+        .call(API.deleteDispositif, "dispoId")
         .throw(new Error("test"))
         .put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS))
         .next()

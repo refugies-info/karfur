@@ -426,11 +426,7 @@ exports[`traduire renders traduire 1`] = `
             >
               <div
                 className="title"
-              >
-                <span
-                  className="flag fi fi-undefined"
-                />
-              </div>
+              />
               <p
                 className="subtitle"
               >
@@ -458,8 +454,10 @@ exports[`traduire renders traduire 1`] = `
                 className="title"
               >
                 <span
-                  className="flag fi fi-undefined"
+                  className="flag fi fi-en d-block me-2"
+                  title="en"
                 />
+                Anglais
               </div>
               <p
                 className="subtitle"
