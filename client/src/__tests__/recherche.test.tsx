@@ -1,8 +1,7 @@
-//@ts-nocheck
 import { wrapWithProvidersAndRender } from "../../jest/lib/wrapWithProvidersAndRender";
 import recherche from "../pages/recherche";
 import { initialMockStore } from "__fixtures__/reduxStore";
-import { act } from "react-test-renderer";
+import { act, ReactTestRenderer } from "react-test-renderer";
 import { setupGoogleMock } from "../__mocks__/react-google-autocomplete";
 import "jest-styled-components";
 
@@ -14,9 +13,10 @@ describe("recherche", () => {
     setupGoogleMock();
   });
 
+  let component: ReactTestRenderer;
+
   it("renders home search", () => {
     window.scrollTo = jest.fn();
-    let component;
     act(() => {
       component = wrapWithProvidersAndRender({
         Component: recherche,
@@ -30,7 +30,7 @@ describe("recherche", () => {
 
   it("renders search results", () => {
     window.scrollTo = jest.fn();
-    let component;
+
     act(() => {
       component = wrapWithProvidersAndRender({
         Component: recherche,

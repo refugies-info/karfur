@@ -6,9 +6,9 @@ import { RootState } from "services/rootReducer";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { BrowserRouter as Router } from "react-router-dom";
 
-interface WrapWithProvidersAndRenderParams {
+interface WrapWithProvidersAndRenderParams<Props> {
   Component: React.FunctionComponent<any>;
-  compProps?: Record<string, unknown>;
+  compProps?: Props;
   reduxState?: Partial<RootState>;
 }
 
@@ -19,11 +19,11 @@ interface WrapWithProvidersAndRenderParams {
  * @param reduxState defaults to initialRootState
  */
 
-export function wrapWithProvidersAndRender({
+export function wrapWithProvidersAndRender<T>({
   Component,
-  compProps = {},
+  compProps,
   reduxState = initialMockStore,
-}: WrapWithProvidersAndRenderParams) {
+}: WrapWithProvidersAndRenderParams<T>) {
   const mockStore = configureStore([]);
   const store = mockStore(reduxState);
 
