@@ -533,33 +533,7 @@ exports[`should render StyledStatus En attente admin  1`] = `
   color="#8BC34A"
   disabled={false}
 >
-  À valider
-</div>
-`;
-
-exports[`should render StyledStatus En attente non prioritaire  1`] = `
-.c0 {
-  font-weight: bold;
-  border-radius: 6px;
-  padding: 8px;
-  background-color: #F44336;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  white-space: nowrap;
-  cursor: pointer;
-  color: #ffffff;
-}
-
-<div
-  className="c0"
-  color="#F44336"
-  disabled={false}
->
-  Sans structure
+  Relecture en cours
 </div>
 `;
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import renderer from "react-test-renderer";
 import { Provider } from "react-redux";
@@ -8,7 +7,7 @@ import { initialMockStore } from "__fixtures__/reduxStore";
 import { BrowserRouter as Router } from "react-router-dom";
 
 interface WrapWithProvidersAndRenderParams {
-  Component: React.FunctionComponent<unknown>;
+  Component: React.FunctionComponent<any>;
   compProps?: Record<string, unknown>;
   reduxState?: Partial<RootState>;
 }
@@ -23,11 +22,9 @@ interface WrapWithProvidersAndRenderParams {
 export function wrapWithProvidersAndRender({
   Component,
   compProps = {},
-  // @ts-ignore
   reduxState = initialMockStore,
 }: WrapWithProvidersAndRenderParams) {
   const mockStore = configureStore([]);
-
   const store = mockStore(reduxState);
 
   const componentWithRedux = (
