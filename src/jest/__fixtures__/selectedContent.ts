@@ -9,6 +9,7 @@ export const selectedContent: GetDispositifResponse = {
   hasDraftVersion: false,
   titreInformatif: "Pour une insertion par la culture",
   titreMarque: "le Programme Muses",
+  creatorId: { _id: "creatorId", username: "creator" },
   abstract:
     "si vous cherchez à participer à des projets innovants et sur mesure, contactez le programme Muses !",
   what: "<p>Le programme Muses vise à favoriser l’insertion des bénéficiaires de la protection internationale par l’action culturelle et artistique. </p><p>Vous résidez en France et souhaitez améliorer vos connaissances culturelles françaises et européennes par la fréquentation de lieux culturels, prendre part à des projets de pratiques artistiques ou accompagner des bénéficiaires dans un projet autour de la santé mentale, ce programme est fait pour vous ! </p><p>Muses propose des programmes de médiation culturelle, des actions en lien avec des artistes, professionnels de la culture et des projets pluridisciplinaires sur la santé mentale abordée par les arts.  </p><p>La participation à des activités culturelles tout au long de l’année et la découverte de la culture, de la langue et les codes socio-culturels français, sont également des aspects abordés dans l'ensemble de nos projets. C’est d'ailleurs à travers un contact régulier des arts que vous vous sentirez à l'aise pour tisser des liens avec la société civile.</p>",

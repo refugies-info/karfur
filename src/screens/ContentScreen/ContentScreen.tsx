@@ -302,7 +302,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   const colors = theme?.colors || defaultColors;
 
   const map: MapGoogle = {
-    markers: selectedContent.map.map((poi: Poi, index) => ({
+    markers: (selectedContent.map || []).map((poi: Poi, index) => ({
       address: poi.address,
       email: poi.email,
       latitude: poi.lat,
