@@ -34,7 +34,7 @@ export const getDispositifsForExport = async (): Promise<Dispositif[]> => {
     }>([
       { path: "mainSponsor", select: "_id nom picture" },
       { path: "needs", select: "_id fr" },
-      { path: "themes", select: "_id short" },
+      { path: "theme", select: "_id short" },
       { path: "secondaryThemes", select: "_id short" },
     ])
     .lean();
