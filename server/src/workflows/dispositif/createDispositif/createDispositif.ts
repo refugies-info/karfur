@@ -38,6 +38,7 @@ export const createDispositif = async (
     participants: [new ObjectId(userId.toString())],
     lastModificationAuthor: new ObjectId(userId.toString()),
     themesSelectedByAuthor: true,
+    webOnly: false,
     translations: {
       fr: {
         content: translation,
