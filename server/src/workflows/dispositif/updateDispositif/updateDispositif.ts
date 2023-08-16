@@ -30,7 +30,7 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
 
   return {
     content,
-    created_at: oldDispositif.translations.fr.created_at,
+    created_at: new Date(),
     validatorId: oldDispositif.creatorId._id,
   };
 };
