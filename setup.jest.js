@@ -42,3 +42,7 @@ jest.mock("expo-notifications", () => ({
   setNotificationChannelAsync: jest.fn(),
   AndroidImportance: { Max: 7 },
 }));
+
+jest.mock("@react-native-async-storage/async-storage", () =>
+  require("@react-native-async-storage/async-storage/jest/async-storage-mock")
+);
