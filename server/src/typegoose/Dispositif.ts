@@ -270,7 +270,7 @@ export class Dispositif extends Base {
   @prop({ _id: false })
   public metadatas: Metadatas;
   @prop()
-  public map: Poi[];
+  public map: Poi[] | null;
 
   public getMainSponsor(): Structure {
     if (!this.mainSponsor || !isDocument(this.mainSponsor)) {
