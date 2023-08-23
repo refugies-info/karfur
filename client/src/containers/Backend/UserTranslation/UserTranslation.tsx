@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { useRouter } from "next/router";
@@ -31,6 +31,7 @@ const UserTranslation = (props: Props) => {
   const dispatch = useDispatch();
   const routerLocale = useRouterLocale();
   const langueInUrl = useParams<{ id: string }>()?.id as Languages;
+  const [languageLoaded, setLanguageLoaded] = useState<string | null>(null);
   const { getLanguage, getLanguageByCode, userTradLanguages } = useLanguages();
   const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS));
 
@@ -56,53 +57,43 @@ const UserTranslation = (props: Props) => {
     document.title = props.title;
   }, [props.title]);
 
-  const userFirstTradLanguage = userTradLanguages.length > 0 ? userTradLanguages[0] : null;
+  const userFirstTradLanguage = useMemo(
+    () => (userTradLanguages.length > 0 ? userTradLanguages[0] : null),
+    [userTradLanguages],
+  );
   const isLoadingUser = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const isLoadingNeeds = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
   const isLoading = isLoadingDispositifs || isLoadingUser;
   const dispositifsWithTranslations = useSelector(dispositifsWithTranslationsStatusSelector);
-  const needs = useSelector(needsSelector);
 
+  // change url if needed
   useEffect(() => {
     window.scrollTo(0, 0);
-
     if (userFirstTradLanguage && !langueInUrl && getLanguage(userFirstTradLanguage)) {
-      return history.push(routerLocale + "/backend/user-translation/" + getLanguage(userFirstTradLanguage).i18nCode);
+      history.replace(routerLocale + "/backend/user-translation/" + getLanguage(userFirstTradLanguage).i18nCode);
+    } else if ((langueInUrl && !userFirstTradLanguage) || !availableLanguages.includes(langueInUrl)) {
+      history.replace(routerLocale + "/backend/user-translation");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [langueInUrl, userFirstTradLanguage, getLanguage]);
 
-    if (langueInUrl && !userFirstTradLanguage) {
-      return history.push(routerLocale + "/backend/user-translation");
-    }
-
-    if (!availableLanguages.includes(langueInUrl)) {
-      return history.push(routerLocale + "/backend/user-translation");
-    }
+  // load data depending on language
+  useEffect(() => {
     const loadIndicators = async () => {
-      if (user && user.user) {
+      if (user?.user) {
         try {
           const data = await API.get_progression({});
           setIndicators(data);
         } catch (e) {}
       }
     };
-
-    if (langueInUrl) {
-      if (!isLoadingDispositifs && dispositifsWithTranslations.length === 0)
-        dispatch(fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl));
-      if (!isLoadingNeeds && needs.length === 0) dispatch(fetchNeedsActionCreator());
+    if (langueInUrl && languageLoaded !== langueInUrl) {
+      setLanguageLoaded(langueInUrl);
+      if (!isLoadingDispositifs) dispatch(fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl));
+      if (!isLoadingNeeds) dispatch(fetchNeedsActionCreator());
       loadIndicators();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    langueInUrl,
-    userFirstTradLanguage,
-    isLoadingUser,
-    user,
-    dispositifsWithTranslations,
-    isLoadingDispositifs,
-    isLoadingNeeds,
-    needs,
-  ]);
+  }, [langueInUrl, user, languageLoaded, isLoadingDispositifs, isLoadingNeeds, dispatch]);
 
   const nbWords = indicators?.totalIndicator?.wordsCount || 0;
   const timeSpent = indicators?.totalIndicator?.timeSpent
