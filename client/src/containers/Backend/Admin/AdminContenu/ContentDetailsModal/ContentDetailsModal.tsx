@@ -33,6 +33,8 @@ import {
   GetLogResponse,
   Id,
 } from "@refugies-info/api-types";
+import { getPath } from "routes";
+import { useLanguages } from "hooks";
 
 interface Props {
   show: boolean;
@@ -48,11 +50,13 @@ interface Props {
 }
 moment.locale("fr");
 
+const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL;
+
 export const ContentDetailsModal = (props: Props) => {
   const selectedDispositifId = props.selectedDispositifId;
   const dispatch = useDispatch();
   const routerLocale = useRouterLocale();
-  const history = useHistory();
+  const { langues } = useLanguages();
 
   const dispositif = useSelector(dispositifSelector(selectedDispositifId));
   const [adminComments, setAdminComments] = useState<string>(dispositif?.adminComments || "");
@@ -150,6 +154,14 @@ export const ContentDetailsModal = (props: Props) => {
     updateDispositifsStore(dispositif._id, { webOnly: !dispositif.webOnly });
   };
 
+  const openTrad = () => {
+    if (!dispositif) return;
+    const path = `${SITE_URL}/fr/${dispositif.typeContenu}/${dispositif._id}/translate?language=`;
+    for (const ln of langues.filter((ln) => ln.i18nCode !== "fr")) {
+      window.open(`${path}${ln.i18nCode}`);
+    }
+  };
+
   const members = (structure?.membres || [])
     .filter((m) => m.roles.includes("administrateur"))
     .filter((m) => m.userId !== structure?.responsable?._id);
@@ -197,6 +209,11 @@ export const ContentDetailsModal = (props: Props) => {
             <FButton className="me-2" type="dark" name="options-2-outline" onClick={props.toggleNeedsChoiceModal}>
               Catégories
             </FButton>
+            {dispositif.status === DispositifStatus.ACTIVE && (
+              <FButton className="me-2" type="dark" onClick={openTrad} name="globe-outline">
+                Trad
+              </FButton>
+            )}
             <FButton
               className="me-2"
               type="dark"
@@ -205,9 +222,7 @@ export const ContentDetailsModal = (props: Props) => {
               target="_blank"
               rel="noopener noreferrer"
               name="eye-outline"
-            >
-              Voir
-            </FButton>
+            ></FButton>
             <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
           </div>
         }
