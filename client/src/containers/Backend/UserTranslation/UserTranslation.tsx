@@ -66,19 +66,14 @@ const UserTranslation = (props: Props) => {
   const isLoading = isLoadingDispositifs || isLoadingUser;
   const dispositifsWithTranslations = useSelector(dispositifsWithTranslationsStatusSelector);
 
-  // change url if needed
   useEffect(() => {
     window.scrollTo(0, 0);
     if (userFirstTradLanguage && !langueInUrl && getLanguage(userFirstTradLanguage)) {
-      history.replace(routerLocale + "/backend/user-translation/" + getLanguage(userFirstTradLanguage).i18nCode);
+      return history.replace(routerLocale + "/backend/user-translation/" + getLanguage(userFirstTradLanguage).i18nCode);
     } else if ((langueInUrl && !userFirstTradLanguage) || !availableLanguages.includes(langueInUrl)) {
-      history.replace(routerLocale + "/backend/user-translation");
+      return history.replace(routerLocale + "/backend/user-translation");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [langueInUrl, userFirstTradLanguage, getLanguage]);
 
-  // load data depending on language
-  useEffect(() => {
     const loadIndicators = async () => {
       if (user?.user) {
         try {
@@ -93,7 +88,17 @@ const UserTranslation = (props: Props) => {
       if (!isLoadingNeeds) dispatch(fetchNeedsActionCreator());
       loadIndicators();
     }
-  }, [langueInUrl, user, languageLoaded, isLoadingDispositifs, isLoadingNeeds, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    langueInUrl,
+    userFirstTradLanguage,
+    getLanguage,
+    user,
+    languageLoaded,
+    isLoadingDispositifs,
+    isLoadingNeeds,
+    dispatch,
+  ]);
 
   const nbWords = indicators?.totalIndicator?.wordsCount || 0;
   const timeSpent = indicators?.totalIndicator?.timeSpent
