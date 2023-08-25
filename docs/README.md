@@ -1,3 +1,8 @@
+# Table of contents
+
+- [Install](#install)
+- [Environments](#environments)
+
 # Install
 
 ## Requirements
@@ -54,15 +59,15 @@ The environment variables are defined at 2 different places:
 
 # Deploy
 
-We use and adapt this workflow : https://docs.expo.dev/eas-update/deployment-patterns/#persistent-staging-flow
+We use and adapt this workflow: https://docs.expo.dev/eas-update/deployment-patterns/#persistent-staging-flow
 
-The main difference : we use `dev` branch as `staging`.
+The main difference: we use `dev` branch as `staging`.
 
 ## Key concepts
 
-With Expo, we can create a **build** based on a **profile**. All **profiles** are described `eas.json`.  
-Each **build** targets a **channel**.  
-A **channel** can be linked to different **branches**. A **branch** accepts instant updates.
+With EAS, we can create a **build** based on a **profile**. All **profiles** are described `eas.json`.  
+Each **build** targets a **channel**. A **channel** can be linked to different **branches**.  
+A **branch** accepts instant updates.
 
 This is the setup we use:
 
@@ -78,9 +83,11 @@ Deploy on staging to test features via development build or store internal deplo
 
 > Note: prefer use store internal deployment for non-technical users
 
-### EAS Update
+### Publish changes
 
-If there is **no** native code modified, use eas to push the update on the `staging` channel. It will be pushed only on the apps built with the `staging` profile.
+If there is **no** native code modified, use eas to push the update on the `staging` channel.
+
+> It will be pushed only to the apps built with the `staging` profile.
 
 ```
 $ eas update --branch staging
@@ -88,7 +95,7 @@ $ eas update --branch staging
 
 This command is run by Github CI on each push on dev.
 
-### EAS Build
+### Build app
 
 If there is native code modified:
 
