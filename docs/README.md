@@ -2,6 +2,9 @@
 
 - [Install](#install)
 - [Environments](#environments)
+- [Workflow](#workflow)
+- [Deploy](#deploy)
+- [Development](#development)
 
 # Install
 

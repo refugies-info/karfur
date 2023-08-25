@@ -13,7 +13,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Background from "./Background";
 import { View } from "react-native";
-import { addMerci } from "../../../../utils/API";
+import { addMerci, deleteMerci } from "../../../../utils/API";
 import { setSelectedContentActionCreator } from "../../../../services/redux/SelectedContent/selectedContent.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../../../services";
@@ -50,14 +50,35 @@ const Mercis = ({ dispositif }: MercisProps) => {
     () => thanks.includes(dispositif._id.toString()),
     [thanks, dispositif._id]
   );
+
   useEffect(() => {
     AsyncStorage.getItem("THANKS").then((thanks) =>
       setThanks((thanks || "")?.split(","))
     );
   }, []);
 
-  const [{ loading: loadingMerci }, merci] = useAsyncFn(() => {
-    if (hasThanked || loadingMerci) return Promise.resolve();
+  const [state, merci] = useAsyncFn(async () => {
+    if (hasThanked) {
+      return deleteMerci(dispositif._id.toString()).then(() => {
+        const newThanks = thanks.filter((d) => d !== dispositif._id.toString());
+        setThanks(newThanks);
+        AsyncStorage.setItem("THANKS", newThanks.join(","));
+        const newDispositifThanks = JSON.parse(
+          JSON.stringify(dispositif.merci)
+        );
+        newDispositifThanks.pop();
+
+        dispatch(
+          setSelectedContentActionCreator({
+            content: {
+              ...dispositif,
+              merci: newDispositifThanks,
+            },
+            locale: currentLanguage,
+          })
+        );
+      });
+    }
     return addMerci(dispositif._id.toString()).then(() => {
       const newThanks = [...thanks, dispositif._id.toString()];
       setThanks(newThanks);
@@ -74,6 +95,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
     });
   }, [
     addMerci,
+    deleteMerci,
     currentLanguage,
     dispatch,
     setSelectedContentActionCreator,
@@ -97,7 +119,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
                 iconColor={hasThanked ? "#fff" : "#000091"}
                 backgroundColor={hasThanked ? "#000091" : undefined}
                 iconName="thumb_up"
-                loading={loadingMerci}
+                loading={state.loading}
                 onPress={merci}
                 title={t("content_screen.nbThanks", {
                   count: dispositif.merci.length,
