@@ -58,37 +58,59 @@ We use and adapt this workflow : https://docs.expo.dev/eas-update/deployment-pat
 
 The main difference : we use `dev` branch as `staging`.
 
+## Key concepts
+
+With Expo, we can create a **build** based on a **profile**. All **profiles** are described `eas.json`.  
+Each **build** targets a **channel**.  
+A **channel** can be linked to different **branches**. A **branch** accepts instant updates.
+
+This is the setup we use:
+
+| Profile      | Channel      | Branch    |
+| ------------ | ------------ | --------- |
+| `production` | `production` | `main`    |
+| `staging`    | `staging`    | `dev`     |
+| `preview`    | `preview`    | `preview` |
+
 ## Staging
 
 Deploy on staging to test features via development build or store internal deployment (TestFlight and Android Play Store interne test).
 
 > Note: prefer use store internal deployment for non-technical users
 
-If there is **no** native code modified
+### EAS Update
+
+If there is **no** native code modified, use eas to push the update on the `staging` channel. It will be pushed only on the apps built with the `staging` profile.
 
 ```
-$ eas update --auto
+$ eas update --branch staging
 ```
 
 This command is run by Github CI on each push on dev.
 
-If there is native code modified
+### EAS Build
+
+If there is native code modified:
 
 ```
-$ eas build --profile development --platform [platform]
+$ eas build --profile staging --platform [platform]
 ```
 
 It is also possible to build the app to test it on real devices (or on a simulator for iOS). For this, use the `preview` channel of eas.
 
 ```
-$ eas build -p [platform] --profile preview
+$ eas build --profile preview --platform [platform]
 ```
 
-And then, you need to deploy the build on the store and create an internal release :
+Then, you can:
+
+1. deploy the build on the store and create an internal release:
 
 ```
 $ eas submit [...]
 ```
+
+2. send the link of the build from expo to the testers. It should look like this: `https://expo.dev/accounts/refugies-info/projects/refugies-info-app/builds/[id of the build]`
 
 ## Production
 
@@ -97,7 +119,7 @@ $ eas submit [...]
 It is possible to publish an update which will be automatically downloaded when the app is launched.
 
 ```
-$ eas update --auto
+$ eas update --branch main
 ```
 
 > This command run on each merge to `main` branch. (see .github/workflows/update_main.yml)
