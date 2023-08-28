@@ -11,11 +11,11 @@ import "jest-styled-components";
 jest.mock("next/router", () => require("next-router-mock"));
 
 // Mock history
-const push = jest.fn();
+const replace = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: jest.fn(),
-  useHistory: () => ({ push }),
+  useHistory: () => ({ replace }),
 }));
 
 jest.mock("services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions", () => {
@@ -72,7 +72,7 @@ describe("user translation", () => {
         },
       });
     });
-    expect(push).toHaveBeenCalledWith("/fr/backend/user-translation/en");
+    expect(replace).toHaveBeenCalledWith("/fr/backend/user-translation/en");
     expect(component.toJSON()).toMatchSnapshot();
   });
 
@@ -92,7 +92,7 @@ describe("user translation", () => {
     });
     expect(fetchDispositifsWithTranslationsStatusActionCreator).not.toHaveBeenCalled();
     expect(API.get_progression).not.toHaveBeenCalled();
-    expect(push).toHaveBeenCalledWith("/fr/backend/user-translation");
+    expect(replace).toHaveBeenCalledWith("/fr/backend/user-translation");
   });
 
   it("should redirect if user has no language but langue in url + snap no langue", () => {
@@ -111,7 +111,7 @@ describe("user translation", () => {
     });
     expect(fetchDispositifsWithTranslationsStatusActionCreator).not.toHaveBeenCalled();
     expect(API.get_progression).not.toHaveBeenCalled();
-    expect(push).toHaveBeenCalledWith("/fr/backend/user-translation");
+    expect(replace).toHaveBeenCalledWith("/fr/backend/user-translation");
     expect(component.toJSON()).toMatchSnapshot();
   });
 
