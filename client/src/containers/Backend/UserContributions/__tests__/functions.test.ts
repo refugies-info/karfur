@@ -163,6 +163,21 @@ const userStructureContrib1: GetStructureDispositifResponse = {
   hasDraftVersion: false
 };
 
+const formattedUserStructureContrib1: FormattedUserContribution = {
+  _id: "id1s",
+  typeContenu: ContentType.DISPOSITIF,
+  titreInformatif: "ti1s",
+  titreMarque: "tm1s",
+  mainSponsor: { nom: "structure" },
+  nbMercis: 0,
+  nbVues: 0,
+  status: DispositifStatus.DRAFT,
+  responsabilite: "structure",
+  isAuthorizedToDelete: true,
+  hasDraftVersion: false
+
+};
+
 const userStructureContrib2: GetStructureDispositifResponse = {
   _id: "id2s",
   typeContenu: ContentType.DISPOSITIF,
@@ -226,7 +241,6 @@ const formattedUserStructureContrib4: FormattedUserContribution = {
   responsabilite: "structure",
   isAuthorizedToDelete: true,
   hasDraftVersion: false
-
 };
 
 const userStructureContrib5: GetStructureDispositifResponse = {
@@ -267,6 +281,7 @@ describe("formatContributions", () => {
       formattedUserContrib3,
       formattedUserContrib4,
       formattedUserContrib5,
+      { ...formattedUserStructureContrib1, isAuthorizedToDelete: false },
       { ...formattedUserStructureContrib4, isAuthorizedToDelete: false },
     ]);
   });
@@ -284,6 +299,7 @@ describe("formatContributions", () => {
       formattedUserContrib3,
       formattedUserContrib4,
       formattedUserContrib5,
+      { ...formattedUserStructureContrib1, isAuthorizedToDelete: true },
       { ...formattedUserStructureContrib4, isAuthorizedToDelete: true },
     ]);
   });
