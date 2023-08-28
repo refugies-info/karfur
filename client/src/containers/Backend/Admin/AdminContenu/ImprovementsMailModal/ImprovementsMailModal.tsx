@@ -121,12 +121,12 @@ export const ImprovementsMailModal = (props: Props) => {
 
   const sendMail = () => {
     const data: ImprovementsRequest = {
-      dispositifId: dispositif._id,
+      dispositifId: dispositif._id.toString(),
       users: usersToDisplay
         .filter((user) => user.email)
         .map((user) => ({
           username: user.username,
-          _id: user._id,
+          _id: user._id.toString(),
           email: user.email || "",
         })),
       titreInformatif: dispositif.titreInformatif,
