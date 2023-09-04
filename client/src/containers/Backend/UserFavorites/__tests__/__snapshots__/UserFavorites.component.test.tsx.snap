@@ -230,7 +230,7 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
           <div
             className="c3"
           >
-            UserFavorites.fiches sauvegardée
+            UserFavorites.content_saved
           </div>
         </div>
       </div>
@@ -569,7 +569,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           <div
             className="c4"
           >
-            UserFavorites.fiches sauvegardées
+            UserFavorites.contents_saved
           </div>
         </div>
         <div>
@@ -1284,7 +1284,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
           <div
             className="c3"
           >
-            UserFavorites.fiche sauvegardée
+            UserFavorites.content_saved
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@
   "typescript.tsdk": "client/node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "i18n-ally.localesPaths": ["client/src/locales"],
+  "i18n-ally.ignoreFiles": ["**/unused.json"],
   "i18n-ally.keystyle": "nested",
   "conventionalCommits.scopes": ["api-types", "client", "server"],
   "i18n-ally.keysInUse": [

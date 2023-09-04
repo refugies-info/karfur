@@ -2288,7 +2288,7 @@ exports[`homepage renders homepage 1`] = `
                       }
                     />
                   </span>
-                  OK
+                  Ok
                 </button>
               </div>
             </div>
@@ -9683,7 +9683,7 @@ exports[`homepage renders homepage 1`] = `
                 className="link color_blue"
               >
                 <span>
-                  Qui sommes-nous ?
+                  who_are_we
                 </span>
                 <span
                   className="icon icon"
