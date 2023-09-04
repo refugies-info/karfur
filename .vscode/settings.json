@@ -21,6 +21,7 @@
     "Register.criteria_*",
     "Roles.*",
     "Status.*",
+    "LanguageDropdown.*",
     "Translate.medium",
     "Translate.strong",
     "Translate.weak"

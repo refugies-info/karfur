@@ -501,6 +501,16 @@
     "redactor": "Rédacteur",
     "translator": "Traducteur"
   },
+  "LanguageDropdown": {
+    "en_français": "en français",
+    "en_persan/dari": "en persan / dari",
+    "en_russe": "en russe",
+    "en_pachto": "en pachto",
+    "en_tigrinya": "en tigrinya",
+    "en_arabe": "en arabe",
+    "en_anglais": "en anglais",
+    "en_ukrainien": "en ukrainien"
+  },
   "topLink": "Haut de page",
   "close": "Fermer",
   "showBreadcrumb": "Voir le fil d'Ariane",

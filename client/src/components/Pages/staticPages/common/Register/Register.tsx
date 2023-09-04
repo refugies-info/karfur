@@ -49,8 +49,7 @@ const Register = (props: Props) => {
 
   const title = useMemo(
     () => <h2 className={cls(commonStyles.title2, "text-center", "mb-0")}>{t("StaticPages.registerTitle")}</h2>,
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [t],
   );
 
   return (
