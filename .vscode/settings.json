@@ -5,5 +5,15 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "i18n-ally.localesPaths": ["client/src/locales", "server/src/locales"],
   "i18n-ally.keystyle": "nested",
-  "conventionalCommits.scopes": ["api-types", "client", "server"]
+  "conventionalCommits.scopes": ["api-types", "client", "server"],
+  "i18n-ally.keysInUse": [
+    "callout_*",
+    "Annuaire.*",
+    "Infocards.*",
+    "Filters.*",
+    "Status.*",
+    "Recherche.demarcheExample*",
+    "Recherche.dispositifExample*",
+    "Roles.*"
+  ]
 }
