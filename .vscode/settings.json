@@ -7,7 +7,7 @@
   "i18n-ally.keystyle": "nested",
   "conventionalCommits.scopes": ["api-types", "client", "server"],
   "i18n-ally.keysInUse": [
-    // "Annuaire.*",
+    "StructureType.*",
     // "Annuaire.Coaching / Suivi dans l'emploi",
     "callout_*",
     "Dispositif.section*",

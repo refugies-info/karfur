@@ -502,19 +502,21 @@
   "callout_important": "Важно",
   "La Mednum": "La Mednum",
   "Aide": "Помощь",
-  "Annuaire": {
-    "Annuaire": "Каталог",
-    "Rechercher par": "Искать по названию",
+  "StructureType": {
     "Association": "Ассоциация",
     "Entreprise": "Компания",
-    "no_public": "Данная структура не принимает посетителей.",
-    "Uniquement sur rendez-vous": "Строго по записи",
     "École": "Школа",
     "Université": "Университет",
     "Opérateur": "Оператор",
     "Établissement public": "Государственное учреждение",
     "Réseau d'acteur": "Сеть участников",
-    "Centre de formation": "Центр подготовки",
+    "Centre de formation": "Центр подготовки"
+  },
+  "Annuaire": {
+    "Annuaire": "Каталог",
+    "Rechercher par": "Искать по названию",
+    "no_public": "Данная структура не принимает посетителей.",
+    "Uniquement sur rendez-vous": "Строго по записи",
     "Visiter internet": "Перейти на сайт",
     "facebook": "Подписаться на Facebook",
     "twitter": "Подписаться в Twitter",

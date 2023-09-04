@@ -524,19 +524,21 @@
   "callout_info": "Good to know",
   "callout_important": "Important",
   "Aide": "Help",
-  "Annuaire": {
-    "Annuaire": "Directory",
-    "Rechercher par": "Search by name ...",
+  "StructureType": {
     "Association": "Association",
     "Entreprise": "Company",
-    "no_public": "Not open to the general public.",
-    "Uniquement sur rendez-vous": "By appointment only",
     "École": "School",
     "Université": "University",
     "Opérateur": "Operator",
     "Établissement public": "Public Institution",
     "Réseau d'acteur": "Network of institutions",
-    "Centre de formation": "Training centre",
+    "Centre de formation": "Training centre"
+  },
+  "Annuaire": {
+    "Annuaire": "Directory",
+    "Rechercher par": "Search by name ...",
+    "no_public": "Not open to the general public.",
+    "Uniquement sur rendez-vous": "By appointment only",
     "Visiter internet": "Visit the website",
     "facebook": "Follow on Facebook",
     "twitter": "Follow on Twitter",

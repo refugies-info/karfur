@@ -501,19 +501,21 @@
   "callout_info": "معلومة مفيدة",
   "callout_important": "أمر هام",
   "Aide": "للحصول على المساعدة",
-  "Annuaire": {
-    "Annuaire": "الدليل",
-    "Rechercher par": "البحث باستخدام الاسم...",
+  "StructureType": {
     "Association": "الجمعيّة",
     "Entreprise": "الشركة",
-    "no_public": "هذه المنظّمة لا تستقبل المراجعين.",
-    "Uniquement sur rendez-vous": "بموعد مسبق فقط",
     "École": "المدرسة",
     "Université": "الجامعة",
     "Opérateur": "الهيئة المديرة",
     "Établissement public": "المؤسسة العامة",
     "Réseau d'acteur": "شبكة هيئات",
-    "Centre de formation": "مركز تأهيل",
+    "Centre de formation": "مركز تأهيل"
+  },
+  "Annuaire": {
+    "Annuaire": "الدليل",
+    "Rechercher par": "البحث باستخدام الاسم...",
+    "no_public": "هذه المنظّمة لا تستقبل المراجعين.",
+    "Uniquement sur rendez-vous": "بموعد مسبق فقط",
     "Visiter internet": "تصفّح الموقع الالكتروني",
     "facebook": "تابعنا على الفيس بووك",
     "twitter": "تابعنا على تويتر",

@@ -495,19 +495,21 @@
   "callout_important": "ኣገዳሲ",
   "La Mednum": "መራኽቦ ማእከላይ ቦታ",
   "Aide": "ሓገዝ",
-  "Annuaire": {
-    "Annuaire": "ሓፈሻዊ ተሌፎን",
-    "Rechercher par": "በብኣስማቱ ድለይዎ፣",
+  "StructureType": {
     "Association": "ማሕበር",
     "Entreprise": "ትካል",
-    "no_public": "እዚ ትካላዊ ኣተሃናንጻ እዚ ንኹሉ ህዝቢ ኣየአንግድን፣",
-    "Uniquement sur rendez-vous": "ብቖጸራ ጥራይ፣",
     "École": "ቤት ትምህርቲ",
     "Université": "ዩንቨርስቲ",
     "Opérateur": "ኦፒትተር",
     "Établissement public": "ቦታ ናይ ህዝቢ",
     "Réseau d'acteur": "መሰመር  ናይ ኣበርከቲ",
-    "Centre de formation": "እዚ ሓቤረታ",
+    "Centre de formation": "እዚ ሓቤረታ"
+  },
+  "Annuaire": {
+    "Annuaire": "ሓፈሻዊ ተሌፎን",
+    "Rechercher par": "በብኣስማቱ ድለይዎ፣",
+    "no_public": "እዚ ትካላዊ ኣተሃናንጻ እዚ ንኹሉ ህዝቢ ኣየአንግድን፣",
+    "Uniquement sur rendez-vous": "ብቖጸራ ጥራይ፣",
     "Visiter internet": "ብጽሑና ኣብ መረበብ ናይ ኢንተርነት",
     "facebook": "ኣብ ፌስቡክ ተከታተሉ\\ላ",
     "twitter": "ኣብ ቲዊተር ተካታተሉ\\ላ",

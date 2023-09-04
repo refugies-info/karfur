@@ -525,19 +525,21 @@
   "callout_important": "Важливо",
   "La Mednum": "La Mednum",
   "Aide": "Допомога",
-  "Annuaire": {
-    "Annuaire": "Телефонна книга",
-    "Rechercher par": "Шукати за прізвищем...",
+  "StructureType": {
     "Association": "Асоціація",
     "Entreprise": "Компанія",
-    "no_public": "Ця структура не приймає громадян.",
-    "Uniquement sur rendez-vous": "Лише за попереднім записом",
     "École": "Школа",
     "Université": "Університет",
     "Opérateur": "Оператор",
     "Établissement public": "Громадський заклад",
     "Réseau d'acteur": "Мережа партнерів",
-    "Centre de formation": "Навчальний центр",
+    "Centre de formation": "Навчальний центр"
+  },
+  "Annuaire": {
+    "Annuaire": "Телефонна книга",
+    "Rechercher par": "Шукати за прізвищем...",
+    "no_public": "Ця структура не приймає громадян.",
+    "Uniquement sur rendez-vous": "Лише за попереднім записом",
     "Visiter internet": "Відвідати веб-сайт",
     "facebook": "Слідкувати на Facebook",
     "twitter": "Слідкувати на Twitter",

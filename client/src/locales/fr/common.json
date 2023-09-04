@@ -527,19 +527,21 @@
   "callout_important": "Important",
   "La Mednum": "La Mednum",
   "Aide": "Aide",
-  "Annuaire": {
-    "Annuaire": "Annuaire",
-    "Rechercher par": "Rechercher par nom ...",
+  "StructureType": {
     "Association": "Association",
     "Entreprise": "Entreprise",
-    "no_public": "Cette structure n'accueille pas de public.",
-    "Uniquement sur rendez-vous": "Uniquement sur rendez-vous",
     "École": "École",
     "Université": "Université",
     "Opérateur": "Opérateur",
     "Établissement public": "Établissement public",
     "Réseau d'acteur": "Réseau d'acteur",
-    "Centre de formation": "Centre de formation",
+    "Centre de formation": "Centre de formation"
+  },
+  "Annuaire": {
+    "Annuaire": "Annuaire",
+    "Rechercher par": "Rechercher par nom ...",
+    "no_public": "Cette structure n'accueille pas de public.",
+    "Uniquement sur rendez-vous": "Uniquement sur rendez-vous",
     "Visiter internet": "Visiter le site internet",
     "facebook": "Suivre sur Facebook",
     "twitter": "Suivre sur Twitter",

@@ -502,19 +502,21 @@
   "callout_important": "مهم",
   "La Mednum": "میدنوم (La Mednum)",
   "Aide": "مرسته",
-  "Annuaire": {
-    "Annuaire": "د تلیفون کتاب",
-    "Rechercher par": "د نوم سره یې ولټوئ ...",
+  "StructureType": {
     "Association": "ټولنه",
     "Entreprise": "شرکت",
-    "no_public": "دا ساختار یا اداره عام وګړې نه قبولوي",
-    "Uniquement sur rendez-vous": "یوازې د ملاقات وخت په لرلو سره",
     "École": "ښوونځۍ",
     "Université": "پوهنتون",
     "Opérateur": "اپریټر",
     "Établissement public": "عامه تاسیسات",
     "Réseau d'acteur": "د فعالینو شبکه",
-    "Centre de formation": "روزنیز مرکز",
+    "Centre de formation": "روزنیز مرکز"
+  },
+  "Annuaire": {
+    "Annuaire": "د تلیفون کتاب",
+    "Rechercher par": "د نوم سره یې ولټوئ ...",
+    "no_public": "دا ساختار یا اداره عام وګړې نه قبولوي",
+    "Uniquement sur rendez-vous": "یوازې د ملاقات وخت په لرلو سره",
     "Visiter internet": "د انټرنټ پاڼې کتل",
     "facebook": "په فېسبوک تعقیب ول",
     "twitter": "په ټویټر کې تعقیب ول",

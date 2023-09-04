@@ -525,19 +525,21 @@
   "callout_important": "مهم",
   "La Mednum": "مدنوم",
   "Aide": "کمک",
-  "Annuaire": {
-    "Annuaire": "دفترچه",
-    "Rechercher par": "جستجو براساس نام ...",
+  "StructureType": {
     "Association": "انجمن",
     "Entreprise": "شرکت",
-    "no_public": "این ساختار افراد عموم  را نمی پذیرد",
-    "Uniquement sur rendez-vous": "فقط با قرار ملاقات",
     "École": "مدرسه (مکتب)",
     "Université": "دانشگاه",
     "Opérateur": "گرداننده (عملگر)",
     "Établissement public": "جاهای عام المنفعه (فواید عامه)",
     "Réseau d'acteur": "شبکه افراد سهیم (بازیگر)",
-    "Centre de formation": "مرکز آموزش",
+    "Centre de formation": "مرکز آموزش"
+  },
+  "Annuaire": {
+    "Annuaire": "دفترچه",
+    "Rechercher par": "جستجو براساس نام ...",
+    "no_public": "این ساختار افراد عموم  را نمی پذیرد",
+    "Uniquement sur rendez-vous": "فقط با قرار ملاقات",
     "Visiter internet": "به وب سایت مراجعه کنید",
     "facebook": "در فیس بوک دنبال کنید",
     "twitter": "در توییتر دنبال کنید",
