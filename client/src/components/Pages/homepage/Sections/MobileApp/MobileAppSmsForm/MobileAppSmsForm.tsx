@@ -46,7 +46,7 @@ const MobileAppSmsForm = () => {
           setPhoneError("Une erreur s'est produite");
         });
     } else {
-      setPhoneError(t("Register.Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie"));
+      setPhoneError(t("Register.invalid_phone_number"));
     }
   };
 
@@ -70,7 +70,7 @@ const MobileAppSmsForm = () => {
             disabled={!phone}
             onClick={sendSMS}
           >
-            OK
+            {t("Ok", "Ok")}
           </FButton>
         </div>
       </div>

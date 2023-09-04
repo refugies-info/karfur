@@ -27,7 +27,7 @@ const useSpeekToolItem = (): HeaderProps.QuickAccessItem | null => {
       className: cls(ttsActive && styles.speek_tool_item_active),
     },
     iconId: ttsLoading ? "ri-loader-2-line" : "fr-icon-play-circle-line",
-    text: t("Écouter", "Écouter"),
+    text: t("listen", "Écouter"),
   };
 };
 

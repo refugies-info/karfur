@@ -3,17 +3,26 @@
   "eslint.workingDirectories": ["./client", "./server"],
   "typescript.tsdk": "client/node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "i18n-ally.localesPaths": ["client/src/locales", "server/src/locales"],
+  "i18n-ally.localesPaths": ["client/src/locales"],
   "i18n-ally.keystyle": "nested",
   "conventionalCommits.scopes": ["api-types", "client", "server"],
   "i18n-ally.keysInUse": [
+    // "Annuaire.*",
+    // "Annuaire.Coaching / Suivi dans l'emploi",
     "callout_*",
-    "Annuaire.*",
-    "Infocards.*",
+    "Dispositif.section*",
     "Filters.*",
-    "Status.*",
+    "Infocards.*",
     "Recherche.demarcheExample*",
     "Recherche.dispositifExample*",
-    "Roles.*"
-  ]
+    "Register.criteria_*",
+    "Roles.*",
+    "Status.*",
+    "Translate.medium",
+    "Translate.strong",
+    "Translate.weak"
+  ],
+  "i18n-ally.dirStructure": "auto",
+  "i18n-ally.enabledFrameworks": ["i18next", "react-i18next"],
+  "i18n-ally.extract.keygenStyle": "snake_case"
 }

@@ -151,11 +151,11 @@ const QuiSommesNous: NextPage = () => {
           </NavBarText>
         </a>
         <a href="#equipe">
-          <NavBarText isVisibleSection={visibleSection === "Equipe"}>{t("QuiSommesNous.Équipe", "Équipe")}</NavBarText>
+          <NavBarText isVisibleSection={visibleSection === "Equipe"}>{t("QuiSommesNous.team", "Équipe")}</NavBarText>
         </a>
         <a href="#problematic">
           <NavBarText isVisibleSection={visibleSection === "Problematiques"}>
-            {t("QuiSommesNous.Problématiques", "Problématiques")}
+            {t("QuiSommesNous.issues", "Problématiques")}
           </NavBarText>
         </a>
         <a href="#contribution">
@@ -176,12 +176,12 @@ const QuiSommesNous: NextPage = () => {
       </MissionContainer>
       <TeamContainer className={styles.container}>
         <span id="equipe" className={styles.anchor}></span>
-        <SectionHeader>{t("QuiSommesNous.L'équipe", "L'équipe Réfugiés.info")}</SectionHeader>
+        <SectionHeader>{t("QuiSommesNous.the_team", "L'équipe Réfugiés.info")}</SectionHeader>
         <Team />
       </TeamContainer>
       <ProblematicContainer className={styles.container}>
         <span id="problematic" className={styles.anchor}></span>
-        <SectionHeader>{t("QuiSommesNous.Problématiques", "Problématiques")}</SectionHeader>
+        <SectionHeader>{t("QuiSommesNous.issues", "Problématiques")}</SectionHeader>
         <Problematic />
       </ProblematicContainer>
       <ContributionContainer className={styles.container}>

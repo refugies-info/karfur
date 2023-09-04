@@ -18,7 +18,7 @@ const Closed = (props: { day: string }) => {
         <EVAIcon name="close-circle" fill="#F44336" className="me-2" />
       </div>
       {/* @ts-ignore */}
-      {t("Annuaire." + props.day, props.day) + " : " + t("Annuaire.fermé", "fermé")}
+      {t("Annuaire." + props.day, props.day) + " : " + t("Annuaire.closed", "fermé")}
     </div>
   );
 };
@@ -34,11 +34,11 @@ const getOpeningHours = (
 ) => {
   if (!from0 || !to0) return " : " + t("Annuaire.ouvert", "ouvert");
 
-  const firstPart = " " + t("Annuaire.de", "de") + " " + format(from0) + " " + t("Annuaire.à", "à") + " " + format(to0);
+  const firstPart = " " + t("Annuaire.de", "de") + " " + format(from0) + " " + t("Annuaire.a", "à") + " " + format(to0);
 
   if (!from1 || !to1) return firstPart;
   const secondPart =
-    " " + t("Annuaire.et de", "et de") + " " + format(from1) + " " + t("Annuaire.à", "à") + " " + format(to1);
+    " " + t("Annuaire.et de", "et de") + " " + format(from1) + " " + t("Annuaire.a", "à") + " " + format(to1);
   return firstPart + secondPart;
 };
 

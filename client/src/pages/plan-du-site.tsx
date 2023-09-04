@@ -20,7 +20,7 @@ const PlanDuSite = () => {
         </li>
         <li>
           <Link href={getPath("/recherche", router.locale)} prefetch={false}>
-            {t("Toolbar.Trouver de l'information", "Trouver de l'information")}
+            {t("Toolbar.find_information", "Trouver de l'information")}
           </Link>
         </li>
         <li>
@@ -43,7 +43,7 @@ const PlanDuSite = () => {
             </li>
             <li>
               <a href="https://kit.refugies.info/flyers/" target="_blank">
-                {t("Toolbar.Affiches et dépliants", "Affiches et dépliants")}
+                {t("Toolbar.posters_leaflets", "Affiches et dépliants")}
               </a>
             </li>
             <li>
@@ -61,11 +61,11 @@ const PlanDuSite = () => {
         </li>
         <li>
           <a href="https://parrainage.refugies.info/" target="_blank">
-            {t("Toolbar.Pour l'Ukraine", "Pour l'Ukraine")}
+            {t("Toolbar.for_ukraine", "Pour l'Ukraine")}
           </a>
         </li>
         <li>
-          <Link href="/#application">{t("MobileAppModal.Télécharger l'application")}</Link>
+          <Link href="/#application">{t("MobileAppModal.download")}</Link>
         </li>
         <li>
           <Link href={getPath("/register", router.locale)} prefetch={false}>

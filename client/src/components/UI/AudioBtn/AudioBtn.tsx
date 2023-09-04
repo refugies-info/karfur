@@ -31,7 +31,7 @@ const AudioBtn = (props: Props) => {
             className={styles.icon}
           />
         )}
-        <div className={styles.text}>{t("Écouter", "Écouter")}</div>
+        <div className={styles.text}>{t("listen", "Écouter")}</div>
       </button>
     );
   }

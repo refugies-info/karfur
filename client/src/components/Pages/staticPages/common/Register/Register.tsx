@@ -43,14 +43,14 @@ const Register = (props: Props) => {
   const onSubmit = () => {
     router.push({
       pathname: getPath("/register", router.locale),
-      search: qs.stringify({ username: username })
+      search: qs.stringify({ username: username }),
     });
   };
 
   const title = useMemo(
     () => <h2 className={cls(commonStyles.title2, "text-center", "mb-0")}>{t("StaticPages.registerTitle")}</h2>,
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 
   return (
@@ -122,7 +122,7 @@ const Register = (props: Props) => {
               </FButton>
 
               <p className={styles.login}>
-                {t("Register.Déjà un compte ?")}
+                {t("Register.already_an_account")}
                 <Link legacyBehavior href={getPath("/login", router.locale)}>
                   <a className={styles.link}>{t("Register.Se connecter")}</a>
                 </Link>

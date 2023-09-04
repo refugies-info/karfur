@@ -13,11 +13,11 @@ export const NoResult = (props: any) => {
         <Image src={NoResultsBackgroundImage} width={254} height={180} alt="No results" />
       </div>
       <div className={styles.content}>
-        <h2 className={styles.title}>{t("Aucun résultat", "Aucun résultat")}</h2>
+        <h2 className={styles.title}>{t("no_result", "Aucun résultat")}</h2>
         <p className={styles.text}>
           {t(
             "Elargir recherche",
-            "Il n’existe aucune structure correspondant aux filtres sélectionnés. Essayez d’élargir votre recherche en retirant des filtres."
+            "Il n’existe aucune structure correspondant aux filtres sélectionnés. Essayez d’élargir votre recherche en retirant des filtres.",
           )}{" "}
         </p>
         <div className={styles.buttons}>

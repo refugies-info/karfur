@@ -108,7 +108,7 @@ export const SubscribeNewsletterModal = () => {
         title: "Oops...",
         text: "Aucun mail renseigné",
         icon: "error",
-        timer: 1500
+        timer: 1500,
       });
       return;
     }
@@ -122,7 +122,7 @@ export const SubscribeNewsletterModal = () => {
             title: "Yay...",
             text: "Mail correctement enregistré !",
             icon: "success",
-            timer: 1500
+            timer: 1500,
           });
           setEmail("");
         })
@@ -148,20 +148,17 @@ export const SubscribeNewsletterModal = () => {
         <TitleContainer>
           {isMobile
             ? t("Footer.Newsletter", "Newsletter")
-            : t("Footer.Inscription à la newsletter", "Inscription à la newsletter")}
+            : t("Footer.subscribe_to_newsletter_modal_title", "Inscription à la newsletter")}
         </TitleContainer>
         <TextContainer>
           {t(
-            "Footer.Inscrivez-vous à notre lettre",
-            "Inscrivez-vous à notre lettre d'information pour suivre l'évolution du projet Réfugiés.info"
+            "Footer.subscribe_for_informations",
+            "Inscrivez-vous à notre lettre d'information pour suivre l'évolution du projet Réfugiés.info",
           )}
         </TextContainer>
         <EmailField id="email" email={email} onChange={handleChangeEmail} notEmailError={notEmailError} />
         {notEmailError && (
-          <ErrorMessageContainer>
-            {t("Register.Ceci n'est pas un email,", "Ceci n'est pas un email,")}{" "}
-            {t("Register.vérifiez l'orthographe", "vérifiez l'orthographe.")}
-          </ErrorMessageContainer>
+          <ErrorMessageContainer>{`${t("Register.not_an_email")} ${t("Register.check_mail")}`}</ErrorMessageContainer>
         )}
         {isMobile ? (
           <FButtonMobile
@@ -170,7 +167,7 @@ export const SubscribeNewsletterModal = () => {
             fill="white"
             color={colors.vert}
             onClick={sendMail}
-            title="Envoyer"
+            i18nKey="Envoyer"
             defaultTitle="Envoyer"
           />
         ) : (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUserFavoritesActionCreator,
-  updateUserFavoritesActionCreator
+  updateUserFavoritesActionCreator,
 } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -79,8 +79,8 @@ const UserFavorites = (props: Props) => {
     dispatch(
       updateUserFavoritesActionCreator({
         type: "remove-all",
-        locale
-      })
+        locale,
+      }),
     );
   };
 
@@ -100,8 +100,8 @@ const UserFavorites = (props: Props) => {
           <TitleContainer>
             <TitleWithNumber
               amount={favorites.length}
-              textSingular={t("UserFavorites.fiche sauvegardée", "fiche sauvegardée")}
-              textPlural={t("UserFavorites.fiches sauvegardées", "fiches sauvegardées")}
+              textSingular={t("UserFavorites.content_saved", "fiche sauvegardée")}
+              textPlural={t("UserFavorites.contents_saved", "fiches sauvegardées")}
             />
             <div>
               <FButton

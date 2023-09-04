@@ -137,16 +137,13 @@ export const ReceiveInvitationMailModal = (props: Props) => {
         </CloseIconContainer>
         <TitleContainer>{t("Register.Recevoir une invitation", "Recevoir une invitation")}</TitleContainer>
         <TextContainer>
-          {t(
-            "Register.Nous vous enverrons un email d'invitation pour vous inscrire",
-            "Nous vous enverrons un email d'invitation pour vous inscrire.",
-          )}
+          {t("Register.email_invitation", "Nous vous enverrons un email d'invitation pour vous inscrire.")}
         </TextContainer>
         <EmailField id="email" email={email} onChange={handleChangeEmail} notEmailError={notEmailError} />
         {notEmailError && (
           <ErrorMessageContainer>
-            {t("Register.Ceci n'est pas un email,", "Ceci n'est pas un email,")}{" "}
-            {t("Register.vérifiez l'orthographe", "vérifiez l'orthographe.")}
+            {t("Register.not_an_email", "Ceci n'est pas un email,")}{" "}
+            {t("Register.check_mail", "vérifiez l'orthographe.")}
           </ErrorMessageContainer>
         )}
         <FButtonMobile
@@ -155,7 +152,7 @@ export const ReceiveInvitationMailModal = (props: Props) => {
           fill="white"
           color={colors.vert}
           onClick={sendMail}
-          title="Envoyer"
+          i18nKey="Envoyer"
           defaultTitle="Envoyer"
         />
       </MainContainer>

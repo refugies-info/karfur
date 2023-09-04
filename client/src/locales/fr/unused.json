@@ -313,7 +313,6 @@
     "Voir le numéro de téléphone": "Voir le numéro de téléphone",
     "Voir l’adresse postale": "Voir l’adresse postale",
     "Bouton personnalisé": "Bouton personnalisé",
-    "compris": "Ok, j’ai compris",
     "Délais de réponse annoncés": "Délais de réponse annoncés",
     "Documents nécessaires": "Documents nécessaires",
     "realisation etape": "Je réalise cette étape :",
@@ -326,7 +325,6 @@
     "Ce que tu dois faire": "Ce que vous devez faire",
     "Titre du lieu": "Titre du lieu",
     "Adresse": "Adresse",
-    "Ville": "Ville",
     "Informations pratiques": "Informations pratiques",
     "Email de contact": "Email de contact",
     "Numéro de téléphone": "Numéro de téléphone",
@@ -378,13 +376,10 @@
     "Envoyer une réaction": "Envoyer une réaction",
     "Dites nous ce que vous pensez": "Dites nous ce que vous pensez :",
     "Enlever des favoris": "Enlever des favoris",
-    "Oups": "Oups !",
     "Sauvegardé": "Sauvegardé !",
     "favoriSaved": "Votre recherche est désormais disponible dans votre profil dans la rubrique",
     "Mes favoris": "Mes favoris",
-    "Connectez-vous": "Connectez-vous",
-    "créez un compte": "créez un compte",
-    "favoriExplanation": "pour retrouver facilement vos fiches favorites dans votre espace personnel."
+    "créez un compte": "créez un compte"
   },
   "Dispositifs": {
     "Cette fiche n'est pas dispo": "Cette fiche n'est pas encore disponible en :",
