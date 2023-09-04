@@ -8,7 +8,9 @@
   "conventionalCommits.scopes": ["api-types", "client", "server"],
   "i18n-ally.keysInUse": [
     "StructureType.*",
-    // "Annuaire.Coaching / Suivi dans l'emploi",
+    "StructureActivities.*",
+    "StructureActivities.Coaching / Suivi dans l'emploi",
+    "StructureDay.*",
     "callout_*",
     "Dispositif.section*",
     "Filters.*",

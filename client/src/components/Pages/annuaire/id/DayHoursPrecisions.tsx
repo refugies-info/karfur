@@ -17,8 +17,7 @@ const Closed = (props: { day: string }) => {
       <div style={{ marginBottom: "2px" }}>
         <EVAIcon name="close-circle" fill="#F44336" className="me-2" />
       </div>
-      {/* @ts-ignore */}
-      {t("Annuaire." + props.day, props.day) + " : " + t("Annuaire.closed", "fermé")}
+      {t("StructureDay." + props.day, props.day) + " : " + t("Annuaire.closed", "fermé")}
     </div>
   );
 };
@@ -51,8 +50,7 @@ const Opened = (props: { day: string; details: DetailedOpeningHours }) => {
       <div style={{ marginBottom: "2px" }}>
         <EVAIcon name="checkmark-circle-2" fill="#4CAF50" className="me-2" />
       </div>
-      {/* @ts-ignore */}
-      {t("Annuaire." + day, day) + getOpeningHours(details.from0, details.to0, details.from1, details.to1, t)}
+      {t("StructureDay." + day, day) + getOpeningHours(details.from0, details.to0, details.from1, details.to1, t)}
     </div>
   );
 };

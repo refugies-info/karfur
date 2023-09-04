@@ -226,7 +226,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               if (!theme) return;
               return (
                 <ActivityCard
-                  activity={t("Annuaire." + activity, activity)}
+                  activity={t("StructureActivities." + activity, activity)}
                   key={activity}
                   darkColor={theme.colors.color100}
                   lightColor={theme.colors.color30}
