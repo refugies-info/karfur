@@ -22,6 +22,7 @@
     "Roles.*",
     "Status.*",
     "LanguageDropdown.*",
+    "LanguageDropdown.en_persan/dari",
     "Translate.medium",
     "Translate.strong",
     "Translate.weak"
