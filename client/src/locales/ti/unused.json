@@ -301,7 +301,6 @@
     "Voir le numéro de téléphone": "ነቲ ቁጽሪ ስልኪ ንኽትርዮ፣",
     "Voir l’adresse postale": "ኣድረስ ናይ ፖስታል ራኣይ",
     "Bouton personnalisé": "መጠውቒ ናይ ብሕቲ",
-    "compris": "እወ ተረዲኡኒ ኣሎ፣",
     "Délais de réponse annoncés": "ግዜ ናይ መልሲ ናይ ምልክታት ወይ ሓቤሬታት",
     "Documents nécessaires": "ኣገደስቲ ሰነዳት",
     "realisation etape": "እዚ ደረጀታት ተረዲእኒ",
@@ -314,7 +313,6 @@
     "Ce que tu dois faire": "ክትገብሮ ዝግባእ",
     "Titre du lieu": "ኣድራሻ ናይ ቦታ",
     "Adresse": "ኣድራሻ",
-    "Ville": "ከትማ",
     "Informations pratiques": "ሓጋዚ ወይ ተግባራዊ ሓበሬታ፣",
     "Email de contact": "ኢመይል ናይ መራኻቢ",
     "Numéro de téléphone": "ቁጽሪ ናይ ተሌፎን",
@@ -367,13 +365,10 @@
     "Dites nous ce que vous pensez": "ርእይቶኹም ሃቡና፣",
     "Enlever des favoris": "ካብቶም  ምልክት ናይ ፋቮሪ\\ምርጫ  ኣውጽ\\ጺ\\ያ ፤፣",
     "Ajouter aux favoris": "ካብቶም  ምልክት ፋቮሪ\\ምርጫ  ወስኽ\\ኺ፤፣",
-    "Oups": "ኦው",
     "Sauvegardé": "ምዕቃብ \\ምክልኻል",
     "favoriSaved": "ትድልዮ ዘለኻ\\ኺ ነገር ኣብ ናትካ\\ኪ ክፋል ናይ ፕሮፋይል ኣሎ",
     "Mes favoris": "ናተይ ፋቮሪ \\",
-    "Connectez-vous": "ኮንክት ግበር\\ሪ",
-    "créez un compte": "ብምሉ ሽምካን ናይ ግሊ ሓበሬታኻን ዝሓዘ ሕሳብ መርበብ ሓበሬታ ወይ ኮንት ኣካውንት ፍጠር፣",
-    "favoriExplanation": "ንፋይል ናትኩም\\ክን ብቀሊል ንምርካብ ኣብ ናትኩም\\ክን ውልቃዊ  ቦታ  ( ኮኾብ ዝመስል ኣብ ፋቮሪ )ምልክት ግበሩ\\ራ"
+    "créez un compte": "ብምሉ ሽምካን ናይ ግሊ ሓበሬታኻን ዝሓዘ ሕሳብ መርበብ ሓበሬታ ወይ ኮንት ኣካውንት ፍጠር፣"
   },
   "Register": {
     "Faible": "ብጣዕሚ ሓያል",

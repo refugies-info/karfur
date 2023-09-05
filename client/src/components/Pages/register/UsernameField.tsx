@@ -21,7 +21,7 @@ const UsernameField = (props: Props) => {
         style={{
           flexDirection: "row",
           display: "flex",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <div style={{ marginTop: "10px" }}>
@@ -54,7 +54,7 @@ const UsernameField = (props: Props) => {
 
       {props.pseudoAlreadyTaken && (
         <div className={styles.error_message}>
-          <b>{t("Register.Oups, ce pseudo existe déjà.", "Oups, ce pseudonyme existe déjà.")}</b>{" "}
+          <b>{t("Register.pseudo_exists", "Oups, ce pseudonyme existe déjà.")}</b>{" "}
         </div>
       )}
     </>

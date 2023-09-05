@@ -9,10 +9,10 @@ const UnauthorizedAccess = () => {
   const { t } = useTranslation();
   return (
     <div className={styles.container}>
-      <h3>{t("UnauthorizedAccess.Accès refusé", "Accès refusé")}</h3>
+      <h3>{t("UnauthorizedAccess.access_denied", "Accès refusé")}</h3>
       <Link legacyBehavior href="/" passHref>
         <FButton tag="a" fill={colors.gray90} name="arrow-back-outline" tabIndex="1">
-          {t("UnauthorizedAccess.Revenir à l'accueil", "Revenir à l'accueil")}
+          {t("UnauthorizedAccess.back_home", "Revenir à l'accueil")}
         </FButton>
       </Link>
     </div>

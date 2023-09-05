@@ -36,12 +36,12 @@ const Footer = (props: Props) => {
   if (props.unexpectedError) {
     return (
       <div className={styles.error_message}>
-        {t("Login.Une erreur est survenue. Veuillez réessayer.", "Une erreur est survenue. Veuillez réessayer.")}
+        {t("Login.error_retry", "Une erreur est survenue. Veuillez réessayer.")}
       </div>
     );
   }
   if (props.userDeletedError) {
-    return <div className={styles.error_message}>{t("Login.user supprimé", "Ce compte a été supprimé.")}</div>;
+    return <div className={styles.error_message}>{t("Login.account_deleted", "Ce compte a été supprimé.")}</div>;
   }
   if (props.resetPasswordNotPossible) {
     return (
@@ -49,7 +49,7 @@ const Footer = (props: Props) => {
         <div className={styles.reset_message}>
           {t(
             "Login.Reset password message",
-            "Attention, si vous n'avez pas configuré d'email, vous ne pourrez pas réinitialiser votre mot de passe."
+            "Attention, si vous n'avez pas configuré d'email, vous ne pourrez pas réinitialiser votre mot de passe.",
           )}
         </div>
       </>
@@ -75,20 +75,20 @@ const Footer = (props: Props) => {
     return (
       <>
         <p className={styles.footer_links}>
-          {t("Login.Pas encore de compte ?", "Pas encore de compte ?")}{" "}
+          {t("Login.no_account_yet", "Pas encore de compte ?")}{" "}
           <Link
             legacyBehavior
             href={{
               pathname: getPath("/register", router.locale),
-              query
+              query,
             }}
           >
-            <a className={styles.link}>{t("Login.Créez un compte", "Créez un compte")}</a>
+            <a className={styles.link}>{t("Login.create_account", "Créez un compte")}</a>
           </Link>
         </p>
 
         <p className={styles.footer_links} style={{ marginTop: 0, fontWeight: "bold" }}>
-          {t("Login.Pseudonyme oublié ?", "Pseudonyme oublié ?")} <ContactSupport />
+          {t("Login.forgot_username", "Pseudonyme oublié ?")} <ContactSupport />
         </p>
       </>
     );
@@ -98,7 +98,7 @@ const Footer = (props: Props) => {
     return (
       <p className={styles.footer_links}>
         <button onClick={props.resetPassword} className={styles.link}>
-          {t("Login.Mot de passe oublié ?", "J'ai oublié mon mot de passe")}
+          {t("Login.forgot_password", "J'ai oublié mon mot de passe")}
         </button>
       </p>
     );

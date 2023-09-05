@@ -4,7 +4,6 @@ import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import debounce from "lodash/debounce";
-import { useTranslation } from "next-i18next";
 import NoResultImage from "assets/no_results.svg";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
@@ -63,8 +62,6 @@ const SearchBar = (props: Props) => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [isLoadingResults, setIsLoadingResults] = useState(false);
-
-  const { t } = useTranslation();
 
   const onChange = (_: any, { newValue }: { newValue: string }) => {
     setValue(newValue);
@@ -164,11 +161,7 @@ const SearchBar = (props: Props) => {
   };
 
   const inputProps = {
-    placeholder: t(
-      // @ts-ignore
-      props.placeholder || "Chercher",
-      props.placeholder || "Chercher",
-    ),
+    placeholder: props.placeholder || "Chercher",
     value: value || "",
     onChange: onChange,
   };

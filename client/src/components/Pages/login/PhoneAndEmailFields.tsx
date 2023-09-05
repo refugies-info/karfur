@@ -41,7 +41,7 @@ const PhoneAndEmailFields = (props: Props) => {
         onChange={props.onChangePhone}
         id="phone"
         type="tel"
-        placeholder={t("Login.Entrez votre numéro", "Entrez votre numéro")}
+        placeholder={t("Login.phone_number", "Entrez votre numéro")}
         newSize
       />
       <FButton type="validate-light" name="arrow-forward-outline" disabled={!props.phone || !props.email}>
@@ -56,7 +56,7 @@ const PhoneAndEmailFields = (props: Props) => {
           <h5 className={styles.h5}>
             {t(
               "Login.new_has_structure_subtitle",
-              "Vous avez été nommé « responsable de structure » pour la structure :"
+              "Vous avez été nommé « responsable de structure » pour la structure :",
             )}
           </h5>
           <FButton type="white" tag="div">
@@ -105,7 +105,7 @@ const PhoneAndEmailFields = (props: Props) => {
           onChange={props.onChangePhone}
           id="phone"
           type="tel"
-          placeholder={t("Login.Entrez votre numéro", "Entrez votre numéro")}
+          placeholder={t("Login.phone_number", "Entrez votre numéro")}
           newSize
         />
       </div>

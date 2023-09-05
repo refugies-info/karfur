@@ -59,7 +59,7 @@ const Navbar = () => {
           ? [
               {
                 linkProps: { href: getPath("/recherche", router.locale) },
-                text: t("Toolbar.Trouver de l'information", "Trouver de l'information"),
+                text: t("Toolbar.find_information", "Trouver de l'information"),
                 isActive: isCurrent(getPath("/recherche", router.locale)),
               },
               {
@@ -81,7 +81,7 @@ const Navbar = () => {
                   },
                   {
                     linkProps: { href: "https://kit.refugies.info/flyers/", target: "_blank" },
-                    text: t("Toolbar.Affiches et dépliants", "Affiches et dépliants"),
+                    text: t("Toolbar.posters_leaflets", "Affiches et dépliants"),
                   },
                   {
                     linkProps: { href: "https://kit.refugies.info/presse/", target: "_blank" },
@@ -95,11 +95,11 @@ const Navbar = () => {
               },
               {
                 linkProps: { href: "https://parrainage.refugies.info/", target: "_blank" },
-                text: t("Toolbar.Pour l'Ukraine", "Pour l'Ukraine"),
+                text: t("Toolbar.for_ukraine", "Pour l'Ukraine"),
               },
               {
                 linkProps: { href: `${getPath("/", router.locale)}#application` },
-                text: t("MobileAppModal.Télécharger l'application", "Télécharger l'application"),
+                text: t("MobileAppModal.download", "Télécharger l'application"),
                 isActive: isCurrent(getPath("/", router.locale)),
               },
               {
@@ -109,7 +109,7 @@ const Navbar = () => {
                     dispatch(toggleNewsletterModalAction());
                   },
                 },
-                text: t("Toolbar.S'inscrire à la newsletter", "S'inscrire à la newsletter"),
+                text: t("Toolbar.newsletter", "S'inscrire à la newsletter"),
               },
             ]
           : backendNavigation

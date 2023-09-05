@@ -56,7 +56,7 @@ const SMSForm = (props: Props) => {
         })
         .catch((e) => setError(e.message));
     } else {
-      setError(t("Register.Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie"));
+      setError(t("Register.invalid_phone_number"));
     }
   };
 

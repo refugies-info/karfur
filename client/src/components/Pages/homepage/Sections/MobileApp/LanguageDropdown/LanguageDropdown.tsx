@@ -25,11 +25,13 @@ const LanguageDropdown = (props: Props) => {
     setOpen(false);
   };
 
+  const language = languageSelected?.langueFr.toLowerCase() || "français";
+
   return (
     <Dropdown isOpen={open} direction="down" toggle={() => setOpen((o) => !o)} className={cls(styles.dropdown)}>
       <DropdownToggle>
         <span className={styles.value}>
-          {`en ${languageSelected?.langueFr.toLowerCase() || "français"}`}
+          {t(`LanguageDropdown.en_${language}`, `en ${language}`)}
           <Flag langueCode={languageSelected?.langueCode || "fr"} className="mx-2" />
         </span>
         <EVAIcon className={styles.icon} name="chevron-down-outline" fill="dark" size={24} />

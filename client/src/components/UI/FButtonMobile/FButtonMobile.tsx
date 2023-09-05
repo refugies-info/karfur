@@ -8,7 +8,7 @@ import useRTL from "hooks/useRTL";
 interface Props {
   name: string;
   fill: string;
-  title: string;
+  i18nKey: string;
   defaultTitle: string;
   color: string;
   isDisabled: boolean;
@@ -25,15 +25,14 @@ export const FButtonMobile = (props: Props) => {
       className={styles.btn}
       style={{
         backgroundColor: props.isDisabled ? colors.gray60 : props.color,
-        color: props.fill
+        color: props.fill,
       }}
     >
       <span className={`${styles.icon} ${isRTL && styles.rtl}`}>
         <EVAIcon name={props.name} fill={props.fill} size={"large"} />
       </span>
 
-      {/* @ts-ignore */}
-      <>{t(props.title, props.defaultTitle)}</>
+      <>{t(props.i18nKey, props.defaultTitle)}</>
     </button>
   );
 };

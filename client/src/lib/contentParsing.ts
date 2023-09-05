@@ -8,7 +8,7 @@ export const getCalloutTranslationKey = (level: "info" | "important") => {
 }
 
 interface ToParse {
-  nodeAttr: string;
+  nodeAttr: string | RegExp;
   translation: string;
 }
 

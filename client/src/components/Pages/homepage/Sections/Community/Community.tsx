@@ -111,7 +111,7 @@ const Community = (props: Props) => {
             image={CommunityEquipe}
             color="blue"
             countImage={9}
-            cta={t("Qui sommes-nous ?")}
+            cta={t("who_are_we")}
             link={getPath("/qui-sommes-nous", router.locale)}
           />
         </div>

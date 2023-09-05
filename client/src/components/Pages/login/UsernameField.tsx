@@ -4,10 +4,10 @@ import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";
 import styles from "scss/components/login.module.scss";
 
-interface Props {
-  value: string
-  onChange: ChangeEventHandler<HTMLInputElement>
-  noUserError: boolean
+interface Props {
+  value: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  noUserError: boolean;
 }
 
 const UsernameField = (props: Props) => {
@@ -31,26 +31,18 @@ const UsernameField = (props: Props) => {
           />
         </div>
         <div style={{ marginLeft: 10 }}>
-          <FButton
-            type="validate-light"
-            name="arrow-forward-outline"
-            disabled={!props.value}
-          >
+          <FButton type="validate-light" name="arrow-forward-outline" disabled={!props.value}>
             {t("Suivant", "Suivant")}
           </FButton>
         </div>
       </div>
       {props.noUserError && (
         <div className={styles.error_message}>
-          <b>{t("Login.Oups,", "Oups,")}</b>{" "}
-          {t(
-            "Login.Pas de compte",
-            "il n'existe pas de compte à ce nom."
-          )}
+          <b>{t("Login.oops", "Oups,")}</b> {t("Login.Pas de compte", "il n'existe pas de compte à ce nom.")}
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
 export default UsernameField;
