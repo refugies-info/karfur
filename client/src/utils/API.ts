@@ -273,7 +273,7 @@ const API = {
   },
   addDispositifViews: (id: string, body: AddViewsRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post<any, null>(`/dispositifs/${id}/view`, body, { headers }).then(() => null);
+    return instance.post<any, null>(`/dispositifs/${id}/views`, body, { headers }).then(() => null);
   },
   getDispositifHasTextChanges: (id: string): Promise<GetDispositifsHasTextChanges> => {
     const headers = getHeaders();
