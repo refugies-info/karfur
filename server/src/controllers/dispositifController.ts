@@ -159,6 +159,7 @@ export class DispositifController extends Controller {
 
   // export
   @Security({
+    jwt: ["admin"],
     fromSite: [],
   })
   @Post("/export")
