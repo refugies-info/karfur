@@ -64,7 +64,7 @@ export const getStructureById = async (
   const selectedLocale = (locale || "fr") as Languages;
   const dbQuery: FilterQuery<Dispositif> = {
     status: isAdmin || isMember
-      ? { $in: [DispositifStatus.WAITING_STRUCTURE, DispositifStatus.WAITING_ADMIN, DispositifStatus.ACTIVE] }
+      ? { $in: [DispositifStatus.DRAFT, DispositifStatus.OK_STRUCTURE, DispositifStatus.WAITING_STRUCTURE, DispositifStatus.WAITING_ADMIN, DispositifStatus.ACTIVE] }
       : DispositifStatus.ACTIVE,
     mainSponsor: structure._id,
   };

@@ -11,22 +11,17 @@ export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user:
     return true;
   }
 
-  // only author can moodify
+  // author can moodify
   const firstDraftVersion = dispositif.status === DispositifStatus.DRAFT && !hasDraftVersion; // the never published draft
-  const onlyAuthorCanModify = [ // or waiting content
+  const authorCanModify = [ // or waiting content
     DispositifStatus.WAITING_STRUCTURE,
     DispositifStatus.KO_STRUCTURE,
   ];
-  const isOnlyEditableByAuthor = firstDraftVersion || onlyAuthorCanModify.includes(dispositif.status);
+  const isEditableByAuthor = firstDraftVersion || authorCanModify.includes(dispositif.status);
   const isAuthor = dispositif.creatorId.toString() === user._id.toString();
-  if (isOnlyEditableByAuthor) {
-    if (isAuthor) {
-      logger.info(`[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is author`);
-      return true;
-    }
-
-    logger.info(`[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} but user is not author`);
-    return false;
+  if (isEditableByAuthor && isAuthor) {
+    logger.info(`[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is author`);
+    return true;
   }
 
   const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;

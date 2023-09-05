@@ -1,13 +1,11 @@
-import { Id } from "../generics";
-
 /**
  * @url POST /sendAdminImprovementsMail
  */
 export interface ImprovementsRequest {
-  dispositifId: Id;
+  dispositifId: string;
   users: {
     username: string;
-    _id: Id;
+    _id: string;
     email: string;
   }[];
   titreInformatif: string;

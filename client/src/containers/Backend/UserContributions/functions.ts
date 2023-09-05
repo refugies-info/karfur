@@ -30,7 +30,7 @@ export const formatContributions = (
   userStructureContributions
     .filter((dispositif) => {
       if ( // do not show dispositif with these status
-        ["Brouillon", "Supprimé", "Rejeté structure"].includes(
+        ["Supprimé", "Rejeté structure"].includes(
           dispositif.status
         )
       )
