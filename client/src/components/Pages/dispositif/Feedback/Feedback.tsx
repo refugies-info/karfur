@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import { DispositifStatus } from "@refugies-info/api-types";
 import { logger } from "logger";
 import { cls } from "lib/classname";
 import isInBrowser from "lib/isInBrowser";
@@ -31,8 +32,12 @@ const Feedback = () => {
     setDidThank(!!mercis.find((m) => m.userId === userId));
   }, [userId, mercis]);
 
+  const isActive = useMemo(
+    () => dispositif && (dispositif.status === DispositifStatus.ACTIVE || dispositif.hasDraftVersion),
+    [dispositif],
+  );
   const sendPositiveFeedback = useCallback(() => {
-    if (!dispositif) return;
+    if (!dispositif || !isActive) return;
     if (didThank) {
       API.deleteDispositifMerci(dispositif._id.toString())
         .then(() => {
@@ -50,7 +55,7 @@ const Feedback = () => {
         })
         .catch((e) => logger.error(e));
     }
-  }, [Event, didThank, dispositif]);
+  }, [Event, didThank, dispositif, isActive]);
 
   const sendNegativeFeedback = useCallback(() => {
     if (!isInBrowser()) return;

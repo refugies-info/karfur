@@ -33,7 +33,7 @@ const Footer = () => {
         orientation: "horizontal",
       }}
       contentDescription={t(
-        "Footer.Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
+        "Footer.info",
         "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
       )}
       homeLinkProps={{
@@ -43,12 +43,12 @@ const Footer = () => {
       cookiesManagementButtonProps={{ nativeButtonProps: consentModalNativeButtonProps }}
       personalDataLinkProps={{
         href: getPath("/politique-de-confidentialite", router.locale),
-        title: t("Politique de confidentialité", "Politique de confidentialité"),
+        title: t("Footer.privacy_policy", "Politique de confidentialité"),
         prefetch: false,
       }}
       termsLinkProps={{
         href: getPath("/mentions-legales", router.locale),
-        title: t("Mentions légales", "Mentions légales"),
+        title: t("Footer.legal_terms", "Mentions légales"),
         prefetch: false,
       }}
       websiteMapLinkProps={{
@@ -67,7 +67,7 @@ const Footer = () => {
           })) as FooterProps.LinkList.Links,
         },
         {
-          categoryName: t("Footer.Trois types d’information", "Trois types d’information"),
+          categoryName: t("Footer.information_types", "Trois types d’information"),
           links: [
             {
               linkProps: {
@@ -81,7 +81,7 @@ const Footer = () => {
                 href: getPath("/recherche", router.locale, "?type=demarche"),
                 hrefLang: router.locale,
               },
-              text: t("Footer.Les fiches démarches", "Les fiches démarches"),
+              text: t("Footer.procedures", "Les fiches démarches"),
             },
             {
               linkProps: {
@@ -89,7 +89,7 @@ const Footer = () => {
                 hrefLang: router.locale,
                 prefetch: false,
               },
-              text: t("Footer.L’annuaire des acteurs", "L’annuaire des acteurs"),
+              text: t("Footer.directory", "L’annuaire des acteurs"),
             },
           ],
         },
@@ -108,21 +108,21 @@ const Footer = () => {
                 href: getPath("/traduire", router.locale),
                 prefetch: false,
               },
-              text: t("Footer.Aider à traduire", "Aider à traduire"),
+              text: t("Footer.help_translate", "Aider à traduire"),
             },
             {
               linkProps: {
                 href: "https://avec.refugies.info/",
                 target: "_blank",
               },
-              text: t("Footer.Rejoindre le Réseau des contributeurs", "Rejoindre le Réseau des contributeurs"),
+              text: t("Footer.join_network", "Rejoindre le Réseau des contributeurs"),
             },
             {
               linkProps: {
                 href: "/",
                 onClick: () => dispatch(toggleNewsletterModalAction()),
               },
-              text: t("Footer.S’inscrire à la newsletter", "S’inscrire à la newsletter"),
+              text: t("Footer.subscribe_to_newsletter", "S’inscrire à la newsletter"),
             },
           ],
         },
@@ -141,14 +141,14 @@ const Footer = () => {
                 href: "https://www.youtube.com/channel/UCdj-KP_whcRiS5XWoAa8HXw",
                 target: "_blank",
               },
-              text: t("Footer.Chaîne Youtube", "Chaîne Youtube"),
+              text: t("Footer.youtube_channel", "Chaîne Youtube"),
             },
             {
               linkProps: {
                 href: "https://kit.refugies.info/flyers/",
                 target: "_blank",
               },
-              text: t("Toolbar.Affiches et dépliants", "Affiches et dépliants"),
+              text: t("Toolbar.posters_leaflets", "Affiches et dépliants"),
             },
             {
               linkProps: {
@@ -202,10 +202,7 @@ const Footer = () => {
                 href: "https://accueil-integration-refugies.fr/",
                 target: "_blank",
               },
-              text: t(
-                "Footer.La Délégation interministérielle à l’accueil et l’intégration des réfugiés",
-                "La Délégation interministérielle à l’accueil et l’intégration des réfugiés",
-              ),
+              text: t("Footer.diair", "La Délégation interministérielle à l’accueil et l’intégration des réfugiés"),
             },
             {
               linkProps: {
@@ -219,10 +216,7 @@ const Footer = () => {
                 href: "https://eig.etalab.gouv.fr/",
                 target: "_blank",
               },
-              text: t(
-                "Footer.Le programme Entrepreneur d’Intérêt Général",
-                "Le programme Entrepreneur d’Intérêt Général",
-              ),
+              text: t("Footer.eig_program", "Le programme Entrepreneur d’Intérêt Général"),
             },
           ],
         },
@@ -235,21 +229,21 @@ const Footer = () => {
                 hrefLang: "fr",
                 target: "_blank",
               },
-              text: t("Footer.Centre d'aide", "Consulter le centre d'aide"),
+              text: t("Footer.help_center", "Consulter le centre d'aide"),
             },
             {
               linkProps: {
                 onClick: openCrisp,
                 href: "/",
               },
-              text: t("Démarche administrative", "Contacter l'équipe"),
+              text: t("Footer.contact_team", "Contacter l'équipe"),
             },
             {
               linkProps: {
                 href: "https://www.youtube.com/watch?v=h275aGr0r9E&list=PLa8oaTXn0u3QNXX1t9fYL54RElUYuZSqq",
                 target: "_blank",
               },
-              text: t("Footer.Comment utiliser l'application", "Comment utiliser l'application"),
+              text: t("Footer.how_to_use_app", "Comment utiliser l'application"),
             },
           ],
         },

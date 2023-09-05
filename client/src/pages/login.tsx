@@ -129,7 +129,7 @@ const Login = () => {
 
         Swal.fire({
           title: "Yay...",
-          text: t("Authentification réussie !", "Authentification réussie !"),
+          text: t("authenticated_successfully", "Authentification réussie !"),
           icon: "success",
           timer: 1500,
         }).then(() => {
@@ -206,7 +206,7 @@ const Login = () => {
 
   const getHeaderText = () => {
     if (step === 0) {
-      return t("Login.Content de vous revoir !", "Content de vous revoir !");
+      return t("Login.welcome_back", "Content de vous revoir !");
     }
     if (newAdminWithoutPhoneOrEmail) {
       return t("Login.Nouvel administrateur", "Nouvel administrateur");
@@ -215,10 +215,10 @@ const Login = () => {
       return t("Login.new_has_structure", "Nouveau responsable de structure ! 🎉");
     }
     if (resetPasswordNotPossible) {
-      return t("Login.Impossible de réinitialiser", "Impossible de réinitialiser");
+      return t("Login.reset_failed", "Impossible de réinitialiser");
     }
     if (resetPasswordPossible) {
-      return t("Login.Réinitialisation du mot de passe", "Un lien de réinitialisation a été envoyé");
+      return t("Login.reset_sent", "Un lien de réinitialisation a été envoyé");
     }
     if (step === 1) {
       return t("Login.Bonjour", "Bonjour ") + username + " !";
@@ -247,7 +247,7 @@ const Login = () => {
     }
 
     if (newAdminWithoutPhoneOrEmail) {
-      return t("Login.Entrez votre numéro et votre email", "Entrez votre numéro et votre email");
+      return t("Login.number_and_email", "Entrez votre numéro et votre email");
     }
     if (newHasStructureWithoutPhoneOrEmail) {
       return null;
@@ -342,7 +342,7 @@ const Login = () => {
                 name="question-mark-circle-outline"
                 fill={colors.gray90}
               >
-                {t("Login.Centre d'aide", "Centre d'aide")}
+                {t("Login.help_center", "Centre d'aide")}
               </FButton>
             </div>
           </div>
@@ -368,7 +368,7 @@ const Login = () => {
                   marginBottom: "64px",
                 }}
               >
-                {t("Login.Réinitialisation texte", "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?")}
+                {t("Login.reset_not_received", "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?")}
               </div>
             </>
           )}

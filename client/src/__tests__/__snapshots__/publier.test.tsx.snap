@@ -1992,7 +1992,7 @@ exports[`publier renders publier 1`] = `
       <p
         className="login"
       >
-        Register.Déjà un compte ?
+        Register.already_an_account
         <a
           className="link"
           href="/login"

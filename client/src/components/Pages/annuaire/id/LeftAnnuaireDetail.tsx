@@ -39,7 +39,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
       <div className={styles.container}>
         <div style={{ marginBottom: "33px" }}>
           <FButton type="login" name="arrow-back-outline" onClick={onClickGoBack}>
-            {t("Annuaire.Retour à l'annuaire", "Retour à l'annuaire")}
+            {t("Annuaire.back", "Retour à l'annuaire")}
           </FButton>
         </div>
         <div>

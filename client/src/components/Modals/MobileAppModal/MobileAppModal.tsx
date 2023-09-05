@@ -25,8 +25,8 @@ const LanguageModal = (props: Props) => {
           <a href={storeLink} className={styles.link}>
             <Image src={illuMobileApp} width={268} height={232} alt="mobile app" />
           </a>
-          <h1>{t("MobileAppModal.Application mobile disponible", "Application mobile disponible !")}</h1>
-          <p>{t("MobileAppModal.Gratuite et plus facile à utiliser", "Gratuite et plus facile à utiliser :")}</p>
+          <h1>{t("MobileAppModal.title", "Application mobile disponible !")}</h1>
+          <p>{t("MobileAppModal.subtitle", "Gratuite et plus facile à utiliser :")}</p>
           <div className={styles.close_btn}>
             <FButtonMobile
               name="close-outline"
@@ -34,7 +34,7 @@ const LanguageModal = (props: Props) => {
               color={colors.white}
               onClick={props.toggle}
               isDisabled={false}
-              title="MobileAppModal.Rester sur le navigateur"
+              i18nKey="MobileAppModal.stay"
               defaultTitle="Rester sur le navigateur"
             />
           </div>
@@ -44,7 +44,7 @@ const LanguageModal = (props: Props) => {
             color={colors.validationDefault}
             onClick={() => window.open(storeLink)}
             isDisabled={false}
-            title="MobileAppModal.Télécharger l'application"
+            i18nKey="MobileAppModal.download"
             defaultTitle="Télécharger l'application"
           />
         </section>

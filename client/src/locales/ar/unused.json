@@ -301,7 +301,6 @@
     "Voir le numéro de téléphone": "أنظر إلى رقم الهاتف",
     "Voir l’adresse postale": "أظهر العنوان البريدي",
     "Bouton personnalisé": "زر مخصّص",
-    "compris": "نعم، لقد فهمت",
     "Délais de réponse annoncés": "مدّة الاستجابة المعلنة",
     "Documents nécessaires": "المستندات المطلوبة",
     "realisation etape": "أطبّق هذه الخطوة :",
@@ -314,7 +313,6 @@
     "Ce que tu dois faire": "ما عليك القيام به",
     "Titre du lieu": "عنوان المكان",
     "Adresse": "عنوان",
-    "Ville": "مدينة",
     "Informations pratiques": "معلومات عمليّة",
     "Email de contact": "البريد الإلكتروني للاتصال",
     "Numéro de téléphone": "رقم الهاتف",
@@ -367,13 +365,10 @@
     "Dites nous ce que vous pensez": "أخبرنا ماذا تعتقد",
     "Enlever des favoris": "إزالة من المفضّلة",
     "Ajouter aux favoris": "إضافة إلى المفضّلة",
-    "Oups": "أوبس",
     "Sauvegardé": "تم الحفظ",
     "favoriSaved": "نتائج البحث التي قمت بها متاحة في مساحتك الشخصيّة في زاوية",
     "Mes favoris": "المفضّلة",
-    "Connectez-vous": "ادخل الى حسابك الشخصي",
-    "créez un compte": "أنشأ حسابك الشخصي",
-    "favoriExplanation": "أجد بسهولة بطاقات المعلومات المفضلة لي في مساحتي الشخصية"
+    "créez un compte": "أنشأ حسابك الشخصي"
   },
   "Register": { "Faible": "ضعيف", "Fort": "قوي", "Moyen": "متوسط" }
 }
