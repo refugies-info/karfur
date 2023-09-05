@@ -37,8 +37,8 @@ const MobileApp = () => {
     [appStoreBadge, playStoreBadge],
   );
 
-  const review = useMemo(
-    () => (
+  const review = useMemo(() => {
+    return (
       <div className={styles.reviews}>
         <div>
           <EVAIcon name="star" fill="#FCBF35" size={20} />
@@ -49,10 +49,8 @@ const MobileApp = () => {
         </div>
         <p className="mb-0">{t("Homepage.mobileAppReviews")}</p>
       </div>
-    ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+    );
+  }, [t]);
 
   return (
     <div id="application" className={cls(commonStyles.section, commonStyles.bg_blue)}>

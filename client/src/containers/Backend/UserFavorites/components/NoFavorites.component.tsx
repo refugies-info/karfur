@@ -90,8 +90,8 @@ export const NoFavorites = (props: { t: any; toggleTutoModal: () => void }) => (
     <div style={{ marginRight: "40px", marginLeft: "40px" }}>
       <TitleWithNumber
         amount={0}
-        textSingular={props.t("UserFavorites.fiches sauvegardée", "fiche sauvegardée")}
-        textPlural={props.t("UserFavorites.fiches sauvegardées", "fiches sauvegardées")}
+        textSingular={props.t("UserFavorites.content_saved", "fiche sauvegardée")}
+        textPlural={props.t("UserFavorites.contents_saved", "fiches sauvegardées")}
       />
     </div>
     <CardsContainer>

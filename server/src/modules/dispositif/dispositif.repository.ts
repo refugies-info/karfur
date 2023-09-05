@@ -3,7 +3,7 @@ import { omit, pick, uniq, union } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
 import { Merci, Suggestion } from "../../typegoose/Dispositif";
-import { Dispositif, DispositifDraftModel, DispositifId, DispositifModel, Need, Theme, UserId } from "../../typegoose";
+import { Dispositif, DispositifDraftModel, DispositifId, DispositifModel, Need, ObjectId, Theme, UserId } from "../../typegoose";
 import { getUsersById } from "../users/users.repository";
 
 export const getDispositifsFromDB = async () =>
@@ -257,7 +257,7 @@ export const incrementDispositifViews = async (
   for (const prop of properties) {
     query.$inc[prop] = 1;
   }
-  return DispositifModel.findOneAndUpdate({ id }, query);
+  return DispositifModel.findOneAndUpdate({ _id: new ObjectId(id) }, query);
 };
 
 export const getActiveDispositifsFromDBWithoutPopulate = (needFields: ProjectionType<Dispositif>) =>

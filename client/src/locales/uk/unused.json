@@ -195,7 +195,6 @@
     "Voir le numéro de téléphone": "Показати номер телефону",
     "Voir l’adresse postale": "Показати поштову адресу",
     "Bouton personnalisé": "Спеціальний запит",
-    "compris": "Ок, зрозуміло",
     "Délais de réponse annoncés": "Приблизний час відповіді",
     "Documents nécessaires": "Необхідні документи",
     "realisation etape": "Я виконую цей етап:",
@@ -208,7 +207,6 @@
     "Ce que tu dois faire": "Що потрібно зробити",
     "Titre du lieu": "Назва місця",
     "Adresse": "Адреса",
-    "Ville": "Місто",
     "Informations pratiques": "Практична інформація",
     "Email de contact": "Контактний імейл",
     "Numéro de téléphone": "Номер телефону",
@@ -261,12 +259,9 @@
     "Dites nous ce que vous pensez": "Скажіть нам, що ви думаєте:",
     "Enlever des favoris": "Видалити з обраних",
     "Ajouter aux favoris": "Додати в обрані",
-    "Oups": "Упс!",
     "Sauvegardé": "Збережено!",
     "favoriSaved": "Ваш пошук тепер доступний у вашому профілі в розділі",
     "Mes favoris": "Мої обрані",
-    "Connectez-vous": "Увійти",
-    "créez un compte": "Відкрийте аккаунт",
-    "favoriExplanation": "щоб легко знаходити обрані записи у вашому особистому просторі."
+    "créez un compte": "Відкрийте аккаунт"
   }
 }

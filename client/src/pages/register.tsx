@@ -112,7 +112,7 @@ const Register = () => {
         });
         Swal.fire({
           title: "Yay...",
-          text: t("Authentification réussie !", "Authentification réussie !"),
+          text: t("authenticated_successfully", "Authentification réussie !"),
           icon: "success",
           timer: 1500,
         }).then(() => {
@@ -211,7 +211,7 @@ const Register = () => {
   useEffect(() => {
     switch (step) {
       case 0:
-        setHeaderText(t("Register.Créer un nouveau compte", "Créer un nouveau compte"));
+        setHeaderText(t("Register.new_account", "Créer un nouveau compte"));
         setSubtitleText(t("Login.Choisissez un pseudonyme", "Choisissez un pseudonyme"));
         break;
       case 1:
@@ -219,7 +219,7 @@ const Register = () => {
         setSubtitleText(t("Register.Choisissez un mot de passe", "Choisissez un mot de passe"));
         break;
       case 2:
-        setHeaderText(t("Register.Dernière étape", "Une dernière étape !"));
+        setHeaderText(t("Register.last_step", "Une dernière étape !"));
         setSubtitleText(t("Register.Renseignez votre adresse email", "Renseignez votre adresse email"));
         break;
       default:
@@ -246,7 +246,7 @@ const Register = () => {
             name="question-mark-circle-outline"
             fill={colors.gray90}
           >
-            {t("Login.Centre d'aide", "Centre d'aide")}
+            {t("Login.help_center", "Centre d'aide")}
           </FButton>
           <StyledHeader>{headerText}</StyledHeader>
           <StyledEnterValue>{subtitleText}</StyledEnterValue>
@@ -292,8 +292,8 @@ const Register = () => {
               </div>
               {notEmailError && (
                 <div className={styles.error_message}>
-                  <b>{t("Register.Ceci n'est pas un email,", "Ceci n'est pas un email,")}</b>{" "}
-                  {t("Register.vérifiez l'orthographe", "vérifiez l'orthographe.")}
+                  <b>{t("Register.not_an_email", "Ceci n'est pas un email,")}</b>{" "}
+                  {t("Register.check_mail", "vérifiez l'orthographe.")}
                 </div>
               )}
               <EmailPrecisions>

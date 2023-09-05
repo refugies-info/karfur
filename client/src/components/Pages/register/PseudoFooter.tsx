@@ -11,13 +11,13 @@ const PseudoFooter = () => {
 
   return (
     <div className={styles.container}>
-      {t("Register.Déjà un compte ?", "Déjà un compte ?")}
+      {t("Register.already_an_account", "Déjà un compte ?")}
       <Link legacyBehavior href={getPath("/login", router.locale)}>
         <a
           style={{
             fontWeight: "bold",
             textDecoration: "underline",
-            marginLeft: "5px"
+            marginLeft: "5px",
           }}
         >
           {t("Register.Se connecter", "Se connecter")}

@@ -301,7 +301,6 @@
     "Voir le numéro de téléphone": "شماره تلفن را ببنید",
     "Voir l’adresse postale": "آدرس پستی را مشاهده کنید",
     "Bouton personnalisé": "دکمه شخصی",
-    "compris": "باشه، فهمیدم",
     "Délais de réponse annoncés": "زمان پاسخ اعلام شد",
     "Documents nécessaires": "اسناد مورد نیاز",
     "realisation etape": "من این مرحله را انجام می دهم:",
@@ -314,7 +313,6 @@
     "Ce que tu dois faire": "کاری که باید بکنید",
     "Titre du lieu": "اسم مکان",
     "Adresse": "آدرس",
-    "Ville": "شهر",
     "Informations pratiques": "اطلاعات عملی",
     "Email de contact": "تماس با ایمیل",
     "Numéro de téléphone": "شماره تلفن",
@@ -367,13 +365,10 @@
     "Dites nous ce que vous pensez": "نظر خود را  با ما شریک سازید :",
     "Enlever des favoris": "از برگزیده ها حذف شود",
     "Ajouter aux favoris": "اضافه کردن به برگزیدها",
-    "Oups": "اوه، اشتباه!",
     "Sauvegardé": "ذخیره شد!",
     "favoriSaved": "جستجوی شما اکنون در بخش نمایه(پروفایل) شما موجود است",
     "Mes favoris": "مورد علاقه (برگزیده های) من",
-    "Connectez-vous": "وارد شدن",
-    "créez un compte": "وارد(داخل) شوید",
-    "favoriExplanation": "به راحتی پرونده های مورد علاقه خود را در فضای شخصی (پروفایل espace personnel)خود پیدا کنید."
+    "créez un compte": "وارد(داخل) شوید"
   },
   "Register": { "Faible": "ضعیف", "Fort": "قوی", "Moyen": "متوسط" }
 }

@@ -447,7 +447,8 @@ export const UserProfile = (props: Props) => {
             </RowContainer>
             {notEmailError && (
               <ErrorMessageContainer>
-                {`${t("Register.Ceci n'est pas un email,")} ${t("Register.vérifiez l'orthographe")}`}
+                {t("Register.not_an_email", "Ceci n'est pas un email,")}{" "}
+                {t("Register.check_mail", "vérifiez l'orthographe.")}
               </ErrorMessageContainer>
             )}
             <DescriptionText>
@@ -459,7 +460,7 @@ export const UserProfile = (props: Props) => {
           </div>
           {showPhone && (
             <div>
-              <Title marginTop={24}>{t("Register.Votre numéro de téléphone", "Votre numéro de téléphone")}</Title>
+              <Title marginTop={24}>{t("Register.your_phone_number", "Votre numéro de téléphone")}</Title>
               <RowContainer>
                 <FInputContainer>
                   <FInput
@@ -474,8 +475,8 @@ export const UserProfile = (props: Props) => {
                     error={!user.phone && !phone}
                     placeholder={
                       !user.phone && !phone
-                        ? t("Register.Aucun numéro de téléphone", "Aucun numéro de téléphone")
-                        : t("Register.Renseignez votre numéro de téléphone", "Renseignez votre numéro de téléphone")
+                        ? t("Register.no_phone_number", "Aucun numéro de téléphone")
+                        : t("Register.enter_your_phone_number", "Renseignez votre numéro de téléphone")
                     }
                   />
                 </FInputContainer>
@@ -492,11 +493,7 @@ export const UserProfile = (props: Props) => {
                   </FButton>
                 </div>
               </RowContainer>
-              {notPhoneError && (
-                <ErrorMessageContainer>
-                  {t("Register.Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
-                </ErrorMessageContainer>
-              )}
+              {notPhoneError && <ErrorMessageContainer>{t("Register.invalid_phone_number")}</ErrorMessageContainer>}
               <DescriptionText>
                 {t(
                   "UserProfile.phoneExplication",

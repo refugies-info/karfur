@@ -73,8 +73,7 @@ const Placeholder = (props: { iconName: string; text: string; i18nKey: string })
   return (
     <div className={styles.red_container}>
       <EVAIcon name={props.iconName} fill="#212121" className="me-2" />
-      {/* @ts-ignore */}
-      <>{t("Annuaire." + props.i18nKey, props.text)}</>
+      <>{t(props.i18nKey, props.text)}</>
     </div>
   );
 };
@@ -155,10 +154,14 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             <div className={styles.line_container}>
               {structure.mailsPublic && structure.mailsPublic.map((mail) => <Mail mail={mail} key={mail} />)}
               {(!structure.mailsPublic || structure.mailsPublic.length === 0) && (
-                <Placeholder iconName="email-outline" text="Aucune adresse email renseignée" i18nKey="noemail" />
+                <Placeholder
+                  iconName="email-outline"
+                  text="Aucune adresse email renseignée"
+                  i18nKey="Annuaire.noemail"
+                />
               )}
             </div>
-            <div className={styles.subtitle}>{t("Annuaire.Numéro de téléphone", "Numéro de téléphone")}</div>
+            <div className={styles.subtitle}>{t("Annuaire.phone_number", "Numéro de téléphone")}</div>
             <div className={styles.line_container}>
               {structure.phonesPublic &&
                 structure.phonesPublic.map((phone) => <PhoneNumber phone={phone} key={phone} />)}
@@ -166,28 +169,36 @@ export const MiddleAnnuaireDetail = (props: Props) => {
                 <Placeholder
                   iconName="phone-call-outline"
                   text="Aucun numéro de téléphone renseigné"
-                  i18nKey="noPhone"
+                  i18nKey="Annuaire.noPhone"
                 />
               )}
             </div>
             <div className={styles.subtitle}>{t("Annuaire.Adresse postale", "Adresse postale")}</div>
             {structure.adressPublic && <Adress adress={structure.adressPublic} />}
             {!structure.adressPublic && (
-              <Placeholder iconName="pin-outline" text="Aucune adresse postale renseignée" i18nKey="noAdress" />
+              <Placeholder
+                iconName="pin-outline"
+                text="Aucune adresse postale renseignée"
+                i18nKey="Annuaire.noAdress"
+              />
             )}
-            <div className={styles.subtitle}>{t("Annuaire.Départements d'action", "Départements d'action")}</div>
+            <div className={styles.subtitle}>{t("Annuaire.departments", "Départements d'action")}</div>
             <div className={styles.line_container}>
               {structure.departments &&
                 structure.departments.map((departement) => <Departement key={departement} departement={departement} />)}
               {(!structure.departments || structure.departments.length === 0) && (
-                <Placeholder iconName="hash" text="Aucun département renseigné" i18nKey="noDepartement" />
+                <Placeholder iconName="hash" text="Aucun département renseigné" i18nKey="Annuaire.noDepartement" />
               )}
             </div>
           </div>
           <div className={styles.info_column_container}>
-            <div className={styles.subtitle}>{t("Annuaire.Horaires d'accueil", "Horaires d'accueil")}</div>
+            <div className={styles.subtitle}>{t("Annuaire.reception_hours", "Horaires d'accueil")}</div>
             {!structure.openingHours && (
-              <Placeholder iconName="alert-circle-outline" text="Horaires non-renseignées" i18nKey="noOpeningHours" />
+              <Placeholder
+                iconName="alert-circle-outline"
+                text="Horaires non-renseignées"
+                i18nKey="Annuaire.noOpeningHours"
+              />
             )}
             {structure.openingHours && structure.openingHours.precisions && (
               <div style={{ marginBottom: "8px" }}>
@@ -195,12 +206,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               </div>
             )}
             {structure.openingHours && structure.openingHours.noPublic && (
-              <HoursPrecisions
-                text={t(
-                  "Annuaire.Cette structure n'accueille pas de public.",
-                  "Cette structure n'accueille pas de public.",
-                )}
-              />
+              <HoursPrecisions text={t("Annuaire.no_public", "Cette structure n'accueille pas de public.")} />
             )}
             {structure.onlyWithRdv && (
               <HoursPrecisions text={t("Annuaire.Uniquement sur rendez-vous", "Uniquement sur rendez-vous.")} />
@@ -211,7 +217,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </div>
         </div>
         <div style={{ marginTop: "24px", marginBottom: "24px" }}>
-          <h2 className={styles.title}>{t("Annuaire.Activités et services", "Activités et services")}</h2>
+          <h2 className={styles.title}>{t("Annuaire.services", "Activités et services")}</h2>
         </div>
         <div className={styles.activity_container}>
           {activitiesSortedByTheme &&
@@ -220,8 +226,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               if (!theme) return;
               return (
                 <ActivityCard
-                  // @ts-ignore
-                  activity={t("Annuaire." + activity, activity)}
+                  activity={t("StructureActivities." + activity, activity)}
                   key={activity}
                   darkColor={theme.colors.color100}
                   lightColor={theme.colors.color30}
