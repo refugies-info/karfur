@@ -185,7 +185,9 @@
     "team": "ግሩብ",
     "the_team": "ግሩፕ ረፍጂ.ኣንፎ",
     "issues": "ጸገማት",
-    "network": "ምስዓብ ኣብ መስመር ኣብርክቶ ምግባር"
+    "network": "ምስዓብ ኣብ መስመር ኣብርክቶ ምግባር",
+    "explore_dispositifs": "ምርኣይ መሳርሒ",
+    "contribute": "ኣበርክቶ"
   },
   "Filters": {
     "age-18": "ትሕቲ 18 ዓመት",
@@ -475,12 +477,9 @@
   "actions": "ተግባር",
   "demarches": "መስርሕ",
   "ou": "ኣበይ",
-  "Elargir recherche": "ፈትን ከትማዕብሎ ናይ ምድላይ ንጥፈታት ን ብዝኾነ ምልክታት",
   "Annuler": "ምስራዝ",
-  "Chercher un dispositif": "ምርኣይ መሳርሒ",
   "Valider": "ምርግጋጽ",
   "Plus tard": "ኣብ ቀጻሊ",
-  "Contribuer": "ኣበርክቶ",
   "minutes": "ደቒቕ",
   "Non": "ኣይፋል፣",
   "Oui": "እወ / ርግጽ",
@@ -579,7 +578,8 @@
     "Type de structure": "ዓይነት ትካል፣",
     "a": "ናብ",
     "phone_number": "ኢመይል ኣድረስ",
-    "departments": "ዞባ\\ ዴባርትሞ  ናይ ተግባር ወይ ፍጻመ"
+    "departments": "ዞባ\\ ዴባርትሞ  ናይ ተግባር ወይ ፍጻመ",
+    "retry_search": "ፈትን ከትማዕብሎ ናይ ምድላይ ንጥፈታት ን ብዝኾነ ምልክታት"
   },
   "MobileAppModal": {
     "stay": "ኣብዚ መርበብ ሓበሬታ ጽንሑ፣",

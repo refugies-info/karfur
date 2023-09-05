@@ -62,7 +62,7 @@ const MissionDispositif = () => {
       </MissionDetailDescription>
       <Link legacyBehavior href={getPath("/recherche", router.locale, "?filter=dispositifs")} passHref>
         <FButton type="fill-dark" tag="a">
-          {t("Chercher un dispositif", "Explorer un dispositif")}
+          {t("QuiSommesNous.explore_dispositifs", "Explorer un dispositif")}
         </FButton>
       </Link>
     </MissionDetailContainer>

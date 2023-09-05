@@ -196,7 +196,9 @@
     "team": "Team",
     "the_team": "The Refugies.info team",
     "issues": "Issues",
-    "network": "Join the contributors' network"
+    "network": "Join the contributors' network",
+    "explore_dispositifs": "Explore programs",
+    "contribute": "Contribute"
   },
   "Filters": {
     "age-18": "under 18",
@@ -505,12 +507,9 @@
   "actions": "Actions",
   "demarches": "Procedures",
   "ou": "or",
-  "Elargir recherche": "Try to expand your search by removing some tags",
   "Annuler": "Cancel",
-  "Chercher un dispositif": "Explore programs",
   "Valider": "Validate",
   "Plus tard": "Later",
-  "Contribuer": "Contribute",
   "minutes": "minutes",
   "Non": "No",
   "Oui": "Yes",
@@ -608,7 +607,8 @@
     "Type de structure": "Type of organisation",
     "a": "to",
     "phone_number": "Phone number",
-    "departments": "Departments of action"
+    "departments": "Departments of action",
+    "retry_search": "Try to expand your search by removing some tags"
   },
   "MobileAppModal": {
     "stay": "Stay on the browser",

@@ -197,7 +197,9 @@
     "team": "Équipe",
     "the_team": "L'équipe Réfugiés.info",
     "issues": "Problématiques",
-    "network": "Rejoindre le réseau des contributeurs"
+    "network": "Rejoindre le réseau des contributeurs",
+    "explore_dispositifs": "Explorer les dispositifs",
+    "contribute": "Contribuer"
   },
   "Filters": {
     "age-18": "Moins de 18 ans",
@@ -517,12 +519,9 @@
   "actions": "Actions",
   "demarches": "Démarches",
   "ou": "ou",
-  "Elargir recherche": "Essayez d’élargir votre recherche en désactivant certains tags",
   "Annuler": "Annuler",
-  "Chercher un dispositif": "Explorer les dispositifs",
   "Valider": "Valider",
   "Plus tard": "Plus tard",
-  "Contribuer": "Contribuer",
   "minutes": "minutes",
   "Non": "Non",
   "Oui": "Oui",
@@ -621,7 +620,8 @@
     "Type de structure": "Type de structure",
     "a": "à",
     "phone_number": "Numéro de téléphone",
-    "departments": "Départements d'action"
+    "departments": "Départements d'action",
+    "retry_search": "Essayez d’élargir votre recherche en désactivant certains tags"
   },
   "MobileAppModal": {
     "stay": "Rester sur le navigateur",

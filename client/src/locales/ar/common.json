@@ -192,7 +192,9 @@
     "team": "فريق",
     "the_team": "فريق عمل Réfugiés.info",
     "issues": "اشكاليات",
-    "network": "شارك معنا في شبكة المساهمين"
+    "network": "شارك معنا في شبكة المساهمين",
+    "explore_dispositifs": "استكشاف البرامج",
+    "contribute": "ساهم"
   },
   "Filters": {
     "age-18": "تحت سن 18",
@@ -482,12 +484,9 @@
   "actions": "نشاطات و فورماسيون",
   "demarches": "معاملات ادارية",
   "ou": "أو",
-  "Elargir recherche": "حاول توسيع بحثك بإلغاء بعض الفلاتر",
   "Annuler": "إلغاء",
-  "Chercher un dispositif": "استكشاف البرامج",
   "Valider": "تأكيد",
   "Plus tard": "لوقت لاحق",
-  "Contribuer": "ساهم",
   "minutes": "الدقائق",
   "Non": "لا",
   "Oui": "نعم",
@@ -585,7 +584,8 @@
     "Type de structure": "نوع المؤسسة",
     "a": "و حتّى الساعة",
     "phone_number": "رقم الهاتف",
-    "departments": "المنطقة المستهدفة"
+    "departments": "المنطقة المستهدفة",
+    "retry_search": "حاول توسيع بحثك بإلغاء بعض الفلاتر"
   },
   "MobileAppModal": {
     "stay": "المتابعة على متصفح الانترنيت",

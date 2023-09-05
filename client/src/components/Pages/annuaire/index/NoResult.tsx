@@ -16,7 +16,7 @@ export const NoResult = (props: any) => {
         <h2 className={styles.title}>{t("no_result", "Aucun résultat")}</h2>
         <p className={styles.text}>
           {t(
-            "Elargir recherche",
+            "Annuaire.retry_search",
             "Il n’existe aucune structure correspondant aux filtres sélectionnés. Essayez d’élargir votre recherche en retirant des filtres.",
           )}{" "}
         </p>

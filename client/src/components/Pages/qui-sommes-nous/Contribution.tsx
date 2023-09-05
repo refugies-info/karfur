@@ -109,7 +109,7 @@ const ContributionEngagement = () => {
         </ContributionDetailDescription>
         <Link legacyBehavior href="/backend/user-dash-contrib" passHref prefetch={false}>
           <FButton type="fill-dark" tag="a">
-            {t("Contribuer", "Contribuer")}
+            {t("QuiSommesNous.contribute", "Contribuer")}
           </FButton>
         </Link>
       </TextContainer>

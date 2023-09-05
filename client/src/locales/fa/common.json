@@ -196,7 +196,9 @@
     "team": "تیم",
     "the_team": "تیم Refugies.info",
     "issues": "مسائل (مشکلات)",
-    "network": "به شبکه مشارکت کنندگان بپیوندید"
+    "network": "به شبکه مشارکت کنندگان بپیوندید",
+    "explore_dispositifs": "دستگاه ها را کاوش کنید",
+    "contribute": "شرکت کردن"
   },
   "Filters": {
     "age-18": "زیر 18 سال",
@@ -505,12 +507,9 @@
   "actions": "اقدامات",
   "demarches": "روند های اداری",
   "ou": "یا",
-  "Elargir recherche": "برای گسترده ی ساختن جستجو خود کوشش نمایید برخی از تگ ها را خاموش کنید",
   "Annuler": "لغو کردن",
-  "Chercher un dispositif": "دستگاه ها را کاوش کنید",
   "Valider": "تایید",
   "Plus tard": "بعدا",
-  "Contribuer": "شرکت کردن",
   "minutes": "دقایق",
   "Non": "نخیر",
   "Oui": "بلی",
@@ -609,7 +608,8 @@
     "Type de structure": "نوع ساختار",
     "a": "در",
     "phone_number": "شماره تلفن",
-    "departments": "بخشهای اقدام"
+    "departments": "بخشهای اقدام",
+    "retry_search": "برای گسترده ی ساختن جستجو خود کوشش نمایید برخی از تگ ها را خاموش کنید"
   },
   "MobileAppModal": {
     "stay": "در مرورگر بمانید",
