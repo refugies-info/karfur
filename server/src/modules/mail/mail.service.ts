@@ -19,7 +19,7 @@ export const sendWelcomeMail = async (email: string, username: string, userId: U
       }
     };
     const templateName = "newUserWelcome";
-    sendMail(templateName, dynamicData);
+    sendMail(templateName, dynamicData, true);
     await addMailEvent({ templateName, username, email, userId });
     return;
   } catch (error) {
@@ -43,7 +43,7 @@ export const sendResetPasswordMail = async (username: string, lien_reinitialisat
       }
     };
     const templateName = "resetPassword";
-    sendMail(templateName, dynamicData);
+    sendMail(templateName, dynamicData, true);
     await addMailEvent({ templateName, username, email });
     return;
   } catch (error) {
@@ -69,7 +69,7 @@ export const sendResetPhoneNumberMail = async (username: string, email: string) 
       }
     };
     const templateName = "changePhoneNumber";
-    sendMail(templateName, dynamicData);
+    sendMail(templateName, dynamicData, true);
     await addMailEvent({ templateName, username, email });
     return;
   } catch (error) {
@@ -484,7 +484,7 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
     };
     const templateName = "reviewFiche";
     // @ts-ignore
-    sendMail(templateName, dynamicData);
+    sendMail(templateName, dynamicData, true);
     await addMailEvent({
       templateName,
       username: data.pseudo,
@@ -524,7 +524,7 @@ export const sendNewReponsableMailService = async (data: NewResponsableMail) => 
       }
     };
     const templateName = "newResponsable";
-    sendMail(templateName, dynamicData);
+    sendMail(templateName, dynamicData, true);
     await addMailEvent({
       templateName,
       username: data.pseudonyme,
@@ -552,7 +552,7 @@ export const sendAccountDeletedMailService = async (email: string) => {
       reply_to: "contact@email.refugies.info"
     };
     const templateName = "accountDeleted";
-    sendMail(templateName, dynamicData);
+    sendMail(templateName, dynamicData, true);
     await addMailEvent({
       templateName,
       email: email
