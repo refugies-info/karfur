@@ -7,7 +7,8 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export const sendMail = (
   templateName: TemplateName,
-  dynamicData: DynamicData
+  dynamicData: DynamicData,
+  bypassUnsubscribe?: boolean
 ) => {
   if (process.env.NODE_ENV === "dev") {
     logger.info("[sendMail] no mail sent in dev env");
@@ -23,10 +24,17 @@ export const sendMail = (
     templateName,
   });
 
-  const msg = {
+  const msg: any = {
     ...dynamicData,
     template_id: templatesIds[templateName],
   };
+
+  if (bypassUnsubscribe) {
+    msg.mail_settings = {
+      bypass_list_management: { enable: true }
+    }
+  }
+
   sgMail
     .send(msg)
     .then(() => { }, (error: any) => {
