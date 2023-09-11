@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components/native";
-import { View, FlatList, Platform, Keyboard, Text } from "react-native";
+import { View, FlatList, Platform, Keyboard } from "react-native";
 import { connectInfiniteHits } from "react-instantsearch-native";
 import { ErrorScreen } from "../ErrorScreen";
 import NbResults from "./NbResults";
 import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { contentsSelector } from "../../services/redux/Contents/contents.selectors";
 import { HitWithInsights } from "./Hit";
 
 const ErrorContainer = styled.View`
@@ -20,7 +22,7 @@ interface Props {
   navigation: any;
   selectedLanguage: string | null;
   query: string;
-  nbContents: any;
+  nbContents: Record<string, number>;
 }
 
 const InfiniteHits = ({
@@ -39,6 +41,19 @@ const InfiniteHits = ({
       ? { keyboardDismissMode: dismissMode }
       : { onScrollBeginDrag: Keyboard.dismiss };
 
+  const contents = useSelector(contentsSelector);
+  const contentIds = useMemo(
+    () => contents.map((c) => c._id.toString()),
+    [contents]
+  );
+  const nbResults = React.useMemo(() => {
+    return (hits || []).filter(
+      (hit) =>
+        ["theme", "besoin"].includes(hit.typeContenu) ||
+        contentIds.includes(hit.objectID)
+    ).length;
+  }, [contentIds, hits]);
+
   if (hits.length === 0) {
     return (
       <ErrorContainer>
@@ -55,6 +70,7 @@ const InfiniteHits = ({
       </ErrorContainer>
     );
   }
+
   return (
     <View>
       <FlatList
@@ -63,7 +79,7 @@ const InfiniteHits = ({
         onEndReached={() => hasMore && refineNext()}
         contentContainerStyle={{ paddingBottom: styles.margin * 6 }}
         {...keyboardDismissProp}
-        ListHeaderComponent={<NbResults />}
+        ListHeaderComponent={<NbResults nbResults={nbResults} />}
         renderItem={({ item }) => (
           <HitWithInsights
             hit={item}

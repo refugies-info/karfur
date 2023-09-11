@@ -43,7 +43,7 @@ export const SearchResultsScreen = ({
 
   // Calculate nb contents per need
   const nbContents = React.useMemo(() => {
-    const nbContents: any = {};
+    const nbContents: Record<string, number> = {};
     for (const need of allNeeds) {
       nbContents[need._id.toString()] =
         groupedContents[need._id.toString()]?.length || 0;

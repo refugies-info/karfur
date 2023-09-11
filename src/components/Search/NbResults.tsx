@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
-import { connectStats } from "react-instantsearch-native";
 import { TextNormalBold } from "../StyledText";
-import { styles } from "../../theme"
+import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const StyledTextBold = styled(TextNormalBold)`
@@ -11,18 +10,18 @@ const StyledTextBold = styled(TextNormalBold)`
   padding-horizontal: ${styles.margin * 3}px;
 `;
 
-interface Props {
-  nbHits: number;
+interface Props {
+  nbResults: number;
 }
 
-const NbResults = ({ nbHits }: Props) => {
+const NbResults = (props: Props) => {
   const { t } = useTranslationWithRTL();
 
   return (
     <StyledTextBold>
-      {t("search_screen.results", "résultats", { nbResults: nbHits })}
+      {t("search_screen.results", "résultats", { nbResults: props.nbResults })}
     </StyledTextBold>
-  )
-}
+  );
+};
 
-export default connectStats(NbResults);
+export default NbResults;
