@@ -9,7 +9,6 @@ import { setUserStructureActionCreator } from "services/UserStructure/userStruct
 import { userStructureDisposAssociesSelector, userStructureHasResponsibleSeenNotification } from "services/UserStructure/userStructure.selectors";
 import { getNbNewNotifications } from "../UserNotifications/lib";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
-import isInBrowser from "lib/isInBrowser";
 
 const useBackendNavigation = (): MainNavigationProps.Item[] => {
   const { t } = useTranslation();
@@ -34,7 +33,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
       access: "all",
       iconName: "search-outline",
       onClick: () => router.push(getPath("/recherche", router.locale)),
-      title: t("Toolbar.Trouver de l'information"),
+      title: t("Toolbar.find_information"),
     }),
     useBackendNavItem({
       access: "hasStructure",

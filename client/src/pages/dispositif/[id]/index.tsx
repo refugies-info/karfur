@@ -5,6 +5,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+import { updateNbViews } from "lib/dispositifPage";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import PageContext from "utils/pageContext";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
@@ -41,6 +42,8 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   if (!dispositif || dispositif.typeContenu !== "dispositif") {
     return { notFound: true };
   }
+
+  await updateNbViews(dispositif);
 
   // 200
   return {

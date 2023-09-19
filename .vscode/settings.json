@@ -3,7 +3,31 @@
   "eslint.workingDirectories": ["./client", "./server"],
   "typescript.tsdk": "client/node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "i18n-ally.localesPaths": ["client/src/locales", "server/src/locales"],
+  "i18n-ally.localesPaths": ["client/src/locales"],
+  "i18n-ally.ignoreFiles": ["**/unused.json"],
   "i18n-ally.keystyle": "nested",
-  "conventionalCommits.scopes": ["api-types", "client", "server"]
+  "conventionalCommits.scopes": ["api-types", "client", "server"],
+  "i18n-ally.keysInUse": [
+    "StructureType.*",
+    "StructureActivities.*",
+    "StructureActivities.Coaching / Suivi dans l'emploi",
+    "StructureDay.*",
+    "callout_*",
+    "Dispositif.section*",
+    "Filters.*",
+    "Infocards.*",
+    "Recherche.demarcheExample*",
+    "Recherche.dispositifExample*",
+    "Register.criteria_*",
+    "Roles.*",
+    "Status.*",
+    "LanguageDropdown.*",
+    "LanguageDropdown.en_persan/dari",
+    "Translate.medium",
+    "Translate.strong",
+    "Translate.weak"
+  ],
+  "i18n-ally.dirStructure": "auto",
+  "i18n-ally.enabledFrameworks": ["i18next", "react-i18next"],
+  "i18n-ally.extract.keygenStyle": "snake_case"
 }

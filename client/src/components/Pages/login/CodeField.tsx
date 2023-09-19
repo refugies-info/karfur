@@ -5,9 +5,9 @@ import FInput from "components/UI/FInput/FInput";
 import styles from "scss/components/login.module.scss";
 
 interface Props {
-  value: string
-  onChange: ChangeEventHandler<HTMLInputElement>
-  wrongAdminCodeError: boolean
+  value: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  wrongAdminCodeError: boolean;
 }
 
 const CodeField = (props: Props) => {
@@ -29,27 +29,18 @@ const CodeField = (props: Props) => {
           />
         </div>
         <div style={{ marginLeft: 10 }}>
-          <FButton
-            type="validate-light"
-            name="checkmark-outline"
-            disabled={!props.value}
-          >
+          <FButton type="validate-light" name="checkmark-outline" disabled={!props.value}>
             {t("Valider", "Valider")}
           </FButton>
         </div>
       </div>
       {props.wrongAdminCodeError && (
         <div className={styles.error_message}>
-          <b>
-            {t(
-              "Login.Le code saisi n'est pas le bon.",
-              "Le code saisi n'est pas le bon."
-            )}
-          </b>
+          <b>{t("Login.wrong_code", "Le code saisi n'est pas le bon.")}</b>
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
 export default CodeField;

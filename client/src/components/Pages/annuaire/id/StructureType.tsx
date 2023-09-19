@@ -8,10 +8,5 @@ interface Props {
 export const StructureType = (props: Props) => {
   const { t } = useTranslation();
 
-  return (
-    <div className={styles.container}>
-      {/* @ts-ignore */}
-      {t("Annuaire." + props.type, props.type)}
-    </div>
-  )
-}
+  return <div className={styles.container}>{t("StructureType." + props.type, props.type)}</div>;
+};
