@@ -29,6 +29,7 @@ import { styles } from "../theme";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
+import { noVoiceover } from "../libs/noVoiceover";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -102,7 +103,7 @@ function BottomTabBar({
     state.index === 3 || // profil tab
     (state.index === 0 && explorerScreen === 0) || // explorer screen
     (state.index === 0 && hasNotificationScreen) || // notification screen
-    ["ps", "fa", "ti"].includes(currentLanguageI18nCode || "fr");
+    noVoiceover(currentLanguageI18nCode);
   if (!noReadButton) items.splice(2, 0, <Space key="space" />);
 
   const insetBottom = insets.bottom > 0 ? insets.bottom - 8 : 0;

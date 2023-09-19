@@ -91,6 +91,7 @@ import { dateDiffReadable } from "./dateDiff";
 import { LinkedNeed, LinkedTheme, Mercis } from "./Sections";
 import { isEmpty } from "lodash";
 import LanguageUnavailable from "./LanguageUnavailable";
+import { noVoiceover } from "../../libs/noVoiceover";
 
 const HeaderText = styled(TextBigBold)`
   margin-top: ${({ theme }) => theme.margin * 2}px;
@@ -379,7 +380,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     navigation.navigate("Favoris", { screen: "FavorisScreen" });
   };
 
-  const noReadButton = ["ps", "fa", "ti"].includes(currentLanguage || "fr");
+  const noReadButton = noVoiceover(currentLanguage);
   return (
     <>
       <Page
