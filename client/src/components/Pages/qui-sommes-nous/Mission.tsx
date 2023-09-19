@@ -57,12 +57,12 @@ const MissionDispositif = () => {
       <MissionDetailDescription>
         {t(
           "QuiSommesNous.recenser-description",
-          "De nombreux dispositifs émergent en France pour accueillir et accompagner les personnes réfugiées. Ces actions souffrent parfois d’un manque de visibilité et ne profitent pas au plus grand nombre. Réfugiés.info a pour mission de recenser, de rendre visible et de rendre accessible ces nombreuses initiatives."
+          "De nombreux dispositifs émergent en France pour accueillir et accompagner les personnes réfugiées. Ces actions souffrent parfois d’un manque de visibilité et ne profitent pas au plus grand nombre. Réfugiés.info a pour mission de recenser, de rendre visible et de rendre accessible ces nombreuses initiatives.",
         )}
       </MissionDetailDescription>
       <Link legacyBehavior href={getPath("/recherche", router.locale, "?filter=dispositifs")} passHref>
         <FButton type="fill-dark" tag="a">
-          {t("Chercher un dispositif", "Explorer un dispositif")}
+          {t("QuiSommesNous.explore_dispositifs", "Explorer un dispositif")}
         </FButton>
       </Link>
     </MissionDetailContainer>
@@ -84,12 +84,12 @@ const MissionDemarche = () => {
       <MissionDetailDescription>
         {t(
           "QuiSommesNous.vulgariser-description",
-          "Dès la protection internationale obtenue, les personnes réfugiées entrent dans le droit commun ce qui déclenche de nombreuses démarches administratives. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches et rassemble des bénévoles pour les traduire dans les principales langues de l'intégration."
+          "Dès la protection internationale obtenue, les personnes réfugiées entrent dans le droit commun ce qui déclenche de nombreuses démarches administratives. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches et rassemble des bénévoles pour les traduire dans les principales langues de l'intégration.",
         )}
       </MissionDetailDescription>
       <Link legacyBehavior href={getPath("/recherche", router.locale, "?filter=demarches")} passHref>
         <FButton type="fill-dark" tag="a">
-          {t("Chercher une démarche", "Explorer les démarches")}
+          {t("QuiSommesNous.explore", "Explorer les démarches")}
         </FButton>
       </Link>
     </MissionDetailContainer>
@@ -107,7 +107,7 @@ const MissionParcours = () => {
       <MissionDetailDescription>
         {t(
           "QuiSommesNous.parcours-description",
-          "Obtenir l’asile, c’est surtout reconstruire. Un chez soi, un réseau, une vocation. Le déracinement a souvent brouillé les repères, les ambitions, les objectifs. Réfugiés.info propose un outil structurant l’action et permettant aux réfugiés d’atteindre plus vite et plus sereinement ses objectifs de vie."
+          "Obtenir l’asile, c’est surtout reconstruire. Un chez soi, un réseau, une vocation. Le déracinement a souvent brouillé les repères, les ambitions, les objectifs. Réfugiés.info propose un outil structurant l’action et permettant aux réfugiés d’atteindre plus vite et plus sereinement ses objectifs de vie.",
         )}
       </MissionDetailDescription>
       <FooterText>{t("QuiSommesNous.disponible prochainement", "Disponible prochainement")}</FooterText>

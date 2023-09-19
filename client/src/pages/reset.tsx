@@ -212,7 +212,7 @@ const Reset = () => {
       <div className={styles.reset_loading_access}>
         <SEO />
         <h3>
-          {t("Login.Chargement des données utilisateur", "Chargement des données utilisateur")}
+          {t("Login.load_user_data", "Chargement des données utilisateur")}
           ...
         </h3>
       </div>
@@ -223,14 +223,14 @@ const Reset = () => {
         <SEO />
         <h5>
           {t(
-            "Login.Problème mdp",
+            "Login.error_password_reset",
             "Un problème est survenu au moment de réinitialiser le mot de passe. Merci d'essayer à nouveau",
           )}
           ...
         </h5>
         <Link legacyBehavior href={getPath("/login", router.locale)} passHref>
           <FButton tag="a" fill={colors.gray90} name="arrow-back-outline">
-            {t("Login.Revenir à la page de connexion", "Revenir à la page de connexion")}
+            {t("Login.back_to_login", "Revenir à la page de connexion")}
           </FButton>
         </Link>
       </div>
@@ -269,11 +269,11 @@ const Reset = () => {
             name="question-mark-circle-outline"
             fill={colors.gray90}
           >
-            {t("Login.Centre d'aide", "Centre d'aide")}
+            {t("Login.help_center", "Centre d'aide")}
           </FButton>
           <StyledHeader>
             {step !== 2
-              ? t("Reset.Réinitialisation du mot de passe", "Réinitialisation du mot de passe")
+              ? t("Reset.reset_password", "Réinitialisation du mot de passe")
               : t("Login.Double authentification", "Double authentification ")}
           </StyledHeader>
           <StyledEnterValue>{getSubtitle()}</StyledEnterValue>

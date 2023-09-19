@@ -46,10 +46,7 @@ export const GoToDesktopModal = (props: Props) => {
           {t("Register.Rendez-vous sur votre ordinateur", "Rendez-vous sur votre ordinateur")}
         </TitleContainer>
         <TextContainer>
-          {t(
-            "Register.Créez-vous un compte depuis votre ordinateur pour participer",
-            "Créez-vous un compte depuis votre ordinateur pour participer"
-          )}
+          {t("Register.create_a_new_account", "Créez-vous un compte depuis votre ordinateur pour participer")}
         </TextContainer>
         <ButtonContainer>
           <FButtonMobile
@@ -58,7 +55,7 @@ export const GoToDesktopModal = (props: Props) => {
             fill="white"
             color={colors.gray90}
             onClick={props.toggleShowInvitationEmailModal}
-            title="Register.Me le rappeler par email"
+            i18nKey="Register.email_reminder"
             defaultTitle="Me le rappeler par email"
           />
         </ButtonContainer>
@@ -69,7 +66,7 @@ export const GoToDesktopModal = (props: Props) => {
             fill="white"
             color={colors.vert}
             onClick={props.toggle}
-            title="Dispositif.compris"
+            i18nKey="Dispositif.compris"
             defaultTitle="Ok, compris !"
           />
         </ButtonContainer>

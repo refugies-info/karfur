@@ -20,8 +20,8 @@ const Text = (props: Props) => {
 
   const convertedContent = props.html
     ? translationParsing(props.children || "", [
-        { nodeAttr: "data-callout='info'", translation: t(getCalloutTranslationKey("info")) },
-        { nodeAttr: "data-callout='important'", translation: t(getCalloutTranslationKey("important")) },
+        { nodeAttr: /data-callout=["']info["']/, translation: t(getCalloutTranslationKey("info")) },
+        { nodeAttr: /data-callout=["']important["']/, translation: t(getCalloutTranslationKey("important")) },
       ])
     : props.children;
 

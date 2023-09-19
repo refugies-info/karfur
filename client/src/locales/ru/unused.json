@@ -301,7 +301,6 @@
     "Voir le numéro de téléphone": "Посмотреть номер телефона",
     "Voir l’adresse postale": "Посмотреть почтовый адрес",
     "Bouton personnalisé": "Настраиваемая кнопка",
-    "compris": "OK, я понял",
     "Délais de réponse annoncés": "Время ответа известно",
     "Documents nécessaires": "Необходимые документы",
     "realisation etape": "Я выполняю данный шаг:",
@@ -314,7 +313,6 @@
     "Ce que tu dois faire": "Что вам нужно сделать",
     "Titre du lieu": "Название места",
     "Adresse": "Адрес",
-    "Ville": "Город",
     "Informations pratiques": "Полезная информация",
     "Email de contact": "Email",
     "Numéro de téléphone": "Номер телефона",
@@ -367,13 +365,10 @@
     "Dites nous ce que vous pensez": "Скажите, что вы думаете:",
     "Enlever des favoris": "Удалить из избранного",
     "Ajouter aux favoris": "Добавить в избранное",
-    "Oups": "Ой!",
     "Sauvegardé": "Сохранить",
     "favoriSaved": "Теперь результаты поиска доступны в вашем профиле в разделе",
     "Mes favoris": "Избранное",
-    "Connectez-vous": "Связаться с нами",
-    "créez un compte": "создать профиль",
-    "favoriExplanation": "чтобы легко найти избранное в вашем профиле"
+    "créez un compte": "создать профиль"
   },
   "Register": { "Faible": "Слабый", "Fort": "Сильный", "Moyen": "Средний" }
 }

@@ -4,8 +4,8 @@ import PseudoFooter from "./PseudoFooter";
 import styles from "scss/components/login.module.scss";
 
 interface Props {
-  unexpectedError: boolean
-  step: number
+  unexpectedError: boolean;
+  step: number;
 }
 
 const Footer = (props: Props) => {
@@ -14,19 +14,16 @@ const Footer = (props: Props) => {
   if (props.unexpectedError) {
     return (
       <div className={styles.error_message}>
-        {t(
-          "Login.Une erreur est survenue. Veuillez réessayer.",
-          "Une erreur est survenue. Veuillez réessayer."
-        )}
+        {t("Login.error_retry", "Une erreur est survenue. Veuillez réessayer.")}
       </div>
-    )
+    );
   }
 
   if (props.step === 0) {
-    return <PseudoFooter />
+    return <PseudoFooter />;
   }
 
-  return null
+  return null;
 };
 
 export default Footer;

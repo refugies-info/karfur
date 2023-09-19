@@ -75,11 +75,7 @@ export const CompleteProfilModal = (props: Props) => {
         </ul>
         Nous ne transmetterons jamais votre email à d’autres organisations.
       </div>
-      {notEmailError && (
-        <p className={styles.error}>
-          {`${t("Register.Ceci n'est pas un email,")} ${t("Register.vérifiez l'orthographe")}`}
-        </p>
-      )}
+      {notEmailError && <p className={styles.error}>{`${t("Register.not_an_email")} ${t("Register.check_mail")}`}</p>}
       <div className={styles.btn_container}>
         <FButton onClick={props.toggle} type="outline-black" className="me-2" name="arrow-back-outline">
           {"Retour"}

@@ -31,7 +31,7 @@ const Infos = () => {
             title: "Yay...",
             text: "Mail correctement enregistré !",
             icon: "success",
-            timer: 1500
+            timer: 1500,
           });
           setEmail("");
         })
@@ -41,7 +41,7 @@ const Infos = () => {
           else setNewsletterError("Une erreur s'est produite");
         });
     } else {
-      setNewsletterError(t("Register.Ceci n'est pas un email,") + " " + t("Register.vérifiez l'orthographe"));
+      setNewsletterError(t("Register.not_an_email") + " " + t("Register.check_mail"));
     }
   };
 
@@ -72,7 +72,7 @@ const Infos = () => {
                     disabled={!email}
                     onClick={sendMail}
                   >
-                    Envoyer
+                    {t("Envoyer", "Envoyer")}
                   </FButton>
                 </div>
               </div>

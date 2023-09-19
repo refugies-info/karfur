@@ -301,7 +301,6 @@
     "Voir le numéro de téléphone": "See the telephone number",
     "Voir l’adresse postale": "See postal address",
     "Bouton personnalisé": "Customized button",
-    "compris": "Ok, I understand",
     "Délais de réponse annoncés": "Announced response time",
     "Documents nécessaires": "Required documents",
     "realisation etape": "I'm taking this step:",
@@ -314,7 +313,6 @@
     "Ce que tu dois faire": "What you should do",
     "Titre du lieu": "Place title",
     "Adresse": "Address",
-    "Ville": "City",
     "Informations pratiques": "Useful information",
     "Email de contact": "Contact email",
     "Numéro de téléphone": "Phone number",
@@ -367,13 +365,10 @@
     "Dites nous ce que vous pensez": "Tell us what you think:",
     "Enlever des favoris": "Remove from favorites",
     "Ajouter aux favoris": "Add to favorites",
-    "Oups": "Oops!",
     "Sauvegardé": "Saved!",
     "favoriSaved": "Your search is now available in your profile in the heading",
     "Mes favoris": "My favourites",
-    "Connectez-vous": "Log on to",
-    "créez un compte": "create an account",
-    "favoriExplanation": "to find your favourite files in your personal space easily."
+    "créez un compte": "create an account"
   },
   "Register": { "Faible": "Weak", "Fort": "Strong", "Moyen": "Average" }
 }

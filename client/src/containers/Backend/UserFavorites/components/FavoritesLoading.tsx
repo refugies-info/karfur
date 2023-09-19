@@ -46,14 +46,8 @@ export const FavoritesLoading = (props: { t: any }) => (
     <div style={{ marginRight: "40px", marginLeft: "40px" }}>
       <TitleWithNumber
         amount={0}
-        textSingular={props.t(
-          "UserFavorites.fiche sauvegardée",
-          "fiche sauvegardée"
-        )}
-        textPlural={props.t(
-          "UserFavorites.fiches sauvegardées",
-          "fiches sauvegardées"
-        )}
+        textSingular={props.t("UserFavorites.content_saved", "fiche sauvegardée")}
+        textPlural={props.t("UserFavorites.contents_saved", "fiches sauvegardées")}
         isLoading={true}
       />
     </div>

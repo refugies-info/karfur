@@ -301,7 +301,6 @@
     "Voir le numéro de téléphone": "د تلیفون شمیره وګورئ",
     "Voir l’adresse postale": "پوستي پته وګورئ",
     "Bouton personnalisé": "ځانګړي بټن",
-    "compris": "سمه ده، زه پوه شوم",
     "Délais de réponse annoncés": "دجواب لپاره ورکړ شوې وخت",
     "Documents nécessaires": "ْضروری اسناد",
     "realisation etape": "زه پدې مرحله پوه شوم:",
@@ -314,7 +313,6 @@
     "Ce que tu dois faire": "هغه څه چې تاسويې باید وکړئ",
     "Titre du lieu": "د ځای عنوان",
     "Adresse": "پته (ادرس)",
-    "Ville": "ښار",
     "Informations pratiques": "عملي معلومات",
     "Email de contact": "د اړیکې نیولوبریښنالیک (ایمل)",
     "Numéro de téléphone": "د تلیفون شمیره",
@@ -367,13 +365,10 @@
     "Dites nous ce que vous pensez": "مونږ ته ووایاست چې تاسو څه فکر کوی:",
     "Enlever des favoris": "دغوره ځای څخه لری کول",
     "Ajouter aux favoris": "غوره ځای ته اضافه کول",
-    "Oups": "اوه!",
     "Sauvegardé": "خوندي شوی!",
     "favoriSaved": "ستاسو لټون ستاسو د پروفایل په بخش کې شتون لري",
     "Mes favoris": "زما د علاقې وړ",
-    "Connectez-vous": "ځان وصل کړئ",
-    "créez un compte": "یو حساب جوړکړئ",
-    "favoriExplanation": "د خپلې علاقې وړ فایلونه په خپل شخصي بخش کې پیدا کولای شئ"
+    "créez un compte": "یو حساب جوړکړئ"
   },
   "Register": { "Faible": "ضعیفه", "Fort": "قوې", "Moyen": "درمیانه" }
 }
