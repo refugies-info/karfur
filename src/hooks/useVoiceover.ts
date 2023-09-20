@@ -54,12 +54,7 @@ export const useVoiceover = (
   const setScroll = (currentScroll: number, _offset: number) => {
     if (isFocused) {
       setOldPosY(currentScroll);
-      // keep offset to be able to find which element is visible when click on play
-      dispatch(
-        setScrollReading(
-          currentScroll === offset ? currentScroll : currentScroll + offset
-        )
-      );
+      dispatch(setScrollReading(currentScroll));
     }
   };
 

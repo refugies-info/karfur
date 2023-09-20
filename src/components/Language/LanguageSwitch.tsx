@@ -112,8 +112,8 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
     logEventInFirebase(FirebaseEvent.SWITCH_LANGUAGE, {
       newLanguageOldLanguage: newLanguage + "/" + oldLanguage,
     });
-    dispatch(newReadingList(null));
     changeLanguage(isFrenchSelected, selectedLanguageI18nCode);
+    dispatch(newReadingList(null));
   };
 
   if (selectedLanguageI18nCode === "fr")

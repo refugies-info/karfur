@@ -17,6 +17,7 @@ import { setReadingItem } from "../../services/redux/VoiceOver/voiceOver.actions
 import {
   currentItemSelector,
   currentScrollSelector,
+  readingListLengthSelector,
   readingListSelector,
 } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { styles } from "../../theme";
@@ -41,7 +42,7 @@ const Container = styled(View)`
 const PlayContainer = styled(TouchableOpacity)`
   width: 56px;
   position: absolute;
-  bottom: 4px;
+  bottom: 0;
   left: 50%;
   margin-left: -28px;
   align-items: center;
@@ -141,6 +142,7 @@ export const ReadButton = (props: Props) => {
 
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const readingList = useSelector(readingListSelector);
+  const readingListLength = useSelector(readingListLengthSelector);
   const currentItem = useSelector(currentItemSelector);
   const currentScroll = useSelector(currentScrollSelector);
 
@@ -152,7 +154,7 @@ export const ReadButton = (props: Props) => {
   const readText = useCallback(
     (item: ReadingItem, readingList: ReadingItem[]) => {
       setIsPaused(false);
-      logger.info("Reading: ", item.text);
+      logger.info("Reading: ", item.text.slice(0, 30));
       Speech.speak(item.text, {
         rate: rate,
         language: currentLanguageI18nCode || "fr",
@@ -170,7 +172,7 @@ export const ReadButton = (props: Props) => {
   );
 
   const startToRead = useCallback(() => {
-    if (Array.isArray(readingList)) {
+    if (readingList && readingListLength > 0) {
       setIsLoading(true);
       deactivateKeepAwake("voiceover").catch((e) => {
         logger.error(e);
@@ -179,8 +181,8 @@ export const ReadButton = (props: Props) => {
         logger.error(e);
       });
 
-      logger.info("startToRead, nb items :", readingList.length);
-      Promise.all(readingList)
+      logger.info("startToRead, nb items :", readingListLength);
+      Promise.all(Object.values(readingList))
         .then((res) => {
           logger.info("startToRead:: res", res);
           logEventInFirebase(FirebaseEvent.START_VOICEOVER, {
@@ -188,8 +190,9 @@ export const ReadButton = (props: Props) => {
           });
           const sortedReadingList = res.sort(sortItems);
           setResolvedReadingList(sortedReadingList);
+          const scrollLimit = currentScroll === 0 ? 0 : currentScroll + 200; // arbitrary offset to select element in the middle of the screen is scrolled
           const firstItem = sortedReadingList.find(
-            (item) => item.posY >= currentScroll
+            (item) => item.posY >= scrollLimit
           );
           const toRead = getReadingList(
             sortedReadingList,

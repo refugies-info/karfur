@@ -17,9 +17,11 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { Trans } from "react-i18next";
 import {
+  ContentStructure,
   ContentType,
   Languages,
   Poi,
+  Sponsor,
   ViewsType,
 } from "@refugies-info/api-types";
 
@@ -561,8 +563,10 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                       }}
                     />
                     <TextSmallNormal>
-                      {/* @ts-ignore */}
-                      <ReadableText>{sponsor.name || sponsor.nom}</ReadableText>
+                      <ReadableText>
+                        {(sponsor as Sponsor).name ||
+                          (sponsor as ContentStructure).nom}
+                      </ReadableText>
                     </TextSmallNormal>
                   </Columns>
                 ))}

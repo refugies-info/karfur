@@ -94,6 +94,7 @@ export const NeedsScreen = ({
             titleIcon: theme.icon,
           })(HeaderContentTitle) as ComponentType<HeaderContentProps>
         }
+        loading
       >
         <SkeletonListPage />
       </Page>
@@ -112,6 +113,7 @@ export const NeedsScreen = ({
             titleIcon: theme.icon,
           })(HeaderContentTitle) as ComponentType<HeaderContentProps>
         }
+        loading={false}
       >
         <ErrorScreen
           buttonText={t("tab_bar.explorer")}
@@ -137,6 +139,7 @@ export const NeedsScreen = ({
           titleIcon: theme.icon,
         })(HeaderContentTitle) as ComponentType<HeaderContentProps>
       }
+      loading={false}
     >
       {needsToDisplay.map((need: GetNeedResponse) => {
         const needText =
