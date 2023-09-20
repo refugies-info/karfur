@@ -258,7 +258,7 @@ export const ProfilScreen = ({
       <TextVerySmallNormal
         style={{ textAlign: "center", color: styles.colors.darkGrey }}
       >
-        Version {Constants.manifest?.extra?.displayVersionNumber}
+        Version {Constants.expoConfig?.extra?.displayVersionNumber}
       </TextVerySmallNormal>
       <ConfirmationModal
         isModalVisible={isDeleteDataModalVisible}
