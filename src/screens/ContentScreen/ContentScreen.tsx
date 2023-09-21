@@ -8,12 +8,12 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Image,
+  ScrollView,
 } from "react-native";
 import * as Linking from "expo-linking";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { Trans } from "react-i18next";
 import {

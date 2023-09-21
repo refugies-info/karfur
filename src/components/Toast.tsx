@@ -1,7 +1,6 @@
 import React from "react";
 import { Icon } from "react-native-eva-icons";
-import { Animated, Easing, PixelRatio } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { Animated, Easing, PixelRatio, TouchableOpacity } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { styles } from "../theme";
 import { RTLView } from "./BasicComponents";

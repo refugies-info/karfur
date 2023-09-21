@@ -2,7 +2,7 @@ import "react-native-gesture-handler";
 import React, { Suspense, useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { View } from "react-native";
+import { I18nManager, View } from "react-native";
 import { QueryClientProvider, QueryClient } from "react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getExpoPushTokenAsync } from "expo-notifications";
@@ -19,6 +19,9 @@ import { retrieveTechnicalInfo, updateAppUser } from "./utils/API";
 import useAsync from "react-use/lib/useAsync";
 import OfflinePage from "./components/OfflinePage";
 import { ThemeProvider } from "./theme";
+// deactivate native RTL so we can handle it ourselves
+I18nManager.forceRTL(false);
+I18nManager.allowRTL(false);
 
 const queryClient = new QueryClient();
 
