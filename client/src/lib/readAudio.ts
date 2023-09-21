@@ -1,10 +1,6 @@
 import API from "utils/API";
 
 let audio: HTMLAudioElement | null;
-if (typeof Audio !== "undefined") {
-  // for browsers
-  audio = new Audio();
-}
 
 const BASE_RATE = 0.75;
 
@@ -15,6 +11,9 @@ const readAudio = function (
   isActive: boolean = true,
   startLoader: any = () => { },
 ) {
+  if (typeof Audio !== "undefined" && !audio) { // for browsers
+    audio = new Audio();
+  }
   if (!text || text === "null") return;
   startLoader(true);
   API.cancel_tts_subscription();
