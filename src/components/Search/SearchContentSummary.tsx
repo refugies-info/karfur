@@ -7,6 +7,7 @@ import { TagButton } from "../Explorer/TagButton";
 import { useSelector } from "react-redux";
 import { themeSelector } from "../../services";
 import { contentSelector } from "../../services/redux/Contents/contents.selectors";
+import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { styles } from "../../theme";
 
 interface Props {
@@ -29,6 +30,14 @@ export const SearchContentSummary = (props: Props) => {
   }
 
   if (props.item.typeContenu === "besoin") {
+    // empty need
+    const groupedContents = useSelector(groupedContentsSelector);
+    if (
+      !groupedContents[props.item.objectID] ||
+      groupedContents[props.item.objectID].length === 0
+    ) {
+      return null;
+    }
     return (
       // BESOIN
       <NeedsSummary

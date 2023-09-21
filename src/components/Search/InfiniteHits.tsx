@@ -8,6 +8,7 @@ import NbResults from "./NbResults";
 import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { contentsSelector } from "../../services/redux/Contents/contents.selectors";
+import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { HitWithInsights } from "./Hit";
 
 const ErrorContainer = styled.View`
@@ -46,12 +47,25 @@ const InfiniteHits = ({
     () => contents.map((c) => c._id.toString()),
     [contents]
   );
+  const groupedContents = useSelector(groupedContentsSelector);
+
   const nbResults = React.useMemo(() => {
-    return (hits || []).filter(
-      (hit) =>
-        ["theme", "besoin"].includes(hit.typeContenu) ||
-        contentIds.includes(hit.objectID)
-    ).length;
+    return (hits || []).filter((hit) => {
+      if (hit.typeContenu === "theme") return true;
+      if (hit.typeContenu === "besoin") {
+        // hide empty needs
+        if (
+          groupedContents[hit.objectID] &&
+          groupedContents[hit.objectID].length > 0
+        ) {
+          return true;
+        }
+        return false;
+      }
+      // hide server side filtered dispositifs
+      if (contentIds.includes(hit.objectID)) return true;
+      return false;
+    }).length;
   }, [contentIds, hits]);
 
   if (hits.length === 0) {
