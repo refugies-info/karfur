@@ -1,7 +1,7 @@
 import deepLinks from "./androidDeepLinks";
 
 const version = "2.0.6";
-const displayVersionNumber = "2023.09.5";
+const displayVersionNumber = "2023.09.6";
 const androidVersionCode = 28;
 
 export default {
