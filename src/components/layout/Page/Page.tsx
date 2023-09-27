@@ -211,6 +211,7 @@ const Page = ({
           darkBackground={isDarkBackground}
           showTitle={showHeaderTitle}
           headerTitle={headerTitle}
+          changeLanguageCallback={() => setScroll(0, 0)}
         />
       </FixedContainerForHeader>
 

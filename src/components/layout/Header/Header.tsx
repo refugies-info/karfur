@@ -48,7 +48,7 @@ export interface HeaderProps {
   hideLanguageSwitch?: boolean;
   showTitle?: boolean; // TODO Handle this directly in Page component ?
   showLogo?: boolean;
-
+  changeLanguageCallback?: () => void;
   HeaderComponent?: ComponentType<HeaderContentProps>;
 }
 
@@ -61,7 +61,7 @@ export const Header = ({
   hideLanguageSwitch = false,
   showTitle = false,
   showLogo = false,
-
+  changeLanguageCallback,
   HeaderComponent,
 }: HeaderProps) => {
   const theme = useTheme();
@@ -173,6 +173,7 @@ export const Header = ({
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}
         toggleModal={toggleLanguageModal}
+        changeLanguageCallback={changeLanguageCallback}
       />
     </>
   );

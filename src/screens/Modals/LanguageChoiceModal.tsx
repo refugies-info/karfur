@@ -21,6 +21,7 @@ interface Props {
   isModalVisible: boolean;
   toggleModal: () => void;
   hideRadio?: boolean;
+  changeLanguageCallback?: () => void;
 }
 
 const ModalView = styled.View`
@@ -61,6 +62,7 @@ export const LanguageChoiceModal = (props: Props) => {
   const insets = useSafeAreaInsets();
 
   const changeLanguage = (ln: Languages) => {
+    props.changeLanguageCallback?.();
     i18n.changeLanguage(ln);
     dispatch(
       saveSelectedLanguageActionCreator({
