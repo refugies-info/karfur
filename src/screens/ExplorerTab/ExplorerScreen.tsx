@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from "react";
-import * as Linking from "expo-linking";
+import React, { useState } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useFocusEffect } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
-
-import {
-  setInitialUrlUsed,
-  setRedirectDispositifActionCreator,
-} from "../../services/redux/User/user.actions";
+import { setRedirectDispositifActionCreator } from "../../services/redux/User/user.actions";
 import { RTLView } from "../../components/BasicComponents";
 import { ViewChoice } from "../../components/Explorer/ViewChoice";
 import { TagButton } from "../../components/Explorer/TagButton";
 import { TagsCarousel } from "../../components/Explorer/TagsCarousel";
 import {
-  isInitialUrlUsedSelector,
   redirectDispositifSelector,
   currentI18nCodeSelector,
 } from "../../services/redux/User/user.selectors";
@@ -22,9 +16,7 @@ import { ExplorerParamList } from "../../../types";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { sortByOrder } from "../../libs";
-import { getScreenFromUrl } from "../../libs/getScreenFromUrl";
 import { styles } from "../../theme";
-import { logger } from "../../logger";
 import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 import LocationWarning from "../../components/Explorer/LocationWarning";
 import { NotificationsModal } from "../../components/Notifications";
@@ -54,33 +46,6 @@ export const ExplorerScreen = ({
   const [tabSelected, setTabSelected] = useState("galery");
   const themes = useSelector(themesSelector);
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
-
-  // Handle share link
-  const handleOpenUrl = (event: Linking.EventType | string | null) => {
-    if (event) {
-      let url = typeof event === "object" ? event.url : event;
-      logger.info("[initialUrl]", url);
-      if (!url.includes("refugies.info")) return;
-      const screen = getScreenFromUrl(url);
-      if (screen) {
-        //@ts-ignore
-        navigation.navigate(screen.rootNavigator, screen.screenParams);
-      }
-    }
-  };
-  const isInitialUrlUsed = useSelector(isInitialUrlUsedSelector);
-  useEffect(() => {
-    const emitter = Linking.addEventListener("url", (event) =>
-      handleOpenUrl(event)
-    );
-    if (!isInitialUrlUsed) {
-      Linking.getInitialURL()
-        .then(handleOpenUrl)
-        .then(() => dispatch(setInitialUrlUsed(true)));
-    }
-
-    return emitter.remove;
-  }, []);
 
   // When the screen gets focus, redirect if needed
   const redirectDispositif = useSelector(redirectDispositifSelector);

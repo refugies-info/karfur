@@ -14,6 +14,7 @@ import styled from "styled-components";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { deactivateKeepAwake } from "expo-keep-awake";
 import * as Speech from "expo-speech";
+import * as Linking from "expo-linking";
 import {
   resetReadingList,
   setReadingItem,
@@ -28,8 +29,14 @@ import { TabBarItem } from "./components/TabBarItem";
 import { styles } from "../theme";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
+import {
+  currentI18nCodeSelector,
+  isInitialUrlUsedSelector,
+} from "../services/redux/User/user.selectors";
 import { noVoiceover } from "../libs/noVoiceover";
+import { logger } from "../logger";
+import { getScreenFromUrl } from "../libs/getScreenFromUrl";
+import { setInitialUrlUsed } from "../services/redux/User/user.actions";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -138,6 +145,33 @@ export default function BottomTabNavigator() {
 
     return unsubscribeState;
   }, [navigation]);
+
+  // Handle share link
+  const handleOpenUrl = (event: Linking.EventType | string | null) => {
+    if (event) {
+      let url = typeof event === "object" ? event.url : event;
+      logger.info("[initialUrl]", url);
+      if (!url.includes("refugies.info")) return;
+      const screen = getScreenFromUrl(url);
+      if (screen) {
+        //@ts-ignore
+        navigation.navigate(screen.rootNavigator, screen.screenParams);
+      }
+    }
+  };
+  const isInitialUrlUsed = useSelector(isInitialUrlUsedSelector);
+  React.useEffect(() => {
+    const emitter = Linking.addEventListener("url", (event) =>
+      handleOpenUrl(event)
+    );
+    if (!isInitialUrlUsed) {
+      Linking.getInitialURL()
+        .then(handleOpenUrl)
+        .then(() => dispatch(setInitialUrlUsed(true)));
+    }
+
+    return emitter.remove;
+  }, []);
 
   return (
     <BottomTab.Navigator
