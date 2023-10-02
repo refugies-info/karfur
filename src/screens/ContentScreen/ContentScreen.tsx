@@ -210,7 +210,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     if (contentId && selectedLanguage) {
       fetchContent(contentId, selectedLanguage); // fetch in any case, to reset if needed
     }
-  }, [selectedLanguage]);
+  }, [selectedLanguage, contentId]);
 
   const selectedContent = useSelector(selectedContentSelector(currentLanguage));
   const theme = useSelector(
