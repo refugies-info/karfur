@@ -14,7 +14,7 @@ jest.mock("query-string", () => {
 
 // FIXME: temp fix for https://github.com/vercel/next.js/issues/43769
 import { createContext } from "react";
-jest.mock("next/dist/shared/lib/router-context.js", () => ({
+jest.mock("next/dist/shared/lib/router-context.shared-runtime.js", () => ({
   RouterContext: createContext(true),
 }));
 
