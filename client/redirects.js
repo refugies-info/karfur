@@ -14,7 +14,7 @@ const urlTranslations = [
   ["/mentions-legales", "/legal-notices"],
   ["/declaration-accessibilite", "/accessibility-statement"],
   ["/politique-de-confidentialite", "/privacy-policy"],
-  ["/plan-du-site", "/sitemap"]
+  ["/plan-du-site", "/sitemap"],
 ];
 
 const oldPathsRedirects = [
@@ -22,7 +22,14 @@ const oldPathsRedirects = [
   ["/fr/annuaire-create", "/fr/annuaire-creation"],
   [`/:lang${ln}?/annuaire-create`, "/:lang/directory-create"],
   ["/fr/comment-contribuer", "/fr/publier"],
-  [`/:lang${ln}?/how-to-contribute`, "/:lang/publish"]
+  [`/:lang${ln}?/how-to-contribute`, "/:lang/publish"],
+];
+
+const partnersRedirect = [
+  [
+    "/fiche-ffr",
+    "/fr/demarche/6479f6dc935b47644da052d8?utm_source=lettre-ffr&utm_medium=papier&utm_campaign=ofpra-lettre",
+  ],
 ];
 
 module.exports = {
@@ -30,17 +37,22 @@ module.exports = {
     source: `/:lang${ln}?${paths[0]}`, // all french paths except /fr
     destination: `/:lang${paths[1]}`, // redirect to translated path
     permanent: true,
-    locale: false
+    locale: false,
   })),
   oldPathsRedirects: oldPathsRedirects.map((paths) => ({
     source: paths[0],
     destination: paths[1],
     permanent: true,
-    locale: false
+    locale: false,
+  })),
+  partnersRedirect: partnersRedirect.map((paths) => ({
+    source: paths[0],
+    destination: paths[1],
+    permanent: true,
   })),
   rewrites: urlTranslations.map((paths) => ({
     source: `/:lang${ln}?${paths[1]}`, // all translated paths except /fr
     destination: `/:lang${paths[0]}`, // loads french path
-    locale: false
-  }))
+    locale: false,
+  })),
 };
