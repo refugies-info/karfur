@@ -1,43 +1,51 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
-const { MongoClient, ObjectId } = require("mongodb");
-const fs = require("fs");
+const axios = require("axios");
 
-/*
-  Script which can be used to perform modifications on database
-  To use it:
-    1. change dbPath to target the right environment
-    2. (optional) if we need to read a csv file, we can do it now
-    3. get the right collections to get and write data
-    4. write the changes to apply in the performChanges function
-    5. run it in your console with `node src/migration.js`
-*/
+/**
+ * Get your credentials on CRIPS Marketplace.
+ * You can use a development token or ask Hugo its credentials to generate a production token.
+ * More informations here: https://docs.crisp.chat/guides/rest-api/authentication/
+ */
+const crispId = "";
+const crispKey = "";
 
-const dbPath = "mongodb://127.0.0.1:27017/heroku_wbj38s57?serverSelectionTimeoutMS=60000"; // 1. Change dbPath
-const client = new MongoClient(dbPath);
-const dbName = "heroku_wbj38s57";
-
-// 4. Write changes to apply here
-const performChanges = async (dispositifsColl) => {
-  const dispositifs = await dispositifsColl.find({ status: { $ne: "Supprimé" } }).toArray();
+const getSegments = (page) => {
+  return axios
+    .get(
+      `https://api.crisp.chat/v1/website/74e04b98-ef6b-4cb0-9daf-f8a2b643e121/conversations/${page}?filter_date_start=2023-06-01T00:00:00.000Z&filter_date_end=2023-08-31T00:00:00.000Z`,
+      {
+        headers: { "X-Crisp-Tier": "plugin" },
+        auth: {
+          username: crispId,
+          password: crispKey,
+        },
+      },
+    )
+    .then(async function (response) {
+      for (const session of response.data.data) {
+        console.log(`${session.session_id},${session.meta.segments}`);
+      }
+      return response.status === 200 ? true : false;
+    })
+    .catch(async function (error) {
+      console.error(error.response);
+      return true;
+    });
 };
 
+/**
+ * Run the script and copy content into a CSV file
+ * node src/migration.js > segments.csv
+ */
 async function main() {
-  await client.connect();
-  console.log("Démarrage ...");
-  const db = client.db(dbName);
-
-  // 2. (optional) Read a csv file here
-  // const data = fs.readFileSync("./temp/import.csv", "utf-8");
-  // const lines = data.split(/\n/);
-
-  // 3. Get the right collections
-  const dispositifsColl = db.collection("dispositifs");
-  await performChanges(dispositifsColl);
-
-  console.log("C'est tout bon !");
+  let complete = false;
+  let i = 1;
+  while (!complete) {
+    let complete = await getSegments(i);
+    if (complete) return;
+    i += 1;
+  }
 }
 
-main()
-  .catch(console.error)
-  .finally(() => client.close());
+main().catch(console.error);
