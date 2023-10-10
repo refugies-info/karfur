@@ -1,7 +1,8 @@
 import { ContentType, SaveTranslationRequest } from "@refugies-info/api-types";
 import { isUndefined } from "lodash";
+import { updateIndicator } from "src/modules/indicators/indicators.service";
 import { addNewParticipant, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { IndicatorModel, ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
+import { ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { TraductionsType } from "../../../typegoose/Traductions";
 
 const saveTranslation = (
@@ -33,14 +34,13 @@ const saveTranslation = (
 
     const wordsCount = _traduction.countWords();
 
-    // We save a new indicator document to know the number of words translated and the time spent, this is needed for stats in the front
-    await IndicatorModel.create({
-      userId: user._id,
+    await updateIndicator(
+      user._id,
       dispositifId,
       language,
       timeSpent,
-      wordsCount,
-    });
+      wordsCount
+    );
 
     await addNewParticipant(dispositifId, user._id);
 
