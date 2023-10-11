@@ -84,7 +84,7 @@ const Section = ({ sectionKey }: SectionProps) => {
               darkColor={colors.color100}
               lightColor={colors.color30}
               isContentTranslated
-              shouldTriggerFirebaseEvent={sectionKey === "next"}
+              isAccordionEngagement={sectionKey === "next"}
               contentId={dispositif._id.toString()}
             />
           ))

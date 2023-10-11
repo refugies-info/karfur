@@ -92,7 +92,7 @@ interface Props {
   darkColor: string;
   lightColor: string;
   isContentTranslated: boolean;
-  shouldTriggerFirebaseEvent: boolean;
+  isAccordionEngagement: boolean;
   contentId: string;
 }
 
@@ -127,8 +127,13 @@ export const AccordionAnimated = (props: Props) => {
       }).start();
     }
 
-    if (!hasSentEventInFirebase && props.shouldTriggerFirebaseEvent) {
-      logEventInFirebase(FirebaseEvent.CLIC_ACCORDION_ENGAGEMENT, {
+    if (!hasSentEventInFirebase) {
+      if (props.isAccordionEngagement) {
+        logEventInFirebase(FirebaseEvent.CLIC_ACCORDION_ENGAGEMENT, {
+          contentId: props.contentId,
+        });
+      }
+      logEventInFirebase(FirebaseEvent.CLIC_ACCORDION, {
         contentId: props.contentId,
       });
       setHasSentEventInFirebase(true);
