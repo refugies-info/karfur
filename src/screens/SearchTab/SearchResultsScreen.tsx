@@ -61,7 +61,7 @@ export const SearchResultsScreen = ({
 
   const queryLanguages: string[] = ["fr"];
   if (currentI18nCode && currentI18nCode !== "ti") {
-    // ti no supported by Algolia
+    // ti not supported by Algolia
     queryLanguages.push(currentI18nCode);
   }
   const parentScrollview = React.useRef<ScrollView>(null);
@@ -79,6 +79,7 @@ export const SearchResultsScreen = ({
           queryLanguages={queryLanguages}
           clickAnalytics
           filters="webOnly:false"
+          analyticsTags={[`ln_${currentI18nCode}`]}
         />
         <SearchBoxContainer
           style={{ paddingTop: insets.top + styles.margin * 3 }}
