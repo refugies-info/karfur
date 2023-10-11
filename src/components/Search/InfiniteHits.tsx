@@ -68,7 +68,7 @@ const InfiniteHits = ({
     }).length;
   }, [contentIds, hits]);
 
-  if (hits.length === 0) {
+  if (nbResults === 0) {
     return (
       <ErrorContainer>
         <ErrorScreen
