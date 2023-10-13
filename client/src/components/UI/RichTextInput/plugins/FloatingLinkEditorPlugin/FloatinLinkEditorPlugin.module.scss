@@ -11,6 +11,10 @@
   min-width: 350px;
   z-index: 10;
 
+  &.hidden {
+    display: none;
+  }
+
   .text {
     color: $lightTextActionHighBlueFrance;
     font-weight: bold;
