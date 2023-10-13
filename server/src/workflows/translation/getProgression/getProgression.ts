@@ -8,7 +8,7 @@ export const computeIndicator = async (userId: string, start: Date, end: Date): 
     {
       $match: {
         userId: new ObjectId(userId),
-        createdAt: { $gte: end, $lt: start },
+        updatedAt: { $gte: end, $lt: start },
       },
     },
     {
