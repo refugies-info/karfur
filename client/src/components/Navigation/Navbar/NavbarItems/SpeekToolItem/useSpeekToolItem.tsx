@@ -1,5 +1,4 @@
 import { HeaderProps } from "@codegouvfr/react-dsfr/Header";
-import { isMobile } from "react-device-detect";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +15,7 @@ const useSpeekToolItem = (): HeaderProps.QuickAccessItem | null => {
   const dispatch = useDispatch();
   const ttsActive = useSelector(ttsActiveSelector);
   const ttsLoading = useSelector(ttsLoadingSelector);
-  const enabled = !isMobile && hasTTSAvailable.includes((router.locale || "fr") as AvailableLanguageI18nCode);
+  const enabled = hasTTSAvailable.includes((router.locale || "fr") as AvailableLanguageI18nCode);
   const toggleAudio = () => dispatch(toggleTTSActionCreator());
 
   if (!enabled) return null;

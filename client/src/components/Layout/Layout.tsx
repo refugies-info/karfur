@@ -87,8 +87,11 @@ const Layout = (props: Props) => {
       !showLangModal &&
       showMobileModal === null
     ) {
-      localStorage.setItem("hideMobileAppModal", "true");
-      toggleMobileAppModal();
+      setTimeout(() => {
+        // open modal after 1 min
+        localStorage.setItem("hideMobileAppModal", "true");
+        toggleMobileAppModal();
+      }, 60000);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

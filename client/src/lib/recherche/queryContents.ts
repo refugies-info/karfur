@@ -52,9 +52,16 @@ const queryOnAlgolia = async (
     if (search !== searchCache) { // new search
       searchCache = search; // keep search in cache to prevent useless algolia searchs
       let hits: Hit[] = [];
+      const queryLanguages: string[] = ["fr"];
+      // ti not supported by Algolia
+      if (!["ti", "fr"].includes(locale)) {
+        queryLanguages.push(locale);
+      }
       hits = await index
         .search(search, {
           restrictSearchableAttributes: getSearchableAttributes(locale),
+          analyticsTags: [`ln_${locale}`],
+          queryLanguages,
           hitsPerPage: 600
         })
         .then(({ hits }) => hits.map(h => ({ id: h.objectID, highlight: h._highlightResult })));
