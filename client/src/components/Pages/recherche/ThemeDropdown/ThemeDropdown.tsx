@@ -61,12 +61,12 @@ const ThemeDropdown = (props: Props) => {
   const onClickTheme = useCallback(
     (themeId: Id) => {
       setThemeSelected((old) => {
-        if (old === themeId) return null;
+        if (old === themeId && props.mobile) return null;
         return themeId;
       });
       Event("USE_SEARCH", "use theme filter", "click theme");
     },
-    [setThemeSelected, Event],
+    [setThemeSelected, Event, props.mobile],
   );
 
   // fetch dispositifs if not done already

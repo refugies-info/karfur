@@ -53,6 +53,7 @@ body .btn {
 
     &:disabled,
     &.disabled {
+      --hover-tint: #{$gray20};
       background: $gray20;
       color: $gray70;
       cursor: not-allowed;
@@ -90,13 +91,13 @@ body .btn {
     }
   }
   &.white {
+    --hover-tint: #{$gray90};
     background: $white;
     color: $gray90;
     svg {
       fill: $gray90;
     }
     &:hover {
-      transition: all 0.5s ease;
       background: $gray90;
       color: $white;
       svg {
@@ -104,33 +105,17 @@ body .btn {
       }
     }
   }
-  &.white-yellow-hover {
-    background: $white;
-    color: $gray90;
-    svg {
-      fill: $gray90;
-    }
-    &:hover {
-      transition: all 0.5s ease;
-      background: #f9ef98;
-      color: $gray90;
-      svg {
-        fill: $gray90;
-      }
-    }
-  }
   &.dark {
+    --hover-tint: #{$grey50b};
     background: $gray90;
     color: $white;
     svg {
       fill: $white;
     }
     &:hover {
-      transition: all 0.5s ease;
-      background: #000000;
-      color: $white;
+      color: black;
       svg {
-        fill: $white;
+        fill: black;
       }
     }
     &:not(:disabled):not(.disabled):active {
@@ -148,7 +133,7 @@ body .btn {
       fill: $white;
     }
     &:not(:disabled):not(.disabled):hover {
-      transition: all 0.5s ease;
+      --hover-tint: #{$vertFonce};
       background: $vertFonce;
       color: $white;
       box-shadow: none;
@@ -162,6 +147,7 @@ body .btn {
     }
 
     &:disabled {
+      --hover-tint: #{$gray70};
       background: $gray70;
       color: $white;
 
@@ -184,7 +170,7 @@ body .btn {
       fill: $white;
     }
     &:not(:disabled):not(.disabled):hover {
-      transition: all 0.5s ease;
+      --hover-tint: #{$vertFonce};
       background: $vertFonce;
       color: $white;
       box-shadow: none;
@@ -195,37 +181,10 @@ body .btn {
     &:not(:disabled):not(.disabled):active {
       box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
       background: $vert;
-    }
-  }
-  &.validate-mockup {
-    background: $vert;
-    color: $white;
-    svg {
-      fill: $white;
-    }
-    &:not(:disabled):not(.disabled):hover {
-      transition: all 0.5s ease;
-      background: $vertFonce;
-      color: $white;
-      box-shadow: none;
-      svg {
-        fill: $white;
-      }
-    }
-    &:not(:disabled):not(.disabled):active {
-      box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
-      background: $vert;
-    }
-    &.disabled {
-      background: $orange;
-      color: $gray10;
-      cursor: not-allowed;
-      svg {
-        fill: $gray10;
-      }
     }
   }
   &.login {
+    --hover-tint: #{$white};
     background: $bleuCharte;
     color: $white;
     svg {
@@ -241,6 +200,7 @@ body .btn {
     }
   }
   &.signup {
+    --hover-tint: #{$bleuCharte};
     background: $white;
     color: $bleuCharte;
     svg {
@@ -255,6 +215,7 @@ body .btn {
     }
   }
   &.error {
+    --hover-tint: #{$rouge};
     background: $error;
     color: $white;
     &:hover {
@@ -276,6 +237,7 @@ body .btn {
       fill: $gray90;
     }
     &:not(:disabled):hover {
+      --hover-tint: #{$gray90};
       background: $gray90;
       box-shadow: none;
       color: $white;
@@ -300,28 +262,8 @@ body .btn {
     align-items: center;
     background-color: $gray50;
   }
-  &.thanks {
-    background: transparent;
-    color: $gray70;
-    border: 0.5px solid $gray70;
-    padding: 15px 20px;
-    &:hover {
-      background: $validationDefault;
-      color: $white;
-      border: 0.5px solid $validationDefault;
-    }
-    &:active {
-      background: $validationHover;
-      color: $white;
-      border: 0.5px solid $validationHover;
-    }
-    &.clicked {
-      background: $validationHover;
-      color: $white;
-      border: 0.5px solid $validationHover;
-    }
-  }
   &.outline {
+    --hover-tint: #{$white};
     border: 0.5px solid $white;
     background: transparent;
     color: $white;
@@ -336,6 +278,7 @@ body .btn {
     }
   }
   &.outline-black {
+    --hover-tint: #{$gray90};
     border: 0.5px solid $gray90;
     background: transparent;
     color: $gray90;
@@ -352,55 +295,8 @@ body .btn {
       }
     }
   }
-  &.pill {
-    border-radius: $radius;
-    height: auto;
-    border: 0.5px solid $white;
-    background: transparent;
-    color: $white;
-    transition: all 0.2s ease;
-
-    svg {
-      fill: $gray10;
-    }
-    &:hover,
-    &:not(:disabled):not(.disabled):active,
-    &:focus {
-      background: $gray10;
-      svg {
-        fill: $gray90;
-      }
-    }
-    &:hover {
-      border-color: #000000;
-    }
-    &:active {
-      background: transparent;
-    }
-    &:focus {
-      background: transparent;
-    }
-
-    &.pill-dark {
-      border-color: $gray90;
-      color: $gray90;
-      svg {
-        fill: $gray90;
-      }
-      &:hover {
-        background-color: #000000;
-        svg {
-          fill: $gray10;
-        }
-      }
-    }
-  }
-  &.hero {
-    height: 60px;
-    padding: 10px 20px;
-    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
-  }
   &.help {
+    --hover-tint: #{$error};
     background: $erreur;
     color: $error;
     svg {
@@ -418,6 +314,7 @@ body .btn {
     }
   }
   &.tuto {
+    --hover-tint: #{$bgfocus};
     background: $focus;
     color: $white;
     outline: 0;
@@ -436,24 +333,8 @@ body .btn {
       background: $focus;
     }
   }
-  &.edit {
-    background: $attention;
-    color: $gray90;
-    svg {
-      fill: $gray90;
-    }
-    &:hover {
-      box-shadow: none;
-    }
-  }
-  &.precision {
-    background: $attention;
-    color: $gray90;
-    svg {
-      fill: $gray90;
-    }
-  }
   &.fill-dark {
+    --hover-tint: #{$white};
     background: $gray90;
     color: $white;
     svg {

@@ -173,6 +173,13 @@ html body {
   color: $dark;
 }
 
+// Crisp
+[data-page="content"] .crisp-client .cc-tlyw[data-full-view="true"] .cc-kxkl .cc-nsge {
+  @include isTablet() {
+    bottom: 80px !important;
+  }
+}
+
 // Print
 @media print {
   body {

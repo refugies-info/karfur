@@ -68,7 +68,7 @@ export interface TranslateRequest {
 export interface SaveTranslationRequest {
   dispositifId: string;
   language: Languages;
-  timeSpent: number;
+  timeSpent: number; // must be resetted between each submit
   toFinish: string[];
   toReview: string[];
   translated: Partial<{

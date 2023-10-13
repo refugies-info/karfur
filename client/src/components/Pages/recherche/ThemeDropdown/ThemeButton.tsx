@@ -13,7 +13,7 @@ type ButtonThemeProps = {
 const ButtonTheme = styled.button<ButtonThemeProps>`
   background-color: ${(props) => (props.selected ? props.color100 : "transparent")};
   :not(:disabled):hover {
-    background-color: ${(props) => (props.selected ? props.color100 : props.color30)};
+    background-color: ${(props) => (props.selected ? props.color100 : props.color30)} !important;
     border-color: ${(props) => props.color100};
     color: ${(props) => props.color100};
   }
