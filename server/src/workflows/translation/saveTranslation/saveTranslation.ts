@@ -1,6 +1,6 @@
 import { ContentType, SaveTranslationRequest } from "@refugies-info/api-types";
 import { isUndefined } from "lodash";
-import { updateIndicator } from "src/modules/indicators/indicators.service";
+import { updateIndicator } from "../../../modules/indicators/indicators.service";
 import { addNewParticipant, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { TraductionsType } from "../../../typegoose/Traductions";
