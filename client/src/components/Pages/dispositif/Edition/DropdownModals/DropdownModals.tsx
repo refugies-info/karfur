@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import {
@@ -20,6 +20,7 @@ interface Props<T extends Options> {
   options: T[];
   selected: T;
   setSelected: (key: T) => void;
+  count?: number;
 }
 
 /**
@@ -29,16 +30,18 @@ function DropdownModals<T extends Options>(props: Props<T>) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { t } = useTranslation();
 
+  const count = useMemo(() => (props.count === undefined ? 2 : Number.parseInt(props.count.toString())), [props.count]);
+
   return (
     <Dropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen((o) => !o)} className={styles.dropdown}>
       <DropdownToggle className={styles.toggle}>
-        {jsUcfirst(t(`Infocards.${props.selected}`) || "")}
+        {jsUcfirst(t(`Infocards.${props.selected}`, { count }) || "")}
         <EVAIcon name="chevron-down-outline" size={16} fill="dark" className={cls(styles.icon, "ms-4")} />
       </DropdownToggle>
       <DropdownMenu className={styles.menu}>
         {props.options.map((key, i) => (
           <ChoiceButton
-            text={jsUcfirst(t(`Infocards.${key}`))}
+            text={jsUcfirst(t(`Infocards.${key}`, { count }))}
             selected={props.selected === key}
             type="radio"
             key={i}

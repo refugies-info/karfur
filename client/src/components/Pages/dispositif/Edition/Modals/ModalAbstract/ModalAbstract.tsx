@@ -42,7 +42,7 @@ const ModalAbstract = (props: Props) => {
             <div className={styles.text}>
               <textarea
                 onChange={(e: any) => setAbstract(e.target.value)}
-                placeholder="Résumez en 1 phrase votre action"
+                placeholder="Résumez votre action en quelques mots"
                 value={abstract}
                 className={styles.input}
                 maxLength={MAX_LENGTH}
