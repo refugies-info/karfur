@@ -16,6 +16,7 @@ import API from "utils/API";
 import LangueMenu from "../LangueMenu";
 import Input from "../Input";
 import styles from "./SMSForm.module.scss";
+import { useCookie } from "react-use";
 
 interface Props {
   disabledOptions: string[];
@@ -25,6 +26,7 @@ const SMSForm = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
   const { Event } = useEvent();
+  const [utmz] = useCookie("__utmz");
 
   const [selectedLn, setSelectedLn] = useState<string>(locale);
   const languages = useSelector(allLanguesSelector);
@@ -39,13 +41,19 @@ const SMSForm = (props: Props) => {
     setError(null);
     if (isValidPhone(tel)) {
       Event("SEND_SMS", selectedLn, "Dispo View");
+      const campaign = utmz
+        ?.split("&")
+        .filter((it) => it.startsWith("utm_campaign"))
+        .pop();
       API.smsContentLink({
         phone: tel,
         id: dispositif?._id.toString() || "",
         url: `https://refugies.info/${selectedLn}${getPath(
           dispositif?.typeContenu === ContentType.DEMARCHE ? "/demarche/[id]" : "/dispositif/[id]",
           selectedLn,
-        ).replace("[id]", dispositif?._id.toString() || "")}`,
+        ).replace("[id]", dispositif?._id.toString() || "")}${
+          campaign ? `?utm_source=twilio&utm_medium=sms&${campaign}` : ""
+        }`,
         locale: selectedLn,
       })
         .then(() => {
