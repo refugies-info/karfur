@@ -193,7 +193,7 @@ export default function ToolbarPlugin() {
 
   const insertLink = useCallback(() => {
     if (!isLink) {
-      editor.dispatchCommand(TOGGLE_LINK_COMMAND, "https://" /* sanitizeUrl("https://") */);
+      editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url: "", rel: "noreferrer" });
     } else {
       editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
     }

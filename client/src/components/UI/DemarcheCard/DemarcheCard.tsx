@@ -15,6 +15,7 @@ import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DemarcheCard.module.scss";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { useUtmz } from "hooks";
 
 const ONE_DAY_MS = 86400000;
 
@@ -22,7 +23,7 @@ type DemarcheLinkProps = {
   background: string;
   border: string;
 };
-const DemarcheLink = styled.a<DemarcheLinkProps>`
+const DemarcheLink = styled(Link)<DemarcheLinkProps>`
   :hover {
     background-color: ${(props) => props.background} !important;
     border-color: ${(props) => props.border} !important;
@@ -42,6 +43,7 @@ const DemarcheCard = (props: Props) => {
   const theme = getTheme(props.demarche.theme, themes);
   const colors = theme.colors;
   const demarcheThemes = [theme, ...getThemes(props.demarche.secondaryThemes || [], themes)];
+  const { params: utmParams } = useUtmz();
 
   const lastModificationDate = props.demarche.lastModificationDate
     ? new Date(props.demarche.lastModificationDate)
@@ -53,43 +55,40 @@ const DemarcheCard = (props: Props) => {
     lastModificationDate && publishedAt && lastModificationDate.getTime() - publishedAt.getTime() > ONE_DAY_MS;
 
   return (
-    <Link
-      legacyBehavior
+    <DemarcheLink
+      // legacyBehavior
       href={{
         pathname: getPath("/demarche/[id]", router.locale),
-        query: { id: props.demarche._id.toString() },
+        query: { id: props.demarche._id.toString(), ...utmParams },
       }}
       passHref
       prefetch={false}
+      className={cls(commonStyles.card, commonStyles.demarche, commonStyles.content)}
+      background={colors.color30}
+      border={colors.color100}
+      target={props.targetBlank ? "_blank" : undefined}
+      rel={props.targetBlank ? "noopener noreferrer" : undefined}
     >
-      <DemarcheLink
-        className={cls(commonStyles.card, commonStyles.demarche, commonStyles.content)}
-        background={colors.color30}
-        border={colors.color100}
-        target={props.targetBlank ? "_blank" : undefined}
-        rel={props.targetBlank ? "noopener noreferrer" : undefined}
-      >
-        <FavoriteButton contentId={props.demarche._id} className={commonStyles.favorite} />
-        {hasUpdate && (
-          <div className={styles.update}>
-            <span>{t("Recherche.updated", "mise à jour")}</span>
-          </div>
-        )}
-        <div>
-          <Image src={demarcheIcon} width={48} height={48} alt="" />
+      <FavoriteButton contentId={props.demarche._id} className={commonStyles.favorite} />
+      {hasUpdate && (
+        <div className={styles.update}>
+          <span>{t("Recherche.updated", "mise à jour")}</span>
         </div>
-        <h3
-          className={styles.title}
-          style={{ color: colors.color100 }}
-          dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif || "" }}
-        />
-        <div className={styles.themes}>
-          {demarcheThemes.map((theme, i) => (
-            <ThemeBadge key={i} theme={theme} className={styles.badges} />
-          ))}
-        </div>
-      </DemarcheLink>
-    </Link>
+      )}
+      <div>
+        <Image src={demarcheIcon} width={48} height={48} alt="" />
+      </div>
+      <h3
+        className={styles.title}
+        style={{ color: colors.color100 }}
+        dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif || "" }}
+      />
+      <div className={styles.themes}>
+        {demarcheThemes.map((theme, i) => (
+          <ThemeBadge key={i} theme={theme} className={styles.badges} />
+        ))}
+      </div>
+    </DemarcheLink>
   );
 };
 

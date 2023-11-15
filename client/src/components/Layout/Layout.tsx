@@ -31,6 +31,7 @@ import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import styles from "./Layout.module.scss";
 import AppLoader from "./AppLoader";
+import { setAnalyticsUserId } from "lib/tracking";
 
 interface Props {
   children: any;
@@ -104,6 +105,9 @@ const Layout = (props: Props) => {
   useEffect(() => {
     if (!user && !isUserLoading && !hasUserError) {
       dispatch(fetchUserActionCreator());
+    }
+    if (user) {
+      setAnalyticsUserId(user.username);
     }
   }, [user, isUserLoading, hasUserError, dispatch]);
 

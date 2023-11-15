@@ -6,10 +6,10 @@ export const getCommitmentText = (data: Metadatas["commitment"] | undefined, t: 
   if (!data) return null;
 
   if (data.amountDetails === "between" && data.hours.length >= 2) {
-    return jsUcfirst(t("Infocards.commitmentBetween", { min: data.hours[0], max: data.hours[1], unit: t(`Infocards.${data.timeUnit}`) }));
+    return jsUcfirst(t("Infocards.commitmentBetween", { min: data.hours[0], max: data.hours[1], unit: t(`Infocards.${data.timeUnit}`, { count: data.hours[1] }) }));
   }
 
-  return jsUcfirst(`${t(`Infocards.${data.amountDetails}`)} ${data.hours[0]} ${t(`Infocards.${data.timeUnit}`)}`);
+  return jsUcfirst(`${t(`Infocards.${data.amountDetails}`)} ${data.hours[0]} ${t(`Infocards.${data.timeUnit}`, { count: data.hours[0] })}`);
 }
 
 export const getPriceText = (data: Metadatas["price"] | undefined, t: TFunction): string | null => {
@@ -46,7 +46,8 @@ export const getAgeText = (data: Metadatas["age"] | undefined, t: TFunction): st
 
 export const getFrequencyText = (data: Metadatas["frequency"] | undefined, t: TFunction): string | null => {
   if (!data) return null;
-  return jsUcfirst(`${t(`Infocards.${data.amountDetails}`)} ${data.hours} ${t(`Infocards.${data.timeUnit}`)} ${t(`Infocards.${data.frequencyUnit}`)}`);
+  const count = Number.parseInt(data.hours.toString());
+  return jsUcfirst(`${t(`Infocards.${data.amountDetails}`)} ${data.hours} ${t(`Infocards.${data.timeUnit}`, { count })} ${t(`Infocards.${data.frequencyUnit}`)}`);
 }
 
 export const getTimeSlotsText = (data: Metadatas["timeSlots"] | undefined, t: TFunction): string | null => {

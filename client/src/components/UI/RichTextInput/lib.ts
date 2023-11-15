@@ -88,4 +88,5 @@ export function setFloatingElemPosition(
   floatingElem.style.position = "absolute";
   floatingElem.style.left = `${left}px`;
   floatingElem.style.top = `${top}px`;
+  floatingElem.style.transform = "none";
 }

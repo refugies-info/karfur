@@ -35,16 +35,16 @@ export const contentHelp: Help = {
 }
 
 export const nextHelp: Help = {
-  title: "Expliquer comment faire pour accéder au dispositif",
+  title: "Expliquez comment faire pour accéder au dispositif",
   text: [
-    "Détailler les différentes étapes nécessaires : prise de contact, premier rendez-vous, formulaire d’inscription, etc. ",
+    "Détaillez les différentes étapes nécessaires : prise de contact, premier rendez-vous, formulaire d’inscription, etc. ",
     "Pensez à ajouter un contact (mail ou téléphone) si des personnes souhaitent vous poser des questions.",
     "Vous pouvez aussi utiliser la carte pour indiquer vos lieux d’accueil.",
   ]
 }
 
 export const mapHelp: Help = {
-  title: "Cartographier vos lieux d’accueil",
+  title: "Cartographiez vos lieux d’accueil",
   text: [
     "Ajoutez des points géolocalisés en recherchant une adresse dans la barre de recherche.",
     "Saisissez ensuite les informations de votre lieu d’accueil. Plus vous êtes précis (horaires d’ouverture, coordonnées, conditions d’accueil)... plus vous serez correctement sollicités !",

@@ -36,8 +36,8 @@ export const help: Record<string, Content[]> = {
   ],
   nochange: [
     {
-      title: "Tout est prêt !",
-      intro: "Les changements que tu as effectué n'ont pas impacté les traductions. Publier tes modifications ne déclenchera pas un nouveau processus de traduction."
+      title: "Super, pas besoin de traduction !",
+      intro: "Les modifications que tu as effectuées sur cette fiche n'ont pas besoin d'être traduites. Tu peux les publier en toute tranquilité, cela ne déclenchera pas un nouveau processus de traduction."
     }
   ]
 }
