@@ -16,5 +16,6 @@ export { default as useScrolledBottomEvent } from "./useScrolledBottomEvent";
 export { default as useThemeIcon } from "./useThemeIcon";
 export { default as useUniqueId } from "./useUniqueId";
 export { default as useUser } from "./useUser";
+export { default as useUtmz } from "./useUtmz";
 export { default as useWindowSize } from "./useWindowSize";
 export { useScrollDirection } from "./useScrollDirection";
