@@ -20,7 +20,6 @@ import {
   frequencyDetailsOptions,
   frequencyUnitOptions,
   help,
-  helpDays,
   modalTitles,
   timeSlotOptions,
   timeUnitOptions,
@@ -138,7 +137,7 @@ const ModalAvailability = (props: Props) => {
     <BaseModal
       show={props.show}
       toggle={props.toggle}
-      help={step === 3 ? helpDays : help}
+      help={help[step - 1]}
       title={modalTitles[step - 1]}
       onOpened={navigateToStep}
     >
@@ -182,6 +181,7 @@ const ModalAvailability = (props: Props) => {
               options={timeUnitOptions}
               selected={commitmentTimeUnit}
               setSelected={(key: timeUnitType) => setCommitmentTimeUnit(key)}
+              count={commitmentHours?.[1] || commitmentHours?.[0]}
             />
           </InlineForm>
           <ChoiceButton
@@ -217,6 +217,7 @@ const ModalAvailability = (props: Props) => {
               options={timeUnitOptions}
               selected={frequencyTimeUnit}
               setSelected={(key: timeUnitType) => setFrequencyTimeUnit(key)}
+              count={frequencyHours}
             />
             <DropdownModals<frequencyUnitType>
               options={frequencyUnitOptions}

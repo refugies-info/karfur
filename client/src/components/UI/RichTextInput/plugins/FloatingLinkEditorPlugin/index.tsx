@@ -19,6 +19,7 @@ import {
   LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from "lexical";
+import { cls } from "lib/classname";
 import { Dispatch, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Modal } from "reactstrap";
@@ -51,66 +52,74 @@ interface FloatingLinkEditorProps {
   isLink: boolean;
   setIsLink: Dispatch<boolean>;
   anchorElem: HTMLElement;
+  initialOpen: "modal" | "tooltip";
 }
 
-const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingLinkEditorProps) => {
+const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem, initialOpen }: FloatingLinkEditorProps) => {
   const editorRef = useRef<HTMLDivElement | null>(null);
   const [linkUrl, setLinkUrl] = useState("");
   const [linkText, setLinkText] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(initialOpen === "modal");
+  const [isFloatingVisible, setIsFloatingVisible] = useState(initialOpen === "tooltip");
+  const [floatingBlocked, setFloatingBlocked] = useState(false); // needed to hide floating after link creation
 
-  const updateLinkEditor = useCallback(() => {
-    const selection = $getSelection();
-    if ($isRangeSelection(selection)) {
-      const node = getSelectedNode(selection);
-      const parent = node.getParent();
-      if ($isLinkNode(parent)) {
-        setLinkUrl(parent.getURL());
-        setLinkText(parent.getTextContent());
-      } else if ($isLinkNode(node)) {
-        setLinkUrl(node.getURL());
-        setLinkText(node.getTextContent());
-      } else {
-        setLinkUrl("");
-        setLinkText("");
-      }
-    }
-    const editorElem = editorRef.current;
-    const nativeSelection = window.getSelection();
-    const activeElement = document.activeElement;
-
-    if (editorElem === null) return;
-
-    const rootElement = editor.getRootElement();
-    if (
-      selection !== null &&
-      nativeSelection !== null &&
-      rootElement !== null &&
-      rootElement.contains(nativeSelection.anchorNode) &&
-      editor.isEditable()
-    ) {
-      const domRange = nativeSelection.getRangeAt(0);
-      let rect;
-      if (nativeSelection.anchorNode === rootElement) {
-        let inner = rootElement;
-        while (inner.firstElementChild !== null) {
-          inner = inner.firstElementChild as HTMLElement;
+  const updateLinkEditor = useCallback(
+    (openFloating: boolean = false) => {
+      const selection = $getSelection();
+      let linkUrl = "";
+      let linkText = "";
+      if ($isRangeSelection(selection)) {
+        const node = getSelectedNode(selection);
+        const parent = node.getParent();
+        if ($isLinkNode(parent)) {
+          linkUrl = parent.getURL();
+          linkText = parent.getTextContent();
+        } else if ($isLinkNode(node)) {
+          linkUrl = node.getURL();
+          linkText = node.getTextContent();
         }
-        rect = inner.getBoundingClientRect();
-      } else {
-        rect = domRange.getBoundingClientRect();
+        setLinkUrl(linkUrl);
+        setLinkText(linkText);
+      }
+      const editorElem = editorRef.current;
+      const nativeSelection = window.getSelection();
+      const activeElement = document.activeElement;
+
+      if (editorElem === null) return;
+      if (openFloating && !isFloatingVisible && !floatingBlocked) setIsFloatingVisible(true);
+
+      const rootElement = editor.getRootElement();
+      if (
+        selection !== null &&
+        nativeSelection !== null &&
+        rootElement !== null &&
+        rootElement.contains(nativeSelection.anchorNode) &&
+        editor.isEditable()
+      ) {
+        const domRange = nativeSelection.getRangeAt(0);
+        let rect;
+        if (nativeSelection.anchorNode === rootElement) {
+          let inner = rootElement;
+          while (inner.firstElementChild !== null) {
+            inner = inner.firstElementChild as HTMLElement;
+          }
+          rect = inner.getBoundingClientRect();
+        } else {
+          rect = domRange.getBoundingClientRect();
+        }
+
+        setFloatingElemPosition(rect, editorElem, anchorElem);
+      } else if (!activeElement || activeElement.className !== "link-input") {
+        if (rootElement !== null) {
+          setFloatingElemPosition(null, editorElem, anchorElem);
+        }
+        setLinkUrl("");
       }
 
-      setFloatingElemPosition(rect, editorElem, anchorElem);
-    } else if (!activeElement || activeElement.className !== "link-input") {
-      if (rootElement !== null) {
-        setFloatingElemPosition(null, editorElem, anchorElem);
-      }
-      setLinkUrl("");
-    }
-
-    return true;
-  }, [anchorElem, editor]);
+      return true;
+    },
+    [anchorElem, editor, isFloatingVisible, floatingBlocked],
+  );
 
   useEffect(() => {
     const scrollerElem = anchorElem.parentElement;
@@ -135,7 +144,8 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
       editor.registerCommand(
         SELECTION_CHANGE_COMMAND,
         () => {
-          updateLinkEditor();
+          updateLinkEditor(true);
+          setFloatingBlocked(false);
           return true;
         },
         COMMAND_PRIORITY_LOW,
@@ -170,12 +180,14 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
       if (childTextNode) childTextNode.setTextContent(linkText);
       editor.dispatchCommand(TOGGLE_LINK_COMMAND, sanitizeUrl(linkUrl));
       setIsModalOpen(false);
+      setIsFloatingVisible(false);
+      setFloatingBlocked(true);
     });
   };
 
   return (
     <>
-      <div ref={editorRef} className={styles.floating_container}>
+      <div ref={editorRef} className={cls(styles.floating_container, !isFloatingVisible && styles.hidden)}>
         <CloseButton onClick={() => setIsLink(false)} />
         <p className={styles.text}>{linkText}</p>
         <p className={styles.url}>{linkUrl}</p>
@@ -194,6 +206,7 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
             onClick={(e: any) => {
               e.preventDefault();
               setIsModalOpen(true);
+              setIsFloatingVisible(false);
             }}
           >
             Modifier
@@ -239,6 +252,7 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem }: FloatingL
 const useFloatingLinkEditorToolbar = (editor: LexicalEditor, anchorElem: HTMLElement) => {
   const [activeEditor, setActiveEditor] = useState(editor);
   const [isLink, setIsLink] = useState(false);
+  const [open, setOpen] = useState<"modal" | "tooltip">("modal");
 
   const updateToolbar = useCallback(() => {
     const selection = $getSelection();
@@ -249,6 +263,7 @@ const useFloatingLinkEditorToolbar = (editor: LexicalEditor, anchorElem: HTMLEle
 
       // We don't want this menu to open for auto links.
       if (linkParent !== null && autoLinkParent === null) {
+        setOpen(linkParent.getURL() === "" ? "modal" : "tooltip");
         setIsLink(true);
       } else {
         setIsLink(false);
@@ -270,7 +285,13 @@ const useFloatingLinkEditorToolbar = (editor: LexicalEditor, anchorElem: HTMLEle
 
   return isLink
     ? createPortal(
-        <FloatingLinkEditor editor={activeEditor} isLink={isLink} anchorElem={anchorElem} setIsLink={setIsLink} />,
+        <FloatingLinkEditor
+          editor={activeEditor}
+          isLink={isLink}
+          anchorElem={anchorElem}
+          setIsLink={setIsLink}
+          initialOpen={open}
+        />,
         anchorElem,
       )
     : null;

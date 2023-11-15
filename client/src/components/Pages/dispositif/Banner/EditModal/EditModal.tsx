@@ -22,7 +22,7 @@ const EditModal = (props: Props) => {
       <div>
         <p>
           Vous êtes sur le point de faire des modifications sur votre fiche. Une fois terminée, pensez bien à valider
-          votre fiche pour que celles-ci soient prises en compte puis traduites en 8 langues.
+          votre fiche pour que celles-ci soient prises en compte puis traduites en 7 langues.
         </p>
         <div className="text-center mb-8">
           <Image src={TutorielImage} width={176} height={120} alt="" />
