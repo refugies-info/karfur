@@ -80,3 +80,8 @@ export const Event = (category: string, action: string, label: string) => {
     label,
   });
 };
+
+export const setAnalyticsUserId = (id: string) => {
+  logger.info("setAnalyticsUserId", { userId: id });
+  ReactGA.isInitialized && ReactGA.set({ userId: id });
+};
