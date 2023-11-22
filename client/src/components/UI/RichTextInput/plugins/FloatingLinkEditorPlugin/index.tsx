@@ -12,6 +12,7 @@ import Button from "components/UI/Button";
 import {
   $getSelection,
   $isRangeSelection,
+  CLICK_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
   COMMAND_PRIORITY_HIGH,
   COMMAND_PRIORITY_LOW,
@@ -79,7 +80,7 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem, initialOpen
           linkText = node.getTextContent();
         }
         setLinkUrl(linkUrl);
-        setLinkText(linkText);
+        setLinkText(linkText === " " ? "" : linkText); // replaces space by empty (needed to create a link in an empty paragraph)
       }
       const editorElem = editorRef.current;
       const nativeSelection = window.getSelection();
@@ -143,6 +144,15 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem, initialOpen
 
       editor.registerCommand(
         SELECTION_CHANGE_COMMAND,
+        () => {
+          updateLinkEditor(true);
+          setFloatingBlocked(false);
+          return true;
+        },
+        COMMAND_PRIORITY_LOW,
+      ),
+      editor.registerCommand(
+        CLICK_COMMAND,
         () => {
           updateLinkEditor(true);
           setFloatingBlocked(false);
@@ -271,17 +281,24 @@ const useFloatingLinkEditorToolbar = (editor: LexicalEditor, anchorElem: HTMLEle
     }
   }, []);
 
+  const commandCallback = useCallback(
+    (_payload: void, newEditor: LexicalEditor) => {
+      updateToolbar();
+      setActiveEditor(newEditor);
+      return false;
+    },
+    [updateToolbar],
+  );
+
+  // on selection change
   useEffect(() => {
-    return editor.registerCommand(
-      SELECTION_CHANGE_COMMAND,
-      (_payload, newEditor) => {
-        updateToolbar();
-        setActiveEditor(newEditor);
-        return false;
-      },
-      COMMAND_PRIORITY_CRITICAL,
-    );
-  }, [editor, updateToolbar]);
+    return editor.registerCommand(SELECTION_CHANGE_COMMAND, commandCallback, COMMAND_PRIORITY_CRITICAL);
+  }, [editor, commandCallback]);
+
+  // on click
+  useEffect(() => {
+    return editor.registerCommand(CLICK_COMMAND, commandCallback, COMMAND_PRIORITY_CRITICAL);
+  }, [editor, commandCallback]);
 
   return isLink
     ? createPortal(
