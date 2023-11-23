@@ -4707,7 +4707,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/6317279072a7091286cfaf24"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -4942,7 +4945,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/638dcbbaf0b1a31177cf9602"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -5213,7 +5219,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/638613c54730d143903ca9ca"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -5412,7 +5421,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/63873a586fd089c3dad298f2"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -5647,7 +5659,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/635a71c8d43c4d1a3f25227f"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -5918,7 +5933,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/6376470705f74970c5342371"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -6117,7 +6135,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/634d28bd9d3bda3be5cfd979"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -6352,7 +6373,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/6332c0e6a36f411314ba4ca3"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -6551,7 +6575,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/636cd4572c725bfbf72d6302"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -6822,7 +6849,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/63231e68d585c0849a9bb2b1"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -7057,7 +7087,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/634e7269313f6183f3510709"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -7328,7 +7361,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/634fba2814dbd7acb5c4f759"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -7527,7 +7563,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/6317495572a7091286cfbd68"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -7798,7 +7837,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/6336f551bf68aaed7fe0f8b4"
               onClick={[Function]}
               onMouseEnter={[Function]}
@@ -7997,7 +8039,10 @@ exports[`homepage renders homepage 1`] = `
             className="card"
           >
             <a
+              background="#EEEEEE"
+              border="#3A3A3A"
               className="c28 card dispositif content card"
+              demoCard={false}
               href="/program/63623b16a2a5bf7006723347"
               onClick={[Function]}
               onMouseEnter={[Function]}

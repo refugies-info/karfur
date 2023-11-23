@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { jsUcfirst, jsLcfirst } from "lib";
+import { useUtmz } from "hooks";
 import { cls } from "lib/classname";
 import { getCommitmentText, getPriceText } from "lib/dispositif";
 import { getTheme, getThemes } from "lib/getTheme";
@@ -26,7 +27,7 @@ type DispositifLinkProps = {
   border: string;
   demoCard: boolean;
 };
-const DispositifLink = styled.a<DispositifLinkProps>`
+const DispositifLink = styled(Link)<DispositifLinkProps>`
   ${(props) =>
     !props.demoCard &&
     `
@@ -52,6 +53,7 @@ const DispositifCard = (props: Props) => {
   const theme = getTheme(props.dispositif.theme, themes);
   const colors = theme.colors;
   const dispositifThemes = [theme, ...getThemes(props.dispositif.secondaryThemes || [], themes)];
+  const { params: utmParams } = useUtmz();
 
   const commitment = props.dispositif.metadatas?.commitment;
   const price = props.dispositif.metadatas?.price;
@@ -70,94 +72,90 @@ const DispositifCard = (props: Props) => {
   };
 
   return (
-    <Link
-      legacyBehavior
+    <DispositifLink
       href={
         props.demoCard
           ? "#"
           : {
               pathname: getPath("/dispositif/[id]", router.locale),
-              query: { id: props.dispositif._id.toString() },
+              query: { id: props.dispositif._id.toString(), ...utmParams },
             }
       }
       passHref
       prefetch={false}
+      className={cls(
+        commonStyles.card,
+        commonStyles.dispositif,
+        commonStyles.content,
+        styles.card,
+        props.demoCard && commonStyles.demo,
+        props.demoCard && styles.demo,
+      )}
+      background={colors.color30}
+      border={colors.color100}
+      demoCard={!!props.demoCard}
+      target={props.targetBlank ? "_blank" : undefined}
+      rel={props.targetBlank ? "noopener noreferrer" : undefined}
     >
-      <DispositifLink
-        className={cls(
-          commonStyles.card,
-          commonStyles.dispositif,
-          commonStyles.content,
-          styles.card,
-          props.demoCard && commonStyles.demo,
-          props.demoCard && styles.demo,
+      <FavoriteButton contentId={props.dispositif._id} className={commonStyles.favorite} />
+      <div className={styles.location}>
+        <Image src={iconMap} width={16} height={16} alt="" />
+        <span style={{ color: colors.color100 }} className="ms-1">
+          {getDepartement()}
+        </span>
+      </div>
+
+      <h3
+        className={styles.title}
+        style={{ color: colors.color100 }}
+        dangerouslySetInnerHTML={{ __html: props.dispositif.titreInformatif || "" }}
+      />
+
+      <div
+        className={cls(styles.text, styles.max_lines, styles.abstract, props.demoCard && styles.placeholder)}
+        style={{ color: colors.color100 }}
+        dangerouslySetInnerHTML={{ __html: props.dispositif.abstract || "" }}
+      />
+
+      <div className={cls(styles.infos, styles.text, "my-3")} style={{ color: colors.color100 }}>
+        {price !== undefined && (
+          <div className={cls(styles.info)}>
+            <Image src={iconEuro} width={16} height={16} alt="" />
+            <div className="ms-2">{getPriceText(price, t)}</div>
+          </div>
         )}
-        background={colors.color30}
-        border={colors.color100}
-        demoCard={!!props.demoCard}
-        target={props.targetBlank ? "_blank" : undefined}
-        rel={props.targetBlank ? "noopener noreferrer" : undefined}
-      >
-        <FavoriteButton contentId={props.dispositif._id} className={commonStyles.favorite} />
-        <div className={styles.location}>
-          <Image src={iconMap} width={16} height={16} alt="" />
-          <span style={{ color: colors.color100 }} className="ms-1">
-            {getDepartement()}
-          </span>
-        </div>
 
-        <h3
-          className={styles.title}
-          style={{ color: colors.color100 }}
-          dangerouslySetInnerHTML={{ __html: props.dispositif.titreInformatif || "" }}
-        />
+        {commitment && (
+          <div className={cls(styles.info, "mt-1")}>
+            <Image src={iconTime} width={16} height={16} alt="" />
+            <div className={cls(styles.ellipsis, "ms-2")}>{getCommitmentText(commitment, t)}</div>
+          </div>
+        )}
+      </div>
 
-        <div
-          className={cls(styles.text, styles.max_lines, styles.abstract, props.demoCard && styles.placeholder)}
-          style={{ color: colors.color100 }}
-          dangerouslySetInnerHTML={{ __html: props.dispositif.abstract || "" }}
-        />
+      <div className={styles.themes}>
+        {dispositifThemes.map((theme, i) => (
+          <ThemeBadge key={i} theme={theme} className={styles.badges} />
+        ))}
+      </div>
 
-        <div className={cls(styles.infos, styles.text, "my-3")} style={{ color: colors.color100 }}>
-          {price !== undefined && (
-            <div className={cls(styles.info)}>
-              <Image src={iconEuro} width={16} height={16} alt="" />
-              <div className="ms-2">{getPriceText(price, t)}</div>
-            </div>
-          )}
-
-          {commitment && (
-            <div className={cls(styles.info, "mt-1")}>
-              <Image src={iconTime} width={16} height={16} alt="" />
-              <div className={cls(styles.ellipsis, "ms-2")}>{getCommitmentText(commitment, t)}</div>
-            </div>
-          )}
-        </div>
-
-        <div className={styles.themes}>
-          {dispositifThemes.map((theme, i) => (
-            <ThemeBadge key={i} theme={theme} className={styles.badges} />
-          ))}
-        </div>
-
-        <div className={styles.sponsor} style={{ borderColor: colors.color100 }}>
-          <span className={styles.picture}>
-            <Image
-              src={props.dispositif?.mainSponsor?.picture?.secure_url || defaultStructureImage}
-              alt={props.dispositif?.mainSponsor?.nom || ""}
-              width={40}
-              height={40}
-              style={{ objectFit: "contain" }}
-            />
-          </span>
-          <span
-            className={cls(styles.text, styles.max_lines, "ms-2")}
-            style={{ color: colors.color100 }}
-            dangerouslySetInnerHTML={{ __html: props.dispositif?.titreMarque || "" }}
+      <div className={styles.sponsor} style={{ borderColor: colors.color100 }}>
+        <span className={styles.picture}>
+          <Image
+            src={props.dispositif?.mainSponsor?.picture?.secure_url || defaultStructureImage}
+            alt={props.dispositif?.mainSponsor?.nom || ""}
+            width={40}
+            height={40}
+            style={{ objectFit: "contain" }}
           />
-        </div>
-      </DispositifLink>
-    </Link>
+        </span>
+        <span
+          className={cls(styles.text, styles.max_lines, "ms-2")}
+          style={{ color: colors.color100 }}
+          dangerouslySetInnerHTML={{ __html: props.dispositif?.titreMarque || "" }}
+        />
+      </div>
+    </DispositifLink>
   );
 };
 
