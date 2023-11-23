@@ -2,21 +2,16 @@ import React, { useMemo, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { colors } from "colors";
-import { useEvent, useLocale } from "hooks";
-import { getPath } from "routes";
-import { ContentType } from "@refugies-info/api-types";
+import { useLocale, useSendSms } from "hooks";
 import { isValidPhone } from "lib/validateFields";
-import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Toast from "components/UI/Toast";
 import Tooltip from "components/UI/Tooltip";
-import API from "utils/API";
 import LangueMenu from "../LangueMenu";
 import Input from "../Input";
 import styles from "./SMSForm.module.scss";
-import { useCookie } from "react-use";
 
 interface Props {
   disabledOptions: string[];
@@ -25,8 +20,6 @@ interface Props {
 const SMSForm = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const { Event } = useEvent();
-  const [utmz] = useCookie("__utmz");
 
   const [selectedLn, setSelectedLn] = useState<string>(locale);
   const languages = useSelector(allLanguesSelector);
@@ -35,27 +28,12 @@ const SMSForm = (props: Props) => {
   const [tel, setTel] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [showToast, setShowToast] = useState(false);
-  const dispositif = useSelector(selectedDispositifSelector);
+  const { sendSMS } = useSendSms();
 
-  const sendSMS = () => {
+  const send = () => {
     setError(null);
     if (isValidPhone(tel)) {
-      Event("SEND_SMS", selectedLn, "Dispo View");
-      const campaign = utmz
-        ?.split("&")
-        .filter((it) => it.startsWith("utm_campaign"))
-        .pop();
-      API.smsContentLink({
-        phone: tel,
-        id: dispositif?._id.toString() || "",
-        url: `https://refugies.info/${selectedLn}${getPath(
-          dispositif?.typeContenu === ContentType.DEMARCHE ? "/demarche/[id]" : "/dispositif/[id]",
-          selectedLn,
-        ).replace("[id]", dispositif?._id.toString() || "")}${
-          campaign ? `?utm_source=twilio&utm_medium=sms&${campaign}` : ""
-        }`,
-        locale: selectedLn,
-      })
+      sendSMS(tel, selectedLn)
         .then(() => {
           setTel("");
           setSelectedLn("fr");
@@ -97,7 +75,7 @@ const SMSForm = (props: Props) => {
         iconPosition="right"
         className={styles.submit}
         disabled={!tel}
-        onClick={sendSMS}
+        onClick={send}
       >
         {t("Envoyer")}
       </Button>
