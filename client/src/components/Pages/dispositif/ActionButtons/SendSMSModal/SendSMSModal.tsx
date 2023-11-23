@@ -2,12 +2,9 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
-import { useEvent, useLocale } from "hooks";
-import { getPath } from "routes";
-import { ContentType } from "@refugies-info/api-types";
+import { useLocale, useSendSms } from "hooks";
 import { isValidPhone } from "lib/validateFields";
 import { cls } from "lib/classname";
-import API from "utils/API";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import MobileModal from "components/Modals/MobileModal";
@@ -25,27 +22,18 @@ interface Props {
 const SendSMSModal = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const { Event } = useEvent();
   const [selectedLn, setSelectedLn] = useState<string>(locale);
   const [lnListOpen, setLnListOpen] = useState(false);
   const [tel, setTel] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const dispositif = useSelector(selectedDispositifSelector);
   const languages = useSelector(allLanguesSelector);
+  const { sendSMS } = useSendSms();
 
-  const sendSMS = () => {
+  const send = () => {
     setError(null);
     if (isValidPhone(tel)) {
-      Event("SEND_SMS", selectedLn, "Dispo View");
-      API.smsContentLink({
-        phone: tel,
-        id: dispositif?._id.toString() || "",
-        url: `https://refugies.info/${selectedLn}${getPath(
-          dispositif?.typeContenu === ContentType.DEMARCHE ? "/demarche/[id]" : "/dispositif/[id]",
-          selectedLn,
-        ).replace("[id]", dispositif?._id.toString() || "")}`,
-        locale: selectedLn,
-      })
+      sendSMS(tel, selectedLn)
         .then(() => {
           setTel("");
           setSelectedLn(locale);
@@ -90,7 +78,7 @@ const SendSMSModal = (props: Props) => {
         <form
           onSubmit={(e: any) => {
             e.preventDefault();
-            sendSMS();
+            send();
           }}
         >
           <input
