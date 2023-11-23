@@ -123,7 +123,7 @@ const CustomNavbarTranslate = (props: Props) => {
                 onClick={(e: any) => {
                   e.preventDefault();
                   handleQuit();
-                  Event("DISPO_CREATE", "click finish later", "Navbar");
+                  Event("DISPO_TRAD", "click finish later", "Navbar");
                 }}
                 className="me-4"
               >
@@ -147,7 +147,7 @@ const CustomNavbarTranslate = (props: Props) => {
               onClick={(e: any) => {
                 e.preventDefault();
                 handleQuit();
-                Event("DISPO_CREATE", "click save and quit", "Navbar");
+                Event("DISPO_TRAD", "click save and quit", "Navbar");
               }}
             >
               Sauvegarder et quitter

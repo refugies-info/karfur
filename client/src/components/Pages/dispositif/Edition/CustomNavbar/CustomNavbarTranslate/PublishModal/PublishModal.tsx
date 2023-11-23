@@ -56,7 +56,7 @@ const PublishModal = (props: Props) => {
   useEffect(() => {
     if (props.show) {
       Event(
-        "DISPO_CREATE",
+        "DISPO_TRAD",
         `${props.missingSteps.length} missing steps: ${props.missingSteps.join(", ")}`,
         "Missing Steps",
       );

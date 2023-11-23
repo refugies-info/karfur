@@ -1,4 +1,7 @@
 import { NextResponse, NextMiddleware } from "next/server";
+import { partnersRedirect } from "../redirects.js";
+
+const noLocaleRedirect = partnersRedirect.map(p => p.source)
 
 // Middleware to redirect to the correct locale if none is given
 export let middleware: NextMiddleware = (request) => {
@@ -8,6 +11,8 @@ export let middleware: NextMiddleware = (request) => {
     // Not an api route
     !request.nextUrl.pathname.includes("/api/") &&
     !request.nextUrl.pathname.startsWith("/_next/image") &&
+    // Redirects partners links without locale
+    !noLocaleRedirect.includes(request.nextUrl.pathname) &&
     // Uses the default locale
     request.nextUrl.locale === "default"
   ) {

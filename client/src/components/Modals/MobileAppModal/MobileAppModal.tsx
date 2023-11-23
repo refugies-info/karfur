@@ -14,7 +14,7 @@ interface Props {
   toggle: any;
 }
 
-const LanguageModal = (props: Props) => {
+const MobileAppModal = (props: Props) => {
   const { t } = useTranslation();
   const storeLink = isIOS ? iosStoreLink : androidStoreLink;
 
@@ -53,4 +53,4 @@ const LanguageModal = (props: Props) => {
   );
 };
 
-export default LanguageModal;
+export default MobileAppModal;
