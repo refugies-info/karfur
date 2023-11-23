@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
+import { useUtmz } from "hooks";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getTheme, getThemes } from "lib/getTheme";
 import { cls } from "lib/classname";
@@ -15,7 +16,6 @@ import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DemarcheCard.module.scss";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
-import { useUtmz } from "hooks";
 
 const ONE_DAY_MS = 86400000;
 
