@@ -18,7 +18,7 @@ export const activities = [
   },
   {
     theme: "Français",
-    activity: "Ateliers socio-linguistique",
+    activity: "Ateliers socio-linguistiques",
     image: assetsOnServer.annuaire.activites.francais.ateliersSocioLinguistique,
   },
   {

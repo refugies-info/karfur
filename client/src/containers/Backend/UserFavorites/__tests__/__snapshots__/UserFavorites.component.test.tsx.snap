@@ -606,7 +606,10 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           className="c7"
         >
           <a
+            background="#EFE8F4"
+            border="#3D2884"
             className="c8 card dispositif content card"
+            demoCard={false}
             href="/program/id1"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -805,7 +808,10 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           className="c7"
         >
           <a
+            background="#EEE7E5"
+            border="#443023"
             className="c9 card dispositif content card"
+            demoCard={false}
             href="/program/id2"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -1004,6 +1010,8 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           className="c7"
         >
           <a
+            background="#DDF2F9"
+            border="#06508C"
             className="c10 card demarche content"
             href="/procedure/id3"
             onClick={[Function]}

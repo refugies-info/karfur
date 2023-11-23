@@ -6,7 +6,7 @@ export const help = [
     title: "À quoi sert cette information ?",
     content: [
       "Votre action est-elle ouverte à tous ou est-elle réservée à des publics spécifiques ?",
-      "Cochez ici les publics concernés(plusieurs choix sont possibles).",
+      "Cochez ici les publics concernés (plusieurs choix sont possibles).",
     ],
   },
   {
@@ -121,5 +121,5 @@ export const modalTitles = [
   "À quel public s'adresse votre action ?",
   "Votre action est ouverte aux personnes de niveau(x) :",
   "Votre action est ouverte aux personnes âgées de :",
-  "Votre action est-elle réservée à un public spécifique ?",
+  "Votre action est-elle réservée à un public spécifique (optionnel) ?",
 ];

@@ -99,6 +99,24 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     };
   }, [store, router.events]);
 
+  // CRISP
+  useEffect(() => {
+    const toggleDataPageAttribute = (url: string) => {
+      const isContentPage = ["/demarche/", "/dispositif/", "/procedure/", "/program/"].some((path) =>
+        url.includes(path),
+      );
+      if (isContentPage) document.body.setAttribute("data-page", "content");
+      else document.body.setAttribute("data-page", "");
+    };
+
+    toggleDataPageAttribute(document.location.href);
+    router.events.on("routeChangeComplete", toggleDataPageAttribute);
+    return () => {
+      router.events.off("routeChangeComplete", toggleDataPageAttribute);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <DsfrProvider defaultColorScheme="light">
       <Analytics />

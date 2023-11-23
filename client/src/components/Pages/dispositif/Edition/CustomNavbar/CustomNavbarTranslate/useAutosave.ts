@@ -58,6 +58,7 @@ const useAutosave = () => {
           });
         })();
         setOldData(data);
+        setStartDate(new Date());
       }
     }
   }, [pageContext.mode, id, language, methods, data, oldData, router, startDate]);
