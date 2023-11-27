@@ -16,7 +16,7 @@
 }
 
 .label {
-  @include dsfr-text("small");
+  @include dsfr-text("normal");
   font-weight: bold;
   flex-shrink: 0;
 
@@ -33,11 +33,14 @@
 }
 
 .sponsor {
-  @include dsfr-text("small");
+  @include dsfr-text("normal");
   margin-left: u(10);
   display: flex;
   align-items: center;
-  max-width: 200px;
+  max-width: 240px;
+  padding: u(1) u(2);
+  border-radius: u(2);
+  cursor: pointer;
 
   @include media-max("lg-limit") {
     @include dsfr-text("normal");
@@ -47,13 +50,12 @@
   }
 
   &.edit {
-    padding: u(1) u(2);
-    border-radius: u(2);
     border: 1px solid $lightBorderDefaultGrey;
-    cursor: pointer;
-    &:hover {
-      background: $lightBackgroundContrastGrey;
-    }
+    margin-bottom: u(1);
+  }
+
+  &:hover {
+    background: $lightBackgroundContrastGrey !important;
   }
 }
 
