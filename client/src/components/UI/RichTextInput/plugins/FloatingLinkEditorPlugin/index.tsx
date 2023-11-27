@@ -20,10 +20,11 @@ import {
   SELECTION_CHANGE_COMMAND,
 } from "lexical";
 import { cls } from "lib/classname";
+import { sanitizeUrl } from "lib/sanitizeUrl";
 import { Dispatch, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Modal } from "reactstrap";
-import { getSelectedNode, sanitizeUrl, setFloatingElemPosition } from "../../lib";
+import { getSelectedNode, setFloatingElemPosition } from "../../lib";
 import styles from "./FloatinLinkEditorPlugin.module.scss";
 
 interface CloseButtonProps {
