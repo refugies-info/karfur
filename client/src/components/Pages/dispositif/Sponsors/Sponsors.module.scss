@@ -16,7 +16,7 @@
 }
 
 .label {
-  @include dsfr-text("small");
+  @include dsfr-text("normal");
   font-weight: bold;
   flex-shrink: 0;
 
@@ -33,11 +33,11 @@
 }
 
 .sponsor {
-  @include dsfr-text("small");
+  @include dsfr-text("normal");
   margin-left: u(10);
   display: flex;
   align-items: center;
-  max-width: 200px;
+  max-width: 240px;
   padding: u(1) u(2);
   border-radius: u(2);
   cursor: pointer;

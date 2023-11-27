@@ -25,7 +25,7 @@ const Sponsors = (props: Props) => {
     (image: string, name: string) => (
       <>
         {image && (
-          <Image src={image} alt={name} width={40} height={40} style={{ objectFit: "contain" }} className="me-3" />
+          <Image src={image} alt={name} width={60} height={60} style={{ objectFit: "contain" }} className="me-3" />
         )}
         <div>{name}</div>
       </>
