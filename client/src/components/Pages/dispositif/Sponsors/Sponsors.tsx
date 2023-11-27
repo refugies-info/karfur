@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { ContentStructure, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
+import { sanitizeUrl } from "lib/sanitizeUrl";
 import Button from "components/UI/Button";
 import styles from "./Sponsors.module.scss";
 
@@ -20,6 +21,18 @@ const Sponsors = (props: Props) => {
   const { t } = useTranslation();
   const hasSponsors = props.sponsors && props.sponsors.length > 0;
 
+  const getSponsorContent = useCallback(
+    (image: string, name: string) => (
+      <>
+        {image && (
+          <Image src={image} alt={name} width={60} height={60} style={{ objectFit: "contain" }} className="me-3" />
+        )}
+        <div>{name}</div>
+      </>
+    ),
+    [],
+  );
+
   return hasSponsors || props.editMode ? (
     <div className={styles.container}>
       <span className={styles.label}>{t("Dispositif.partners")}</span>
@@ -29,34 +42,28 @@ const Sponsors = (props: Props) => {
           const image =
             (sponsor as Sponsor).logo?.secure_url || (sponsor as ContentStructure).picture?.secure_url || "";
           const name = (sponsor as Sponsor).name || (sponsor as ContentStructure).nom || "";
+          const link = (sponsor as Sponsor).link ? sanitizeUrl((sponsor as Sponsor).link) : "#";
           return (
-            <div
-              key={i}
-              className={cls(styles.sponsor, props.editMode && styles.edit)}
-              onClick={props.editMode ? () => props.onClick?.(i) : undefined}
-            >
-              {image && (
-                <Image
-                  src={image}
-                  alt={name}
-                  width={40}
-                  height={40}
-                  style={{ objectFit: "contain" }}
-                  className="me-3"
-                />
-              )}
-              <div>{name}</div>
-              {props.editMode && (
-                <Button
-                  priority="tertiary"
-                  evaIcon="trash-2-outline"
-                  onClick={(e: any) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    props.onDelete?.(i);
-                  }}
-                  className={cls("ms-2", styles.delete)}
-                ></Button>
+            <div key={i}>
+              {props.editMode ? (
+                <div className={cls(styles.sponsor, styles.edit)} onClick={() => props.onClick?.(i)}>
+                  {getSponsorContent(image, name)}
+
+                  <Button
+                    priority="tertiary"
+                    evaIcon="trash-2-outline"
+                    onClick={(e: any) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      props.onDelete?.(i);
+                    }}
+                    className={cls("ms-2", styles.delete)}
+                  ></Button>
+                </div>
+              ) : (
+                <a className={cls(styles.sponsor)} href={link} target="_blank" rel="noopener noreferer">
+                  {getSponsorContent(image, name)}
+                </a>
               )}
             </div>
           );
