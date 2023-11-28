@@ -36,7 +36,7 @@ const Sponsors = (props: Props) => {
 
   return hasSponsors || props.editMode ? (
     <div className={styles.container}>
-      <span className={styles.label}>{t("Dispositif.partners")}</span>
+      <span className={cls("me-8", styles.label)}>{t("Dispositif.partners")}</span>
       <div className={styles.sponsors}>
         {(props?.sponsors || [])?.map((sponsor, i) => {
           if (!sponsor) return null;
@@ -58,7 +58,7 @@ const Sponsors = (props: Props) => {
                       e.preventDefault();
                       props.onDelete?.(i);
                     }}
-                    className={cls("ms-2", styles.delete)}
+                    className={cls(styles.delete)}
                   ></Button>
                 </div>
               ) : (
