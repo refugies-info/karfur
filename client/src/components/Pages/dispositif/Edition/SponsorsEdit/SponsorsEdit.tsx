@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { CreateDispositifRequest } from "@refugies-info/api-types";
-import Button from "components/UI/Button";
 import { ModalSponsors } from "../Modals";
 import Sponsors from "../../Sponsors";
 import DeleteContentModal from "./DeleteContentModal";
@@ -29,20 +28,12 @@ const SponsorsEdit = () => {
         onDelete={(idx) => {
           setToDeleteItemModal(idx);
         }}
-      />
-
-      <Button
-        evaIcon="plus-circle-outline"
-        priority="secondary"
-        className={styles.add}
-        onClick={(e: any) => {
+        onAdd={(e: any) => {
           e.preventDefault();
           setCurrentSponsorIndex(-1);
           setShowModal(true);
         }}
-      >
-        Ajouter un partenaire
-      </Button>
+      />
       <ModalSponsors
         show={showModal}
         toggle={() => setShowModal((o) => !o)}

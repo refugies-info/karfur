@@ -32,8 +32,13 @@ const ModalSponsors = (props: Props) => {
         link,
         logo,
       };
-      const sponsors = getValues("sponsors") || [];
-      setValue("sponsors", [...sponsors, sponsor]);
+      const newSponsors = [...(getValues("sponsors") || [])];
+      if (props.currentSponsorIndex >= 0) {
+        newSponsors[props.currentSponsorIndex] = sponsor;
+      } else {
+        newSponsors.push(sponsor);
+      }
+      setValue("sponsors", newSponsors);
       resetForm();
       props.toggle();
     }
