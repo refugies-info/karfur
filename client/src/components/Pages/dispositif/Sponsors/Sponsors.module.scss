@@ -30,28 +30,24 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  gap: u(2);
 }
 
 .sponsor {
   @include dsfr-text("normal");
-  margin-left: u(10);
   display: flex;
   align-items: center;
-  max-width: 240px;
+  width: 220px;
   padding: u(1) u(2);
   border-radius: u(2);
   cursor: pointer;
 
   @include media-max("lg-limit") {
-    @include dsfr-text("normal");
-    margin-left: 0;
-    margin-bottom: u(4);
-    max-width: none;
+    width: auto;
   }
 
   &.edit {
     border: 1px solid $lightBorderDefaultGrey;
-    margin-bottom: u(1);
   }
 
   &:hover {
@@ -63,10 +59,14 @@
   @include iconSize(u(4));
   padding: u(2) !important;
   min-height: u(8) !important;
+  margin-left: auto !important;
+
+  @include media-max("lg-limit") {
+    margin-left: u(2) !important;
+  }
 }
 
 .add {
-  margin-left: u(10);
   box-shadow: none !important;
   text-wrap: nowrap;
 }
