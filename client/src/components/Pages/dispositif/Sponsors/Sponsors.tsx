@@ -12,6 +12,7 @@ interface Props {
   editMode?: boolean;
   onDelete?: (idx: number) => void;
   onClick?: (idx: number) => void;
+  onAdd?: (e: any) => void;
 }
 
 /**
@@ -68,6 +69,11 @@ const Sponsors = (props: Props) => {
             </div>
           );
         })}
+        {props.editMode && (
+          <Button evaIcon="plus-circle-outline" priority="secondary" className={styles.add} onClick={props.onAdd}>
+            Ajouter un partenaire
+          </Button>
+        )}
       </div>
     </div>
   ) : null;
