@@ -64,14 +64,19 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
   // for performances purposes, get all responsables at once
   const responsablesIDs = simplifiedStructures.map((structure) => structure.responsable).filter((_) => !!_);
   if (responsablesIDs.length) {
-    const responsables: Record<string, SimpleUser> = await getUsersById(responsablesIDs as UserId[], {
+    const users = await getUsersById(responsablesIDs as UserId[], {
       _id: 1,
       username: 1,
       picture: 1,
       email: 1,
-    }).then((users) =>
-      users.reduce((acc: { [key: string]: SimpleUser }, user) => ({ ...acc, [user._id.toString()]: user }), {}),
-    );
+    })
+    const responsables: Record<string, SimpleUser> = users.reduce((acc: { [key: string]: SimpleUser }, user) => ({
+      ...acc,
+      [user._id.toString()]: {
+        ...user,
+        roles: (user.roles || []).map(r => r.toString())
+      }
+    }), {});
 
     // and rebuild structures with responsable informations
     simplifiedStructures.map((structure) => {

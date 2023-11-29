@@ -1,6 +1,6 @@
 import logger from "../../../logger";
 import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
-import { ObjectId } from "mongoose";
+import mongoose from "mongoose";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
 import { Response } from "../../../types/interface";
@@ -26,7 +26,7 @@ interface UserToExport {
   };
 }
 interface User {
-  _id: ObjectId;
+  _id: mongoose.Types.ObjectId;
   username: string;
   created_at?: Date;
   last_connected?: Date;

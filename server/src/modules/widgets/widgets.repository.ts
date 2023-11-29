@@ -1,3 +1,4 @@
+import { DeleteResult } from "../../types/interface";
 import { Widget, WidgetId, WidgetModel } from "../../typegoose";
 
 export const getAllWidgets = async () => {
@@ -17,6 +18,6 @@ export const updateWidget = async (widgetId: WidgetId, widget: Partial<Widget>) 
     .populate<{ author: { username: string } }>("author", "username");
 };
 
-export const deleteWidgetById = async (widgetId: WidgetId) => {
+export const deleteWidgetById = async (widgetId: WidgetId): Promise<DeleteResult> => {
   return WidgetModel.deleteOne({ _id: widgetId });
 };

@@ -23,6 +23,7 @@ import {
   UserId,
 } from "../../typegoose";
 import { getUsersById } from "../users/users.repository";
+import { DeleteResult } from "../../types/interface";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
@@ -189,16 +190,16 @@ export const updateDispositifInDB = async (
 ): Promise<Dispositif> => {
   return updateDraft
     ? DispositifDraftModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
-        upsert: true,
-        new: true,
-      }).populate("theme secondaryThemes")
+      upsert: true,
+      new: true,
+    }).populate("theme secondaryThemes")
     : DispositifModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
-        upsert: true,
-        new: true,
-      }).populate("theme secondaryThemes");
+      upsert: true,
+      new: true,
+    }).populate("theme secondaryThemes");
 };
 
-export const deleteDraftDispositif = async (id: DispositifId) => DispositifDraftModel.deleteOne({ _id: id });
+export const deleteDraftDispositif = async (id: DispositifId): Promise<DeleteResult> => DispositifDraftModel.deleteOne({ _id: id });
 
 export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: Merci): Promise<Dispositif> =>
   DispositifModel.findOneAndUpdate(
