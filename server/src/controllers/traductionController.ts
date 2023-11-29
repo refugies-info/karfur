@@ -104,7 +104,7 @@ export class TranslationController extends Controller {
     @Queries() queries?: GetProgressionRequest,
   ): ResponseWithData<GetProgressionResponse> {
     logger.info("[get_progression] received");
-    return getProgression(queries.userId || req.user._id).then((progression) => ({
+    return getProgression((queries.userId || req.user._id).toString()).then((progression) => ({
       text: "success",
       data: progression,
     }));
