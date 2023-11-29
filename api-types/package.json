@@ -1,6 +1,6 @@
 {
   "name": "@refugies-info/api-types",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "description": "Types defined in the API to be used by the frontend",
   "main": "dist/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "typescript": "*"
   },
   "dependencies": {
-    "mongoose": "^6.10.0",
+    "mongoose": "8.0.1",
     "bson": "^4.7.2",
     "buffer": "^5.7.1",
     "debug": "^4.3.4",
