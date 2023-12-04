@@ -98,11 +98,6 @@ const SearchHeaderDesktop = (props: Props) => {
   );
 
   // SEARCH
-  /*   const handleSpaceKey = useCallback((e: any) => {
-    if (e.keyCode === 13 || e.keyCode === 32) {
-      e.preventDefault();
-    }
-  }, []); */
   const setSearchActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("search", active)),
     [dispatch],
