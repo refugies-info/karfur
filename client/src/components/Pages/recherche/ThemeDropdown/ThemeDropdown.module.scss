@@ -41,10 +41,6 @@
   @include text("normal");
   @include withIcon();
 
-  &:focus {
-    outline: none;
-  }
-
   &:disabled {
     filter: grayscale(1);
     opacity: 0.3;
@@ -91,6 +87,7 @@
     justify-content: space-between;
     padding: u(2);
     font-weight: bold;
+    @include focus();
 
     @include isMobile() {
       padding: u(4) u(2);
@@ -117,6 +114,7 @@
     padding: 12px u(2);
     justify-content: flex-start;
     text-align: left;
+    @include focus();
 
     @include rtl() {
       text-align: right;

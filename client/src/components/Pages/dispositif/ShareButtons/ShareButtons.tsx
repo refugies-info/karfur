@@ -63,17 +63,32 @@ const ShareButtons = () => {
         evaIcon="email-outline"
         className={styles.btn}
         id="EmailTooltip"
+        title={t("Dispositif.tooltipShareEmail")}
       />
       <Tooltip target="EmailTooltip" placement="bottom">
         {t("Dispositif.tooltipShareEmail")}
       </Tooltip>
 
-      <Button priority="tertiary" onClick={copyLink} evaIcon="copy-outline" className={styles.btn} id="CopyTooltip" />
+      <Button
+        priority="tertiary"
+        onClick={copyLink}
+        evaIcon="copy-outline"
+        className={styles.btn}
+        id="CopyTooltip"
+        title={t("Dispositif.tooltipShareCopy")}
+      />
       <Tooltip target="CopyTooltip" placement="bottom">
         {t("Dispositif.tooltipShareCopy")}
       </Tooltip>
 
-      <Button priority="tertiary" onClick={print} evaIcon="printer-outline" className={styles.btn} id="PrintTooltip" />
+      <Button
+        priority="tertiary"
+        onClick={print}
+        evaIcon="printer-outline"
+        className={styles.btn}
+        id="PrintTooltip"
+        title={t("Dispositif.tooltipSharePrint")}
+      />
       <Tooltip target="PrintTooltip" placement="bottom">
         {t("Dispositif.tooltipSharePrint")}
       </Tooltip>
@@ -84,6 +99,7 @@ const ShareButtons = () => {
         icon="ri-facebook-circle-line"
         className={styles.btn}
         id="FacebookTooltip"
+        title={t("Dispositif.tooltipShareFacebook")}
       />
       <Tooltip target="FacebookTooltip" placement="bottom">
         {t("Dispositif.tooltipShareFacebook")}
@@ -95,6 +111,7 @@ const ShareButtons = () => {
         icon="ri-linkedin-box-line"
         className={styles.btn}
         id="LinkedinTooltip"
+        title={t("Dispositif.tooltipShareLinkedin")}
       />
       <Tooltip target="LinkedinTooltip" placement="bottom">
         {t("Dispositif.tooltipShareLinkedin")}

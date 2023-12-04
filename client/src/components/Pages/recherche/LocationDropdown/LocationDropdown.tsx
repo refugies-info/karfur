@@ -7,6 +7,7 @@ import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlace
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { cls } from "lib/classname";
+import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./LocationDropdown.module.scss";
 import { useEvent } from "hooks";
@@ -99,7 +100,12 @@ const LocationDropdown = (props: Props) => {
     <div className={styles.container}>
       <div className={cls(styles.header, placePredictions.length === 0 && styles.no_results)}>
         {query.departments.map((dep, i) => (
-          <Button key={i} className={styles.selected} onClick={() => removeDepartement(dep)}>
+          <Button
+            key={i}
+            className={styles.selected}
+            onClick={() => removeDepartement(dep)}
+            onKeyDown={(e) => onEnterOrSpace(e, () => removeDepartement(dep))}
+          >
             {dep}
             <span className={styles.icon}>
               <EVAIcon name="close-outline" fill="white" size={!props.mobile ? 18 : 24} />
@@ -107,7 +113,7 @@ const LocationDropdown = (props: Props) => {
           </Button>
         ))}
 
-        <Button onClick={getLocation} className={styles.btn}>
+        <Button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.btn}>
           <span className={styles.icon}>
             <EVAIcon name="navigation-2-outline" fill="black" size={!props.mobile ? 16 : 24} />
           </span>
@@ -116,7 +122,12 @@ const LocationDropdown = (props: Props) => {
       </div>
 
       {placePredictions.slice(0, 5).map((p, i) => (
-        <Button key={i} onClick={() => onSelectPrediction(p.place_id)} className={styles.btn}>
+        <Button
+          key={i}
+          onClick={() => onSelectPrediction(p.place_id)}
+          onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id))}
+          className={styles.btn}
+        >
           <span className={styles.icon}>
             <EVAIcon name="pin-outline" fill="black" size={!props.mobile ? 16 : 24} />
           </span>

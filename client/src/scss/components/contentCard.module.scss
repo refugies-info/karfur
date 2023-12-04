@@ -5,6 +5,12 @@
 @import "src/scss/mixins/text";
 @import "src/scss/variables";
 
+.wrapper {
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -104,7 +110,7 @@
 }
 
 /* Favorite button */
-.card {
+.wrapper {
   .favorite {
     position: absolute;
     top: 8px;

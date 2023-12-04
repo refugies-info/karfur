@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Modal, ModalHeader, ModalBody, ListGroup, ListGroupItem, Row, Col, Progress } from "reactstrap";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -32,6 +32,22 @@ const LanguageModal = (props: Props) => {
     return language?.avancementTrad ? Math.min(language.avancementTrad, 1) : 0;
   };
 
+  const changeLanguage = useCallback(
+    (ln: string) => {
+      Event("CHANGE_LANGUAGE", ln, "Global Modal");
+      props.changeLanguage(ln);
+    },
+    [props, Event],
+  );
+
+  const pressSpace = (e: any, ln: string) => {
+    const keyD = e.key !== undefined ? e.key : e.keyCode;
+    if (keyD === "Enter" || keyD === 13 || ["Spacebar", " "].indexOf(keyD) >= 0 || keyD === 32) {
+      e.preventDefault();
+      changeLanguage(ln);
+    }
+  };
+
   return (
     <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <ModalHeader toggle={props.toggle} className={styles.modal_header}>
@@ -53,11 +69,11 @@ const LanguageModal = (props: Props) => {
               <ListGroupItem
                 action
                 key={ln.i18nCode}
-                onClick={() => {
-                  Event("CHANGE_LANGUAGE", ln.i18nCode, "Global Modal");
-                  props.changeLanguage(ln.i18nCode);
-                }}
+                onClick={() => changeLanguage(ln.i18nCode)}
+                onKeyDown={(e) => pressSpace(e, ln.i18nCode)}
                 className={styles.list_group_item + "  " + (isSelected && styles.active)}
+                role="button"
+                tabIndex={0}
               >
                 <Row>
                   <Col xs="1">

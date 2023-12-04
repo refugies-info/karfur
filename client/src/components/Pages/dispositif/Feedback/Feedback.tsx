@@ -77,7 +77,7 @@ const Feedback = () => {
           <Image src={didThank ? ThumbUpFillIcon : ThumbUpIcon} width={24} height={24} alt="" className="me-2" />
           {t("Dispositif.nbThanks", { count: nbMercis })}
         </Button>
-        <Button priority="secondary" onClick={sendNegativeFeedback} className={styles.btn}>
+        <Button priority="secondary" onClick={sendNegativeFeedback} className={styles.btn} title={t("Aide")}>
           <Image src={ThumbDownIcon} width={24} height={24} alt="" />
         </Button>
       </div>
