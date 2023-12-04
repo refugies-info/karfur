@@ -1,4 +1,5 @@
 import { SimpleTheme } from "@refugies-info/api-types";
+import { DeleteResult } from "../../types/interface";
 import { Need, NeedId, NeedModel } from "../../typegoose";
 
 export const createNeedInDB = async (need: Partial<Need>) => await new NeedModel(need).save();
@@ -13,9 +14,7 @@ export const saveNeedInDB = async (needId: NeedId, need: Partial<Need>) => {
   }>("theme");
 };
 
-export const deleteNeedById = async (needId: NeedId) => {
-  return NeedModel.deleteOne({ _id: needId });
-};
+export const deleteNeedById = async (needId: NeedId): Promise<DeleteResult> => NeedModel.deleteOne({ _id: needId });
 
 export const updatePositions = async (needIds: NeedId[]) => {
   return Promise.all(

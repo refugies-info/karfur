@@ -1,6 +1,7 @@
 @import "mixins/responsive";
 @import "mixins/rtl";
 @import "mixins/text";
+@import "mixins/btn";
 @import "colors";
 @import "src/scss/variables";
 
@@ -95,9 +96,13 @@ html body {
     outline: none;
     box-shadow: none;
   }
-  .btn:focus {
-    outline: none;
-    box-shadow: none !important;
+
+  .btn:focus-visible {
+    color: initial;
+    background-color: inherit;
+    border-color: initial;
+    @include focus();
+    box-shadow: initial;
   }
 
   // Dropdowns

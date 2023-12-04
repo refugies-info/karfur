@@ -9,27 +9,27 @@ import styles from "./SearchThemeButton.module.scss";
 import { GetThemeResponse } from "@refugies-info/api-types";
 
 type ThemeButtonProps = {
-  color100: string;
-  color80: string;
-  color30: string;
+  $color100: string;
+  $color80: string;
+  $color30: string;
 };
 const ThemeButton = styled.button<ThemeButtonProps>`
-  background: ${(props) => `linear-gradient(90deg, ${props.color100} 22%, ${props.color80} 100%)`};
+  background: ${(props) => `linear-gradient(90deg, ${props.$color100} 22%, ${props.$color80} 100%)`};
 
   :hover {
-    background: ${(props) => props.color30};
-    box-shadow: 0 0 0 1px ${(props) => props.color100}, 0 0 40px 0 #00000040;
-    color: ${(props) => props.color100} !important;
+    background: ${(props) => props.$color30};
+    box-shadow: 0 0 0 1px ${(props) => props.$color100}, 0 0 40px 0 #00000040;
+    color: ${(props) => props.$color100} !important;
   }
 `;
 
 const ThemeLink = styled(Link)<ThemeButtonProps>`
-  background: ${(props) => `linear-gradient(90deg, ${props.color100} 22%, ${props.color80} 100%)`} !important;
+  background: ${(props) => `linear-gradient(90deg, ${props.$color100} 22%, ${props.$color80} 100%)`} !important;
 
   :hover {
-    background: ${(props) => props.color30} !important;
-    box-shadow: 0 0 0 1px ${(props) => props.color100}, 0 0 40px 0 #00000040;
-    color: ${(props) => props.color100} !important;
+    background: ${(props) => props.$color30} !important;
+    box-shadow: 0 0 0 1px ${(props) => props.$color100}, 0 0 40px 0 #00000040;
+    color: ${(props) => props.$color100} !important;
   }
 `;
 
@@ -48,7 +48,7 @@ const SearchThemeButton = (props: Props) => {
     () => (
       <>
         <span className="me-4">{jsUcfirst(props.theme.short[locale] || "")}</span>
-        <div className={styles.image}>
+        <span className={styles.image}>
           {props.theme?.appImage?.secure_url && (
             <span className={styles.image_inner}>
               <Image
@@ -59,7 +59,7 @@ const SearchThemeButton = (props: Props) => {
               />
             </span>
           )}
-        </div>
+        </span>
       </>
     ),
     [locale, props.theme, props.small],
@@ -68,9 +68,9 @@ const SearchThemeButton = (props: Props) => {
   return props.href ? (
     <ThemeLink
       className={cls(styles.btn, props.small && styles.sm, props.className)}
-      color100={props.theme.colors.color100}
-      color80={props.theme.colors.color80}
-      color30={props.theme.colors.color30}
+      $color100={props.theme.colors.color100}
+      $color80={props.theme.colors.color80}
+      $color30={props.theme.colors.color30}
       href={props.href}
       onClick={props.onClick}
     >
@@ -79,9 +79,9 @@ const SearchThemeButton = (props: Props) => {
   ) : (
     <ThemeButton
       className={cls(styles.btn, props.small && styles.sm, props.className)}
-      color100={props.theme.colors.color100}
-      color80={props.theme.colors.color80}
-      color30={props.theme.colors.color30}
+      $color100={props.theme.colors.color100}
+      $color80={props.theme.colors.color80}
+      $color30={props.theme.colors.color30}
       onClick={() => {
         if (props.onClick) props.onClick();
         window.scrollTo(0, 0);

@@ -41,3 +41,10 @@
     }
   }
 }
+
+@mixin focus() {
+  &:focus {
+    outline: solid 2px #0a76f6 !important;
+    outline-offset: 2px;
+  }
+}

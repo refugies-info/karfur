@@ -72,7 +72,7 @@ const Dispositif = (props: Props) => {
           {isViewMode ? <LeftSidebar /> : <LeftSidebarEdition typeContenu={typeContenu} />}
         </div>
 
-        <div className={styles.main} id="anchor-what" dir={isRTL ? undefined : "ltr"}>
+        <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
           {!isTablet && <Header typeContenu={typeContenu} />}
           {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
             <Section key={i} sectionKey={section} contentType={typeContenu} />

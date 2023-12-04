@@ -105,7 +105,8 @@ $fadeWidth_md: 50px;
     transform: translateY(-50%);
 
     &:hover,
-    &:active {
+    &:active,
+    &:focus {
       background-color: darken($bleuCharte, 10%) !important;
     }
 

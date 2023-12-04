@@ -84,12 +84,24 @@ const SectionButtons = (props: Props) => {
         className={styles.btn}
         isLoading={isLoadingTts}
         onClick={isPlaying ? pause : startReading}
+        title={t("listen")}
       />
       <div className={styles.tts_buttons}>
-        <Button priority="tertiary" className={cls(styles.btn, styles.speed, "mt-1")} onClick={toggleRateSpeed}>
+        <Button
+          priority="tertiary"
+          className={cls(styles.btn, styles.speed, "mt-1")}
+          onClick={toggleRateSpeed}
+          nativeButtonProps={{ tabIndex: showTtsButtons ? 0 : -1 }}
+        >
           {rateSpeed === 1 ? "x2" : "x1"}
         </Button>
-        <Button evaIcon="close-outline" className={cls(styles.btn, styles.close, "mt-1")} onClick={stopReading} />
+        <Button
+          evaIcon="close-outline"
+          className={cls(styles.btn, styles.close, "mt-1")}
+          onClick={stopReading}
+          nativeButtonProps={{ tabIndex: showTtsButtons ? 0 : -1 }}
+          title={t("close")}
+        />
       </div>
 
       <Button
@@ -98,6 +110,7 @@ const SectionButtons = (props: Props) => {
         className={cls(styles.btn, "mt-2")}
         id={tooltipId}
         onClick={() => setShowReactionModal(true)}
+        title={t("Dispositif.react")}
       />
 
       <Tooltip target={tooltipId} placement="right">
