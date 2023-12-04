@@ -14,7 +14,7 @@ const TagName = (props: Props) => {
   const locale = useLocale();
 
   return (
-    <div className={styles.container} style={props.colored ? { color: props.theme.colors.color100 } : {}}>
+    <span className={styles.container} style={props.colored ? { color: props.theme.colors.color100 } : {}}>
       <span className={styles.icon}>
         <ThemeIcon
           theme={props.theme}
@@ -25,7 +25,7 @@ const TagName = (props: Props) => {
       <span className={styles.name} style={props.size ? { minHeight: props.size } : {}}>
         {props.theme.short[locale] || ""}
       </span>
-    </div>
+    </span>
   );
 };
 
