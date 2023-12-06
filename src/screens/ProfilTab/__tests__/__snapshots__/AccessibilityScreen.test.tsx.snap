@@ -403,6 +403,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                     }
                   >
                     <Text
+                      accessibilityRole="header"
                       hasBackgroundImage={false}
                       invertedColor={false}
                       style={

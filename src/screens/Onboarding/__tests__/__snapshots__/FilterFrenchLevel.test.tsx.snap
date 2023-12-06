@@ -1675,6 +1675,7 @@ exports[`Filter french level should render correctly when no french level select
               }
             >
               <Text
+                accessibilityRole="header"
                 ellipsizeMode="tail"
                 invertedColor={false}
                 isRTL={false}

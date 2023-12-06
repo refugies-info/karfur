@@ -177,6 +177,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               }
             >
               <Text
+                accessibilityRole="header"
                 ellipsizeMode="tail"
                 invertedColor={false}
                 isRTL={false}
@@ -323,6 +324,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         />
       </View>
       <Text
+        accessibilityRole="header"
         isRTL={false}
         selectable={true}
         style={
@@ -1593,6 +1595,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         </View>
       </View>
       <Text
+        accessibilityRole="header"
         isRTL={false}
         selectable={true}
         style={
@@ -1872,6 +1875,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         </View>
       </View>
       <Text
+        accessibilityRole="header"
         isRTL={false}
         selectable={true}
         style={
@@ -3243,6 +3247,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               }
             >
               <Text
+                accessibilityRole="header"
                 ellipsizeMode="tail"
                 invertedColor={false}
                 isRTL={false}
@@ -3389,6 +3394,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         />
       </View>
       <Text
+        accessibilityRole="header"
         isRTL={false}
         selectable={true}
         style={
@@ -4659,6 +4665,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         </View>
       </View>
       <Text
+        accessibilityRole="header"
         isRTL={false}
         selectable={true}
         style={
@@ -4938,6 +4945,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         </View>
       </View>
       <Text
+        accessibilityRole="header"
         isRTL={false}
         selectable={true}
         style={
@@ -6309,6 +6317,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               }
             >
               <Text
+                accessibilityRole="header"
                 ellipsizeMode="tail"
                 invertedColor={false}
                 isRTL={false}
@@ -6455,6 +6464,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         />
       </View>
       <Text
+        accessibilityRole="header"
         isRTL={false}
         selectable={true}
         style={
@@ -7725,6 +7735,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         </View>
       </View>
       <Text
+        accessibilityRole="header"
         isRTL={false}
         selectable={true}
         style={
@@ -8004,6 +8015,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         </View>
       </View>
       <Text
+        accessibilityRole="header"
         isRTL={false}
         selectable={true}
         style={

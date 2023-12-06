@@ -421,6 +421,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <Text
+              accessibilityRole="header"
               isRTL={false}
               selectable={true}
               style={
@@ -640,6 +641,7 @@ exports[`ContentScreen should render correctly 1`] = `
           >
             <View>
               <Text
+                accessibilityRole="header"
                 color="#9E180A"
                 isRTL={false}
                 selectable={true}
@@ -2137,6 +2139,7 @@ exports[`ContentScreen should render correctly 1`] = `
           >
             <View>
               <Text
+                accessibilityRole="header"
                 color="#9E180A"
                 isRTL={false}
                 selectable={true}
@@ -3323,6 +3326,7 @@ exports[`ContentScreen should render correctly 1`] = `
           >
             <View>
               <Text
+                accessibilityRole="header"
                 color="#9E180A"
                 isRTL={false}
                 selectable={true}
@@ -3740,6 +3744,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <Text
+              accessibilityRole="header"
               color="#9E180A"
               isRTL={false}
               selectable={true}
@@ -3839,6 +3844,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   testID="test-button-map"
                 >
                   <View
+                    accessible={false}
                     style={
                       [
                         {
@@ -5602,6 +5608,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <Text
+              accessibilityRole="header"
               isRTL={false}
               selectable={true}
               style={
@@ -7234,6 +7241,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <Text
+              accessibilityRole="header"
               isRTL={false}
               selectable={true}
               style={
@@ -7453,6 +7461,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           >
             <View>
               <Text
+                accessibilityRole="header"
                 color="#9E180A"
                 isRTL={false}
                 selectable={true}
@@ -8950,6 +8959,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           >
             <View>
               <Text
+                accessibilityRole="header"
                 color="#9E180A"
                 isRTL={false}
                 selectable={true}
@@ -10136,6 +10146,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           >
             <View>
               <Text
+                accessibilityRole="header"
                 color="#9E180A"
                 isRTL={false}
                 selectable={true}
@@ -10553,6 +10564,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <Text
+              accessibilityRole="header"
               color="#9E180A"
               isRTL={false}
               selectable={true}
@@ -10652,6 +10664,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   testID="test-button-map"
                 >
                   <View
+                    accessible={false}
                     style={
                       [
                         {
@@ -12415,6 +12428,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <Text
+              accessibilityRole="header"
               isRTL={false}
               selectable={true}
               style={

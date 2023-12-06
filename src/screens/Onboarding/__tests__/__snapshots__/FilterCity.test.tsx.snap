@@ -330,6 +330,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
               }
             >
               <Text
+                accessibilityRole="header"
                 ellipsizeMode="tail"
                 invertedColor={false}
                 isRTL={false}
@@ -1433,6 +1434,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               }
             >
               <Text
+                accessibilityRole="header"
                 ellipsizeMode="tail"
                 invertedColor={false}
                 isRTL={false}
@@ -1670,6 +1672,7 @@ exports[`Filter city should render correctly when no city 1`] = `
             <View>
               <View>
                 <View
+                  accessibilityLabel="Ta ville"
                   accessibilityRole="button"
                   accessibilityState={
                     {
