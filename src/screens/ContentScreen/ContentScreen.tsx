@@ -396,7 +396,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         <Rows>
           <LanguageUnavailable />
 
-          <Title>
+          <Title accessibilityRole="header">
             <ReadableText>{selectedContent.titreInformatif}</ReadableText>
           </Title>
 
@@ -472,7 +472,11 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
 
           {!!map && map.markers.length > 0 && (
             <>
-              <HeaderText key={1} color={colors.color100}>
+              <HeaderText
+                key={1}
+                color={colors.color100}
+                accessibilityRole="header"
+              >
                 <ReadableText>
                   {t("content_screen.where", "Trouver un interlocuteur")}
                 </ReadableText>
@@ -489,7 +493,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                     justifyContent: "center",
                   }}
                 >
-                  <FakeMapButton>
+                  <FakeMapButton accessible={false}>
                     <Icon
                       color={styles.colors.black}
                       name="eye-outline"
@@ -508,7 +512,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
 
           <Separator />
 
-          <SectionTitle>
+          <SectionTitle accessibilityRole="header">
             <ReadableText>
               {t("content_screen.related_topic", "THÉMATIQUES LIÉES")}
             </ReadableText>

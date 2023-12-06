@@ -57,7 +57,7 @@ export const OnboardingCarouselElement = (props: Props) => {
         <CarouselStepImage step={props.step} />
       </ImagesContainer>
       <TextContainer>
-        <StyledText>
+        <StyledText accessibilityRole="text">
           {t(
             "onboarding_screens." + correspondingData.text,
             correspondingData.text

@@ -118,6 +118,7 @@ export const CustomButton = (props: Props) => {
       accessibilityRole="button"
       accessibilityLabel={props.accessibilityLabel}
       withShadows={withShadows}
+      accessible={true}
     >
       {props.iconName && props.iconFirst && icon}
       {props.isTextNotBold ? (

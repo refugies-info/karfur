@@ -53,7 +53,10 @@ export const OnboardingStart = ({
       <Content>
         <Rows verticalAlign="flex-end">
           <ScrollView contentContainerStyle={{ justifyContent: "flex-start" }}>
-            <StyledText marginBottom={`${styles.margin * 8}px`}>
+            <StyledText
+              marginBottom={`${styles.margin * 8}px`}
+              accessibilityRole="header"
+            >
               {t("onboarding_screens.bonjour", "trad")}
             </StyledText>
           </ScrollView>

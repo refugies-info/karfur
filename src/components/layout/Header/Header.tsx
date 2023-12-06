@@ -99,6 +99,7 @@ export const Header = ({
               height={LOGO_HEIGHT}
               accessible={true}
               accessibilityLabel="Réfugiés point info"
+              accessibilityRole="image"
             />
           ) : null}
           {showLogo || hideBack ? null : (
@@ -143,6 +144,7 @@ export const Header = ({
                       ellipsizeMode="tail"
                       invertedColor={darkBackground}
                       numberOfLines={2}
+                      accessibilityRole="header"
                     >
                       <ReadableText>{upperFirst(headerTitle)}</ReadableText>
                     </HeaderTitle>

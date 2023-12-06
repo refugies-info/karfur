@@ -51,7 +51,7 @@ const Section = ({ sectionKey }: SectionProps) => {
 
   return (
     <View>
-      <Title color={colors.color100}>
+      <Title color={colors.color100} accessibilityRole="header">
         <ReadableText>
           {t("content_screen." + sectionKey, sectionKey)}
         </ReadableText>

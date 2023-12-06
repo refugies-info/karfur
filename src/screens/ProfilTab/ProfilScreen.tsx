@@ -123,7 +123,7 @@ export const ProfilScreen = ({
       headerTitle={t("tab_bar.profile", "Profil")}
       hideBack
     >
-      <SectionTitle>
+      <SectionTitle accessibilityRole="header">
         {t("profile_screens.my_profile", "Mon profil")}
       </SectionTitle>
       <ProfilButtonsContainer>
@@ -186,7 +186,7 @@ export const ProfilScreen = ({
           isTextNotBold={true}
         />
       </DeleteDataContainer>
-      <SectionTitle>
+      <SectionTitle accessibilityRole="header">
         {firstLetterUpperCase(t("notifications.settings", "Paramètres"))}
       </SectionTitle>
       <ProfilButtonsContainer>
@@ -199,7 +199,7 @@ export const ProfilScreen = ({
           onPress={() => navigation.navigate("NotificationsSettingsScreen")}
         />
       </ProfilButtonsContainer>
-      <SectionTitle>
+      <SectionTitle accessibilityRole="header">
         {t(
           "profile_screens.app_informations",
           "Informations sur l'application"

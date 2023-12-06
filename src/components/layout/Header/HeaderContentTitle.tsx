@@ -42,6 +42,7 @@ const HeaderContentTitle = ({
           <HeaderTitle
             hasBackgroundImage={headerBackgroundImage !== undefined}
             invertedColor={darkBackground}
+            accessibilityRole="header"
           >
             <ReadableText>{firstLetterUpperCase(title)}</ReadableText>
           </HeaderTitle>

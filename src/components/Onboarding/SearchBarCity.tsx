@@ -92,6 +92,7 @@ export const SearchBarCity = (props: Props) => {
       <FakeInput
         onPress={() => setModalOpened(true)}
         accessibilityRole="button"
+        accessibilityLabel={t("onboarding_screens.city_label", "Ta ville")}
       >
         <Icon
           name="search-outline"
