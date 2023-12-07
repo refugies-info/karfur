@@ -23,10 +23,6 @@
     padding: u(4);
   }
 
-  &:focus {
-    outline: none;
-  }
-
   .image {
     @include isMobile() {
       width: 80px;
