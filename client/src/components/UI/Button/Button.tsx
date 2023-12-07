@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Button, ButtonProps } from "@codegouvfr/react-dsfr/Button";
 import { cls } from "lib/classname";
@@ -33,6 +33,28 @@ const getIconMargin = (props: Props) => {
 };
 
 const DSFRButton = (props: Props) => {
+  const content = useMemo(() => {
+    return props.isLoading || props.children || props.evaIcon ? (
+      <>
+        {props.isLoading && (
+          <EVAIcon
+            name="loader-outline"
+            fill={getIconColor(props)}
+            className={cls(getIconMargin(props), styles.loading)}
+          />
+        )}
+        {(props.children || props.evaIcon) && (
+          <>
+            {props.evaIcon && !props.isLoading && (
+              <EVAIcon name={props.evaIcon} fill={getIconColor(props)} className={getIconMargin(props)} />
+            )}
+            {props.children}
+          </>
+        )}
+      </>
+    ) : undefined; // needed to get an icon only dsfr style
+  }, [props]);
+
   return (
     //@ts-ignore FIXME icon type
     <Button
@@ -51,21 +73,7 @@ const DSFRButton = (props: Props) => {
       size={props.size}
       nativeButtonProps={{ id: props.id, ...(props.nativeButtonProps || {}) }}
     >
-      {props.isLoading && (
-        <EVAIcon
-          name="loader-outline"
-          fill={getIconColor(props)}
-          className={cls(getIconMargin(props), styles.loading)}
-        />
-      )}
-      {(props.children || props.evaIcon) && (
-        <>
-          {props.evaIcon && !props.isLoading && (
-            <EVAIcon name={props.evaIcon} fill={getIconColor(props)} className={getIconMargin(props)} />
-          )}
-          {props.children}
-        </>
-      )}
+      {content}
     </Button>
   );
 };

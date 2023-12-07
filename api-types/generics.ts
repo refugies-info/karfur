@@ -82,8 +82,8 @@ export enum UserStatus {
 export interface SimpleUser {
   _id: Id;
   username: string;
-  picture: Picture | undefined;
-  email: string | undefined;
+  picture?: Picture;
+  email?: string;
   roles?: string[];
 }
 

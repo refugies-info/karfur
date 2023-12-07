@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
+import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import { checkIfEllipsis } from "lib/checkIfEllipsis";
 import useWindowSize from "hooks/useWindowSize";
 import { colors } from "colors";
@@ -33,6 +34,10 @@ const SearchInput = (props: Props) => {
   const valueRef = useRef<HTMLDivElement | null>(null);
   const { isMobile } = useWindowSize();
 
+  useEffect(() => {
+    if (active) ref.current?.focus();
+  }, [active]);
+
   const handleFocusOut = useCallback(() => {
     if (active) setActive(false);
   }, [setActive, active]);
@@ -49,6 +54,23 @@ const SearchInput = (props: Props) => {
       if (input) input.removeEventListener("click", handleClick);
     };
   }, [active]);
+
+  // prevent close dropdown on space when input focused
+  useEffect(() => {
+    const handleSpaceKey = (e: any) => {
+      if (
+        (e.key === "Enter" || ["Spacebar", " "].indexOf(e.key as string) >= 0) &&
+        document.activeElement === ref.current
+      ) {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("keyup", handleSpaceKey);
+
+    return () => {
+      document.removeEventListener("keyup", handleSpaceKey);
+    };
+  }, []);
 
   // handle focusout
   useEffect(() => {
@@ -71,7 +93,7 @@ const SearchInput = (props: Props) => {
       e.stopPropagation();
       if (resetFilter) resetFilter();
     },
-    [resetFilter]
+    [resetFilter],
   );
 
   const isActive = active || !!props.value;
@@ -81,6 +103,20 @@ const SearchInput = (props: Props) => {
     if (isMobile && props.smallIcon && !props.onHomepage) return isActive ? colors.bleuCharte : "black";
     return isActive ? "white" : "black";
   }, [isActive, isMobile, props.smallIcon, props.onHomepage]);
+
+  const closeButton = useMemo(() => {
+    return (
+      <div
+        className={styles.empty_btn}
+        role="button"
+        tabIndex={0}
+        onClick={onClickCross}
+        onKeyDown={(e) => onEnterOrSpace(e, () => onClickCross(e))}
+      >
+        <EVAIcon name="close-outline" fill="dark" size={20} />
+      </div>
+    );
+  }, [onClickCross]);
 
   return (
     <div
@@ -93,35 +129,25 @@ const SearchInput = (props: Props) => {
         <label className={styles.label} htmlFor={props.label}>
           {props.label}
         </label>
+
+        <input
+          ref={ref}
+          id={props.label}
+          type="text"
+          placeholder={props.inputPlaceholder || t("Rechercher2", "Rechercher...")}
+          className={cls(styles.input, (!active || props.noInput) && styles.hidden)}
+          onChange={props.onChange}
+          value={props.inputValue}
+        />
         {active && !props.noInput ? (
-          <>
-            <input
-              ref={ref}
-              id={props.label}
-              type="text"
-              placeholder={props.inputPlaceholder || t("Rechercher2", "Rechercher...")}
-              className={styles.input}
-              onChange={props.onChange}
-              value={props.inputValue}
-              autoFocus
-            />
-            {props.inputValue && (
-              <div className={styles.empty_btn}>
-                <EVAIcon name="close-outline" fill="dark" onClick={onClickCross} size={20} />
-              </div>
-            )}
-          </>
+          <>{props.inputValue && closeButton}</>
         ) : (
           <>
             <div ref={valueRef} className={cls(styles.value, !props.value && styles.empty)}>
               {props.value || props.placeholder}
               {hasEllipsis && props.value && <span className={styles.plus}>({countValues})</span>}
             </div>
-            {props.value && !props.noEmptyBtn && (
-              <div className={styles.empty_btn}>
-                <EVAIcon name="close-outline" fill="dark" onClick={onClickCross} size={20} />
-              </div>
-            )}
+            {props.value && !props.noEmptyBtn && closeButton}
           </>
         )}
       </span>

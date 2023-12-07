@@ -23,7 +23,12 @@ const HelpUs = () => {
         <p className={cls(commonStyles.subtitle, commonStyles.center)}>{t("Homepage.helpUsSubtitle")}</p>
         <Row className={commonStyles.top_space}>
           <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-            <Link href={getPath("/publier", router.locale)} prefetch={false}>
+            <Link
+              href={getPath("/publier", router.locale)}
+              prefetch={false}
+              title={t("Homepage.helpUsCardTitle1")}
+              className={styles.link}
+            >
               <Card
                 image={HelpUsIcon1}
                 title={t("Homepage.helpUsCardTitle1")}
@@ -37,7 +42,12 @@ const HelpUs = () => {
           </Col>
 
           <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-            <Link href={getPath("/traduire", router.locale)} prefetch={false}>
+            <Link
+              href={getPath("/traduire", router.locale)}
+              prefetch={false}
+              title={t("Homepage.helpUsCardTitle2")}
+              className={styles.link}
+            >
               <Card
                 title={t("Homepage.helpUsCardTitle2")}
                 header={
@@ -65,6 +75,8 @@ const HelpUs = () => {
               href="https://help.refugies.info/fr/article/commenter-une-fiche-rkuwpn/?bust=1670576881639"
               target="_blank"
               rel="noopener noreferrer"
+              title={t("Homepage.helpUsCardTitle3")}
+              className={styles.link}
             >
               <Card
                 image={HelpUsIcon3}

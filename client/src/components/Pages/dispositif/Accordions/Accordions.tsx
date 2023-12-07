@@ -13,15 +13,15 @@ import AccordionBadge from "../AccordionBadge";
 import styles from "./Accordions.module.scss";
 
 interface ColoredButtonProps {
-  border: string;
-  background: string;
+  $border: string;
+  $background: string;
 }
 
 const ColoredButton = styled(RSButton)<ColoredButtonProps>`
   :hover,
   &.${styles.open} {
-    background: ${(props) => props.background} !important;
-    border-color: ${(props) => props.border};
+    background: ${(props) => props.$background} !important;
+    border-color: ${(props) => props.$border};
   }
 `;
 
@@ -59,8 +59,8 @@ const Accordions = ({ content, sectionKey, color100, color30, contentType }: Pro
             <ColoredButton
               className={cls(styles.btn, isItemOpen && styles.open)}
               onClick={() => toggle(i)}
-              background={color30}
-              border={color100}
+              $background={color30}
+              $border={color100}
             >
               <h2 className={styles.title} style={{ color: color100 }}>
                 <AccordionBadge index={i + 1} sectionKey={sectionKey} contentType={contentType} color100={color100} />

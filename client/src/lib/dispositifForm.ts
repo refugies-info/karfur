@@ -1,6 +1,6 @@
 import pick from "lodash/pick";
 import { v4 as uuidv4 } from "uuid";
-import { ContentType, CreateDispositifRequest, GetDispositifResponse, Id, InfoSections, UpdateDispositifRequest } from "@refugies-info/api-types";
+import { ContentType, CreateDispositifRequest, GetDispositifResponse, Id, InfoSections, Sponsor, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { logger } from "logger";
 import API from "utils/API";
 
@@ -67,7 +67,8 @@ export const getDefaultValue = (dispositif: GetDispositifResponse | null): Updat
     ...pick(dispositif, ["titreInformatif", "titreMarque", "abstract", "what", "why", "how", "next", "metadatas", "map"]),
     mainSponsor: dispositif.mainSponsor?._id.toString(),
     theme: dispositif.theme?.toString(),
-    secondaryThemes: dispositif.secondaryThemes?.map((t) => t.toString())
+    secondaryThemes: dispositif.secondaryThemes?.map((t) => t.toString()),
+    sponsors: dispositif.sponsors as Sponsor[]
   };
 
   if (defaultValues.why) defaultValues.why = addMissingAccordions(defaultValues.why, dispositif?.typeContenu || ContentType.DISPOSITIF, "why");

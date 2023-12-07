@@ -1,7 +1,8 @@
 import { Languages } from "@refugies-info/api-types";
-import { DispositifModel, TraductionsModel } from "../../../typegoose";
+import { DeleteResult } from "../../../types/interface";
+import { Dispositif, DispositifModel, TraductionsModel } from "../../../typegoose";
 
-const deleteTranslations = (dispositifId: string, locale: Languages) =>
+const deleteTranslations = (dispositifId: string, locale: Languages): Promise<[Dispositif, DeleteResult]> =>
   Promise.all([
     DispositifModel.findByIdAndUpdate(dispositifId, { $unset: { [`translations.${locale}`]: "" } }),
     TraductionsModel.deleteMany({ dispositifId, language: locale }),

@@ -12,6 +12,7 @@ import TagName from "components/UI/TagName";
 import Checkbox from "components/UI/Checkbox";
 import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
 import { cls } from "lib/classname";
+import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import styles from "./ThemeDropdown.module.scss";
 import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
 import { useEvent } from "hooks";
@@ -106,8 +107,10 @@ const NeedsList = (props: Props) => {
           color30={colors?.color30 || "gray"}
           selected={isThemeSelected}
           onClick={() => selectTheme(props.themeSelected)}
+          onKeyDown={(e) => onEnterOrSpace(e, () => selectTheme(props.themeSelected))}
+          tabIndex={0}
         >
-          <Checkbox checked={isThemeSelected} color={colors?.color100 || "black"}>
+          <Checkbox checked={isThemeSelected} color={colors?.color100 || "black"} tabIndex={-1}>
             <span className={styles.all}>
               <EVAIcon name="grid" fill={colors?.color100 || "black"} />
               {t("Recherche.all", "Tous")}
@@ -142,8 +145,10 @@ const NeedsList = (props: Props) => {
               color30={need.theme.colors.color30}
               selected={selected}
               onClick={() => selectNeed(need._id)}
+              onKeyDown={(e) => onEnterOrSpace(e, () => selectNeed(need._id))}
+              tabIndex={0}
             >
-              <Checkbox checked={selected} color={need.theme.colors.color100 || "black"}>
+              <Checkbox checked={selected} color={need.theme.colors.color100 || "black"} tabIndex={-1}>
                 {need[locale]?.text || ""}
                 <span
                   className={styles.badge}

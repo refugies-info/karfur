@@ -3,6 +3,7 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/btn";
 @import "src/scss/variables";
 
 $breakpoint: "lg-limit";
@@ -29,7 +30,7 @@ $green: #055e5a;
   align-items: center;
   background: transparent;
   border: none;
-  outline: none;
+  @include focus();
 
   @include media-max($breakpoint) {
     @include text("normal");
