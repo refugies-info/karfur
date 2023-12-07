@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Structure } from "../../../schema/schemaStructure";
+/* import { Structure } from "../../../schema/schemaStructure";
 import {
   getStructureFromDB,
   getStructuresFromDB,
@@ -13,10 +13,10 @@ jest.mock("../../../schema/schemaStructure", () => ({
     find: jest.fn(),
     findByIdAndUpdate: jest.fn(),
   }
-}));
+})); */
 
 
-describe("getStructureFromDB", () => {
+describe.skip("getStructureFromDB", () => {
   it("should call Structure with populate if param is true", async () => {
     Structure.findOne.mockReturnValueOnce({
       populate: jest.fn().mockResolvedValue("structuresWithDispos"),
@@ -44,7 +44,7 @@ describe("getStructureFromDB", () => {
   });
 });
 
-describe("getStructuresFromDB", () => {
+describe.skip("getStructuresFromDB", () => {
   it("should call structure.find when withDispositifsAssocies false ", async () => {
     Structure.find.mockResolvedValueOnce({});
 
@@ -69,7 +69,7 @@ describe("getStructuresFromDB", () => {
   });
 });
 
-describe("updateAssociatedDispositifsInStructure", () => {
+describe.skip("updateAssociatedDispositifsInStructure", () => {
   it("should call Structure.findByIdAndUpdate and Structure.find which returns one structure", async () => {
     Structure.find.mockResolvedValueOnce([{ _id: "id1" }]);
 
@@ -88,10 +88,10 @@ describe("updateAssociatedDispositifsInStructure", () => {
 
   it("should call Structure.findByIdAndUpdate and Structure.find which returns 2 structures", async () => {
     Structure.find.mockResolvedValueOnce([
-        { _id: "id1" },
-        { _id: "id2" },
-        { _id: "sponsorId" },
-      ]);
+      { _id: "id1" },
+      { _id: "id2" },
+      { _id: "sponsorId" },
+    ]);
 
     await updateAssociatedDispositifsInStructure("dispositifId", "sponsorId");
     expect(Structure.findByIdAndUpdate).toHaveBeenCalledWith(

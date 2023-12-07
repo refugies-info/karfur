@@ -1,4 +1,6 @@
-export const targets = [
+import { AppUser } from "src/typegoose";
+
+export const targets: AppUser[] = [
   {
     uid: "1",
     city: "Rennes",

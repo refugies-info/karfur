@@ -11,24 +11,27 @@ export const updateLanguagesAvancement = async () => {
   const activesContents = await getActiveContents({ _id: 1 });
   const nbActivesContents = activesContents.length;
 
-  await activeLanguages.map(async (langue: Langue) => {
-    const nbPublishedTrad = await getCountDispositifs({
-      status: DispositifStatus.ACTIVE,
-      [`translations.${langue.i18nCode}`]: { $exists: true },
+  try {
+    await activeLanguages.map(async (langue: Langue) => {
+      const nbPublishedTrad = await getCountDispositifs({
+        status: DispositifStatus.ACTIVE,
+        [`translations.${langue.i18nCode}`]: { $exists: true },
+      });
+
+      logger.info("[updateLanguagesAvancement] before update avancement", {
+        language: langue.i18nCode,
+        nbActivesContents,
+        nbPublishedTrad,
+      });
+
+      const tradRatio = nbPublishedTrad / nbActivesContents;
+
+      await updateLanguageAvancementInDB(langue._id, tradRatio);
     });
-
-    logger.info("[updateLanguagesAvancement] before update avancement", {
-      language: langue.i18nCode,
-      nbActivesContents,
-      nbPublishedTrad,
-    });
-
-    const tradRatio = nbPublishedTrad / nbActivesContents;
-
-    await updateLanguageAvancementInDB(langue._id, tradRatio);
-  });
-
-  logger.info("[updateLanguagesAvancement] successfully updated avancement");
+    logger.info("[updateLanguagesAvancement] successfully updated avancement");
+  } catch (e) {
+    logger.error("[updateLanguagesAvancement] error", e);
+  }
   return;
 };
 
