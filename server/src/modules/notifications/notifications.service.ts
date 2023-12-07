@@ -71,6 +71,7 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
           typeContenu: 1,
           theme: 1,
           notificationsSent: 1,
+          metadatas: 1
         },
         "theme",
       );
@@ -83,7 +84,7 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
       /*
        * Pas de mail si ce n'est pas un dispositif
        */
-      if (dispositif.isDispositif()) {
+      if (!dispositif.isDispositif()) {
         return;
       }
 
@@ -170,11 +171,13 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
           typeContenu: 1,
           theme: 1,
           notificationsSent: 1,
+          metadatas: 1,
+          translations: 1
         },
         "theme",
       );
 
-      if (!demarche || demarche.isDemarche()) {
+      if (!demarche || !demarche.isDemarche()) {
         // not a demarche: error
         logger.error(`[sendNotificationsForDemarche] demarche ${demarcheId} not found`);
         return;
