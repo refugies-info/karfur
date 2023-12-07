@@ -1,5 +1,5 @@
 import { ContentType, Metadatas } from "@refugies-info/api-types";
-import { AppUser, Dispositif } from "../../typegoose";
+import { AppUser, Dispositif, Theme } from "../../typegoose";
 
 const ALL = "france";
 
@@ -21,6 +21,12 @@ export const getTitle = (title: string | Record<string, string>, lang: string = 
 
 const getAge = (dispositif: Dispositif) => {
   const age = dispositif.metadatas.age;
+  if (!age) {
+    return {
+      min: 0,
+      max: 99
+    }
+  }
 
   if (age.type === "lessThan") {
     return {
@@ -68,7 +74,7 @@ export const parseDispositif = (dispositif: Dispositif): Requirements => {
     departments: dispositif.getDepartements(),
     age: getAge(dispositif),
     type: dispositif.typeContenu,
-    mainThemeId: dispositif.theme.toString() || null,
+    mainThemeId: (dispositif.theme as Theme)._id.toString() || null,
   };
 };
 
