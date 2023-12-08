@@ -14,11 +14,11 @@
     "skipLibCheck": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "types": ["node"],
+    "types": ["node", "jest"],
     "paths": {
-      "tsoa": ["node_modules/tsoa/dist"],
+      "tsoa": ["node_modules/tsoa/dist"]
     }
   },
-  "exclude": ["node_modules", "dist", "src/**/*.test.ts"],
+  "exclude": ["node_modules", "dist"],
   "include": ["src"]
 }

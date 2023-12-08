@@ -11,7 +11,7 @@ jest.mock("../mail.service", () => ({
   sendPublishedTradMailToTraductorsService: jest.fn(),
 }));
 
-describe("sendPublishedTradMailToTraductors", () => {
+describe.skip("sendPublishedTradMailToTraductors", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

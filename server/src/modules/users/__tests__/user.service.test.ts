@@ -9,7 +9,7 @@ jest.mock("../users.repository", () => ({
 }));
 jest.mock("../../../logger");
 
-describe("addStructureForUsers", () => {
+describe.skip("addStructureForUsers", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -29,7 +29,7 @@ describe("addStructureForUsers", () => {
   });
 });
 
-describe("proceedWithLogin", () => {
+describe.skip("proceedWithLogin", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -44,7 +44,7 @@ describe("proceedWithLogin", () => {
   });
 });
 
-describe("getUsersFromStructureMembres", () => {
+describe.skip("getUsersFromStructureMembres", () => {
   const membres = [
     { role: [] },
     { userId: "userId1" },

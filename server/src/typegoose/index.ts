@@ -1,4 +1,6 @@
-import { getModelForClass } from "@typegoose/typegoose";
+import { getModelForClass, setGlobalOptions, Severity } from "@typegoose/typegoose";
+setGlobalOptions({ options: { allowMixed: Severity.ALLOW } });
+
 import { AdminOptions } from "./AdminOptions";
 import { AppUser, NotificationsSettings } from "./AppUser";
 import { Dispositif, DispositifId } from "./Dispositif";

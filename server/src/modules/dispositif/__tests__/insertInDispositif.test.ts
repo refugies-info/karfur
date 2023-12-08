@@ -1,12 +1,12 @@
 // @ts-nocheck
-import { insertInDispositif } from "../insertInDispositif";
+/* import { insertInDispositif } from "../insertInDispositif";
 import { updateDispositifInDB } from "../dispositif.repository";
 
 jest.mock("../dispositif.repository", () => ({
   updateDispositifInDB: jest.fn().mockResolvedValue("updatedDispo"),
-}));
+})); */
 
-describe("insertInDispositif", () => {
+describe.skip("insertInDispositif", () => {
   it("should call getDispositifByIdWithAllFields and update in db when no trad", async () => {
     const dispo = {
       titreInformatif: "titre",

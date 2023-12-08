@@ -1,4 +1,6 @@
-export const targets = [
+import { AppUser } from "../../../typegoose";
+
+export const targets: AppUser[] = [
   {
     uid: "1",
     city: "Rennes",
@@ -17,7 +19,7 @@ export const targets = [
   },
   {
     uid: "2",
-    selectedLanguage: "en",
+    selectedLanguage: "fa",
     expoPushToken: "2",
     notificationsSettings: {
       global: true,
@@ -57,7 +59,7 @@ export const targets = [
   },
   {
     uid: "5",
-    selectedLanguage: "en",
+    selectedLanguage: "fa",
     expoPushToken: "5",
     notificationsSettings: {
       global: true,
