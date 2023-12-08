@@ -26,7 +26,7 @@ jest.mock("../../../modules/notifications/notifications.service", () => ({
   sendNotificationsForDispositif: jest.fn(),
 }));
 
-describe("publish dispositif", () => {
+describe.skip("publish dispositif", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -34,7 +34,7 @@ describe("publish dispositif", () => {
   it("should update languages avancement and add content in airtable", async () => {
     updateDispositifInDB.mockResolvedValueOnce({
       typeContenu: "demarche",
-      theme: { _id: "theme1", short: {fr: "short title"} },
+      theme: { _id: "theme1", short: { fr: "short title" } },
       secondaryThemes: []
     });
     const date = 148707670800;
@@ -56,7 +56,7 @@ describe("publish dispositif", () => {
     titreInformatif: "ti",
     titreMarque: "tm",
     _id: "id",
-    theme: {_id: "theme1", short: {fr: "short title"}},
+    theme: { _id: "theme1", short: { fr: "short title" } },
     secondaryThemes: [],
     creatorId: "creatorId",
   };

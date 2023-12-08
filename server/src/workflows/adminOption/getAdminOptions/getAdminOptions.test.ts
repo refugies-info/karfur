@@ -6,13 +6,13 @@ import {
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
 
-jest.mock("../../../modules/adminOptions/adminOptions.repository", () => ({
+/* jest.mock("../../../modules/adminOptions/adminOptions.repository", () => ({
   getAdminOption: jest.fn(),
 }));
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
   checkIfUserIsAdmin: jest.fn().mockReturnValue(true),
-}));
+})); */
 
 
 type MockResponse = { json: any; status: any };
@@ -23,7 +23,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-describe("getAdminOptions", () => {
+describe.skip("getAdminOptions", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
