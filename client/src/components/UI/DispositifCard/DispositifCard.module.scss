@@ -131,10 +131,11 @@
   }
 }
 
+.wrapper:hover .card:not(.demo) .sponsor .picture {
+  background-color: $white;
+}
+
 .card {
-  &:hover:not(.demo) .sponsor .picture {
-    background-color: $white;
-  }
   &.demo {
     border: 1px solid $lightBorderDefaultGrey;
     box-shadow: none !important;
