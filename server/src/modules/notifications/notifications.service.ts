@@ -148,7 +148,7 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
 
       await sendNotifications(messages);
 
-      const payload = dispositif?.notificationsSent;
+      const payload = dispositif?.notificationsSent || {};
       payload[lang] = true;
       await updateDispositifInDB(dispositifId, { notificationsSent: payload });
     } catch (err) {
@@ -234,7 +234,7 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
 
       await sendNotifications(messages);
 
-      const payload = demarche?.notificationsSent;
+      const payload = demarche?.notificationsSent || {};
       for (const lang of availableLanguages) {
         payload[lang] = true;
       }
