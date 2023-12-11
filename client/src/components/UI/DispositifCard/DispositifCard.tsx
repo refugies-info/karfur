@@ -33,7 +33,7 @@ const DispositifLink = styled(Link)<DispositifLinkProps>`
     !props.$demoCard &&
     `
 :hover,
-.${commonStyles.wrapper} + & {
+.${commonStyles.favorite}:hover + & {
   background-color: ${props.$background} !important;
   border-color: ${props.$border} !important;
   color: ${props.$border} !important;
