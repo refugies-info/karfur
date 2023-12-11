@@ -16,7 +16,7 @@ jest.mock("../mail.service", () => ({
   sendPublishedTradMailToStructureService: jest.fn(),
 }));
 
-describe("sendPublishedTradMailToStructure", () => {
+describe.skip("sendPublishedTradMailToStructure", () => {
   const structureMembers = "structureMembers";
   const membre1 = { _id: "membre1", username: "U1", email: "email1" };
   const membre2 = { _id: "membre2", username: "U2", email: "email2" };

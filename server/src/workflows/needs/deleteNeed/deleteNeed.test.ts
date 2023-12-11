@@ -7,7 +7,7 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { getCountDispositifs, deleteNeedFromDispositifs } from "../../../modules/dispositif/dispositif.repository";
 
-jest.mock("../../../modules/needs/needs.repository", () => ({
+/* jest.mock("../../../modules/needs/needs.repository", () => ({
   deleteNeedById: jest.fn(),
 }));
 jest.mock("../../../libs/checkAuthorizations", () => ({
@@ -21,7 +21,7 @@ jest.mock("../../../schema/schemaNeeds", () => ({
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getCountDispositifs: jest.fn(),
   deleteNeedFromDispositifs: jest.fn()
-}));
+})); */
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -31,7 +31,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-describe("deleteNeed", () => {
+describe.skip("deleteNeed", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

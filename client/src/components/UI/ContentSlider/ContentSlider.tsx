@@ -78,11 +78,7 @@ const ContentSlider = (props: Props) => {
         </Button>
       )}
       <div ref={slider} className={cls(styles.slider, props.className)} style={{ gap }}>
-        {props.cards.map((d, i) => (
-          <div key={i} className={styles.card}>
-            {d}
-          </div>
-        ))}
+        {props.cards}
       </div>
     </div>
   );

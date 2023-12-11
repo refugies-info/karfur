@@ -9,18 +9,10 @@ module.exports = {
   testRegex: "(/__tests__/.*|\\.(test))\\.(ts|tsx|js)$",
   testPathIgnorePatterns: ["\\.snap$", "<rootDir>/node_modules/", "<rootDir>/dist/"],
   cacheDirectory: ".jest/cache",
-  globals: {
-    "ts-jest": {
-      isolatedModules: true,
-    },
-  },
   coveragePathIgnorePatterns: ["/node_modules/", "/src/environment"],
   collectCoverage: false,
   // https://stackoverflow.com/questions/71743639/getting-rangeerror-maximum-call-stack-size-exceeded-when-unit-testing-with-mo
   // moduleDirectories: ["node_modules", "src"],
-  moduleNameMapper: {
-    "src/(.*)": "<rootDir>/src/$1",
-  },
   testEnvironment: "node",
   setupFilesAfterEnv: ["./src/jest/setupJest.js"],
 };

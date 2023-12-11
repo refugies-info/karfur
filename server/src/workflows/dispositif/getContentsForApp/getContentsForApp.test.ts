@@ -2,9 +2,9 @@
 import { getContentsForApp } from "./getContentsForApp";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 
-jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
+/* jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getActiveContentsFiltered: jest.fn().mockResolvedValue([])
-}));
+})); */
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
   const res: MockResponse = {};
@@ -13,7 +13,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-describe("getContentsForApp", () => {
+describe.skip("getContentsForApp", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

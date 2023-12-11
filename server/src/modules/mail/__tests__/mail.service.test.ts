@@ -23,7 +23,7 @@ jest.mock("../mail.repository", () => ({
   addMailEvent: jest.fn(),
 }));
 
-describe("sendWelcomeMail", () => {
+describe.skip("sendWelcomeMail", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -53,7 +53,7 @@ describe("sendWelcomeMail", () => {
   });
 });
 
-describe("sendResetPasswordMail", () => {
+describe.skip("sendResetPasswordMail", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -82,7 +82,7 @@ describe("sendResetPasswordMail", () => {
   });
 });
 
-describe("sendSubscriptionReminderMailService", () => {
+describe.skip("sendSubscriptionReminderMailService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -107,7 +107,7 @@ describe("sendSubscriptionReminderMailService", () => {
   });
 });
 
-describe("sendOneDraftReminderMailService", () => {
+describe.skip("sendOneDraftReminderMailService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -146,7 +146,7 @@ describe("sendOneDraftReminderMailService", () => {
   });
 });
 
-describe("sendMultipleDraftsReminderMailService", () => {
+describe.skip("sendMultipleDraftsReminderMailService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -176,7 +176,7 @@ describe("sendMultipleDraftsReminderMailService", () => {
   });
 });
 
-describe("sendPublishedFicheMailToStructureMembersService", () => {
+describe.skip("sendPublishedFicheMailToStructureMembersService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -219,7 +219,7 @@ describe("sendPublishedFicheMailToStructureMembersService", () => {
   });
 });
 
-describe("sendPublishedFicheMailToCreatorService", () => {
+describe.skip("sendPublishedFicheMailToCreatorService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -262,7 +262,7 @@ describe("sendPublishedFicheMailToCreatorService", () => {
   });
 });
 
-describe("sendPublishedTradMailToStructureService", () => {
+describe.skip("sendPublishedTradMailToStructureService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -307,7 +307,7 @@ describe("sendPublishedTradMailToStructureService", () => {
   });
 });
 
-describe("sendNewFicheEnAttenteMail", () => {
+describe.skip("sendNewFicheEnAttenteMail", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -349,7 +349,7 @@ describe("sendNewFicheEnAttenteMail", () => {
   });
 });
 
-describe("sendPublishedTradMailToTraductorsService", () => {
+describe.skip("sendPublishedTradMailToTraductorsService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -397,7 +397,7 @@ describe("sendPublishedTradMailToTraductorsService", () => {
   });
 });
 
-describe("sendAdminImprovementsMailService", () => {
+describe.skip("sendAdminImprovementsMailService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

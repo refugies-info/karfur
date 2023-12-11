@@ -3,7 +3,7 @@ import { AppUser, Dispositif, Theme } from "../../typegoose";
 
 const ALL = "france";
 
-interface Requirements {
+export interface Requirements {
   age: { min: number; max: number };
   departments: Metadatas["location"];
   type: ContentType;
@@ -19,7 +19,7 @@ export const getTitle = (title: string | Record<string, string>, lang: string = 
   return title[lang] || title["fr"] || "";
 };
 
-const getAge = (dispositif: Dispositif) => {
+export const getAge = (dispositif: Dispositif) => {
   const age = dispositif.metadatas.age;
   if (!age) {
     return {
