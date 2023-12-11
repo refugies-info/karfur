@@ -32,7 +32,8 @@ const DispositifLink = styled(Link)<DispositifLinkProps>`
   ${(props) =>
     !props.$demoCard &&
     `
-:hover {
+:hover,
+.${commonStyles.wrapper} + & {
   background-color: ${props.$background} !important;
   border-color: ${props.$border} !important;
   color: ${props.$border} !important;
@@ -73,7 +74,8 @@ const DispositifCard = (props: Props) => {
   };
 
   return (
-    <div className={commonStyles.wrapper}>
+    <div className={cls(commonStyles.wrapper, styles.wrapper)}>
+      <FavoriteButton contentId={props.dispositif._id} className={commonStyles.favorite} />
       <DispositifLink
         href={
           props.demoCard
@@ -158,7 +160,6 @@ const DispositifCard = (props: Props) => {
           />
         </div>
       </DispositifLink>
-      <FavoriteButton contentId={props.dispositif._id} className={commonStyles.favorite} />
     </div>
   );
 };
