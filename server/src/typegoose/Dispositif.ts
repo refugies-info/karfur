@@ -32,9 +32,9 @@ export class Sponsor {
   @prop()
   name: String;
   @prop()
-  logo: String;
+  logo?: String;
   @prop()
-  link: String;
+  link?: String;
 }
 
 export class Content {

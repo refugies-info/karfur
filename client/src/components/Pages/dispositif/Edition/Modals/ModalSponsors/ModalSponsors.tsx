@@ -26,12 +26,10 @@ const ModalSponsors = (props: Props) => {
   }, []);
 
   const validate = () => {
-    if (name && link && logo) {
-      const sponsor: Sponsor = {
-        name,
-        link,
-        logo,
-      };
+    if (name) {
+      const sponsor: Sponsor = { name };
+      if (link) sponsor.link = link;
+      if (logo) sponsor.logo = logo;
       const newSponsors = [...(getValues("sponsors") || [])];
       if (props.currentSponsorIndex >= 0) {
         newSponsors[props.currentSponsorIndex] = sponsor;
@@ -66,7 +64,7 @@ const ModalSponsors = (props: Props) => {
           logo={logo}
           onLogoChange={(img) => setLogo(img)}
         />
-        <SimpleFooter onValidate={validate} disabled={!name || !link || !logo} />
+        <SimpleFooter onValidate={validate} disabled={!name} />
       </div>
     </BaseModal>
   );
