@@ -270,13 +270,15 @@ exports[`homepage renders homepage 1`] = `
   color: #77057A !important;
 }
 
-.c27:hover {
+.c27:hover,
+favorite:hover + .c27 {
   background-color: #EEEEEE !important;
   border-color: #3A3A3A !important;
   color: #3A3A3A !important;
 }
 
-.c28:hover {
+.c28:hover,
+.wrapper + .c28 {
   background-color: #EEEEEE !important;
   border-color: #3A3A3A !important;
   color: #3A3A3A !important;
@@ -2412,6 +2414,47 @@ exports[`homepage renders homepage 1`] = `
           <div
             className="wrapper"
           >
+            <button
+              className="btn favorite btn btn-secondary"
+              onClick={[Function]}
+              title="Dispositif.addToFavorites"
+              type="button"
+            >
+              <span
+                className="icon_outline icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star-outline" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "20px",
+                      "lineHeight": "20px",
+                    }
+                  }
+                />
+              </span>
+              <span
+                className="icon_fill icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "20px",
+                      "lineHeight": "20px",
+                    }
+                  }
+                />
+              </span>
+            </button>
             <a
               className="c27 card demarche content"
               href="/procedure/6392ff59bcd2075a379203a9"
@@ -2565,6 +2608,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -2606,10 +2653,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/63972dcb98b670cc4bae76e6"
@@ -2763,6 +2806,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -2804,10 +2851,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/5e1c8c0e0742580052a33972"
@@ -2932,6 +2975,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -2973,10 +3020,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/637781c6896812af208f3495"
@@ -3058,6 +3101,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -3099,10 +3146,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/6123a82c6bf6bc00148a5176"
@@ -3220,6 +3263,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -3261,10 +3308,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/5dd7c4b06f0ac0004c87c88d"
@@ -3346,6 +3389,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -3387,10 +3434,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/63528e00976acb4f7bcd37ad"
@@ -3515,6 +3558,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -3556,10 +3603,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/63401d8783f485a025e88388"
@@ -3648,6 +3691,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -3689,10 +3736,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/630337ddf2087e2b25ac7609"
@@ -3774,6 +3817,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -3815,10 +3862,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/62f265d81119eede87fb1ae2"
@@ -3979,6 +4022,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -4020,10 +4067,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/62b9809b796009107a932cbc"
@@ -4105,6 +4148,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -4146,10 +4193,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/62bab2e7b47f6b02fa9783f2"
@@ -4267,6 +4310,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -4308,10 +4355,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/62b5cc16092a73346b4a9a11"
@@ -4393,6 +4436,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -4434,10 +4481,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/62a897aceece9a373f34ee49"
@@ -4526,6 +4569,10 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -4567,10 +4614,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c27 card demarche content"
               href="/procedure/62a8ae34eece9a373f350351"
@@ -4652,47 +4695,6 @@ exports[`homepage renders homepage 1`] = `
                 </div>
               </div>
             </a>
-            <button
-              className="btn favorite btn btn-secondary"
-              onClick={[Function]}
-              title="Dispositif.addToFavorites"
-              type="button"
-            >
-              <span
-                className="icon_outline icon"
-              >
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star-outline" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"/></g></g></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": "20px",
-                      "lineHeight": "20px",
-                    }
-                  }
-                />
-              </span>
-              <span
-                className="icon_fill icon"
-              >
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"/></g></g></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": "20px",
-                      "lineHeight": "20px",
-                    }
-                  }
-                />
-              </span>
-            </button>
           </div>
         </div>
       </div>
@@ -4748,8 +4750,49 @@ exports[`homepage renders homepage 1`] = `
           }
         >
           <div
-            className="wrapper"
+            className="wrapper wrapper"
           >
+            <button
+              className="btn favorite btn btn-secondary"
+              onClick={[Function]}
+              title="Dispositif.addToFavorites"
+              type="button"
+            >
+              <span
+                className="icon_outline icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star-outline" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "20px",
+                      "lineHeight": "20px",
+                    }
+                  }
+                />
+              </span>
+              <span
+                className="icon_fill icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "20px",
+                      "lineHeight": "20px",
+                    }
+                  }
+                />
+              </span>
+            </button>
             <a
               className="c28 card dispositif content card"
               href="/program/6317279072a7091286cfaf24"
@@ -4942,6 +4985,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -4983,10 +5030,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/638dcbbaf0b1a31177cf9602"
@@ -5215,6 +5258,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -5256,10 +5303,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/638613c54730d143903ca9ca"
@@ -5416,6 +5459,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -5457,10 +5504,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/63873a586fd089c3dad298f2"
@@ -5653,6 +5696,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -5694,10 +5741,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/635a71c8d43c4d1a3f25227f"
@@ -5926,6 +5969,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -5967,10 +6014,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/6376470705f74970c5342371"
@@ -6127,6 +6170,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -6168,10 +6215,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/634d28bd9d3bda3be5cfd979"
@@ -6364,6 +6407,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -6405,10 +6452,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/6332c0e6a36f411314ba4ca3"
@@ -6565,6 +6608,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -6606,10 +6653,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/636cd4572c725bfbf72d6302"
@@ -6838,6 +6881,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -6879,10 +6926,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/63231e68d585c0849a9bb2b1"
@@ -7075,6 +7118,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -7116,10 +7163,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/634e7269313f6183f3510709"
@@ -7348,6 +7391,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -7389,10 +7436,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/634fba2814dbd7acb5c4f759"
@@ -7549,6 +7592,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -7590,10 +7637,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/6317495572a7091286cfbd68"
@@ -7822,6 +7865,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -7863,10 +7910,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/6336f551bf68aaed7fe0f8b4"
@@ -8023,6 +8066,10 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
+          </div>
+          <div
+            className="wrapper wrapper"
+          >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
@@ -8064,10 +8111,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </span>
             </button>
-          </div>
-          <div
-            className="wrapper"
-          >
             <a
               className="c28 card dispositif content card"
               href="/program/63623b16a2a5bf7006723347"
@@ -8296,47 +8339,6 @@ exports[`homepage renders homepage 1`] = `
                 />
               </div>
             </a>
-            <button
-              className="btn favorite btn btn-secondary"
-              onClick={[Function]}
-              title="Dispositif.addToFavorites"
-              type="button"
-            >
-              <span
-                className="icon_outline icon"
-              >
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star-outline" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"/></g></g></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": "20px",
-                      "lineHeight": "20px",
-                    }
-                  }
-                />
-              </span>
-              <span
-                className="icon_fill icon"
-              >
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"/></g></g></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": "20px",
-                      "lineHeight": "20px",
-                    }
-                  }
-                />
-              </span>
-            </button>
           </div>
         </div>
       </div>
