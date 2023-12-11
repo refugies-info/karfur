@@ -47,7 +47,7 @@ export const initGA = () => {
       .join("&");
 
     // Créer un cookie __utmz de remplacement
-    document.cookie = "__utmz=" + utmQueryString + "; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    document.cookie = "__utmz=" + utmQueryString + "; path=/; expires=0";
   }
 };
 
