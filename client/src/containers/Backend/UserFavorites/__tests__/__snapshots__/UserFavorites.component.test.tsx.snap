@@ -480,21 +480,21 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
 }
 
 .c10:hover,
-favorite:hover + .c10 {
+.favorite:hover + .c10 {
   background-color: #DDF2F9 !important;
   border-color: #06508C !important;
   color: #06508C !important;
 }
 
 .c8:hover,
-.wrapper + .c8 {
+.favorite:hover + .c8 {
   background-color: #EFE8F4 !important;
   border-color: #3D2884 !important;
   color: #3D2884 !important;
 }
 
 .c9:hover,
-.wrapper + .c9 {
+.favorite:hover + .c9 {
   background-color: #EEE7E5 !important;
   border-color: #443023 !important;
   color: #443023 !important;
