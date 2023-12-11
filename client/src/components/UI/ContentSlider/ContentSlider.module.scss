@@ -16,6 +16,7 @@ $fadeWidth_md: 50px;
 
 .slider {
   display: flex;
+  align-items: stretch;
   margin-top: u(4);
   padding-top: u(4);
   flex-wrap: nowrap;
@@ -24,10 +25,6 @@ $fadeWidth_md: 50px;
   margin-right: -$fadeWidth_lg;
   padding-left: $fadeWidth_lg;
   padding-right: $fadeWidth_lg;
-
-  &.card {
-    flex-shrink: 0;
-  }
 
   &:after,
   &:before {
@@ -79,12 +76,6 @@ $fadeWidth_md: 50px;
       content: none;
       display: none;
     }
-  }
-}
-
-.card {
-  & > a {
-    height: 100%;
   }
 }
 
