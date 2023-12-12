@@ -61,8 +61,10 @@ const ModalSponsors = (props: Props) => {
           onNameChange={(e: any) => setName(e.target.value)}
           link={link}
           onLinkChange={(e: any) => setLink(e.target.value)}
+          linkOptional
           logo={logo}
           onLogoChange={(img) => setLogo(img)}
+          logoOptional
         />
         <SimpleFooter onValidate={validate} disabled={!name} />
       </div>
