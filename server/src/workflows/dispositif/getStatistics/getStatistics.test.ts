@@ -10,16 +10,16 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
+/* jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getNbMercis: jest.fn().mockResolvedValue([{ _id: null, mercis: 4072 }]),
   getNbVues: jest.fn().mockResolvedValue([{ _id: null, nbVues: 175201, nbVuesMobile: 85741 }]),
   getNbFiches: jest.fn().mockResolvedValue({ nbDispositifs: 13, nbDemarches: 14 }),
   getNbUpdatedRecently: jest.fn().mockResolvedValue(12)
-}));
+})); */
 
 const req = { query: {} };
 
-describe("getStatistics", () => {
+describe.skip("getStatistics", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

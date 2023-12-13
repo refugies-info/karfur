@@ -5,6 +5,11 @@
 @import "src/scss/mixins/text";
 @import "src/scss/variables";
 
+.wrapper {
+  position: relative;
+  display: flex;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -54,16 +59,6 @@
     cursor: default;
     box-shadow: none;
   }
-  &.content {
-    &:hover:not(.demo) {
-      border-color: $dark;
-      background-color: $gray30;
-      box-shadow: none;
-      :global(.theme-badge) {
-        background-color: $white !important;
-      }
-    }
-  }
 
   em {
     background-color: $bgfocus;
@@ -103,8 +98,18 @@
   display: inline-block;
 }
 
+// hover
+.wrapper:hover .card:not(.demo) {
+  border-color: $dark;
+  background-color: $gray30;
+  box-shadow: none;
+  :global(.theme-badge) {
+    background-color: $white !important;
+  }
+}
+
 /* Favorite button */
-.card {
+.wrapper {
   .favorite {
     position: absolute;
     top: 8px;

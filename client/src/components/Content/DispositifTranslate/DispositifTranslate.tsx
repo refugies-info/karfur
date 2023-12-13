@@ -135,7 +135,7 @@ const Dispositif = (props: Props) => {
               <Banner themeId={dispositif?.theme} />
             </div>
 
-            <div className={styles.main} id="anchor-what" dir={isRTL ? undefined : "ltr"}>
+            <div className={styles.main} dir={isRTL ? undefined : "ltr"}>
               <Header typeContenu={typeContenu} />
               {typeContenu === ContentType.DISPOSITIF && (
                 <div className="mb-8">

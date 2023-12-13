@@ -1,6 +1,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/btn";
 
 .help_text {
   margin-top: u(6);
@@ -10,4 +11,10 @@
   @include isTablet() {
     margin-top: u(4);
   }
+}
+
+.link {
+  @include focus();
+  display: inline-block;
+  height: 100%;
 }

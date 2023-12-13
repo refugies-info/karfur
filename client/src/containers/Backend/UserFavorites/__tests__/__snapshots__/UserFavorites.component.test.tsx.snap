@@ -479,19 +479,22 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
   margin-bottom: 8px;
 }
 
-.c10:hover {
+.c10:hover,
+.favorite:hover + .c10 {
   background-color: #DDF2F9 !important;
   border-color: #06508C !important;
   color: #06508C !important;
 }
 
-.c8:hover {
+.c8:hover,
+.favorite:hover + .c8 {
   background-color: #EFE8F4 !important;
   border-color: #3D2884 !important;
   color: #3D2884 !important;
 }
 
-.c9:hover {
+.c9:hover,
+.favorite:hover + .c9 {
   background-color: #EEE7E5 !important;
   border-color: #443023 !important;
   color: #443023 !important;
@@ -605,19 +608,13 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         <div
           className="c7"
         >
-          <a
-            background="#EFE8F4"
-            border="#3D2884"
-            className="c8 card dispositif content card"
-            demoCard={false}
-            href="/program/id1"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
+          <div
+            className="wrapper wrapper"
           >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
+              title="Dispositif.addToFavorites"
               type="button"
             >
               <span
@@ -655,144 +652,48 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 />
               </span>
             </button>
-            <div
-              className="location"
-            >
-              <img
-                alt=""
-                data-nimg="1"
-                decoding="async"
-                height={16}
-                loading="lazy"
-                onError={[Function]}
-                onLoad={[Function]}
-                src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                style={
-                  {
-                    "color": "transparent",
-                  }
-                }
-                width={16}
-              />
-              <span
-                className="ms-1"
-                style={
-                  {
-                    "color": "#3D2884",
-                  }
-                }
-              />
-            </div>
-            <h3
-              className="title"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "tinfo1",
-                }
-              }
-              style={
-                {
-                  "color": "#3D2884",
-                }
-              }
-            />
-            <div
-              className="text max_lines abstract"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "abstract1",
-                }
-              }
-              style={
-                {
-                  "color": "#3D2884",
-                }
-              }
-            />
-            <div
-              className="infos text my-3"
-              style={
-                {
-                  "color": "#3D2884",
-                }
-              }
-            />
-            <div
-              className="themes"
+            <a
+              className="c8 card dispositif content card"
+              href="/program/id1"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
+              title="tinfo1"
             >
               <div
-                className="container badges theme-badge"
-                style={
-                  {
-                    "backgroundColor": "#EFE8F4",
-                  }
-                }
+                className="location"
               >
-                <span
-                  className="icon"
-                >
-                  <span
-                    className="icon theme-icon"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg width="12" height="12"></svg>",
-                      }
+                <img
+                  alt="Infocards.location"
+                  data-nimg="1"
+                  decoding="async"
+                  height={16}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
+                  srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
+                  style={
+                    {
+                      "color": "transparent",
                     }
-                    style={
-                      {
-                        "height": 12,
-                        "width": 12,
-                      }
-                    }
-                  />
-                </span>
+                  }
+                  width={16}
+                />
                 <span
+                  className="ms-1"
                   style={
                     {
                       "color": "#3D2884",
                     }
                   }
-                >
-                  Français
-                </span>
-              </div>
-            </div>
-            <div
-              className="sponsor"
-              style={
-                {
-                  "borderColor": "#3D2884",
-                }
-              }
-            >
-              <span
-                className="picture"
-              >
-                <img
-                  alt=""
-                  data-nimg="1"
-                  decoding="async"
-                  height={40}
-                  loading="lazy"
-                  onError={[Function]}
-                  onLoad={[Function]}
-                  src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                  srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                  style={
-                    {
-                      "color": "transparent",
-                      "objectFit": "contain",
-                    }
-                  }
-                  width={40}
                 />
-              </span>
-              <span
-                className="text max_lines ms-2"
+              </div>
+              <h3
+                className="title"
                 dangerouslySetInnerHTML={
                   {
-                    "__html": "titreMarque1",
+                    "__html": "tinfo1",
                   }
                 }
                 style={
@@ -801,25 +702,124 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   }
                 }
               />
-            </div>
-          </a>
+              <div
+                className="text max_lines abstract"
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "abstract1",
+                  }
+                }
+                style={
+                  {
+                    "color": "#3D2884",
+                  }
+                }
+              />
+              <div
+                className="infos text my-3"
+                style={
+                  {
+                    "color": "#3D2884",
+                  }
+                }
+              />
+              <div
+                className="themes"
+              >
+                <div
+                  className="container badges theme-badge"
+                  style={
+                    {
+                      "backgroundColor": "#EFE8F4",
+                    }
+                  }
+                >
+                  <span
+                    className="icon"
+                  >
+                    <span
+                      className="icon theme-icon"
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg width="12" height="12"></svg>",
+                        }
+                      }
+                      style={
+                        {
+                          "height": 12,
+                          "width": 12,
+                        }
+                      }
+                    />
+                  </span>
+                  <span
+                    style={
+                      {
+                        "color": "#3D2884",
+                      }
+                    }
+                  >
+                    Français
+                  </span>
+                </div>
+              </div>
+              <div
+                className="sponsor"
+                style={
+                  {
+                    "borderColor": "#3D2884",
+                  }
+                }
+              >
+                <span
+                  className="picture"
+                >
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height={40}
+                    loading="lazy"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                    srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                    style={
+                      {
+                        "color": "transparent",
+                        "objectFit": "contain",
+                      }
+                    }
+                    width={40}
+                  />
+                </span>
+                <span
+                  className="text max_lines ms-2"
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "titreMarque1",
+                    }
+                  }
+                  style={
+                    {
+                      "color": "#3D2884",
+                    }
+                  }
+                />
+              </div>
+            </a>
+          </div>
         </div>
         <div
           className="c7"
         >
-          <a
-            background="#EEE7E5"
-            border="#443023"
-            className="c9 card dispositif content card"
-            demoCard={false}
-            href="/program/id2"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
+          <div
+            className="wrapper wrapper"
           >
             <button
               className="btn favorite btn btn-secondary"
               onClick={[Function]}
+              title="Dispositif.addToFavorites"
               type="button"
             >
               <span
@@ -857,125 +857,225 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 />
               </span>
             </button>
-            <div
-              className="location"
+            <a
+              className="c9 card dispositif content card"
+              href="/program/id2"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
+              title="tinfo2"
             >
-              <img
-                alt=""
-                data-nimg="1"
-                decoding="async"
-                height={16}
-                loading="lazy"
-                onError={[Function]}
-                onLoad={[Function]}
-                src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-                srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-                style={
+              <div
+                className="location"
+              >
+                <img
+                  alt="Infocards.location"
+                  data-nimg="1"
+                  decoding="async"
+                  height={16}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
+                  srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
+                  style={
+                    {
+                      "color": "transparent",
+                    }
+                  }
+                  width={16}
+                />
+                <span
+                  className="ms-1"
+                  style={
+                    {
+                      "color": "#443023",
+                    }
+                  }
+                />
+              </div>
+              <h3
+                className="title"
+                dangerouslySetInnerHTML={
                   {
-                    "color": "transparent",
+                    "__html": "tinfo2",
                   }
                 }
-                width={16}
-              />
-              <span
-                className="ms-1"
                 style={
                   {
                     "color": "#443023",
                   }
                 }
               />
-            </div>
-            <h3
-              className="title"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "tinfo2",
-                }
-              }
-              style={
-                {
-                  "color": "#443023",
-                }
-              }
-            />
-            <div
-              className="text max_lines abstract"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "abstract2",
-                }
-              }
-              style={
-                {
-                  "color": "#443023",
-                }
-              }
-            />
-            <div
-              className="infos text my-3"
-              style={
-                {
-                  "color": "#443023",
-                }
-              }
-            />
-            <div
-              className="themes"
-            >
               <div
-                className="container badges theme-badge"
+                className="text max_lines abstract"
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "abstract2",
+                  }
+                }
                 style={
                   {
-                    "backgroundColor": "#EEE7E5",
+                    "color": "#443023",
+                  }
+                }
+              />
+              <div
+                className="infos text my-3"
+                style={
+                  {
+                    "color": "#443023",
+                  }
+                }
+              />
+              <div
+                className="themes"
+              >
+                <div
+                  className="container badges theme-badge"
+                  style={
+                    {
+                      "backgroundColor": "#EEE7E5",
+                    }
+                  }
+                >
+                  <span
+                    className="icon"
+                  >
+                    <span
+                      className="icon theme-icon"
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg width="12" height="12"></svg>",
+                        }
+                      }
+                      style={
+                        {
+                          "height": 12,
+                          "width": 12,
+                        }
+                      }
+                    />
+                  </span>
+                  <span
+                    style={
+                      {
+                        "color": "#443023",
+                      }
+                    }
+                  >
+                    Administratif
+                  </span>
+                </div>
+              </div>
+              <div
+                className="sponsor"
+                style={
+                  {
+                    "borderColor": "#443023",
                   }
                 }
               >
                 <span
-                  className="icon"
+                  className="picture"
                 >
-                  <span
-                    className="icon theme-icon"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg width="12" height="12"></svg>",
-                      }
-                    }
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height={40}
+                    loading="lazy"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                    srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
                     style={
                       {
-                        "height": 12,
-                        "width": 12,
+                        "color": "transparent",
+                        "objectFit": "contain",
                       }
                     }
+                    width={40}
                   />
                 </span>
                 <span
+                  className="text max_lines ms-2"
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "titreMarque2",
+                    }
+                  }
                   style={
                     {
                       "color": "#443023",
                     }
                   }
-                >
-                  Administratif
-                </span>
+                />
               </div>
-            </div>
-            <div
-              className="sponsor"
-              style={
-                {
-                  "borderColor": "#443023",
-                }
-              }
+            </a>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <div
+            className="wrapper"
+          >
+            <button
+              className="btn favorite btn btn-secondary"
+              onClick={[Function]}
+              title="Dispositif.addToFavorites"
+              type="button"
             >
               <span
-                className="picture"
+                className="icon_outline icon"
               >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star-outline" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "20px",
+                      "lineHeight": "20px",
+                    }
+                  }
+                />
+              </span>
+              <span
+                className="icon_fill icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "20px",
+                      "lineHeight": "20px",
+                    }
+                  }
+                />
+              </span>
+            </button>
+            <a
+              className="c10 card demarche content"
+              href="/procedure/id3"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
+              title="tinfo3"
+            >
+              <div>
                 <img
                   alt=""
                   data-nimg="1"
                   decoding="async"
-                  height={40}
+                  height={48}
                   loading="lazy"
                   onError={[Function]}
                   onLoad={[Function]}
@@ -984,153 +1084,66 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   style={
                     {
                       "color": "transparent",
-                      "objectFit": "contain",
                     }
                   }
-                  width={40}
+                  width={48}
                 />
-              </span>
-              <span
-                className="text max_lines ms-2"
+              </div>
+              <h3
+                className="title"
                 dangerouslySetInnerHTML={
                   {
-                    "__html": "titreMarque2",
+                    "__html": "tinfo3",
                   }
                 }
                 style={
                   {
-                    "color": "#443023",
+                    "color": "#06508C",
                   }
                 }
               />
-            </div>
-          </a>
-        </div>
-        <div
-          className="c7"
-        >
-          <a
-            background="#DDF2F9"
-            border="#06508C"
-            className="c10 card demarche content"
-            href="/procedure/id3"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-          >
-            <button
-              className="btn favorite btn btn-secondary"
-              onClick={[Function]}
-              type="button"
-            >
-              <span
-                className="icon_outline icon"
-              >
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star-outline" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"/></g></g></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": "20px",
-                      "lineHeight": "20px",
-                    }
-                  }
-                />
-              </span>
-              <span
-                className="icon_fill icon"
-              >
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"/></g></g></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": "20px",
-                      "lineHeight": "20px",
-                    }
-                  }
-                />
-              </span>
-            </button>
-            <div>
-              <img
-                alt=""
-                data-nimg="1"
-                decoding="async"
-                height={48}
-                loading="lazy"
-                onError={[Function]}
-                onLoad={[Function]}
-                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                style={
-                  {
-                    "color": "transparent",
-                  }
-                }
-                width={48}
-              />
-            </div>
-            <h3
-              className="title"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "tinfo3",
-                }
-              }
-              style={
-                {
-                  "color": "#06508C",
-                }
-              }
-            />
-            <div
-              className="themes"
-            >
               <div
-                className="container badges theme-badge"
-                style={
-                  {
-                    "backgroundColor": "#DDF2F9",
-                  }
-                }
+                className="themes"
               >
-                <span
-                  className="icon"
+                <div
+                  className="container badges theme-badge"
+                  style={
+                    {
+                      "backgroundColor": "#DDF2F9",
+                    }
+                  }
                 >
                   <span
-                    className="icon theme-icon"
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg width="12" height="12"></svg>",
+                    className="icon"
+                  >
+                    <span
+                      className="icon theme-icon"
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg width="12" height="12"></svg>",
+                        }
                       }
-                    }
+                      style={
+                        {
+                          "height": 12,
+                          "width": 12,
+                        }
+                      }
+                    />
+                  </span>
+                  <span
                     style={
                       {
-                        "height": 12,
-                        "width": 12,
+                        "color": "#06508C",
                       }
                     }
-                  />
-                </span>
-                <span
-                  style={
-                    {
-                      "color": "#06508C",
-                    }
-                  }
-                >
-                  Logement
-                </span>
+                  >
+                    Logement
+                  </span>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
         </div>
       </div>
     </div>

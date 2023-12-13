@@ -16,18 +16,20 @@ import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DemarcheCard.module.scss";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { getReadableText } from "lib/getReadableText";
 
 const ONE_DAY_MS = 86400000;
 
 type DemarcheLinkProps = {
-  background: string;
-  border: string;
+  $background: string; // use $ to prevent attribute to be passed to HTML
+  $border: string;
 };
 const DemarcheLink = styled(Link)<DemarcheLinkProps>`
-  :hover {
-    background-color: ${(props) => props.background} !important;
-    border-color: ${(props) => props.border} !important;
-    color: ${(props) => props.border} !important;
+  :hover,
+  .${commonStyles.favorite}:hover + & {
+    background-color: ${(props) => props.$background} !important;
+    border-color: ${(props) => props.$border} !important;
+    color: ${(props) => props.$border} !important;
   }
 `;
 
@@ -55,40 +57,42 @@ const DemarcheCard = (props: Props) => {
     lastModificationDate && publishedAt && lastModificationDate.getTime() - publishedAt.getTime() > ONE_DAY_MS;
 
   return (
-    <DemarcheLink
-      // legacyBehavior
-      href={{
-        pathname: getPath("/demarche/[id]", router.locale),
-        query: { id: props.demarche._id.toString(), ...utmParams },
-      }}
-      passHref
-      prefetch={false}
-      className={cls(commonStyles.card, commonStyles.demarche, commonStyles.content)}
-      background={colors.color30}
-      border={colors.color100}
-      target={props.targetBlank ? "_blank" : undefined}
-      rel={props.targetBlank ? "noopener noreferrer" : undefined}
-    >
+    <div className={commonStyles.wrapper}>
       <FavoriteButton contentId={props.demarche._id} className={commonStyles.favorite} />
-      {hasUpdate && (
-        <div className={styles.update}>
-          <span>{t("Recherche.updated", "mise à jour")}</span>
+      <DemarcheLink
+        href={{
+          pathname: getPath("/demarche/[id]", router.locale),
+          query: { id: props.demarche._id.toString(), ...utmParams },
+        }}
+        passHref
+        prefetch={false}
+        className={cls(commonStyles.card, commonStyles.demarche, commonStyles.content)}
+        $background={colors.color30}
+        $border={colors.color100}
+        target={props.targetBlank ? "_blank" : undefined}
+        rel={props.targetBlank ? "noopener noreferrer" : undefined}
+        title={getReadableText(props.demarche.titreInformatif || "")}
+      >
+        {hasUpdate && (
+          <div className={styles.update}>
+            <span>{t("Recherche.updated", "mise à jour")}</span>
+          </div>
+        )}
+        <div>
+          <Image src={demarcheIcon} width={48} height={48} alt="" />
         </div>
-      )}
-      <div>
-        <Image src={demarcheIcon} width={48} height={48} alt="" />
-      </div>
-      <h3
-        className={styles.title}
-        style={{ color: colors.color100 }}
-        dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif || "" }}
-      />
-      <div className={styles.themes}>
-        {demarcheThemes.map((theme, i) => (
-          <ThemeBadge key={i} theme={theme} className={styles.badges} />
-        ))}
-      </div>
-    </DemarcheLink>
+        <h3
+          className={styles.title}
+          style={{ color: colors.color100 }}
+          dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif || "" }}
+        />
+        <div className={styles.themes}>
+          {demarcheThemes.map((theme, i) => (
+            <ThemeBadge key={i} theme={theme} className={styles.badges} />
+          ))}
+        </div>
+      </DemarcheLink>
+    </div>
   );
 };
 

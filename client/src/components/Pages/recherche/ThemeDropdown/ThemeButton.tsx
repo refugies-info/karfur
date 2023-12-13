@@ -2,26 +2,27 @@ import React, { memo } from "react";
 import styled from "styled-components";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
+import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import styles from "./ThemeDropdown.module.scss";
 import { GetThemeResponse } from "@refugies-info/api-types";
 
 type ButtonThemeProps = {
   color100: string;
   color30: string;
-  selected: boolean;
+  $selected: boolean;
 };
 const ButtonTheme = styled.button<ButtonThemeProps>`
-  background-color: ${(props) => (props.selected ? props.color100 : "transparent")};
+  background-color: ${(props) => (props.$selected ? props.color100 : "transparent")};
   :not(:disabled):hover {
-    background-color: ${(props) => (props.selected ? props.color100 : props.color30)} !important;
+    background-color: ${(props) => (props.$selected ? props.color100 : props.color30)} !important;
     border-color: ${(props) => props.color100};
     color: ${(props) => props.color100};
   }
 
   @media screen and (max-width: 767px) {
-    background-color: ${(props) => (props.selected ? props.color100 : "transparent")} !important;
+    background-color: ${(props) => (props.$selected ? props.color100 : "transparent")} !important;
     color: white !important;
-    ${(props) => (props.selected ? "border-color: white !important;" : "")}
+    ${(props) => (props.$selected ? "border-color: white !important;" : "")}
 
     :hover {
       background-color: transparent;
@@ -44,9 +45,11 @@ const ThemeButton = ({ theme, selected, disabled, nbNeeds, mobile, onClick }: Pr
       className={styles.btn}
       color100={theme.colors.color100}
       color30={theme.colors.color30}
-      selected={selected}
+      $selected={selected}
       onClick={onClick}
+      onKeyDown={(e) => onEnterOrSpace(e, onClick, ["ArrowRight"])}
       disabled={disabled}
+      tabIndex={0}
     >
       <span className={styles.btn_content}>
         <TagName theme={theme} colored={!selected} size={20} />

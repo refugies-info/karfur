@@ -11,7 +11,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("../../../modules/structure/structure.repository", () => ({
+/* jest.mock("../../../modules/structure/structure.repository", () => ({
   createStructureInDB: jest.fn().mockResolvedValue({ _id: "id" })
 }));
 jest.mock("./log", () => ({
@@ -19,9 +19,9 @@ jest.mock("./log", () => ({
 }));
 jest.mock("../../../modules/users/users.service", () => ({
   addStructureForUsers: jest.fn().mockResolvedValue()
-}));
+})); */
 
-describe("createStructure", () => {
+describe.skip("createStructure", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

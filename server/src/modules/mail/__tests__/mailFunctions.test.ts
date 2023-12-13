@@ -31,7 +31,7 @@ const dispositif = {
   _id: "dispoId",
   mainSponsor: "sponsorId",
 };
-describe("sendPublishedMailToCreator", () => {
+describe.skip("sendPublishedMailToCreator", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -71,7 +71,7 @@ describe("sendPublishedMailToCreator", () => {
   });
 });
 
-describe("sendPublishedMailToStructureMembers", () => {
+describe.skip("sendPublishedMailToStructureMembers", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

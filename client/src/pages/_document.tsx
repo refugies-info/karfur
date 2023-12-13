@@ -7,7 +7,6 @@ export default function Document(props: DocumentProps) {
   return (
     <Html {...getColorSchemeHtmlAttributes(props)}>
       <Head>
-        <meta charSet="utf-8" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />

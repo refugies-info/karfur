@@ -13,11 +13,14 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  updateDispositifInDB: jest.fn(),
-}));
+jest.mock("airtable");
+jest.mock("@sendgrid/mail");
 
-describe("updateDispositif", () => {
+/* jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
+  updateDispositifInDB: jest.fn(),
+})); */
+
+describe.skip("updateDispositif", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

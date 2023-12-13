@@ -61,9 +61,9 @@ const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest)
       const nbActiveTranslators = languages
         .filter((ln) => ln.i18nCode !== "fr")
         .map((language) => {
-          const languageId = language._id;
+          const languageId = language._id.toString();
           const count = activeTranslators.filter((user) =>
-            user.selectedLanguages.map((l) => l._id.toString()).includes(languageId),
+            user.selectedLanguages.map((l) => l._id.toString()).includes(languageId.toString()),
           ).length;
           return { languageId, count };
         });

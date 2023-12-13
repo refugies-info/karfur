@@ -57,7 +57,7 @@ const SEO = (props: Props) => {
       <meta property="twitter:image" content={getImagePath(props.image || defaultImage)} />
 
       {getAlternateLocales(router.locales, router.locale).map((ln: string, i: number) => (
-        <link key={i} hrefLang={ln} href={getFullPath(router, ln)}></link>
+        <link key={i} hrefLang={ln} href={getFullPath(router, ln)} rel="alternate"></link>
       ))}
     </Head>
   );

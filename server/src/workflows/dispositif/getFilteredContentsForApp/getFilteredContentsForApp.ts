@@ -109,9 +109,11 @@ const getFilteredContentsForApp = async (req: GetContentsForAppRequest) => {
       break;
   }
 
-  query.push({
-    $or: frenchLevelFilter,
-  });
+  if (!isEmpty(frenchLevelFilter)) {
+    query.push({
+      $or: frenchLevelFilter,
+    });
+  }
 
   /**
    * Location

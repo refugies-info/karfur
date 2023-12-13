@@ -23,7 +23,7 @@ const Toast = (props: Props) => {
   }, []);
 
   return (
-    <ToastTS className={styles.container} isOpen={isOpen} fade={false}>
+    <ToastTS className={styles.container} isOpen={isOpen} fade={false} aria-live="polite">
       <ToastBody className={styles.body}>
         <EVAIcon name="checkmark-circle-2" fill={styles.lightTextDefaultSuccess} size={24} className="me-2" />
         {props.children}

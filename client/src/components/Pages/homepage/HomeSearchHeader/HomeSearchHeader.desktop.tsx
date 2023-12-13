@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { KeyboardEvent, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
@@ -8,7 +8,7 @@ import { cls } from "lib/classname";
 import {
   inputFocusedSelector,
   searchQuerySelector,
-  themesDisplayedValueSelector
+  themesDisplayedValueSelector,
 } from "services/SearchResults/searchResults.selector";
 import { setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -46,7 +46,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
     resetTheme,
     onChangeThemeInput,
     resetSearch,
-    onChangeSearchInput
+    onChangeSearchInput,
   } = props;
 
   const query = useSelector(searchQuerySelector);
@@ -57,7 +57,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
   const toggleLocation = useCallback(() => setLocationOpen((o) => !o), []);
   const setLocationActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("location", active)),
-    [dispatch]
+    [dispatch],
   );
 
   // THEME
@@ -66,31 +66,55 @@ const HomeSearchHeaderDesktop = (props: Props) => {
   const toggleThemes = useCallback(() => setThemesOpen((o) => !o), []);
   const setThemeActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("theme", active)),
-    [dispatch]
+    [dispatch],
   );
 
   // SEARCH
   const openSearch = useCallback(() => dispatch(setInputFocusedActionCreator("search", true)), [dispatch]);
   const setSearchActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("search", active)),
-    [dispatch]
+    [dispatch],
   );
 
-  // prevent close dropdown on space
-  const handleSpaceKey = useCallback((e: any) => {
-    if (e.keyCode === 13 || e.keyCode === 32) {
-      e.preventDefault();
-    }
-  }, []);
+  const submitForm = useCallback(() => {
+    router.push({
+      pathname: getPath("/recherche", router.locale),
+      query: qs.stringify({ ...query }, { arrayFormat: "comma" }),
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
+
   useEffect(() => {
-    if (themesOpen || locationOpen) {
-      document.addEventListener("keyup", handleSpaceKey);
-    }
+    const handleKey = (e: any) => {
+      if (e.key === "Escape") {
+        if (inputFocused.location) setLocationActive(false);
+        if (locationOpen) toggleLocation();
+        if (inputFocused.theme) setThemeActive(false);
+        if (themesOpen) toggleThemes();
+        if (inputFocused.search) setSearchActive(false);
+      }
+      if (e.key === "Enter") {
+        if (inputFocused.location || inputFocused.theme || inputFocused.search || locationOpen || themesOpen) {
+          submitForm();
+        }
+      }
+    };
+    document.addEventListener("keyup", handleKey);
 
     return () => {
-      document.removeEventListener("keyup", handleSpaceKey);
+      document.removeEventListener("keyup", handleKey);
     };
-  }, [themesOpen, locationOpen, handleSpaceKey]);
+  }, [
+    inputFocused,
+    setLocationActive,
+    setThemeActive,
+    setSearchActive,
+    toggleLocation,
+    toggleThemes,
+    locationOpen,
+    themesOpen,
+    submitForm,
+  ]);
 
   return (
     <div className={styles.container}>
@@ -160,12 +184,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
         </div>
       </div>
       <Button
-        onClick={() => {
-          router.push({
-            pathname: getPath("/recherche", router.locale),
-            query: qs.stringify({ ...query }, { arrayFormat: "comma" })
-          });
-        }}
+        onClick={submitForm}
         className={commonStyles.submit}
         disabled={
           !query.search && query.departments.length === 0 && query.themes.length === 0 && query.needs.length === 0

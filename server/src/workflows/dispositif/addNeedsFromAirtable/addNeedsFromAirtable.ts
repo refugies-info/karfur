@@ -7,7 +7,7 @@ import {
   updateDispositifInDB,
 } from "../../../modules/dispositif/dispositif.repository";
 import { getNeedsFromDB } from "../../../modules/needs/needs.repository";
-import { ObjectId } from "mongoose";
+import mongoose from "mongoose";
 
 // REPLACE TAGS BY THEMES BEFORE USE
 export const addNeedsFromAirtable = async (req: {}, res: Res) => {
@@ -18,7 +18,7 @@ export const addNeedsFromAirtable = async (req: {}, res: Res) => {
 
     await asyncForEach(data, async (el) => {
       try {
-        let needs: ObjectId[] = [];
+        let needs: mongoose.Types.ObjectId[] = [];
         // @ts-ignore
         const ficheFromDB = await getDispositifById(el._id, { tags: 1 });
         if (!ficheFromDB) {

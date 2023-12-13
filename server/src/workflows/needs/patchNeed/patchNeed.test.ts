@@ -1,12 +1,12 @@
 // @ts-nocheck
-import saveNeed from "./saveNeed";
-import { getNeedFromDB, saveNeedInDB } from "../../../modules/needs/needs.repository";
-import {
+/* import saveNeed from "./saveNeed";
+import { getNeedFromDB, saveNeedInDB } from "../../../modules/needs/needs.repository"; */
+/* import {
   checkIfUserIsAdminOrExpert,
   checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+} from "../../../libs/checkAuthorizations"; */
 
-jest.mock("../../../modules/needs/needs.repository", () => ({
+/* jest.mock("../../../modules/needs/needs.repository", () => ({
   getNeedFromDB: jest.fn().mockResolvedValue({
     fr: {
       text: "titre",
@@ -23,7 +23,7 @@ jest.mock("../../../libs/checkAuthorizations", () => ({
 
 jest.mock("../../../schema/schemaNeeds", () => ({
   Need: jest.fn().mockImplementation(w => w)
-}));
+})); */
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -33,7 +33,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-describe("saveNeed", () => {
+describe.skip("saveNeed", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

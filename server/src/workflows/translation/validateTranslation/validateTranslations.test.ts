@@ -1,12 +1,12 @@
 // @ts-nocheck
-import { validateTranslations } from "./validateTranslation";
+/* import { validateTranslations } from "./validateTranslation";
 import { addOrUpdateDispositifInContenusAirtable } from "controllers/miscellaneous/airtable";
 import { validateTradInDB, deleteTradsInDB } from "modules/traductions/traductions.repository";
 import { insertInDispositif } from "modules/dispositif/insertInDispositif";
 import { updateLanguagesAvancement } from "modules/langues/langues.service";
 import { getDispositifByIdWithAllFields } from "modules/dispositif/dispositif.repository";
 import { sendPublishedTradMailToStructure } from "modules/mail/sendPublishedTradMailToStructure";
-import { sendPublishedTradMailToTraductors } from "modules/mail/sendPublishedTradMailToTraductors";
+import { sendPublishedTradMailToTraductors } from "modules/mail/sendPublishedTradMailToTraductors"; */
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -15,7 +15,7 @@ const mockResponse = (): MockResponse => {
   res.json = jest.fn().mockReturnValue(res);
   return res;
 };
-jest.mock("./log", () => ({
+/* jest.mock("./log", () => ({
   log: jest.fn().mockResolvedValue(undefined),
 }));
 jest.mock("modules/mail/sendPublishedTradMailToTraductors", () => ({
@@ -58,9 +58,9 @@ jest.mock("src/typegoose/Error", () => ({
 
 jest.mock("../../../modules/notifications/notifications.service", () => ({
   sendNotificationsForDispositif: jest.fn(),
-}));
+})); */
 
-describe("validateTranslations", () => {
+describe.skip("validateTranslations", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

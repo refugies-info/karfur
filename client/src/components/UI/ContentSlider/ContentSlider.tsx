@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { Button } from "reactstrap";
 import useRTL from "hooks/useRTL";
@@ -17,6 +18,7 @@ const NEGATIVE_MARGINS_MD = 50 * 2;
 const RESPONSIVE_WIDTH_LIMIT = 1200;
 
 const ContentSlider = (props: Props) => {
+  const { t } = useTranslation();
   const isRTL = useRTL();
   const slider = useRef<HTMLDivElement | null>(null);
   const [page, setPage] = useState(0);
@@ -58,21 +60,25 @@ const ContentSlider = (props: Props) => {
   return (
     <div className={cls(styles.container, "content-card-slider")}>
       {page > 0 && (
-        <Button className={cls(styles.btn, styles.prev, props.btnClassName)} onClick={() => slide("prev")}>
+        <Button
+          className={cls(styles.btn, styles.prev, props.btnClassName)}
+          onClick={() => slide("prev")}
+          title={t("Suivant")}
+        >
           <EVAIcon name="arrow-back-outline" fill="white" size={40} />
         </Button>
       )}
       {page + 1 < Math.round(maxPage) && (
-        <Button className={cls(styles.btn, styles.next, props.btnClassName)} onClick={() => slide("next")}>
+        <Button
+          className={cls(styles.btn, styles.next, props.btnClassName)}
+          onClick={() => slide("next")}
+          title={t("Retour")}
+        >
           <EVAIcon name="arrow-forward-outline" fill="white" size={40} />
         </Button>
       )}
       <div ref={slider} className={cls(styles.slider, props.className)} style={{ gap }}>
-        {props.cards.map((d, i) => (
-          <div key={i} className={styles.card}>
-            {d}
-          </div>
-        ))}
+        {props.cards}
       </div>
     </div>
   );
