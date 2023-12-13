@@ -98,11 +98,6 @@ const SearchHeaderDesktop = (props: Props) => {
   );
 
   // SEARCH
-  const handleSpaceKey = useCallback((e: any) => {
-    if (e.keyCode === 13 || e.keyCode === 32) {
-      e.preventDefault();
-    }
-  }, []);
   const setSearchActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("search", active)),
     [dispatch],
@@ -163,16 +158,31 @@ const SearchHeaderDesktop = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query.language, languages]);
 
-  // prevent close dropdown on space
   useEffect(() => {
-    if (themesOpen || locationOpen) {
-      document.addEventListener("keyup", handleSpaceKey);
-    }
+    const handleKey = (e: any) => {
+      if (e.key === "Escape") {
+        if (inputFocused.location) setLocationActive(false);
+        if (locationOpen) toggleLocation();
+        if (inputFocused.theme) setThemeActive(false);
+        if (themesOpen) toggleThemes();
+        if (inputFocused.search) setSearchActive(false);
+      }
+    };
+    document.addEventListener("keyup", handleKey);
 
     return () => {
-      document.removeEventListener("keyup", handleSpaceKey);
+      document.removeEventListener("keyup", handleKey);
     };
-  }, [themesOpen, locationOpen, handleSpaceKey]);
+  }, [
+    inputFocused,
+    setLocationActive,
+    setThemeActive,
+    setSearchActive,
+    toggleLocation,
+    toggleThemes,
+    locationOpen,
+    themesOpen,
+  ]);
 
   return (
     <div className={styles.container}>

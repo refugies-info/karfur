@@ -12,9 +12,9 @@ import { getAdminOption } from "../adminOptions/adminOptions.repository";
 import { Dispositif, DispositifId, NotificationModel } from "../../typegoose";
 import { ContentType, Languages } from "@refugies-info/api-types";
 
-const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
+export const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 
-const isNotificationsActive = async () => {
+export const isNotificationsActive = async () => {
   const adminOption = await getAdminOption("activesNotifications");
   return !adminOption || adminOption.value === true;
 };
@@ -71,6 +71,7 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
           typeContenu: 1,
           theme: 1,
           notificationsSent: 1,
+          metadatas: 1
         },
         "theme",
       );
@@ -83,7 +84,7 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
       /*
        * Pas de mail si ce n'est pas un dispositif
        */
-      if (dispositif.isDispositif()) {
+      if (!dispositif.isDispositif()) {
         return;
       }
 
@@ -147,7 +148,7 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
 
       await sendNotifications(messages);
 
-      const payload = dispositif?.notificationsSent;
+      const payload = dispositif?.notificationsSent || {};
       payload[lang] = true;
       await updateDispositifInDB(dispositifId, { notificationsSent: payload });
     } catch (err) {
@@ -170,11 +171,13 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
           typeContenu: 1,
           theme: 1,
           notificationsSent: 1,
+          metadatas: 1,
+          translations: 1
         },
         "theme",
       );
 
-      if (!demarche || demarche.isDemarche()) {
+      if (!demarche || !demarche.isDemarche()) {
         // not a demarche: error
         logger.error(`[sendNotificationsForDemarche] demarche ${demarcheId} not found`);
         return;
@@ -231,7 +234,7 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
 
       await sendNotifications(messages);
 
-      const payload = demarche?.notificationsSent;
+      const payload = demarche?.notificationsSent || {};
       for (const lang of availableLanguages) {
         payload[lang] = true;
       }
@@ -243,3 +246,13 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
     logger.error("[sendNotificationsForDemarche] not active: nothing sent");
   }
 };
+
+export default {
+  expo,
+  isNotificationsActive,
+  getNotificationsForUser,
+  markNotificationAsSeen,
+  sendNotifications,
+  sendNotificationsForDispositif,
+  sendNotificationsForDemarche,
+}

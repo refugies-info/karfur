@@ -45,15 +45,15 @@ const AnnuaireDetail = (props: Props) => {
       dispatch(
         fetchSelectedStructureActionCreator({
           id: structureId as string,
-          locale
-        })
+          locale,
+        }),
       );
       setCurrentLoadedLocale(locale);
     }
   }, [dispatch, locale, currentLoadedLocale, structureId, structure]);
 
   useEffect(() => {
-    setIsMember(!!structure && !!structure.membres && !!structure.membres.find((el: any) => el._id === user.userId));
+    setIsMember(!!structure && !!structure.membres && !!structure.membres.find((el) => el.userId === user.userId));
   }, [structure, user.userId]);
 
   return (
@@ -69,11 +69,12 @@ const AnnuaireDetail = (props: Props) => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query, locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, query, locale }) => {
   if (query.id) {
     const action = fetchSelectedStructureActionCreator({
       id: query.id as string,
-      locale: !locale || locale === "default" ? "fr" : locale
+      locale: !locale || locale === "default" ? "fr" : locale,
+      token: req.cookies.authorization,
     });
     store.dispatch(action);
     store.dispatch(fetchThemesActionCreator());
@@ -82,8 +83,8 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   }
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
-    }
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+    },
   };
 });
 

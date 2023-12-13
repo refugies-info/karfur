@@ -82,20 +82,21 @@
 }
 
 .reset {
-  background: transparent;
-  color: $white;
-  border-color: $white;
+  &,
+  &:focus {
+    background: transparent !important;
+    color: $white !important;
+    border-color: $white !important;
+  }
   border-width: 2px;
   border-radius: 8px;
   @include text("normal");
   @include withIcon();
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: $dark;
-    background-color: $white;
-    border-color: $white;
+  &:hover {
+    color: $dark !important;
+    background-color: $white !important;
+    border-color: $white !important;
 
     svg {
       fill: $dark;

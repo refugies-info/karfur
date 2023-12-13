@@ -35,6 +35,7 @@ exports[`traduire renders traduire 1`] = `
               onClick={[Function]}
               onMouseEnter={[Function]}
               onTouchStart={[Function]}
+              title="Suivant"
             >
               <span
                 className="icon"

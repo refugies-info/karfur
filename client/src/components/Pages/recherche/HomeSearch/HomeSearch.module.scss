@@ -3,6 +3,7 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/btn";
 @import "src/scss/variables";
 
 .section {
@@ -45,6 +46,7 @@
     border: none;
     padding: u(2);
     white-space: nowrap;
+    @include focus();
 
     &:hover {
       background: $gray60 !important;
@@ -84,10 +86,6 @@
 
     @include rtl() {
       text-align: right;
-    }
-
-    &:focus {
-      outline: none;
     }
 
     &:hover {

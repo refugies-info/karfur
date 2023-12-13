@@ -347,8 +347,8 @@ const API = {
     const headers = getHeaders();
     return instance.patch<any, null>(`/structures/${id}/roles`, body, { headers }).then(() => null);
   },
-  getStructureById: (id: string, locale: string): Promise<GetStructureResponse> => {
-    const headers = getHeaders();
+  getStructureById: (id: string, locale: string, options?: RequestOptions): Promise<GetStructureResponse> => {
+    const headers = getHeaders(options?.token);
     return instance.get<any, APIResponse<GetStructureResponse>>(`/structures/${id}?locale=${locale}`, { headers }).then(response => response.data.data)
   },
   getActiveStructures: (): Promise<GetActiveStructuresResponse[]> => {

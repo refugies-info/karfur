@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { jsUcfirst, jsLcfirst } from "lib";
+import { useUtmz } from "hooks";
 import { cls } from "lib/classname";
 import { getCommitmentText, getPriceText } from "lib/dispositif";
 import { getTheme, getThemes } from "lib/getTheme";
@@ -20,20 +21,21 @@ import defaultStructureImage from "assets/recherche/default-structure-image.svg"
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DispositifCard.module.scss";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
+import { getReadableText } from "lib/getReadableText";
 
 type DispositifLinkProps = {
-  background: string;
-  border: string;
-  demoCard: boolean;
+  $background: string; // use $ to prevent attribute to be passed to HTML
+  $border: string;
+  $demoCard: boolean;
 };
-const DispositifLink = styled.a<DispositifLinkProps>`
+const DispositifLink = styled(Link)<DispositifLinkProps>`
   ${(props) =>
-    !props.demoCard &&
+    !props.$demoCard &&
     `
 :hover {
-  background-color: ${props.background} !important;
-  border-color: ${props.border} !important;
-  color: ${props.border} !important;
+  background-color: ${props.$background} !important;
+  border-color: ${props.$border} !important;
+  color: ${props.$border} !important;
 }
 `}
 `;
@@ -52,6 +54,7 @@ const DispositifCard = (props: Props) => {
   const theme = getTheme(props.dispositif.theme, themes);
   const colors = theme.colors;
   const dispositifThemes = [theme, ...getThemes(props.dispositif.secondaryThemes || [], themes)];
+  const { params: utmParams } = useUtmz();
 
   const commitment = props.dispositif.metadatas?.commitment;
   const price = props.dispositif.metadatas?.price;
@@ -70,20 +73,18 @@ const DispositifCard = (props: Props) => {
   };
 
   return (
-    <Link
-      legacyBehavior
-      href={
-        props.demoCard
-          ? "#"
-          : {
-              pathname: getPath("/dispositif/[id]", router.locale),
-              query: { id: props.dispositif._id.toString() },
-            }
-      }
-      passHref
-      prefetch={false}
-    >
+    <div className={commonStyles.wrapper}>
       <DispositifLink
+        href={
+          props.demoCard
+            ? "#"
+            : {
+                pathname: getPath("/dispositif/[id]", router.locale),
+                query: { id: props.dispositif._id.toString(), ...utmParams },
+              }
+        }
+        passHref
+        prefetch={false}
         className={cls(
           commonStyles.card,
           commonStyles.dispositif,
@@ -92,15 +93,15 @@ const DispositifCard = (props: Props) => {
           props.demoCard && commonStyles.demo,
           props.demoCard && styles.demo,
         )}
-        background={colors.color30}
-        border={colors.color100}
-        demoCard={!!props.demoCard}
+        $background={colors.color30}
+        $border={colors.color100}
+        $demoCard={!!props.demoCard}
         target={props.targetBlank ? "_blank" : undefined}
         rel={props.targetBlank ? "noopener noreferrer" : undefined}
+        title={getReadableText(props.dispositif.titreInformatif || "")}
       >
-        <FavoriteButton contentId={props.dispositif._id} className={commonStyles.favorite} />
         <div className={styles.location}>
-          <Image src={iconMap} width={16} height={16} alt="" />
+          <Image src={iconMap} width={16} height={16} alt={t("Infocards.location")} />
           <span style={{ color: colors.color100 }} className="ms-1">
             {getDepartement()}
           </span>
@@ -121,14 +122,14 @@ const DispositifCard = (props: Props) => {
         <div className={cls(styles.infos, styles.text, "my-3")} style={{ color: colors.color100 }}>
           {price !== undefined && (
             <div className={cls(styles.info)}>
-              <Image src={iconEuro} width={16} height={16} alt="" />
+              <Image src={iconEuro} width={16} height={16} alt={t("Infocards.price")} />
               <div className="ms-2">{getPriceText(price, t)}</div>
             </div>
           )}
 
           {commitment && (
             <div className={cls(styles.info, "mt-1")}>
-              <Image src={iconTime} width={16} height={16} alt="" />
+              <Image src={iconTime} width={16} height={16} alt={t("Infocards.commitment")} />
               <div className={cls(styles.ellipsis, "ms-2")}>{getCommitmentText(commitment, t)}</div>
             </div>
           )}
@@ -157,7 +158,8 @@ const DispositifCard = (props: Props) => {
           />
         </div>
       </DispositifLink>
-    </Link>
+      <FavoriteButton contentId={props.dispositif._id} className={commonStyles.favorite} />
+    </div>
   );
 };
 

@@ -17,17 +17,17 @@ import SectionButtons from "../SectionButtons";
 import styles from "./LinkedThemes.module.scss";
 
 interface LinkNeedProps {
-  color100: string;
-  color40: string;
-  color30: string;
+  $color100: string;
+  $color40: string;
+  $color30: string;
 }
 const LinkNeed = styled(Link)<LinkNeedProps>`
-  color: ${(props) => props.color100} !important;
-  background-color: ${(props) => props.color30} !important;
-  border-color: ${(props) => props.color40} !important;
+  color: ${(props) => props.$color100} !important;
+  background-color: ${(props) => props.$color30} !important;
+  border-color: ${(props) => props.$color40} !important;
 
   &:hover {
-    border-color: ${(props) => props.color100} !important;
+    border-color: ${(props) => props.$color100} !important;
   }
 `;
 
@@ -71,9 +71,9 @@ const LinkedThemes = () => {
               key={i}
               href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
               className={cls(styles.btn, styles.need)}
-              color100={theme?.colors.color100 || "black"}
-              color40={theme?.colors.color40 || "#DDD"}
-              color30={theme?.colors.color30 || "#EEE"}
+              $color100={theme?.colors.color100 || "black"}
+              $color40={theme?.colors.color40 || "#DDD"}
+              $color30={theme?.colors.color30 || "#EEE"}
               onClick={() => Event("DISPO_VIEW", "click need", "Linked themes")}
             >
               {need[locale]?.text || need.fr.text}

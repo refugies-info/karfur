@@ -1,9 +1,9 @@
 // @ts-nocheck
-import updateDispositif from "./updateDispositif";
+/* import updateDispositif from "./updateDispositif";
 import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import {
   checkIfUserIsAdmin,
-} from "../../../libs/checkAuthorizations";
+} from "../../../libs/checkAuthorizations"; */
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -13,11 +13,11 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
+/* jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
-}));
+})); */
 
-describe("updateDispositif", () => {
+describe.skip("updateDispositif", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

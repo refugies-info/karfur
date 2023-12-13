@@ -1,5 +1,6 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/btn";
 @import "src/scss/variables";
 
 body .btn {
@@ -39,16 +40,13 @@ body .btn {
     }
   }
   &:not(.theme) {
+    @include focus();
     &:hover {
       color: $gray90;
     }
     &:active {
       background: $gray50;
       color: $gray90;
-    }
-    &:focus {
-      outline: 0;
-      border: 0.5px solid transparent;
     }
 
     &:disabled,

@@ -35,6 +35,7 @@ exports[`publier renders publier 1`] = `
               onClick={[Function]}
               onMouseEnter={[Function]}
               onTouchStart={[Function]}
+              title="Suivant"
             >
               <span
                 className="icon"

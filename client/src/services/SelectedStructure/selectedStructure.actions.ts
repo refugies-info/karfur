@@ -12,6 +12,7 @@ export const setSelectedStructureActionCreator = (value: GetStructureResponse | 
 export const fetchSelectedStructureActionCreator = (value: {
   id: string;
   locale: string;
+  token?: string;
 }) => action(FETCH_SELECTED_STRUCTURE, value);
 
 export const updateSelectedStructureActionCreator = (value: { locale: string }) =>

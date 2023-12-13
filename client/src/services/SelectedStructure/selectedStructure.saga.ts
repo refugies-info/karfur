@@ -24,7 +24,7 @@ export function* fetchSelectedStructure(
     const { id, locale } = action.payload;
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
     logger.info("[fetchSelectedStructure] fetching structure", { id, locale });
-    const data: GetStructureResponse = yield call(API.getStructureById, id, locale);
+    const data: GetStructureResponse = yield call(API.getStructureById, id, locale, { token: action.payload.token });
     yield put(setSelectedStructureActionCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
   } catch (error) {

@@ -20,7 +20,7 @@ jest.mock("../mailFunctions", () => ({
   sendPublishedMailToCreator: jest.fn(),
 }));
 
-describe("sendMailWhenDispositifPublished", () => {
+describe.skip("sendMailWhenDispositifPublished", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

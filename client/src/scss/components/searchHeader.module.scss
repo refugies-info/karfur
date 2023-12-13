@@ -40,6 +40,7 @@
     padding: 0;
     width: 100%;
     position: relative;
+    @include focus();
   }
 
   &:global(.show) > button {
@@ -56,9 +57,10 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-color: $bleuCharte;
-  color: $white;
+  background-color: $bleuCharte !important;
+  color: $white !important;
   border: 1px solid transparent;
+  @include focus();
 
   @include media-max("xl-limit") {
     min-width: 0;
@@ -78,8 +80,8 @@
 
   &:hover {
     background: $white !important;
-    color: $bleuCharte;
-    border-color: $bleuCharte;
+    color: $bleuCharte !important;
+    border-color: $bleuCharte !important;
 
     svg {
       fill: $bleuCharte;
@@ -115,7 +117,7 @@
 
   &:disabled {
     background: $grey50b !important;
-    color: $gray80;
+    color: $gray80 !important;
     opacity: 1;
     border-color: transparent;
     cursor: not-allowed;

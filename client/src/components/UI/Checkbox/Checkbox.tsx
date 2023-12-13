@@ -10,12 +10,19 @@ interface Props {
   onChange?: () => void;
   className?: string;
   id?: string;
+  tabIndex?: number;
 }
 
 const Checkbox = (props: Props) => {
   return (
     <div className={cls(styles.checkbox, props.className)}>
-      <input id={props.id} type="checkbox" defaultChecked={props.checked} onChange={props.onChange} />
+      <input
+        id={props.id}
+        type="checkbox"
+        defaultChecked={props.checked}
+        onChange={props.onChange}
+        tabIndex={props.tabIndex}
+      />
       <span className={styles.check}>
         <EVAIcon name={props.checked ? "checkmark-square-2" : "square-outline"} fill={props.color || "black"} />
       </span>

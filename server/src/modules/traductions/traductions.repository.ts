@@ -3,6 +3,7 @@ import { uniq } from "lodash";
 import { TraductionsType } from "../../typegoose/Traductions";
 import { Dispositif, DispositifId, Traductions, TraductionsModel, UserId } from "../../typegoose";
 import { FilterQuery } from "mongoose";
+import { DeleteResult } from "../../types/interface";
 
 type TraductionsKeys = keyof Traductions;
 type TraductionsFieldsRequest = Partial<Record<TraductionsKeys, number>>;
@@ -19,7 +20,7 @@ export const getTraductionsByLanguageAndDispositif = (
 export const getValidation = (language: Languages, dispositifId: DispositifId, userId: UserId) =>
   TraductionsModel.findOne({ language, dispositifId, userId });
 
-export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages) =>
+export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages): Promise<DeleteResult> =>
   TraductionsModel.deleteMany({
     dispositifId,
     language,

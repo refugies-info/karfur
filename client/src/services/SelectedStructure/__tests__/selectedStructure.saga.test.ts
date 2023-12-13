@@ -42,7 +42,24 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", "locale")
+        .call(API.getStructureById, "id", "locale", { token: undefined })
+        .next({ id: "id" })
+        .put(setSelectedStructureActionCreator({ id: "id" }))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call api with user token", () => {
+      testSaga(fetchSelectedStructure, {
+        type: FETCH_SELECTED_STRUCTURE,
+        payload: { id: "id", locale: "locale", token: "userToken" },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE))
+        .next()
+        .call(API.getStructureById, "id", "locale", { token: "userToken" })
         .next({ id: "id" })
         .put(setSelectedStructureActionCreator({ id: "id" }))
         .next()
@@ -59,7 +76,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", "locale")
+        .call(API.getStructureById, "id", "locale", { token: undefined })
         .throw(new Error("error"))
         .put(setSelectedStructureActionCreator(null))
         .next()

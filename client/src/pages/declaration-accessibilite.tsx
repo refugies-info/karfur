@@ -39,6 +39,10 @@ const DeclarationAccessibilite = () => {
         Le site Réfugiés.info est non conforme avec le RGAA 4.1 de niveau Double-A (AA) en raison des non-conformités et
         des dérogations énumérées ci-dessous.
       </p>
+      <p>
+        L'équipe du projet Réfugiés.info réalise actuellement des améliorations techniques dans le but d'entrer en
+        conformité avec les normes d'accessibilité d'ici juin 2024.
+      </p>
       <h3 className={styles.h4}>Résultats des tests</h3>
       <p>L’audit de conformité réalisé par la société Ipedis révèle que le taux moyen de conformité est de 37.25% :</p>
       <ul>

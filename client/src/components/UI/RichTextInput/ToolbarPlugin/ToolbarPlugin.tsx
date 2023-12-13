@@ -193,7 +193,19 @@ export default function ToolbarPlugin() {
 
   const insertLink = useCallback(() => {
     if (!isLink) {
-      editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url: "", rel: "noreferrer" });
+      editor.update(() => {
+        const selection = $getSelection();
+        if ($isRangeSelection(selection)) {
+          // needs a space, unable to create a link without content
+          const node = getSelectedNode(selection);
+          const parent = node.getParent();
+          if (parent?.getType() === "root") {
+            selection.insertText(" ");
+          }
+          editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url: "", rel: "noreferrer" });
+        }
+        return true;
+      });
     } else {
       editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
     }

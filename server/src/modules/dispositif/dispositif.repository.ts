@@ -1,10 +1,29 @@
-import { Id, Picture, ContentType, SimpleDispositif, DispositifStatus, Languages, GetStructureDispositifResponse, Suggestion as SuggestionAPIType } from "@refugies-info/api-types";
+import {
+  Id,
+  Picture,
+  ContentType,
+  SimpleDispositif,
+  DispositifStatus,
+  Languages,
+  GetStructureDispositifResponse,
+  Suggestion as SuggestionAPIType,
+} from "@refugies-info/api-types";
 import { omit, pick, uniq, union } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
 import { Merci, Suggestion } from "../../typegoose/Dispositif";
-import { Dispositif, DispositifDraftModel, DispositifId, DispositifModel, Need, ObjectId, Theme, UserId } from "../../typegoose";
+import {
+  Dispositif,
+  DispositifDraftModel,
+  DispositifId,
+  DispositifModel,
+  Need,
+  ObjectId,
+  Theme,
+  UserId,
+} from "../../typegoose";
 import { getUsersById } from "../users/users.repository";
+import { DeleteResult } from "../../types/interface";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
@@ -101,7 +120,7 @@ export const getSimpleDispositifs = async (
         metadatas: dispositif.metadatas,
         ...omit(dispositif, ["translations"]),
         availableLanguages: Object.keys(dispositif.translations),
-        hasDraftVersion: dispositif.hasDraftVersion
+        hasDraftVersion: dispositif.hasDraftVersion,
       };
       return resDisp;
     }),
@@ -124,7 +143,7 @@ export const getStructureDispositifs = async (
       nbVuesMobile: 1,
       hasDraftVersion: 1,
       merci: 1,
-      suggestions: 1
+      suggestions: 1,
     },
     "suggestions.userId",
     limit,
@@ -132,45 +151,45 @@ export const getStructureDispositifs = async (
   )
     .then(async (dispositifs) => {
       const usernames = await Promise.all(
-        dispositifs.map(dispositif => dispositif.suggestions.length > 0 ?
-          getUsersById(
-            uniq(dispositif.suggestions.map(s => s.userId).filter(id => !!id)),
-            { username: 1 }
-          ) :
-          []
-        ));
-      return { dispositifs, usernames: union(...usernames) }
+        dispositifs.map((dispositif) =>
+          dispositif.suggestions.length > 0
+            ? getUsersById(uniq(dispositif.suggestions.map((s) => s.userId).filter((id) => !!id)), { username: 1 })
+            : [],
+        ),
+      );
+      return { dispositifs, usernames: union(...usernames) };
     })
-    .then(({ dispositifs, usernames }) => dispositifs.map((dispositif) => {
-      const translation = dispositif.translations[locale] || dispositif.translations.fr;
-      const suggestions: SuggestionAPIType[] = dispositif.suggestions.map(s => {
-        return {
-          ...pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]),
-          username: usernames.find(u => u._id.toString() === s.userId?.toString())?.username || ""
-        }
-      });
-      const resDisp: GetStructureDispositifResponse = {
-        _id: dispositif._id,
-        ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
-        metadatas: dispositif.metadatas,
-        ...omit(dispositif, ["translations", "merci"]),
-        availableLanguages: Object.keys(dispositif.translations),
-        hasDraftVersion: dispositif.hasDraftVersion,
-        nbMercis: dispositif.merci.length,
-        suggestions
-      };
-      return resDisp;
-    }),
+    .then(({ dispositifs, usernames }) =>
+      dispositifs.map((dispositif) => {
+        const translation = dispositif.translations[locale] || dispositif.translations.fr;
+        const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s) => {
+          return {
+            ...pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]),
+            username: usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
+          };
+        });
+        const resDisp: GetStructureDispositifResponse = {
+          _id: dispositif._id,
+          ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
+          metadatas: dispositif.metadatas,
+          ...omit(dispositif, ["translations", "merci"]),
+          availableLanguages: Object.keys(dispositif.translations),
+          hasDraftVersion: dispositif.hasDraftVersion,
+          nbMercis: dispositif.merci.length,
+          suggestions,
+        };
+        return resDisp;
+      }),
     );
 };
 
 export const updateDispositifInDB = async (
   dispositifId: DispositifId,
   modifiedDispositif: Partial<Dispositif> | { $pull: { [x: string]: { suggestionId: string } } } | { $push: any },
-  updateDraft: boolean = false
+  updateDraft: boolean = false,
 ): Promise<Dispositif> => {
-  return updateDraft ?
-    DispositifDraftModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
+  return updateDraft
+    ? DispositifDraftModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
       upsert: true,
       new: true,
     }).populate("theme secondaryThemes")
@@ -178,9 +197,9 @@ export const updateDispositifInDB = async (
       upsert: true,
       new: true,
     }).populate("theme secondaryThemes");
-}
+};
 
-export const deleteDraftDispositif = async (id: DispositifId) => DispositifDraftModel.deleteOne({ _id: id });
+export const deleteDraftDispositif = async (id: DispositifId): Promise<DeleteResult> => DispositifDraftModel.deleteOne({ _id: id });
 
 export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: Merci): Promise<Dispositif> =>
   DispositifModel.findOneAndUpdate(
@@ -193,10 +212,7 @@ export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: 
   );
 
 export const addNewParticipant = async (dispositifId: DispositifId, userId: Id) =>
-  DispositifModel.findOneAndUpdate(
-    { _id: dispositifId },
-    { $addToSet: { participants: userId } }
-  );
+  DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $addToSet: { participants: userId } });
 
 export const removeMerciDispositifInDB = async (dispositifId: DispositifId, userId: UserId): Promise<Dispositif> => {
   if (userId) {
@@ -282,10 +298,10 @@ export const modifyReadSuggestionInDispositif = async (dispositifId: DispositifI
     { $set: { ["suggestions.$.read"]: true } },
   );
 
-export const getDispositifName = async (
-  id: Id,
-) => DispositifModel.findById(id, { "translations.fr.content.titreInformatif": 1 })
-  .then(res => res?.translations.fr.content.titreInformatif)
+export const getDispositifName = async (id: Id) =>
+  DispositifModel.findById(id, { "translations.fr.content.titreInformatif": 1 }).then(
+    (res) => res?.translations.fr.content.titreInformatif,
+  );
 
 export const getDispositifById = async (
   id: DispositifId,
@@ -375,11 +391,11 @@ export const getNbVues = async () => {
 };
 
 export const getNbFiches = async () => {
-  const nbDispositifs = await DispositifModel.count({
+  const nbDispositifs = await DispositifModel.countDocuments({
     status: DispositifStatus.ACTIVE,
     typeContenu: ContentType.DISPOSITIF,
   });
-  const nbDemarches = await DispositifModel.count({
+  const nbDemarches = await DispositifModel.countDocuments({
     status: DispositifStatus.ACTIVE,
     typeContenu: ContentType.DEMARCHE,
   });
@@ -391,22 +407,19 @@ export const getNbFiches = async () => {
 };
 
 export const getNbUpdatedRecently = async (date: Date) => {
-  return DispositifModel.count({
+  return DispositifModel.countDocuments({
     status: DispositifStatus.ACTIVE,
     lastModificationDate: { $gte: date, $exists: true },
   });
 };
 
-export const getCountDispositifs = async (query: FilterQuery<Dispositif>) => DispositifModel.count(query);
+export const getCountDispositifs = async (query: FilterQuery<Dispositif>) => DispositifModel.countDocuments(query);
 
 export const deleteNeedFromDispositifs = async (needId: string) => {
   return DispositifModel.updateMany({ needs: needId }, { $pull: { needs: needId } });
 };
 
-export const cloneDispositifInDrafts = async (
-  id: DispositifId,
-  newData: Partial<Dispositif>
-) => {
+export const cloneDispositifInDrafts = async (id: DispositifId, newData: Partial<Dispositif>) => {
   const dispositif = await DispositifModel.findById(id).lean();
   return DispositifDraftModel.create({ ...dispositif, ...newData });
-}
+};

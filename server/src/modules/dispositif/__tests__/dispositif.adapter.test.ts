@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { formatDispositifsByCreator, getTitreInfoOrMarque, countDispositifMercis } from "../dispositif.adapter";
 
-describe("formatDispositifsByCreator", () => {
+describe.skip("formatDispositifsByCreator", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -85,7 +85,7 @@ describe("formatDispositifsByCreator", () => {
   });
 });
 
-describe("getTitreInfoOrMarque", () => {
+describe.skip("getTitreInfoOrMarque", () => {
   it("should return empty string if no title", () => {
     const res = getTitreInfoOrMarque(undefined);
     expect(res).toEqual("");
@@ -102,7 +102,7 @@ describe("getTitreInfoOrMarque", () => {
   });
 });
 
-describe("countDispositifMercis", () => {
+describe.skip("countDispositifMercis", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

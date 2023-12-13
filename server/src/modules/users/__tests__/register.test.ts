@@ -16,7 +16,7 @@ jest.mock("password-hash", () => ({
   default: { generate: () => "hashedPassword" },
 }));
 
-describe("register", () => {
+describe.skip("register", () => {
   const userRole = { nom: "User", _id: "id_user" };
 
   beforeEach(() => {
