@@ -1,7 +1,8 @@
-import { User } from "../typegoose";
+import { User, ObjectId } from "../typegoose";
 import { UserStatus } from "@refugies-info/api-types";
 
 const user = new User();
+user._id = new ObjectId("6569af9815c38bd134125ff3")
 user.username = "user";
 user.email = "user@test.com";
 user.picture = {

@@ -1,162 +1,131 @@
-// @ts-nocheck
+import { StructureStatus } from "@refugies-info/api-types";
+import { dispositif } from "../../../__fixtures__";
+import * as repository from "../../../modules/dispositif/dispositif.repository";
+import { ObjectId } from "../../../typegoose";
 import { getAllDispositifs } from "./getAllDispositifs";
-/* import { getDispositifsFromDB } from "../../../modules/dispositif/dispositif.repository";
-import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions"; */
 
-type MockResponse = { json: any; status: any };
-const mockResponse = (): MockResponse => {
-  const res: MockResponse = {};
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
-  return res;
-};
-
-/* jest.mock("../../../modules/structure/structure.repository", () => ({
-  updateAssociatedDispositifsInStructure: jest.fn(),
-}));
-jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  getDispositifsFromDB: jest.fn(),
-}));
-jest.mock("../../../controllers/dispositif/functions", () => ({
-  turnToLocalizedTitles: jest.fn(),
-})); */
-
-describe.skip("getAllDispositifs", () => {
+describe("getAllDispositifs", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  const neededFields = {
-    titreInformatif: 1,
-    titreMarque: 1,
-    updatedAt: 1,
-    status: 1,
-    typeContenu: 1,
-    created_at: 1,
-    publishedAt: 1,
-    publishedAtAuthor: 1,
-    adminComments: 1,
-    adminProgressionStatus: 1,
-    adminPercentageProgressionStatus: 1,
-    lastAdminUpdate: 1,
-    draftReminderMailSentDate: 1,
-    draftSecondReminderMailSentDate: 1,
-    lastReminderMailSentToUpdateContentDate: 1,
-    merci: 1,
-    nbVues: 1,
-    lastModificationDate: 1,
-    lastModificationAuthor: 1,
-    needs: 1,
-    theme: 1,
-    secondaryThemes: 1,
-    themesSelectedByAuthor: 1,
-    webOnly: 1
-  };
 
-  const dispositifsToJson = [
-    {
-      toJSON: () => ({
-        _id: "id1",
-        mainSponsor: {
-          _id: "id",
-          nom: "nom",
-          status: "Actif",
-          email: "email",
-          picture: { secure_url: "secure_url_sponsor" },
-        },
-        creatorId: {
-          username: "creator",
-          _id: "creatorId",
-          picture: { secure_url: "secure_url" },
-          password: "test",
-        },
-      }),
-    },
-    { toJSON: () => ({ _id: "id2" }) },
-  ];
-
-  const adaptedDispositif1 = {
-    _id: "id1",
-    mainSponsor: {
-      _id: "id",
-      nom: "nom",
-      status: "Actif",
-      picture: { secure_url: "secure_url_sponsor" },
-    },
-    creatorId: {
-      username: "creator",
-      _id: "creatorId",
-      picture: { secure_url: "secure_url" },
-    },
-    nbMercis: 0
-  };
-  const adaptedDispositif2 = {
-    _id: "id2",
-    mainSponsor: "",
-    creatorId: null,
-    nbMercis: 0
-  };
   it("should call getDispositifsFromDB", async () => {
-    getDispositifsFromDB.mockResolvedValue(dispositifsToJson);
-    const res = mockResponse();
-    await getAllDispositifs({}, res);
-    expect(getDispositifsFromDB).toHaveBeenCalledWith(neededFields);
-    expect(turnToLocalizedTitles).toHaveBeenCalledWith(
-      adaptedDispositif1,
-      "fr"
-    );
-    expect(turnToLocalizedTitles).toHaveBeenCalledWith(
-      adaptedDispositif2,
-      "fr"
-    );
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Succès",
-      data: [adaptedDispositif1, adaptedDispositif2],
-    });
-  });
+    const expectedDispositif =
+    {
+      _id: new ObjectId("5ce7b52d83983700167bca27"),
+      nbMercis: 0,
+      hasDraftVersion: false,
+      titreInformatif: "Apprendre le français",
+      titreMarque: "Des mots d'ancrage",
+      updatedAt: new Date("2023-12-07T14:25:30.108Z"),
+      status: "Actif",
+      typeContenu: "dispositif",
+      creatorId: {
+        _id: "id",
+        username: "creator",
+        email: "creator@test.com",
+        picture: {
+          imgId: "",
+          public_id: "",
+          secure_url: ""
+        }
+      },
+      created_at: new Date("2023-12-01T10:05:56.577Z"),
+      publishedAt: new Date("2023-12-01T14:34:29.335Z"),
+      publishedAtAuthor: {
+        _id: "id",
+        username: "author",
+      },
+      adminComments: "comment",
+      adminProgressionStatus: "comment",
+      adminPercentageProgressionStatus: "comment",
+      lastAdminUpdate: new Date("2023-12-01T14:34:29.335Z"),
+      draftReminderMailSentDate: new Date("2023-12-01T14:34:29.335Z"),
+      draftSecondReminderMailSentDate: new Date("2023-12-01T14:34:29.335Z"),
+      lastReminderMailSentToUpdateContentDate: new Date("2023-12-01T14:34:29.335Z"),
+      lastModificationDate: new Date("2023-12-01T14:34:29.335Z"),
+      lastModificationAuthor: {
+        _id: "id",
+        username: "author",
+      },
+      needs: [
+        new ObjectId("613721a409c5190dfa70d057"),
+        new ObjectId("63450e79f14a373d5af284c0"),
+        new ObjectId("613721a409c5190dfa70d064")
+      ],
+      theme: new ObjectId("63286a015d31b2c0cad9960a"),
+      secondaryThemes: [
+        new ObjectId("63286a015d31b2c0cad9960d"),
+        new ObjectId("63450dd43e23cd7181ba0b26")
+      ],
+      nbVues: 79,
+      nbMots: 256,
+      mainSponsor: {
+        _id: "id",
+        nom: "sponsor",
+        status: StructureStatus.ACTIVE,
+        picture: {
+          imgId: "",
+          public_id: "",
+          secure_url: ""
+        }
+      },
+      themesSelectedByAuthor: false,
+      webOnly: false
+    };
 
-  it("should call getDispositifsFromDB and return a 500 if getDispositifsFromDB throws", async () => {
-    getDispositifsFromDB.mockRejectedValue(new Error("error"));
-    const res = mockResponse();
-    await getAllDispositifs({}, res);
-    expect(getDispositifsFromDB).toHaveBeenCalledWith(neededFields);
-    expect(turnToLocalizedTitles).not.toHaveBeenCalled();
-    expect(turnToLocalizedTitles).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
-    });
-  });
+    const populatedDispositif: any = dispositif;
+    dispositif.hasDraftVersion = false;
+    dispositif.lastAdminUpdate = new Date("2023-12-01T14:34:29.335Z");
+    dispositif.draftReminderMailSentDate = new Date("2023-12-01T14:34:29.335Z");
+    dispositif.draftSecondReminderMailSentDate = new Date("2023-12-01T14:34:29.335Z");
+    dispositif.lastReminderMailSentToUpdateContentDate = new Date("2023-12-01T14:34:29.335Z");
+    dispositif.lastModificationDate = new Date("2023-12-01T14:34:29.335Z");
+    dispositif.adminComments = "comment";
+    dispositif.adminPercentageProgressionStatus = "comment";
+    dispositif.adminProgressionStatus = "comment";
+    populatedDispositif.mainSponsor = {
+      _id: "id",
+      nom: "sponsor",
+      status: StructureStatus.ACTIVE,
+      picture: {
+        imgId: "",
+        public_id: "",
+        secure_url: ""
+      }
+    }
+    populatedDispositif.creatorId = {
+      _id: "id",
+      username: "creator",
+      email: "creator@test.com",
+      picture: {
+        imgId: "",
+        public_id: "",
+        secure_url: ""
+      }
+    }
+    populatedDispositif.lastModificationAuthor = {
+      _id: "id",
+      username: "author",
+    }
+    populatedDispositif.publishedAtAuthor = {
+      _id: "id",
+      username: "author",
+    }
 
-  it("should call getDispositifsFromDB and return a 500 if dispositif has no json", async () => {
-    getDispositifsFromDB.mockResolvedValue([{ id: "id1" }, { id: "id2" }]);
-    const res = mockResponse();
-    await getAllDispositifs({}, res);
-    expect(getDispositifsFromDB).toHaveBeenCalledWith(neededFields);
-    expect(turnToLocalizedTitles).not.toHaveBeenCalled();
-    expect(turnToLocalizedTitles).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
-    });
-  });
+    const expectedResponse = {
+      text: "success",
+      data: [expectedDispositif, expectedDispositif]
+    };
+    const getDispositifsFromDBMock = jest.spyOn(repository, 'getDispositifsFromDB');
+    getDispositifsFromDBMock.mockResolvedValue([populatedDispositif, populatedDispositif]);
 
-  it("should call getDispositifsFromDB and return a 500 if dispositif has no json", async () => {
-    getDispositifsFromDB.mockResolvedValue(dispositifsToJson);
-    turnToLocalizedTitles.mockImplementationOnce(() => {
-      throw new Error("TEST");
-    });
-    const res = mockResponse();
-    await getAllDispositifs({}, res);
-    expect(getDispositifsFromDB).toHaveBeenCalledWith(neededFields);
-    expect(turnToLocalizedTitles).toHaveBeenCalledWith(
-      adaptedDispositif1,
-      "fr"
-    );
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
-    });
+    // Act
+    const result = await getAllDispositifs();
+
+    // Assert
+    expect(getDispositifsFromDBMock).toHaveBeenCalled();
+    expect(result).toEqual(expectedResponse);
   });
 });
