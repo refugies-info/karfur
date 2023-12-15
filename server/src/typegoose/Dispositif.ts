@@ -227,6 +227,8 @@ export class Dispositif extends Base {
   public publishedAt?: Date;
   @prop()
   public publishedAtAuthor?: UserId;
+  @prop()
+  public deletionDate?: Date;
 
   @prop({ default: 0 })
   public nbFavoritesMobile!: number;

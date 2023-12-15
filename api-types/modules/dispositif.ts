@@ -354,6 +354,7 @@ export interface GetAllDispositifsResponse {
   updatedAt?: Date;
   lastModificationDate?: Date;
   lastAdminUpdate?: Date;
+  deletionDate?: Date;
   nbMots: number;
   nbVues: number;
   nbMercis: number;

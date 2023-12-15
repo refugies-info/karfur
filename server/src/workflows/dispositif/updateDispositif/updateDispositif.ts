@@ -4,8 +4,9 @@ import { ResponseWithData } from "../../../types/interface";
 import { Dispositif, ObjectId, StructureId, User } from "../../../typegoose";
 import { DemarcheContent, DispositifContent, TranslationContent } from "../../../typegoose/Dispositif";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
+import { isToday } from "../../../libs/isToday";
 import { ContentType, DispositifStatus, UpdateDispositifRequest, UpdateDispositifResponse } from "@refugies-info/api-types";
-import { buildNewDispositif, isDispositifComplete } from "../../../modules/dispositif/dispositif.service";
+import { buildNewDispositif, isDispositifComplete, NotifType, notifyChange } from "../../../modules/dispositif/dispositif.service";
 import { log } from "./log";
 import { logContact } from "../../../modules/dispositif/log";
 import { isString } from "lodash";
@@ -40,13 +41,13 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
 
   const draftOldDispositif = await getDraftDispositifById(
     id,
-    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1 },
+    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1, lastModificationDate: 1 },
     "mainSponsor",
   );
 
   const oldDispositif = draftOldDispositif || await getDispositifById(
     id,
-    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1 },
+    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1, lastModificationDate: 1 },
     "mainSponsor",
   );
   checkUserIsAuthorizedToModifyDispositif(oldDispositif, user, !!draftOldDispositif);
@@ -93,6 +94,11 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
   if (!newDispositif) throw new Error("dispositif not found");
   await addNewParticipant(new ObjectId(id), user._id);
   await log(newDispositif, oldDispositif, user._id);
+
+  // send notif only if non-admin user, and is today (= 1 notif per day maximum)
+  if (!isToday(oldDispositif.lastModificationDate) && !user.isAdmin()) {
+    await notifyChange(NotifType.UPDATED, id);
+  }
 
   return {
     text: "success",
