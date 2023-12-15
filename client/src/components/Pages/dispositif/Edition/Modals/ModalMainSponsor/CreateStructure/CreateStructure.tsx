@@ -1,11 +1,11 @@
 import React from "react";
-import { Sponsor } from "@refugies-info/api-types";
+import { MainSponsor } from "@refugies-info/api-types";
 import { SponsorForm } from "../../components";
 import styles from "./CreateStructure.module.scss";
 
 interface Props {
-  sponsor: Sponsor;
-  setSponsor: React.Dispatch<React.SetStateAction<Sponsor>>;
+  sponsor: MainSponsor;
+  setSponsor: React.Dispatch<React.SetStateAction<MainSponsor>>;
 }
 
 const CreateStructure = (props: Props) => {

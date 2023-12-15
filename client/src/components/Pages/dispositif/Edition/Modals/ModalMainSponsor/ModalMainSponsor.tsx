@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { CreateDispositifRequest, Id, Sponsor } from "@refugies-info/api-types";
+import { CreateDispositifRequest, Id, MainSponsor } from "@refugies-info/api-types";
 import { userSelector } from "services/User/user.selectors";
 import { userStructureSelector } from "services/UserStructure/userStructure.selectors";
 import BaseModal from "components/UI/BaseModal";
@@ -52,7 +52,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
     email: user.user?.email || "",
   });
   const [structureContact, setStructureContact] = useState<ContactInfos>(defaultContact);
-  const [mainSponsor, setMainSponsor] = useState<Sponsor>(defaultSponsor);
+  const [mainSponsor, setMainSponsor] = useState<MainSponsor>(defaultSponsor);
 
   const goToInitialStep = useCallback(() => {
     setStep(getInitialStep(selectedStructure, userStructure?._id || null));

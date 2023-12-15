@@ -67,10 +67,16 @@ export interface ContentStructure {
   status?: string;
 }
 
-export interface Sponsor {
+export interface MainSponsor {
   name: string;
   logo: Picture;
   link: string;
+}
+
+export interface Sponsor {
+  name: string;
+  logo?: Picture;
+  link?: string;
 }
 
 // User

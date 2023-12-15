@@ -6,6 +6,7 @@ import {
   InfoSection,
   InfoSections,
   Languages,
+  MainSponsor,
   Metadatas,
   Poi,
   SimpleDispositif,
@@ -152,7 +153,7 @@ interface DispositifRequest {
   why?: { [key: string]: InfoSection };
   how?: { [key: string]: InfoSection };
   next?: { [key: string]: InfoSection };
-  mainSponsor?: string | Sponsor | null;
+  mainSponsor?: string | MainSponsor | null;
   contact?: {
     name: string;
     email?: string;
