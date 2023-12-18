@@ -79,13 +79,13 @@ const Placeholder = (props: { iconName: string; text: string; i18nKey: string })
 };
 
 const getActivityDetails = (activity: string, themes: GetThemeResponse[]) => {
-  const correspondingActivity = activities.filter((activityData) => activityData.activity === activity);
+  const correspondingActivity = activities.find((activityData) => activityData.activity === activity);
 
   if (!correspondingActivity) return { theme: null };
-  const themeShort = correspondingActivity[0].theme;
+  const themeShort = correspondingActivity.theme;
 
-  const correspondingTheme = themes.filter((theme) => theme.short.fr === themeShort);
-  return { theme: correspondingTheme[0], image: correspondingActivity[0].image };
+  const correspondingTheme = themes.find((theme) => theme.short.fr === themeShort);
+  return { theme: correspondingTheme, image: correspondingActivity.image };
 };
 
 const sortStructureActivities = (structure: GetStructureResponse | null, themes: GetThemeResponse[]) => {

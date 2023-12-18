@@ -227,7 +227,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   const newDispositif: Partial<Dispositif> = {
     status: DispositifStatus.ACTIVE,
     publishedAt: new Date(),
-    publishedAtAuthor: userId,
+    publishedAtAuthor: new ObjectId(userId),
     hasDraftVersion: false
   };
 
