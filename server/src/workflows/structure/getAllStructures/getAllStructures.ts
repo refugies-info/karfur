@@ -74,7 +74,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
       ...acc,
       [user._id.toString()]: {
         ...user,
-        roles: (user.roles || []).map(r => r.toString())
+        roles: []
       }
     }), {});
 

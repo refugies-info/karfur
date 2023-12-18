@@ -26,7 +26,7 @@ import { Need, NeedId } from "./Need";
 
 import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
-import { User, UserId } from "./User";
+import { User } from "./User";
 
 export class Sponsor {
   @prop()
@@ -219,14 +219,14 @@ export class Dispositif extends Base {
 
   @prop()
   public lastAdminUpdate?: Date;
-  @prop()
-  public lastModificationAuthor: UserId;
+  @prop({ ref: () => User })
+  public lastModificationAuthor: Ref<User>;
   @prop()
   public lastModificationDate?: Date;
   @prop()
   public publishedAt?: Date;
-  @prop()
-  public publishedAtAuthor?: UserId;
+  @prop({ ref: () => User })
+  public publishedAtAuthor?: Ref<User>;
   @prop()
   public deletionDate?: Date;
 
