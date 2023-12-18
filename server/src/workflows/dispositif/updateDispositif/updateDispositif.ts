@@ -84,6 +84,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
       newDispositif.status === DispositifStatus.WAITING_STRUCTURE;
     if (isStatusWaiting && !isDispositifComplete(newDispositif)) {
       await updateDispositifInDB(id, { status: DispositifStatus.DRAFT });
+      newDispositif.status = DispositifStatus.DRAFT; // TODO: test live
     }
   }
 
