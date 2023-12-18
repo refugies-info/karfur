@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 import { updateDispositifStatus } from "./updateDispositifStatus";
 import {
   updateDispositifInDB,
@@ -6,13 +6,11 @@ import {
 } from "../../../modules/dispositif/dispositif.repository";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import {
-  checkRequestIsFromSite,
-  checkIfUserIsAdmin,
-  checkUserIsAuthorizedToModifyDispositif,
+
   checkUserIsAuthorizedToDeleteDispositif
 } from "../../../libs/checkAuthorizations";
 import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../connectors/airtable/airtable";
 import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
@@ -26,45 +24,9 @@ jest.mock("airtable");
 jest.mock("@sendgrid/mail");
 
 
-/* jest.mock("./log", () => ({
-  log: jest.fn().mockResolvedValue(undefined)
-}));
-jest.mock("../../../modules/dispositif/dispositif.service", () => ({
-  publishDispositif: jest.fn(),
-}));
-jest.mock("../../../modules/langues/langues.service", () => ({
-  updateLanguagesAvancement: jest.fn(),
-}));
-
-jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  updateDispositifInDB: jest.fn(),
-  getDispositifByIdWithMainSponsor: jest.fn().mockResolvedValue({ _id: "id" }),
-}));
-
-jest.mock("../../../libs/checkAuthorizations", () => ({
-  checkRequestIsFromSite: jest.fn(),
-  checkIfUserIsAdmin: jest.fn(),
-  checkUserIsAuthorizedToModifyDispositif: jest.fn(),
-  checkUserIsAuthorizedToDeleteDispositif: jest.fn()
-}));
-
-jest.mock("../../../controllers/miscellaneous/airtable", () => ({
-  addOrUpdateDispositifInContenusAirtable: jest.fn(),
-})); */
-
 describe.skip("updateDispositifStatus", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-  it("should return a 405 when no fromSite", async () => {
-    checkRequestIsFromSite.mockImplementationOnce(() => {
-      throw new Error("NOT_FROM_SITE");
-    });
-    const req = { body: {} };
-    const res = mockResponse();
-    await updateDispositifStatus(req, res);
-    expect(res.status).toHaveBeenCalledWith(405);
-    expect(res.json).toHaveBeenCalledWith({ text: "Requête bloquée par API" });
   });
 
   it("should return a 400 when no body", async () => {

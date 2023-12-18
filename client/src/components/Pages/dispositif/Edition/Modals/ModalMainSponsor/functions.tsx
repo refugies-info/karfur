@@ -1,4 +1,4 @@
-import { Id, Sponsor } from "@refugies-info/api-types";
+import { Id, MainSponsor } from "@refugies-info/api-types";
 import { hasStructureTitles, noStructureTitles } from "./data";
 import { ContactInfos } from "./ModalMainSponsor";
 
@@ -90,7 +90,7 @@ export const isNextButtonDisabled = (
   hasStructure: boolean,
   authorContact: ContactInfos,
   structureContact: ContactInfos,
-  mainSponsor: Sponsor,
+  mainSponsor: MainSponsor,
   memberOfStructure: boolean | null,
   selectedStructure: Id | null,
   otherStructure: boolean | null,
