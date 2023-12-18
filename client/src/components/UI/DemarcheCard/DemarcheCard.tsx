@@ -25,7 +25,8 @@ type DemarcheLinkProps = {
   $border: string;
 };
 const DemarcheLink = styled(Link)<DemarcheLinkProps>`
-  :hover {
+  :hover,
+  .${commonStyles.favorite}:hover + & {
     background-color: ${(props) => props.$background} !important;
     border-color: ${(props) => props.$border} !important;
     color: ${(props) => props.$border} !important;
@@ -57,6 +58,7 @@ const DemarcheCard = (props: Props) => {
 
   return (
     <div className={commonStyles.wrapper}>
+      <FavoriteButton contentId={props.demarche._id} className={commonStyles.favorite} />
       <DemarcheLink
         href={{
           pathname: getPath("/demarche/[id]", router.locale),
@@ -90,7 +92,6 @@ const DemarcheCard = (props: Props) => {
           ))}
         </div>
       </DemarcheLink>
-      <FavoriteButton contentId={props.demarche._id} className={commonStyles.favorite} />
     </div>
   );
 };

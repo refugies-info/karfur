@@ -32,9 +32,9 @@ export class Sponsor {
   @prop()
   name: String;
   @prop()
-  logo: String;
+  logo?: String;
   @prop()
-  link: String;
+  link?: String;
 }
 
 export class Content {
@@ -227,6 +227,8 @@ export class Dispositif extends Base {
   public publishedAt?: Date;
   @prop()
   public publishedAtAuthor?: UserId;
+  @prop()
+  public deletionDate?: Date;
 
   @prop({ default: 0 })
   public nbFavoritesMobile!: number;

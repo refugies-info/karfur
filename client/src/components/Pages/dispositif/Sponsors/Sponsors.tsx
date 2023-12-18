@@ -43,7 +43,8 @@ const Sponsors = (props: Props) => {
           const image =
             (sponsor as Sponsor).logo?.secure_url || (sponsor as ContentStructure).picture?.secure_url || "";
           const name = (sponsor as Sponsor).name || (sponsor as ContentStructure).nom || "";
-          const link = (sponsor as Sponsor).link ? sanitizeUrl((sponsor as Sponsor).link) : "#";
+          const sponsorLink = (sponsor as Sponsor).link;
+          const link = sponsorLink ? sanitizeUrl(sponsorLink) : null;
           return (
             <div key={i}>
               {props.editMode ? (
@@ -61,10 +62,12 @@ const Sponsors = (props: Props) => {
                     className={cls(styles.delete)}
                   ></Button>
                 </div>
-              ) : (
-                <a className={cls(styles.sponsor)} href={link} target="_blank" rel="noopener noreferer">
+              ) : link ? (
+                <a className={cls(styles.sponsor, styles.link)} href={link} target="_blank" rel="noopener noreferer">
                   {getSponsorContent(image, name)}
                 </a>
+              ) : (
+                <div className={cls(styles.sponsor)}>{getSponsorContent(image, name)}</div>
               )}
             </div>
           );
