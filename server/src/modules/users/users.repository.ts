@@ -20,7 +20,7 @@ export const getUserName = async (
 
 // find many
 export const getUsersById = async (ids: UserId[], neededFields: NeededFields) =>
-  UserModel.find({ _id: { $in: ids } }, neededFields);
+  UserModel.find({ _id: { $in: ids } }, neededFields).lean();
 
 export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string, number> = {}) =>
   UserModel.find(filter, neededFields);
