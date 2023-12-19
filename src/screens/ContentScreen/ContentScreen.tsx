@@ -552,28 +552,35 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                 </ReadableText>
               </SectionTitle>
               <Rows>
-                {selectedContent.sponsors.map((sponsor, index) => (
-                  <Columns
-                    key={index}
-                    RTLBehaviour
-                    layout="auto 1"
-                    verticalAlign="center"
-                  >
-                    <Image
-                      style={{ width: 50, height: 50 }}
-                      source={{
-                        // @ts-ignore
-                        uri: (sponsor.logo || sponsor.picture).secure_url,
-                      }}
-                    />
-                    <TextSmallNormal>
-                      <ReadableText>
-                        {(sponsor as Sponsor).name ||
-                          (sponsor as ContentStructure).nom}
-                      </ReadableText>
-                    </TextSmallNormal>
-                  </Columns>
-                ))}
+                {selectedContent.sponsors.map((sponsor, index) => {
+                  const image = (
+                    (sponsor as Sponsor).logo ||
+                    (sponsor as ContentStructure).picture
+                  )?.secure_url;
+                  return (
+                    <Columns
+                      key={index}
+                      RTLBehaviour
+                      layout="auto 1"
+                      verticalAlign="center"
+                    >
+                      {image && (
+                        <Image
+                          style={{ width: 50, height: 50 }}
+                          source={{
+                            uri: image,
+                          }}
+                        />
+                      )}
+                      <TextSmallNormal>
+                        <ReadableText>
+                          {(sponsor as Sponsor).name ||
+                            (sponsor as ContentStructure).nom}
+                        </ReadableText>
+                      </TextSmallNormal>
+                    </Columns>
+                  );
+                })}
               </Rows>
             </>
           )}
