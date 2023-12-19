@@ -68,7 +68,7 @@ describe("updateDispositif", () => {
     expect(logContactMock).not.toHaveBeenCalled();
     expect(addNewParticipantMock).toHaveBeenCalledWith(new ObjectId("5ce7b52d83983700167bca27"), new ObjectId("6569af9815c38bd134125ff3"));
     expect(logMock).toHaveBeenCalled();
-    expect(notifyChangeMock).toHaveBeenCalledWith(service.NotifType.UPDATED, "5ce7b52d83983700167bca27");
+    expect(notifyChangeMock).toHaveBeenCalledWith(service.NotifType.UPDATED, "5ce7b52d83983700167bca27", new ObjectId("6569af9815c38bd134125ff3"));
 
     expect(result).toEqual({
       text: "success",
@@ -131,7 +131,7 @@ describe("updateDispositif", () => {
     expect(logContactMock).not.toHaveBeenCalled();
     expect(addNewParticipantMock).toHaveBeenCalledWith(new ObjectId("5ce7b52d83983700167bca27"), new ObjectId("6569af9815c38bd134125ff3"));
     expect(logMock).toHaveBeenCalled();
-    expect(notifyChangeMock).toHaveBeenCalledWith(service.NotifType.UPDATED, "5ce7b52d83983700167bca27");
+    expect(notifyChangeMock).toHaveBeenCalledWith(service.NotifType.UPDATED, "5ce7b52d83983700167bca27", new ObjectId("6569af9815c38bd134125ff3"));
 
     expect(result).toEqual({
       text: "success",
@@ -189,7 +189,7 @@ describe("updateDispositif", () => {
     expect(logContactMock).not.toHaveBeenCalled();
     expect(addNewParticipantMock).toHaveBeenCalledWith(new ObjectId("5ce7b52d83983700167bca27"), new ObjectId("6569af9815c38bd134125ff3"));
     expect(logMock).toHaveBeenCalled();
-    expect(notifyChangeMock).toHaveBeenCalledWith(service.NotifType.UPDATED, "5ce7b52d83983700167bca27");
+    expect(notifyChangeMock).toHaveBeenCalledWith(service.NotifType.UPDATED, "5ce7b52d83983700167bca27", new ObjectId("6569af9815c38bd134125ff3"));
 
     expect(result).toEqual({
       text: "success",
@@ -319,7 +319,7 @@ describe("updateDispositif", () => {
     expect(logContactMock).not.toHaveBeenCalled();
     expect(addNewParticipantMock).toHaveBeenCalledWith(new ObjectId("5ce7b52d83983700167bca27"), new ObjectId("6569af9815c38bd134125ff3"));
     expect(logMock).toHaveBeenCalled();
-    expect(notifyChangeMock).toHaveBeenCalledWith(service.NotifType.UPDATED, "5ce7b52d83983700167bca27");
+    expect(notifyChangeMock).toHaveBeenCalledWith(service.NotifType.UPDATED, "5ce7b52d83983700167bca27", new ObjectId("6569af9815c38bd134125ff3"));
 
     expect(result).toEqual({
       text: "success",

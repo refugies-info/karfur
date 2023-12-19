@@ -98,7 +98,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
 
   // send notif only if non-admin user, and is today (= 1 notif per day maximum)
   if (!isToday(oldDispositif.lastModificationDate) && !user.isAdmin()) {
-    await notifyChange(NotifType.UPDATED, id);
+    await notifyChange(NotifType.UPDATED, id, user._id);
   }
 
   return {
