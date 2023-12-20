@@ -54,10 +54,13 @@ const isUserAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) 
     logger.info("[isUserAuthorizedToDeleteDispositif] user is admin");
     return true;
   }
+  const isAuthor = dispositif.creatorId.toString() === user.id;
 
-  const sponsor: Structure = dispositif.getMainSponsor();
+  const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
+  if (!sponsor && isAuthor) return true; // no sponsor yet, but user is author
+
   const userInStructure = sponsor && sponsor.membres.find((membre) => membre.userId?.toString() === user.id);
-  if (!userInStructure) return false; // user not in structure
+  if (sponsor && !userInStructure) return false; // user not in structure
 
   // user is responsable of structure
   if (userInStructure.roles.includes("administrateur")) {
@@ -65,7 +68,6 @@ const isUserAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) 
   }
 
   // user is redacteur of structure and author
-  const isAuthor = dispositif.creatorId.toString() === user.id;
   if (userInStructure.roles.includes("contributeur") && isAuthor) {
     return true;
   }

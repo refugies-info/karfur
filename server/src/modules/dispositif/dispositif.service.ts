@@ -28,6 +28,8 @@ import { addToReview, removeTraductionsSections } from "../traductions/traductio
 import { sendSlackNotif } from "../../connectors/slack/sendSlackNotif";
 import { getUserByIdWithStructures } from "../users/users.repository";
 
+const url = process.env.FRONT_SITE_URL;
+
 export enum NotifType {
   PUBLISHED = "PUBLISHED",
   DELETED = "DELETED",
@@ -44,24 +46,25 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
     const theme = (dispositif.getTheme()?.name?.fr || "").toLowerCase();
     const contentTitle = `${dispositif.typeContenu === ContentType.DISPOSITIF ? dispositif.translations.fr.content.titreMarque + " - " : ""} ${dispositif.translations.fr.content.titreInformatif}`;
     const structure = user.structures[0]?.nom ? ` de la structure _${user.structures[0]?.nom}_` : "";
+    const type = dispositif.typeContenu === ContentType.DEMARCHE ? "démarche" : "dispositif";
 
     let title = "";
     let text = "";
     switch (notifType) {
       case NotifType.PUBLISHED:
         title = ":new: Fiche publiée !";
-        text = `La fiche ${dispositif.typeContenu} *${contentTitle}* a été publiée sur le thème ${theme}. À valoriser ?`;
+        text = `La fiche ${type} *${contentTitle}* a été publiée sur le thème [${theme}]. À valoriser ?`;
         break;
       case NotifType.DELETED:
         title = ":x: Fiche supprimée !";
-        text = `La fiche ${dispositif.typeContenu} *${contentTitle}* a été supprimée par _${user.username}_${structure}. À vérifier ?`;
+        text = `La fiche ${type} *${contentTitle}* a été supprimée par _${user.username}_${structure}. À vérifier ?`;
         break;
       case NotifType.UPDATED:
         title = ":arrows_counterclockwise: Fiche mise à jour !";
-        text = `La fiche ${dispositif.typeContenu} *${contentTitle}* a été modifiée par _${user.username}_${structure}. À vérifier ?`;
+        text = `La fiche ${type} *${contentTitle}* a été modifiée par _${user.username}_${structure}. À vérifier ?`;
         break;
     }
-    return sendSlackNotif(title, text, `https://www.refugies.info/fr/dispositif/${dispositifId}`);
+    return sendSlackNotif(title, text, `${url}/fr/${dispositif.typeContenu}/${dispositifId}`);
   } catch (e) {
     logger.error("[notifyChange] error", e);
   }
@@ -317,8 +320,11 @@ export const deleteDispositifInDb = async (id: string, user: User) => {
   checkUserIsAuthorizedToDeleteDispositif(dispositif, user);
 
   const notifyChangeIf = async (id: string, user: User, oldDispositif: Dispositif) => {
-    // notify only if non-admin, or admin and content was previously published
-    if (!user.isAdmin() || (oldDispositif.status === DispositifStatus.ACTIVE && user.isAdmin())) {
+    // notify only if non-admin and active or waiting, or admin and active
+    if (
+      (!user.isAdmin() && [DispositifStatus.ACTIVE, DispositifStatus.WAITING_ADMIN].includes(oldDispositif.status)) ||
+      (user.isAdmin() && oldDispositif.status === DispositifStatus.ACTIVE)
+    ) {
       await notifyChange(NotifType.DELETED, id, user._id);
     }
   }

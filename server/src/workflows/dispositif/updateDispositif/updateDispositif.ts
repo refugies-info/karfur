@@ -84,7 +84,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
       newDispositif.status === DispositifStatus.WAITING_STRUCTURE;
     if (isStatusWaiting && !isDispositifComplete(newDispositif)) {
       await updateDispositifInDB(id, { status: DispositifStatus.DRAFT });
-      newDispositif.status = DispositifStatus.DRAFT; // TODO: test live
+      newDispositif.status = DispositifStatus.DRAFT;
     }
   }
 
@@ -96,8 +96,10 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
   await addNewParticipant(new ObjectId(id), user._id);
   await log(newDispositif, oldDispositif, user._id);
 
-  // send notif only if non-admin user, and is today (= 1 notif per day maximum)
-  if (!isToday(oldDispositif.lastModificationDate) && !user.isAdmin()) {
+  // send notif only if non-admin user, and is today (= 1 notif per day maximum), and is active or waiting
+  const isActive = oldDispositif.status === DispositifStatus.ACTIVE || !!draftOldDispositif;
+  const isWaiting = [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE].includes(oldDispositif.status)
+  if (!isToday(oldDispositif.lastModificationDate) && !user.isAdmin() && (isWaiting || isActive)) {
     await notifyChange(NotifType.UPDATED, id, user._id);
   }
 
