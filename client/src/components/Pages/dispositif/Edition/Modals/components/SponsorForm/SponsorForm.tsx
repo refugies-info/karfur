@@ -9,8 +9,10 @@ interface Props {
   onNameChange: React.ChangeEventHandler<HTMLInputElement>;
   link: string | undefined;
   onLinkChange: React.ChangeEventHandler<HTMLInputElement>;
+  linkOptional?: boolean;
   logo: Picture | undefined;
   onLogoChange: (image: Picture | undefined) => void;
+  logoOptional?: boolean;
 }
 
 const SponsorForm = (props: Props) => {
@@ -28,7 +30,7 @@ const SponsorForm = (props: Props) => {
       />
       <Input
         id="sponsor-link"
-        label="Site internet de la structure"
+        label={`Site internet de la structure ${props.linkOptional ? "(optionnel)" : ""}`}
         type="text"
         icon="link-2-outline"
         value={props.link}
@@ -38,7 +40,7 @@ const SponsorForm = (props: Props) => {
       />
       <LogoInput
         id="sponsor-logo"
-        label="Logo de la structure"
+        label={`Logo de la structure ${props.logoOptional ? "(optionnel)" : ""}`}
         image={props.logo}
         imageSize={64}
         onImageUploaded={props.onLogoChange}

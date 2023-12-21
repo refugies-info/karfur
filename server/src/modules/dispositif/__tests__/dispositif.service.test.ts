@@ -1,30 +1,13 @@
-// @ts-nocheck
-import { updateDispositifInDB } from "../dispositif.repository";
-import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
+import * as repository from "../dispositif.repository";
+import * as languesService from "../../../modules/langues/langues.service";
+import * as airtable from "../../../connectors/airtable/airtable";
 import { publishDispositif } from "../dispositif.service";
 import { sendMailWhenDispositifPublished } from "../../mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
+import { demarche, dispositif } from "../../../__fixtures__";
 
-jest.mock("../../../modules/langues/langues.service", () => ({
-  updateLanguagesAvancement: jest.fn(),
-}));
-
-jest.mock("../../../controllers/miscellaneous/airtable", () => ({
-  addOrUpdateDispositifInContenusAirtable: jest.fn(),
-}));
-
-jest.mock("../dispositif.repository", () => ({
-  updateDispositifInDB: jest.fn(),
-}));
-
-jest.mock("../../mail/sendMailWhenDispositifPublished", () => ({
-  sendMailWhenDispositifPublished: jest.fn(),
-}));
-
-jest.mock("../../../modules/notifications/notifications.service", () => ({
-  sendNotificationsForDispositif: jest.fn(),
-}));
+jest.mock("airtable");
+jest.mock("@sendgrid/mail");
 
 describe.skip("publish dispositif", () => {
   beforeEach(() => {
@@ -32,48 +15,45 @@ describe.skip("publish dispositif", () => {
   });
 
   it("should update languages avancement and add content in airtable", async () => {
-    updateDispositifInDB.mockResolvedValueOnce({
-      typeContenu: "demarche",
-      theme: { _id: "theme1", short: { fr: "short title" } },
-      secondaryThemes: []
-    });
+    const updateDispositifInDBMock = jest.spyOn(repository, 'updateDispositifInDB');
+    const updateLanguagesAvancementMock = jest.spyOn(languesService, 'updateLanguagesAvancement');
+    const addOrUpdateDispositifInContenusAirtableMock = jest.spyOn(airtable, 'addOrUpdateDispositifInContenusAirtable');
+
+    updateDispositifInDBMock.mockResolvedValueOnce(demarche);
+
     const date = 148707670800;
     Date.now = jest.fn(() => date);
 
-    await publishDispositif("id");
+    await publishDispositif("id", "userId");
 
-    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith("id", {
       status: "Actif",
       publishedAt: date,
     });
-    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
+    expect(updateLanguagesAvancementMock).toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtableMock).toHaveBeenCalled();
     expect(sendMailWhenDispositifPublished).toHaveBeenCalled();
   });
 
-  const dispositif = {
-    typeContenu: "dispositif",
-    titreInformatif: "ti",
-    titreMarque: "tm",
-    _id: "id",
-    theme: { _id: "theme1", short: { fr: "short title" } },
-    secondaryThemes: [],
-    creatorId: "creatorId",
-  };
-
   it("updateLanguagesAvancement throws", async () => {
-    updateLanguagesAvancement.mockRejectedValueOnce(new Error("erreur"));
-    updateDispositifInDB.mockResolvedValueOnce(dispositif);
+    const updateDispositifInDBMock = jest.spyOn(repository, 'updateDispositifInDB');
+    const updateLanguagesAvancementMock = jest.spyOn(languesService, 'updateLanguagesAvancement');
+    const addOrUpdateDispositifInContenusAirtableMock = jest.spyOn(airtable, 'addOrUpdateDispositifInContenusAirtable');
+
+    updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
+    updateLanguagesAvancementMock.mockRejectedValueOnce(new Error("erreur"));
+
+    updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
     const date = 148707670800;
     Date.now = jest.fn(() => date);
-    await publishDispositif("id");
+    await publishDispositif("id", "userId");
 
-    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith("id", {
       status: "Actif",
       publishedAt: date,
     });
-    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
+    expect(updateLanguagesAvancementMock).toHaveBeenCalledWith();
+    expect(addOrUpdateDispositifInContenusAirtableMock).toHaveBeenCalledWith(
       "ti",
       "tm",
       "id",
@@ -87,17 +67,22 @@ describe.skip("publish dispositif", () => {
   });
 
   it("should return a 200 when new status is actif and a dispositif ", async () => {
-    updateDispositifInDB.mockResolvedValueOnce(dispositif);
+    const updateDispositifInDBMock = jest.spyOn(repository, 'updateDispositifInDB');
+    const updateLanguagesAvancementMock = jest.spyOn(languesService, 'updateLanguagesAvancement');
+    const addOrUpdateDispositifInContenusAirtableMock = jest.spyOn(airtable, 'addOrUpdateDispositifInContenusAirtable');
+
+    updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
+
     const date = 148707670800;
     Date.now = jest.fn(() => date);
-    await publishDispositif("id");
+    await publishDispositif("id", "userId");
 
-    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith("id", {
       status: "Actif",
       publishedAt: date,
     });
-    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
+    expect(updateLanguagesAvancementMock).toHaveBeenCalledWith();
+    expect(addOrUpdateDispositifInContenusAirtableMock).toHaveBeenCalledWith(
       "ti",
       "tm",
       "id",
@@ -112,20 +97,22 @@ describe.skip("publish dispositif", () => {
   });
 
   it("should return a 200 when new status is actif and a demarche ", async () => {
-    updateDispositifInDB.mockResolvedValueOnce({
-      ...dispositif,
-      typeContenu: "demarche",
-    });
+    const updateDispositifInDBMock = jest.spyOn(repository, 'updateDispositifInDB');
+    const updateLanguagesAvancementMock = jest.spyOn(languesService, 'updateLanguagesAvancement');
+    const addOrUpdateDispositifInContenusAirtableMock = jest.spyOn(airtable, 'addOrUpdateDispositifInContenusAirtable');
+
+    updateDispositifInDBMock.mockResolvedValueOnce(dispositif);
+
     const date = 148707670800;
     Date.now = jest.fn(() => date);
-    await publishDispositif("id");
+    await publishDispositif("id", "userId");
 
-    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith("id", {
       status: "Actif",
       publishedAt: date,
     });
-    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
+    expect(updateLanguagesAvancementMock).toHaveBeenCalledWith();
+    expect(addOrUpdateDispositifInContenusAirtableMock).toHaveBeenCalled();
     expect(sendMailWhenDispositifPublished).toHaveBeenCalled();
     expect(sendNotificationsForDispositif).toHaveBeenCalled();
   });

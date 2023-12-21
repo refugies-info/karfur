@@ -26,15 +26,15 @@ import { Need, NeedId } from "./Need";
 
 import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
-import { User, UserId } from "./User";
+import { User } from "./User";
 
 export class Sponsor {
   @prop()
   name: String;
   @prop()
-  logo: String;
+  logo?: String;
   @prop()
-  link: String;
+  link?: String;
 }
 
 export class Content {
@@ -219,14 +219,16 @@ export class Dispositif extends Base {
 
   @prop()
   public lastAdminUpdate?: Date;
-  @prop()
-  public lastModificationAuthor: UserId;
+  @prop({ ref: () => User })
+  public lastModificationAuthor: Ref<User>;
   @prop()
   public lastModificationDate?: Date;
   @prop()
   public publishedAt?: Date;
+  @prop({ ref: () => User })
+  public publishedAtAuthor?: Ref<User>;
   @prop()
-  public publishedAtAuthor?: UserId;
+  public deletionDate?: Date;
 
   @prop({ default: 0 })
   public nbFavoritesMobile!: number;

@@ -398,9 +398,11 @@ export const AdminContenu = () => {
           </thead>
           <tbody>
             {dispositifsToDisplay.map((element, key) => {
-              const nbDays = element.lastModificationDate
-                ? -moment(element.lastModificationDate).diff(moment(), "days") + " jours"
-                : "ND";
+              const date =
+                element.status === DispositifStatus.DELETED && element.deletionDate
+                  ? element.deletionDate
+                  : element.lastModificationDate;
+              const nbDays = date ? -moment(date).diff(moment(), "days") + " jours" : "ND";
               const burl = "/" + (element.typeContenu || "dispositif") + "/" + element._id;
               const validationDisabled =
                 element.status === "Actif" || !element.mainSponsor || element.mainSponsor.status !== "Actif";
