@@ -1,4 +1,4 @@
-import { Sponsor } from "@refugies-info/api-types";
+import { MainSponsor } from "@refugies-info/api-types";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import React from "react";
 import { ContactInfos } from "./ModalMainSponsor";
@@ -157,7 +157,7 @@ export const defaultContact: ContactInfos = {
   comments: "",
 };
 
-export const defaultSponsor: Sponsor = {
+export const defaultSponsor: MainSponsor = {
   name: "",
   link: "",
   logo: {

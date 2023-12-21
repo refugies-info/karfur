@@ -40,7 +40,7 @@
   width: 220px;
   padding: u(1) u(2);
   border-radius: u(2);
-  cursor: pointer;
+  min-height: 70px;
 
   @include media-max("lg-limit") {
     width: auto;
@@ -50,7 +50,7 @@
     border: 1px solid $lightBorderDefaultGrey;
   }
 
-  &:hover {
+  &.link:hover {
     background: $lightBackgroundContrastGrey !important;
   }
 }

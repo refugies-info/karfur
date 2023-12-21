@@ -33,8 +33,9 @@ export const updateDispositifTagsOrNeeds = async (
     needs: newNeeds.map((n) => new ObjectId(n)),
     themesSelectedByAuthor: (body.theme || body.secondaryThemes) && user.isAdmin(),
   };
-  await log(id, allThemes.length > 0, user._id);
 
   await updateDispositifInDB(id, newDispositif, !!draftOriginalDispositif);
+  await log(id, allThemes.length > 0, user._id);
+
   return { text: "success" };
 };

@@ -28,6 +28,7 @@ export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsRes
       "draftSecondReminderMailSentDate",
       "lastReminderMailSentToUpdateContentDate",
       "lastModificationDate",
+      "deletionDate",
       "lastModificationAuthor",
       "needs",
       "theme",

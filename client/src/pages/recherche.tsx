@@ -17,6 +17,7 @@ import { languei18nSelector } from "services/Langue/langue.selectors";
 import { addToQueryActionCreator, setSearchResultsActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import { Results, SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { useUtmz } from "hooks";
 import { cls } from "lib/classname";
 import { queryDispositifs, queryDispositifsWithAlgolia } from "lib/recherche/queryContents";
 import decodeQuery from "lib/recherche/decodeUrlQuery";
@@ -56,6 +57,7 @@ const Recherche = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const router = useRouter();
+  const { params } = useUtmz();
 
   const dispositifs = useSelector(activeDispositifsSelector);
   const languei18nCode = useSelector(languei18nSelector);
@@ -84,7 +86,7 @@ const Recherche = () => {
     const updateUrl = () => {
       const locale = router.locale;
       const oldQueryString = router.asPath.split("?")[1] || "";
-      const newQueryString = buildUrlQuery(query);
+      const newQueryString = buildUrlQuery(query, params);
       if (oldQueryString !== newQueryString) {
         router.push(
           {
@@ -104,7 +106,7 @@ const Recherche = () => {
         dispatch(setSearchResultsActionCreator(res));
       });
     }
-  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode]);
+  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode, params]);
 
   // check if department deployed
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(

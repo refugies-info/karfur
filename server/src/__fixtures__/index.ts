@@ -1,11 +1,15 @@
 import { dispositif } from "./dispositif";
 import { demarche } from "./demarche";
-import { theme } from "./theme";
 import { logs } from "./logs";
+import { structure } from "./structure";
+import { theme } from "./theme";
+import { user } from "./user";
 
 export {
   dispositif,
   demarche,
   logs,
-  theme
+  structure,
+  theme,
+  user
 }

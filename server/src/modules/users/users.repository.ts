@@ -8,6 +8,8 @@ type NeededFields = { username: number; picture: number } | { roles: 1; structur
 // find one
 export const getUserById = async (id: Id, neededFields: NeededFields) => UserModel.findById(id, neededFields);
 
+export const getUserByIdWithStructures = async (id: Id, neededFields: NeededFields) => UserModel.findById(id, neededFields).populate<{ structures: { nom: string }[] }>([{ path: "structures", select: "nom" }]);
+
 export const getUserByUsernameFromDB = (username: string) => UserModel.findOne({ username });
 
 export const getUserFromDB = (query: FilterQuery<User>) => UserModel.findOne(query);
@@ -20,7 +22,7 @@ export const getUserName = async (
 
 // find many
 export const getUsersById = async (ids: UserId[], neededFields: NeededFields) =>
-  UserModel.find({ _id: { $in: ids } }, neededFields);
+  UserModel.find({ _id: { $in: ids } }, neededFields).lean();
 
 export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string, number> = {}) =>
   UserModel.find(filter, neededFields);

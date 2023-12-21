@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { DeepPartialSkipArrayKey, useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { DispositifStatus, Sponsor, UpdateDispositifRequest } from "@refugies-info/api-types";
+import { DispositifStatus, MainSponsor, UpdateDispositifRequest } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
@@ -41,8 +41,8 @@ const CardMainSponsor = ({ dataMainSponsor, color, onClick }: Props) => {
       };
     }
     return {
-      name: (dataMainSponsor as Sponsor)?.name,
-      logo: (dataMainSponsor as Sponsor)?.logo?.secure_url,
+      name: (dataMainSponsor as MainSponsor)?.name,
+      logo: (dataMainSponsor as MainSponsor)?.logo?.secure_url,
     };
   }, [dataMainSponsor, structures]);
 
