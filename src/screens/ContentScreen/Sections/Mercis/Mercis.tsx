@@ -6,6 +6,7 @@ import {
   Card,
   Columns,
   Rows,
+  RowsSpacing,
   SectionTitle,
   TextNormal,
 } from "../../../../components";
@@ -19,9 +20,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../../../services";
 import useAsyncFn from "react-use/lib/useAsyncFn";
 import { useTranslationWithRTL } from "../../../../hooks";
+import { styles } from "../../../../theme";
 
 const MercisView = styled.View`
-  padding: ${({ theme }) => theme.margin * 2}px;
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -29,6 +30,7 @@ const MercisView = styled.View`
 
 const MySectionTitle = styled(SectionTitle)`
   text-align: center;
+  margin-top: ${({ theme }) => theme.margin * 2}px;
 `;
 
 const MyTextNormal = styled(TextNormal)`
@@ -107,11 +109,16 @@ const Mercis = ({ dispositif }: MercisProps) => {
   return (
     <Card backgroundColor="#E3E3FD">
       <MercisView>
-        <Rows layout="1">
+        <Rows layout="1" spacing={RowsSpacing.NoSpace}>
           <Background />
           <MySectionTitle>{t("content_screen.feedbackTitle")}</MySectionTitle>
           <MyTextNormal>{t("content_screen.feedbackSubtitle")}</MyTextNormal>
-          <View>
+          <View
+            style={{
+              paddingHorizontal: styles.margin,
+              paddingVertical: styles.margin * 2,
+            }}
+          >
             <Columns layout="auto" horizontalAlign="center">
               <Button
                 accessibilityLabel="Dire merci"

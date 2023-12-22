@@ -77,10 +77,14 @@ import {
   ReadableText,
   ReadButton,
   Rows,
+  RowsSpacing,
   RTLView,
   SectionTitle,
   Separator,
   Spacer,
+  StyledTextNormal,
+  StyledTextSmall,
+  StyledTextSmallBold,
   TextBigBold,
   TextSmallBold,
   TextSmallNormal,
@@ -94,6 +98,7 @@ import { LinkedNeed, LinkedTheme, Mercis } from "./Sections";
 import { isEmpty } from "lodash";
 import LanguageUnavailable from "./LanguageUnavailable";
 import { noVoiceover } from "../../libs/noVoiceover";
+import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
 
 const HeaderText = styled(TextBigBold)`
   margin-top: ${({ theme }) => theme.margin * 2}px;
@@ -393,7 +398,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         Skeleton={PageSkeleton}
         HeaderContent={HeaderContentContentScreen}
       >
-        <Rows>
+        <Rows spacing={RowsSpacing.NoSpace}>
           <LanguageUnavailable />
 
           <Title accessibilityRole="header">
@@ -401,13 +406,13 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           </Title>
 
           {!isEmpty(selectedContent.titreMarque) && (
-            <SectionTitle>
+            <StyledTextNormal style={{ marginBottom: styles.margin * 3 }}>
               <ReadableText>
                 {`${t("content_screen.with", "Avec")} ${
                   selectedContent.titreMarque
                 }`}
               </ReadableText>
-            </SectionTitle>
+            </StyledTextNormal>
           )}
 
           {selectedContent.typeContenu === ContentType.DEMARCHE && (
@@ -436,8 +441,14 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             </Columns>
           )}
 
+          <Spacer height={styles.margin * 5} />
           <Section key="what" sectionKey="what" />
 
+          <Title color={colors.color100} accessibilityRole="header">
+            <ReadableText>
+              {t("content_screen.informations", "Informations importantes")}
+            </ReadableText>
+          </Title>
           <InfocardsSection
             key="infocards"
             content={selectedContent}
@@ -505,20 +516,26 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                   </FakeMapButton>
                 </TouchableOpacity>
               </MiniMap>
+              <Spacer height={styles.margin * 5} />
             </>
           )}
 
           <Mercis dispositif={selectedContent} />
 
-          <Separator />
+          <Separator fullWidth spacing={SeparatorSpacing.XLarge} />
 
-          <SectionTitle accessibilityRole="header">
+          <StyledTextSmallBold accessibilityRole="header">
             <ReadableText>
               {t("content_screen.related_topic", "THÉMATIQUES LIÉES")}
             </ReadableText>
-          </SectionTitle>
-
+          </StyledTextSmallBold>
+          <Spacer height={styles.margin * 2} />
           <View>
+            {selectedContent.needs &&
+              !isEmpty(selectedContent.needs) &&
+              selectedContent.needs.map((need) => (
+                <LinkedNeed key={need.toString()} needId={need} />
+              ))}
             {selectedContent.theme && !isEmpty(selectedContent.theme) && (
               <LinkedTheme
                 key={selectedContent.theme.toString()}
@@ -533,16 +550,11 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                   themeId={secondaryTheme}
                 />
               ))}
-            {selectedContent.needs &&
-              !isEmpty(selectedContent.needs) &&
-              selectedContent.needs.map((need) => (
-                <LinkedNeed key={need.toString()} needId={need} />
-              ))}
           </View>
 
           {selectedContent.sponsors && !isEmpty(selectedContent.sponsors) && (
             <>
-              <Separator fullWidth />
+              <Separator fullWidth spacing={SeparatorSpacing.XLarge} />
               <SectionTitle>
                 <ReadableText>
                   {t(
@@ -551,6 +563,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                   )}
                 </ReadableText>
               </SectionTitle>
+              <Spacer height={styles.margin * 2} />
               <Rows>
                 {selectedContent.sponsors.map((sponsor, index) => {
                   const image = (

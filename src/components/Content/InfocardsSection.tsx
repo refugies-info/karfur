@@ -13,6 +13,7 @@ import {
 } from "@refugies-info/api-types";
 import { Columns, Rows, RowsSpacing } from "../layout";
 import { Image } from "react-native";
+import { styles } from "../../theme";
 
 interface Props {
   content: GetDispositifResponse;
@@ -24,7 +25,7 @@ const MainContainer = styled.View`
   border: 1px solid ${({ theme }) => theme.colors.grey};
   border-radius: ${({ theme }) => theme.radius * 2}px;
   padding-vertical: ${({ theme }) => theme.margin * 2}px;
-  margin-vertical: ${({ theme }) => theme.margin}px;
+  margin-bottom: ${({ theme }) => theme.margin * 5}px;
 `;
 
 const TitleText = styled(TextNormalBold)<{ color: string }>`
@@ -81,6 +82,7 @@ const Metadata = ({
       layout="auto 1"
       horizontalAlign="space-between"
       verticalAlign="flex-start"
+      style={{ marginBottom: styles.margin * 3 }}
     >
       <InfocardImage
         color={color}
@@ -128,7 +130,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
   const metadatas = content.metadatas;
   return (
     <MainContainer>
-      <Rows separator>
+      <Rows separator spacing={RowsSpacing.Default}>
         <Section
           color={color}
           title={t("Infocards.publicTitle", "Public visé")}
@@ -211,10 +213,7 @@ export const InfocardsSection = ({ content, color }: Props) => {
             <Rows layout="1" spacing={RowsSpacing.Text}>
               {metadatas.conditions.map((condition: conditionType) => (
                 <Columns layout="auto 1" key={condition}>
-                  <Image
-                    style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-                    source={getConditionImage(condition)}
-                  />
+                  {getConditionImage(condition)}
                   <DescriptionText>
                     <ReadableText>
                       {t(`Infocards.${condition}`, condition)}
@@ -253,7 +252,11 @@ export const InfocardsSection = ({ content, color }: Props) => {
               {content.mainSponsor.picture?.secure_url && (
                 <Image
                   source={{ uri: content.mainSponsor.picture.secure_url }}
-                  style={{ width: IMAGE_SIZE, height: IMAGE_SIZE }}
+                  style={{
+                    width: IMAGE_SIZE,
+                    height: IMAGE_SIZE,
+                    resizeMode: "contain",
+                  }}
                 />
               )}
               <DescriptionText>

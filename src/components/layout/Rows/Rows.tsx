@@ -61,11 +61,13 @@ const Rows = ({
           child && (
             <FlexItem
               flex={getFlexValue(layout, index)}
-              // eslint-disable-next-line react/no-array-index-key
               key={index}
               marginBottom={!isLastChild(_children, index) && spacing}
             >
               {child}
+              {separator && !isLastChild(_children, index) && (
+                <Separator fullWidth />
+              )}
             </FlexItem>
           )
       )}

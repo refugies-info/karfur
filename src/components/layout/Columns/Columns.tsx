@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import styled from "styled-components/native";
 import { FlexItem, getFlexValue } from "../common";
 import { isLastChild } from "../../utils";
-import { Animated } from "react-native";
+import { Animated, StyleProp, ViewStyle } from "react-native";
 
 const ColumnsWrapper = styled(Animated.View)<{
   horizontalAlign?: string;
@@ -21,6 +21,7 @@ const ColumnsWrapper = styled(Animated.View)<{
 export enum ColumnsSpacing {
   Default = "default",
   Large = "large",
+  XLarge = "xlarge",
   NoSpace = "nospace",
 }
 
@@ -31,6 +32,7 @@ export interface ColumnsProps {
   RTLBehaviour?: boolean;
   spacing?: ColumnsSpacing;
   verticalAlign?: string;
+  style?: StyleProp<ViewStyle>;
 }
 
 const Columns = ({
@@ -40,12 +42,15 @@ const Columns = ({
   RTLBehaviour = false,
   spacing = ColumnsSpacing.Default,
   verticalAlign = "flex-start",
+  style,
 }: ColumnsProps) => {
   return (
     <ColumnsWrapper
       horizontalAlign={horizontalAlign}
       RTLBehaviour={RTLBehaviour}
       verticalAlign={verticalAlign}
+      //@ts-ignore
+      style={style}
     >
       {React.Children.map(children, (child, index) =>
         child !== null ? (

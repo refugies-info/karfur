@@ -1,11 +1,19 @@
 import styled from "styled-components/native";
 
-const Separator = styled.View<{ fullWidth?: boolean }>`
+export enum SeparatorSpacing {
+  Default = "default",
+  Small = "small",
+  Large = "large",
+  XLarge = "xlarge",
+  NoSpace = "nospace",
+}
+
+const Separator = styled.View<{ fullWidth?: boolean, spacing?: SeparatorSpacing }>`
   height: 1px;
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "90%")};
   align-self: center;
   background-color: ${({ theme }) => theme.colors.grey};
-  margin-vertical: ${({ theme }) => theme.margin / 2}px;
+  margin-vertical: ${({ theme, spacing }) => theme.layout.separator[spacing || SeparatorSpacing.Default]};
 `;
 
 export default Separator;

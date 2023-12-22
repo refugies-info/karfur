@@ -1,13 +1,13 @@
 import React from "react";
 import { conditionType, Metadatas } from "@refugies-info/api-types";
-import { TextSmallNormal } from "../components/StyledText";
-
-import imgOfpra from "../theme/images/demarche/acte_naissance_OFPRA.png";
-import imgTse from "../theme/images/demarche/titreSejour.png";
-import imgOfii from "../theme/images/demarche/ofii.png";
-import imgCb from "../theme/images/demarche/carteBancaire.png";
-import imgPoleEmploi from "../theme/images/demarche/poleEmploi.png";
-import imgDriver from "../theme/images/demarche/permisConduire.png";
+import { Image } from "react-native";
+import ImgOfpra from "../theme/images/infocards/conditions/conditions-ofpra.svg";
+import ImgTse from "../theme/images/infocards/conditions/conditions-tse.svg";
+import ImgOfii from "../theme/images/infocards/conditions/conditions-ofii.png";
+import ImgCb from "../theme/images/infocards/conditions/conditions-cb.svg";
+import ImgPoleEmploi from "../theme/images/infocards/conditions/conditions-pole-emploi.png";
+import ImgDriver from "../theme/images/infocards/conditions/conditions-driver.svg";
+import ImgSchool from "../theme/images/infocards/conditions/conditions-school.svg";
 
 /**
  * A1.1, A1, A2, B1, B2, C1, C2
@@ -18,22 +18,33 @@ function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+export const IMAGE_SIZE = 56;
 export const getConditionImage = (condition: conditionType) => {
   switch (condition) {
     case "acte naissance":
-      return imgOfpra;
+      return <ImgOfpra width={IMAGE_SIZE} height={IMAGE_SIZE} />;
     case "titre sejour":
-      return imgTse;
+      return <ImgTse width={IMAGE_SIZE} height={IMAGE_SIZE} />;
     case "cir":
-      return imgOfii;
+      return (
+        <Image
+          source={ImgOfii}
+          style={{ width: IMAGE_SIZE, height: IMAGE_SIZE }}
+        />
+      );
     case "bank account":
-      return imgCb;
+      return <ImgCb width={IMAGE_SIZE} height={IMAGE_SIZE} />;
     case "pole emploi":
-      return imgPoleEmploi;
+      return (
+        <Image
+          source={ImgPoleEmploi}
+          style={{ width: IMAGE_SIZE, height: IMAGE_SIZE }}
+        />
+      );
     case "driver license":
-      return imgDriver;
-    default:
-      return null;
+      return <ImgDriver width={IMAGE_SIZE} height={IMAGE_SIZE} />;
+    case "school":
+      return <ImgSchool width={IMAGE_SIZE} height={IMAGE_SIZE} />;
   }
 };
 

@@ -159,6 +159,7 @@ const layout = {
     nospace: "0",
     default: `${margin}px`,
     large: `${margin * 2}px`,
+    xlarge: `${margin * 3}px`,
   },
   content: {
     normal: `${margin * 3}px`,
@@ -172,6 +173,13 @@ const layout = {
   header: {
     minHeight: 65,
     paddingBottom: 20,
+  },
+  separator: {
+    nospace: "0",
+    small: `${margin / 2}px`,
+    default: `${margin}px`,
+    large: `${margin * 2}px`,
+    xlarge: `${margin * 5}px`,
   },
 };
 

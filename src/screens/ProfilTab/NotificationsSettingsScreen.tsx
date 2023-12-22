@@ -22,6 +22,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { ProfileParamList } from "../../../types";
 import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 import { Page, RadioGroup, SectionTitle, Separator } from "../../components";
+import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
 
 const stylesheet = StyleSheet.create({
   toggleContainer: {
@@ -85,14 +86,14 @@ export const NotificationsSettingsScreen = () => {
               enabled={hasSetLocation && settings?.local}
               onToggle={updateLocalSettings}
             />
-            <Separator />
+            <Separator spacing={SeparatorSpacing.Small} />
             <ToggleButton
               title={t("notifications.settingsGlobal")}
               subtitle={t("notifications.settingsGlobalSubtitle")}
               enabled={settings?.global}
               onToggle={(state) => updateSettings("global", state)}
             />
-            <Separator />
+            <Separator spacing={SeparatorSpacing.Small} />
             <ToggleButton
               title={t("notifications.settingsDemarches")}
               subtitle={t("notifications.settingsDemarchesSubtitle")}
@@ -116,7 +117,10 @@ export const NotificationsSettingsScreen = () => {
                   disabled={themesDisabled}
                 />
                 {index < themes.length - 1 && (
-                  <Separator key={`separator-${theme.name.fr}`} />
+                  <Separator
+                    spacing={SeparatorSpacing.Small}
+                    key={`separator-${theme.name.fr}`}
+                  />
                 )}
               </View>
             ))}

@@ -16,6 +16,7 @@ import {
   themeSelector,
 } from "../../../services";
 import { defaultColors } from "../../../libs";
+import { styles } from "../../../theme";
 
 export interface SectionProps {
   sectionKey: "what" | "how" | "why" | "next";
@@ -50,7 +51,7 @@ const Section = ({ sectionKey }: SectionProps) => {
   const colors = theme?.colors || defaultColors;
 
   return (
-    <View>
+    <View style={{ marginBottom: styles.margin * 5 }}>
       <Title color={colors.color100} accessibilityRole="header">
         <ReadableText>
           {t("content_screen." + sectionKey, sectionKey)}
@@ -70,7 +71,8 @@ const Section = ({ sectionKey }: SectionProps) => {
               content={section.text}
               key={key}
               stepNumber={
-                dispositif.typeContenu === ContentType.DEMARCHE
+                dispositif.typeContenu === ContentType.DEMARCHE &&
+                sectionKey === "how"
                   ? index + 1
                   : null
               }
