@@ -1,16 +1,13 @@
-import Gratuit from "../../theme/images/infocards/gratuit.png";
-import Payant from "../../theme/images/infocards/payant.png";
-import duree from "../../theme/images/infocards/duree.png";
-import important from "../../theme/images/infocards/important.png";
-import localisation from "../../theme/images/infocards/localisation.png";
-
-import age from "../../theme/images/infocards/age.png";
-import francais from "../../theme/images/infocards/francais.png";
-
 import React from "react";
-import { Image } from "react-native";
 import { Metadatas } from "@refugies-info/api-types";
-import { Icon } from "../iconography";
+import Age from "../../theme/images/infocards/Age";
+import Durations from "../../theme/images/infocards/Durations";
+import Free from "../../theme/images/infocards/Free";
+import FrenchLevel from "../../theme/images/infocards/FrenchLevel";
+import Location from "../../theme/images/infocards/Location";
+import Price from "../../theme/images/infocards/Price";
+import Public from "../../theme/images/infocards/Public";
+import Status from "../../theme/images/infocards/Status";
 
 type metaKeys = keyof Metadatas;
 interface Props {
@@ -21,66 +18,32 @@ interface Props {
 
 export const IMAGE_SIZE = 56;
 export const InfocardImage = ({ color, title, isFree }: Props) => {
-  if (title === "price" && isFree) {
-    return (
-      <Image
-        source={Gratuit}
-        style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-      />
-    );
-  }
-
-  if (title === "price" && !isFree) {
-    return (
-      <Image
-        source={Payant}
-        style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-      />
-    );
-  }
+  const iconProps = {
+    color,
+    width: IMAGE_SIZE,
+    height: IMAGE_SIZE,
+  };
 
   switch (title) {
+    case "price":
+      return isFree ? <Free {...iconProps} /> : <Price {...iconProps} />;
     case "commitment":
+      return <Durations {...iconProps} />;
     case "frequency":
-      return (
-        <Image
-          source={duree}
-          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-        />
-      );
-    case "conditions":
-      return (
-        <Image
-          source={important}
-          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-        />
-      );
+      return <Durations {...iconProps} />;
+    case "timeSlots":
+      return <Durations {...iconProps} />;
     case "location":
-      return (
-        <Image
-          source={localisation}
-          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-        />
-      );
+      return <Location {...iconProps} />;
     case "age":
-      return (
-        <Image source={age} style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }} />
-      );
+      return <Age {...iconProps} />;
     case "frenchLevel":
-      return (
-        <Image
-          source={francais}
-          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-        />
-      );
+      return <FrenchLevel {...iconProps} />;
     case "publicStatus":
-      return <Icon color={color} name="infocardStatus" size={IMAGE_SIZE} />;
+      return <Status {...iconProps} />;
+    case "public":
+      return <Public {...iconProps} />;
     default:
-      return (
-        <Image
-          source={Payant}
-          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
-        />
-      );
+      return <Public {...iconProps} />;
   }
 };

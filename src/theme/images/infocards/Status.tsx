@@ -1,9 +1,9 @@
 import React from "react";
-import IconProps from "./IconProps";
+import { IconProps } from "./IconProps";
 import { Path, Svg } from "react-native-svg";
 
-const IconInfocardStatus = ({ color, size = 32 }: IconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 56 56" fill="none">
+const Status = ({ color, width = 32, height = 32 }: IconProps) => (
+  <Svg width={width} height={height} viewBox="0 0 56 56" fill="none">
     <Path
       d="M27.2651 12.7034C27.9626 12.1864 28.996 11.9021 29.7968 11.5919C30.6493 11.23 31.5277 10.894 32.3543 10.558C32.9485 10.3253 33.336 9.57573 33.9302 9.34309C34.1627 9.23969 34.5243 9.00706 34.3952 9.39479C34.2918 9.80837 34.1627 9.80837 34.5243 9.91176C34.886 10.0152 36.6169 9.57573 37.1335 9.78252C37.4694 9.88591 35.351 10.7648 33.2585 11.2817L30.546 13.4272C29.5385 13.1687 28.2726 13.0653 27.2651 12.7034Z"
       fill="#E8A16D"
@@ -142,4 +142,4 @@ const IconInfocardStatus = ({ color, size = 32 }: IconProps) => (
     />
   </Svg>
 );
-export default IconInfocardStatus;
+export default Status;
