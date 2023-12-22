@@ -1,6 +1,6 @@
 import HTML from "react-native-render-html";
 import * as React from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import { styles } from "../../theme";
 import { RTLView } from "../BasicComponents";
 import { TextNormal, TextNormalBold } from "../StyledText";
@@ -82,7 +82,6 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
             lineHeight: 20,
           }}
           renderers={{
-            // eslint-disable-next-line react/display-name
             ul: (_, children, _cssStyles, passProps) => (
               <View
                 key={passProps.key}
@@ -96,7 +95,6 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                 {children}
               </View>
             ),
-            // eslint-disable-next-line react/display-name
             li: (_, children, _cssStyles, passProps) => (
               <RTLView
                 key={passProps.key}
@@ -109,25 +107,19 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                   style={{
                     marginLeft: isRTL ? styles.margin : 0,
                     marginRight: isRTL ? 0 : styles.margin,
-                    marginTop: 3,
+                    marginTop: 5,
                   }}
                 >
-                  <Icon
-                    name={isRTL ? "arrow-left" : "arrow-right"}
-                    size={18}
-                    color={styles.colors.black}
-                  />
+                  <Text style={{ fontSize: 10 }}>{"\u25CF"}</Text>
                 </View>
                 <TextNormal style={{ flexShrink: 1 }}>{children}</TextNormal>
               </RTLView>
             ),
-            // eslint-disable-next-line react/display-name
             p: (_, children, _cssStyles, passProps) => (
               <TextNormal
                 key={passProps.key}
                 style={{
                   marginBottom: styles.margin,
-                  marginTop: styles.margin,
                   flexShrink: 1,
                 }}
               >
@@ -140,7 +132,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                   <View key={passProps.key}>
                     <Spacer
                       key={passProps.key + "_spacer"}
-                      height={theme.margin}
+                      height={theme.margin * 3}
                     />
                     <Card
                       key={passProps.key}
@@ -167,7 +159,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                     </Card>
                     <Spacer
                       key={passProps.key + "_spacer_"}
-                      height={theme.margin}
+                      height={theme.margin * 3}
                     />
                   </View>
                 );
@@ -178,7 +170,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                   <View key={passProps.key}>
                     <Spacer
                       key={passProps.key + "_spacer"}
-                      height={theme.margin}
+                      height={theme.margin * 3}
                     />
                     <Card
                       key={passProps.key}
@@ -213,7 +205,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                     </Card>
                     <Spacer
                       key={passProps.key + "_spacer_"}
-                      height={theme.margin}
+                      height={theme.margin * 3}
                     />
                   </View>
                 );
