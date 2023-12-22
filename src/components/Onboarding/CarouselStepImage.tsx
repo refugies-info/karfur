@@ -13,14 +13,17 @@ interface Props {
 const stylesheet = StyleSheet.create({
   step0: {
     width: 250,
+    height: 261,
     resizeMode: "contain", // or 'stretch'
   },
   step1: {
     width: 296,
+    height: 204,
     resizeMode: "contain", // or 'stretch'
   },
   step2: {
     width: 286,
+    height: 187,
     resizeMode: "contain", // or 'stretch'
   },
 });
@@ -31,12 +34,14 @@ export const CarouselStepImage = ({ step }: Props) => {
     case 1:
       return <Image source={Step1} style={stylesheet.step1} />;
     case 2:
-      return <Image
-        source={Step2}
-        style={stylesheet.step2}
-        accessible={true}
-        accessibilityLabel="Gouvernement Liberté Egalité Fraternité. Délégation interministérielle à l'accueil et à l'intégration des réfugiés."
-      />;
+      return (
+        <Image
+          source={Step2}
+          style={stylesheet.step2}
+          accessible={true}
+          accessibilityLabel="Gouvernement Liberté Egalité Fraternité. Délégation interministérielle à l'accueil et à l'intégration des réfugiés."
+        />
+      );
     case 3:
       return <Step3 width={160} height={160} />;
 

@@ -19,14 +19,14 @@ const StyledText = styled(TextBigBold)`
 `;
 
 const TextContainer = styled.ScrollView`
-  flex: 1;
   max-width: 100%;
-  margin-bottom: ${({ theme }) => theme.margin * 25}px;
+  flex-grow: 0;
+  margin-bottom: ${({ theme }) => theme.margin * 4}px;
 `;
 
 const ImagesContainer = styled.View`
   display: flex;
-  flex: 1;
+  flex-grow: 1;
   align-items: center;
   justify-content: center;
   margin-top: ${styles.margin * 5}px;
@@ -34,12 +34,15 @@ const ImagesContainer = styled.View`
 const stylesheet = StyleSheet.create({
   card: {
     width: "100%",
-    height: "100%",
     display: "flex",
-    justifyContent: "space-between",
+    flexDirection: "column",
+    flexGrow: 1,
+    justifyContent: "flex-end",
     alignItems: "center",
+    alignContent: "center",
     paddingHorizontal: styles.margin * 3,
     paddingTop: styles.margin * 6,
+    paddingBottom: 160,
   },
 });
 export const OnboardingCarouselElement = (props: Props) => {
@@ -50,7 +53,6 @@ export const OnboardingCarouselElement = (props: Props) => {
   return (
     <LinearGradient
       colors={[correspondingData.lightColor, correspondingData.darkColor]}
-      // @ts-ignore
       style={[stylesheet.card]}
     >
       <ImagesContainer>

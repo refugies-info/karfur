@@ -160,6 +160,7 @@ const Page = ({
               marginTop: -24,
               marginRight: -24,
               marginLeft: -24,
+              height: 240,
               marginBottom: theme.margin * 3,
             },
           })(ImageBackground)
@@ -187,6 +188,7 @@ const Page = ({
       paddingHorizontal: theme.margin * 3,
       paddingTop: theme.margin * 3,
       paddingBottom: theme.insets.bottom,
+      flexGrow: 1,
     }),
     [theme.margin, theme.insets.bottom]
   );

@@ -105,7 +105,9 @@ class OnboardingCarousel extends React.Component {
     const { t } = this.props;
 
     return (
-      <View>
+      <View
+        style={{ display: "flex", flexDirection: "column", height: "100%" }}
+      >
         <TopButtonsContainer edges={["right", "top", "left"]}>
           <SmallButton
             iconName="arrow-back-outline"
