@@ -13,6 +13,7 @@ import {
   NativeSyntheticEvent,
   ScrollView,
   View,
+  ViewStyle,
 } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { useHeaderAnimation } from "../../../hooks/useHeaderAnimation";
@@ -28,8 +29,8 @@ import { useIsFocused } from "@react-navigation/native";
 import { SkeletonListPage } from "../../feedback";
 import { useStateOnce } from "../../../hooks";
 import { withProps } from "../../../utils";
-import { hexToRgb } from "../../utils/isDarkColor/hexToRgb";
 import { getImageUri } from "../../../libs/getImageUri";
+import { hexToRgb } from "../../utils/isDarkColor/hexToRgb";
 import SafeAreaViewTopInset from "../SafeAreaViewTopInset";
 import Spacer from "../Spacer";
 import { isDarkColor } from "../../utils";
@@ -51,6 +52,7 @@ export interface PageProps extends Partial<HeaderProps> {
   loading?: boolean;
   Skeleton?: ComponentType;
   title?: string;
+  contentContainerStyle?: ViewStyle;
   scrollview?: React.RefObject<ScrollView>; // given by parent if we need to control scroll
 }
 
@@ -82,6 +84,13 @@ const MainContainer = styled(SafeAreaViewTopInset)<{
   border-bottom-left-radius: ${({ rounded }) => (rounded ? 12 : 0)}px;
 `;
 
+const ContentContainer = styled.View<{ backgroundColor: string }>`
+  padding-horizontal: ${({ theme }) => theme.margin * 3}px;
+  padding-top: ${({ theme }) => theme.margin * 3}px;
+  background-color: ${({ backgroundColor }) => backgroundColor || "white"};
+  flex-grow: 1;
+`;
+
 const indicatorInsets = { right: 1 };
 
 const Page = ({
@@ -93,6 +102,7 @@ const Page = ({
   headerTitle,
   loading,
   Skeleton = SkeletonListPage,
+  contentContainerStyle = {},
   title,
   scrollview,
   ...headerProps
@@ -168,21 +178,10 @@ const Page = ({
             resizeMode: "cover",
             source: { uri: getImageUri(headerBackgroundImage.secure_url) },
             style: {
-              marginTop: -24,
-              marginRight: -24,
-              marginLeft: -24,
               height: 240,
-              marginBottom: theme.margin * 3,
             },
           })(ImageBackground)
-        : withProps({
-            style: {
-              marginTop: -24,
-              marginRight: -24,
-              marginLeft: -24,
-              marginBottom: theme.margin * 3,
-            },
-          })(View),
+        : withProps({})(View),
     [headerBackgroundImage]
   );
 
@@ -196,8 +195,6 @@ const Page = ({
 
   const scrollableContentContainer = useMemo(
     () => ({
-      paddingHorizontal: theme.margin * 3,
-      paddingTop: theme.margin * 3,
       paddingBottom: theme.insets.bottom,
       flexGrow: 1,
     }),
@@ -258,7 +255,14 @@ const Page = ({
                 <HeaderContentInternal darkBackground={isDarkBackground} />
               </MainContainer>
             </Container>
-            {children}
+
+            <ContentContainer
+              /* @ts-ignore */
+              style={contentContainerStyle}
+              backgroundColor={backgroundColor}
+            >
+              {children}
+            </ContentContainer>
           </ScrollableContent>
         </>
       )}

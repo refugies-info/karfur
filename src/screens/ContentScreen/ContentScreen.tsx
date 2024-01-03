@@ -402,6 +402,12 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         Skeleton={PageSkeleton}
         HeaderContent={HeaderContentContentScreen}
         scrollview={scrollview}
+        backgroundColor="white" // important to keep radius
+        contentContainerStyle={{
+          borderTopRightRadius: styles.margin,
+          borderTopLeftRadius: styles.margin,
+          marginTop: -styles.margin,
+        }}
       >
         <Rows spacing={RowsSpacing.NoSpace}>
           <LanguageUnavailable />
