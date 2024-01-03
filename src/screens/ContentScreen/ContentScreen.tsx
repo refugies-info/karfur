@@ -474,8 +474,8 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           {!!selectedContent.externalLink && (
             <View
               style={{
-                marginTop: styles.margin,
-                marginBottom: styles.margin * 2,
+                marginTop: -(styles.margin * 2),
+                marginBottom: styles.margin * 5,
               }}
             >
               <CustomButton
