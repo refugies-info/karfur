@@ -60,6 +60,7 @@ const FixedContainerForHeader = styled(Animated.View)`
   position: absolute;
   z-index: 2;
   padding-horizontal: ${({ theme }) => theme.margin * 3}px;
+  padding-vertical: ${({ theme }) => theme.margin}px;
   width: 100%;
 `;
 
