@@ -1,10 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import {
   StyledTextVerySmall,
   StyledTextVerySmallBold,
 } from "../../components/StyledText";
-import { styles } from "../../theme";
 
 interface TabBarLabelProps {
   focused: boolean;
@@ -12,24 +11,20 @@ interface TabBarLabelProps {
 }
 
 const TabBarLabelText = styled(StyledTextVerySmall)`
-  color: ${(props: { color: string }) => props.color};
+  color: ${({ theme }) => theme.colors.darkGrey};
 `;
 
 const TabBarLabelTextBold = styled(StyledTextVerySmallBold)`
-  color: ${(props: { color: string }) => props.color};
+  color: ${({ theme }) => theme.colors.darkBlue};
 `;
 
 export const TabBarLabel = (props: TabBarLabelProps) => {
   return (
     <>
       {props.focused ? (
-        <TabBarLabelTextBold color={styles.colors.darkBlue}>
-          {props.label}
-        </TabBarLabelTextBold>
+        <TabBarLabelTextBold>{props.label}</TabBarLabelTextBold>
       ) : (
-        <TabBarLabelText color={styles.colors.darkGrey}>
-          {props.label}
-        </TabBarLabelText>
+        <TabBarLabelText>{props.label}</TabBarLabelText>
       )}
     </>
   );

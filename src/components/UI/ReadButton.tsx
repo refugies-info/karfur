@@ -7,11 +7,10 @@ import {
   Platform,
   TouchableOpacity,
   useWindowDimensions,
-  View,
 } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { setReadingItem } from "../../services/redux/VoiceOver/voiceOver.actions";
 import {
@@ -31,7 +30,7 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { logger } from "../../logger";
 
-const Container = styled(View)`
+const Container = styled.View`
   position: absolute;
   bottom: ${(props: { bottomInset: number }) => props.bottomInset}px;
   left: 0;
@@ -50,11 +49,11 @@ const PlayContainer = styled(TouchableOpacity)`
   z-index: 2;
   opacity: ${(props: { loading: boolean }) => (props.loading ? 0.4 : 1)};
 `;
-const PlayButton = styled(View)`
+const PlayButton = styled.View`
   width: 56px;
   height: 56px;
   border-radius: 28px;
-  background-color: ${styles.colors.darkBlue};
+  background-color: ${({ theme }) => theme.colors.darkBlue};
   z-index: 20;
   align-items: center;
   justify-content: center;
@@ -70,13 +69,13 @@ const Buttons = styled(Animated.View)`
   z-index: 1;
   padding: 8px;
 `;
-const BackgroundContainer = styled(View)`
+const BackgroundContainer = styled.View`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
 `;
-const Space = styled(View)`
+const Space = styled.View`
   width: 56px;
   margin-right: 8px;
   margin-left: 8px;

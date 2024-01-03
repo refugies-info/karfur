@@ -603,7 +603,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             </>
           )}
         </Rows>
-        <Spacer height={styles.margin * 5} />
+        <Spacer height={styles.margin * 8} />
 
         <RTLView>
           <UpButton scrollTop={scrollTop} />

@@ -8,9 +8,8 @@ import {
   BottomTabBarProps,
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
-import { View } from "react-native";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { deactivateKeepAwake } from "expo-keep-awake";
 import * as Speech from "expo-speech";
@@ -26,7 +25,6 @@ import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
 import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
 import { ReadButton } from "../components/UI/ReadButton";
 import { TabBarItem } from "./components/TabBarItem";
-import { styles } from "../theme";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -40,16 +38,16 @@ import { setInitialUrlUsed } from "../services/redux/User/user.actions";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-const BottomTabBarContainer = styled(View)`
+const BottomTabBarContainer = styled.View`
   flex-direction: row;
   background-color: white;
   min-height: 48px;
   align-items: center;
   box-shadow: 0px 0px 4px #2121210a;
 `;
-const Space = styled(View)`
+const Space = styled.View`
   width: 56px;
-  margin: ${styles.margin}px;
+  margin: ${({ theme }) => theme.margin}px;
 `;
 
 function BottomTabBar({

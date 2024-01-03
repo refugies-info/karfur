@@ -1,9 +1,9 @@
 import React from "react";
-import { Image, Linking, Platform, Text } from "react-native";
+import { Image, Linking, Platform } from "react-native";
 import styled from "styled-components/native";
 import { Rows } from "./layout";
 import { Button } from "./buttons";
-import { useTheme } from "styled-components";
+import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "../hooks";
 import Logo from "../theme/images/logo.svg";
 import AppInPhone from "../theme/images/app-in-phone.png";

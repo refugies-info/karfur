@@ -1,17 +1,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { View } from "react-native";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { Columns, ColumnsSpacing } from "../../components";
-import { styles } from "../../theme";
 import { TabBarItem } from "./TabBarItem";
 
 interface TabBarProps {
   width: number;
 }
 
-const FakeTabBarContainer = styled(View)<{ width: number }>`
-  background-color: ${styles.colors.greyF7};
+const FakeTabBarContainer = styled.View<{ width: number }>`
+  background-color: ${({ theme }) => theme.colors.greyF7};
   width: ${({ width }) => width}px;
   padding: 1px;
 `;
