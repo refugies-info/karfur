@@ -23,6 +23,7 @@ exports[`Search Screen should render correctly 1`] = `
         "backgroundColor": "rgba(255, 255, 255, 0)",
         "left": 0,
         "paddingHorizontal": 24,
+        "paddingVertical": 8,
         "position": "absolute",
         "top": 0,
         "width": "100%",
@@ -142,9 +143,8 @@ exports[`Search Screen should render correctly 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
+        "flexGrow": 1,
         "paddingBottom": 0,
-        "paddingHorizontal": 24,
-        "paddingTop": 24,
       }
     }
     onMomentumScrollEnd={[Function]}
@@ -167,14 +167,6 @@ exports[`Search Screen should render correctly 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={
-          {
-            "marginBottom": 24,
-            "marginLeft": -24,
-            "marginRight": -24,
-            "marginTop": -24,
-          }
-        }
       >
         <View
           style={
@@ -321,1782 +313,1806 @@ exports[`Search Screen should render correctly 1`] = `
           </View>
         </View>
       </View>
-      <Text
-        isRTL={false}
-        selectable={true}
+      <View
+        backgroundColor="transparent"
         style={
           [
             {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "marginBottom": 16,
-              "textAlign": "left",
+              "backgroundColor": "transparent",
+              "flexGrow": 1,
+              "paddingHorizontal": 24,
+              "paddingTop": 24,
             },
+            {},
           ]
         }
       >
         <Text
-          style={{}}
-        >
-          Les fiches les plus recherchées
-        </Text>
-        <View />
-      </Text>
-      <Text
-        isRTL={false}
-        selectable={true}
-        style={
-          [
-            {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "marginBottom": 16,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        <Text
-          style={{}}
-        >
-          Les thèmes
-        </Text>
-        <View />
-      </Text>
-      <RCTScrollView
-        contentContainerStyle={
-          {
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "paddingBottom": 8,
-            "width": 1100,
+          isRTL={false}
+          selectable={true}
+          style={
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "circularBold",
+                "fontSize": 19,
+                "lineHeight": 24,
+                "marginBottom": 16,
+                "textAlign": "left",
+              },
+            ]
           }
-        }
-        horizontal={true}
-      >
-        <View>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4282658851,
-                  4282658851,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
+        >
+          <Text
+            style={{}}
           >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
+            Les fiches les plus recherchées
+          </Text>
+          <View />
+        </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "circularBold",
+                "fontSize": 19,
+                "lineHeight": 24,
+                "marginBottom": 16,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          <Text
+            style={{}}
+          >
+            Les thèmes
+          </Text>
+          <View />
+        </Text>
+        <View
+          style={
+            {
+              "marginHorizontal": -24,
+            }
+          }
+        >
+          <RCTScrollView
+            contentContainerStyle={
+              {
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "paddingBottom": 8,
+                "paddingHorizontal": 24,
+                "width": 1150,
               }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
+            }
+            horizontal={true}
+          >
+            <View>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4282658851,
+                      4282658851,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
                 }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={{}}
-                >
-                  Gérer mes papiers
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4282198148,
-                  4282198148,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Apprendre le français
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Gérer mes papiers
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4282198148,
+                      4282198148,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4278603916,
-                  4278603916,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Me loger
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Apprendre le français
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4278603916,
+                      4278603916,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4287695168,
-                  4287695168,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Me soigner
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Me loger
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4287695168,
+                      4287695168,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4278801425,
-                  4278801425,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Apprendre un métier
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Me soigner
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4278801425,
+                      4278801425,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4278541914,
-                  4278541914,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Trouver un travail
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Apprendre un métier
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4278541914,
+                      4278541914,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4291646981,
-                  4291646981,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Me déplacer
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Trouver un travail
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4291646981,
+                      4291646981,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4285990266,
-                  4285990266,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Famille
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Me déplacer
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4285990266,
+                      4285990266,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4280307457,
-                  4280307457,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Faire des études
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Famille
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4280307457,
+                      4280307457,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4285990473,
-                  4285990473,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Rencontrer des gens
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Faire des études
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4285990473,
+                      4285990473,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4278661273,
-                  4278661273,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Aider une association
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Rencontrer des gens
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4278661273,
+                      4278661273,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4284482918,
-                  4284482918,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Occuper mon temps libre
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Aider une association
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4284482918,
+                      4284482918,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
-                    },
-                  ]
-                }
-                width={20}
-                xml="<svg></svg>"
-              >
-                <RNSVGGroup />
-              </RNSVGSvgView>
-            </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            inline={true}
-            proxiedProperties={
-              {
-                "colors": [
-                  4288550922,
-                  4288550922,
-                ],
-                "endPoint": [
-                  1,
-                  0,
-                ],
-                "locations": undefined,
-                "startPoint": [
-                  0,
-                  1,
-                ],
-              }
-            }
-            style={
-              [
-                {
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "elevation": 2,
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 8,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                },
-                {
-                  "paddingVertical": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "opacity": 1,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
                   ]
                 }
               >
-                <Text
-                  style={{}}
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
                 >
-                  Découvrir la culture
-                </Text>
-                <View />
-              </Text>
-              <RNSVGSvgView
-                bbHeight="20"
-                bbWidth="20"
-                focusable={false}
-                height={20}
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Occuper mon temps libre
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+              <ViewManagerAdapter_ExpoLinearGradient
+                inline={true}
+                proxiedProperties={
+                  {
+                    "colors": [
+                      4288550922,
+                      4288550922,
+                    ],
+                    "endPoint": [
+                      1,
+                      0,
+                    ],
+                    "locations": undefined,
+                    "startPoint": [
+                      0,
+                      1,
+                    ],
+                  }
+                }
                 style={
                   [
                     {
                       "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "borderRadius": 12,
+                      "elevation": 2,
+                      "marginRight": 16,
+                      "marginVertical": 8,
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 8,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
+                      },
+                      "shadowOpacity": 0.4,
+                      "shadowRadius": 2,
                     },
                     {
-                      "flex": 0,
-                      "height": 20,
-                      "width": 20,
+                      "paddingVertical": 16,
                     },
                   ]
                 }
-                width={20}
-                xml="<svg></svg>"
               >
-                <RNSVGGroup />
-              </RNSVGSvgView>
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <Text
+                    isRTL={false}
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginLeft": 0,
+                          "marginRight": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={{}}
+                    >
+                      Découvrir la culture
+                    </Text>
+                    <View />
+                  </Text>
+                  <RNSVGSvgView
+                    bbHeight="20"
+                    bbWidth="20"
+                    focusable={false}
+                    height={20}
+                    style={
+                      [
+                        {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        {
+                          "flex": 0,
+                          "height": 20,
+                          "width": 20,
+                        },
+                      ]
+                    }
+                    width={20}
+                    xml="<svg></svg>"
+                  >
+                    <RNSVGGroup />
+                  </RNSVGSvgView>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
+          </RCTScrollView>
         </View>
-      </RCTScrollView>
+      </View>
     </View>
   </RCTScrollView>
 </View>

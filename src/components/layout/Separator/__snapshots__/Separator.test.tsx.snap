@@ -8,7 +8,7 @@ exports[`Separator snapshot test suite should render without bug 1`] = `
         "alignSelf": "center",
         "backgroundColor": "#EDEBEB",
         "height": 1,
-        "marginVertical": 4,
+        "marginVertical": 8,
         "width": "90%",
       },
     ]

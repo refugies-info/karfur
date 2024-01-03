@@ -23,6 +23,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
+        "paddingVertical": 8,
         "position": "absolute",
         "top": 0,
         "width": "100%",
@@ -363,6 +364,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
+        "paddingVertical": 8,
         "position": "absolute",
         "top": 0,
         "width": "100%",
@@ -636,9 +638,8 @@ exports[`Page snapshot test suite should render without bug 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
+        "flexGrow": 1,
         "paddingBottom": 0,
-        "paddingHorizontal": 24,
-        "paddingTop": 24,
       }
     }
     onMomentumScrollEnd={[Function]}
@@ -661,14 +662,6 @@ exports[`Page snapshot test suite should render without bug 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={
-          {
-            "marginBottom": 24,
-            "marginLeft": -24,
-            "marginRight": -24,
-            "marginTop": -24,
-          }
-        }
       >
         <View
           style={
@@ -681,9 +674,24 @@ exports[`Page snapshot test suite should render without bug 1`] = `
           }
         />
       </View>
-      <Text>
-        Test
-      </Text>
+      <View
+        backgroundColor="transparent"
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "flexGrow": 1,
+              "paddingHorizontal": 24,
+              "paddingTop": 24,
+            },
+            {},
+          ]
+        }
+      >
+        <Text>
+          Test
+        </Text>
+      </View>
     </View>
   </RCTScrollView>
 </View>

@@ -23,6 +23,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
+        "paddingVertical": 8,
         "position": "absolute",
         "top": 0,
         "width": "100%",
@@ -309,9 +310,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
+        "flexGrow": 1,
         "paddingBottom": 0,
-        "paddingHorizontal": 24,
-        "paddingTop": 24,
       }
     }
     onMomentumScrollEnd={[Function]}
@@ -334,14 +334,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={
-          {
-            "marginBottom": 24,
-            "marginLeft": -24,
-            "marginRight": -24,
-            "marginTop": -24,
-          }
-        }
       >
         <View
           style={
@@ -355,1597 +347,1612 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         />
       </View>
       <View
-        accessibilityRole="button"
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+        backgroundColor="transparent"
         style={
-          {
-            "backgroundColor": "#FFFFFF",
-            "borderColor": "#FFFFFF",
-            "borderRadius": 12,
-            "borderWidth": 2,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginBottom": 24,
-            "opacity": 1,
-            "paddingBottom": 14,
-            "paddingLeft": 14,
-            "paddingRight": 14,
-            "paddingTop": 14,
-            "shadowColor": "#212121",
-            "shadowOffset": {
-              "height": 1,
-              "width": 1,
+          [
+            {
+              "backgroundColor": "transparent",
+              "flexGrow": 1,
+              "paddingHorizontal": 24,
+              "paddingTop": 24,
             },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
-          }
+            {},
+          ]
         }
-        testID="test-language-button-Français"
       >
         <View
-          RTLBehaviour={true}
-          collapsable={false}
-          horizontalAlign="flex-start"
-          style={
+          accessibilityRole="button"
+          accessibilityState={
             {
-              "alignItems": "center",
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
             }
           }
-          verticalAlign="center"
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#FFFFFF",
+              "borderRadius": 12,
+              "borderWidth": 2,
+              "display": "flex",
+              "elevation": 6,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 14,
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "paddingTop": 14,
+              "shadowColor": "#212121",
+              "shadowOffset": {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 8,
+            }
+          }
+          testID="test-language-button-Français"
         >
           <View
+            RTLBehaviour={true}
+            collapsable={false}
+            horizontalAlign="flex-start"
             style={
-              [
-                {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 8,
-                },
-              ]
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
             }
+            verticalAlign="center"
           >
             <View
-              RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
-                {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
+                [
+                  {
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 8,
+                  },
+                ]
               }
-              verticalAlign="center"
             >
               <View
+                RTLBehaviour={true}
+                collapsable={false}
+                horizontalAlign="flex-start"
                 style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
                 }
+                verticalAlign="center"
               >
                 <View
                   style={
                     [
                       {
-                        "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 4,
-                        "display": "flex",
-                        "elevation": 2,
-                        "height": 17,
-                        "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
-                        "width": 22,
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
                       },
                     ]
                   }
                 >
-                  <react-native-svg
-                    height={15}
-                    width={20}
-                  />
+                  <View
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 2,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "#212121",
+                          "shadowOffset": {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 0.4,
+                          "shadowRadius": 2,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
                 </View>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                <View
                   style={
                     [
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
                       },
                     ]
                   }
                 >
-                  Français
-                </Text>
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 16,
+                          "marginRight": 0,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    Français
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "backgroundColor": "#FFFFFF",
-            "borderColor": "#FFFFFF",
-            "borderRadius": 12,
-            "borderWidth": 2,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginBottom": 24,
-            "opacity": 1,
-            "paddingBottom": 14,
-            "paddingLeft": 14,
-            "paddingRight": 14,
-            "paddingTop": 14,
-            "shadowColor": "#212121",
-            "shadowOffset": {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Ukrainien"
-      >
         <View
-          RTLBehaviour={true}
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
           collapsable={false}
-          horizontalAlign="flex-start"
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             {
-              "alignItems": "center",
-              "flexBasis": "auto",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#FFFFFF",
+              "borderRadius": 12,
+              "borderWidth": 2,
+              "display": "flex",
+              "elevation": 6,
               "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 14,
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "paddingTop": 14,
+              "shadowColor": "#212121",
+              "shadowOffset": {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 8,
             }
           }
-          verticalAlign="center"
+          testID="test-language-button-Ukrainien"
         >
           <View
+            RTLBehaviour={true}
+            collapsable={false}
+            horizontalAlign="flex-start"
             style={
-              [
-                {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 8,
-                },
-              ]
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
             }
+            verticalAlign="center"
           >
             <View
-              RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
-                {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
+                [
+                  {
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 8,
+                  },
+                ]
               }
-              verticalAlign="center"
             >
               <View
+                RTLBehaviour={true}
+                collapsable={false}
+                horizontalAlign="flex-start"
                 style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
                 }
+                verticalAlign="center"
               >
                 <View
                   style={
                     [
                       {
-                        "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 4,
-                        "display": "flex",
-                        "elevation": 2,
-                        "height": 17,
-                        "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 2,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "#212121",
+                          "shadowOffset": {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 0.4,
+                          "shadowRadius": 2,
+                          "width": 22,
                         },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
-                        "width": 22,
-                      },
-                    ]
-                  }
-                >
-                  <react-native-svg
-                    height={15}
-                    width={20}
-                  />
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
                 </View>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                <View
                   style={
                     [
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
                       },
                     ]
                   }
                 >
-                  Українська
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 16,
+                          "marginRight": 0,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    Українська
+                  </Text>
+                </View>
+                <View
                   style={
                     [
                       {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
                       },
                     ]
                   }
                 >
-                   - Ukrainien
-                </Text>
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - Ukrainien
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "backgroundColor": "#FFFFFF",
-            "borderColor": "#FFFFFF",
-            "borderRadius": 12,
-            "borderWidth": 2,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginBottom": 24,
-            "opacity": 1,
-            "paddingBottom": 14,
-            "paddingLeft": 14,
-            "paddingRight": 14,
-            "paddingTop": 14,
-            "shadowColor": "#212121",
-            "shadowOffset": {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Persan/Dari"
-      >
         <View
-          RTLBehaviour={true}
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
           collapsable={false}
-          horizontalAlign="flex-start"
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             {
-              "alignItems": "center",
-              "flexBasis": "auto",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#FFFFFF",
+              "borderRadius": 12,
+              "borderWidth": 2,
+              "display": "flex",
+              "elevation": 6,
               "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 14,
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "paddingTop": 14,
+              "shadowColor": "#212121",
+              "shadowOffset": {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 8,
             }
           }
-          verticalAlign="center"
+          testID="test-language-button-Persan/Dari"
         >
           <View
+            RTLBehaviour={true}
+            collapsable={false}
+            horizontalAlign="flex-start"
             style={
-              [
-                {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 8,
-                },
-              ]
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
             }
+            verticalAlign="center"
           >
             <View
-              RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
-                {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
+                [
+                  {
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 8,
+                  },
+                ]
               }
-              verticalAlign="center"
             >
               <View
+                RTLBehaviour={true}
+                collapsable={false}
+                horizontalAlign="flex-start"
                 style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
                 }
+                verticalAlign="center"
               >
                 <View
                   style={
                     [
                       {
-                        "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 4,
-                        "display": "flex",
-                        "elevation": 2,
-                        "height": 17,
-                        "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 2,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "#212121",
+                          "shadowOffset": {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 0.4,
+                          "shadowRadius": 2,
+                          "width": 22,
                         },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
-                        "width": 22,
-                      },
-                    ]
-                  }
-                >
-                  <react-native-svg
-                    height={15}
-                    width={20}
-                  />
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
                 </View>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                <View
                   style={
                     [
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
                       },
                     ]
                   }
                 >
-                  فارسی/ دری
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 16,
+                          "marginRight": 0,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    فارسی/ دری
+                  </Text>
+                </View>
+                <View
                   style={
                     [
                       {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
                       },
                     ]
                   }
                 >
-                   - Persan/Dari
-                </Text>
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - Persan/Dari
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "backgroundColor": "#FFFFFF",
-            "borderColor": "#FFFFFF",
-            "borderRadius": 12,
-            "borderWidth": 2,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginBottom": 24,
-            "opacity": 1,
-            "paddingBottom": 14,
-            "paddingLeft": 14,
-            "paddingRight": 14,
-            "paddingTop": 14,
-            "shadowColor": "#212121",
-            "shadowOffset": {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Arabe"
-      >
         <View
-          RTLBehaviour={true}
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
           collapsable={false}
-          horizontalAlign="flex-start"
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             {
-              "alignItems": "center",
-              "flexBasis": "auto",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#FFFFFF",
+              "borderRadius": 12,
+              "borderWidth": 2,
+              "display": "flex",
+              "elevation": 6,
               "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 14,
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "paddingTop": 14,
+              "shadowColor": "#212121",
+              "shadowOffset": {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 8,
             }
           }
-          verticalAlign="center"
+          testID="test-language-button-Arabe"
         >
           <View
+            RTLBehaviour={true}
+            collapsable={false}
+            horizontalAlign="flex-start"
             style={
-              [
-                {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 8,
-                },
-              ]
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
             }
+            verticalAlign="center"
           >
             <View
-              RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
-                {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
+                [
+                  {
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 8,
+                  },
+                ]
               }
-              verticalAlign="center"
             >
               <View
+                RTLBehaviour={true}
+                collapsable={false}
+                horizontalAlign="flex-start"
                 style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
                 }
+                verticalAlign="center"
               >
                 <View
                   style={
                     [
                       {
-                        "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 4,
-                        "display": "flex",
-                        "elevation": 2,
-                        "height": 17,
-                        "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 2,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "#212121",
+                          "shadowOffset": {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 0.4,
+                          "shadowRadius": 2,
+                          "width": 22,
                         },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
-                        "width": 22,
-                      },
-                    ]
-                  }
-                >
-                  <react-native-svg
-                    height={15}
-                    width={20}
-                  />
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
                 </View>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                <View
                   style={
                     [
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
                       },
                     ]
                   }
                 >
-                  العربية
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 16,
+                          "marginRight": 0,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    العربية
+                  </Text>
+                </View>
+                <View
                   style={
                     [
                       {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
                       },
                     ]
                   }
                 >
-                   - Arabe
-                </Text>
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - Arabe
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "backgroundColor": "#FFFFFF",
-            "borderColor": "#FFFFFF",
-            "borderRadius": 12,
-            "borderWidth": 2,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginBottom": 24,
-            "opacity": 1,
-            "paddingBottom": 14,
-            "paddingLeft": 14,
-            "paddingRight": 14,
-            "paddingTop": 14,
-            "shadowColor": "#212121",
-            "shadowOffset": {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Anglais"
-      >
         <View
-          RTLBehaviour={true}
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
           collapsable={false}
-          horizontalAlign="flex-start"
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             {
-              "alignItems": "center",
-              "flexBasis": "auto",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#FFFFFF",
+              "borderRadius": 12,
+              "borderWidth": 2,
+              "display": "flex",
+              "elevation": 6,
               "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 14,
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "paddingTop": 14,
+              "shadowColor": "#212121",
+              "shadowOffset": {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 8,
             }
           }
-          verticalAlign="center"
+          testID="test-language-button-Anglais"
         >
           <View
+            RTLBehaviour={true}
+            collapsable={false}
+            horizontalAlign="flex-start"
             style={
-              [
-                {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 8,
-                },
-              ]
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
             }
+            verticalAlign="center"
           >
             <View
-              RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
-                {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
+                [
+                  {
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 8,
+                  },
+                ]
               }
-              verticalAlign="center"
             >
               <View
+                RTLBehaviour={true}
+                collapsable={false}
+                horizontalAlign="flex-start"
                 style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
                 }
+                verticalAlign="center"
               >
                 <View
                   style={
                     [
                       {
-                        "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 4,
-                        "display": "flex",
-                        "elevation": 2,
-                        "height": 17,
-                        "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 2,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "#212121",
+                          "shadowOffset": {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 0.4,
+                          "shadowRadius": 2,
+                          "width": 22,
                         },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
-                        "width": 22,
-                      },
-                    ]
-                  }
-                >
-                  <react-native-svg
-                    height={15}
-                    width={20}
-                  />
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
                 </View>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                <View
                   style={
                     [
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
                       },
                     ]
                   }
                 >
-                  English
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 16,
+                          "marginRight": 0,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    English
+                  </Text>
+                </View>
+                <View
                   style={
                     [
                       {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
                       },
                     ]
                   }
                 >
-                   - Anglais
-                </Text>
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - Anglais
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "backgroundColor": "#FFFFFF",
-            "borderColor": "#FFFFFF",
-            "borderRadius": 12,
-            "borderWidth": 2,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginBottom": 24,
-            "opacity": 1,
-            "paddingBottom": 14,
-            "paddingLeft": 14,
-            "paddingRight": 14,
-            "paddingTop": 14,
-            "shadowColor": "#212121",
-            "shadowOffset": {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Pachto"
-      >
         <View
-          RTLBehaviour={true}
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
           collapsable={false}
-          horizontalAlign="flex-start"
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             {
-              "alignItems": "center",
-              "flexBasis": "auto",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#FFFFFF",
+              "borderRadius": 12,
+              "borderWidth": 2,
+              "display": "flex",
+              "elevation": 6,
               "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 14,
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "paddingTop": 14,
+              "shadowColor": "#212121",
+              "shadowOffset": {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 8,
             }
           }
-          verticalAlign="center"
+          testID="test-language-button-Pachto"
         >
           <View
+            RTLBehaviour={true}
+            collapsable={false}
+            horizontalAlign="flex-start"
             style={
-              [
-                {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 8,
-                },
-              ]
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
             }
+            verticalAlign="center"
           >
             <View
-              RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
-                {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
+                [
+                  {
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 8,
+                  },
+                ]
               }
-              verticalAlign="center"
             >
               <View
+                RTLBehaviour={true}
+                collapsable={false}
+                horizontalAlign="flex-start"
                 style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
                 }
+                verticalAlign="center"
               >
                 <View
                   style={
                     [
                       {
-                        "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 4,
-                        "display": "flex",
-                        "elevation": 2,
-                        "height": 17,
-                        "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 2,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "#212121",
+                          "shadowOffset": {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 0.4,
+                          "shadowRadius": 2,
+                          "width": 22,
                         },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
-                        "width": 22,
-                      },
-                    ]
-                  }
-                >
-                  <react-native-svg
-                    height={15}
-                    width={20}
-                  />
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
                 </View>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                <View
                   style={
                     [
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
                       },
                     ]
                   }
                 >
-                  پښتو
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 16,
+                          "marginRight": 0,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    پښتو
+                  </Text>
+                </View>
+                <View
                   style={
                     [
                       {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
                       },
                     ]
                   }
                 >
-                   - Pachto
-                </Text>
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - Pachto
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "backgroundColor": "#FFFFFF",
-            "borderColor": "#FFFFFF",
-            "borderRadius": 12,
-            "borderWidth": 2,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginBottom": 24,
-            "opacity": 1,
-            "paddingBottom": 14,
-            "paddingLeft": 14,
-            "paddingRight": 14,
-            "paddingTop": 14,
-            "shadowColor": "#212121",
-            "shadowOffset": {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Russe"
-      >
         <View
-          RTLBehaviour={true}
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
           collapsable={false}
-          horizontalAlign="flex-start"
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             {
-              "alignItems": "center",
-              "flexBasis": "auto",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#FFFFFF",
+              "borderRadius": 12,
+              "borderWidth": 2,
+              "display": "flex",
+              "elevation": 6,
               "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 14,
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "paddingTop": 14,
+              "shadowColor": "#212121",
+              "shadowOffset": {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 8,
             }
           }
-          verticalAlign="center"
+          testID="test-language-button-Russe"
         >
           <View
+            RTLBehaviour={true}
+            collapsable={false}
+            horizontalAlign="flex-start"
             style={
-              [
-                {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 8,
-                },
-              ]
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
             }
+            verticalAlign="center"
           >
             <View
-              RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
-                {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
+                [
+                  {
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 8,
+                  },
+                ]
               }
-              verticalAlign="center"
             >
               <View
+                RTLBehaviour={true}
+                collapsable={false}
+                horizontalAlign="flex-start"
                 style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
                 }
+                verticalAlign="center"
               >
                 <View
                   style={
                     [
                       {
-                        "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 4,
-                        "display": "flex",
-                        "elevation": 2,
-                        "height": 17,
-                        "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 2,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "#212121",
+                          "shadowOffset": {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 0.4,
+                          "shadowRadius": 2,
+                          "width": 22,
                         },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
-                        "width": 22,
-                      },
-                    ]
-                  }
-                >
-                  <react-native-svg
-                    height={15}
-                    width={20}
-                  />
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
                 </View>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                <View
                   style={
                     [
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
                       },
                     ]
                   }
                 >
-                  Русский
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 16,
+                          "marginRight": 0,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    Русский
+                  </Text>
+                </View>
+                <View
                   style={
                     [
                       {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
                       },
                     ]
                   }
                 >
-                   - Russe
-                </Text>
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - Russe
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "backgroundColor": "#FFFFFF",
-            "borderColor": "#FFFFFF",
-            "borderRadius": 12,
-            "borderWidth": 2,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginBottom": 24,
-            "opacity": 1,
-            "paddingBottom": 14,
-            "paddingLeft": 14,
-            "paddingRight": 14,
-            "paddingTop": 14,
-            "shadowColor": "#212121",
-            "shadowOffset": {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Tigrinya"
-      >
         <View
-          RTLBehaviour={true}
+          accessibilityRole="button"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
           collapsable={false}
-          horizontalAlign="flex-start"
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             {
-              "alignItems": "center",
-              "flexBasis": "auto",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#FFFFFF",
+              "borderRadius": 12,
+              "borderWidth": 2,
+              "display": "flex",
+              "elevation": 6,
               "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+              "marginBottom": 24,
+              "opacity": 1,
+              "paddingBottom": 14,
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "paddingTop": 14,
+              "shadowColor": "#212121",
+              "shadowOffset": {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 8,
             }
           }
-          verticalAlign="center"
+          testID="test-language-button-Tigrinya"
         >
           <View
+            RTLBehaviour={true}
+            collapsable={false}
+            horizontalAlign="flex-start"
             style={
-              [
-                {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 8,
-                },
-              ]
+              {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
             }
+            verticalAlign="center"
           >
             <View
-              RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
-                {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
+                [
+                  {
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 8,
+                  },
+                ]
               }
-              verticalAlign="center"
             >
               <View
+                RTLBehaviour={true}
+                collapsable={false}
+                horizontalAlign="flex-start"
                 style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
+                  {
+                    "alignItems": "center",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
                 }
+                verticalAlign="center"
               >
                 <View
                   style={
                     [
                       {
-                        "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 4,
-                        "display": "flex",
-                        "elevation": 2,
-                        "height": 17,
-                        "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      [
+                        {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 2,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "#212121",
+                          "shadowOffset": {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 0.4,
+                          "shadowRadius": 2,
+                          "width": 22,
                         },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
-                        "width": 22,
-                      },
-                    ]
-                  }
-                >
-                  <react-native-svg
-                    height={15}
-                    width={20}
-                  />
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
                 </View>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 8,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                <View
                   style={
                     [
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
                       },
                     ]
                   }
                 >
-                  ትግርኛ
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  selectable={true}
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 16,
+                          "marginRight": 0,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    ትግርኛ
+                  </Text>
+                </View>
+                <View
                   style={
                     [
                       {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
                       },
                     ]
                   }
                 >
-                   - Tigrinya
-                </Text>
+                  <Text
+                    selectable={true}
+                    style={
+                      [
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - Tigrinya
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
