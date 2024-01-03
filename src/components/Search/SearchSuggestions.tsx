@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import { styles } from "../../theme";
 import { sortByOrder } from "../../libs";
 import { ContentSummary } from "../Contents/ContentSummary";
@@ -48,33 +48,36 @@ const SearchSuggestions = (props: Props) => {
       <SectionTitle>
         <ReadableText>{t("search_screen.themes", "Les thèmes")}</ReadableText>
       </SectionTitle>
-      <ScrollView
-        contentContainerStyle={{
-          flexDirection: !isRTL ? "row" : "row-reverse",
-          flexWrap: "wrap",
-          width: 1100,
-          paddingBottom: styles.margin,
-        }}
-        horizontal={true}
-      >
-        {themes.sort(sortByOrder).map((theme, index) => (
-          <TagButton
-            key={index}
-            name={theme.name[currentLanguageI18nCode || "fr"]}
-            backgroundColor={theme.colors.color100}
-            icon={theme.icon}
-            inline={true}
-            style={{ paddingVertical: _theme.margin * 2 }}
-            onPress={() => {
-              props.navigation.navigate("NeedsScreen", {
-                theme: theme,
-                backScreen: "Search",
-              });
-              return;
-            }}
-          />
-        ))}
-      </ScrollView>
+      <View style={{ marginHorizontal: -(_theme.margin * 3) }}>
+        <ScrollView
+          contentContainerStyle={{
+            flexDirection: !isRTL ? "row" : "row-reverse",
+            flexWrap: "wrap",
+            width: 1150,
+            paddingBottom: styles.margin,
+            paddingHorizontal: _theme.margin * 3,
+          }}
+          horizontal={true}
+        >
+          {themes.sort(sortByOrder).map((theme, index) => (
+            <TagButton
+              key={index}
+              name={theme.name[currentLanguageI18nCode || "fr"]}
+              backgroundColor={theme.colors.color100}
+              icon={theme.icon}
+              inline={true}
+              style={{ paddingVertical: _theme.margin * 2 }}
+              onPress={() => {
+                props.navigation.navigate("NeedsScreen", {
+                  theme: theme,
+                  backScreen: "Search",
+                });
+                return;
+              }}
+            />
+          ))}
+        </ScrollView>
+      </View>
     </>
   );
 };
