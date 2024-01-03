@@ -28,6 +28,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { SkeletonListPage } from "../../feedback";
 import { useStateOnce } from "../../../hooks";
 import { withProps } from "../../../utils";
+import { hexToRgb } from "../../utils/isDarkColor/hexToRgb";
 import { getImageUri } from "../../../libs/getImageUri";
 import SafeAreaViewTopInset from "../SafeAreaViewTopInset";
 import Spacer from "../Spacer";
@@ -134,9 +135,13 @@ const Page = ({
       useNativeDriver: false,
     }).start();
   };
+  const rgbColor = useMemo(() => {
+    const { r, g, b } = hexToRgb(headerBackgroundColor);
+    return `${r},${g},${b}`;
+  }, [headerBackgroundColor]);
   const backgroundColorInterpolation = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: ["rgba(255,255,255,0)", headerBackgroundColor],
+    outputRange: [`rgba(${rgbColor},0)`, headerBackgroundColor],
   });
 
   useEffect(() => {
