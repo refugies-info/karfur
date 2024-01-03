@@ -83,13 +83,13 @@ import {
   Separator,
   Spacer,
   StyledTextNormal,
-  StyledTextSmall,
   StyledTextSmallBold,
   TextBigBold,
   TextSmallBold,
   TextSmallNormal,
   Title,
   Toast,
+  UpButton,
 } from "../../components";
 import PageSkeleton from "../SearchTab/ContentScreen/PageSkeleton";
 import Section from "./Section";
@@ -275,7 +275,11 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     }
   };
 
-  const sponsor = selectedContent?.mainSponsor;
+  const scrollTop = () =>
+    scrollview.current?.scrollTo({
+      y: 0,
+      animated: true,
+    });
 
   if (isLoading)
     return (
@@ -397,6 +401,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         loading={isLoading}
         Skeleton={PageSkeleton}
         HeaderContent={HeaderContentContentScreen}
+        scrollview={scrollview}
       >
         <Rows spacing={RowsSpacing.NoSpace}>
           <LanguageUnavailable />
@@ -598,7 +603,12 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             </>
           )}
         </Rows>
-        <Spacer height={84} />
+        <Spacer height={styles.margin * 5} />
+
+        <RTLView>
+          <UpButton scrollTop={scrollTop} />
+        </RTLView>
+        <Spacer height={styles.margin * 10} />
       </Page>
 
       <TabBarContainer>

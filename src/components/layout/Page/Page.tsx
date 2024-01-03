@@ -50,6 +50,7 @@ export interface PageProps extends Partial<HeaderProps> {
   loading?: boolean;
   Skeleton?: ComponentType;
   title?: string;
+  scrollview?: React.RefObject<ScrollView>; // given by parent if we need to control scroll
 }
 
 //  padding-top: ${({ theme }) => theme.insets.top}px;
@@ -91,6 +92,7 @@ const Page = ({
   loading,
   Skeleton = SkeletonListPage,
   title,
+  scrollview,
   ...headerProps
 }: PageProps) => {
   const theme = useTheme();
@@ -99,9 +101,12 @@ const Page = ({
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation(
     initialHeaderSize && initialHeaderSize - theme.layout.header.minHeight - 10
   ); // Voiceover
-  const scrollview = React.useRef<ScrollView>(null);
+  const contentScrollview = React.useRef<ScrollView>(null);
   const offset = 200;
-  const { setScroll, saveList } = useVoiceover(scrollview, offset);
+  const { setScroll, saveList } = useVoiceover(
+    scrollview || contentScrollview,
+    offset
+  );
 
   useEffect(() => {
     // Run saveList only if the screen is focused
@@ -231,7 +236,7 @@ const Page = ({
             onMomentumScrollEnd={onScrollEnd}
             onScroll={handleScroll}
             onScrollEndDrag={onScrollEnd}
-            ref={scrollview}
+            ref={scrollview || contentScrollview}
             scrollEventThrottle={26}
             scrollIndicatorInsets={indicatorInsets}
           >
