@@ -20,9 +20,7 @@ interface Props {
 const ModalView = styled.View`
   background-color: ${styles.colors.lightGrey};
   padding-top: ${styles.margin}px;
-  padding-bottom: ${styles.margin * 5}px;
 
-  padding-horizontal: ${styles.margin * 3}px;
   border-top-right-radius: ${styles.radius * 2}px;
   border-top-left-radius: ${styles.radius * 2}px;
 `;
@@ -64,7 +62,12 @@ export const ConfirmationModal = (props: Props) => {
       }
     >
       <ModalView>
-        <ScrollView>
+        <ScrollView
+          contentContainerStyle={{
+            paddingBottom: styles.margin * 5,
+            paddingHorizontal: styles.margin * 3,
+          }}
+        >
           <TitleText>{props.text}</TitleText>
           <TopButtonContainer>
             <CustomButton
