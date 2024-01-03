@@ -1,40 +1,22 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Id } from "@refugies-info/api-types";
-import { useNavigation } from "@react-navigation/native";
-
 import {
   currentI18nCodeSelector,
   needSelector,
   themeSelector,
 } from "../../../../services";
-import { logEventInFirebase } from "../../../../utils/logEvent";
-import { FirebaseEvent } from "../../../../utils/eventsUsedInFirebase";
-import { TagButton } from "../../../../components/Explorer/TagButton";
+import { styles } from "../../../../theme";
+import { NeedsSummary } from "../../../../components/Needs/NeedsSummary";
 
 interface LinkedNeedProps {
   needId: Id;
 }
 
 const LinkedNeed = ({ needId }: LinkedNeedProps) => {
-  const navigation = useNavigation();
   const need = useSelector(needSelector(needId));
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const theme = useSelector(themeSelector(need?.theme._id.toString()));
-  const goToContent = useCallback(() => {
-    if (!need) return null;
-
-    logEventInFirebase(FirebaseEvent.CLIC_NEED, {
-      need: need.fr.text,
-    });
-
-    // @ts-ignore
-    navigation.navigate("ContentsScreen", {
-      theme: theme,
-      needId: needId,
-    });
-    return;
-  }, [theme]);
 
   if (!need || !need.image) return null;
   if (!theme) return null;
@@ -46,13 +28,15 @@ const LinkedNeed = ({ needId }: LinkedNeedProps) => {
   }, [currentLanguageI18nCode, need]);
 
   return (
-    <TagButton
-      backgroundColor={theme.colors.color40}
-      icon={need.image}
-      iconSize={60}
-      name={needText}
-      onPress={goToContent}
-      textColor={theme?.colors.color100 || "black"}
+    <NeedsSummary
+      id={need._id.toString()}
+      image={need.image || theme.appImage}
+      key={need._id.toString()}
+      needSubtitle=""
+      needText={needText}
+      needTextFr={need.fr.text}
+      style={{ marginBottom: styles.margin * 2 }}
+      theme={theme}
     />
   );
 };
