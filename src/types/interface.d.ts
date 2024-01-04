@@ -1,5 +1,4 @@
 import { Languages } from "@refugies-info/api-types";
-import { Moment } from "moment";
 
 /**
  * @deprecated

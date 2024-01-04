@@ -4,9 +4,6 @@ import { useQueryClient } from "react-query";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import styled, { useTheme } from "styled-components/native";
-//@ts-expect-error
-import moment from "moment/min/moment-with-locales";
-
 import { Notification } from "../../hooks/useNotifications";
 import { markNotificationAsSeen } from "../../utils/API";
 
@@ -16,6 +13,7 @@ import { CustomButton } from "../CustomButton";
 import { ExplorerParamList } from "../../../types";
 import { StyledTextSmall, TextVerySmallNormal } from "../StyledText";
 import { Columns, Rows, RowsSpacing } from "../layout";
+import { dateDiffReadable } from "../../screens/ContentScreen/dateDiff";
 
 const Container = styled.TouchableOpacity<{ seen: boolean }>`
   padding-vertical: ${({ theme }) => theme.margin * 2}px;
@@ -74,18 +72,13 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
     markAsSeen();
   };
 
-  // fix for "Fatal Exception: Error: Requiring unknown module "./locale/ti" error
-  const momentLocale = ["ps", "ti"].includes(i18n.language)
-    ? "fr"
-    : i18n.language;
-
   return (
     <Container activeOpacity={0.8} onPress={navigateToContent} seen={seen}>
       {!seen && <Dot />}
       <Rows spacing={RowsSpacing.Text}>
         <CardTitle seen={seen}>{title}</CardTitle>
         <TextVerySmallNormal>
-          {moment(createdAt).locale(momentLocale).fromNow()}
+          {dateDiffReadable(new Date(createdAt))}
         </TextVerySmallNormal>
         <Columns horizontalAlign="space-between" RTLBehaviour>
           <CustomButton
