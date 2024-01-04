@@ -95,7 +95,7 @@ import PageSkeleton from "../SearchTab/ContentScreen/PageSkeleton";
 import Section from "./Section";
 import { dateDiffReadable } from "./dateDiff";
 import { LinkedNeed, LinkedTheme, Mercis } from "./Sections";
-import { isEmpty } from "lodash";
+import isEmpty from "lodash/isEmpty";
 import LanguageUnavailable from "./LanguageUnavailable";
 import { noVoiceover } from "../../libs/noVoiceover";
 import { SeparatorSpacing } from "../../components/layout/Separator/Separator";

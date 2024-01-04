@@ -9,7 +9,7 @@ import { StreamlineIcon } from "../StreamlineIcon";
 import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
 import { LinearGradient } from "expo-linear-gradient";
-import { isArray } from "lodash";
+import isArray from "lodash/isArray";
 import { Picture } from "@refugies-info/api-types";
 
 interface Props {

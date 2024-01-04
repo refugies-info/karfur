@@ -4,7 +4,7 @@ import { ViewStyle, StyleProp } from "react-native";
 import styled from "styled-components/native";
 import { FlexItem, getFlexValue } from "../common";
 import { isLastChild } from "../../utils";
-import { isNull } from "lodash";
+import isNull from "lodash/isNull";
 import Separator from "../Separator";
 
 const RowsWrapper = styled.View<{

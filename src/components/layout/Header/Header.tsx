@@ -15,7 +15,7 @@ import NotificationsIcon from "../../Notifications/NotificationsIcon";
 import { ReadableText } from "../../ReadableText";
 import Columns from "../Columns";
 import { IconButton } from "../../iconography";
-import { upperFirst } from "lodash";
+import upperFirst from "lodash/upperFirst";
 import { HeaderContentProps } from "./HeaderContentProps";
 import Spacer from "../Spacer";
 

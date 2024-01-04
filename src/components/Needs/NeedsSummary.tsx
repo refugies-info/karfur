@@ -15,7 +15,7 @@ import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
 import { Columns, ColumnsSpacing, Rows, RowsSpacing } from "../layout";
 import { ExplorerParamList } from "../../../types";
-import { isEmpty } from "lodash";
+import isEmpty from "lodash/isEmpty";
 import { UriImage } from "../iconography";
 import { GetThemeResponse, Picture } from "@refugies-info/api-types";
 
