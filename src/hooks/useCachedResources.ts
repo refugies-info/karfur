@@ -1,4 +1,3 @@
-import { Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import * as React from "react";
@@ -14,12 +13,9 @@ export default function useCachedResources() {
 
         // Load fonts
         await Font.loadAsync({
-          ...Ionicons.font,
           circularBook: require("../theme/fonts/CircularStd-Book.otf"),
           circularBold: require("../theme/fonts/CircularStd-Bold.otf"),
           circularItalic: require("../theme/fonts/CircularStd-BookItalic.otf"),
-          // circularBook: require("../theme/SpaceMono-Regular.ttf"),
-          // circularBold: require("../theme/SpaceMono-Regular.ttf"),
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
