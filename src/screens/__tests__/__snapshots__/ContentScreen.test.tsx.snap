@@ -18,6 +18,13 @@ exports[`ContentScreen should render correctly 1`] = `
     }
   >
     <View
+      animatedStyle={
+        {
+          "value": {
+            "backgroundColor": "rgba(255, 255, 255, 0)",
+          },
+        }
+      }
       collapsable={false}
       style={
         {
@@ -45,6 +52,11 @@ exports[`ContentScreen should render correctly 1`] = `
       >
         <View
           RTLBehaviour={false}
+          animatedStyle={
+            {
+              "value": {},
+            }
+          }
           collapsable={false}
           horizontalAlign="space-between"
           style={
@@ -237,6 +249,11 @@ exports[`ContentScreen should render correctly 1`] = `
           >
             <View
               RTLBehaviour={false}
+              animatedStyle={
+                {
+                  "value": {},
+                }
+              }
               collapsable={false}
               horizontalAlign="flex-end"
               style={
@@ -510,6 +527,11 @@ exports[`ContentScreen should render correctly 1`] = `
             >
               <View
                 RTLBehaviour={false}
+                animatedStyle={
+                  {
+                    "value": {},
+                  }
+                }
                 collapsable={false}
                 horizontalAlign="flex-start"
                 style={
@@ -1057,6 +1079,11 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
+                            animatedStyle={
+                              {
+                                "value": {},
+                              }
+                            }
                             collapsable={false}
                             horizontalAlign="space-between"
                             style={
@@ -1678,6 +1705,11 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
+                            animatedStyle={
+                              {
+                                "value": {},
+                              }
+                            }
                             collapsable={false}
                             horizontalAlign="space-between"
                             style={
@@ -1990,6 +2022,11 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
+                            animatedStyle={
+                              {
+                                "value": {},
+                              }
+                            }
                             collapsable={false}
                             horizontalAlign="space-between"
                             style={
@@ -2696,6 +2733,11 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
+                            animatedStyle={
+                              {
+                                "value": {},
+                              }
+                            }
                             collapsable={false}
                             horizontalAlign="space-between"
                             style={
@@ -2937,6 +2979,11 @@ exports[`ContentScreen should render correctly 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
+                            animatedStyle={
+                              {
+                                "value": {},
+                              }
+                            }
                             collapsable={false}
                             horizontalAlign="space-between"
                             style={
@@ -3131,6 +3178,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
+                        animatedStyle={
+                          {
+                            "value": {},
+                          }
+                        }
                         collapsable={false}
                         horizontalAlign="flex-start"
                         style={
@@ -3292,6 +3344,13 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
+                      animatedStyle={
+                        {
+                          "value": {
+                            "height": 0,
+                          },
+                        }
+                      }
                       collapsable={false}
                       style={
                         {
@@ -3507,6 +3566,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
+                        animatedStyle={
+                          {
+                            "value": {},
+                          }
+                        }
                         collapsable={false}
                         horizontalAlign="flex-start"
                         style={
@@ -3668,6 +3732,13 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
+                      animatedStyle={
+                        {
+                          "value": {
+                            "height": 0,
+                          },
+                        }
+                      }
                       collapsable={false}
                       style={
                         {
@@ -3883,6 +3954,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
+                        animatedStyle={
+                          {
+                            "value": {},
+                          }
+                        }
                         collapsable={false}
                         horizontalAlign="flex-start"
                         style={
@@ -4044,6 +4120,13 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
+                      animatedStyle={
+                        {
+                          "value": {
+                            "height": 0,
+                          },
+                        }
+                      }
                       collapsable={false}
                       style={
                         {
@@ -4318,6 +4401,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
+                        animatedStyle={
+                          {
+                            "value": {},
+                          }
+                        }
                         collapsable={false}
                         horizontalAlign="flex-start"
                         style={
@@ -4479,6 +4567,13 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
+                      animatedStyle={
+                        {
+                          "value": {
+                            "height": 0,
+                          },
+                        }
+                      }
                       collapsable={false}
                       style={
                         {
@@ -6263,6 +6358,11 @@ exports[`ContentScreen should render correctly 1`] = `
                       >
                         <View
                           RTLBehaviour={false}
+                          animatedStyle={
+                            {
+                              "value": {},
+                            }
+                          }
                           collapsable={false}
                           horizontalAlign="center"
                           style={
@@ -6346,6 +6446,11 @@ exports[`ContentScreen should render correctly 1`] = `
                               >
                                 <View
                                   RTLBehaviour={false}
+                                  animatedStyle={
+                                    {
+                                      "value": {},
+                                    }
+                                  }
                                   collapsable={false}
                                   horizontalAlign="flex-start"
                                   style={
@@ -6800,6 +6905,11 @@ exports[`ContentScreen should render correctly 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -7366,6 +7476,17 @@ exports[`ContentScreen should render correctly 1`] = `
             </View>
           </View>
           <View
+            animatedStyle={
+              {
+                "value": {
+                  "transform": [
+                    {
+                      "scale": 0,
+                    },
+                  ],
+                },
+              }
+            }
             collapsable={false}
             style={
               {
@@ -8094,6 +8215,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
     }
   >
     <View
+      animatedStyle={
+        {
+          "value": {
+            "backgroundColor": "rgba(255, 255, 255, 0)",
+          },
+        }
+      }
       collapsable={false}
       style={
         {
@@ -8121,6 +8249,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
       >
         <View
           RTLBehaviour={false}
+          animatedStyle={
+            {
+              "value": {},
+            }
+          }
           collapsable={false}
           horizontalAlign="space-between"
           style={
@@ -8313,6 +8446,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
           >
             <View
               RTLBehaviour={false}
+              animatedStyle={
+                {
+                  "value": {},
+                }
+              }
               collapsable={false}
               horizontalAlign="flex-end"
               style={
@@ -8586,6 +8724,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
             >
               <View
                 RTLBehaviour={false}
+                animatedStyle={
+                  {
+                    "value": {},
+                  }
+                }
                 collapsable={false}
                 horizontalAlign="flex-start"
                 style={
@@ -9133,6 +9276,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
+                            animatedStyle={
+                              {
+                                "value": {},
+                              }
+                            }
                             collapsable={false}
                             horizontalAlign="space-between"
                             style={
@@ -9754,6 +9902,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
+                            animatedStyle={
+                              {
+                                "value": {},
+                              }
+                            }
                             collapsable={false}
                             horizontalAlign="space-between"
                             style={
@@ -10066,6 +10219,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
+                            animatedStyle={
+                              {
+                                "value": {},
+                              }
+                            }
                             collapsable={false}
                             horizontalAlign="space-between"
                             style={
@@ -10772,6 +10930,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
+                            animatedStyle={
+                              {
+                                "value": {},
+                              }
+                            }
                             collapsable={false}
                             horizontalAlign="space-between"
                             style={
@@ -11013,6 +11176,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         >
                           <View
                             RTLBehaviour={true}
+                            animatedStyle={
+                              {
+                                "value": {},
+                              }
+                            }
                             collapsable={false}
                             horizontalAlign="space-between"
                             style={
@@ -11207,6 +11375,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
+                        animatedStyle={
+                          {
+                            "value": {},
+                          }
+                        }
                         collapsable={false}
                         horizontalAlign="flex-start"
                         style={
@@ -11368,6 +11541,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
+                      animatedStyle={
+                        {
+                          "value": {
+                            "height": 0,
+                          },
+                        }
+                      }
                       collapsable={false}
                       style={
                         {
@@ -11583,6 +11763,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
+                        animatedStyle={
+                          {
+                            "value": {},
+                          }
+                        }
                         collapsable={false}
                         horizontalAlign="flex-start"
                         style={
@@ -11744,6 +11929,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
+                      animatedStyle={
+                        {
+                          "value": {
+                            "height": 0,
+                          },
+                        }
+                      }
                       collapsable={false}
                       style={
                         {
@@ -11959,6 +12151,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
+                        animatedStyle={
+                          {
+                            "value": {},
+                          }
+                        }
                         collapsable={false}
                         horizontalAlign="flex-start"
                         style={
@@ -12120,6 +12317,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
+                      animatedStyle={
+                        {
+                          "value": {
+                            "height": 0,
+                          },
+                        }
+                      }
                       collapsable={false}
                       style={
                         {
@@ -12394,6 +12598,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         RTLBehaviour={true}
+                        animatedStyle={
+                          {
+                            "value": {},
+                          }
+                        }
                         collapsable={false}
                         horizontalAlign="flex-start"
                         style={
@@ -12555,6 +12764,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
+                      animatedStyle={
+                        {
+                          "value": {
+                            "height": 0,
+                          },
+                        }
+                      }
                       collapsable={false}
                       style={
                         {
@@ -14339,6 +14555,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       >
                         <View
                           RTLBehaviour={false}
+                          animatedStyle={
+                            {
+                              "value": {},
+                            }
+                          }
                           collapsable={false}
                           horizontalAlign="center"
                           style={
@@ -14422,6 +14643,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               >
                                 <View
                                   RTLBehaviour={false}
+                                  animatedStyle={
+                                    {
+                                      "value": {},
+                                    }
+                                  }
                                   collapsable={false}
                                   horizontalAlign="flex-start"
                                   style={
@@ -14876,6 +15102,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -15442,6 +15673,17 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </View>
           </View>
           <View
+            animatedStyle={
+              {
+                "value": {
+                  "transform": [
+                    {
+                      "scale": 0,
+                    },
+                  ],
+                },
+              }
+            }
             collapsable={false}
             style={
               {

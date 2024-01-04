@@ -17,6 +17,13 @@ exports[`Search Screen should render correctly 1`] = `
   }
 >
   <View
+    animatedStyle={
+      {
+        "value": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+        },
+      }
+    }
     collapsable={false}
     style={
       {
@@ -44,6 +51,11 @@ exports[`Search Screen should render correctly 1`] = `
     >
       <View
         RTLBehaviour={false}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="space-between"
         style={
@@ -82,6 +94,11 @@ exports[`Search Screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={false}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="flex-end"
             style={

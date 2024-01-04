@@ -529,6 +529,11 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         </Text>
         <View
           RTLBehaviour={true}
+          animatedStyle={
+            {
+              "value": {},
+            }
+          }
           collapsable={false}
           horizontalAlign="center"
           style={

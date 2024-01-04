@@ -1361,6 +1361,11 @@ exports[`Filter french level should render correctly when no french level select
   }
 >
   <View
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     style={
       {
@@ -1388,6 +1393,11 @@ exports[`Filter french level should render correctly when no french level select
     >
       <View
         RTLBehaviour={false}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="space-between"
         style={
@@ -1568,6 +1578,11 @@ exports[`Filter french level should render correctly when no french level select
         >
           <View
             RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -1716,6 +1731,11 @@ exports[`Filter french level should render correctly when no french level select
         >
           <View
             RTLBehaviour={false}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="flex-end"
             style={
@@ -1959,6 +1979,11 @@ exports[`Filter french level should render correctly when no french level select
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -2091,6 +2116,11 @@ exports[`Filter french level should render correctly when no french level select
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -2244,6 +2274,11 @@ exports[`Filter french level should render correctly when no french level select
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -2397,6 +2432,11 @@ exports[`Filter french level should render correctly when no french level select
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -2550,6 +2590,11 @@ exports[`Filter french level should render correctly when no french level select
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -2665,6 +2710,11 @@ exports[`Filter french level should render correctly when no french level select
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -2696,6 +2746,11 @@ exports[`Filter french level should render correctly when no french level select
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -2727,6 +2782,13 @@ exports[`Filter french level should render correctly when no french level select
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {
+                          "width": "0%",
+                        },
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -2756,6 +2818,11 @@ exports[`Filter french level should render correctly when no french level select
               >
                 <View
                   RTLBehaviour={false}
+                  animatedStyle={
+                    {
+                      "value": {},
+                    }
+                  }
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={

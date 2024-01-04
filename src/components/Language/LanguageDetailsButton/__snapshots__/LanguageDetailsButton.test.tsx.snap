@@ -60,6 +60,11 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
 >
   <View
     RTLBehaviour={true}
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     horizontalAlign="flex-start"
     style={
@@ -86,6 +91,11 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
     >
       <View
         RTLBehaviour={true}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="flex-start"
         style={
@@ -260,6 +270,11 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
 >
   <View
     RTLBehaviour={true}
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     horizontalAlign="flex-start"
     style={
@@ -286,6 +301,11 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
     >
       <View
         RTLBehaviour={true}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="flex-start"
         style={
@@ -558,6 +578,11 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
 >
   <View
     RTLBehaviour={true}
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     horizontalAlign="flex-start"
     style={
@@ -584,6 +609,11 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
     >
       <View
         RTLBehaviour={true}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="flex-start"
         style={
@@ -758,6 +788,11 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
 >
   <View
     RTLBehaviour={true}
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     horizontalAlign="flex-start"
     style={
@@ -784,6 +819,11 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
     >
       <View
         RTLBehaviour={true}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="flex-start"
         style={

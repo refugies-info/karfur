@@ -60,6 +60,11 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
 >
   <View
     RTLBehaviour={true}
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     horizontalAlign="flex-start"
     style={
@@ -187,6 +192,11 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
 >
   <View
     RTLBehaviour={true}
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     horizontalAlign="flex-start"
     style={
@@ -405,6 +415,11 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
 >
   <View
     RTLBehaviour={true}
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     horizontalAlign="flex-start"
     style={

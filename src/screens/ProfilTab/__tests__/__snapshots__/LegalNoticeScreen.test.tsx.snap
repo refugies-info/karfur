@@ -17,6 +17,11 @@ exports[`LegalNotice screen should render correctly 1`] = `
   }
 >
   <View
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     style={
       {
@@ -44,6 +49,11 @@ exports[`LegalNotice screen should render correctly 1`] = `
     >
       <View
         RTLBehaviour={false}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="space-between"
         style={
@@ -235,6 +245,11 @@ exports[`LegalNotice screen should render correctly 1`] = `
         >
           <View
             RTLBehaviour={false}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="flex-end"
             style={

@@ -17,6 +17,11 @@ exports[`Filter city should render correctly when city selected 1`] = `
   }
 >
   <View
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     style={
       {
@@ -44,6 +49,11 @@ exports[`Filter city should render correctly when city selected 1`] = `
     >
       <View
         RTLBehaviour={false}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="space-between"
         style={
@@ -223,6 +233,11 @@ exports[`Filter city should render correctly when city selected 1`] = `
         >
           <View
             RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -371,6 +386,11 @@ exports[`Filter city should render correctly when city selected 1`] = `
         >
           <View
             RTLBehaviour={false}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="flex-end"
             style={
@@ -769,6 +789,13 @@ exports[`Filter city should render correctly when city selected 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {
+                          "width": "0%",
+                        },
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -800,6 +827,11 @@ exports[`Filter city should render correctly when city selected 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -831,6 +863,11 @@ exports[`Filter city should render correctly when city selected 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -860,6 +897,11 @@ exports[`Filter city should render correctly when city selected 1`] = `
               >
                 <View
                   RTLBehaviour={false}
+                  animatedStyle={
+                    {
+                      "value": {},
+                    }
+                  }
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
@@ -1128,6 +1170,11 @@ exports[`Filter city should render correctly when no city 1`] = `
   }
 >
   <View
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     style={
       {
@@ -1155,6 +1202,11 @@ exports[`Filter city should render correctly when no city 1`] = `
     >
       <View
         RTLBehaviour={false}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="space-between"
         style={
@@ -1334,6 +1386,11 @@ exports[`Filter city should render correctly when no city 1`] = `
         >
           <View
             RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -1482,6 +1539,11 @@ exports[`Filter city should render correctly when no city 1`] = `
         >
           <View
             RTLBehaviour={false}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="flex-end"
             style={
@@ -2038,6 +2100,13 @@ exports[`Filter city should render correctly when no city 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {
+                          "width": "0%",
+                        },
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -2069,6 +2138,11 @@ exports[`Filter city should render correctly when no city 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -2100,6 +2174,11 @@ exports[`Filter city should render correctly when no city 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -2129,6 +2208,11 @@ exports[`Filter city should render correctly when no city 1`] = `
               >
                 <View
                   RTLBehaviour={false}
+                  animatedStyle={
+                    {
+                      "value": {},
+                    }
+                  }
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={

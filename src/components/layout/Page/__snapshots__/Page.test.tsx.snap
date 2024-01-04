@@ -17,6 +17,11 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
   }
 >
   <View
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     style={
       {
@@ -44,6 +49,11 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
     >
       <View
         RTLBehaviour={false}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="space-between"
         style={
@@ -236,6 +246,11 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
         >
           <View
             RTLBehaviour={false}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="flex-end"
             style={
@@ -358,6 +373,11 @@ exports[`Page snapshot test suite should render without bug 1`] = `
   }
 >
   <View
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     style={
       {
@@ -385,6 +405,11 @@ exports[`Page snapshot test suite should render without bug 1`] = `
     >
       <View
         RTLBehaviour={false}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="space-between"
         style={
@@ -577,6 +602,11 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         >
           <View
             RTLBehaviour={false}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="flex-end"
             style={

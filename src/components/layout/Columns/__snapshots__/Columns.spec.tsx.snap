@@ -3,6 +3,11 @@
 exports[`Columns snapshot test suite should be able to control flex layout 1`] = `
 <View
   RTLBehaviour={false}
+  animatedStyle={
+    {
+      "value": {},
+    }
+  }
   collapsable={false}
   horizontalAlign="space-between"
   style={
@@ -81,6 +86,11 @@ exports[`Columns snapshot test suite should be able to control flex layout 1`] =
 exports[`Columns snapshot test suite should render without bug 1`] = `
 <View
   RTLBehaviour={false}
+  animatedStyle={
+    {
+      "value": {},
+    }
+  }
   collapsable={false}
   horizontalAlign="flex-start"
   style={

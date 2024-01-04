@@ -17,6 +17,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
   }
 >
   <View
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     style={
       {
@@ -44,6 +49,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
     >
       <View
         RTLBehaviour={false}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="space-between"
         style={
@@ -223,6 +233,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
         >
           <View
             RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -371,6 +386,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
         >
           <View
             RTLBehaviour={false}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="flex-end"
             style={
@@ -606,6 +626,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -808,6 +833,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -940,6 +970,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -1055,6 +1090,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -1086,6 +1126,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {
+                          "width": "0%",
+                        },
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -1117,6 +1164,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -1146,6 +1198,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
               >
                 <View
                   RTLBehaviour={false}
+                  animatedStyle={
+                    {
+                      "value": {},
+                    }
+                  }
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
@@ -1414,6 +1471,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
   }
 >
   <View
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     style={
       {
@@ -1441,6 +1503,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
     >
       <View
         RTLBehaviour={false}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="space-between"
         style={
@@ -1620,6 +1687,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         >
           <View
             RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -1768,6 +1840,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         >
           <View
             RTLBehaviour={false}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="flex-end"
             style={
@@ -2011,6 +2088,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -2143,6 +2225,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -2275,6 +2362,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -2390,6 +2482,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -2421,6 +2518,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {
+                          "width": "0%",
+                        },
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -2452,6 +2556,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -2481,6 +2590,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               >
                 <View
                   RTLBehaviour={false}
+                  animatedStyle={
+                    {
+                      "value": {},
+                    }
+                  }
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={
@@ -2741,6 +2855,11 @@ exports[`Filter age should select age when click on it 1`] = `
   }
 >
   <View
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     style={
       {
@@ -2768,6 +2887,11 @@ exports[`Filter age should select age when click on it 1`] = `
     >
       <View
         RTLBehaviour={false}
+        animatedStyle={
+          {
+            "value": {},
+          }
+        }
         collapsable={false}
         horizontalAlign="space-between"
         style={
@@ -2947,6 +3071,11 @@ exports[`Filter age should select age when click on it 1`] = `
         >
           <View
             RTLBehaviour={true}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -3095,6 +3224,11 @@ exports[`Filter age should select age when click on it 1`] = `
         >
           <View
             RTLBehaviour={false}
+            animatedStyle={
+              {
+                "value": {},
+              }
+            }
             collapsable={false}
             horizontalAlign="flex-end"
             style={
@@ -3338,6 +3472,11 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -3470,6 +3609,11 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -3594,6 +3738,11 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     RTLBehaviour={true}
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     horizontalAlign="flex-start"
                     style={
@@ -3779,6 +3928,11 @@ exports[`Filter age should select age when click on it 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -3810,6 +3964,13 @@ exports[`Filter age should select age when click on it 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {
+                          "width": "0%",
+                        },
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -3841,6 +4002,11 @@ exports[`Filter age should select age when click on it 1`] = `
                   }
                 >
                   <View
+                    animatedStyle={
+                      {
+                        "value": {},
+                      }
+                    }
                     collapsable={false}
                     style={
                       {
@@ -3870,6 +4036,11 @@ exports[`Filter age should select age when click on it 1`] = `
               >
                 <View
                   RTLBehaviour={false}
+                  animatedStyle={
+                    {
+                      "value": {},
+                    }
+                  }
                   collapsable={false}
                   horizontalAlign="flex-start"
                   style={

@@ -29,6 +29,11 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
 >
   <View
     RTLBehaviour={false}
+    animatedStyle={
+      {
+        "value": {},
+      }
+    }
     collapsable={false}
     horizontalAlign="flex-start"
     style={
@@ -86,6 +91,11 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
       >
         <View
           RTLBehaviour={false}
+          animatedStyle={
+            {
+              "value": {},
+            }
+          }
           collapsable={false}
           horizontalAlign="flex-start"
           style={
