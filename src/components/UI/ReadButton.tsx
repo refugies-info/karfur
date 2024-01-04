@@ -8,6 +8,11 @@ import {
   TouchableOpacity,
   useWindowDimensions,
 } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
 import { Icon } from "react-native-eva-icons";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
@@ -24,7 +29,6 @@ import Pause from "../../theme/images/voiceover/pause_icon.svg";
 import Play from "../../theme/images/voiceover/play_icon.svg";
 import { ReadingItem } from "../../types/interface";
 import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
-import { Animated } from "react-native";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -134,10 +138,19 @@ export const ReadButton = (props: Props) => {
   );
   const [isLoading, setIsLoading] = useState(false);
 
-  const animatedValue = React.useRef(new Animated.Value(0)).current;
-  const animatedStyle = {
-    transform: [{ scale: animatedValue }],
-  };
+  const scale = useSharedValue(0);
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      //@ts-ignore
+      {
+        scale: withSpring(scale.value, {
+          mass: 0.5,
+          damping: 14,
+          stiffness: 200,
+        }),
+      },
+    ],
+  }));
 
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const readingList = useSelector(readingListSelector);
@@ -287,19 +300,7 @@ export const ReadButton = (props: Props) => {
 
   // show menu
   useEffect(() => {
-    if (isReading) {
-      Animated.spring(animatedValue, {
-        toValue: 1,
-        bounciness: 14,
-        speed: 24,
-        useNativeDriver: false,
-      }).start();
-    } else {
-      Animated.spring(animatedValue, {
-        toValue: 0,
-        useNativeDriver: false,
-      }).start();
-    }
+    scale.value = isReading ? 1 : 0;
   }, [isReading]);
 
   // start
@@ -334,7 +335,7 @@ export const ReadButton = (props: Props) => {
           </StyledTextVerySmall>
         )}
       </PlayContainer>
-      <Buttons style={animatedStyle}>
+      <Buttons style={[animatedStyle]}>
         <BackgroundContainer>
           <Image
             source={require("../../theme/images/voiceover/bg_voiceover.png")}

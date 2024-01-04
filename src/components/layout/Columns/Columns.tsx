@@ -1,8 +1,9 @@
 import React, { ReactNode } from "react";
+import { StyleProp, ViewStyle } from "react-native";
+import Animated from "react-native-reanimated";
 import styled from "styled-components/native";
 import { FlexItem, getFlexValue } from "../common";
 import { isLastChild } from "../../utils";
-import { Animated, StyleProp, ViewStyle } from "react-native";
 
 const ColumnsWrapper = styled(Animated.View)<{
   horizontalAlign?: string;

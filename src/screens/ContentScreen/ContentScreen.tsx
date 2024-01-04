@@ -255,14 +255,14 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   const isContentFavorite = useSelector(isFavorite(contentId));
   const toggleFavorites = () => {
     if (isContentFavorite) {
-      dispatch(removeUserFavoriteActionCreator(contentId));
       setFavoriteToast("removed");
+      dispatch(removeUserFavoriteActionCreator(contentId));
     } else {
+      setFavoriteToast("added");
       if (favorites.length === 0) {
         dispatch(saveUserHasNewFavoritesActionCreator());
       }
       dispatch(addUserFavoriteActionCreator(contentId));
-      setFavoriteToast("added");
       if (selectedContent) {
         updateNbVuesOrFavoritesOnContent(
           selectedContent._id.toString(),

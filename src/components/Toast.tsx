@@ -1,6 +1,14 @@
 import React from "react";
 import { Icon } from "react-native-eva-icons";
-import { Animated, Easing, PixelRatio, TouchableOpacity } from "react-native";
+import { PixelRatio, TouchableOpacity } from "react-native";
+import Animated, {
+  Easing,
+  Extrapolation,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import styled, { useTheme } from "styled-components/native";
 import { styles } from "../theme";
 import { RTLView } from "./BasicComponents";
@@ -42,36 +50,46 @@ const StyledText = styled(StyledTextVerySmallBold)`
 
 const HIDING_TIMEOUT = 12000;
 const ANIMATION_DURATION = 400;
+const ANIMATION_OPTIONS = {
+  duration: ANIMATION_DURATION,
+  easing: Easing.ease,
+};
 
 export const Toast = (props: Props) => {
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
 
   // Animations
-  let animation = React.useRef(new Animated.Value(0));
+  const bottom = useSharedValue(0);
+  const animatedBottom = useAnimatedStyle(() => ({
+    transform: [
+      //@ts-ignore
+      {
+        translateY: interpolate(
+          bottom.value,
+          [0, 100],
+          [180, 0],
+          Extrapolation.CLAMP
+        ),
+      },
+    ],
+  }));
 
   /**
    * Hide toast
    */
   const hideToast = React.useCallback(() => {
-    Animated.timing(animation.current, {
-      toValue: 0,
-      duration: ANIMATION_DURATION,
-      useNativeDriver: true,
-      easing: Easing.out(Easing.exp),
-    }).start(props.onClose);
+    if (bottom.value !== 0) {
+      bottom.value = withTiming(0, ANIMATION_OPTIONS);
+      props.onClose();
+    }
   }, [props.onClose]);
 
   /**
    * Show toast on mount
    */
   React.useEffect(() => {
-    Animated.timing(animation.current, {
-      toValue: 100,
-      duration: ANIMATION_DURATION,
-      useNativeDriver: true,
-      easing: Easing.out(Easing.exp),
-    }).start();
+    bottom.value = withTiming(100, ANIMATION_OPTIONS);
 
     const timer = setTimeout(() => {
       hideToast();
@@ -82,14 +100,8 @@ export const Toast = (props: Props) => {
     };
   }, []);
 
-  const bottom = animation.current.interpolate({
-    inputRange: [0, 100],
-    outputRange: [180, 0],
-    extrapolate: "clamp",
-  });
-
   return (
-    <ToastContainer style={{ transform: [{ translateY: bottom }] }}>
+    <ToastContainer style={[animatedBottom]}>
       <ToastView>
         <Columns RTLBehaviour layout="auto" verticalAlign="center">
           <TextIcon

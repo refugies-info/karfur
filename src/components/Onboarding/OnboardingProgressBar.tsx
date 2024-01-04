@@ -1,6 +1,10 @@
 import * as React from "react";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import styled from "styled-components/native";
-import { Animated } from "react-native";
 
 const MainContainer = styled.View`
   flex-direction: row;
@@ -27,41 +31,34 @@ interface Props {
   step: number;
 }
 export const OnboardingProgressBar = (props: Props) => {
-  let animation = React.useRef(new Animated.Value(0));
+  const width = useSharedValue(0);
+  const animatedWidth = useAnimatedStyle(() => ({ width: `${width.value}%` }));
 
   React.useEffect(() => {
     setTimeout(() => {
-      Animated.timing(animation.current, {
-        toValue: 100,
-        duration: 800,
-        useNativeDriver: false,
-      }).start();
+      width.value = withTiming(100, { duration: 800 });
     }, 300);
   }, []);
 
   const getWidth = (step: number) => {
     if (props.step === step) {
-      return animation.current.interpolate({
-        inputRange: [0, 100],
-        outputRange: ["0%", "100%"],
-        extrapolate: "clamp",
-      });
+      return animatedWidth;
     } else if (props.step >= step) {
-      return "100%";
+      return { width: "100%" };
     }
-    return 0;
+    return { width: 0 };
   };
 
   return (
     <MainContainer>
       <ProgressBarContainer>
-        <ProgressBar style={[{ width: getWidth(1) }]} />
+        <ProgressBar style={[getWidth(1)]} />
       </ProgressBarContainer>
       <ProgressBarContainer>
-        <ProgressBar style={[{ width: getWidth(2) }]} />
+        <ProgressBar style={[getWidth(2)]} />
       </ProgressBarContainer>
       <ProgressBarContainer>
-        <ProgressBar style={[{ width: getWidth(3) }]} />
+        <ProgressBar style={[getWidth(3)]} />
       </ProgressBarContainer>
     </MainContainer>
   );

@@ -1,6 +1,13 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { View, StyleSheet, Animated } from "react-native";
+import { View, StyleSheet } from "react-native";
+import Animated, {
+  Extrapolation,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import { styles } from "../../theme";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { TextSmallBold } from "../StyledText";
@@ -99,33 +106,25 @@ interface Props {
 export const AccordionAnimated = (props: Props) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const toggleAccordion = () => setIsExpanded(!isExpanded);
-  const animatedController = React.useRef(new Animated.Value(0)).current;
+  const height = useSharedValue(0);
   const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
   const [hasSentEventInFirebase, setHasSentEventInFirebase] =
     React.useState(false);
   const currentItemRef = React.useRef<string>("");
 
-  const bodyHeight = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, bodySectionHeight],
-  });
+  const animatedHeight = useAnimatedStyle(() => ({
+    height: interpolate(
+      height.value,
+      [0, 1],
+      [0, bodySectionHeight],
+      Extrapolation.CLAMP
+    ),
+  }));
 
   const { isRTL } = useTranslationWithRTL();
 
   const toggleListItem = () => {
-    if (isExpanded) {
-      Animated.timing(animatedController, {
-        duration: 500,
-        toValue: 0,
-        useNativeDriver: false,
-      }).start();
-    } else {
-      Animated.timing(animatedController, {
-        duration: 500,
-        toValue: 1,
-        useNativeDriver: false,
-      }).start();
-    }
+    height.value = withTiming(isExpanded ? 0 : 1, { duration: 500 });
 
     if (!hasSentEventInFirebase) {
       if (props.isAccordionEngagement) {
@@ -148,20 +147,7 @@ export const AccordionAnimated = (props: Props) => {
     const accordionIsReading =
       currentItem && currentItem.id === currentItemRef.current;
     setIsExpanded(!!accordionIsReading);
-
-    if (accordionIsReading) {
-      Animated.timing(animatedController, {
-        duration: 500,
-        toValue: 1,
-        useNativeDriver: false,
-      }).start();
-    } else {
-      Animated.timing(animatedController, {
-        duration: 500,
-        toValue: 0,
-        useNativeDriver: false,
-      }).start();
-    }
+    height.value = withTiming(accordionIsReading ? 1 : 0, { duration: 500 });
   }, [currentItem]);
 
   if (!props.title || !props.content) return null;
@@ -206,9 +192,7 @@ export const AccordionAnimated = (props: Props) => {
         </Columns>
       </TitleContainer>
 
-      <Animated.View
-        style={[stylesheet.bodyBackground, { height: bodyHeight }]}
-      >
+      <Animated.View style={[stylesheet.bodyBackground, animatedHeight]}>
         <View
           onLayout={(event: any) =>
             setBodySectionHeight(event.nativeEvent.layout.height)

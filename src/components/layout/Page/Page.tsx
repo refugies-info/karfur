@@ -7,7 +7,6 @@ import React, {
   useRef,
 } from "react";
 import {
-  Animated,
   ImageBackground,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -15,6 +14,14 @@ import {
   View,
   ViewStyle,
 } from "react-native";
+import Animated, {
+  Extrapolation,
+  interpolate,
+  interpolateColor,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import styled, { useTheme } from "styled-components/native";
 import { useHeaderAnimation } from "../../../hooks/useHeaderAnimation";
 import { useVoiceover } from "../../../hooks/useVoiceover";
@@ -137,22 +144,22 @@ const Page = ({
     );
   };
 
-  const animatedController = useRef(new Animated.Value(0)).current;
+  const bgController = useSharedValue(0);
   const toggleSimplifiedHeader = (displayHeader: boolean) => {
-    Animated.timing(animatedController, {
-      duration: 200,
-      toValue: displayHeader ? 1 : 0, // show or hide header
-      useNativeDriver: false,
-    }).start();
+    bgController.value = withTiming(displayHeader ? 1 : 0, { duration: 200 });
   };
+
   const rgbColor = useMemo(() => {
     const { r, g, b } = hexToRgb(headerBackgroundColor);
     return `${r},${g},${b}`;
   }, [headerBackgroundColor]);
-  const backgroundColorInterpolation = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [`rgba(${rgbColor},0)`, headerBackgroundColor],
-  });
+  const animatedBg = useAnimatedStyle(() => ({
+    backgroundColor: interpolateColor(
+      bgController.value,
+      [0, 1],
+      [`rgba(${rgbColor},0)`, headerBackgroundColor]
+    ),
+  }));
 
   useEffect(() => {
     toggleSimplifiedHeader(showSimplifiedHeader);
@@ -209,12 +216,11 @@ const Page = ({
   return (
     <PageContainer backgroundColor={backgroundColor}>
       <FixedContainerForHeader
-        style={{
-          backgroundColor:
-            HeaderContent === HeaderContentEmpty
-              ? headerBackgroundColor
-              : backgroundColorInterpolation,
-        }}
+        style={
+          HeaderContent === HeaderContentEmpty
+            ? { backgroundColor: headerBackgroundColor }
+            : [animatedBg]
+        }
       >
         <Header
           {...headerProps}
