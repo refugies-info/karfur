@@ -1,6 +1,6 @@
 import { useIsFocused } from "@react-navigation/native";
 import { MutableRefObject, useEffect, useState } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { logger } from "../logger";
 import {
@@ -13,7 +13,7 @@ import {
 } from "../services/redux/VoiceOver/voiceOver.selectors";
 
 export const useVoiceover = (
-  scrollviewRef: MutableRefObject<ScrollView | null>,
+  scrollviewRef: MutableRefObject<ScrollView | FlatList | null>,
   offset: number
 ): {
   setScroll: (currentScroll: number, offset: number) => void;
@@ -41,8 +41,11 @@ export const useVoiceover = (
   // Auto scrolls to current item
   const currentReadingItem = useSelector(currentItemSelector);
   useEffect(() => {
-    if (scrollviewRef && currentReadingItem) {
-      scrollviewRef.current?.scrollTo({
+    if (scrollviewRef?.current && currentReadingItem) {
+      const current = (scrollviewRef.current as FlatList).getNativeScrollRef
+        ? (scrollviewRef.current as FlatList).getNativeScrollRef() as ScrollView // can be a FlatList
+        : scrollviewRef.current as ScrollView; // or a ScrollView
+      current.scrollTo({
         // item.posY is position on page. So offset needs to be equal position of 1rst element on page
         y: currentReadingItem.posY - offset,
         animated: true,

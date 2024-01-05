@@ -1,8 +1,7 @@
-import React, { ComponentType } from "react";
+import React, { ComponentType, useMemo } from "react";
 import { styles } from "../../theme";
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
-
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
@@ -57,51 +56,52 @@ export const NeedsScreen = ({
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
   const { theme, backScreen } = route.params;
+  const { t } = useTranslationWithRTL();
 
+  // Loading
   const isLoadingContents = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
   );
   const isLoadingNeeds = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
   );
-  const isLoading = isLoadingContents || isLoadingNeeds;
+  const isLoading = useMemo(
+    () => isLoadingContents || isLoadingNeeds,
+    [isLoadingContents, isLoadingNeeds]
+  );
 
-  const { t } = useTranslationWithRTL();
+  // Content
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const allNeeds = useSelector(needsSelector);
   const groupedContents = useSelector(groupedContentsSelector);
-  const needsToDisplay = computeNeedsToDisplay(
-    allNeeds,
-    groupedContents,
-    theme._id.toString()
-  );
-  // const needsToDisplay = allNeeds.filter(
-  //   (need) => need.theme._id === theme._id
-  // );
+
+  const needsWithText = useMemo(() => {
+    const needsToDisplay = computeNeedsToDisplay(
+      allNeeds,
+      groupedContents,
+      theme._id.toString()
+    );
+
+    return needsToDisplay.map((need: GetNeedResponse) => {
+      const needTranslation = need[
+        currentLanguageI18nCode as keyof GetNeedResponse
+      ] as NeedTranslation;
+      const needText =
+        currentLanguageI18nCode && needTranslation?.text
+          ? needTranslation.text
+          : need.fr.text;
+      const needSubtitle =
+        currentLanguageI18nCode && needTranslation?.subtitle
+          ? needTranslation.subtitle
+          : undefined;
+      return { ...need, needText, needSubtitle };
+    });
+  }, [allNeeds, groupedContents, theme._id, currentLanguageI18nCode]);
 
   // Back button
   React.useEffect(() => registerBackButton(backScreen, navigation), []);
 
-  if (isLoading) {
-    return (
-      <Page
-        backScreen={backScreen}
-        headerBackgroundColor={theme.colors.color100}
-        headerTitle={theme.name[currentLanguageI18nCode || "fr"]}
-        HeaderContent={
-          withProps({
-            title: theme.name[currentLanguageI18nCode || "fr"],
-            titleIcon: theme.icon,
-          })(HeaderContentTitle) as ComponentType<HeaderContentProps>
-        }
-        loading
-      >
-        <SkeletonListPage />
-      </Page>
-    );
-  }
-
-  if (needsToDisplay.length === 0) {
+  if (needsWithText.length === 0 && !isLoading) {
     return (
       <Page
         backScreen={backScreen}
@@ -139,49 +139,26 @@ export const NeedsScreen = ({
           titleIcon: theme.icon,
         })(HeaderContentTitle) as ComponentType<HeaderContentProps>
       }
-      loading={false}
-    >
-      {needsToDisplay.map((need: GetNeedResponse) => {
-        const needText =
-          currentLanguageI18nCode &&
-          (
-            need[
-              currentLanguageI18nCode as keyof GetNeedResponse
-            ] as NeedTranslation
-          )?.text
-            ? (
-                need[
-                  currentLanguageI18nCode as keyof GetNeedResponse
-                ] as NeedTranslation
-              ).text
-            : need.fr.text;
-        const needSubtitle =
-          currentLanguageI18nCode &&
-          (
-            need[
-              currentLanguageI18nCode as keyof GetNeedResponse
-            ] as NeedTranslation
-          )?.subtitle
-            ? (
-                need[
-                  currentLanguageI18nCode as keyof GetNeedResponse
-                ] as NeedTranslation
-              ).subtitle
-            : undefined;
-
-        return (
+      loading={isLoading}
+      flatList={{
+        data: needsWithText,
+        renderItem: ({ item }) => (
           <NeedsSummary
-            id={need._id.toString()}
-            image={need.image || need.theme.appImage}
-            key={need._id.toString()}
-            needSubtitle={needSubtitle}
-            needText={needText}
-            needTextFr={need.fr.text}
-            style={{ marginBottom: styles.margin * 3 }}
+            id={item._id.toString()}
+            image={item.image || item.theme.appImage}
+            key={item._id.toString()}
+            needSubtitle={item.needSubtitle}
+            needText={item.needText}
+            needTextFr={item.fr.text}
+            style={{
+              marginBottom: styles.margin * 3,
+              marginHorizontal: styles.margin * 3,
+            }}
             theme={theme}
           />
-        );
-      })}
-    </Page>
+        ),
+        keyExtractor: (item) => item._id.toString(),
+      }}
+    ></Page>
   );
 };

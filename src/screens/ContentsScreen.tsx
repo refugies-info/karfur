@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useMemo } from "react";
 import { ExplorerParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useSelector } from "react-redux";
@@ -28,6 +28,7 @@ const SectionHeaderText = styled(TextBigBold)`
   color: ${(props: { color: string }) => props.color};
   margin-top: ${styles.margin * 6}px;
   margin-bottom: ${styles.margin * 3}px;
+  margin-horizontal: ${styles.margin * 3}px;
 `;
 
 const sortByNbVues = (data: ContentForApp[]) =>
@@ -91,43 +92,55 @@ export const ContentsScreen = ({
   route,
 }: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
   const { theme, needId, backScreen } = route.params;
-
   const { t } = useTranslationWithRTL();
 
-  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
-  const contents = useSelector(contentsSelector);
-
-  const groupedContents = useSelector(groupedContentsSelector);
-  const contentsId = groupedContents[needId];
-  const contentsToDisplay = getContentsToDisplay(contentsId, contents);
-
-  const { translatedContents, nonTranslatedContents } = getTranslatedContents(
-    contentsToDisplay,
-    currentLanguageI18nCode
-  );
-
-  const sortedTranslatedContents = sortContents(translatedContents);
-  const sortedNonTranslatedContents = sortContents(nonTranslatedContents);
-
-  const needName = useSelector(
-    needNameSelector(needId, currentLanguageI18nCode)
-  );
-
-  React.useEffect(() => {
+  useEffect(() => {
     addNeedView(needId);
   }, []);
+  const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
 
-  // Back button
-  React.useEffect(() => registerBackButton(backScreen, navigation), []);
+  // Loading
   const isLoadingContents = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
   );
   const isLoadingNeeds = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
   );
-  const isLoading = isLoadingContents || isLoadingNeeds;
+  const isLoading = useMemo(
+    () => isLoadingContents || isLoadingNeeds,
+    [isLoadingContents, isLoadingNeeds]
+  );
 
-  const colors = theme?.colors || defaultColors;
+  // Content
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
+  const contents = useSelector(contentsSelector);
+  const groupedContents = useSelector(groupedContentsSelector);
+
+  const content = useMemo(() => {
+    const contentsId = groupedContents[needId];
+    const contentsToDisplay = getContentsToDisplay(contentsId, contents);
+
+    const { translatedContents, nonTranslatedContents } = getTranslatedContents(
+      contentsToDisplay,
+      currentLanguageI18nCode
+    );
+
+    const allContent: (ContentForApp | string)[] =
+      sortContents(translatedContents);
+
+    if (nonTranslatedContents.length > 0) {
+      allContent.push("header", ...sortContents(nonTranslatedContents));
+    }
+
+    return allContent;
+  }, [groupedContents, contents, needId, currentLanguageI18nCode]);
+
+  const needName = useSelector(
+    needNameSelector(needId, currentLanguageI18nCode)
+  );
+
+  // Back button
+  useEffect(() => registerBackButton(backScreen, navigation), []);
 
   return (
     <Page
@@ -135,47 +148,34 @@ export const ContentsScreen = ({
       loading={isLoading}
       headerTitle={needName}
       HeaderContent={
-        withProps({
-          needName,
-        })(
+        withProps({ needName })(
           HeaderContentContentsScreen
         ) as React.ComponentType<HeaderContentProps>
       }
       headerBackgroundColor={colors.color30}
-    >
-      {sortedTranslatedContents.map((content) => {
-        return (
-          <ContentSummary
-            content={content}
-            key={content._id}
-            needId={needId}
-            style={{ marginBottom: styles.margin * 3 }}
-            theme={theme}
-          />
-        );
-      })}
-
-      {sortedNonTranslatedContents.length > 0 && (
-        <View>
-          <SectionHeaderText color={colors.color100}>
-            {t(
-              "contents_screen.non_translated_content",
-              "Fiches non traduites"
-            )}
-          </SectionHeaderText>
-          {sortedNonTranslatedContents.map((content) => {
-            return (
-              <ContentSummary
-                key={content._id}
-                theme={theme}
-                content={content}
-                needId={needId}
-                style={{ marginBottom: styles.margin * 3 }}
-              />
-            );
-          })}
-        </View>
-      )}
-    </Page>
+      flatList={{
+        data: content,
+        renderItem: ({ item }) =>
+          item === "header" ? (
+            <SectionHeaderText color={colors.color100}>
+              {t(
+                "contents_screen.non_translated_content",
+                "Fiches non traduites"
+              )}
+            </SectionHeaderText>
+          ) : (
+            <ContentSummary
+              theme={theme}
+              content={item}
+              needId={needId}
+              style={{
+                marginBottom: styles.margin * 3,
+                marginHorizontal: styles.margin * 3,
+              }}
+            />
+          ),
+        keyExtractor: (item) => (item._id || item).toString(),
+      }}
+    />
   );
 };

@@ -4,19 +4,17 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
-  useRef,
 } from "react";
 import {
-  ImageBackground,
+  FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
-  View,
+  ScrollViewProps,
+  FlatListProps,
   ViewStyle,
 } from "react-native";
 import Animated, {
-  Extrapolation,
-  interpolate,
   interpolateColor,
   useAnimatedStyle,
   useSharedValue,
@@ -36,12 +34,11 @@ import { useIsFocused } from "@react-navigation/native";
 import { SkeletonListPage } from "../../feedback";
 import { useStateOnce } from "../../../hooks";
 import { withProps } from "../../../utils";
-import { getImageUri } from "../../../libs/getImageUri";
 import { hexToRgb } from "../../utils/isDarkColor/hexToRgb";
-import SafeAreaViewTopInset from "../SafeAreaViewTopInset";
 import Spacer from "../Spacer";
 import { isDarkColor } from "../../utils";
 import { Picture } from "@refugies-info/api-types";
+import PageHeader from "./PageHeader";
 
 const PageContainer = styled.View<{ backgroundColor: string }>`
   background-color: ${({ backgroundColor }) => backgroundColor};
@@ -52,7 +49,7 @@ const PageContainer = styled.View<{ backgroundColor: string }>`
 
 export interface PageProps extends Partial<HeaderProps> {
   backgroundColor?: string;
-  children: ReactNode;
+  children?: ReactNode;
   headerBackgroundColor?: string;
   headerBackgroundImage?: Picture;
   HeaderContent?: ComponentType<HeaderContentProps>;
@@ -60,7 +57,8 @@ export interface PageProps extends Partial<HeaderProps> {
   Skeleton?: ComponentType;
   title?: string;
   contentContainerStyle?: ViewStyle;
-  scrollview?: React.RefObject<ScrollView>; // given by parent if we need to control scroll
+  scrollview?: React.RefObject<ScrollView | FlatList>; // given by parent if we need to control scroll
+  flatList?: FlatListProps<any>;
 }
 
 //  padding-top: ${({ theme }) => theme.insets.top}px;
@@ -74,31 +72,12 @@ const FixedContainerForHeader = styled(Animated.View)`
   width: 100%;
 `;
 
-const MainContainer = styled(SafeAreaViewTopInset)<{
-  backgroundColor: string;
-  showShadow: boolean;
-  rounded: boolean;
-}>`
-  z-index: 4;
-  ${({ showShadow, theme }) => (showShadow ? theme.shadows.xs : "")}
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  padding-horizontal: ${({ theme }) => theme.layout.content.normal};
-  min-height: ${({ theme }) =>
-    theme.layout.header.minHeight + theme.insets.top}px;
-  width: 100%;
-  padding-top: ${({ theme }) => theme.layout.header.minHeight}px;
-  border-bottom-right-radius: ${({ rounded }) => (rounded ? 12 : 0)}px;
-  border-bottom-left-radius: ${({ rounded }) => (rounded ? 12 : 0)}px;
-`;
-
 const ContentContainer = styled.View<{ backgroundColor: string }>`
   padding-horizontal: ${({ theme }) => theme.margin * 3}px;
   padding-top: ${({ theme }) => theme.margin * 3}px;
   background-color: ${({ backgroundColor }) => backgroundColor || "white"};
   flex-grow: 1;
 `;
-
-const indicatorInsets = { right: 1 };
 
 const Page = ({
   backgroundColor = "transparent",
@@ -112,6 +91,7 @@ const Page = ({
   contentContainerStyle = {},
   title,
   scrollview,
+  flatList,
   ...headerProps
 }: PageProps) => {
   const theme = useTheme();
@@ -137,12 +117,15 @@ const Page = ({
     }
   }, [loading, isFocus]);
 
-  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setScroll(
-      event.nativeEvent.contentOffset.y,
-      showSimplifiedHeader ? offset : 0
-    );
-  };
+  const onScrollEnd = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      setScroll(
+        event.nativeEvent.contentOffset.y,
+        showSimplifiedHeader ? offset : 0
+      );
+    },
+    [setScroll]
+  );
 
   const bgController = useSharedValue(0);
   const toggleSimplifiedHeader = (displayHeader: boolean) => {
@@ -178,20 +161,6 @@ const Page = ({
     headerTitle = title;
   }
 
-  const Container = useMemo(
-    () =>
-      headerBackgroundImage
-        ? withProps({
-            resizeMode: "cover",
-            source: { uri: getImageUri(headerBackgroundImage.secure_url) },
-            style: {
-              height: 240,
-            },
-          })(ImageBackground)
-        : withProps({})(View),
-    [headerBackgroundImage]
-  );
-
   const onHeaderLayout = useCallback(
     (e: any) => setInitialHeaderSize(e.nativeEvent.layout.height),
     [setInitialHeaderSize]
@@ -200,17 +169,26 @@ const Page = ({
   const showHeaderTitle =
     showSimplifiedHeader || HeaderContentInternal === HeaderContentEmpty;
 
-  const scrollableContentContainer = useMemo(
-    () => ({
-      paddingBottom: theme.insets.bottom,
-      flexGrow: 1,
-    }),
-    [theme.margin, theme.insets.bottom]
-  );
-
   const isDarkBackground = useMemo(
     () => isDarkColor(headerBackgroundColor),
     [headerBackgroundColor]
+  );
+
+  const scrollViewProps: ScrollViewProps | FlatListProps<any> = useMemo(
+    () => ({
+      alwaysBounceVertical: false,
+      style: {
+        paddingBottom: theme.insets.bottom,
+        flexGrow: 1,
+      },
+      onMomentumScrollEnd: onScrollEnd,
+      onScroll: handleScroll,
+      onScrollEndDrag: onScrollEnd,
+      ref: scrollview || contentScrollview,
+      scrollEventThrottle: 26,
+      scrollIndicatorInsets: { right: 1 },
+    }),
+    [onScrollEnd, handleScroll, scrollview, contentScrollview]
   );
 
   return (
@@ -236,31 +214,33 @@ const Page = ({
           <Spacer height={theme.layout.header.minHeight + theme.margin * 2} />
           <Skeleton />
         </>
+      ) : flatList ? (
+        <FlatList
+          {...flatList}
+          {...scrollViewProps}
+          ListHeaderComponent={
+            <PageHeader
+              HeaderContentInternal={HeaderContentInternal}
+              isDarkBackground={isDarkBackground}
+              onHeaderLayout={onHeaderLayout}
+              headerBackgroundColor={headerBackgroundColor}
+              headerBackgroundImage={headerBackgroundImage}
+              HeaderContent={HeaderContent}
+            />
+          }
+        />
       ) : (
         <>
           {/* @ts-ignore */}
-          <ScrollableContent
-            alwaysBounceVertical={false}
-            contentContainerStyle={scrollableContentContainer}
-            onMomentumScrollEnd={onScrollEnd}
-            onScroll={handleScroll}
-            onScrollEndDrag={onScrollEnd}
-            ref={scrollview || contentScrollview}
-            scrollEventThrottle={26}
-            scrollIndicatorInsets={indicatorInsets}
-          >
-            <Container onLayout={onHeaderLayout}>
-              <MainContainer
-                backgroundColor={
-                  headerBackgroundImage
-                    ? "rgba(255,255,255,0)"
-                    : headerBackgroundColor
-                }
-                rounded={headerBackgroundImage || headerBackgroundColor}
-              >
-                <HeaderContentInternal darkBackground={isDarkBackground} />
-              </MainContainer>
-            </Container>
+          <ScrollableContent {...scrollViewProps}>
+            <PageHeader
+              HeaderContentInternal={HeaderContentInternal}
+              isDarkBackground={isDarkBackground}
+              onHeaderLayout={onHeaderLayout}
+              headerBackgroundColor={headerBackgroundColor}
+              headerBackgroundImage={headerBackgroundImage}
+              HeaderContent={HeaderContent}
+            />
 
             <ContentContainer
               /* @ts-ignore */
