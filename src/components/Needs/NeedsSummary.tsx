@@ -1,5 +1,4 @@
-import React, { useCallback } from "react";
-import { StyleProp, ViewStyle } from "react-native";
+import React, { memo, useCallback } from "react";
 import {
   TextVerySmallNormal,
   TextSmallBold,
@@ -7,7 +6,6 @@ import {
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-
 import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
@@ -51,7 +49,7 @@ interface Props {
 
 type NeedsScreenNavigationProp = StackNavigationProp<ExplorerParamList>;
 
-export const NeedsSummary = ({
+const NeedsSummaryComponent = ({
   backScreen,
   id,
   image,
@@ -120,3 +118,5 @@ export const NeedsSummary = ({
     </NeedContainer>
   );
 };
+
+export const NeedsSummary = memo(NeedsSummaryComponent);

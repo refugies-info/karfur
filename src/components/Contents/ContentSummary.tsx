@@ -1,7 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
-import { ObjectId } from "../../types/interface";
 import {
   TextSmallBold,
   TextSmallNormal,
@@ -17,7 +16,7 @@ import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
 import { defaultColors } from "../../libs/getThemeTag";
 import { Columns } from "../layout";
-import { ContentForApp, GetThemeResponse } from "@refugies-info/api-types";
+import { ContentForApp, GetThemeResponse, Id } from "@refugies-info/api-types";
 import { useNavigation } from "@react-navigation/native";
 
 const IMAGE_SIZE = 58;
@@ -84,7 +83,7 @@ interface Props {
   content: ContentForApp;
   hasSponsorMatch?: boolean;
   isTextNotBold?: boolean;
-  needId?: ObjectId;
+  needId?: Id;
   pressCallback?: () => void;
   searchItem?: any;
   searchLanguageMatch?: string;
@@ -99,7 +98,7 @@ const logEventOnClick = (id: string) => {
   });
 };
 
-export const ContentSummary = (props: Props) => {
+const ContentSummaryComponent = (props: Props) => {
   const navigation: any = useNavigation();
   const theme = props.theme || (props.content.theme as GetThemeResponse);
 
@@ -279,3 +278,5 @@ export const ContentSummary = (props: Props) => {
     </ContentContainer>
   );
 };
+
+export const ContentSummary = memo(ContentSummaryComponent);
