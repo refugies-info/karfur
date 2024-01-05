@@ -14,8 +14,11 @@ const NoticeView = styled.View`
   background-color: #e8edff;
   padding: ${({ theme }) => theme.margin * 2}px;
   margin-top: -${({ theme }) => theme.margin * 3}px;
+  margin-bottom: ${({ theme }) => theme.margin * 3}px;
   margin-left: -${({ theme }) => theme.margin * 3}px;
   margin-right: -${({ theme }) => theme.margin * 3}px;
+  border-top-left-radius: ${({ theme }) => theme.margin}px;
+  border-top-right-radius: ${({ theme }) => theme.margin}px;
 `;
 
 const NoticeContent = styled.View`

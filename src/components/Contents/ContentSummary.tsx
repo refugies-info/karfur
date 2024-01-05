@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import styled from "styled-components/native";
 import { ContentForApp, GetThemeResponse, Id } from "@refugies-info/api-types";
 import { useNavigation } from "@react-navigation/native";
@@ -100,26 +100,31 @@ const logEventOnClick = (id: string) => {
 
 const ContentSummaryComponent = (props: Props) => {
   const navigation: any = useNavigation();
-  const theme = props.theme || (props.content.theme as GetThemeResponse);
+  const theme = useMemo(
+    () => props.theme || (props.content.theme as GetThemeResponse),
+    [props.theme, props.content.theme]
+  );
+  const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
 
-  const colors = theme?.colors || defaultColors;
-
-  const actionButton =
-    props.actionPress !== undefined ? (
-      <ActionButton
-        onPress={props.actionPress}
-        accessibilityRole="button"
-        accessible={true}
-        accessibilityLabel={props.actionLabel}
-      >
-        <Icon
-          name={props.actionIcon || ""}
-          width={16}
-          height={16}
-          fill={styles.colors.black}
-        />
-      </ActionButton>
-    ) : null;
+  const actionButton = useMemo(
+    () =>
+      props.actionPress !== undefined ? (
+        <ActionButton
+          onPress={props.actionPress}
+          accessibilityRole="button"
+          accessible={true}
+          accessibilityLabel={props.actionLabel}
+        >
+          <Icon
+            name={props.actionIcon || ""}
+            width={16}
+            height={16}
+            fill={styles.colors.black}
+          />
+        </ActionButton>
+      ) : null,
+    [props.actionPress, props.actionLabel]
+  );
 
   if (props.content.typeContenu === "dispositif") {
     return (
