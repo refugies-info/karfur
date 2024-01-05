@@ -1,13 +1,15 @@
 import React, { memo } from "react";
 import styled from "styled-components/native";
+import { ContentForApp, GetThemeResponse, Id } from "@refugies-info/api-types";
+import { useNavigation } from "@react-navigation/native";
+import { Image } from "react-native";
+import { Icon } from "react-native-eva-icons";
 import { styles } from "../../theme";
 import {
   TextSmallBold,
   TextSmallNormal,
   TextVerySmallNormal,
 } from "../StyledText";
-import { Image } from "react-native";
-import { Icon } from "react-native-eva-icons";
 import NoLogo from "../../theme/images/contents/structure_no_logo.png";
 import { DemarcheImage } from "./DemarcheImage";
 import { logEventInFirebase } from "../../utils/logEvent";
@@ -16,8 +18,6 @@ import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
 import { defaultColors } from "../../libs/getThemeTag";
 import { Columns } from "../layout";
-import { ContentForApp, GetThemeResponse, Id } from "@refugies-info/api-types";
-import { useNavigation } from "@react-navigation/native";
 
 const IMAGE_SIZE = 58;
 
@@ -137,7 +137,7 @@ const ContentSummaryComponent = (props: Props) => {
             params: {
               contentId: props.content._id,
               needId: props.needId,
-              theme: props.content.theme,
+              theme: theme,
               backScreen: props.backScreen,
             },
           });
@@ -232,7 +232,7 @@ const ContentSummaryComponent = (props: Props) => {
           params: {
             contentId: props.content._id,
             needId: props.needId,
-            theme: props.content.theme,
+            theme: theme,
             backScreen: props.backScreen,
           },
         });

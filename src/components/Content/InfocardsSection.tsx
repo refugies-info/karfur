@@ -1,19 +1,20 @@
-import * as React from "react";
+import React, { memo, useMemo } from "react";
 import styled from "styled-components/native";
-import { TextNormalBold, TextSmallBold, TextSmallNormal } from "../StyledText";
-import { getConditionImage, getDescriptionNew } from "../../libs/content";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { IMAGE_SIZE, InfocardImage } from "./InfocardImage";
-import { ReadableText } from "../ReadableText";
+import { Image } from "react-native";
 import {
   conditionType,
   ContentType,
   GetDispositifResponse,
   Metadatas,
 } from "@refugies-info/api-types";
+import { TextNormalBold, TextSmallBold, TextSmallNormal } from "../StyledText";
+import { getConditionImage, getDescriptionNew } from "../../libs/content";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { ReadableText } from "../ReadableText";
 import { Columns, Rows, RowsSpacing } from "../layout";
-import { Image } from "react-native";
 import { styles } from "../../theme";
+import { Title } from "../typography";
+import { IMAGE_SIZE, InfocardImage } from "./InfocardImage";
 
 interface Props {
   content: GetDispositifResponse;
@@ -125,147 +126,160 @@ const Section = ({
   </SectionContainer>
 );
 
-export const InfocardsSection = ({ content, color }: Props) => {
+const InfocardsSectionComponent = ({ content, color }: Props) => {
   const { t } = useTranslationWithRTL();
-  const metadatas = content.metadatas;
+  const metadatas = useMemo(() => content.metadatas, [content.metadatas]);
   return (
-    <MainContainer>
-      <Rows separator spacing={RowsSpacing.Default}>
-        <Section
-          color={color}
-          title={t("Infocards.publicTitle", "Public visé")}
-        >
-          <Metadata
+    <>
+      <Title color={color} accessibilityRole="header">
+        <ReadableText>
+          {t("content_screen.informations", "Informations importantes")}
+        </ReadableText>
+      </Title>
+      <MainContainer>
+        <Rows separator spacing={RowsSpacing.Default}>
+          <Section
             color={color}
-            metadatas={metadatas}
-            metadataKey="publicStatus"
-            withTitle
-          />
-          {metadatas.public && (
+            title={t("Infocards.publicTitle", "Public visé")}
+          >
             <Metadata
               color={color}
               metadatas={metadatas}
-              metadataKey="public"
+              metadataKey="publicStatus"
               withTitle
             />
-          )}
-
-          <Metadata
-            color={color}
-            metadatas={metadatas}
-            metadataKey="frenchLevel"
-            withTitle
-          />
-          <Metadata
-            color={color}
-            metadatas={metadatas}
-            metadataKey="age"
-            withTitle
-          />
-        </Section>
-
-        {metadatas.price && (
-          <Section color={color} title={t("Infocards.price", "Prix")}>
-            <Metadata color={color} metadatas={metadatas} metadataKey="price" />
-          </Section>
-        )}
-
-        {(metadatas.commitment ||
-          metadatas.frequency ||
-          metadatas.timeSlots) && (
-          <Section
-            color={color}
-            title={t("Infocards.availability", "Disponibilité demandée")}
-          >
-            {metadatas.commitment && (
+            {metadatas.public && (
               <Metadata
                 color={color}
                 metadatas={metadatas}
-                metadataKey="commitment"
+                metadataKey="public"
                 withTitle
               />
             )}
-            {metadatas.frequency && (
-              <Metadata
-                color={color}
-                metadatas={metadatas}
-                metadataKey="frequency"
-                withTitle
-              />
-            )}
-            {metadatas.timeSlots && (
-              <Metadata
-                color={color}
-                metadatas={metadatas}
-                metadataKey="timeSlots"
-                withTitle
-              />
-            )}
-          </Section>
-        )}
 
-        {metadatas.conditions && (
-          <Section
-            color={color}
-            title={t("Infocards.conditions", "Conditions")}
-          >
-            {/* <Metadata metadatas={metadatas} metadataKey="conditions" /> */}
-            <Rows layout="1" spacing={RowsSpacing.Text}>
-              {metadatas.conditions.map((condition: conditionType) => (
-                <Columns layout="auto 1" key={condition}>
-                  {getConditionImage(condition)}
-                  <DescriptionText>
-                    <ReadableText>
-                      {t(`Infocards.${condition}`, condition)}
-                    </ReadableText>
-                  </DescriptionText>
-                </Columns>
-              ))}
-            </Rows>
-          </Section>
-        )}
-
-        {content.typeContenu === ContentType.DISPOSITIF &&
-          metadatas.location && (
-            <Section
+            <Metadata
               color={color}
-              title={t("Infocards.location", "Zone d'action")}
-            >
+              metadatas={metadatas}
+              metadataKey="frenchLevel"
+              withTitle
+            />
+            <Metadata
+              color={color}
+              metadatas={metadatas}
+              metadataKey="age"
+              withTitle
+            />
+          </Section>
+
+          {metadatas.price && (
+            <Section color={color} title={t("Infocards.price", "Prix")}>
               <Metadata
                 color={color}
                 metadatas={metadatas}
-                metadataKey="location"
+                metadataKey="price"
               />
             </Section>
           )}
 
-        {content.mainSponsor && (
-          <Section
-            color={color}
-            title={t("Infocards.proposedBy", "Proposé par")}
-          >
-            <Columns
-              RTLBehaviour
-              layout="auto 1"
-              horizontalAlign="space-between"
+          {(metadatas.commitment ||
+            metadatas.frequency ||
+            metadatas.timeSlots) && (
+            <Section
+              color={color}
+              title={t("Infocards.availability", "Disponibilité demandée")}
             >
-              {content.mainSponsor.picture?.secure_url && (
-                <Image
-                  source={{ uri: content.mainSponsor.picture.secure_url }}
-                  style={{
-                    width: IMAGE_SIZE,
-                    height: IMAGE_SIZE,
-                    resizeMode: "contain",
-                  }}
+              {metadatas.commitment && (
+                <Metadata
+                  color={color}
+                  metadatas={metadatas}
+                  metadataKey="commitment"
+                  withTitle
                 />
               )}
-              <DescriptionText>
-                <ReadableText>{content.mainSponsor.nom}</ReadableText>
-              </DescriptionText>
-            </Columns>
-          </Section>
-        )}
-      </Rows>
-    </MainContainer>
+              {metadatas.frequency && (
+                <Metadata
+                  color={color}
+                  metadatas={metadatas}
+                  metadataKey="frequency"
+                  withTitle
+                />
+              )}
+              {metadatas.timeSlots && (
+                <Metadata
+                  color={color}
+                  metadatas={metadatas}
+                  metadataKey="timeSlots"
+                  withTitle
+                />
+              )}
+            </Section>
+          )}
+
+          {metadatas.conditions && (
+            <Section
+              color={color}
+              title={t("Infocards.conditions", "Conditions")}
+            >
+              {/* <Metadata metadatas={metadatas} metadataKey="conditions" /> */}
+              <Rows layout="1" spacing={RowsSpacing.Text}>
+                {metadatas.conditions.map((condition: conditionType) => (
+                  <Columns layout="auto 1" key={condition}>
+                    {getConditionImage(condition)}
+                    <DescriptionText>
+                      <ReadableText>
+                        {t(`Infocards.${condition}`, condition)}
+                      </ReadableText>
+                    </DescriptionText>
+                  </Columns>
+                ))}
+              </Rows>
+            </Section>
+          )}
+
+          {content.typeContenu === ContentType.DISPOSITIF &&
+            metadatas.location && (
+              <Section
+                color={color}
+                title={t("Infocards.location", "Zone d'action")}
+              >
+                <Metadata
+                  color={color}
+                  metadatas={metadatas}
+                  metadataKey="location"
+                />
+              </Section>
+            )}
+
+          {content.mainSponsor && (
+            <Section
+              color={color}
+              title={t("Infocards.proposedBy", "Proposé par")}
+            >
+              <Columns
+                RTLBehaviour
+                layout="auto 1"
+                horizontalAlign="space-between"
+              >
+                {content.mainSponsor.picture?.secure_url && (
+                  <Image
+                    source={{ uri: content.mainSponsor.picture.secure_url }}
+                    style={{
+                      width: IMAGE_SIZE,
+                      height: IMAGE_SIZE,
+                      resizeMode: "contain",
+                    }}
+                  />
+                )}
+                <DescriptionText>
+                  <ReadableText>{content.mainSponsor.nom}</ReadableText>
+                </DescriptionText>
+              </Columns>
+            </Section>
+          )}
+        </Rows>
+      </MainContainer>
+    </>
   );
 };
+
+export const InfocardsSection = memo(InfocardsSectionComponent);

@@ -1,0 +1,47 @@
+import React, { memo } from "react";
+import styled from "styled-components/native";
+import { Icon, Spacer, ReadableText, Columns } from "../../../components";
+import { useTranslationWithRTL } from "../../../hooks";
+import { dateDiffReadable } from "../dateDiff";
+
+const LastModifDateView = styled.View`
+  background-color: #e8edff;
+  padding: 6px;
+  border-radius: 4px;
+`;
+
+const LastModifDateText = styled.Text`
+  font-size: 12px;
+  font-weight: 700;
+  color: #0063cb;
+  flex: 1;
+  flex-grow: 0;
+`;
+
+interface Props {
+  lastModificationDate: Date | undefined;
+}
+
+const LastModificationDateComponent = (props: Props) => {
+  const { t } = useTranslationWithRTL();
+
+  if (!props.lastModificationDate) return null;
+  return (
+    <Columns layout="auto">
+      <LastModifDateView>
+        <LastModifDateText>
+          <Icon name="i" color="#0063CB" size={10} />
+          <Spacer width={5} />
+          <ReadableText>
+            {`${t(
+              "content_screen.updated_ago",
+              "MISE À JOUR IL Y A"
+            )} ${dateDiffReadable(new Date(props.lastModificationDate))}`}
+          </ReadableText>
+        </LastModifDateText>
+      </LastModifDateView>
+    </Columns>
+  );
+};
+
+export const LastModificationDate = memo(LastModificationDateComponent);

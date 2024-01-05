@@ -1,8 +1,7 @@
-import React, { useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { ContentType, InfoSections } from "@refugies-info/api-types";
 import { useWindowDimensions, View } from "react-native";
 import { useSelector } from "react-redux";
-
 import {
   AccordionAnimated,
   ContentFromHtml,
@@ -22,12 +21,18 @@ export interface SectionProps {
   sectionKey: "what" | "how" | "why" | "next";
 }
 
-const Section = ({ sectionKey }: SectionProps) => {
+const SectionComponent = ({ sectionKey }: SectionProps) => {
   const { t } = useTranslationWithRTL();
 
   const windowWidth = useWindowDimensions().width;
-  const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
-  const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
+  const accordionMaxWidthWithStep = useMemo(
+    () => windowWidth - 2 * 24 - 4 * 16 - 24 - 32,
+    [windowWidth]
+  );
+  const accordionMaxWidthWithoutStep = useMemo(
+    () => windowWidth - 2 * 24 - 3 * 16 - 24,
+    [windowWidth]
+  );
 
   const currentLanguage = useSelector(currentI18nCodeSelector);
   const dispositif = useSelector(selectedContentSelector(currentLanguage));
@@ -48,7 +53,18 @@ const Section = ({ sectionKey }: SectionProps) => {
     [sectionKey, dispositif]
   );
 
-  const colors = theme?.colors || defaultColors;
+  const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
+  const width = useMemo(
+    () =>
+      dispositif.typeContenu === ContentType.DEMARCHE
+        ? accordionMaxWidthWithStep
+        : accordionMaxWidthWithoutStep,
+    [
+      dispositif.typeContenu,
+      accordionMaxWidthWithStep,
+      accordionMaxWidthWithoutStep,
+    ]
+  );
 
   return (
     <View style={{ marginBottom: styles.margin * 5 }}>
@@ -76,11 +92,7 @@ const Section = ({ sectionKey }: SectionProps) => {
                   ? index + 1
                   : null
               }
-              width={
-                dispositif.typeContenu === ContentType.DEMARCHE
-                  ? accordionMaxWidthWithStep
-                  : accordionMaxWidthWithoutStep
-              }
+              width={width}
               currentLanguage={currentLanguage}
               windowWidth={windowWidth}
               darkColor={colors.color100}
@@ -96,4 +108,4 @@ const Section = ({ sectionKey }: SectionProps) => {
   );
 };
 
-export default Section;
+export const Section = memo(SectionComponent);
