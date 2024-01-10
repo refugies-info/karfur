@@ -12,7 +12,6 @@ import {
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
-import { newReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
 import { Languages } from "@refugies-info/api-types";
 
 const ButtonContainerCommon = styled.View`
@@ -113,7 +112,6 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
       newLanguageOldLanguage: newLanguage + "/" + oldLanguage,
     });
     changeLanguage(isFrenchSelected, selectedLanguageI18nCode);
-    dispatch(newReadingList(null));
   };
 
   if (selectedLanguageI18nCode === "fr")

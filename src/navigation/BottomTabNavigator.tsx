@@ -14,10 +14,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { deactivateKeepAwake } from "expo-keep-awake";
 import * as Speech from "expo-speech";
 import * as Linking from "expo-linking";
-import {
-  resetReadingList,
-  setReadingItem,
-} from "../services/redux/VoiceOver/voiceOver.actions";
+import { setReadingItem } from "../services/redux/VoiceOver/voiceOver.actions";
 import { BottomTabParamList } from "../../types";
 import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
 import { ProfileNavigator } from "./BottomTabBar/ProfileNavigator";
@@ -35,6 +32,7 @@ import { noVoiceover } from "../libs/noVoiceover";
 import { logger } from "../logger";
 import { getScreenFromUrl } from "../libs/getScreenFromUrl";
 import { setInitialUrlUsed } from "../services/redux/User/user.actions";
+import { useStopVoiceover } from "../hooks/useStopVoiceover";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -133,12 +131,10 @@ export default function BottomTabNavigator() {
 
   // stop voiceover when changing screen
   const navigation = useNavigation();
+  const stopVoiceover = useStopVoiceover();
   React.useEffect(() => {
     const unsubscribeState = navigation.addListener("state", () => {
-      deactivateKeepAwake("voiceover");
-      Speech.stop();
-      dispatch(resetReadingList());
-      dispatch(setReadingItem(null));
+      stopVoiceover();
     });
 
     return unsubscribeState;

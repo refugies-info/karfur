@@ -1,20 +1,14 @@
 import React, { useEffect, useRef, useState, ReactNode, useMemo } from "react";
-import { Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { View } from "react-native";
+import { useDispatch } from "react-redux";
+import { useIsFocused } from "@react-navigation/native";
 import {
   addToReadingList,
-  editReadingListItem,
+  removeFromReadingList,
 } from "../services/redux/VoiceOver/voiceOver.actions";
-import {
-  currentItemSelector,
-  currentScrollSelector,
-  readingListLengthSelector,
-} from "../services/redux/VoiceOver/voiceOver.selectors";
 import { generateId } from "../libs/generateId";
-import { styles } from "../theme";
-import { useIsFocused } from "@react-navigation/native";
-import { ReadingItem } from "../types/interface";
-import { logger } from "../logger";
+import { ReadingItem, ReadingObject } from "../types/interface";
+import { ReadableColoredText } from "./ReadableColoredText";
 
 interface Props {
   children?: string | ReactNode;
@@ -25,41 +19,8 @@ interface Props {
   overridePosY?: number;
 }
 
-const getItem = (
-  text: string,
-  overridePosY: number | undefined,
-  heightOffset: boolean | undefined,
-  ref: React.MutableRefObject<View | null>,
-  currentScroll: number,
-  id: string
-): Promise<ReadingItem> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      ref.current?.measureInWindow((x, y, _width, height) => {
-        let posY = 0;
-
-        if (overridePosY !== undefined) {
-          posY = overridePosY;
-        } else {
-          posY = (!heightOffset ? y : y + height) + currentScroll;
-        }
-        // logger.info("Save position:", [posY.toFixed(0), text.slice(0, 20)]);
-        resolve({
-          id,
-          text,
-          posX: x,
-          posY,
-        } as ReadingItem);
-      });
-    });
-  });
-};
-
 export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   const dispatch = useDispatch();
-  const currentReadingItem = useSelector(currentItemSelector);
-  const readingListLength = useSelector(readingListLengthSelector);
-  const currentScroll = useSelector(currentScrollSelector);
   const [id, _setId] = useState(generateId());
   const isFocused = useIsFocused();
 
@@ -70,57 +31,48 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
     return props.text || (props.children as string) || "";
   }, [props.text, props.children]);
 
-  useEffect(() => {
-    if (isFocused && readingListLength === 0) {
-      const item: Promise<ReadingItem> = getItem(
-        text,
-        props.overridePosY,
-        props.heightOffset,
-        refView,
-        currentScroll,
-        id
-      );
-      dispatch(addToReadingList({ item, id }));
-    }
-  }, [readingListLength]);
+  // Attach the properties/methods to the ref
+  const readingObject = useRef<ReadingObject>();
+  readingObject.current = {
+    getReadingItem: (currentScroll: number) => {
+      return new Promise((resolve) => {
+        if (!refView.current || !isFocused) {
+          resolve(undefined);
+          return;
+        }
+        refView.current.measureInWindow((x, y, _width, height) => {
+          let posY = 0;
+
+          if (props.overridePosY !== undefined) {
+            posY = props.overridePosY;
+          } else {
+            posY = (!props.heightOffset ? y : y + height) + currentScroll;
+          }
+          // logger.info("Save position:", [posY.toFixed(0), text.slice(0, 20)]);
+          resolve({
+            id,
+            text,
+            posX: x,
+            posY,
+            ref: readingObject.current,
+          } as ReadingItem);
+        });
+      });
+    },
+  } as ReadingObject;
 
   useEffect(() => {
-    if (isFocused && text) {
-      const item: Promise<ReadingItem> = getItem(
-        text,
-        props.overridePosY,
-        props.heightOffset,
-        refView,
-        currentScroll,
-        id
-      );
-      dispatch(editReadingListItem({ item, id }));
-    }
-  }, [text]);
+    dispatch(addToReadingList({ item: readingObject, id }));
 
-  const isActive = currentReadingItem?.id === id;
-  return props.text ? ( // if text given as prop, include content in a View
-    <View
-      ref={refView}
-      style={
-        isActive
-          ? { backgroundColor: styles.colors.lightBlue, maxWidth: "100%" }
-          : { maxWidth: "100%" }
-      }
-      collapsable={false}
-    >
+    () => {
+      dispatch(removeFromReadingList(id));
+    };
+  }, []);
+
+  return (
+    <ReadableColoredText text={props.text} id={id} ref={refView}>
       {props.children}
-    </View>
-  ) : (
-    // else, include content in a Text
-    <>
-      <Text
-        style={isActive ? { backgroundColor: styles.colors.lightBlue } : {}}
-      >
-        {props.children}
-      </Text>
-      <View ref={refView}></View>
-    </>
+    </ReadableColoredText>
   );
 });
 

@@ -1,43 +1,18 @@
 import { useIsFocused } from "@react-navigation/native";
-import { MutableRefObject, useEffect, useState } from "react";
+import { MutableRefObject, useEffect } from "react";
 import { ScrollView, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { logger } from "../logger";
-import {
-  newReadingList,
-  setScrollReading,
-} from "../services/redux/VoiceOver/voiceOver.actions";
-import {
-  currentItemSelector,
-  readingListSelector,
-} from "../services/redux/VoiceOver/voiceOver.selectors";
+import { setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
+import { currentItemSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
 
 export const useVoiceover = (
   scrollviewRef: MutableRefObject<ScrollView | FlatList | null>,
   offset: number
-): {
-  setScroll: (currentScroll: number, offset: number) => void;
-  saveList: () => void;
-} => {
+): { setScroll: (currentScroll: number, offset: number) => void } => {
   const dispatch = useDispatch();
 
   // When screen focused, create a new readingList if none available
   const isFocused = useIsFocused();
-  const [registeringStarted, setRegisteringStarted] = useState(false);
-  const [oldPosY, setOldPosY] = useState(0);
-  const readingList = useSelector(readingListSelector);
-
-  useEffect(() => {
-    if (isFocused) {
-      setRegisteringStarted(true);
-      if (!registeringStarted && !Array.isArray(readingList)) {
-        dispatch(newReadingList(oldPosY));
-      }
-    } else {
-      setRegisteringStarted(false);
-    }
-  }, [isFocused]);
-
   // Auto scrolls to current item
   const currentReadingItem = useSelector(currentItemSelector);
   useEffect(() => {
@@ -56,16 +31,9 @@ export const useVoiceover = (
   // Save scroll locally in component, and in Redux
   const setScroll = (currentScroll: number, _offset: number) => {
     if (isFocused) {
-      setOldPosY(currentScroll);
       dispatch(setScrollReading(currentScroll));
     }
   };
 
-  // Manually saves list
-  const saveList = () => {
-    logger.info("Saving new reading list", oldPosY);
-    dispatch(newReadingList(oldPosY));
-  };
-
-  return { setScroll, saveList };
+  return { setScroll };
 };

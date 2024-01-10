@@ -23,9 +23,6 @@ import { updateNbVuesOrFavoritesOnContent } from "../../utils/API";
 import { registerBackButton } from "../../libs/backButton";
 
 import { defaultColors } from "../../libs/getThemeTag";
-import { resetReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
-import { useVoiceover } from "../../hooks/useVoiceover";
-import { readingListLengthSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import {
   DemarcheImage,
   ErrorScreen,
@@ -92,16 +89,12 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   // Back button
   useEffect(() => registerBackButton(backScreen, navigation), []);
 
-  // Voiceover
   const scrollview = useRef<ScrollView | null>(null);
-  const offset = 250;
-  const { saveList } = useVoiceover(scrollview, offset);
 
   // On id or locale change
   useEffect(() => {
     // fetch in any case, to reset if needed
     if (contentId && selectedLanguage) {
-      dispatch(resetReadingList());
       dispatch(
         fetchSelectedContentActionCreator({
           contentId,
@@ -112,19 +105,11 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   }, [selectedLanguage, contentId]);
 
   const selectedContent = useSelector(selectedContentSelector(currentLanguage));
-  const theme = useSelector(
-    themeSelector(
-      route.params.theme?._id.toString() || selectedContent?.theme?.toString()
-    )
-  );
-  const readingListLength = useSelector(readingListLengthSelector);
+  const themeId = route.params.theme?._id || selectedContent?.theme;
+  const theme = useSelector(themeSelector(themeId?.toString()));
   // On content change
   useEffect(() => {
     if (selectedContent) {
-      if (readingListLength === undefined) {
-        // new reading list if content is just loaded
-        saveList();
-      }
       updateNbVuesOrFavoritesOnContent(
         selectedContent._id.toString(),
         ViewsType.MOBILE
@@ -227,7 +212,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           <LastModificationDate lastModificationDate={lastModificationDate} />
 
           <Spacer height={styles.margin * 5} />
-          <Section key="what" sectionKey="what" />
+          <Section key="what" sectionKey="what" themeId={themeId || null} />
 
           <InfocardsSection
             key="infocards"
@@ -237,7 +222,13 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
 
           {CONTENT_STRUCTURES[selectedContent.typeContenu].map(
             (section, i) =>
-              section !== "what" && <Section key={i} sectionKey={section} />
+              section !== "what" && (
+                <Section
+                  key={i}
+                  sectionKey={section}
+                  themeId={themeId || null}
+                />
+              )
           )}
 
           <ExternalLink

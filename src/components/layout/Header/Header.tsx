@@ -12,7 +12,6 @@ import { LanguageSwitch } from "../../Language/LanguageSwitch";
 import { StyledTextSmallBold } from "../../StyledText";
 import Logo from "../../../theme/images/logo.svg";
 import NotificationsIcon from "../../Notifications/NotificationsIcon";
-import { ReadableText } from "../../ReadableText";
 import Columns from "../Columns";
 import { IconButton } from "../../iconography";
 import upperFirst from "lodash/upperFirst";
@@ -146,7 +145,7 @@ export const Header = ({
                       numberOfLines={2}
                       accessibilityRole="header"
                     >
-                      <ReadableText>{upperFirst(headerTitle)}</ReadableText>
+                      {upperFirst(headerTitle)}
                     </HeaderTitle>
                   )}
                 </Columns>

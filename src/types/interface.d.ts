@@ -34,4 +34,10 @@ export interface ReadingItem {
   posX: number;
   posY: number;
   text: string;
+  ref: ReadingObject;
 }
+
+export type ReadingObject = {
+  getReadingItem: (currentScroll: number) => Promise<ReadingItem | undefined>
+}
+

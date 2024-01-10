@@ -166,11 +166,11 @@ export const ReadButton = (props: Props) => {
   const readText = useCallback(
     (item: ReadingItem, readingList: ReadingItem[]) => {
       setIsPaused(false);
-      logger.info("Reading: ", item.text.slice(0, 30));
       Speech.speak(item.text, {
         rate: rate,
         language: currentLanguageI18nCode || "fr",
         onStart: () => {
+          logger.info("Reading: ", item.text.slice(0, 30));
           dispatch(setReadingItem(item));
         },
         onDone: () => {
@@ -194,9 +194,14 @@ export const ReadButton = (props: Props) => {
       });
 
       logger.info("startToRead, nb items :", readingListLength);
-      Promise.all(Object.values(readingList))
+      Promise.all(
+        Object.values(readingList).map((r) =>
+          r?.current?.getReadingItem(currentScroll)
+        )
+      )
+        .then((res) => res.filter((r) => !!r) as ReadingItem[])
         .then((res) => {
-          logger.info("startToRead:: res", res);
+          // logger.info("startToRead:: res", res);
           logEventInFirebase(FirebaseEvent.START_VOICEOVER, {
             locale: currentLanguageI18nCode,
           });

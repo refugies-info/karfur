@@ -1,9 +1,10 @@
 import { createReducer } from "typesafe-actions";
-import { ReadingItem } from "../../../types/interface";
+import { ReadingItem, ReadingObject } from "../../../types/interface";
 import { VoiceOverActions } from "./voiceOver.actions";
+import { MutableRefObject } from "react";
 
 export interface VoiceOverState {
-  readingList: Record<string, Promise<ReadingItem>> | null;
+  readingList: Record<string, MutableRefObject<ReadingObject | undefined>> | null;
   currentItem: ReadingItem | null;
   currentScroll: number;
 }
@@ -28,27 +29,12 @@ export const voiceOverReducer = createReducer<
       readingList: { ...(state.readingList || {}), [action.payload.id]: action.payload.item }
     }
   },
-  VOICEOVER_EDIT_ITEM: (state, action) => {
+  VOICEOVER_REMOVE_ITEM: (state, action) => {
     const newReadingList = { ...(state.readingList || {}) };
-    newReadingList[action.payload.id] = action.payload.item;
+    delete newReadingList[action.payload];
     return {
       ...state,
       readingList: newReadingList
-    }
-  },
-  VOICEOVER_NEW_LIST: (state, action) => {
-    return {
-      ...state,
-      readingList: {},
-      currentScroll: action.payload !== null ? action.payload : state.currentScroll
-    }
-  },
-  VOICEOVER_RESET_LIST: (state) => {
-    return {
-      ...state,
-      readingList: null,
-      currentItem: null,
-      currentScroll: 0
     }
   },
   VOICEOVER_UPDATE_SCROLL: (state, action) => ({

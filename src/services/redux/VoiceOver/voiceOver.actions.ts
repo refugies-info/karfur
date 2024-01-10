@@ -1,22 +1,17 @@
 import { action, ActionType } from "typesafe-actions";
-import { ReadingItem } from "../../../types/interface";
+import { ReadingItem, ReadingObject } from "../../../types/interface";
 import {
   VOICEOVER_ADD_ITEM,
-  VOICEOVER_RESET_LIST,
   VOICEOVER_UPDATE_SCROLL,
   VOICEOVER_SET_READING_ITEM,
-  VOICEOVER_NEW_LIST,
-  VOICEOVER_EDIT_ITEM,
+  VOICEOVER_REMOVE_ITEM,
 } from "./voiceOver.actionTypes";
+import { MutableRefObject } from "react";
 
-export const addToReadingList = (data: { item: Promise<ReadingItem>, id: string }) =>
+export const addToReadingList = (data: { item: MutableRefObject<ReadingObject | undefined>, id: string }) =>
   action(VOICEOVER_ADD_ITEM, data);
-export const editReadingListItem = (data: { item: Promise<ReadingItem>, id: string }) =>
-  action(VOICEOVER_EDIT_ITEM, data);
-export const newReadingList = (currentScroll: number | null) =>
-  action(VOICEOVER_NEW_LIST, currentScroll);
-export const resetReadingList = () =>
-  action(VOICEOVER_RESET_LIST);
+export const removeFromReadingList = (id: string) =>
+  action(VOICEOVER_REMOVE_ITEM, id);
 export const setScrollReading = (y: number) =>
   action(VOICEOVER_UPDATE_SCROLL, y);
 export const setReadingItem = (item: ReadingItem | null) =>
@@ -24,11 +19,9 @@ export const setReadingItem = (item: ReadingItem | null) =>
 
 const actions = {
   addToReadingList,
-  editReadingListItem,
-  resetReadingList,
+  removeFromReadingList,
   setScrollReading,
   setReadingItem,
-  newReadingList
 };
 
 export type VoiceOverActions = ActionType<typeof actions>;

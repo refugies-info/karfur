@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { ContentType, InfoSections } from "@refugies-info/api-types";
+import { ContentType, Id, InfoSections } from "@refugies-info/api-types";
 import { useWindowDimensions, View } from "react-native";
 import { useSelector } from "react-redux";
 import {
@@ -19,9 +19,10 @@ import { styles } from "../../../theme";
 
 export interface SectionProps {
   sectionKey: "what" | "how" | "why" | "next";
+  themeId: Id | null;
 }
 
-const SectionComponent = ({ sectionKey }: SectionProps) => {
+const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
   const { t } = useTranslationWithRTL();
 
   const windowWidth = useWindowDimensions().width;
@@ -37,9 +38,7 @@ const SectionComponent = ({ sectionKey }: SectionProps) => {
   const currentLanguage = useSelector(currentI18nCodeSelector);
   const dispositif = useSelector(selectedContentSelector(currentLanguage));
 
-  const theme = useSelector(
-    themeSelector(dispositif?.theme?.toString() || null)
-  );
+  const theme = useSelector(themeSelector(themeId?.toString() || null));
 
   if (!dispositif) return null;
 
