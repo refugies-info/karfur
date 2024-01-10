@@ -1752,12 +1752,7 @@ exports[`Filter french level should render correctly when no french level select
                   }
                 }
               >
-                <Text
-                  style={{}}
-                >
-                  Onboarding_screens.me
-                </Text>
-                <View />
+                Onboarding_screens.me
               </Text>
             </View>
           </View>

@@ -251,12 +251,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                   }
                 }
               >
-                <Text
-                  style={{}}
-                >
-                  Global.language
-                </Text>
-                <View />
+                Global.language
               </Text>
             </View>
           </View>

@@ -407,12 +407,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
                   }
                 }
               >
-                <Text
-                  style={{}}
-                >
-                  Créer mon profil
-                </Text>
-                <View />
+                Créer mon profil
               </Text>
             </View>
           </View>
@@ -1638,12 +1633,7 @@ exports[`Filter city should render correctly when no city 1`] = `
                   }
                 }
               >
-                <Text
-                  style={{}}
-                >
-                  Créer mon profil
-                </Text>
-                <View />
+                Créer mon profil
               </Text>
             </View>
           </View>
