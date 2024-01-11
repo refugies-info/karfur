@@ -24,12 +24,14 @@ const MainView = styled(SafeAreaView)`
   padding-bottom: ${({ theme }) => theme.insets.bottom}px;
 `;
 
-const StyledText = styled(StyledTextBigBold)`
+const StyledText = styled(StyledTextBigBold)<{
+  marginTop?: string;
+  marginBottom: string;
+}>`
   color: ${styles.colors.white};
   text-align: center;
-  margin-top: ${(props: { marginTop: string }) => props.marginTop || "0px"};
-  margin-bottom: ${(props: { marginBottom: string }) =>
-    props.marginBottom || "0px"};
+  margin-top: ${({ marginTop }) => marginTop || "0px"};
+  margin-bottom: ${({ marginBottom }) => marginBottom || "0px"};
 `;
 
 export const OnboardingStart = ({

@@ -31,9 +31,9 @@ const TitleContainer = styled(RTLTouchableOpacity)<{
   background-color: ${({ isExpanded, lightColor, theme }) =>
     isExpanded ? lightColor : theme.colors.white};
   padding: ${styles.margin * 2}px;
-  border-radius: ${styles.radius * 2}px
-    ${(props: { isExpanded: boolean }) =>
-      !props.isExpanded ? styles.shadows.lg : ""};
+  border-radius: ${styles.radius * 2}px;
+  ${(props: { isExpanded: boolean }) =>
+    !props.isExpanded ? styles.shadows.lg : ""};
   justify-content: space-between;
   border: ${({ darkColor, isExpanded, theme }) =>
     isExpanded ? `2px solid ${darkColor}` : `2px solid ${theme.colors.white}`};
@@ -65,16 +65,14 @@ const StepText = styled(TextSmallBold)`
 const ExpandedContentContainer = styled.View`
   padding: ${styles.margin}px;
 `;
-const IconContainer = styled.View`
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
+const IconContainer = styled.View<{ isRTL: boolean }>`
+  margin-right: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
+  margin-left: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
 `;
 
-const TitleText = styled(TextSmallBold)`
-  width: ${(props: { width: number }) => props.width}px;
-  color: ${(props: { darkColor: string }) => props.darkColor};
+const TitleText = styled(TextSmallBold)<{ width: number; darkColor: string }>`
+  width: ${({ width }) => width}px;
+  color: ${({ darkColor }) => darkColor};
 `;
 const stylesheet = StyleSheet.create({
   bodyBackground: {

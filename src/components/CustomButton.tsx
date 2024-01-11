@@ -28,44 +28,34 @@ const ButtonContainer = styled(RTLTouchableOpacity)<{
   opacity: ${({ isDisabled }) => (isDisabled ? 0.4 : 1)};
 `;
 
-const ColoredTextBold = styled(StyledTextSmallBold)`
-  color: ${(props: { textColor: string }) => props.textColor};
-  margin-left: ${(props: {
-    isRTL: boolean;
-    iconFirst: boolean;
-    hasIcon: boolean;
-  }) =>
-    props.hasIcon &&
-    (props.iconFirst || props.isRTL) &&
-    props.isRTL !== props.iconFirst
+const ColoredTextBold = styled(StyledTextSmallBold)<{
+  textColor: string;
+  isRTL: boolean;
+  iconFirst: boolean;
+  hasIcon: boolean;
+}>`
+  color: ${({ textColor }) => textColor};
+  margin-left: ${({ isRTL, iconFirst, hasIcon }) =>
+    hasIcon && (iconFirst || isRTL) && isRTL !== iconFirst
       ? styles.margin
       : 0}px;
-  margin-right: ${(props: {
-    isRTL: boolean;
-    iconFirst: boolean;
-    hasIcon: boolean;
-  }) =>
-    props.hasIcon && props.isRTL === props.iconFirst ? styles.margin : 0}px;
+  margin-right: ${({ isRTL, iconFirst, hasIcon }) =>
+    hasIcon && isRTL === iconFirst ? styles.margin : 0}px;
 `;
 
-const ColoredTextNormal = styled(StyledTextSmall)`
-  color: ${(props: { textColor: string }) => props.textColor};
-  margin-left: ${(props: {
-    isRTL: boolean;
-    iconFirst: boolean;
-    hasIcon: boolean;
-  }) =>
-    props.hasIcon &&
-    (props.iconFirst || props.isRTL) &&
-    props.isRTL !== props.iconFirst
+const ColoredTextNormal = styled(StyledTextSmall)<{
+  textColor: string;
+  isRTL: boolean;
+  iconFirst: boolean;
+  hasIcon: boolean;
+}>`
+  color: ${({ textColor }) => textColor};
+  margin-left: ${({ isRTL, iconFirst, hasIcon }) =>
+    hasIcon && (iconFirst || isRTL) && isRTL !== iconFirst
       ? styles.margin
       : 0}px;
-  margin-right: ${(props: {
-    isRTL: boolean;
-    iconFirst: boolean;
-    hasIcon: boolean;
-  }) =>
-    props.hasIcon && props.isRTL === props.iconFirst ? styles.margin : 0}px;
+  margin-right: ${({ isRTL, iconFirst, hasIcon }) =>
+    hasIcon && isRTL === iconFirst ? styles.margin : 0}px;
 `;
 
 interface Props {

@@ -39,7 +39,7 @@ export const useNotificationsStatus = (): [boolean, () => void, string] => {
       if (expoStatus === PermissionStatus.GRANTED) {
         const token = (
           await getExpoPushTokenAsync({
-            experienceId: "@refugies-info/refugies-info-app",
+            projectId: "@refugies-info/refugies-info-app",
           })
         ).data;
         if (token) {

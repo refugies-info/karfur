@@ -7,10 +7,10 @@ import { RTLTouchableOpacity } from "../../BasicComponents";
 import { HeaderContentProps } from "./HeaderContentProps";
 
 const FakeInput = styled(RTLTouchableOpacity)`
-  min-height:48px;
-  width 100%;
-  border-radius:${({ theme }) => theme.radius * 2}px;
-  padding:${({ theme }) => theme.margin * 2}px;
+  min-height: 48px;
+  width: 100%;
+  border-radius: ${({ theme }) => theme.radius * 2}px;
+  padding: ${({ theme }) => theme.margin * 2}px;
   background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.darkGrey};
   align-items: center;

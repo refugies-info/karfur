@@ -1,5 +1,7 @@
 import * as React from "react";
+import { ViewStyle } from "react-native";
 import Animated, {
+  AnimateStyle,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -40,7 +42,7 @@ export const OnboardingProgressBar = (props: Props) => {
     }, 300);
   }, []);
 
-  const getWidth = (step: number) => {
+  const getWidth = (step: number): AnimateStyle<ViewStyle> => {
     if (props.step === step) {
       return animatedWidth;
     } else if (props.step >= step) {

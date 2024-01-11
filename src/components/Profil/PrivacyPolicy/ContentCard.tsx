@@ -11,24 +11,21 @@ const ContentCardContainer = styled.View`
   border-radius: ${styles.radius * 2}px;
   ${styles.shadows.lg}
 `;
-const ContentCardTitle = styled.View`
-  flex-direction: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "row-reverse" : "row"};
+const ContentCardTitle = styled.View<{ isRTL: boolean }>`
+  flex-direction: ${({ isRTL }) => (isRTL ? "row-reverse" : "row")};
   align-items: center;
   margin-bottom: ${styles.margin * 3}px;
   max-width: 100%;
 `;
-const ContentCardTitleNumber = styled.View`
+const ContentCardTitleNumber = styled.View<{ isRTL: boolean }>`
   background-color: ${styles.colors.black};
   width: 32px;
   height: 32px;
   border-radius: 16px;
   align-items: center;
   justify-content: center;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? styles.margin * 2 : 0}px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin * 2 : 0}px;
+  margin-right: ${({ isRTL }) => (!isRTL ? styles.margin * 2 : 0)}px;
+  margin-left: ${({ isRTL }) => (isRTL ? styles.margin * 2 : 0)}px;
 `;
 const ContentCardTitleNumberText = styled(TextNormalBold)`
   color: ${styles.colors.white};
@@ -49,9 +46,11 @@ export const ContentCard = (props: Props) => {
         <ContentCardTitleNumber isRTL={isRTL}>
           <ContentCardTitleNumberText>{props.step}</ContentCardTitleNumberText>
         </ContentCardTitleNumber>
-        <TextNormalBold style={{ flex: 1, flexWrap: "wrap" }}>{props.title}</TextNormalBold>
+        <TextNormalBold style={{ flex: 1, flexWrap: "wrap" }}>
+          {props.title}
+        </TextNormalBold>
       </ContentCardTitle>
       {props.children}
     </ContentCardContainer>
-  )
+  );
 };

@@ -10,9 +10,8 @@ const ContentHighlightContainer = styled.View`
   padding: ${styles.margin * 3}px;
   border-radius: ${styles.radius * 2}px;
 `;
-const ContentHighlightTitle = styled.View`
-  flex-direction: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "row-reverse" : "row"};
+const ContentHighlightTitle = styled.View<{ isRTL: boolean }>`
+  flex-direction: ${({ isRTL }) => (isRTL ? "row-reverse" : "row")};
   align-items: center;
   margin-bottom: ${styles.margin * 2}px;
 `;
@@ -34,12 +33,12 @@ export const ContentHighlight = (props: Props) => {
           fill={styles.colors.black}
           style={{
             marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0
-           }}
+            marginLeft: isRTL ? styles.margin : 0,
+          }}
         />
         <TextNormalBold>Bon à savoir</TextNormalBold>
       </ContentHighlightTitle>
       {props.children}
     </ContentHighlightContainer>
-  )
-}
+  );
+};

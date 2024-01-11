@@ -4,16 +4,14 @@ exports[`Accessibility screen should render correctly 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    [
-      {
-        "backgroundColor": "transparent",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "minHeight": "100%",
-        "minWidth": "100%",
-      },
-    ]
+    {
+      "backgroundColor": "transparent",
+      "flexBasis": 0,
+      "flexGrow": 1,
+      "flexShrink": 1,
+      "minHeight": "100%",
+      "minWidth": "100%",
+    }
   }
 >
   <View
@@ -38,13 +36,11 @@ exports[`Accessibility screen should render correctly 1`] = `
   >
     <RCTSafeAreaView
       style={
-        [
-          {
-            "minHeight": 65,
-            "paddingBottom": 20,
-            "paddingTop": 0,
-          },
-        ]
+        {
+          "minHeight": 65,
+          "paddingBottom": 20,
+          "paddingTop": 0,
+        }
       }
     >
       <View
@@ -69,13 +65,11 @@ exports[`Accessibility screen should render correctly 1`] = `
       >
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-                "marginRight": 8,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexGrow": 0,
+              "marginRight": 8,
+            }
           }
         >
           <View>
@@ -111,7 +105,10 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "backgroundColor": "#FFFFFF",
-                  "borderRadius": 12,
+                  "borderBottomLeftRadius": 12,
+                  "borderBottomRightRadius": 12,
+                  "borderTopLeftRadius": 12,
+                  "borderTopRightRadius": 12,
                   "elevation": 6,
                   "opacity": 1,
                   "paddingBottom": 12,
@@ -131,11 +128,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             >
               <View
                 disabled={false}
-                style={
-                  [
-                    {},
-                  ]
-                }
+                style={{}}
               >
                 <View
                   collapsable={false}
@@ -189,9 +182,29 @@ exports[`Accessibility screen should render correctly 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup>
-                        <RNSVGGroup>
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGGroup
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        >
                           <RNSVGRect
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                             height="24"
                             matrix={
                               [
@@ -210,6 +223,12 @@ exports[`Accessibility screen should render correctly 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -222,25 +241,21 @@ exports[`Accessibility screen should render correctly 1`] = `
         </View>
         <View
           style={
-            [
-              {
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "marginRight": 8,
-              },
-            ]
+            {
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "marginRight": 8,
+            }
           }
         >
           <View />
         </View>
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexGrow": 0,
+            }
           }
         >
           <View
@@ -265,12 +280,10 @@ exports[`Accessibility screen should render correctly 1`] = `
           >
             <View
               style={
-                [
-                  {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
-                  },
-                ]
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
               }
             >
               <View />
@@ -309,12 +322,6 @@ exports[`Accessibility screen should render correctly 1`] = `
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
-    contentContainerStyle={
-      {
-        "flexGrow": 1,
-        "paddingBottom": 0,
-      }
-    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
@@ -329,12 +336,21 @@ exports[`Accessibility screen should render correctly 1`] = `
         {
           "paddingBottom": 24,
         },
+        {
+          "flexGrow": 1,
+          "paddingBottom": 0,
+        },
       ]
     }
   >
     <View>
       <View
         onLayout={[Function]}
+        style={
+          {
+            "marginBottom": 24,
+          }
+        }
       >
         <View
           style={
@@ -348,13 +364,11 @@ exports[`Accessibility screen should render correctly 1`] = `
         >
           <View
             style={
-              [
-                {
-                  "justifyContent": "center",
-                  "minHeight": 48,
-                  "paddingBottom": 8,
-                },
-              ]
+              {
+                "justifyContent": "center",
+                "minHeight": 48,
+                "paddingBottom": 8,
+              }
             }
           >
             <View
@@ -379,13 +393,11 @@ exports[`Accessibility screen should render correctly 1`] = `
             >
               <View
                 style={
-                  [
-                    {
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "marginRight": 8,
-                    },
-                  ]
+                  {
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 8,
+                  }
                 }
               >
                 <View
@@ -410,13 +422,11 @@ exports[`Accessibility screen should render correctly 1`] = `
                 >
                   <View
                     style={
-                      [
-                        {
-                          "flexBasis": "auto",
-                          "flexGrow": 0,
-                          "marginRight": 8,
-                        },
-                      ]
+                      {
+                        "flexBasis": "auto",
+                        "flexGrow": 0,
+                        "marginRight": 8,
+                      }
                     }
                   >
                     <Text
@@ -424,15 +434,13 @@ exports[`Accessibility screen should render correctly 1`] = `
                       hasBackgroundImage={false}
                       invertedColor={false}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 25,
-                            "lineHeight": 40,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 25,
+                          "lineHeight": 40,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       <Text
@@ -491,29 +499,25 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           L’accessibilité permet à tous les publics, sans discrimination, d’accéder aux contenus et aux services numériques. Pour cela, il faut respecter des règles émises par le World Wide Web Consortium et pensées par des ergonomes pour chaque type de handicap.
         </Text>
         <View
           style={
-            [
-              {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            }
           }
         >
           <View
@@ -572,9 +576,29 @@ exports[`Accessibility screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup>
-                  <RNSVGGroup>
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
                     <RNSVGRect
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                       height="24"
                       matrix={
                         [
@@ -593,9 +617,21 @@ exports[`Accessibility screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                     <RNSVGPath
                       d="M16 11h-3V8a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>
@@ -637,17 +673,15 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Déclaration d’accessibilité
@@ -656,16 +690,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           La Délégation interministérielle à l'accueil et à l'intégration des réfugiés s'engage à rendre son application mobile accessible conformément à la Directive européenne sur l'accessibilité des applications Web et mobiles (Directive (UE) 2018/2048) sur les exigences d'accessibilité pour les produits et services TIC EN 301 549 V3.2.1.
@@ -674,16 +706,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           À cette fin, il met en œuvre la stratégie et les actions détaillées dans son plan pluriannuel en cours d'élaboration.
@@ -716,17 +746,15 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           État de conformité
@@ -759,15 +787,13 @@ exports[`Accessibility screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBold",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              }
             }
           >
             conformité partielle
@@ -779,17 +805,15 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Résultats des tests
@@ -798,16 +822,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           L’audit de conformité réalisé par la société
@@ -818,18 +840,16 @@ exports[`Accessibility screen should render correctly 1`] = `
             onPress={[Function]}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                  "textDecorationColor": "black",
-                  "textDecorationLine": "underline",
-                  "textDecorationStyle": "solid",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBold",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+                "textDecorationColor": "black",
+                "textDecorationLine": "underline",
+                "textDecorationStyle": "solid",
+              }
             }
           >
             Ipedis
@@ -878,15 +898,13 @@ exports[`Accessibility screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              }
             }
           >
             12
@@ -932,15 +950,13 @@ exports[`Accessibility screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              }
             }
           >
             12
@@ -986,15 +1002,13 @@ exports[`Accessibility screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              }
             }
           >
             19 critères ne sont pas applicables
@@ -1005,7 +1019,10 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "backgroundColor": "#FFFFFF",
-                "borderRadius": 12,
+                "borderBottomLeftRadius": 12,
+                "borderBottomRightRadius": 12,
+                "borderTopLeftRadius": 12,
+                "borderTopRightRadius": 12,
                 "elevation": 6,
                 "marginBottom": 24,
                 "paddingBottom": 24,
@@ -1079,16 +1096,17 @@ exports[`Accessibility screen should render correctly 1`] = `
             <View
               color="#27A8A5"
               style={
-                [
-                  {
-                    "backgroundColor": "#27A8A5",
-                    "borderRadius": 6,
-                    "height": 24,
-                    "marginLeft": 0,
-                    "marginRight": 16,
-                    "width": 24,
-                  },
-                ]
+                {
+                  "backgroundColor": "#27A8A5",
+                  "borderBottomLeftRadius": 6,
+                  "borderBottomRightRadius": 6,
+                  "borderTopLeftRadius": 6,
+                  "borderTopRightRadius": 6,
+                  "height": 24,
+                  "marginLeft": 0,
+                  "marginRight": 16,
+                  "width": 24,
+                }
               }
             />
             <Text
@@ -1131,16 +1149,17 @@ exports[`Accessibility screen should render correctly 1`] = `
             <View
               color="#D64B71"
               style={
-                [
-                  {
-                    "backgroundColor": "#D64B71",
-                    "borderRadius": 6,
-                    "height": 24,
-                    "marginLeft": 0,
-                    "marginRight": 16,
-                    "width": 24,
-                  },
-                ]
+                {
+                  "backgroundColor": "#D64B71",
+                  "borderBottomLeftRadius": 6,
+                  "borderBottomRightRadius": 6,
+                  "borderTopLeftRadius": 6,
+                  "borderTopRightRadius": 6,
+                  "height": 24,
+                  "marginLeft": 0,
+                  "marginRight": 16,
+                  "width": 24,
+                }
               }
             />
             <Text
@@ -1169,17 +1188,15 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Contenus non accessibles
@@ -1188,16 +1205,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Les contenus listés ci-dessous ne sont pas accessibles pour les raisons suivantes.
@@ -1206,16 +1221,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Non-conformité
@@ -1224,16 +1237,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Plusieurs éléments de non-conformité sont décrits dans ce document, dont certains récurrents sur plusieurs pages :
@@ -1263,17 +1274,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1282,18 +1291,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Les images/icônes porteuses d'information n'ont pas d'alternative textuelle
@@ -1317,17 +1324,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1336,18 +1341,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Certains textes ne sont pas correctement lus par le lecteur d'écran
@@ -1371,17 +1374,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1390,18 +1391,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Le contraste entre la couleur de fond et les textes/images et certains composants d’interface ne sont pas suffisants
@@ -1425,17 +1424,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1444,18 +1441,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               L'application n'est consultable qu'en version portrait
@@ -1479,17 +1474,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1498,18 +1491,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               L'ordre de tabulation des éléments de la page n'est pas toujours logique et intuitif
@@ -1533,17 +1524,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1552,18 +1541,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Au chargement des pages, le focus ne part pas automatiquement sur le premier élément de la nouvelle page
@@ -1587,17 +1574,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1606,18 +1591,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Des pièges au clavier sont présents
@@ -1641,17 +1624,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1660,18 +1641,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Certains boutons n'ont pas d'intitulé ou ont un intitulé qui n'est pas pertinent
@@ -1695,17 +1674,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1714,18 +1691,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Le label des champs est visible, mais n'est pas restitué lorsque le focus du lecteur d’écran arrive dessus
@@ -1749,17 +1724,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1768,18 +1741,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Certaines pages ont des titres qui ne sont pas définis comme étant des en-têtes
@@ -1803,17 +1774,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1822,18 +1791,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               La navigation sur la carte Google doit se faire avec l’utilisation simultanée de deux doigts ou plus
@@ -1857,17 +1824,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1876,18 +1841,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Le champ Ta Ville affiche une liste de suggestion, mais cela n'est pas vocalisé par le lecteur d'écran
@@ -1911,17 +1874,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1930,18 +1891,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Les barres d'onglet ne sont pas reconnues comme telles par le lecteur d'écran
@@ -1965,17 +1924,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -1984,18 +1941,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Certains boutons/listes de suggestion/boutons radio/liens ne sont pas reconnus comme tels
@@ -2019,17 +1974,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2038,18 +1991,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Les messages de statut ne sont pas restitués par le lecteur d'écran
@@ -2060,16 +2011,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Dérogations pour charge disproportionnée
@@ -2078,16 +2027,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Pas de dérogation identifiée
@@ -2096,16 +2043,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Contenus non soumis à l’obligation d’accessibilité
@@ -2135,17 +2080,15 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Établissement de cette déclaration d’accessibilité
@@ -2154,16 +2097,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Cette déclaration a été établie le 30 novembre 2021.
@@ -2214,17 +2155,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2233,18 +2172,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               React Native
@@ -2297,17 +2234,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2316,18 +2251,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               iOS Voiceover
@@ -2380,17 +2313,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2399,18 +2330,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Contrast Color checker WCAG
@@ -2434,17 +2363,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2453,18 +2380,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               iOS Voiceover
@@ -2513,17 +2438,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2532,18 +2455,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Page “Explorer”
@@ -2567,17 +2488,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2586,18 +2505,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Page “Déclaration d’accessibilité”
@@ -2621,17 +2538,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2640,18 +2555,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Page “Rechercher”
@@ -2675,17 +2588,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2694,18 +2605,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Page du Choix de langue
@@ -2729,17 +2638,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2748,18 +2655,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Carrousel d'explications de l'application
@@ -2783,17 +2688,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2802,18 +2705,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Pages de création des filtres
@@ -2837,17 +2738,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2856,18 +2755,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Page “Moi”
@@ -2891,17 +2788,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2910,18 +2805,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Page “Mes fiches”
@@ -2945,17 +2838,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2964,18 +2855,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Fiche “Trouver un logement”
@@ -2999,17 +2888,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -3018,18 +2905,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Fiche “Accueils de jours à Paris”
@@ -3053,17 +2938,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -3072,18 +2955,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Page “Mentions légales”
@@ -3094,17 +2975,15 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Retour d’information et contact
@@ -3113,16 +2992,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le responsable de l’application mobile pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme.
@@ -3167,7 +3044,10 @@ exports[`Accessibility screen should render correctly 1`] = `
               {
                 "alignItems": "center",
                 "backgroundColor": "#212121",
-                "borderRadius": 12,
+                "borderBottomLeftRadius": 12,
+                "borderBottomRightRadius": 12,
+                "borderTopLeftRadius": 12,
+                "borderTopRightRadius": 12,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -3242,9 +3122,29 @@ exports[`Accessibility screen should render correctly 1`] = `
                     ]
                   }
                 >
-                  <RNSVGGroup>
-                    <RNSVGGroup>
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
                       <RNSVGRect
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                         height="24"
                         opacity={0}
                         width="24"
@@ -3253,6 +3153,12 @@ exports[`Accessibility screen should render correctly 1`] = `
                       />
                       <RNSVGPath
                         d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -3293,17 +3199,15 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Voies de recours
@@ -3312,16 +3216,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Cette procédure est à utiliser dans le cas suivant :
@@ -3330,16 +3232,14 @@ exports[`Accessibility screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Vous avez signalé au responsable du site internet un défaut d’accessibilité qui vous empêche d’accéder à un contenu ou à un des services du portail et vous n’avez pas obtenu de réponse satisfaisante.
@@ -3365,17 +3265,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -3384,18 +3282,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Écrire un message au
@@ -3406,18 +3302,16 @@ exports[`Accessibility screen should render correctly 1`] = `
                 onPress={[Function]}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                      "textDecorationColor": "black",
-                      "textDecorationLine": "underline",
-                      "textDecorationStyle": "solid",
-                    },
-                  ]
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                    "textDecorationColor": "black",
+                    "textDecorationLine": "underline",
+                    "textDecorationStyle": "solid",
+                  }
                 }
               >
                 Défenseur des droits
@@ -3442,17 +3336,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -3461,18 +3353,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Contacter le délégué du
@@ -3483,18 +3373,16 @@ exports[`Accessibility screen should render correctly 1`] = `
                 onPress={[Function]}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                      "textDecorationColor": "black",
-                      "textDecorationLine": "underline",
-                      "textDecorationStyle": "solid",
-                    },
-                  ]
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                    "textDecorationColor": "black",
+                    "textDecorationLine": "underline",
+                    "textDecorationStyle": "solid",
+                  }
                 }
               >
                 Défenseur des droits de ta région
@@ -3519,17 +3407,15 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -3538,18 +3424,16 @@ exports[`Accessibility screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre) à l’adresse suivante :
@@ -3626,9 +3510,29 @@ exports[`Accessibility screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup>
-                  <RNSVGGroup>
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
                     <RNSVGRect
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                       height="24"
                       opacity={0}
                       width="24"
@@ -3637,9 +3541,21 @@ exports[`Accessibility screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                     <RNSVGPath
                       d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>
@@ -3650,15 +3566,13 @@ exports[`Accessibility screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              }
             }
           >
             Défenseur des droits
@@ -3740,9 +3654,29 @@ exports[`Accessibility screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup>
-                  <RNSVGGroup>
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
                     <RNSVGRect
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                       height="24"
                       opacity={0}
                       width="24"
@@ -3751,6 +3685,12 @@ exports[`Accessibility screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>

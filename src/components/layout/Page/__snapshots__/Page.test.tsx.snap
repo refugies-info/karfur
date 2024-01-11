@@ -4,16 +4,14 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    [
-      {
-        "backgroundColor": "transparent",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "minHeight": "100%",
-        "minWidth": "100%",
-      },
-    ]
+    {
+      "backgroundColor": "transparent",
+      "flexBasis": 0,
+      "flexGrow": 1,
+      "flexShrink": 1,
+      "minHeight": "100%",
+      "minWidth": "100%",
+    }
   }
 >
   <View
@@ -38,13 +36,11 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
   >
     <RCTSafeAreaView
       style={
-        [
-          {
-            "minHeight": 65,
-            "paddingBottom": 20,
-            "paddingTop": 0,
-          },
-        ]
+        {
+          "minHeight": 65,
+          "paddingBottom": 20,
+          "paddingTop": 0,
+        }
       }
     >
       <View
@@ -69,13 +65,11 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
       >
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-                "marginRight": 8,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexGrow": 0,
+              "marginRight": 8,
+            }
           }
         >
           <View>
@@ -112,7 +106,10 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
               style={
                 {
                   "backgroundColor": "#FFFFFF",
-                  "borderRadius": 12,
+                  "borderBottomLeftRadius": 12,
+                  "borderBottomRightRadius": 12,
+                  "borderTopLeftRadius": 12,
+                  "borderTopRightRadius": 12,
                   "elevation": 6,
                   "opacity": 1,
                   "paddingBottom": 12,
@@ -132,11 +129,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
             >
               <View
                 disabled={false}
-                style={
-                  [
-                    {},
-                  ]
-                }
+                style={{}}
               >
                 <View
                   collapsable={false}
@@ -190,9 +183,29 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup>
-                        <RNSVGGroup>
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGGroup
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        >
                           <RNSVGRect
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                             height="24"
                             matrix={
                               [
@@ -211,6 +224,12 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -223,25 +242,21 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
         </View>
         <View
           style={
-            [
-              {
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "marginRight": 8,
-              },
-            ]
+            {
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "marginRight": 8,
+            }
           }
         >
           <View />
         </View>
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexGrow": 0,
+            }
           }
         >
           <View
@@ -266,12 +281,10 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
           >
             <View
               style={
-                [
-                  {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
-                  },
-                ]
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
               }
             >
               <View />
@@ -311,16 +324,14 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
   <View
     height={81}
     style={
-      [
-        {
-          "minHeight": 81,
-        },
-      ]
+      {
+        "minHeight": 81,
+      }
     }
   />
   <View
-    boneColor="#EDEBEB"
-    containerStyle={
+    onLayout={[Function]}
+    style={
       {
         "display": "flex",
         "flex": 1,
@@ -328,31 +339,209 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
         "marginTop": 24,
       }
     }
-    highlightColor="#F6F6F6"
-    isLoading={true}
-    layout={
-      [
+  >
+    <View
+      style={
         {
+          "backgroundColor": "#EDEBEB",
+          "borderRadius": 4,
           "height": 80,
           "key": "Section1",
           "marginBottom": 24,
-          "width": "100%",
-        },
+          "overflow": "hidden",
+          "width": 0,
+        }
+      }
+    >
+      <View
+        animatedStyle={
+          {
+            "value": {
+              "transform": [
+                {
+                  "translateX": 0,
+                },
+              ],
+            },
+          }
+        }
+        collapsable={false}
+        style={
+          {
+            "height": "100%",
+            "position": "absolute",
+            "transform": [
+              {
+                "translateX": 0,
+              },
+            ],
+            "width": "100%",
+          }
+        }
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4293782507,
+              4294375158,
+              4293782507,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
         {
+          "backgroundColor": "#EDEBEB",
+          "borderRadius": 4,
           "height": 80,
           "key": "Section2",
           "marginBottom": 24,
-          "width": "100%",
-        },
+          "overflow": "hidden",
+          "width": 0,
+        }
+      }
+    >
+      <View
+        animatedStyle={
+          {
+            "value": {
+              "transform": [
+                {
+                  "translateX": 0,
+                },
+              ],
+            },
+          }
+        }
+        collapsable={false}
+        style={
+          {
+            "height": "100%",
+            "position": "absolute",
+            "transform": [
+              {
+                "translateX": 0,
+              },
+            ],
+            "width": "100%",
+          }
+        }
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4293782507,
+              4294375158,
+              4293782507,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
         {
+          "backgroundColor": "#EDEBEB",
+          "borderRadius": 4,
           "height": 80,
           "key": "Section3",
           "marginBottom": 24,
-          "width": "100%",
-        },
-      ]
-    }
-  />
+          "overflow": "hidden",
+          "width": 0,
+        }
+      }
+    >
+      <View
+        animatedStyle={
+          {
+            "value": {
+              "transform": [
+                {
+                  "translateX": 0,
+                },
+              ],
+            },
+          }
+        }
+        collapsable={false}
+        style={
+          {
+            "height": "100%",
+            "position": "absolute",
+            "transform": [
+              {
+                "translateX": 0,
+              },
+            ],
+            "width": "100%",
+          }
+        }
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4293782507,
+              4294375158,
+              4293782507,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
 </View>
 `;
 
@@ -360,16 +549,14 @@ exports[`Page snapshot test suite should render without bug 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    [
-      {
-        "backgroundColor": "transparent",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "minHeight": "100%",
-        "minWidth": "100%",
-      },
-    ]
+    {
+      "backgroundColor": "transparent",
+      "flexBasis": 0,
+      "flexGrow": 1,
+      "flexShrink": 1,
+      "minHeight": "100%",
+      "minWidth": "100%",
+    }
   }
 >
   <View
@@ -394,13 +581,11 @@ exports[`Page snapshot test suite should render without bug 1`] = `
   >
     <RCTSafeAreaView
       style={
-        [
-          {
-            "minHeight": 65,
-            "paddingBottom": 20,
-            "paddingTop": 0,
-          },
-        ]
+        {
+          "minHeight": 65,
+          "paddingBottom": 20,
+          "paddingTop": 0,
+        }
       }
     >
       <View
@@ -425,13 +610,11 @@ exports[`Page snapshot test suite should render without bug 1`] = `
       >
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-                "marginRight": 8,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexGrow": 0,
+              "marginRight": 8,
+            }
           }
         >
           <View>
@@ -468,7 +651,10 @@ exports[`Page snapshot test suite should render without bug 1`] = `
               style={
                 {
                   "backgroundColor": "#FFFFFF",
-                  "borderRadius": 12,
+                  "borderBottomLeftRadius": 12,
+                  "borderBottomRightRadius": 12,
+                  "borderTopLeftRadius": 12,
+                  "borderTopRightRadius": 12,
                   "elevation": 6,
                   "opacity": 1,
                   "paddingBottom": 12,
@@ -488,11 +674,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
             >
               <View
                 disabled={false}
-                style={
-                  [
-                    {},
-                  ]
-                }
+                style={{}}
               >
                 <View
                   collapsable={false}
@@ -546,9 +728,29 @@ exports[`Page snapshot test suite should render without bug 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup>
-                        <RNSVGGroup>
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGGroup
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        >
                           <RNSVGRect
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                             height="24"
                             matrix={
                               [
@@ -567,6 +769,12 @@ exports[`Page snapshot test suite should render without bug 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -579,25 +787,21 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         </View>
         <View
           style={
-            [
-              {
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "marginRight": 8,
-              },
-            ]
+            {
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "marginRight": 8,
+            }
           }
         >
           <View />
         </View>
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexGrow": 0,
+            }
           }
         >
           <View
@@ -622,12 +826,10 @@ exports[`Page snapshot test suite should render without bug 1`] = `
           >
             <View
               style={
-                [
-                  {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
-                  },
-                ]
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
               }
             >
               <View />
@@ -666,12 +868,6 @@ exports[`Page snapshot test suite should render without bug 1`] = `
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
-    contentContainerStyle={
-      {
-        "flexGrow": 1,
-        "paddingBottom": 0,
-      }
-    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
@@ -686,12 +882,21 @@ exports[`Page snapshot test suite should render without bug 1`] = `
         {
           "paddingBottom": 24,
         },
+        {
+          "flexGrow": 1,
+          "paddingBottom": 0,
+        },
       ]
     }
   >
     <View>
       <View
         onLayout={[Function]}
+        style={
+          {
+            "marginBottom": 24,
+          }
+        }
       >
         <View
           style={

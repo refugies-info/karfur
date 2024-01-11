@@ -18,8 +18,8 @@ export interface PageHeaderProps {
 }
 
 const MainContainer = styled(SafeAreaViewTopInset)<{
-  backgroundColor: string;
-  showShadow: boolean;
+  backgroundColor?: string;
+  showShadow?: boolean;
   rounded: boolean;
 }>`
   z-index: 4;
@@ -64,7 +64,7 @@ const PageHeader = memo(function PageHeader({
         backgroundColor={
           headerBackgroundImage ? "rgba(255,255,255,0)" : headerBackgroundColor
         }
-        rounded={headerBackgroundImage || headerBackgroundColor}
+        rounded={!!(headerBackgroundImage || headerBackgroundColor)}
       >
         <HeaderContentInternal darkBackground={isDarkBackground} />
       </MainContainer>

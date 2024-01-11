@@ -30,14 +30,13 @@ export const callNumber = (phone: string) => {
 
 const ICON_SIZE = 24;
 
-const MainContainer = styled.View`
+const MainContainer = styled.View<{ isSelected: boolean }>`
   display: flex;
   flex-grow: 1;
   flex-shrink: 0;
   flex-direction: column;
   justify-content: space-between;
-  padding: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? styles.margin * 3 : 0}px;
+  padding: ${({ isSelected }) => (isSelected ? styles.margin * 3 : 0)}px;
 `;
 
 const ContentContainer = styled(RTLView)<{
@@ -64,15 +63,13 @@ const ContentTouchableOpacity = styled(RTLTouchableOpacity)<{
   align-items: flex-start;
 `;
 
-const TextValue = styled(TextSmallNormal)`
+const TextValue = styled(TextSmallNormal)<{ color: string }>`
   margin-bottom: ${styles.margin}px;
-  color: ${(props: { color: string }) => props.color};
+  color: ${({ color }) => color};
 `;
-const TextIcon = styled(Icon)`
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin * 2}px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin * 2 : 0}px;
+const TextIcon = styled(Icon)<{ isRTL: boolean }>`
+  margin-right: ${({ isRTL }) => (isRTL ? 0 : styles.margin * 2)}px;
+  margin-left: ${({ isRTL }) => (isRTL ? styles.margin * 2 : 0)}px;
 `;
 
 const HTMLContainer = styled.View`

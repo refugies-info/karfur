@@ -15,23 +15,18 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
   justify-content: space-between;
 `;
 
-const StyledCategoryText = styled(StyledTextSmallBold)`
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? 0 : styles.margin}px;
+const StyledCategoryText = styled(StyledTextSmallBold)<{ isRTL: boolean }>`
+  margin-left: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
+  margin-right: ${({ isRTL }) => (!isRTL ? 0 : styles.margin)}px;
 `;
 
-const StyledChoiceText = styled(StyledTextVerySmall)`
+const StyledChoiceText = styled(StyledTextVerySmall)<{ isRTL: boolean }>`
   color: ${styles.colors.darkGrey};
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin}px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? 0 : styles.margin}px;
+  margin-right: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
+  margin-left: ${({ isRTL }) => (!isRTL ? 0 : styles.margin)}px;
   max-width: 150px;
   flex-shrink: 1;
-  text-align: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "left" : "right"};
+  text-align: ${({ isRTL }) => (isRTL ? "left" : "right")};
 `;
 
 const Separator = styled.View`
@@ -60,20 +55,17 @@ export const ProfilDetailButton = (props: Props) => (
       accessibilityRole="button"
     >
       <RTLView style={{ flexGrow: 0, flexShrink: 1 }}>
-        {props.iconName &&
+        {props.iconName && (
           <Icon
             name={props.iconName}
             width={ICON_SIZE}
             height={ICON_SIZE}
             fill={styles.colors.black}
           />
-        }
-        {props.iconImage &&
-          <props.iconImage
-            width={ICON_SIZE}
-            height={ICON_SIZE}
-          />
-        }
+        )}
+        {props.iconImage && (
+          <props.iconImage width={ICON_SIZE} height={ICON_SIZE} />
+        )}
         <StyledCategoryText isRTL={props.isRTL}>
           {props.category}
         </StyledCategoryText>

@@ -48,12 +48,10 @@ const CardTitle = styled(TextNormalBold)`
   margin-bottom: ${styles.margin}px;
   margin-top: ${styles.margin * 2}px;
 `;
-const LogoContainer = styled.View`
+const LogoContainer = styled.View<{ isRTL: boolean }>`
   padding: ${styles.margin * 2}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? styles.margin * 3 : 0}px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin * 3 : 0}px;
+  margin-right: ${({ isRTL }) => (!isRTL ? styles.margin * 3 : 0)}px;
+  margin-left: ${({ isRTL }) => (isRTL ? styles.margin * 3 : 0)}px;
   background-color: ${styles.colors.white};
   border-radius: ${styles.radius * 2}px;
 `;
@@ -73,11 +71,9 @@ const TeamItem = styled(RTLView)`
   border-radius: ${styles.radius * 2}px;
   margin-bottom: ${styles.margin * 2}px;
 `;
-const TeamDetails = styled.View`
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin * 3 : 0}px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? styles.margin * 3 : 0}px;
+const TeamDetails = styled.View<{ isRTL: boolean }>`
+  margin-right: ${({ isRTL }) => (isRTL ? styles.margin * 3 : 0)}px;
+  margin-left: ${({ isRTL }) => (!isRTL ? styles.margin * 3 : 0)}px;
   flex-shrink: 1;
   flex-grow: 0;
 `;

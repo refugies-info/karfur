@@ -22,11 +22,11 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { FakeTabBar } from "../../navigation/components/FakeTabBar";
 import { Page } from "../../components";
 
-const StyledText = styled(StyledTextBigBold)`
+const StyledText = styled(StyledTextBigBold)<{ marginTop?: number }>`
   color: ${styles.colors.white};
   text-align: center;
-  margin-top: ${(props: { marginTop: number | undefined }) =>
-    props.marginTop ? props.marginTop : styles.margin * 2}px;
+  margin-top: ${({ marginTop }) =>
+    marginTop ? marginTop : styles.margin * 2}px;
   margin-bottom: ${styles.margin}px;
 `;
 const ElementsContainer = styled.ScrollView`
@@ -37,8 +37,8 @@ const LottieContainer = styled.View`
   height: 100px;
   width: 100px;
 `;
-const FakeTabBarArrowContainer = styled.View`
-  width: ${(props: { width: number }) => props.width}px;
+const FakeTabBarArrowContainer = styled.View<{ width: number }>`
+  width: ${({ width }) => width}px;
   align-items: flex-end;
   margin-top: ${styles.margin * 2}px;
 `;

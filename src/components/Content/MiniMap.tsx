@@ -10,13 +10,11 @@ import { MapGoogle } from "../../types/interface";
 import { Icon } from "react-native-eva-icons";
 import { styles } from "../../theme";
 
-interface PropsType {
+interface Props {
   children: React.ReactNode;
   map: MapGoogle;
   markersColor: string;
 }
-
-interface StateType {}
 
 const MainContainer = styled.View`
   ${styles.shadows.lg};
@@ -39,60 +37,57 @@ const ContentContainer = styled.View`
   elevation: 8;
 `; // need elevation to show button
 
-export class MiniMap extends React.Component<PropsType, StateType> {
-  render() {
-    const markers = this.props.map.markers;
-    const mapHeight = 240;
-    const mapWidth = Dimensions.get("window").width - styles.margin * 2 * 3;
+const mapHeight = 240;
+export const MiniMap = (props: Props) => {
+  const mapWidth = Dimensions.get("window").width - styles.margin * 2 * 3;
 
-    return (
-      <MainContainer>
-        <ContentContainer>{this.props.children}</ContentContainer>
-        <MapViewContainer>
-          <MapView
-            provider={
-              Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT
-            }
-            style={{
-              width: mapWidth,
-              height: mapHeight,
-            }}
-            initialRegion={{
-              latitude: 47,
-              longitude: 2,
-              latitudeDelta: 10,
-              longitudeDelta: 5,
-            }}
-          >
-            {markers.map((marker, key) => {
-              const lat =
-                typeof marker.latitude === "string"
-                  ? parseFloat(marker.latitude)
-                  : marker.latitude;
-              const lng =
-                typeof marker.longitude === "string"
-                  ? parseFloat(marker.longitude)
-                  : marker.longitude;
-              return (
-                <Marker
-                  key={key}
-                  coordinate={{
-                    latitude: lat,
-                    longitude: lng,
-                  }}
-                >
-                  <Icon
-                    name="pin"
-                    fill={this.props.markersColor}
-                    width={40}
-                    height={40}
-                  />
-                </Marker>
-              );
-            })}
-          </MapView>
-        </MapViewContainer>
-      </MainContainer>
-    );
-  }
-}
+  return (
+    <MainContainer>
+      <ContentContainer>{props.children}</ContentContainer>
+      <MapViewContainer>
+        <MapView
+          provider={
+            Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT
+          }
+          style={{
+            width: mapWidth,
+            height: mapHeight,
+          }}
+          initialRegion={{
+            latitude: 47,
+            longitude: 2,
+            latitudeDelta: 10,
+            longitudeDelta: 5,
+          }}
+        >
+          {props.map.markers.map((marker, key) => {
+            const lat =
+              typeof marker.latitude === "string"
+                ? parseFloat(marker.latitude)
+                : marker.latitude;
+            const lng =
+              typeof marker.longitude === "string"
+                ? parseFloat(marker.longitude)
+                : marker.longitude;
+            return (
+              <Marker
+                key={key}
+                coordinate={{
+                  latitude: lat,
+                  longitude: lng,
+                }}
+              >
+                <Icon
+                  name="pin"
+                  fill={props.markersColor}
+                  width={40}
+                  height={40}
+                />
+              </Marker>
+            );
+          })}
+        </MapView>
+      </MapViewContainer>
+    </MainContainer>
+  );
+};

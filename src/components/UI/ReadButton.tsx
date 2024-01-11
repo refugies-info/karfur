@@ -34,15 +34,15 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { logger } from "../../logger";
 
-const Container = styled.View`
+const Container = styled.View<{ bottomInset: number }>`
   position: absolute;
-  bottom: ${(props: { bottomInset: number }) => props.bottomInset}px;
+  bottom: ${({ bottomInset }) => bottomInset}px;
   left: 0;
   right: 0;
   align-items: center;
   justify-content: center;
 `;
-const PlayContainer = styled(TouchableOpacity)`
+const PlayContainer = styled(TouchableOpacity)<{ loading: boolean }>`
   width: 56px;
   position: absolute;
   bottom: 0;
@@ -51,7 +51,7 @@ const PlayContainer = styled(TouchableOpacity)`
   align-items: center;
   justify-content: center;
   z-index: 2;
-  opacity: ${(props: { loading: boolean }) => (props.loading ? 0.4 : 1)};
+  opacity: ${({ loading }) => (loading ? 0.4 : 1)};
 `;
 const PlayButton = styled.View`
   width: 56px;
@@ -89,15 +89,15 @@ interface ButtonProps {
   ml?: boolean;
   background?: string;
 }
-const Button = styled(TouchableOpacity)`
+const Button = styled(TouchableOpacity)<ButtonProps>`
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: ${(props: ButtonProps) => props.background || "white"};
+  background: ${(props) => props.background || "white"};
   justify-content: center;
   align-items: center;
-  margin-right: ${(props: ButtonProps) => (props.mr ? "8px" : "0")};
-  margin-left: ${(props: ButtonProps) => (props.ml ? "8px" : "0")};
+  margin-right: ${(props) => (props.mr ? "8px" : "0")};
+  margin-left: ${(props) => (props.ml ? "8px" : "0")};
   ${styles.shadows.blue}
 `;
 

@@ -21,11 +21,11 @@ const ChoiceText = styled(TextVerySmallNormal)`
   margin-right: ${styles.margin}px;
 `;
 
-const StyledButton = styled(RTLTouchableOpacity)`
+const StyledButton = styled(RTLTouchableOpacity)<{ isSelected: boolean }>`
   padding-horizontal: ${styles.margin * 3}px;
   padding-vertical: ${styles.margin * 2}px;
-  background-color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? styles.colors.white : "transparent"};
+  background-color: ${({ isSelected }) =>
+    isSelected ? styles.colors.white : "transparent"};
   border-radius: ${styles.radius * 2}px;
   flex-basis: 50%;
   justify-content: center;

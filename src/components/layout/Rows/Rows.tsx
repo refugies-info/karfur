@@ -62,7 +62,9 @@ const Rows = ({
             <FlexItem
               flex={getFlexValue(layout, index)}
               key={index}
-              marginBottom={!isLastChild(_children, index) && spacing}
+              marginBottom={
+                !isLastChild(_children, index) ? spacing : undefined
+              }
             >
               {child}
               {separator && !isLastChild(_children, index) && (

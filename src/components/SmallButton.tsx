@@ -4,10 +4,10 @@ import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
 import { styles } from "../theme";
 
-const ButtonContainer = styled.TouchableOpacity`
+const ButtonContainer = styled.TouchableOpacity<{ rounded: boolean }>`
   background-color: ${styles.colors.white};
-  border-radius: ${(props: { rounded: boolean }) =>
-    !props.rounded ? styles.radius * 2 : styles.radius * 10}px;
+  border-radius: ${({ rounded }) =>
+    !rounded ? styles.radius * 2 : styles.radius * 10}px;
   padding: ${styles.radius * 2}px;
   ${styles.shadows.lg}
 `;

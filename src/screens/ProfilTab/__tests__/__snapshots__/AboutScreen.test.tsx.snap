@@ -4,16 +4,14 @@ exports[`About screen should render correctly 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    [
-      {
-        "backgroundColor": "transparent",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "minHeight": "100%",
-        "minWidth": "100%",
-      },
-    ]
+    {
+      "backgroundColor": "transparent",
+      "flexBasis": 0,
+      "flexGrow": 1,
+      "flexShrink": 1,
+      "minHeight": "100%",
+      "minWidth": "100%",
+    }
   }
 >
   <View
@@ -38,13 +36,11 @@ exports[`About screen should render correctly 1`] = `
   >
     <RCTSafeAreaView
       style={
-        [
-          {
-            "minHeight": 65,
-            "paddingBottom": 20,
-            "paddingTop": 0,
-          },
-        ]
+        {
+          "minHeight": 65,
+          "paddingBottom": 20,
+          "paddingTop": 0,
+        }
       }
     >
       <View
@@ -69,13 +65,11 @@ exports[`About screen should render correctly 1`] = `
       >
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-                "marginRight": 8,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexGrow": 0,
+              "marginRight": 8,
+            }
           }
         >
           <View>
@@ -111,7 +105,10 @@ exports[`About screen should render correctly 1`] = `
               style={
                 {
                   "backgroundColor": "#FFFFFF",
-                  "borderRadius": 12,
+                  "borderBottomLeftRadius": 12,
+                  "borderBottomRightRadius": 12,
+                  "borderTopLeftRadius": 12,
+                  "borderTopRightRadius": 12,
                   "elevation": 6,
                   "opacity": 1,
                   "paddingBottom": 12,
@@ -131,11 +128,7 @@ exports[`About screen should render correctly 1`] = `
             >
               <View
                 disabled={false}
-                style={
-                  [
-                    {},
-                  ]
-                }
+                style={{}}
               >
                 <View
                   collapsable={false}
@@ -189,9 +182,29 @@ exports[`About screen should render correctly 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup>
-                        <RNSVGGroup>
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGGroup
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        >
                           <RNSVGRect
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                             height="24"
                             matrix={
                               [
@@ -210,6 +223,12 @@ exports[`About screen should render correctly 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -222,25 +241,21 @@ exports[`About screen should render correctly 1`] = `
         </View>
         <View
           style={
-            [
-              {
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "marginRight": 8,
-              },
-            ]
+            {
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "marginRight": 8,
+            }
           }
         >
           <View />
         </View>
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexGrow": 0,
+            }
           }
         >
           <View
@@ -265,12 +280,10 @@ exports[`About screen should render correctly 1`] = `
           >
             <View
               style={
-                [
-                  {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
-                  },
-                ]
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
               }
             >
               <View />
@@ -309,12 +322,6 @@ exports[`About screen should render correctly 1`] = `
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
-    contentContainerStyle={
-      {
-        "flexGrow": 1,
-        "paddingBottom": 0,
-      }
-    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
@@ -329,12 +336,21 @@ exports[`About screen should render correctly 1`] = `
         {
           "paddingBottom": 24,
         },
+        {
+          "flexGrow": 1,
+          "paddingBottom": 0,
+        },
       ]
     }
   >
     <View>
       <View
         onLayout={[Function]}
+        style={
+          {
+            "marginBottom": 24,
+          }
+        }
       >
         <View
           style={
@@ -363,39 +379,33 @@ exports[`About screen should render correctly 1`] = `
       >
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexDirection": "column",
-                "flexGrow": 1,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexDirection": "column",
+              "flexGrow": 1,
+            }
           }
         >
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <Text
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 19,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                }
               }
             >
                
@@ -403,41 +413,35 @@ exports[`About screen should render correctly 1`] = `
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <Text
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
-                    "lineHeight": 32,
-                    "marginBottom": 24,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBold",
+                  "fontSize": 25,
+                  "lineHeight": 32,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                }
               }
             />
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <RCTScrollView
@@ -458,7 +462,10 @@ exports[`About screen should render correctly 1`] = `
                     [
                       {
                         "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
+                        "borderBottomLeftRadius": 12,
+                        "borderBottomRightRadius": 12,
+                        "borderTopLeftRadius": 12,
+                        "borderTopRightRadius": 12,
                         "elevation": 6,
                         "paddingBottom": 16,
                         "paddingLeft": 16,
@@ -484,46 +491,40 @@ exports[`About screen should render correctly 1`] = `
                   <Image
                     source={1}
                     style={
-                      [
-                        {
-                          "alignSelf": "center",
-                          "height": 176,
-                          "marginBottom": 16,
-                          "width": 248,
-                        },
-                      ]
+                      {
+                        "alignSelf": "center",
+                        "height": 176,
+                        "marginBottom": 16,
+                        "width": 248,
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBold",
-                          "fontSize": 19,
-                          "lineHeight": 24,
-                          "marginBottom": 8,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 19,
+                        "lineHeight": 24,
+                        "marginBottom": 8,
+                        "marginTop": 16,
+                        "textAlign": "left",
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      }
                     }
                   />
                 </View>
@@ -532,7 +533,10 @@ exports[`About screen should render correctly 1`] = `
                     [
                       {
                         "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
+                        "borderBottomLeftRadius": 12,
+                        "borderBottomRightRadius": 12,
+                        "borderTopLeftRadius": 12,
+                        "borderTopRightRadius": 12,
                         "elevation": 6,
                         "paddingBottom": 16,
                         "paddingLeft": 16,
@@ -558,115 +562,104 @@ exports[`About screen should render correctly 1`] = `
                   <Image
                     source={1}
                     style={
-                      [
-                        {
-                          "alignSelf": "center",
-                          "height": 176,
-                          "marginBottom": 16,
-                          "width": 248,
-                        },
-                      ]
+                      {
+                        "alignSelf": "center",
+                        "height": 176,
+                        "marginBottom": 16,
+                        "width": 248,
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBold",
-                          "fontSize": 19,
-                          "lineHeight": 24,
-                          "marginBottom": 8,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 19,
+                        "lineHeight": 24,
+                        "marginBottom": 8,
+                        "marginTop": 16,
+                        "textAlign": "left",
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      }
                     }
                   />
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "elevation": 6,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.16,
-                        "shadowRadius": 8,
-                        "width": 280,
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "elevation": 6,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
                       },
-                    ]
+                      "shadowOpacity": 0.16,
+                      "shadowRadius": 8,
+                      "width": 280,
+                    }
                   }
                 >
                   <Image
                     source={1}
                     style={
-                      [
-                        {
-                          "alignSelf": "center",
-                          "height": 176,
-                          "marginBottom": 16,
-                          "width": 248,
-                        },
-                      ]
+                      {
+                        "alignSelf": "center",
+                        "height": 176,
+                        "marginBottom": 16,
+                        "width": 248,
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBold",
-                          "fontSize": 19,
-                          "lineHeight": 24,
-                          "marginBottom": 8,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 19,
+                        "lineHeight": 24,
+                        "marginBottom": 8,
+                        "marginTop": 16,
+                        "textAlign": "left",
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      }
                     }
                   />
                 </View>
@@ -675,41 +668,35 @@ exports[`About screen should render correctly 1`] = `
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <Text
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
-                    "lineHeight": 32,
-                    "marginBottom": 24,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBold",
+                  "fontSize": 25,
+                  "lineHeight": 32,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                }
               }
             />
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <RCTScrollView
@@ -730,7 +717,10 @@ exports[`About screen should render correctly 1`] = `
                     [
                       {
                         "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
+                        "borderBottomLeftRadius": 12,
+                        "borderBottomRightRadius": 12,
+                        "borderTopLeftRadius": 12,
+                        "borderTopRightRadius": 12,
                         "elevation": 6,
                         "paddingBottom": 16,
                         "paddingLeft": 16,
@@ -755,46 +745,40 @@ exports[`About screen should render correctly 1`] = `
                   <Image
                     source={1}
                     style={
-                      [
-                        {
-                          "alignSelf": "center",
-                          "height": 176,
-                          "marginBottom": 16,
-                          "width": 248,
-                        },
-                      ]
+                      {
+                        "alignSelf": "center",
+                        "height": 176,
+                        "marginBottom": 16,
+                        "width": 248,
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBold",
-                          "fontSize": 19,
-                          "lineHeight": 24,
-                          "marginBottom": 8,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 19,
+                        "lineHeight": 24,
+                        "marginBottom": 8,
+                        "marginTop": 16,
+                        "textAlign": "left",
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      }
                     }
                   />
                 </View>
@@ -803,7 +787,10 @@ exports[`About screen should render correctly 1`] = `
                     [
                       {
                         "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
+                        "borderBottomLeftRadius": 12,
+                        "borderBottomRightRadius": 12,
+                        "borderTopLeftRadius": 12,
+                        "borderTopRightRadius": 12,
                         "elevation": 6,
                         "paddingBottom": 16,
                         "paddingLeft": 16,
@@ -828,115 +815,104 @@ exports[`About screen should render correctly 1`] = `
                   <Image
                     source={1}
                     style={
-                      [
-                        {
-                          "alignSelf": "center",
-                          "height": 176,
-                          "marginBottom": 16,
-                          "width": 248,
-                        },
-                      ]
+                      {
+                        "alignSelf": "center",
+                        "height": 176,
+                        "marginBottom": 16,
+                        "width": 248,
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBold",
-                          "fontSize": 19,
-                          "lineHeight": 24,
-                          "marginBottom": 8,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 19,
+                        "lineHeight": 24,
+                        "marginBottom": 8,
+                        "marginTop": 16,
+                        "textAlign": "left",
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      }
                     }
                   />
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "elevation": 6,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.16,
-                        "shadowRadius": 8,
-                        "width": 280,
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "elevation": 6,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                      "shadowColor": "#212121",
+                      "shadowOffset": {
+                        "height": 1,
+                        "width": 1,
                       },
-                    ]
+                      "shadowOpacity": 0.16,
+                      "shadowRadius": 8,
+                      "width": 280,
+                    }
                   }
                 >
                   <Image
                     source={1}
                     style={
-                      [
-                        {
-                          "alignSelf": "center",
-                          "height": 176,
-                          "marginBottom": 16,
-                          "width": 248,
-                        },
-                      ]
+                      {
+                        "alignSelf": "center",
+                        "height": 176,
+                        "marginBottom": 16,
+                        "width": 248,
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBold",
-                          "fontSize": 19,
-                          "lineHeight": 24,
-                          "marginBottom": 8,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 19,
+                        "lineHeight": 24,
+                        "marginBottom": 8,
+                        "marginTop": 16,
+                        "textAlign": "left",
+                      }
                     }
                   />
                   <Text
                     isRTL={false}
                     selectable={true}
                     style={
-                      [
-                        {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      }
                     }
                   />
                 </View>
@@ -945,41 +921,35 @@ exports[`About screen should render correctly 1`] = `
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <Text
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
-                    "lineHeight": 32,
-                    "marginBottom": 24,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBold",
+                  "fontSize": 25,
+                  "lineHeight": 32,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                }
               }
             />
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <RCTScrollView
@@ -1000,7 +970,10 @@ exports[`About screen should render correctly 1`] = `
                     [
                       {
                         "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
+                        "borderBottomLeftRadius": 12,
+                        "borderBottomRightRadius": 12,
+                        "borderTopLeftRadius": 12,
+                        "borderTopRightRadius": 12,
                         "elevation": 6,
                         "paddingBottom": 16,
                         "paddingLeft": 16,
@@ -1027,46 +1000,40 @@ exports[`About screen should render correctly 1`] = `
                     <Image
                       source={1}
                       style={
-                        [
-                          {
-                            "alignSelf": "center",
-                            "height": 176,
-                            "marginBottom": 16,
-                            "width": 248,
-                          },
-                        ]
+                        {
+                          "alignSelf": "center",
+                          "height": 176,
+                          "marginBottom": 16,
+                          "width": 248,
+                        }
                       }
                     />
                     <Text
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
-                            "marginBottom": 8,
-                            "marginTop": 16,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                          "textAlign": "left",
+                        }
                       }
                     />
                     <Text
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     />
                   </View>
@@ -1076,7 +1043,10 @@ exports[`About screen should render correctly 1`] = `
                     [
                       {
                         "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
+                        "borderBottomLeftRadius": 12,
+                        "borderBottomRightRadius": 12,
+                        "borderTopLeftRadius": 12,
+                        "borderTopRightRadius": 12,
                         "elevation": 6,
                         "paddingBottom": 16,
                         "paddingLeft": 16,
@@ -1103,46 +1073,40 @@ exports[`About screen should render correctly 1`] = `
                     <Image
                       source={1}
                       style={
-                        [
-                          {
-                            "alignSelf": "center",
-                            "height": 176,
-                            "marginBottom": 16,
-                            "width": 248,
-                          },
-                        ]
+                        {
+                          "alignSelf": "center",
+                          "height": 176,
+                          "marginBottom": 16,
+                          "width": 248,
+                        }
                       }
                     />
                     <Text
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
-                            "marginBottom": 8,
-                            "marginTop": 16,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                          "textAlign": "left",
+                        }
                       }
                     />
                     <Text
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     />
                   </View>
@@ -1152,7 +1116,10 @@ exports[`About screen should render correctly 1`] = `
                     [
                       {
                         "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
+                        "borderBottomLeftRadius": 12,
+                        "borderBottomRightRadius": 12,
+                        "borderTopLeftRadius": 12,
+                        "borderTopRightRadius": 12,
                         "elevation": 6,
                         "paddingBottom": 16,
                         "paddingLeft": 16,
@@ -1177,46 +1144,40 @@ exports[`About screen should render correctly 1`] = `
                     <Image
                       source={1}
                       style={
-                        [
-                          {
-                            "alignSelf": "center",
-                            "height": 176,
-                            "marginBottom": 16,
-                            "width": 248,
-                          },
-                        ]
+                        {
+                          "alignSelf": "center",
+                          "height": 176,
+                          "marginBottom": 16,
+                          "width": 248,
+                        }
                       }
                     />
                     <Text
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
-                            "marginBottom": 8,
-                            "marginTop": 16,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 19,
+                          "lineHeight": 24,
+                          "marginBottom": 8,
+                          "marginTop": 16,
+                          "textAlign": "left",
+                        }
                       }
                     />
                     <Text
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     />
                   </View>
@@ -1226,68 +1187,58 @@ exports[`About screen should render correctly 1`] = `
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <Text
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
-                    "lineHeight": 32,
-                    "marginBottom": 24,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBold",
+                  "fontSize": 25,
+                  "lineHeight": 32,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                }
               }
             />
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <Text
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBold",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                }
               }
             />
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <RCTScrollView
@@ -1305,18 +1256,19 @@ exports[`About screen should render correctly 1`] = `
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1327,30 +1279,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1361,30 +1312,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1395,30 +1345,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1429,30 +1378,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1463,30 +1411,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1497,30 +1444,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1531,30 +1477,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1565,30 +1510,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1599,30 +1543,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1633,30 +1576,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1667,30 +1609,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1701,30 +1642,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1735,30 +1675,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1769,30 +1708,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1803,30 +1741,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1837,30 +1774,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1871,30 +1807,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1905,30 +1840,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1939,30 +1873,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -1973,30 +1906,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2007,30 +1939,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2041,30 +1972,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2075,30 +2005,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2109,30 +2038,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2143,30 +2071,29 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
                 <View
                   isRTL={false}
                   style={
-                    [
-                      {
-                        "backgroundColor": "#FFFFFF",
-                        "borderRadius": 12,
-                        "marginLeft": 0,
-                        "marginRight": 24,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "backgroundColor": "#FFFFFF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "marginLeft": 0,
+                      "marginRight": 24,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2177,12 +2104,10 @@ exports[`About screen should render correctly 1`] = `
                       }
                     }
                     style={
-                      [
-                        {
-                          "height": 80,
-                          "width": 104,
-                        },
-                      ]
+                      {
+                        "height": 80,
+                        "width": 104,
+                      }
                     }
                   />
                 </View>
@@ -2191,51 +2116,43 @@ exports[`About screen should render correctly 1`] = `
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <Text
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                }
               }
             />
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <View
               style={
-                [
-                  {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                ]
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                }
               }
             >
               <View
@@ -2271,7 +2188,10 @@ exports[`About screen should render correctly 1`] = `
                   {
                     "alignItems": "center",
                     "backgroundColor": "#212121",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "display": "flex",
                     "elevation": 2,
                     "flexDirection": "row",
@@ -2348,9 +2268,29 @@ exports[`About screen should render correctly 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup>
-                        <RNSVGGroup>
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGGroup
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        >
                           <RNSVGRect
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                             height="24"
                             opacity={0}
                             width="24"
@@ -2358,6 +2298,12 @@ exports[`About screen should render correctly 1`] = `
                             y="0"
                           />
                           <RNSVGRect
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                             height="2"
                             rx="1"
                             ry="1"
@@ -2366,6 +2312,12 @@ exports[`About screen should render correctly 1`] = `
                             y="18"
                           />
                           <RNSVGRect
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                             height="2"
                             matrix={
                               [
@@ -2384,6 +2336,12 @@ exports[`About screen should render correctly 1`] = `
                             y="17"
                           />
                           <RNSVGRect
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                             height="2"
                             matrix={
                               [
@@ -2403,9 +2361,21 @@ exports[`About screen should render correctly 1`] = `
                           />
                           <RNSVGPath
                             d="M12 15a1 1 0 0 1-.58-.18l-4-2.82a1 1 0 0 1-.24-1.39 1 1 0 0 1 1.4-.24L12 12.76l3.4-2.56a1 1 0 0 1 1.2 1.6l-4 3a1 1 0 0 1-.6.2z"
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                           />
                           <RNSVGPath
                             d="M12 13a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1z"
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -2445,13 +2415,11 @@ exports[`About screen should render correctly 1`] = `
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginBottom": 16,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginBottom": 16,
+              }
             }
           >
             <Text
@@ -2476,43 +2444,40 @@ exports[`About screen should render correctly 1`] = `
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+              }
             }
           >
             <RCTScrollView
               style={
-                [
-                  {
-                    "marginBottom": 24,
-                    "paddingHorizontal": 24,
-                  },
-                ]
+                {
+                  "marginBottom": 24,
+                  "paddingHorizontal": 24,
+                }
               }
             >
               <View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2527,14 +2492,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -2549,22 +2512,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Nour Allazkani
@@ -2574,16 +2535,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Ambassadeur
@@ -2592,22 +2551,23 @@ exports[`About screen should render correctly 1`] = `
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2622,14 +2582,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -2644,22 +2602,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Andressa Bittencourt
@@ -2669,16 +2625,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Responsable du déploiement
@@ -2687,22 +2641,23 @@ exports[`About screen should render correctly 1`] = `
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2717,14 +2672,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -2739,22 +2692,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Matthieu Fesselier
@@ -2764,16 +2715,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Développeur
@@ -2782,22 +2731,23 @@ exports[`About screen should render correctly 1`] = `
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2812,14 +2762,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -2834,22 +2782,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Margot Gillette
@@ -2859,16 +2805,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Designer
@@ -2877,22 +2821,23 @@ exports[`About screen should render correctly 1`] = `
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -2907,14 +2852,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -2929,22 +2872,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Agathe Kieny
@@ -2954,16 +2895,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Lead développeuse
@@ -2972,22 +2911,23 @@ exports[`About screen should render correctly 1`] = `
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -3002,14 +2942,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -3024,22 +2962,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Claire Listre
@@ -3049,16 +2985,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Responsable de la communication
@@ -3067,22 +3001,23 @@ exports[`About screen should render correctly 1`] = `
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -3097,14 +3032,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -3119,22 +3052,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Claudia Meleghi
@@ -3144,16 +3075,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Rédactrice experte FLE
@@ -3162,22 +3091,23 @@ exports[`About screen should render correctly 1`] = `
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -3192,14 +3122,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -3214,22 +3142,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Alice Mugnier
@@ -3239,16 +3165,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Responsable éditoriale
@@ -3257,22 +3181,23 @@ exports[`About screen should render correctly 1`] = `
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -3287,14 +3212,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -3309,22 +3232,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Alain Régnier
@@ -3334,16 +3255,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Délégué interministériel à l’accueil et à l’intégration des réfugiés
@@ -3352,22 +3271,23 @@ exports[`About screen should render correctly 1`] = `
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -3382,14 +3302,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -3404,22 +3322,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Hugo Stéphan
@@ -3429,16 +3345,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Product Manager
@@ -3447,22 +3361,23 @@ exports[`About screen should render correctly 1`] = `
                 </View>
                 <View
                   style={
-                    [
-                      {
-                        "alignItems": "center",
-                        "backgroundColor": "#EEF8FF",
-                        "borderColor": "#073099",
-                        "borderRadius": 12,
-                        "borderWidth": 2,
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginBottom": 16,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                      },
-                    ]
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#EEF8FF",
+                      "borderBottomLeftRadius": 12,
+                      "borderBottomRightRadius": 12,
+                      "borderColor": "#073099",
+                      "borderTopLeftRadius": 12,
+                      "borderTopRightRadius": 12,
+                      "borderWidth": 2,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 16,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 16,
+                    }
                   }
                 >
                   <Image
@@ -3477,14 +3392,12 @@ exports[`About screen should render correctly 1`] = `
                   <View
                     isRTL={false}
                     style={
-                      [
-                        {
-                          "flexGrow": 0,
-                          "flexShrink": 1,
-                          "marginLeft": 24,
-                          "marginRight": 0,
-                        },
-                      ]
+                      {
+                        "flexGrow": 0,
+                        "flexShrink": 1,
+                        "marginLeft": 24,
+                        "marginRight": 0,
+                      }
                     }
                   >
                     <View
@@ -3499,22 +3412,20 @@ exports[`About screen should render correctly 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          [
-                            {
-                              "backgroundColor": "#FFFFFF",
-                              "color": "#212121",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "marginBottom": 8,
-                              "paddingBottom": 4,
-                              "paddingLeft": 4,
-                              "paddingRight": 4,
-                              "paddingTop": 4,
-                              "textAlign": "left",
-                              "width": "auto",
-                            },
-                          ]
+                          {
+                            "backgroundColor": "#FFFFFF",
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "paddingBottom": 4,
+                            "paddingLeft": 4,
+                            "paddingRight": 4,
+                            "paddingTop": 4,
+                            "textAlign": "left",
+                            "width": "auto",
+                          }
                         }
                       >
                         Caroline Wittmann
@@ -3524,16 +3435,14 @@ exports[`About screen should render correctly 1`] = `
                       isRTL={false}
                       selectable={true}
                       style={
-                        [
-                          {
-                            "color": "#212121",
-                            "flexWrap": "wrap",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                        ]
+                        {
+                          "color": "#212121",
+                          "flexWrap": "wrap",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        }
                       }
                     >
                       Product owner

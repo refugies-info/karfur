@@ -24,8 +24,8 @@ import { HeaderContentProps } from "../components/layout/Header/HeaderContentPro
 import { HeaderContentContentsScreen } from "../components/layout/Header/HeaderContentContentsScreen";
 import { ContentForApp, Languages } from "@refugies-info/api-types";
 
-const SectionHeaderText = styled(TextBigBold)`
-  color: ${(props: { color: string }) => props.color};
+const SectionHeaderText = styled(TextBigBold)<{ color: string }>`
+  color: ${({ color }) => color};
   margin-top: ${styles.margin * 6}px;
   margin-bottom: ${styles.margin * 3}px;
   margin-horizontal: ${styles.margin * 3}px;

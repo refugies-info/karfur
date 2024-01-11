@@ -48,19 +48,21 @@ const ImageContainer = styled.View<{ hasMatch?: boolean; lightColor?: string }>`
   border-radius: ${({ theme }) => theme.radius * 2}px;
 `;
 
-const TitreInfoText = styled(TextSmallBold)`
-  color: ${(props: { color: string }) => props.color};
-  margin-bottom: ${(props: { isDispo: boolean }) =>
-    props.isDispo ? styles.margin : 0}px;
+const TitreInfoText = styled(TextSmallBold)<{
+  color: string;
+  isDispo?: boolean;
+}>`
+  color: ${({ color }) => color};
+  margin-bottom: ${({ isDispo }) => (isDispo ? styles.margin : 0)}px;
 `;
 
-const DescInfoText = styled(TextSmallNormal)`
-  color: ${(props: { color: string }) => props.color};
+const DescInfoText = styled(TextSmallNormal)<{ color: string }>`
+  color: ${({ color }) => color};
   margin: ${styles.margin * 2}px;
 `;
 
-const TitreMarqueText = styled(TextVerySmallNormal)`
-  color: ${(props: { color: string }) => props.color};
+const TitreMarqueText = styled(TextVerySmallNormal)<{ color: string }>`
+  color: ${({ color }) => color};
 `;
 
 const TitlesContainer = styled.View`
@@ -176,7 +178,7 @@ const ContentSummaryComponent = (props: Props) => {
                 <Highlight
                   hit={props.searchItem}
                   attribute={`title_${props.searchLanguageMatch || "fr"}`}
-                  // @ts-ignore
+                  //@ts-ignore
                   color={colors.color100}
                 />
               ) : (
@@ -196,7 +198,7 @@ const ContentSummaryComponent = (props: Props) => {
                     attribute={`titreMarque_${
                       props.searchLanguageMatch || "fr"
                     }`}
-                    // @ts-ignore
+                    //@ts-ignore
                     color={colors.color100}
                   />
                 ) : (
@@ -213,7 +215,7 @@ const ContentSummaryComponent = (props: Props) => {
             <Highlight
               hit={props.searchItem}
               attribute={`abstract_${props.searchLanguageMatch || "fr"}`}
-              // @ts-ignore
+              //@ts-ignore
               color={colors.color100}
             />
           </DescInfoText>

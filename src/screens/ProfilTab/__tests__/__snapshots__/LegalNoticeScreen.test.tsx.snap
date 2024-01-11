@@ -4,16 +4,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    [
-      {
-        "backgroundColor": "transparent",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "minHeight": "100%",
-        "minWidth": "100%",
-      },
-    ]
+    {
+      "backgroundColor": "transparent",
+      "flexBasis": 0,
+      "flexGrow": 1,
+      "flexShrink": 1,
+      "minHeight": "100%",
+      "minWidth": "100%",
+    }
   }
 >
   <View
@@ -38,13 +36,11 @@ exports[`LegalNotice screen should render correctly 1`] = `
   >
     <RCTSafeAreaView
       style={
-        [
-          {
-            "minHeight": 65,
-            "paddingBottom": 20,
-            "paddingTop": 0,
-          },
-        ]
+        {
+          "minHeight": 65,
+          "paddingBottom": 20,
+          "paddingTop": 0,
+        }
       }
     >
       <View
@@ -69,13 +65,11 @@ exports[`LegalNotice screen should render correctly 1`] = `
       >
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-                "marginRight": 8,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexGrow": 0,
+              "marginRight": 8,
+            }
           }
         >
           <View>
@@ -111,7 +105,10 @@ exports[`LegalNotice screen should render correctly 1`] = `
               style={
                 {
                   "backgroundColor": "#FFFFFF",
-                  "borderRadius": 12,
+                  "borderBottomLeftRadius": 12,
+                  "borderBottomRightRadius": 12,
+                  "borderTopLeftRadius": 12,
+                  "borderTopRightRadius": 12,
                   "elevation": 6,
                   "opacity": 1,
                   "paddingBottom": 12,
@@ -131,11 +128,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
             >
               <View
                 disabled={false}
-                style={
-                  [
-                    {},
-                  ]
-                }
+                style={{}}
               >
                 <View
                   collapsable={false}
@@ -189,9 +182,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup>
-                        <RNSVGGroup>
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
+                        <RNSVGGroup
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        >
                           <RNSVGRect
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                             height="24"
                             matrix={
                               [
@@ -210,6 +223,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -222,25 +241,21 @@ exports[`LegalNotice screen should render correctly 1`] = `
         </View>
         <View
           style={
-            [
-              {
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "marginRight": 8,
-              },
-            ]
+            {
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "marginRight": 8,
+            }
           }
         >
           <View />
         </View>
         <View
           style={
-            [
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-              },
-            ]
+            {
+              "flexBasis": "auto",
+              "flexGrow": 0,
+            }
           }
         >
           <View
@@ -265,12 +280,10 @@ exports[`LegalNotice screen should render correctly 1`] = `
           >
             <View
               style={
-                [
-                  {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
-                  },
-                ]
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                }
               }
             >
               <View />
@@ -309,12 +322,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
-    contentContainerStyle={
-      {
-        "flexGrow": 1,
-        "paddingBottom": 0,
-      }
-    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
@@ -329,12 +336,21 @@ exports[`LegalNotice screen should render correctly 1`] = `
         {
           "paddingBottom": 24,
         },
+        {
+          "flexGrow": 1,
+          "paddingBottom": 0,
+        },
       ]
     }
   >
     <View>
       <View
         onLayout={[Function]}
+        style={
+          {
+            "marginBottom": 24,
+          }
+        }
       >
         <View
           style={
@@ -384,13 +400,11 @@ exports[`LegalNotice screen should render correctly 1`] = `
         </Text>
         <View
           style={
-            [
-              {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            }
           }
         >
           <View
@@ -449,9 +463,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup>
-                  <RNSVGGroup>
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
                     <RNSVGRect
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                       height="24"
                       matrix={
                         [
@@ -470,9 +504,21 @@ exports[`LegalNotice screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                     <RNSVGPath
                       d="M16 11h-3V8a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>
@@ -514,17 +560,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Qui est l’éditeur de Réfugiés.info ?
@@ -552,13 +596,11 @@ exports[`LegalNotice screen should render correctly 1`] = `
         </Text>
         <View
           style={
-            [
-              {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            }
           }
         >
           <View
@@ -617,9 +659,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup>
-                  <RNSVGGroup>
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
                     <RNSVGRect
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                       height="24"
                       opacity={0}
                       width="24"
@@ -628,9 +690,21 @@ exports[`LegalNotice screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                     <RNSVGPath
                       d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>
@@ -641,15 +715,13 @@ exports[`LegalNotice screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              }
             }
           >
             Place Beauvau, 75800 Paris Cedex 08
@@ -679,13 +751,11 @@ exports[`LegalNotice screen should render correctly 1`] = `
         </Text>
         <View
           style={
-            [
-              {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            }
           }
         >
           <View
@@ -744,9 +814,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup>
-                  <RNSVGGroup>
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
                     <RNSVGRect
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                       height="24"
                       opacity={0}
                       width="24"
@@ -755,9 +845,21 @@ exports[`LegalNotice screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                     <RNSVGPath
                       d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>
@@ -768,15 +870,13 @@ exports[`LegalNotice screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              }
             }
           >
             135 Boulevard Chanzy, 93100 Montreuil
@@ -807,17 +907,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Qui héberge Réfugiés.info ?
@@ -845,13 +943,11 @@ exports[`LegalNotice screen should render correctly 1`] = `
         </Text>
         <View
           style={
-            [
-              {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            }
           }
         >
           <View
@@ -910,9 +1006,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup>
-                  <RNSVGGroup>
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
                     <RNSVGRect
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                       height="24"
                       opacity={0}
                       width="24"
@@ -921,9 +1037,21 @@ exports[`LegalNotice screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                     <RNSVGPath
                       d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>
@@ -934,15 +1062,13 @@ exports[`LegalNotice screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              }
             }
           >
             8 rue de Londres, 75009 PARIS
@@ -973,87 +1099,83 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Quels sont les droits sur les contenus ?
         </Text>
         <View
           style={
-            [
-              {
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 12,
-                "elevation": 6,
-                "marginBottom": 24,
-                "paddingBottom": 24,
-                "paddingLeft": 24,
-                "paddingRight": 24,
-                "paddingTop": 24,
-                "shadowColor": "#212121",
-                "shadowOffset": {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderBottomLeftRadius": 12,
+              "borderBottomRightRadius": 12,
+              "borderTopLeftRadius": 12,
+              "borderTopRightRadius": 12,
+              "elevation": 6,
+              "marginBottom": 24,
+              "paddingBottom": 24,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+              "paddingTop": 24,
+              "shadowColor": "#212121",
+              "shadowOffset": {
+                "height": 1,
+                "width": 1,
               },
-            ]
+              "shadowOpacity": 0.16,
+              "shadowRadius": 8,
+            }
           }
         >
           <View
             isRTL={false}
             style={
-              [
-                {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "marginBottom": 24,
-                  "maxWidth": "100%",
-                },
-              ]
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginBottom": 24,
+                "maxWidth": "100%",
+              }
             }
           >
             <View
               isRTL={false}
               style={
-                [
-                  {
-                    "alignItems": "center",
-                    "backgroundColor": "#212121",
-                    "borderRadius": 16,
-                    "height": 32,
-                    "justifyContent": "center",
-                    "marginLeft": 0,
-                    "marginRight": 16,
-                    "width": 32,
-                  },
-                ]
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#212121",
+                  "borderBottomLeftRadius": 16,
+                  "borderBottomRightRadius": 16,
+                  "borderTopLeftRadius": 16,
+                  "borderTopRightRadius": 16,
+                  "height": 32,
+                  "justifyContent": "center",
+                  "marginLeft": 0,
+                  "marginRight": 16,
+                  "width": 32,
+                }
               }
             >
               <Text
                 isRTL={false}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                  ]
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "circularBold",
+                    "fontSize": 19,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  }
                 }
               >
                 1
@@ -1123,17 +1245,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    },
-                  ]
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                    "textAlign": "left",
+                  }
                 }
               >
                 •
@@ -1142,18 +1262,16 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    },
-                  ]
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                    "textAlign": "left",
+                  }
                 }
               >
                 respecter l’intégrité de l’information reproduite
@@ -1177,17 +1295,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    },
-                  ]
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                    "textAlign": "left",
+                  }
                 }
               >
                 •
@@ -1196,18 +1312,16 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    },
-                  ]
+                  {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                    "textAlign": "left",
+                  }
                 }
               >
                 citer la source « Réfugiés.info »
@@ -1284,9 +1398,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                     ]
                   }
                 >
-                  <RNSVGGroup>
-                    <RNSVGGroup>
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
                       <RNSVGRect
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                         height="24"
                         matrix={
                           [
@@ -1305,6 +1439,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
                       />
                       <RNSVGPath
                         d="M20.62 4.22a1 1 0 0 0-.84-.2L12 5.77 4.22 4A1 1 0 0 0 3 5v12.2a1 1 0 0 0 .78 1l8 1.8h.44l8-1.8a1 1 0 0 0 .78-1V5a1 1 0 0 0-.38-.78zM5 6.25l6 1.35v10.15L5 16.4zM19 16.4l-6 1.35V7.6l6-1.35z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -1334,28 +1474,27 @@ exports[`LegalNotice screen should render correctly 1`] = `
           </View>
           <View
             style={
-              [
-                {
-                  "backgroundColor": "#ffcecb",
-                  "borderRadius": 12,
-                  "paddingBottom": 24,
-                  "paddingLeft": 24,
-                  "paddingRight": 24,
-                  "paddingTop": 24,
-                },
-              ]
+              {
+                "backgroundColor": "#ffcecb",
+                "borderBottomLeftRadius": 12,
+                "borderBottomRightRadius": 12,
+                "borderTopLeftRadius": 12,
+                "borderTopRightRadius": 12,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+              }
             }
           >
             <View
               isRTL={false}
               style={
-                [
-                  {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                    "marginBottom": 16,
-                  },
-                ]
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 16,
+                }
               }
             >
               <View
@@ -1414,9 +1553,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup>
-                      <RNSVGGroup>
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
                         <RNSVGRect
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
                           height="24"
                           matrix={
                             [
@@ -1435,14 +1594,32 @@ exports[`LegalNotice screen should render correctly 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
                         />
                         <RNSVGCircle
                           cx="12"
                           cy="8"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
                           r="1"
                         />
                         <RNSVGPath
                           d="M12 10a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0-1-1z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -1453,15 +1630,13 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                  ]
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 19,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  }
                 }
               >
                 Bon à savoir
@@ -1471,16 +1646,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginBottom": 24,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                }
               }
             >
               Tu ne peux pas utiliser ces informations dans un but publicitaire ou commercial.
@@ -1510,70 +1683,68 @@ exports[`LegalNotice screen should render correctly 1`] = `
         </View>
         <View
           style={
-            [
-              {
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 12,
-                "elevation": 6,
-                "marginBottom": 24,
-                "paddingBottom": 24,
-                "paddingLeft": 24,
-                "paddingRight": 24,
-                "paddingTop": 24,
-                "shadowColor": "#212121",
-                "shadowOffset": {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderBottomLeftRadius": 12,
+              "borderBottomRightRadius": 12,
+              "borderTopLeftRadius": 12,
+              "borderTopRightRadius": 12,
+              "elevation": 6,
+              "marginBottom": 24,
+              "paddingBottom": 24,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+              "paddingTop": 24,
+              "shadowColor": "#212121",
+              "shadowOffset": {
+                "height": 1,
+                "width": 1,
               },
-            ]
+              "shadowOpacity": 0.16,
+              "shadowRadius": 8,
+            }
           }
         >
           <View
             isRTL={false}
             style={
-              [
-                {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "marginBottom": 24,
-                  "maxWidth": "100%",
-                },
-              ]
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginBottom": 24,
+                "maxWidth": "100%",
+              }
             }
           >
             <View
               isRTL={false}
               style={
-                [
-                  {
-                    "alignItems": "center",
-                    "backgroundColor": "#212121",
-                    "borderRadius": 16,
-                    "height": 32,
-                    "justifyContent": "center",
-                    "marginLeft": 0,
-                    "marginRight": 16,
-                    "width": 32,
-                  },
-                ]
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "#212121",
+                  "borderBottomLeftRadius": 16,
+                  "borderBottomRightRadius": 16,
+                  "borderTopLeftRadius": 16,
+                  "borderTopRightRadius": 16,
+                  "height": 32,
+                  "justifyContent": "center",
+                  "marginLeft": 0,
+                  "marginRight": 16,
+                  "width": 32,
+                }
               }
             >
               <Text
                 isRTL={false}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                  ]
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "circularBold",
+                    "fontSize": 19,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  }
                 }
               >
                 2
@@ -1605,16 +1776,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "marginBottom": 24,
-                  "textAlign": "left",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "marginBottom": 24,
+                "textAlign": "left",
+              }
             }
           >
             Toute reproduction ou adaptation (retouchage, montage, recadrage...) des éléments graphiques et iconographiques du site est interdite sans l’accord de Réfugiés.info.
@@ -1689,9 +1858,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                     ]
                   }
                 >
-                  <RNSVGGroup>
-                    <RNSVGGroup>
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
                       <RNSVGRect
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                         height="24"
                         matrix={
                           [
@@ -1710,6 +1899,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
                       />
                       <RNSVGPath
                         d="M20.62 4.22a1 1 0 0 0-.84-.2L12 5.77 4.22 4A1 1 0 0 0 3 5v12.2a1 1 0 0 0 .78 1l8 1.8h.44l8-1.8a1 1 0 0 0 .78-1V5a1 1 0 0 0-.38-.78zM5 6.25l6 1.35v10.15L5 16.4zM19 16.4l-6 1.35V7.6l6-1.35z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -1741,16 +1936,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              [
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "marginBottom": 24,
-                  "textAlign": "left",
-                },
-              ]
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "marginBottom": 24,
+                "textAlign": "left",
+              }
             }
           >
             Pour toute question sur la reproduction de contenus, tu peux t’adresser à :
@@ -1795,7 +1988,10 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 {
                   "alignItems": "center",
                   "backgroundColor": "#212121",
-                  "borderRadius": 12,
+                  "borderBottomLeftRadius": 12,
+                  "borderBottomRightRadius": 12,
+                  "borderTopLeftRadius": 12,
+                  "borderTopRightRadius": 12,
                   "display": "flex",
                   "elevation": 2,
                   "flexDirection": "row",
@@ -1870,9 +2066,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup>
-                      <RNSVGGroup>
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGGroup
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      >
                         <RNSVGRect
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -1881,6 +2097,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
                         />
                         <RNSVGPath
                           d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -1922,17 +2144,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Création de liens vers Réfugiés.info
@@ -1941,16 +2161,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Tu peux librement créer des liens vers Réfugiés.info sans accord préalable. En revanche, la mention explicite de l’intitulé de l’application dans l’intitulé du lien est vivement souhaitée.
@@ -1959,16 +2177,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Il est fortement recommandé que l’ouverture de cette page se fasse dans une fenêtre indépendante du navigateur.
@@ -1977,16 +2193,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Toutefois, Réfugiés.info se réserve le droit de demander la suppression de liens vers des sites dont l’objet s’avérerait non conforme à l’objet de l’application, diffuseraient des informations à caractère raciste, pornographique, xénophobe ou étant de nature à heurter la sensibilité du public.
@@ -1995,17 +2209,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Liens vers d’autres sites
@@ -2014,16 +2226,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Des liens vers d’autres sites, publics ou privés sont proposés sur l’application pour te faciliter l’accès à l’information. Réfugiés.info n’est pas responsable du contenu de ces sites.
@@ -2032,17 +2242,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Accès au site
@@ -2051,16 +2259,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Réfugiés.info et son hébergeur font le maximum pour te permettre d’avoir accès en continu à l’application Réfugiés.info.
@@ -2069,16 +2275,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Il est possible que certaines situations (panne, intention technique de maintenance) empêchent l’accès à l’application. Réfugiés.info a le droit de ne pas garantir l’accessibilité sans que sa responsabilité ne soit engagée.
@@ -2087,17 +2291,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "marginBottom": 24,
-                "marginTop": 56,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "marginBottom": 24,
+              "marginTop": 56,
+              "textAlign": "left",
+            }
           }
         >
           Il te reste des questions ?
@@ -2106,16 +2308,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Si tu ne trouves pas l’information que tu cherches, n’hésite pas à consulter les autres pages de l’application :
@@ -2145,17 +2345,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2164,18 +2362,16 @@ exports[`LegalNotice screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               <Text
@@ -2184,18 +2380,16 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 onPress={[Function]}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                      "textDecorationColor": "black",
-                      "textDecorationLine": "underline",
-                      "textDecorationStyle": "solid",
-                    },
-                  ]
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                    "textDecorationColor": "black",
+                    "textDecorationLine": "underline",
+                    "textDecorationStyle": "solid",
+                  }
                 }
               >
                 Tes données, pour quoi faire
@@ -2230,17 +2424,15 @@ exports[`LegalNotice screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               •
@@ -2249,18 +2441,16 @@ exports[`LegalNotice screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
               }
             >
               <Text
@@ -2269,18 +2459,16 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 onPress={[Function]}
                 selectable={true}
                 style={
-                  [
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                      "textDecorationColor": "black",
-                      "textDecorationLine": "underline",
-                      "textDecorationStyle": "solid",
-                    },
-                  ]
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                    "textDecorationColor": "black",
+                    "textDecorationLine": "underline",
+                    "textDecorationStyle": "solid",
+                  }
                 }
               >
                 Qui sommes-nous ?
@@ -2294,16 +2482,14 @@ exports[`LegalNotice screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            [
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
           }
         >
           Sinon, n’hésite pas à nous contacter directement :
@@ -2348,7 +2534,10 @@ exports[`LegalNotice screen should render correctly 1`] = `
               {
                 "alignItems": "center",
                 "backgroundColor": "#212121",
-                "borderRadius": 12,
+                "borderBottomLeftRadius": 12,
+                "borderBottomRightRadius": 12,
+                "borderTopLeftRadius": 12,
+                "borderTopRightRadius": 12,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -2423,9 +2612,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                     ]
                   }
                 >
-                  <RNSVGGroup>
-                    <RNSVGGroup>
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
                       <RNSVGRect
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                         height="24"
                         opacity={0}
                         width="24"
@@ -2434,6 +2643,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
                       />
                       <RNSVGPath
                         d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -2540,9 +2755,29 @@ exports[`LegalNotice screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup>
-                  <RNSVGGroup>
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
                     <RNSVGRect
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                       height="24"
                       opacity={0}
                       width="24"
@@ -2551,6 +2786,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>

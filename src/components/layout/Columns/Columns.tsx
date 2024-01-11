@@ -60,7 +60,9 @@ const Columns = ({
             // eslint-disable-next-line react/no-array-index-key
             key={index}
             RTLBehaviour={RTLBehaviour}
-            marginHorizontal={!isLastChild(children, index) && spacing}
+            marginHorizontal={
+              !isLastChild(children, index) ? spacing : undefined
+            }
           >
             {child}
           </FlexItem>

@@ -31,13 +31,11 @@ exports[`Search results screen should render correctly 1`] = `
   >
     <View
       style={
-        [
-          {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "marginHorizontal": 24,
-          },
-        ]
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "marginHorizontal": 24,
+        }
       }
     >
       <View
@@ -128,9 +126,29 @@ exports[`Search results screen should render correctly 1`] = `
                 ]
               }
             >
-              <RNSVGGroup>
-                <RNSVGGroup>
+              <RNSVGGroup
+                fill={
+                  {
+                    "payload": 4278190080,
+                    "type": 0,
+                  }
+                }
+              >
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
                   <RNSVGRect
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
                     height="24"
                     matrix={
                       [
@@ -149,6 +167,12 @@ exports[`Search results screen should render correctly 1`] = `
                   />
                   <RNSVGPath
                     d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
                   />
                 </RNSVGGroup>
               </RNSVGGroup>
@@ -158,26 +182,28 @@ exports[`Search results screen should render correctly 1`] = `
       </View>
       <View
         style={
-          [
-            {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderColor": "#5E5E5E",
-              "borderRadius": 12,
-              "borderStyle": "solid",
-              "borderWidth": 1,
-              "display": "flex",
-              "flexBasis": 0,
-              "flexDirection": "row",
-              "flexGrow": 1,
-              "flexShrink": 1,
-              "height": 56,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-            },
-          ]
+          {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderBottomLeftRadius": 12,
+            "borderBottomRightRadius": 12,
+            "borderColor": "#5E5E5E",
+            "borderStyle": "solid",
+            "borderTopLeftRadius": 12,
+            "borderTopRightRadius": 12,
+            "borderWidth": 1,
+            "display": "flex",
+            "flexBasis": 0,
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "height": 56,
+            "paddingBottom": 16,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 16,
+            "width": "100%",
+          }
         }
       >
         <View
@@ -232,9 +258,29 @@ exports[`Search results screen should render correctly 1`] = `
                 ]
               }
             >
-              <RNSVGGroup>
-                <RNSVGGroup>
+              <RNSVGGroup
+                fill={
+                  {
+                    "payload": 4278190080,
+                    "type": 0,
+                  }
+                }
+              >
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
                   <RNSVGRect
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
                     height="24"
                     opacity={0}
                     width="24"
@@ -243,6 +289,12 @@ exports[`Search results screen should render correctly 1`] = `
                   />
                   <RNSVGPath
                     d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
                   />
                 </RNSVGGroup>
               </RNSVGGroup>
@@ -255,17 +307,16 @@ exports[`Search results screen should render correctly 1`] = `
           placeholder="Rechercher"
           placeholderTextColor="#5E5E5E"
           style={
-            [
-              {
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": "100%",
-                "marginLeft": 8,
-                "marginRight": 0,
-                "textAlign": "left",
-              },
-            ]
+            {
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "height": "100%",
+              "marginLeft": 8,
+              "marginRight": 0,
+              "textAlign": "left",
+              "width": "100%",
+            }
           }
           testID="test-city-search"
           value=""
@@ -357,9 +408,29 @@ exports[`Search results screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup>
-                  <RNSVGGroup>
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
                     <RNSVGRect
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                       height="24"
                       matrix={
                         [
@@ -378,6 +449,12 @@ exports[`Search results screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>
@@ -407,16 +484,14 @@ exports[`Search results screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          [
-            {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "marginBottom": 16,
-              "textAlign": "left",
-            },
-          ]
+          {
+            "color": "#212121",
+            "fontFamily": "circularBold",
+            "fontSize": 19,
+            "lineHeight": 24,
+            "marginBottom": 16,
+            "textAlign": "left",
+          }
         }
       >
         <Text
@@ -430,16 +505,14 @@ exports[`Search results screen should render correctly 1`] = `
         isRTL={false}
         selectable={true}
         style={
-          [
-            {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "marginBottom": 16,
-              "textAlign": "left",
-            },
-          ]
+          {
+            "color": "#212121",
+            "fontFamily": "circularBold",
+            "fontSize": 19,
+            "lineHeight": 24,
+            "marginBottom": 16,
+            "textAlign": "left",
+          }
         }
       >
         <Text
@@ -470,29 +543,33 @@ exports[`Search results screen should render correctly 1`] = `
         >
           <View>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4282658851,
+                  4282658851,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4282658851,
-                    4282658851,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -555,18 +632,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -597,34 +672,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4282198148,
+                  4282198148,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4282198148,
-                    4282198148,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -687,18 +773,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -729,34 +813,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4278603916,
+                  4278603916,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4278603916,
-                    4278603916,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -819,18 +914,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -861,34 +954,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4287695168,
+                  4287695168,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4287695168,
-                    4287695168,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -951,18 +1055,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -993,34 +1095,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4278801425,
+                  4278801425,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4278801425,
-                    4278801425,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -1083,18 +1196,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -1125,34 +1236,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4278541914,
+                  4278541914,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4278541914,
-                    4278541914,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -1215,18 +1337,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -1257,34 +1377,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4291646981,
+                  4291646981,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4291646981,
-                    4291646981,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -1347,18 +1478,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -1389,34 +1518,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4285990266,
+                  4285990266,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4285990266,
-                    4285990266,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -1479,18 +1619,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -1521,34 +1659,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4280307457,
+                  4280307457,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4280307457,
-                    4280307457,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -1611,18 +1760,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -1653,34 +1800,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4285990473,
+                  4285990473,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4285990473,
-                    4285990473,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -1743,18 +1901,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -1785,34 +1941,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4278661273,
+                  4278661273,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4278661273,
-                    4278661273,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -1875,18 +2042,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -1917,34 +2082,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4284482918,
+                  4284482918,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4284482918,
-                    4284482918,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -2007,18 +2183,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -2049,34 +2223,45 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>
             <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4288550922,
+                  4288550922,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
               inline={true}
-              proxiedProperties={
-                {
-                  "colors": [
-                    4288550922,
-                    4288550922,
-                  ],
-                  "endPoint": [
-                    1,
-                    0,
-                  ],
-                  "locations": undefined,
-                  "startPoint": [
-                    0,
-                    1,
-                  ],
-                }
+              startPoint={
+                [
+                  0,
+                  1,
+                ]
               }
               style={
                 [
                   {
                     "backgroundColor": "transparent",
-                    "borderRadius": 12,
+                    "borderBottomLeftRadius": 12,
+                    "borderBottomRightRadius": 12,
+                    "borderTopLeftRadius": 12,
+                    "borderTopRightRadius": 12,
                     "elevation": 2,
                     "marginRight": 16,
                     "marginVertical": 8,
@@ -2139,18 +2324,16 @@ exports[`Search results screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    [
-                      {
-                        "color": "#FFFFFF",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 19,
-                        "lineHeight": 24,
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                        "textAlign": "left",
-                      },
-                    ]
+                    {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    }
                   }
                 >
                   <Text
@@ -2181,7 +2364,14 @@ exports[`Search results screen should render correctly 1`] = `
                   width={20}
                   xml="<svg></svg>"
                 >
-                  <RNSVGGroup />
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  />
                 </RNSVGSvgView>
               </View>
             </ViewManagerAdapter_ExpoLinearGradient>

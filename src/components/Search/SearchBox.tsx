@@ -13,23 +13,20 @@ const MainContainer = styled.View`
   align-items: center;
 `;
 const InputContainer = styled(RTLView)`
-  height:56px;
-  width 100%;
-  border-radius:${styles.radius * 2}px;
-  padding:${styles.margin * 2}px;
-  background-color : ${styles.colors.white};
+  height: 56px;
+  width: 100%;
+  border-radius: ${styles.radius * 2}px;
+  padding: ${styles.margin * 2}px;
+  background-color: ${styles.colors.white};
   border: 1px solid ${styles.colors.darkGrey};
   flex: 1;
 `;
-const StyledInput = styled.TextInput`
-  height:100%;
-  width 100%;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
-  text-align: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "right" : "left"};
+const StyledInput = styled.TextInput<{ isRTL: boolean }>`
+  height: 100%;
+  width: 100%;
+  margin-left: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
+  margin-right: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
+  text-align: ${({ isRTL }) => (isRTL ? "right" : "left")};
   flex: 1;
 `;
 

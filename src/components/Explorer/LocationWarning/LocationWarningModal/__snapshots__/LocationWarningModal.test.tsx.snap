@@ -41,7 +41,6 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
     accessible={true}
     collapsable={false}
     focusable={true}
-    forwardedRef={[Function]}
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -67,7 +66,6 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
     collapsable={false}
     deviceHeight={null}
     deviceWidth={null}
-    forwardedRef={[Function]}
     hideModalContentWhileAnimating={false}
     onBackdropPress={[Function]}
     onModalHide={[Function]}
@@ -143,7 +141,10 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         style={
           {
             "backgroundColor": "#FFFFFF",
-            "borderRadius": 12,
+            "borderBottomLeftRadius": 12,
+            "borderBottomRightRadius": 12,
+            "borderTopLeftRadius": 12,
+            "borderTopRightRadius": 12,
             "elevation": 6,
             "opacity": 1,
             "paddingBottom": 12,
@@ -215,9 +216,29 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                 ]
               }
             >
-              <RNSVGGroup>
-                <RNSVGGroup>
+              <RNSVGGroup
+                fill={
+                  {
+                    "payload": 4278190080,
+                    "type": 0,
+                  }
+                }
+              >
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
                   <RNSVGRect
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
                     height="24"
                     matrix={
                       [
@@ -236,6 +257,12 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                   />
                   <RNSVGPath
                     d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
                   />
                 </RNSVGGroup>
               </RNSVGGroup>
@@ -366,9 +393,29 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                 ]
               }
             >
-              <RNSVGGroup>
-                <RNSVGGroup>
+              <RNSVGGroup
+                fill={
+                  {
+                    "payload": 4278190080,
+                    "type": 0,
+                  }
+                }
+              >
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
                   <RNSVGRect
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
                     height="24"
                     matrix={
                       [
@@ -387,6 +434,12 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                   />
                   <RNSVGPath
                     d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2z"
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
                   />
                 </RNSVGGroup>
               </RNSVGGroup>
@@ -549,13 +602,11 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
         >
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginRight": 8,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginRight": 8,
+              }
             }
           >
             <View
@@ -611,9 +662,29 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                     ]
                   }
                 >
-                  <RNSVGGroup>
-                    <RNSVGGroup>
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
                       <RNSVGRect
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                         height="24"
                         opacity={0}
                         width="24"
@@ -622,6 +693,12 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                       />
                       <RNSVGPath
                         d="M19 3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h6v2H7a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2h-4v-2h6a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -631,12 +708,10 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           </View>
           <View
             style={
-              [
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                },
-              ]
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+              }
             }
           >
             <Text
@@ -645,15 +720,13 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
               onPress={[Function]}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBold",
+                  "fontSize": 19,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                }
               }
             >
               www.refugies.info

@@ -50,8 +50,6 @@ jest.mock("@react-navigation/core", () => ({
   })),
 }));
 
-// jest.mock("react-native-skeleton-content", () => "View");
-
 jest.mock("expo-notifications", () => ({
   getPermissionsAsync: jest.fn().mockResolvedValue({ status: "granted" }),
   requestPermissionsAsync: jest.fn().mockResolvedValue({ status: "granted" }),

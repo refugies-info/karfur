@@ -24,7 +24,7 @@ interface Props {
 const ButtonContainer = styled.TouchableOpacity`
   padding-vertical: ${styles.margin}px;
 `;
-const StyledContainer = styled(RTLView)`
+const StyledContainer = styled(RTLView)<{ backgroundColor: string }>`
   margin-horizontal: ${styles.margin * 2}px;
   margin-bottom: ${styles.margin * 2}px;
   margin-top: ${styles.margin * 3}px;
@@ -34,8 +34,7 @@ const StyledContainer = styled(RTLView)`
   align-self: stretch;
   justify-content: center;
   border-radius: ${styles.radius * 2}px;
-  background-color: ${(props: { backgroundColor: string }) =>
-    props.backgroundColor};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   ${styles.shadows.lg}
 `;
 

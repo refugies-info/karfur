@@ -3,7 +3,7 @@ import { Text } from "react-native";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
-const StyledText = styled((props) => {
+const StyledText = styled((props: any) => {
   const { isRTL } = useTranslationWithRTL();
   return <Text {...props} isRTL={isRTL} selectable />;
 })`

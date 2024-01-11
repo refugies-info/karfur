@@ -16,17 +16,18 @@ const LeftButtonContainer = styled.TouchableOpacity`
   align-items: center;
 `;
 
-const RightButtonContainer = styled(RTLTouchableOpacity)`
+const RightButtonContainer = styled(RTLTouchableOpacity)<{
+  isDisabled: boolean;
+}>`
   background-color: ${styles.colors.darkBlue};
-  opacity: ${(props: { isDisabled: boolean }) => (props.isDisabled ? 0.4 : 1)};
+  opacity: ${({ isDisabled }) => (isDisabled ? 0.4 : 1)};
   border-radius: ${styles.radius * 2}px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   min-height: 56px;
   align-items: center;
-  ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? "" : styles.shadows.sm}
+  ${({ isDisabled }) => (isDisabled ? "" : styles.shadows.sm)}
 `;
 
 const BottomButtonsContainer = styled(RowContainer)`
@@ -34,14 +35,15 @@ const BottomButtonsContainer = styled(RowContainer)`
   margin-bottom: ${styles.margin * 3}px;
 `;
 
-const TextBold = styled(StyledTextSmallBold)`
+const TextBold = styled(StyledTextSmallBold)<{
+  color: string;
+  isRTL?: boolean;
+}>`
   margin-right: ${styles.margin}px;
-  color: ${(props: { color: string }) => props.color};
+  color: ${({ color }) => color};
   align-items: center;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
+  margin-left: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
+  margin-right: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
 `;
 
 const ICON_SIZE = 24;

@@ -11,9 +11,9 @@ export interface FilterButtonProps {
   details?: undefined | string[];
 }
 
-const StyledText = styled(TextSmallBold)<{ selected: boolean }>`
-  color: ${({ selected, theme }) =>
-    selected ? theme.colors.darkBlue : theme.colors.black};
+const StyledText = styled(TextSmallBold)<{ isSelected: boolean }>`
+  color: ${({ isSelected, theme }) =>
+    isSelected ? theme.colors.darkBlue : theme.colors.black};
 `;
 
 const FilterButton = (props: FilterButtonProps) => {

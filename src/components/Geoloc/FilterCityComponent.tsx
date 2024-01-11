@@ -33,7 +33,7 @@ import { BottomButtons } from "../Onboarding/BottomButtons";
 import { CustomButton } from "../CustomButton";
 import { Rows } from "../layout";
 
-const GeolocContainer = styled(RTLTouchableOpacity)`
+const GeolocContainer = styled(RTLTouchableOpacity)<{ hasError: boolean }>`
   background-color: ${styles.colors.lightBlue};
   margin-vertical: ${styles.margin * 2}px;
   border-radius: ${styles.radius * 2}px;
@@ -42,16 +42,14 @@ const GeolocContainer = styled(RTLTouchableOpacity)`
   padding: ${styles.margin * 2 - 2}px;
   border-width: 2px;
   border-style: solid;
-  border-color: ${(props: { hasError: boolean }) =>
-    props.hasError ? styles.colors.red : styles.colors.lightBlue};
+  border-color: ${({ hasError }) =>
+    hasError ? styles.colors.red : styles.colors.lightBlue};
 `;
 
-const GeolocText = styled(TextSmallBold)`
+const GeolocText = styled(TextSmallBold)<{ isRTL: boolean }>`
   color: ${styles.colors.darkBlue};
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
+  margin-left: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
+  margin-right: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
 `;
 
 const SelectedCityContainer = styled(RTLTouchableOpacity)`
@@ -63,12 +61,10 @@ const SelectedCityContainer = styled(RTLTouchableOpacity)`
   align-self: flex-start;
 `;
 
-const SelectedCityText = styled(StyledTextSmallBold)`
+const SelectedCityText = styled(StyledTextSmallBold)<{ isRTL: boolean }>`
   color: ${styles.colors.white};
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin}px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
+  margin-right: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
+  margin-left: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
 `;
 
 const ICON_SIZE = 24;
