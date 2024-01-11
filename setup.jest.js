@@ -22,6 +22,23 @@ jest.mock("@react-native-firebase/crashlytics", () => {
   });
 });
 
+jest.mock("@gorhom/bottom-sheet", () => {
+  const RN = require("react-native");
+  const { MockBottomSheet } = require("./src/jest/__mocks__/MockBottomSheet");
+
+  return {
+    __esModule: true,
+    default: MockBottomSheet,
+    BottomSheetView: RN.View,
+    useBottomSheetDynamicSnapPoints: jest.fn().mockReturnValue({
+      animatedHandleHeight: 0,
+      animatedSnapPoints: 0,
+      animatedContentHeight: 0,
+      handleContentLayout: jest.fn(),
+    }),
+  };
+});
+
 jest.mock("@react-navigation/core", () => ({
   ...jest.requireActual("@react-navigation/core"),
   useRoute: jest.fn(),
