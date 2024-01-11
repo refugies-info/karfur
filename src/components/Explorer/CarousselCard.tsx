@@ -54,7 +54,7 @@ const CardGradient = styled(LinearGradient)<{ width: number; height: number }>`
   border-radius: ${({ theme }) => theme.radius * 2}px;
 `;
 
-export const CarousselCard = (props: Props) => {
+const CarousselCardComponent = (props: Props) => {
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   return (
@@ -97,3 +97,5 @@ export const CarousselCard = (props: Props) => {
     </ButtonContainer>
   );
 };
+
+export const CarousselCard = React.memo(CarousselCardComponent);

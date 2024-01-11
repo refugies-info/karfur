@@ -242,8 +242,8 @@ const Page = ({
               HeaderContent={HeaderContent}
             />
 
+            {/* @ts-ignore */}
             <ContentContainer
-              /* @ts-ignore */
               style={contentContainerStyle}
               backgroundColor={backgroundColor}
             >
