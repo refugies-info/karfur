@@ -191,6 +191,10 @@ const Page = ({
     [onScrollEnd, handleScroll, scrollview, contentScrollview]
   );
 
+  const resetScroll = useCallback(() => {
+    setScroll(0, 0);
+  }, [setScroll]);
+
   return (
     <PageContainer backgroundColor={backgroundColor}>
       <FixedContainerForHeader
@@ -205,7 +209,7 @@ const Page = ({
           darkBackground={isDarkBackground}
           showTitle={showHeaderTitle}
           headerTitle={headerTitle}
-          changeLanguageCallback={() => setScroll(0, 0)}
+          changeLanguageCallback={resetScroll}
         />
       </FixedContainerForHeader>
 

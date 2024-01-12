@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useMemo, useCallback } from "react";
-import { ActivityIndicator, ScrollView } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
@@ -67,6 +67,14 @@ const CONTENT_STRUCTURES: Record<
   [ContentType.DISPOSITIF]: ["what", "why", "how"],
   [ContentType.DEMARCHE]: ["what", "how", "next"],
 };
+
+const stylesheet = StyleSheet.create({
+  page: {
+    borderTopRightRadius: styles.margin,
+    borderTopLeftRadius: styles.margin,
+    marginTop: -styles.margin,
+  },
+});
 
 const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   const { contentId, needId, backScreen } = route.params;
@@ -190,11 +198,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         HeaderContent={HeaderContentContentScreen}
         scrollview={scrollview}
         backgroundColor="white" // important to keep radius
-        contentContainerStyle={{
-          borderTopRightRadius: styles.margin,
-          borderTopLeftRadius: styles.margin,
-          marginTop: -styles.margin,
-        }}
+        contentContainerStyle={stylesheet.page}
       >
         <Rows spacing={RowsSpacing.NoSpace}>
           <LanguageUnavailable />

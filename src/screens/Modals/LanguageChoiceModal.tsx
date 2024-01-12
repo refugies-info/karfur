@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { View, TouchableWithoutFeedback } from "react-native";
+import React, { useEffect, useMemo } from "react";
+import { View, TouchableWithoutFeedback, StyleSheet } from "react-native";
 import Modal from "react-native-modal";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -55,6 +55,10 @@ const Backdrop = styled.View`
   background-color: ${styles.colors.black};
 `;
 
+const stylesheet = StyleSheet.create({
+  modal: { justifyContent: "flex-end", margin: 0 },
+});
+
 export const LanguageChoiceModal = (props: Props) => {
   const { t, i18n, isRTL } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
@@ -80,10 +84,18 @@ export const LanguageChoiceModal = (props: Props) => {
     }
   }, [props.isModalVisible]);
 
+  const iconStyle = useMemo(
+    () => ({
+      marginLeft: isRTL ? styles.margin : 0,
+      marginRight: !isRTL ? styles.margin : 0,
+    }),
+    [isRTL]
+  );
+
   return (
     <Modal
       isVisible={props.isModalVisible}
-      style={{ justifyContent: "flex-end", margin: 0 }}
+      style={stylesheet.modal}
       onBackdropPress={props.toggleModal}
       customBackdrop={
         <TouchableWithoutFeedback
@@ -102,10 +114,7 @@ export const LanguageChoiceModal = (props: Props) => {
             width={24}
             height={24}
             fill={styles.colors.black}
-            style={{
-              marginLeft: isRTL ? styles.margin : 0,
-              marginRight: !isRTL ? styles.margin : 0,
-            }}
+            style={iconStyle}
           />
           <StyledTextNormalBold>
             {t("global.language", "Langue de l'application")}
