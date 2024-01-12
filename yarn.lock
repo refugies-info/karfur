@@ -6522,10 +6522,10 @@ expo-notifications@~0.20.1:
     fs-extra "^9.1.0"
     uuid "^3.4.0"
 
-expo-speech@~11.3.0:
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/expo-speech/-/expo-speech-11.3.0.tgz#374c6cb4df90f226652a8958729783f7a9a60127"
-  integrity sha512-pJLh8pLuMJRZrg7hzS4JtMwvjbgfCkmoERL45A8vkq8VQFo+2GPT72BMuC9xy1sys7CGZJ8M5yMYTE5saUr1rg==
+expo-speech@~11.5.0:
+  version "11.5.0"
+  resolved "https://registry.yarnpkg.com/expo-speech/-/expo-speech-11.5.0.tgz#1e8076c1d2208aa98ce1681fdff1ac2bdab337f8"
+  integrity sha512-NKrMs9oy+577MGBRVwyPGNZNy5RmNYrPdYGBD/098RJY6LByR+1NC0gpraOTnI4U9swwcTCNBbtZ25a2ijQzzw==
 
 expo-splash-screen@~0.20.5:
   version "0.20.5"

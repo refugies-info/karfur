@@ -7,5 +7,6 @@ if (process.env.NODE_ENV === "development") {
     trackAllPureComponents: true,
     trackHooks: true,
     include: [/^ContentScreen/],
+    exclude: [/^ExpoLinearGradient/],
   });
 }

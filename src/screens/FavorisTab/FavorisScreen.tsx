@@ -55,12 +55,12 @@ const EmptyText = styled(StyledTextSmall)`
 const CardItem = styled.View``;
 
 const ActionContainer = styled.View`
-background-color: ${({ theme }) => theme.colors.red};
-justify-content: center;
-align-items: ${({ theme }) => (theme.i18n.isRTL ? "flex-start" : "flex-end")};
-flex: 1;
-padding-horizontal: ${({ theme }) => theme.margin * 2}px
-border-radius: ${({ theme }) => theme.radius * 2}px
+  background-color: ${({ theme }) => theme.colors.red};
+  justify-content: center;
+  align-items: ${({ theme }) => (theme.i18n.isRTL ? "flex-start" : "flex-end")};
+  flex: 1;
+  padding-horizontal: ${({ theme }) => theme.margin * 2}px;
+  border-radius: ${({ theme }) => theme.radius * 2}px;
 `;
 
 type FavorisScreenProps = CompositeScreenProps<

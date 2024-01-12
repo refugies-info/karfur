@@ -19,6 +19,8 @@ interface Props {
   pressCallback?: () => void;
 }
 
+const paddingTagButton = { marginBottom: styles.margin * 2 };
+
 export const SearchContentSummary = (props: Props) => {
   const themeId =
     props.item.typeContenu === "theme"
@@ -98,7 +100,7 @@ export const SearchContentSummary = (props: Props) => {
         });
         return;
       }}
-      style={{ marginBottom: styles.margin * 2 }}
+      style={paddingTagButton}
     />
   );
 };

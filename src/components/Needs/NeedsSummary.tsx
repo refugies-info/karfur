@@ -20,7 +20,7 @@ import { UriImage } from "../iconography";
 const NeedContainer = styled(RTLTouchableOpacity)<{
   needTheme: GetThemeResponse;
 }>`
-  padding: ${({ theme }) => theme.margin * 2}px
+  padding: ${({ theme }) => theme.margin * 2}px;
   background-color: ${({ needTheme }) => needTheme.colors.color30};
   border-radius: ${({ theme }) => theme.radius * 2}px;
   ${({ theme }) => theme.shadows.needSummary}

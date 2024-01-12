@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { styles } from "../../theme";
 import { sortByOrder } from "../../libs";
 import { ContentSummary } from "../Contents/ContentSummary";
@@ -17,6 +17,12 @@ interface Props {
   contents: ContentForApp[];
   navigation: any;
 }
+
+const stylesheet = StyleSheet.create({
+  contentSummary: { marginBottom: styles.margin * 3 },
+  container: { marginHorizontal: -(styles.margin * 3) },
+  tagButton: { paddingVertical: styles.margin * 2 },
+});
 
 const SearchSuggestions = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
@@ -41,14 +47,14 @@ const SearchSuggestions = (props: Props) => {
             key={content._id}
             backScreen="Search"
             content={content}
-            style={{ marginBottom: styles.margin * 3 }}
+            style={stylesheet.contentSummary}
           />
         );
       })}
       <SectionTitle>
         <ReadableText>{t("search_screen.themes", "Les thèmes")}</ReadableText>
       </SectionTitle>
-      <View style={{ marginHorizontal: -(_theme.margin * 3) }}>
+      <View style={stylesheet.container}>
         <ScrollView
           contentContainerStyle={{
             flexDirection: !isRTL ? "row" : "row-reverse",
@@ -66,7 +72,7 @@ const SearchSuggestions = (props: Props) => {
               backgroundColor={theme.colors.color100}
               icon={theme.icon}
               inline={true}
-              style={{ paddingVertical: _theme.margin * 2 }}
+              style={stylesheet.tagButton}
               onPress={() => {
                 props.navigation.navigate("NeedsScreen", {
                   theme: theme,

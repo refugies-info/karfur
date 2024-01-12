@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Linking, Platform } from "react-native";
+import Constants from "expo-constants";
 import {
   getPermissionsAsync,
   requestPermissionsAsync,
@@ -39,7 +40,7 @@ export const useNotificationsStatus = (): [boolean, () => void, string] => {
       if (expoStatus === PermissionStatus.GRANTED) {
         const token = (
           await getExpoPushTokenAsync({
-            projectId: "@refugies-info/refugies-info-app",
+            projectId: Constants.expoConfig?.extra?.eas.projectId || "@refugies-info/refugies-info-app",
           })
         ).data;
         if (token) {

@@ -6762,7 +6762,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   style={
                     [
                       {
-                        "backgroundColor": "transparent",
+                        "backgroundColor": "white",
                         "borderBottomLeftRadius": 12,
                         "borderBottomRightRadius": 12,
                         "borderTopLeftRadius": 12,
@@ -15627,7 +15627,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   style={
                     [
                       {
-                        "backgroundColor": "transparent",
+                        "backgroundColor": "white",
                         "borderBottomLeftRadius": 12,
                         "borderBottomRightRadius": 12,
                         "borderTopLeftRadius": 12,

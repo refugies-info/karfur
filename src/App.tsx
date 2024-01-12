@@ -1,5 +1,6 @@
 import "react-native-gesture-handler";
 import React, { Suspense, useEffect } from "react";
+import Constants from "expo-constants";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { I18nManager, View } from "react-native";
@@ -50,7 +51,9 @@ const updateUserInfo = async () => {
   };
   const token = (
     await getExpoPushTokenAsync({
-      projectId: "@refugies-info/refugies-info-app",
+      projectId:
+        Constants.expoConfig?.extra?.eas.projectId ||
+        "@refugies-info/refugies-info-app",
     })
   ).data;
   if (token) {
