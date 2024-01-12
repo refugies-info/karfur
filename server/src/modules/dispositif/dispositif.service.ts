@@ -3,7 +3,7 @@ import { updateLanguagesAvancement } from "../langues/langues.service";
 import logger from "../../logger";
 import { cloneDeep, isEmpty, omit, unset, set } from "lodash";
 import { TraductionsType } from "../../typegoose/Traductions";
-import { addOrUpdateDispositifInContenusAirtable } from "../../connectors/airtable/airtable";
+import { addOrUpdateDispositifInContenusAirtable } from "../../connectors/airtable/addOrUpdateDispositifInContenusAirtable";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
 import { Dispositif, DispositifId, ObjectId, Structure, Traductions, TraductionsModel, User, UserId } from "../../typegoose";

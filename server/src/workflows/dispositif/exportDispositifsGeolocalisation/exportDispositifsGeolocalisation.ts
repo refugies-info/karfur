@@ -2,11 +2,10 @@ import { Response } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveDispositifsFromDBWithoutPopulate } from "../../../modules/dispositif/dispositif.repository";
 import { adaptDispositifDepartement, getDepartementsFigures } from "../../../modules/dispositif/dispositif.adapter";
-var Airtable = require("airtable");
-var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(process.env.AIRTABLE_BASE_USERS);
+import { airtableUserBase } from "../../../connectors/airtable/airtable";
 
 const exportDataInAirtable = (data: { departement: string; region: string; nbDispositifs: number }) => {
-  base("Departements RI").create(
+  airtableUserBase("Departements RI").create(
     [
       {
         fields: {

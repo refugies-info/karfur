@@ -6,9 +6,7 @@ import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
 import { Response } from "../../../types/interface";
 import { Role } from "../../../typegoose";
 import { Id, ProgressionIndicator } from "@refugies-info/api-types";
-
-var Airtable = require("airtable");
-var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(process.env.AIRTABLE_BASE_USERS);
+import { airtableUserBase } from "../../../connectors/airtable/airtable";
 
 interface UserToExport {
   fields: {
@@ -43,7 +41,7 @@ interface User {
 
 const exportUsersInAirtable = (users: UserToExport[]) => {
   logger.info(`[exportUsersInAirtable] export ${users.length} users in airtable`);
-  base("Users").create(users, { typecast: true }, function (err: Error) {
+  airtableUserBase("Users").create(users, { typecast: true }, function (err: Error) {
     if (err) {
       logger.error("[exportUsersInAirtable] error while exporting users to airtable", {
         usersId: users.map((user) => user.fields.Pseudonyme),
