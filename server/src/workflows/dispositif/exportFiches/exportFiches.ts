@@ -3,10 +3,9 @@ import { Response } from "../../../types/interface";
 import { getDispositifsForExport } from "../../../modules/dispositif/dispositif.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { Dispositif, Langue, Need, Theme } from "../../../typegoose";
+import { airtableUserBase } from "../../../connectors/airtable/airtable";
 import { Languages } from "@refugies-info/api-types";
 
-const Airtable = require("airtable");
-const base = new Airtable({ apiKey: process.env.airtableApiKey }).base(process.env.AIRTABLE_BASE_USERS);
 
 interface Result {
   [translatedTitleKey: string]: any;
@@ -74,7 +73,7 @@ const getFrequency = (metadatas: Dispositif["metadatas"]) => {
 
 const exportFichesInAirtable = (fiches: Result[]) => {
   logger.info(`[exportFichesInAirtable] export ${fiches.length} fiches in airtable`);
-  base("Fiches").create(fiches.map(fiche => ({ fields: fiche })), { typecast: true }, function (err: Error) {
+  airtableUserBase("Fiches").create(fiches.map(fiche => ({ fields: fiche })), { typecast: true }, function (err: Error) {
     if (err) {
       logger.error("[exportFichesInAirtable] error while exporting fiches to airtable", {
         fichesId: fiches.map((fiche) => fiche.Lien),
