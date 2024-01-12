@@ -48,6 +48,7 @@ const PageContainer = styled.View<{ backgroundColor: string }>`
 
 export interface PageProps extends Partial<HeaderProps> {
   backgroundColor?: string;
+  voiceoverOffset?: number;
   children?: ReactNode;
   headerBackgroundColor?: string;
   headerBackgroundImage?: Picture;
@@ -91,6 +92,7 @@ const Page = ({
   title,
   scrollview,
   flatList,
+  voiceoverOffset,
   ...headerProps
 }: PageProps) => {
   const theme = useTheme();
@@ -99,7 +101,7 @@ const Page = ({
     initialHeaderSize && initialHeaderSize - theme.layout.header.minHeight - 10
   ); // Voiceover
   const contentScrollview = React.useRef<ScrollView>(null);
-  const offset = 200;
+  const offset = voiceoverOffset || 200;
   const { setScroll } = useVoiceover(scrollview || contentScrollview, offset);
 
   const onScrollEnd = useCallback(

@@ -184,6 +184,7 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         scrollview={scrollview}
         backgroundColor="white" // important to keep radius
         contentContainerStyle={stylesheet.page}
+        voiceoverOffset={250}
       >
         <Rows spacing={RowsSpacing.NoSpace}>
           <LanguageUnavailable />
