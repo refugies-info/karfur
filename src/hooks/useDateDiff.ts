@@ -9,6 +9,8 @@
  * @param {...string} [units=Object.keys(dateDiffDef)] - limits the returned object to provided keys
  */
 
+import { useTranslationWithRTL } from "./useTranslationWithRTL";
+
 // default time units for dateDiff
 export const dateDiffDef: Record<string, number> = {
   //   millennium: 31536000000000,
@@ -48,21 +50,22 @@ function dateDiff(
   );
 }
 
-const dateDiffReadable = (date: Date) => {
+const useDateDiffReadable = (date: Date) => {
+  const { t } = useTranslationWithRTL();
   const diff = dateDiff(date);
 
   if (diff.year) {
-    return diff.year === 1 ? "1 ANNÉE" : `${diff.year} ANNÉES`;
+    return diff.year === 1 ? t("relative_date.year_one", { count: diff.year }) : t("relative_date.year_other", { count: diff.year });
   } else if (diff.month > 0) {
-    return `${diff.month} MOIS`;
+    return diff.month === 1 ? t("relative_date.month_one", { count: diff.month }) : t("relative_date.month_other", { count: diff.month });
   } else if (diff.day > 0) {
-    return diff.day === 1 ? "1 JOUR" : `${diff.day} JOURS`;
+    return diff.day === 1 ? t("relative_date.day_one", { count: diff.day }) : t("relative_date.day_other", { count: diff.day });
   } else if (diff.hour > 0) {
-    return diff.hour === 1 ? "1 HEURE" : `${diff.hour} HEURES`;
+    return diff.hour === 1 ? t("relative_date.hour_one", { count: diff.hour }) : t("relative_date.hour_other", { count: diff.hour });
   } else if (diff.minute > 0) {
-    return diff.minute === 1 ? "1 MINUTE" : `${diff.minute} MINUTES`;
+    return diff.minute === 1 ? t("relative_date.minute_one", { count: diff.minute }) : t("relative_date.minute_other", { count: diff.minute });
   }
-  return "À L'INSTANT";
+  return t("relative_date.now");
 };
 
-export { dateDiff, dateDiffReadable };
+export { useDateDiffReadable };

@@ -326,5 +326,18 @@
     "back_button_accessibility": "Retour vers la page précédente",
     "validate": "Ok",
     "new_app_version": "Une nouvelle version de l'application Réfugiés.info est disponible."
+  },
+  "relative_date": {
+    "year_one": "{{count}} année",
+    "year_other": "{{count}} années",
+    "month_one": "{{count}} mois",
+    "month_other": "{{count}} mois",
+    "day_one": "{{count}} jour",
+    "day_other": "{{count}} jours",
+    "hour_one": "{{count}} heure",
+    "hour_other": "{{count}} heures",
+    "minute_one": "{{count}} minute",
+    "minute_other": "{{count}} minutes",
+    "now": "À l'instant"
   }
 }

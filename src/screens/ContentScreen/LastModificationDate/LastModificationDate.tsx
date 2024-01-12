@@ -1,8 +1,7 @@
 import React, { memo } from "react";
 import styled from "styled-components/native";
 import { Icon, Spacer, ReadableText, Columns } from "../../../components";
-import { useTranslationWithRTL } from "../../../hooks";
-import { dateDiffReadable } from "../dateDiff";
+import { useDateDiffReadable, useTranslationWithRTL } from "../../../hooks";
 
 const LastModifDateView = styled.View`
   background-color: #e8edff;
@@ -24,8 +23,11 @@ interface Props {
 
 const LastModificationDateComponent = (props: Props) => {
   const { t } = useTranslationWithRTL();
+  const dateUpdate = props.lastModificationDate
+    ? useDateDiffReadable(new Date(props.lastModificationDate))
+    : null;
 
-  if (!props.lastModificationDate) return null;
+  if (!dateUpdate) return null;
   return (
     <Columns layout="auto">
       <LastModifDateView>
@@ -36,7 +38,7 @@ const LastModificationDateComponent = (props: Props) => {
             {`${t(
               "content_screen.updated_ago",
               "MISE À JOUR IL Y A"
-            )} ${dateDiffReadable(new Date(props.lastModificationDate))}`}
+            ).toUpperCase()} ${dateUpdate.toUpperCase()}`}
           </ReadableText>
         </LastModifDateText>
       </LastModifDateView>

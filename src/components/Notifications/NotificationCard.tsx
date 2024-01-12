@@ -13,7 +13,7 @@ import { CustomButton } from "../CustomButton";
 import { ExplorerParamList } from "../../../types";
 import { StyledTextSmall, TextVerySmallNormal } from "../StyledText";
 import { Columns, Rows, RowsSpacing } from "../layout";
-import { dateDiffReadable } from "../../screens/ContentScreen/dateDiff";
+import { useDateDiffReadable } from "../../hooks";
 
 const Container = styled.TouchableOpacity<{ seen: boolean }>`
   padding-vertical: ${({ theme }) => theme.margin * 2}px;
@@ -72,14 +72,14 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
     markAsSeen();
   };
 
+  const dateNotif = useDateDiffReadable(new Date(createdAt));
+
   return (
     <Container activeOpacity={0.8} onPress={navigateToContent} seen={seen}>
       {!seen && <Dot />}
       <Rows spacing={RowsSpacing.Text}>
         <CardTitle seen={seen}>{title}</CardTitle>
-        <TextVerySmallNormal>
-          {dateDiffReadable(new Date(createdAt))}
-        </TextVerySmallNormal>
+        <TextVerySmallNormal>{dateNotif}</TextVerySmallNormal>
         <Columns horizontalAlign="space-between" RTLBehaviour>
           <CustomButton
             i18nKey="notifications.viewFiche"
