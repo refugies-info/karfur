@@ -32,7 +32,7 @@ const i18n = {
    * @param {Object} options
    * @returns {string}
    */
-  t: (key: string, options: Object) => i18next.t(key, options),
+  t: (key: string, options: any) => i18next.t(key, options),
   /**
    * @returns {string}
    */
