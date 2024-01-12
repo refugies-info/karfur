@@ -1,6 +1,6 @@
 import * as repository from "../dispositif.repository";
 import * as languesService from "../../../modules/langues/langues.service";
-import * as airtable from "../../../connectors/airtable/airtable";
+import * as airtable from "../../../connectors/airtable/addOrUpdateDispositifInContenusAirtable";
 import { publishDispositif } from "../dispositif.service";
 import { sendMailWhenDispositifPublished } from "../../mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
