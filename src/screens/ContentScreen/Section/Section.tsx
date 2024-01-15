@@ -53,24 +53,17 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
   );
 
   const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
-  const width = useMemo(
-    () =>
-      dispositif.typeContenu === ContentType.DEMARCHE
-        ? accordionMaxWidthWithStep
-        : accordionMaxWidthWithoutStep,
-    [
-      dispositif.typeContenu,
-      accordionMaxWidthWithStep,
-      accordionMaxWidthWithoutStep,
-    ]
-  );
+  const title = useMemo(() => {
+    return dispositif.typeContenu === ContentType.DISPOSITIF &&
+      sectionKey === "how"
+      ? t("content_screen.how_dispositif")
+      : t("content_screen." + sectionKey, sectionKey);
+  }, [sectionKey, dispositif]);
 
   return (
     <View style={{ marginBottom: styles.margin * 5 }}>
       <Title color={colors.color100} accessibilityRole="header">
-        <ReadableText>
-          {t("content_screen." + sectionKey, sectionKey)}
-        </ReadableText>
+        <ReadableText>{title}</ReadableText>
       </Title>
       <View>
         {contentHtml !== undefined ? (

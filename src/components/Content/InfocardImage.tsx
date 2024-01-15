@@ -8,6 +8,7 @@ import Location from "../../theme/images/infocards/Location";
 import Price from "../../theme/images/infocards/Price";
 import Public from "../../theme/images/infocards/Public";
 import Status from "../../theme/images/infocards/Status";
+import Commitment from "../../theme/images/infocards/Commitment";
 
 type metaKeys = keyof Metadatas;
 interface Props {
@@ -28,7 +29,7 @@ export const InfocardImage = ({ color, title, isFree }: Props) => {
     case "price":
       return isFree ? <Free {...iconProps} /> : <Price {...iconProps} />;
     case "commitment":
-      return <Durations {...iconProps} />;
+      return <Commitment {...iconProps} />;
     case "frequency":
       return <Durations {...iconProps} />;
     case "timeSlots":

@@ -1,6 +1,6 @@
 import { ObjectId } from "../../types/interface";
 import { StreamlineIcon } from "../StreamlineIcon";
-import React from "react";
+import React, { useMemo } from "react";
 import ameli from "../../theme/images/demarche/ameli.png";
 import caf from "../../theme/images/demarche/caf.png";
 import carteBancaire from "../../theme/images/demarche/carteBancaire.png";
@@ -26,37 +26,71 @@ interface Props {
 
 const CARD_WIDTH = 84;
 const SMALL_CARD_WIDTH = 58;
+const IMAGES = {
+  ameli: {
+    image: ameli,
+    ratio: 1,
+  },
+  caf: {
+    image: caf,
+    ratio: 1,
+  },
+  carteVitale: {
+    image: carteVitale,
+    ratio: 1.5,
+  },
+  carteIdentite: {
+    image: carteIdentite,
+    ratio: 1.5,
+  },
+  covid: {
+    image: covid,
+    ratio: 1,
+  },
+  poleEmploi: {
+    image: poleEmploi,
+    ratio: 1,
+  },
+  permisConduire: {
+    image: permisConduire,
+    ratio: 1.5,
+  },
+  passeport: {
+    image: passeport,
+    ratio: 0.7,
+  },
+  ofpra: {
+    image: ofpra,
+    ratio: 1,
+  },
+  titreSejour: {
+    image: titreSejour,
+    ratio: 1.5,
+  },
+  carteBancaire: {
+    image: carteBancaire,
+    ratio: 1.5,
+  },
+};
 
 export const DemarcheImage = (props: Props) => {
-  const imageName = getImageNameFromContentId(props.contentId);
+  const cardWidth = useMemo(
+    () => (props.isSmall ? SMALL_CARD_WIDTH : CARD_WIDTH),
+    [props.isSmall]
+  );
+  const imageData = useMemo(() => {
+    const imageName = getImageNameFromContentId(props.contentId);
+    return imageName ? IMAGES[imageName] : null;
+  }, [props.contentId]);
 
-  const imageFiles = {
-    ameli: ameli,
-    caf: caf,
-    carteVitale: carteVitale,
-    carteIdentite: carteIdentite,
-    covid: covid,
-    poleEmploi: poleEmploi,
-    permisConduire: permisConduire,
-    passeport: passeport,
-    ofpra: ofpra,
-    titreSejour: titreSejour,
-    carteBancaire: carteBancaire,
-  };
-
-  const cardWidth = props.isSmall ? SMALL_CARD_WIDTH : CARD_WIDTH;
-
-  if (imageName && imageFiles[imageName]) {
-    const passportRatio = 1.4;
-    const height = imageName !== "passeport" ? 100 : cardWidth;
-    const width =
-      imageName !== "passeport" ? cardWidth : cardWidth / passportRatio;
+  if (imageData) {
+    const height = cardWidth / imageData.ratio;
 
     return (
       <Image
-        source={imageFiles[imageName]}
+        source={imageData.image}
         resizeMode="contain"
-        style={{ width: width, height: height, flex: 1 }}
+        style={{ width: cardWidth, height: height, flex: 1 }}
       />
     );
   }
