@@ -150,7 +150,10 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                         <View style={{ padding: 10 }}>
                           <Rows spacing={RowsSpacing.Text}>
                             <TextNormalBold>
-                              {t("Important", "Important")}
+                              {t(
+                                "content_screen.callout_important",
+                                "Important"
+                              )}
                             </TextNormalBold>
                             {children}
                           </Rows>
@@ -196,7 +199,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                         <View style={{ padding: 10 }}>
                           <Rows spacing={RowsSpacing.Text}>
                             <TextNormalBold style={{ color: "#6A6AF4" }}>
-                              {t("Bon à savoir", "Bon à savoir")}
+                              {t("content_screen.callout_info", "Bon à savoir")}
                             </TextNormalBold>
                             {children}
                           </Rows>

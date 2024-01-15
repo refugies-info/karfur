@@ -2,7 +2,6 @@
   "NSLocationWhenInUseUsageDescription": "این اجباری نیست و ما فقط از آن برای نشان دادن مؤسسه ها و اقدامات شما استفاده می کنیم. این اطلاعات در گوشی شما باقی می ماند و ما از آن استفاده نمیکنیم.",
   "NSLocationUsageDescription": "این اجباری نیست و ما فقط از آن برای نشان دادن مؤسسه ها و اقدامات شما استفاده می کنیم. این اطلاعات در گوشی شما باقی می ماند و ما از آن استفاده نمیکنیم.",
   "onboarding_screens": {
-    "start_button": "آغاز",
     "bonjour": "سلام و به Réfugiés.info خوش آمدید!",
     "step1": "در اینجا، اطلاعات مربوط به مراحل خود را خواهید یافت.",
     "step2": "همچنین انجمن ها و فعالیت هایی را در نزدیکی خود خواهید یافت.",
@@ -84,26 +83,18 @@
     "with": "با",
     "what": "این چی هست ؟",
     "why": "چرا این جالب است؟",
-    "how_involved": "چگونه می توانم شرکت کنم؟",
     "how_to_do": "چگونه؟",
-    "what_next": "بعد چی؟",
     "next": "و بعد ؟",
     "go_website_button": "به وب سایت بروید",
     "go_website_accessibility": "به وب سایت بروید، در مرورگر باز می شود",
-    "last_update": "اخرین بروزرسانی :",
     "error_title": "اشتباه!",
     "error": "آیا درست به اینترنت متصل هستید؟ بررسی کرده و دوباره امتحان کنید.",
     "start_again_button": "دوباره شروع کنید",
     "where": "کجاست ؟",
     "location": "کجاست ؟",
-    "who": "برای کیست ؟",
-    "how_it_works": "چگونه کار می کند؟",
     "how": "چگونه کار می کند؟",
-    "important": "مهم",
-    "must_have": "لازم است",
     "departments": "دپارتمان ها",
     "age": "سن",
-    "french_level": "سطح فرانسوی",
     "frenchLevel": "سطح فرانسوی",
     "price": "هزینه",
     "duration": "مدت زمان",
@@ -152,7 +143,9 @@
     "feedbackTitle": "آیا این برگه را مفید یافتید؟",
     "feedbackSubtitle": "از مشارکت کنندگانی که این برگه را برای شما نوشتند و ترجمه کردند تشکر کنید!",
     "nbThanks": "{{count}} تشکر",
-    "feedbackThanks": "تشکر از نظر شما!"
+    "online": "آنلاین",
+    "callout_info": "خوب است بدانید",
+    "callout_important": "مهم"
   },
   "Infocards": {
     "proposedBy": "پیشنهاد شده توسط",
@@ -231,11 +224,11 @@
     "ageLessThan": "کمتر {{age}} سال"
   },
   "needs_screen": {
-    "fiches": "برگه ها",
-    "fiche": "برگه",
     "no_result": "متأسفانه، هنوز چیزی در اینجا وجود ندارد."
   },
-  "contents_screen": { "non_translated_content": "برگه ها ترجمه نشده" },
+  "contents_screen": {
+    "non_translated_content": "برگه ها ترجمه نشده"
+  },
   "favorites_screen": {
     "my_content": "صفحه برگزیده",
     "empty": "0 برگه",

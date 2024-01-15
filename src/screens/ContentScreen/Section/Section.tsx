@@ -56,7 +56,7 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
   const title = useMemo(() => {
     return dispositif.typeContenu === ContentType.DISPOSITIF &&
       sectionKey === "how"
-      ? t("content_screen.how_dispositif")
+      ? t("content_screen.how_to_do")
       : t("content_screen." + sectionKey, sectionKey);
   }, [sectionKey, dispositif]);
 

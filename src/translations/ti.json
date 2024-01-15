@@ -2,7 +2,6 @@
   "NSLocationWhenInUseUsageDescription": "እዚ ምግባር ግዴታ ኣይኮነን ኣብ ከባቢኻ ዘሎ ማሕበራትን ተግባራትን ንምርኣይ ጥራይ ኢና ንጥቀመሉ። እዚ ሓበሬታ ኣብ ስልክኹም ስለ ዝጸንሕ ኣብ ዝኾነ እዋን ክንጥቀመሉ ኣይንኽእልን ኢና።",
   "NSLocationUsageDescription": "እዚ ምግባር ግዴታ ኣይኮነን ኣብ ከባቢኻ ዘሎ ማሕበራትን ተግባራትን ንምርኣይ ጥራይ ኢና ንጥቀመሉ። እዚ ሓበሬታ ኣብ ስልክኹም ስለ ዝጸንሕ ኣብ ዝኾነ እዋን ክንጥቀመሉ ኣይንኽእልን ኢና።",
   "onboarding_screens": {
-    "start_button": "ምጅማር",
     "bonjour": "ሰላም  እንቃዕ ብደሓን መጻኹም\\ኽን ናብ ክፍሊ ሓበሬታ ረፍጂ ኣንፎ",
     "step1": "ኣብዚ ቦታ ኵሉ ዝግበር ኣስራርሓ መስርሕ ናይ ምስላጥ ሓበሬታት ክትረክብ\\ቢ ትኽእል\\ሊ::",
     "step2": "ኣብ ከባቢኻ\\ኺ ዘለው ማሕበራት ኣሲሶሽን ናይ ግብረ ሰናይ ንጥፈታት ዘካይዱ ክተረክብ ትኽእል\\ሊ ::",
@@ -84,26 +83,18 @@
     "with": "ምስ",
     "what": "እንታይ ኢዩ ?",
     "why": "ስለ ምንታይ ኣገዳሲ ኮይኑ  ?",
-    "how_involved": "ብኸመይ ከብርክት ይኽእል ?",
     "how_to_do": "እንታይ ክገብር ኣለኒ ?",
-    "what_next": "ድሕሪ`ዚ ኸ  ?",
     "next": "ብድሕሪኡ’ከ ?",
     "go_website_button": "ናብ ዌብ ሳይት ኢንተርነት ይኸይድ ::",
     "go_website_accessibility": "ኣብ ኢንተርኔት  ሳይት ምስ ከድኩም ክኽፈት እዩ",
-    "last_update": "ናይ መወዳእታ መዓልቲ ዝተሓደሰ",
     "error_title": "ኦው ኖ !",
     "error": "ኮነክሽን  መስመር ኢንተርነት ከም ዘለካ\\ኪ ርግጸኛ ድኻ\\ኺ ? ኣረጋግጽ\\ጺ ከም ብሓድሽ ፈትን\\ኒ",
     "start_again_button": "ንምጅማር",
     "where": "ኣበይ ኢዩ ?",
     "location": "ኣበይ ?",
-    "who": "ንመን ኢዩ ?",
-    "how_it_works": "ብኸመይ ይሰርሕ ?",
     "how": "ብኸመይ የሰርሕ?",
-    "important": "ኣገዳሲ",
-    "must_have": "ክረኸቦ ኣለኒ",
     "departments": "ዞባ",
     "age": "ዕድመ",
-    "french_level": "ደረጃ ቃንቃ ፈረንሳይ",
     "frenchLevel": "ደረጃ ርድኢት ቋንቋ ፈረንሳ",
     "price": "ዋጋ",
     "duration": "ግዜ",
@@ -152,7 +143,9 @@
     "feedbackTitle": "እዚ ፋልይ ጠቓሚ ኮይኑ ዶ ረኺብኩሞ ?",
     "feedbackSubtitle": "ን ዝተርጎሙን: ርእይቶኦም ዘበርከቱን ኩሎም ነመስግን",
     "nbThanks": "{{count}} ነመስግን",
-    "feedbackThanks": "ንርኢቶኹም ኣዚና ነመስግን !"
+    "online": "ብ ኦንላይን",
+    "callout_info": "ኣስተውዕል",
+    "callout_important": "ኣገዳሲ"
   },
   "Infocards": {
     "proposedBy": "ኣዳላዊ",
@@ -231,11 +224,11 @@
     "ageLessThan": "ትሕቲ ናይ  {{ዕድመ}} ዓመታት"
   },
   "needs_screen": {
-    "fiches": "ሰነዳት",
-    "fiche": "ሰነድ",
     "no_result": "ይቕረታ ኣብዚ ገጽ   ክሳብ ሕጂ ሰነዳት  የብልናን"
   },
-  "contents_screen": { "non_translated_content": "ዘይተተርጎሙ ሰናዳት" },
+  "contents_screen": {
+    "non_translated_content": "ዘይተተርጎሙ ሰናዳት"
+  },
   "favorites_screen": {
     "my_content": "ሰነዳተይ",
     "empty": "ዜሮ ሰነድ",

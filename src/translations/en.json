@@ -2,7 +2,6 @@
   "NSLocationWhenInUseUsageDescription": "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
   "NSLocationUsageDescription": "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
   "onboarding_screens": {
-    "start_button": "Get started",
     "bonjour": "Hello and welcome to Refugees.info!",
     "step1": "Here you can find information on how to proceed.",
     "step2": "You can also find associations and activities near your home.",
@@ -84,26 +83,18 @@
     "with": "With",
     "what": "What is it?",
     "why": "Why is this interesting?",
-    "how_involved": "How do I get involved?",
     "how_to_do": "How can this be done?",
-    "what_next": "What next?",
     "next": "What happens next?",
     "go_website_button": "Go to the website",
     "go_website_accessibility": "Go to the website, opens in the browser",
-    "last_update": "Last update :",
     "error_title": "Oh no!",
     "error": "Are you connected to the internet? Check and try again.",
     "start_again_button": "Start again",
     "where": "Where is it?",
     "location": "Where is it?",
-    "who": "Who is it for?",
-    "how_it_works": "How does it work?",
     "how": "How does it work?",
-    "important": "Important",
-    "must_have": "You must have",
     "departments": "Departments",
     "age": "Age",
-    "french_level": "Level of French",
     "frenchLevel": "Level of French",
     "price": "Price",
     "duration": "Duration",
@@ -152,7 +143,9 @@
     "feedbackTitle": "Did you find this sheet useful?",
     "feedbackSubtitle": "Thank the contributors who wrote and translated it for you!",
     "nbThanks": "{{count}} thanks",
-    "feedbackThanks": "Thank you for your feedback!"
+    "online": "online",
+    "callout_info": "Good to know",
+    "callout_important": "Important"
   },
   "Infocards": {
     "proposedBy": "Proposed by",
@@ -231,11 +224,11 @@
     "ageLessThan": "less than {{age}} years"
   },
   "needs_screen": {
-    "fiches": "cards",
-    "fiche": "cards",
     "no_result": "Sorry, we don't have any cards here yet."
   },
-  "contents_screen": { "non_translated_content": "Cards not translated" },
+  "contents_screen": {
+    "non_translated_content": "Cards not translated"
+  },
   "favorites_screen": {
     "my_content": "My cards",
     "empty": "0 card",

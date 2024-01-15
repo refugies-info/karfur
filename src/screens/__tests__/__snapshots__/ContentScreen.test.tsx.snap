@@ -4276,7 +4276,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   <Text
                     style={{}}
                   >
-                    content_screen.how
+                    content_screen.how_to_do
                   </Text>
                   <View />
                 </Text>
@@ -7014,6 +7014,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           {
                             "height": 50,
+                            "resizeMode": "contain",
                             "width": 50,
                           }
                         }
@@ -12676,7 +12677,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   <Text
                     style={{}}
                   >
-                    content_screen.how
+                    content_screen.how_to_do
                   </Text>
                   <View />
                 </Text>
@@ -15906,6 +15907,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           {
                             "height": 50,
+                            "resizeMode": "contain",
                             "width": 50,
                           }
                         }
