@@ -1,8 +1,19 @@
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/unit";
 
+$headerHeight: 120px;
+
 .container {
   min-height: 100vh;
+}
+
+.row {
+  display: flex;
+
+  .right,
+  .main {
+    width: 50%;
+  }
 }
 
 .main {
@@ -14,29 +25,25 @@
     background-color: #fafaff;
     padding-left: 0;
     padding-right: 0;
-    min-height: calc(100vh - 103px); // TODO: improve that
+    min-height: calc(100vh - $headerHeight); // TODO: improve that
   }
 }
 
 .right {
   background: #ececfe;
-  width: 50%;
-  position: fixed;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  padding-top: 105px;
+  min-height: calc(100vh - $headerHeight); // TODO: improve that
 }
 .illu {
   width: 100%;
   height: auto;
+  max-height: 50%;
+  margin: 0 auto;
 }
 
 .right_content {
   text-align: center;
   width: 480px;
-  margin: auto;
-  margin-top: u(15);
+  margin: u(15) auto 0 auto;
 }
 
 .chapo {

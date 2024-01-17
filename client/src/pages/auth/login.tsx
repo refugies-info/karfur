@@ -40,56 +40,54 @@ const AuthLogin = () => {
   if (!email) return null;
 
   return (
-    <div>
+    <div className={cls(styles.container, styles.half)}>
       <SEO title="Bienvenue" />
-      <div>
-        <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
-          Retour
-        </Button>
-        <div className={styles.content}>
-          <div className={styles.title}>
-            <h1>Ravis de vous revoir !</h1>
+      <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+        Retour
+      </Button>
+      <div className={styles.content}>
+        <div className={styles.title}>
+          <h1>Ravis de vous revoir !</h1>
 
-            <Tag className={cls("mb-5", styles.tag)}>{email}</Tag>
-          </div>
-
-          <form onSubmit={submit}>
-            <PasswordInput
-              label="Mot de passe"
-              messages={
-                !!error
-                  ? [
-                      {
-                        message: error,
-                        severity: "error",
-                      },
-                    ]
-                  : []
-              }
-              nativeInputProps={{ name: "password", autoFocus: true }}
-            />
-            <div className="mb-6">
-              <FRLink href="/auth/reset-password">Mot de passe oublié&nbsp;?</FRLink>
-            </div>
-
-            <Button
-              iconId="fr-icon-arrow-right-line"
-              iconPosition="right"
-              className={cls(styles.button, "mt-8")}
-              nativeButtonProps={{ type: "submit" }}
-            >
-              Me connecter
-            </Button>
-          </form>
-
-          <div className={styles.separator}>
-            <span>ou</span>
-          </div>
-
-          <Button onClick={sendEmailCode} className={styles.button} priority="tertiary">
-            Me connecter avec un code reçu par mail
-          </Button>
+          <Tag className={cls("mb-5", styles.tag)}>{email}</Tag>
         </div>
+
+        <form onSubmit={submit}>
+          <PasswordInput
+            label="Mot de passe"
+            messages={
+              !!error
+                ? [
+                    {
+                      message: error,
+                      severity: "error",
+                    },
+                  ]
+                : []
+            }
+            nativeInputProps={{ name: "password", autoFocus: true }}
+          />
+          <div className="mb-6">
+            <FRLink href="/auth/reset-password">Mot de passe oublié&nbsp;?</FRLink>
+          </div>
+
+          <Button
+            iconId="fr-icon-arrow-right-line"
+            iconPosition="right"
+            className={cls(styles.button, "mt-8")}
+            nativeButtonProps={{ type: "submit" }}
+          >
+            Me connecter
+          </Button>
+        </form>
+
+        <div className={styles.separator}>
+          <span>ou</span>
+        </div>
+
+        <Button onClick={sendEmailCode} className={styles.button} priority="tertiary">
+          Me connecter avec un code reçu par mail
+        </Button>
       </div>
     </div>
   );

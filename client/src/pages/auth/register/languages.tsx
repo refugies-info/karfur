@@ -25,7 +25,7 @@ const AuthLogin = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={cls(styles.container, styles.full)}>
       <SEO title="Votre langue" />
       <div className={styles.container_inner}>
         <Button

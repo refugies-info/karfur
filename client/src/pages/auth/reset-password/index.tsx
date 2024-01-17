@@ -23,42 +23,40 @@ const AuthEmail = () => {
   );
 
   return (
-    <div>
+    <div className={cls(styles.container, styles.half)}>
       <SEO title="Bienvenue" />
-      <div>
-        <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
-          Retour
-        </Button>
-        <div className={styles.content}>
-          <div className={styles.title}>
-            <h1>Mot de passe oublié</h1>
-            <p className={styles.subtitle}>
-              Nous allons vous envoyer un mail avec des instructions pour le réinitialiser.
-            </p>
-          </div>
-
-          <form onSubmit={submit}>
-            <Input
-              label="Adresse mail"
-              state={!error ? "default" : "error"}
-              stateRelatedMessage={error}
-              nativeInputProps={{
-                autoFocus: true,
-                type: "email",
-                name: "email",
-              }}
-            />
-
-            <Button
-              iconId="fr-icon-mail-line"
-              iconPosition="right"
-              className={cls(styles.button, "mt-8")}
-              nativeButtonProps={{ type: "submit" }}
-            >
-              Envoyer le lien de réinitialisation
-            </Button>
-          </form>
+      <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+        Retour
+      </Button>
+      <div className={styles.content}>
+        <div className={styles.title}>
+          <h1>Mot de passe oublié</h1>
+          <p className={styles.subtitle}>
+            Nous allons vous envoyer un mail avec des instructions pour le réinitialiser.
+          </p>
         </div>
+
+        <form onSubmit={submit}>
+          <Input
+            label="Adresse mail"
+            state={!error ? "default" : "error"}
+            stateRelatedMessage={error}
+            nativeInputProps={{
+              autoFocus: true,
+              type: "email",
+              name: "email",
+            }}
+          />
+
+          <Button
+            iconId="fr-icon-mail-line"
+            iconPosition="right"
+            className={cls(styles.button, "mt-8")}
+            nativeButtonProps={{ type: "submit" }}
+          >
+            Envoyer le lien de réinitialisation
+          </Button>
+        </form>
       </div>
     </div>
   );

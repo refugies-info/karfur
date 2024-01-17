@@ -36,78 +36,76 @@ const AuthEmail = () => {
   if (!email) return null;
 
   return (
-    <div>
+    <div className={cls(styles.container, styles.half)}>
       <SEO title="Bienvenue" />
-      <div>
-        <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
-          Retour
-        </Button>
-        <div className={styles.content}>
-          <div className={styles.title}>
-            <h1>Vérifions que c’est bien vous !</h1>
-            <p className={styles.subtitle}>
-              Un code temporaire à 6 chiffres vous a été envoyé à {email}
-              <br />
-              <Link href="/auth/email">Ce n’est pas vous&nbsp;?</Link>
-            </p>
-          </div>
+      <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+        Retour
+      </Button>
+      <div className={styles.content}>
+        <div className={styles.title}>
+          <h1>Vérifions que c’est bien vous !</h1>
+          <p className={styles.subtitle}>
+            Un code temporaire à 6 chiffres vous a été envoyé à {email}
+            <br />
+            <Link href="/auth/email">Ce n’est pas vous&nbsp;?</Link>
+          </p>
+        </div>
 
-          <form onSubmit={submit}>
-            <Input
-              label="Code de vérification"
-              state={!error ? "default" : "error"}
-              stateRelatedMessage={error}
-              nativeInputProps={{
-                autoFocus: true,
-                name: "code",
-              }}
-            />
+        <form onSubmit={submit}>
+          <Input
+            label="Code de vérification"
+            state={!error ? "default" : "error"}
+            stateRelatedMessage={error}
+            nativeInputProps={{
+              autoFocus: true,
+              name: "code",
+            }}
+          />
 
+          <Button
+            iconId="fr-icon-check-line"
+            iconPosition="right"
+            className={cls(styles.button, "mt-8 mb-4")}
+            nativeButtonProps={{ type: "submit" }}
+          >
+            Valider
+          </Button>
+          <Button
+            iconId="fr-icon-mail-line"
+            iconPosition="right"
+            onClick={sendCode}
+            className={cls(styles.button, "mb-8")}
+            priority="tertiary"
+          >
+            Renvoyer le code
+          </Button>
+        </form>
+
+        <div className={cls(styles.small, "mt-6 mb-6", "text-center")}>
+          L'adresse mail n'est plus valable&nbsp;? <Link href="#">Contactez-nous</Link>
+        </div>
+
+        <Row className="mb-4">
+          <Col>
             <Button
-              iconId="fr-icon-check-line"
-              iconPosition="right"
-              className={cls(styles.button, "mt-8 mb-4")}
-              nativeButtonProps={{ type: "submit" }}
-            >
-              Valider
-            </Button>
-            <Button
-              iconId="fr-icon-mail-line"
-              iconPosition="right"
-              onClick={sendCode}
-              className={cls(styles.button, "mb-8")}
+              onClick={() => router.push("/auth/login")}
+              className={cls(styles.button, "mt-8")}
               priority="tertiary"
             >
-              Renvoyer le code
+              Ouvrir Gmail
             </Button>
-          </form>
-
-          <div className={cls(styles.small, "mt-6 mb-6", "text-center")}>
-            L'adresse mail n'est plus valable&nbsp;? <Link href="#">Contactez-nous</Link>
-          </div>
-
-          <Row className="mb-4">
-            <Col>
-              <Button
-                onClick={() => router.push("/auth/login")}
-                className={cls(styles.button, "mt-8")}
-                priority="tertiary"
-              >
-                Ouvrir Gmail
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                onClick={() => router.push("/auth/login")}
-                className={cls(styles.button, "mt-8")}
-                priority="tertiary"
-              >
-                Ouvrir Outlook
-              </Button>
-            </Col>
-          </Row>
-          <p className={cls(styles.small, "mt-6", "text-center")}>Pensez à vérifiez votre courrier indésirable !</p>
-        </div>
+          </Col>
+          <Col>
+            <Button
+              onClick={() => router.push("/auth/login")}
+              className={cls(styles.button, "mt-8")}
+              priority="tertiary"
+            >
+              Ouvrir Outlook
+            </Button>
+          </Col>
+        </Row>
+        <p className={cls(styles.small, "mt-6", "text-center")}>Pensez à vérifiez votre courrier indésirable !</p>
       </div>
     </div>
   );

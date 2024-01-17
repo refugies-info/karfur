@@ -3,6 +3,29 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
 
+.container {
+  &.half {
+    max-width: 420px;
+    margin-left: auto;
+  }
+
+  &.full {
+    width: 720px;
+    margin: auto;
+
+    .container_inner {
+      padding: 0 u(38);
+      position: relative;
+
+      .back_button {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
+
 .subtitle {
   @include dsfr-text("large");
   color: $lightTextMentionGrey;
@@ -10,22 +33,6 @@
 
 .content {
   margin-top: u(14);
-}
-
-.container {
-  width: 720px;
-  margin: auto;
-
-  .container_inner {
-    padding: 0 u(38);
-    position: relative;
-
-    .back_button {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
 }
 
 .title {

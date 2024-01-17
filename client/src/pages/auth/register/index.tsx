@@ -34,72 +34,70 @@ const AuthLogin = () => {
   if (!email) return null;
 
   return (
-    <div>
+    <div className={cls(styles.container, styles.half)}>
       <SEO title="Bienvenue" />
-      <div>
-        <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
-          Retour
-        </Button>
-        <div className={styles.content}>
-          <div className={styles.title}>
-            <h1>Créez votre compte</h1>
+      <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+        Retour
+      </Button>
+      <div className={styles.content}>
+        <div className={styles.title}>
+          <h1>Créez votre compte</h1>
 
-            <Tag className={cls("mb-5", styles.tag)}>{email}</Tag>
-          </div>
-
-          <form onSubmit={submit}>
-            <Input
-              label="Votre prénom (optionnel)"
-              state={!error ? "default" : "error"}
-              stateRelatedMessage={error}
-              nativeInputProps={{
-                autoFocus: true,
-                name: "name",
-              }}
-            />
-            <PasswordInput
-              label="Mot de passe"
-              messages={[
-                {
-                  message: "7 caractères minimum",
-                  severity: "info",
-                },
-                {
-                  message: "1 caractère spécial",
-                  severity: "info",
-                },
-                {
-                  message: "1 chiffre minimum",
-                  severity: "info",
-                },
-              ]}
-              nativeInputProps={{ name: "password" }}
-            />
-
-            <Checkbox
-              options={[
-                {
-                  label: "J'accepte de recevoir l'actualité de Réfugiés.info (maximum 1 fois par mois)",
-                  nativeInputProps: {
-                    name: "newsletter",
-                    value: "true",
-                  },
-                },
-              ]}
-              small
-              className="mt-8 mb-6"
-            />
-
-            <Button
-              iconId="fr-icon-arrow-right-line"
-              iconPosition="right"
-              className={cls(styles.button, "mt-8")}
-              nativeButtonProps={{ type: "submit" }}
-            >
-              Créer mon compte
-            </Button>
-          </form>
+          <Tag className={cls("mb-5", styles.tag)}>{email}</Tag>
         </div>
+
+        <form onSubmit={submit}>
+          <Input
+            label="Votre prénom (optionnel)"
+            state={!error ? "default" : "error"}
+            stateRelatedMessage={error}
+            nativeInputProps={{
+              autoFocus: true,
+              name: "name",
+            }}
+          />
+          <PasswordInput
+            label="Mot de passe"
+            messages={[
+              {
+                message: "7 caractères minimum",
+                severity: "info",
+              },
+              {
+                message: "1 caractère spécial",
+                severity: "info",
+              },
+              {
+                message: "1 chiffre minimum",
+                severity: "info",
+              },
+            ]}
+            nativeInputProps={{ name: "password" }}
+          />
+
+          <Checkbox
+            options={[
+              {
+                label: "J'accepte de recevoir l'actualité de Réfugiés.info (maximum 1 fois par mois)",
+                nativeInputProps: {
+                  name: "newsletter",
+                  value: "true",
+                },
+              },
+            ]}
+            small
+            className="mt-8 mb-6"
+          />
+
+          <Button
+            iconId="fr-icon-arrow-right-line"
+            iconPosition="right"
+            className={cls(styles.button, "mt-8")}
+            nativeButtonProps={{ type: "submit" }}
+          >
+            Créer mon compte
+          </Button>
+        </form>
       </div>
     </div>
   );

@@ -36,74 +36,72 @@ const AuthEmail = () => {
   if (!email) return null;
 
   return (
-    <div>
+    <div className={cls(styles.container, styles.half)}>
       <SEO title="Bienvenue" />
-      <div>
-        <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
-          Retour
-        </Button>
-        <div className={styles.content}>
-          <div className={styles.title}>
-            <h1>Entrez le code reçu</h1>
-            <p className={styles.subtitle}>
-              Un code temporaire à 6 chiffres vous a été envoyé à {email}
-              <br />
-              <Link href="/auth/email">Ce n’est pas vous ?</Link>
-            </p>
-          </div>
+      <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+        Retour
+      </Button>
+      <div className={styles.content}>
+        <div className={styles.title}>
+          <h1>Entrez le code reçu</h1>
+          <p className={styles.subtitle}>
+            Un code temporaire à 6 chiffres vous a été envoyé à {email}
+            <br />
+            <Link href="/auth/email">Ce n’est pas vous ?</Link>
+          </p>
+        </div>
 
-          <form onSubmit={submit}>
-            <Input
-              label="Code de connexion temporaire"
-              state={!error ? "default" : "error"}
-              stateRelatedMessage={error}
-              nativeInputProps={{
-                autoFocus: true,
-                name: "code",
-              }}
-            />
+        <form onSubmit={submit}>
+          <Input
+            label="Code de connexion temporaire"
+            state={!error ? "default" : "error"}
+            stateRelatedMessage={error}
+            nativeInputProps={{
+              autoFocus: true,
+              name: "code",
+            }}
+          />
 
+          <Button
+            iconId="fr-icon-check-line"
+            iconPosition="right"
+            className={cls(styles.button, "mt-8 mb-4")}
+            nativeButtonProps={{ type: "submit" }}
+          >
+            Valider
+          </Button>
+          <Button
+            iconId="fr-icon-mail-line"
+            iconPosition="right"
+            onClick={sendCode}
+            className={styles.button}
+            priority="tertiary"
+          >
+            Renvoyer le code
+          </Button>
+        </form>
+
+        <Row className={styles.space_top}>
+          <Col>
             <Button
-              iconId="fr-icon-check-line"
-              iconPosition="right"
-              className={cls(styles.button, "mt-8 mb-4")}
-              nativeButtonProps={{ type: "submit" }}
-            >
-              Valider
-            </Button>
-            <Button
-              iconId="fr-icon-mail-line"
-              iconPosition="right"
-              onClick={sendCode}
-              className={styles.button}
+              onClick={() => router.push("/auth/login")}
+              className={cls(styles.button, "mb-4")}
               priority="tertiary"
             >
-              Renvoyer le code
+              Ouvrir Gmail
             </Button>
-          </form>
-
-          <Row className={styles.space_top}>
-            <Col>
-              <Button
-                onClick={() => router.push("/auth/login")}
-                className={cls(styles.button, "mb-4")}
-                priority="tertiary"
-              >
-                Ouvrir Gmail
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                onClick={() => router.push("/auth/login")}
-                className={cls(styles.button, "mb-4")}
-                priority="tertiary"
-              >
-                Ouvrir Outlook
-              </Button>
-            </Col>
-          </Row>
-          <p className={cls(styles.small, "mt-6", "text-center")}>Pensez à vérifiez votre courrier indésirable !</p>
-        </div>
+          </Col>
+          <Col>
+            <Button
+              onClick={() => router.push("/auth/login")}
+              className={cls(styles.button, "mb-4")}
+              priority="tertiary"
+            >
+              Ouvrir Outlook
+            </Button>
+          </Col>
+        </Row>
+        <p className={cls(styles.small, "mt-6", "text-center")}>Pensez à vérifiez votre courrier indésirable !</p>
       </div>
     </div>
   );
