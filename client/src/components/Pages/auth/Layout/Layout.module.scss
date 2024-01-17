@@ -1,0 +1,65 @@
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+
+.container {
+  min-height: 100vh;
+}
+
+.main {
+  width: 50%;
+  padding: u(6) u(38) u(20) u(38);
+
+  &.full_width {
+    width: 100%;
+    background-color: #fafaff;
+    padding-left: 0;
+    padding-right: 0;
+    min-height: calc(100vh - 103px); // TODO: improve that
+  }
+}
+
+.right {
+  background: #ececfe;
+  width: 50%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding-top: 105px;
+}
+.illu {
+  width: 100%;
+  height: auto;
+}
+
+.right_content {
+  text-align: center;
+  width: 480px;
+  margin: auto;
+  margin-top: u(15);
+}
+
+.chapo {
+  @include dsfr-text("chapo");
+  margin-bottom: u(14);
+}
+
+.rating {
+  @include dsfr-text("small");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: u(2);
+}
+
+.small {
+  @include dsfr-text("small");
+  margin-top: u(2);
+  margin-bottom: u(12);
+}
+
+.fixed_illu {
+  position: fixed;
+  bottom: u(10);
+  left: u(26);
+}

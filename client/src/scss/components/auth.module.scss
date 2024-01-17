@@ -1,0 +1,87 @@
+@import "src/scss/mixins/text";
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+
+.subtitle {
+  @include dsfr-text("large");
+  color: $lightTextMentionGrey;
+}
+
+.content {
+  margin-top: u(14);
+}
+
+.container {
+  width: 720px;
+  margin: auto;
+
+  .container_inner {
+    padding: 0 u(38);
+    position: relative;
+
+    .back_button {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+.title {
+  text-align: center;
+  margin-bottom: u(14);
+
+  h1 {
+    @include dsfr-text("h1");
+  }
+}
+
+.tag {
+  background-color: transparent;
+  border: 1px solid var(--border-default-grey);
+  color: var(--text-action-high-blue-france);
+}
+
+.button {
+  width: 100%;
+  justify-content: center;
+}
+
+.separator {
+  @include dsfr-text("large");
+  color: var(--text-disabled-grey);
+  margin: u(14) 0;
+  display: flex;
+  align-items: center;
+  gap: u(6);
+
+  span {
+    flex-shrink: 0;
+  }
+
+  &::after,
+  &::before {
+    content: "";
+    height: 1px;
+    width: 100%;
+    flex-shrink: 1;
+    background-color: var(--border-disabled-grey);
+  }
+}
+
+.space_top {
+  margin-top: u(24);
+}
+
+.small {
+  @include dsfr-text("small");
+  color: var(--text-mention-grey);
+}
+
+.radio {
+  :global(.fr-label),
+  :global(.fr-radio-rich__img) {
+    background-color: transparent !important;
+  }
+}

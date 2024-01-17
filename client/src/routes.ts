@@ -17,9 +17,6 @@ export type PathNames =
   | "/declaration-accessibilite"
   | "/politique-de-confidentialite"
   | "/plan-du-site"
-  | "/login"
-  | "/register"
-  | "/reset"
   | "/backend/[...backend]";
 
 type Routes = {
@@ -45,9 +42,6 @@ const routes: Routes = {
   "/declaration-accessibilite": "/accessibility-statement",
   "/plan-du-site": "/sitemap",
   "/politique-de-confidentialite": "/privacy-policy",
-  "/login": "/login",
-  "/register": "/register",
-  "/reset": "/reset",
   "/backend/[...backend]": "/backend/[...backend]"
 };
 
