@@ -3,7 +3,7 @@ import { updateLanguagesAvancement } from "../langues/langues.service";
 import logger from "../../logger";
 import { cloneDeep, isEmpty, omit, unset, set } from "lodash";
 import { TraductionsType } from "../../typegoose/Traductions";
-import { addOrUpdateDispositifInContenusAirtable } from "../../connectors/airtable/airtable";
+import { addOrUpdateDispositifInContenusAirtable } from "../../connectors/airtable/addOrUpdateDispositifInContenusAirtable";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
 import { Dispositif, DispositifId, ObjectId, Structure, Traductions, TraductionsModel, User, UserId } from "../../typegoose";
@@ -26,39 +26,45 @@ import { log } from "./log";
 import { TranslationContent } from "../../typegoose/Dispositif";
 import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
 import { sendSlackNotif } from "../../connectors/slack/sendSlackNotif";
+import { getUserByIdWithStructures } from "../users/users.repository";
+
+const url = process.env.FRONT_SITE_URL;
 
 export enum NotifType {
   PUBLISHED = "PUBLISHED",
   DELETED = "DELETED",
   UPDATED = "UPDATED",
 }
-export const notifyChange = async (notifType: NotifType, dispositifId: Id) => {
+export const notifyChange = async (notifType: NotifType, dispositifId: Id, userId: Id) => {
   try {
     const dispositif = await getDispositifById(dispositifId.toString(), { translations: 1, typeContenu: 1, theme: 1, secondaryThemes: 1 }, "theme secondaryThemes");
+    const user = await getUserByIdWithStructures(userId, { username: 1, structures: 1 });
     if (!dispositif) {
       logger.error("[notifyChange] dispositif not found", { dispositifId });
       return null;
     }
-    const themes = [dispositif.getTheme()?.name?.fr, dispositif.getSecondaryThemes().map(t => t.name.fr)].filter(t => t).join(", ");
+    const theme = (dispositif.getTheme()?.name?.fr || "").toLowerCase();
     const contentTitle = `${dispositif.typeContenu === ContentType.DISPOSITIF ? dispositif.translations.fr.content.titreMarque + " - " : ""} ${dispositif.translations.fr.content.titreInformatif}`;
+    const structure = user.structures[0]?.nom ? ` de la structure _${user.structures[0]?.nom}_` : "";
+    const type = dispositif.typeContenu === ContentType.DEMARCHE ? "démarche" : "dispositif";
 
     let title = "";
     let text = "";
     switch (notifType) {
       case NotifType.PUBLISHED:
-        title = "✅ Fiche publiée !";
-        text = `Fiche ${dispositif.typeContenu} publiée :\n*${contentTitle}*\n\nThème(s) : ${themes}`;
+        title = ":new: Fiche publiée !";
+        text = `La fiche ${type} *${contentTitle}* a été publiée sur le thème [${theme}]. À valoriser ?`;
         break;
       case NotifType.DELETED:
-        title = "❌ Fiche supprimée !";
-        text = `Fiche ${dispositif.typeContenu} supprimée :\n*${contentTitle}*`;
+        title = ":x: Fiche supprimée !";
+        text = `La fiche ${type} *${contentTitle}* a été supprimée par _${user.username}_${structure}. À vérifier ?`;
         break;
       case NotifType.UPDATED:
-        title = "🔄 Fiche mise à jour !";
-        text = `Fiche ${dispositif.typeContenu} mise à jour :\n*${contentTitle}*\n\nThème(s) : ${themes}`;
+        title = ":arrows_counterclockwise: Fiche mise à jour !";
+        text = `La fiche ${type} *${contentTitle}* a été modifiée par _${user.username}_${structure}. À vérifier ?`;
         break;
     }
-    return sendSlackNotif(title, text, `https://www.refugies.info/fr/dispositif/${dispositifId}`);
+    return sendSlackNotif(title, text, `${url}/fr/${dispositif.typeContenu}/${dispositifId}`);
   } catch (e) {
     logger.error("[notifyChange] error", e);
   }
@@ -282,7 +288,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   if (!draftDispositif) {
     try {
       await Promise.all([
-        notifyChange(NotifType.PUBLISHED, dispositifId),
+        notifyChange(NotifType.PUBLISHED, dispositifId, userId),
         sendNotificationsForDispositif(dispositifId, "fr")
       ])
     } catch (error) {
@@ -314,9 +320,12 @@ export const deleteDispositifInDb = async (id: string, user: User) => {
   checkUserIsAuthorizedToDeleteDispositif(dispositif, user);
 
   const notifyChangeIf = async (id: string, user: User, oldDispositif: Dispositif) => {
-    // notify only if non-admin, or admin and content was previously published
-    if (!user.isAdmin() || (oldDispositif.status === DispositifStatus.ACTIVE && user.isAdmin())) {
-      await notifyChange(NotifType.DELETED, id);
+    // notify only if non-admin and active or waiting, or admin and active
+    if (
+      (!user.isAdmin() && [DispositifStatus.ACTIVE, DispositifStatus.WAITING_ADMIN].includes(oldDispositif.status)) ||
+      (user.isAdmin() && oldDispositif.status === DispositifStatus.ACTIVE)
+    ) {
+      await notifyChange(NotifType.DELETED, id, user._id);
     }
   }
 
