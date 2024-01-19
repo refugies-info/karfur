@@ -6,6 +6,7 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
+import { getLoginRedirect } from "lib/loginRedirect";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
@@ -22,7 +23,10 @@ const AuthEmail = () => {
       // TODO: check code OK and redirect
       const codeOk = true;
       if (codeOk) {
-        router.push("/");
+        const path = getLoginRedirect();
+        router.push(path);
+      } else {
+        setError("Code incorrect, veuillez réessayer.");
       }
     },
     [router],
@@ -43,17 +47,20 @@ const AuthEmail = () => {
       </Button>
       <div className={styles.content}>
         <div className={styles.title}>
-          <h1>Vérifions que c’est bien vous !</h1>
+          <h1>Entrez le code reçu</h1>
           <p className={styles.subtitle}>
             Un code temporaire à 6 chiffres vous a été envoyé à {email}
             <br />
-            <Link href="/auth/email">Ce n’est pas vous&nbsp;?</Link>
+            <Link href="/auth" className="text-decoration-underline">
+              Ce n’est pas vous ?
+            </Link>{" "}
+            {/* TODO: style */}
           </p>
         </div>
 
         <form onSubmit={submit}>
           <Input
-            label="Code de vérification"
+            label="Code de connexion temporaire"
             state={!error ? "default" : "error"}
             stateRelatedMessage={error}
             nativeInputProps={{
@@ -74,22 +81,20 @@ const AuthEmail = () => {
             iconId="fr-icon-mail-line"
             iconPosition="right"
             onClick={sendCode}
-            className={cls(styles.button, "mb-8")}
+            className={styles.button}
             priority="tertiary"
           >
             Renvoyer le code
           </Button>
         </form>
 
-        <div className={cls(styles.small, "mt-6 mb-6", "text-center")}>
-          L'adresse mail n'est plus valable&nbsp;? <Link href="#">Contactez-nous</Link>
-        </div>
-
-        <Row className="mb-4">
+        <Row className={styles.space_top}>
           <Col>
             <Button
-              onClick={() => router.push("/auth/login")}
-              className={cls(styles.button, "mt-8")}
+              linkProps={{
+                href: "https://mail.google.com/mail/u/0/",
+              }}
+              className={styles.button}
               priority="tertiary"
             >
               Ouvrir Gmail
@@ -97,8 +102,10 @@ const AuthEmail = () => {
           </Col>
           <Col>
             <Button
-              onClick={() => router.push("/auth/login")}
-              className={cls(styles.button, "mt-8")}
+              linkProps={{
+                href: "https://outlook.live.com/mail/0/",
+              }}
+              className={styles.button}
               priority="tertiary"
             >
               Ouvrir Outlook

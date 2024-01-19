@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { Id } from "@refugies-info/api-types";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { getPath } from "routes";
+import { setLoginRedirect } from "lib/loginRedirect";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import styles from "./BookmarkedModal.module.scss";
-import { getPath } from "routes";
 
 interface Props {
   show: boolean;
   toggle: () => void;
+  dispositifId?: Id;
 }
 
 const BookmarkedModal = (props: Props) => {
   const { t } = useTranslation();
   const { show, toggle } = props;
-  const router = useRouter();
+
+  const saveRedirect = useCallback(() => {
+    setLoginRedirect(props.dispositifId ? { addFavorite: props.dispositifId.toString() } : undefined);
+  }, [props.dispositifId]);
 
   return (
     <Modal isOpen={show} toggle={toggle} className={styles.bookmark_modal} contentClassName={styles.modal_content}>
@@ -42,12 +47,12 @@ const BookmarkedModal = (props: Props) => {
       <ModalFooter className={styles.modal_footer}>
         {
           <>
-            <Link legacyBehavior href={getPath("/login", router.locale)} passHref prefetch={false}>
+            <Link legacyBehavior href={getPath("/auth", "fr")} passHref prefetch={false} onClick={saveRedirect}>
               <FButton type="login" name="log-in-outline" tag="a">
                 {t("Toolbar.Connexion", "Connexion")}
               </FButton>
             </Link>
-            <Link legacyBehavior href={getPath("/register", router.locale)} passHref prefetch={false}>
+            <Link legacyBehavior href={getPath("/auth", "fr")} passHref prefetch={false} onClick={saveRedirect}>
               <FButton type="signup" name="person-add-outline" className="me-2" tag="a">
                 {t("Toolbar.Inscription", "Inscription")}
               </FButton>

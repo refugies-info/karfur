@@ -68,12 +68,12 @@ const PlanDuSite = () => {
           <Link href="/#application">{t("MobileAppModal.download")}</Link>
         </li>
         <li>
-          <Link href={getPath("/register", router.locale)} prefetch={false}>
+          <Link href={getPath("/auth", "fr")} prefetch={false}>
             {t("Toolbar.Inscription", "Inscription")}
           </Link>
         </li>
         <li>
-          <Link href={getPath("/login", router.locale)} prefetch={false}>
+          <Link href={getPath("/auth", "fr")} prefetch={false}>
             {t("Toolbar.Connexion", "Connexion")}
           </Link>
         </li>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import { getPath } from "routes";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import SEO from "components/Seo";
@@ -27,19 +28,19 @@ const AuthLogin = () => {
       e.preventDefault();
       const choice = e.target.structure;
       if (choice === "ts") {
-        router.push("/auth/register/structure");
+        router.push(getPath("/auth/inscription/structure", "fr"));
         return;
       }
       if (choice === "structure") {
-        router.push("/auth/register/structure");
+        router.push(getPath("/auth/inscription/structure", "fr"));
         return;
       }
       if (choice === "translate") {
-        router.push("/auth/register/structure");
+        router.push(getPath("/auth/inscription/structure", "fr"));
         return;
       }
       if (choice === "user") {
-        router.push("/auth/register/structure");
+        router.push(getPath("/auth/inscription/structure", "fr"));
         return;
       }
     },
@@ -48,7 +49,7 @@ const AuthLogin = () => {
 
   return (
     <div className={cls(styles.container, styles.full)}>
-      <SEO title="Votre objectif" />
+      <SEO title="Votre structure" />
       <div className={styles.container_inner}>
         <Button
           priority="tertiary"

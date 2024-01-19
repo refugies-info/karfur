@@ -20,7 +20,7 @@ const AuthLogin = () => {
 
   return (
     <div className={cls(styles.container, styles.full)}>
-      <SEO title="Votre objectif" />
+      <SEO title="Votre territoire" />
       <div className={styles.container_inner}>
         <Button
           priority="tertiary"

@@ -17,7 +17,20 @@ export type PathNames =
   | "/declaration-accessibilite"
   | "/politique-de-confidentialite"
   | "/plan-du-site"
-  | "/backend/[...backend]";
+  | "/backend/[...backend]"
+  | "/auth"
+  | "/auth/connexion"
+  | "/auth/code-connexion"
+  | "/auth/code-securite"
+  | "/auth/inscription"
+  | "/auth/inscription/objectif"
+  | "/auth/inscription/langue"
+  | "/auth/inscription/pseudo"
+  | "/auth/inscription/structure"
+  | "/auth/inscription/territoire"
+  | "/auth/reinitialiser-mot-de-passe"
+  | "/auth/reinitialiser-mot-de-passe/mail-envoye"
+  ;
 
 type Routes = {
   [key in PathNames]: string;
@@ -42,7 +55,19 @@ const routes: Routes = {
   "/declaration-accessibilite": "/accessibility-statement",
   "/plan-du-site": "/sitemap",
   "/politique-de-confidentialite": "/privacy-policy",
-  "/backend/[...backend]": "/backend/[...backend]"
+  "/backend/[...backend]": "/backend/[...backend]",
+  "/auth": "/auth",
+  "/auth/connexion": "/auth/connexion",
+  "/auth/code-connexion": "/auth/code-connexion",
+  "/auth/code-securite": "/auth/code-securite",
+  "/auth/inscription": "/auth/inscription",
+  "/auth/inscription/objectif": "/auth/inscription/objectif",
+  "/auth/inscription/langue": "/auth/inscription/langue",
+  "/auth/inscription/pseudo": "/auth/inscription/pseudo",
+  "/auth/inscription/structure": "/auth/inscription/structure",
+  "/auth/inscription/territoire": "/auth/inscription/territoire",
+  "/auth/reinitialiser-mot-de-passe": "/auth/reinitialiser-mot-de-passe",
+  "/auth/reinitialiser-mot-de-passe/mail-envoye": "/auth/reinitialiser-mot-de-passe/mail-envoye"
 };
 
 export const isRoute = (currentPath: string, pathName: PathNames) => {

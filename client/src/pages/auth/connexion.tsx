@@ -1,35 +1,47 @@
 import { ReactElement, useCallback, useMemo, useState } from "react";
 import { useRouter } from "next/router";
+import { getPath } from "routes";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
-import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
-import Input from "@codegouvfr/react-dsfr/Input";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { getLoginRedirect } from "lib/loginRedirect";
 import { cls } from "lib/classname";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
+import FRLink from "components/UI/FRLink";
 import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
   const router = useRouter();
   const email = useMemo(() => router.query.email, [router.query]);
+  const has2FA = useMemo(() => router.query["2fa"], [router.query]);
   const [error, setError] = useState("");
 
   const submit = useCallback(
     (e: any) => {
       e.preventDefault();
-      const name = e.target.name.value;
       const password = e.target.password.value;
-      // TODO: send infos
-      const isRegistered = true;
-      if (isRegistered) {
-        // TODO: check role
-        router.push(`/auth/login-code?email=${email}`);
+      const isPasswordOk = true; // TODO: send and check password
+      if (isPasswordOk) {
+        const needs2FA = true; // TODO: get response to see if 2fa requested
+        if (needs2FA) {
+          router.push(getPath("/auth/code-connexion", "fr", `?email=${email}`));
+        } else {
+          const path = getLoginRedirect();
+          router.push(path);
+        }
+      } else {
+        setError("Mot de passe incorrect. Réessayez ou cliquez sur 'Mot de passe oublié' pour le réinitialiser.");
       }
     },
     [router, email],
   );
+
+  const sendEmailCode = useCallback(() => {
+    // TODO: send email code and then
+    router.push(getPath("/auth/code-securite", "fr", `?email=${email}`));
+  }, [router, email]);
 
   if (!email) return null;
 
@@ -41,53 +53,30 @@ const AuthLogin = () => {
       </Button>
       <div className={styles.content}>
         <div className={styles.title}>
-          <h1>Créez votre compte</h1>
+          <h1>Ravis de vous revoir !</h1>
 
           <Tag className={cls("mb-5", styles.tag)}>{email}</Tag>
         </div>
 
         <form onSubmit={submit}>
-          <Input
-            label="Votre prénom (optionnel)"
-            state={!error ? "default" : "error"}
-            stateRelatedMessage={error}
-            nativeInputProps={{
-              autoFocus: true,
-              name: "name",
-            }}
-          />
           <PasswordInput
             label="Mot de passe"
-            messages={[
-              {
-                message: "7 caractères minimum",
-                severity: "info",
-              },
-              {
-                message: "1 caractère spécial",
-                severity: "info",
-              },
-              {
-                message: "1 chiffre minimum",
-                severity: "info",
-              },
-            ]}
-            nativeInputProps={{ name: "password" }}
+            messages={
+              !!error
+                ? [
+                    {
+                      message: error,
+                      severity: "error",
+                    },
+                  ]
+                : []
+            }
+            messagesHint=""
+            nativeInputProps={{ name: "password", autoFocus: true }}
           />
-
-          <Checkbox
-            options={[
-              {
-                label: "J'accepte de recevoir l'actualité de Réfugiés.info (maximum 1 fois par mois)",
-                nativeInputProps: {
-                  name: "newsletter",
-                  value: "true",
-                },
-              },
-            ]}
-            small
-            className="mt-8 mb-6"
-          />
+          <div className="mb-6 mt-2">
+            <FRLink href="/auth/reinitialiser-mot-de-passe">Mot de passe oublié&nbsp;?</FRLink>
+          </div>
 
           <Button
             iconId="fr-icon-arrow-right-line"
@@ -95,9 +84,21 @@ const AuthLogin = () => {
             className={cls(styles.button, "mt-8")}
             nativeButtonProps={{ type: "submit" }}
           >
-            Créer mon compte
+            {!has2FA ? "Me connecter" : "Me connecter avec le mot de passe"}
           </Button>
         </form>
+
+        {!has2FA && (
+          <>
+            <div className={styles.separator}>
+              <span>ou</span>
+            </div>
+
+            <Button onClick={sendEmailCode} className={styles.button} priority="tertiary">
+              Me connecter avec un code reçu par mail
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );

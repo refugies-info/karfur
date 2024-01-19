@@ -24,7 +24,7 @@ import { readAudio, stopAudio } from "lib/readAudio";
 import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
-import { useChangeLanguage, useRTL } from "hooks";
+import { useChangeLanguage, useFavorites, useRTL } from "hooks";
 import locale from "utils/locale";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
@@ -157,6 +157,14 @@ const Layout = (props: Props) => {
       }
     }
   };
+
+  // FAVORITE
+  const favoriteContentId = router.query.addFavorite as string;
+  const { addToFavorites } = useFavorites(favoriteContentId);
+  useEffect(() => {
+    /* TODO: check no multi re-renders */
+    addToFavorites();
+  }, [addToFavorites]);
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>

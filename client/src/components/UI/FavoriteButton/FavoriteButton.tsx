@@ -22,6 +22,7 @@ export const FavoriteButton = (props: Props) => {
     addToFavorites();
   };
 
+  /* TODO: modal favorite? */
   return (
     <Button
       className={cls(styles.btn, isFavorite && styles.active, props.className)}

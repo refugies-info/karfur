@@ -8,6 +8,7 @@ import { useTranslation } from "next-i18next";
 import qs from "query-string";
 import { getPath } from "routes";
 import { cls } from "lib/classname";
+import { setLoginRedirect } from "lib/loginRedirect";
 import { userDetailsSelector } from "services/User/user.selectors";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton";
@@ -41,8 +42,9 @@ const Register = (props: Props) => {
   const isLoggedIn = !!useSelector(userDetailsSelector);
 
   const onSubmit = () => {
+    setLoginRedirect();
     router.push({
-      pathname: getPath("/register", router.locale),
+      pathname: getPath("/auth", "fr") /* TODO: no goal screen */,
       search: qs.stringify({ username: username }),
     });
   };
@@ -122,8 +124,9 @@ const Register = (props: Props) => {
 
               <p className={styles.login}>
                 {t("Register.already_an_account")}
-                <Link legacyBehavior href={getPath("/login", router.locale)}>
-                  <a className={styles.link}>{t("Register.Se connecter")}</a>
+                {/* TODO: no goal screen */}
+                <Link href={getPath("/auth", "fr")} onClick={() => setLoginRedirect()} className={styles.link}>
+                  {t("Register.Se connecter")}
                 </Link>
               </p>
             </>

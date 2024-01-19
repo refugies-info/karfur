@@ -1,14 +1,14 @@
-import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
+import { ReactElement, useCallback, useMemo, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
+import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
+import Input from "@codegouvfr/react-dsfr/Input";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
-import FRLink from "components/UI/FRLink";
 import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
@@ -19,23 +19,17 @@ const AuthLogin = () => {
   const submit = useCallback(
     (e: any) => {
       e.preventDefault();
+      const name = e.target.name.value;
       const password = e.target.password.value;
-      // TODO: send and check password
-      const isPasswordOk = true;
-      if (isPasswordOk) {
+      // TODO: send infos
+      const isRegistered = true;
+      if (isRegistered) {
         // TODO: check role
-        router.push(`/auth/login-code?email=${email}`);
-      } else {
-        setError("Mot de passe invalide.");
+        router.push("/");
       }
     },
-    [router, email],
+    [router],
   );
-
-  const sendEmailCode = useCallback(() => {
-    // TODO: send email code and then
-    router.push(`/auth/security-code?email=${email}`);
-  }, [router, email]);
 
   if (!email) return null;
 
@@ -47,29 +41,53 @@ const AuthLogin = () => {
       </Button>
       <div className={styles.content}>
         <div className={styles.title}>
-          <h1>Ravis de vous revoir !</h1>
+          <h1>Créez votre compte</h1>
 
           <Tag className={cls("mb-5", styles.tag)}>{email}</Tag>
         </div>
 
         <form onSubmit={submit}>
+          <Input
+            label="Votre prénom (optionnel)"
+            state={!error ? "default" : "error"}
+            stateRelatedMessage={error}
+            nativeInputProps={{
+              autoFocus: true,
+              name: "name",
+            }}
+          />
           <PasswordInput
             label="Mot de passe"
-            messages={
-              !!error
-                ? [
-                    {
-                      message: error,
-                      severity: "error",
-                    },
-                  ]
-                : []
-            }
-            nativeInputProps={{ name: "password", autoFocus: true }}
+            messages={[
+              {
+                message: "7 caractères minimum",
+                severity: "info",
+              },
+              {
+                message: "1 caractère spécial",
+                severity: "info",
+              },
+              {
+                message: "1 chiffre minimum",
+                severity: "info",
+              },
+            ]}
+            nativeInputProps={{ name: "password" }}
           />
-          <div className="mb-6">
-            <FRLink href="/auth/reset-password">Mot de passe oublié&nbsp;?</FRLink>
-          </div>
+
+          <Checkbox
+            options={[
+              {
+                label: "J'accepte de recevoir l'actualité de Réfugiés.info (maximum 1 fois par mois)",
+                nativeInputProps: {
+                  name: "newsletter",
+                  value: "true",
+                },
+              },
+            ]}
+            small
+            className="mt-8 mb-6"
+          />
 
           <Button
             iconId="fr-icon-arrow-right-line"
@@ -77,17 +95,9 @@ const AuthLogin = () => {
             className={cls(styles.button, "mt-8")}
             nativeButtonProps={{ type: "submit" }}
           >
-            Me connecter
+            Créer mon compte
           </Button>
         </form>
-
-        <div className={styles.separator}>
-          <span>ou</span>
-        </div>
-
-        <Button onClick={sendEmailCode} className={styles.button} priority="tertiary">
-          Me connecter avec un code reçu par mail
-        </Button>
       </div>
     </div>
   );
