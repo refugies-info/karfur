@@ -22,7 +22,7 @@ const NoEmailModal = () => {
         Dans quelques semaines, vous ne pourrez plus vous connecter à votre compte Réfugiés.info sans adresse email.
       </p>
       <p>
-        Vous avez jusqu’au <strong>15 février</strong> pour compléter votre profil. Passé cette date, nous supprimerons
+        Vous avez jusqu’au <strong>6 février</strong> pour compléter votre profil. Passé cette date, nous supprimerons
         votre compte. Mais pas d’inquiétude, vous pourrez en créer un nouveau facilement.
       </p>
       <div className="text-center mb-8">
