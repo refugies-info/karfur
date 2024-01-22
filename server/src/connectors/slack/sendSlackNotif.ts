@@ -35,7 +35,7 @@ export const sendSlackNotif = async (title: string, text: string, link: string) 
             "type": "button",
             "text": {
               "type": "plain_text",
-              "text": "Consulter la fiche",
+              "text": ":point_right: Consulter la fiche",
               "emoji": true
             },
             "url": link,
