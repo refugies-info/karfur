@@ -42,7 +42,7 @@ export const removeStructureOfUser = async (userId: UserId, structureId: Structu
   });
 };
 
-export const proceedWithLogin = (user: User) => updateUserInDB(user._id, { last_connected: new Date() });
+export const updateLastConnected = (user: User) => updateUserInDB(user._id, { last_connected: new Date() });
 
 export const getUsersFromStructureMembres = async (structureMembres: Membre[]): Promise<User[]> => {
   logger.info("[getUsersFromStructureMembres] received");

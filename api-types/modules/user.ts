@@ -1,11 +1,23 @@
 import { Id, Picture, SimpleDispositif, UserStatus, UserStructure } from "../generics";
 
+interface AuthPassword {
+  email: string;
+  password: string;
+}
+interface AuthGoogle {
+  authCode: string;
+}
+interface AuthMicrosoft {
+  authCode: string;
+}
+
 /**
  * @url POST /user/login
  */
 export interface LoginRequest {
-  username: string;
-  password: string;
+  authPassword?: AuthPassword;
+  authGoogle?: AuthGoogle;
+  authMicrosoft?: AuthMicrosoft;
   code?: string;
   email?: string;
   phone?: string;
