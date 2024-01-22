@@ -1,7 +1,7 @@
 import logger from "../../../logger";
 import { cloneDeep, set } from "lodash";
 import { DemarcheContent, DispositifContent, Languages, TranslationContent } from "@refugies-info/api-types";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../connectors/airtable/airtable";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../connectors/airtable/addOrUpdateDispositifInContenusAirtable";
 import { deleteTradsInDB } from "../../../modules/traductions/traductions.repository";
 import { getLanguageByCode } from "../../../modules/langues/langues.repository";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";

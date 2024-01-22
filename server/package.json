@@ -26,7 +26,7 @@
     "@sendinblue/client": "^3.2.2",
     "@slack/webhook": "^7.0.1",
     "@typegoose/typegoose": "^12.0.0",
-    "airtable": "^0.7.2",
+    "airtable": "^0.12.2",
     "algoliasearch": "^4.11.0",
     "cloudinary": "^1.13.2",
     "compression": "^1.7.4",

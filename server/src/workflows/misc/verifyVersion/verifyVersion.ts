@@ -13,6 +13,7 @@ const compareTo = (appVersion: string) => (minimumAppVersion: string) => {
   const [year, month, inc] = appVersion.split(".");
   const [minYear, minMonth, minInc] = minimumAppVersion.split(".");
 
+  if (parseInt(year) > parseInt(minYear)) return true;
   return (
     parseInt(year) >= parseInt(minYear) && parseInt(month) >= parseInt(minMonth) && parseInt(inc) >= parseInt(minInc)
   );

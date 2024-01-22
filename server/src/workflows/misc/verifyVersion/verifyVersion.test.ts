@@ -21,4 +21,8 @@ describe("verifyVersion", () => {
     process.env.MINIMUM_APP_VERSION = "2024.01.1";
     expect(verifyVersion("2023.01.1")).resolves.toBe(false);
   });
+  it("should resolves true when minimum version is inferior to provided once", () => {
+    process.env.MINIMUM_APP_VERSION = "2023.12.10";
+    expect(verifyVersion("2024.01.1")).resolves.toBe(true);
+  });
 });
