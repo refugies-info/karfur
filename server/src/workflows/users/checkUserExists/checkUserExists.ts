@@ -7,7 +7,7 @@ import { needs2FA } from "../../../modules/users/auth";
 export const checkUserExists = async (email: string): Promise<CheckUserExistsResponse> => {
   logger.info("[checkUserExists] received");
 
-  const user = await getUserByEmailFromDB(email);
+  const user = await getUserByEmailFromDB(email).populate("roles");
   if (!user) throw new NotFoundError("User not found");
 
   const userNeeds2FA = await needs2FA(user);
