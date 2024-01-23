@@ -9,7 +9,10 @@ import API from "utils/API";
 import { cls } from "lib/classname";
 import isInBrowser from "lib/isInBrowser";
 import SEO from "components/Seo";
+import GmailIcon from "assets/auth/providers/gmail-icon.svg";
+import OutlookIcon from "assets/auth/providers/outlook-icon.svg";
 import styles from "scss/components/auth.module.scss";
+import Image from "next/image";
 
 interface Props {
   type: "2fa" | "login";
@@ -120,6 +123,7 @@ const CheckCode = ({ type }: Props) => {
               className={styles.button}
               priority="tertiary"
             >
+              <Image src={GmailIcon} width={24} height={24} alt="" className="me-2" />
               Ouvrir Gmail
             </Button>
           </Col>
@@ -131,6 +135,7 @@ const CheckCode = ({ type }: Props) => {
               className={styles.button}
               priority="tertiary"
             >
+              <Image src={OutlookIcon} width={24} height={24} alt="" className="me-2" />
               Ouvrir Outlook
             </Button>
           </Col>
