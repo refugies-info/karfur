@@ -56,6 +56,7 @@ export const login = async (body: LoginRequest): ResponseWithData<LoginResponse>
     const userNeeds2FA = await needs2FA(user);
     if (userNeeds2FA) {
       await requestEmailLogin(email);
+      throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
     } else {
       const token = await logUser(user);
       return {

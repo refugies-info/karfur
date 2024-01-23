@@ -32,6 +32,7 @@ export const setNewPassword = async (body: NewPasswordRequest): ResponseWithData
         await verifyCode(user.email, body.code);
       } else {
         await requestEmailLogin(user.email);
+        throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
       }
     }
     const token = await logUser(user);

@@ -33,7 +33,7 @@ const AuthLogin = () => {
       } catch (e: any) {
         const errorCode = e.response?.data?.code;
         if (errorCode === "NO_CODE_SUPPLIED") {
-          router.push(getPath("/auth/code-connexion", "fr", `?email=${email}`));
+          router.push(getPath("/auth/code-securite", "fr", `?email=${email}`));
         } else if (errorCode === "INVALID_PASSWORD") {
           setError("Mot de passe incorrect. Réessayez ou cliquez sur 'Mot de passe oublié' pour le réinitialiser.");
         } else if (errorCode === "USER_DELETED") {
@@ -45,11 +45,6 @@ const AuthLogin = () => {
     },
     [router, email, logUser],
   );
-
-  const sendEmailCode = useCallback(() => {
-    // TODO: send email code and then
-    router.push(getPath("/auth/code-securite", "fr", `?email=${email}`));
-  }, [router, email]);
 
   // TODO: if auth -> redirect
   if (!email) return null;
@@ -103,7 +98,11 @@ const AuthLogin = () => {
               <span>ou</span>
             </div>
 
-            <Button onClick={sendEmailCode} className={styles.button} priority="tertiary">
+            <Button
+              linkProps={{ href: getPath("/auth/code-connexion", "fr", `?email=${email}`) }}
+              className={styles.button}
+              priority="tertiary"
+            >
               Me connecter avec un code reçu par mail
             </Button>
           </>

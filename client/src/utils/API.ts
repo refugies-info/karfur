@@ -94,7 +94,8 @@ import {
   UpdateUserRequest,
   WidgetRequest,
   PublishTranslationRequest,
-  CheckUserExistsResponse
+  CheckUserExistsResponse,
+  SendCodeRequest
 } from "@refugies-info/api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -157,6 +158,10 @@ const API = {
   checkCode: (body: CheckCodeRequest): Promise<LoginResponse> => {
     const headers = getHeaders();
     return instance.post<any, APIResponse<LoginResponse>>("/user/check-code", body, { headers }).then(response => response.data.data)
+  },
+  sendCode: (body: SendCodeRequest): Promise<null> => {
+    const headers = getHeaders();
+    return instance.post<any, null>("/user/send-code", body, { headers }).then(() => null)
   },
   checkUserExists: (email: string): Promise<CheckUserExistsResponse> => {
     return instance.get<any, APIResponse<CheckUserExistsResponse>>(`/user/exists?email=${email}`).then(response => response.data.data)

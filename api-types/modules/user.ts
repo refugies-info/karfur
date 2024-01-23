@@ -36,6 +36,13 @@ export interface CheckCodeRequest {
 }
 
 /**
+ * @url POST /user/send-code
+ */
+export interface SendCodeRequest {
+  email: string;
+}
+
+/**
  * @url POST /user/register
  */
 export interface RegisterRequest {

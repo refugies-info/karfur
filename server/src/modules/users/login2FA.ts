@@ -28,7 +28,7 @@ export const requestEmailLogin = async (email: string) => {
     throw new LoginError(LoginErrorType.ERROR_WHILE_SENDING_CODE);
   }
   logger.info("[Login] email successfully sent to user", { email });
-  throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
+  return true;
 };
 
 export const verifyCode = async (email: string, code: string) => {

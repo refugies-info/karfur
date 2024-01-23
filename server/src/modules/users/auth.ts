@@ -13,6 +13,7 @@ import LoginError, { LoginErrorType } from "./LoginError";
 import { getUserByEmailFromDB } from "./users.repository";
 import { updateLastConnected } from "./users.service";
 import { userRespoStructureId } from "../structure/structure.service";
+import { UserStatus } from "@refugies-info/api-types";
 
 export const loginExceptionsManager = (error: LoginError) => {
   logger.error("[Login] error while login", { error: error.message });
@@ -48,12 +49,19 @@ export const loginExceptionsManager = (error: LoginError) => {
   }
 };
 
+export const isUserValid = async (user: DocumentType<User> | null | undefined, email: string): Promise<boolean> => {
+  if (!user) throw new LoginError(LoginErrorType.NO_ACCOUNT, { email });
+  if (user.status === UserStatus.DELETED) throw new LoginError(LoginErrorType.USER_DELETED);
+  return true;
+}
+
 /**
  * Log all data before login and return token
  * @param user
  */
 export const logUser = async (user: DocumentType<User> | string): Promise<string> => {
   let userDocument: DocumentType<User> = typeof user === "string" ? await getUserByEmailFromDB(user) : user;
+  await isUserValid(userDocument, userDocument.email);
   await updateLastConnected(userDocument);
   await addLog(userDocument._id, "User", "Connexion");
   return userDocument.getToken();

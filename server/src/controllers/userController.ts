@@ -23,6 +23,7 @@ import {
   RegisterRequest,
   CheckCodeRequest,
   CheckUserExistsResponse,
+  SendCodeRequest,
 } from "@refugies-info/api-types";
 
 import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
@@ -44,6 +45,7 @@ import { checkResetToken } from "../workflows/users/checkResetToken";
 import { checkUserExists } from "../workflows/users/checkUserExists";
 import { checkCode } from "../workflows/users/checkCode";
 import { register } from "../workflows/users/register";
+import { sendCode } from "../workflows/users/sendCode";
 
 // import { UserStatus } from "../typegoose/User";
 
@@ -73,6 +75,13 @@ export class UserController extends Controller {
   public async checkCode(@Body() body: CheckCodeRequest): ResponseWithData<LoginResponse> {
     const data = await checkCode(body);
     return { text: "success", data };
+  }
+
+  @Security("fromSite")
+  @Post("/send-code")
+  public async sendCode(@Body() body: SendCodeRequest): Response {
+    await sendCode(body);
+    return { text: "success" };
   }
 
   @Security("jwt")

@@ -10,6 +10,7 @@ import { ObjectId, User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
 import { Response } from "../../../types/interface";
 import { UpdateUserRequest } from "@refugies-info/api-types";
+import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
 
 export const updateUser = async (id: string, body: UpdateUserRequest, userReq: User): Response => {
   const { action } = body;
@@ -85,7 +86,10 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
       } else if (user.email) {
         // update phone number with 2FA
         try {
-          if (!body.user.code) await requestEmailLogin(user.email);
+          if (!body.user.code) {
+            await requestEmailLogin(user.email);
+            throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
+          }
           await verifyCode(user.email, body.user.code);
           await updateUserInDB(id, user);
         } catch (e) {
