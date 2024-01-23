@@ -1,36 +1,29 @@
 import crypto from "crypto";
+import { ResetPasswordRequest, ResetPasswordResponse } from "@refugies-info/api-types";
 import logger from "../../../logger";
 import { getUserByEmailFromDB, updateUserInDB } from "../../../modules/users/users.repository";
-import { InvalidRequestError, NotFoundError, UnauthorizedError, AuthenticationError } from "../../../errors";
 import { ResponseWithData } from "../../../types/interface";
 import { sendResetPasswordMail } from "../../../modules/mail/mail.service";
-import { ResetPasswordRequest, ResetPasswordResponse } from "@refugies-info/api-types";
+import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
 
 const url = process.env.FRONT_SITE_URL;
 
 export const resetPassword = async (body: ResetPasswordRequest): ResponseWithData<ResetPasswordResponse> => {
-  logger.info("[resetPassword] received");
+  logger.info("[resetPassword] received", { email: body.email });
 
   const user = await getUserByEmailFromDB(body.email);
-  if (!user) throw new NotFoundError("L'utilisateur n'existe pas", null, { noAlert: true });
-  if (!user.email)
-    throw new AuthenticationError(
-      "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
-    );
-  if (user.isAdmin())
-    throw new UnauthorizedError(
-      "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
-    );
+  if (!user) throw new LoginError(LoginErrorType.USER_NOT_EXISTS);
+  if (user.isAdmin()) throw new LoginError(LoginErrorType.ADMIN_FORBIDDEN);
 
   await new Promise((resolve, reject) => {
     crypto.randomBytes(20, async function (errb, buffer) {
-      if (errb) reject(new InvalidRequestError(errb.message));
+      if (errb) reject(new LoginError(LoginErrorType.INVALID_REQUEST, { message: errb.message }));
       const token = buffer.toString("hex");
       await updateUserInDB(user._id, {
         reset_password_token: token,
         reset_password_expires: new Date(Date.now() + 1 * 60 * 60 * 1000),
       });
-      const newUrl = url + "/reset?token=" + token;
+      const newUrl = url + "/auth/reinitialiser-mot-de-passe/nouveau?token=" + token;
       await sendResetPasswordMail(user.username, newUrl, user.email);
       resolve(true);
     });

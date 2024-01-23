@@ -1,7 +1,8 @@
-import { ReactElement, useCallback, useState } from "react";
+import { ReactElement, useCallback, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
+import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import SEO from "components/Seo";
@@ -11,14 +12,19 @@ import { getPath } from "routes";
 
 const AuthEmail = () => {
   const router = useRouter();
+  const email: string = useMemo(() => router.query.email as string, [router.query]);
   const [error, setError] = useState("");
 
   const submit = useCallback(
-    (e: any) => {
+    async (e: any) => {
       e.preventDefault();
       const email = e.target.email.value;
-      // TODO: send email reset
-      router.push(getPath("/auth/reinitialiser-mot-de-passe/mail-envoye", "fr", `?email=${email}`));
+      try {
+        const res = await API.resetPassword({ email });
+        router.push(getPath("/auth/reinitialiser-mot-de-passe/mail-envoye", "fr", `?email=${res.email}`));
+      } catch (e: any) {
+        setError("Une erreur est survenue, veuillez réessayer ou contacter un administrateur");
+      }
     },
     [router],
   );
@@ -46,6 +52,7 @@ const AuthEmail = () => {
               autoFocus: true,
               type: "email",
               name: "email",
+              defaultValue: email,
             }}
           />
 

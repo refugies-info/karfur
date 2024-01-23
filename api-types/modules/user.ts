@@ -94,8 +94,6 @@ export interface NewPasswordRequest {
   newPassword: string;
   reset_password_token: string;
   code?: string;
-  email?: string;
-  phone?: string;
 }
 
 /**

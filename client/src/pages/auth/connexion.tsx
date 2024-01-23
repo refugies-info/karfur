@@ -84,7 +84,7 @@ const AuthLogin = () => {
             nativeInputProps={{ name: "password", autoFocus: true }}
           />
           <div className="mb-6 mt-2">
-            <FRLink href="/auth/reinitialiser-mot-de-passe">Mot de passe oublié&nbsp;?</FRLink>
+            <FRLink href={`/auth/reinitialiser-mot-de-passe?email=${email}`}>Mot de passe oublié&nbsp;?</FRLink>
           </div>
 
           <Button

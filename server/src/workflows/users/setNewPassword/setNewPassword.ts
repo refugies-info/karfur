@@ -2,7 +2,7 @@ import passwordHash from "password-hash";
 import logger from "../../../logger";
 import { isPasswordOk } from "../../../libs/validatePassword";
 import { userRespoStructureId } from "../../../modules/structure/structure.service";
-import { requestEmailLogin } from "../../../modules/users/login2FA";
+import { requestEmailLogin, verifyCode } from "../../../modules/users/login2FA";
 import { ResponseWithData } from "../../../types/interface";
 import { getUserFromDB } from "../../../modules/users/users.repository";
 import { NewPasswordRequest, NewPasswordResponse } from "@refugies-info/api-types";
@@ -17,28 +17,22 @@ export const setNewPassword = async (body: NewPasswordRequest): ResponseWithData
       reset_password_expires: { $gt: Date.now() },
     }).populate("roles");
 
-    if (!user) {
-      throw new LoginError(LoginErrorType.USER_NOT_EXISTS);
-    } else if (!user.email) {
-      throw new LoginError(LoginErrorType.NO_EMAIL);
-    } else if (passwordHash.verify(body.newPassword, user.password)) {
-      throw new LoginError(LoginErrorType.USED_PASSWORD);
-    }
-
-    if (user.isAdmin()) {
-      throw new LoginError(LoginErrorType.ADMIN_FORBIDDEN);
-    }
-
-    if (!isPasswordOk(body.newPassword)) {
-      throw new LoginError(LoginErrorType.PASSWORD_TOO_WEAK);
-    }
+    if (!user) throw new LoginError(LoginErrorType.USER_NOT_EXISTS);
+    if (!user.email) throw new LoginError(LoginErrorType.NO_EMAIL);
+    if (passwordHash.verify(body.newPassword, user.password)) throw new LoginError(LoginErrorType.USED_PASSWORD);
+    if (user.isAdmin()) throw new LoginError(LoginErrorType.ADMIN_FORBIDDEN);
+    if (!isPasswordOk(body.newPassword)) throw new LoginError(LoginErrorType.PASSWORD_TOO_WEAK);
 
     const userStructureId = await userRespoStructureId(
       user.structures.map((structure) => structure._id) || [],
       user._id,
     );
     if (userStructureId) {
-      await requestEmailLogin(body.email); // TODO : fix here, next code never reached
+      if (body.code) {
+        await verifyCode(user.email, body.code);
+      } else {
+        await requestEmailLogin(user.email);
+      }
     }
     const token = await logUser(user);
     user.password = passwordHash.generate(body.newPassword);

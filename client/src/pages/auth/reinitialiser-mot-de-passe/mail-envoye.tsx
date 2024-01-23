@@ -2,22 +2,25 @@ import { ReactElement, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import API from "utils/API";
 import { cls } from "lib/classname";
+import isInBrowser from "lib/isInBrowser";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
 
 const AuthEmail = () => {
   const router = useRouter();
-  const email = useMemo(() => router.query.email, [router.query]);
+  const email = useMemo(() => router.query.email as string, [router.query]);
 
-  const sendMail = useCallback(() => {
+  const sendMail = useCallback(async () => {
     if (!email) return;
-    // TODO: resend email
+    await API.resetPassword({ email });
   }, [email]);
 
   const openChat = useCallback(() => {
-    // TODO open chat
+    if (!isInBrowser()) return;
+    window.$crisp.push(["do", "chat:open"]);
   }, []);
 
   return (
