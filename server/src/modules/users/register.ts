@@ -6,6 +6,7 @@ import { sendWelcomeMail } from "../mail/mail.service";
 import { Role } from "../../typegoose";
 import { UserStatus } from "@refugies-info/api-types";
 
+// TODO: use LoginError
 export const register = async (user: { username: string; password: string; email?: string }, userRole: Role) => {
   try {
     logger.info("[Register] register attempt", { username: user.username });

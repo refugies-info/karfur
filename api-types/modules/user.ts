@@ -18,9 +18,29 @@ export interface LoginRequest {
   authPassword?: AuthPassword;
   authGoogle?: AuthGoogle;
   authMicrosoft?: AuthMicrosoft;
-  code?: string;
-  email?: string;
-  phone?: string;
+}
+
+/**
+ * @url GET /user/exists
+ */
+export interface CheckUserExistsResponse {
+  verificationCode: boolean;
+}
+
+/**
+ * @url POST /user/check-code
+ */
+export interface CheckCodeRequest {
+  code: string;
+  email: string;
+}
+
+/**
+ * @url POST /user/register
+ */
+export interface RegisterRequest {
+  email: string;
+  password: string;
 }
 
 /**
@@ -64,7 +84,7 @@ export interface UpdatePasswordRequest {
  * @url POST /user/password/reset
  */
 export interface ResetPasswordRequest {
-  username: string;
+  email: string;
 }
 
 /**

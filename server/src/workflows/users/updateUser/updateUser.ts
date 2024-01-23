@@ -2,9 +2,9 @@ import logger from "../../../logger";
 import { getRoleByName } from "../../../modules/role/role.repository";
 import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
-import { requestSMSLogin, verifyCode } from "../../../modules/users/login2FA";
+import { requestEmailLogin, verifyCode } from "../../../modules/users/login2FA";
+import { loginExceptionsManager } from "../../../modules/users/auth";
 import formatPhoneNumber from "../../../libs/formatPhoneNumber";
-import { loginExceptionsManager } from "../login/login.exceptions.manager";
 import { log } from "./log";
 import { ObjectId, User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
@@ -82,11 +82,11 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
           const newRoles = actualRoles.concat(traducteurRole._id);
           await updateUserInDB(id, { ...user, roles: newRoles });
         }
-      } else if (user.phone) {
+      } else if (user.email) {
         // update phone number with 2FA
         try {
-          if (!body.user.code) await requestSMSLogin(user.phone);
-          await verifyCode(user.phone, body.user.code);
+          if (!body.user.code) await requestEmailLogin(user.email);
+          await verifyCode(user.email, body.user.code);
           await updateUserInDB(id, user);
         } catch (e) {
           loginExceptionsManager(e);

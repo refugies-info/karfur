@@ -20,6 +20,9 @@ import {
   UpdatePasswordResponse,
   UpdateUserRequest,
   GetUserFavoritesRequest,
+  RegisterRequest,
+  CheckCodeRequest,
+  CheckUserExistsResponse,
 } from "@refugies-info/api-types";
 
 import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
@@ -39,6 +42,8 @@ import { deleteUserFavorites } from "../workflows/users/deleteUserFavorites";
 import { resetPassword } from "../workflows/users/resetPassword";
 import { checkResetToken } from "../workflows/users/checkResetToken";
 import { checkUserExists } from "../workflows/users/checkUserExists";
+import { checkCode } from "../workflows/users/checkCode";
+import { register } from "../workflows/users/register";
 
 // import { UserStatus } from "../typegoose/User";
 
@@ -52,9 +57,22 @@ import { checkUserExists } from "../workflows/users/checkUserExists";
 @Route("user")
 export class UserController extends Controller {
   @Security("fromSite")
+  @Post("/register")
+  public async register(@Body() body: RegisterRequest): ResponseWithData<LoginResponse> {
+    return register(body);
+  }
+
+  @Security("fromSite")
   @Post("/login")
   public async login(@Body() body: LoginRequest): ResponseWithData<LoginResponse> {
     return login(body);
+  }
+
+  @Security("fromSite")
+  @Post("/check-code")
+  public async checkCode(@Body() body: CheckCodeRequest): ResponseWithData<LoginResponse> {
+    const data = await checkCode(body);
+    return { text: "success", data };
   }
 
   @Security("jwt")
@@ -70,8 +88,9 @@ export class UserController extends Controller {
   }
 
   @Get("/exists")
-  public async getExists(@Query() username: string): Response {
-    return checkUserExists(username);
+  public async getExists(@Query() email: string): ResponseWithData<CheckUserExistsResponse> {
+    const data = await checkUserExists(email);
+    return { text: "success", data }
   }
 
   @Security({ jwt: ["admin"] })

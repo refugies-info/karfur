@@ -1,35 +1,41 @@
-import React, { ReactElement, useCallback, useMemo, useState } from "react";
+import { ReactElement, useCallback, useMemo, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
+import API from "utils/API";
+import { useLogin } from "hooks";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
-import { getLoginRedirect } from "lib/loginRedirect";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
 
 const AuthEmail = () => {
   const router = useRouter();
-  const email = useMemo(() => router.query.email, [router.query]);
+  const { logUser } = useLogin();
+  const email = useMemo(() => router.query.email as string, [router.query]);
   const [error, setError] = useState("");
 
   const submit = useCallback(
-    (e: any) => {
+    async (e: any) => {
       e.preventDefault();
       const code = e.target.code.value;
-      // TODO: check code OK and redirect
-      const codeOk = true;
-      if (codeOk) {
-        const path = getLoginRedirect();
-        router.push(path);
-      } else {
-        setError("Code incorrect, veuillez réessayer.");
+      try {
+        const res = await API.checkCode({ email, code });
+        if (!res.token) throw new Error();
+        logUser(res.token);
+      } catch (e: any) {
+        const errorCode = e.response?.data?.code;
+        if (errorCode === "WRONG_CODE") {
+          setError("Code invalide, veuillez réessayer");
+        } else {
+          setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
+        }
       }
     },
-    [router],
+    [logUser, email],
   );
 
   const sendCode = useCallback((e: any) => {

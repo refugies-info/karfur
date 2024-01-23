@@ -8,6 +8,7 @@ export { default as useEvent } from "./useEvent";
 export { default as useFavorites } from "./useFavorites";
 export { default as useLanguages } from "./useLanguages";
 export { default as useLocale } from "./useLocale";
+export { default as useLogin } from "./useLogin";
 export { default as useOutsideClick } from "./useOutsideClick";
 export { default as useParamsFromHistory } from "./useParamsFromHistory";
 export { default as useRouterLocale } from "./useRouterLocale";

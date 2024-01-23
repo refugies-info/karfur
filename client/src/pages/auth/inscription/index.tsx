@@ -33,6 +33,8 @@ const AuthLogin = () => {
 
   if (!email) return null;
 
+  /* TODO: get extra infos if coming from SSO */
+
   return (
     <div className={cls(styles.container, styles.half)}>
       <SEO title="Bienvenue" />

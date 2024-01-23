@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { getPath } from "routes";
+import { logger } from "logger";
+import { useLogin } from "hooks";
 import { googleProvider } from "utils/googleSignIn";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
@@ -10,25 +12,22 @@ import { cls } from "lib/classname";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
-import { logger } from "logger";
 
 const AuthEmail = () => {
   const router = useRouter();
+  const { logUser } = useLogin();
+  const [formError, setFormError] = useState("");
   const [error, setError] = useState("");
 
   const submit = useCallback(
-    (e: any) => {
+    async (e: any) => {
       e.preventDefault();
       const email = e.target.email.value;
-      const emailExists = true; // TODO: check email exists, and redirect
-      if (emailExists) {
-        const hasDoubleAuthent = true; // TODO: check email exists, and redirect
-        if (hasDoubleAuthent) {
-          router.push(getPath("/auth/connexion", "fr", `?email=${email}&2fa=true`));
-        } else {
-          router.push(getPath("/auth/connexion", "fr", `?email=${email}`));
-        }
-      } else {
+      // TODO: check email format
+      try {
+        const res = await API.checkUserExists(email);
+        router.push(getPath("/auth/connexion", "fr", `?email=${email}${res.verificationCode ? "&2fa=true" : ""}`));
+      } catch (e) {
         router.push(getPath("/auth/inscription", "fr", `?email=${email}`));
       }
     },
@@ -44,13 +43,25 @@ const AuthEmail = () => {
           authGoogle: {
             authCode: code,
           },
-        }).then((res) => {
-          // TODO : redirect
-        });
+        })
+          .then((res) => logUser(res.token))
+          .catch((e) => {
+            const errorCode = e.response?.data?.code;
+            const email = e.response?.data?.data?.email;
+            if (errorCode === "NO_ACCOUNT") {
+              router.push(getPath("/auth/inscription", "fr", `?email=${email}`));
+            } else {
+              setError("Erreur, vous n'êtes pas authentifié avec votre compte Google, veuillez réessayer.");
+            }
+          });
       },
-      onError: (err) => logger.error("[loginGoogle] Failed to login with google", err),
+      onError: (err) => {
+        logger.error("[loginGoogle] Failed to login with google", err);
+        setError("Erreur, vous n'êtes pas authentifié avec votre compte Google, veuillez réessayer.");
+      },
     })();
-  }, []);
+  }, [router, logUser]);
+
   const loginOutlook = useCallback(() => {}, []);
   const loginInclusionConnect = useCallback(() => {}, []);
 
@@ -72,8 +83,8 @@ const AuthEmail = () => {
         <form onSubmit={submit}>
           <Input
             label="Adresse mail"
-            state={!error ? "default" : "error"}
-            stateRelatedMessage={error}
+            state={!formError ? "default" : "error"}
+            stateRelatedMessage={formError}
             nativeInputProps={{
               autoFocus: true,
               type: "email",
@@ -104,6 +115,8 @@ const AuthEmail = () => {
         <Button onClick={loginInclusionConnect} className={cls(styles.button, "mb-4")} priority="tertiary">
           Inclusion Connect
         </Button>
+
+        {error && <span className="text-danger">{error}</span>}
       </div>
     </div>
   );

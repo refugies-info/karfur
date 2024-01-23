@@ -55,6 +55,7 @@ import {
   ImprovementsRequest,
   LoginRequest,
   LoginResponse,
+  CheckCodeRequest,
   MainSponsorRequest,
   NeedRequest,
   NewPasswordRequest,
@@ -92,7 +93,8 @@ import {
   UpdatePositionsRequest,
   UpdateUserRequest,
   WidgetRequest,
-  PublishTranslationRequest
+  PublishTranslationRequest,
+  CheckUserExistsResponse
 } from "@refugies-info/api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -152,8 +154,12 @@ const API = {
     const headers = getHeaders();
     return instance.post<any, APIResponse<LoginResponse>>("/user/login", body, { headers }).then(response => response.data.data)
   },
-  checkUserExists: (username: string): Promise<null> => {
-    return instance.get<any, null>(`/user/exists?username=${username}`).then(() => null);
+  checkCode: (body: CheckCodeRequest): Promise<LoginResponse> => {
+    const headers = getHeaders();
+    return instance.post<any, APIResponse<LoginResponse>>("/user/check-code", body, { headers }).then(response => response.data.data)
+  },
+  checkUserExists: (email: string): Promise<CheckUserExistsResponse> => {
+    return instance.get<any, APIResponse<CheckUserExistsResponse>>(`/user/exists?email=${email}`).then(response => response.data.data)
   },
   updatePassword: (id: Id, body: UpdatePasswordRequest): Promise<UpdatePasswordResponse> => {
     const headers = getHeaders();
