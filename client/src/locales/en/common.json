@@ -287,7 +287,6 @@
     "Pseudo usage": "This pseudonym will appear on the cards which you will contribute to.",
     "Exemples": "For example: Guillaume Dupont, Nora78",
     "pseudo_exists": "Oops, this pseudonym already exists.",
-    "Se connecter": "Login",
     "Bienvenue": "Welcome",
     "Choisissez un mot de passe": "Choose a password",
     "Renseignez votre adresse email": "Enter your email address",
@@ -303,7 +302,6 @@
     "criteria_minlength": "At least 7 characters",
     "strong_password": "Strong password",
     "weak_password": "Password too weak, missing:",
-    "already_an_account": "Already have an account?",
     "last_step": "One last step!",
     "new_account": "Create a new account",
     "email_invitation": "We will send you an invitation email to register",
@@ -365,8 +363,6 @@
     "messageAddedToFavorites": "Sheet added to favourites!",
     "messageRemovedFromFavorites": "Sheet removed from favourites!",
     "Oups": "Oops!",
-    "Connectez-vous": "Log on to",
-    "favoriExplanation": "to find your favourite files in your personal space easily.",
     "Ville": "City",
     "compris": "Ok, I understand"
   },
@@ -623,8 +619,6 @@
     "helpTileCTA3": "Open the live chat",
     "faqTitle": "Still have questions?",
     "registerTitle": "Here we go!",
-    "registerConditions": "I've read the information carefully and I'm ready to volunteer to contribute to Réfugiés.info.",
-    "registerCTA": "Create my account",
     "registerMobileCTA": "Remind me by email"
   },
   "Publish": {
@@ -688,7 +682,6 @@
     "faqAccordionTitle5": "Will new languages be available soon?",
     "faqAccordionText5": "Translating Réfugiés.info into a new language is possible. The decision depends on current events and the number of people who might be interested in this new language. If you speak another language and would like to translate content to make it accessible to your community, please fill in this form.",
     "faqAccordionCTA5": "Fill in the form",
-    "registerSubtitle": "Create your account to start translating the sheets.",
     "registerLoggedIn": "Now you know everything, you can translate your first sheet.",
     "registerBtnLoggedIn": "Translate a sheet",
     "registerMobile": "Go to your computer to create your account and start translating your sheets."

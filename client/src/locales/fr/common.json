@@ -288,7 +288,6 @@
     "Pseudo usage": "Ce pseudonyme apparaîtra sur les fiches auxquelles vous allez contribuer.",
     "Exemples": "Exemples : Guillaume Dupont, Nora78",
     "pseudo_exists": "Oups, ce pseudonyme existe déjà.",
-    "Se connecter": "Se connecter",
     "Bienvenue": "Bienvenue ",
     "Choisissez un mot de passe": "Choisissez un mot de passe",
     "Renseignez votre adresse email": "Renseignez votre adresse email",
@@ -304,7 +303,6 @@
     "criteria_minlength": "Au moins 7 caractères",
     "strong_password": "Mot de passe fort",
     "weak_password": "Mot de passe trop faible, il manque :",
-    "already_an_account": "Déjà un compte ?",
     "last_step": "Une dernière étape !",
     "new_account": "Créer un nouveau compte",
     "email_invitation": "Nous vous enverrons un email d'invitation pour vous inscrire",
@@ -368,8 +366,6 @@
     "messageAddedToFavorites": "Fiche ajoutée aux favoris !",
     "messageRemovedFromFavorites": "Fiche retirée des favoris !",
     "Oups": "Oups !",
-    "Connectez-vous": "Connectez-vous",
-    "favoriExplanation": "pour retrouver facilement vos fiches favorites dans votre espace personnel.",
     "Ville": "Ville",
     "compris": "Ok, j’ai compris"
   },
@@ -647,8 +643,6 @@
     "helpTileCTA3": "Ouvrir le live chat",
     "faqTitle": "Il vous reste des questions ?",
     "registerTitle": "C’est parti !",
-    "registerConditions": "J’ai bien lu les informations et je suis prêt à m’engager bénévolement pour contribuer à Réfugiés.info.",
-    "registerCTA": "Créer mon compte",
     "registerMobileCTA": "Me le rappeler par email"
   },
   "Publish": {
@@ -728,7 +722,7 @@
     "faqAccordionTitle5": "Pourquoi est-il nécessaire de simplifier le contenu de ma fiche ?",
     "faqAccordionText5": "La grande majorité des utilisateurs de la plateforme est allophone (leur langue maternelle n'est pas le français), et rencontre donc souvent des difficultés pour lire des contenus. À cela s'ajoutent une faible disponibilité cognitive et une méconnaissance du système français. Il apparaît ainsi essentiel de proposer des contenus synthétiques, structurés, actualisés et faciles à comprendre, dans une démarche d'autonomisation des personnes réfugiées dans leurs parcours d'intégration.",
     "faqCTA": "Voir le centre d’aide",
-    "registerSubtitle": "Créez votre compte pour pouvoir démarrer la rédaction de votre fiche.",
+    "registerSubtitle": "Connectez-vous ou créez votre compte pour démarrer la rédaction de votre fiche.",
     "registerLoggedIn": "Vous savez tout, vous pouvez rédiger votre première fiche.",
     "registerMobile": "Rendez-vous sur votre ordinateur pour créer votre compte et démarrer la rédaction de votre fiche.",
     "writeModalTitle": "Rédiger une fiche",
@@ -791,7 +785,7 @@
     "faqAccordionTitle5": "Est-ce que de nouvelles langues seront bientôt disponibles ?",
     "faqAccordionText5": "Traduire Réfugiés.info dans une nouvelle langue est possible. La décision dépend de l’actualité et du volume de personnes que cette nouvelle langue pourrait intéresser. Si vous parlez une autre langue et souhaitez traduire du contenu pour le rendre accessible à votre communauté, remplissez ce formulaire.",
     "faqAccordionCTA5": "Remplir le formulaire",
-    "registerSubtitle": "Créez votre compte pour pouvoir démarrer la traduction des fiches.",
+    "registerSubtitle": "Connectez-vous ou créez votre compte pour commencer à traduire les fiches.",
     "registerLoggedIn": "Vous savez tout, vous pouvez traduire votre première fiche.",
     "registerBtnLoggedIn": "Traduire une fiche",
     "registerMobile": "Rendez-vous sur votre ordinateur pour créer votre compte et démarrer la traduction des fiches."

@@ -266,7 +266,6 @@
     "Pseudo usage": "እዚ ስም  ኣብቲ ፎርም  ኣብርክቶ ትገብር\\ሉ\\ላ ቦታ  ክወጽእ ኢዩ፤፣",
     "Exemples": "ን ብነት ጉልያም ዱ ፖ,ኖራ78",
     "pseudo_exists": "ኦው  እዚ ስም ናይ ኣካውንቲ ኔሩ ቅድሚ ሕጂ",
-    "Se connecter": "ኣብ መስመር ምእታው",
     "Bienvenue": "እንቃዕ ብደሓን መጻኹም\\ኽን",
     "Choisissez un mot de passe": "ፓስ ወርድ\\ ኮድ ምረጽ\\ጺ",
     "Renseignez votre adresse email": "ኢመልካ\\ኪ ምኻኑ ኣረጋግጽ\\ጺ",
@@ -277,7 +276,6 @@
     "email_reminder": "ብኢመይል ኣድረስ መዘኻኸሪ እድሊ",
     "Recevoir une invitation": "ናይ ዕድመ መልእኽቲ ይቅበል",
     "create_a_new_account": "ንምክፋል ኣብዚ መደብ ብናትኩም\\ክን ኮምፒተር ጌርኩም\\ክን ሓደ ሕሳብ\\ኣክዋንቲ ክፈቱ\\ታ ወይ ኣውጽኡ\\ኣ፤፣",
-    "already_an_account": "ካልእ ኣክውንቲ ወይ ሕሳብ ኣለካ\\ኪ ድዩ ?",
     "last_step": "ናይ መጨረሽታ ደረጃ",
     "new_account": "ሓድሽ ሕሳብ ናይ ኣካውንቲ ኣውጽእ\\ኢ፤፣",
     "email_invitation": "ንክትምዝገቡ\\ባ መታን መልእኽቲ ክንሰድልኩም\\ክን ኢና",
@@ -335,8 +333,6 @@
     "messageAddedToFavorites": "ናብ ብጣዕሚ ዝተፈትዉ መኽዘን ተዓቂቡ ኣሎ !",
     "messageRemovedFromFavorites": "ካብ ዝተመረጹ ሊስታ ኣልግስዎ",
     "Oups": "ኦው",
-    "Connectez-vous": "ኮንክት ግበር\\ሪ",
-    "favoriExplanation": "ንፋይል ናትኩም\\ክን ብቀሊል ንምርካብ ኣብ ናትኩም\\ክን ውልቃዊ  ቦታ  ( ኮኾብ ዝመስል ኣብ ፋቮሪ )ምልክት ግበሩ\\ራ",
     "Ville": "ከትማ",
     "compris": "እወ ተረዲኡኒ ኣሎ፣"
   },
@@ -594,8 +590,6 @@
     "helpTileCTA3": "ነቲ መውግዒ ክፈትዎ",
     "faqTitle": "ዘይተመለሰ ሕቶ ኣለኩም ድዩ?",
     "registerTitle": "ንበገስ እንድያሞ!",
-    "registerConditions": "ሓበሬታኹም ኣንቢበ ተሓጉሰ፣ ወለንተኛ ንምዃን እኳ እነሀኹ ንምስታፍ ይደሊ ኣብ ፣ረፉጂኣንፎ Réfugiés.info",
-    "registerCTA": "ሕሳብ ክኸፍት",
     "registerMobileCTA": "ኢመይል ኣእትዉ"
   },
   "Publish": {
@@ -675,7 +669,6 @@
     "faqAccordionTitle5": "ስለምንታይ እቲ ትሕዝቶይ ፣ ቀሊልን ርዱእን ክኸውን ዘለዎ?",
     "faqAccordionText5": "እቲ ዝበዝሐ ናይ እዚ ወብሳይት እዚ ተጠቐምቲ ፣ ቋንቋ ኣዴኦም (ፈረንሳ ኣይኮነን )ስለዚ ድማ ናይ ቋንቋ ማሕንቖ፣ ንምርዳእ ይጽገሙ እዮም፣  ስለዝኾነ ድማ ኣብ ብዘለዎም ውሱንነት ናይ ሓበሬታ፣  እቶም ስደተኛታት ኣብ ምውህሃድ ናይ ፈረንሳ ይጽገሙ እዮም። መደብና ንምሕጋዞም እዩ።",
     "faqCTA": "በዚ ድማ ሓገዝ ርኸቡ",
-    "registerSubtitle": "ን መጽሓፊ ፋኡልኩም ጽሑፍ ክትጽሕፉ ጀምሩ",
     "registerLoggedIn": "ናይ መጀመርታ ፋይልኩም ክትሰዱ ትኽእሉ ኢኹም",
     "registerMobile": "ኣብ ኮምፑተርኩም ፣ ብምኽፋት ን ፋይልኩም ተዓዘቡ",
     "writeModalTitle": "ኣብ ፎርም ምጽሓፍ",
@@ -738,7 +731,6 @@
     "faqAccordionTitle5": "ኣብ ቀረባ እዋን ሓደስቲ ቋንቋታት ክቐርቡ ድዮም?",
     "faqAccordionText5": "Refugees.info ናብ ሓድሽ ቋንቋ ምትርጓም ይከኣል እዩ። እቲ ውሳነ ኣብቲ እዚ ሓድሽ ቋንቋ ክግደስ ዝኽእል ዜናን ድምጺ ሰባትን ይምርኮስ። ካልእ ቋንቋ ትዛረብ እንተኾንካን ትሕዝቶ ንማሕበረሰብካ ተበጻሒ ንኽኸውን ክትትርጉም እንተደሊኻን ነዚ ቅጥዒ ምልኣዮ።",
     "faqAccordionCTA5": "ነቲ ቅጥዒ ምልኣዮ",
-    "registerSubtitle": "ፋይላት ምትርጓም ክትጅምር ንኽትክእል ኣካውንትካ ፍጠር።",
     "registerLoggedIn": "ፋይላት ንምትርጓም ክትጅምር ዘኽእል ኣካውንትኹም ጀምሩ",
     "registerBtnLoggedIn": "ፋይል ምትርጓም",
     "registerMobile": "እምበኣር ናብ ኮምፒተርካ ብምኻድ፣ ኣብቲ ዝኸተፍካዮ ፋይላት ምትርጓም ጀምር።"

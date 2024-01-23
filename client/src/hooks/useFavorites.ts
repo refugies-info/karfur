@@ -23,7 +23,7 @@ const useFavorites = (contentId: Id | null) => {
 
   const addToFavorites = useCallback(() => {
     if (API.isAuth() && userDetails) {
-      if (isFavorite || contentId === null) return;
+      if (isFavorite || !contentId) return;
       API.addUserFavorite({ dispositifId: contentId.toString() }).then(() => {
         dispatch(fetchUserActionCreator());
       });
@@ -32,7 +32,7 @@ const useFavorites = (contentId: Id | null) => {
 
   const deleteFromFavorites = useCallback(() => {
     if (API.isAuth() && userDetails) {
-      if (!isFavorite || contentId === null) return;
+      if (!isFavorite || !contentId) return;
       API.deleteUserFavorites({ dispositifId: contentId.toString() }).then(() => {
         dispatch(fetchUserActionCreator());
       });
