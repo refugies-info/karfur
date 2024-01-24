@@ -66,7 +66,25 @@ const AuthEmail = () => {
     })();
   }, [router, logUser]);
 
-  const loginMicrosoft = useCallback(() => {}, []);
+  const loginMicrosoft = useCallback(async () => {
+    try {
+      await API.login({
+        authMicrosoft: {
+          authCode: null, // send a null code to get the auth url
+        },
+      });
+    } catch (e: any) {
+      const errorCode = e.response?.data?.code;
+      if (errorCode === "SSO_URL") {
+        // and redirect if url is provided
+        if (e.response.data.data.url) {
+          window.location.href = e.response.data.data.url;
+        } else {
+          setError("Erreur, vous n'êtes pas authentifié avec votre compte Microsoft, veuillez réessayer.");
+        }
+      }
+    }
+  }, []);
   const loginInclusionConnect = useCallback(() => {}, []);
 
   return (

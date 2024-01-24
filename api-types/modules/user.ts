@@ -8,7 +8,7 @@ interface AuthGoogle {
   authCode: string;
 }
 interface AuthMicrosoft {
-  authCode: string;
+  authCode: string | null; // null means we ask for the auth url
 }
 
 /**

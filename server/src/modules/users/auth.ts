@@ -28,6 +28,8 @@ export const loginExceptionsManager = (error: LoginError) => {
       throw new InvalidRequestError("Le mot de passe est trop faible");
     case LoginErrorType.WRONG_CODE:
       throw new AuthenticationError("Erreur à la vérification du code", "WRONG_CODE");
+    case LoginErrorType.SSO_URL:
+      throw new AuthenticationError("Veuillez compléter l'authentification en suivant l'url associée.", "SSO_URL", error.data);
     case LoginErrorType.ERROR_WHILE_SENDING_CODE:
       throw new InternalError("Erreur à l'envoi du code à ce numéro", "ERROR_WHILE_SENDING_CODE");
     case LoginErrorType.NO_CONTACT:
