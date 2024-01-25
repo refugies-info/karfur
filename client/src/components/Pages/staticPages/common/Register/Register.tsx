@@ -33,7 +33,7 @@ const Register = (props: Props) => {
   }, []);
 
   const onRegister = () => {
-    setLoginRedirect();
+    setLoginRedirect("#register");
     router.push({
       pathname: getPath("/auth", "fr"),
       // search: qs.stringify({  }), // TODO: no goal screen

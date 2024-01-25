@@ -35,7 +35,7 @@ const CheckCode = ({ type }: Props) => {
       } catch (e: any) {
         const errorCode = e.response?.data?.code;
         if (errorCode === "WRONG_CODE") {
-          setError("Code invalide, veuillez réessayer");
+          setError("Code incorrect, veuillez réessayer.");
         } else {
           setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
         }

@@ -31,6 +31,7 @@ import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import styles from "./Layout.module.scss";
 import AppLoader from "./AppLoader";
+import AutoAddFavorite from "./AutoAddFavorite";
 import { setAnalyticsUserId } from "lib/tracking";
 
 interface Props {
@@ -158,14 +159,6 @@ const Layout = (props: Props) => {
     }
   };
 
-  // FAVORITE
-  const favoriteContentId = router.query.addFavorite as string;
-  const { addToFavorites } = useFavorites(favoriteContentId);
-  useEffect(() => {
-    /* TODO: check no multi re-renders */
-    addToFavorites();
-  }, [addToFavorites]);
-
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <Navbar />
@@ -175,6 +168,7 @@ const Layout = (props: Props) => {
         </div>
       </AppLoader>
       <Footer />
+      <AutoAddFavorite />
       <LanguageModal
         show={showLangModal}
         currentLanguage={router.locale || "fr"}
