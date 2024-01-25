@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { useTranslation } from "next-i18next";
+import { Id } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
 import { useFavorites, useAuth } from "hooks";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import BookmarkedModal from "components/Modals/BookmarkedModal";
 import styles from "./FavoriteButton.module.scss";
-import { Id } from "@refugies-info/api-types";
 
 interface Props {
   contentId: Id;

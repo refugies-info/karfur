@@ -24,7 +24,7 @@ import { readAudio, stopAudio } from "lib/readAudio";
 import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
-import { useChangeLanguage, useFavorites, useRTL } from "hooks";
+import { useChangeLanguage, useRTL } from "hooks";
 import locale from "utils/locale";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";

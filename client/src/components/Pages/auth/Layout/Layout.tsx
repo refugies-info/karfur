@@ -1,13 +1,13 @@
+import { useEffect } from "react";
 import Image from "next/image";
 import { useChangeLanguage, useLocale, useRTL } from "hooks";
+import { cls } from "lib/classname";
 import AuthNavbar from "components/Navigation/AuthNavbar";
 import AuthIllu from "assets/auth/login-illu.svg";
 import PersosIllu from "assets/auth/illu-persos.svg";
 import RatingStars from "assets/auth/rating-stars.svg";
 import PartnersLogos from "assets/auth/partners-logo.png";
 import styles from "./Layout.module.scss";
-import { useEffect } from "react";
-import { cls } from "lib/classname";
 
 interface Props {
   children: any;
@@ -38,7 +38,7 @@ const Layout = (props: Props) => {
 
             <div className={styles.right_content}>
               <p className={styles.chapo}>
-                Plus de 100 000 réfugiés et 2 000 professionnels ont adopté Réfugiés.info !
+                Plus de 100 000 réfugiés et 2 000 professionnels ont adopté Réfugiés.info&nbsp;!
               </p>
               <div className={styles.rating}>
                 <Image src={RatingStars} width={136} height={24} alt="4,8" />

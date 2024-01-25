@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { useLogin } from "hooks";
@@ -12,7 +13,6 @@ import SEO from "components/Seo";
 import GmailIcon from "assets/auth/providers/gmail-icon.svg";
 import OutlookIcon from "assets/auth/providers/outlook-icon.svg";
 import styles from "scss/components/auth.module.scss";
-import Image from "next/image";
 
 interface Props {
   type: "2fa" | "login";

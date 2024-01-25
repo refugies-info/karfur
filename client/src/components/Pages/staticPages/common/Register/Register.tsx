@@ -36,7 +36,7 @@ const Register = (props: Props) => {
     setLoginRedirect("#register");
     router.push({
       pathname: getPath("/auth", "fr"),
-      // search: qs.stringify({  }), // TODO: no goal screen
+      // TODO: no goal screen
     });
   };
 
@@ -89,7 +89,7 @@ const Register = (props: Props) => {
               iconPosition="right"
               className={styles.submit_btn}
             >
-              Me connecter ou m’inscrire
+              Me connecter ou m’inscrire {/* TODO: translate */}
             </Button>
           )}
         </>
