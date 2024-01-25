@@ -1,5 +1,6 @@
 import { ReactElement, useCallback, useMemo, useState } from "react";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import PasswordInput from "@codegouvfr/react-dsfr/blocks/PasswordInput";
@@ -9,6 +10,7 @@ import { useLogin } from "hooks";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+import { getPasswordStrength } from "lib/validatePassword";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
@@ -19,15 +21,19 @@ interface Props {
 
 const AuthNewPassword = (props: Props) => {
   const router = useRouter();
+  const { t } = useTranslation();
   const { logUser } = useLogin();
   const token: string = useMemo(() => router.query.token as string, [router.query]);
   const [formError, setFormError] = useState("");
   const [step, setStep] = useState<1 | 2>(1);
+  const [password, setPassword] = useState("");
+  const passwordStrength = useMemo(() => getPasswordStrength(password), [password]);
 
   const submit = useCallback(
     async (e: any) => {
       e.preventDefault();
       setFormError("");
+      if (!passwordStrength.isOk) return;
       const newPassword = e.target.password.value;
       const code = e.target.code.value;
       try {
@@ -51,7 +57,7 @@ const AuthNewPassword = (props: Props) => {
         }
       }
     },
-    [logUser, token],
+    [logUser, token, passwordStrength],
   );
 
   return (
@@ -90,10 +96,18 @@ const AuthNewPassword = (props: Props) => {
                         severity: "error",
                       },
                     ]
-                  : []
+                  : passwordStrength.criterias.map((criteria) => ({
+                      message: t(criteria.label),
+                      severity: !password ? "info" : criteria.isOk ? "valid" : "error",
+                    }))
               }
               messagesHint=""
-              nativeInputProps={{ name: "password", autoFocus: true }}
+              nativeInputProps={{
+                name: "password",
+                autoFocus: true,
+                value: password,
+                onChange: (e: any) => setPassword(e.target.value),
+              }}
               className={cls(step === 2 && styles.hidden)}
             />
 
@@ -113,6 +127,7 @@ const AuthNewPassword = (props: Props) => {
               iconPosition="right"
               className={cls(styles.button, "mt-8")}
               nativeButtonProps={{ type: "submit" }}
+              disabled={!passwordStrength.isOk}
             >
               {step === 1 ? "Changer le mot de passe" : "Valider le code"}
             </Button>
