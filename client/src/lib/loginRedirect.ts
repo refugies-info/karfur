@@ -1,3 +1,6 @@
+import { GetUserInfoResponse } from "@refugies-info/api-types";
+import { getPath } from "routes";
+
 const REDIRECT_KEY = "login_redirect";
 
 /**
@@ -22,10 +25,16 @@ export const setLoginRedirect = (extraParam: Record<string, string> | string | n
 /**
  * Returns page to redirect to
  */
-export const getLoginRedirect = () => {
+export const getLoginRedirect = (roles: GetUserInfoResponse["roles"] | undefined) => {
   const storedPage = sessionStorage.getItem(REDIRECT_KEY);
   sessionStorage.removeItem(REDIRECT_KEY);
   if (storedPage) return storedPage;
-  // TODO : return depending on role
-  return "/"
+  if (!roles || roles.length === 0) return "/";
+
+  const roleNames = roles.map(r => r.nom);
+  if (roleNames.includes("Admin")) return "/backend/admin"
+  // if (roleNames.includes("TS")) return "/" // TODO: update role
+  if (roleNames.includes("ExpertTrad") || roleNames.includes("Trad")) return getPath("/traduire", "fr")
+  if (roleNames.includes("Contrib")) return getPath("/publier", "fr")
+  return getPath("/recherche", "fr")
 }
