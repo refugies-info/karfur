@@ -9,7 +9,7 @@ import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
 
-const AuthEmail = () => {
+const AuthMicrosoftLogin = () => {
   const router = useRouter();
   const code: string = useMemo(() => router.query.code as string, [router.query]);
   const [error, setError] = useState("");
@@ -52,7 +52,7 @@ const AuthEmail = () => {
 };
 
 export const getStaticProps = defaultStaticProps;
-export default AuthEmail;
+export default AuthMicrosoftLogin;
 
 // override default layout and options
-AuthEmail.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthMicrosoftLogin.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;

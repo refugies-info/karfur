@@ -17,7 +17,7 @@ interface Props {
   error: string | null;
 }
 
-const AuthEmail = (props: Props) => {
+const AuthNewPassword = (props: Props) => {
   const router = useRouter();
   const { logUser } = useLogin();
   const token: string = useMemo(() => router.query.token as string, [router.query]);
@@ -56,7 +56,7 @@ const AuthEmail = (props: Props) => {
 
   return (
     <div className={cls(styles.container, styles.half)}>
-      <SEO title="Bienvenue" />
+      <SEO title="Nouveau mot de passe" />
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour
       </Button>
@@ -71,9 +71,9 @@ const AuthEmail = (props: Props) => {
       ) : (
         <div className={styles.content}>
           <div className={styles.title}>
-            <h1>Mot de passe oublié</h1>
+            <h1>Nouveau mot de passe</h1>
             {step === 1 ? (
-              <p className={styles.subtitle}>Veuillez entrer votre nouveau mot de passe</p>
+              <p className={styles.subtitle}>Veuillez choisir votre nouveau mot de passe</p>
             ) : (
               <p className={styles.subtitle}>Veuillez entrer le code de sécurité reçu par mail</p>
             )}
@@ -109,12 +109,12 @@ const AuthEmail = (props: Props) => {
             />
 
             <Button
-              iconId="fr-icon-mail-line"
+              iconId="fr-icon-arrow-right-line"
               iconPosition="right"
               className={cls(styles.button, "mt-8")}
               nativeButtonProps={{ type: "submit" }}
             >
-              Changer le mot de passe
+              {step === 1 ? "Changer le mot de passe" : "Valider le code"}
             </Button>
           </form>
         </div>
@@ -142,7 +142,7 @@ export const getServerSideProps = wrapper.getServerSideProps(() => async ({ quer
     },
   };
 });
-export default AuthEmail;
+export default AuthNewPassword;
 
 // override default layout and options
-AuthEmail.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthNewPassword.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;

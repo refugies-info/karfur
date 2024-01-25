@@ -9,7 +9,7 @@ import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
 
-const AuthEmail = () => {
+const AuthResetMailSent = () => {
   const router = useRouter();
   const email = useMemo(() => router.query.email as string, [router.query]);
 
@@ -25,7 +25,7 @@ const AuthEmail = () => {
 
   return (
     <div className={cls(styles.container, styles.half)}>
-      <SEO title="Bienvenue" />
+      <SEO title="Un lien a été envoyé" />
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour
       </Button>
@@ -58,7 +58,7 @@ const AuthEmail = () => {
 };
 
 export const getStaticProps = defaultStaticProps;
-export default AuthEmail;
+export default AuthResetMailSent;
 
 // override default layout and options
-AuthEmail.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthResetMailSent.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;

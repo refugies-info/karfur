@@ -61,13 +61,13 @@ const CheckCode = ({ type }: Props) => {
 
   return (
     <div className={cls(styles.container, styles.half)}>
-      <SEO title="Bienvenue" />
+      <SEO title="Code de sécurité" />
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour
       </Button>
       <div className={styles.content}>
         <div className={styles.title}>
-          {type === "2fa" ? <h1>Vérifions que c’est bien vous !</h1> : <h1>Entrez le code reçu</h1>}
+          {type === "2fa" ? <h1>Vérifions que c’est bien vous&nbsp;!</h1> : <h1>Entrez le code reçu</h1>}
           <p className={styles.subtitle}>
             Un code temporaire à 6 chiffres vous a été envoyé à {email}
             <br />
@@ -140,7 +140,7 @@ const CheckCode = ({ type }: Props) => {
             </Button>
           </Col>
         </Row>
-        <p className={cls(styles.small, "mt-6", "text-center")}>Pensez à vérifiez votre courrier indésirable !</p>
+        <p className={cls(styles.small, "mt-6", "text-center")}>Pensez à vérifiez votre courrier indésirable&nbsp;!</p>
       </div>
     </div>
   );

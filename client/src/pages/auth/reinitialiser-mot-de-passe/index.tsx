@@ -10,7 +10,7 @@ import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
 import { getPath } from "routes";
 
-const AuthEmail = () => {
+const AuthForgotPassword = () => {
   const router = useRouter();
   const email: string = useMemo(() => router.query.email as string, [router.query]);
   const [error, setError] = useState("");
@@ -31,7 +31,10 @@ const AuthEmail = () => {
 
   return (
     <div className={cls(styles.container, styles.half)}>
-      <SEO title="Bienvenue" />
+      <SEO
+        title="Mot de passe oublié"
+        description="Nous allons vous envoyer un mail avec des instructions pour le réinitialiser."
+      />
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour
       </Button>
@@ -71,7 +74,7 @@ const AuthEmail = () => {
 };
 
 export const getStaticProps = defaultStaticProps;
-export default AuthEmail;
+export default AuthForgotPassword;
 
 // override default layout and options
-AuthEmail.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthForgotPassword.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;

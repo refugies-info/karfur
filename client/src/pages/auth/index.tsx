@@ -89,7 +89,10 @@ const AuthEmail = () => {
 
   return (
     <div className={cls(styles.container, styles.half)}>
-      <SEO title="Bienvenue" />
+      <SEO
+        title="Bienvenue"
+        description="Votre compte Réfugiés.info vous permet d’avoir une expérience personnalisée."
+      />
 
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour

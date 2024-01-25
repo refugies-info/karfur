@@ -51,13 +51,13 @@ const AuthLogin = () => {
 
   return (
     <div className={cls(styles.container, styles.half)}>
-      <SEO title="Bienvenue" />
+      <SEO title="Ravis de vous revoir !" />
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour
       </Button>
       <div className={styles.content}>
         <div className={styles.title}>
-          <h1>Ravis de vous revoir !</h1>
+          <h1>Ravis de vous revoir&nbsp;!</h1>
 
           <Tag className={cls("mb-5", styles.tag)}>{email}</Tag>
         </div>
@@ -78,14 +78,14 @@ const AuthLogin = () => {
             messagesHint=""
             nativeInputProps={{ name: "password", autoFocus: true }}
           />
-          <div className="mb-6 mt-2">
+          <div className="mt-2 mb-14">
             <FRLink href={`/auth/reinitialiser-mot-de-passe?email=${email}`}>Mot de passe oublié&nbsp;?</FRLink>
           </div>
 
           <Button
             iconId="fr-icon-arrow-right-line"
             iconPosition="right"
-            className={cls(styles.button, "mt-8")}
+            className={styles.button}
             nativeButtonProps={{ type: "submit" }}
           >
             {!has2FA ? "Me connecter" : "Me connecter avec le mot de passe"}
