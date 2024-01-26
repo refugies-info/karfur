@@ -1,4 +1,4 @@
-import { Id, Picture, SimpleDispositif, UserStatus, UserStructure } from "../generics";
+import { Id, Picture, RoleName, SimpleDispositif, UserStatus, UserStructure } from "../generics";
 
 interface AuthPassword {
   email: string;
@@ -128,7 +128,7 @@ export interface GetUserInfoResponse {
   contributions: string[];
   email: string;
   phone: string;
-  roles: { _id: string; nom: string; nomPublic: string }[];
+  roles: { _id: string; nom: RoleName; nomPublic: string }[];
   selectedLanguages: string[];
   status: UserStatus;
   structures: string[];

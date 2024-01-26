@@ -6,6 +6,7 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import ContentSlider from "components/UI/ContentSlider";
 import ContributorCard from "./ContributorCard";
 import styles from "./Contributors.module.scss";
+import { RoleName } from "@refugies-info/api-types";
 
 /**
  * List of contributors of the dispositif
@@ -15,8 +16,8 @@ const Contributors = () => {
   const dispositif = useSelector(selectedDispositifSelector);
   const participants = useMemo(() => {
     return (dispositif?.participants || []).sort((a, b) => {
-      if (a.roles?.includes("Admin")) return -1;
-      if (b.roles?.includes("Admin")) return 1;
+      if (a.roles?.includes(RoleName.ADMIN)) return -1;
+      if (b.roles?.includes(RoleName.ADMIN)) return 1;
       return 0;
     });
   }, [dispositif?.participants]);

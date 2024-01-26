@@ -1,11 +1,11 @@
-import { DispositifStatus } from "@refugies-info/api-types";
+import { DispositifStatus, RoleName } from "@refugies-info/api-types";
 import { DispositifModel, ObjectId, Role, RoleModel, UserModel, StructureModel } from "../../typegoose";
 import { dispositif as refDispositif } from "../../__fixtures__/dispositif";
 import { user as refUser } from "../../__fixtures__/user";
 import { structure as refStructure } from "../../__fixtures__/structure";
 import { checkUserIsAuthorizedToModifyDispositif, checkUserIsAuthorizedToDeleteDispositif } from "../checkAuthorizations";
 
-const adminRole = new RoleModel({ nom: "Admin" });
+const adminRole = new RoleModel({ nom: RoleName.ADMIN });
 const userAdmin = new UserModel(refUser);
 userAdmin.roles = [adminRole];
 const userNotAdmin = new UserModel(refUser);

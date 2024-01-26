@@ -23,7 +23,7 @@ import { colors } from "colors";
 import styles from "./UserProfile.module.scss";
 import { useTranslation } from "next-i18next";
 import { isValidPhone } from "lib/validateFields";
-import { GetUserInfoResponse } from "@refugies-info/api-types";
+import { GetUserInfoResponse, RoleName } from "@refugies-info/api-types";
 import { handleApiDefaultError, handleApiError } from "lib/handleApiErrors";
 
 export const MainContainer = styled.div`
@@ -150,7 +150,7 @@ export const UserProfile = (props: Props) => {
   const [showPhone, setShowPhone] = useState(false);
   useEffect(() => {
     if (user) {
-      const isAdmin = (user.roles || []).find((r) => r.nom === "Admin");
+      const isAdmin = (user.roles || []).find((r) => r.nom === RoleName.ADMIN);
       //@ts-ignore
       const userStructureMembre = userStructureMembres.find((membre) => membre.userId === user._id);
       setShowPhone(!!isAdmin || !!userStructureMembre?.roles.includes("administrateur"));

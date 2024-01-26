@@ -9,7 +9,7 @@ import { log } from "./log";
 import { ObjectId, User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
 import { Response } from "../../../types/interface";
-import { UpdateUserRequest } from "@refugies-info/api-types";
+import { RoleName, UpdateUserRequest } from "@refugies-info/api-types";
 import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
 
 export const updateUser = async (id: string, body: UpdateUserRequest, userReq: User): Response => {
@@ -35,8 +35,8 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
     if (!isRequestorAdmin) {
       throw new UnauthorizedError("Token invalide");
     }
-    const expertRole = await getRoleByName("ExpertTrad");
-    const adminRole = await getRoleByName("Admin");
+    const expertRole = await getRoleByName(RoleName.EXPERT_TRAD);
+    const adminRole = await getRoleByName(RoleName.ADMIN);
     const actualRoles = userFromDB.roles;
 
     let newRoles = actualRoles.filter(
@@ -44,11 +44,11 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
     );
 
     // add role admin
-    if (body.user.roles.includes("Admin")) {
+    if (body.user.roles.includes(RoleName.ADMIN)) {
       newRoles.push(adminRole._id);
     }
     // add role expert
-    if (body.user.roles.includes("ExpertTrad")) {
+    if (body.user.roles.includes(RoleName.EXPERT_TRAD)) {
       newRoles.push(expertRole._id);
     }
 
@@ -72,7 +72,7 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
     }
     try {
       if (user.selectedLanguages) {
-        const traducteurRole = await getRoleByName("Trad");
+        const traducteurRole = await getRoleByName(RoleName.TRAD);
         const actualRoles = userFromDB.roles;
         const hasAlreadyRoleTrad = !!actualRoles.find(
           (role) => role && role.toString() === traducteurRole._id.toString(),

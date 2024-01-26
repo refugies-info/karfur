@@ -2,6 +2,7 @@
 import { register } from "../register";
 import { createUser } from "../users.repository";
 import { sendWelcomeMail } from "../../mail/mail.service";
+import { RoleName } from "@refugies-info/api-types";
 
 jest.mock("../../mail/mail.service", () => ({
   sendWelcomeMail: jest.fn(),
@@ -17,7 +18,7 @@ jest.mock("password-hash", () => ({
 }));
 
 describe.skip("register", () => {
-  const userRole = { nom: "User", _id: "id_user" };
+  const userRole = { nom: RoleName.USER, _id: "id_user" };
 
   beforeEach(() => {
     jest.clearAllMocks();

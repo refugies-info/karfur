@@ -10,6 +10,7 @@ import {
   DispositifStatus,
   Id,
   PostDispositifsResponse,
+  RoleName,
 } from "@refugies-info/api-types";
 import { buildNewDispositif } from "../../../modules/dispositif/dispositif.service";
 import { getRoleByName } from "../../../modules/role/role.repository";
@@ -56,7 +57,7 @@ export const createDispositif = async (
     await logContact(userId as UserId, dispositif.mainSponsor as StructureId, body.contact)
   }
 
-  const contribRole = await getRoleByName("Contrib");
+  const contribRole = await getRoleByName(RoleName.CONTRIB);
   await addRoleAndContribToUser(userId, contribRole._id, dispositif._id);
 
   return {

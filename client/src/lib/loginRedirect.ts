@@ -1,4 +1,4 @@
-import { GetUserInfoResponse } from "@refugies-info/api-types";
+import { GetUserInfoResponse, RoleName } from "@refugies-info/api-types";
 import { getPath } from "routes";
 
 const REDIRECT_KEY = "login_redirect";
@@ -32,9 +32,9 @@ export const getLoginRedirect = (roles: GetUserInfoResponse["roles"] | undefined
   if (!roles || roles.length === 0) return "/";
 
   const roleNames = roles.map(r => r.nom);
-  if (roleNames.includes("Admin")) return "/backend/admin"
+  if (roleNames.includes(RoleName.ADMIN)) return "/backend/admin"
   // if (roleNames.includes("TS")) return "/" // TODO: update role
-  if (roleNames.includes("ExpertTrad") || roleNames.includes("Trad")) return getPath("/traduire", "fr")
-  if (roleNames.includes("Contrib")) return getPath("/publier", "fr")
+  if (roleNames.includes(RoleName.EXPERT_TRAD) || roleNames.includes(RoleName.TRAD)) return getPath("/traduire", "fr")
+  if (roleNames.includes(RoleName.CONTRIB)) return getPath("/publier", "fr")
   return getPath("/recherche", "fr")
 }

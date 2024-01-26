@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import history from "utils/backendHistory";
 import { createBrowserHistory } from "history";
 import useRouterLocale from "hooks/useRouterLocale";
+import { RoleName } from "@refugies-info/api-types";
 
 const Redirect = () => {
   const router = useRouter();
@@ -61,7 +62,7 @@ const Backend = () => {
     // Restriction and role: CHECK
     const roles = (user?.user && user.user.roles) || [];
     const hasAuthorizedRole = roles.filter((x: any) => route.restriction.includes(x.nom)).length > 0;
-    const hasRouteRestrictionHasStructure = route.restriction.includes("hasStructure");
+    const hasRouteRestrictionHasStructure = route.restriction.includes(RoleName.STRUCTURE);
     return hasAuthorizedRole || (hasRouteRestrictionHasStructure && user.hasStructure);
   };
 

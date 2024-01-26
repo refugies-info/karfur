@@ -1,6 +1,7 @@
 import { userReducer, initialUserState } from "../user.reducer";
 import { setUserActionCreator, updateUserActionCreator } from "../user.actions";
 import { testUser, testUserWithRoles } from "../../../__fixtures__/user";
+import { RoleName } from "@refugies-info/api-types";
 
 describe("[Reducer] user", () => {
   const expectedResult = {
@@ -81,7 +82,7 @@ describe("[Reducer] user", () => {
       _id: "55153a8014829a865bbf700d",
       roles: [
         {
-          nom: "hasStructure",
+          nom: RoleName.STRUCTURE,
           _id: "testObjectId",
           nomPublic: "hasStructure"
         }

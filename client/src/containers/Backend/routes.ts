@@ -6,14 +6,14 @@ import UserNotifications from "containers/Backend/UserNotifications";
 import UserFavorites from "containers/Backend/UserFavorites";
 import { UserStructure, UserAdminStructure } from "containers/Backend/UserStructure";
 import UserTranslation from "containers/Backend/UserTranslation";
+import { RoleName } from "@refugies-info/api-types";
 
-type Role = "Trad" | "ExpertTrad" | "Admin" | "hasStructure" | "User" | "Contrib";
 export type BackendRouteType = {
   path: string;
   exact?: boolean;
   name: string;
   component: any;
-  restriction: Role[];
+  restriction: RoleName[];
 };
 
 export const backendRoutes: BackendRouteType[] = [
@@ -21,63 +21,63 @@ export const backendRoutes: BackendRouteType[] = [
     path: "/backend/dashboard",
     name: "Administration - Réfugiés.info",
     component: Dashboard,
-    restriction: ["Admin"],
+    restriction: [RoleName.ADMIN],
   },
 
   {
     path: "/backend/admin",
     name: "Administration - Réfugiés.info",
     component: Admin,
-    restriction: ["Admin"],
+    restriction: [RoleName.ADMIN],
   },
 
   {
     path: "/backend/user-dash-contrib",
     name: "Espace rédaction - Réfugiés.info",
     component: UserContributions,
-    restriction: ["User", "Contrib", "Admin"],
+    restriction: [RoleName.USER, RoleName.CONTRIB, RoleName.ADMIN],
   },
   {
     path: "/backend/user-dash-structure",
     name: "Ma structure - Réfugiés.info",
     component: UserStructure,
-    restriction: ["hasStructure"],
+    restriction: [RoleName.STRUCTURE],
   },
   {
     path: "/backend/user-dash-structure-selected",
     name: " Structure - Réfugiés.info",
     component: UserAdminStructure,
-    restriction: ["Admin"],
+    restriction: [RoleName.ADMIN],
   },
   {
     path: "/backend/user-profile",
     name: "Mon profil - Réfugiés.info",
     component: UserProfile,
-    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
+    restriction: [RoleName.USER, RoleName.TRAD, RoleName.EXPERT_TRAD, RoleName.ADMIN],
   },
   {
     path: "/backend/user-dash-notifications",
     name: "Mes notifications - Réfugiés.info",
     component: UserNotifications,
-    restriction: ["Admin", "hasStructure"],
+    restriction: [RoleName.ADMIN, RoleName.STRUCTURE],
   },
   {
     path: "/backend/user-favorites",
     name: "Mes favoris - Réfugiés.info",
     component: UserFavorites,
-    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
+    restriction: [RoleName.USER, RoleName.TRAD, RoleName.EXPERT_TRAD, RoleName.ADMIN],
   },
   {
     path: "/backend/user-translation",
     name: "Mes traductions - Réfugiés.info",
     exact: true,
     component: UserTranslation,
-    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
+    restriction: [RoleName.USER, RoleName.TRAD, RoleName.EXPERT_TRAD, RoleName.ADMIN],
   },
   {
     path: "/backend/user-translation/:id",
     name: "Mes traductions - Réfugiés.info",
     component: UserTranslation,
-    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
+    restriction: [RoleName.USER, RoleName.TRAD, RoleName.EXPERT_TRAD, RoleName.ADMIN],
   },
 ];

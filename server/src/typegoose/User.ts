@@ -8,7 +8,7 @@ import { Langue } from "./Langue";
 import { Role } from "./Role";
 import { Structure } from "./Structure";
 import { Base } from "./Base";
-import { UserStatus } from "@refugies-info/api-types";
+import { RoleName, UserStatus } from "@refugies-info/api-types";
 
 export class Favorite {
   @prop({ ref: () => Dispositif })
@@ -91,16 +91,16 @@ export class User extends Base {
     );
   }
 
-  public hasRole(roleName: string): boolean {
+  public hasRole(roleName: RoleName): boolean {
     return isDocumentArray(this.roles) && this.roles.some((role: Role) => role.nom === roleName);
   }
 
   public isAdmin(): boolean {
-    return this.hasRole("Admin");
+    return this.hasRole(RoleName.ADMIN);
   }
 
   public isExpert(): boolean {
-    return this.hasRole("ExpertTrad");
+    return this.hasRole(RoleName.EXPERT_TRAD);
   }
 
   /**
@@ -109,15 +109,15 @@ export class User extends Base {
    * @param roles
    * @returns roles
    */
-  public getPlateformeRoles(): string[] {
+  public getPlateformeRoles(): RoleName[] {
     if (!isDocumentArray(this.roles)) {
       throw new Error("roles must be populated");
     }
 
     return this.roles && this.roles.length > 0
       ? this.roles
-        .filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad")
-        .map((role) => role.nom.toString())
+        .filter((role) => role.nom === RoleName.ADMIN || role.nom === RoleName.EXPERT_TRAD)
+        .map((role) => role.nom)
       : [];
   }
 

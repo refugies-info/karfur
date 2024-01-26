@@ -10,43 +10,43 @@ const mockResponse = (): MockResponse => {
   res.json = jest.fn().mockReturnValue(res);
   return res;
 };
-/* 
+/*
 jest.mock("../../../modules/users/users.repository", () => ({
   getAllUsersFromDB: jest.fn().mockResolvedValue([
-    { _id: 1, roles: [{ nom: "User" }], selectedLanguages: [], last_connected: "2022-12-01" },
+    { _id: 1, roles: [{ RoleName.USER }], selectedLanguages: [], last_connected: "2022-12-01" },
     {
       _id: 2,
-      roles: [{ nom: "User" }, { nom: "Trad" }],
+      roles: [{ RoleName.USER }, { nom: "Trad" }],
       selectedLanguages: [{ _id: "en" }, { _id: "ru" }],
       last_connected: "2022-12-01",
     },
     {
       _id: 3,
-      roles: [{ nom: "User" }, { nom: "Trad" }],
+      roles: [{ RoleName.USER }, { nom: "Trad" }],
       selectedLanguages: [{ _id: "en" }],
       last_connected: "2022-11-15",
     },
     {
       _id: 4,
-      roles: [{ nom: "User" }, { nom: "Trad" }],
+      roles: [{ RoleName.USER }, { nom: "Trad" }],
       selectedLanguages: [{ _id: "ru" }],
       last_connected: "2022-12-01",
     },
     {
       _id: 4,
-      roles: [{ nom: "User" }, { nom: "Contrib" }],
+      roles: [{ RoleName.USER }, { nom: "Contrib" }],
       selectedLanguages: [{ _id: "ru" }],
       last_connected: "2022-12-01",
     },
     {
       _id: 5,
-      roles: [{ nom: "User" }, { nom: "ExpertTrad" }],
+      roles: [{ RoleName.USER }, { nom: "ExpertTrad" }],
       selectedLanguages: [{ _id: "en" }],
       last_connected: "2022-12-01",
     },
     {
       _id: 6,
-      roles: [{ nom: "User" }, { nom: "Admin" }],
+      roles: [{ RoleName.USER }, { nom: "Admin" }],
       selectedLanguages: [{ _id: "en" }],
       last_connected: "2022-12-01",
     },

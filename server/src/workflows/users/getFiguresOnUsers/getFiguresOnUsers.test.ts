@@ -1,4 +1,7 @@
 //@ts-nocheck
+
+import { RoleName } from "@refugies-info/api-types";
+
 /* import { getFiguresOnUsers } from "./getFiguresOnUsers";
 import { UserModel } from "../../../typegoose/User";
 import logger from "../../../logger";
@@ -15,19 +18,19 @@ jest.mock("../../../logger");
 
 const tradRole = {
   _id: "5ce57c969aadae8734c7aeec",
-  nom: "Trad"
+  nom: RoleName.TRAD
 };
 const expertTradRole = {
   _id: "5ce57c969aadae8734c7aeec",
-  nom: "ExpertTrad"
+  nom: RoleName.EXPERT_TRAD
 };
 const contribRole = {
   _id: "5ce57c969aadae8734c7aeec",
-  nom: "Contrib"
+  nom: RoleName.CONTRIB
 };
 const userRole = {
   _id: "5ce57c969aadae8734c7aeec",
-  nom: "User"
+  nom: RoleName.USER
 };
 
 const users = [
