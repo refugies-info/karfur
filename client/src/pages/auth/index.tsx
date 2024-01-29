@@ -1,5 +1,7 @@
 import React, { ReactElement, useCallback, useState } from "react";
+import { useAsyncFn } from "react-use";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { getPath } from "routes";
@@ -9,13 +11,14 @@ import { googleProvider } from "utils/googleSignIn";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
+import { isValidEmail } from "lib/validateFields";
 import SEO from "components/Seo";
+import Error from "components/Pages/auth/Error";
 import Layout from "components/Pages/auth/Layout";
 import GoogleIcon from "assets/auth/providers/google-icon.svg";
 import MicrosoftIcon from "assets/auth/providers/microsoft-icon.svg";
 import DataInclusionIcon from "assets/auth/providers/data-inclusion-icon.svg";
 import styles from "scss/components/auth.module.scss";
-import Image from "next/image";
 
 const AuthEmail = () => {
   const router = useRouter();
@@ -23,11 +26,14 @@ const AuthEmail = () => {
   const [formError, setFormError] = useState("");
   const [error, setError] = useState("");
 
-  const submit = useCallback(
+  const [{ loading }, submit] = useAsyncFn(
     async (e: any) => {
       e.preventDefault();
       const email = e.target.email.value;
-      // TODO: check email format
+      if (!isValidEmail(email)) {
+        setFormError("Veuillez entrer une adresse email valide");
+        return;
+      }
       try {
         const res = await API.checkUserExists(email);
         router.push(getPath("/auth/connexion", "fr", `?email=${email}${res.verificationCode ? "&2fa=true" : ""}`));
@@ -122,6 +128,7 @@ const AuthEmail = () => {
             iconPosition="right"
             className={styles.button}
             nativeButtonProps={{ type: "submit" }}
+            disabled={loading}
           >
             Continuer
           </Button>
@@ -144,7 +151,7 @@ const AuthEmail = () => {
           Inclusion Connect
         </Button>
 
-        {error && <span className="text-danger">{error}</span>}
+        <Error error={error} />
       </div>
     </div>
   );

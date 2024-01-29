@@ -1,14 +1,15 @@
-import { ReactElement, useCallback, useMemo, useState } from "react";
+import { ReactElement, useMemo, useState } from "react";
+import { useAsyncFn } from "react-use";
 import { useRouter } from "next/router";
-import { getPath } from "routes";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
+import { getPath } from "routes";
 import { useLogin } from "hooks";
+import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import SEO from "components/Seo";
-import API from "utils/API";
 import Layout from "components/Pages/auth/Layout";
 import FRLink from "components/UI/FRLink";
 import styles from "scss/components/auth.module.scss";
@@ -20,7 +21,7 @@ const AuthLogin = () => {
   const has2FA = useMemo(() => router.query["2fa"], [router.query]);
   const [error, setError] = useState("");
 
-  const submit = useCallback(
+  const [{ loading }, submit] = useAsyncFn(
     async (e: any) => {
       e.preventDefault();
       const password = e.target.password.value;
@@ -87,6 +88,7 @@ const AuthLogin = () => {
             iconPosition="right"
             className={styles.button}
             nativeButtonProps={{ type: "submit" }}
+            disabled={loading}
           >
             {!has2FA ? "Me connecter" : "Me connecter avec le mot de passe"}
           </Button>

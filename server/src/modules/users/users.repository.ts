@@ -81,12 +81,12 @@ export const removeStructureOfUserInDB = (userId: UserId, structureId: Structure
   );
 
 export const createUser = (user: {
-  username: string;
+  firstName: string;
   password: string;
   roles: Types.ObjectId[];
   status: string;
   last_connected: Date;
-}): Promise<User> => UserModel.create(user);
+}) => UserModel.create(user);
 
 export const addRoleAndContribToUser = (userId: Id, roleId: Types.ObjectId, contribId: Types.ObjectId) =>
   UserModel.findByIdAndUpdate(

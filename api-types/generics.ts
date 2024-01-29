@@ -27,6 +27,7 @@ export enum RoleName {
   EXPERT_TRAD = "ExpertTrad",
   TRAD = "Trad",
   CONTRIB = "Contrib",
+  CAREGIVER = "Aidant",
   STRUCTURE = "hasStructure",
   USER = "User"
 }

@@ -1,14 +1,23 @@
-import { ReactElement, useCallback } from "react";
+import { ReactElement, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useAsyncFn } from "react-use";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { RoleName } from "@refugies-info/api-types";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { getPath } from "routes";
+import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
+import { userIdSelector } from "services/User/user.selectors";
+import { fetchUserActionCreator } from "services/User/user.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
+import Error from "components/Pages/auth/Error";
 import GoalIconTs from "assets/auth/goal-icon-ts.svg";
 import GoalIconStructure from "assets/auth/goal-icon-structure.svg";
 import GoalIconTranslate from "assets/auth/goal-icon-translate.svg";
@@ -17,30 +26,50 @@ import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const userId = useSelector(userIdSelector);
+  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
+  const [error, setError] = useState("");
 
-  const submit = useCallback(
-    (e: any) => {
+  useEffect(() => {
+    if (!userId && !isUserLoading) dispatch(fetchUserActionCreator());
+  }, [userId, isUserLoading, dispatch]);
+
+  const [{ loading }, submit] = useAsyncFn(
+    async (e: any) => {
       e.preventDefault();
-      const choice = e.target.goal;
-      if (choice === "ts") {
-        router.push(getPath("/auth/inscription/structure", "fr"));
+      setError("");
+      const choice = e.target.goal.value;
+      if (!userId || !choice) return;
+      if (choice === "user") {
+        router.push(getPath("/auth/inscription/territoire", "fr"));
         return;
+      }
+      let role: RoleName[] | null = null;
+      let path: string | null = null;
+      if (choice === "ts") {
+        role = [RoleName.CAREGIVER];
+        path = getPath("/auth/inscription/partenaire", "fr");
       }
       if (choice === "structure") {
-        router.push(getPath("/auth/inscription/structure", "fr"));
-        return;
+        role = [RoleName.CONTRIB];
+        path = getPath("/auth/inscription/pseudo", "fr");
       }
       if (choice === "translate") {
-        router.push(getPath("/auth/inscription/structure", "fr"));
-        return;
+        role = [RoleName.TRAD];
+        path = getPath("/auth/inscription/langue", "fr");
       }
-      if (choice === "user") {
-        router.push(getPath("/auth/inscription/structure", "fr"));
-        return;
+      try {
+        if (role) await API.updateUser(userId.toString(), { user: { roles: role }, action: "modify-my-details" });
+        if (path) router.push(path);
+      } catch (e: any) {
+        setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
       }
     },
-    [router],
+    [router, userId],
   );
+
+  if (!userId) return null;
 
   return (
     <div className={cls(styles.container, styles.full)}>
@@ -73,7 +102,7 @@ const AuthLogin = () => {
                 label: "Créer mon « Espace aidant »",
                 hintText: "Pour les professionnels et les bénévoles qui accompagnent des bénéficiaires",
                 nativeInputProps: {
-                  value: "ts",
+                  value: "caregiver",
                 },
               },
               {
@@ -103,11 +132,14 @@ const AuthLogin = () => {
             ]}
           />
 
+          <Error error={error} />
+
           <Button
             iconId="fr-icon-arrow-right-line"
             iconPosition="right"
             className={cls(styles.button, "mt-7")}
             nativeButtonProps={{ type: "submit" }}
+            disabled={loading}
           >
             Suivant
           </Button>

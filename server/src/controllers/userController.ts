@@ -61,7 +61,8 @@ export class UserController extends Controller {
   @Security("fromSite")
   @Post("/register")
   public async register(@Body() body: RegisterRequest): ResponseWithData<LoginResponse> {
-    return register(body);
+    const data = await register(body);
+    return { text: "success", data };
   }
 
   @Security("fromSite")

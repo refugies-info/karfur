@@ -48,6 +48,7 @@ export interface SendCodeRequest {
 export interface RegisterRequest {
   email: string;
   password: string;
+  firstName?: string;
 }
 
 /**
@@ -108,7 +109,7 @@ export interface NewPasswordRequest {
  */
 export interface UpdateUserRequest {
   user: {
-    roles?: string[];
+    roles?: RoleName[];
     email?: string;
     phone?: string;
     code?: string;
@@ -116,6 +117,8 @@ export interface UpdateUserRequest {
     picture?: Picture;
     adminComments?: string;
     selectedLanguages?: string[];
+    partner?: string;
+    departments?: string[];
   };
   action: "modify-with-roles" | "modify-my-details";
 }

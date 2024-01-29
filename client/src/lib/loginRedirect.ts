@@ -33,7 +33,7 @@ export const getLoginRedirect = (roles: GetUserInfoResponse["roles"] | undefined
 
   const roleNames = roles.map(r => r.nom);
   if (roleNames.includes(RoleName.ADMIN)) return "/backend/admin"
-  // if (roleNames.includes("TS")) return "/" // TODO: update role
+  if (roleNames.includes(RoleName.CAREGIVER)) return getPath("/recherche", "fr")
   if (roleNames.includes(RoleName.EXPERT_TRAD) || roleNames.includes(RoleName.TRAD)) return getPath("/traduire", "fr")
   if (roleNames.includes(RoleName.CONTRIB)) return getPath("/publier", "fr")
   return getPath("/recherche", "fr")

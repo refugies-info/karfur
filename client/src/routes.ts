@@ -26,7 +26,7 @@ export type PathNames =
   | "/auth/inscription/objectif"
   | "/auth/inscription/langue"
   | "/auth/inscription/pseudo"
-  | "/auth/inscription/structure"
+  | "/auth/inscription/partenaire"
   | "/auth/inscription/territoire"
   | "/auth/reinitialiser-mot-de-passe"
   | "/auth/reinitialiser-mot-de-passe/mail-envoye"
@@ -65,7 +65,7 @@ const routes: Routes = {
   "/auth/inscription/objectif": "/auth/inscription/objectif",
   "/auth/inscription/langue": "/auth/inscription/langue",
   "/auth/inscription/pseudo": "/auth/inscription/pseudo",
-  "/auth/inscription/structure": "/auth/inscription/structure",
+  "/auth/inscription/partenaire": "/auth/inscription/partenaire",
   "/auth/inscription/territoire": "/auth/inscription/territoire",
   "/auth/reinitialiser-mot-de-passe": "/auth/reinitialiser-mot-de-passe",
   "/auth/reinitialiser-mot-de-passe/mail-envoye": "/auth/reinitialiser-mot-de-passe/mail-envoye",

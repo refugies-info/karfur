@@ -17,14 +17,14 @@ const useLogin = () => {
   const logUser = useCallback((token: string) => {
     setAuthToken(token);
     dispatch(fetchUserActionCreator());
-  }, [dispatch, router]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (!hasRedirected && isAuth && userDetails) {
       setHasRedirected(true);
       router.push(getLoginRedirect(userDetails?.roles));
     }
-  }, [userDetails, isAuth, hasRedirected]);
+  }, [userDetails, isAuth, hasRedirected, router]);
 
   return { logUser };
 }

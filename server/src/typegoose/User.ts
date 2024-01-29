@@ -19,14 +19,17 @@ export class Favorite {
 
 @modelOptions({ schemaOptions: { collection: "users", timestamps: { createdAt: "created_at" } } })
 export class User extends Base {
-  @prop({ unique: true, required: true, lowercase: true, trim: true })
-  public username!: string;
+  @prop({ unique: true, lowercase: true, trim: true })
+  public username: string;
 
   @prop({ required: true })
   public password!: string;
 
-  @prop({ lowercase: true, trim: true })
-  public email?: string;
+  @prop({ unique: true, required: true, lowercase: true, trim: true })
+  public email!: string;
+
+  @prop({ trim: true })
+  public firstName?: string;
 
   @prop()
   public phone?: string;
@@ -70,6 +73,12 @@ export class User extends Base {
 
   @prop()
   public adminComments?: string;
+
+  @prop()
+  public partner?: string;
+
+  @prop()
+  public departments?: string[];
 
   @prop()
   public created_at?: Date;
