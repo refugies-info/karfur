@@ -22,8 +22,8 @@ export class User extends Base {
   @prop({ unique: true, lowercase: true, trim: true })
   public username: string;
 
-  @prop({ required: true })
-  public password!: string;
+  @prop()
+  public password: string;
 
   @prop({ unique: true, required: true, lowercase: true, trim: true })
   public email!: string;

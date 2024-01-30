@@ -95,7 +95,7 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
       await updateUserInDB(id, { username: body.user.username });
     } else if (body.user.roles) {
       const newRoles = body.user.roles
-        .filter(r => [RoleName.CONTRIB, RoleName.TRAD].includes(r)) // only these roles allowed
+        .filter(r => [RoleName.CONTRIB, RoleName.TRAD, RoleName.CAREGIVER].includes(r)) // only these roles allowed
         .map(r => roles.find(role => role.nom === r)?._id)
         .filter(r => !!r);
       await updateUserInDB(id, { roles: uniq([...userFromDB.roles, ...newRoles]) });

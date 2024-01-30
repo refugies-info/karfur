@@ -3,10 +3,11 @@ import { Container } from "reactstrap";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import { RoleName } from "@refugies-info/api-types";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { getPath } from "routes";
 import { cls } from "lib/classname";
-import { setLoginRedirect } from "lib/loginRedirect";
+import { setLoginRedirect, setRegisterInfos } from "lib/loginRedirect";
 import { useAuth, useWindowSize } from "hooks";
 import { ReceiveInvitationMailModal } from "components/Modals";
 import MobileRegisterImg from "assets/staticPages/publier/mobile-register.png";
@@ -19,6 +20,7 @@ interface Props {
   btnLoggedIn: string;
   onClickLoggedIn: () => void;
   subtitleMobile: string;
+  associatedRole: RoleName.TRAD | RoleName.CONTRIB;
 }
 
 const Register = (props: Props) => {
@@ -34,10 +36,8 @@ const Register = (props: Props) => {
 
   const onRegister = () => {
     setLoginRedirect("#register");
-    router.push({
-      pathname: getPath("/auth", "fr"),
-      // TODO: no goal screen
-    });
+    setRegisterInfos({ role: props.associatedRole });
+    router.push(getPath("/auth", "fr"));
   };
 
   const title = useMemo(

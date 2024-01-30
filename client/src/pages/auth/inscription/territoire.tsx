@@ -1,5 +1,4 @@
-import { ReactElement, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { ReactElement, useEffect, useMemo, useState } from "react";
 import { useAsyncFn } from "react-use";
 import { useRouter } from "next/router";
 import { Button } from "@codegouvfr/react-dsfr/Button";
@@ -7,48 +6,24 @@ import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { SearchBar } from "@codegouvfr/react-dsfr/SearchBar";
 import { logger } from "logger";
 import API from "utils/API";
-import { useDepartmentAutocomplete } from "hooks";
+import { useDepartmentAutocomplete, useRegisterFlow } from "hooks";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import { getLoginRedirect } from "lib/loginRedirect";
 import { formatDepartment } from "lib/departments";
-import { userDetailsSelector } from "services/User/user.selectors";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { fetchUserActionCreator } from "services/User/user.actions";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import Error from "components/Pages/auth/Error";
 import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
-  // department input
   const [selectedDepartments, setSelectedDepartments] = useState<string[]>([]);
-  const { search, setSearch, hidePredictions, setHidePredictions, getPlaceSelected, predictions } =
-    useDepartmentAutocomplete();
-
-  const handleChange = (e: any) => setSearch(e.target.value);
-  const onPlaceSelected = async (id: string) => {
-    const place = await getPlaceSelected(id);
-    if (!place) return;
-    if (!selectedDepartments.includes(place)) {
-      const newDeps = [...(selectedDepartments || []), place];
-      setSelectedDepartments(newDeps);
-      setHidePredictions(true);
-      setSearch("");
-    }
-  };
 
   // submit and loading
   const router = useRouter();
-  const dispatch = useDispatch();
-  const userDetails = useSelector(userDetailsSelector);
-  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
-  const [error, setError] = useState("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
-
-  useEffect(() => {
-    if (!userDetails && !isUserLoading) dispatch(fetchUserActionCreator());
-  }, [userDetails, isUserLoading, dispatch]);
+  const [error, setError] = useState("");
+  const { userDetails, getStepCount, back } = useRegisterFlow("territoire");
+  const stepCount = useMemo(() => getStepCount(null), [getStepCount]);
 
   const [{ loading }, submit] = useAsyncFn(
     async (e: any) => {
@@ -66,8 +41,29 @@ const AuthLogin = () => {
         setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
       }
     },
-    [router, userDetails],
+    [router, userDetails, selectedDepartments],
   );
+
+  // department input
+  useEffect(() => {
+    if (userDetails?.departments) setSelectedDepartments(userDetails.departments);
+  }, [userDetails]);
+
+  const { search, setSearch, hidePredictions, setHidePredictions, getPlaceSelected, predictions } =
+    useDepartmentAutocomplete();
+
+  const handleChange = (e: any) => setSearch(e.target.value);
+  const onPlaceSelected = async (id: string) => {
+    const place = await getPlaceSelected(id);
+    if (!place) return;
+    if (!selectedDepartments.includes(place)) {
+      const newDeps = [...(selectedDepartments || []), place];
+      setSelectedDepartments(newDeps);
+      setHidePredictions(true);
+      setSearch("");
+    }
+  };
+  if (!userDetails) return null;
 
   return (
     <div className={cls(styles.container, styles.full)}>
@@ -77,13 +73,13 @@ const AuthLogin = () => {
           priority="tertiary"
           size="small"
           iconId="fr-icon-arrow-left-line"
-          onClick={() => router.back()}
+          onClick={back}
           className={styles.back_button}
         >
           Retour
         </Button>
 
-        <Stepper currentStep={3} stepCount={3} title="Votre territoire" />
+        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre territoire" />
 
         <div className={cls(styles.title, "mt-14")}>
           <h1>Où souhaitez-vous chercher des dispositifs&nbsp;?</h1>
@@ -151,13 +147,13 @@ const AuthLogin = () => {
           <Error error={error} />
 
           <Button
-            iconId="fr-icon-arrow-right-line"
+            iconId="fr-icon-check-line"
             iconPosition="right"
             className={cls(styles.button, "mt-14")}
             nativeButtonProps={{ type: "submit" }}
             disabled={loading || selectedDepartments.length === 0}
           >
-            Suivant
+            Valider
           </Button>
         </form>
       </div>

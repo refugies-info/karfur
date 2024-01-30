@@ -1,5 +1,4 @@
-import { ReactElement, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { ReactElement, useState, useMemo, useEffect } from "react";
 import { useAsyncFn } from "react-use";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -7,14 +6,11 @@ import { RoleName } from "@refugies-info/api-types";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { getPath } from "routes";
+import { useRegisterFlow } from "hooks";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
-import { userIdSelector } from "services/User/user.selectors";
-import { fetchUserActionCreator } from "services/User/user.actions";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { hasRole } from "lib/hasRole";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import Error from "components/Pages/auth/Error";
@@ -26,47 +22,33 @@ import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const userId = useSelector(userIdSelector);
-  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const [error, setError] = useState("");
+  const [role, setRole] = useState<RoleName.USER | RoleName.CAREGIVER | RoleName.CONTRIB | RoleName.TRAD | null>(null);
+  const { userId, userDetails, getStepCount, next } = useRegisterFlow("objectif");
 
   useEffect(() => {
-    if (!userId && !isUserLoading) dispatch(fetchUserActionCreator());
-  }, [userId, isUserLoading, dispatch]);
+    if (hasRole(userDetails, RoleName.TRAD)) setRole(RoleName.TRAD);
+    if (hasRole(userDetails, RoleName.CAREGIVER)) setRole(RoleName.CAREGIVER);
+    if (hasRole(userDetails, RoleName.CONTRIB)) setRole(RoleName.CONTRIB);
+  }, [userDetails]);
+
+  const stepCount = useMemo(() => getStepCount(role ? [role] : null), [role, getStepCount]);
 
   const [{ loading }, submit] = useAsyncFn(
     async (e: any) => {
       e.preventDefault();
       setError("");
-      const choice = e.target.goal.value;
-      if (!userId || !choice) return;
-      if (choice === "user") {
-        router.push(getPath("/auth/inscription/territoire", "fr"));
-        return;
-      }
-      let role: RoleName[] | null = null;
-      let path: string | null = null;
-      if (choice === "ts") {
-        role = [RoleName.CAREGIVER];
-        path = getPath("/auth/inscription/partenaire", "fr");
-      }
-      if (choice === "structure") {
-        role = [RoleName.CONTRIB];
-        path = getPath("/auth/inscription/pseudo", "fr");
-      }
-      if (choice === "translate") {
-        role = [RoleName.TRAD];
-        path = getPath("/auth/inscription/langue", "fr");
-      }
+      if (!userId || !role) return;
       try {
-        if (role) await API.updateUser(userId.toString(), { user: { roles: role }, action: "modify-my-details" });
-        if (path) router.push(path);
+        if (role && role !== RoleName.USER) {
+          await API.updateUser(userId.toString(), { user: { roles: [role] }, action: "modify-my-details" }); // FIXME what if back and change role?
+        }
+        next([role]);
       } catch (e: any) {
         setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
       }
     },
-    [router, userId],
+    [router, userId, role, next],
   );
 
   if (!userId) return null;
@@ -75,17 +57,7 @@ const AuthLogin = () => {
     <div className={cls(styles.container, styles.full)}>
       <SEO title="Votre objectif" />
       <div className={styles.container_inner}>
-        <Button
-          priority="tertiary"
-          size="small"
-          iconId="fr-icon-arrow-left-line"
-          onClick={() => router.back()}
-          className={styles.back_button}
-        >
-          Retour
-        </Button>
-
-        <Stepper currentStep={1} stepCount={3} title="Votre objectif" />
+        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre objectif" />
 
         <div className={cls(styles.title, "mt-14")}>
           <h1>Que souhaitez-vous faire&nbsp;?</h1>
@@ -99,10 +71,11 @@ const AuthLogin = () => {
             options={[
               {
                 illustration: <Image alt="illustration" src={GoalIconTs} width={48} height={48} />,
-                label: "Créer mon « Espace aidant »",
+                label: "Créer mon « Espace aidant »",
                 hintText: "Pour les professionnels et les bénévoles qui accompagnent des bénéficiaires",
                 nativeInputProps: {
-                  value: "caregiver",
+                  checked: role === RoleName.CAREGIVER,
+                  onChange: () => setRole(RoleName.CAREGIVER),
                 },
               },
               {
@@ -110,7 +83,8 @@ const AuthLogin = () => {
                 label: "Recenser mon dispositif",
                 hintText: "Pour les membres et responsables de structure",
                 nativeInputProps: {
-                  value: "structure",
+                  checked: role === RoleName.CONTRIB,
+                  onChange: () => setRole(RoleName.CONTRIB),
                 },
               },
               {
@@ -118,7 +92,8 @@ const AuthLogin = () => {
                 label: "Traduire une fiche",
                 hintText: "Pour les bilingues qui souhaitent contribuer",
                 nativeInputProps: {
-                  value: "translate",
+                  checked: role === RoleName.TRAD,
+                  onChange: () => setRole(RoleName.TRAD),
                 },
               },
               {
@@ -126,7 +101,8 @@ const AuthLogin = () => {
                 label: "Créer mon espace personnel",
                 hintText: "Simplement pour sauvegarder des fiches",
                 nativeInputProps: {
-                  value: "user",
+                  checked: role === RoleName.USER,
+                  onChange: () => setRole(RoleName.USER),
                 },
               },
             ]}

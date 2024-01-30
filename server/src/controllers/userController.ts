@@ -68,7 +68,8 @@ export class UserController extends Controller {
   @Security("fromSite")
   @Post("/login")
   public async login(@Body() body: LoginRequest): ResponseWithData<LoginResponse> {
-    return login(body);
+    const data = await login(body);
+    return { text: "success", data };
   }
 
   @Security("fromSite")
@@ -178,6 +179,8 @@ export class UserController extends Controller {
         "picture",
         "favorites",
         "selectedLanguages",
+        "partner",
+        "departments",
       ]),
     };
   }

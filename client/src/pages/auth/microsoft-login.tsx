@@ -1,10 +1,10 @@
 import { ReactElement, useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { getPath } from "routes";
-import { useLogin } from "hooks";
+import { useLogin, useRegisterFlow } from "hooks";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
+import { getRegisterInfos } from "lib/loginRedirect";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
@@ -15,27 +15,25 @@ const AuthMicrosoftLogin = () => {
   const [error, setError] = useState("");
   const [requestSent, setRequestSent] = useState(false);
   const { logUser } = useLogin();
+  const { start } = useRegisterFlow(null);
 
   useEffect(() => {
     if (code && !requestSent) {
       setRequestSent(true);
+      const registerInfos = getRegisterInfos();
       API.login({
         authMicrosoft: {
           authCode: code,
         },
+        role: registerInfos?.role, // set role in case new account
       })
-        .then((res) => logUser(res.token))
-        .catch((e) => {
-          const errorCode = e.response?.data?.code;
-          const email = e.response?.data?.data?.email;
-          if (errorCode === "NO_ACCOUNT") {
-            router.push(getPath("/auth/inscription", "fr", `?email=${email}`));
-          } else {
-            setError("Erreur, vous n'êtes pas authentifié avec votre compte Microsoft, veuillez réessayer.");
-          }
-        });
+        .then((res) => {
+          if (res.userCreated) start(res.token, registerInfos?.role);
+          else logUser(res.token);
+        })
+        .catch((e) => setError("Erreur, vous n'êtes pas authentifié avec votre compte Microsoft, veuillez réessayer."));
     }
-  }, [code, requestSent, logUser, router]);
+  }, [code, requestSent, logUser, start]);
 
   return (
     <div className={cls(styles.container, styles.half)}>

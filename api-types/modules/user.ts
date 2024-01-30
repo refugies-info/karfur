@@ -18,6 +18,7 @@ export interface LoginRequest {
   authPassword?: AuthPassword;
   authGoogle?: AuthGoogle;
   authMicrosoft?: AuthMicrosoft;
+  role?: RoleName.CONTRIB | RoleName.TRAD; // in case we need to create a new account with sso
 }
 
 /**
@@ -48,7 +49,9 @@ export interface SendCodeRequest {
 export interface RegisterRequest {
   email: string;
   password: string;
+  subscribeNewletter?: boolean;
   firstName?: string;
+  role?: RoleName.CONTRIB | RoleName.TRAD;
 }
 
 /**
@@ -137,6 +140,8 @@ export interface GetUserInfoResponse {
   structures: string[];
   username: string;
   picture?: Picture;
+  partner?: string;
+  departments?: string[];
   favorites?: {
     dispositifId: Id;
     created_at: Date;
@@ -148,6 +153,7 @@ export interface GetUserInfoResponse {
  */
 export interface LoginResponse {
   token: string;
+  userCreated?: boolean;
 }
 
 /**

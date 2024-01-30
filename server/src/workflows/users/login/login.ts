@@ -3,12 +3,12 @@ import { OAuth2Client } from "google-auth-library";
 import msal from "@azure/msal-node";
 import { LoginRequest, LoginResponse, UserStatus } from "@refugies-info/api-types";
 import logger from "../../../logger";
-import { ResponseWithData } from "../../../types/interface";
 import { getUserByEmailFromDB } from "../../../modules/users/users.repository";
 import { requestEmailLogin } from "../../../modules/users/login2FA";
 import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
 import { User } from "../../../typegoose/User";
 import { loginExceptionsManager, logUser, needs2FA } from "../../../modules/users/auth";
+import { registerUser } from "../../../modules/users/users.service";
 
 const oauth2Client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
@@ -64,7 +64,7 @@ const authWithMicrosoft = async (loginRequest: LoginRequest): Promise<string | n
   }
 }
 
-export const login = async (body: LoginRequest): ResponseWithData<LoginResponse> => {
+export const login = async (body: LoginRequest): Promise<LoginResponse> => {
   logger.info("[Login] login attempt");
 
   try {
@@ -73,7 +73,14 @@ export const login = async (body: LoginRequest): ResponseWithData<LoginResponse>
     if (body.authMicrosoft) email = await authWithMicrosoft(body);
 
     const user = await getUserByEmailFromDB(email).populate("roles");
-    if (!user) throw new LoginError(LoginErrorType.NO_ACCOUNT, { email });
+    if (!user) {
+      // if sso and no user, create account
+      if (body.authGoogle || body.authMicrosoft) {
+        const user = await registerUser({ email, role: body.role });
+        return { token: user.getToken(), userCreated: true };
+      }
+      throw new LoginError(LoginErrorType.NO_ACCOUNT, { email });
+    }
     if (user.status === UserStatus.DELETED) throw new LoginError(LoginErrorType.USER_DELETED);
 
     if (body.authPassword) {
@@ -86,10 +93,7 @@ export const login = async (body: LoginRequest): ResponseWithData<LoginResponse>
       throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
     } else {
       const token = await logUser(user);
-      return {
-        text: "success",
-        data: { token },
-      };
+      return { token };
     }
   } catch (error) {
     loginExceptionsManager(error);

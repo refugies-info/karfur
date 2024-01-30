@@ -2,6 +2,7 @@ import { GetUserInfoResponse, RoleName } from "@refugies-info/api-types";
 import { getPath } from "routes";
 
 const REDIRECT_KEY = "login_redirect";
+const REGISTER_KEY = "register_infos";
 
 /**
  * Save current page to redirect to in session storage.
@@ -28,6 +29,7 @@ export const setLoginRedirect = (extraParam: Record<string, string> | string | n
 export const getLoginRedirect = (roles: GetUserInfoResponse["roles"] | undefined) => {
   const storedPage = sessionStorage.getItem(REDIRECT_KEY);
   sessionStorage.removeItem(REDIRECT_KEY);
+  sessionStorage.removeItem(REGISTER_KEY);
   if (storedPage) return storedPage;
   if (!roles || roles.length === 0) return "/";
 
@@ -37,4 +39,20 @@ export const getLoginRedirect = (roles: GetUserInfoResponse["roles"] | undefined
   if (roleNames.includes(RoleName.EXPERT_TRAD) || roleNames.includes(RoleName.TRAD)) return getPath("/traduire", "fr")
   if (roleNames.includes(RoleName.CONTRIB)) return getPath("/publier", "fr")
   return getPath("/recherche", "fr")
+}
+
+
+interface RegisterInfos {
+  role?: RoleName.CONTRIB | RoleName.TRAD;
+}
+export const setRegisterInfos = (role: RegisterInfos) => {
+  sessionStorage.setItem(REGISTER_KEY, JSON.stringify(role));
+}
+export const getRegisterInfos = (): RegisterInfos | null => {
+  const data = sessionStorage.getItem(REGISTER_KEY);
+  if (data) {
+    sessionStorage.removeItem(REGISTER_KEY);
+    return JSON.parse(data) as RegisterInfos;
+  }
+  return null;
 }

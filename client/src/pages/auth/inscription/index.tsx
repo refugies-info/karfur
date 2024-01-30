@@ -3,18 +3,18 @@ import { useDispatch } from "react-redux";
 import { useAsyncFn } from "react-use";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import { RegisterRequest } from "@refugies-info/api-types";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import Input from "@codegouvfr/react-dsfr/Input";
-import { getPath } from "routes";
+import { useRegisterFlow } from "hooks";
 import API from "utils/API";
-import { setAuthToken } from "utils/authToken";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import { getPasswordStrength } from "lib/validatePassword";
-import { fetchUserActionCreator } from "services/User/user.actions";
+import { getRegisterInfos } from "lib/loginRedirect";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import Error from "components/Pages/auth/Error";
@@ -28,6 +28,7 @@ const AuthLogin = () => {
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   const passwordStrength = useMemo(() => getPasswordStrength(password), [password]);
+  const { start } = useRegisterFlow(null);
 
   const [{ loading }, submit] = useAsyncFn(
     async (e: any) => {
@@ -37,16 +38,20 @@ const AuthLogin = () => {
       try {
         const firstName = e.target.name.value;
         const password = e.target.password.value;
-        const { token } = await API.register({
+        const subscribeNewletter = e.target.newsletter.value === "true"; // FIXME bug
+        const registerRequest: RegisterRequest = {
           email,
           password,
           firstName,
-        });
-        if (token) {
-          setAuthToken(token);
-          dispatch(fetchUserActionCreator());
-          router.push(getPath("/auth/inscription/objectif", "fr")); // TODO: depend of entry point
+          subscribeNewletter,
+        };
+        const registerInfos = getRegisterInfos();
+        if (registerInfos?.role) {
+          registerRequest.role = registerInfos.role;
         }
+
+        const { token } = await API.register(registerRequest);
+        if (token) start(token, registerInfos?.role);
       } catch (e: any) {
         const errorCode = e.response?.data?.code;
         if (errorCode === "PASSWORD_TOO_WEAK") {
@@ -56,12 +61,10 @@ const AuthLogin = () => {
         }
       }
     },
-    [router, passwordStrength, email, dispatch],
+    [router, passwordStrength, email, dispatch, start],
   );
 
   if (!email) return null;
-
-  /* TODO: get extra infos if coming from SSO */
 
   return (
     <div className={cls(styles.container, styles.half)}>

@@ -11,17 +11,18 @@ const useLogin = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const userDetails = useSelector(userDetailsSelector);
-  const [hasRedirected, setHasRedirected] = useState(false);
+  const [hasRedirected, setHasRedirected] = useState<"no" | "pending" | "yes">("no");
   const { isAuth } = useAuth();
 
   const logUser = useCallback((token: string) => {
     setAuthToken(token);
     dispatch(fetchUserActionCreator());
+    setHasRedirected("pending");
   }, [dispatch]);
 
   useEffect(() => {
-    if (!hasRedirected && isAuth && userDetails) {
-      setHasRedirected(true);
+    if (hasRedirected === "pending" && isAuth && userDetails) {
+      setHasRedirected("yes");
       router.push(getLoginRedirect(userDetails?.roles));
     }
   }, [userDetails, isAuth, hasRedirected, router]);

@@ -6,12 +6,13 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { getPath } from "routes";
 import { logger } from "logger";
-import { useLogin } from "hooks";
+import { useLogin, useRegisterFlow } from "hooks";
 import { googleProvider } from "utils/googleSignIn";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import { isValidEmail } from "lib/validateFields";
+import { getRegisterInfos } from "lib/loginRedirect";
 import SEO from "components/Seo";
 import Error from "components/Pages/auth/Error";
 import Layout from "components/Pages/auth/Layout";
@@ -23,6 +24,7 @@ import styles from "scss/components/auth.module.scss";
 const AuthEmail = () => {
   const router = useRouter();
   const { logUser } = useLogin();
+  const { start } = useRegisterFlow(null);
   const [formError, setFormError] = useState("");
   const [error, setError] = useState("");
 
@@ -49,28 +51,25 @@ const AuthEmail = () => {
     googleProvider.useGoogleLogin({
       flow: "auth-code",
       onSuccess: ({ code }) => {
+        const registerInfos = getRegisterInfos();
         API.login({
           authGoogle: {
             authCode: code,
           },
+          role: registerInfos?.role, // set role in case new account
         })
-          .then((res) => logUser(res.token))
-          .catch((e) => {
-            const errorCode = e.response?.data?.code;
-            const email = e.response?.data?.data?.email;
-            if (errorCode === "NO_ACCOUNT") {
-              router.push(getPath("/auth/inscription", "fr", `?email=${email}`));
-            } else {
-              setError("Erreur, vous n'êtes pas authentifié avec votre compte Google, veuillez réessayer.");
-            }
-          });
+          .then((res) => {
+            if (res.userCreated) start(res.token, registerInfos?.role);
+            else logUser(res.token);
+          })
+          .catch((e) => setError("Erreur, vous n'êtes pas authentifié avec votre compte Google, veuillez réessayer.")); // TODO: handle other errors (2FA?)
       },
       onError: (err) => {
         logger.error("[loginGoogle] Failed to login with google", err);
         setError("Erreur, vous n'êtes pas authentifié avec votre compte Google, veuillez réessayer.");
       },
     })();
-  }, [router, logUser]);
+  }, [logUser, start]);
 
   const loginMicrosoft = useCallback(async () => {
     try {

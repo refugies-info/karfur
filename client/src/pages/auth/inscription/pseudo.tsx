@@ -1,46 +1,40 @@
-import { ReactElement, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { ReactElement, useEffect, useMemo, useState } from "react";
 import { useAsyncFn } from "react-use";
 import { useRouter } from "next/router";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
-import { getPath } from "routes";
+import { useRegisterFlow } from "hooks";
 import { logger } from "logger";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
-import { userIdSelector } from "services/User/user.selectors";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { fetchUserActionCreator } from "services/User/user.actions";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const userId = useSelector(userIdSelector);
-  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const [error, setError] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const { userId, userDetails, getStepCount, next, back } = useRegisterFlow("pseudo");
+  const stepCount = useMemo(() => getStepCount(null), [getStepCount]);
 
   useEffect(() => {
-    if (!userId && !isUserLoading) dispatch(fetchUserActionCreator());
-  }, [userId, isUserLoading, dispatch]);
+    if (userDetails?.username) setUsername(userDetails.username);
+  }, [userDetails]);
 
   const [{ loading }, submit] = useAsyncFn(
     async (e: any) => {
       e.preventDefault();
       setError("");
-      const pseudo = e.target.pseudo.value;
-      if (!userId || !pseudo) return;
+      if (!userId || !username) return;
       try {
         await API.updateUser(userId.toString(), {
-          user: { username: pseudo },
+          user: { username },
           action: "modify-my-details",
         });
-        router.push(getPath("/auth/inscription/territoire", "fr"));
+        next(null);
       } catch (e: any) {
         const errorCode = e.response?.data?.code;
         if (errorCode === "USERNAME_TAKEN") {
@@ -51,7 +45,7 @@ const AuthLogin = () => {
         }
       }
     },
-    [router, userId],
+    [router, userId, next, username],
   );
 
   if (!userId) return null;
@@ -64,13 +58,13 @@ const AuthLogin = () => {
           priority="tertiary"
           size="small"
           iconId="fr-icon-arrow-left-line"
-          onClick={() => router.back()}
+          onClick={back}
           className={styles.back_button}
         >
           Retour
         </Button>
 
-        <Stepper currentStep={2} stepCount={3} title="Votre pseudonyme" />
+        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre pseudonyme" />
 
         <div className={cls(styles.title, "mt-14")}>
           <h1>Choisissez un pseudonyme</h1>
@@ -87,7 +81,8 @@ const AuthLogin = () => {
             stateRelatedMessage={error}
             nativeInputProps={{
               autoFocus: true,
-              name: "pseudo",
+              value: username,
+              onChange: (e: any) => setUsername(e.target.value),
             }}
           />
 
