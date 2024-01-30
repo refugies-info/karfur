@@ -3,29 +3,28 @@
 exports[`LocationWarningMessage snapshot test suite should render without bug 1`] = `
 <View
   style={
-    {
-      "alignItems": "center",
-      "backgroundColor": "#DAE0FB",
-      "borderBottomLeftRadius": 6,
-      "borderBottomRightRadius": 6,
-      "borderTopLeftRadius": 6,
-      "borderTopRightRadius": 6,
-      "display": "flex",
-      "elevation": 2,
-      "flexDirection": "row",
-      "marginTop": 16,
-      "paddingBottom": 8,
-      "paddingLeft": 8,
-      "paddingRight": 8,
-      "paddingTop": 8,
-      "shadowColor": "#212121",
-      "shadowOffset": {
-        "height": 1,
-        "width": 1,
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#DAE0FB",
+        "borderRadius": 6,
+        "display": "flex",
+        "elevation": 2,
+        "flexDirection": "row",
+        "marginTop": 16,
+        "paddingBottom": 8,
+        "paddingLeft": 8,
+        "paddingRight": 8,
+        "paddingTop": 8,
+        "shadowColor": "#212121",
+        "shadowOffset": {
+          "height": 1,
+          "width": 1,
+        },
+        "shadowOpacity": 0.4,
+        "shadowRadius": 2,
       },
-      "shadowOpacity": 0.4,
-      "shadowRadius": 2,
-    }
+    ]
   }
 >
   <View
@@ -50,11 +49,13 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
   >
     <View
       style={
-        {
-          "flexBasis": 0,
-          "flexGrow": 1,
-          "marginRight": 8,
-        }
+        [
+          {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "marginRight": 8,
+          },
+        ]
       }
     >
       <View
@@ -110,11 +111,13 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
         >
           <View
             style={
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-                "marginRight": 8,
-              }
+              [
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                  "marginRight": 8,
+                },
+              ]
             }
           >
             <View
@@ -169,29 +172,9 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                     ]
                   }
                 >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
-                  >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
+                  <RNSVGGroup>
+                    <RNSVGGroup>
                       <RNSVGRect
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                         height="24"
                         matrix={
                           [
@@ -210,12 +193,6 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                       />
                       <RNSVGPath
                         d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -225,25 +202,29 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
           </View>
           <View
             style={
-              {
-                "flexBasis": 0,
-                "flexGrow": 1,
-              }
+              [
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                },
+              ]
             }
           >
             <Text
               isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#0421B1",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "marginHorizontal": 8,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "color": "#0421B1",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginHorizontal": 8,
+                    "textAlign": "left",
+                  },
+                ]
               }
             >
               explorer_screen.warning_nb_contents
@@ -255,14 +236,16 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                 onPress={[Function]}
                 selectable={true}
                 style={
-                  {
-                    "color": "#0421B1",
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                    "textDecorationLine": "underline",
-                  }
+                  [
+                    {
+                      "color": "#0421B1",
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                      "textDecorationLine": "underline",
+                    },
+                  ]
                 }
               >
                 explorer_screen.why_link
@@ -274,10 +257,12 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
     </View>
     <View
       style={
-        {
-          "flexBasis": "auto",
-          "flexGrow": 0,
-        }
+        [
+          {
+            "flexBasis": "auto",
+            "flexGrow": 0,
+          },
+        ]
       }
     >
       <View
@@ -365,29 +350,9 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                 ]
               }
             >
-              <RNSVGGroup
-                fill={
-                  {
-                    "payload": 4278190080,
-                    "type": 0,
-                  }
-                }
-              >
-                <RNSVGGroup
-                  fill={
-                    {
-                      "payload": 4278190080,
-                      "type": 0,
-                    }
-                  }
-                >
+              <RNSVGGroup>
+                <RNSVGGroup>
                   <RNSVGRect
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
                     height="24"
                     matrix={
                       [
@@ -406,12 +371,6 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                   />
                   <RNSVGPath
                     d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
                   />
                 </RNSVGGroup>
               </RNSVGGroup>

@@ -4,14 +4,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    {
-      "backgroundColor": "transparent",
-      "flexBasis": 0,
-      "flexGrow": 1,
-      "flexShrink": 1,
-      "minHeight": "100%",
-      "minWidth": "100%",
-    }
+    [
+      {
+        "backgroundColor": "transparent",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "minHeight": "100%",
+        "minWidth": "100%",
+      },
+    ]
   }
 >
   <View
@@ -36,11 +38,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
   >
     <RCTSafeAreaView
       style={
-        {
-          "minHeight": 65,
-          "paddingBottom": 20,
-          "paddingTop": 0,
-        }
+        [
+          {
+            "minHeight": 65,
+            "paddingBottom": 20,
+            "paddingTop": 0,
+          },
+        ]
       }
     >
       <View
@@ -65,11 +69,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       >
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexGrow": 0,
-              "marginRight": 8,
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginRight": 8,
+              },
+            ]
           }
         >
           <View>
@@ -105,10 +111,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               style={
                 {
                   "backgroundColor": "#FFFFFF",
-                  "borderBottomLeftRadius": 12,
-                  "borderBottomRightRadius": 12,
-                  "borderTopLeftRadius": 12,
-                  "borderTopRightRadius": 12,
+                  "borderRadius": 12,
                   "elevation": 6,
                   "opacity": 1,
                   "paddingBottom": 12,
@@ -128,7 +131,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}
@@ -182,29 +189,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
-                        <RNSVGGroup
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
                           <RNSVGRect
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                             height="24"
                             matrix={
                               [
@@ -223,12 +210,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -241,21 +222,25 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            {
-              "flexBasis": 0,
-              "flexGrow": 1,
-              "marginRight": 8,
-            }
+            [
+              {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "marginRight": 8,
+              },
+            ]
           }
         >
           <View />
         </View>
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexGrow": 0,
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+              },
+            ]
           }
         >
           <View
@@ -280,10 +265,12 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           >
             <View
               style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                }
+                [
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
               }
             >
               <View />
@@ -381,14 +368,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "circularBook",
-              "fontSize": 16,
-              "lineHeight": 20,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "marginBottom": 24,
+                "textAlign": "left",
+              },
+            ]
           }
         >
           Nous avons créé cette page pour répondre en quelques minutes à toutes les questions que tu te poses sur tes données et comment on s’en sert dans l’application réfugiés.info.
@@ -397,25 +386,29 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "circularBook",
-              "fontSize": 16,
-              "lineHeight": 20,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "marginBottom": 24,
+                "textAlign": "left",
+              },
+            ]
           }
         >
           Si tu ne trouves pas de réponse à ta question, n’hésite pas à nous la poser directement.
         </Text>
         <View
           style={
-            {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-            }
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+            ]
           }
         >
           <View
@@ -474,29 +467,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup
-                  fill={
-                    {
-                      "payload": 4278190080,
-                      "type": 0,
-                    }
-                  }
-                >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
-                  >
+                <RNSVGGroup>
+                  <RNSVGGroup>
                     <RNSVGRect
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
                       height="24"
                       matrix={
                         [
@@ -515,21 +488,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
                     />
                     <RNSVGPath
                       d="M16 11h-3V8a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2z"
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>
@@ -571,83 +532,87 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 25,
-              "lineHeight": 32,
-              "marginBottom": 24,
-              "marginTop": 56,
-              "textAlign": "left",
-            }
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "circularBold",
+                "fontSize": 25,
+                "lineHeight": 32,
+                "marginBottom": 24,
+                "marginTop": 56,
+                "textAlign": "left",
+              },
+            ]
           }
         >
           Les informations sur toi
         </Text>
         <View
           style={
-            {
-              "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "elevation": 6,
-              "marginBottom": 24,
-              "paddingBottom": 24,
-              "paddingLeft": 24,
-              "paddingRight": 24,
-              "paddingTop": 24,
-              "shadowColor": "#212121",
-              "shadowOffset": {
-                "height": 1,
-                "width": 1,
+            [
+              {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "elevation": 6,
+                "marginBottom": 24,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+                "shadowColor": "#212121",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 0.16,
+                "shadowRadius": 8,
               },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
+            ]
           }
         >
           <View
             isRTL={false}
             style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "maxWidth": "100%",
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                  "maxWidth": "100%",
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 16,
-                  "borderBottomRightRadius": 16,
-                  "borderTopLeftRadius": 16,
-                  "borderTopRightRadius": 16,
-                  "height": 32,
-                  "justifyContent": "center",
-                  "marginLeft": 0,
-                  "marginRight": 16,
-                  "width": 32,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#212121",
+                    "borderRadius": 16,
+                    "height": 32,
+                    "justifyContent": "center",
+                    "marginLeft": 0,
+                    "marginRight": 16,
+                    "width": 32,
+                  },
+                ]
               }
             >
               <Text
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 1
@@ -679,14 +644,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Quand tu ouvres l’application réfugiés.info pour la première fois ou quand tu vas dans l’onglet “Moi”, nous te demandons de nous partager quelques informations sur toi, par exemple la ville dans laquelle tu habites.
@@ -704,27 +671,28 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           />
           <View
             style={
-              {
-                "backgroundColor": "#ffcecb",
-                "borderBottomLeftRadius": 12,
-                "borderBottomRightRadius": 12,
-                "borderTopLeftRadius": 12,
-                "borderTopRightRadius": 12,
-                "paddingBottom": 24,
-                "paddingLeft": 24,
-                "paddingRight": 24,
-                "paddingTop": 24,
-              }
+              [
+                {
+                  "backgroundColor": "#ffcecb",
+                  "borderRadius": 12,
+                  "paddingBottom": 24,
+                  "paddingLeft": 24,
+                  "paddingRight": 24,
+                  "paddingTop": 24,
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "marginBottom": 16,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "marginBottom": 16,
+                  },
+                ]
               }
             >
               <View
@@ -783,29 +751,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -824,32 +772,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGCircle
                           cx="12"
                           cy="8"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGPath
                           d="M12 10a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0-1-1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -860,13 +790,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Bon à savoir
@@ -876,13 +808,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
               }
             >
               Tu n’es pas obligé de partager ces informations pour avoir accès à l’application.
@@ -913,68 +847,70 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            {
-              "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "elevation": 6,
-              "marginBottom": 24,
-              "paddingBottom": 24,
-              "paddingLeft": 24,
-              "paddingRight": 24,
-              "paddingTop": 24,
-              "shadowColor": "#212121",
-              "shadowOffset": {
-                "height": 1,
-                "width": 1,
+            [
+              {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "elevation": 6,
+                "marginBottom": 24,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+                "shadowColor": "#212121",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 0.16,
+                "shadowRadius": 8,
               },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
+            ]
           }
         >
           <View
             isRTL={false}
             style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "maxWidth": "100%",
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                  "maxWidth": "100%",
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 16,
-                  "borderBottomRightRadius": 16,
-                  "borderTopLeftRadius": 16,
-                  "borderTopRightRadius": 16,
-                  "height": 32,
-                  "justifyContent": "center",
-                  "marginLeft": 0,
-                  "marginRight": 16,
-                  "width": 32,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#212121",
+                    "borderRadius": 16,
+                    "height": 32,
+                    "justifyContent": "center",
+                    "marginLeft": 0,
+                    "marginRight": 16,
+                    "width": 32,
+                  },
+                ]
               }
             >
               <Text
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 2
@@ -1006,14 +942,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Quand tu ouvres l’application et à tout moment dans l’onglet “Moi”, tu peux décider de nous partager :
@@ -1088,29 +1026,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     ]
                   }
                 >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
-                  >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
+                  <RNSVGGroup>
+                    <RNSVGGroup>
                       <RNSVGRect
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                         height="24"
                         opacity={0}
                         width="24"
@@ -1119,21 +1037,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       />
                       <RNSVGPath
                         d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                       />
                       <RNSVGPath
                         d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -1144,13 +1050,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
               }
             >
               la ville dans laquelle tu habites
@@ -1226,29 +1134,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     ]
                   }
                 >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
-                  >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
+                  <RNSVGGroup>
+                    <RNSVGGroup>
                       <RNSVGRect
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                         height="24"
                         opacity={0}
                         width="24"
@@ -1257,32 +1145,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       />
                       <RNSVGPath
                         d="M18 4h-1V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zM6 6h1v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h1a1 1 0 0 1 1 1v4H5V7a1 1 0 0 1 1-1zm12 14H6a1 1 0 0 1-1-1v-6h14v6a1 1 0 0 1-1 1z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                       />
                       <RNSVGCircle
                         cx="8"
                         cy="16"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                         r="1"
                       />
                       <RNSVGPath
                         d="M16 15h-4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -1293,13 +1163,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
               }
             >
               ta tranche d’âge
@@ -1375,71 +1247,27 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     ]
                   }
                 >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
-                  >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
+                  <RNSVGGroup>
+                    <RNSVGGroup>
                       <RNSVGCircle
                         cx="12"
                         cy="12"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                         r="1"
                       />
                       <RNSVGCircle
                         cx="16"
                         cy="12"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                         r="1"
                       />
                       <RNSVGCircle
                         cx="8"
                         cy="12"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                         r="1"
                       />
                       <RNSVGPath
                         d="M19.07 4.93a10 10 0 0 0-16.28 11 1.06 1.06 0 0 1 .09.64L2 20.8a1 1 0 0 0 .27.91A1 1 0 0 0 3 22h.2l4.28-.86a1.26 1.26 0 0 1 .64.09 10 10 0 0 0 11-16.28zm.83 8.36a8 8 0 0 1-11 6.08 3.26 3.26 0 0 0-1.25-.26 3.43 3.43 0 0 0-.56.05l-2.82.57.57-2.82a3.09 3.09 0 0 0-.21-1.81 8 8 0 0 1 6.08-11 8 8 0 0 1 9.19 9.19z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                       />
                       <RNSVGRect
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                         height="24"
                         opacity={0}
                         width="24"
@@ -1455,13 +1283,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
               }
             >
               ton niveau en français
@@ -1471,41 +1301,44 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Pour nous indiquer ta ville, tu peux utiliser les fonctionnalités de géolocalisation de ton téléphone ou taper le nom de la ville directement.
           </Text>
           <View
             style={
-              {
-                "backgroundColor": "#ffcecb",
-                "borderBottomLeftRadius": 12,
-                "borderBottomRightRadius": 12,
-                "borderTopLeftRadius": 12,
-                "borderTopRightRadius": 12,
-                "paddingBottom": 24,
-                "paddingLeft": 24,
-                "paddingRight": 24,
-                "paddingTop": 24,
-              }
+              [
+                {
+                  "backgroundColor": "#ffcecb",
+                  "borderRadius": 12,
+                  "paddingBottom": 24,
+                  "paddingLeft": 24,
+                  "paddingRight": 24,
+                  "paddingTop": 24,
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "marginBottom": 16,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "marginBottom": 16,
+                  },
+                ]
               }
             >
               <View
@@ -1564,29 +1397,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -1605,32 +1418,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGCircle
                           cx="12"
                           cy="8"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGPath
                           d="M12 10a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0-1-1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -1641,13 +1436,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Bon à savoir
@@ -1657,13 +1454,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
               }
             >
               Si tu utilises la géolocalisation de ton téléphone, cette information pourra être conservée par iOS ou Android. Pense à regarder les paramètres de ton téléphone pour en savoir plus.
@@ -1672,68 +1471,70 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            {
-              "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "elevation": 6,
-              "marginBottom": 24,
-              "paddingBottom": 24,
-              "paddingLeft": 24,
-              "paddingRight": 24,
-              "paddingTop": 24,
-              "shadowColor": "#212121",
-              "shadowOffset": {
-                "height": 1,
-                "width": 1,
+            [
+              {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "elevation": 6,
+                "marginBottom": 24,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+                "shadowColor": "#212121",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 0.16,
+                "shadowRadius": 8,
               },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
+            ]
           }
         >
           <View
             isRTL={false}
             style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "maxWidth": "100%",
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                  "maxWidth": "100%",
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 16,
-                  "borderBottomRightRadius": 16,
-                  "borderTopLeftRadius": 16,
-                  "borderTopRightRadius": 16,
-                  "height": 32,
-                  "justifyContent": "center",
-                  "marginLeft": 0,
-                  "marginRight": 16,
-                  "width": 32,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#212121",
+                    "borderRadius": 16,
+                    "height": 32,
+                    "justifyContent": "center",
+                    "marginLeft": 0,
+                    "marginRight": 16,
+                    "width": 32,
+                  },
+                ]
               }
             >
               <Text
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 3
@@ -1765,14 +1566,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Seul réfugiés.info peut avoir accès aux données que tu nous partages directement (ta ville, ta tranche d’âge et ton niveau de français).
@@ -1781,14 +1584,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Ces informations et ta sélection de fiches de l’onglet “Mes fiches” sont stockées directement sur ton téléphone.
@@ -1817,68 +1622,70 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            {
-              "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "elevation": 6,
-              "marginBottom": 24,
-              "paddingBottom": 24,
-              "paddingLeft": 24,
-              "paddingRight": 24,
-              "paddingTop": 24,
-              "shadowColor": "#212121",
-              "shadowOffset": {
-                "height": 1,
-                "width": 1,
+            [
+              {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "elevation": 6,
+                "marginBottom": 24,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+                "shadowColor": "#212121",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 0.16,
+                "shadowRadius": 8,
               },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
+            ]
           }
         >
           <View
             isRTL={false}
             style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "maxWidth": "100%",
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                  "maxWidth": "100%",
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 16,
-                  "borderBottomRightRadius": 16,
-                  "borderTopLeftRadius": 16,
-                  "borderTopRightRadius": 16,
-                  "height": 32,
-                  "justifyContent": "center",
-                  "marginLeft": 0,
-                  "marginRight": 16,
-                  "width": 32,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#212121",
+                    "borderRadius": 16,
+                    "height": 32,
+                    "justifyContent": "center",
+                    "marginLeft": 0,
+                    "marginRight": 16,
+                    "width": 32,
+                  },
+                ]
               }
             >
               <Text
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 4
@@ -1910,14 +1717,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Tu as le droit de changer d’avis sur tes données.
@@ -1948,83 +1757,87 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 25,
-              "lineHeight": 32,
-              "marginBottom": 24,
-              "marginTop": 56,
-              "textAlign": "left",
-            }
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "circularBold",
+                "fontSize": 25,
+                "lineHeight": 32,
+                "marginBottom": 24,
+                "marginTop": 56,
+                "textAlign": "left",
+              },
+            ]
           }
         >
           Les données sur ta navigation
         </Text>
         <View
           style={
-            {
-              "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "elevation": 6,
-              "marginBottom": 24,
-              "paddingBottom": 24,
-              "paddingLeft": 24,
-              "paddingRight": 24,
-              "paddingTop": 24,
-              "shadowColor": "#212121",
-              "shadowOffset": {
-                "height": 1,
-                "width": 1,
+            [
+              {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "elevation": 6,
+                "marginBottom": 24,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+                "shadowColor": "#212121",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 0.16,
+                "shadowRadius": 8,
               },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
+            ]
           }
         >
           <View
             isRTL={false}
             style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "maxWidth": "100%",
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                  "maxWidth": "100%",
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 16,
-                  "borderBottomRightRadius": 16,
-                  "borderTopLeftRadius": 16,
-                  "borderTopRightRadius": 16,
-                  "height": 32,
-                  "justifyContent": "center",
-                  "marginLeft": 0,
-                  "marginRight": 16,
-                  "width": 32,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#212121",
+                    "borderRadius": 16,
+                    "height": 32,
+                    "justifyContent": "center",
+                    "marginLeft": 0,
+                    "marginRight": 16,
+                    "width": 32,
+                  },
+                ]
               }
             >
               <Text
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 1
@@ -2056,14 +1869,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Quand tu navigues dans l’application réfugiés.info, nous récoltons automatiquement des informations sur ta navigation, par exemple combien de temps tu passes sur une de nos fiches.
@@ -2103,68 +1918,70 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            {
-              "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "elevation": 6,
-              "marginBottom": 24,
-              "paddingBottom": 24,
-              "paddingLeft": 24,
-              "paddingRight": 24,
-              "paddingTop": 24,
-              "shadowColor": "#212121",
-              "shadowOffset": {
-                "height": 1,
-                "width": 1,
+            [
+              {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "elevation": 6,
+                "marginBottom": 24,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+                "shadowColor": "#212121",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 0.16,
+                "shadowRadius": 8,
               },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
+            ]
           }
         >
           <View
             isRTL={false}
             style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "maxWidth": "100%",
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                  "maxWidth": "100%",
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 16,
-                  "borderBottomRightRadius": 16,
-                  "borderTopLeftRadius": 16,
-                  "borderTopRightRadius": 16,
-                  "height": 32,
-                  "justifyContent": "center",
-                  "marginLeft": 0,
-                  "marginRight": 16,
-                  "width": 32,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#212121",
+                    "borderRadius": 16,
+                    "height": 32,
+                    "justifyContent": "center",
+                    "marginLeft": 0,
+                    "marginRight": 16,
+                    "width": 32,
+                  },
+                ]
               }
             >
               <Text
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 2
@@ -2196,14 +2013,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Quand tu navigues dans l’application, nos sociétés partenaires Firebase et Google Analytics récoltent automatiquement des données qui tracent ton activité sur notre application. Ce sont des traceurs.
@@ -2232,68 +2051,70 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            {
-              "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "elevation": 6,
-              "marginBottom": 24,
-              "paddingBottom": 24,
-              "paddingLeft": 24,
-              "paddingRight": 24,
-              "paddingTop": 24,
-              "shadowColor": "#212121",
-              "shadowOffset": {
-                "height": 1,
-                "width": 1,
+            [
+              {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "elevation": 6,
+                "marginBottom": 24,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+                "shadowColor": "#212121",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 0.16,
+                "shadowRadius": 8,
               },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
+            ]
           }
         >
           <View
             isRTL={false}
             style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "maxWidth": "100%",
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                  "maxWidth": "100%",
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 16,
-                  "borderBottomRightRadius": 16,
-                  "borderTopLeftRadius": 16,
-                  "borderTopRightRadius": 16,
-                  "height": 32,
-                  "justifyContent": "center",
-                  "marginLeft": 0,
-                  "marginRight": 16,
-                  "width": 32,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#212121",
+                    "borderRadius": 16,
+                    "height": 32,
+                    "justifyContent": "center",
+                    "marginLeft": 0,
+                    "marginRight": 16,
+                    "width": 32,
+                  },
+                ]
               }
             >
               <Text
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 3
@@ -2325,14 +2146,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Pour les données de navigation tracées automatiquement, les sociétés partenaires Firebase et Google Analytics ont accès à ces données, et elles nous les retransmettent ensuite de manière anonymes et compilées pour réaliser des statistiques.
@@ -2341,41 +2164,44 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Pour comprendre comment et combien de temps ces sociétés conservent tes données de navigation, tu peux aller consulter leurs propres Politiques de Données Personnelles – c’est celles-ci qui s’appliquent.
           </Text>
           <View
             style={
-              {
-                "backgroundColor": "#ffcecb",
-                "borderBottomLeftRadius": 12,
-                "borderBottomRightRadius": 12,
-                "borderTopLeftRadius": 12,
-                "borderTopRightRadius": 12,
-                "paddingBottom": 24,
-                "paddingLeft": 24,
-                "paddingRight": 24,
-                "paddingTop": 24,
-              }
+              [
+                {
+                  "backgroundColor": "#ffcecb",
+                  "borderRadius": 12,
+                  "paddingBottom": 24,
+                  "paddingLeft": 24,
+                  "paddingRight": 24,
+                  "paddingTop": 24,
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "marginBottom": 16,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "marginBottom": 16,
+                  },
+                ]
               }
             >
               <View
@@ -2434,29 +2260,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           matrix={
                             [
@@ -2475,32 +2281,14 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                         />
                         <RNSVGPath
                           d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGCircle
                           cx="12"
                           cy="8"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           r="1"
                         />
                         <RNSVGPath
                           d="M12 10a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0-1-1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -2511,13 +2299,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Bon à savoir
@@ -2527,13 +2317,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
               }
             >
               Voici comment ces sociétés partenaires traitent tes données.
@@ -2566,13 +2358,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Firebase
@@ -2599,15 +2393,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 4,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   •
@@ -2616,16 +2412,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   Attribue un numéro à chaque installation de l’application (ce numéro ne permet pas d’identifier l’utilisateur)
@@ -2649,15 +2447,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 4,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   •
@@ -2666,16 +2466,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   Trace des événements dans l’application
@@ -2699,15 +2501,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 4,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   •
@@ -2716,16 +2520,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info
@@ -2749,15 +2555,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 4,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   •
@@ -2766,16 +2574,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   Garde tes données 26 mois
@@ -2799,15 +2609,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 4,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   •
@@ -2816,16 +2628,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   Politique de données personnelles :
@@ -2836,16 +2650,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     onPress={[Function]}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                        "textDecorationColor": "black",
-                        "textDecorationLine": "underline",
-                        "textDecorationStyle": "solid",
-                      }
+                      [
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                          "textDecorationColor": "black",
+                          "textDecorationLine": "underline",
+                          "textDecorationStyle": "solid",
+                        },
+                      ]
                     }
                   >
                     ici
@@ -2883,13 +2699,15 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Google Analytics
@@ -2916,15 +2734,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 4,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   •
@@ -2933,16 +2753,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   Trace des événements dans l’application
@@ -2966,15 +2788,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 4,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   •
@@ -2983,16 +2807,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info
@@ -3016,15 +2842,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 4,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   •
@@ -3033,16 +2861,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   Garde tes données 26 mois
@@ -3066,15 +2896,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 4,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 4,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   •
@@ -3083,16 +2915,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   isRTL={false}
                   selectable={true}
                   style={
-                    {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBook",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    }
+                    [
+                      {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
                   }
                 >
                   Politique de données personnelles :
@@ -3103,16 +2937,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     onPress={[Function]}
                     selectable={true}
                     style={
-                      {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                        "textDecorationColor": "black",
-                        "textDecorationLine": "underline",
-                        "textDecorationStyle": "solid",
-                      }
+                      [
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                          "textDecorationColor": "black",
+                          "textDecorationLine": "underline",
+                          "textDecorationStyle": "solid",
+                        },
+                      ]
                     }
                   >
                     ici
@@ -3124,68 +2960,70 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
         <View
           style={
-            {
-              "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "elevation": 6,
-              "marginBottom": 24,
-              "paddingBottom": 24,
-              "paddingLeft": 24,
-              "paddingRight": 24,
-              "paddingTop": 24,
-              "shadowColor": "#212121",
-              "shadowOffset": {
-                "height": 1,
-                "width": 1,
+            [
+              {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "elevation": 6,
+                "marginBottom": 24,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+                "shadowColor": "#212121",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 0.16,
+                "shadowRadius": 8,
               },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
+            ]
           }
         >
           <View
             isRTL={false}
             style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "maxWidth": "100%",
-              }
+              [
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                  "maxWidth": "100%",
+                },
+              ]
             }
           >
             <View
               isRTL={false}
               style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 16,
-                  "borderBottomRightRadius": 16,
-                  "borderTopLeftRadius": 16,
-                  "borderTopRightRadius": 16,
-                  "height": 32,
-                  "justifyContent": "center",
-                  "marginLeft": 0,
-                  "marginRight": 16,
-                  "width": 32,
-                }
+                [
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#212121",
+                    "borderRadius": 16,
+                    "height": 32,
+                    "justifyContent": "center",
+                    "marginLeft": 0,
+                    "marginRight": 16,
+                    "width": 32,
+                  },
+                ]
               }
             >
               <Text
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 4
@@ -3217,14 +3055,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             isRTL={false}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginBottom": 24,
+                  "textAlign": "left",
+                },
+              ]
             }
           >
             Si tu ne veux plus que nos sociétés partenaires collectent automatiquement tes données de navigation, tu peux les effacer en désinstallant l’application ou les gérer directement via les paramètres Android ou iOS de ton téléphone.
@@ -3255,15 +3095,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 25,
-              "lineHeight": 32,
-              "marginBottom": 24,
-              "marginTop": 56,
-              "textAlign": "left",
-            }
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "circularBold",
+                "fontSize": 25,
+                "lineHeight": 32,
+                "marginBottom": 24,
+                "marginTop": 56,
+                "textAlign": "left",
+              },
+            ]
           }
         >
           Qui sommes-nous ?
@@ -3295,16 +3137,18 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             onPress={[Function]}
             selectable={true}
             style={
-              {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
-                "textDecorationColor": "black",
-                "textDecorationLine": "underline",
-                "textDecorationStyle": "solid",
-              }
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "circularBold",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                  "textDecorationColor": "black",
+                  "textDecorationLine": "underline",
+                  "textDecorationStyle": "solid",
+                },
+              ]
             }
           >
             Qui sommes nous ?
@@ -3316,15 +3160,17 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 25,
-              "lineHeight": 32,
-              "marginBottom": 24,
-              "marginTop": 56,
-              "textAlign": "left",
-            }
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "circularBold",
+                "fontSize": 25,
+                "lineHeight": 32,
+                "marginBottom": 24,
+                "marginTop": 56,
+                "textAlign": "left",
+              },
+            ]
           }
         >
           Il te reste des questions ?
@@ -3333,14 +3179,16 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           isRTL={false}
           selectable={true}
           style={
-            {
-              "color": "#212121",
-              "fontFamily": "circularBook",
-              "fontSize": 16,
-              "lineHeight": 20,
-              "marginBottom": 24,
-              "textAlign": "left",
-            }
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "marginBottom": 24,
+                "textAlign": "left",
+              },
+            ]
           }
         >
           N’hésite pas à nous contacter :
@@ -3385,10 +3233,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               {
                 "alignItems": "center",
                 "backgroundColor": "#212121",
-                "borderBottomLeftRadius": 12,
-                "borderBottomRightRadius": 12,
-                "borderTopLeftRadius": 12,
-                "borderTopRightRadius": 12,
+                "borderRadius": 12,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -3463,29 +3308,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     ]
                   }
                 >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
-                  >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
+                  <RNSVGGroup>
+                    <RNSVGGroup>
                       <RNSVGRect
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                         height="24"
                         opacity={0}
                         width="24"
@@ -3494,12 +3319,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       />
                       <RNSVGPath
                         d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -3606,29 +3425,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   ]
                 }
               >
-                <RNSVGGroup
-                  fill={
-                    {
-                      "payload": 4278190080,
-                      "type": 0,
-                    }
-                  }
-                >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
-                  >
+                <RNSVGGroup>
+                  <RNSVGGroup>
                     <RNSVGRect
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
                       height="24"
                       opacity={0}
                       width="24"
@@ -3637,12 +3436,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                     />
                     <RNSVGPath
                       d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>

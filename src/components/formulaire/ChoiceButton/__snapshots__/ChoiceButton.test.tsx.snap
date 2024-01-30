@@ -33,11 +33,8 @@ exports[`ChoiceButton snapshot test suite should render not selected 1`] = `
   style={
     {
       "backgroundColor": "#FFFFFF",
-      "borderBottomLeftRadius": 12,
-      "borderBottomRightRadius": 12,
       "borderColor": "#FFFFFF",
-      "borderTopLeftRadius": 12,
-      "borderTopRightRadius": 12,
+      "borderRadius": 12,
       "borderWidth": 2,
       "display": "flex",
       "elevation": 6,
@@ -83,11 +80,13 @@ exports[`ChoiceButton snapshot test suite should render not selected 1`] = `
   >
     <View
       style={
-        {
-          "flexBasis": 0,
-          "flexGrow": 1,
-          "marginRight": 8,
-        }
+        [
+          {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "marginRight": 8,
+          },
+        ]
       }
     >
       <Text>
@@ -96,28 +95,29 @@ exports[`ChoiceButton snapshot test suite should render not selected 1`] = `
     </View>
     <View
       style={
-        {
-          "flexBasis": "auto",
-          "flexGrow": 0,
-        }
+        [
+          {
+            "flexBasis": "auto",
+            "flexGrow": 0,
+          },
+        ]
       }
     >
       <View
         selected={false}
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "transparent",
-            "borderBottomLeftRadius": 12,
-            "borderBottomRightRadius": 12,
-            "borderColor": "#5E5E5E",
-            "borderTopLeftRadius": 12,
-            "borderTopRightRadius": 12,
-            "borderWidth": 1,
-            "height": 24,
-            "justifyContent": "center",
-            "width": 24,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "borderColor": "#5E5E5E",
+              "borderRadius": 12,
+              "borderWidth": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "width": 24,
+            },
+          ]
         }
       />
     </View>
@@ -158,11 +158,8 @@ exports[`ChoiceButton snapshot test suite should render with flatStyle 1`] = `
   style={
     {
       "backgroundColor": "#DAE0FB",
-      "borderBottomLeftRadius": 12,
-      "borderBottomRightRadius": 12,
       "borderColor": "#0421B1",
-      "borderTopLeftRadius": 12,
-      "borderTopRightRadius": 12,
+      "borderRadius": 12,
       "borderWidth": 2,
       "display": "flex",
       "flexDirection": "row",
@@ -200,11 +197,13 @@ exports[`ChoiceButton snapshot test suite should render with flatStyle 1`] = `
   >
     <View
       style={
-        {
-          "flexBasis": 0,
-          "flexGrow": 1,
-          "marginRight": 8,
-        }
+        [
+          {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "marginRight": 8,
+          },
+        ]
       }
     >
       <Text>
@@ -213,28 +212,29 @@ exports[`ChoiceButton snapshot test suite should render with flatStyle 1`] = `
     </View>
     <View
       style={
-        {
-          "flexBasis": "auto",
-          "flexGrow": 0,
-        }
+        [
+          {
+            "flexBasis": "auto",
+            "flexGrow": 0,
+          },
+        ]
       }
     >
       <View
         selected={true}
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#0421B1",
-            "borderBottomLeftRadius": 12,
-            "borderBottomRightRadius": 12,
-            "borderColor": "transparent",
-            "borderTopLeftRadius": 12,
-            "borderTopRightRadius": 12,
-            "borderWidth": 1,
-            "height": 24,
-            "justifyContent": "center",
-            "width": 24,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#0421B1",
+              "borderColor": "transparent",
+              "borderRadius": 12,
+              "borderWidth": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "width": 24,
+            },
+          ]
         }
       >
         <View
@@ -289,29 +289,9 @@ exports[`ChoiceButton snapshot test suite should render with flatStyle 1`] = `
                 ]
               }
             >
-              <RNSVGGroup
-                fill={
-                  {
-                    "payload": 4278190080,
-                    "type": 0,
-                  }
-                }
-              >
-                <RNSVGGroup
-                  fill={
-                    {
-                      "payload": 4278190080,
-                      "type": 0,
-                    }
-                  }
-                >
+              <RNSVGGroup>
+                <RNSVGGroup>
                   <RNSVGRect
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
                     height="24"
                     opacity={0}
                     width="24"
@@ -320,12 +300,6 @@ exports[`ChoiceButton snapshot test suite should render with flatStyle 1`] = `
                   />
                   <RNSVGPath
                     d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
                   />
                 </RNSVGGroup>
               </RNSVGGroup>
@@ -371,11 +345,8 @@ exports[`ChoiceButton snapshot test suite should render with without radio 1`] =
   style={
     {
       "backgroundColor": "#DAE0FB",
-      "borderBottomLeftRadius": 12,
-      "borderBottomRightRadius": 12,
       "borderColor": "#0421B1",
-      "borderTopLeftRadius": 12,
-      "borderTopRightRadius": 12,
+      "borderRadius": 12,
       "borderWidth": 2,
       "display": "flex",
       "flexDirection": "row",
@@ -413,11 +384,13 @@ exports[`ChoiceButton snapshot test suite should render with without radio 1`] =
   >
     <View
       style={
-        {
-          "flexBasis": 0,
-          "flexGrow": 1,
-          "marginRight": 8,
-        }
+        [
+          {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "marginRight": 8,
+          },
+        ]
       }
     >
       <Text>
@@ -461,11 +434,8 @@ exports[`ChoiceButton snapshot test suite should render without bug 1`] = `
   style={
     {
       "backgroundColor": "#DAE0FB",
-      "borderBottomLeftRadius": 12,
-      "borderBottomRightRadius": 12,
       "borderColor": "#0421B1",
-      "borderTopLeftRadius": 12,
-      "borderTopRightRadius": 12,
+      "borderRadius": 12,
       "borderWidth": 2,
       "display": "flex",
       "flexDirection": "row",
@@ -503,11 +473,13 @@ exports[`ChoiceButton snapshot test suite should render without bug 1`] = `
   >
     <View
       style={
-        {
-          "flexBasis": 0,
-          "flexGrow": 1,
-          "marginRight": 8,
-        }
+        [
+          {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "marginRight": 8,
+          },
+        ]
       }
     >
       <Text>
@@ -516,28 +488,29 @@ exports[`ChoiceButton snapshot test suite should render without bug 1`] = `
     </View>
     <View
       style={
-        {
-          "flexBasis": "auto",
-          "flexGrow": 0,
-        }
+        [
+          {
+            "flexBasis": "auto",
+            "flexGrow": 0,
+          },
+        ]
       }
     >
       <View
         selected={true}
         style={
-          {
-            "alignItems": "center",
-            "backgroundColor": "#0421B1",
-            "borderBottomLeftRadius": 12,
-            "borderBottomRightRadius": 12,
-            "borderColor": "transparent",
-            "borderTopLeftRadius": 12,
-            "borderTopRightRadius": 12,
-            "borderWidth": 1,
-            "height": 24,
-            "justifyContent": "center",
-            "width": 24,
-          }
+          [
+            {
+              "alignItems": "center",
+              "backgroundColor": "#0421B1",
+              "borderColor": "transparent",
+              "borderRadius": 12,
+              "borderWidth": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "width": 24,
+            },
+          ]
         }
       >
         <View
@@ -592,29 +565,9 @@ exports[`ChoiceButton snapshot test suite should render without bug 1`] = `
                 ]
               }
             >
-              <RNSVGGroup
-                fill={
-                  {
-                    "payload": 4278190080,
-                    "type": 0,
-                  }
-                }
-              >
-                <RNSVGGroup
-                  fill={
-                    {
-                      "payload": 4278190080,
-                      "type": 0,
-                    }
-                  }
-                >
+              <RNSVGGroup>
+                <RNSVGGroup>
                   <RNSVGRect
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
                     height="24"
                     opacity={0}
                     width="24"
@@ -623,12 +576,6 @@ exports[`ChoiceButton snapshot test suite should render without bug 1`] = `
                   />
                   <RNSVGPath
                     d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
                   />
                 </RNSVGGroup>
               </RNSVGGroup>

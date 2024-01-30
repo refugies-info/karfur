@@ -71,6 +71,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
     accessible={true}
     collapsable={false}
     focusable={true}
+    forwardedRef={[Function]}
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -96,6 +97,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
     collapsable={false}
     deviceHeight={null}
     deviceWidth={null}
+    forwardedRef={[Function]}
     hideModalContentWhileAnimating={false}
     onBackdropPress={[Function]}
     onModalHide={[Function]}
@@ -132,21 +134,20 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
       <View>
         <View
           style={
-            {
-              "alignItems": "flex-start",
-              "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "display": "flex",
-              "justifyContent": "space-between",
-              "marginTop": 0,
-              "paddingBottom": 24,
-              "paddingLeft": 24,
-              "paddingRight": 24,
-              "paddingTop": 24,
-            }
+            [
+              {
+                "alignItems": "flex-start",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "justifyContent": "space-between",
+                "marginTop": 0,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+              },
+            ]
           }
         >
           <View
@@ -175,6 +176,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                 ]
               }
               enableMergePathsAndroidForKitKatAndAbove={false}
+              forwardedRef={[Function]}
               loop={true}
               onAnimationFinish={[Function]}
               progress={0}
@@ -205,13 +207,15 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 25,
-                  "lineHeight": 32,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 25,
+                    "lineHeight": 32,
+                    "textAlign": "left",
+                  },
+                ]
               }
             >
               notifications.newInfoEveryWeek
@@ -227,13 +231,15 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               isRTL={false}
               selectable={true}
               style={
-                {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                }
+                [
+                  {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 19,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                ]
               }
             >
               notifications.beInformed
@@ -272,10 +278,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               {
                 "alignItems": "center",
                 "backgroundColor": "#0421B1",
-                "borderBottomLeftRadius": 12,
-                "borderBottomRightRadius": 12,
-                "borderTopLeftRadius": 12,
-                "borderTopRightRadius": 12,
+                "borderRadius": 12,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -378,29 +381,9 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                     ]
                   }
                 >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
-                  >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
+                  <RNSVGGroup>
+                    <RNSVGGroup>
                       <RNSVGRect
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                         height="24"
                         opacity={0}
                         width="24"
@@ -409,12 +392,6 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                       />
                       <RNSVGPath
                         d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
@@ -462,10 +439,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               {
                 "alignItems": "center",
                 "backgroundColor": "#FFFFFF",
-                "borderBottomLeftRadius": 12,
-                "borderBottomRightRadius": 12,
-                "borderTopLeftRadius": 12,
-                "borderTopRightRadius": 12,
+                "borderRadius": 12,
                 "display": "flex",
                 "flexDirection": "row",
                 "justifyContent": "center",

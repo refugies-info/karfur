@@ -46,7 +46,7 @@ const SponsorsComponent = ({ sponsors }: Props) => {
             >
               {image && (
                 <Image
-                  style={{ width: 50, height: 50 }}
+                  style={{ width: 50, height: 50, resizeMode: "contain" }}
                   source={{
                     uri: image,
                   }}

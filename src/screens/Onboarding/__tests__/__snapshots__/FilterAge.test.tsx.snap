@@ -4,14 +4,16 @@ exports[`Filter age should render correctly when age selected 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    {
-      "backgroundColor": "transparent",
-      "flexBasis": 0,
-      "flexGrow": 1,
-      "flexShrink": 1,
-      "minHeight": "100%",
-      "minWidth": "100%",
-    }
+    [
+      {
+        "backgroundColor": "transparent",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "minHeight": "100%",
+        "minWidth": "100%",
+      },
+    ]
   }
 >
   <View
@@ -36,11 +38,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
   >
     <RCTSafeAreaView
       style={
-        {
-          "minHeight": 65,
-          "paddingBottom": 20,
-          "paddingTop": 0,
-        }
+        [
+          {
+            "minHeight": 65,
+            "paddingBottom": 20,
+            "paddingTop": 0,
+          },
+        ]
       }
     >
       <View
@@ -65,11 +69,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
       >
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexGrow": 0,
-              "marginRight": 8,
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginRight": 8,
+              },
+            ]
           }
         >
           <View>
@@ -105,10 +111,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
               style={
                 {
                   "backgroundColor": "#FFFFFF",
-                  "borderBottomLeftRadius": 12,
-                  "borderBottomRightRadius": 12,
-                  "borderTopLeftRadius": 12,
-                  "borderTopRightRadius": 12,
+                  "borderRadius": 12,
                   "elevation": 6,
                   "opacity": 1,
                   "paddingBottom": 12,
@@ -128,7 +131,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}
@@ -182,29 +189,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
-                        <RNSVGGroup
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
                           <RNSVGRect
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                             height="24"
                             matrix={
                               [
@@ -223,12 +210,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -241,11 +222,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
         </View>
         <View
           style={
-            {
-              "flexBasis": 0,
-              "flexGrow": 1,
-              "marginRight": 8,
-            }
+            [
+              {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "marginRight": 8,
+              },
+            ]
           }
         >
           <View
@@ -270,11 +253,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
           >
             <View
               style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginRight": 8,
-                }
+                [
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 8,
+                  },
+                ]
               }
             >
               <View
@@ -329,29 +314,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -360,21 +325,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -384,10 +337,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
             </View>
             <View
               style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                }
+                [
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -398,13 +353,15 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 numberOfLines={2}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Créer mon profil
@@ -414,10 +371,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
         </View>
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexGrow": 0,
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+              },
+            ]
           }
         >
           <View
@@ -442,17 +401,21 @@ exports[`Filter age should render correctly when age selected 1`] = `
           >
             <View
               style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                }
+                [
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
               }
             >
               <View
                 style={
-                  {
-                    "minWidth": 48,
-                  }
+                  [
+                    {
+                      "minWidth": 48,
+                    },
+                  ]
                 }
                 width={48}
               />
@@ -548,22 +511,26 @@ exports[`Filter age should render correctly when age selected 1`] = `
       >
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexDirection": "column",
-              "flexGrow": 1,
-              "justifyContent": "space-between",
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexDirection": "column",
+                "flexGrow": 1,
+                "justifyContent": "space-between",
+              },
+            ]
           }
           verticalAlign="space-between"
         >
           <View
             style={
-              {
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "marginBottom": 16,
-              }
+              [
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginBottom": 16,
+                },
+              ]
             }
           >
             <View>
@@ -571,14 +538,16 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
-                    "lineHeight": 32,
-                    "marginBottom": 16,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 25,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Quel âge as-tu ?
@@ -587,14 +556,16 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginBottom": 48,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#5E5E5E",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginBottom": 48,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 C’est pour te montrer les démarches et les activités pour ton âge.
@@ -634,11 +605,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   style={
                     {
                       "backgroundColor": "#DAE0FB",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
                       "borderColor": "#0421B1",
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
+                      "borderRadius": 12,
                       "borderWidth": 2,
                       "display": "flex",
                       "flexDirection": "row",
@@ -676,11 +644,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   >
                     <View
                       style={
-                        {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "marginRight": 8,
-                        }
+                        [
+                          {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -688,13 +658,15 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         isSelected={true}
                         selectable={true}
                         style={
-                          {
-                            "color": "#0421B1",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "color": "#0421B1",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         age_10_17
@@ -702,28 +674,29 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     </View>
                     <View
                       style={
-                        {
-                          "flexBasis": "auto",
-                          "flexGrow": 0,
-                        }
+                        [
+                          {
+                            "flexBasis": "auto",
+                            "flexGrow": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         selected={true}
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "#0421B1",
-                            "borderBottomLeftRadius": 12,
-                            "borderBottomRightRadius": 12,
-                            "borderColor": "transparent",
-                            "borderTopLeftRadius": 12,
-                            "borderTopRightRadius": 12,
-                            "borderWidth": 1,
-                            "height": 24,
-                            "justifyContent": "center",
-                            "width": 24,
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "#0421B1",
+                              "borderColor": "transparent",
+                              "borderRadius": 12,
+                              "borderWidth": 1,
+                              "height": 24,
+                              "justifyContent": "center",
+                              "width": 24,
+                            },
+                          ]
                         }
                       >
                         <View
@@ -778,29 +751,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                                 ]
                               }
                             >
-                              <RNSVGGroup
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
-                              >
-                                <RNSVGGroup
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
-                                >
+                              <RNSVGGroup>
+                                <RNSVGGroup>
                                   <RNSVGRect
-                                    fill={
-                                      {
-                                        "payload": 4278190080,
-                                        "type": 0,
-                                      }
-                                    }
                                     height="24"
                                     opacity={0}
                                     width="24"
@@ -809,12 +762,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
                                   />
                                   <RNSVGPath
                                     d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                                    fill={
-                                      {
-                                        "payload": 4278190080,
-                                        "type": 0,
-                                      }
-                                    }
                                   />
                                 </RNSVGGroup>
                               </RNSVGGroup>
@@ -857,11 +804,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   style={
                     {
                       "backgroundColor": "#FFFFFF",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
                       "borderColor": "#FFFFFF",
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
+                      "borderRadius": 12,
                       "borderWidth": 2,
                       "display": "flex",
                       "elevation": 6,
@@ -907,11 +851,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   >
                     <View
                       style={
-                        {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "marginRight": 8,
-                        }
+                        [
+                          {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -919,13 +865,15 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         isSelected={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "color": "#212121",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         age_18_25
@@ -933,28 +881,29 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     </View>
                     <View
                       style={
-                        {
-                          "flexBasis": "auto",
-                          "flexGrow": 0,
-                        }
+                        [
+                          {
+                            "flexBasis": "auto",
+                            "flexGrow": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         selected={false}
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "transparent",
-                            "borderBottomLeftRadius": 12,
-                            "borderBottomRightRadius": 12,
-                            "borderColor": "#5E5E5E",
-                            "borderTopLeftRadius": 12,
-                            "borderTopRightRadius": 12,
-                            "borderWidth": 1,
-                            "height": 24,
-                            "justifyContent": "center",
-                            "width": 24,
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "transparent",
+                              "borderColor": "#5E5E5E",
+                              "borderRadius": 12,
+                              "borderWidth": 1,
+                              "height": 24,
+                              "justifyContent": "center",
+                              "width": 24,
+                            },
+                          ]
                         }
                       />
                     </View>
@@ -992,11 +941,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   style={
                     {
                       "backgroundColor": "#FFFFFF",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
                       "borderColor": "#FFFFFF",
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
+                      "borderRadius": 12,
                       "borderWidth": 2,
                       "display": "flex",
                       "elevation": 6,
@@ -1042,11 +988,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   >
                     <View
                       style={
-                        {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "marginRight": 8,
-                        }
+                        [
+                          {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -1054,13 +1002,15 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         isSelected={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "color": "#212121",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         age_26_100
@@ -1068,28 +1018,29 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     </View>
                     <View
                       style={
-                        {
-                          "flexBasis": "auto",
-                          "flexGrow": 0,
-                        }
+                        [
+                          {
+                            "flexBasis": "auto",
+                            "flexGrow": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         selected={false}
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "transparent",
-                            "borderBottomLeftRadius": 12,
-                            "borderBottomRightRadius": 12,
-                            "borderColor": "#5E5E5E",
-                            "borderTopLeftRadius": 12,
-                            "borderTopRightRadius": 12,
-                            "borderWidth": 1,
-                            "height": 24,
-                            "justifyContent": "center",
-                            "width": 24,
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "transparent",
+                              "borderColor": "#5E5E5E",
+                              "borderRadius": 12,
+                              "borderWidth": 1,
+                              "height": 24,
+                              "justifyContent": "center",
+                              "width": 24,
+                            },
+                          ]
                         }
                       />
                     </View>
@@ -1100,37 +1051,40 @@ exports[`Filter age should render correctly when age selected 1`] = `
           </View>
           <View
             style={
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-              }
+              [
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
             }
           >
             <View>
               <View
                 style={
-                  {
-                    "flexDirection": "row",
-                    "marginHorizontal": -6,
-                  }
+                  [
+                    {
+                      "flexDirection": "row",
+                      "marginHorizontal": -6,
+                    },
+                  ]
                 }
               >
                 <View
                   style={
-                    {
-                      "backgroundColor": "#C6C6C6",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "height": 4,
-                      "marginHorizontal": 6,
-                      "overflow": "hidden",
-                      "width": "100%",
-                    }
+                    [
+                      {
+                        "backgroundColor": "#C6C6C6",
+                        "borderRadius": 12,
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "height": 4,
+                        "marginHorizontal": 6,
+                        "overflow": "hidden",
+                        "width": "100%",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -1154,20 +1108,19 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 </View>
                 <View
                   style={
-                    {
-                      "backgroundColor": "#C6C6C6",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "height": 4,
-                      "marginHorizontal": 6,
-                      "overflow": "hidden",
-                      "width": "100%",
-                    }
+                    [
+                      {
+                        "backgroundColor": "#C6C6C6",
+                        "borderRadius": 12,
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "height": 4,
+                        "marginHorizontal": 6,
+                        "overflow": "hidden",
+                        "width": "100%",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -1193,20 +1146,19 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 </View>
                 <View
                   style={
-                    {
-                      "backgroundColor": "#C6C6C6",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "height": 4,
-                      "marginHorizontal": 6,
-                      "overflow": "hidden",
-                      "width": "100%",
-                    }
+                    [
+                      {
+                        "backgroundColor": "#C6C6C6",
+                        "borderRadius": 12,
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "height": 4,
+                        "marginHorizontal": 6,
+                        "overflow": "hidden",
+                        "width": "100%",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -1231,13 +1183,15 @@ exports[`Filter age should render correctly when age selected 1`] = `
               </View>
               <View
                 style={
-                  {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "marginBottom": 24,
-                    "marginTop": 24,
-                  }
+                  [
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 24,
+                      "marginTop": 24,
+                    },
+                  ]
                 }
               >
                 <View
@@ -1262,11 +1216,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 >
                   <View
                     style={
-                      {
-                        "flexBasis": 0,
-                        "flexGrow": 1,
-                        "marginRight": 8,
-                      }
+                      [
+                        {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 8,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -1301,10 +1257,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       style={
                         {
                           "alignItems": "center",
-                          "borderBottomLeftRadius": 12,
-                          "borderBottomRightRadius": 12,
-                          "borderTopLeftRadius": 12,
-                          "borderTopRightRadius": 12,
+                          "borderRadius": 12,
                           "display": "flex",
                           "flexDirection": "row",
                           "minHeight": 56,
@@ -1337,10 +1290,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   </View>
                   <View
                     style={
-                      {
-                        "flexBasis": 0,
-                        "flexGrow": 1,
-                      }
+                      [
+                        {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -1376,10 +1331,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         {
                           "alignItems": "center",
                           "backgroundColor": "#0421B1",
-                          "borderBottomLeftRadius": 12,
-                          "borderBottomRightRadius": 12,
-                          "borderTopLeftRadius": 12,
-                          "borderTopRightRadius": 12,
+                          "borderRadius": 12,
                           "display": "flex",
                           "elevation": 2,
                           "flexDirection": "row",
@@ -1449,29 +1401,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
                               ]
                             }
                           >
-                            <RNSVGGroup
-                              fill={
-                                {
-                                  "payload": 4278190080,
-                                  "type": 0,
-                                }
-                              }
-                            >
-                              <RNSVGGroup
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
-                              >
+                            <RNSVGGroup>
+                              <RNSVGGroup>
                                 <RNSVGRect
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
                                   height="24"
                                   opacity={0}
                                   width="24"
@@ -1480,12 +1412,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
                                 />
                                 <RNSVGPath
                                   d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
                                 />
                               </RNSVGGroup>
                             </RNSVGGroup>
@@ -1497,16 +1423,18 @@ exports[`Filter age should render correctly when age selected 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "alignItems": "center",
-                            "color": "#FFFFFF",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "marginLeft": 8,
-                            "marginRight": 0,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "color": "#FFFFFF",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "marginLeft": 8,
+                              "marginRight": 0,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         Valider
@@ -1528,14 +1456,16 @@ exports[`Filter age should render correctly when no age selected 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    {
-      "backgroundColor": "transparent",
-      "flexBasis": 0,
-      "flexGrow": 1,
-      "flexShrink": 1,
-      "minHeight": "100%",
-      "minWidth": "100%",
-    }
+    [
+      {
+        "backgroundColor": "transparent",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "minHeight": "100%",
+        "minWidth": "100%",
+      },
+    ]
   }
 >
   <View
@@ -1560,11 +1490,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
   >
     <RCTSafeAreaView
       style={
-        {
-          "minHeight": 65,
-          "paddingBottom": 20,
-          "paddingTop": 0,
-        }
+        [
+          {
+            "minHeight": 65,
+            "paddingBottom": 20,
+            "paddingTop": 0,
+          },
+        ]
       }
     >
       <View
@@ -1589,11 +1521,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       >
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexGrow": 0,
-              "marginRight": 8,
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginRight": 8,
+              },
+            ]
           }
         >
           <View>
@@ -1629,10 +1563,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               style={
                 {
                   "backgroundColor": "#FFFFFF",
-                  "borderBottomLeftRadius": 12,
-                  "borderBottomRightRadius": 12,
-                  "borderTopLeftRadius": 12,
-                  "borderTopRightRadius": 12,
+                  "borderRadius": 12,
                   "elevation": 6,
                   "opacity": 1,
                   "paddingBottom": 12,
@@ -1652,7 +1583,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}
@@ -1706,29 +1641,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
-                        <RNSVGGroup
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
                           <RNSVGRect
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                             height="24"
                             matrix={
                               [
@@ -1747,12 +1662,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -1765,11 +1674,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         </View>
         <View
           style={
-            {
-              "flexBasis": 0,
-              "flexGrow": 1,
-              "marginRight": 8,
-            }
+            [
+              {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "marginRight": 8,
+              },
+            ]
           }
         >
           <View
@@ -1794,11 +1705,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           >
             <View
               style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginRight": 8,
-                }
+                [
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 8,
+                  },
+                ]
               }
             >
               <View
@@ -1853,29 +1766,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -1884,21 +1777,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -1908,10 +1789,12 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             </View>
             <View
               style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                }
+                [
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -1922,13 +1805,15 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 numberOfLines={2}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Créer mon profil
@@ -1938,10 +1823,12 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         </View>
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexGrow": 0,
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+              },
+            ]
           }
         >
           <View
@@ -1966,17 +1853,21 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           >
             <View
               style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                }
+                [
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
               }
             >
               <View
                 style={
-                  {
-                    "minWidth": 48,
-                  }
+                  [
+                    {
+                      "minWidth": 48,
+                    },
+                  ]
                 }
                 width={48}
               />
@@ -2072,22 +1963,26 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       >
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexDirection": "column",
-              "flexGrow": 1,
-              "justifyContent": "space-between",
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexDirection": "column",
+                "flexGrow": 1,
+                "justifyContent": "space-between",
+              },
+            ]
           }
           verticalAlign="space-between"
         >
           <View
             style={
-              {
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "marginBottom": 16,
-              }
+              [
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginBottom": 16,
+                },
+              ]
             }
           >
             <View>
@@ -2095,14 +1990,16 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
-                    "lineHeight": 32,
-                    "marginBottom": 16,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 25,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Quel âge as-tu ?
@@ -2111,14 +2008,16 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginBottom": 48,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#5E5E5E",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginBottom": 48,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 C’est pour te montrer les démarches et les activités pour ton âge.
@@ -2158,11 +2057,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   style={
                     {
                       "backgroundColor": "#FFFFFF",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
                       "borderColor": "#FFFFFF",
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
+                      "borderRadius": 12,
                       "borderWidth": 2,
                       "display": "flex",
                       "elevation": 6,
@@ -2208,11 +2104,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   >
                     <View
                       style={
-                        {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "marginRight": 8,
-                        }
+                        [
+                          {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -2220,13 +2118,15 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         isSelected={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "color": "#212121",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         age_10_17
@@ -2234,28 +2134,29 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     </View>
                     <View
                       style={
-                        {
-                          "flexBasis": "auto",
-                          "flexGrow": 0,
-                        }
+                        [
+                          {
+                            "flexBasis": "auto",
+                            "flexGrow": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         selected={false}
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "transparent",
-                            "borderBottomLeftRadius": 12,
-                            "borderBottomRightRadius": 12,
-                            "borderColor": "#5E5E5E",
-                            "borderTopLeftRadius": 12,
-                            "borderTopRightRadius": 12,
-                            "borderWidth": 1,
-                            "height": 24,
-                            "justifyContent": "center",
-                            "width": 24,
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "transparent",
+                              "borderColor": "#5E5E5E",
+                              "borderRadius": 12,
+                              "borderWidth": 1,
+                              "height": 24,
+                              "justifyContent": "center",
+                              "width": 24,
+                            },
+                          ]
                         }
                       />
                     </View>
@@ -2293,11 +2194,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   style={
                     {
                       "backgroundColor": "#FFFFFF",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
                       "borderColor": "#FFFFFF",
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
+                      "borderRadius": 12,
                       "borderWidth": 2,
                       "display": "flex",
                       "elevation": 6,
@@ -2343,11 +2241,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   >
                     <View
                       style={
-                        {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "marginRight": 8,
-                        }
+                        [
+                          {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -2355,13 +2255,15 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         isSelected={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "color": "#212121",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         age_18_25
@@ -2369,28 +2271,29 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     </View>
                     <View
                       style={
-                        {
-                          "flexBasis": "auto",
-                          "flexGrow": 0,
-                        }
+                        [
+                          {
+                            "flexBasis": "auto",
+                            "flexGrow": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         selected={false}
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "transparent",
-                            "borderBottomLeftRadius": 12,
-                            "borderBottomRightRadius": 12,
-                            "borderColor": "#5E5E5E",
-                            "borderTopLeftRadius": 12,
-                            "borderTopRightRadius": 12,
-                            "borderWidth": 1,
-                            "height": 24,
-                            "justifyContent": "center",
-                            "width": 24,
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "transparent",
+                              "borderColor": "#5E5E5E",
+                              "borderRadius": 12,
+                              "borderWidth": 1,
+                              "height": 24,
+                              "justifyContent": "center",
+                              "width": 24,
+                            },
+                          ]
                         }
                       />
                     </View>
@@ -2428,11 +2331,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   style={
                     {
                       "backgroundColor": "#FFFFFF",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
                       "borderColor": "#FFFFFF",
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
+                      "borderRadius": 12,
                       "borderWidth": 2,
                       "display": "flex",
                       "elevation": 6,
@@ -2478,11 +2378,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   >
                     <View
                       style={
-                        {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "marginRight": 8,
-                        }
+                        [
+                          {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -2490,13 +2392,15 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         isSelected={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "color": "#212121",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         age_26_100
@@ -2504,28 +2408,29 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     </View>
                     <View
                       style={
-                        {
-                          "flexBasis": "auto",
-                          "flexGrow": 0,
-                        }
+                        [
+                          {
+                            "flexBasis": "auto",
+                            "flexGrow": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         selected={false}
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "transparent",
-                            "borderBottomLeftRadius": 12,
-                            "borderBottomRightRadius": 12,
-                            "borderColor": "#5E5E5E",
-                            "borderTopLeftRadius": 12,
-                            "borderTopRightRadius": 12,
-                            "borderWidth": 1,
-                            "height": 24,
-                            "justifyContent": "center",
-                            "width": 24,
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "transparent",
+                              "borderColor": "#5E5E5E",
+                              "borderRadius": 12,
+                              "borderWidth": 1,
+                              "height": 24,
+                              "justifyContent": "center",
+                              "width": 24,
+                            },
+                          ]
                         }
                       />
                     </View>
@@ -2536,37 +2441,40 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           </View>
           <View
             style={
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-              }
+              [
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
             }
           >
             <View>
               <View
                 style={
-                  {
-                    "flexDirection": "row",
-                    "marginHorizontal": -6,
-                  }
+                  [
+                    {
+                      "flexDirection": "row",
+                      "marginHorizontal": -6,
+                    },
+                  ]
                 }
               >
                 <View
                   style={
-                    {
-                      "backgroundColor": "#C6C6C6",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "height": 4,
-                      "marginHorizontal": 6,
-                      "overflow": "hidden",
-                      "width": "100%",
-                    }
+                    [
+                      {
+                        "backgroundColor": "#C6C6C6",
+                        "borderRadius": 12,
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "height": 4,
+                        "marginHorizontal": 6,
+                        "overflow": "hidden",
+                        "width": "100%",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -2590,20 +2498,19 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 </View>
                 <View
                   style={
-                    {
-                      "backgroundColor": "#C6C6C6",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "height": 4,
-                      "marginHorizontal": 6,
-                      "overflow": "hidden",
-                      "width": "100%",
-                    }
+                    [
+                      {
+                        "backgroundColor": "#C6C6C6",
+                        "borderRadius": 12,
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "height": 4,
+                        "marginHorizontal": 6,
+                        "overflow": "hidden",
+                        "width": "100%",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -2629,20 +2536,19 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 </View>
                 <View
                   style={
-                    {
-                      "backgroundColor": "#C6C6C6",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "height": 4,
-                      "marginHorizontal": 6,
-                      "overflow": "hidden",
-                      "width": "100%",
-                    }
+                    [
+                      {
+                        "backgroundColor": "#C6C6C6",
+                        "borderRadius": 12,
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "height": 4,
+                        "marginHorizontal": 6,
+                        "overflow": "hidden",
+                        "width": "100%",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -2667,13 +2573,15 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               </View>
               <View
                 style={
-                  {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "marginBottom": 24,
-                    "marginTop": 24,
-                  }
+                  [
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 24,
+                      "marginTop": 24,
+                    },
+                  ]
                 }
               >
                 <View
@@ -2698,11 +2606,13 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 >
                   <View
                     style={
-                      {
-                        "flexBasis": 0,
-                        "flexGrow": 1,
-                        "marginRight": 8,
-                      }
+                      [
+                        {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 8,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -2737,10 +2647,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       style={
                         {
                           "alignItems": "center",
-                          "borderBottomLeftRadius": 12,
-                          "borderBottomRightRadius": 12,
-                          "borderTopLeftRadius": 12,
-                          "borderTopRightRadius": 12,
+                          "borderRadius": 12,
                           "display": "flex",
                           "flexDirection": "row",
                           "minHeight": 56,
@@ -2773,10 +2680,12 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   </View>
                   <View
                     style={
-                      {
-                        "flexBasis": 0,
-                        "flexGrow": 1,
-                      }
+                      [
+                        {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -2812,10 +2721,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         {
                           "alignItems": "center",
                           "backgroundColor": "#0421B1",
-                          "borderBottomLeftRadius": 12,
-                          "borderBottomRightRadius": 12,
-                          "borderTopLeftRadius": 12,
-                          "borderTopRightRadius": 12,
+                          "borderRadius": 12,
                           "display": "flex",
                           "flexDirection": "row",
                           "justifyContent": "center",
@@ -2877,29 +2783,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                               ]
                             }
                           >
-                            <RNSVGGroup
-                              fill={
-                                {
-                                  "payload": 4278190080,
-                                  "type": 0,
-                                }
-                              }
-                            >
-                              <RNSVGGroup
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
-                              >
+                            <RNSVGGroup>
+                              <RNSVGGroup>
                                 <RNSVGRect
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
                                   height="24"
                                   opacity={0}
                                   width="24"
@@ -2908,12 +2794,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                                 />
                                 <RNSVGPath
                                   d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
                                 />
                               </RNSVGGroup>
                             </RNSVGGroup>
@@ -2925,16 +2805,18 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "alignItems": "center",
-                            "color": "#FFFFFF",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "marginLeft": 8,
-                            "marginRight": 0,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "color": "#FFFFFF",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "marginLeft": 8,
+                              "marginRight": 0,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         Valider
@@ -2956,14 +2838,16 @@ exports[`Filter age should select age when click on it 1`] = `
 <View
   backgroundColor="transparent"
   style={
-    {
-      "backgroundColor": "transparent",
-      "flexBasis": 0,
-      "flexGrow": 1,
-      "flexShrink": 1,
-      "minHeight": "100%",
-      "minWidth": "100%",
-    }
+    [
+      {
+        "backgroundColor": "transparent",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "minHeight": "100%",
+        "minWidth": "100%",
+      },
+    ]
   }
 >
   <View
@@ -2988,11 +2872,13 @@ exports[`Filter age should select age when click on it 1`] = `
   >
     <RCTSafeAreaView
       style={
-        {
-          "minHeight": 65,
-          "paddingBottom": 20,
-          "paddingTop": 0,
-        }
+        [
+          {
+            "minHeight": 65,
+            "paddingBottom": 20,
+            "paddingTop": 0,
+          },
+        ]
       }
     >
       <View
@@ -3017,11 +2903,13 @@ exports[`Filter age should select age when click on it 1`] = `
       >
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexGrow": 0,
-              "marginRight": 8,
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginRight": 8,
+              },
+            ]
           }
         >
           <View>
@@ -3057,10 +2945,7 @@ exports[`Filter age should select age when click on it 1`] = `
               style={
                 {
                   "backgroundColor": "#FFFFFF",
-                  "borderBottomLeftRadius": 12,
-                  "borderBottomRightRadius": 12,
-                  "borderTopLeftRadius": 12,
-                  "borderTopRightRadius": 12,
+                  "borderRadius": 12,
                   "elevation": 6,
                   "opacity": 1,
                   "paddingBottom": 12,
@@ -3080,7 +2965,11 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}
@@ -3134,29 +3023,9 @@ exports[`Filter age should select age when click on it 1`] = `
                         ]
                       }
                     >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
-                        <RNSVGGroup
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
                           <RNSVGRect
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                             height="24"
                             matrix={
                               [
@@ -3175,12 +3044,6 @@ exports[`Filter age should select age when click on it 1`] = `
                           />
                           <RNSVGPath
                             d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                            fill={
-                              {
-                                "payload": 4278190080,
-                                "type": 0,
-                              }
-                            }
                           />
                         </RNSVGGroup>
                       </RNSVGGroup>
@@ -3193,11 +3056,13 @@ exports[`Filter age should select age when click on it 1`] = `
         </View>
         <View
           style={
-            {
-              "flexBasis": 0,
-              "flexGrow": 1,
-              "marginRight": 8,
-            }
+            [
+              {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "marginRight": 8,
+              },
+            ]
           }
         >
           <View
@@ -3222,11 +3087,13 @@ exports[`Filter age should select age when click on it 1`] = `
           >
             <View
               style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginRight": 8,
-                }
+                [
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 8,
+                  },
+                ]
               }
             >
               <View
@@ -3281,29 +3148,9 @@ exports[`Filter age should select age when click on it 1`] = `
                       ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
                         <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                           height="24"
                           opacity={0}
                           width="24"
@@ -3312,21 +3159,9 @@ exports[`Filter age should select age when click on it 1`] = `
                         />
                         <RNSVGPath
                           d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                         <RNSVGPath
                           d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
                         />
                       </RNSVGGroup>
                     </RNSVGGroup>
@@ -3336,10 +3171,12 @@ exports[`Filter age should select age when click on it 1`] = `
             </View>
             <View
               style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                }
+                [
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
               }
             >
               <Text
@@ -3350,13 +3187,15 @@ exports[`Filter age should select age when click on it 1`] = `
                 numberOfLines={2}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Créer mon profil
@@ -3366,10 +3205,12 @@ exports[`Filter age should select age when click on it 1`] = `
         </View>
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexGrow": 0,
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+              },
+            ]
           }
         >
           <View
@@ -3394,17 +3235,21 @@ exports[`Filter age should select age when click on it 1`] = `
           >
             <View
               style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                }
+                [
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
               }
             >
               <View
                 style={
-                  {
-                    "minWidth": 48,
-                  }
+                  [
+                    {
+                      "minWidth": 48,
+                    },
+                  ]
                 }
                 width={48}
               />
@@ -3500,22 +3345,26 @@ exports[`Filter age should select age when click on it 1`] = `
       >
         <View
           style={
-            {
-              "flexBasis": "auto",
-              "flexDirection": "column",
-              "flexGrow": 1,
-              "justifyContent": "space-between",
-            }
+            [
+              {
+                "flexBasis": "auto",
+                "flexDirection": "column",
+                "flexGrow": 1,
+                "justifyContent": "space-between",
+              },
+            ]
           }
           verticalAlign="space-between"
         >
           <View
             style={
-              {
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "marginBottom": 16,
-              }
+              [
+                {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginBottom": 16,
+                },
+              ]
             }
           >
             <View>
@@ -3523,14 +3372,16 @@ exports[`Filter age should select age when click on it 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
-                    "lineHeight": 32,
-                    "marginBottom": 16,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#212121",
+                      "fontFamily": "circularBold",
+                      "fontSize": 25,
+                      "lineHeight": 32,
+                      "marginBottom": 16,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 Quel âge as-tu ?
@@ -3539,14 +3390,16 @@ exports[`Filter age should select age when click on it 1`] = `
                 isRTL={false}
                 selectable={true}
                 style={
-                  {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginBottom": 48,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "color": "#5E5E5E",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginBottom": 48,
+                      "textAlign": "left",
+                    },
+                  ]
                 }
               >
                 C’est pour te montrer les démarches et les activités pour ton âge.
@@ -3586,11 +3439,8 @@ exports[`Filter age should select age when click on it 1`] = `
                   style={
                     {
                       "backgroundColor": "#FFFFFF",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
                       "borderColor": "#FFFFFF",
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
+                      "borderRadius": 12,
                       "borderWidth": 2,
                       "display": "flex",
                       "elevation": 6,
@@ -3636,11 +3486,13 @@ exports[`Filter age should select age when click on it 1`] = `
                   >
                     <View
                       style={
-                        {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "marginRight": 8,
-                        }
+                        [
+                          {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -3648,13 +3500,15 @@ exports[`Filter age should select age when click on it 1`] = `
                         isSelected={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "color": "#212121",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         age_10_17
@@ -3662,28 +3516,29 @@ exports[`Filter age should select age when click on it 1`] = `
                     </View>
                     <View
                       style={
-                        {
-                          "flexBasis": "auto",
-                          "flexGrow": 0,
-                        }
+                        [
+                          {
+                            "flexBasis": "auto",
+                            "flexGrow": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         selected={false}
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "transparent",
-                            "borderBottomLeftRadius": 12,
-                            "borderBottomRightRadius": 12,
-                            "borderColor": "#5E5E5E",
-                            "borderTopLeftRadius": 12,
-                            "borderTopRightRadius": 12,
-                            "borderWidth": 1,
-                            "height": 24,
-                            "justifyContent": "center",
-                            "width": 24,
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "transparent",
+                              "borderColor": "#5E5E5E",
+                              "borderRadius": 12,
+                              "borderWidth": 1,
+                              "height": 24,
+                              "justifyContent": "center",
+                              "width": 24,
+                            },
+                          ]
                         }
                       />
                     </View>
@@ -3721,11 +3576,8 @@ exports[`Filter age should select age when click on it 1`] = `
                   style={
                     {
                       "backgroundColor": "#FFFFFF",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
                       "borderColor": "#FFFFFF",
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
+                      "borderRadius": 12,
                       "borderWidth": 2,
                       "display": "flex",
                       "elevation": 6,
@@ -3771,11 +3623,13 @@ exports[`Filter age should select age when click on it 1`] = `
                   >
                     <View
                       style={
-                        {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "marginRight": 8,
-                        }
+                        [
+                          {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -3783,13 +3637,15 @@ exports[`Filter age should select age when click on it 1`] = `
                         isSelected={false}
                         selectable={true}
                         style={
-                          {
-                            "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "color": "#212121",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         age_18_25
@@ -3797,28 +3653,29 @@ exports[`Filter age should select age when click on it 1`] = `
                     </View>
                     <View
                       style={
-                        {
-                          "flexBasis": "auto",
-                          "flexGrow": 0,
-                        }
+                        [
+                          {
+                            "flexBasis": "auto",
+                            "flexGrow": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         selected={false}
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "transparent",
-                            "borderBottomLeftRadius": 12,
-                            "borderBottomRightRadius": 12,
-                            "borderColor": "#5E5E5E",
-                            "borderTopLeftRadius": 12,
-                            "borderTopRightRadius": 12,
-                            "borderWidth": 1,
-                            "height": 24,
-                            "justifyContent": "center",
-                            "width": 24,
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "transparent",
+                              "borderColor": "#5E5E5E",
+                              "borderRadius": 12,
+                              "borderWidth": 1,
+                              "height": 24,
+                              "justifyContent": "center",
+                              "width": 24,
+                            },
+                          ]
                         }
                       />
                     </View>
@@ -3856,11 +3713,8 @@ exports[`Filter age should select age when click on it 1`] = `
                   style={
                     {
                       "backgroundColor": "#DAE0FB",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
                       "borderColor": "#0421B1",
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
+                      "borderRadius": 12,
                       "borderWidth": 2,
                       "display": "flex",
                       "flexDirection": "row",
@@ -3898,11 +3752,13 @@ exports[`Filter age should select age when click on it 1`] = `
                   >
                     <View
                       style={
-                        {
-                          "flexBasis": 0,
-                          "flexGrow": 1,
-                          "marginRight": 8,
-                        }
+                        [
+                          {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "marginRight": 8,
+                          },
+                        ]
                       }
                     >
                       <Text
@@ -3910,13 +3766,15 @@ exports[`Filter age should select age when click on it 1`] = `
                         isSelected={true}
                         selectable={true}
                         style={
-                          {
-                            "color": "#0421B1",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "color": "#0421B1",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         age_26_100
@@ -3924,28 +3782,29 @@ exports[`Filter age should select age when click on it 1`] = `
                     </View>
                     <View
                       style={
-                        {
-                          "flexBasis": "auto",
-                          "flexGrow": 0,
-                        }
+                        [
+                          {
+                            "flexBasis": "auto",
+                            "flexGrow": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         selected={true}
                         style={
-                          {
-                            "alignItems": "center",
-                            "backgroundColor": "#0421B1",
-                            "borderBottomLeftRadius": 12,
-                            "borderBottomRightRadius": 12,
-                            "borderColor": "transparent",
-                            "borderTopLeftRadius": 12,
-                            "borderTopRightRadius": 12,
-                            "borderWidth": 1,
-                            "height": 24,
-                            "justifyContent": "center",
-                            "width": 24,
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "backgroundColor": "#0421B1",
+                              "borderColor": "transparent",
+                              "borderRadius": 12,
+                              "borderWidth": 1,
+                              "height": 24,
+                              "justifyContent": "center",
+                              "width": 24,
+                            },
+                          ]
                         }
                       >
                         <View
@@ -4000,29 +3859,9 @@ exports[`Filter age should select age when click on it 1`] = `
                                 ]
                               }
                             >
-                              <RNSVGGroup
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
-                              >
-                                <RNSVGGroup
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
-                                >
+                              <RNSVGGroup>
+                                <RNSVGGroup>
                                   <RNSVGRect
-                                    fill={
-                                      {
-                                        "payload": 4278190080,
-                                        "type": 0,
-                                      }
-                                    }
                                     height="24"
                                     opacity={0}
                                     width="24"
@@ -4031,12 +3870,6 @@ exports[`Filter age should select age when click on it 1`] = `
                                   />
                                   <RNSVGPath
                                     d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                                    fill={
-                                      {
-                                        "payload": 4278190080,
-                                        "type": 0,
-                                      }
-                                    }
                                   />
                                 </RNSVGGroup>
                               </RNSVGGroup>
@@ -4052,37 +3885,40 @@ exports[`Filter age should select age when click on it 1`] = `
           </View>
           <View
             style={
-              {
-                "flexBasis": "auto",
-                "flexGrow": 0,
-              }
+              [
+                {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
             }
           >
             <View>
               <View
                 style={
-                  {
-                    "flexDirection": "row",
-                    "marginHorizontal": -6,
-                  }
+                  [
+                    {
+                      "flexDirection": "row",
+                      "marginHorizontal": -6,
+                    },
+                  ]
                 }
               >
                 <View
                   style={
-                    {
-                      "backgroundColor": "#C6C6C6",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "height": 4,
-                      "marginHorizontal": 6,
-                      "overflow": "hidden",
-                      "width": "100%",
-                    }
+                    [
+                      {
+                        "backgroundColor": "#C6C6C6",
+                        "borderRadius": 12,
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "height": 4,
+                        "marginHorizontal": 6,
+                        "overflow": "hidden",
+                        "width": "100%",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -4106,20 +3942,19 @@ exports[`Filter age should select age when click on it 1`] = `
                 </View>
                 <View
                   style={
-                    {
-                      "backgroundColor": "#C6C6C6",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "height": 4,
-                      "marginHorizontal": 6,
-                      "overflow": "hidden",
-                      "width": "100%",
-                    }
+                    [
+                      {
+                        "backgroundColor": "#C6C6C6",
+                        "borderRadius": 12,
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "height": 4,
+                        "marginHorizontal": 6,
+                        "overflow": "hidden",
+                        "width": "100%",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -4145,20 +3980,19 @@ exports[`Filter age should select age when click on it 1`] = `
                 </View>
                 <View
                   style={
-                    {
-                      "backgroundColor": "#C6C6C6",
-                      "borderBottomLeftRadius": 12,
-                      "borderBottomRightRadius": 12,
-                      "borderTopLeftRadius": 12,
-                      "borderTopRightRadius": 12,
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "height": 4,
-                      "marginHorizontal": 6,
-                      "overflow": "hidden",
-                      "width": "100%",
-                    }
+                    [
+                      {
+                        "backgroundColor": "#C6C6C6",
+                        "borderRadius": 12,
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "height": 4,
+                        "marginHorizontal": 6,
+                        "overflow": "hidden",
+                        "width": "100%",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -4183,13 +4017,15 @@ exports[`Filter age should select age when click on it 1`] = `
               </View>
               <View
                 style={
-                  {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "marginBottom": 24,
-                    "marginTop": 24,
-                  }
+                  [
+                    {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 24,
+                      "marginTop": 24,
+                    },
+                  ]
                 }
               >
                 <View
@@ -4214,11 +4050,13 @@ exports[`Filter age should select age when click on it 1`] = `
                 >
                   <View
                     style={
-                      {
-                        "flexBasis": 0,
-                        "flexGrow": 1,
-                        "marginRight": 8,
-                      }
+                      [
+                        {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 8,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -4253,10 +4091,7 @@ exports[`Filter age should select age when click on it 1`] = `
                       style={
                         {
                           "alignItems": "center",
-                          "borderBottomLeftRadius": 12,
-                          "borderBottomRightRadius": 12,
-                          "borderTopLeftRadius": 12,
-                          "borderTopRightRadius": 12,
+                          "borderRadius": 12,
                           "display": "flex",
                           "flexDirection": "row",
                           "minHeight": 56,
@@ -4289,10 +4124,12 @@ exports[`Filter age should select age when click on it 1`] = `
                   </View>
                   <View
                     style={
-                      {
-                        "flexBasis": 0,
-                        "flexGrow": 1,
-                      }
+                      [
+                        {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                        },
+                      ]
                     }
                   >
                     <View
@@ -4328,10 +4165,7 @@ exports[`Filter age should select age when click on it 1`] = `
                         {
                           "alignItems": "center",
                           "backgroundColor": "#0421B1",
-                          "borderBottomLeftRadius": 12,
-                          "borderBottomRightRadius": 12,
-                          "borderTopLeftRadius": 12,
-                          "borderTopRightRadius": 12,
+                          "borderRadius": 12,
                           "display": "flex",
                           "elevation": 2,
                           "flexDirection": "row",
@@ -4401,29 +4235,9 @@ exports[`Filter age should select age when click on it 1`] = `
                               ]
                             }
                           >
-                            <RNSVGGroup
-                              fill={
-                                {
-                                  "payload": 4278190080,
-                                  "type": 0,
-                                }
-                              }
-                            >
-                              <RNSVGGroup
-                                fill={
-                                  {
-                                    "payload": 4278190080,
-                                    "type": 0,
-                                  }
-                                }
-                              >
+                            <RNSVGGroup>
+                              <RNSVGGroup>
                                 <RNSVGRect
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
                                   height="24"
                                   opacity={0}
                                   width="24"
@@ -4432,12 +4246,6 @@ exports[`Filter age should select age when click on it 1`] = `
                                 />
                                 <RNSVGPath
                                   d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                                  fill={
-                                    {
-                                      "payload": 4278190080,
-                                      "type": 0,
-                                    }
-                                  }
                                 />
                               </RNSVGGroup>
                             </RNSVGGroup>
@@ -4449,16 +4257,18 @@ exports[`Filter age should select age when click on it 1`] = `
                         isRTL={false}
                         selectable={true}
                         style={
-                          {
-                            "alignItems": "center",
-                            "color": "#FFFFFF",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "marginLeft": 8,
-                            "marginRight": 0,
-                            "textAlign": "left",
-                          }
+                          [
+                            {
+                              "alignItems": "center",
+                              "color": "#FFFFFF",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "marginLeft": 8,
+                              "marginRight": 0,
+                              "textAlign": "left",
+                            },
+                          ]
                         }
                       >
                         Valider

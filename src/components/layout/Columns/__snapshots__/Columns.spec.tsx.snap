@@ -23,11 +23,13 @@ exports[`Columns snapshot test suite should be able to control flex layout 1`] =
 >
   <View
     style={
-      {
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "marginRight": 8,
-      }
+      [
+        {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "marginRight": 8,
+        },
+      ]
     }
   >
     <Text>
@@ -36,11 +38,13 @@ exports[`Columns snapshot test suite should be able to control flex layout 1`] =
   </View>
   <View
     style={
-      {
-        "flexBasis": 0,
-        "flexGrow": 2,
-        "marginRight": 8,
-      }
+      [
+        {
+          "flexBasis": 0,
+          "flexGrow": 2,
+          "marginRight": 8,
+        },
+      ]
     }
   >
     <Text>
@@ -49,11 +53,13 @@ exports[`Columns snapshot test suite should be able to control flex layout 1`] =
   </View>
   <View
     style={
-      {
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "marginRight": 8,
-      }
+      [
+        {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "marginRight": 8,
+        },
+      ]
     }
   >
     <Text>
@@ -62,10 +68,12 @@ exports[`Columns snapshot test suite should be able to control flex layout 1`] =
   </View>
   <View
     style={
-      {
-        "flexBasis": 0,
-        "flexGrow": 2,
-      }
+      [
+        {
+          "flexBasis": 0,
+          "flexGrow": 2,
+        },
+      ]
     }
   >
     <Text>
@@ -98,11 +106,13 @@ exports[`Columns snapshot test suite should render without bug 1`] = `
 >
   <View
     style={
-      {
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "marginRight": 8,
-      }
+      [
+        {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "marginRight": 8,
+        },
+      ]
     }
   >
     <Text>
@@ -111,11 +121,13 @@ exports[`Columns snapshot test suite should render without bug 1`] = `
   </View>
   <View
     style={
-      {
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "marginRight": 8,
-      }
+      [
+        {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "marginRight": 8,
+        },
+      ]
     }
   >
     <Text>
@@ -124,11 +136,13 @@ exports[`Columns snapshot test suite should render without bug 1`] = `
   </View>
   <View
     style={
-      {
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "marginRight": 8,
-      }
+      [
+        {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "marginRight": 8,
+        },
+      ]
     }
   >
     <Text>
@@ -137,10 +151,12 @@ exports[`Columns snapshot test suite should render without bug 1`] = `
   </View>
   <View
     style={
-      {
-        "flexBasis": 0,
-        "flexGrow": 1,
-      }
+      [
+        {
+          "flexBasis": 0,
+          "flexGrow": 1,
+        },
+      ]
     }
   >
     <Text>
