@@ -4,18 +4,19 @@ exports[`RadioButton snapshot test suite should render not selected 1`] = `
 <View
   selected={false}
   style={
-    [
-      {
-        "alignItems": "center",
-        "backgroundColor": "transparent",
-        "borderColor": "#5E5E5E",
-        "borderRadius": 12,
-        "borderWidth": 1,
-        "height": 24,
-        "justifyContent": "center",
-        "width": 24,
-      },
-    ]
+    {
+      "alignItems": "center",
+      "backgroundColor": "transparent",
+      "borderBottomLeftRadius": 12,
+      "borderBottomRightRadius": 12,
+      "borderColor": "#5E5E5E",
+      "borderTopLeftRadius": 12,
+      "borderTopRightRadius": 12,
+      "borderWidth": 1,
+      "height": 24,
+      "justifyContent": "center",
+      "width": 24,
+    }
   }
 />
 `;
@@ -24,18 +25,19 @@ exports[`RadioButton snapshot test suite should render without bug 1`] = `
 <View
   selected={true}
   style={
-    [
-      {
-        "alignItems": "center",
-        "backgroundColor": "#0421B1",
-        "borderColor": "transparent",
-        "borderRadius": 12,
-        "borderWidth": 1,
-        "height": 24,
-        "justifyContent": "center",
-        "width": 24,
-      },
-    ]
+    {
+      "alignItems": "center",
+      "backgroundColor": "#0421B1",
+      "borderBottomLeftRadius": 12,
+      "borderBottomRightRadius": 12,
+      "borderColor": "transparent",
+      "borderTopLeftRadius": 12,
+      "borderTopRightRadius": 12,
+      "borderWidth": 1,
+      "height": 24,
+      "justifyContent": "center",
+      "width": 24,
+    }
   }
 />
 `;

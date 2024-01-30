@@ -4,12 +4,10 @@ exports[`Spacer snapshot test suite should render without bug / height & width 1
 <View
   height={42}
   style={
-    [
-      {
-        "minHeight": 42,
-        "minWidth": 42,
-      },
-    ]
+    {
+      "minHeight": 42,
+      "minWidth": 42,
+    }
   }
   width={42}
 />
@@ -19,11 +17,9 @@ exports[`Spacer snapshot test suite should render without bug / height 1`] = `
 <View
   height={42}
   style={
-    [
-      {
-        "minHeight": 42,
-      },
-    ]
+    {
+      "minHeight": 42,
+    }
   }
 />
 `;
@@ -31,11 +27,9 @@ exports[`Spacer snapshot test suite should render without bug / height 1`] = `
 exports[`Spacer snapshot test suite should render without bug / width 1`] = `
 <View
   style={
-    [
-      {
-        "minWidth": 42,
-      },
-    ]
+    {
+      "minWidth": 42,
+    }
   }
   width={42}
 />
