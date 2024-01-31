@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { useLogin } from "hooks";
+import { logger } from "logger";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import isInBrowser from "lib/isInBrowser";
@@ -37,6 +38,7 @@ const CheckCode = ({ type }: Props) => {
         if (errorCode === "WRONG_CODE") {
           setError("Code incorrect, veuillez réessayer.");
         } else {
+          logger.error(e);
           setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
         }
       }

@@ -7,6 +7,7 @@ import PasswordInput from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { wrapper } from "services/configureStore";
 import { useLogin } from "hooks";
+import { logger } from "logger";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
@@ -53,6 +54,7 @@ const AuthNewPassword = (props: Props) => {
         } else if (errorCode === "PASSWORD_TOO_WEAK") {
           setFormError("Mot de passe trop faible");
         } else {
+          logger.error(e);
           setFormError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
         }
       }

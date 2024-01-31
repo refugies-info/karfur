@@ -7,6 +7,7 @@ import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { useRegisterFlow } from "hooks";
+import { logger } from "logger";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
@@ -45,6 +46,7 @@ const AuthLogin = () => {
         }
         next([role]);
       } catch (e: any) {
+        logger.error(e);
         setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
       }
     },

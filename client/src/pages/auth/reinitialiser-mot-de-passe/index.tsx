@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import API from "utils/API";
+import { getPath } from "routes";
+import { logger } from "logger";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
-import { getPath } from "routes";
 
 const AuthForgotPassword = () => {
   const router = useRouter();
@@ -23,6 +24,7 @@ const AuthForgotPassword = () => {
         const res = await API.resetPassword({ email });
         router.push(getPath("/auth/reinitialiser-mot-de-passe/mail-envoye", "fr", `?email=${res.email}`));
       } catch (e: any) {
+        logger.error(e);
         setError("Une erreur est survenue, veuillez réessayer ou contacter un administrateur");
       }
     },

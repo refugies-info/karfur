@@ -9,6 +9,7 @@ import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import Input from "@codegouvfr/react-dsfr/Input";
+import { logger } from "logger";
 import { useRegisterFlow } from "hooks";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
@@ -57,6 +58,7 @@ const AuthLogin = () => {
         if (errorCode === "PASSWORD_TOO_WEAK") {
           setError("Votre mot de passe est trop faible.");
         } else {
+          logger.error(e);
           setError("Erreur lors de l'inscription, veuillez réessayer.");
         }
       }
