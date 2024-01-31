@@ -49,7 +49,7 @@ export interface SendCodeRequest {
 export interface RegisterRequest {
   email: string;
   password: string;
-  subscribeNewletter?: boolean;
+  subscribeNewsletter?: boolean;
   firstName?: string;
   role?: RoleName.CONTRIB | RoleName.TRAD;
 }

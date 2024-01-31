@@ -1,6 +1,7 @@
 import { MouseEvent, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { useIsomorphicLayoutEffect } from "react-use";
+import { RoleName } from "@refugies-info/api-types";
 import { PathNames } from "routes";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useRouterLocale from "hooks/useRouterLocale";
@@ -10,7 +11,6 @@ import styles from "./BackendNavItem.module.scss";
 import isInBrowser from "lib/isInBrowser";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 import { useAuth } from "hooks";
-import { RoleName } from "@refugies-info/api-types";
 
 export interface Props {
   access: RoleName.STRUCTURE | RoleName.ADMIN | "all";

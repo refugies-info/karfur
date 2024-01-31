@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import { RoleName } from "@refugies-info/api-types";
 import { getPath, PathNames } from "routes";
 import useBackendNavItem from "./BackendNavItem/useBackendNavItem";
 import API from "utils/API";
@@ -9,7 +10,6 @@ import { setUserStructureActionCreator } from "services/UserStructure/userStruct
 import { userStructureDisposAssociesSelector, userStructureHasResponsibleSeenNotification } from "services/UserStructure/userStructure.selectors";
 import { getNbNewNotifications } from "../UserNotifications/lib";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
-import { RoleName } from "@refugies-info/api-types";
 
 const useBackendNavigation = (): MainNavigationProps.Item[] => {
   const { t } = useTranslation();

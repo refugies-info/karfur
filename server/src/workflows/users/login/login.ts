@@ -90,7 +90,7 @@ export const login = async (body: LoginRequest): Promise<LoginResponse> => {
     const userNeeds2FA = await needs2FA(user);
     if (userNeeds2FA) {
       await requestEmailLogin(email);
-      throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
+      throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED, { email });
     } else {
       const token = await logUser(user);
       return { token };

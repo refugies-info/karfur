@@ -14,7 +14,7 @@ const AuthMicrosoftLogin = () => {
   const code: string = useMemo(() => router.query.code as string, [router.query]);
   const [error, setError] = useState("");
   const [requestSent, setRequestSent] = useState(false);
-  const { logUser } = useLogin();
+  const { logUser, handleError } = useLogin();
   const { start } = useRegisterFlow(null);
 
   useEffect(() => {
@@ -31,9 +31,12 @@ const AuthMicrosoftLogin = () => {
           if (res.userCreated) start(res.token, registerInfos?.role);
           else logUser(res.token);
         })
-        .catch((e) => setError("Erreur, vous n'êtes pas authentifié avec votre compte Microsoft, veuillez réessayer."));
+        .catch((e) => {
+          const error = handleError(e.response?.data?.code, e.response?.data?.email || "");
+          if (error) setError(error);
+        });
     }
-  }, [code, requestSent, logUser, start]);
+  }, [code, requestSent, logUser, start, handleError]);
 
   return (
     <div className={cls(styles.container, styles.half)}>

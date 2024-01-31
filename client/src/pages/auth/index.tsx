@@ -23,15 +23,15 @@ import styles from "scss/components/auth.module.scss";
 
 const AuthEmail = () => {
   const router = useRouter();
-  const { logUser } = useLogin();
+  const { logUser, handleError } = useLogin();
   const { start } = useRegisterFlow(null);
+  const [email, setEmail] = useState("");
   const [formError, setFormError] = useState("");
   const [error, setError] = useState("");
 
   const [{ loading }, submit] = useAsyncFn(
     async (e: any) => {
       e.preventDefault();
-      const email = e.target.email.value;
       if (!isValidEmail(email)) {
         setFormError("Veuillez entrer une adresse email valide");
         return;
@@ -62,14 +62,17 @@ const AuthEmail = () => {
             if (res.userCreated) start(res.token, registerInfos?.role);
             else logUser(res.token);
           })
-          .catch((e) => setError("Erreur, vous n'êtes pas authentifié avec votre compte Google, veuillez réessayer.")); // TODO: handle other errors (2FA?)
+          .catch((e) => {
+            const error = handleError(e.response?.data?.code, e.response?.data?.email || "");
+            if (error) setError(error);
+          });
       },
       onError: (err) => {
         logger.error("[loginGoogle] Failed to login with google", err);
         setError("Erreur, vous n'êtes pas authentifié avec votre compte Google, veuillez réessayer.");
       },
     })();
-  }, [logUser, start]);
+  }, [logUser, start, handleError]);
 
   const loginMicrosoft = useCallback(async () => {
     try {
@@ -118,7 +121,8 @@ const AuthEmail = () => {
             nativeInputProps={{
               autoFocus: true,
               type: "email",
-              name: "email",
+              value: email,
+              onChange: (e: any) => setEmail(e.target.value),
             }}
           />
 

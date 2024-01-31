@@ -1,3 +1,4 @@
+import { RoleName } from "@refugies-info/api-types";
 import Dashboard from "containers/Backend/Dashboard/Dashboard";
 import Admin from "containers/Backend/Admin";
 import UserContributions from "containers/Backend/UserContributions";
@@ -6,7 +7,6 @@ import UserNotifications from "containers/Backend/UserNotifications";
 import UserFavorites from "containers/Backend/UserFavorites";
 import { UserStructure, UserAdminStructure } from "containers/Backend/UserStructure";
 import UserTranslation from "containers/Backend/UserTranslation";
-import { RoleName } from "@refugies-info/api-types";
 
 export type BackendRouteType = {
   path: string;

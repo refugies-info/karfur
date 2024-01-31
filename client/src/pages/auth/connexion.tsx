@@ -16,7 +16,7 @@ import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
   const router = useRouter();
-  const { logUser } = useLogin();
+  const { logUser, handleError } = useLogin();
   const email: string = useMemo(() => router.query.email as string, [router.query]);
   const has2FA = useMemo(() => router.query["2fa"], [router.query]);
   const [error, setError] = useState("");
@@ -32,16 +32,8 @@ const AuthLogin = () => {
         if (!res.token) throw new Error();
         logUser(res.token);
       } catch (e: any) {
-        const errorCode = e.response?.data?.code;
-        if (errorCode === "NO_CODE_SUPPLIED") {
-          router.push(getPath("/auth/code-securite", "fr", `?email=${email}`));
-        } else if (errorCode === "INVALID_PASSWORD") {
-          setError("Mot de passe incorrect. Réessayez ou cliquez sur 'Mot de passe oublié' pour le réinitialiser.");
-        } else if (errorCode === "USER_DELETED") {
-          setError("Cet utilisateur n'existe pas ou a été supprimé. Veuillez créer un nouveau compte.");
-        } else {
-          setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
-        }
+        const error = handleError(e.response?.data?.code, e.response?.data?.email || "");
+        if (error) setError(error);
       }
     },
     [router, email, logUser],

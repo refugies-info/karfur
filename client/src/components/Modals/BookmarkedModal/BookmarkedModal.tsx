@@ -16,7 +16,6 @@ interface Props {
 
 const BookmarkedModal = (props: Props) => {
   const { t } = useTranslation();
-  /* TODO: translate */
   const router = useRouter();
   const { show, toggle } = props;
 
@@ -26,15 +25,10 @@ const BookmarkedModal = (props: Props) => {
   }, [props.dispositifId, router]);
 
   return (
-    <BaseModal
-      show={show}
-      toggle={toggle}
-      title="Connectez-vous pour utiliser cette fonctionnalité"
-      className={styles.modal}
-    >
-      <p>Il faut que vous soyez connecté à votre compte pour ajouter des fiches à vos favoris.</p>
+    <BaseModal show={show} toggle={toggle} title={t("UserFavorites.login_modal_title")} className={styles.modal}>
+      <p>{t("UserFavorites.login_modal_text")}</p>
       <Button iconId="fr-icon-arrow-right-line" iconPosition="right" className={styles.button} onClick={redirect}>
-        Me connecter ou m’inscrire
+        {t("login_or_signup")}
       </Button>
     </BaseModal>
   );

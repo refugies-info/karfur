@@ -26,6 +26,7 @@ const AuthLogin = () => {
   const dispatch = useDispatch();
   const email = useMemo(() => router.query.email as string, [router.query]);
   const [error, setError] = useState("");
+  const [subscribeNewsletter, setSubscribeNewsletter] = useState(false);
   const [password, setPassword] = useState("");
   const passwordStrength = useMemo(() => getPasswordStrength(password), [password]);
   const { start } = useRegisterFlow(null);
@@ -38,12 +39,11 @@ const AuthLogin = () => {
       try {
         const firstName = e.target.name.value;
         const password = e.target.password.value;
-        const subscribeNewletter = e.target.newsletter.value === "true"; // FIXME bug
         const registerRequest: RegisterRequest = {
           email,
           password,
           firstName,
-          subscribeNewletter,
+          subscribeNewsletter,
         };
         const registerInfos = getRegisterInfos();
         if (registerInfos?.role) {
@@ -101,8 +101,8 @@ const AuthLogin = () => {
               {
                 label: "J'accepte de recevoir l'actualité de Réfugiés.info (maximum 1 fois par mois)",
                 nativeInputProps: {
-                  name: "newsletter",
-                  value: "true",
+                  checked: subscribeNewsletter,
+                  onChange: () => setSubscribeNewsletter((o) => !o),
                 },
               },
             ]}

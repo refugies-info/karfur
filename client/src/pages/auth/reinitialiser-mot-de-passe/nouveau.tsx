@@ -16,7 +16,7 @@ import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
 
 interface Props {
-  error: string | null;
+  error: boolean;
 }
 
 const AuthNewPassword = (props: Props) => {
@@ -70,8 +70,13 @@ const AuthNewPassword = (props: Props) => {
         <div className={styles.content}>
           <div className={styles.title}>
             <h1>Erreur</h1>
-            {props.error && <p className={styles.subtitle}>{props.error}</p>}
-            {/* TODO: design */}
+            <p className={styles.subtitle}>
+              Le lien de réinitialisation est invalide. Veuillez cliquer sur le lien à nouveau ou contacter un
+              administrateur si le problème persiste
+            </p>
+            <Button linkProps={{ href: "/" }} priority="tertiary">
+              Retour à l'accueil
+            </Button>
           </div>
         </div>
       ) : (
@@ -153,7 +158,7 @@ export const getServerSideProps = wrapper.getServerSideProps(() => async ({ quer
   return {
     props: {
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
-      error,
+      error: !!error,
     },
   };
 });

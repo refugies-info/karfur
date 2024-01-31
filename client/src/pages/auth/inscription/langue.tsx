@@ -83,12 +83,16 @@ const AuthLogin = () => {
               return (
                 <ChoiceButton
                   key={language._id.toString()}
-                  text={`${language.langueFr} - ${language.langueLoc}`}
+                  text={
+                    <>
+                      <strong>{language.langueFr}</strong> - {language.langueLoc}
+                    </>
+                  }
                   illuComponent={<Flag langueCode={language?.langueCode} />}
                   type="checkbox"
                   selected={checked}
                   onSelect={() => setSelectedLanguages((ln) => (checked ? ln.filter((l) => l !== id) : [...ln, id]))}
-                  className="mb-2"
+                  className="mb-4 rounded-0"
                 />
               );
             })}

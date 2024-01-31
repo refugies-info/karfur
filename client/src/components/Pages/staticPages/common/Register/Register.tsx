@@ -89,7 +89,7 @@ const Register = (props: Props) => {
               iconPosition="right"
               className={styles.submit_btn}
             >
-              Me connecter ou m’inscrire {/* TODO: translate */}
+              {t("login_or_signup")}
             </Button>
           )}
         </>

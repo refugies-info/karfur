@@ -41,7 +41,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
   const [phone, setPhone] = useState<string>("");
   const [phoneError, setPhoneError] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
-  const [roles, setRoles] = useState<string[]>([]);
+  const [roles, setRoles] = useState<RoleName[]>([]);
   const [indicators, setIndicators] = useState<null | GetProgressionResponse>(null);
   const [selectedUserId, setSelectedUserId] = useState<Id | null>(props.selectedUserId);
 
@@ -81,7 +81,8 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       setEmail(userFromStore?.email || "");
       setPhone(userFromStore?.phone || "");
       setPhoneError("");
-      const roles = userFromStore?.roles
+      //@ts-ignore fix type here
+      const roles: RoleName[] = userFromStore?.roles
         ? userFromStore.roles.filter((role: string) => role === RoleName.ADMIN || role === RoleName.EXPERT_TRAD)
         : [];
       setRoles(roles);
@@ -140,7 +141,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     const hasAlreadyRole = roles.includes(mappedName);
 
     if (hasAlreadyRole) {
-      const newRolesFiltered = roles.filter((role: string) => role !== mappedName);
+      const newRolesFiltered = roles.filter((role: RoleName) => role !== mappedName);
       // remove role
       return setRoles(newRolesFiltered);
     }

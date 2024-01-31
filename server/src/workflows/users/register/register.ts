@@ -16,14 +16,14 @@ export const register = async (body: RegisterRequest): Promise<LoginResponse> =>
       throw new Error(LoginErrorType.PASSWORD_TOO_WEAK);
     }
     const hashedPassword = passwordHash.generate(body.password);
-    const savedUser = await registerUser({
+    const user = await registerUser({
       email: body.email,
       firstName: body.firstName,
       role: body.role,
       hashedPassword
     });
 
-    if (body.subscribeNewletter) {
+    if (body.subscribeNewsletter) {
       try {
         await addToNewsletter(body.email);
       } catch (e) {
@@ -31,7 +31,7 @@ export const register = async (body: RegisterRequest): Promise<LoginResponse> =>
       }
     }
 
-    return { token: savedUser.getToken() };
+    return { token: user.getToken() };
   } catch (error) {
     loginExceptionsManager(error);
   }

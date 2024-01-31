@@ -159,7 +159,9 @@
     "tutoriel": "Lire le tutoriel",
     "Tout supprimer": "Tout supprimer",
     "content_saved": "fiche sauvegardée.",
-    "contents_saved": "fiches sauvegardées."
+    "contents_saved": "fiches sauvegardées.",
+    "login_modal_title": "Connectez-vous pour utiliser cette fonctionnalité",
+    "login_modal_text": "Il faut que vous soyez connecté à votre compte pour ajouter des fiches à vos favoris."
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Qui sommes-nous ?",
@@ -485,6 +487,7 @@
   "callout_important": "Important",
   "La Mednum": "La Mednum",
   "Aide": "Aide",
+  "login_or_signup":"Me connecter ou m’inscrire",
   "StructureType": {
     "Association": "Association",
     "Entreprise": "Entreprise",

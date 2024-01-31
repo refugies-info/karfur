@@ -71,7 +71,7 @@ export const logUser = async (user: DocumentType<User> | string): Promise<string
 
 /**
  * Check if user needs two-factor authentication
- * @param user
+ * @param user - user object or email
  */
 export const needs2FA = async (user: DocumentType<User> | string): Promise<boolean> => {
   let userDocument: DocumentType<User> = typeof user === "string" ? await getUserByEmailFromDB(user) : user;

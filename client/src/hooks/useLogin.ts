@@ -6,6 +6,7 @@ import { setAuthToken } from "utils/authToken";
 import { getLoginRedirect } from "lib/loginRedirect";
 import { userDetailsSelector } from "services/User/user.selectors";
 import useAuth from "./useAuth";
+import { getPath } from "routes";
 
 const useLogin = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,17 @@ const useLogin = () => {
     setHasRedirected("pending");
   }, [dispatch]);
 
+  const handleError = useCallback((errorCode: string | undefined, email: string): string | null => {
+    if (errorCode === "NO_CODE_SUPPLIED") {
+      if (!email) return ("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
+      router.push(getPath("/auth/code-securite", "fr", `?email=${email}`));
+      return null;
+    }
+    if (errorCode === "INVALID_PASSWORD") return "Mot de passe incorrect. Réessayez ou cliquez sur 'Mot de passe oublié' pour le réinitialiser.";
+    if (errorCode === "USER_DELETED") return "Cet utilisateur n'existe pas ou a été supprimé. Veuillez créer un nouveau compte.";
+    return ("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
+  }, [router]);
+
   useEffect(() => {
     if (hasRedirected === "pending" && isAuth && userDetails) {
       setHasRedirected("yes");
@@ -27,7 +39,7 @@ const useLogin = () => {
     }
   }, [userDetails, isAuth, hasRedirected, router]);
 
-  return { logUser };
+  return { logUser, handleError };
 }
 
 export default useLogin;

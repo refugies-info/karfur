@@ -20,9 +20,9 @@ interface Props {
 
 const CheckCode = ({ type }: Props) => {
   const router = useRouter();
-  const { logUser } = useLogin();
   const email = useMemo(() => router.query.email as string, [router.query]);
   const [error, setError] = useState("");
+  const { logUser } = useLogin();
 
   const submit = useCallback(
     async (e: any) => {
@@ -109,8 +109,10 @@ const CheckCode = ({ type }: Props) => {
 
         {type === "2fa" && (
           <div className={cls(styles.small, "mt-14 mb-14", "text-center")}>
-            L'adresse mail n'est plus valable&nbsp;? <button onClick={contact}>Contactez-nous</button>
-            {/* TODO:reset styles */}
+            L'adresse mail n'est plus valable&nbsp;?{" "}
+            <button onClick={contact} className={styles.link}>
+              Contactez-nous
+            </button>
           </div>
         )}
 

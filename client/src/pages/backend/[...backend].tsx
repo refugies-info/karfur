@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { RoleName } from "@refugies-info/api-types";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { setLoginRedirect } from "lib/loginRedirect";
 import UnauthorizedAccess from "components/Navigation/UnauthorizedAccess/UnauthorizedAccess";
@@ -19,7 +20,6 @@ import { useRouter } from "next/router";
 import history from "utils/backendHistory";
 import { createBrowserHistory } from "history";
 import useRouterLocale from "hooks/useRouterLocale";
-import { RoleName } from "@refugies-info/api-types";
 
 const Redirect = () => {
   const router = useRouter();
