@@ -45,9 +45,18 @@ export const getLoginRedirect = (roles: GetUserInfoResponse["roles"] | undefined
 interface RegisterInfos {
   role?: RoleName.CONTRIB | RoleName.TRAD;
 }
+/**
+ * Save informations to use at registration time
+ * @param role - role to add to the user at registration
+ */
 export const setRegisterInfos = (role: RegisterInfos) => {
   sessionStorage.setItem(REGISTER_KEY, JSON.stringify(role));
 }
+
+/**
+ * Get registration from the session storage
+ * @returns infos if available
+ */
 export const getRegisterInfos = (): RegisterInfos | null => {
   const data = sessionStorage.getItem(REGISTER_KEY);
   if (data) {

@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useState } from "react";
-import { fetchUserActionCreator } from "services/User/user.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { getPath } from "routes";
 import { setAuthToken } from "utils/authToken";
 import { getLoginRedirect } from "lib/loginRedirect";
+import { fetchUserActionCreator } from "services/User/user.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
 import useAuth from "./useAuth";
-import { getPath } from "routes";
 
 const useLogin = () => {
   const dispatch = useDispatch();

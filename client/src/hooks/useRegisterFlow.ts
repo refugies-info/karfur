@@ -17,12 +17,16 @@ const useRegisterFlow = (currentStep: Step | null) => {
   const userDetails = useSelector(userDetailsSelector);
   const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
 
+  /**
+   * Fetch user info if not available yet
+   */
   useEffect(() => {
     if (currentStep && !userDetails && !isUserLoading) dispatch(fetchUserActionCreator());
   }, [userDetails, isUserLoading, currentStep, dispatch]);
 
   /**
-   * Return the registration flow depending on the role
+   * Return the whole registration flow depending on the role
+   * @returns Step[]
    */
   const getAllSteps = useCallback((roles: RoleName[]): Step[] => {
     if (roles.includes(RoleName.TRAD)) return ["objectif", "langue", "pseudo", "territoire"];
@@ -32,6 +36,7 @@ const useRegisterFlow = (currentStep: Step | null) => {
   }, []);
 
   /**
+   * Get step counts to display in the progress bar
    * @returns [currentStep, stepCount]
    */
   const getStepCount = useCallback((currentRoles: RoleName[] | null): [number, number] => {
@@ -42,23 +47,38 @@ const useRegisterFlow = (currentStep: Step | null) => {
   }, [userDetails, currentStep, getAllSteps]);
 
   /**
-   * Returns the next step, can be used to redirect user
+   * Redirect user to the next step of the flow
+   * @param currentRoles - roles to use to get steps. If null, roles will be taken from userDetails in the store
+   * @param skipSteps - if true, steps already completed will be skipped. To use when the registration flow is starting
    */
-  const next = useCallback((currentRoles: RoleName[] | null) => {
+  const next = useCallback((currentRoles: RoleName[] | null, skipSteps?: boolean) => {
     const roles = currentRoles || (userDetails?.roles || []).map(r => r.nom);
     const allSteps = getAllSteps(roles);
-    const currentStepIndex = currentStep === null ? -1 : allSteps.indexOf(currentStep);
+    let currentStepIndex = currentStep === null ? -1 : allSteps.indexOf(currentStep);
     let nextStep = allSteps[currentStepIndex + 1];
 
-    // If already a role, skip "objectif" step
-    if (nextStep === "objectif" && roles.find(r => [RoleName.TRAD, RoleName.CAREGIVER, RoleName.CONTRIB].includes(r))) {
-      nextStep = allSteps[currentStepIndex + 2];
+    if (skipSteps) {
+      if (nextStep === "objectif" && roles.find(r => [RoleName.TRAD, RoleName.CAREGIVER, RoleName.CONTRIB].includes(r))) {
+        currentStepIndex += 1;
+        nextStep = allSteps[currentStepIndex + 1];
+      }
+      if (nextStep === "langue" && userDetails?.selectedLanguages.length) {
+        currentStepIndex += 1;
+        nextStep = allSteps[currentStepIndex + 1];
+      }
+      if (nextStep === "pseudo" && !!userDetails?.username) {
+        currentStepIndex += 1;
+        nextStep = allSteps[currentStepIndex + 1];
+      }
     }
 
     if (nextStep) router.push(getPath(`/auth/inscription/${nextStep}`, "fr"));
   }, [userDetails, currentStep, getAllSteps, router]);
 
 
+  /**
+   * Redirect user to the previous step of the flow
+   */
   const back = useCallback(() => {
     const roles = (userDetails?.roles || []).map(r => r.nom);
     const allSteps = getAllSteps(roles);
@@ -70,10 +90,15 @@ const useRegisterFlow = (currentStep: Step | null) => {
     else router.back()
   }, [router, userDetails, currentStep, getAllSteps]);
 
+  /**
+   * Starts the registration flow after authenticating the user
+   * @param token
+   * @param role - role added to the user during registration
+   */
   const start = (token: string, role: RoleName | undefined) => {
     setAuthToken(token);
     dispatch(fetchUserActionCreator());
-    next([role || RoleName.USER]);
+    next([role || RoleName.USER], true);
   }
 
   return { userId: userDetails?._id, userDetails, getStepCount, next, back, start };

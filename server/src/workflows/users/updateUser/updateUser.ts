@@ -11,7 +11,7 @@ import { loginExceptionsManager } from "../../../modules/users/auth";
 import { uniqIds } from "../../../libs/uniqIds";
 import formatPhoneNumber from "../../../libs/formatPhoneNumber";
 import { log } from "./log";
-import { User } from "../../../typegoose";
+import { ObjectId, User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
 import { Response } from "../../../types/interface";
 import { needs2FA } from "../../../modules/users/auth";
@@ -67,6 +67,7 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     const traducteurRole = roles.find(r => r.nom === RoleName.TRAD);
     const newRoles = uniqIds([...userFromDB.roles, traducteurRole._id]);
     newUser.roles = newRoles;
+    newUser.selectedLanguages = request.selectedLanguages.map(ln => new ObjectId(ln));
   }
   if (request.email) {
     const needs2fa = await needs2FA(request.email);

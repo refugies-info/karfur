@@ -35,7 +35,7 @@ const AutoAddFavorite = () => {
       params.delete("addFavorite");
       router.replace({ pathname, query: params.toString() }, undefined, { shallow: true });
     }
-  }, [favoriteContentId, isAuth, userDetails]);
+  }, [favoriteContentId, isAuth, userDetails, dispatch, router]);
 
   return showFavoriteToast ? (
     <Toast close={() => setShowFavoriteToast(false)}>{t("Dispositif.messageAddedToFavorites")}</Toast>

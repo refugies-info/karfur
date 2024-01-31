@@ -29,6 +29,7 @@ import locale from "utils/locale";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
+import NewProfileModal from "components/Modals/NewProfileModal";
 import styles from "./Layout.module.scss";
 import AppLoader from "./AppLoader";
 import AutoAddFavorite from "./AutoAddFavorite";
@@ -178,6 +179,7 @@ const Layout = (props: Props) => {
         isLanguagesLoading={isLanguagesLoading}
       />
       <MobileAppModal show={!!showMobileModal} toggle={toggleMobileAppModal} />
+      <NewProfileModal />
       <SubscribeNewsletterModal />
     </div>
   );
