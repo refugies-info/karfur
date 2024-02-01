@@ -160,6 +160,10 @@ const Layout = (props: Props) => {
     }
   };
 
+  // only on desktop, if user has no email and is not currently setting it
+  const showEmailModal =
+    !isMobileOnly && !!user && !user?.email && !window.location.pathname.includes("backend/user-profile");
+
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <Navbar />
