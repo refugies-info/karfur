@@ -41,6 +41,7 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
+// TODO: restore DSFR banner
 /* declare module "@codegouvfr/react-dsfr/gdpr" {
   interface RegisterGdprServices {
     mandatory: true;

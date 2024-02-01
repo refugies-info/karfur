@@ -1,8 +1,5 @@
-import { GetUserInfoResponse, UserStatus } from "@refugies-info/api-types";
-import { RoleName } from "@refugies-info/api-types/generics";
-import moment from "moment";
+import { RoleName, GetUserInfoResponse, UserStatus } from "@refugies-info/api-types";
 
-const date = moment("2019-05-01 12:00:00");
 export const testUser: GetUserInfoResponse = {
   username: "test",
   _id: "testObjectId",
