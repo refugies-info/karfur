@@ -23,12 +23,13 @@ const CheckCode = ({ type }: Props) => {
   const router = useRouter();
   const email = useMemo(() => router.query.email as string, [router.query]);
   const [error, setError] = useState("");
+  const [code, setCode] = useState("");
   const { logUser } = useLogin();
 
   const submit = useCallback(
     async (e: any) => {
       e.preventDefault();
-      const code = e.target.code.value;
+      setError("");
       try {
         const res = await API.checkCode({ email, code });
         if (!res.token) throw new Error();
@@ -43,7 +44,7 @@ const CheckCode = ({ type }: Props) => {
         }
       }
     },
-    [logUser, email],
+    [logUser, email, code],
   );
 
   const resendCode = useCallback(
@@ -87,6 +88,8 @@ const CheckCode = ({ type }: Props) => {
             nativeInputProps={{
               autoFocus: true,
               name: "code",
+              value: code,
+              onChange: (e: any) => setCode(e.target.value),
             }}
           />
 
