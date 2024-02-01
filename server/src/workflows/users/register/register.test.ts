@@ -1,100 +1,82 @@
-// @ts-nocheck
-import { register } from "../register";
-import { createUser } from "../users.repository";
-import { sendWelcomeMail } from "../../mail/mail.service";
+import { register } from "./register";
 import { RoleName } from "@refugies-info/api-types";
+import { loginExceptionsManager } from "../../../modules/users/auth";
+import * as password from "../../../libs/validatePassword";
+import { addToNewsletter } from "../../../connectors/sendinblue/addToNewsletter";
+import { registerUser } from "../../../modules/users/users.service";
+import { user } from "../../../__fixtures__";
+import { User, UserModel } from "../../../typegoose";
+import { LoginErrorType } from "../../../modules/users/LoginError";
 
-jest.mock("../../mail/mail.service", () => ({
-  sendWelcomeMail: jest.fn(),
-}));
-
-jest.mock("../users.repository", () => ({
-  createUser: jest.fn(),
-}));
+jest.spyOn(User.prototype, 'getToken').mockImplementation(() => "token");
 
 jest.mock("password-hash", () => ({
-  __esModule: true, // this property makes it work
-  default: { generate: () => "hashedPassword" },
+  generate: jest.fn(p => p)
 }));
+jest.mock("../../../modules/users/auth", () => ({
+  loginExceptionsManager: jest.fn()
+}))
+jest.mock("../../../connectors/sendinblue/addToNewsletter", () => ({
+  addToNewsletter: jest.fn()
+}))
+jest.mock("../../../modules/users/users.service", () => ({
+  registerUser: jest.fn(() => user)
+}))
 
-describe.skip("register", () => {
-  const userRole = { nom: RoleName.USER, _id: "id_user" };
-
+describe("register", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-  const mockDate = new Date(1466424490000);
-  jest.spyOn(global, "Date").mockImplementation(() => mockDate);
 
-  it("should throw if password too weak", async () => {
-    const user = { username: "username", password: "pass" };
+    jest.useFakeTimers('modern');
+    jest.setSystemTime(new Date(2023, 0, 1));
+  });
+
+
+  it("should create user", async () => {
+    const isPasswordOkMock = jest.spyOn(password, 'isPasswordOk').mockReturnValue(true);
+
+    const res = await register({ email: "test@example.com", password: "password" });
+    expect(isPasswordOkMock).toHaveBeenCalledWith("password");
+    expect(registerUser).toHaveBeenCalledWith({
+      email: "test@example.com",
+      firstName: undefined,
+      role: undefined,
+      hashedPassword: "password"
+    });
+    expect(addToNewsletter).not.toHaveBeenCalled();
+    expect(loginExceptionsManager).not.toHaveBeenCalled();
+    expect(res).toStrictEqual({ token: "token" })
+  });
+
+  it("should create user and add informations", async () => {
+    const isPasswordOkMock = jest.spyOn(password, 'isPasswordOk').mockReturnValue(true);
+
+    const res = await register({ email: "test@example.com", password: "password", subscribeNewsletter: true, firstName: "Test", role: RoleName.TRAD });
+    expect(isPasswordOkMock).toHaveBeenCalledWith("password");
+    expect(registerUser).toHaveBeenCalledWith({
+      email: "test@example.com",
+      firstName: "Test", role: RoleName.TRAD,
+      hashedPassword: "password"
+    });
+    expect(addToNewsletter).toHaveBeenCalledWith("test@example.com");
+    expect(loginExceptionsManager).not.toHaveBeenCalled();
+    expect(res).toStrictEqual({ token: "token" })
+  });
+
+  it("should reject if password to weak", async () => {
+    const isPasswordOkMock = jest.spyOn(password, 'isPasswordOk').mockReturnValue(false);
     try {
-      await register(user, userRole);
-    } catch (error) {
-      expect(error.message).toEqual("PASSWORD_TOO_WEAK");
-      expect.assertions(1);
-    }
+      await register({ email: "test@example.com", password: "password", subscribeNewsletter: true, firstName: "Test", role: RoleName.TRAD });
+      expect(isPasswordOkMock).toHaveBeenCalledWith("password");
+      expect(registerUser).not.toHaveBeenCalledWith();
+      expect(addToNewsletter).not.toHaveBeenCalled();
+      expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.PASSWORD_TOO_WEAK));
+    } catch (e) { }
+    expect.assertions(4);
   });
 
-  it("should create user without email", async () => {
-    const userToSave = {
-      username: "username",
-      password: "hashedPassword",
-      roles: ["id_user"],
-      status: "Actif",
-      last_connected: mockDate,
-      email: undefined,
-    };
-    const savedUser = { ...userToSave, getToken: () => "token" };
-    createUser.mockResolvedValueOnce(savedUser);
-    const user = { username: "username", password: "46gh!§ççà" };
-    const res = await register(user, userRole);
-    expect(sendWelcomeMail).not.toHaveBeenCalled();
-    expect(createUser).toHaveBeenCalledWith(userToSave);
-    expect(res).toEqual({ user: savedUser, token: "token" });
-  });
 
-  it("should create user with email", async () => {
-    const userToSave = {
-      username: "username",
-      password: "hashedPassword",
-      roles: ["id_user"],
-      status: "Actif",
-      last_connected: mockDate,
-      email: "email",
-    };
-
-    const savedUser = { ...userToSave, getToken: () => "token", _id: "userId" };
-    createUser.mockResolvedValueOnce(savedUser);
-    const user = {
-      username: "username",
-      password: "46gh!§ççà",
-      email: "email",
-    };
-    const res = await register(user, userRole);
-    expect(createUser).toHaveBeenCalledWith(userToSave);
-    expect(sendWelcomeMail).toHaveBeenCalledWith("email", "username", "userId");
-    expect(res).toEqual({ user: savedUser, token: "token" });
-  });
-
-  it("should throw internal if createUser throws", async () => {
-    createUser.mockRejectedValueOnce(new Error("erreur"));
-    const userToSave = {
-      username: "username",
-      password: "hashedPassword",
-      roles: ["id_user"],
-      status: "Actif",
-      last_connected: mockDate,
-    };
-    const savedUser = { ...userToSave, getToken: () => "token" };
-    createUser.mockResolvedValueOnce(savedUser);
-    const user = { username: "username", password: "46gh!§ççà" };
-    try {
-      await register(user, userRole);
-    } catch (error) {
-      expect(createUser).toHaveBeenCalledWith(userToSave);
-      expect(error.message).toEqual("INTERNAL");
-      expect.assertions(2);
-    }
+  afterEach(() => {
+    jest.useRealTimers();
   });
 });

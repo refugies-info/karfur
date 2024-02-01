@@ -41,11 +41,12 @@ const Footer = () => {
         title: "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)",
       }}
       /* cookiesManagementButtonProps={{ nativeButtonProps: consentModalNativeButtonProps }} */
+      /* FIXME
       personalDataLinkProps={{
         href: getPath("/politique-de-confidentialite", router.locale),
         title: t("Footer.privacy_policy", "Politique de confidentialité"),
         prefetch: false,
-      }}
+      }} */
       termsLinkProps={{
         href: getPath("/mentions-legales", router.locale),
         title: t("Footer.legal_terms", "Mentions légales"),
