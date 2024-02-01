@@ -2,11 +2,13 @@ import { ReactElement, useEffect, useMemo, useState } from "react";
 import { useAsyncFn } from "react-use";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { RoleName } from "@refugies-info/api-types";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { logger } from "logger";
 import API from "utils/API";
+import { hasRole } from "lib/hasRole";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import { useRegisterFlow } from "hooks";
@@ -27,25 +29,26 @@ import styles from "scss/components/auth.module.scss";
 const AuthLogin = () => {
   const router = useRouter();
   const [error, setError] = useState("");
-  const [partner, setPartner] = useState<string>("");
-  const { userId, userDetails, getStepCount, next, back } = useRegisterFlow("partenaire");
-  const stepCount = useMemo(() => getStepCount(null), [getStepCount]);
+  const [partner, setPartner] = useState<string | null>(null);
+  const { userId, userDetails, getStepCount, next } = useRegisterFlow("partenaire");
+  const stepCount = useMemo(() => getStepCount(partner === "" ? null : [RoleName.CAREGIVER]), [partner, getStepCount]);
 
   useEffect(() => {
     if (userDetails?.partner) setPartner(userDetails.partner);
+    else if (!hasRole(userDetails, RoleName.CAREGIVER)) setPartner("");
   }, [userDetails]);
 
   const [{ loading }, submit] = useAsyncFn(
     async (e: any) => {
       e.preventDefault();
       setError("");
-      if (!userId || !partner) return;
+      if (!userId || partner === null) return;
       try {
         await API.updateUser(userId.toString(), {
           user: { partner },
           action: "modify-my-details",
         });
-        next(null);
+        next(partner === "" ? null : [RoleName.CAREGIVER]);
       } catch (e: any) {
         logger.error(e);
         setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
@@ -60,16 +63,6 @@ const AuthLogin = () => {
     <div className={cls(styles.container, styles.full)}>
       <SEO title="Votre structure" />
       <div className={styles.container_inner}>
-        <Button
-          priority="tertiary"
-          size="small"
-          iconId="fr-icon-arrow-left-line"
-          onClick={back}
-          className={styles.back_button}
-        >
-          Retour
-        </Button>
-
         <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre structure" />
 
         <div className={cls(styles.title, "mt-14")}>
@@ -152,8 +145,8 @@ const AuthLogin = () => {
                 illustration: <Image alt="illustration" src={NoIcon} width={48} height={48} />,
                 label: "Aucune de ces structures",
                 nativeInputProps: {
-                  checked: partner === "none",
-                  onChange: () => setPartner("none"),
+                  checked: partner === "",
+                  onChange: () => setPartner(""),
                 },
               },
             ]}

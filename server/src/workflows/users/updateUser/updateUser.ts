@@ -69,6 +69,11 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     newUser.roles = newRoles;
     newUser.selectedLanguages = request.selectedLanguages.map(ln => new ObjectId(ln));
   }
+  if (request.partner) {
+    const caregiverRole = roles.find(r => r.nom === RoleName.CAREGIVER);
+    const newRoles = uniqIds([...userFromDB.roles, caregiverRole._id]);
+    newUser.roles = newRoles;
+  }
   if (request.email) {
     const needs2fa = await needs2FA(request.email);
     if (needs2fa) {

@@ -43,7 +43,7 @@ const AuthEmail = () => {
         router.push(getPath("/auth/inscription", "fr", `?email=${email}`));
       }
     },
-    [router],
+    [router, email],
   );
 
   const loginGoogle = useCallback(() => {

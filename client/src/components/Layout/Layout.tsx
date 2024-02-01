@@ -109,7 +109,7 @@ const Layout = (props: Props) => {
       dispatch(fetchUserActionCreator());
     }
     if (user) {
-      setAnalyticsUserId(user.username);
+      setAnalyticsUserId(user.email);
     }
   }, [user, isUserLoading, hasUserError, dispatch]);
 

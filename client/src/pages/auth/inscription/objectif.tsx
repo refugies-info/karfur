@@ -24,12 +24,11 @@ import styles from "scss/components/auth.module.scss";
 const AuthLogin = () => {
   const router = useRouter();
   const [error, setError] = useState("");
-  const [role, setRole] = useState<RoleName.USER | RoleName.CAREGIVER | RoleName.CONTRIB | RoleName.TRAD | null>(null);
-  const { userId, userDetails, getStepCount, next } = useRegisterFlow("objectif");
+  const [role, setRole] = useState<RoleName.USER | RoleName.CONTRIB | RoleName.TRAD | null>(null);
+  const { userId, userDetails, getStepCount, next, back } = useRegisterFlow("objectif");
 
   useEffect(() => {
     if (hasRole(userDetails, RoleName.TRAD)) setRole(RoleName.TRAD);
-    if (hasRole(userDetails, RoleName.CAREGIVER)) setRole(RoleName.CAREGIVER);
     if (hasRole(userDetails, RoleName.CONTRIB)) setRole(RoleName.CONTRIB);
   }, [userDetails]);
 
@@ -59,6 +58,16 @@ const AuthLogin = () => {
     <div className={cls(styles.container, styles.full)}>
       <SEO title="Votre objectif" />
       <div className={styles.container_inner}>
+        <Button
+          priority="tertiary"
+          size="small"
+          iconId="fr-icon-arrow-left-line"
+          onClick={back}
+          className={styles.back_button}
+        >
+          Retour
+        </Button>
+
         <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre objectif" />
 
         <div className={cls(styles.title, "mt-14")}>
@@ -71,15 +80,6 @@ const AuthLogin = () => {
             name="goal"
             className={styles.radio}
             options={[
-              {
-                illustration: <Image alt="illustration" src={GoalIconTs} width={48} height={48} />,
-                label: "Créer mon « Espace aidant »",
-                hintText: "Pour les professionnels et les bénévoles qui accompagnent des bénéficiaires",
-                nativeInputProps: {
-                  checked: role === RoleName.CAREGIVER,
-                  onChange: () => setRole(RoleName.CAREGIVER),
-                },
-              },
               {
                 illustration: <Image alt="illustration" src={GoalIconStructure} width={48} height={48} />,
                 label: "Recenser mon dispositif",

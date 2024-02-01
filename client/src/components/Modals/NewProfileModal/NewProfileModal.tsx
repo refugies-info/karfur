@@ -16,13 +16,18 @@ const NewProfileModal = () => {
   useEffect(() => {
     if (!userDetails) return;
     const missingUsername = !userDetails.username;
-    const missingLanguage = hasRole(userDetails, RoleName.TRAD) && userDetails.selectedLanguages.length === 0;
-    const missingPartner = hasRole(userDetails, RoleName.CAREGIVER) && !userDetails.partner;
     const missingDepartment = (userDetails.departments?.length || 0) === 0;
+
+    const tradIncomplete =
+      hasRole(userDetails, RoleName.TRAD) &&
+      (userDetails.selectedLanguages.length === 0 || missingUsername || missingDepartment);
+    const caregiverIncomplete = hasRole(userDetails, RoleName.CAREGIVER) && (!userDetails.partner || missingDepartment);
+    const contribIncomplete = hasRole(userDetails, RoleName.CONTRIB) && (missingUsername || missingDepartment);
+    const userIncomplete = hasRole(userDetails, RoleName.USER) && missingDepartment;
 
     const showNewProfileModal =
       !isMobileOnly &&
-      (missingUsername || missingLanguage || missingPartner || missingDepartment) &&
+      (tradIncomplete || caregiverIncomplete || contribIncomplete || userIncomplete) &&
       !window.location.pathname.includes("backend/user-profile");
 
     if (showNewProfileModal) setShow(true);
