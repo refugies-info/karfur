@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import { RoleName } from "@refugies-info/api-types";
 import { getPath, PathNames } from "routes";
 import useBackendNavItem from "./BackendNavItem/useBackendNavItem";
 import API from "utils/API";
@@ -36,7 +37,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
       title: t("Toolbar.find_information"),
     }),
     useBackendNavItem({
-      access: "hasStructure",
+      access: RoleName.STRUCTURE,
       iconName: nbNewNotifications > 0 ? "bell" : "bell-outline",
       route: "/backend/user-dash-notifications" as PathNames,
       title: `${t("Toolbar.Mes notifications")} (${nbNewNotifications})`,
@@ -63,7 +64,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
       route: "/backend/user-dash-structure" as PathNames,
       iconName: "briefcase-outline",
       title: t("Toolbar.Ma structure"),
-      access: "hasStructure",
+      access: RoleName.STRUCTURE,
     }),
     useBackendNavItem({
       route: "/backend/user-profile" as PathNames,
@@ -75,7 +76,7 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
       route: "/backend/admin" as PathNames,
       iconName: "shield-outline",
       title: t("Toolbar.Administration"),
-      access: "admin",
+      access: RoleName.ADMIN,
     }),
     useBackendNavItem({
       onClick: disconnect,

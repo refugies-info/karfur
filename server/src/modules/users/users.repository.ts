@@ -10,7 +10,7 @@ export const getUserById = async (id: Id, neededFields: NeededFields) => UserMod
 
 export const getUserByIdWithStructures = async (id: Id, neededFields: NeededFields) => UserModel.findById(id, neededFields).populate<{ structures: { nom: string }[] }>([{ path: "structures", select: "nom" }]);
 
-export const getUserByUsernameFromDB = (username: string) => UserModel.findOne({ username });
+export const getUserByEmailFromDB = (email: string) => UserModel.findOne({ email });
 
 export const getUserFromDB = (query: FilterQuery<User>) => UserModel.findOne(query);
 
@@ -81,12 +81,12 @@ export const removeStructureOfUserInDB = (userId: UserId, structureId: Structure
   );
 
 export const createUser = (user: {
-  username: string;
+  firstName: string;
   password: string;
   roles: Types.ObjectId[];
   status: string;
   last_connected: Date;
-}): Promise<User> => UserModel.create(user);
+}) => UserModel.create(user);
 
 export const addRoleAndContribToUser = (userId: Id, roleId: Types.ObjectId, contribId: Types.ObjectId) =>
   UserModel.findByIdAndUpdate(

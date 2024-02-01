@@ -8,6 +8,8 @@ import { getDispositifByIdWithAllFields } from "modules/dispositif/dispositif.re
 import { sendPublishedTradMailToStructure } from "modules/mail/sendPublishedTradMailToStructure";
 import { sendPublishedTradMailToTraductors } from "modules/mail/sendPublishedTradMailToTraductors"; */
 
+import { RoleName } from "@refugies-info/api-types";
+
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
   const res: MockResponse = {};
@@ -143,7 +145,7 @@ describe.skip("validateTranslations", () => {
       _id: "id",
       locale: "locale",
     },
-    user: { roles: [{ nom: "ExpertTrad" }] },
+    user: { roles: [{ nom: RoleName.EXPERT_TRAD }] },
     userId: "userId",
   };
 
@@ -201,7 +203,7 @@ describe.skip("validateTranslations", () => {
       traductorIdsList: ["userId1", "userId2", "userId"],
     });
 
-    await validateTranslations({ ...req, user: { roles: [{ nom: "Admin" }] } }, res);
+    await validateTranslations({ ...req, user: { roles: [{ nom: RoleName.ADMIN }] } }, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
@@ -239,7 +241,7 @@ describe.skip("validateTranslations", () => {
       traductorIdsList: [],
     });
 
-    await validateTranslations({ ...req, user: { roles: [{ nom: "Admin" }] } }, res);
+    await validateTranslations({ ...req, user: { roles: [{ nom: RoleName.ADMIN }] } }, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
@@ -268,7 +270,7 @@ describe.skip("validateTranslations", () => {
       traductorIdsList: [],
     });
 
-    await validateTranslations({ ...req, user: { roles: [{ nom: "ExpertTrad" }] } }, res);
+    await validateTranslations({ ...req, user: { roles: [{ nom: RoleName.EXPERT_TRAD }] } }, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
@@ -283,7 +285,7 @@ describe.skip("validateTranslations", () => {
   it("should return a 500 if validateTradInDB throws", async () => {
     validateTradInDB.mockRejectedValueOnce(new Error("erreur"));
 
-    await validateTranslations({ ...req, user: { roles: [{ nom: "ExpertTrad" }] } }, res);
+    await validateTranslations({ ...req, user: { roles: [{ nom: RoleName.EXPERT_TRAD }] } }, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).not.toHaveBeenCalled();
     expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
@@ -297,7 +299,7 @@ describe.skip("validateTranslations", () => {
 
   it("should return a 500 if deleteTrads throws", async () => {
     deleteTradsInDB.mockRejectedValueOnce(new Error("erreur"));
-    await validateTranslations({ ...req, user: { roles: [{ nom: "ExpertTrad" }] } }, res);
+    await validateTranslations({ ...req, user: { roles: [{ nom: RoleName.EXPERT_TRAD }] } }, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
@@ -312,7 +314,7 @@ describe.skip("validateTranslations", () => {
 
   it("should return a 500 if insertDispositif throws", async () => {
     insertInDispositif.mockRejectedValueOnce(new Error("erreur"));
-    await validateTranslations({ ...req, user: { roles: [{ nom: "ExpertTrad" }] } }, res);
+    await validateTranslations({ ...req, user: { roles: [{ nom: RoleName.EXPERT_TRAD }] } }, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
@@ -334,7 +336,7 @@ describe.skip("validateTranslations", () => {
     });
     updateLanguagesAvancement.mockRejectedValueOnce(new Error("erreur"));
 
-    await validateTranslations({ ...req, user: { roles: [{ nom: "Admin" }] } }, res);
+    await validateTranslations({ ...req, user: { roles: [{ nom: RoleName.ADMIN }] } }, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
@@ -365,7 +367,7 @@ describe.skip("validateTranslations", () => {
     });
     getDispositifByIdWithAllFields.mockRejectedValueOnce(new Error("erreur"));
 
-    await validateTranslations({ ...req, user: { roles: [{ nom: "Admin" }] } }, res);
+    await validateTranslations({ ...req, user: { roles: [{ nom: RoleName.ADMIN }] } }, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
@@ -388,7 +390,7 @@ describe.skip("validateTranslations", () => {
     sendPublishedTradMailToStructure.mockRejectedValueOnce(new Error("erreur1"));
     getDispositifByIdWithAllFields.mockResolvedValueOnce(dispoFromDB);
 
-    await validateTranslations({ ...req, user: { roles: [{ nom: "Admin" }] } }, res);
+    await validateTranslations({ ...req, user: { roles: [{ nom: RoleName.ADMIN }] } }, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");

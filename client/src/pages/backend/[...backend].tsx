@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { RoleName } from "@refugies-info/api-types";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { setLoginRedirect } from "lib/loginRedirect";
 import UnauthorizedAccess from "components/Navigation/UnauthorizedAccess/UnauthorizedAccess";
 import { userSelector } from "services/User/user.selectors";
 import { fetchUserActionCreator } from "services/User/user.actions";
@@ -23,7 +25,8 @@ const Redirect = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace(getPath("/login", router.locale));
+    setLoginRedirect();
+    router.replace(getPath("/auth", "fr"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -59,7 +62,7 @@ const Backend = () => {
     // Restriction and role: CHECK
     const roles = (user?.user && user.user.roles) || [];
     const hasAuthorizedRole = roles.filter((x: any) => route.restriction.includes(x.nom)).length > 0;
-    const hasRouteRestrictionHasStructure = route.restriction.includes("hasStructure");
+    const hasRouteRestrictionHasStructure = route.restriction.includes(RoleName.STRUCTURE);
     return hasAuthorizedRole || (hasRouteRestrictionHasStructure && user.hasStructure);
   };
 
@@ -86,7 +89,7 @@ const Backend = () => {
                       isAuthorized(route) ? <route.component title={route.name} /> : <UnauthorizedAccess />
                     }
                   />
-                ) : null
+                ) : null,
               )}
             </Switch>
           </Router>

@@ -1,14 +1,57 @@
-import { Id, Picture, SimpleDispositif, UserStatus, UserStructure } from "../generics";
+import { Id, Picture, RoleName, SimpleDispositif, UserStatus, UserStructure } from "../generics";
+
+interface AuthPassword {
+  email: string;
+  password: string;
+}
+interface AuthGoogle {
+  authCode: string;
+}
+interface AuthMicrosoft {
+  authCode: string | null; // null means we ask for the auth url
+}
 
 /**
  * @url POST /user/login
  */
 export interface LoginRequest {
-  username: string;
+  authPassword?: AuthPassword;
+  authGoogle?: AuthGoogle;
+  authMicrosoft?: AuthMicrosoft;
+  role?: RoleName.CONTRIB | RoleName.TRAD; // in case we need to create a new account with sso
+}
+
+/**
+ * @url GET /user/exists
+ */
+export interface CheckUserExistsResponse {
+  verificationCode: boolean;
+}
+
+/**
+ * @url POST /user/check-code
+ */
+export interface CheckCodeRequest {
+  code: string;
+  email: string;
+}
+
+/**
+ * @url POST /user/send-code
+ */
+export interface SendCodeRequest {
+  email: string;
+}
+
+/**
+ * @url POST /user/register
+ */
+export interface RegisterRequest {
+  email: string;
   password: string;
-  code?: string;
-  email?: string;
-  phone?: string;
+  subscribeNewsletter?: boolean;
+  firstName?: string;
+  role?: RoleName.CONTRIB | RoleName.TRAD;
 }
 
 /**
@@ -52,7 +95,7 @@ export interface UpdatePasswordRequest {
  * @url POST /user/password/reset
  */
 export interface ResetPasswordRequest {
-  username: string;
+  email: string;
 }
 
 /**
@@ -62,8 +105,6 @@ export interface NewPasswordRequest {
   newPassword: string;
   reset_password_token: string;
   code?: string;
-  email?: string;
-  phone?: string;
 }
 
 /**
@@ -71,7 +112,7 @@ export interface NewPasswordRequest {
  */
 export interface UpdateUserRequest {
   user: {
-    roles?: string[];
+    roles?: RoleName[];
     email?: string;
     phone?: string;
     code?: string;
@@ -79,6 +120,8 @@ export interface UpdateUserRequest {
     picture?: Picture;
     adminComments?: string;
     selectedLanguages?: string[];
+    partner?: string;
+    departments?: string[];
   };
   action: "modify-with-roles" | "modify-my-details";
 }
@@ -91,12 +134,14 @@ export interface GetUserInfoResponse {
   contributions: string[];
   email: string;
   phone: string;
-  roles: { _id: string; nom: string; nomPublic: string }[];
+  roles: { _id: string; nom: RoleName; nomPublic: string }[];
   selectedLanguages: string[];
   status: UserStatus;
   structures: string[];
   username: string;
   picture?: Picture;
+  partner?: string;
+  departments?: string[];
   favorites?: {
     dispositifId: Id;
     created_at: Date;
@@ -108,6 +153,7 @@ export interface GetUserInfoResponse {
  */
 export interface LoginResponse {
   token: string;
+  userCreated?: boolean;
 }
 
 /**

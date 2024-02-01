@@ -3,6 +3,7 @@ import { modifyDispositifMainSponsor } from "./modifyDispositifMainSponsor";
 import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 import { log } from "./log";
+import { RoleName } from "@refugies-info/api-types";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -95,7 +96,7 @@ describe.skip("modifyDispositifMainSponsor", () => {
   it("should call updateDispositifInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
     const req = {
       fromSite: true,
-      user: { roles: [{ nom: "Admin" }], _id: "userId" },
+      user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
       body: {
         query: {
           dispositifId: "dispositifId",
@@ -125,7 +126,7 @@ describe.skip("modifyDispositifMainSponsor", () => {
 
     const req = {
       fromSite: true,
-      user: { roles: [{ nom: "Admin" }], _id: "userId" },
+      user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
       body: {
         query: {
           dispositifId: "dispositifId",
@@ -154,7 +155,7 @@ describe.skip("modifyDispositifMainSponsor", () => {
 
     const req = {
       fromSite: true,
-      user: { roles: [{ nom: "Admin" }], _id: "userId" },
+      user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
       body: {
         query: {
           dispositifId: "dispositifId",
@@ -182,7 +183,7 @@ describe.skip("modifyDispositifMainSponsor", () => {
   it("should call updateDispositifInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
     const req = {
       fromSite: true,
-      user: { roles: [{ nom: "Admin" }], _id: "userId" },
+      user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
       body: {
         query: {
           dispositifId: "dispositifId",

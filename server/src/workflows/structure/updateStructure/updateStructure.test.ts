@@ -2,6 +2,7 @@
 import { updateStructure } from "./updateStructure";
 import { updateStructureInDB } from "../../../modules/structure/structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
+import { RoleName } from "@refugies-info/api-types";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -89,7 +90,7 @@ describe.skip("updateStructure", () => {
   });
 
   it("should call updateStructureInDB if authorized", async () => {
-    await updateStructure({ ...req, user: { roles: [{ nom: "Admin" }] } }, res);
+    await updateStructure({ ...req, user: { roles: [{ nom: RoleName.ADMIN }] } }, res);
 
     expect(updateStructureInDB).toHaveBeenCalledWith("id", {
       nom: "structure",

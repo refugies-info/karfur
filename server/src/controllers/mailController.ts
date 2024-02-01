@@ -48,7 +48,8 @@ export class MailController extends Controller {
     fromSite: [],
   })
   @Post("contacts")
-  public addContact(@Body() body: AddContactRequest): Response {
-    return addContact(body);
+  public async addContact(@Body() body: AddContactRequest): Response {
+    await addContact(body);
+    return { text: "success" };
   }
 }

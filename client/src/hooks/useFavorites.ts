@@ -4,8 +4,9 @@ import { userDetailsSelector } from "services/User/user.selectors";
 import { useCallback, useEffect, useState } from "react";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { GetUserInfoResponse, Id } from "@refugies-info/api-types";
+import useAuth from "./useAuth";
 
-const isContentFavorite = (userDetails: GetUserInfoResponse | null, id: Id | null) => {
+export const isContentFavorite = (userDetails: GetUserInfoResponse | null, id: Id | null) => {
   if (id === null) return false;
   if ((userDetails?.favorites || []).length === 0) return false;
   return !!(userDetails?.favorites || []).find(c => c.dispositifId === id);
@@ -14,6 +15,7 @@ const isContentFavorite = (userDetails: GetUserInfoResponse | null, id: Id | nul
 const useFavorites = (contentId: Id | null) => {
   const userDetails = useSelector(userDetailsSelector);
   const dispatch = useDispatch();
+  const { isAuth } = useAuth();
 
   const [isFavorite, setIsFavorite] = useState(isContentFavorite(userDetails, contentId));
 
@@ -22,8 +24,8 @@ const useFavorites = (contentId: Id | null) => {
   }, [userDetails, contentId])
 
   const addToFavorites = useCallback(() => {
-    if (API.isAuth() && userDetails) {
-      if (isFavorite || contentId === null) return;
+    if (isAuth && userDetails) {
+      if (isFavorite || !contentId) return;
       API.addUserFavorite({ dispositifId: contentId.toString() }).then(() => {
         dispatch(fetchUserActionCreator());
       });
@@ -31,8 +33,8 @@ const useFavorites = (contentId: Id | null) => {
   }, [userDetails, contentId, isFavorite, dispatch]);
 
   const deleteFromFavorites = useCallback(() => {
-    if (API.isAuth() && userDetails) {
-      if (!isFavorite || contentId === null) return;
+    if (isAuth && userDetails) {
+      if (!isFavorite || !contentId) return;
       API.deleteUserFavorites({ dispositifId: contentId.toString() }).then(() => {
         dispatch(fetchUserActionCreator());
       });

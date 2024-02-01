@@ -21,7 +21,7 @@ export const PasswordField = (props: Props) => {
         style={{
           flexDirection: "row",
           display: "flex",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <div style={{ marginTop: "10px", width: "480px" }}>

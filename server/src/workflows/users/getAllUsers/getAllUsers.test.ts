@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { getAllUsers } from "./getAllUsers";
 import { getAllUsersFromDB } from "../../../modules/users/users.repository";
+import { RoleName } from "@refugies-info/api-types";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -33,7 +34,7 @@ const user1 = {
   picture: { secure_url: "secure_url1" },
   status: "Actif",
   created_at: "created_at",
-  roles: [{ nom: "Admin" }, { nom: "ExpertTrad" }, { nom: "Trad" }, { nom: "User" }, { nom: "Contrib" }],
+  roles: [{ nom: RoleName.ADMIN }, { nom: RoleName.EXPERT_TRAD }, { nom: RoleName.TRAD }, { nom: RoleName.USER }, { nom: RoleName.CONTRIB }],
   structures: [
     {
       _id: "id_structure",
@@ -62,7 +63,7 @@ const user2 = {
   username: "username2",
   _id: "id2",
   picture: { secure_url: "secure_url2" },
-  roles: [{ nom: "User" }],
+  roles: [{ nom: RoleName.USER }],
   status: "Actif",
   created_at: "created_at",
   email: "email2",

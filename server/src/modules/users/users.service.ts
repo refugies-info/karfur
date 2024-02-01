@@ -5,12 +5,16 @@ import {
   removeStructureOfAllUsersInDB,
   addStructureForUsersInDB,
   removeStructureOfUserInDB,
+  createUser,
 } from "./users.repository";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { User } from "../../typegoose";
 import { UserId } from "../../typegoose/User";
 import { Membre, StructureId } from "../../typegoose/Structure";
-import { UserStatus } from "@refugies-info/api-types";
+import { RoleName, UserStatus } from "@refugies-info/api-types";
+import { getRoleByName } from "../role/role.repository";
+import { sendWelcomeMail } from "../mail/mail.service";
+import { addLog } from "../logs/logs.service";
 
 export const addStructureForUsers = async (userIds: UserId[], structureId: StructureId) => {
   logger.info("[addStructure] add structure for membres", { userIds, structureId });
@@ -42,7 +46,7 @@ export const removeStructureOfUser = async (userId: UserId, structureId: Structu
   });
 };
 
-export const proceedWithLogin = (user: User) => updateUserInDB(user._id, { last_connected: new Date() });
+export const updateLastConnected = (user: User) => updateUserInDB(user._id, { last_connected: new Date() });
 
 export const getUsersFromStructureMembres = async (structureMembres: Membre[]): Promise<User[]> => {
   logger.info("[getUsersFromStructureMembres] received");
@@ -72,3 +76,38 @@ export const getUsersFromStructureMembres = async (structureMembres: Membre[]): 
     return result;
   }
 };
+
+
+type RegisterUser = {
+  email: string;
+  hashedPassword?: string;
+  firstName?: string;
+  role?: RoleName.CONTRIB | RoleName.TRAD;
+}
+
+export const registerUser = async (data: RegisterUser) => {
+  const userRole = await getRoleByName(RoleName.USER);
+  const extraRole = data.role ? await getRoleByName(data.role) : null;
+
+  const userToSave = {
+    email: data.email,
+    firstName: data.firstName || null,
+    password: data.hashedPassword || null,
+    roles: [userRole._id, extraRole?._id].filter(r => !!r),
+    status: UserStatus.ACTIVE,
+    last_connected: new Date(),
+  };
+  const user = await createUser(userToSave);
+
+  if (user.email) {
+    await sendWelcomeMail(user.email, user.firstName, user._id);
+  }
+
+  logger.info("[Register] successfully registered a new user", {
+    email: data.email,
+  });
+
+  await addLog(user._id, "User", "Utilisateur créé : première connexion");
+
+  return user;
+}
