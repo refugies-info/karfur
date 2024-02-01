@@ -5,6 +5,8 @@ import {
   checkIfUserIsAdmin,
 } from "../../../libs/checkAuthorizations"; */
 
+import { RoleName } from "@refugies-info/api-types";
+
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
   const res: MockResponse = {};
@@ -37,7 +39,7 @@ describe.skip("updateDispositif", () => {
         webOnly: true,
       },
       params: { id: "id" },
-      user: { _id: "userId", roles: [{ nom: "Admin" }] }
+      user: { _id: "userId", roles: [{ nom: RoleName.ADMIN }] }
     };
 
     const date = 148707670800;

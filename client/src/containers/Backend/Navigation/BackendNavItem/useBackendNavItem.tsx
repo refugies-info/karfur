@@ -1,19 +1,19 @@
 import { MouseEvent, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { useIsomorphicLayoutEffect } from "react-use";
+import { RoleName } from "@refugies-info/api-types";
 import { PathNames } from "routes";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useRouterLocale from "hooks/useRouterLocale";
 import { userSelector } from "services/User/user.selectors";
 import history from "utils/backendHistory";
 import styles from "./BackendNavItem.module.scss";
-import { cls } from "lib/classname";
 import isInBrowser from "lib/isInBrowser";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 import { useAuth } from "hooks";
 
 export interface Props {
-  access: string;
+  access: RoleName.STRUCTURE | RoleName.ADMIN | "all";
   iconName: string;
   iconColor?: string;
   onClick?: () => void;
@@ -46,8 +46,8 @@ const useBackendNavItem = ({
   const isAdmin = user && user.admin;
   const hasStructure = user && user.hasStructure;
   if (!isAuth) return null;
-  if (access === "admin" && !isAdmin) return null;
-  if (access === "hasStructure" && !hasStructure) return null;
+  if (access === RoleName.ADMIN && !isAdmin) return null;
+  if (access === RoleName.STRUCTURE && !hasStructure) return null;
 
   const _onClick = onClick
     ? (e: MouseEvent) => {

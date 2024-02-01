@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { UserActions } from "./user.actions";
-import { GetUserInfoResponse, Id } from "@refugies-info/api-types";
+import { GetUserInfoResponse, Id, RoleName } from "@refugies-info/api-types";
 
 export interface UserState {
   user: GetUserInfoResponse | null;
@@ -31,13 +31,13 @@ export const userReducer = createReducer<UserState, UserActions>(initialUserStat
     userFetched: true,
     user: action.payload,
     userId: action.payload ? action.payload._id : "",
-    admin: action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === "Admin") : false,
+    admin: action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === RoleName.ADMIN) : false,
     traducteur:
-      action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === "Trad") : false,
+      action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === RoleName.TRAD) : false,
     expertTrad:
-      action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === "ExpertTrad") : false,
+      action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === RoleName.EXPERT_TRAD) : false,
     contributeur:
-      action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === "Contrib") : false,
+      action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === RoleName.CONTRIB) : false,
     hasStructure: action.payload && action.payload.structures ? action.payload.structures.length > 0 : false
   }),
   UPDATE_USER: (state, action) => ({ ...state, user: action.payload, userFetched: true }),

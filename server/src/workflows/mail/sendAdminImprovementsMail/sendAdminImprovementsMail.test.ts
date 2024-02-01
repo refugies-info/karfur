@@ -2,6 +2,7 @@
 import { sendAdminImprovementsMail } from "./sendAdminImprovementsMail";
 import { sendAdminImprovementsMailService } from "../../../modules/mail/mail.service";
 import { log } from "./log";
+import { RoleName } from "@refugies-info/api-types";
 
 /* jest.mock("../../../modules/mail/mail.service", () => ({
   sendAdminImprovementsMailService: jest.fn(),
@@ -32,7 +33,7 @@ describe.skip("sendAdminImprovementsMail", () => {
   });
 
   it("should return 405 if not from site", async () => {
-    const req = { user: { roles: [{ nom: "Admin" }] } };
+    const req = { user: { roles: [{ nom: RoleName.ADMIN }] } };
     await sendAdminImprovementsMail(req, res);
     expect(res.status).toHaveBeenCalledWith(405);
   });
@@ -56,7 +57,7 @@ describe.skip("sendAdminImprovementsMail", () => {
       titreMarque: "TM",
       sections: ["C'est quoi ?", "C'est pour qui ?"],
     };
-    const req = { user: { roles: [{ nom: "Admin" }] }, fromSite: true, body };
+    const req = { user: { roles: [{ nom: RoleName.ADMIN }] }, fromSite: true, body };
 
     const data = {
       dispositifId: "dispoId",
@@ -94,7 +95,7 @@ describe.skip("sendAdminImprovementsMail", () => {
         "Carte interactive",
       ],
     };
-    const req = { user: { roles: [{ nom: "Admin" }] }, fromSite: true, body };
+    const req = { user: { roles: [{ nom: RoleName.ADMIN }] }, fromSite: true, body };
 
     const data = {
       dispositifId: "dispoId",

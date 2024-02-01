@@ -15,8 +15,7 @@ import { isRoute } from "routes";
 import Link from "next/link";
 
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
-import { DsfrProvider } from "@codegouvfr/react-dsfr/next-appdir/DsfrProvider";
-import { ConsentBanner } from "@codegouvfr/react-dsfr/ConsentBanner";
+// import { ConsentBanner } from "@codegouvfr/react-dsfr/ConsentBanner";
 import { Analytics } from "components";
 
 // Only in TypeScript projects
@@ -42,14 +41,15 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-declare module "@codegouvfr/react-dsfr/gdpr" {
+// TODO: restore DSFR banner
+/* declare module "@codegouvfr/react-dsfr/gdpr" {
   interface RegisterGdprServices {
     mandatory: true;
     google_analytics: never;
     youtube: never;
   }
 }
-
+ */
 const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const [history, setHistory] = useState<string[]>([]);
   const { store, props } = wrapper.useWrappedStore(pageProps);
@@ -118,11 +118,12 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   }, []);
 
   return (
-    <DsfrProvider defaultColorScheme="light">
+    <div>
       <Analytics />
 
-      {options.cookiesModule && (
-        <ConsentBanner
+      {
+        options.cookiesModule && <></>
+        /* <ConsentBanner
           gdprLinkProps={{ href: "#" }}
           services={[
             {
@@ -144,8 +145,8 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
             },
           ]}
           siteName={"Réfugiés.info"}
-        />
-      )}
+        /> */
+      }
       <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
 
       {options.supportModule && (
@@ -166,7 +167,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
           }}
         />
       )}
-    </DsfrProvider>
+    </div>
   );
 };
 

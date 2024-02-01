@@ -1,0 +1,72 @@
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+
+$headerHeight: 120px;
+
+.container {
+  min-height: 100vh;
+}
+
+.row {
+  display: flex;
+
+  .right,
+  .main {
+    width: 50%;
+  }
+}
+
+.main {
+  width: 50%;
+  padding: u(6) u(38) u(20) u(38);
+
+  &.full_width {
+    width: 100%;
+    background-color: #fafaff;
+    padding-left: 0;
+    padding-right: 0;
+    min-height: calc(100vh - $headerHeight); // TODO: improve that
+  }
+}
+
+.right {
+  background: #ececfe;
+  min-height: calc(100vh - $headerHeight); // TODO: improve that
+}
+.illu {
+  width: 100%;
+  height: auto;
+  max-height: 50%;
+  margin: 0 auto;
+}
+
+.right_content {
+  text-align: center;
+  width: 480px;
+  margin: u(15) auto 0 auto;
+}
+
+.chapo {
+  @include dsfr-text("chapo");
+  margin-bottom: u(14);
+}
+
+.rating {
+  @include dsfr-text("small");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: u(2);
+}
+
+.small {
+  @include dsfr-text("small");
+  margin-top: u(2);
+  margin-bottom: u(12);
+}
+
+.fixed_illu {
+  position: fixed;
+  bottom: u(10);
+  left: u(26);
+}

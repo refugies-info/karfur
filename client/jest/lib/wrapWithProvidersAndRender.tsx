@@ -5,6 +5,7 @@ import configureStore from "redux-mock-store";
 import { RootState } from "services/rootReducer";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { BrowserRouter as Router } from "react-router-dom";
+import { render } from "@testing-library/react";
 
 interface WrapWithProvidersAndRenderParams<Props> {
   Component: React.FunctionComponent<any>;
@@ -36,4 +37,30 @@ export function wrapWithProvidersAndRender<T>({
   );
 
   return renderer.create(componentWithRedux);
+}
+
+/**
+ * Provide all the ugly-to-set-up providers for your component to be ready to test
+ * @param Component
+ * @param compProps properties passed on to [getPropsWithNavigation()] to gen navigation props
+ * @param reduxState defaults to initialRootState
+ */
+
+export function wrapWithProvidersAndRenderForTesting<T>({
+  Component,
+  compProps,
+  reduxState = initialMockStore,
+}: WrapWithProvidersAndRenderParams<T>) {
+  const mockStore = configureStore([]);
+  const store = mockStore(reduxState);
+
+  const componentWithRedux = (
+    <Router>
+      <Provider store={store}>
+        <Component {...compProps} />
+      </Provider>
+    </Router>
+  );
+
+  return render(componentWithRedux);
 }

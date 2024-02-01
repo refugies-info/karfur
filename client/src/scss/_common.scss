@@ -67,9 +67,9 @@ html body {
 
   // Links and buttons
   a {
-    &,
-    &[href],
-    &:hover {
+    &:not([class^="fr-"]),
+    &:not([class^="fr-"])[href],
+    &:not([class^="fr-"]):hover {
       text-decoration: none;
       color: inherit;
       background-image: none;

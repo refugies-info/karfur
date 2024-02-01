@@ -55,7 +55,7 @@ export const getAllUsers = async (): ResponseWithData<GetAllUsersResponse[]> => 
   const users = await getAllUsersForAdminFromDB(neededFields);
 
   const result = users.map((user) => {
-    const plateformeRoles = user.getPlateformeRoles();
+    const plateformeRoles = user.getPlateformeRoles() as string[];
     const structureRoles = getStructureRoles(user.getStructures(), user._id);
     const roles = plateformeRoles.concat(structureRoles);
 

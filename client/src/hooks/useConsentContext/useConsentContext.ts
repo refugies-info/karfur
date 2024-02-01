@@ -1,6 +1,6 @@
-import { RegisterGdprServices } from "@codegouvfr/react-dsfr/gdpr";
-import { GdprStore } from "@codegouvfr/react-dsfr/gdpr/GdprStore";
-import { useGdprStore } from "@codegouvfr/react-dsfr/useGdprStore";
+// import { RegisterGdprServices } from "@codegouvfr/react-dsfr/gdpr";
+// import { GdprStore } from "@codegouvfr/react-dsfr/gdpr/GdprStore";
+// import { useGdprStore } from "@codegouvfr/react-dsfr/useGdprStore";
 import { Consents } from "./types";
 
 /**
@@ -9,7 +9,7 @@ import { Consents } from "./types";
  * 2nd fix : get value from google_analytics -> only the last item is stored in the store.
  * cf: https://github.com/codegouvfr/react-dsfr/issues/114
  */
-const getFixConsent = (context: GdprStore) => {
+/* const getFixConsent = (context: GdprStore) => {
   if (Object.keys((context?.consents || {})).includes("cookie-consumer")) {
     const oldAccepted = !!context.consents?.["cookie-consumer"];
     localStorage.setItem("dsfr-gdpr-consent", `{\"consents\":{\"google_analytics\":${oldAccepted ? "true" : "false"}},\"firstChoiceMade\":true}`);
@@ -24,16 +24,16 @@ const getFixConsent = (context: GdprStore) => {
     return !!context.consents?.["google_analytics"];
   }
   return false
-}
+} */
 
 const useConsentContext = () => {
-  const context = useGdprStore();
+  const context = {} /* useGdprStore() */;
 
   /**
    * FIXME: when consentBanner is fixed, remove first line, return second one
    */
-  const isAccepted = (consent: keyof RegisterGdprServices): boolean => {
-    return getFixConsent(context);
+  const isAccepted = (consent: any/*  keyof RegisterGdprServices */): boolean => {
+    return true/* getFixConsent(context) */;
     // return context.consents[consent] || false;
   };
 

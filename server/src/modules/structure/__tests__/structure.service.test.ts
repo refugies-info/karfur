@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { RoleName } from "@refugies-info/api-types";
 import { getStructureFromDB } from "../structure.repository";
 import {
   checkIfUserIsAuthorizedToModifyStructure,
@@ -52,7 +53,7 @@ describe.skip("updateStructure", () => {
     const result = await checkIfUserIsAuthorizedToModifyStructure(
       "id",
       "requestUserId",
-      [{ nom: "Admin" }]
+      [{ nom: RoleName.ADMIN }]
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
       membres: 1,
