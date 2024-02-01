@@ -41,7 +41,7 @@ const useUserToolItem = (): HeaderProps.QuickAccessItem | null => {
     : {
         iconId: "ri-user-line",
         linkProps: {
-          href: getPath("/login", router.locale),
+          href: getPath("/auth", "fr"),
           prefetch: false,
         },
         text: t("Toolbar.Connexion", "Connexion"),

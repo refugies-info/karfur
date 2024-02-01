@@ -7,6 +7,7 @@
 } from "../../../modules/users/users.repository";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
 import { requestSMSLogin, verifyCode } from "../../../modules/users/login2FA"; */
+import { RoleName } from "@refugies-info/api-types";
 import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
@@ -68,7 +69,7 @@ describe.skip("updateUser", () => {
       fromSite: true,
 
       body: { query: { user: { _id: "id" }, action: "modify-with-roles" } },
-      user: { roles: [{ nom: "ExpertTrad" }] },
+      user: { roles: [{ nom: RoleName.EXPERT_TRAD }] },
     };
     await updateUser(req, res);
     expect(res.status).toHaveBeenCalledWith(401);
@@ -83,7 +84,7 @@ describe.skip("updateUser", () => {
         action: "modify-with-roles",
       },
     },
-    user: { roles: [{ nom: "Admin" }], _id: "userId" },
+    user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
   };
   it("should return 200 when modify, case new roles empty, actual role other", async () => {
     getRoleByName.mockResolvedValueOnce({ _id: "expertRoleId" });
@@ -94,8 +95,8 @@ describe.skip("updateUser", () => {
       roles: ["autreRoleId"]
     });
     await updateUser(reqRolesEmpty, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.ADMIN);
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
@@ -116,8 +117,8 @@ describe.skip("updateUser", () => {
     });
 
     await updateUser(reqRolesEmpty, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.ADMIN);
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
@@ -136,7 +137,7 @@ describe.skip("updateUser", () => {
         action: "modify-with-roles",
       },
     },
-    user: { roles: [{ nom: "Admin" }] },
+    user: { roles: [{ nom: RoleName.ADMIN }] },
   };
 
   it("should return 200 if user himself and type modify-my-details with selectedLanguages and user not trad", async () => {
@@ -154,13 +155,13 @@ describe.skip("updateUser", () => {
             action: "modify-my-details",
           },
         },
-        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
       res
     );
 
-    expect(getRoleByName).toHaveBeenCalledWith("Trad");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.TRAD);
     expect(getUserById).toHaveBeenCalledWith("userId", { phone: 1, roles: 1, username: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       _id: "userId",
@@ -186,13 +187,13 @@ describe.skip("updateUser", () => {
             action: "modify-my-details",
           },
         },
-        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
       res
     );
 
-    expect(getRoleByName).toHaveBeenCalledWith("Trad");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.TRAD);
     expect(getUserById).toHaveBeenCalledWith("userId", { phone: 1, roles: 1, username: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       _id: "userId",
@@ -216,7 +217,7 @@ describe.skip("updateUser", () => {
             action: "modify-my-details",
           },
         },
-        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
       res
@@ -242,7 +243,7 @@ describe.skip("updateUser", () => {
             action: "modify-my-details",
           },
         },
-        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
       res
@@ -270,7 +271,7 @@ describe.skip("updateUser", () => {
             action: "modify-my-details",
           },
         },
-        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
       res
@@ -291,8 +292,8 @@ describe.skip("updateUser", () => {
     });
 
     await updateUser(reqRolesAdmin, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.ADMIN);
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
@@ -313,8 +314,8 @@ describe.skip("updateUser", () => {
     });
 
     await updateUser(reqRolesAdmin, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.ADMIN);
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
@@ -335,8 +336,8 @@ describe.skip("updateUser", () => {
     });
 
     await updateUser(reqRolesAdmin, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.ADMIN);
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
@@ -358,8 +359,8 @@ describe.skip("updateUser", () => {
     });
 
     await updateUser(reqRolesAdmin, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.ADMIN);
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
@@ -378,7 +379,7 @@ describe.skip("updateUser", () => {
         action: "modify-with-roles",
       },
     },
-    user: { roles: [{ nom: "Admin" }] },
+    user: { roles: [{ nom: RoleName.ADMIN }] },
   };
 
   it("should return 200 when modify, case new roles expert, actual role Expert admin autre null", async () => {
@@ -391,8 +392,8 @@ describe.skip("updateUser", () => {
     });
 
     await updateUser(reqRolesExpert, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.ADMIN);
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
@@ -413,8 +414,8 @@ describe.skip("updateUser", () => {
     });
 
     await updateUser(reqRolesExpert, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.ADMIN);
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
@@ -433,7 +434,7 @@ describe.skip("updateUser", () => {
         action: "modify-with-roles",
       },
     },
-    user: { roles: [{ nom: "Admin" }] },
+    user: { roles: [{ nom: RoleName.ADMIN }] },
   };
 
   it("should return 200 when modify, case new roles expert and admin, actual role Expert admin autre null", async () => {
@@ -446,8 +447,8 @@ describe.skip("updateUser", () => {
     });
 
     await updateUser(reqRolesExpertAdmin, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.ADMIN);
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
@@ -468,8 +469,8 @@ describe.skip("updateUser", () => {
     });
 
     await updateUser(reqRolesExpertAdmin, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.ADMIN);
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
@@ -484,7 +485,7 @@ describe.skip("updateUser", () => {
     getRoleByName.mockRejectedValueOnce(new Error("error"));
 
     await updateUser(reqRolesExpertAdmin, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.EXPERT_TRAD);
     expect(getRoleByName).not.toHaveBeenCalledWith("Admin");
     expect(getUserById).toHaveBeenCalledWith("id", { phone: 1, roles: 1, username: 1, email: 1 });
     expect(updateUserInDB).not.toHaveBeenCalled();
@@ -514,7 +515,7 @@ describe.skip("updateUser", () => {
             action: "modify-my-details",
           },
         },
-        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
       res
@@ -534,7 +535,7 @@ describe.skip("updateUser", () => {
             action: "modify-my-details",
           },
         },
-        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
       res
@@ -558,7 +559,7 @@ describe.skip("updateUser", () => {
             action: "modify-my-details",
           },
         },
-        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        user: { roles: [{ nom: RoleName.ADMIN }], _id: "userId" },
         userId: "userId",
       },
       res

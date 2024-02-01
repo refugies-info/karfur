@@ -23,7 +23,7 @@ import { NotesInput } from "../../sharedComponents/NotesInput";
 import { LogList } from "../../Logs/LogList";
 import { StructureButton } from "../../sharedComponents/StructureButton";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
-import { GetAllUsersResponse, GetLogResponse, GetProgressionResponse, Id } from "@refugies-info/api-types";
+import { GetAllUsersResponse, GetLogResponse, GetProgressionResponse, Id, RoleName } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 import { logger } from "logger";
 
@@ -41,7 +41,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
   const [phone, setPhone] = useState<string>("");
   const [phoneError, setPhoneError] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
-  const [roles, setRoles] = useState<string[]>([]);
+  const [roles, setRoles] = useState<RoleName[]>([]);
   const [indicators, setIndicators] = useState<null | GetProgressionResponse>(null);
   const [selectedUserId, setSelectedUserId] = useState<Id | null>(props.selectedUserId);
 
@@ -81,8 +81,9 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       setEmail(userFromStore?.email || "");
       setPhone(userFromStore?.phone || "");
       setPhoneError("");
-      const roles = userFromStore?.roles
-        ? userFromStore.roles.filter((role: string) => role === "Admin" || role === "ExpertTrad")
+      //@ts-ignore fix type here
+      const roles: RoleName[] = userFromStore?.roles
+        ? userFromStore.roles.filter((role: string) => role === RoleName.ADMIN || role === RoleName.EXPERT_TRAD)
         : [];
       setRoles(roles);
       setAdminComments(userFromStore.adminComments || "");
@@ -136,11 +137,11 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
   const handleCheckBoxChange = (name: string) => {
     if (!roles) return;
     if (infosSaved) setInfosSaved(false);
-    const mappedName = name === "Expert en traduction" ? "ExpertTrad" : "Admin";
+    const mappedName = name === "Expert en traduction" ? RoleName.EXPERT_TRAD : RoleName.ADMIN;
     const hasAlreadyRole = roles.includes(mappedName);
 
     if (hasAlreadyRole) {
-      const newRolesFiltered = roles.filter((role: string) => role !== mappedName);
+      const newRolesFiltered = roles.filter((role: RoleName) => role !== mappedName);
       // remove role
       return setRoles(newRolesFiltered);
     }
@@ -155,7 +156,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     hasStructure &&
     userFromStore &&
     (userFromStore.structures || []).find((s) => s.role && s.role.includes("Responsable"));
-  const isAdmin = userFromStore && (userFromStore.roles || []).find((r) => r === "Admin");
+  const isAdmin = userFromStore && (userFromStore.roles || []).find((r) => r === RoleName.ADMIN);
 
   const onSaveClick = async () => {
     try {
@@ -226,8 +227,9 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     email !== (userFromStore?.email || "") ||
     phone !== (userFromStore?.phone || "") ||
     adminComments !== (userFromStore?.adminComments || "") ||
-    roles.find((r) => r === "ExpertTrad") !== (userFromStore?.roles || []).find((r) => r === "ExpertTrad") ||
-    roles.find((r) => r === "Admin") !== (userFromStore?.roles || []).find((r) => r === "Admin");
+    roles.find((r) => r === RoleName.EXPERT_TRAD) !==
+      (userFromStore?.roles || []).find((r) => r === RoleName.EXPERT_TRAD) ||
+    roles.find((r) => r === RoleName.ADMIN) !== (userFromStore?.roles || []).find((r) => r === RoleName.ADMIN);
 
   return (
     <DetailsModal
@@ -329,12 +331,12 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                 <div>
                   <RoleCheckBox
                     name="Expert en traduction"
-                    isSelected={roles.includes("ExpertTrad")}
+                    isSelected={roles.includes(RoleName.EXPERT_TRAD)}
                     handleCheckBoxChange={handleCheckBoxChange}
                   />
                   <RoleCheckBox
                     name="Administrateur"
-                    isSelected={roles.includes("Admin")}
+                    isSelected={roles.includes(RoleName.ADMIN)}
                     handleCheckBoxChange={handleCheckBoxChange}
                   />
                 </div>

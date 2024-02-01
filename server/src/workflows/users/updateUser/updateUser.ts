@@ -1,111 +1,138 @@
+import { DocumentType } from "@typegoose/typegoose";
+import { RoleName, UpdateUserRequest } from "@refugies-info/api-types";
+import isUndefined from "lodash/isUndefined";
+import omitBy from "lodash/omitBy";
 import logger from "../../../logger";
-import { getRoleByName } from "../../../modules/role/role.repository";
-import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
-import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
-import { requestSMSLogin, verifyCode } from "../../../modules/users/login2FA";
+import { getRoles } from "../../../modules/role/role.repository";
+import { getUserById, getUserFromDB, updateUserInDB } from "../../../modules/users/users.repository";
+// import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
+import { requestEmailLogin, verifyCode } from "../../../modules/users/login2FA";
+import { loginExceptionsManager } from "../../../modules/users/auth";
+import { uniqIds } from "../../../libs/uniqIds";
 import formatPhoneNumber from "../../../libs/formatPhoneNumber";
-import { loginExceptionsManager } from "../login/login.exceptions.manager";
 import { log } from "./log";
 import { ObjectId, User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
 import { Response } from "../../../types/interface";
-import { UpdateUserRequest } from "@refugies-info/api-types";
+import { needs2FA } from "../../../modules/users/auth";
+import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
+
+const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: DocumentType<User>, userReq: User) => {
+  const roles = await getRoles();
+  let newUser: Partial<User> = {}
+  const isRequestorAdmin = userReq.isAdmin();
+  if (!isRequestorAdmin) {
+    throw new UnauthorizedError("Token invalide");
+  }
+  newUser = {
+    email: request.email,
+    phone: formatPhoneNumber(request.phone),
+    adminComments: request.adminComments,
+  };
+  const expertRole = roles.find(r => r.nom === RoleName.EXPERT_TRAD);
+  const adminRole = roles.find(r => r.nom === RoleName.ADMIN);
+  const currentRoles = userFromDB.roles;
+
+  let newRoles = currentRoles.filter(
+    (role) => role && role.toString() !== adminRole._id.toString() && role.toString() !== expertRole._id.toString(),
+  );
+
+  // add role admin
+  if (request.roles.includes(RoleName.ADMIN)) {
+    newRoles.push(adminRole._id);
+  }
+  // add role expert
+  if (request.roles.includes(RoleName.EXPERT_TRAD)) {
+    newRoles.push(expertRole._id);
+  }
+
+  newUser.roles = newRoles;
+
+  return newUser;
+}
+
+const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], userFromDB: DocumentType<User>, userReq: User) => {
+  const roles = await getRoles();
+  let newUser: Partial<User> = {}
+  if (id !== userReq._id.toString()) throw new UnauthorizedError("Token invalide"); // only my infos
+
+  newUser = {
+    partner: request.partner,
+    departments: request.departments,
+    phone: request.phone ? formatPhoneNumber(request.phone) : undefined,
+    picture: request.picture,
+  };
+
+  if (request.selectedLanguages) {
+    const traducteurRole = roles.find(r => r.nom === RoleName.TRAD);
+    const newRoles = uniqIds([...userFromDB.roles, traducteurRole._id]);
+    newUser.roles = newRoles;
+    newUser.selectedLanguages = request.selectedLanguages.map(ln => new ObjectId(ln));
+  }
+  if (request.partner) {
+    const caregiverRole = roles.find(r => r.nom === RoleName.CAREGIVER);
+    const newRoles = uniqIds([...userFromDB.roles, caregiverRole._id]);
+    newUser.roles = newRoles;
+  }
+  if (request.email) {
+    const needs2fa = await needs2FA(request.email);
+    if (needs2fa) {
+      try {
+        if (!request.code) {
+          await requestEmailLogin(request.email);
+          throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
+        }
+        await verifyCode(request.email, request.code);
+      } catch (e) {
+        loginExceptionsManager(e);
+      }
+    }
+    newUser.email = request.email;
+  }
+  if (request.username) {
+    const userHasUsername = await getUserFromDB({ username: request.username });
+    if (userHasUsername && userHasUsername._id.toString() !== id) {
+      throw new UnauthorizedError("Username déjà pris", "USERNAME_TAKEN");
+    }
+    newUser.username = request.username;
+  }
+  if (request.roles) {
+    const newRoles = request.roles
+      .filter(r => [RoleName.CONTRIB, RoleName.TRAD, RoleName.CAREGIVER].includes(r)) // only these roles allowed
+      .map(r => roles.find(role => role.nom === r)?._id)
+      .filter(r => !!r);
+    newUser.roles = uniqIds([...userFromDB.roles, ...newRoles]);
+  }
+  return newUser;
+}
 
 export const updateUser = async (id: string, body: UpdateUserRequest, userReq: User): Response => {
   const { action } = body;
-  const user: Partial<User> = {
-    email: body.user.email,
-    phone: body.user.phone,
-    username: body.user.username,
-    picture: body.user.picture,
-    adminComments: body.user.adminComments,
-    selectedLanguages: (body.user.selectedLanguages || []).map(r => new ObjectId(r)),
-  }
-  logger.info("[updateUser] call received", { user, action });
+  logger.info("[updateUser] call received", { user: body.user, action });
   const userFromDB = await getUserById(id, { username: 1, phone: 1, email: 1, roles: 1 });
 
-  if (user.phone) {
-    // format phone
-    user.phone = formatPhoneNumber(user.phone);
-  }
-
+  let newUser: Partial<User> = {}
   if (action === "modify-with-roles") {
-    const isRequestorAdmin = userReq.isAdmin();
-    if (!isRequestorAdmin) {
-      throw new UnauthorizedError("Token invalide");
-    }
-    const expertRole = await getRoleByName("ExpertTrad");
-    const adminRole = await getRoleByName("Admin");
-    const actualRoles = userFromDB.roles;
+    newUser = await updateAsAdmin(body.user, userFromDB, userReq);
 
-    let newRoles = actualRoles.filter(
-      (role) => role && role.toString() !== adminRole._id.toString() && role.toString() !== expertRole._id.toString(),
-    );
-
-    // add role admin
-    if (body.user.roles.includes("Admin")) {
-      newRoles.push(adminRole._id);
-    }
-    // add role expert
-    if (body.user.roles.includes("ExpertTrad")) {
-      newRoles.push(expertRole._id);
-    }
-
-    await updateUserInDB(id, {
-      email: user.email,
-      phone: user.phone,
-      roles: newRoles,
-      adminComments: user.adminComments,
-    });
-    user.username = userFromDB.username; // populate username for log
-
-    if (userFromDB.phone !== user.phone) {
+    /* Still used?
+    if (userFromDB.phone !== body.user.phone) {
       // if phone changed, send mail
-      await sendResetPhoneNumberMail(userFromDB.username, user.email);
-    }
+      await sendResetPhoneNumberMail(userFromDB.username, body.user.email);
+    } */
   }
 
   if (action === "modify-my-details") {
-    if (id !== userReq._id.toString()) {
-      throw new UnauthorizedError("Token invalide");
-    }
-    try {
-      if (user.selectedLanguages) {
-        const traducteurRole = await getRoleByName("Trad");
-        const actualRoles = userFromDB.roles;
-        const hasAlreadyRoleTrad = !!actualRoles.find(
-          (role) => role && role.toString() === traducteurRole._id.toString(),
-        );
-        if (hasAlreadyRoleTrad) {
-          await updateUserInDB(id, user);
-        } else {
-          const newRoles = actualRoles.concat(traducteurRole._id);
-          await updateUserInDB(id, { ...user, roles: newRoles });
-        }
-      } else if (user.phone) {
-        // update phone number with 2FA
-        try {
-          if (!body.user.code) await requestSMSLogin(user.phone);
-          await verifyCode(user.phone, body.user.code);
-          await updateUserInDB(id, user);
-        } catch (e) {
-          loginExceptionsManager(e);
-        }
-      } else {
-        await updateUserInDB(id, user);
-      }
-      // populate user for logs
-      if (!user.email) user.email = userFromDB.email;
-      if (!user.phone) user.phone = userFromDB.phone;
-      if (!user.username) user.username = userFromDB.username;
-    } catch (error) {
-      if (user.username !== userReq.username) {
-        throw new UnauthorizedError("Ce pseudo est déjà pris");
-      }
-      throw error;
-    }
+    newUser = await updateAsMyself(id, body.user, userFromDB, userReq);
   }
-  await log(id, body.user, userFromDB, userReq._id);
+
+  await updateUserInDB(id, omitBy(newUser, isUndefined));
+
+  await log(id, {
+    email: newUser.email || userFromDB.email,
+    phone: newUser.phone || userFromDB.phone,
+    username: newUser.username || userFromDB.username
+  }, userFromDB, userReq._id);
 
   return { text: "success" };
 };

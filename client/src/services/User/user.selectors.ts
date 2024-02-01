@@ -9,6 +9,8 @@ export const userStructureIdSelector = (state: RootState): Id | null =>
 
 export const userDetailsSelector = (state: RootState): GetUserInfoResponse | null => state.user.user;
 
+export const userIdSelector = (state: RootState): Id | null => state.user.user?._id || null;
+
 export const userSelectedLanguageSelector = (
   state: RootState
 ): Id[] =>

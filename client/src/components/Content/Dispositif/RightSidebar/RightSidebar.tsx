@@ -123,7 +123,9 @@ const RightSidebar = () => {
           <SMSForm disabledOptions={disabledOptions} />
           <ShareButtons />
 
-          {!isAuth && <BookmarkedModal show={showNoAuthModal} toggle={noAuthModalToggle} />}
+          {!isAuth && (
+            <BookmarkedModal show={showNoAuthModal} toggle={noAuthModalToggle} dispositifId={dispositif?._id} />
+          )}
         </>
       ) : (
         <StructureReceiveDispositif />

@@ -22,6 +22,16 @@ export interface Picture {
   secure_url: string;
 }
 
+export enum RoleName {
+  ADMIN = "Admin",
+  EXPERT_TRAD = "ExpertTrad",
+  TRAD = "Trad",
+  CONTRIB = "Contrib",
+  CAREGIVER = "Aidant",
+  STRUCTURE = "hasStructure",
+  USER = "User"
+}
+
 // Theme
 export interface ThemeColors {
   color100: string;

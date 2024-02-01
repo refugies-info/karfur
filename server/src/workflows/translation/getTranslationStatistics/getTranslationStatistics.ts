@@ -1,7 +1,7 @@
 import logger from "../../../logger";
 import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { Statistics, TranslationStatisticsRequest } from "@refugies-info/api-types";
+import { RoleName, Statistics, TranslationStatisticsRequest } from "@refugies-info/api-types";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 import { Dispositif } from "../../../typegoose";
 import { countDispositifWords } from "../../../libs/wordCounter";
@@ -23,7 +23,7 @@ const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest)
     logger.info("[getTranslationStatistics] get translations statistics");
     const noFacet = facets.length === 0;
     const stats: Statistics = {};
-    const trads = users.filter((user) => user.hasRole("Trad"));
+    const trads = users.filter((user) => user.hasRole(RoleName.TRAD));
     // nbTranslators
     if (noFacet || facets.includes("nbTranslators") || facets.includes("nbActiveTranslators")) {
       stats.nbTranslators = trads.length;
@@ -31,7 +31,7 @@ const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest)
 
     // nbRedactors
     if (noFacet || facets.includes("nbRedactors")) {
-      const redactors = users.filter((user) => user.hasRole("Contrib"));
+      const redactors = users.filter((user) => user.hasRole(RoleName.CONTRIB));
       stats.nbRedactors = redactors.length;
     }
 
@@ -56,7 +56,7 @@ const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest)
     if (noFacet || facets.includes("nbActiveTranslators")) {
       const now = Date.now();
       const activeTranslators = trads.filter(
-        (user) => user.hasRole("Trad") && now - new Date(user.last_connected).getTime() <= ONE_MONTH,
+        (user) => user.hasRole(RoleName.TRAD) && now - new Date(user.last_connected).getTime() <= ONE_MONTH,
       );
       const nbActiveTranslators = languages
         .filter((ln) => ln.i18nCode !== "fr")

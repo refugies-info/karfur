@@ -1,0 +1,129 @@
+@import "src/scss/mixins/text";
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+
+.container {
+  &.half {
+    max-width: 420px;
+    margin-left: auto;
+  }
+
+  &.full {
+    width: 720px;
+    margin: auto;
+
+    .container_inner {
+      padding: 0 u(38);
+      position: relative;
+
+      .back_button {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
+
+.subtitle {
+  @include dsfr-text("large");
+  color: $lightTextMentionGrey;
+}
+
+.content {
+  margin-top: u(14);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: u(14);
+
+  h1 {
+    @include dsfr-text("h1");
+  }
+}
+
+.tag {
+  background-color: transparent;
+  border: 1px solid var(--border-default-grey);
+  color: var(--text-action-high-blue-france);
+}
+
+.button {
+  width: 100%;
+  justify-content: center;
+}
+
+.separator {
+  @include dsfr-text("large");
+  color: var(--text-disabled-grey);
+  margin: u(14) 0;
+  display: flex;
+  align-items: center;
+  gap: u(6);
+
+  span {
+    flex-shrink: 0;
+  }
+
+  &::after,
+  &::before {
+    content: "";
+    height: 1px;
+    width: 100%;
+    flex-shrink: 1;
+    background-color: var(--border-disabled-grey);
+  }
+}
+
+.space_top {
+  margin-top: u(24);
+}
+
+.small {
+  @include dsfr-text("small");
+  color: var(--text-mention-grey);
+}
+
+.radio {
+  :global(.fr-label),
+  :global(.fr-radio-rich__img) {
+    background-color: transparent !important;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.link {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+// autocomplete
+.suggestions {
+  background: white;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 6px 18px 0 #00001229;
+
+  & > button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: u(2) u(3);
+  }
+}
+
+.option {
+  background: var(--background-action-low-blue-france);
+  padding: u(2) u(3);
+  color: var(--text-action-high-blue-france);
+  display: inline-flex;
+  align-items: center;
+  gap: u(2);
+  margin-right: u(2);
+  margin-bottom: u(2);
+}

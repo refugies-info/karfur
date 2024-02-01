@@ -1,7 +1,6 @@
-import { useState, Dispatch, SetStateAction, useEffect, useRef, useMemo } from "react";
-import uniqBy from "lodash/uniqBy";
-import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-import { formatDepartment, getDbDepartment } from "lib/departments";
+import { Dispatch, SetStateAction, useRef } from "react";
+import { formatDepartment } from "lib/departments";
+import { useDepartmentAutocomplete } from "hooks";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Input from "components/Pages/dispositif/Input";
 import { RemovableItem } from "../../components";
@@ -13,63 +12,19 @@ interface Props {
 }
 
 const DepartmentInput = (props: Props) => {
-  const [search, setSearch] = useState("");
-  const refSuggestions = useRef<HTMLDivElement | null>(null);
-  const [hidePredictions, setHidePredictions] = useState(false);
-
-  const { placesService, placePredictions, getPlacePredictions } = usePlacesAutocompleteService({
-    apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,
-    options: {
-      input: search,
-      componentRestrictions: { country: "fr" },
-      types: ["administrative_area_level_2", "postal_code"],
-      language: "fr",
-    },
-  });
-
-  const onPlaceSelected = (id: string) => {
-    placesService?.getDetails({ placeId: id }, (placeDetails) => {
-      const departement = (placeDetails?.address_components || []).find((comp) =>
-        comp.types.includes("administrative_area_level_2"),
-      );
-      if (!departement) return;
-      let depName = departement.long_name;
-      if (depName === "Département de Paris") depName = "Paris";
-      if (depName) {
-        const dbDepartmentName = getDbDepartment(depName);
-        if (!props.selectedDepartments?.includes(dbDepartmentName)) {
-          const newDeps = [...(props.selectedDepartments || []), dbDepartmentName];
-          props.setSelectedDepartments(newDeps);
-          setHidePredictions(true);
-        }
-      }
-    });
-  };
-
-  useEffect(() => {
-    if (search) {
-      getPlacePredictions({ input: search });
-      if (hidePredictions) setHidePredictions(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
-
+  const { search, setSearch, hidePredictions, setHidePredictions, getPlaceSelected, predictions } =
+    useDepartmentAutocomplete();
   const handleChange = (e: any) => setSearch(e.target.value);
 
-  /**
-   * Re-calculate predictions to fix GMap autocomplete issues:
-   * - use postal_code and departement research.
-   * - if postal code, keep only first 2 digits. Then remove duplicates
-   */
-  const predictions = useMemo(() => {
-    return uniqBy(
-      placePredictions.map((p) => ({
-        id: p.place_id,
-        text: formatDepartment(p.structured_formatting.main_text),
-      })),
-      "text",
-    );
-  }, [placePredictions]);
+  const onPlaceSelected = async (id: string) => {
+    const place = await getPlaceSelected(id);
+    if (!place) return;
+    if (!props.selectedDepartments?.includes(place)) {
+      const newDeps = [...(props.selectedDepartments || []), place];
+      props.setSelectedDepartments(newDeps);
+      setHidePredictions(true);
+    }
+  };
 
   return (
     <div>
@@ -87,8 +42,8 @@ const DepartmentInput = (props: Props) => {
           icon="search-outline"
         />
 
-        {!!(!hidePredictions && placePredictions?.length) && (
-          <div className={styles.suggestions} ref={refSuggestions}>
+        {!!(!hidePredictions && predictions?.length) && (
+          <div className={styles.suggestions}>
             {predictions.slice(0, 5).map((p, i) => (
               <button
                 key={i}

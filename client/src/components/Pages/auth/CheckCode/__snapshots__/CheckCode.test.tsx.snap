@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckCode should not render the component if the email is not provided 1`] = `null`;
+
+exports[`CheckCode should render the component with the correct title and subtitle 1`] = `null`;
