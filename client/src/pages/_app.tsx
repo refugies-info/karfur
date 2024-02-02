@@ -1,22 +1,23 @@
 import React, { ReactElement, ReactNode, useCallback, useEffect, useState } from "react";
+import { useEffectOnce } from "react-use";
+import { Provider } from "react-redux";
+import type { NextPage } from "next";
 import type { AppProps } from "next/app";
+import Link from "next/link";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
-import type { NextPage } from "next";
-import { wrapper } from "services/configureStore";
-import Layout from "components/Layout/Layout";
 import { useRouter } from "next/router";
 import { PageOptions } from "types/interface";
-import "scss/index.scss";
-import { Provider } from "react-redux";
-import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatus.actions";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { initGA } from "lib/tracking";
 import { isRoute } from "routes";
-import Link from "next/link";
 
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
-// import { ConsentBanner } from "@codegouvfr/react-dsfr/ConsentBanner";
-import { Analytics } from "components";
+import { wrapper } from "services/configureStore";
+import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatus.actions";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { ConsentBannerAndConsentManagement, useConsent } from "hooks/useConsentContext";
+import Layout from "components/Layout/Layout";
+import "scss/index.scss";
 
 // Only in TypeScript projects
 declare module "@codegouvfr/react-dsfr/next-pagesdir" {
@@ -41,15 +42,6 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-// TODO: restore DSFR banner
-/* declare module "@codegouvfr/react-dsfr/gdpr" {
-  interface RegisterGdprServices {
-    mandatory: true;
-    google_analytics: never;
-    youtube: never;
-  }
-}
- */
 const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const [history, setHistory] = useState<string[]>([]);
   const { store, props } = wrapper.useWrappedStore(pageProps);
@@ -80,6 +72,12 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     // Bug router: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // load analytics without cookies if user has not clicked on cookie banner yet
+  const { finalityConsent } = useConsent();
+  useEffectOnce(() => {
+    initGA(!!finalityConsent?.analytics);
+  });
 
   // Loader
   useEffect(() => {
@@ -119,34 +117,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
 
   return (
     <div>
-      <Analytics />
-
-      {
-        options.cookiesModule && <></>
-        /* <ConsentBanner
-          gdprLinkProps={{ href: "#" }}
-          services={[
-            {
-              name: "mandatory",
-              title: "Cookies obligatoires",
-              description:
-                "Ce site utilise des cookies nécessaires à son bon fonctionnement qui ne peuvent pas être désactivés.",
-              mandatory: true,
-            },
-            {
-              name: "youtube",
-              title: "Youtube",
-              description: "Permet d'afficher les vidéos Youtube.",
-            },
-            {
-              name: "google_analytics",
-              title: "Google Analytics",
-              description: "Permet d'analyser les statistiques de consultation de notre site.",
-            },
-          ]}
-          siteName={"Réfugiés.info"}
-        /> */
-      }
+      {options.cookiesModule && <ConsentBannerAndConsentManagement />}
       <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
 
       {options.supportModule && (

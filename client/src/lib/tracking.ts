@@ -3,20 +3,11 @@ import { logger } from "logger";
 import { isEmpty } from "lodash";
 
 /**
- * Inits GA. Must be fired once only
+ * Le code suivant permet de stocker dans un cookie
+ * les informations de campagne par laquelle l'utilisateur
+ * est arrivé sur le site.
  */
-export const initGA = () => {
-  // if (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production") {
-  const trackingId = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS;
-  if (trackingId) ReactGA.initialize(trackingId);
-  // }
-
-  /**
-   * Le code suivant permet de stocker dans un cookie
-   * les informations de campagne par laquelle l'utilisateur
-   * est arrivé sur le site.
-   */
-
+const storeCampaignInfosInCookie = () => {
   // Récupérer l'URL actuelle de la page
   var url = window.location.href;
 
@@ -49,19 +40,31 @@ export const initGA = () => {
     // Créer un cookie __utmz de remplacement
     document.cookie = "__utmz=" + utmQueryString + "; path=/; expires=0";
   }
-};
+}
 
 /**
- * Adds a page view in analytics. Not needed in GA4
+ * Inits GA with consent option, or update if already initialized
  */
-// export const PageView = () => {
-//   const url = window.location.pathname + window.location.search;
-//   if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
-//     logger.info("PageView", url);
-//     return;
-//   }
-//   ReactGA.pageview(url);
-// };
+export const initGA = (consent: boolean) => {
+  if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") return;
+  const trackingId = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS;
+
+  if (!ReactGA.isInitialized) {
+    ReactGA.gtag("consent", "default", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: consent ? "granted" : "denied",
+    });
+    if (trackingId) ReactGA.initialize(trackingId);
+  } else {
+    ReactGA.gtag("consent", "update", {
+      analytics_storage: consent ? "granted" : "denied",
+    });
+  }
+  storeCampaignInfosInCookie();
+};
+
 
 /**
  * Event - Add custom tracking event.
@@ -72,7 +75,7 @@ export const initGA = () => {
 export const Event = (category: string, action: string, label: string) => {
   if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
     logger.info("Event", { category, action, label });
-    // return;
+    return;
   }
   ReactGA.event({
     category,
