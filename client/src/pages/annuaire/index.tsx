@@ -20,8 +20,8 @@ import SEO from "components/Seo";
 
 import styles from "scss/pages/annuaire.module.scss";
 import isInBrowser from "lib/isInBrowser";
+import { Event } from "lib/tracking";
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
-import { useEvent } from "hooks";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   let typeSelectedFromUrl: string[] = [];
@@ -55,7 +55,6 @@ const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
 
 const Annuaire = () => {
   const router = useRouter();
-  const { Event } = useEvent();
 
   const [keyword, setKeyword] = useState((router.query.keyword as string) || "");
   const [typeSelected, setTypeSelected] = useState<string[]>(computeTypeFromUrl(router.query) || []);

@@ -8,8 +8,9 @@ import "moment/locale/fa";
 import "moment/locale/fr";
 import "moment/locale/ru";
 import "moment/locale/uk";
-import { useEvent, useLocale } from "hooks";
+import { useLocale } from "hooks";
 import PageContext from "utils/pageContext";
+import { Event } from "lib/tracking";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 import Badge from "components/UI/Badge";
@@ -25,7 +26,6 @@ interface Props {
 
 const Header = (props: Props) => {
   const { t } = useTranslation();
-  const { Event } = useEvent();
   const dispositif = useSelector(selectedDispositifSelector);
   const locale = useLocale();
   useEffect(() => {

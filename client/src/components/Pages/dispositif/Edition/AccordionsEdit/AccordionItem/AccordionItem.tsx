@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 import { useContentType } from "hooks/dispositif";
 import PageContext from "utils/pageContext";
 import { cls } from "lib/classname";
@@ -29,7 +29,6 @@ interface Props {
  * Form component of an InfoSection. Responsible of getting and setting its own value
  */
 const AccordionItem = (props: Props) => {
-  const { Event } = useEvent();
   const [isActive, setIsActive] = useState(false);
   const { unregister, register, getValues, setValue } = useFormContext();
 

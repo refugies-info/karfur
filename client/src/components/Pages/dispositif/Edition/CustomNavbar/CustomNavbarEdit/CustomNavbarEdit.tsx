@@ -7,8 +7,9 @@ import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugie
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { isStatus } from "lib/dispositif";
+import { Event } from "lib/tracking";
 import { useContentType } from "hooks/dispositif";
-import { useEvent, useLocale, useUser } from "hooks";
+import { useLocale, useUser } from "hooks";
 import PageContext from "utils/pageContext";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
@@ -27,7 +28,6 @@ interface Props {
 }
 
 const CustomNavbarEdit = (props: Props) => {
-  const { Event } = useEvent();
   const router = useRouter();
   const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);

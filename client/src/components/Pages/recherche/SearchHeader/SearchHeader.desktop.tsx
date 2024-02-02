@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import {
@@ -20,7 +21,6 @@ import SecondaryFilter from "../SecondaryFilter";
 import { SecondaryFilterOptions } from "../SecondaryFilter/SecondaryFilter";
 import styles from "./SearchHeader.desktop.module.scss";
 import commonStyles from "scss/components/searchHeader.module.scss";
-import { useEvent } from "hooks";
 
 interface Props {
   nbResults: number;
@@ -47,7 +47,6 @@ interface Props {
 const SearchHeaderDesktop = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { Event } = useEvent();
 
   const {
     locationSearch,
@@ -77,7 +76,7 @@ const SearchHeaderDesktop = (props: Props) => {
       if (!prevState) Event("USE_SEARCH", "open filter", "location");
       return !prevState;
     });
-  }, [Event]);
+  }, []);
   const setLocationActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("location", active)),
     [dispatch],
@@ -91,7 +90,7 @@ const SearchHeaderDesktop = (props: Props) => {
       if (!prevState) Event("USE_SEARCH", "open filter", "theme");
       return !prevState;
     });
-  }, [Event]);
+  }, []);
   const setThemeActive = useCallback(
     (active: boolean) => dispatch(setInputFocusedActionCreator("theme", active)),
     [dispatch],
