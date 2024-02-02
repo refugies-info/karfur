@@ -7,17 +7,17 @@ import Link from "next/link";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { wrapper } from "services/configureStore";
 import { PageOptions } from "types/interface";
+import Layout from "components/Layout/Layout";
+import "scss/index.scss";
 import { initGA } from "lib/tracking";
 import { isRoute } from "routes";
 
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
-import { wrapper } from "services/configureStore";
 import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatus.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { ConsentBannerAndConsentManagement, useConsent } from "hooks/useConsentContext";
-import Layout from "components/Layout/Layout";
-import "scss/index.scss";
 
 // Only in TypeScript projects
 declare module "@codegouvfr/react-dsfr/next-pagesdir" {
