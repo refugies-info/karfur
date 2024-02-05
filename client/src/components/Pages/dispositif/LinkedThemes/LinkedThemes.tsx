@@ -5,10 +5,11 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { getPath } from "routes";
-import { useEvent, useLocale } from "hooks";
+import { useLocale } from "hooks";
 import { cls } from "lib/classname";
 import { getLinkedThemesReadableText } from "lib/getReadableText";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
+import { Event } from "lib/tracking";
 import { secondaryThemesSelector, themeSelector, themesSelector } from "services/Themes/themes.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
@@ -33,7 +34,6 @@ const LinkNeed = styled(Link)<LinkNeedProps>`
 
 const LinkedThemes = () => {
   const { t } = useTranslation();
-  const { Event } = useEvent();
   const locale = useLocale();
   const themes = useSelector(themesSelector);
   const dispositif = useSelector(selectedDispositifSelector);

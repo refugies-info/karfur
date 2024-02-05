@@ -1,9 +1,9 @@
 import React, { ReactElement, useCallback } from "react";
 import { Button } from "reactstrap";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { Selected } from "./SecondaryFilter";
 import styles from "./SecondaryFilter.mobile.module.scss";
-import { useEvent } from "hooks";
 
 interface Props {
   options: { key: Selected; value: string | React.ReactNode }[];
@@ -14,7 +14,6 @@ interface Props {
 }
 
 const SecondaryFilterMobile = (props: Props) => {
-  const { Event } = useEvent();
   const { selectItem, gaType } = props;
 
   const onSelectItem = useCallback(
@@ -22,7 +21,7 @@ const SecondaryFilterMobile = (props: Props) => {
       selectItem(key);
       Event("USE_SEARCH", "click filter", gaType);
     },
-    [selectItem, Event, gaType],
+    [selectItem, gaType],
   );
 
   return (

@@ -1,11 +1,12 @@
 import { useCallback, useContext, useMemo } from "react";
 import { useToggle } from "react-use";
 import { useRouter } from "next/router";
-import { useEvent, useUser } from "hooks";
+import { useUser } from "hooks";
 import { Progress } from "hooks/dispositif";
 import { ContentType, Languages, TranslationContent } from "@refugies-info/api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import PageContext from "utils/pageContext";
 import Button from "components/UI/Button";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -39,7 +40,6 @@ const defaultProgress: Progress = {
 
 const CustomNavbarTranslate = (props: Props) => {
   const { locale } = props;
-  const { Event } = useEvent();
   const progress = props.progress || defaultProgress;
   const { user } = useUser();
   const router = useRouter();

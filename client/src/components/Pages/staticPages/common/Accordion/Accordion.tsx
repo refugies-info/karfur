@@ -1,9 +1,10 @@
+import React, { useState } from "react";
+import { Button, Col, Collapse, Row } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { useConsent } from "hooks/useConsentContext";
 import useWindowSize from "hooks/useWindowSize";
 import { cls } from "lib/classname";
 import Image from "next/image";
-import React, { useState } from "react";
-import { Button, Col, Collapse, Row } from "reactstrap";
 import AutoplayVideo from "../AutoplayVideo";
 import InlineLink from "../InlineLink";
 import styles from "./Accordion.module.scss";
@@ -33,6 +34,7 @@ interface Props {
 }
 
 const Accordion = (props: Props) => {
+  const { finalityConsent } = useConsent();
   const [open, setOpen] = useState<number[]>(props.initOpen ? [0] : []);
   const { isTablet } = useWindowSize();
   const toggle = (id: number) => {
@@ -63,7 +65,7 @@ const Accordion = (props: Props) => {
           />
         );
       case "youtube":
-        return (
+        return !!finalityConsent?.youtube ? (
           <iframe
             width={item.mediaWidth || "560"}
             height={item.mediaHeight || "315"}
@@ -74,6 +76,10 @@ const Accordion = (props: Props) => {
             allowFullScreen
             className={styles.youtube}
           ></iframe>
+        ) : (
+          <div className={styles.no_cookie} style={{ width: item.mediaWidth || 560, height: item.mediaHeight || 315 }}>
+            Vous devez accepter les cookies pour afficher les vidéos Youtube.
+          </div>
         );
     }
   };
@@ -93,7 +99,7 @@ const Accordion = (props: Props) => {
                 <p
                   className={styles.text}
                   dangerouslySetInnerHTML={{
-                    __html: item.text
+                    __html: item.text,
                   }}
                 ></p>
 
@@ -119,7 +125,7 @@ const Accordion = (props: Props) => {
           className={cls(
             styles.media,
             props.mediaAlign === "center" ? styles.center : styles.right,
-            props.items[open[0]]?.className
+            props.items[open[0]]?.className,
           )}
         >
           {props.items[open[0]]?.image && getMedia("image", props.items[open[0]])}

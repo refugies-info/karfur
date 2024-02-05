@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getPath, PathNames } from "routes";
-import { useEvent, useLocale } from "hooks";
+import { useLocale } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import MobileModal from "components/Modals/MobileModal";
 import LangueSelectList from "../../LangueSelectList";
 import styles from "./ReadLanguageModal.module.scss";
+import { Event } from "lib/tracking";
 
 interface Props {
   show: boolean;
@@ -17,7 +18,6 @@ interface Props {
 
 const ReadLanguageModal = (props: Props) => {
   const { t } = useTranslation();
-  const { Event } = useEvent();
   const locale = useLocale();
   const router = useRouter();
   const dispositif = useSelector(selectedDispositifSelector);

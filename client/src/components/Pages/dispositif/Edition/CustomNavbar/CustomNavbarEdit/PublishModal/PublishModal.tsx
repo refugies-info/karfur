@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
 import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugies-info/api-types";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 import BaseModal from "components/UI/BaseModal";
 import { getMissingStepsEdit, Step } from "../functions";
 import CompleteContent from "./CompleteContent";
@@ -19,7 +19,6 @@ interface Props {
 }
 
 const PublishModal = (props: Props) => {
-  const { Event } = useEvent();
   const dispositif = useWatch<DeepPartialSkipArrayKey<CreateDispositifRequest>>();
   const missingSteps = useMemo(
     () => getMissingStepsEdit(dispositif, props.typeContenu).filter((c) => c !== null) as Step[],
@@ -39,7 +38,7 @@ const PublishModal = (props: Props) => {
     if (props.show) {
       Event("DISPO_CREATE", `${missingSteps.length} missing steps: ${missingSteps.join(", ")}`, "Missing Steps");
     }
-  }, [props.show, Event, missingSteps]);
+  }, [props.show, missingSteps]);
 
   return (
     <BaseModal show={props.show} toggle={props.toggle} title={title} small>
