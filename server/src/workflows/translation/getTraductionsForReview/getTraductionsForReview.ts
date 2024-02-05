@@ -19,12 +19,12 @@ const getTraductionsForReview = async (dispositif: DispositifId, language: Langu
       translated: trad.translated,
       validator: {
         id: trad.getUser().id,
-        username: trad.getUser().username,
+        username: trad.getUser().username || trad.getUser().email,
         picture: trad.getUser().picture,
       },
       author: {
         id: currentUser.id,
-        username: currentUser.username,
+        username: currentUser.username || currentUser.email,
         picture: currentUser.picture,
       },
       toReview: trad.toReview,
@@ -43,7 +43,7 @@ const getTraductionsForReview = async (dispositif: DispositifId, language: Langu
       translated: trad.translated,
       author: {
         id: trad.getUser().id,
-        username: trad.getUser().username,
+        username: trad.getUser().username || trad.getUser().email,
         picture: trad.getUser().picture,
       },
       toReview: trad.toReview,

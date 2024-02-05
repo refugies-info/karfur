@@ -4,7 +4,7 @@
 export interface ImprovementsRequest {
   dispositifId: string;
   users: {
-    username: string;
+    username?: string;
     _id: string;
     email: string;
   }[];

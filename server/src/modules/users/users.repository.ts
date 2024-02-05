@@ -16,8 +16,8 @@ export const getUserFromDB = (query: FilterQuery<User>) => UserModel.findOne(que
 
 export const getUserName = async (
   id: Id,
-) => UserModel.findById(id, { "username": 1 })
-  .then(res => res?.username)
+) => UserModel.findById(id, { "username": 1, "email": 1 })
+  .then(res => res?.username || res?.email)
 
 
 // find many

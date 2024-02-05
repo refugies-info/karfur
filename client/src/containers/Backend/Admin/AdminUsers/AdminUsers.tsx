@@ -344,7 +344,7 @@ export const AdminUsers = () => {
                           height={40}
                           style={{ objectFit: "contain" }}
                         />
-                        <StructureName className="ms-4">{element.username}</StructureName>
+                        <StructureName className="ms-4">{element.username || element.email}</StructureName>
                       </RowContainer>
                     </div>
                   </td>

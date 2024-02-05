@@ -128,7 +128,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
         )}
         {selectedUser && (
           <div>
-            <SelectedUser>{selectedUser.username}</SelectedUser>
+            <SelectedUser>{selectedUser.username || selectedUser.email}</SelectedUser>
             <ModifyLink onClick={() => setSelectedUser(null)}>
               <u>Modifier</u>
             </ModifyLink>

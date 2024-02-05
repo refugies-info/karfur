@@ -51,10 +51,8 @@ export const UserDetail = (props: Props) => {
     props.user && props.user.picture && props.user.picture.secure_url ? props.user.picture.secure_url : marioProfile;
 
   const getText = () => {
-    if (props.user && props.user.email) {
-      return `${props.user.username} - ${props.user.email}`;
-    }
-    return props.user.username;
+    if (props.user?.username) return `${props.user.username} - ${props.user.email}`;
+    return props.user.email;
   };
   return (
     <UserDetailContainer isSelected={props.isSelected} onClick={() => props.onSelectItem(props.user)}>

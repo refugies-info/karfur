@@ -21,7 +21,7 @@ export const SmallDispositif = (props: Props) => {
         <div>Créé le {moment(dispositif.created_at).format("LLL")}</div>
         {dispositif.creator && (
           <div>
-            par <strong>{dispositif.creator.username}</strong>
+            par <strong>{dispositif.creator.username || dispositif.creator.email}</strong>
           </div>
         )}
         {dispositif.hasCreatedStructure && (

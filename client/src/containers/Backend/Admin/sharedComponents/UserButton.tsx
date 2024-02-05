@@ -33,8 +33,8 @@ export const UserButton = (props: {
         )}
         {user && (
           <p className={styles.text}>
-            <strong className="mx-1">{user.username}</strong>
-            {!condensed && "| " + user.email}
+            <strong className="mx-1">{user.email}</strong>
+            {!condensed && user.username && "| " + user.username}
           </p>
         )}
         {text && (
