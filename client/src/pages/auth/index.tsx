@@ -18,7 +18,7 @@ import Error from "components/Pages/auth/Error";
 import Layout from "components/Pages/auth/Layout";
 import GoogleIcon from "assets/auth/providers/google-icon.svg";
 import MicrosoftIcon from "assets/auth/providers/microsoft-icon.svg";
-import DataInclusionIcon from "assets/auth/providers/data-inclusion-icon.svg";
+// import DataInclusionIcon from "assets/auth/providers/data-inclusion-icon.svg";
 import styles from "scss/components/auth.module.scss";
 
 const AuthEmail = () => {
@@ -93,7 +93,7 @@ const AuthEmail = () => {
       }
     }
   }, []);
-  const loginInclusionConnect = useCallback(() => {}, []);
+  // const loginInclusionConnect = useCallback(() => {}, []);
 
   return (
     <div className={cls(styles.container, styles.half)}>
@@ -149,10 +149,10 @@ const AuthEmail = () => {
           <Image src={MicrosoftIcon} width={24} height={24} alt="" className="me-2" />
           Microsoft
         </Button>
-        <Button onClick={loginInclusionConnect} className={cls(styles.button, "mb-4")} priority="tertiary">
+        {/* <Button onClick={loginInclusionConnect} className={cls(styles.button, "mb-4")} priority="tertiary">
           <Image src={DataInclusionIcon} width={24} height={24} alt="" className="me-2" />
           Inclusion Connect
-        </Button>
+        </Button> */}
 
         <Error error={error} />
       </div>
