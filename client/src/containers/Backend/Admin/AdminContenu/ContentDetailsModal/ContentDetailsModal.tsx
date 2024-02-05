@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Row, Col } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import cloneDeep from "lodash/cloneDeep";
 import moment from "moment";
 import "moment/locale/fr";
@@ -33,7 +32,6 @@ import {
   GetLogResponse,
   Id,
 } from "@refugies-info/api-types";
-import { getPath } from "routes";
 import { useLanguages } from "hooks";
 
 interface Props {

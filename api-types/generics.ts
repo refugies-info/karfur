@@ -97,15 +97,15 @@ export enum UserStatus {
 
 export interface SimpleUser {
   _id: Id;
-  username: string;
-  picture?: Picture;
   email?: string;
+  username?: string;
+  picture?: Picture;
   roles?: string[];
 }
 
 export interface StructureMember {
   userId: string;
-  username: string;
+  username?: string;
   picture: Picture;
   last_connected: Date;
   roles: string[];

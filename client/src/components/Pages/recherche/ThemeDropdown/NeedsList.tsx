@@ -13,9 +13,9 @@ import Checkbox from "components/UI/Checkbox";
 import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
 import { cls } from "lib/classname";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
+import { Event } from "lib/tracking";
 import styles from "./ThemeDropdown.module.scss";
 import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
-import { useEvent } from "hooks";
 
 type ButtonNeedProps = {
   color100: string;
@@ -42,7 +42,6 @@ const NeedsList = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
   const dispatch = useDispatch();
-  const { Event } = useEvent();
 
   const themes = useSelector(themesSelector);
   const allNeeds = useSelector(needsSelector);

@@ -60,7 +60,7 @@ export const WidgetLine = (props: Props) => {
         <h3 className={styles.name}>{widget.name}</h3>
         <p className={styles.details}>
           Créé le {moment(widget.created_at).format("LL")} par{" "}
-          <span className={styles.author}>{widget.author.username}</span>
+          <span className={styles.author}>{widget.author.username || widget.author.email}</span>
         </p>
       </div>
       <div>

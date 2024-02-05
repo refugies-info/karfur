@@ -24,7 +24,7 @@ export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userI
       titreMarque: body.titreMarque,
       lien: "https://refugies.info/dispositif/" + body.dispositifId,
       email: user.email,
-      pseudo: user.username,
+      pseudo: user.username || "",
       sectionsToModify: formattedSections,
       message: body.message,
     });

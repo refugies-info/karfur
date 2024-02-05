@@ -22,7 +22,7 @@ export interface GetWidgetResponse {
   typeContenu: ContentType[];
   department: string;
   languages: string[];
-  author: { username: string };
+  author: { username?: string, email: string };
   created_at: Date;
 }
 
@@ -37,7 +37,7 @@ export interface PostWidgetResponse {
   typeContenu: ContentType[];
   department: string;
   languages: string[];
-  author: { username: string };
+  author: { username?: string, email: string };
   created_at: Date;
 }
 
@@ -52,6 +52,6 @@ export interface PatchWidgetResponse {
   typeContenu: ContentType[];
   department: string;
   languages: string[];
-  author: { username: string };
+  author: { username?: string, email: string };
   created_at: Date;
 }

@@ -10,7 +10,7 @@ import { cls } from "lib/classname";
 import { onEnterOrSpace } from "lib/onEnterOrSpace";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./LocationDropdown.module.scss";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 import { getPlaceName } from "./functions";
 
 interface Props {
@@ -23,7 +23,6 @@ const LocationDropdown = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
-  const { Event } = useEvent();
   const { locationSearch, resetLocationSearch } = props;
 
   const { placesService, placePredictions, getPlacePredictions } = usePlacesAutocompleteService({
@@ -55,7 +54,7 @@ const LocationDropdown = (props: Props) => {
       });
       resetLocationSearch();
     },
-    [Event, placesService, resetLocationSearch, query.departments, dispatch],
+    [placesService, resetLocationSearch, query.departments, dispatch],
   );
 
   useEffect(() => {

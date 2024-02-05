@@ -3,6 +3,7 @@ import { Button, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
 import {
   searchQuerySelector,
@@ -12,15 +13,12 @@ import {
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./ResultsFilter.module.scss";
-import { useEvent } from "hooks";
 
 interface Props {}
 
 const ResultsFilter = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { Event } = useEvent();
-
   const query = useSelector(searchQuerySelector);
   const themesDisplayed = useSelector(themesDisplayedSelector);
   const filteredResult = useSelector(searchResultsSelector);
@@ -57,7 +55,7 @@ const ResultsFilter = (props: Props) => {
       dispatch(addToQueryActionCreator({ type: key }));
       Event("USE_SEARCH", "use type filter", "click type");
     },
-    [Event, dispatch],
+    [dispatch],
   );
 
   const toggleSort = useCallback(() => {
@@ -65,14 +63,14 @@ const ResultsFilter = (props: Props) => {
       if (!o) Event("USE_SEARCH", "open filter", "sort");
       return !o;
     });
-  }, [Event]);
+  }, []);
 
   const selectSort = useCallback(
     (key: SortOptions) => {
       dispatch(addToQueryActionCreator({ sort: key }));
       Event("USE_SEARCH", "click filter", "sort");
     },
-    [Event, dispatch],
+    [dispatch],
   );
 
   return (

@@ -138,7 +138,7 @@ export interface GetUserInfoResponse {
   selectedLanguages: string[];
   status: UserStatus;
   structures: string[];
-  username: string;
+  username?: string;
   picture?: Picture;
   partner?: string;
   departments?: string[];
@@ -161,7 +161,7 @@ export interface LoginResponse {
  */
 export interface GetActiveUsersResponse {
   _id: Id;
-  username: string;
+  username?: string;
   picture: Picture;
   status: UserStatus;
   email: string;
@@ -172,12 +172,12 @@ export interface GetActiveUsersResponse {
  */
 export interface GetAllUsersResponse {
   _id: Id;
-  username: string;
+  username?: string;
   picture?: Picture;
   status?: UserStatus;
   created_at?: Date;
   roles?: string[];
-  email?: string;
+  email: string;
   phone?: string;
   selectedLanguages?: { langueCode: string; langueFr: string }[];
   structures?: UserStructure[];

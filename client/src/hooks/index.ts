@@ -1,11 +1,8 @@
-export { default as useAnalytics } from "./useAnalytics";
 export { default as useAuth } from "./useAuth";
 export { default as useChangeLanguage } from "./useChangeLanguage";
-export { default as useConsentContext } from "./useConsentContext";
 export { default as useContentLocale } from "./useContentLocale";
 export { default as useDepartmentAutocomplete } from "./useDepartmentAutocomplete";
 export { default as useEditionMode } from "./useEditionMode";
-export { default as useEvent } from "./useEvent";
 export { default as useFavorites } from "./useFavorites";
 export { default as useLanguages } from "./useLanguages";
 export { default as useLocale } from "./useLocale";
