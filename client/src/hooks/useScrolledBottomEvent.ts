@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import throttle from "lodash/throttle";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 
 /**
  * Send an analytics event when the page is scrolled to the bottom
@@ -9,7 +9,6 @@ import { useEvent } from "hooks";
 const useScrolledBottomEvent = (sendEvent: boolean) => {
   const [isBottom, setIsBottom] = useState(false);
   const [eventSent, setEventSent] = useState(false);
-  const { Event } = useEvent();
 
   const handleScroll = useCallback(() => {
     const footer = document.getElementById("footer");
@@ -33,7 +32,7 @@ const useScrolledBottomEvent = (sendEvent: boolean) => {
       setEventSent(true);
       if (sendEvent) Event("SCROLL", "scrolled bottom", "Dispo View");
     }
-  }, [isBottom, eventSent, Event, sendEvent])
+  }, [isBottom, eventSent, sendEvent])
 };
 
 export default useScrolledBottomEvent;

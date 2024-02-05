@@ -40,7 +40,7 @@ export const ChooseResponsableComponent = (props: Props) => {
 
   return (
     <div>
-      <SelectedUser>{props.responsable.username}</SelectedUser>
+      <SelectedUser>{props.responsable.username || props.responsable.email}</SelectedUser>
       <ModifyLink onClick={props.removeRespo}>
         <u>Modifier</u>
       </ModifyLink>

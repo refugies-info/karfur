@@ -1,2 +1,1 @@
-export { default } from "./useConsentContext";
-export { Consents } from "./types";
+export * from "./useConsentContext";

@@ -17,13 +17,19 @@ const filterUser = (data: GetActiveUsersResponse[], excludedUsers: Id[], search:
   const normalizedSearch = removeAccents(search.toLowerCase());
   return data.filter(
     (element) =>
-      element.username &&
-      !excludedUsers.includes(element._id) &&
-      removeAccents(element.username)
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .includes(normalizedSearch),
+      (!excludedUsers.includes(element._id) &&
+        element.username &&
+        removeAccents(element.username)
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .includes(normalizedSearch)) ||
+      (element.email &&
+        element.email
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .includes(normalizedSearch)),
   );
 };
 

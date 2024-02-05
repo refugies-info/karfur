@@ -272,14 +272,14 @@ export const TabHeader = (props: {
   </StyledTabHeader>
 );
 
-export const Date = (props: { date: Date | undefined; author?: { _id: Id; username: string } }) => (
+export const Date = (props: { date: Date | undefined; author?: { _id: Id; username?: string; email: string } }) => (
   <p className={styles.text}>
     {!props.date ? (
       "Non disponible"
     ) : (
       <>
         {`${moment(props.date).format("LLL")} soit ${moment(props.date).fromNow()}`}
-        {props.author && <strong>{` par ${props.author.username}`}</strong>}
+        {props.author && <strong>{` par ${props.author.username || props.author.email}`}</strong>}
       </>
     )}
   </p>

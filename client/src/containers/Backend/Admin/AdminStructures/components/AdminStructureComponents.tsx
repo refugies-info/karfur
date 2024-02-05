@@ -61,7 +61,7 @@ export const ResponsableComponent = (props: Props) => {
               marginLeft: 16,
             }}
           >
-            {props.responsable.username}
+            {props.responsable.username || props.responsable.email}
           </div>
         ) : (
           <FButton
@@ -92,7 +92,9 @@ export const ResponsableComponent = (props: Props) => {
           style={{ objectFit: "contain" }}
         />
       )}
-      <span className="ms-4">{props.responsable ? props.responsable.username : "Aucun responsable"}</span>
+      <span className="ms-4">
+        {props.responsable ? props.responsable.username || props.responsable.email : "Aucun responsable"}
+      </span>
     </RowContainer>
   );
 };

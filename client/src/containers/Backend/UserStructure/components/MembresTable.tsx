@@ -76,7 +76,7 @@ export const MembresTable = (props: Props) => (
                   height={40}
                   style={{ objectFit: "contain" }}
                 />
-                <UserName isUser={isUser}>{element.username}</UserName>
+                <UserName isUser={isUser}>{element.username || ""}</UserName>
               </RowContainer>
             </td>
             <td className="align-middle">

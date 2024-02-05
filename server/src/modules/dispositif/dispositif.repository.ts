@@ -30,13 +30,13 @@ export const getDispositifsFromDB = async () =>
     .populate<{
       mainSponsor: { _id: Id; nom: string; status: string; picture: Picture };
       creatorId: { _id: Id; username: string; picture: Picture; email: string };
-      lastModificationAuthor: { _id: Id; username: string };
-      publishedAtAuthor: { _id: Id; username: string };
+      lastModificationAuthor: { _id: Id; username: string | undefined, email: string };
+      publishedAtAuthor: { _id: Id; username: string | undefined, email: string };
     }>([
       { path: "mainSponsor", select: "_id nom status picture" },
       { path: "creatorId", select: "_id username picture email" },
-      { path: "lastModificationAuthor", select: "_id username" },
-      { path: "publishedAtAuthor", select: "_id username" },
+      { path: "lastModificationAuthor", select: "_id email username" },
+      { path: "publishedAtAuthor", select: "_id email username" },
     ])
     .lean();
 

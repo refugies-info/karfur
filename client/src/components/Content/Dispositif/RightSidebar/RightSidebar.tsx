@@ -2,9 +2,10 @@ import { useEffect, useState, useCallback, useMemo } from "react";
 import { DispositifStatus } from "@refugies-info/api-types";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
-import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage, useEvent, useUser } from "hooks";
+import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage, useUser } from "hooks";
 import { useDispositifTts } from "hooks/dispositif";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import Button from "components/UI/Button";
@@ -19,7 +20,6 @@ const RightSidebar = () => {
   const locale = useLocale();
   const { contentLocale } = useContentLocale();
   const { isAuth } = useAuth();
-  const { Event } = useEvent();
 
   // favorites
   const [showNoAuthModal, setShowNoAuthModal] = useState(false);
@@ -40,7 +40,7 @@ const RightSidebar = () => {
       setShowFavoriteToast("added");
       Event("FAVORITES", "add", "Dispo View");
     }
-  }, [addToFavorites, deleteFromFavorites, isFavorite, isAuth, noAuthModalToggle, Event]);
+  }, [addToFavorites, deleteFromFavorites, isFavorite, isAuth, noAuthModalToggle]);
 
   // tts
   const { isPlayingTts, isLoadingTts, toggleReading } = useDispositifTts();

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import isUndefined from "lodash/isUndefined";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
 import FRLink from "components/UI/FRLink";
 import { getSponsorLink } from "./functions";
@@ -28,7 +28,6 @@ interface Props {
  */
 const Metadatas = ({ metadatas, titreMarque, mainSponsor, color, typeContenu }: Props) => {
   const { t } = useTranslation();
-  const { Event } = useEvent();
 
   if (!metadatas) return <></>;
   return (
