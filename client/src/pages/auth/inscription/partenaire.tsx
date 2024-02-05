@@ -66,7 +66,7 @@ const AuthLogin = () => {
         <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre structure" />
 
         <div className={cls(styles.title, "mt-14")}>
-          <h1>Dans quelle structure êtes-vous&nbsp;?</h1>
+          <h1 className={styles.sm}>Dans quelle structure êtes-vous&nbsp;?</h1>
           <p className={styles.subtitle}>
             Nous avons un partenariat avec ces structures, précisez nous si vous en faites partie.
           </p>
