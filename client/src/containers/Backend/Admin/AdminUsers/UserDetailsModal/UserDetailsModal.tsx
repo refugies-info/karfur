@@ -246,7 +246,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
             height={50}
             style={{ objectFit: "contain" }}
           />
-          <h2>{userFromStore ? userFromStore.username : "utilisateur supprimé"}</h2>
+          <h2>{userFromStore ? userFromStore.username || userFromStore.email : "utilisateur supprimé"}</h2>
         </>
       }
       rightHead={

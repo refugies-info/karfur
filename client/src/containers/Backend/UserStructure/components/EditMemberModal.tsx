@@ -88,7 +88,7 @@ const EditMemberModal = (props: Props) => {
           height={40}
           style={{ objectFit: "contain" }}
         />
-        <UserName>{props.selectedUser.username}</UserName>
+        <UserName>{props.selectedUser.username || ""}</UserName>
       </RowContainer>
       <Role role={"Rédacteur"} onRoleSelect={setSelectedRole} state={getState("Rédacteur")} />
       <Role role={"Responsable"} onRoleSelect={setSelectedRole} state={getState("Responsable")} />

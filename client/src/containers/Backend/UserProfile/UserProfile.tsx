@@ -336,9 +336,9 @@ export const UserProfile = (props: Props) => {
   };
 
   useEffect(() => {
-    setUsername(user ? user.username : "");
-    setEmail(user ? user.email : "");
-    setPhone(user ? user.phone : "");
+    setUsername(user?.username || "");
+    setEmail(user?.email || "");
+    setPhone(user?.phone || "");
     window.scrollTo(0, 0);
   }, [user]);
   if (isLoadingFetch)

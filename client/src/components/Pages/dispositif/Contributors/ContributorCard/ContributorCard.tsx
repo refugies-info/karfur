@@ -23,10 +23,10 @@ const ContributorCard = ({ user }: Props) => {
         src={user.picture?.secure_url || DefaultAvatar}
         width={88}
         height={88}
-        alt={user.username}
+        alt={user.username || "user picture"}
         className={cls(styles.image, hasProfilePicture && styles.profile)}
       />
-      <span className={styles.username}>{user.username}</span>
+      <span className={styles.username}>{user.username || "Utilisateur"}</span>
       <span className={styles.role}>
         {t(`Roles.${role}`)}
         {role === "admin" && <Image src={AdminIcon} width={16} height={16} alt="" className="ms-2" />}

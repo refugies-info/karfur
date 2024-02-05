@@ -25,7 +25,7 @@ interface UserToExport {
 }
 interface User {
   _id: mongoose.Types.ObjectId;
-  username: string;
+  username?: string;
   created_at?: Date;
   last_connected?: Date;
   roles?: Role[];

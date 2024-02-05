@@ -16,7 +16,7 @@
     "@hedgedoc/html-to-react": "^1.4.5",
     "@lexical/react": "^0.11.0",
     "@react-google-maps/api": "^2.17.0",
-    "@refugies-info/api-types": "1.0.42",
+    "@refugies-info/api-types": "1.0.43",
     "algoliasearch": "^4.14.2",
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.26.0",
