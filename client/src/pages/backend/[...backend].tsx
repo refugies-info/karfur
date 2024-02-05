@@ -10,7 +10,7 @@ import { userSelector } from "services/User/user.selectors";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { backendRoutes, BackendRouteType } from "containers/Backend/routes";
+import { backendRoutes, BackendRouteType } from "components/Backend/screens/routes";
 import { getPath } from "routes";
 import isInBrowser from "lib/isInBrowser";
 import SEO from "components/Seo";

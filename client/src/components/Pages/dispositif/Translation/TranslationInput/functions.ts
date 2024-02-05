@@ -1,4 +1,4 @@
-import { NeedTradStatus } from "containers/Backend/UserTranslation/types";
+import { NeedTradStatus } from "components/Backend/screens/UserTranslation/types";
 import { Suggestion } from "hooks/dispositif";
 
 export enum UserTradStatus {
