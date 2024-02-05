@@ -41,6 +41,10 @@
 
   h1 {
     @include dsfr-text("h1");
+
+    &.sm {
+      @include dsfr-text("h2");
+    }
   }
 }
 
@@ -90,6 +94,16 @@
   :global(.fr-label),
   :global(.fr-radio-rich__img) {
     background-color: transparent !important;
+  }
+  :global(.fr-radio-rich input[type="radio"] + label) {
+    padding-right: 0;
+  }
+  // remove separator
+  :global(.fr-radio-rich__img) {
+    background-size: 100% 1px, 100% 1px, 1px 100%, 0 0;
+  }
+  :global(.fr-radio-rich input[type="radio"] + label) {
+    background-size: 100% 1px, 0 100%, 100% 1px, 1px 100%, 1.125rem 1.125rem, 1.125rem 1.125rem;
   }
 }
 
