@@ -19,7 +19,7 @@ export class Favorite {
 
 @modelOptions({ schemaOptions: { collection: "users", timestamps: { createdAt: "created_at" } } })
 export class User extends Base {
-  @prop({ unique: true, lowercase: true, trim: true })
+  @prop({ lowercase: true, trim: true })
   public username?: string;
 
   @prop()
