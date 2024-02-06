@@ -13,7 +13,6 @@ declare type templateIds = {
   publishedTradForTraductors: string;
   subscriptionReminderMail: string;
   resetPassword: string;
-  changePhoneNumber: string;
   newResponsable: string;
   accountDeleted: string;
 };
@@ -31,7 +30,6 @@ export const templatesIds: templateIds = {
   publishedTradForTraductors: "d-f933396f06ac43c9aadfbcf41288fbb3",
   subscriptionReminderMail: "d-7b825e600f5c46ad9a1666e4431d2c97",
   resetPassword: "d-30e42b33779d48b093958e10fb639d0e",
-  changePhoneNumber: "d-c965968fa40940b3bac0ffed023a237f",
   newResponsable: "d-efb7b79df19a454caa52473ffa517fe6",
   secondOneDraftReminder: "d-7fc299960fca4d9db6b78b494ce84689",
   secondMultipleDraftReminder: "d-d0cd2b645a194866980a3288ddfc4b27",

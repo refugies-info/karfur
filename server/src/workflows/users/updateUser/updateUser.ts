@@ -5,7 +5,6 @@ import omitBy from "lodash/omitBy";
 import logger from "../../../logger";
 import { getRoles } from "../../../modules/role/role.repository";
 import { getUserById, getUserFromDB, updateUserInDB } from "../../../modules/users/users.repository";
-import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
 import { requestEmailLogin, verifyCode } from "../../../modules/users/login2FA";
 import { loginExceptionsManager } from "../../../modules/users/auth";
 import { uniqIds } from "../../../libs/uniqIds";
@@ -47,11 +46,6 @@ const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: Doc
   }
 
   newUser.roles = newRoles;
-
-  // if phone changed, send mail
-  if (userFromDB.phone !== request.phone) {
-    await sendResetPhoneNumberMail(userFromDB.firstName, request.email);
-  }
 
   return newUser;
 }
