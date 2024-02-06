@@ -5,7 +5,7 @@ import omitBy from "lodash/omitBy";
 import logger from "../../../logger";
 import { getRoles } from "../../../modules/role/role.repository";
 import { getUserById, getUserFromDB, updateUserInDB } from "../../../modules/users/users.repository";
-// import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
+import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
 import { requestEmailLogin, verifyCode } from "../../../modules/users/login2FA";
 import { loginExceptionsManager } from "../../../modules/users/auth";
 import { uniqIds } from "../../../libs/uniqIds";
@@ -47,6 +47,11 @@ const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: Doc
   }
 
   newUser.roles = newRoles;
+
+  // if phone changed, send mail
+  if (userFromDB.phone !== request.phone) {
+    await sendResetPhoneNumberMail(userFromDB.firstName, request.email);
+  }
 
   return newUser;
 }
@@ -114,12 +119,6 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
   let newUser: Partial<User> = {}
   if (action === "modify-with-roles") {
     newUser = await updateAsAdmin(body.user, userFromDB, userReq);
-
-    /* Still used?
-    if (userFromDB.phone !== body.user.phone) {
-      // if phone changed, send mail
-      await sendResetPhoneNumberMail(userFromDB.username, body.user.email);
-    } */
   }
 
   if (action === "modify-my-details") {
