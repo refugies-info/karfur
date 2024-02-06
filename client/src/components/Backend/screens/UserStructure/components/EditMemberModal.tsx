@@ -6,7 +6,7 @@ import styled from "styled-components";
 import marioProfile from "assets/mario-profile.jpg";
 import { Role } from "./Role";
 import styles from "./MemberModal.module.scss";
-import { Id, StructureMember } from "@refugies-info/api-types";
+import { Id, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
 
 const Title = styled.div`
   font-weight: normal;
@@ -38,7 +38,7 @@ const UserName = styled.div`
 interface Props {
   show: boolean;
   toggle: () => void;
-  modifyRole: (arg: Id, role: "contributeur" | "administrateur") => void;
+  modifyRole: (arg: Id, role: StructureMemberRole) => void;
   selectedUser: StructureMember | null;
 }
 
@@ -47,7 +47,7 @@ const EditMemberModal = (props: Props) => {
 
   const modifyRole = () => {
     if (!props.selectedUser || !selectedRole) return;
-    const formattedRole = selectedRole === "Responsable" ? "administrateur" : "contributeur";
+    const formattedRole = selectedRole === "Responsable" ? StructureMemberRole.ADMIN : StructureMemberRole.CONTRIB;
     props.modifyRole(props.selectedUser.userId, formattedRole);
   };
 

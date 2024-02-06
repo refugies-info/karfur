@@ -1,4 +1,4 @@
-import { GetStructureDispositifResponse, GetStructureResponse, GetUserContributionsResponse, Id } from "@refugies-info/api-types";
+import { GetStructureDispositifResponse, GetStructureResponse, GetUserContributionsResponse, Id, StructureMemberRole } from "@refugies-info/api-types";
 import { FormattedUserContribution } from "./types";
 
 export const formatContributions = (
@@ -26,7 +26,7 @@ export const formatContributions = (
 
   // dispositif of structures of user
   const isResponsableOfStructure = (userStructure?.membres || [])
-    .find(m => m.userId === userId?.toString())?.roles.includes("administrateur") || false;
+    .find(m => m.userId === userId?.toString())?.roles.includes(StructureMemberRole.ADMIN) || false;
   userStructureContributions
     .filter((dispositif) => {
       if ( // do not show dispositif with these status

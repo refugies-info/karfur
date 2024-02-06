@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MainContainer, StructurePictureContainer, StructureContainer } from "./SubComponents";
 import Image from "next/image";
 import TitleWithNumber from "components/Backend/TitleWithNumber";
-import { Picture } from "@refugies-info/api-types";
+import { Picture, StructureMemberRole } from "@refugies-info/api-types";
 import placeholder from "assets/no_results_alt.svg";
 import styled from "styled-components";
 import FButton from "components/UI/FButton/FButton";
@@ -37,7 +37,7 @@ interface Props {
   structureId: Id;
   addUserInStructure: (arg: Id) => void;
   isAdmin: boolean;
-  modifyRole: (arg: Id, role: "contributeur" | "administrateur") => void;
+  modifyRole: (arg: Id, role: StructureMemberRole) => void;
   deleteUserFromStructure: (arg: Id) => void;
 }
 
@@ -45,7 +45,7 @@ const checkIfUserIsAuthorizedToAddMembers = (isAdmin: boolean, userWithRole: Get
   if (isAdmin) return true;
 
   if (userWithRole.length > 0 && userWithRole[0].roles && userWithRole[0].roles.length > 0)
-    return userWithRole[0].roles.includes("administrateur");
+    return userWithRole[0].roles.includes(StructureMemberRole.ADMIN);
   return false;
 };
 

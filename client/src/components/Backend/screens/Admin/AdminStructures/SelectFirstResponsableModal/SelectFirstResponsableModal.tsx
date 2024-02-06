@@ -14,7 +14,7 @@ import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions"
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { colors } from "colors";
 import styles from "./SelectFirstResponsableModal.module.scss";
-import { Id, PatchStructureRolesRequest, SimpleUser } from "@refugies-info/api-types";
+import { Id, PatchStructureRolesRequest, SimpleUser, StructureMemberRole } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 
 const ModifyLink = styled.div`
@@ -71,7 +71,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
       const structure: PatchStructureRolesRequest = {
         membreId: selectedUser._id.toString(),
         action: "create",
-        role: "administrateur",
+        role: StructureMemberRole.ADMIN,
       };
 
       await API.updateStructureRoles(props.selectedStructureId, structure);

@@ -31,6 +31,7 @@ import {
   GetAllDispositifsResponse,
   GetLogResponse,
   Id,
+  StructureMemberRole,
 } from "@refugies-info/api-types";
 import { useLanguages } from "hooks";
 
@@ -161,7 +162,7 @@ export const ContentDetailsModal = (props: Props) => {
   };
 
   const members = (structure?.membres || [])
-    .filter((m) => m.roles.includes("administrateur"))
+    .filter((m) => m.roles.includes(StructureMemberRole.ADMIN))
     .filter((m) => m.userId !== structure?.responsable?._id);
 
   const moreMembers = members.length > 3;

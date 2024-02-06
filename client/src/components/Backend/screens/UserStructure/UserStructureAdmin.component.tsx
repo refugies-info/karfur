@@ -6,7 +6,7 @@ import { colors } from "colors";
 import { userSelector } from "services/User/user.selectors";
 import API from "utils/API";
 import Swal from "sweetalert2";
-import { GetStructureResponse, Id, PatchStructureRolesRequest } from "@refugies-info/api-types";
+import { GetStructureResponse, Id, PatchStructureRolesRequest, StructureMemberRole } from "@refugies-info/api-types";
 
 declare const window: Window;
 
@@ -52,7 +52,7 @@ export const UserStructureAdminComponent = (props: Props) => {
     const query: PatchStructureRolesRequest = {
       membreId: userId.toString(),
       action: "create",
-      role: "contributeur",
+      role: StructureMemberRole.CONTRIB,
     };
     setIsLoading(true);
     await API.updateStructureRoles(structure._id, query);
@@ -60,7 +60,7 @@ export const UserStructureAdminComponent = (props: Props) => {
     toggleReload();
   };
 
-  const modifyRole = async (userId: Id, role: "contributeur" | "administrateur") => {
+  const modifyRole = async (userId: Id, role: StructureMemberRole) => {
     if (!structure) return;
     const query: PatchStructureRolesRequest = {
       membreId: userId.toString(),

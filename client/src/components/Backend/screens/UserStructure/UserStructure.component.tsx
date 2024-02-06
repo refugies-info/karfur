@@ -14,7 +14,7 @@ import styled from "styled-components";
 import { colors } from "colors";
 import { userSelector } from "services/User/user.selectors";
 import Swal from "sweetalert2";
-import { Id } from "@refugies-info/api-types";
+import { Id, StructureMemberRole } from "@refugies-info/api-types";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;
@@ -74,7 +74,7 @@ export const UserStructureComponent = (props: Props) => {
     );
   };
 
-  const modifyRole = (userId: Id, role: "contributeur" | "administrateur") => {
+  const modifyRole = (userId: Id, role: StructureMemberRole) => {
     if (!userStructure) return;
 
     dispatch(

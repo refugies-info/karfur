@@ -8,7 +8,7 @@ import { addStructureForUsers, removeStructureOfUser } from "../../../modules/us
 import { getRoleByName } from "../../../modules/role/role.repository";
 import { log } from "./log";
 import { User } from "../../../typegoose";
-import { PatchStructureRolesRequest, RoleName } from "@refugies-info/api-types";
+import { PatchStructureRolesRequest, RoleName, StructureMemberRole } from "@refugies-info/api-types";
 
 export const modifyUserRoleInStructure = async (id: string, body: PatchStructureRolesRequest, user: User): Response => {
   const { membreId, action, role } = body;
@@ -58,7 +58,7 @@ export const modifyUserRoleInStructure = async (id: string, body: PatchStructure
   await log(action, role, membreId, id, user._id);
 
   const structureData = await getStructureFromDB(structure._id, { nom: 1, status: 1 });
-  if ((action === "create" || action === "modify") && role === "administrateur") {
+  if ((action === "create" || action === "modify") && role === StructureMemberRole.ADMIN) {
     const user = await getUserById(membreId, { email: 1, username: 1, roles: 1 });
     const adminRole = await getRoleByName(RoleName.ADMIN);
     const userIsAdmin = (user.roles || []).some((x) => x && x.toString() === adminRole._id.toString());
