@@ -1,108 +1,41 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
-import { Spinner, Input } from "reactstrap";
-import { userDetailsSelector } from "services/User/user.selectors";
+import { useTranslation } from "next-i18next";
+import { GetUserInfoResponse, RoleName, StructureMemberRole } from "@refugies-info/api-types";
 import { Event } from "types/interface";
-import marioProfile from "assets/mario-profile.jpg";
-import FButton from "components/UI/FButton/FButton";
-import FInput from "components/UI/FInput/FInput";
-import { PasswordField } from "./components/PasswordField";
-import { CodePhoneValidationModal } from "components/Modals/CodePhoneValidationModal/CodePhoneValidationModal";
 import API from "utils/API";
-import Swal from "sweetalert2";
 import { setAuthToken } from "utils/authToken";
 import { getPasswordStrength } from "lib/validatePassword";
-import { saveUserActionCreator, fetchUserActionCreator } from "services/User/user.actions";
-import { isLoadingSelector, errorSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { userStructureMembresSelector } from "services/UserStructure/userStructure.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { UserProfileLoading } from "./components/UserProfileLoading";
-import { colors } from "colors";
-import styles from "./UserProfile.module.scss";
-import { useTranslation } from "next-i18next";
 import { isValidPhone } from "lib/validateFields";
-import { GetUserInfoResponse, RoleName } from "@refugies-info/api-types";
 import { handleApiDefaultError, handleApiError } from "lib/handleApiErrors";
+import { userDetailsSelector } from "services/User/user.selectors";
+import { fetchUserActionCreator, saveUserActionCreator } from "services/User/user.actions";
+import { isLoadingSelector, errorSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { userStructureRoleSelector, userStructureSelector } from "services/UserStructure/userStructure.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import {
+  EditButton,
+  LanguageBadge,
+  ModalDepartments,
+  modalDepartments,
+  ModalLanguage,
+  modalLanguage,
+  Tag,
+} from "./components";
+import marioProfile from "assets/mario-profile.jpg";
+import styles from "./UserProfile.module.scss";
+import { Col, Row } from "reactstrap";
+import Button from "@codegouvfr/react-dsfr/Button";
+import Input from "@codegouvfr/react-dsfr/Input";
+import { Badge } from "@codegouvfr/react-dsfr/Badge";
 
-export const MainContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-  margin-top: 26px;
-  height: fit-content;
-  margin-bottom: 42px;
-`;
-
-const ErrorMessageContainer = styled.div`
-  color: ${colors.error};
-  font-size: 16px;
-  line-height: 20px;
-  margin-top: 16px;
-`;
-
-export const ProfileContainer = styled.div`
-  background: ${colors.lightGrey};
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  width: 560px;
-  height: fit-content;
-`;
-
-export const ProfilePictureContainer = styled.div`
-  background: ${colors.lightGrey};
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 280px;
-  height: fit-content;
-`;
-
-const ErrorContainer = styled.div`
-  font-weight: bold;
-  font-size: 18px;
-  color: red;
-`;
-
-export const UserName = styled.div`
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-top: 16px;
-  margin-bottom: 16px;
-`;
-
-const DescriptionText = styled.div`
-  word-wrap: break-word;
-`;
-
-export const Title = styled.div`
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 23px;
-  margin-bottom: 8px;
-  margin-top: ${(props: { marginTop?: number }) => props.marginTop || 0}px;
-`;
-
-const FInputContainer = styled.div`
-  width: 480px;
-`;
-
-const RowContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const getUserImage = (user: GetUserInfoResponse) =>
-  user.picture && user.picture.secure_url ? user.picture.secure_url : marioProfile;
+import { cls } from "lib/classname";
+import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
+import { hasRole } from "lib/hasRole";
+import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
+import { useAsyncFn } from "react-use";
+import ErrorMessage from "components/UI/ErrorMessage";
 
 interface Props {
   title: string;
@@ -110,485 +43,283 @@ interface Props {
 
 export const UserProfile = (props: Props) => {
   const { t } = useTranslation();
-
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState<string | undefined>("");
-  const [phone, setPhone] = useState<string | undefined>("");
-  const [code, setCode] = useState<string>("");
-  const [isModifyPasswordOpen, setIsModifyPasswordOpen] = useState(false);
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
-  const [isCurrentPasswordVisible, setIsCurrentPasswordVisible] = useState(false);
-  const [isChangePasswordLoading, setIsChangePasswordLoading] = useState(false);
-  const [newPasswordOk, setNewPasswordOk] = useState(false);
-  const [isPseudoModifyDisabled, setIsPseudoModifyDisabled] = useState(true);
-  const [isEmailModifyDisabled, setIsEmailModifyDisabled] = useState(true);
-  const [isPhoneModifyDisabled, setIsPhoneModifyDisabled] = useState(true);
-  const [isPictureUploading, setIsPictureUploading] = useState(false);
-  const [notEmailError, setNotEmailError] = useState(false);
-  const [notPhoneError, setNotPhoneError] = useState(false);
-  const [samePasswordError, setSamePasswordError] = useState(false);
-  const isLoadingSave = useSelector(isLoadingSelector(LoadingStatusKey.SAVE_USER));
-  const errorSave = useSelector(errorSelector(LoadingStatusKey.SAVE_USER));
-  const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
-
-  const openModifyPassword = () => setIsModifyPasswordOpen(true);
-  const toggleNewPasswordVisibility = () => setIsNewPasswordVisible(!isNewPasswordVisible);
-
-  const toggleCurrentPasswordVisibility = () => setIsCurrentPasswordVisible(!isCurrentPasswordVisible);
-
   const user = useSelector(userDetailsSelector);
-  const userStructureMembres = useSelector(userStructureMembresSelector);
+
+  const [edition, setEdition] = useState(false);
+  const [username, setUsername] = useState<string>(user?.username || "");
+  const [firstName, setFirstName] = useState<string>(user?.firstName || "");
+  const [email, setEmail] = useState<string>(user?.email || "");
+  const [phone, setPhone] = useState<string>(user?.phone || "");
+  const [newsletter, setNewsletter] = useState<boolean>(/* user?.newsletter ||  */ false);
+  const [departments, setDepartments] = useState<string[]>(user?.departments || []);
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(user?.selectedLanguages || []);
+  const [isPictureUploading, setIsPictureUploading] = useState(false);
+  const [nbWordsTranslated, setNbWordsTranslated] = useState<number | null>(null);
+
+  const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const dispatch = useDispatch();
 
   useEffect(() => {
     document.title = props.title;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [props.title]);
 
-  const [showPhone, setShowPhone] = useState(false);
+  const userStructure = useSelector(userStructureSelector);
+  const userStructureRole = useSelector(userStructureRoleSelector);
   useEffect(() => {
-    if (user) {
-      const isAdmin = (user.roles || []).find((r) => r.nom === RoleName.ADMIN);
-      //@ts-ignore
-      const userStructureMembre = userStructureMembres.find((membre) => membre.userId === user._id);
-      setShowPhone(!!isAdmin || !!userStructureMembre?.roles.includes("administrateur"));
-    }
-  }, [user, userStructureMembres]);
+    if (!user) return;
 
-  const onChange = (e: Event) => {
-    if (e.target.id === "username") {
-      setUsername(e.target.value);
-      setIsPseudoModifyDisabled(false);
-      return;
-    }
-    if (e.target.id === "email") {
-      setEmail(e.target.value);
-      setIsEmailModifyDisabled(false);
-      return;
-    }
-    if (e.target.id === "phone") {
-      setPhone(e.target.value);
-      setIsPhoneModifyDisabled(false);
-      return;
-    }
-
-    if (e.target.id === "current-password") {
-      setCurrentPassword(e.target.value);
-      return;
-    }
-
-    if (e.target.id === "new-password") {
-      const newPasswordStrength = getPasswordStrength(e.target.value);
-      setNewPasswordOk(newPasswordStrength.isOk);
-      setNewPassword(e.target.value);
-      return;
-    }
-    return;
-  };
-
-  const modifyPassword = async () => {
-    setSamePasswordError(false);
-    try {
-      if (!user) return;
-      setIsChangePasswordLoading(true);
-      const data = await API.updatePassword(user._id, {
-        currentPassword,
-        newPassword,
-      });
-      Swal.fire({
-        title: "Yay...",
-        text: "Votre mot de passe a bien été modifié",
-        icon: "success",
-        timer: 1500,
-      });
-
-      setAuthToken(data.token);
-      setCurrentPassword("");
-      setNewPasswordOk(false);
-      setNewPassword("");
-      setIsModifyPasswordOpen(false);
-      setIsChangePasswordLoading(false);
-    } catch (error: any) {
-      setIsChangePasswordLoading(false);
-      if (error.response?.data?.code === "USED_PASSWORD") {
-        setSamePasswordError(true);
+    // Load user stats
+    const loadIndicators = async () => {
+      if (hasRole(user, RoleName.TRAD) || hasRole(user, RoleName.EXPERT_TRAD)) {
+        const data = await API.get_progression({
+          userId: user._id.toString(),
+        });
+        setNbWordsTranslated(data.totalIndicator?.wordsCount || null);
       }
-    }
-  };
-  const handleFileInputChange = () => {
+    };
+    loadIndicators();
+
+    // Fill form
+    if (!user) return;
+    if (user.username) setUsername(user.username);
+    if (user.firstName) setFirstName(user.firstName);
+    if (user.email) setEmail(user.email);
+    if (user.phone) setPhone(user.phone);
+    // if (user.newsletter) setNewsletter(user.newsletter);
+    if (user.departments) setDepartments(user.departments);
+    if (user.selectedLanguages) setSelectedLanguages(user.selectedLanguages);
+  }, [dispatch, user]);
+
+  const handleFileInputChange = async (e: any) => {
     if (!user) return;
     setIsPictureUploading(true);
     const formData = new FormData();
-    // @ts-ignore
-    formData.append(0, event.target.files[0]);
+    formData.append("0", e.target.files[0]);
 
-    API.postImage(formData)
-      .then((imgData) => {
-        dispatch(
-          saveUserActionCreator(user._id, {
-            user: {
-              picture: {
-                secure_url: imgData.secure_url,
-                public_id: imgData.public_id,
-                imgId: imgData.imgId,
-              },
-            },
-            action: "modify-my-details",
-          }),
-        );
-        setIsPictureUploading(false);
-      })
-      .catch(handleApiDefaultError);
-  };
-
-  const onEmailModificationValidate = () => {
-    const regex = /^\S+@\S+\.\S+$/;
-    const isEmail = email ? !!email.match(regex) : false;
-    if (isEmail) {
-      if (!user) return;
-      dispatch(
-        saveUserActionCreator(user._id, {
-          user: { email },
-          action: "modify-my-details",
-        }),
-      );
-
-      Swal.fire({
-        title: "Yay...",
-        text: "Votre email a bien été modifié",
-        icon: "success",
-        timer: 1500,
-      });
-      setIsEmailModifyDisabled(true);
-    } else {
-      setNotEmailError(true);
-    }
-  };
-
-  const [codePhoneModalVisible, setCodePhoneModalVisible] = useState(false);
-  // show modal to validate phone
-  const onPhoneModificationValidate = () => {
-    if (!isValidPhone(phone)) {
-      setNotPhoneError(true);
-      return;
-    }
-    setNotPhoneError(false);
-    if (!user) return;
-    // will return an error and send SMS code
-    API.updateUser(user._id, {
-      user: { phone },
-      action: "modify-my-details",
-    }).catch(() => setCodePhoneModalVisible(true));
-  };
-
-  // submit verification code
-  const onSubmitCode = () => {
-    if (!user) return;
-    dispatch(
-      saveUserActionCreator(user._id, {
-        user: { phone, code },
-        action: "modify-my-details",
-      }),
-    );
-  };
-
-  useEffect(() => {
-    const phoneCodeValid = !isLoadingSave && !errorSave && codePhoneModalVisible;
-    if (phoneCodeValid) {
-      setCodePhoneModalVisible(false);
-      setCode("");
-      setIsPhoneModifyDisabled(true);
-
-      Swal.fire({
-        title: "Yay...",
-        text: "Votre numéro de téléphone a bien été modifié",
-        icon: "success",
-        timer: 1500,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoadingSave]);
-
-  const onPseudoModificationValidate = async () => {
-    if (!user) return;
     try {
-      // update user here and not in redux to get error if pseudo already exists
+      const imgData = await API.postImage(formData);
       await API.updateUser(user._id, {
-        user: { username },
+        user: {
+          picture: imgData,
+        },
         action: "modify-my-details",
       });
-    } catch (error) {
-      handleApiError({ text: "Ce pseudo est déjà pris" });
-      return;
+      dispatch(fetchUserActionCreator());
+    } catch (e: any) {
+      handleApiDefaultError(e);
     }
-
-    dispatch(fetchUserActionCreator());
-
-    Swal.fire({
-      title: "Yay...",
-      text: "Votre pseudo a bien été modifié",
-      icon: "success",
-      timer: 1500,
-    });
-    setIsPseudoModifyDisabled(true);
+    setIsPictureUploading(false);
   };
 
-  useEffect(() => {
-    setUsername(user?.username || "");
-    setEmail(user?.email || "");
-    setPhone(user?.phone || "");
-    window.scrollTo(0, 0);
-  }, [user]);
-  if (isLoadingFetch)
-    return (
-      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <UserProfileLoading t={t} />
-      </div>
-    );
+  const [{ loading, error }, submit] = useAsyncFn(
+    async (e: any) => {
+      e.preventDefault();
+      if (!user) return;
+      try {
+        await API.updateUser(user._id, {
+          action: "modify-my-details",
+          user: {
+            username,
+            firstName,
+            email,
+            phone,
+          },
+        });
+        dispatch(fetchUserActionCreator());
+        setEdition(false);
+      } catch (e) {
+        throw new Error("Une erreur est survenue");
+        // TODO: handle 422 and color field in red
+      }
+    },
+    [username, firstName, email, phone],
+  );
 
-  if (!user) {
-    return (
-      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <MainContainer>
-          <ErrorContainer>
-            {t("UserProfile.ErreurChargement", "Une erreur est survenue, veuillez recharger la page !")}
-          </ErrorContainer>
-        </MainContainer>
-      </div>
-    );
-  }
+  const isAdmin = useMemo(() => hasRole(user, RoleName.ADMIN), [user]);
+  const isExpert = useMemo(() => hasRole(user, RoleName.EXPERT_TRAD), [user]);
+
+  if (!user) return <div>Une erreur est survenue, veuillez recharger la page&nbsp;!</div>;
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-      <MainContainer className={styles.container}>
-        <ProfilePictureContainer>
-          <Image
-            src={getUserImage(user)}
-            alt="my-image"
-            className={styles.user_img}
-            width={160}
-            height={160}
-            style={{ objectFit: "contain" }}
-          />
-          <UserName>{user.username}</UserName>
-          <FButton type="dark" name="upload-outline" className="position-relative mb-4">
-            <Input type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
-            {isPictureUploading && <Spinner color="success" className="ms-2" />}
-            {!isPictureUploading && t("UserProfile.Modifier ma photo", "Modifier ma photo")}
-          </FButton>
-          <DescriptionText>
-            {t("UserProfile.photoUsage", "Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.")}
-          </DescriptionText>
-        </ProfilePictureContainer>
-        <ProfileContainer>
-          <div>
-            <Title>{t("UserProfile.votre pseudo", "Votre pseudonyme")}</Title>
-            <RowContainer>
-              <FInputContainer>
-                <FInput
-                  id="username"
-                  value={username}
-                  onChange={onChange}
-                  newSize={true}
-                  autoFocus={false}
-                  prepend
-                  prependName="person-outline"
-                />
-              </FInputContainer>
-              <div>
-                <FButton
-                  disabled={isPseudoModifyDisabled}
-                  type="validate-light"
-                  name="save-outline"
-                  className="ms-2"
-                  onClick={onPseudoModificationValidate}
-                  data-test-id="test-save-pseudo"
-                >
-                  {t("UserProfile.Enregistrer", "Enregistrer")}
-                </FButton>
-              </div>
-            </RowContainer>
-            <DescriptionText>
-              {t(
-                "UserProfile.pseudoExplication",
-                "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.",
-              )}
-            </DescriptionText>
+    <div className={styles.container}>
+      <Row className="mb-10 align-items-center">
+        <Col>
+          <h1>Mon profil</h1>
+        </Col>
+        <Col className="text-end text-nowrap">
+          {edition ? (
+            <Button
+              priority="secondary"
+              size="small"
+              onClick={submit}
+              iconId="fr-icon-save-3-line"
+              iconPosition="right"
+              disabled={loading}
+            >
+              Sauvegarder les modifications
+            </Button>
+          ) : (
+            <Button
+              priority="primary"
+              size="small"
+              onClick={() => setEdition(true)}
+              iconId="fr-icon-edit-box-line"
+              iconPosition="right"
+            >
+              Modifier mon profil
+            </Button>
+          )}
+          <Button
+            disabled={edition}
+            priority="secondary"
+            size="small"
+            iconId="fr-icon-error-warning-line"
+            iconPosition="right"
+            className={cls(styles.danger, "ms-2")}
+          >
+            Supprimer mon profil
+          </Button>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col className="flex-grow-0">
+          <div className={styles.avatar}>
+            <Image src={user.picture?.secure_url || marioProfile} width="160" height="160" alt="user picture" />
           </div>
-          <div>
-            <Title marginTop={24}>{t("Register.Votre email", "Votre email")}</Title>
-            <RowContainer>
-              <FInputContainer>
-                <FInput
-                  id="email"
-                  value={email}
-                  onChange={onChange}
-                  newSize={true}
-                  autoFocus={false}
-                  prepend
-                  prependName="email-outline"
-                  placeholder={t("Register.Renseignez votre adresse email", "Renseignez votre adresse email")}
-                />
-              </FInputContainer>
-              <div>
-                <FButton
-                  disabled={isEmailModifyDisabled}
-                  type="validate-light"
-                  name="save-outline"
-                  className="ms-2"
-                  onClick={onEmailModificationValidate}
-                  data-test-id="test-save-email"
-                >
-                  {t("UserProfile.Enregistrer", "Enregistrer")}
-                </FButton>
-              </div>
-            </RowContainer>
-            {notEmailError && (
-              <ErrorMessageContainer>
-                {t("Register.not_an_email", "Ceci n'est pas un email,")}{" "}
-                {t("Register.check_mail", "vérifiez l'orthographe.")}
-              </ErrorMessageContainer>
-            )}
-            <DescriptionText>
-              {t(
-                "UserProfile.emailExplication",
-                "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.",
-              )}
-            </DescriptionText>
-          </div>
-          {showPhone && (
-            <div>
-              <Title marginTop={24}>{t("Register.your_phone_number", "Votre numéro de téléphone")}</Title>
-              <RowContainer>
-                <FInputContainer>
-                  <FInput
-                    id="phone"
-                    inputClassName="phone-user-input"
-                    value={phone}
-                    onChange={onChange}
-                    newSize={true}
-                    autoFocus={false}
-                    prepend
-                    prependName="smartphone-outline"
-                    error={!user.phone && !phone}
-                    placeholder={
-                      !user.phone && !phone
-                        ? t("Register.no_phone_number", "Aucun numéro de téléphone")
-                        : t("Register.enter_your_phone_number", "Renseignez votre numéro de téléphone")
-                    }
-                  />
-                </FInputContainer>
-                <div>
-                  <FButton
-                    disabled={isPhoneModifyDisabled}
-                    type="validate-light"
-                    name="save-outline"
-                    className="ms-2"
-                    onClick={onPhoneModificationValidate}
-                    data-test-id="test-save-phone"
-                  >
-                    {t("UserProfile.Enregistrer", "Enregistrer")}
-                  </FButton>
-                </div>
-              </RowContainer>
-              {notPhoneError && <ErrorMessageContainer>{t("Register.invalid_phone_number")}</ErrorMessageContainer>}
-              <DescriptionText>
-                {t(
-                  "UserProfile.phoneExplication",
-                  "Si vous modifiez votre numéro de téléphone, un code de confirmation vous sera demandé pour mettre à jour la double authentification.",
-                )}
-              </DescriptionText>
+          <button className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right position-relative">
+            Modifier ma photo
+            <input type="file" id="avatar" onChange={handleFileInputChange} />
+          </button>
+          <p className={cls(styles.small, "mt-4")}>Votre photo apparaît sur les fiches auxquelles vous contribuer.</p>
+
+          {nbWordsTranslated !== null && (
+            <div className={styles.info}>
+              <label>Nombre de mots traduits</label>
+              <p>{nbWordsTranslated}</p>
             </div>
           )}
-          <Title marginTop={24}>{t("UserProfile.Votre mot de passe", "Votre mot de passe")}</Title>
-          {!isModifyPasswordOpen && (
-            <FButton type="dark" name="edit-outline" onClick={openModifyPassword} data-test-id="test-modify-password">
-              {t("UserProfile.modifyPassword", "Modifier mon mot de passe")}
-            </FButton>
+
+          {(isAdmin || isExpert) && (
+            <div className={styles.info}>
+              <label className="mb-2">Rôles exceptionnels</label>
+              {isAdmin && <Tag className="w-100 mb-2">Administrateur</Tag>}
+              {isExpert && <Tag className="w-100">Expert en traduction</Tag>}
+            </div>
           )}
-          {isModifyPasswordOpen && (
-            <>
-              <FInputContainer>
-                <FInput
-                  id="current-password"
-                  value={currentPassword}
-                  onChange={onChange}
-                  newSize={true}
-                  autoFocus={true}
-                  prepend
-                  prependName="lock-outline"
-                  placeholder="Votre mot de passe actuel"
-                  append
-                  appendName={isCurrentPasswordVisible ? "eye-off-2-outline" : "eye-outline"}
-                  inputClassName="password-input"
-                  onAppendClick={toggleCurrentPasswordVisibility}
-                  type={isCurrentPasswordVisible ? "text" : "password"}
-                />
-              </FInputContainer>
-              <FInputContainer>
-                <PasswordField
-                  id="new-password"
-                  value={newPassword}
-                  onChange={onChange}
-                  passwordVisible={isNewPasswordVisible}
-                  onClick={toggleNewPasswordVisibility}
-                />
-              </FInputContainer>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "flex-end",
-                  marginTop: "16px",
-                }}
-              >
-                {isChangePasswordLoading ? (
-                  <FButton
-                    disabled={true}
-                    type="validate-light"
-                    name="save-outline"
-                    className="mt-8"
-                    onClick={modifyPassword}
-                  >
-                    <Spinner />
-                  </FButton>
-                ) : (
-                  <FButton
-                    disabled={!newPasswordOk || !currentPassword}
-                    type="validate-light"
-                    name="save-outline"
-                    onClick={modifyPassword}
-                    data-test-id="test-save-password"
-                  >
-                    {t("UserProfile.Enregistrer", "Enregistrer")}
-                  </FButton>
+        </Col>
+
+        <Col xs="auto" className={styles.inputs}>
+          <form onSubmit={submit}>
+            <Input
+              label="Pseudonyme"
+              nativeInputProps={{
+                name: "pseudo",
+                readOnly: !edition,
+                value: username || (!edition ? "Non défini" : ""),
+                onChange: (e: any) => setUsername(e.target.value),
+              }}
+              className={!username ? styles.empty : ""}
+            />
+            <Input
+              label="Prénom"
+              nativeInputProps={{
+                name: "firstName",
+                readOnly: !edition,
+                value: firstName || (!edition ? "Non défini" : ""),
+                onChange: (e: any) => setFirstName(e.target.value),
+              }}
+              className={!firstName ? styles.empty : ""}
+            />
+            <Input
+              label="Email"
+              nativeInputProps={{
+                name: "email",
+                readOnly: !edition,
+                value: email || (!edition ? "Non défini" : ""),
+                onChange: (e: any) => setEmail(e.target.value),
+              }}
+              className={!email ? styles.empty : ""}
+            />
+            <Input
+              label="Téléphone"
+              nativeInputProps={{
+                name: "phone",
+                readOnly: !edition,
+                value: phone || (!edition ? "Non défini" : ""),
+                onChange: (e: any) => setPhone(e.target.value),
+              }}
+              className={!phone ? styles.empty : ""}
+            />
+            <ErrorMessage error={error?.message} />
+
+            {userStructure && (
+              <div className={styles.info}>
+                <p>{userStructure.nom}</p>
+                {userStructureRole?.includes(StructureMemberRole.ADMIN) && (
+                  <Badge severity="success" noIcon>
+                    Responsable
+                  </Badge>
                 )}
               </div>
-              {samePasswordError && (
-                <ErrorMessageContainer>
-                  {t(
-                    "Login.same_password_error",
-                    "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
-                  )}
-                </ErrorMessageContainer>
-              )}
-            </>
-          )}
-        </ProfileContainer>
-      </MainContainer>
-      <CodePhoneValidationModal
-        visible={codePhoneModalVisible}
-        onValidate={onSubmitCode}
-        isLoading={isLoadingSave}
-        t={t}
-        code={code}
-        error={errorSave}
-        phone={phone || ""}
-        toggle={() => setCodePhoneModalVisible(false)}
-        onChange={(e: Event) => setCode(e.target.value)}
-      ></CodePhoneValidationModal>
+            )}
+          </form>
+        </Col>
+
+        <Col>
+          <div className="mb-4">
+            <div className="d-flex justify-content-between mb-2">
+              <label className="fr-label">Départements</label>
+              <EditButton icon="map" onClick={() => modalDepartments.open()} />
+            </div>
+            {!user.departments ? (
+              <p className={styles.empty}>Non défini</p>
+            ) : (
+              user.departments.map((dep, i) => (
+                <Tag key={i} className="me-1 mt-1">
+                  {dep}
+                </Tag>
+              ))
+            )}
+          </div>
+
+          <div className="mb-4">
+            <div className="d-flex justify-content-between mb-2">
+              <label className="fr-label">Langues de traduction</label>
+              <EditButton icon="translate" onClick={() => modalLanguage.open()} />
+            </div>
+            {!user.selectedLanguages ? (
+              <p className={styles.empty}>Non défini</p>
+            ) : (
+              user.selectedLanguages.map((ln, i) => <LanguageBadge key={i} id={ln} />)
+            )}
+          </div>
+
+          <div>
+            <label className="fr-label mb-2" htmlFor="newsletter">
+              Préférences de communication par email
+            </label>
+            <Checkbox
+              small
+              className={styles.checkboxes}
+              options={[
+                {
+                  label: "La lettre d’information de Réfugiés.info ",
+                  hintText: "Maximum 1 fois par mois ",
+                  nativeInputProps: {
+                    name: "newsletter",
+                    checked: newsletter,
+                    onChange: () => setNewsletter((n) => !n),
+                  },
+                },
+              ]}
+            />
+          </div>
+        </Col>
+      </Row>
+
+      <ModalDepartments />
+      <ModalLanguage />
     </div>
   );
 };

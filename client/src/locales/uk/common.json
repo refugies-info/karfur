@@ -138,22 +138,6 @@
     "inLocation": "у",
     "inLanguage": "у"
   },
-  "UserProfile": {
-    "Modifier ma photo": "Змінити моє фото",
-    "ErreurChargement": "Виникла помилка, перезавантажте сторінку, будь ласка!",
-    "photoUsage": "Ваша фотографія з'явиться у записах, в які ви зробили свій внесок.",
-    "Votre nouveau mot de passe": "Ваш новий пароль",
-    "votre pseudo": "Ваш псевдонім",
-    "pseudoExplication": "Цей псевдонім є публічним. Він з'являтиметься на записах, до яких ви будете долучатися.",
-    "emailExplication": "Ваша електронна адреса буде використана лише у випадку зміни паролю та для сповіщень, пов'язаних з вашою активністю на сайті.",
-    "phoneExplication": "Якщо ви зміните номер телефону, вам буде запропоновано ввести код підтвердження для оновлення подвійної автентифікації.",
-    "Votre mot de passe": "Ваш пароль",
-    "modifyPassword": "Змінити мій пароль",
-    "Enregistrer": "Зберегти",
-    "edit_phone_number": "Зміна номера телефону",
-    "edit_phone_number_subtitle": "Вам відправлено код в SMS на номер {{phone}} :",
-    "edit_phone_number_wrong_code": "Неправильний код. Спробувати ще раз?"
-  },
   "UserFavorites": {
     "Comment ajouter": "Як додати записи до обраного?",
     "Tout supprimer": "Все видалити",
@@ -231,12 +215,7 @@
     "Rejeté admin": "Відхилено адміном",
     "Inactif": "Неактивна"
   },
-  "Login": {
-    "Entrez votre code": "Введіть ваш код",
-    "same_password_error": "Пароль не може збігатися зі старим паролем."
-  },
   "Register": {
-    "Renseignez votre adresse email": "Вкажіть вашу електронну пошту",
     "Votre email": "Ваша електронна пошта",
     "Rendez-vous sur votre ordinateur": "Перейдіть до комп'ютера",
     "email_reminder": "Нагадати мені електронною поштою",
@@ -250,10 +229,7 @@
     "email_invitation": "Ми надішлемо вам електронний лист із запрошенням для реєстрації",
     "not_an_email": "Це не електронна пошта,",
     "check_mail": "перевірте написання.",
-    "enter_your_phone_number": "Вкажіть ваш номер телефону",
-    "no_phone_number": "Номер телефону не вказано",
-    "invalid_phone_number": "Це недійсний номер телефону, перевірте введені дані.",
-    "your_phone_number": "Ваш номер телефону"
+    "invalid_phone_number": "Це недійсний номер телефону, перевірте введені дані."
   },
   "UnauthorizedAccess": {
     "access_denied": "У доступі відмовлено.",

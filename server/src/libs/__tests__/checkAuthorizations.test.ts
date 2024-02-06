@@ -1,4 +1,4 @@
-import { DispositifStatus, RoleName } from "@refugies-info/api-types";
+import { DispositifStatus, RoleName, StructureMemberRole } from "@refugies-info/api-types";
 import { DispositifModel, ObjectId, Role, RoleModel, UserModel, StructureModel } from "../../typegoose";
 import { dispositif as refDispositif } from "../../__fixtures__/dispositif";
 import { user as refUser } from "../../__fixtures__/user";
@@ -13,7 +13,7 @@ const userNotAdmin = new UserModel(refUser);
 const CURRENT_USER_ID = new ObjectId("6569af9815c38bd134125ff3");
 const OTHER_USER_ID1 = new ObjectId("6569af9815c38bd134125ff4");
 const OTHER_USER_ID2 = new ObjectId("6569af9815c38bd134125ff5");
-const memberDetails = { added_at: new Date(), roles: ["contributeur"] };
+const memberDetails = { added_at: new Date(), roles: [StructureMemberRole.CONTRIB] };
 
 describe("checkAuthorizations", () => {
   beforeEach(() => {
@@ -297,8 +297,8 @@ describe("checkAuthorizations", () => {
       dispositif.creatorId = OTHER_USER_ID1;
       const structure = refStructure;
       structure.membres = [
-        { userId: CURRENT_USER_ID, added_at: new Date(), roles: ["contributeur", "administrateur"] },
-        { userId: OTHER_USER_ID2, added_at: new Date(), roles: ["contributeur"] }
+        { userId: CURRENT_USER_ID, added_at: new Date(), roles: [StructureMemberRole.CONTRIB, StructureMemberRole.ADMIN] },
+        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] }
       ];
       dispositif.mainSponsor = new StructureModel(structure);
 
@@ -314,8 +314,8 @@ describe("checkAuthorizations", () => {
       dispositif.creatorId = CURRENT_USER_ID;
       const structure = refStructure;
       structure.membres = [
-        { userId: CURRENT_USER_ID, added_at: new Date(), roles: ["contributeur"] },
-        { userId: OTHER_USER_ID2, added_at: new Date(), roles: ["contributeur"] }
+        { userId: CURRENT_USER_ID, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] },
+        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] }
       ];
       dispositif.mainSponsor = new StructureModel(structure);
 
@@ -331,8 +331,8 @@ describe("checkAuthorizations", () => {
       dispositif.creatorId = OTHER_USER_ID1;
       const structure = refStructure;
       structure.membres = [
-        { userId: OTHER_USER_ID1, added_at: new Date(), roles: ["contributeur"] },
-        { userId: OTHER_USER_ID2, added_at: new Date(), roles: ["contributeur"] }
+        { userId: OTHER_USER_ID1, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] },
+        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] }
       ];
       dispositif.mainSponsor = new StructureModel(structure);
 
@@ -352,8 +352,8 @@ describe("checkAuthorizations", () => {
       dispositif.creatorId = OTHER_USER_ID1;
       const structure = refStructure;
       structure.membres = [
-        { userId: CURRENT_USER_ID, added_at: new Date(), roles: ["contributeur"] },
-        { userId: OTHER_USER_ID2, added_at: new Date(), roles: ["contributeur"] }
+        { userId: CURRENT_USER_ID, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] },
+        { userId: OTHER_USER_ID2, added_at: new Date(), roles: [StructureMemberRole.CONTRIB] }
       ];
       dispositif.mainSponsor = new StructureModel(structure);
 

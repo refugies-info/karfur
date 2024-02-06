@@ -1,0 +1,20 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.button {
+  display: inline-block;
+  @include dsfr-text("very-small");
+  text-decoration: underline;
+  color: var(--text-action-high-blue-france);
+
+  .icon {
+    margin-right: 2px;
+    &::before {
+      --icon-size: 16px !important;
+    }
+  }
+}

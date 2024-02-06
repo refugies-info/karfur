@@ -138,22 +138,6 @@
     "inLocation": "en",
     "inLanguage": "en"
   },
-  "UserProfile": {
-    "Modifier ma photo": "Modifier ma photo",
-    "ErreurChargement": "Une erreur est survenue, veuillez recharger la page !",
-    "photoUsage": "Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.",
-    "Votre nouveau mot de passe": "Votre nouveau mot de passe",
-    "votre pseudo": "Votre pseudonyme",
-    "pseudoExplication": "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.",
-    "emailExplication": "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.",
-    "phoneExplication": "Si vous modifiez votre numéro de téléphone, un code de confirmation vous sera demandé pour mettre à jour la double authentification.",
-    "Votre mot de passe": "Votre mot de passe",
-    "modifyPassword": "Modifier mon mot de passe",
-    "Enregistrer": "Enregistrer",
-    "edit_phone_number": "Modification du numéro de téléphone",
-    "edit_phone_number_subtitle": "Un code vous a été envoyé par SMS au numéro {{phone}} :",
-    "edit_phone_number_wrong_code": "Oops ! Ce code n'est pas le bon. Réessayez ?"
-  },
   "UserFavorites": {
     "Comment ajouter": "Comment ajouter des fiches en favoris ?",
     "tutoriel": "Lire le tutoriel",
@@ -234,12 +218,7 @@
     "Rejeté admin": "Rejeté admin",
     "Inactif": "Inactif"
   },
-  "Login": {
-    "Entrez votre code": "Entrez votre code",
-    "same_password_error": "Le mot de passe ne peut pas être identique à l'ancien mot de passe."
-  },
   "Register": {
-    "Renseignez votre adresse email": "Renseignez votre adresse email",
     "Votre email": "Votre email",
     "Rendez-vous sur votre ordinateur": "Rendez-vous sur votre ordinateur",
     "email_reminder": "Me le rappeler par email",
@@ -253,10 +232,7 @@
     "email_invitation": "Nous vous enverrons un email d'invitation pour vous inscrire",
     "not_an_email": "Ceci n'est pas un email,",
     "check_mail": "vérifiez l'orthographe.",
-    "enter_your_phone_number": "Renseignez votre numéro de téléphone",
-    "no_phone_number": "Aucun numéro de téléphone",
-    "invalid_phone_number": "Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie.",
-    "your_phone_number": "Votre numéro de téléphone"
+    "invalid_phone_number": "Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie."
   },
   "UnauthorizedAccess": {
     "access_denied": "Accès refusé",
@@ -487,7 +463,7 @@
   "callout_important": "Important",
   "La Mednum": "La Mednum",
   "Aide": "Aide",
-  "login_or_signup":"Me connecter ou m’inscrire",
+  "login_or_signup": "Me connecter ou m’inscrire",
   "StructureType": {
     "Association": "Association",
     "Entreprise": "Entreprise",

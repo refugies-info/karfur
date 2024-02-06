@@ -138,18 +138,6 @@
     "inLocation": "в",
     "inLanguage": "в"
   },
-  "UserProfile": {
-    "Modifier ma photo": "Изменить мое изображение",
-    "ErreurChargement": "Ошибка, пожалуйста, обновите страницу",
-    "photoUsage": "Ваше фото появится на страницах, в создании которых вы приняли участие",
-    "Votre nouveau mot de passe": "Ваш новый пароль",
-    "votre pseudo": "Ваше имя пользователя",
-    "pseudoExplication": "Данное имя отображается для всех. Оно будет отображено на страницах, в создании которых вы приняли участие.",
-    "emailExplication": "Ваша электронная почта будет использована только для восстановления пароля и получения извещений о вашей активности на сайте.",
-    "Votre mot de passe": "Ваш пароль",
-    "modifyPassword": "Изменить мой пароль",
-    "Enregistrer": "Сохранить"
-  },
   "UserFavorites": {
     "Comment ajouter": "Как добавить страницы в избранное?",
     "Tout supprimer": "Удалить все",
@@ -227,11 +215,7 @@
     "Rejeté admin": "Отклонено администратором",
     "Inactif": "Не активно"
   },
-  "Login": {
-    "Entrez votre code": "Введите код"
-  },
   "Register": {
-    "Renseignez votre adresse email": "Добавьте ваш email",
     "Votre email": "Ваш email",
     "Rendez-vous sur votre ordinateur": "Воспользуйтесь вашим компьютером",
     "email_reminder": "Напомнить мне по email",

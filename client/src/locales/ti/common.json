@@ -131,18 +131,6 @@
     "seeAllDispositifs": "ኩሉ ተኽእሊታት ረአ",
     "fichesLanguageFilter": "ፋይልላት ኣብ"
   },
-  "UserProfile": {
-    "Modifier ma photo": "ናተይ ግሩዲ  ስእሊ ምቅያር",
-    "ErreurChargement": "ዝኾነ ሽግር ተፈጢሩ ነዚ መርበብ ሓበሬታ ጸልይዎስ ብግቡእ ኣይሰርሕን ዶ ኣሎ እዩ፧ ብኽብረትኩም ነዚ መርበብ የሐድስዎ ኢኹም፣",
-    "photoUsage": "ናትካ\\ኪ ስእሊ ኣብዚ ፕሮፋይል  ኣብርክቶ ተሰታፍነት  ከም ዝገባርካ\\ኪ ክርኣይ ኢዩ ፤፣",
-    "Votre nouveau mot de passe": "ናትካ\\ኪ ሓድሽ ኮድ\\ ፓስወርድ",
-    "votre pseudo": "ናትካ\\ኪ ናይ ብርዒ ስም",
-    "pseudoExplication": "እዚ ናይ ብርዒ ስም ናብ ህዝቢ ናይ ሓገዝ ኣብርክቶ ተሳፍነት ከም ዝገብርካ\\ኪ ኣብ ናትካ\\ኪ ፕሮፍያል ክርኣይ ኢዩ፤፣",
-    "emailExplication": "ናትካ\\ኪ ኢመይል  ኣድረስ ፣ ኣብ ዝኾነ እዋን ንኮድ \\ፓስወርድ ንምሕዳስ ወይ ምስ`ዚ ዌብ ሳይት ዝተኣሳሰር መልእኽቲ ንምቅባል የግልግል፤፣",
-    "Votre mot de passe": "ናትካ\\ኪ ኮድ \\ፓስወርድ",
-    "modifyPassword": "ምቅያር ናትካ\\ኪ ኮድ \\ፓስወርድ",
-    "Enregistrer": "ምምዝጋብ"
-  },
   "UserFavorites": {
     "Comment ajouter": "ንፋይል ኣብ ፋቮሪ\\ተመራጺ, ብኸመይ ክንውስኽ ወይ ክንደግም ንኽእል",
     "Tout supprimer": "ኵሉ ምስራዝ",
@@ -220,11 +208,7 @@
     "Rejeté admin": "ምንጻግ ናይ ኣመሓዳሪ፣",
     "Inactif": "ዘይንጡፍ"
   },
-  "Login": {
-    "Entrez votre code": "ፓስ ዎርድ ወይ ኮድ የእትው\\ዊ"
-  },
   "Register": {
-    "Renseignez votre adresse email": "ኢመልካ\\ኪ ምኻኑ ኣረጋግጽ\\ጺ",
     "Votre email": "ኢመይልካ\\ኪ",
     "Rendez-vous sur votre ordinateur": "ቆጸራ ኣብ ናትካ ኮምፒተር",
     "email_reminder": "ብኢመይል ኣድረስ መዘኻኸሪ እድሊ",

@@ -14,7 +14,7 @@ import { cls } from "lib/classname";
 import { isValidEmail } from "lib/validateFields";
 import { getRegisterInfos } from "lib/loginRedirect";
 import SEO from "components/Seo";
-import Error from "components/Pages/auth/Error";
+import ErrorMessage from "components/UI/ErrorMessage";
 import Layout from "components/Pages/auth/Layout";
 import GoogleIcon from "assets/auth/providers/google-icon.svg";
 import MicrosoftIcon from "assets/auth/providers/microsoft-icon.svg";
@@ -154,7 +154,7 @@ const AuthEmail = () => {
           Inclusion Connect
         </Button> */}
 
-        <Error error={error} />
+        <ErrorMessage error={error} />
       </div>
     </div>
   );

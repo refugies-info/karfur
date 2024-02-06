@@ -69,7 +69,7 @@ const Backend = () => {
   return (
     <>
       <SEO title="Administration" />
-      {isLoading ? (
+      {isLoading /* TODO: shows loader when user edited */ ? (
         <div className={styles.spinner_container}>
           <Spinner color="success" />
         </div>

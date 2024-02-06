@@ -57,10 +57,11 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
   if (id !== userReq._id.toString()) throw new UnauthorizedError("Token invalide"); // only my infos
 
   newUser = {
-    partner: request.partner,
+    partner: request.partner || undefined,
     departments: request.departments,
     phone: request.phone ? formatPhoneNumber(request.phone) : undefined,
     picture: request.picture,
+    firstName: request.firstName || undefined,
   };
 
   if (request.selectedLanguages) {
