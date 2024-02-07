@@ -77,7 +77,7 @@ const UserTranslation = (props: Props) => {
     const loadIndicators = async () => {
       if (user?.user) {
         try {
-          const data = await API.get_progression({});
+          const data = await API.get_progression({ onlyTotal: true });
           setIndicators(data);
         } catch (e) {}
       }

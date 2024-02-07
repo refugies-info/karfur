@@ -57,11 +57,11 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
   if (id !== userReq._id.toString()) throw new UnauthorizedError("Token invalide"); // only my infos
 
   newUser = {
-    partner: request.partner || undefined,
+    partner: request.partner,
     departments: request.departments,
     phone: request.phone ? formatPhoneNumber(request.phone) : undefined,
     picture: request.picture,
-    firstName: request.firstName || undefined,
+    firstName: request.firstName,
   };
 
   if (request.selectedLanguages) {
@@ -76,7 +76,7 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     newUser.roles = newRoles;
   }
   if (request.email) {
-    const needs2fa = await needs2FA(request.email);
+    const needs2fa = await needs2FA(userFromDB.email); // use old email to find user
     if (needs2fa) {
       try {
         if (!request.code) {
@@ -90,12 +90,16 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     }
     newUser.email = request.email;
   }
-  if (request.username) {
-    const userHasUsername = await getUserFromDB({ username: request.username });
-    if (userHasUsername && userHasUsername._id.toString() !== id) {
-      throw new UnauthorizedError("Username déjà pris", "USERNAME_TAKEN");
+  if (request.username !== undefined) {
+    if (request.username !== "") {
+      const userHasUsername = await getUserFromDB({ username: request.username });
+      if (userHasUsername && userHasUsername._id.toString() !== id) {
+        throw new UnauthorizedError("Username déjà pris", "USERNAME_TAKEN");
+      }
+      newUser.username = request.username;
+    } else {
+      newUser.username = null;
     }
-    newUser.username = request.username;
   }
   if (request.roles) {
     const newRoles = request.roles

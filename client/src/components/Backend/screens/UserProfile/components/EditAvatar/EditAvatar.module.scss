@@ -1,0 +1,35 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: u(4);
+  margin-left: u(2);
+  margin-right: u(2);
+  background-color: white;
+  position: relative;
+
+  &.loading {
+    opacity: 0.5;
+  }
+
+  .spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.small {
+  @include dsfr-text("very-small");
+  color: var(--text-action-high-blue-france);
+}

@@ -63,7 +63,7 @@ const EditDepartments = (props: Props) => {
 
   return (
     <form onSubmit={submit}>
-      <label htmlFor="location" className="mb-2 mt-4">
+      <label htmlFor="location" className="mb-2">
         Nom ou numéro du département(s)
       </label>
       <div className="position-relative">
