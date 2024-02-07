@@ -54,7 +54,7 @@ describe("user translation", () => {
       });
     });
     expect(fetchDispositifsWithTranslationsStatusActionCreator).toHaveBeenCalledWith("en");
-    expect(API.get_progression).toHaveBeenCalledWith({});
+    expect(API.get_progression).toHaveBeenCalledWith({ onlyTotal: true });
     expect(component.toJSON()).toMatchSnapshot();
   });
 

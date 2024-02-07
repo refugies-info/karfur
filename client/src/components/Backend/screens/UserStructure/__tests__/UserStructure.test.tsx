@@ -9,7 +9,7 @@ import {
 } from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
 import { colors } from "colors";
-import { GetStructureResponse, StructureStatus, UserStatus } from "@refugies-info/api-types";
+import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus } from "@refugies-info/api-types";
 jest.mock("next/router", () => require("next-router-mock"));
 
 // need to mock react strap because issue with modal
@@ -89,7 +89,7 @@ describe("UserStructure", () => {
     membres: [
       {
         userId: "id1",
-        roles: ["contributeur"],
+        roles: [StructureMemberRole.CONTRIB],
         username: "membre1",
         picture: { secure_url: "", public_id: "", imgId: "" },
         last_connected: new Date(),
@@ -98,7 +98,7 @@ describe("UserStructure", () => {
       },
       {
         userId: "id2",
-        roles: ["administrateur"],
+        roles: [StructureMemberRole.ADMIN],
         username: "membre2",
         picture: { secure_url: "", public_id: "", imgId: "" },
         last_connected: new Date(),
@@ -136,9 +136,9 @@ describe("UserStructure", () => {
             traducteur: false,
             expertTrad: false,
             contributeur: false,
+            caregiver: false,
             hasStructure: false,
-            userFetched: true,
-            rolesInStructure: ["administrateur"],
+            rolesInStructure: [StructureMemberRole.ADMIN],
           },
         },
       });
@@ -175,9 +175,9 @@ describe("UserStructure", () => {
             traducteur: false,
             expertTrad: false,
             contributeur: false,
+            caregiver: false,
             hasStructure: false,
-            userFetched: true,
-            rolesInStructure: ["administrateur"],
+            rolesInStructure: [StructureMemberRole.ADMIN],
           },
         },
       });
@@ -214,9 +214,9 @@ describe("UserStructure", () => {
             traducteur: false,
             expertTrad: false,
             contributeur: false,
+            caregiver: false,
             hasStructure: false,
-            userFetched: true,
-            rolesInStructure: ["administrateur"],
+            rolesInStructure: [StructureMemberRole.ADMIN],
           },
         },
       });
@@ -256,9 +256,9 @@ describe("UserStructure", () => {
             traducteur: false,
             expertTrad: false,
             contributeur: false,
+            caregiver: false,
             hasStructure: false,
-            userFetched: true,
-            rolesInStructure: ["administrateur"],
+            rolesInStructure: [StructureMemberRole.ADMIN],
           },
         },
       });
@@ -320,9 +320,9 @@ describe("UserStructure", () => {
             traducteur: false,
             expertTrad: false,
             contributeur: false,
+            caregiver: false,
             hasStructure: false,
-            userFetched: true,
-            rolesInStructure: ["administrateur"],
+            rolesInStructure: [StructureMemberRole.ADMIN],
           },
         },
       });

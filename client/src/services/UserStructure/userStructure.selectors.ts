@@ -31,4 +31,4 @@ export const userStructureMembresSelector = (
   state.userStructure ? state.userStructure.membres : [];
 
 export const userStructureRoleSelector = (state: RootState): StructureMemberRole[] | null =>
-  state.userStructure && state.user ? (state.userStructure.membres.find(m => m.userId === state.user.userId.toString())?.roles || null) : null;
+  state.userStructure && state.user.userId ? (state.userStructure.membres.find(m => m.userId === state.user.userId?.toString())?.roles || null) : null;

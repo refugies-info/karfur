@@ -1,21 +1,17 @@
 import {
   SET_USER,
-  UPDATE_USER,
   FETCH_USER,
   SET_USER_ROLE_IN_STRUCTURE,
   SAVE_USER,
 } from "./user.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { GetUserInfoResponse, Id, UpdateUserRequest } from "@refugies-info/api-types";
+import { GetUserInfoResponse, Id, StructureMemberRole, UpdateUserRequest } from "@refugies-info/api-types";
 
 export const setUserActionCreator = (value: GetUserInfoResponse | null) =>
   action(SET_USER, value);
 
-export const setUserRoleInStructureActionCreator = (value: string[]) =>
+export const setUserRoleInStructureActionCreator = (value: StructureMemberRole[]) =>
   action(SET_USER_ROLE_IN_STRUCTURE, value);
-
-export const updateUserActionCreator = (value: GetUserInfoResponse) =>
-  action(UPDATE_USER, value);
 
 /**
  * @deprecated use API.updateUser instead to simplify maintanability
@@ -28,7 +24,6 @@ export const fetchUserActionCreator = (value?: {
 
 const actions = {
   setUserActionCreator,
-  updateUserActionCreator,
   fetchUserActionCreator,
   setUserRoleInStructureActionCreator,
 };

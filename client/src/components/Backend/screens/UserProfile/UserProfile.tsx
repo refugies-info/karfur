@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAsyncFn } from "react-use";
-import { RoleName, StructureMemberRole } from "@refugies-info/api-types";
+import { StructureMemberRole } from "@refugies-info/api-types";
 import { Col, Row } from "reactstrap";
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
@@ -10,8 +10,7 @@ import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 import API from "utils/API";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
 import { cls } from "lib/classname";
-import { hasRole } from "lib/hasRole";
-import { userDetailsSelector } from "services/User/user.selectors";
+import { userDetailsSelector, userSelector } from "services/User/user.selectors";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { userStructureRoleSelector, userStructureSelector } from "services/UserStructure/userStructure.selectors";
 import {
@@ -34,17 +33,18 @@ interface Props {
 
 export const UserProfile = (props: Props) => {
   const dispatch = useDispatch();
-  const user = useSelector(userDetailsSelector);
+  const user = useSelector(userSelector);
+  const userDetails = useSelector(userDetailsSelector);
   const userStructure = useSelector(userStructureSelector);
   const userStructureRole = useSelector(userStructureRoleSelector);
 
   const [edition, setEdition] = useState(false);
-  const [username, setUsername] = useState<string>(user?.username || "");
+  const [username, setUsername] = useState<string>(userDetails?.username || "");
   const [usernameError, setUsernameError] = useState<string | null>(null);
-  const [firstName, setFirstName] = useState<string>(user?.firstName || "");
-  const [email, setEmail] = useState<string>(user?.email || "");
+  const [firstName, setFirstName] = useState<string>(userDetails?.firstName || "");
+  const [email, setEmail] = useState<string>(userDetails?.email || "");
   const [emailError, setEmailError] = useState<string | null>(null);
-  const [phone, setPhone] = useState<string>(user?.phone || "");
+  const [phone, setPhone] = useState<string>(userDetails?.phone || "");
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [newsletter, setNewsletter] = useState<boolean>(/* user?.newsletter ||  */ false);
   const [nbWordsTranslated, setNbWordsTranslated] = useState<number | null>(null);
@@ -55,9 +55,9 @@ export const UserProfile = (props: Props) => {
 
   // Load user stats
   useEffect(() => {
-    if (!user) return;
+    if (!userDetails) return;
     const loadIndicators = async () => {
-      if (hasRole(user, RoleName.TRAD) || hasRole(user, RoleName.EXPERT_TRAD)) {
+      if (user.traducteur || user.expertTrad) {
         const data = await API.get_progression({ onlyTotal: true });
         setNbWordsTranslated(data?.totalIndicator.wordsCount || 0);
       }
@@ -65,17 +65,17 @@ export const UserProfile = (props: Props) => {
     if (nbWordsTranslated !== null) {
       loadIndicators();
     }
-  }, [dispatch, user, nbWordsTranslated]);
+  }, [dispatch, user, userDetails, nbWordsTranslated]);
 
   // Fill form
   useEffect(() => {
-    if (!user) return;
-    if (user.username) setUsername(user.username);
-    if (user.firstName) setFirstName(user.firstName);
-    if (user.email) setEmail(user.email);
-    if (user.phone) setPhone(user.phone);
-    // if (user.newsletter) setNewsletter(user.newsletter);
-  }, [dispatch, user]);
+    if (!userDetails) return;
+    if (userDetails.username) setUsername(userDetails.username);
+    if (userDetails.firstName) setFirstName(userDetails.firstName);
+    if (userDetails.email) setEmail(userDetails.email);
+    if (userDetails.phone) setPhone(userDetails.phone);
+    // if (userDetails.newsletter) setNewsletter(userDetails.newsletter);
+  }, [dispatch, userDetails]);
 
   // Form validation
   useEffect(() => {
@@ -96,9 +96,9 @@ export const UserProfile = (props: Props) => {
   const [{ loading, error }, submit] = useAsyncFn(
     async (e: any) => {
       e.preventDefault();
-      if (!user || phoneError || emailError || usernameError) return;
+      if (!userDetails || phoneError || emailError || usernameError) return;
       try {
-        await API.updateUser(user._id, {
+        await API.updateUser(userDetails._id, {
           action: "modify-my-details",
           user: {
             username,
@@ -120,13 +120,10 @@ export const UserProfile = (props: Props) => {
         }
       }
     },
-    [username, firstName, email, phone, phoneError, emailError, usernameError],
+    [userDetails, username, firstName, email, phone, phoneError, emailError, usernameError],
   );
 
-  const isAdmin = useMemo(() => hasRole(user, RoleName.ADMIN), [user]);
-  const isExpert = useMemo(() => hasRole(user, RoleName.EXPERT_TRAD), [user]);
-
-  if (!user) return <div>Une erreur est survenue, veuillez recharger la page&nbsp;!</div>;
+  if (!userDetails) return <div>Une erreur est survenue, veuillez recharger la page&nbsp;!</div>;
 
   return (
     <div className={styles.container}>
@@ -181,11 +178,11 @@ export const UserProfile = (props: Props) => {
               </div>
             )}
 
-            {(isAdmin || isExpert) && (
+            {(user.admin || user.expertTrad) && (
               <div className={styles.info}>
                 <label className="mb-2">Rôles exceptionnels</label>
-                {isAdmin && <Tag className="w-100 mb-2">Administrateur</Tag>}
-                {isExpert && <Tag className="w-100">Expert en traduction</Tag>}
+                {user.admin && <Tag className="w-100 mb-2">Administrateur</Tag>}
+                {user.expertTrad && <Tag className="w-100">Expert en traduction</Tag>}
               </div>
             )}
           </Col>
@@ -251,10 +248,10 @@ export const UserProfile = (props: Props) => {
               />
               <ErrorMessage error={error?.message} />
 
-              {user.partner && (
+              {userDetails.partner && (
                 <div className={styles.info}>
                   <label>Partenaire</label>
-                  <p>{user.partner}</p>
+                  <p>{userDetails.partner}</p>
                 </div>
               )}
 
@@ -277,10 +274,10 @@ export const UserProfile = (props: Props) => {
                 <label className="fr-label">Départements</label>
                 <EditButton icon="map" onClick={() => modalDepartments.open()} />
               </div>
-              {!user.departments ? (
+              {!userDetails.departments ? (
                 <p className={styles.empty}>Non défini</p>
               ) : (
-                user.departments.map((dep, i) => (
+                userDetails.departments.map((dep, i) => (
                   <Tag key={i} className="me-1 mt-1">
                     {dep}
                   </Tag>
@@ -293,10 +290,10 @@ export const UserProfile = (props: Props) => {
                 <label className="fr-label">Langues de traduction</label>
                 <EditButton icon="translate" onClick={() => modalLanguage.open()} />
               </div>
-              {!user.selectedLanguages ? (
+              {!userDetails.selectedLanguages ? (
                 <p className={styles.empty}>Non défini</p>
               ) : (
-                user.selectedLanguages.map((ln, i) => <LanguageBadge key={i} id={ln} />)
+                userDetails.selectedLanguages.map((ln, i) => <LanguageBadge key={i} id={ln} />)
               )}
             </div>
 

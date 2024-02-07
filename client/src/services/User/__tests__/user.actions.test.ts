@@ -1,9 +1,8 @@
 import {
   setUserActionCreator,
   fetchUserActionCreator,
-  updateUserActionCreator,
 } from "../user.actions";
-import { SET_USER, FETCH_USER, UPDATE_USER } from "../user.actionTypes";
+import { SET_USER, FETCH_USER } from "../user.actionTypes";
 import { testUser } from "../../../__fixtures__/user";
 
 describe("[Actions] User", () => {
@@ -17,13 +16,6 @@ describe("[Actions] User", () => {
   it("should return a FETCH_USER action", () => {
     expect(fetchUserActionCreator()).toEqual({
       type: FETCH_USER,
-    });
-  });
-
-  it("should return a UPDATE_USER action with correct payload", () => {
-    expect(updateUserActionCreator(testUser)).toEqual({
-      type: UPDATE_USER,
-      payload: testUser,
     });
   });
 });
