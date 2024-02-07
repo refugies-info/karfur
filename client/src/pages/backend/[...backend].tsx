@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,9 +12,9 @@ import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selector
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { backendRoutes, BackendRouteType } from "components/Backend/screens/routes";
 import { getPath } from "routes";
+import { useAuth } from "hooks";
 import isInBrowser from "lib/isInBrowser";
 import SEO from "components/Seo";
-import API from "utils/API";
 import styles from "scss/pages/backend.module.scss";
 import { useRouter } from "next/router";
 import history from "utils/backendHistory";
@@ -39,6 +39,8 @@ const Backend = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const routerLocale = useRouterLocale();
+  const { isAuth } = useAuth();
+  const userLoaded = useMemo(() => !!user.user, [user]);
 
   // fix for: https://github.com/vercel/next.js/discussions/17443#discussioncomment-637879
   const [mounted, setMounted] = useState(false);
@@ -50,33 +52,36 @@ const Backend = () => {
   }, []);
 
   useEffect(() => {
-    if (!user && !isLoading && API.isAuth()) dispatch(fetchUserActionCreator());
-  }, [user, isLoading, dispatch]);
+    if (!userLoaded && !isLoading && isAuth) dispatch(fetchUserActionCreator());
+  }, [userLoaded, isLoading, isAuth, dispatch]);
 
-  const isAuthorized = (route: BackendRouteType) => {
-    if ((route.restriction || []).length === 0) {
-      // No restriction: OK
-      return true;
-    }
+  const isAuthorized = useCallback(
+    (route: BackendRouteType) => {
+      if ((route.restriction || []).length === 0) {
+        // No restriction: OK
+        return true;
+      }
 
-    // Restriction and role: CHECK
-    const roles = (user?.user && user.user.roles) || [];
-    const hasAuthorizedRole = roles.filter((x: any) => route.restriction.includes(x.nom)).length > 0;
-    const hasRouteRestrictionHasStructure = route.restriction.includes(RoleName.STRUCTURE);
-    return hasAuthorizedRole || (hasRouteRestrictionHasStructure && user.hasStructure);
-  };
+      // Restriction and role: CHECK
+      const roles = user.user?.roles || [];
+      const hasAuthorizedRole = roles.filter((x: any) => route.restriction.includes(x.nom)).length > 0;
+      const hasRouteRestrictionHasStructure = route.restriction.includes(RoleName.STRUCTURE);
+      return hasAuthorizedRole || (hasRouteRestrictionHasStructure && user.hasStructure);
+    },
+    [user],
+  );
 
   return (
     <>
       <SEO title="Administration" />
-      {isLoading /* TODO: shows loader when user edited */ ? (
+      {isLoading && !userLoaded ? ( // no spinner if user is being re-fetched
         <div className={styles.spinner_container}>
           <Spinner color="success" />
         </div>
       ) : (
         isInBrowser() &&
         mounted &&
-        (user ? (
+        (userLoaded ? (
           <Router history={history || createBrowserHistory()}>
             <Switch>
               {backendRoutes.map((route, idx) =>

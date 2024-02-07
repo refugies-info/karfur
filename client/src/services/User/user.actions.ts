@@ -17,6 +17,9 @@ export const setUserRoleInStructureActionCreator = (value: string[]) =>
 export const updateUserActionCreator = (value: GetUserInfoResponse) =>
   action(UPDATE_USER, value);
 
+/**
+ * @deprecated use API.updateUser instead to simplify maintanability
+ */
 export const saveUserActionCreator = (id: Id, value: UpdateUserRequest) => action(SAVE_USER, { id, value });
 
 export const fetchUserActionCreator = (value?: {

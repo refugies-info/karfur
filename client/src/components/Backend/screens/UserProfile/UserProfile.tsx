@@ -209,6 +209,7 @@ export const UserProfile = (props: Props) => {
                   value: username || (!edition ? "Non défini" : ""),
                   onChange: (e: any) => setUsername(e.target.value),
                 }}
+                disabled={loading}
                 className={!username ? styles.empty : ""}
               />
               <Input
@@ -219,6 +220,7 @@ export const UserProfile = (props: Props) => {
                   value: firstName || (!edition ? "Non défini" : ""),
                   onChange: (e: any) => setFirstName(e.target.value),
                 }}
+                disabled={loading}
                 className={!firstName ? styles.empty : ""}
               />
               <Input
@@ -231,6 +233,7 @@ export const UserProfile = (props: Props) => {
                   value: email || (!edition ? "Non défini" : ""),
                   onChange: (e: any) => setEmail(e.target.value),
                 }}
+                disabled={loading}
                 className={!email ? styles.empty : ""}
               />
               <Input
@@ -243,6 +246,7 @@ export const UserProfile = (props: Props) => {
                   value: phone || (!edition ? "Non défini" : ""),
                   onChange: (e: any) => setPhone(e.target.value),
                 }}
+                disabled={loading}
                 className={!phone ? styles.empty : ""}
               />
               <ErrorMessage error={error?.message} />
