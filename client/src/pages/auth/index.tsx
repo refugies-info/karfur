@@ -18,6 +18,7 @@ import ErrorMessage from "components/UI/ErrorMessage";
 import Layout from "components/Pages/auth/Layout";
 import GoogleIcon from "assets/auth/providers/google-icon.svg";
 import MicrosoftIcon from "assets/auth/providers/microsoft-icon.svg";
+import OutlookIcon from "assets/auth/providers/outlook-icon.svg";
 // import DataInclusionIcon from "assets/auth/providers/data-inclusion-icon.svg";
 import styles from "scss/components/auth.module.scss";
 
@@ -47,7 +48,10 @@ const AuthEmail = () => {
   );
 
   const loginGoogle = useCallback(() => {
-    if (!googleProvider) return;
+    if (!googleProvider) {
+      logger.error("[loginGoogle] Wrong Google provider configuration");
+      return;
+    }
     googleProvider.useGoogleLogin({
       flow: "auth-code",
       onSuccess: ({ code }) => {
@@ -63,7 +67,7 @@ const AuthEmail = () => {
             else logUser(res.token);
           })
           .catch((e) => {
-            const error = handleError(e.response?.data?.code, e.response?.data?.email || "");
+            const error = handleError(e.response?.data?.code, e.response?.data?.data?.email || "");
             if (error) setError(error);
           });
       },
@@ -147,7 +151,8 @@ const AuthEmail = () => {
         </Button>
         <Button onClick={loginMicrosoft} className={cls(styles.button, "mb-4")} priority="tertiary">
           <Image src={MicrosoftIcon} width={24} height={24} alt="" className="me-2" />
-          Microsoft
+          <Image src={OutlookIcon} width={24} height={24} alt="" className="me-2" />
+          Microsoft ou Outlook
         </Button>
         {/* <Button onClick={loginInclusionConnect} className={cls(styles.button, "mb-4")} priority="tertiary">
           <Image src={DataInclusionIcon} width={24} height={24} alt="" className="me-2" />

@@ -119,7 +119,7 @@ const AuthNewPassword = (props: Props) => {
             />
 
             <Input
-              label="Code de vérification"
+              label="Code d'authentification"
               state={!formError ? "default" : "error"}
               stateRelatedMessage={formError}
               nativeInputProps={{

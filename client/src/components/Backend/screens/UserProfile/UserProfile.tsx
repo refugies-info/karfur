@@ -79,10 +79,10 @@ export const UserProfile = (props: Props) => {
     const loadIndicators = async () => {
       if (user.traducteur || user.expertTrad) {
         const data = await API.get_progression({ onlyTotal: true });
-        setNbWordsTranslated(data?.totalIndicator.wordsCount || 0);
+        setNbWordsTranslated(data?.totalIndicator?.wordsCount || 0);
       }
     };
-    if (nbWordsTranslated !== null) {
+    if (nbWordsTranslated === null) {
       loadIndicators();
     }
   }, [dispatch, user, userDetails, nbWordsTranslated]);

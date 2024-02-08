@@ -106,7 +106,7 @@ body .btn {
   &.dark {
     --hover-tint: #{$grey50b};
     background: $gray90;
-    color: $white;
+    color: $white !important;
     svg {
       fill: $white;
     }
