@@ -16,6 +16,7 @@ The source code is located at `/client`.
 
 This project is based on [React](https://reactjs.org/), and uses the [NextJS framework](https://nextjs.org/).  
 It includes the following libraries:
+
 - [Typescript](https://www.typescriptlang.org/)
 - [Redux](https://redux.js.org/)
 - [Axios](https://github.com/axios/axios)
@@ -23,24 +24,25 @@ It includes the following libraries:
 - [ESLint](https://eslint.org/)
 - [Jest](https://jestjs.io/)
 
-
 ## Setup
 
-*It is recommended to [setup the server](../server/) first as you will need it to build or run the client.*
+_It is recommended to [setup the server](../server/) first as you will need it to build or run the client._
 
 1. Clone the repository locally
 2. Install the dependencies
-  ```bash
-  > npm install
-  ```
-3. Copy the `/example-env-file.env` to `.env.local` and replace `demo` with the right values.
 
+```bash
+> npm install
+```
+
+3. Copy the `/example-env-file.env` to `.env.local` and replace `demo` with the right values.
 
 ## Development
 
-*Before starting or building the app, make sure your server is running.*
+_Before starting or building the app, make sure your server is running._
 
 To start the development server, run:
+
 ```bash
 > npm run dev
 ```
@@ -48,6 +50,7 @@ To start the development server, run:
 Your app is now accessible at http://localhost:3000/ .
 
 If you want to test it like in production, build the app first and start the Next server:
+
 ```bash
 > npm run build   # build a production ready app
 > npm run start   # start the app with the previously created build
@@ -55,25 +58,28 @@ If you want to test it like in production, build the app first and start the Nex
 
 Your app is now accessible at http://localhost:3000/ .
 
+NB: `reactStrictMode` is enabled by default in `next.config.js`. This helps to prevent some common bugs, but it makes all the components render twice.
 
 ## Testing
 
 To launch the tests, run:
+
 ```bash
 > npm run test
 ```
 
 It will execute:
+
 - **unit tests**. Made with Jest, to test components and functions
 - **linter**. With ESLint, it analyzes the Javascript code the find potential problems
 - **types**. With Typescript, it checks the code syntax
 
 Each time you write a feature, you must include some tests.
 
-
 ## Deploy
 
 We use 2 environments:
+
 - staging: https://staging.refugies.info
 - prod: https://refugies.info
 
@@ -83,17 +89,16 @@ To deploy on **production**, merge the branch `staging-frontend` to `master-fron
 
 To learn more about the git flow, read the [Git Flow documentation](../README.md#git-flow).
 
-
 ## Architecture
 
 Learn more about the [architecture of the project here](architecture.md).
-
 
 ## Development Guide
 
 Follow the [technical standards](general.md) to keep the codebase clean.
 
 Here are some more specific guides:
+
 - [component architecture](component-architecture.md)
 - [routing](routing.md)
 - [styling](styling.md)

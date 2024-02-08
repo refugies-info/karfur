@@ -82,7 +82,7 @@ const CheckCode = ({ type }: Props) => {
 
         <form onSubmit={submit}>
           <Input
-            label={type === "2fa" ? "Code de vérification" : "Code de connexion temporaire"}
+            label={type === "2fa" ? "Code d'authentification" : "Code de connexion temporaire"}
             state={!error ? "default" : "error"}
             stateRelatedMessage={error}
             nativeInputProps={{

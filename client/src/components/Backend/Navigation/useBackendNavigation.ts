@@ -4,9 +4,7 @@ import { RoleName } from "@refugies-info/api-types";
 import { getPath, PathNames } from "routes";
 import useBackendNavItem from "./BackendNavItem/useBackendNavItem";
 import API from "utils/API";
-import { useDispatch, useSelector } from "react-redux";
-import { setUserActionCreator } from "services/User/user.actions";
-import { setUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
+import { useSelector } from "react-redux";
 import { userStructureDisposAssociesSelector, userStructureHasResponsibleSeenNotification } from "services/UserStructure/userStructure.selectors";
 import { getNbNewNotifications } from "../screens/UserNotifications/lib";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
@@ -14,7 +12,6 @@ import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 const useBackendNavigation = (): MainNavigationProps.Item[] => {
   const { t } = useTranslation();
   const router = useRouter();
-  const dispatch = useDispatch();
 
   // notifs
   const dispositifsAssocies = useSelector(userStructureDisposAssociesSelector);
@@ -24,8 +21,6 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
   // logout
   const disconnect = () => {
     API.logout();
-    dispatch(setUserActionCreator(null));
-    dispatch(setUserStructureActionCreator(null));
     window.location.href = "/";
   };
 

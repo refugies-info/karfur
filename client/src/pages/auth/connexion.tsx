@@ -32,7 +32,7 @@ const AuthLogin = () => {
         if (!res.token) throw new Error();
         logUser(res.token);
       } catch (e: any) {
-        const error = handleError(e.response?.data?.code, e.response?.data?.email || "");
+        const error = handleError(e.response?.data?.code, e.response?.data?.data?.email || "");
         if (error) setError(error);
       }
     },

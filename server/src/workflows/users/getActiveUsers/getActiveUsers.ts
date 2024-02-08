@@ -7,6 +7,11 @@ import { GetActiveUsersResponse } from "@refugies-info/api-types";
 
 export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUsersResponse[]> => {
   logger.info("[getActiveUsers] received");
+
+  // Check authorizations
+  const hasStructure = user && user.structures && user.structures?.length > 0;
+  if (!hasStructure && !user.isAdmin()) throw new AuthenticationError("You are not authorized to get users");
+
   const neededFields = {
     username: 1,
     picture: 1,
@@ -15,10 +20,6 @@ export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUser
   };
 
   const users = await getAllUsersFromDB(neededFields);
-
-  // Check authorizations
-  const hasStructure = user && user.structures && user.structures?.length > 0;
-  if (!hasStructure) throw new AuthenticationError("You are not authorized to get users");
 
   const result = users.map((user) => {
     const simpleUser: GetActiveUsersResponse = {
