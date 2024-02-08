@@ -115,29 +115,3 @@
   font-weight: bold;
   text-decoration: underline;
 }
-
-// autocomplete
-.suggestions {
-  background: white;
-  position: absolute;
-  width: 100%;
-  box-shadow: 0 6px 18px 0 #00001229;
-
-  & > button {
-    display: block;
-    width: 100%;
-    text-align: left;
-    padding: u(2) u(3);
-  }
-}
-
-.option {
-  background: var(--background-action-low-blue-france);
-  padding: u(2) u(3);
-  color: var(--text-action-high-blue-france);
-  display: inline-flex;
-  align-items: center;
-  gap: u(2);
-  margin-right: u(2);
-  margin-bottom: u(2);
-}

@@ -63,7 +63,7 @@ const useDispositifTranslation = (traductions: GetTraductionsForReviewResponse, 
   const { setValue } = useFormContext<TranslateForm>();
   const data = useWatch<TranslateForm>();
   const [translations, _setTranslations] = useState<GetTraductionsForReview[]>(
-    getInitialTranslations(user.userId.toString(), traductions)
+    getInitialTranslations(user.userId?.toString() || "", traductions)
   );
   const language = useMemo(() => router.query.language as Languages, [router.query]);
   const validator = useMemo(() => traductions?.[0]?.validator, [traductions]);

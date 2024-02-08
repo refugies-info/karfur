@@ -138,22 +138,6 @@
     "inLocation": "in",
     "inLanguage": "in"
   },
-  "UserProfile": {
-    "Modifier ma photo": "Change my photo",
-    "ErreurChargement": "An error has occurred, please reload the page!",
-    "photoUsage": "Your photo will appear on the files to which you contribute.",
-    "Votre nouveau mot de passe": "Your new password",
-    "votre pseudo": "Your pseudonym",
-    "pseudoExplication": "This pseudonym is public. It will appear on the files to which you will contribute.",
-    "emailExplication": "Your email address will only be used to reset your password and for notifications related to your activity on the site.",
-    "phoneExplication": "If you change your phone number, you will be asked for a confirmation code to update the double authentication.",
-    "Votre mot de passe": "Your password",
-    "modifyPassword": "Change my password",
-    "Enregistrer": "Save",
-    "edit_phone_number": "Change phone number",
-    "edit_phone_number_subtitle": "A code has been sent to you by SMS to {{phone}}:",
-    "edit_phone_number_wrong_code": "Oops! This code is not correct. Try again?"
-  },
   "UserFavorites": {
     "Comment ajouter": "How do I add card to my favourites?",
     "Tout supprimer": "Delete all",
@@ -231,12 +215,7 @@
     "Rejeté admin": "Rejected by site admin",
     "Inactif": "Inactive"
   },
-  "Login": {
-    "Entrez votre code": "Enter your code",
-    "same_password_error": "The password cannot be the same as the old password."
-  },
   "Register": {
-    "Renseignez votre adresse email": "Enter your email address",
     "Votre email": "Your email",
     "Rendez-vous sur votre ordinateur": "Go to your PC",
     "email_reminder": "Remind me by e-mail",
@@ -250,10 +229,7 @@
     "email_invitation": "We will send you an invitation email to register",
     "not_an_email": "This is not an email,",
     "check_mail": "check your spelling.",
-    "enter_your_phone_number": "Fill in your phone number",
-    "no_phone_number": "No phone number",
-    "invalid_phone_number": "This is not a valid phone number, check your entry.",
-    "your_phone_number": "Your phone number"
+    "invalid_phone_number": "This is not a valid phone number, check your entry."
   },
   "UnauthorizedAccess": {
     "access_denied": "Access denied",

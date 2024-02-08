@@ -2,7 +2,6 @@
 
 - [`assets`](#assets)
 - [`components`](#components)
-- [`containers`](#containers)
 - [`data`](#data)
 - [`hooks`](#hooks)
 - [`lib`](#lib)
@@ -13,25 +12,12 @@
 - [`types`](#types)
 
 ## `assets`
+
 ### Responsibility
 
 Contains the assets of the projects. In order to have a light bundle, put the assets on GCP bucket like explained in assets storage doc in private repo.
 
 ## `components`
-
-### Responsibility
-
-TO DO
-
-### Collaborators
-
-TO DO
-
-### Checks
-
-TO DO
-
-## `containers`
 
 ### Responsibility
 
@@ -78,7 +64,6 @@ TO DO
 ### Checks
 
 - ✅ Fully tested
-
 
 ## `locales`
 

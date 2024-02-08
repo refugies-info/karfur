@@ -6,13 +6,13 @@ import { getUserById } from "../../../modules/users/users.repository";
 import { Dispositif, Structure, User } from "../../../typegoose";
 import { NotFoundError } from "../../../errors";
 import { getStructureDispositifs } from "../../../modules/dispositif/dispositif.repository";
-import { DispositifStatus, GetStructureResponse, Languages, StructureMember } from "@refugies-info/api-types";
+import { DispositifStatus, GetStructureResponse, Languages, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
 import { Membre } from "../../../typegoose/Structure";
 import { omit } from "lodash";
 
 const getMainRole = (membre: Membre) => {
-  if (membre.roles.includes("administrateur")) return "Responsable";
-  if (membre.roles.includes("contributeur")) return "Rédacteur";
+  if (membre.roles.includes(StructureMemberRole.ADMIN)) return "Responsable";
+  if (membre.roles.includes(StructureMemberRole.CONTRIB)) return "Rédacteur";
   return "Exclu";
 }
 

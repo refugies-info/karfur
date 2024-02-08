@@ -5,7 +5,7 @@ import { log } from "./log";
 import { Response } from "../../../types/interface";
 import { ObjectId, Structure } from "../../../typegoose";
 import { pick } from "lodash";
-import { PostStructureRequest } from "@refugies-info/api-types";
+import { PostStructureRequest, StructureMemberRole } from "@refugies-info/api-types";
 
 export const createStructure = async (body: PostStructureRequest, userId: string): Response => {
   logger.info("[createStructure] call received", { body });
@@ -17,7 +17,7 @@ export const createStructure = async (body: PostStructureRequest, userId: string
       ? [
         {
           userId: new ObjectId(body.responsable),
-          roles: ["administrateur"],
+          roles: [StructureMemberRole.ADMIN],
           added_at: new Date(),
         },
       ]

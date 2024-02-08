@@ -1,13 +1,15 @@
-import { Controller, Post, Body, Route, Security, Request } from "tsoa";
-import { AddContactRequest, ImprovementsRequest, SubscriptionRequest } from "@refugies-info/api-types";
-import * as express from "express";
+import { Controller, Post, Body, Route, Security, Request, Get, Delete } from "tsoa";
+import { AddContactRequest, ImprovementsRequest, IsInContactResponse, SubscriptionRequest } from "@refugies-info/api-types";
+import { Request as ExRequest } from "express";
 
 import { sendDraftReminderMail } from "../workflows/mail/sendDraftReminderMail";
 import { sendReminderMailToUpdateContents } from "../workflows/mail/sendReminderMailToUpdateContents";
 import { sendAdminImprovementsMail } from "../workflows/mail/sendAdminImprovementsMail";
 import { sendSubscriptionReminderMail } from "../workflows/mail/sendSubscriptionReminderMail";
 import { addContact } from "../workflows/mail/addContact";
-import { Response } from "../types/interface";
+import { isInContact } from "../workflows/mail/isInContact";
+import { deleteContact } from "../workflows/mail/deleteContact";
+import { Response, ResponseWithData } from "../types/interface";
 
 @Route("mail")
 export class MailController extends Controller {
@@ -32,7 +34,7 @@ export class MailController extends Controller {
     fromSite: [],
   })
   @Post("sendAdminImprovementsMail")
-  public adminImprovementsMail(@Body() body: ImprovementsRequest, @Request() request: express.Request): Response {
+  public adminImprovementsMail(@Body() body: ImprovementsRequest, @Request() request: ExRequest): Response {
     return sendAdminImprovementsMail(body, request.userId);
   }
 
@@ -44,6 +46,24 @@ export class MailController extends Controller {
     return sendSubscriptionReminderMail(body);
   }
 
+  @Security({
+    jwt: [],
+    fromSite: [],
+  })
+  @Get("contacts")
+  public async isInContact(@Request() request: ExRequest): ResponseWithData<IsInContactResponse> {
+    const isInContacts = await isInContact(request.user);
+    return { text: "success", data: { isInContacts } };
+  }
+  @Security({
+    jwt: [],
+    fromSite: [],
+  })
+  @Delete("contacts")
+  public async deleteContact(@Request() request: ExRequest): Response {
+    await deleteContact(request.user);
+    return { text: "success" };
+  }
   @Security({
     fromSite: [],
   })

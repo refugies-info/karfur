@@ -1,45 +1,44 @@
 import { createReducer } from "typesafe-actions";
 import { UserActions } from "./user.actions";
-import { GetUserInfoResponse, Id, RoleName } from "@refugies-info/api-types";
+import { GetUserInfoResponse, Id, RoleName, StructureMemberRole } from "@refugies-info/api-types";
 
 export interface UserState {
+  userId: Id | null;
   user: GetUserInfoResponse | null;
+  // roles
   admin: boolean;
   traducteur: boolean;
   expertTrad: boolean;
   contributeur: boolean;
+  caregiver: boolean;
   hasStructure: boolean;
-  userId: Id | "";
-  userFetched: boolean;
-  rolesInStructure: string[];
+  rolesInStructure: StructureMemberRole[];
 }
 export const initialUserState: UserState = {
+  userId: null,
   user: null,
+
   admin: false,
   traducteur: false,
   expertTrad: false,
   contributeur: false,
+  caregiver: false,
   hasStructure: false,
-  userId: "",
-  userFetched: false,
   rolesInStructure: []
 };
 
 export const userReducer = createReducer<UserState, UserActions>(initialUserState, {
   SET_USER: (state, action) => ({
     ...state,
-    userFetched: true,
+    userId: action.payload?._id || null,
     user: action.payload,
-    userId: action.payload ? action.payload._id : "",
-    admin: action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === RoleName.ADMIN) : false,
-    traducteur:
-      action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === RoleName.TRAD) : false,
-    expertTrad:
-      action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === RoleName.EXPERT_TRAD) : false,
-    contributeur:
-      action.payload && action.payload.roles ? action.payload.roles.some((x) => x.nom === RoleName.CONTRIB) : false,
-    hasStructure: action.payload && action.payload.structures ? action.payload.structures.length > 0 : false
+
+    admin: (action.payload?.roles || []).some((x) => x.nom === RoleName.ADMIN),
+    traducteur: (action.payload?.roles || []).some((x) => x.nom === RoleName.TRAD),
+    expertTrad: (action.payload?.roles || []).some((x) => x.nom === RoleName.EXPERT_TRAD),
+    contributeur: (action.payload?.roles || []).some((x) => x.nom === RoleName.CONTRIB),
+    caregiver: (action.payload?.roles || []).some((x) => x.nom === RoleName.CAREGIVER),
+    hasStructure: (action.payload?.structures || []).length > 0
   }),
-  UPDATE_USER: (state, action) => ({ ...state, user: action.payload, userFetched: true }),
   SET_USER_ROLE_IN_STRUCTURE: (state, action) => ({ ...state, rolesInStructure: action.payload })
 });

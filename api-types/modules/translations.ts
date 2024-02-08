@@ -120,15 +120,16 @@ export interface DeleteTranslationsRequest {
 
 export interface GetProgressionRequest {
   userId?: string;
+  onlyTotal?: boolean;
 }
 export interface ProgressionIndicator {
   wordsCount: number;
   timeSpent: number;
 }
 export interface GetProgressionResponse {
-  twelveMonthsIndicator: ProgressionIndicator;
-  sixMonthsIndicator: ProgressionIndicator;
-  threeMonthsIndicator: ProgressionIndicator;
+  twelveMonthsIndicator?: ProgressionIndicator;
+  sixMonthsIndicator?: ProgressionIndicator;
+  threeMonthsIndicator?: ProgressionIndicator;
   totalIndicator: ProgressionIndicator;
 }
 

@@ -1,5 +1,5 @@
 import { userReducer, initialUserState } from "../user.reducer";
-import { setUserActionCreator, updateUserActionCreator } from "../user.actions";
+import { setUserActionCreator } from "../user.actions";
 import { testUser, testUserWithRoles } from "../../../__fixtures__/user";
 import { RoleName } from "@refugies-info/api-types";
 
@@ -11,8 +11,8 @@ describe("[Reducer] user", () => {
     traducteur: false,
     expertTrad: false,
     contributeur: false,
+    caregiver: false,
     hasStructure: false,
-    userFetched: true,
     rolesInStructure: []
   };
   it("should set user in store when action SET_USER is received with payload user without role", () => {
@@ -22,13 +22,13 @@ describe("[Reducer] user", () => {
   it("should set user in store when action SET_USER is received with payload null user", () => {
     expect(userReducer(initialUserState, setUserActionCreator(null))).toEqual({
       user: null,
-      userId: "",
+      userId: null,
       admin: false,
       traducteur: false,
       expertTrad: false,
       contributeur: false,
+      caregiver: false,
       hasStructure: false,
-      userFetched: true,
       rolesInStructure: []
     });
   });
@@ -41,22 +41,11 @@ describe("[Reducer] user", () => {
       traducteur: true,
       expertTrad: true,
       contributeur: true,
+      caregiver: false,
       hasStructure: true,
-      userFetched: true,
       rolesInStructure: []
     });
-  });
-
-  it("should set user in store when action UPDATE_USER is received with payload new user ", () => {
-    const newUser = {
-      ...testUser,
-      _id: "55153a8014829a865bbf700d"
-    };
-    expect(userReducer(expectedResult, updateUserActionCreator(newUser))).toEqual({
-      ...expectedResult,
-      user: newUser
-    });
-  });
+  })
 
   it("should set user in store when action SET_USER is received with payload new user ", () => {
     const newUser = {
@@ -69,8 +58,8 @@ describe("[Reducer] user", () => {
       traducteur: true,
       expertTrad: true,
       contributeur: true,
+      caregiver: false,
       hasStructure: true,
-      userFetched: true,
       rolesInStructure: [],
       user: newUser
     });
@@ -94,8 +83,8 @@ describe("[Reducer] user", () => {
       traducteur: false,
       expertTrad: false,
       contributeur: false,
+      caregiver: false,
       hasStructure: false,
-      userFetched: true,
       rolesInStructure: [],
       user: newUser
     });
@@ -117,8 +106,8 @@ describe("[Reducer] user", () => {
       traducteur: false,
       expertTrad: false,
       contributeur: false,
+      caregiver: false,
       hasStructure: true,
-      userFetched: true,
       rolesInStructure: [],
       user: newUser
     });

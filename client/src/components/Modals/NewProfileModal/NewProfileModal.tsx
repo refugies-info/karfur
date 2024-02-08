@@ -4,25 +4,25 @@ import { isMobileOnly } from "react-device-detect";
 import { RoleName } from "@refugies-info/api-types";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useRegisterFlow } from "hooks";
-import { userDetailsSelector } from "services/User/user.selectors";
+import { userSelector } from "services/User/user.selectors";
 import { hasRole } from "lib/hasRole";
 import BaseModal from "components/UI/BaseModal";
 
 const NewProfileModal = () => {
   const [show, setShow] = useState(false);
-  const userDetails = useSelector(userDetailsSelector);
+  const user = useSelector(userSelector);
   const { next } = useRegisterFlow(null);
 
   useEffect(() => {
+    const userDetails = user.user;
     if (!userDetails) return;
     const missingUsername = !userDetails.username;
     const missingDepartment = (userDetails.departments?.length || 0) === 0;
 
     const tradIncomplete =
-      hasRole(userDetails, RoleName.TRAD) &&
-      (userDetails.selectedLanguages.length === 0 || missingUsername || missingDepartment);
-    const caregiverIncomplete = hasRole(userDetails, RoleName.CAREGIVER) && (!userDetails.partner || missingDepartment);
-    const contribIncomplete = hasRole(userDetails, RoleName.CONTRIB) && (missingUsername || missingDepartment);
+      user.traducteur && (userDetails.selectedLanguages.length === 0 || missingUsername || missingDepartment);
+    const caregiverIncomplete = user.caregiver && (!userDetails.partner || missingDepartment);
+    const contribIncomplete = user.contributeur && (missingUsername || missingDepartment);
     const userIncomplete = hasRole(userDetails, RoleName.USER) && missingDepartment;
 
     const showNewProfileModal =
@@ -31,7 +31,7 @@ const NewProfileModal = () => {
       !window.location.pathname.includes("backend/user-profile");
 
     if (showNewProfileModal) setShow(true);
-  }, [userDetails]);
+  }, [user]);
 
   return (
     <BaseModal

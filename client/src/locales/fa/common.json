@@ -138,22 +138,6 @@
     "inLocation": "در",
     "inLanguage": "در"
   },
-  "UserProfile": {
-    "Modifier ma photo": "عکس من را ویرایش کنید",
-    "ErreurChargement": "خطایی رخ داده است ، لطفاً صفحه را دوباره بارگیری نمایید!",
-    "photoUsage": "عکس شما روی صفحات ظاهر میشود که در ترجمه آنها کمک خواهید کرد.",
-    "Votre nouveau mot de passe": "پسورد جدید شما",
-    "votre pseudo": "نام مستعار شما",
-    "pseudoExplication": "این نام مستعار عمومی است. در صفحاتی که در ترجمه آنها کمک خواهید کرد ظاهرمیگردد.",
-    "emailExplication": "ایمیل آدرس شما فقط در صورت تنظیم مجدد رمز ورود و دریافت به روزرسانی های جدید مربوط به فعالیت شما در سایت مورد استفاده قرار می گیرد",
-    "phoneExplication": "اگر شماره تلفن خود را تغییر دهید ، از کد تأیید درخواست می شود تا تأیید اعتبار مضاعف را به روز کنید.",
-    "Votre mot de passe": "رمز شما",
-    "modifyPassword": "رمز من را تغییر دهید",
-    "Enregistrer": "ذخیره",
-    "edit_phone_number": "تغییر شماره تلفن",
-    "edit_phone_number_subtitle": "یک کد توسط SMS در شماره {{تلفن} برای شما ارسال شده است:",
-    "edit_phone_number_wrong_code": "اوه این کد صحیح نیست. دوباره امتحان کنید؟"
-  },
   "UserFavorites": {
     "Comment ajouter": "چگونه می توان صفحات را به موارد دلخواه خود اضافه نمایم؟",
     "Tout supprimer": "حذف همه",
@@ -231,12 +215,7 @@
     "Rejeté admin": "مدیریت پذیرفته‌ نشد",
     "Inactif": "غیر فعال"
   },
-  "Login": {
-    "Entrez votre code": "کد خود را وارد نمایید",
-    "same_password_error": "رمز عبور نمی تواند با رمز عبور قدیمی یکسان باشد."
-  },
   "Register": {
-    "Renseignez votre adresse email": "آدرس ایمیل خود را وارد کنید",
     "Votre email": "ایمیل شما",
     "Rendez-vous sur votre ordinateur": "به کامپیوتر خود بروید",
     "email_reminder": "برای من یک یادآوری از طریق ایمیل ارسال کنید",
@@ -250,10 +229,7 @@
     "email_invitation": "ما برای ثبت نام شما ایمیل ارسال می کنیم",
     "not_an_email": "این یک ایمیل نیست ،",
     "check_mail": "املا خود را بررسی کنید.",
-    "enter_your_phone_number": "شماره تلفن خود را پیدا کنید",
-    "no_phone_number": "بدون شماره تلفن",
-    "invalid_phone_number": "این یک شماره تلفن معتبر نیست ، ورودی خود را بررسی کنید.",
-    "your_phone_number": "شماره تلفن شما"
+    "invalid_phone_number": "این یک شماره تلفن معتبر نیست ، ورودی خود را بررسی کنید."
   },
   "UnauthorizedAccess": {
     "access_denied": "دسترسی رد شد",

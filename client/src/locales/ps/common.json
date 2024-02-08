@@ -138,18 +138,6 @@
     "inLocation": "په",
     "inLanguage": "په"
   },
-  "UserProfile": {
-    "Modifier ma photo": "خپل عکس تبدیل ول",
-    "ErreurChargement": "یوه تیروتنه وشوه، لطفا، صفحه دوباره تازه کړئ !",
-    "photoUsage": "ستاسو عکس په هغو فایلونو کې څرګند وي چې تاسوبه پرې کارکوئ",
-    "Votre nouveau mot de passe": "ستاسو نوی رمز (پاس ورډ)",
-    "votre pseudo": "ستاسو مستعار نوم (یوزرنیم)",
-    "pseudoExplication": "دا یو عمومي مستعار نوم دی. دا په هغو فایلونو کې ظاهریږي چې تاسو پرې کارکوئ",
-    "emailExplication": "ستاسو بریښنالیک یوازې د رمزکلمې (پاس ورډ) د بیرته ترلاسه کولو او په ویب سايټ کې ستاسو دفعالیتونو په اړه د معلوماتو د لیږلو لپاره کارول کیږي",
-    "Votre mot de passe": "ستاسو د ننوتلو رمز (پاس ورډ)",
-    "modifyPassword": "زه خپله د رمز کلمه تبدیله وم",
-    "Enregistrer": "حفظ ول"
-  },
   "UserFavorites": {
     "Comment ajouter": "په فورټ کې فایلونه څنګه اضافه کړو؟",
     "Tout supprimer": "ټول حزف کړئ",
@@ -227,11 +215,7 @@
     "Rejeté admin": "رد شوې ادمین",
     "Inactif": "غیرفعال"
   },
-  "Login": {
-    "Entrez votre code": "خپل کوډ داخل کړئ"
-  },
   "Register": {
-    "Renseignez votre adresse email": "خپل بریښنالیک ادرس داخل کړئ",
     "Votre email": "ستاسو بریښنالیک",
     "Rendez-vous sur votre ordinateur": "دخپل کمپيوټر له لاری ثبت نام وکړئ",
     "email_reminder": "د بریښنالیک له لارې يې روالیږئ",

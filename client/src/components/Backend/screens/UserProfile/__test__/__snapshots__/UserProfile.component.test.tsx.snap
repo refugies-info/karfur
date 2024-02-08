@@ -1,0 +1,480 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfile should render correctly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="mb-10 align-items-center row"
+    >
+      <div
+        className="col"
+      >
+        <h1>
+          Mon profil
+        </h1>
+      </div>
+      <div
+        className="text-end text-nowrap col"
+      >
+        <button
+          className="fr-btn fr-btn--sm fr-icon-edit-box-line fr-btn--icon-right"
+          id="fr-button-:r0:"
+          onClick={[Function]}
+          style={{}}
+        >
+          Modifier mon profil
+        </button>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="flex-grow-0 col"
+      >
+        <div>
+          <div
+            className="avatar"
+          >
+            <img
+              alt="user picture"
+              data-nimg="1"
+              decoding="async"
+              height={160}
+              loading="lazy"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+              srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+              style={
+                {
+                  "color": "transparent",
+                }
+              }
+              width={160}
+            />
+          </div>
+          <button
+            className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right position-relative"
+          >
+            Modifier ma photo
+            <input
+              id="avatar"
+              onChange={[Function]}
+              type="file"
+            />
+          </button>
+          <p
+            className="small mt-4"
+          >
+            Votre photo apparaît sur les fiches auxquelles vous contribuer.
+          </p>
+        </div>
+      </div>
+      <div
+        className="inputs col-auto"
+      >
+        <form
+          onSubmit={[Function]}
+        >
+          <div
+            className="fr-input-group"
+          >
+            <label
+              className="fr-label"
+              htmlFor="input-:r1:"
+            >
+              Pseudonyme 
+              <i
+                className="fr-icon-question-line help"
+                id="tooltip-pseudo"
+              />
+            </label>
+            <input
+              aria-describedby="input-:r1:-desc-error"
+              className="fr-input"
+              id="input-:r1:"
+              name="pseudo"
+              onChange={[Function]}
+              readOnly={true}
+              type="text"
+              value="test"
+            />
+          </div>
+          <div
+            className="fr-input-group empty"
+          >
+            <label
+              className="fr-label"
+              htmlFor="input-:r2:"
+            >
+              Prénom
+            </label>
+            <input
+              aria-describedby="input-:r2:-desc-error"
+              className="fr-input"
+              id="input-:r2:"
+              name="firstName"
+              onChange={[Function]}
+              readOnly={true}
+              type="text"
+              value="Non défini"
+            />
+          </div>
+          <div
+            className="fr-input-group empty"
+          >
+            <label
+              className="fr-label"
+              htmlFor="input-:r3:"
+            >
+              Email
+            </label>
+            <input
+              aria-describedby="input-:r3:-desc-error"
+              className="fr-input"
+              id="input-:r3:"
+              name="email"
+              onChange={[Function]}
+              readOnly={true}
+              type="text"
+              value="Non défini"
+            />
+          </div>
+          <div
+            className="fr-input-group empty"
+          >
+            <label
+              className="fr-label"
+              htmlFor="input-:r4:"
+            >
+              Téléphone
+            </label>
+            <input
+              aria-describedby="input-:r4:-desc-error"
+              className="fr-input"
+              id="input-:r4:"
+              name="phone"
+              onChange={[Function]}
+              readOnly={true}
+              type="text"
+              value="Non défini"
+            />
+          </div>
+        </form>
+      </div>
+      <div
+        className="col"
+      >
+        <div
+          className="mb-4"
+        >
+          <div
+            className="d-flex justify-content-between mb-2"
+          >
+            <label
+              className="fr-label"
+            >
+              Départements
+            </label>
+            <button
+              className="button"
+              onClick={[Function]}
+            >
+              <i
+                className="fr-icon-map-pin-2-line icon"
+              />
+              Modifier
+            </button>
+          </div>
+          <p
+            className="empty"
+          >
+            Non défini
+          </p>
+        </div>
+        <div
+          className="mb-4"
+        >
+          <div
+            className="d-flex justify-content-between mb-2"
+          >
+            <label
+              className="fr-label"
+            >
+              Langues de traduction
+            </label>
+            <button
+              className="button"
+              onClick={[Function]}
+            >
+              <i
+                className="fr-icon-translate-2 icon"
+              />
+              Modifier
+            </button>
+          </div>
+        </div>
+        <div>
+          <label
+            className="fr-label mb-2"
+            htmlFor="newsletter"
+          >
+            Préférences de communication par email
+          </label>
+          <fieldset
+            aria-labelledby="fr-fieldset-checkbox-:r5:-messages"
+            className="fr-fieldset checkboxes"
+            disabled={true}
+            id="fr-fieldset-checkbox-:r5:"
+          >
+            <div
+              className="fr-fieldset__content"
+            >
+              <div
+                className="fr-checkbox-group fr-checkbox-group--sm"
+              >
+                <input
+                  checked={false}
+                  id="fr-fieldset-checkbox-:r5:-0"
+                  name="newsletter"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <label
+                  className="fr-label"
+                  htmlFor="fr-fieldset-checkbox-:r5:-0"
+                >
+                  La lettre d’information de Réfugiés.info 
+                  <span
+                    className="fr-hint-text"
+                  >
+                    Maximum 1 fois par mois 
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div
+              aria-live="assertive"
+              className="fr-messages-group"
+              id="fr-fieldset-checkbox-:r5:-messages"
+            />
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    aria-controls="user-departments-modal"
+    aria-hidden={true}
+    className="fr-btn fr-hidden"
+    data-fr-opened={false}
+    id="user-departments-modal-hidden-control-button"
+    style={{}}
+    tabIndex={-1}
+    type="button"
+  >
+     
+  </button>
+  <dialog
+    aria-labelledby="fr-modal-title-user-departments-modal"
+    className="fr-modal"
+    data-fr-concealing-backdrop={true}
+    id="user-departments-modal"
+    role="dialog"
+  >
+    <div
+      className="fr-container fr-container--fluid fr-container-md"
+    >
+      <div
+        className="fr-grid-row fr-grid-row--center"
+      >
+        <div
+          className="fr-col-12 fr-col-md-8 fr-col-lg-6"
+        >
+          <div
+            className="fr-modal__body"
+          >
+            <div
+              className="fr-modal__header"
+            >
+              <button
+                aria-controls="user-departments-modal"
+                className="fr-btn--close fr-btn"
+                title="Fermer"
+                type="button"
+              >
+                Fermer
+              </button>
+            </div>
+            <div
+              className="fr-modal__content"
+            >
+              <h1
+                className="fr-modal__title"
+                id="fr-modal-title-user-departments-modal"
+              >
+                Départements
+              </h1>
+              <form
+                onSubmit={[Function]}
+              >
+                <label
+                  className="mb-2"
+                  htmlFor="location"
+                >
+                  Nom ou numéro du département(s)
+                </label>
+                <div
+                  className="position-relative"
+                >
+                  <div
+                    className="mt-14"
+                  />
+                </div>
+                <div
+                  className="text-end"
+                >
+                  <button
+                    className="fr-btn fr-icon-check-line fr-btn--icon-right button mt-14"
+                    disabled={true}
+                    id="fr-button-:r8:"
+                    style={{}}
+                    type="submit"
+                  >
+                    Valider
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <button
+    aria-controls="user-language-modal"
+    aria-hidden={true}
+    className="fr-btn fr-hidden"
+    data-fr-opened={false}
+    id="user-language-modal-hidden-control-button"
+    style={{}}
+    tabIndex={-1}
+    type="button"
+  >
+     
+  </button>
+  <dialog
+    aria-labelledby="fr-modal-title-user-language-modal"
+    className="fr-modal"
+    data-fr-concealing-backdrop={true}
+    id="user-language-modal"
+    role="dialog"
+  >
+    <div
+      className="fr-container fr-container--fluid fr-container-md"
+    >
+      <div
+        className="fr-grid-row fr-grid-row--center"
+      >
+        <div
+          className="fr-col-12 fr-col-md-8 fr-col-lg-6"
+        >
+          <div
+            className="fr-modal__body"
+          >
+            <div
+              className="fr-modal__header"
+            >
+              <button
+                aria-controls="user-language-modal"
+                className="fr-btn--close fr-btn"
+                title="Fermer"
+                type="button"
+              >
+                Fermer
+              </button>
+            </div>
+            <div
+              className="fr-modal__content"
+            >
+              <h1
+                className="fr-modal__title"
+                id="fr-modal-title-user-language-modal"
+              >
+                <div
+                  className="mb-6"
+                >
+                  Langues
+                </div>
+              </h1>
+              <form
+                onSubmit={[Function]}
+              >
+                <button
+                  className="choice has_image mb-4 rounded-0"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="me-2 icon"
+                  >
+                    <i
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square" fill="lightTextTitleGrey"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                        }
+                      }
+                      style={
+                        {
+                          "height": "20px",
+                          "lineHeight": "20px",
+                        }
+                      }
+                    />
+                  </span>
+                  <span
+                    className="text"
+                  >
+                    <strong>
+                      Anglais
+                    </strong>
+                     - 
+                    English
+                  </span>
+                  <span
+                    className="flag fi fi-en"
+                    title="en"
+                  />
+                </button>
+                <div
+                  className="text-end"
+                >
+                  <button
+                    className="fr-btn fr-icon-check-line fr-btn--icon-right button mt-14"
+                    disabled={false}
+                    id="fr-button-:ra:"
+                    style={{}}
+                    type="submit"
+                  >
+                    Valider
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</div>
+`;
+
+exports[`UserProfile should render correctly when loading 1`] = `
+<div>
+  Une erreur est survenue, veuillez recharger la page !
+</div>
+`;

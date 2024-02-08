@@ -18,7 +18,7 @@ import { getPasswordStrength } from "lib/validatePassword";
 import { getRegisterInfos } from "lib/loginRedirect";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
-import Error from "components/Pages/auth/Error";
+import ErrorMessage from "components/UI/ErrorMessage";
 import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
@@ -112,7 +112,7 @@ const AuthLogin = () => {
             className="mt-8 mb-6"
           />
 
-          <Error error={error} />
+          <ErrorMessage error={error} />
 
           <Button
             iconId="fr-icon-arrow-right-line"
