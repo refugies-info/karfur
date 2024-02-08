@@ -43,6 +43,7 @@ const AuthLogin = () => {
             Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Pas d’inquiétude, vous pourrez
             toujours modifier !
           </p>
+          <p className={cls(styles.subtitle, "mt-2")}>Les démarches nationales resteront visibles.</p>
         </div>
 
         <EditDepartments successCallback={successCallback} buttonFullWidth />

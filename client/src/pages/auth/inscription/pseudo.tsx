@@ -28,7 +28,11 @@ const AuthLogin = () => {
     async (e: any) => {
       e.preventDefault();
       setError("");
-      if (!userId || !username) return;
+      if (!userId) return;
+      if (!username) {
+        setError("Veuillez choisir un pseudonyme.");
+        return;
+      }
       try {
         await API.updateUser(userId.toString(), {
           user: { username },
@@ -79,6 +83,7 @@ const AuthLogin = () => {
             className="mt-14"
             state={!!error ? "error" : "default"}
             stateRelatedMessage={error}
+            hintText="N'indiquez pas de coordonnées personnelles dans votre pseudonyme (adresse email...). Exemples de pseudonymes : Guillaume-afpa, cidff13, sarah-trad, Nora78."
             nativeInputProps={{
               autoFocus: true,
               value: username,

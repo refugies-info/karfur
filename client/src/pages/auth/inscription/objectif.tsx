@@ -38,7 +38,11 @@ const AuthLogin = () => {
     async (e: any) => {
       e.preventDefault();
       setError("");
-      if (!userId || !role) return;
+      if (!userId) return;
+      if (!role) {
+        setError("Veuillez sélectionner une option.");
+        return;
+      }
       try {
         if (role && role !== RoleName.USER) {
           await API.updateUser(userId.toString(), { user: { roles: [role] }, action: "modify-my-details" }); // FIXME what if back and change role?
@@ -52,7 +56,7 @@ const AuthLogin = () => {
     [router, userId, role, next],
   );
 
-  // if (!userId) return null;
+  if (!userId) return null;
 
   return (
     <div className={cls(styles.container, styles.full)}>

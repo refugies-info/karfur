@@ -43,7 +43,11 @@ const EditDepartments = (props: Props) => {
     async (e: any) => {
       e.preventDefault();
       setError("");
-      if (!userDetails || selectedLanguages.length === 0) return;
+      if (!userDetails) return;
+      if (selectedLanguages.length === 0) {
+        setError("Veuillez sélectionner au moins une langue.");
+        return;
+      }
       try {
         await API.updateUser(userDetails._id.toString(), {
           user: { selectedLanguages },
