@@ -117,6 +117,7 @@ export interface UpdateUserRequest {
     phone?: string;
     code?: string;
     username?: string;
+    firstName?: string;
     picture?: Picture;
     adminComments?: string;
     selectedLanguages?: string[];
@@ -139,6 +140,7 @@ export interface GetUserInfoResponse {
   status: UserStatus;
   structures: string[];
   username?: string;
+  firstName?: string;
   picture?: Picture;
   partner?: string;
   departments?: string[];

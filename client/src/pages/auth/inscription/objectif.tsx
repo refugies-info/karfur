@@ -14,8 +14,8 @@ import { cls } from "lib/classname";
 import { hasRole } from "lib/hasRole";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
-import Error from "components/Pages/auth/Error";
-import GoalIconTs from "assets/auth/goal-icon-ts.svg";
+import ErrorMessage from "components/UI/ErrorMessage";
+// import GoalIconTs from "assets/auth/goal-icon-ts.svg"; // TODO: delete?
 import GoalIconStructure from "assets/auth/goal-icon-structure.svg";
 import GoalIconTranslate from "assets/auth/goal-icon-translate.svg";
 import GoalIconUser from "assets/auth/goal-icon-user.svg";
@@ -110,7 +110,7 @@ const AuthLogin = () => {
             ]}
           />
 
-          <Error error={error} />
+          <ErrorMessage error={error} />
 
           <Button
             iconId="fr-icon-arrow-right-line"

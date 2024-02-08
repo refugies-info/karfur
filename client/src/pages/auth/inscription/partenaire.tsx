@@ -14,7 +14,7 @@ import { cls } from "lib/classname";
 import { useRegisterFlow } from "hooks";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
-import Error from "components/Pages/auth/Error";
+import ErrorMessage from "components/UI/ErrorMessage";
 import LogoCoallia from "assets/auth/structure-logos/structure-coallia.png";
 import LogoPierreValdo from "assets/auth/structure-logos/structure-pierre-valdo.png";
 import LogoFranceHorizon from "assets/auth/structure-logos/structure-france-horizon.png";
@@ -152,7 +152,7 @@ const AuthLogin = () => {
             ]}
           />
 
-          <Error error={error} />
+          <ErrorMessage error={error} />
 
           <Button
             iconId="fr-icon-arrow-right-line"

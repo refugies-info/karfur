@@ -74,7 +74,8 @@ export const logUser = async (user: DocumentType<User> | string): Promise<string
  * @param user - user object or email
  */
 export const needs2FA = async (user: DocumentType<User> | string): Promise<boolean> => {
-  let userDocument: DocumentType<User> = typeof user === "string" ? await getUserByEmailFromDB(user) : user;
+  const userDocument: DocumentType<User> = typeof user === "string" ? await getUserByEmailFromDB(user) : user;
+  if (!userDocument) return false;
   const userIsAdmin = userDocument.isAdmin();
   const userIsExpertTrad = userDocument.isExpert();
   const userStructureId = await userRespoStructureId(userDocument.structures.map((s) => s._id) || [], userDocument._id);

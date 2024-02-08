@@ -1,4 +1,4 @@
-import { Id, Picture, SimpleDispositif, SimpleUser, StructureMember, StructureStatus } from "../generics";
+import { Id, Picture, SimpleDispositif, SimpleUser, StructureMember, StructureMemberRole, StructureStatus } from "../generics";
 import { Suggestion } from "./dispositif";
 
 type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
@@ -66,13 +66,13 @@ export interface PatchStructureRequest {
 export interface PatchStructureRolesRequest {
   membreId: string;
   action: "delete" | "modify" | "create";
-  role?: string;
+  role?: StructureMemberRole;
 }
 
 
 interface Membre {
   userId: Id;
-  roles: string[];
+  roles: StructureMemberRole[];
 }
 /**
  * @url GET /structures/all

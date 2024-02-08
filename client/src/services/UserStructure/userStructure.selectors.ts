@@ -1,6 +1,6 @@
 import { RootState } from "../rootReducer";
 import { areDispositifsAssociesPopulate } from "../../types/typeGuards";
-import { GetStructureDispositifResponse, GetStructureResponse } from "@refugies-info/api-types";
+import { GetStructureDispositifResponse, GetStructureResponse, StructureMemberRole } from "@refugies-info/api-types";
 
 export const userStructureSelector = (state: RootState): GetStructureResponse | null =>
   state.userStructure;
@@ -29,3 +29,6 @@ export const userStructureMembresSelector = (
   state: RootState
 ): GetStructureResponse["membres"] =>
   state.userStructure ? state.userStructure.membres : [];
+
+export const userStructureRoleSelector = (state: RootState): StructureMemberRole[] | null =>
+  state.userStructure && state.user.userId ? (state.userStructure.membres.find(m => m.userId === state.user.userId?.toString())?.roles || null) : null;

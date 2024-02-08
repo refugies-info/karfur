@@ -1,6 +1,6 @@
 {
   "name": "@refugies-info/api-types",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "description": "Types defined in the API to be used by the frontend",
   "main": "dist/index.js",
   "scripts": {

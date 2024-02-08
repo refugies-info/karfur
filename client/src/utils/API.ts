@@ -96,7 +96,8 @@ import {
   PublishTranslationRequest,
   CheckUserExistsResponse,
   SendCodeRequest,
-  RegisterRequest
+  RegisterRequest,
+  IsInContactResponse
 } from "@refugies-info/api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -344,6 +345,14 @@ const API = {
   sendSubscriptionReminderMail: (body: SubscriptionRequest): Promise<null> => {
     const headers = getHeaders();
     return instance.post<any, null>("/mail/sendSubscriptionReminderMail", body, { headers }).then(() => null);
+  },
+  isInContacts: (): Promise<IsInContactResponse> => {
+    const headers = getHeaders();
+    return instance.get<any, APIResponse<IsInContactResponse>>("/mail/contacts", { headers }).then(response => response.data.data);
+  },
+  deleteContact: (): Promise<null> => {
+    const headers = getHeaders();
+    return instance.delete<any, null>("/mail/contacts", { headers }).then(() => null);
   },
   contacts: (body: AddContactRequest): Promise<null> => {
     const headers = getHeaders();
