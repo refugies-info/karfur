@@ -1,4 +1,5 @@
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 
 $headerHeight: 120px;
@@ -48,7 +49,10 @@ $headerHeight: 120px;
 
 .chapo {
   @include dsfr-text("chapo");
-  margin-bottom: u(14);
+  margin-bottom: u(12);
+  @include media-max("widescreen-up", true, true) {
+    margin-bottom: u(10);
+  }
 }
 
 .rating {
@@ -63,6 +67,9 @@ $headerHeight: 120px;
   @include dsfr-text("small");
   margin-top: u(2);
   margin-bottom: u(12);
+  @include media-max("widescreen-up", true, true) {
+    margin-bottom: u(10);
+  }
 }
 
 .fixed_illu {

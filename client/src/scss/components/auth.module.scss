@@ -2,6 +2,7 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
 
 .container {
   &.half {
@@ -26,24 +27,39 @@
   }
 }
 
-.subtitle {
-  @include dsfr-text("large");
-  color: $lightTextMentionGrey;
+.mt {
+  margin-top: u(14);
+  @include media-max("widescreen-up", true, true) {
+    margin-top: u(12);
+  }
+}
+.mb {
+  margin-bottom: u(14);
+  @include media-max("widescreen-up", true, true) {
+    margin-bottom: u(12);
+  }
 }
 
-.content {
-  margin-top: u(14);
+.mx {
+  @extend .mt;
+  @extend .mb;
+}
+
+.subtitle {
+  color: $lightTextMentionGrey;
+  margin-bottom: 0;
 }
 
 .title {
   text-align: center;
-  margin-bottom: u(14);
+  @extend .mx;
 
   h1 {
-    @include dsfr-text("h1");
+    @include dsfr-text("h2");
+    margin-bottom: u(4);
 
     &.sm {
-      @include dsfr-text("h2");
+      @include dsfr-text("h2"); /* TODO: no change? */
     }
   }
 }
@@ -62,10 +78,10 @@
 .separator {
   @include dsfr-text("large");
   color: var(--text-disabled-grey);
-  margin: u(14) 0;
   display: flex;
   align-items: center;
   gap: u(6);
+  @extend .mx;
 
   span {
     flex-shrink: 0;
