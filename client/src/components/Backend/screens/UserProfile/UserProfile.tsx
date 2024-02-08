@@ -7,6 +7,7 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
+import { logger } from "logger";
 import API from "utils/API";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
 import { cls } from "lib/classname";
@@ -46,12 +47,31 @@ export const UserProfile = (props: Props) => {
   const [emailError, setEmailError] = useState<string | null>(null);
   const [phone, setPhone] = useState<string>(userDetails?.phone || "");
   const [phoneError, setPhoneError] = useState<string | null>(null);
-  const [newsletter, setNewsletter] = useState<boolean>(/* user?.newsletter ||  */ false);
+  const [newsletter, setNewsletter] = useState<boolean | null>(null);
   const [nbWordsTranslated, setNbWordsTranslated] = useState<number | null>(null);
 
   useEffect(() => {
     document.title = props.title;
   }, [props.title]);
+
+  useEffect(() => {
+    if (!userDetails) return;
+    API.isInContacts().then((res) => setNewsletter(res.isInContacts));
+  }, [dispatch, user, userDetails, nbWordsTranslated]);
+
+  const subscribeNewsletter = async () => {
+    if (!userDetails?.email) return;
+    try {
+      if (!newsletter) {
+        await API.contacts({ email: userDetails.email });
+      } else {
+        await API.deleteContact();
+      }
+    } catch (e: any) {
+      logger.error(e);
+    }
+    setNewsletter((n) => !n);
+  };
 
   // Load user stats
   useEffect(() => {
@@ -310,11 +330,12 @@ export const UserProfile = (props: Props) => {
                     hintText: "Maximum 1 fois par mois ",
                     nativeInputProps: {
                       name: "newsletter",
-                      checked: newsletter,
-                      onChange: () => setNewsletter((n) => !n),
+                      checked: !!newsletter,
+                      onChange: subscribeNewsletter,
                     },
                   },
                 ]}
+                disabled={newsletter === null}
               />
             </div>
           </Col>
