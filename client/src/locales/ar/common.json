@@ -138,18 +138,6 @@
     "inLocation": "ب",
     "inLanguage": "ب"
   },
-  "UserProfile": {
-    "Modifier ma photo": "تبديل الصورة",
-    "ErreurChargement": "حدث خطأ, أعد تحديث الصفحة من فضلك !",
-    "photoUsage": "صورتك الشخصية ستظهر في كل بطاقات المعلومات التي ستشارك في اغناء محتواها",
-    "Votre nouveau mot de passe": "كلمة المرور الجديدة",
-    "votre pseudo": "اسم المستخدم",
-    "pseudoExplication": "اسم المستخدم ظاهر للجميع. سيظهر في جميع بطاقات المعلومات التي ستشارك في اغناء محتواها",
-    "emailExplication": "عنوان ايميلك الالكتروني سيظهر فقط عند اعادة تعيين كلمة السر و عند ورود تحديثات جديدة متعلقة بنشاطك على الموقع",
-    "Votre mot de passe": "كلمة المرور",
-    "modifyPassword": "تغيير كلمة المرور",
-    "Enregistrer": "حفظ"
-  },
   "UserFavorites": {
     "Comment ajouter": "كيف تضيف بطاقات المعلومات الى مجموعتك المفضلة ؟",
     "Tout supprimer": "احذف كل شيء",
@@ -227,11 +215,7 @@
     "Rejeté admin": "رفض مسؤول",
     "Inactif": "غير فعال"
   },
-  "Login": {
-    "Entrez votre code": "أدخل كلمة المرور"
-  },
   "Register": {
-    "Renseignez votre adresse email": "أدخل عنوان بريدك الالكتروني",
     "Votre email": "بريدك الالكتروني",
     "Rendez-vous sur votre ordinateur": "اتجه الى جهاز الكمبيوتر",
     "email_reminder": "أرسل لي اشعار تذكير عبر الايميل الالكتروني",

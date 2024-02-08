@@ -30,7 +30,7 @@ const useFavorites = (contentId: Id | null) => {
         dispatch(fetchUserActionCreator());
       });
     }
-  }, [userDetails, contentId, isFavorite, dispatch]);
+  }, [userDetails, contentId, isFavorite, dispatch, isAuth]);
 
   const deleteFromFavorites = useCallback(() => {
     if (isAuth && userDetails) {
@@ -39,7 +39,7 @@ const useFavorites = (contentId: Id | null) => {
         dispatch(fetchUserActionCreator());
       });
     }
-  }, [userDetails, contentId, isFavorite, dispatch]);
+  }, [userDetails, contentId, isFavorite, dispatch, isAuth]);
 
   return { isFavorite, addToFavorites, deleteFromFavorites };
 }

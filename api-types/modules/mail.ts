@@ -27,3 +27,10 @@ export interface SubscriptionRequest {
 export interface AddContactRequest {
   email: string;
 }
+
+/**
+ * @url GET /contacts
+ */
+export interface IsInContactResponse {
+  isInContacts: boolean;
+}

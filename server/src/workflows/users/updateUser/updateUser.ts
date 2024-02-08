@@ -5,7 +5,6 @@ import omitBy from "lodash/omitBy";
 import logger from "../../../logger";
 import { getRoles } from "../../../modules/role/role.repository";
 import { getUserById, getUserFromDB, updateUserInDB } from "../../../modules/users/users.repository";
-// import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
 import { requestEmailLogin, verifyCode } from "../../../modules/users/login2FA";
 import { loginExceptionsManager } from "../../../modules/users/auth";
 import { uniqIds } from "../../../libs/uniqIds";
@@ -61,6 +60,7 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     departments: request.departments,
     phone: request.phone ? formatPhoneNumber(request.phone) : undefined,
     picture: request.picture,
+    firstName: request.firstName,
   };
 
   if (request.selectedLanguages) {
@@ -75,7 +75,7 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     newUser.roles = newRoles;
   }
   if (request.email) {
-    const needs2fa = await needs2FA(request.email);
+    const needs2fa = await needs2FA(userFromDB.email); // use old email to find user
     if (needs2fa) {
       try {
         if (!request.code) {
@@ -89,12 +89,16 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     }
     newUser.email = request.email;
   }
-  if (request.username) {
-    const userHasUsername = await getUserFromDB({ username: request.username });
-    if (userHasUsername && userHasUsername._id.toString() !== id) {
-      throw new UnauthorizedError("Username déjà pris", "USERNAME_TAKEN");
+  if (request.username !== undefined) {
+    if (request.username !== "") {
+      const userHasUsername = await getUserFromDB({ username: request.username });
+      if (userHasUsername && userHasUsername._id.toString() !== id) {
+        throw new UnauthorizedError("Username déjà pris", "USERNAME_TAKEN");
+      }
+      newUser.username = request.username;
+    } else {
+      newUser.username = null;
     }
-    newUser.username = request.username;
   }
   if (request.roles) {
     const newRoles = request.roles
@@ -114,12 +118,6 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
   let newUser: Partial<User> = {}
   if (action === "modify-with-roles") {
     newUser = await updateAsAdmin(body.user, userFromDB, userReq);
-
-    /* Still used?
-    if (userFromDB.phone !== body.user.phone) {
-      // if phone changed, send mail
-      await sendResetPhoneNumberMail(userFromDB.username, body.user.email);
-    } */
   }
 
   if (action === "modify-my-details") {

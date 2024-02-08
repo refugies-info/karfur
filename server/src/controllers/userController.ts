@@ -173,6 +173,7 @@ export class UserController extends Controller {
         "roles",
         "contributions",
         "username",
+        "firstName",
         "status",
         "email",
         "phone",
@@ -181,6 +182,7 @@ export class UserController extends Controller {
         "selectedLanguages",
         "partner",
         "departments",
+        // TODO: newsletter ?
       ]),
     };
   }

@@ -8,6 +8,7 @@ import { UpdatePasswordRequest, UpdatePasswordResponse, UserStatus } from "@refu
 import { loginExceptionsManager } from "../../../modules/users/auth";
 import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
 
+/* TODO: delete? */
 export const changePassword = async (
   id: string,
   body: UpdatePasswordRequest,
