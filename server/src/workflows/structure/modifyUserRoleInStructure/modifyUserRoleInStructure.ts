@@ -70,7 +70,7 @@ export const modifyUserRoleInStructure = async (id: string, body: PatchStructure
       await sendNewReponsableMailService({
         userId: user._id,
         email: user.email,
-        pseudonyme: user.username,
+        firstName: user.firstName || "",
         nomstructure: structureData.nom,
       });
     }
