@@ -1,4 +1,4 @@
-import { ContentType, DispositifStatus, GetStructureDispositifResponse, GetUserContributionsResponse } from "@refugies-info/api-types";
+import { ContentType, DispositifStatus, GetStructureDispositifResponse, GetUserContributionsResponse, StructureMemberRole } from "@refugies-info/api-types";
 import { formatContributions } from "../functions";
 import { FormattedUserContribution } from "../types";
 
@@ -272,7 +272,7 @@ describe("formatContributions", () => {
     const result = formatContributions(
       userContribs,
       userStructureContrib,
-      { _id: "", createur: "", adminPercentageProgressionStatus: "", dispositifsAssocies: [], nom: "structure", membres: [{ userId: "userId", roles: ["contributeur"], username: "user", picture: { secure_url: "", imgId: "", public_id: "" }, last_connected: new Date(), added_at: new Date(), mainRole: "Responsable" }] },
+      { _id: "", createur: "", adminPercentageProgressionStatus: "", dispositifsAssocies: [], nom: "structure", membres: [{ userId: "userId", roles: [StructureMemberRole.CONTRIB], username: "user", picture: { secure_url: "", imgId: "", public_id: "" }, last_connected: new Date(), added_at: new Date(), mainRole: "Responsable" }] },
       "userId"
     );
     expect(result).toEqual([
@@ -290,7 +290,7 @@ describe("formatContributions", () => {
     const result = formatContributions(
       userContribs,
       userStructureContrib,
-      { _id: "", createur: "", adminPercentageProgressionStatus: "", dispositifsAssocies: [], nom: "structure", membres: [{ userId: "userId", roles: ["contributeur", "administrateur"], username: "user", picture: { secure_url: "", imgId: "", public_id: "" }, last_connected: new Date(), added_at: new Date(), mainRole: "Responsable" }] },
+      { _id: "", createur: "", adminPercentageProgressionStatus: "", dispositifsAssocies: [], nom: "structure", membres: [{ userId: "userId", roles: [StructureMemberRole.CONTRIB, StructureMemberRole.ADMIN], username: "user", picture: { secure_url: "", imgId: "", public_id: "" }, last_connected: new Date(), added_at: new Date(), mainRole: "Responsable" }] },
       "userId"
     );
     expect(result).toEqual([

@@ -1,17 +1,27 @@
-// @ts-nocheck
-import UserProfile from "../UserProfile";
-import { act } from "react-test-renderer";
-import { wrapWithProvidersAndRender, translationMock } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import { UserProfile } from "../UserProfile";
+import { act, ReactTestRenderer } from "react-test-renderer";
+import {
+  wrapWithProvidersAndRender,
+  wrapWithProvidersAndRenderForTesting,
+} from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import { initialMockStore } from "__fixtures__/reduxStore";
-import API from "utils/API";
-import { saveUserActionCreator } from "services/User/user.actions";
-import Swal from "sweetalert2";
+import { testUser } from "__fixtures__/user";
+import { fireEvent, RenderResult, waitFor } from "@testing-library/react";
 import "jest-styled-components";
+import { setupGoogleMock } from "__mocks__/react-google-autocomplete";
+import "@testing-library/jest-dom";
+
 jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("components/UI/Tooltip", () => jest.fn().mockReturnValue(<></>));
+jest.mock("@codegouvfr/react-dsfr/SearchBar", () => ({ SearchBar: jest.fn().mockReturnValue(<></>) }));
 
 jest.mock("utils/API", () => ({
   __esModule: true, // this property makes it work
-  default: { updateUser: jest.fn(), updatePassword: jest.fn() },
+  default: {
+    updateUser: jest.fn(),
+    isInContacts: jest.fn().mockResolvedValue({ isInContacts: false }),
+    updatePassword: jest.fn(),
+  },
 }));
 
 jest.mock("services/User/user.actions", () => {
@@ -25,226 +35,50 @@ jest.mock("services/User/user.actions", () => {
 describe("UserProfile", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    setupGoogleMock();
   });
 
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserProfile,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER: { isLoading: true } },
-        },
-        compProps: { t: (_: string, element2: string) => element2 },
-      });
+    let component: ReactTestRenderer;
+    component = wrapWithProvidersAndRender({
+      Component: UserProfile,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER: { isLoading: true } },
+      },
     });
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should render correctly", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserProfile,
-        reduxState: {
-          ...initialMockStore,
-          user: { user: { email: "email@gmail.com", username: "username" } },
-        },
-        compProps: { t: (_: string, element2: string) => element2 },
-      });
-    });
-    expect(component.root.findByProps({ "data-test-id": "test-save-email" }).props.disabled).toBe(true);
-    expect(component.root.findByProps({ "data-test-id": "test-save-pseudo" }).props.disabled).toBe(true);
-    expect(component.toJSON()).toMatchSnapshot();
-  });
-
-  it("should render correctly when changing password", () => {
-    window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserProfile,
-        reduxState: {
-          ...initialMockStore,
-          user: { user: { email: "email@gmail.com", username: "username" } },
-        },
-        compProps: { t: (_: string, element2: string) => element2 },
-      });
-    });
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-modify-password" }).props.onClick();
+    let component: ReactTestRenderer;
+    component = wrapWithProvidersAndRender({
+      Component: UserProfile,
+      reduxState: {
+        ...initialMockStore,
+        user: { ...initialMockStore.user, user: { ...testUser } },
+      },
     });
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it("should change username", async () => {
-    API.updateUser.mockResolvedValueOnce("test");
-    // onPseudoModificationValidate is async and use useState --> https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning
-    const promise = Promise.resolve();
-
+  it("should render correctly when editing profile", async () => {
     window.scrollTo = jest.fn();
-    let component;
+    let component: RenderResult;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserProfile,
         reduxState: {
           ...initialMockStore,
-          user: {
-            user: {
-              email: "email@gmail.com",
-              username: "username",
-              _id: "userId",
-            },
-          },
+          user: { ...initialMockStore.user, user: { ...testUser } },
         },
-        compProps: { t: (_: string, element2: string) => element2 },
       });
     });
     act(() => {
-      component.root.findByProps({ id: "username" }).props.onChange({ target: { id: "username", value: "pseudo" } });
+      fireEvent.click(component.getByText("Modifier mon profil"));
     });
-    expect(component.root.findByProps({ "data-test-id": "test-save-pseudo" }).props.disabled).toBe(false);
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-save-pseudo" }).props.onClick();
-    });
-    expect(API.updateUser).toHaveBeenCalledWith("userId", {
-      user: { username: "pseudo" },
-      action: "modify-my-details",
-    });
-
-    await act(() => promise);
-  });
-
-  it("should change email", async () => {
-    window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserProfile,
-        reduxState: {
-          ...initialMockStore,
-          user: {
-            user: {
-              email: "email@gmail.com",
-              username: "username",
-              _id: "userId",
-            },
-          },
-        },
-        compProps: { t: (_: string, element2: string) => element2 },
-      });
-    });
-    act(() => {
-      component.root.findByProps({ id: "username" }).props.onChange({
-        target: { id: "email", value: "newEmail@gmail.com" },
-      });
-    });
-    expect(component.root.findByProps({ "data-test-id": "test-save-email" }).props.disabled).toBe(false);
-
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-save-email" }).props.onClick();
-    });
-
-    expect(saveUserActionCreator).toHaveBeenLastCalledWith("userId", {
-      user: { email: "newEmail@gmail.com" },
-      action: "modify-my-details",
-    });
-
-    expect(Swal.fire).toHaveBeenCalledWith({
-      title: "Yay...",
-      text: "Votre email a bien été modifié",
-      icon: "success",
-      timer: 1500,
-    });
-  });
-
-  it("should disable save when new password too weak", async () => {
-    window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserProfile,
-        reduxState: {
-          ...initialMockStore,
-          user: {
-            user: {
-              email: "email@gmail.com",
-              username: "username",
-              _id: "userId",
-            },
-          },
-        },
-        compProps: { t: (_: string, element2: string) => element2 },
-      });
-    });
-
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-modify-password" }).props.onClick();
-    });
-
-    expect(component.root.findByProps({ "data-test-id": "test-save-password" }).props.disabled).toBe(true);
-
-    act(() => {
-      component.root.findByProps({ id: "new-password" }).props.onChange({
-        target: { id: "new-password", value: "a" },
-      });
-      component.root.findByProps({ id: "current-password" }).props.onChange({
-        target: { id: "current-password", value: "current" },
-      });
-    });
-    expect(component.root.findByProps({ "data-test-id": "test-save-password" }).props.disabled).toBe(true);
-    expect(component.toJSON()).toMatchSnapshot();
-  });
-
-  it("should change password", async () => {
-    API.updatePassword.mockResolvedValueOnce("test");
-    // onPseudoModificationValidate is async and use useState --> https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning
-    const promise = Promise.resolve();
-
-    window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserProfile,
-        reduxState: {
-          ...initialMockStore,
-          user: {
-            user: {
-              email: "email@gmail.com",
-              username: "username",
-              _id: "userId",
-            },
-          },
-        },
-        compProps: { t: (_: string, element2: string) => element2 },
-      });
-    });
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-modify-password" }).props.onClick();
-    });
-
-    act(() => {
-      component.root.findByProps({ id: "new-password" }).props.onChange({
-        target: { id: "new-password", value: "testNewPassword1&" },
-      });
-      component.root.findByProps({ id: "current-password" }).props.onChange({
-        target: { id: "current-password", value: "current" },
-      });
-    });
-
-    expect(component.root.findByProps({ "data-test-id": "test-save-password" }).props.disabled).toBe(false);
-
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-save-password" }).props.onClick();
-    });
-    expect(API.updatePassword).toHaveBeenCalledWith("userId", {
-      currentPassword: "current",
-      newPassword: "testNewPassword1&",
-    });
-
-    await act(() => promise);
+    await waitFor(() => expect(component.getAllByRole("textbox")[0]).not.toBeDisabled());
   });
 });

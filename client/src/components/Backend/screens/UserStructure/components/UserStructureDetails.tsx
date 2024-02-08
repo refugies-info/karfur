@@ -33,7 +33,7 @@ interface Props {
   acronyme: string;
   name: string;
   membres: GetStructureResponse["membres"];
-  userId: Id;
+  userId: Id | null;
   structureId: Id;
   addUserInStructure: (arg: Id) => void;
   isAdmin: boolean;
@@ -64,12 +64,12 @@ export const UserStructureDetails = (props: Props) => {
     return placeholder;
   };
 
-  const userWithRole = props.membres.filter((membre) => membre.userId === props.userId);
+  const userWithRole = props.membres.filter((membre) => props.userId && membre.userId === props.userId);
 
   const isUserAuthorizedToAddMembers = checkIfUserIsAuthorizedToAddMembers(props.isAdmin, userWithRole);
 
   const membres = props.membres.filter((membre) => membre.mainRole !== "Exclu");
-  const isMember = props.membres.find((el) => el.userId === props.userId) ? true : false;
+  const isMember = props.membres.find((el) => props.userId && el.userId === props.userId) ? true : false;
 
   return (
     <MainContainer className={styles.container}>

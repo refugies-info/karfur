@@ -11,7 +11,7 @@ export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user:
     return true;
   }
 
-  // author can moodify
+  // author can modify
   const firstDraftVersion = dispositif.status === DispositifStatus.DRAFT && !hasDraftVersion; // the never published draft
   const authorCanModify = [ // or waiting content
     DispositifStatus.WAITING_STRUCTURE,
@@ -68,7 +68,7 @@ const isUserAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) 
   }
 
   // user is redacteur of structure and author
-  if (userInStructure.roles.includes(StructureMemberRole.ADMIN) && isAuthor) {
+  if (userInStructure.roles.includes(StructureMemberRole.CONTRIB) && isAuthor) {
     return true;
   }
 

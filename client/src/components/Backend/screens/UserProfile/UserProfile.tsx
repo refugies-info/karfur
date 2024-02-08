@@ -94,7 +94,6 @@ export const UserProfile = (props: Props) => {
     if (userDetails.firstName) setFirstName(userDetails.firstName);
     if (userDetails.email) setEmail(userDetails.email);
     if (userDetails.phone) setPhone(userDetails.phone);
-    // if (userDetails.newsletter) setNewsletter(userDetails.newsletter);
   }, [dispatch, userDetails]);
 
   // Form validation
@@ -175,7 +174,7 @@ export const UserProfile = (props: Props) => {
                 Modifier mon profil
               </Button>
             )}
-            <Button
+            {/* <Button
               disabled={edition}
               priority="secondary"
               size="small"
@@ -184,7 +183,7 @@ export const UserProfile = (props: Props) => {
               className={cls(styles.danger, "ms-2")}
             >
               Supprimer mon profil
-            </Button>
+            </Button> */}
           </Col>
         </Row>
 

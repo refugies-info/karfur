@@ -41,7 +41,7 @@ const DateContainer = styled.div`
 `;
 interface Props {
   membres: GetStructureResponse["membres"];
-  userId: Id;
+  userId: Id | null;
   isUserAuthorizedToAddMembers: boolean;
   toggleEditMemberModal: () => void;
   setSelectedUser: (user: null | StructureMember) => void;
@@ -63,7 +63,7 @@ export const MembresTable = (props: Props) => (
       {props.membres.map((element, key) => {
         const secureUrl = element?.picture?.secure_url || marioProfile;
 
-        const isUser = props.userId.toString() === element.userId;
+        const isUser = !!(props.userId && props.userId.toString() === element.userId);
         return (
           <tr key={key} className="membres-table">
             <td className="align-middle">
