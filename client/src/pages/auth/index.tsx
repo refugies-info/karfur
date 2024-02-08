@@ -63,7 +63,7 @@ const AuthEmail = () => {
             else logUser(res.token);
           })
           .catch((e) => {
-            const error = handleError(e.response?.data?.code, e.response?.data?.email || "");
+            const error = handleError(e.response?.data?.code, e.response?.data?.data?.email || "");
             if (error) setError(error);
           });
       },
