@@ -16,8 +16,9 @@ import { getRegisterInfos } from "lib/loginRedirect";
 import SEO from "components/Seo";
 import ErrorMessage from "components/UI/ErrorMessage";
 import Layout from "components/Pages/auth/Layout";
-import GoogleIcon from "assets/auth/providers/google-icon.svg";
+// import GoogleIcon from "assets/auth/providers/google-icon.svg";
 import MicrosoftIcon from "assets/auth/providers/microsoft-icon.svg";
+import OutlookIcon from "assets/auth/providers/outlook-icon.svg";
 // import DataInclusionIcon from "assets/auth/providers/data-inclusion-icon.svg";
 import styles from "scss/components/auth.module.scss";
 
@@ -141,13 +142,14 @@ const AuthEmail = () => {
           <span>ou connectez-vous avec</span>
         </div>
 
-        <Button onClick={loginGoogle} className={cls(styles.button, "mb-4")} priority="tertiary">
+        {/* <Button onClick={loginGoogle} className={cls(styles.button, "mb-4")} priority="tertiary">
           <Image src={GoogleIcon} width={24} height={24} alt="" className="me-2" />
           Google
-        </Button>
+        </Button> */}
         <Button onClick={loginMicrosoft} className={cls(styles.button, "mb-4")} priority="tertiary">
           <Image src={MicrosoftIcon} width={24} height={24} alt="" className="me-2" />
-          Microsoft
+          <Image src={OutlookIcon} width={24} height={24} alt="" className="me-2" />
+          Microsoft ou Outlook
         </Button>
         {/* <Button onClick={loginInclusionConnect} className={cls(styles.button, "mb-4")} priority="tertiary">
           <Image src={DataInclusionIcon} width={24} height={24} alt="" className="me-2" />
