@@ -15,16 +15,9 @@ import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import PartnerRadio from "components/Pages/auth/PartnerRadio";
 import ErrorMessage from "components/UI/ErrorMessage";
-import LogoCoallia from "assets/auth/structure-logos/structure-coallia.png";
-import LogoPierreValdo from "assets/auth/structure-logos/structure-pierre-valdo.png";
-import LogoFranceHorizon from "assets/auth/structure-logos/structure-france-horizon.png";
-import LogoFtda from "assets/auth/structure-logos/structure-ftda.png";
-import LogoGipHis from "assets/auth/structure-logos/structure-gip-his.png";
-import LogoGroupeSos from "assets/auth/structure-logos/structure-groupe-sos.png";
-import LogoMens from "assets/auth/structure-logos/structure-mens.png";
-import LogoViltais from "assets/auth/structure-logos/structure-viltais.png";
 import NoIcon from "assets/auth/no-icon.svg";
 import styles from "scss/components/auth.module.scss";
+import { partners } from "data/structurePartners";
 
 const AuthLogin = () => {
   const router = useRouter();
@@ -79,70 +72,16 @@ const AuthLogin = () => {
             name="partner"
             className={cls(styles.radio, "mb-0")}
             options={[
-              {
-                illustration: <Image alt="illustration" src={LogoCoallia} width={56} height={18} />,
-                label: "Coallia",
+              ...partners.map((option) => ({
+                illustration: (
+                  <Image alt="illustration" src={option.image} width={option.width} height={option.height} />
+                ),
+                label: option.name,
                 nativeInputProps: {
-                  checked: partner === "coallia",
-                  onChange: () => setPartner("coallia"),
+                  checked: partner === option.name,
+                  onChange: () => setPartner(option.name),
                 },
-              },
-              {
-                illustration: <Image alt="illustration" src={LogoPierreValdo} width={56} height={56} />,
-                label: "Entraide Pierre Valdo",
-                nativeInputProps: {
-                  checked: partner === "pierre-valdo",
-                  onChange: () => setPartner("pierre-valdo"),
-                },
-              },
-              {
-                illustration: <Image alt="illustration" src={LogoFranceHorizon} width={56} height={46} />,
-                label: "France Horizon",
-                nativeInputProps: {
-                  checked: partner === "france-horizon",
-                  onChange: () => setPartner("france-horizon"),
-                },
-              },
-              {
-                illustration: <Image alt="illustration" src={LogoFtda} width={56} height={34} />,
-                label: "France Terre d'Asile",
-                nativeInputProps: {
-                  checked: partner === "ftda",
-                  onChange: () => setPartner("ftda"),
-                },
-              },
-              {
-                illustration: <Image alt="illustration" src={LogoGipHis} width={56} height={27} />,
-                label: "GIP HIS",
-                nativeInputProps: {
-                  checked: partner === "gip-his",
-                  onChange: () => setPartner("gip-his"),
-                },
-              },
-              {
-                illustration: <Image alt="illustration" src={LogoGroupeSos} width={56} height={19} />,
-                label: "Groupe SOS",
-                nativeInputProps: {
-                  checked: partner === "groupe-sos",
-                  onChange: () => setPartner("groupe-sos"),
-                },
-              },
-              {
-                illustration: <Image alt="illustration" src={LogoMens} width={56} height={21} />,
-                label: "Mens",
-                nativeInputProps: {
-                  checked: partner === "mens",
-                  onChange: () => setPartner("mens"),
-                },
-              },
-              {
-                illustration: <Image alt="illustration" src={LogoViltais} width={56} height={19} />,
-                label: "Viltaïs",
-                nativeInputProps: {
-                  checked: partner === "viltais",
-                  onChange: () => setPartner("viltais"),
-                },
-              },
+              })),
               {
                 illustration: <Image alt="illustration" src={NoIcon} width={48} height={48} />,
                 label: "Aucune de ces structures",
