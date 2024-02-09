@@ -68,9 +68,9 @@ const AuthLogin = () => {
           Retour
         </Button>
 
-        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre pseudonyme" />
+        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
 
-        <div className={cls(styles.title, "mt-14")}>
+        <div className={cls(styles.title, "mt-12")}>
           <h1 className={styles.sm}>Choisissez un pseudonyme</h1>
           <p className={styles.subtitle}>
             Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et sa traduction.
@@ -80,7 +80,7 @@ const AuthLogin = () => {
         <form onSubmit={submit}>
           <Input
             label="Votre pseudonyme"
-            className="mt-14"
+            className="mt-12 mb-0"
             state={!!error ? "error" : "default"}
             stateRelatedMessage={error}
             hintText="N'indiquez pas de coordonnées personnelles dans votre pseudonyme (adresse email...). Exemples de pseudonymes : Guillaume-afpa, cidff13, sarah-trad, Nora78."
@@ -94,7 +94,7 @@ const AuthLogin = () => {
           <Button
             iconId="fr-icon-arrow-right-line"
             iconPosition="right"
-            className={cls(styles.button, "mt-7")}
+            className={cls(styles.button, "mt-12")}
             nativeButtonProps={{ type: "submit" }}
             disabled={loading}
           >

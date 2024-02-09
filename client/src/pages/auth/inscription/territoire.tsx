@@ -37,13 +37,12 @@ const AuthLogin = () => {
 
         <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre territoire" />
 
-        <div className={cls(styles.title, "mt-14")}>
+        <div className={cls(styles.title, "mt-12")}>
           <h1 className={styles.sm}>Où souhaitez-vous chercher des dispositifs&nbsp;?</h1>
           <p className={styles.subtitle}>
             Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Pas d’inquiétude, vous pourrez
-            toujours modifier !
+            modifier plus tard et les démarches nationales resteront visibles&nbsp;!
           </p>
-          <p className={cls(styles.subtitle, "mt-2")}>Les démarches nationales resteront visibles.</p>
         </div>
 
         <EditDepartments successCallback={successCallback} buttonFullWidth />

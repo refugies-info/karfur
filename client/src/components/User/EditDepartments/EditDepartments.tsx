@@ -106,20 +106,22 @@ const EditDepartments = (props: Props) => {
           )}
         </div>
 
-        <div className="mt-14">
-          {selectedDepartments.map((dep, i) => (
-            <div key={dep} className={styles.option}>
-              {formatDepartment(dep)}
-              <Button
-                iconId="fr-icon-close-line"
-                priority="tertiary no outline"
-                title="Retirer le département"
-                size="small"
-                onClick={() => setSelectedDepartments((deps) => deps?.filter((d) => d !== dep))}
-              />
-            </div>
-          ))}
-        </div>
+        {selectedDepartments.length > 0 && (
+          <div className="mt-12">
+            {selectedDepartments.map((dep, i) => (
+              <div key={dep} className={styles.option}>
+                {formatDepartment(dep)}
+                <Button
+                  iconId="fr-icon-close-line"
+                  priority="tertiary no outline"
+                  title="Retirer le département"
+                  size="small"
+                  onClick={() => setSelectedDepartments((deps) => deps?.filter((d) => d !== dep))}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <ErrorMessage error={error} />
@@ -128,7 +130,7 @@ const EditDepartments = (props: Props) => {
         <Button
           iconId="fr-icon-check-line"
           iconPosition="right"
-          className={cls(styles.button, props.buttonFullWidth && styles.full, "mt-14")}
+          className={cls(styles.button, props.buttonFullWidth && styles.full, "mt-12")}
           nativeButtonProps={{ type: "submit" }}
           disabled={loading || selectedDepartments.length === 0}
         >

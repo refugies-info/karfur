@@ -59,7 +59,8 @@
     margin-bottom: u(4);
 
     &.sm {
-      @include dsfr-text("h2"); /* TODO: no change? */
+      @include dsfr-text("h3");
+      margin-bottom: u(6);
     }
   }
 }
@@ -107,14 +108,24 @@
 }
 
 .radio {
-  :global(.fr-label),
-  :global(.fr-radio-rich__img) {
-    background-color: transparent !important;
+  // background colors
+  :global(.fr-radio-rich:hover input[type="radio"]:not(:disabled) ~ label),
+  :global(.fr-radio-rich:hover input[type="radio"]:not(:disabled) ~ .fr-radio-rich__img) {
+    background-color: var(--background-alt-blue-france);
   }
+  :global(.fr-radio-rich input[type="radio"]:checked ~ label),
+  :global(.fr-radio-rich input[type="radio"]:checked ~ .fr-radio-rich__img) {
+    background-color: var(--background-action-low-blue-france);
+  }
+  :global(.fr-radio-rich:hover input[type="radio"]:checked ~ label),
+  :global(.fr-radio-rich:hover input[type="radio"]:checked ~ .fr-radio-rich__img) {
+    background-color: var(--border-action-low-blue-france);
+  }
+
+  // remove separator
   :global(.fr-radio-rich input[type="radio"] + label) {
     padding-right: 0;
   }
-  // remove separator
   :global(.fr-radio-rich__img) {
     background-size: 100% 1px, 100% 1px, 1px 100%, 0 0;
   }

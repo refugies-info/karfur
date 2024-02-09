@@ -48,3 +48,22 @@
     outline-offset: 2px;
   }
 }
+
+@mixin choiceButton() {
+  border: 1px solid var(--border-default-grey);
+  background: white;
+
+  &:hover {
+    background: var(--background-alt-blue-france);
+  }
+
+  &.selected {
+    background: var(--background-action-low-blue-france);
+    border-color: var(--text-action-high-blue-france);
+    color: var(--text-action-high-blue-france);
+
+    &:hover {
+      background: var(--border-action-low-blue-france) !important;
+    }
+  }
+}

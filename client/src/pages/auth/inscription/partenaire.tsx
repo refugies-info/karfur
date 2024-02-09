@@ -63,9 +63,9 @@ const AuthLogin = () => {
     <div className={cls(styles.container, styles.full)}>
       <SEO title="Votre structure" />
       <div className={styles.container_inner}>
-        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre structure" />
+        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
 
-        <div className={cls(styles.title, "mt-14")}>
+        <div className={cls(styles.title, "mt-12")}>
           <h1 className={styles.sm}>Dans quelle structure êtes-vous&nbsp;?</h1>
           <p className={styles.subtitle}>
             Nous avons un partenariat avec ces structures, précisez nous si vous en faites partie.
@@ -157,7 +157,7 @@ const AuthLogin = () => {
           <Button
             iconId="fr-icon-arrow-right-line"
             iconPosition="right"
-            className={cls(styles.button, "mt-7")}
+            className={cls(styles.button, "mt-9")}
             nativeButtonProps={{ type: "submit" }}
             disabled={loading}
           >

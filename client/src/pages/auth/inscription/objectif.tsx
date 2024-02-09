@@ -72,9 +72,9 @@ const AuthLogin = () => {
           Retour
         </Button>
 
-        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre objectif" />
+        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
 
-        <div className={cls(styles.title, "mt-14")}>
+        <div className={cls(styles.title, "mt-12")}>
           <h1 className={styles.sm}>Que souhaitez-vous faire&nbsp;?</h1>
           <p className={styles.subtitle}>Vous pourrez compléter votre choix plus tard.</p>
         </div>
@@ -119,7 +119,7 @@ const AuthLogin = () => {
           <Button
             iconId="fr-icon-arrow-right-line"
             iconPosition="right"
-            className={cls(styles.button, "mt-7")}
+            className={cls(styles.button, "mt-9")}
             nativeButtonProps={{ type: "submit" }}
             disabled={loading}
           >
