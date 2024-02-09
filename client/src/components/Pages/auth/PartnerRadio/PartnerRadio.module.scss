@@ -1,0 +1,46 @@
+@import "src/scss/mixins/btn";
+@import "src/scss/mixins/unit";
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: u(4);
+}
+
+.radio {
+  @include choiceButton();
+  flex-direction: column;
+  justify-content: center;
+  padding: u(4) u(6);
+  width: calc(50% - u(2));
+  margin: 0 !important;
+
+  .label {
+    font-weight: bold;
+    background: transparent !important;
+    margin-top: u(2);
+    text-align: center;
+    padding: 0 !important;
+    min-height: 0 !important;
+    color: var(--text-action-high-blue-france);
+  }
+
+  .illu {
+    width: u(14);
+    height: u(14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.full {
+  width: 100%;
+  margin-top: u(8) !important;
+
+  .illu {
+    padding: u(4) u(6) !important;
+  }
+}

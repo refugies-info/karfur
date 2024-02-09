@@ -5,7 +5,6 @@ import Image from "next/image";
 import { RoleName } from "@refugies-info/api-types";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
-import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { logger } from "logger";
 import API from "utils/API";
 import { hasRole } from "lib/hasRole";
@@ -14,6 +13,7 @@ import { cls } from "lib/classname";
 import { useRegisterFlow } from "hooks";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
+import PartnerRadio from "components/Pages/auth/PartnerRadio";
 import ErrorMessage from "components/UI/ErrorMessage";
 import LogoCoallia from "assets/auth/structure-logos/structure-coallia.png";
 import LogoPierreValdo from "assets/auth/structure-logos/structure-pierre-valdo.png";
@@ -68,14 +68,16 @@ const AuthLogin = () => {
         <div className={cls(styles.title, styles.sm, "mt-12")}>
           <h1>Dans quelle structure êtes-vous&nbsp;?</h1>
           <p className={styles.subtitle}>
-            Nous avons un partenariat avec ces structures, précisez nous si vous en faites partie.
+            Nous avons un partenariat national avec ces structures. Si vous n’en faites pas partie, cochez « Aucune de
+            ces structures ».
           </p>
         </div>
 
         <form onSubmit={submit}>
-          <RadioButtons
+          <PartnerRadio
+            id="partner-input"
             name="partner"
-            className={styles.radio}
+            className={cls(styles.radio, "mb-0")}
             options={[
               {
                 illustration: <Image alt="illustration" src={LogoCoallia} width={56} height={18} />,
@@ -86,7 +88,7 @@ const AuthLogin = () => {
                 },
               },
               {
-                illustration: <Image alt="illustration" src={LogoPierreValdo} width={48} height={48} />,
+                illustration: <Image alt="illustration" src={LogoPierreValdo} width={56} height={56} />,
                 label: "Entraide Pierre Valdo",
                 nativeInputProps: {
                   checked: partner === "pierre-valdo",
@@ -144,6 +146,7 @@ const AuthLogin = () => {
               {
                 illustration: <Image alt="illustration" src={NoIcon} width={48} height={48} />,
                 label: "Aucune de ces structures",
+                fullWidth: true,
                 nativeInputProps: {
                   checked: partner === "",
                   onChange: () => setPartner(""),

@@ -57,7 +57,8 @@
     background: var(--background-alt-blue-france);
   }
 
-  &.selected {
+  &.selected,
+  &:has(> input:checked) {
     background: var(--background-action-low-blue-france);
     border-color: var(--text-action-high-blue-france);
     color: var(--text-action-high-blue-france);
