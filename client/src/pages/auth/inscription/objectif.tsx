@@ -74,8 +74,8 @@ const AuthLogin = () => {
 
         <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
 
-        <div className={cls(styles.title, "mt-12")}>
-          <h1 className={styles.sm}>Que souhaitez-vous faire&nbsp;?</h1>
+        <div className={cls(styles.title, styles.sm, "mt-12")}>
+          <h1>Que souhaitez-vous faire&nbsp;?</h1>
           <p className={styles.subtitle}>Vous pourrez compléter votre choix plus tard.</p>
         </div>
 

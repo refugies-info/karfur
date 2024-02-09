@@ -70,8 +70,8 @@ const AuthLogin = () => {
 
         <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
 
-        <div className={cls(styles.title, "mt-12")}>
-          <h1 className={styles.sm}>Choisissez un pseudonyme</h1>
+        <div className={cls(styles.title, styles.sm, "mt-12")}>
+          <h1>Choisissez un pseudonyme</h1>
           <p className={styles.subtitle}>
             Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et sa traduction.
           </p>

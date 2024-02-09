@@ -45,11 +45,6 @@
   @extend .mb;
 }
 
-.subtitle {
-  color: $lightTextMentionGrey;
-  margin-bottom: 0;
-}
-
 .title {
   text-align: center;
   @extend .mx;
@@ -57,8 +52,15 @@
   h1 {
     @include dsfr-text("h2");
     margin-bottom: u(4);
+  }
+  .subtitle {
+    color: $lightTextMentionGrey;
+    margin-bottom: 0;
+  }
 
-    &.sm {
+  &.sm {
+    text-align: left;
+    h1 {
       @include dsfr-text("h3");
       margin-bottom: u(6);
     }
