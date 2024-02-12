@@ -89,16 +89,7 @@ const UserTranslation = (props: Props) => {
       loadIndicators();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    langueInUrl,
-    userFirstTradLanguage,
-    getLanguage,
-    user,
-    languageLoaded,
-    isLoadingDispositifs,
-    isLoadingNeeds,
-    dispatch,
-  ]);
+  }, [langueInUrl, userFirstTradLanguage, user, languageLoaded, isLoadingDispositifs, isLoadingNeeds, dispatch]);
 
   const nbWords = indicators?.totalIndicator?.wordsCount || 0;
   const timeSpent = indicators?.totalIndicator?.timeSpent
