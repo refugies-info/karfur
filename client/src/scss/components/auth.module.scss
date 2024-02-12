@@ -2,6 +2,7 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/responsive";
 
 .container {
   &.half {
@@ -26,24 +27,78 @@
   }
 }
 
-.subtitle {
-  @include dsfr-text("large");
-  color: $lightTextMentionGrey;
+@keyframes pulse {
+  0% {
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
 }
 
-.content {
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fafaff;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    animation: pulse 2s infinite;
+  }
+
+  p {
+    @include dsfr-text("chapo");
+  }
+}
+
+.mt {
   margin-top: u(14);
+  @include media-max("widescreen-up", true, true) {
+    margin-top: u(12);
+  }
+}
+.mb {
+  margin-bottom: u(14);
+  @include media-max("widescreen-up", true, true) {
+    margin-bottom: u(12);
+  }
+}
+
+.mx {
+  @extend .mt;
+  @extend .mb;
 }
 
 .title {
   text-align: center;
-  margin-bottom: u(14);
+  @extend .mx;
 
   h1 {
-    @include dsfr-text("h1");
+    @include dsfr-text("h2");
+    margin-bottom: u(4);
+  }
+  .subtitle {
+    color: $lightTextMentionGrey;
+    margin-bottom: 0;
+  }
 
-    &.sm {
-      @include dsfr-text("h2");
+  &.sm {
+    text-align: left;
+    h1 {
+      @include dsfr-text("h3");
+      margin-bottom: u(6);
     }
   }
 }
@@ -62,10 +117,10 @@
 .separator {
   @include dsfr-text("large");
   color: var(--text-disabled-grey);
-  margin: u(14) 0;
   display: flex;
   align-items: center;
   gap: u(6);
+  @extend .mx;
 
   span {
     flex-shrink: 0;
@@ -91,14 +146,24 @@
 }
 
 .radio {
-  :global(.fr-label),
-  :global(.fr-radio-rich__img) {
-    background-color: transparent !important;
+  // background colors
+  :global(.fr-radio-rich:hover input[type="radio"]:not(:disabled) ~ label),
+  :global(.fr-radio-rich:hover input[type="radio"]:not(:disabled) ~ .fr-radio-rich__img) {
+    background-color: var(--background-alt-blue-france);
   }
+  :global(.fr-radio-rich input[type="radio"]:checked ~ label),
+  :global(.fr-radio-rich input[type="radio"]:checked ~ .fr-radio-rich__img) {
+    background-color: var(--background-action-low-blue-france);
+  }
+  :global(.fr-radio-rich:hover input[type="radio"]:checked ~ label),
+  :global(.fr-radio-rich:hover input[type="radio"]:checked ~ .fr-radio-rich__img) {
+    background-color: var(--border-action-low-blue-france);
+  }
+
+  // remove separator
   :global(.fr-radio-rich input[type="radio"] + label) {
     padding-right: 0;
   }
-  // remove separator
   :global(.fr-radio-rich__img) {
     background-size: 100% 1px, 100% 1px, 1px 100%, 0 0;
   }

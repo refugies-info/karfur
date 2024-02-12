@@ -67,7 +67,7 @@ describe("user translation", () => {
         Component: UserTranslation,
         reduxState: {
           ...initialMockStore,
-          user: { user: { selectedLanguages: [{ i18nCode: "en" }] } },
+          user: { user: { selectedLanguages: ["en"] } },
           dispositifsWithTranslations: [],
         },
       });

@@ -8,7 +8,7 @@ import API from "utils/API";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import ErrorMessage from "components/UI/ErrorMessage";
-import { ChoiceButton } from "components/Pages/dispositif/Edition";
+import RichCheckbox from "components/UI/RichCheckbox";
 import Flag from "components/UI/Flag";
 import styles from "./EditLanguage.module.scss";
 
@@ -43,7 +43,11 @@ const EditDepartments = (props: Props) => {
     async (e: any) => {
       e.preventDefault();
       setError("");
-      if (!userDetails || selectedLanguages.length === 0) return;
+      if (!userDetails) return;
+      if (selectedLanguages.length === 0) {
+        setError("Veuillez sélectionner au moins une langue.");
+        return;
+      }
       try {
         await API.updateUser(userDetails._id.toString(), {
           user: { selectedLanguages },
@@ -68,16 +72,17 @@ const EditDepartments = (props: Props) => {
           const id = language._id.toString();
           const checked = selectedLanguages.includes(id);
           return (
-            <ChoiceButton
+            <RichCheckbox
               key={language._id.toString()}
+              name="language"
+              value={language._id.toString()}
               text={
                 <>
                   <strong>{language.langueFr}</strong> - {language.langueLoc}
                 </>
               }
               illuComponent={<Flag langueCode={language?.langueCode} />}
-              type="checkbox"
-              selected={checked}
+              checked={checked}
               onSelect={() => setSelectedLanguages((ln) => (checked ? ln.filter((l) => l !== id) : [...ln, id]))}
               className="mb-4 rounded-0"
             />
@@ -91,7 +96,7 @@ const EditDepartments = (props: Props) => {
           //@ts-ignore
           iconId={buttonProps[props.buttonType].icon}
           iconPosition="right"
-          className={cls(styles.button, props.buttonFullWidth && styles.full, "mt-14")}
+          className={cls(styles.button, props.buttonFullWidth && styles.full, "mt-8")}
           nativeButtonProps={{ type: "submit" }}
           disabled={loading}
         >

@@ -37,10 +37,10 @@ const AuthLogin = () => {
           Retour
         </Button>
 
-        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre langue" />
+        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
 
-        <div className={cls(styles.title, "mt-14")}>
-          <h1 className={styles.sm}>En quelle langue souhaitez-vous traduire&nbsp;?</h1>
+        <div className={cls(styles.title, styles.sm, "mt-12")}>
+          <h1>En quelle langue souhaitez-vous traduire&nbsp;?</h1>
         </div>
 
         <EditLanguage successCallback={successCallback} buttonFullWidth buttonType="next" />

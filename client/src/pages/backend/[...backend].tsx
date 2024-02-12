@@ -20,6 +20,7 @@ import { useRouter } from "next/router";
 import history from "utils/backendHistory";
 import { createBrowserHistory } from "history";
 import useRouterLocale from "hooks/useRouterLocale";
+import API from "utils/API";
 
 const Redirect = () => {
   const router = useRouter();
@@ -71,36 +72,37 @@ const Backend = () => {
     [user],
   );
 
+  const state = useMemo(() => {
+    if (isLoading && !userLoaded) return "loading"; // no spinner if user is being re-fetched
+    if (!API.isAuth()) return "anonymous";
+    if (isInBrowser() && mounted && userLoaded) return "ready";
+    return null;
+  }, [isLoading, userLoaded, mounted]);
+
   return (
     <>
       <SEO title="Administration" />
-      {isLoading && !userLoaded ? ( // no spinner if user is being re-fetched
+      {state === "loading" && (
         <div className={styles.spinner_container}>
           <Spinner color="success" />
         </div>
-      ) : (
-        isInBrowser() &&
-        mounted &&
-        (userLoaded ? (
-          <Router history={history || createBrowserHistory()}>
-            <Switch>
-              {backendRoutes.map((route, idx) =>
-                route.component ? (
-                  <Route
-                    key={idx}
-                    path={routerLocale + route.path}
-                    exact={route.exact}
-                    render={() =>
-                      isAuthorized(route) ? <route.component title={route.name} /> : <UnauthorizedAccess />
-                    }
-                  />
-                ) : null,
-              )}
-            </Switch>
-          </Router>
-        ) : (
-          <Redirect />
-        ))
+      )}
+      {state === "anonymous" && <Redirect />}
+      {state === "ready" && (
+        <Router history={history || createBrowserHistory()}>
+          <Switch>
+            {backendRoutes.map((route, idx) =>
+              route.component ? (
+                <Route
+                  key={idx}
+                  path={routerLocale + route.path}
+                  exact={route.exact}
+                  render={() => (isAuthorized(route) ? <route.component title={route.name} /> : <UnauthorizedAccess />)}
+                />
+              ) : null,
+            )}
+          </Switch>
+        </Router>
       )}
     </>
   );

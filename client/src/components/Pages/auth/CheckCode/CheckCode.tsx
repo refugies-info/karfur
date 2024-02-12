@@ -68,87 +68,85 @@ const CheckCode = ({ type }: Props) => {
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour
       </Button>
-      <div className={styles.content}>
-        <div className={styles.title}>
-          {type === "2fa" ? <h1>Vérifions que c’est bien vous&nbsp;!</h1> : <h1>Entrez le code reçu</h1>}
-          <p className={styles.subtitle}>
-            Un code temporaire à 6 chiffres vous a été envoyé à {email}
-            <br />
-            <Link href="/auth" className="text-decoration-underline">
-              Ce n'est pas vous&nbsp;?
-            </Link>
-          </p>
+      <div className={styles.title}>
+        {type === "2fa" ? <h1>Vérifions que c’est bien vous&nbsp;!</h1> : <h1>Entrez le code reçu</h1>}
+        <p className={styles.subtitle}>
+          Un code temporaire à 6 chiffres vous a été envoyé à {email}.{" "}
+          <Link href="/auth" className="text-decoration-underline">
+            Ce n'est pas vous&nbsp;?
+          </Link>
+        </p>
+      </div>
+
+      <form onSubmit={submit}>
+        <Input
+          label={type === "2fa" ? "Code d'authentification" : "Code de connexion temporaire"}
+          state={!error ? "default" : "error"}
+          stateRelatedMessage={error}
+          className="mb-0"
+          nativeInputProps={{
+            autoFocus: true,
+            name: "code",
+            value: code,
+            onChange: (e: any) => setCode(e.target.value),
+          }}
+        />
+
+        <Button
+          iconId="fr-icon-check-line"
+          iconPosition="right"
+          className={cls(styles.button, styles.mt, "mb-4")}
+          nativeButtonProps={{ type: "submit" }}
+        >
+          Valider
+        </Button>
+        <Button
+          iconId="fr-icon-mail-line"
+          iconPosition="right"
+          onClick={resendCode}
+          className={styles.button}
+          priority="tertiary"
+        >
+          Renvoyer le code
+        </Button>
+      </form>
+
+      {type === "2fa" && (
+        <div className={cls(styles.small, styles.mx, "text-center")}>
+          L'adresse mail n'est plus valable&nbsp;?{" "}
+          <button onClick={contact} className={styles.link}>
+            Contactez-nous
+          </button>
         </div>
+      )}
 
-        <form onSubmit={submit}>
-          <Input
-            label={type === "2fa" ? "Code d'authentification" : "Code de connexion temporaire"}
-            state={!error ? "default" : "error"}
-            stateRelatedMessage={error}
-            nativeInputProps={{
-              autoFocus: true,
-              name: "code",
-              value: code,
-              onChange: (e: any) => setCode(e.target.value),
+      <Row className={cls("mb-4", type !== "2fa" && styles.space_top)}>
+        <Col>
+          <Button
+            linkProps={{
+              href: "https://mail.google.com/mail/u/0/",
             }}
-          />
-
-          <Button
-            iconId="fr-icon-check-line"
-            iconPosition="right"
-            className={cls(styles.button, "mt-8 mb-4")}
-            nativeButtonProps={{ type: "submit" }}
-          >
-            Valider
-          </Button>
-          <Button
-            iconId="fr-icon-mail-line"
-            iconPosition="right"
-            onClick={resendCode}
             className={styles.button}
             priority="tertiary"
           >
-            Renvoyer le code
+            <Image src={GmailIcon} width={24} height={24} alt="" className="me-2" />
+            Ouvrir Gmail
           </Button>
-        </form>
-
-        {type === "2fa" && (
-          <div className={cls(styles.small, "mt-14 mb-14", "text-center")}>
-            L'adresse mail n'est plus valable&nbsp;?{" "}
-            <button onClick={contact} className={styles.link}>
-              Contactez-nous
-            </button>
-          </div>
-        )}
-
-        <Row className={cls("mb-4", type !== "2fa" && styles.space_top)}>
-          <Col>
-            <Button
-              linkProps={{
-                href: "https://mail.google.com/mail/u/0/",
-              }}
-              className={styles.button}
-              priority="tertiary"
-            >
-              <Image src={GmailIcon} width={24} height={24} alt="" className="me-2" />
-              Ouvrir Gmail
-            </Button>
-          </Col>
-          <Col>
-            <Button
-              linkProps={{
-                href: "https://outlook.live.com/mail/0/",
-              }}
-              className={styles.button}
-              priority="tertiary"
-            >
-              <Image src={OutlookIcon} width={24} height={24} alt="" className="me-2" />
-              Ouvrir Outlook
-            </Button>
-          </Col>
-        </Row>
-        <p className={cls(styles.small, "mt-6", "text-center")}>Pensez à vérifiez votre courrier indésirable&nbsp;!</p>
-      </div>
+        </Col>
+        <Col>
+          <Button
+            linkProps={{
+              href: "https://outlook.live.com/mail/0/",
+            }}
+            className={styles.button}
+            priority="tertiary"
+          >
+            <Image src={OutlookIcon} width={24} height={24} alt="" className="me-2" />
+            Ouvrir Outlook
+          </Button>
+        </Col>
+      </Row>
+      <p className={cls(styles.small, "mt-6", "text-center")}>Pensez à vérifiez votre courrier indésirable&nbsp;!</p>
     </div>
   );
 };
