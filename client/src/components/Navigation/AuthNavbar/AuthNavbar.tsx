@@ -16,7 +16,7 @@ const AuthNavbar = () => {
       }}
       operatorLogo={{
         alt: "Réfugiés.info",
-        imgUrl: "/images/logo-ri-square.png",
+        imgUrl: "/images/logo-navbar-ri.svg",
         orientation: "horizontal",
       }}
       serviceTitle="Réfugiés.info"
