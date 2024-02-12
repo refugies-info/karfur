@@ -44,8 +44,12 @@ const AuthLogin = () => {
         return;
       }
       try {
-        if (role && role !== RoleName.USER) {
-          await API.updateUser(userId.toString(), { user: { roles: [role] }, action: "modify-my-details" }); // FIXME what if back and change role?
+        if (role) {
+          const newRoles = role === RoleName.USER ? [RoleName.USER] : [RoleName.USER, role];
+          await API.updateUser(userId.toString(), {
+            user: { roles: newRoles },
+            action: "modify-my-details",
+          });
         }
         next([role]);
       } catch (e: any) {

@@ -102,10 +102,10 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
   }
   if (request.roles) {
     const newRoles = request.roles
-      .filter(r => [RoleName.CONTRIB, RoleName.TRAD, RoleName.CAREGIVER].includes(r)) // only these roles allowed
+      .filter(r => [RoleName.USER, RoleName.CONTRIB, RoleName.TRAD, RoleName.CAREGIVER].includes(r)) // only these roles allowed
       .map(r => roles.find(role => role.nom === r)?._id)
       .filter(r => !!r);
-    newUser.roles = uniqIds([...userFromDB.roles, ...newRoles]);
+    newUser.roles = uniqIds(newRoles); // keep only roles from request. Needed to fix bug in page "inscription/objectif"
   }
   return newUser;
 }
