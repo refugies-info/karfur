@@ -43,6 +43,7 @@ export const UserProfile = (props: Props) => {
   const [usernameError, setUsernameError] = useState<string | null>(null);
   const [firstName, setFirstName] = useState<string>(userDetails?.firstName || "");
   const [email, setEmail] = useState<string>(userDetails?.email || "");
+  const [emailHint, setEmailHint] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string | null>(null);
   const [phone, setPhone] = useState<string>(userDetails?.phone || "");
   const [phoneError, setPhoneError] = useState<string | null>(null);
@@ -97,19 +98,22 @@ export const UserProfile = (props: Props) => {
 
   // Form validation
   useEffect(() => {
-    if (phone && !isValidPhone(phone)) setPhoneError("Le numéro de téléphone n'est pas valide");
+    if (phone && !isValidPhone(phone))
+      setPhoneError("Ce n'est pas un numéro de téléphone valide, vérifiez votre saisie.");
     else setPhoneError(null);
   }, [phone]);
 
   useEffect(() => {
     if (!email) setEmailError("L'email est obligatoire");
-    else if (!isValidEmail(email)) setEmailError("L'email n'est pas valide");
+    else if (!isValidEmail(email)) setEmailError("Ce n'est pas une adresse email valide, vérifiez votre saisie.");
     else setEmailError(null);
   }, [email]);
 
   useEffect(() => {
-    setUsernameError(null); // needed to reset api errors
-  }, [username]);
+    const usernameMandatory = user.admin || user.contributeur || user.expertTrad || user.traducteur;
+    if (!username && usernameMandatory) setUsernameError("Veuillez choisir un pseudonyme.");
+    else setUsernameError(null); // needed to reset api errors
+  }, [username, user]);
 
   const [{ loading, error }, submit] = useAsyncFn(
     async (e: any) => {
@@ -133,6 +137,8 @@ export const UserProfile = (props: Props) => {
           // TODO: handle 2FA
         } else if (errorCode === "USERNAME_TAKEN") {
           setUsernameError("Ce nom d'utilisateur est déjà pris. Veuillez en choisir un autre.");
+        } else if (errorCode === "EMAIL_TAKEN") {
+          setEmailError("Un compte Réfugiés.info est déjà associé à cette adresse email.");
         } else {
           throw new Error("Une erreur est survenue. Veuillez réessayer");
         }
@@ -189,7 +195,7 @@ export const UserProfile = (props: Props) => {
               </div>
             )}
 
-            {userDetails.partner && (
+            {user.caregiver && userDetails.partner && (
               <div className={styles.info}>
                 <label>Partenaire</label>
                 <p>{userDetails.partner}</p>
@@ -264,11 +270,18 @@ export const UserProfile = (props: Props) => {
                   label="Email"
                   state={!!emailError && edition ? "error" : "default"}
                   stateRelatedMessage={emailError}
+                  hintText={
+                    emailHint
+                      ? "Saisissez la nouvelle adresse email que vous souhaitez associer à votre compte. Nous enverrons un code de vérification à cette adresse."
+                      : null
+                  }
                   nativeInputProps={{
                     name: "email",
                     readOnly: !edition,
                     value: email || (!edition ? "Non défini" : ""),
                     onChange: (e: any) => setEmail(e.target.value),
+                    onFocus: () => setEmailHint(true),
+                    onBlur: () => setEmailHint(false),
                   }}
                   disabled={loading}
                   className={!email ? styles.empty : ""}

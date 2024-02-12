@@ -75,6 +75,11 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     newUser.roles = newRoles;
   }
   if (request.email) {
+    const userWithEmail = await getUserFromDB({ email: request.email });
+    if (userWithEmail._id.toString() !== id) {
+      throw new UnauthorizedError("Email déjà utilisé", "EMAIL_TAKEN");
+    }
+
     const needs2fa = await needs2FA(userFromDB.email); // use old email to find user
     if (needs2fa) {
       try {
