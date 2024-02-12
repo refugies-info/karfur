@@ -20,7 +20,7 @@ export const ModalLanguage = (props: Props) => {
   }, [dispatch]);
 
   return (
-    <modalLanguage.Component title={<div className="mb-6">Langues</div>}>
+    <modalLanguage.Component title={<div className="mb-6">Langues de traduction</div>}>
       <EditLanguage successCallback={successCallback} buttonType="validate" />
     </modalLanguage.Component>
   );

@@ -6,7 +6,7 @@ import { Col, Row } from "reactstrap";
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
-import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
+import { ToggleSwitch } from "@codegouvfr/react-dsfr/ToggleSwitch";
 import { logger } from "logger";
 import API from "utils/API";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
@@ -26,7 +26,6 @@ import {
 } from "./components";
 import ErrorMessage from "components/UI/ErrorMessage";
 import styles from "./UserProfile.module.scss";
-import Tooltip from "components/UI/Tooltip";
 
 interface Props {
   title: string;
@@ -59,10 +58,11 @@ export const UserProfile = (props: Props) => {
     API.isInContacts().then((res) => setNewsletter(res.isInContacts));
   }, [dispatch, user, userDetails, nbWordsTranslated]);
 
-  const subscribeNewsletter = async () => {
+  const subscribeNewsletter = async (checked: boolean) => {
     if (!userDetails?.email) return;
+    setNewsletter(checked);
     try {
-      if (!newsletter) {
+      if (checked) {
         await API.contacts({ email: userDetails.email });
       } else {
         await API.deleteContact();
@@ -70,7 +70,6 @@ export const UserProfile = (props: Props) => {
     } catch (e: any) {
       logger.error(e);
     }
-    setNewsletter((n) => !n);
   };
 
   // Load user stats
@@ -152,28 +151,6 @@ export const UserProfile = (props: Props) => {
             <h1>Mon profil</h1>
           </Col>
           <Col className="text-end text-nowrap">
-            {edition ? (
-              <Button
-                priority="secondary"
-                size="small"
-                onClick={submit}
-                iconId="fr-icon-save-3-line"
-                iconPosition="right"
-                disabled={loading}
-              >
-                Sauvegarder les modifications
-              </Button>
-            ) : (
-              <Button
-                priority="primary"
-                size="small"
-                onClick={() => setEdition(true)}
-                iconId="fr-icon-edit-box-line"
-                iconPosition="right"
-              >
-                Modifier mon profil
-              </Button>
-            )}
             {/* <Button
               disabled={edition}
               priority="secondary"
@@ -189,11 +166,33 @@ export const UserProfile = (props: Props) => {
 
         <Row>
           <Col className="flex-grow-0">
-            <EditAvatar />
+            <h2>Photo de profil</h2>
+            <div className={styles.block}>
+              <EditAvatar />
+            </div>
+
+            <h2 className="my-6">Activité</h2>
             {nbWordsTranslated !== null && (
               <div className={styles.info}>
                 <label>Nombre de mots traduits</label>
                 <p>{nbWordsTranslated}</p>
+              </div>
+            )}
+            {userStructure && (
+              <div className={styles.info}>
+                <p>{userStructure.nom}</p>
+                {userStructureRole?.includes(StructureMemberRole.ADMIN) && (
+                  <Badge severity="success" noIcon>
+                    Responsable
+                  </Badge>
+                )}
+              </div>
+            )}
+
+            {userDetails.partner && (
+              <div className={styles.info}>
+                <label>Partenaire</label>
+                <p>{userDetails.partner}</p>
               </div>
             )}
 
@@ -206,91 +205,95 @@ export const UserProfile = (props: Props) => {
             )}
           </Col>
 
-          <Col xs="auto" className={styles.inputs}>
-            <Tooltip target="tooltip-pseudo" placement="top">
-              Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
-            </Tooltip>
-            <form onSubmit={submit}>
-              <Input
-                label={
-                  <>
-                    Pseudonyme <i id="tooltip-pseudo" className={cls("fr-icon-question-line", styles.help)} />
-                  </>
-                }
-                state={!!usernameError && edition ? "error" : "default"}
-                stateRelatedMessage={usernameError}
-                nativeInputProps={{
-                  name: "pseudo",
-                  readOnly: !edition,
-                  value: username || (!edition ? "Non défini" : ""),
-                  onChange: (e: any) => setUsername(e.target.value),
-                }}
-                disabled={loading}
-                className={!username ? styles.empty : ""}
-              />
-              <Input
-                label="Prénom"
-                nativeInputProps={{
-                  name: "firstName",
-                  readOnly: !edition,
-                  value: firstName || (!edition ? "Non défini" : ""),
-                  onChange: (e: any) => setFirstName(e.target.value),
-                }}
-                disabled={loading}
-                className={!firstName ? styles.empty : ""}
-              />
-              <Input
-                label="Email"
-                state={!!emailError && edition ? "error" : "default"}
-                stateRelatedMessage={emailError}
-                nativeInputProps={{
-                  name: "email",
-                  readOnly: !edition,
-                  value: email || (!edition ? "Non défini" : ""),
-                  onChange: (e: any) => setEmail(e.target.value),
-                }}
-                disabled={loading}
-                className={!email ? styles.empty : ""}
-              />
-              <Input
-                label="Téléphone"
-                state={!!phoneError && edition ? "error" : "default"}
-                stateRelatedMessage={phoneError}
-                nativeInputProps={{
-                  name: "phone",
-                  readOnly: !edition,
-                  value: phone || (!edition ? "Non défini" : ""),
-                  onChange: (e: any) => setPhone(e.target.value),
-                }}
-                disabled={loading}
-                className={!phone ? styles.empty : ""}
-              />
-              <ErrorMessage error={error?.message} />
-
-              {userDetails.partner && (
-                <div className={styles.info}>
-                  <label>Partenaire</label>
-                  <p>{userDetails.partner}</p>
-                </div>
-              )}
-
-              {userStructure && (
-                <div className={styles.info}>
-                  <p>{userStructure.nom}</p>
-                  {userStructureRole?.includes(StructureMemberRole.ADMIN) && (
-                    <Badge severity="success" noIcon>
-                      Responsable
-                    </Badge>
-                  )}
-                </div>
-              )}
-            </form>
-          </Col>
-
           <Col>
-            <div className="mb-4">
-              <div className="d-flex justify-content-between mb-2">
-                <label className="fr-label">Départements</label>
+            <div className="d-flex align-content-center justify-content-between">
+              <h2>Informations personnelles</h2>
+              {edition ? (
+                <Button
+                  priority="primary"
+                  size="small"
+                  onClick={submit}
+                  iconId="fr-icon-save-3-line"
+                  iconPosition="right"
+                  disabled={loading}
+                >
+                  Sauvegarder les modifications
+                </Button>
+              ) : (
+                <Button
+                  priority="secondary"
+                  size="small"
+                  onClick={() => setEdition(true)}
+                  iconId="fr-icon-edit-box-line"
+                  iconPosition="right"
+                >
+                  Modifier mon profil
+                </Button>
+              )}
+            </div>
+
+            <div className={cls(styles.block, styles.form, "mb-10")}>
+              <form onSubmit={submit}>
+                <Input
+                  label="Pseudonyme public"
+                  state={!!usernameError && edition ? "error" : "default"}
+                  stateRelatedMessage={usernameError}
+                  hintText="Votre pseudonyme apparaît sur les fiches auxquelles vous contribuez."
+                  nativeInputProps={{
+                    name: "pseudo",
+                    readOnly: !edition,
+                    value: username || (!edition ? "Non défini" : ""),
+                    onChange: (e: any) => setUsername(e.target.value),
+                  }}
+                  disabled={loading}
+                  className={!username ? styles.empty : ""}
+                />
+                <Input
+                  label="Prénom"
+                  hintText="Votre prénom n’est pas public, il est utilisé pour échanger avec vous directement."
+                  nativeInputProps={{
+                    name: "firstName",
+                    readOnly: !edition,
+                    value: firstName || (!edition ? "Non défini" : ""),
+                    onChange: (e: any) => setFirstName(e.target.value),
+                  }}
+                  disabled={loading}
+                  className={!firstName ? styles.empty : ""}
+                />
+                <Input
+                  label="Email"
+                  state={!!emailError && edition ? "error" : "default"}
+                  stateRelatedMessage={emailError}
+                  nativeInputProps={{
+                    name: "email",
+                    readOnly: !edition,
+                    value: email || (!edition ? "Non défini" : ""),
+                    onChange: (e: any) => setEmail(e.target.value),
+                  }}
+                  disabled={loading}
+                  className={!email ? styles.empty : ""}
+                />
+                <Input
+                  label="Téléphone"
+                  state={!!phoneError && edition ? "error" : "default"}
+                  stateRelatedMessage={phoneError}
+                  nativeInputProps={{
+                    name: "phone",
+                    readOnly: !edition,
+                    value: phone || (!edition ? "Non défini" : ""),
+                    onChange: (e: any) => setPhone(e.target.value),
+                  }}
+                  disabled={loading}
+                  className={!phone ? styles.empty : ""}
+                />
+                <ErrorMessage error={error?.message} />
+              </form>
+            </div>
+
+            <h2>Préférences</h2>
+            <div className={cls(styles.block, "mb-4")}>
+              <div className="d-flex justify-content-between mb-3">
+                <label className={styles.label}>Départements pour la recherche</label>
                 <EditButton icon="map" onClick={() => modalDepartments.open()} />
               </div>
               {!userDetails.departments ? (
@@ -304,9 +307,9 @@ export const UserProfile = (props: Props) => {
               )}
             </div>
 
-            <div className="mb-4">
-              <div className="d-flex justify-content-between mb-2">
-                <label className="fr-label">Langues de traduction</label>
+            <div className={cls(styles.block, "mb-4")}>
+              <div className="d-flex justify-content-between mb-4">
+                <label className={styles.label}>Langues de traduction</label>
                 <EditButton icon="translate" onClick={() => modalLanguage.open()} />
               </div>
               {!userDetails.selectedLanguages ? (
@@ -316,25 +319,23 @@ export const UserProfile = (props: Props) => {
               )}
             </div>
 
-            <div>
-              <label className="fr-label mb-2" htmlFor="newsletter">
-                Préférences de communication par email
+            <div className={styles.block}>
+              <label className={cls(styles.label, "mb-2")} htmlFor="newsletter">
+                Communication par email
               </label>
-              <Checkbox
-                small
-                className={styles.checkboxes}
-                options={[
-                  {
-                    label: "La lettre d’information de Réfugiés.info ",
-                    hintText: "Maximum 1 fois par mois ",
-                    nativeInputProps: {
-                      name: "newsletter",
-                      checked: !!newsletter,
-                      onChange: subscribeNewsletter,
-                    },
-                  },
-                ]}
+
+              <ToggleSwitch
+                label={
+                  <span>
+                    <strong>La lettre d’information de Réfugiés.info</strong> : actualités, nouveaux contenus, mises à
+                    jour, événements.
+                  </span>
+                }
+                helperText="Maximum 1 fois par mois"
+                checked={!!newsletter}
+                onChange={subscribeNewsletter}
                 disabled={newsletter === null}
+                showCheckedHint={false}
               />
             </div>
           </Col>
