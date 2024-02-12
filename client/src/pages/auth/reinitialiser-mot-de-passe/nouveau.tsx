@@ -69,20 +69,18 @@ const AuthNewPassword = (props: Props) => {
         Retour
       </Button>
       {props.error ? (
-        <div className={styles.content}>
-          <div className={styles.title}>
-            <h1>Erreur</h1>
-            <p className={styles.subtitle}>
-              Le lien de réinitialisation est invalide. Veuillez cliquer sur le lien à nouveau ou contacter un
-              administrateur si le problème persiste
-            </p>
-            <Button linkProps={{ href: "/" }} priority="tertiary">
-              Retour à l'accueil
-            </Button>
-          </div>
+        <div className={styles.title}>
+          <h1>Erreur</h1>
+          <p className={styles.subtitle}>
+            Le lien de réinitialisation est invalide. Veuillez cliquer sur le lien à nouveau ou contacter un
+            administrateur si le problème persiste
+          </p>
+          <Button linkProps={{ href: "/" }} priority="tertiary" className={styles.mt}>
+            Retour à l'accueil
+          </Button>
         </div>
       ) : (
-        <div className={styles.content}>
+        <>
           <div className={styles.title}>
             <h1>Nouveau mot de passe</h1>
             {step === 1 ? (
@@ -115,7 +113,7 @@ const AuthNewPassword = (props: Props) => {
                 value: password,
                 onChange: (e: any) => setPassword(e.target.value),
               }}
-              className={cls(step === 2 && styles.hidden)}
+              className={cls("mb-0", step === 2 && styles.hidden)}
             />
 
             <Input
@@ -126,20 +124,20 @@ const AuthNewPassword = (props: Props) => {
                 autoFocus: true,
                 name: "code",
               }}
-              className={cls(step === 1 && styles.hidden)}
+              className={cls("mb-0", step === 1 && styles.hidden)}
             />
 
             <Button
               iconId="fr-icon-arrow-right-line"
               iconPosition="right"
-              className={cls(styles.button, "mt-8")}
+              className={cls(styles.button, styles.mt)}
               nativeButtonProps={{ type: "submit" }}
               disabled={!passwordStrength.isOk}
             >
               {step === 1 ? "Changer le mot de passe" : "Valider le code"}
             </Button>
           </form>
-        </div>
+        </>
       )}
     </div>
   );

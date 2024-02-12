@@ -41,6 +41,14 @@ export const getLoginRedirect = (roles: GetUserInfoResponse["roles"] | undefined
   return getPath("/recherche", "fr")
 }
 
+export const getInscriptionMessage = (loginRedirect: string) => {
+  if (loginRedirect.includes("recherche")) return "Vous aurez bientôt accès à votre contenu personnalisé !";
+  if (loginRedirect.includes("publier")) return "Vous pourrez bientôt commencer à rédiger !";
+  if (loginRedirect.includes("traduire")) return "Vous pourrez bientôt commencer à traduire !";
+  if (loginRedirect.includes("dispositif") || loginRedirect.includes("demarche")) return "Vous pourrez bientôt reprendre votre lecture !";
+  return "";
+}
+
 
 interface RegisterInfos {
   role?: RoleName.CONTRIB | RoleName.TRAD;

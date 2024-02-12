@@ -224,7 +224,7 @@
     "email_reminder": "Me le rappeler par email",
     "Recevoir une invitation": "Recevoir une invitation",
     "create_a_new_account": "create_a_new_account",
-    "criteria_special": "Un caractère spécial",
+    "criteria_special": "Un caractère spécial (!, @, #, $, &, *)",
     "criteria_number": "Un chiffre",
     "criteria_minlength": "Au moins 7 caractères",
     "strong_password": "Mot de passe fort",

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useAsyncFn } from "react-use";
 import { useSelector } from "react-redux";
 import { SearchBar } from "@codegouvfr/react-dsfr/SearchBar";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { useDepartmentAutocomplete } from "hooks";
+import { useDepartmentAutocomplete, useOutsideClick } from "hooks";
 import { logger } from "logger";
 import { formatDepartment } from "lib/departments";
 import { cls } from "lib/classname";
@@ -14,6 +14,7 @@ import styles from "./EditDepartments.module.scss";
 
 interface Props {
   successCallback: () => void;
+  setIsLoading?: (isLoading: boolean) => void;
   buttonFullWidth?: boolean;
 }
 
@@ -25,6 +26,7 @@ const EditDepartments = (props: Props) => {
   const [{ loading }, submit] = useAsyncFn(
     async (e: any) => {
       e.preventDefault();
+      props.setIsLoading?.(true);
       setError("");
       if (!userDetails || selectedDepartments.length === 0) return;
       try {
@@ -34,6 +36,7 @@ const EditDepartments = (props: Props) => {
         });
         props.successCallback();
       } catch (e: any) {
+        props.setIsLoading?.(false);
         logger.error(e);
         setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
       }
@@ -47,6 +50,9 @@ const EditDepartments = (props: Props) => {
 
   const { search, setSearch, hidePredictions, setHidePredictions, getPlaceSelected, predictions } =
     useDepartmentAutocomplete();
+
+  const suggestionsRef = useRef<HTMLDivElement | null>(null);
+  useOutsideClick(suggestionsRef, () => setHidePredictions(true));
 
   const handleChange = (e: any) => setSearch(e.target.value);
   const onPlaceSelected = async (id: string) => {
@@ -64,57 +70,61 @@ const EditDepartments = (props: Props) => {
   return (
     <form onSubmit={submit}>
       <label htmlFor="location" className="mb-2">
-        Nom ou numéro du département(s)
+        Nom ou numéro du département
       </label>
       <div className="position-relative">
-        <SearchBar
-          renderInput={({ className, id, placeholder, type }) => (
-            <input
-              className={className}
-              name="location"
-              id={id}
-              placeholder={placeholder}
-              type={type}
-              value={search}
-              onChange={handleChange}
-              onKeyDown={(event) => {
-                if (event.key === "Escape") {
-                  setHidePredictions(true);
-                }
-              }}
-            />
-          )}
-        />
-        {!!(!hidePredictions && predictions?.length) && (
-          <div className={styles.suggestions}>
-            {predictions.slice(0, 5).map((p, i) => (
-              <button
-                key={i}
-                onClick={(e: any) => {
-                  e.preventDefault();
-                  onPlaceSelected(p.id);
+        <div ref={suggestionsRef}>
+          <SearchBar
+            renderInput={({ className, id, placeholder, type }) => (
+              <input
+                className={className}
+                name="location"
+                id={id}
+                placeholder={placeholder}
+                type={type}
+                value={search}
+                onChange={handleChange}
+                onKeyDown={(event) => {
+                  if (event.key === "Escape") {
+                    setHidePredictions(true);
+                  }
                 }}
-              >
-                {p.text}
-              </button>
+              />
+            )}
+          />
+          {!!(!hidePredictions && predictions?.length) && (
+            <div className={styles.suggestions}>
+              {predictions.slice(0, 5).map((p, i) => (
+                <button
+                  key={i}
+                  onClick={(e: any) => {
+                    e.preventDefault();
+                    onPlaceSelected(p.id);
+                  }}
+                >
+                  {p.text}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {selectedDepartments.length > 0 && (
+          <div className="mt-12">
+            {selectedDepartments.map((dep, i) => (
+              <div key={dep} className={styles.option}>
+                {formatDepartment(dep)}
+                <Button
+                  iconId="fr-icon-close-line"
+                  priority="tertiary no outline"
+                  title="Retirer le département"
+                  size="small"
+                  onClick={() => setSelectedDepartments((deps) => deps?.filter((d) => d !== dep))}
+                />
+              </div>
             ))}
           </div>
         )}
-
-        <div className="mt-14">
-          {selectedDepartments.map((dep, i) => (
-            <div key={dep} className={styles.option}>
-              {formatDepartment(dep)}
-              <Button
-                iconId="fr-icon-close-line"
-                priority="tertiary no outline"
-                title="Retirer le département"
-                size="small"
-                onClick={() => setSelectedDepartments((deps) => deps?.filter((d) => d !== dep))}
-              />
-            </div>
-          ))}
-        </div>
       </div>
 
       <ErrorMessage error={error} />
@@ -123,7 +133,7 @@ const EditDepartments = (props: Props) => {
         <Button
           iconId="fr-icon-check-line"
           iconPosition="right"
-          className={cls(styles.button, props.buttonFullWidth && styles.full, "mt-14")}
+          className={cls(styles.button, props.buttonFullWidth && styles.full, "mt-12")}
           nativeButtonProps={{ type: "submit" }}
           disabled={loading || selectedDepartments.length === 0}
         >
