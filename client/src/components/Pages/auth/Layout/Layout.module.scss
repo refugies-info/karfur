@@ -31,7 +31,7 @@ $headerHeight: 120px;
 }
 
 .right {
-  background: #ececfe;
+  background: var(--background-contrast-blue-france);
   min-height: calc(100vh - $headerHeight); // TODO: improve that
 }
 .illu {

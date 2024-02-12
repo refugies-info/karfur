@@ -27,6 +27,42 @@
   }
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fafaff;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    animation: pulse 2s infinite;
+  }
+
+  p {
+    @include dsfr-text("chapo");
+  }
+}
+
 .mt {
   margin-top: u(14);
   @include media-max("widescreen-up", true, true) {

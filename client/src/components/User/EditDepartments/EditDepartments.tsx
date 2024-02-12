@@ -14,6 +14,7 @@ import styles from "./EditDepartments.module.scss";
 
 interface Props {
   successCallback: () => void;
+  setIsLoading?: (isLoading: boolean) => void;
   buttonFullWidth?: boolean;
 }
 
@@ -25,6 +26,7 @@ const EditDepartments = (props: Props) => {
   const [{ loading }, submit] = useAsyncFn(
     async (e: any) => {
       e.preventDefault();
+      props.setIsLoading?.(true);
       setError("");
       if (!userDetails || selectedDepartments.length === 0) return;
       try {
@@ -34,6 +36,7 @@ const EditDepartments = (props: Props) => {
         });
         props.successCallback();
       } catch (e: any) {
+        props.setIsLoading?.(false);
         logger.error(e);
         setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
       }
