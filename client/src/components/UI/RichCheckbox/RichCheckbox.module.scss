@@ -1,0 +1,35 @@
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/btn";
+
+.choice {
+  padding: u(4) u(6);
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  @include choiceButton();
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  i::before {
+    --icon-size: 20px;
+    vertical-align: -2px;
+  }
+
+  .text {
+    text-align: left;
+    flex: auto;
+  }
+}

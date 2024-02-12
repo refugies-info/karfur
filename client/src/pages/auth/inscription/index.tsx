@@ -74,57 +74,55 @@ const AuthLogin = () => {
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour
       </Button>
-      <div className={styles.content}>
-        <div className={styles.title}>
-          <h1>Créez votre compte</h1>
-
-          <Tag className={cls("mb-5", styles.tag)}>{email}</Tag>
-        </div>
-
-        <form onSubmit={submit}>
-          <Input
-            label="Votre prénom (optionnel)"
-            nativeInputProps={{
-              autoFocus: true,
-              name: "name",
-            }}
-          />
-          <PasswordInput
-            label="Mot de passe"
-            messages={passwordStrength.criterias.map((criteria) => ({
-              message: t(criteria.label),
-              severity: !password ? "info" : criteria.isOk ? "valid" : "error",
-            }))}
-            nativeInputProps={{ name: "password", value: password, onChange: (e: any) => setPassword(e.target.value) }}
-          />
-
-          <Checkbox
-            options={[
-              {
-                label: "J'accepte de recevoir l'actualité de Réfugiés.info (maximum 1 fois par mois)",
-                nativeInputProps: {
-                  checked: subscribeNewsletter,
-                  onChange: () => setSubscribeNewsletter((o) => !o),
-                },
-              },
-            ]}
-            small
-            className="mt-8 mb-6"
-          />
-
-          <ErrorMessage error={error} />
-
-          <Button
-            iconId="fr-icon-arrow-right-line"
-            iconPosition="right"
-            className={cls(styles.button, "mt-8")}
-            nativeButtonProps={{ type: "submit" }}
-            disabled={!passwordStrength.isOk || loading}
-          >
-            Créer mon compte
-          </Button>
-        </form>
+      <div className={styles.title}>
+        <h1>Créez votre compte</h1>
+        <Tag className={styles.tag}>{email}</Tag>
       </div>
+
+      <form onSubmit={submit}>
+        <Input
+          label="Votre prénom (optionnel)"
+          nativeInputProps={{
+            autoFocus: true,
+            name: "name",
+          }}
+        />
+        <PasswordInput
+          label="Mot de passe"
+          messages={passwordStrength.criterias.map((criteria) => ({
+            message: t(criteria.label),
+            severity: !password ? "info" : criteria.isOk ? "valid" : "error",
+          }))}
+          nativeInputProps={{ name: "password", value: password, onChange: (e: any) => setPassword(e.target.value) }}
+          className="mb-0"
+        />
+
+        <Checkbox
+          options={[
+            {
+              label: "J'accepte de recevoir l'actualité de Réfugiés.info (maximum 1 fois par mois)",
+              nativeInputProps: {
+                checked: subscribeNewsletter,
+                onChange: () => setSubscribeNewsletter((o) => !o),
+              },
+            },
+          ]}
+          small
+          className={cls(styles.mt, "mb-0")}
+        />
+
+        <ErrorMessage error={error} />
+
+        <Button
+          iconId="fr-icon-arrow-right-line"
+          iconPosition="right"
+          className={cls(styles.button, styles.mt)}
+          nativeButtonProps={{ type: "submit" }}
+          disabled={!passwordStrength.isOk || loading}
+        >
+          Créer mon compte
+        </Button>
+      </form>
     </div>
   );
 };

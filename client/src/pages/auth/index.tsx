@@ -109,58 +109,54 @@ const AuthEmail = () => {
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour
       </Button>
-      <div className={styles.content}>
-        <div className={styles.title}>
-          <h1>Bienvenue&nbsp;!</h1>
-          <p className={styles.subtitle}>
-            Votre compte Réfugiés.info vous permet d’avoir une expérience personnalisée.
-          </p>
-        </div>
+      <div className={styles.title}>
+        <h1>Bienvenue&nbsp;!</h1>
+        <p className={styles.subtitle}>Votre compte Réfugiés.info vous permet d’avoir une expérience personnalisée.</p>
+      </div>
 
-        <form onSubmit={submit}>
-          <Input
-            label="Adresse mail"
-            state={!formError ? "default" : "error"}
-            stateRelatedMessage={formError}
-            nativeInputProps={{
-              autoFocus: true,
-              type: "email",
-              value: email,
-              onChange: (e: any) => setEmail(e.target.value),
-            }}
-          />
+      <form onSubmit={submit}>
+        <Input
+          label="Adresse mail"
+          state={!formError ? "default" : "error"}
+          stateRelatedMessage={formError}
+          nativeInputProps={{
+            autoFocus: true,
+            type: "email",
+            value: email,
+            onChange: (e: any) => setEmail(e.target.value),
+          }}
+        />
 
-          <Button
-            iconId="fr-icon-arrow-right-line"
-            iconPosition="right"
-            className={styles.button}
-            nativeButtonProps={{ type: "submit" }}
-            disabled={loading}
-          >
-            Continuer
-          </Button>
-        </form>
-
-        <div className={styles.separator}>
-          <span>ou connectez-vous avec</span>
-        </div>
-
-        <Button onClick={loginGoogle} className={cls(styles.button, "mb-4")} priority="tertiary">
-          <Image src={GoogleIcon} width={24} height={24} alt="" className="me-2" />
-          Google
+        <Button
+          iconId="fr-icon-arrow-right-line"
+          iconPosition="right"
+          className={styles.button}
+          nativeButtonProps={{ type: "submit" }}
+          disabled={loading}
+        >
+          Continuer
         </Button>
-        <Button onClick={loginMicrosoft} className={cls(styles.button, "mb-4")} priority="tertiary">
-          <Image src={MicrosoftIcon} width={24} height={24} alt="" className="me-2" />
-          <Image src={OutlookIcon} width={24} height={24} alt="" className="me-2" />
-          Microsoft ou Outlook
-        </Button>
-        {/* <Button onClick={loginInclusionConnect} className={cls(styles.button, "mb-4")} priority="tertiary">
+      </form>
+
+      <div className={styles.separator}>
+        <span>ou connectez-vous avec</span>
+      </div>
+
+      <Button onClick={loginGoogle} className={cls(styles.button, "mb-4")} priority="tertiary">
+        <Image src={GoogleIcon} width={24} height={24} alt="" className="me-2" />
+        Google
+      </Button>
+      <Button onClick={loginMicrosoft} className={cls(styles.button, "mb-4")} priority="tertiary">
+        <Image src={MicrosoftIcon} width={24} height={24} alt="" className="me-2" />
+        <Image src={OutlookIcon} width={24} height={24} alt="" className="me-2" />
+        Microsoft ou Outlook
+      </Button>
+      {/* <Button onClick={loginInclusionConnect} className={cls(styles.button, "mb-4")} priority="tertiary">
           <Image src={DataInclusionIcon} width={24} height={24} alt="" className="me-2" />
           Inclusion Connect
         </Button> */}
 
-        <ErrorMessage error={error} />
-      </div>
+      <ErrorMessage error={error} />
     </div>
   );
 };

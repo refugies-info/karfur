@@ -38,10 +38,18 @@ const AuthLogin = () => {
     async (e: any) => {
       e.preventDefault();
       setError("");
-      if (!userId || !role) return;
+      if (!userId) return;
+      if (!role) {
+        setError("Veuillez sélectionner une option.");
+        return;
+      }
       try {
-        if (role && role !== RoleName.USER) {
-          await API.updateUser(userId.toString(), { user: { roles: [role] }, action: "modify-my-details" }); // FIXME what if back and change role?
+        if (role) {
+          const newRoles = role === RoleName.USER ? [RoleName.USER] : [RoleName.USER, role];
+          await API.updateUser(userId.toString(), {
+            user: { roles: newRoles },
+            action: "modify-my-details",
+          });
         }
         next([role]);
       } catch (e: any) {
@@ -52,7 +60,7 @@ const AuthLogin = () => {
     [router, userId, role, next],
   );
 
-  // if (!userId) return null;
+  if (!userId) return null;
 
   return (
     <div className={cls(styles.container, styles.full)}>
@@ -68,10 +76,10 @@ const AuthLogin = () => {
           Retour
         </Button>
 
-        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre objectif" />
+        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
 
-        <div className={cls(styles.title, "mt-14")}>
-          <h1 className={styles.sm}>Que souhaitez-vous faire&nbsp;?</h1>
+        <div className={cls(styles.title, styles.sm, "mt-12")}>
+          <h1>Que souhaitez-vous faire&nbsp;?</h1>
           <p className={styles.subtitle}>Vous pourrez compléter votre choix plus tard.</p>
         </div>
 
@@ -115,7 +123,7 @@ const AuthLogin = () => {
           <Button
             iconId="fr-icon-arrow-right-line"
             iconPosition="right"
-            className={cls(styles.button, "mt-7")}
+            className={cls(styles.button, "mt-9")}
             nativeButtonProps={{ type: "submit" }}
             disabled={loading}
           >

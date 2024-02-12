@@ -30,17 +30,18 @@ $drawerLimit: 768px;
 }
 
 /* to... */
-@mixin media-max($_key, $screen: true) {
+@mixin media-max($_key, $screen: true, $include: false) {
   $break: map-get($breakpoints, $_key);
+  $limit: if($include, 0, 1);
 
   @if ($screen) {
-    @media screen and (max-width: ($break - 1)) {
+    @media screen and (max-width: ($break - $limit)) {
       & {
         @content;
       }
     }
   } @else {
-    @media (max-width: ($break - 1)) {
+    @media (max-width: ($break - $limit)) {
       & {
         @content;
       }

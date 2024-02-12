@@ -50,12 +50,9 @@ const AuthMicrosoftLogin = () => {
   return (
     <div className={cls(styles.container, styles.half)}>
       <SEO title="Connexion en cours..." />
-
-      <div className={styles.content}>
-        <div className={styles.title}>
-          <h1>{!error ? "Connexion en cours..." : "Erreur"}</h1>
-          <p className={styles.subtitle}>{!error ? "Ne quittez pas la page" : error}</p>
-        </div>
+      <div className={styles.title}>
+        <h1>{!error ? "Connexion en cours..." : "Erreur"}</h1>
+        <p className={styles.subtitle}>{!error ? "Ne quittez pas la page" : error}</p>
       </div>
     </div>
   );

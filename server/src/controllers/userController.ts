@@ -182,7 +182,6 @@ export class UserController extends Controller {
         "selectedLanguages",
         "partner",
         "departments",
-        // TODO: newsletter ?
       ]),
     };
   }
