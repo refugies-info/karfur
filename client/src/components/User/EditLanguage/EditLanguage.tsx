@@ -68,6 +68,7 @@ const EditDepartments = (props: Props) => {
     <form onSubmit={submit}>
       {languages
         .filter((ln) => ln.i18nCode !== "fr")
+        .sort((a, b) => (a.langueFr < b.langueFr ? -1 : 1))
         .map((language) => {
           const id = language._id.toString();
           const checked = selectedLanguages.includes(id);

@@ -59,10 +59,10 @@ const AuthLogin = () => {
         <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
 
         <div className={cls(styles.title, styles.sm, "mt-12")}>
-          <h1>Dans quelle structure êtes-vous&nbsp;?</h1>
+          <h1>Faites-vous partie de l’une des structures suivantes&nbsp;?</h1>
           <p className={styles.subtitle}>
-            Nous avons un partenariat national avec ces structures. Si vous n’en faites pas partie, cochez « Aucune de
-            ces structures ».
+            Nous avons un partenariat national avec ces structures. Si vous n’en faites pas partie, cochez « Aucune de
+            ces structures ».
           </p>
         </div>
 
