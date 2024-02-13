@@ -98,7 +98,7 @@ const EditDepartments = (props: Props) => {
           iconPosition="right"
           className={cls(styles.button, props.buttonFullWidth && styles.full, "mt-8")}
           nativeButtonProps={{ type: "submit" }}
-          disabled={loading}
+          disabled={loading || selectedLanguages.length === 0}
         >
           {buttonProps[props.buttonType].text}
         </Button>

@@ -20,7 +20,11 @@ export const ModalDepartments = (props: Props) => {
   }, [dispatch]);
 
   return (
-    <modalDepartments.Component title="Départements">
+    <modalDepartments.Component title="Départements pour la recherche">
+      <p className="mb-8">
+        Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Les démarches nationales resteront
+        visibles.
+      </p>
       <EditDepartments successCallback={successCallback} />
     </modalDepartments.Component>
   );

@@ -3,6 +3,7 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/margins";
 
 .container {
   &.half {
@@ -25,6 +26,8 @@
       }
     }
   }
+
+  @include responsiveMargins();
 }
 
 @keyframes pulse {
@@ -61,24 +64,6 @@
   p {
     @include dsfr-text("chapo");
   }
-}
-
-.mt {
-  margin-top: u(14);
-  @include media-max("widescreen-up", true, true) {
-    margin-top: u(12);
-  }
-}
-.mb {
-  margin-bottom: u(14);
-  @include media-max("widescreen-up", true, true) {
-    margin-bottom: u(12);
-  }
-}
-
-.mx {
-  @extend .mt;
-  @extend .mb;
 }
 
 .title {

@@ -13,6 +13,7 @@ export enum LoginErrorType {
   NO_ACCOUNT = "NO_ACCOUNT",
   USER_NOT_EXISTS = "USER_NOT_EXISTS",
   SSO_URL = "SSO_URL",
+  SSO_NO_PASSWORD = "SSO_NO_PASSWORD",
 }
 
 class LoginError extends Error {

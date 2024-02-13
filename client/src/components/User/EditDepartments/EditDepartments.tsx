@@ -21,6 +21,7 @@ interface Props {
 const EditDepartments = (props: Props) => {
   const [error, setError] = useState("");
   const [selectedDepartments, setSelectedDepartments] = useState<string[]>([]);
+  const [isDirty, setIsDirty] = useState(false);
   const userDetails = useSelector(userDetailsSelector);
 
   const [{ loading }, submit] = useAsyncFn(
@@ -45,7 +46,10 @@ const EditDepartments = (props: Props) => {
   );
 
   useEffect(() => {
-    if (userDetails?.departments) setSelectedDepartments(userDetails.departments);
+    if (userDetails?.departments && (userDetails?.departments?.length || 0) > 0) {
+      setSelectedDepartments(userDetails.departments);
+      setIsDirty(true);
+    }
   }, [userDetails]);
 
   const { search, setSearch, hidePredictions, setHidePredictions, getPlaceSelected, predictions } =
@@ -56,6 +60,7 @@ const EditDepartments = (props: Props) => {
 
   const handleChange = (e: any) => setSearch(e.target.value);
   const onPlaceSelected = async (id: string) => {
+    if (!isDirty) setIsDirty(true);
     const place = await getPlaceSelected(id);
     if (!place) return;
     if (!selectedDepartments.includes(place)) {
@@ -65,6 +70,15 @@ const EditDepartments = (props: Props) => {
       setSearch("");
     }
   };
+
+  useEffect(() => {
+    if (selectedDepartments.length === 0 && isDirty) {
+      setError("Vous devez sélectionner au moins un département");
+    } else {
+      setError("");
+    }
+  }, [selectedDepartments, isDirty]);
+
   if (!userDetails) return null;
 
   return (
