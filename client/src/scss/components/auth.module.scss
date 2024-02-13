@@ -89,9 +89,9 @@
 }
 
 .tag {
-  background-color: transparent;
-  border: 1px solid var(--border-default-grey);
-  color: var(--text-action-high-blue-france);
+  background-color: transparent !important;
+  border: 1px solid var(--border-default-grey) !important;
+  color: var(--text-action-high-blue-france) !important;
 }
 
 .button {
@@ -122,7 +122,7 @@
 }
 
 .space_top {
-  margin-top: u(24);
+  margin-top: u(18);
 }
 
 .small {

@@ -10,6 +10,7 @@ import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { logger } from "logger";
+import { getPath } from "routes";
 import { useRegisterFlow } from "hooks";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
@@ -76,7 +77,15 @@ const AuthLogin = () => {
       </Button>
       <div className={styles.title}>
         <h1>Créez votre compte</h1>
-        <Tag className={styles.tag}>{email}</Tag>
+        <Tag
+          className={styles.tag}
+          dismissible
+          nativeButtonProps={{
+            onClick: () => router.push(getPath("/auth", "fr")),
+          }}
+        >
+          {email}
+        </Tag>
       </div>
 
       <form onSubmit={submit}>

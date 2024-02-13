@@ -47,13 +47,13 @@ const AuthLogin = () => {
             Retour
           </Button>
 
-          <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title="Votre territoire" />
+          <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
 
           <div className={cls(styles.title, styles.sm, "mt-12")}>
             <h1>Où souhaitez-vous chercher des dispositifs&nbsp;?</h1>
             <p className={styles.subtitle}>
               Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Pas d’inquiétude, vous
-              pourrez modifier plus tard et les démarches nationales resteront visibles&nbsp;!
+              pourrez les modifier plus tard et les démarches nationales resteront visibles&nbsp;!
             </p>
           </div>
 
