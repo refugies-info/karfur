@@ -84,6 +84,7 @@ export const login = async (body: LoginRequest): Promise<LoginResponse> => {
     if (user.status === UserStatus.DELETED) throw new LoginError(LoginErrorType.USER_DELETED);
 
     if (body.authPassword) {
+      if (!user.password) throw new LoginError(LoginErrorType.SSO_NO_PASSWORD);
       await authWithPassword(user, body.authPassword.password);
     }
 
