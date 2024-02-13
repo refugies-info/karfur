@@ -46,6 +46,8 @@ export const loginExceptionsManager = (error: LoginError) => {
       throw new NotFoundError("Pas de compte associé à cet email.", "NO_ACCOUNT", error.data);
     case LoginErrorType.USER_NOT_EXISTS:
       throw new NotFoundError("Utilisateur inconnu.", "USER_NOT_EXISTS");
+    case LoginErrorType.SSO_NO_PASSWORD:
+      throw new NotFoundError("Connexion avec un mot de passe impossible, compte créé par SSO.", "SSO_NO_PASSWORD");
     default:
       throw new InternalError("Erreur interne.");
   }

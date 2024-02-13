@@ -1,35 +1,18 @@
-import { ReactElement, useCallback, useMemo, useState } from "react";
+import { ReactElement, useMemo } from "react";
 import { useRouter } from "next/router";
+import { ResetPasswordResponse } from "@refugies-info/api-types";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { Input } from "@codegouvfr/react-dsfr/Input";
-import API from "utils/API";
 import { getPath } from "routes";
-import { logger } from "logger";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
+import { ForgotPassword } from "components/User";
 import styles from "scss/components/auth.module.scss";
 
 const AuthForgotPassword = () => {
   const router = useRouter();
   const email: string = useMemo(() => router.query.email as string, [router.query]);
-  const [error, setError] = useState("");
-
-  const submit = useCallback(
-    async (e: any) => {
-      e.preventDefault();
-      const email = e.target.email.value;
-      try {
-        const res = await API.resetPassword({ email });
-        router.push(getPath("/auth/reinitialiser-mot-de-passe/mail-envoye", "fr", `?email=${res.email}`));
-      } catch (e: any) {
-        logger.error(e);
-        setError("Une erreur est survenue, veuillez réessayer ou contacter un administrateur");
-      }
-    },
-    [router],
-  );
 
   return (
     <div className={cls(styles.container, styles.half)}>
@@ -46,29 +29,13 @@ const AuthForgotPassword = () => {
         <p className={styles.subtitle}>Nous allons vous envoyer un mail avec des instructions pour le réinitialiser.</p>
       </div>
 
-      <form onSubmit={submit}>
-        <Input
-          label="Adresse mail"
-          state={!error ? "default" : "error"}
-          stateRelatedMessage={error}
-          className="mb-0"
-          nativeInputProps={{
-            autoFocus: true,
-            type: "email",
-            name: "email",
-            defaultValue: email,
-          }}
-        />
-
-        <Button
-          iconId="fr-icon-mail-line"
-          iconPosition="right"
-          className={cls(styles.button, styles.mt)}
-          nativeButtonProps={{ type: "submit" }}
-        >
-          Envoyer le lien de réinitialisation
-        </Button>
-      </form>
+      <ForgotPassword
+        email={email}
+        successCallback={(res: ResetPasswordResponse) =>
+          router.push(getPath("/auth/reinitialiser-mot-de-passe/mail-envoye", "fr", `?email=${res.email}`))
+        }
+        buttonFullWidth
+      />
     </div>
   );
 };

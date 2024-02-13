@@ -27,6 +27,11 @@ const useLogin = () => {
       router.push(getPath("/auth/code-securite", "fr", `?email=${email}`));
       return null;
     }
+    if (errorCode === "SSO_NO_PASSWORD") return [
+      "Ce compte utilise l'authentification unique.",
+      "Veuillez vous connecter en cliquant ci-dessous sur \"Me connecter avec un code reçu par mail\",",
+      "ou retournez à la page précédente et choisissez \"Se connecter avec Google / Microsoft\"."
+    ].join(" ");
     if (errorCode === "INVALID_PASSWORD") return "Mot de passe incorrect. Réessayez ou cliquez sur 'Mot de passe oublié' pour le réinitialiser.";
     if (errorCode === "USER_DELETED") return "Cet utilisateur n'existe pas ou a été supprimé. Veuillez créer un nouveau compte.";
     return ("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");

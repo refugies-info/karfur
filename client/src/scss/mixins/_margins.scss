@@ -1,0 +1,19 @@
+@mixin responsiveMargins() {
+  .mt {
+    margin-top: u(14);
+    @include media-max("widescreen-up", true, true) {
+      margin-top: u(12);
+    }
+  }
+  .mb {
+    margin-bottom: u(14);
+    @include media-max("widescreen-up", true, true) {
+      margin-bottom: u(12);
+    }
+  }
+
+  .mx {
+    @extend .mt;
+    @extend .mb;
+  }
+}
