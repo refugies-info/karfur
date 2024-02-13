@@ -59,7 +59,7 @@ export const modifyUserRoleInStructure = async (id: string, body: PatchStructure
 
   const structureData = await getStructureFromDB(structure._id, { nom: 1, status: 1 });
   if ((action === "create" || action === "modify") && role === StructureMemberRole.ADMIN) {
-    const user = await getUserById(membreId, { email: 1, username: 1, roles: 1 });
+    const user = await getUserById(membreId, { email: 1, firstName: 1, roles: 1 });
     const adminRole = await getRoleByName(RoleName.ADMIN);
     const userIsAdmin = (user.roles || []).some((x) => x && x.toString() === adminRole._id.toString());
     if (!user || !structureData) {

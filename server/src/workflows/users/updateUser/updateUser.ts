@@ -12,9 +12,8 @@ import formatPhoneNumber from "../../../libs/formatPhoneNumber";
 import { log } from "./log";
 import { ObjectId, User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
-import { Response } from "../../../types/interface";
-import { needs2FA } from "../../../modules/users/auth";
 import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
+import { changePassword } from "../changePassword";
 
 const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: DocumentType<User>, userReq: User) => {
   const roles = await getRoles();
@@ -50,9 +49,10 @@ const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: Doc
   return newUser;
 }
 
-const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], userFromDB: DocumentType<User>, userReq: User) => {
+const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], userFromDB: DocumentType<User>, userReq: User): Promise<{ newUser: Partial<User>, refreshToken: boolean }> => {
   const roles = await getRoles();
-  let newUser: Partial<User> = {}
+  let newUser: Partial<User> = {};
+  let refreshToken = false;
   if (id !== userReq._id.toString()) throw new UnauthorizedError("Token invalide"); // only my infos
 
   newUser = {
@@ -63,6 +63,11 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     firstName: request.firstName,
   };
 
+  if (request.password) {
+    const newHashedPassword = await changePassword(id, request.password.oldPassword || "", request.password.newPassword || "");
+    newUser.password = newHashedPassword;
+    if (!refreshToken) refreshToken = true;
+  }
   if (request.selectedLanguages) {
     const traducteurRole = roles.find(r => r.nom === RoleName.TRAD);
     const newRoles = uniqIds([...userFromDB.roles, traducteurRole._id]);
@@ -74,21 +79,6 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     const newRoles = uniqIds([...userFromDB.roles, caregiverRole._id]);
     newUser.roles = newRoles;
   }
-  if (request.email) {
-    const needs2fa = await needs2FA(userFromDB.email); // use old email to find user
-    if (needs2fa) {
-      try {
-        if (!request.code) {
-          await requestEmailLogin(request.email);
-          throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
-        }
-        await verifyCode(request.email, request.code);
-      } catch (e) {
-        loginExceptionsManager(e);
-      }
-    }
-    newUser.email = request.email;
-  }
   if (request.username !== undefined) {
     if (request.username !== "") {
       const userHasUsername = await getUserFromDB({ username: request.username });
@@ -96,6 +86,7 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
         throw new UnauthorizedError("Username déjà pris", "USERNAME_TAKEN");
       }
       newUser.username = request.username;
+      if (!refreshToken) refreshToken = request.username !== userFromDB.username;
     } else {
       newUser.username = null;
     }
@@ -107,24 +98,45 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
       .filter(r => !!r);
     newUser.roles = uniqIds(newRoles); // keep only roles from request. Needed to fix bug in page "inscription/objectif"
   }
-  return newUser;
+  if (request.email && request.email !== userFromDB.email) {
+    const userWithEmail = await getUserFromDB({ email: request.email });
+    if (userWithEmail && userWithEmail._id.toString() !== id) {
+      throw new UnauthorizedError("Email déjà utilisé", "EMAIL_TAKEN");
+    }
+    try {
+      if (!request.code) {
+        await requestEmailLogin(request.email);
+        throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
+      }
+      await verifyCode(request.email, request.code);
+    } catch (e) {
+      loginExceptionsManager(e);
+    }
+    newUser.email = request.email;
+    if (!refreshToken) refreshToken = request.email !== userFromDB.email;
+  }
+  return { newUser, refreshToken };
 }
 
-export const updateUser = async (id: string, body: UpdateUserRequest, userReq: User): Response => {
+export const updateUser = async (id: string, body: UpdateUserRequest, userReq: User): Promise<string | null> => {
   const { action } = body;
   logger.info("[updateUser] call received", { user: body.user, action });
   const userFromDB = await getUserById(id, { username: 1, phone: 1, email: 1, roles: 1 });
 
-  let newUser: Partial<User> = {}
+  let newUser: Partial<User> = {};
+  let refreshToken = false;
   if (action === "modify-with-roles") {
     newUser = await updateAsAdmin(body.user, userFromDB, userReq);
   }
 
   if (action === "modify-my-details") {
-    newUser = await updateAsMyself(id, body.user, userFromDB, userReq);
+    const data = await updateAsMyself(id, body.user, userFromDB, userReq);
+    newUser = data.newUser;
+    refreshToken = data.refreshToken;
   }
 
-  await updateUserInDB(id, omitBy(newUser, isUndefined));
+  const user = await updateUserInDB(id, omitBy(newUser, isUndefined));
+  const token = refreshToken ? user.getToken() : null;
 
   await log(id, {
     email: newUser.email || userFromDB.email,
@@ -132,5 +144,5 @@ export const updateUser = async (id: string, body: UpdateUserRequest, userReq: U
     username: newUser.username || userFromDB.username
   }, userFromDB, userReq._id);
 
-  return { text: "success" };
+  return token;
 };
