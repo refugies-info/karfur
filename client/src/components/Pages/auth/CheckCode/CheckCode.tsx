@@ -84,7 +84,7 @@ const CheckCode = (props: Props) => {
         </Button>
       )}
       <div className={props.type !== "updateUser" ? styles.title : ""}>
-        {props.type === "2fa" && <h1>Vérifions que c’est bien vous&nbsp;!</h1>}
+        {props.type === "2fa" && <h1>Vérifions votre identité&nbsp;!</h1>}
         {props.type === "login" && <h1>Entrez le code reçu</h1>}
         <p className={styles.subtitle}>
           Un code temporaire à 6 chiffres vous a été envoyé à {email}.{" "}
