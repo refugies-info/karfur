@@ -26,6 +26,8 @@ import {
   modalDepartments,
   ModalLanguage,
   modalLanguage,
+  modalResetPassword,
+  ModalResetPassword,
   Tag,
 } from "./components";
 import ErrorMessage from "components/UI/ErrorMessage";
@@ -351,7 +353,7 @@ export const UserProfile = (props: Props) => {
                         title: "old-password-input",
                       }}
                     />
-                    <FRLink href="#" onClick={() => {}} className={styles.link}>
+                    <FRLink onClick={() => modalResetPassword.open()} className={styles.link}>
                       Mot de passe oublié&nbsp;?
                     </FRLink>
                     <PasswordInput
@@ -431,6 +433,7 @@ export const UserProfile = (props: Props) => {
 
       <ModalDepartments />
       <ModalLanguage />
+      <ModalResetPassword email={userDetails?.email || ""} />
     </div>
   );
 };

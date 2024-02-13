@@ -1,27 +1,16 @@
-import { ReactElement, useCallback, useMemo } from "react";
+import { ReactElement, useMemo } from "react";
 import { useRouter } from "next/router";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import API from "utils/API";
 import { cls } from "lib/classname";
-import isInBrowser from "lib/isInBrowser";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
+import { ForgotPasswordMailSent } from "components/User";
 import styles from "scss/components/auth.module.scss";
 
 const AuthResetMailSent = () => {
   const router = useRouter();
   const email = useMemo(() => router.query.email as string, [router.query]);
-
-  const sendMail = useCallback(async () => {
-    if (!email) return;
-    await API.resetPassword({ email });
-  }, [email]);
-
-  const openChat = useCallback(() => {
-    if (!isInBrowser()) return;
-    window.$crisp.push(["do", "chat:open"]);
-  }, []);
 
   return (
     <div className={cls(styles.container, styles.half)}>
@@ -39,12 +28,7 @@ const AuthResetMailSent = () => {
           spams.
         </p>
       </div>
-      <Button iconId="fr-icon-mail-line" iconPosition="right" onClick={sendMail} className={cls(styles.button, "mb-4")}>
-        Renvoyer le lien de réinitialisation
-      </Button>
-      <Button onClick={openChat} className={cls(styles.button)} priority="tertiary">
-        Contacter le chat
-      </Button>
+      <ForgotPasswordMailSent email={email} />
     </div>
   );
 };
