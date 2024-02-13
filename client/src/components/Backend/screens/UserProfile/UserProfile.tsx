@@ -198,7 +198,7 @@ export const UserProfile = (props: Props) => {
   if (!userDetails) return <div>Une erreur est survenue, veuillez recharger la page&nbsp;!</div>;
 
   return (
-    <div className={styles.container}>
+    <div className={cls(styles.container, edition && styles.edit)}>
       <div className={styles.wrapper}>
         <Row className="mb-10 align-items-center">
           <Col>
@@ -260,7 +260,7 @@ export const UserProfile = (props: Props) => {
           </Col>
 
           <Col>
-            <div className="d-flex align-content-center justify-content-between">
+            <div className="d-flex align-items-center justify-content-between">
               <h2>Informations personnelles</h2>
               {edition ? (
                 <Button
@@ -270,6 +270,7 @@ export const UserProfile = (props: Props) => {
                   iconId="fr-icon-save-3-line"
                   iconPosition="right"
                   disabled={loading}
+                  className={styles.fix_align}
                 >
                   Sauvegarder les modifications
                 </Button>
@@ -280,13 +281,14 @@ export const UserProfile = (props: Props) => {
                   onClick={() => setEdition(true)}
                   iconId="fr-icon-edit-box-line"
                   iconPosition="right"
+                  className={styles.fix_align}
                 >
                   Modifier mon profil
                 </Button>
               )}
             </div>
 
-            <div className={cls(styles.block, styles.form, "mb-10")}>
+            <div className={cls(styles.block, styles.form, edition && styles.edit, "mb-10")}>
               <form onSubmit={submit}>
                 <Input
                   label="Pseudonyme public"

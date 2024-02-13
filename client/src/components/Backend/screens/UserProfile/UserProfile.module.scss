@@ -2,8 +2,12 @@
 @import "src/scss/mixins/text";
 
 .container {
-  background: var(--background-alt-blue-france);
+  background: var(--background-default-grey-hover);
   width: 100%;
+
+  &.edit {
+    background: var(--background-alt-blue-france);
+  }
 }
 
 .wrapper {
@@ -36,6 +40,10 @@
   }
 }
 
+.fix_align {
+  margin-bottom: u(-1);
+}
+
 .form {
   label {
     @include dsfr-text("small");
@@ -49,6 +57,12 @@
   background: white;
   padding: u(6);
   margin-top: u(4);
+  border: 1px solid transparent;
+
+  &.edit {
+    border-color: var(--text-action-high-blue-france);
+    box-shadow: 0 2px 6px 0 #00001229;
+  }
 
   .label {
     @include dsfr-text("small");

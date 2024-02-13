@@ -20,6 +20,7 @@ jest.mock("utils/API", () => ({
   default: {
     updateUser: jest.fn(),
     isInContacts: jest.fn().mockResolvedValue({ isInContacts: false }),
+    isAuth: jest.fn().mockReturnValue(true),
   },
 }));
 

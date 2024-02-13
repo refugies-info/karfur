@@ -84,13 +84,13 @@ exports[`UserProfile should render correctly 1`] = `
         className="col"
       >
         <div
-          className="d-flex align-content-center justify-content-between"
+          className="d-flex align-items-center justify-content-between"
         >
           <h2>
             Informations personnelles
           </h2>
           <button
-            className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-edit-box-line fr-btn--icon-right"
+            className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-edit-box-line fr-btn--icon-right fix_align"
             id="fr-button-:r0:"
             onClick={[Function]}
             style={{}}
@@ -471,6 +471,161 @@ exports[`UserProfile should render correctly 1`] = `
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <button
+    aria-controls="user-password-modal"
+    aria-hidden={true}
+    className="fr-btn fr-hidden"
+    data-fr-opened={false}
+    id="user-password-modal-hidden-control-button"
+    style={{}}
+    tabIndex={-1}
+    type="button"
+  >
+     
+  </button>
+  <dialog
+    aria-labelledby="fr-modal-title-user-password-modal"
+    className="fr-modal"
+    data-fr-concealing-backdrop={true}
+    id="user-password-modal"
+    role="dialog"
+  >
+    <div
+      className="fr-container fr-container--fluid fr-container-md"
+    >
+      <div
+        className="fr-grid-row fr-grid-row--center"
+      >
+        <div
+          className="fr-col-12 fr-col-md-8 fr-col-lg-6"
+        >
+          <div
+            className="fr-modal__body"
+          >
+            <div
+              className="fr-modal__header"
+            >
+              <button
+                aria-controls="user-password-modal"
+                className="fr-btn--close fr-btn"
+                title="Fermer"
+                type="button"
+              >
+                Fermer
+              </button>
+            </div>
+            <div
+              className="fr-modal__content"
+            >
+              <h1
+                className="fr-modal__title"
+                id="fr-modal-title-user-password-modal"
+              >
+                Mot de passe oublié
+              </h1>
+              <p>
+                Nous allons vous envoyer un mail avec des instructions pour le réinitialiser.
+              </p>
+              <form
+                className="container"
+                onSubmit={[Function]}
+              >
+                <div
+                  className="fr-input-group mb-0"
+                >
+                  <label
+                    className="fr-label"
+                    htmlFor="input-:rb:"
+                  >
+                    Adresse mail
+                  </label>
+                  <input
+                    aria-describedby="input-:rb:-desc-error"
+                    autoFocus={true}
+                    className="fr-input"
+                    defaultValue=""
+                    id="input-:rb:"
+                    name="email"
+                    type="email"
+                  />
+                </div>
+                <div
+                  className="text-end"
+                >
+                  <button
+                    className="fr-btn fr-icon-mail-line fr-btn--icon-right button mt"
+                    id="fr-button-:rc:"
+                    style={{}}
+                    type="submit"
+                  >
+                    Envoyer le lien de réinitialisation
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <button
+    aria-controls="user-email-code-modal"
+    aria-hidden={true}
+    className="fr-btn fr-hidden"
+    data-fr-opened={false}
+    id="user-email-code-modal-hidden-control-button"
+    style={{}}
+    tabIndex={-1}
+    type="button"
+  >
+     
+  </button>
+  <dialog
+    aria-labelledby="fr-modal-title-user-email-code-modal"
+    className="fr-modal"
+    data-fr-concealing-backdrop={true}
+    id="user-email-code-modal"
+    role="dialog"
+  >
+    <div
+      className="fr-container fr-container--fluid fr-container-md"
+    >
+      <div
+        className="fr-grid-row fr-grid-row--center"
+      >
+        <div
+          className="fr-col-12 fr-col-md-8 fr-col-lg-6"
+        >
+          <div
+            className="fr-modal__body"
+          >
+            <div
+              className="fr-modal__header"
+            >
+              <button
+                aria-controls="user-email-code-modal"
+                className="fr-btn--close fr-btn"
+                title="Fermer"
+                type="button"
+              >
+                Fermer
+              </button>
+            </div>
+            <div
+              className="fr-modal__content"
+            >
+              <h1
+                className="fr-modal__title"
+                id="fr-modal-title-user-email-code-modal"
+              >
+                Entrez le code reçu
+              </h1>
             </div>
           </div>
         </div>
