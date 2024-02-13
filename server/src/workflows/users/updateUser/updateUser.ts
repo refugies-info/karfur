@@ -12,7 +12,6 @@ import formatPhoneNumber from "../../../libs/formatPhoneNumber";
 import { log } from "./log";
 import { ObjectId, User } from "../../../typegoose";
 import { UnauthorizedError } from "../../../errors";
-import { needs2FA } from "../../../modules/users/auth";
 import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
 import { changePassword } from "../changePassword";
 
@@ -80,27 +79,6 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     const newRoles = uniqIds([...userFromDB.roles, caregiverRole._id]);
     newUser.roles = newRoles;
   }
-  if (request.email) {
-    const userWithEmail = await getUserFromDB({ email: request.email });
-    if (userWithEmail._id.toString() !== id) {
-      throw new UnauthorizedError("Email déjà utilisé", "EMAIL_TAKEN");
-    }
-
-    const needs2fa = await needs2FA(userFromDB.email); // use old email to find user
-    if (needs2fa) {
-      try {
-        if (!request.code) {
-          await requestEmailLogin(request.email);
-          throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
-        }
-        await verifyCode(request.email, request.code);
-      } catch (e) {
-        loginExceptionsManager(e);
-      }
-    }
-    newUser.email = request.email;
-    if (!refreshToken) refreshToken = request.email !== userFromDB.email;
-  }
   if (request.username !== undefined) {
     if (request.username !== "") {
       const userHasUsername = await getUserFromDB({ username: request.username });
@@ -119,6 +97,23 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
       .map(r => roles.find(role => role.nom === r)?._id)
       .filter(r => !!r);
     newUser.roles = uniqIds(newRoles); // keep only roles from request. Needed to fix bug in page "inscription/objectif"
+  }
+  if (request.email && request.email !== userFromDB.email) {
+    const userWithEmail = await getUserFromDB({ email: request.email });
+    if (userWithEmail && userWithEmail._id.toString() !== id) {
+      throw new UnauthorizedError("Email déjà utilisé", "EMAIL_TAKEN");
+    }
+    try {
+      if (!request.code) {
+        await requestEmailLogin(request.email);
+        throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
+      }
+      await verifyCode(request.email, request.code);
+    } catch (e) {
+      loginExceptionsManager(e);
+    }
+    newUser.email = request.email;
+    if (!refreshToken) refreshToken = request.email !== userFromDB.email;
   }
   return { newUser, refreshToken };
 }

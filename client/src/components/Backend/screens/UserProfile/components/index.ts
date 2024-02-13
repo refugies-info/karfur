@@ -5,3 +5,4 @@ export { default as EditAvatar } from "./EditAvatar";
 export * from "./ModalDepartments";
 export * from "./ModalLanguage";
 export * from "./ModalResetPassword";
+export * from "./ModalEmailCode";

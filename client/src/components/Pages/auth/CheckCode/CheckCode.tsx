@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -16,24 +16,37 @@ import OutlookIcon from "assets/auth/providers/outlook-icon.svg";
 import styles from "scss/components/auth.module.scss";
 
 interface Props {
-  type: "2fa" | "login";
+  type: "2fa" | "login" | "updateUser";
+  email?: string;
+  updateUser?: (code: string) => Promise<void>;
+  error?: string | null;
 }
 
-const CheckCode = ({ type }: Props) => {
+const CheckCode = (props: Props) => {
   const router = useRouter();
-  const email = useMemo(() => router.query.email as string, [router.query]);
+  const email = useMemo(() => props.email || (router.query.email as string), [router.query, props.email]);
   const [error, setError] = useState("");
   const [code, setCode] = useState("");
   const { logUser } = useLogin();
 
+  // use error from parent component
+  useEffect(() => {
+    if (props.error) setError(props.error);
+  }, [props.error]);
+
+  const { updateUser } = props;
   const submit = useCallback(
     async (e: any) => {
       e.preventDefault();
       setError("");
       try {
-        const res = await API.checkCode({ email, code });
-        if (!res.token) throw new Error();
-        logUser(res.token);
+        if (props.type !== "updateUser") {
+          const res = await API.checkCode({ email, code });
+          if (!res.token) throw new Error();
+          logUser(res.token);
+        } else {
+          await updateUser?.(code);
+        }
       } catch (e: any) {
         const errorCode = e.response?.data?.code;
         if (errorCode === "WRONG_CODE") {
@@ -44,7 +57,7 @@ const CheckCode = ({ type }: Props) => {
         }
       }
     },
-    [logUser, email, code],
+    [logUser, email, code, props.type, updateUser],
   );
 
   const resendCode = useCallback(
@@ -63,13 +76,16 @@ const CheckCode = ({ type }: Props) => {
   if (!email) return null;
 
   return (
-    <div className={cls(styles.container, styles.half)}>
+    <div className={cls(styles.container, props.type !== "updateUser" && styles.half)}>
       <SEO title="Code de sécurité" />
-      <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
-        Retour
-      </Button>
-      <div className={styles.title}>
-        {type === "2fa" ? <h1>Vérifions que c’est bien vous&nbsp;!</h1> : <h1>Entrez le code reçu</h1>}
+      {props.type !== "updateUser" && (
+        <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+          Retour
+        </Button>
+      )}
+      <div className={props.type !== "updateUser" ? styles.title : ""}>
+        {props.type === "2fa" && <h1>Vérifions que c’est bien vous&nbsp;!</h1>}
+        {props.type === "login" && <h1>Entrez le code reçu</h1>}
         <p className={styles.subtitle}>
           Un code temporaire à 6 chiffres vous a été envoyé à {email}.{" "}
           <Link href="/auth" className="text-decoration-underline">
@@ -80,7 +96,7 @@ const CheckCode = ({ type }: Props) => {
 
       <form onSubmit={submit}>
         <Input
-          label={type === "2fa" ? "Code d'authentification" : "Code de connexion temporaire"}
+          label={props.type === "login" ? "Code de connexion temporaire" : "Code d'authentification"}
           state={!error ? "default" : "error"}
           stateRelatedMessage={error}
           className="mb-0"
@@ -111,7 +127,7 @@ const CheckCode = ({ type }: Props) => {
         </Button>
       </form>
 
-      {type === "2fa" && (
+      {props.type === "2fa" && (
         <div className={cls(styles.small, styles.mx, "text-center")}>
           L'adresse mail n'est plus valable&nbsp;?{" "}
           <button onClick={contact} className={styles.link}>
@@ -120,7 +136,7 @@ const CheckCode = ({ type }: Props) => {
         </div>
       )}
 
-      <Row className={cls("mb-4", type !== "2fa" && styles.space_top)}>
+      <Row className={cls("mb-4", props.type !== "2fa" && styles.space_top)}>
         <Col>
           <Button
             linkProps={{

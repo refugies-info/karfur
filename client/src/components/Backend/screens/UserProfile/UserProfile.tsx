@@ -24,6 +24,8 @@ import {
   LanguageBadge,
   ModalDepartments,
   modalDepartments,
+  modalEmailCode,
+  ModalEmailCode,
   ModalLanguage,
   modalLanguage,
   modalResetPassword,
@@ -53,6 +55,7 @@ export const UserProfile = (props: Props) => {
   const [email, setEmail] = useState<string>(userDetails?.email || "");
   const [emailHint, setEmailHint] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string | null>(null);
+  const [emailCodeError, setEmailCodeError] = useState<string | null>(null);
   const [phone, setPhone] = useState<string>(userDetails?.phone || "");
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [newsletter, setNewsletter] = useState<boolean | null>(null);
@@ -128,9 +131,10 @@ export const UserProfile = (props: Props) => {
   }, [username, user]);
 
   const [{ loading, error }, submit] = useAsyncFn(
-    async (e: any) => {
-      e.preventDefault();
+    async (e: any, code?: string) => {
+      e?.preventDefault();
       setPasswordError(null);
+      setEmailCodeError(null);
       if (!userDetails || phoneError || emailError || usernameError) return;
       const updateUserRequest: UpdateUserRequest = {
         action: "modify-my-details",
@@ -139,6 +143,7 @@ export const UserProfile = (props: Props) => {
           firstName,
           email,
           phone,
+          code,
         },
       };
       if (!oldPassword && newPassword) {
@@ -164,7 +169,11 @@ export const UserProfile = (props: Props) => {
       } catch (e: any) {
         const errorCode = e.response?.data?.code;
         if (errorCode === "NO_CODE_SUPPLIED") {
-          // TODO: handle 2FA
+          modalEmailCode.open();
+          return;
+        } else if (errorCode === "WRONG_CODE") {
+          setEmailCodeError("Code incorrect, veuillez réessayer.");
+          return;
         } else if (errorCode === "INVALID_PASSWORD") {
           setPasswordError("Mot de passe incorrect, vérifiez votre saisie");
         } else if (errorCode === "USED_PASSWORD") {
@@ -181,6 +190,7 @@ export const UserProfile = (props: Props) => {
           throw new Error("Une erreur est survenue. Veuillez réessayer");
         }
       }
+      modalEmailCode.close();
     },
     [userDetails, username, firstName, email, phone, phoneError, emailError, usernameError, oldPassword, newPassword],
   );
@@ -434,6 +444,7 @@ export const UserProfile = (props: Props) => {
       <ModalDepartments />
       <ModalLanguage />
       <ModalResetPassword email={userDetails?.email || ""} />
+      <ModalEmailCode email={email} updateUser={(code: string) => submit(null, code)} error={emailCodeError} />
     </div>
   );
 };
