@@ -1,17 +1,11 @@
-//@ts-nocheck
-import changePassword from "./changePassword";
-import {
-  getUserById,
-  updateUserInDB,
-} from "../../../modules/users/users.repository";
+import { changePassword } from "./changePassword";
+import * as usersRep from "../../../modules/users/users.repository";
+import { loginExceptionsManager } from "../../../modules/users/auth";
+import { UserModel } from "../../../typegoose";
+import { LoginErrorType } from "../../../modules/users/LoginError";
+import { UserStatus } from "@refugies-info/api-types";
+import passwordHash from "password-hash";
 
-type MockResponse = { json: any; status: any };
-const mockResponse = (): MockResponse => {
-  const res: MockResponse = {};
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
-  return res;
-};
 
 jest.mock("../../../modules/users/users.repository", () => ({
   getUserById: jest.fn(),
@@ -20,187 +14,80 @@ jest.mock("../../../modules/users/users.repository", () => ({
 
 jest.mock("password-hash", () => ({
   __esModule: true, // this property makes it work
-  default: { generate: () => "hashedPassword" },
+  default: { generate: () => "hashedPassword", verify: () => true },
 }));
 
-describe.skip("changePassword", () => {
+jest.mock("../../../modules/users/auth", () => ({
+  loginExceptionsManager: jest.fn()
+}))
+
+describe("changePassword", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  const res = mockResponse();
-  it("should return 405 if not from site", async () => {
-    const req = { fromSite: false };
-    await changePassword[1](req, res);
-    expect(res.status).toHaveBeenCalledWith(405);
-    expect(res.json).toHaveBeenCalledWith({ text: "Requête bloquée par API" });
+
+  it("should get user and return error if no user", async () => {
+    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    getUserByIdMock.mockResolvedValue(null);
+
+    await changePassword("id", "", "");
+    expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
+    expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.USER_DELETED));
+  });
+  it("should get user and return error if user deleted", async () => {
+    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    getUserByIdMock.mockResolvedValue(new UserModel({ status: UserStatus.DELETED }));
+
+    await changePassword("id", "", "");
+    expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
+    expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.USER_DELETED));
   });
 
-  it("should return 401 if invalid token", async () => {
-    const req = {
-      fromSite: true,
-      body: {
-        userId: "userId",
-        newPassword: "newPassword",
-        currentPassword: "currentPassword",
-      },
-      userId: "id",
-    };
-    await changePassword[1](req, res);
-    expect(res.status).toHaveBeenCalledWith(401);
-    expect(res.json).toHaveBeenCalledWith({ text: "Token invalide" });
+  it("should get user and return error if no password", async () => {
+    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    getUserByIdMock.mockResolvedValue(new UserModel({}));
+
+    await changePassword("id", "", "");
+    expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
+    expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.INVALID_REQUEST));
   });
 
-  it("should get user and return 500 if no user", async () => {
-    const req = {
-      fromSite: true,
-      body: {
-        userId: "userId",
-        newPassword: "newPassword",
-        currentPassword: "currentPassword",
-      },
-      userId: "userId",
-    };
-    await changePassword[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", {});
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({ text: "Utilisateur inconnu" });
-  });
-  it("should get user and return 500 if user deleted", async () => {
-    getUserById.mockResolvedValueOnce({ status: "Exclu" });
-    const req = {
-      fromSite: true,
-      body: {
-        userId: "userId",
-        newPassword: "newPassword",
-        currentPassword: "currentPassword",
-      },
-      userId: "userId",
-    };
-    await changePassword[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", {});
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({ text: "Utilisateur inconnu" });
+  it("should get user and return error if wrong password", async () => {
+    const hashVerifyMock = jest.spyOn(passwordHash, 'verify');
+    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
+    hashVerifyMock.mockReturnValueOnce(false);
+
+    await changePassword("id", "", "");
+    expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
+    expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.INVALID_PASSWORD));
   });
 
-  it("should get user and return 401 if wrong password", async () => {
-    getUserById.mockResolvedValueOnce({ authenticate: () => false });
-    const req = {
-      fromSite: true,
-      body: {
-        userId: "userId",
-        newPassword: "newPassword",
-        currentPassword: "currentPassword",
-      },
-      userId: "userId",
-    };
-    await changePassword[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", {});
-    expect(res.status).toHaveBeenCalledWith(401);
-    expect(res.json).toHaveBeenCalledWith({ text: "Mot de passe incorrect" });
+  it("should get user and return error if same password", async () => {
+    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
+
+    await changePassword("id", "test1", "test1");
+    expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
+    expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.USED_PASSWORD));
   });
 
-  it("should get user and return 400 if same password", async () => {
-    getUserById.mockResolvedValueOnce({ authenticate: () => true });
-    const req = {
-      fromSite: true,
-      body: {
-        userId: "userId",
-        newPassword: "currentPassword1&",
-        currentPassword: "currentPassword1&",
-      },
-      userId: "userId",
-    };
-    await changePassword[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", {});
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({
-      code: "USED_PASSWORD",
-      text: "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
-    });
+  it("should get user and return error if password too weak", async () => {
+    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
+
+    await changePassword("id", "test1", "a");
+    expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
+    expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.PASSWORD_TOO_WEAK));
   });
 
-  it("should get user and return 401 if password too weak", async () => {
-    getUserById.mockResolvedValueOnce({ authenticate: () => true });
-    const req = {
-      fromSite: true,
-      body: {
-        userId: "userId",
-        newPassword: "a",
-        currentPassword: "currentPassword",
-      },
-      userId: "userId",
-    };
-    await changePassword[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", {});
-    expect(res.status).toHaveBeenCalledWith(401);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Le mot de passe est trop faible",
-    });
-  });
+  it("should get user and return hashedPassword if ok", async () => {
+    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
 
-  it("should get user and update user in db", async () => {
-    getUserById.mockResolvedValueOnce({ authenticate: () => true });
-    const req = {
-      fromSite: true,
-      body: {
-        userId: "userId",
-        newPassword: "newPassword1&",
-        currentPassword: "currentPassword",
-      },
-      userId: "userId",
-    };
-    await changePassword[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", {});
-    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
-      password: "hashedPassword",
-    });
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      token: "token",
-      text: "Authentification réussi",
-    });
-  });
-
-  it("should get user and 500 if it throwe", async () => {
-    getUserById.mockRejectedValueOnce(new Error("erreur"));
-    const req = {
-      fromSite: true,
-      body: {
-        userId: "userId",
-        newPassword: "newPassword",
-        currentPassword: "currentPassword",
-      },
-      userId: "userId",
-    };
-    await changePassword[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", {});
-    expect(updateUserInDB).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
-    });
-  });
-
-  it("should get user and update user in db", async () => {
-    getUserById.mockResolvedValueOnce({ authenticate: () => true });
-    updateUserInDB.mockRejectedValueOnce(new Error("erreur"));
-    const req = {
-      fromSite: true,
-      body: {
-        userId: "userId",
-        newPassword: "newPassword1&",
-        currentPassword: "currentPassword",
-      },
-      userId: "userId",
-    };
-    await changePassword[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", {});
-    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
-      password: "hashedPassword",
-    });
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
-    });
+    const res = await changePassword("id", "test1", "Test1a@");
+    expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
+    expect(loginExceptionsManager).not.toHaveBeenCalled();
+    expect(res).toEqual("hashedPassword");
   });
 });

@@ -20,7 +20,6 @@ jest.mock("utils/API", () => ({
   default: {
     updateUser: jest.fn(),
     isInContacts: jest.fn().mockResolvedValue({ isInContacts: false }),
-    updatePassword: jest.fn(),
   },
 }));
 
@@ -79,6 +78,34 @@ describe("UserProfile", () => {
     act(() => {
       fireEvent.click(component.getByText("Modifier mon profil"));
     });
-    await waitFor(() => expect(component.getAllByRole("textbox")[0]).not.toBeDisabled());
+    await waitFor(() => expect(component.getByTitle("pseudo-input")).not.toBeDisabled());
+    await waitFor(() => expect(component.getByTitle("firstname-input")).not.toBeDisabled());
+    await waitFor(() => expect(component.getByTitle("email-input")).not.toBeDisabled());
+    await waitFor(() => expect(component.getByTitle("phone-input")).not.toBeDisabled());
+    await waitFor(() => expect(component.getByTitle("old-password-input")).not.toBeDisabled());
+    await waitFor(() => expect(component.getByTitle("new-password-input")).not.toBeDisabled());
+  });
+
+  it("should render correctly when editing profile without password", async () => {
+    window.scrollTo = jest.fn();
+    let component: RenderResult;
+    act(() => {
+      component = wrapWithProvidersAndRenderForTesting({
+        Component: UserProfile,
+        reduxState: {
+          ...initialMockStore,
+          user: { ...initialMockStore.user, user: { ...testUser, sso: true } },
+        },
+      });
+    });
+    act(() => {
+      fireEvent.click(component.getByText("Modifier mon profil"));
+    });
+    await waitFor(() => expect(component.getByTitle("pseudo-input")).not.toBeDisabled());
+    await waitFor(() => expect(component.getByTitle("firstname-input")).not.toBeDisabled());
+    await waitFor(() => expect(component.getByTitle("email-input")).not.toBeDisabled());
+    await waitFor(() => expect(component.getByTitle("phone-input")).not.toBeDisabled());
+    await waitFor(() => expect(component.queryByTitle("old-password-input")).not.toBeInTheDocument());
+    await waitFor(() => expect(component.queryByTitle("new-password-input")).not.toBeInTheDocument());
   });
 });

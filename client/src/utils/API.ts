@@ -87,8 +87,6 @@ import {
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
   UpdateDispositifResponse,
-  UpdatePasswordRequest,
-  UpdatePasswordResponse,
   UpdatePositionsNeedResponse,
   UpdatePositionsRequest,
   UpdateUserRequest,
@@ -97,7 +95,8 @@ import {
   CheckUserExistsResponse,
   SendCodeRequest,
   RegisterRequest,
-  IsInContactResponse
+  IsInContactResponse,
+  UpdateUserResponse
 } from "@refugies-info/api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -172,10 +171,6 @@ const API = {
     const headers = getHeaders();
     return instance.post<any, APIResponse<LoginResponse>>("/user/register", body, { headers }).then(response => response.data.data)
   },
-  updatePassword: (id: Id, body: UpdatePasswordRequest): Promise<UpdatePasswordResponse> => {
-    const headers = getHeaders();
-    return instance.patch<any, APIResponse<UpdatePasswordResponse>>(`/user/${id}/password`, body, { headers }).then(response => response.data.data)
-  },
   resetPassword: (body: ResetPasswordRequest): Promise<ResetPasswordResponse> => {
     return instance.post<any, APIResponse<ResetPasswordResponse>>("/user/password/reset", body).then(response => response.data.data)
   },
@@ -199,9 +194,9 @@ const API = {
     const headers = getHeaders(options?.token);
     return instance.get<any, APIResponse<GetUserInfoResponse>>("/user", { headers }).then(response => response.data.data)
   },
-  updateUser: (id: Id, body: UpdateUserRequest): Promise<null> => {
+  updateUser: (id: Id, body: UpdateUserRequest): Promise<UpdateUserResponse> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/user/${id}`, body, { headers }).then(() => null);
+    return instance.patch<any, APIResponse<UpdateUserResponse>>(`/user/${id}`, body, { headers }).then(response => response.data.data)
   },
   deleteUser: (query: Id): Promise<null> => {
     const headers = getHeaders();

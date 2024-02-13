@@ -1,39 +1,41 @@
 import passwordHash from "password-hash";
 import logger from "../../../logger";
-import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
+import { getUserById } from "../../../modules/users/users.repository";
 import { isPasswordOk } from "../../../libs/validatePassword";
-import { User } from "../../../typegoose/User";
-import { ResponseWithData } from "../../../types/interface";
-import { UpdatePasswordRequest, UpdatePasswordResponse, UserStatus } from "@refugies-info/api-types";
+import { UserStatus } from "@refugies-info/api-types";
 import { loginExceptionsManager } from "../../../modules/users/auth";
 import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
 
-/* TODO: delete? */
+/**
+ * Returns new hashedPassword if ok
+ * @param userId
+ * @param oldPassword
+ * @param newPassword
+ * @returns
+ */
 export const changePassword = async (
-  id: string,
-  body: UpdatePasswordRequest,
-  userReq: User,
-): ResponseWithData<UpdatePasswordResponse> => {
+  userId: string,
+  oldPassword: string,
+  newPassword: string,
+) => {
   try {
-
     logger.info("[changePassword] received");
 
-    const { currentPassword, newPassword } = body;
-    if (id !== userReq._id.toString()) {
-      throw new LoginError(LoginErrorType.INVALID_REQUEST);
-    }
-
-    const user = await getUserById(id, {});
+    const user = await getUserById(userId, {});
 
     if (!user || user.status === UserStatus.DELETED) {
       throw new LoginError(LoginErrorType.USER_DELETED);
     }
 
-    if (!user.authenticate(currentPassword)) {
+    if (!user.password) { // user logged in with sso cannot change his password
+      throw new LoginError(LoginErrorType.INVALID_REQUEST);
+    }
+
+    if (!user.authenticate(oldPassword)) {
       throw new LoginError(LoginErrorType.INVALID_PASSWORD);
     }
 
-    if (newPassword === currentPassword) {
+    if (newPassword === oldPassword) {
       throw new LoginError(LoginErrorType.USED_PASSWORD);
     }
 
@@ -42,15 +44,7 @@ export const changePassword = async (
     }
 
     const newPasswordHashed = passwordHash.generate(newPassword);
-
-    const updatedUser = await updateUserInDB(id, {
-      password: newPasswordHashed,
-    });
-
-    return {
-      text: "success",
-      data: { token: updatedUser.getToken() },
-    };
+    return newPasswordHashed;
   } catch (error) {
     loginExceptionsManager(error);
   }

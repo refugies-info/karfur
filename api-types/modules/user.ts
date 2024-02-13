@@ -84,14 +84,6 @@ export interface DeleteUserFavoriteRequest {
 }
 
 /**
- * @url PATCH /user/{id}/password
- */
-export interface UpdatePasswordRequest {
-  currentPassword: string;
-  newPassword: string;
-}
-
-/**
  * @url POST /user/password/reset
  */
 export interface ResetPasswordRequest {
@@ -123,9 +115,21 @@ export interface UpdateUserRequest {
     selectedLanguages?: string[];
     partner?: string;
     departments?: string[];
+    password?: {
+      oldPassword: string;
+      newPassword: string;
+    }
   };
   action: "modify-with-roles" | "modify-my-details";
 }
+
+/**
+ * @url PATCH /user/{id}
+ */
+export interface UpdateUserResponse {
+  token?: string; // if user reset password
+}
+
 
 /**
  * @url GET /user
@@ -139,6 +143,7 @@ export interface GetUserInfoResponse {
   selectedLanguages: string[];
   status: UserStatus;
   structures: string[];
+  sso: boolean;
   username?: string;
   firstName?: string;
   picture?: Picture;
@@ -215,10 +220,3 @@ export interface NewPasswordResponse {
  * @url GET /user/favorites
  */
 export type GetUserFavoritesResponse = SimpleDispositif;
-
-/**
- * @url PATCH /user/{id}/password
- */
-export interface UpdatePasswordResponse {
-  token: string;
-}

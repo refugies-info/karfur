@@ -40,6 +40,9 @@
   label {
     @include dsfr-text("small");
   }
+  .link {
+    @include dsfr-text("small");
+  }
 }
 
 .block {

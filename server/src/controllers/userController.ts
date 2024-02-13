@@ -16,14 +16,13 @@ import {
   ResetPasswordRequest,
   ResetPasswordResponse,
   SelectedLanguagesRequest,
-  UpdatePasswordRequest,
-  UpdatePasswordResponse,
   UpdateUserRequest,
   GetUserFavoritesRequest,
   RegisterRequest,
   CheckCodeRequest,
   CheckUserExistsResponse,
   SendCodeRequest,
+  UpdateUserResponse,
 } from "@refugies-info/api-types";
 
 import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
@@ -32,7 +31,6 @@ import { getActiveUsers } from "../workflows/users/getActiveUsers";
 import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
-import { changePassword } from "../workflows/users/changePassword";
 import { setNewPassword } from "../workflows/users/setNewPassword";
 import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
 import { deleteUser } from "../workflows/users/deleteUser";
@@ -167,33 +165,26 @@ export class UserController extends Controller {
   public async getUserInfo(@Request() request: IRequest): ResponseWithData<GetUserInfoResponse> {
     return {
       text: "success",
-      data: pick(request.user.toObject(), [
-        "structures",
-        "_id",
-        "roles",
-        "contributions",
-        "username",
-        "firstName",
-        "status",
-        "email",
-        "phone",
-        "picture",
-        "favorites",
-        "selectedLanguages",
-        "partner",
-        "departments",
-      ]),
+      data: {
+        ...pick(request.user.toObject(), [
+          "structures",
+          "_id",
+          "roles",
+          "contributions",
+          "username",
+          "firstName",
+          "status",
+          "email",
+          "phone",
+          "picture",
+          "favorites",
+          "selectedLanguages",
+          "partner",
+          "departments",
+        ]),
+        sso: !request.user.password
+      }
     };
-  }
-
-  @Security({ jwt: [], fromSite: [] })
-  @Patch("/{id}/password")
-  public async updatePassword(
-    @Path() id: string,
-    @Request() request: ExRequest,
-    @Body() body: UpdatePasswordRequest,
-  ): ResponseWithData<UpdatePasswordResponse> {
-    return changePassword(id, body, request.user);
   }
 
   @Security({ jwt: [], fromSite: [] })
@@ -202,8 +193,10 @@ export class UserController extends Controller {
     @Path() id: string,
     @Request() request: ExRequest,
     @Body() body: UpdateUserRequest,
-  ): Response {
-    return updateUser(id, body, request.user);
+  ): ResponseWithData<UpdateUserResponse> {
+    const token = await updateUser(id, body, request.user);
+    const data = token ? { token } : {};
+    return { text: "success", data };
   }
 
   @Delete("/{id}")

@@ -10,6 +10,7 @@ export const testUser: GetUserInfoResponse = {
   email: "",
   selectedLanguages: [],
   status: UserStatus.ACTIVE,
+  sso: false
 };
 
 export const testUserWithRoles: GetUserInfoResponse = {

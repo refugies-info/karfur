@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAsyncFn } from "react-use";
-import { StructureMemberRole } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import { StructureMemberRole, UpdateUserRequest } from "@refugies-info/api-types";
 import { Col, Row } from "reactstrap";
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { ToggleSwitch } from "@codegouvfr/react-dsfr/ToggleSwitch";
+import PasswordInput from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { logger } from "logger";
 import API from "utils/API";
+import { setAuthToken } from "utils/authToken";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
 import { cls } from "lib/classname";
+import { getPasswordStrength } from "lib/validatePassword";
 import { userDetailsSelector, userSelector } from "services/User/user.selectors";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { userStructureRoleSelector, userStructureSelector } from "services/UserStructure/userStructure.selectors";
@@ -25,6 +29,7 @@ import {
   Tag,
 } from "./components";
 import ErrorMessage from "components/UI/ErrorMessage";
+import FRLink from "components/UI/FRLink";
 import styles from "./UserProfile.module.scss";
 
 interface Props {
@@ -33,6 +38,7 @@ interface Props {
 
 export const UserProfile = (props: Props) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const user = useSelector(userSelector);
   const userDetails = useSelector(userDetailsSelector);
   const userStructure = useSelector(userStructureSelector);
@@ -49,6 +55,10 @@ export const UserProfile = (props: Props) => {
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [newsletter, setNewsletter] = useState<boolean | null>(null);
   const [nbWordsTranslated, setNbWordsTranslated] = useState<number | null>(null);
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const passwordStrength = useMemo(() => getPasswordStrength(newPassword), [newPassword]);
 
   useEffect(() => {
     document.title = props.title;
@@ -118,23 +128,49 @@ export const UserProfile = (props: Props) => {
   const [{ loading, error }, submit] = useAsyncFn(
     async (e: any) => {
       e.preventDefault();
+      setPasswordError(null);
       if (!userDetails || phoneError || emailError || usernameError) return;
+      const updateUserRequest: UpdateUserRequest = {
+        action: "modify-my-details",
+        user: {
+          username,
+          firstName,
+          email,
+          phone,
+        },
+      };
+      if (!oldPassword && newPassword) {
+        setPasswordError("Veuillez renseigner votre ancien mot de passe.");
+        return;
+      }
+      if (oldPassword && newPassword && !userDetails.sso) {
+        updateUserRequest.user.password = {
+          oldPassword,
+          newPassword,
+        };
+      }
       try {
-        await API.updateUser(userDetails._id, {
-          action: "modify-my-details",
-          user: {
-            username,
-            firstName,
-            email,
-            phone,
-          },
-        });
+        const data = await API.updateUser(userDetails._id, updateUserRequest);
+        if (data.token) setAuthToken(data.token);
         dispatch(fetchUserActionCreator());
         setEdition(false);
+        // reset password inputs
+        if (updateUserRequest.user.password) {
+          setOldPassword("");
+          setNewPassword("");
+        }
       } catch (e: any) {
         const errorCode = e.response?.data?.code;
         if (errorCode === "NO_CODE_SUPPLIED") {
           // TODO: handle 2FA
+        } else if (errorCode === "INVALID_PASSWORD") {
+          setPasswordError("Mot de passe incorrect, vérifiez votre saisie");
+        } else if (errorCode === "USED_PASSWORD") {
+          setPasswordError("Le nouveau mot de passe doit être différent du mot de passe actuel actuel.");
+        } else if (errorCode === "PASSWORD_TOO_WEAK") {
+          setPasswordError(
+            "Votre mot de passe ne contient pas l'un des éléments suivants : 7 caractères minimum, 1 caractère spécial, 1 chiffre minimum.",
+          );
         } else if (errorCode === "USERNAME_TAKEN") {
           setUsernameError("Ce nom d'utilisateur est déjà pris. Veuillez en choisir un autre.");
         } else if (errorCode === "EMAIL_TAKEN") {
@@ -144,7 +180,7 @@ export const UserProfile = (props: Props) => {
         }
       }
     },
-    [userDetails, username, firstName, email, phone, phoneError, emailError, usernameError],
+    [userDetails, username, firstName, email, phone, phoneError, emailError, usernameError, oldPassword, newPassword],
   );
 
   if (!userDetails) return <div>Une erreur est survenue, veuillez recharger la page&nbsp;!</div>;
@@ -250,6 +286,7 @@ export const UserProfile = (props: Props) => {
                     readOnly: !edition,
                     value: username || (!edition ? "Non défini" : ""),
                     onChange: (e: any) => setUsername(e.target.value),
+                    title: "pseudo-input",
                   }}
                   disabled={loading}
                   className={!username ? styles.empty : ""}
@@ -262,6 +299,7 @@ export const UserProfile = (props: Props) => {
                     readOnly: !edition,
                     value: firstName || (!edition ? "Non défini" : ""),
                     onChange: (e: any) => setFirstName(e.target.value),
+                    title: "firstname-input",
                   }}
                   disabled={loading}
                   className={!firstName ? styles.empty : ""}
@@ -282,6 +320,7 @@ export const UserProfile = (props: Props) => {
                     onChange: (e: any) => setEmail(e.target.value),
                     onFocus: () => setEmailHint(true),
                     onBlur: () => setEmailHint(false),
+                    title: "email-input",
                   }}
                   disabled={loading}
                   className={!email ? styles.empty : ""}
@@ -295,10 +334,43 @@ export const UserProfile = (props: Props) => {
                     readOnly: !edition,
                     value: phone || (!edition ? "Non défini" : ""),
                     onChange: (e: any) => setPhone(e.target.value),
+                    title: "phone-input",
                   }}
                   disabled={loading}
                   className={!phone ? styles.empty : ""}
                 />
+                {edition && !userDetails.sso && (
+                  <>
+                    <PasswordInput
+                      label="Mot de passe actuel"
+                      messages={[]}
+                      nativeInputProps={{
+                        name: "old-password",
+                        value: oldPassword,
+                        onChange: (e: any) => setOldPassword(e.target.value),
+                        title: "old-password-input",
+                      }}
+                    />
+                    <FRLink href="#" onClick={() => {}} className={styles.link}>
+                      Mot de passe oublié&nbsp;?
+                    </FRLink>
+                    <PasswordInput
+                      label="Nouveau mot de passe"
+                      messages={passwordStrength.criterias.map((criteria) => ({
+                        message: t(criteria.label),
+                        severity: !newPassword ? "info" : criteria.isOk ? "valid" : "error",
+                      }))}
+                      nativeInputProps={{
+                        name: "new-password",
+                        value: newPassword,
+                        onChange: (e: any) => setNewPassword(e.target.value),
+                        title: "new-password-input",
+                      }}
+                      className="mt-3"
+                    />
+                    <ErrorMessage error={passwordError} />
+                  </>
+                )}
                 <ErrorMessage error={error?.message} />
               </form>
             </div>
@@ -320,17 +392,19 @@ export const UserProfile = (props: Props) => {
               )}
             </div>
 
-            <div className={cls(styles.block, "mb-4")}>
-              <div className="d-flex justify-content-between mb-4">
-                <label className={styles.label}>Langues de traduction</label>
-                <EditButton icon="translate" onClick={() => modalLanguage.open()} />
+            {(user.traducteur || user.expertTrad) && (
+              <div className={cls(styles.block, "mb-4")}>
+                <div className="d-flex justify-content-between mb-4">
+                  <label className={styles.label}>Langues de traduction</label>
+                  <EditButton icon="translate" onClick={() => modalLanguage.open()} />
+                </div>
+                {!userDetails.selectedLanguages ? (
+                  <p className={styles.empty}>Non défini</p>
+                ) : (
+                  userDetails.selectedLanguages.map((ln, i) => <LanguageBadge key={i} id={ln} />)
+                )}
               </div>
-              {!userDetails.selectedLanguages ? (
-                <p className={styles.empty}>Non défini</p>
-              ) : (
-                userDetails.selectedLanguages.map((ln, i) => <LanguageBadge key={i} id={ln} />)
-              )}
-            </div>
+            )}
 
             <div className={styles.block}>
               <label className={cls(styles.label, "mb-2")} htmlFor="newsletter">
