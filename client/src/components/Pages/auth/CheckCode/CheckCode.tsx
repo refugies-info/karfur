@@ -10,7 +10,6 @@ import { logger } from "logger";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import isInBrowser from "lib/isInBrowser";
-import SEO from "components/Seo";
 import GmailIcon from "assets/auth/providers/gmail-icon.svg";
 import OutlookIcon from "assets/auth/providers/outlook-icon.svg";
 import styles from "scss/components/auth.module.scss";
@@ -19,6 +18,7 @@ interface Props {
   type: "2fa" | "login" | "updateUser";
   email?: string;
   updateUser?: (code: string) => Promise<void>;
+  notYouCallback?: () => void;
   error?: string | null;
 }
 
@@ -87,7 +87,11 @@ const CheckCode = (props: Props) => {
         {props.type === "login" && <h1>Entrez le code reçu</h1>}
         <p className={styles.subtitle}>
           Un code temporaire à 6 chiffres vous a été envoyé à {email}.{" "}
-          <Link href="/auth" className="text-decoration-underline">
+          <Link
+            href={props.notYouCallback ? "#" : "/auth"}
+            onClick={props.notYouCallback}
+            className="text-decoration-underline"
+          >
             Ce n'est pas vous&nbsp;?
           </Link>
         </p>
