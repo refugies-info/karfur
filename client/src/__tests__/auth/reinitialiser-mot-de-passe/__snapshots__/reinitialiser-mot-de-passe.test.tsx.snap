@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auth/reinitialiser-mot-de-passe renders null if no email 1`] = `
+<div
+  className="container half"
+>
+  <button
+    className="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
+    id="fr-button-:r0:"
+    onClick={[Function]}
+    style={{}}
+  >
+    Retour
+  </button>
+  <div
+    className="title"
+  >
+    <h1>
+      Mot de passe oublié
+    </h1>
+    <p
+      className="subtitle"
+    >
+      Nous allons vous envoyer un mail avec des instructions pour le réinitialiser.
+    </p>
+  </div>
+  <form
+    className="container"
+    onSubmit={[Function]}
+  >
+    <div
+      className="fr-input-group mb-0"
+    >
+      <label
+        className="fr-label"
+        htmlFor="input-:r1:"
+      >
+        Adresse mail
+      </label>
+      <input
+        aria-describedby="input-:r1:-desc-error"
+        autoFocus={true}
+        className="fr-input"
+        id="input-:r1:"
+        name="email"
+        type="email"
+      />
+    </div>
+    <div
+      className="text-end"
+    >
+      <button
+        className="fr-btn fr-icon-mail-line fr-btn--icon-right button full mt"
+        id="fr-button-:r2:"
+        style={{}}
+        type="submit"
+      >
+        Envoyer le lien de réinitialisation
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`auth/reinitialiser-mot-de-passe renders page if email 1`] = `
+<div
+  className="container half"
+>
+  <button
+    className="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
+    id="fr-button-:r3:"
+    onClick={[Function]}
+    style={{}}
+  >
+    Retour
+  </button>
+  <div
+    className="title"
+  >
+    <h1>
+      Mot de passe oublié
+    </h1>
+    <p
+      className="subtitle"
+    >
+      Nous allons vous envoyer un mail avec des instructions pour le réinitialiser.
+    </p>
+  </div>
+  <form
+    className="container"
+    onSubmit={[Function]}
+  >
+    <div
+      className="fr-input-group mb-0"
+    >
+      <label
+        className="fr-label"
+        htmlFor="input-:r4:"
+      >
+        Adresse mail
+      </label>
+      <input
+        aria-describedby="input-:r4:-desc-error"
+        autoFocus={true}
+        className="fr-input"
+        defaultValue="test@example.com"
+        id="input-:r4:"
+        name="email"
+        type="email"
+      />
+    </div>
+    <div
+      className="text-end"
+    >
+      <button
+        className="fr-btn fr-icon-mail-line fr-btn--icon-right button full mt"
+        id="fr-button-:r5:"
+        style={{}}
+        type="submit"
+      >
+        Envoyer le lien de réinitialisation
+      </button>
+    </div>
+  </form>
+</div>
+`;
