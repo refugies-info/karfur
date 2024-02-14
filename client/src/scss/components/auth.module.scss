@@ -44,6 +44,40 @@
   }
 }
 
+.mini_loader {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.45);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+  .message {
+    background: white;
+    box-shadow: 0 6px 18px 0 #00001229;
+    padding: u(9) u(8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 390px;
+
+    & > p {
+      margin: 0;
+      @include dsfr-text("chapo");
+    }
+  }
+  .spinner {
+    width: u(7);
+    height: u(7);
+    color: var(--text-disabled-grey);
+    --bs-spinner-border-width: 3px;
+  }
+}
+
 .loader {
   position: absolute;
   top: 0;
@@ -89,9 +123,9 @@
 }
 
 .tag {
-  background-color: transparent;
-  border: 1px solid var(--border-default-grey);
-  color: var(--text-action-high-blue-france);
+  background-color: transparent !important;
+  border: 1px solid var(--border-default-grey) !important;
+  color: var(--text-action-high-blue-france) !important;
 }
 
 .button {
@@ -105,7 +139,6 @@
   display: flex;
   align-items: center;
   gap: u(6);
-  @extend .mx;
 
   span {
     flex-shrink: 0;
@@ -122,7 +155,7 @@
 }
 
 .space_top {
-  margin-top: u(24);
+  margin-top: u(18);
 }
 
 .small {

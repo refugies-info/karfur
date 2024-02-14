@@ -50,7 +50,15 @@ const AuthLogin = () => {
       </Button>
       <div className={styles.title}>
         <h1>Ravis de vous revoir&nbsp;!</h1>
-        <Tag className={styles.tag}>{email}</Tag>
+        <Tag
+          className={styles.tag}
+          dismissible
+          nativeButtonProps={{
+            onClick: () => router.push(getPath("/auth", "fr")),
+          }}
+        >
+          {email}
+        </Tag>
       </div>
 
       <form onSubmit={submit}>
@@ -86,7 +94,7 @@ const AuthLogin = () => {
 
       {!has2FA && (
         <>
-          <div className={styles.separator}>
+          <div className={cls(styles.separator, "my-10")}>
             <span>ou</span>
           </div>
 

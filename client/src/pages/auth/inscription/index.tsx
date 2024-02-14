@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useAsyncFn } from "react-use";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import { Spinner } from "reactstrap";
 import { RegisterRequest } from "@refugies-info/api-types";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
@@ -10,6 +11,7 @@ import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { logger } from "logger";
+import { getPath } from "routes";
 import { useRegisterFlow } from "hooks";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
@@ -74,9 +76,27 @@ const AuthLogin = () => {
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour
       </Button>
+
+      {loading && (
+        <div className={styles.mini_loader}>
+          <div className={styles.message}>
+            <p>Création de compte...</p>
+            <Spinner className={styles.spinner} />
+          </div>
+        </div>
+      )}
+
       <div className={styles.title}>
         <h1>Créez votre compte</h1>
-        <Tag className={styles.tag}>{email}</Tag>
+        <Tag
+          className={styles.tag}
+          dismissible
+          nativeButtonProps={{
+            onClick: () => router.push(getPath("/auth", "fr")),
+          }}
+        >
+          {email}
+        </Tag>
       </div>
 
       <form onSubmit={submit}>
@@ -100,7 +120,7 @@ const AuthLogin = () => {
         <Checkbox
           options={[
             {
-              label: "J'accepte de recevoir l'actualité de Réfugiés.info (maximum 1 fois par mois)",
+              label: "Recevoir l’actualité mensuelle de Réfugiés.info",
               nativeInputProps: {
                 checked: subscribeNewsletter,
                 onChange: () => setSubscribeNewsletter((o) => !o),
@@ -116,7 +136,7 @@ const AuthLogin = () => {
         <Button
           iconId="fr-icon-arrow-right-line"
           iconPosition="right"
-          className={cls(styles.button, styles.mt)}
+          className={cls(styles.button, "mt-3")}
           nativeButtonProps={{ type: "submit" }}
           disabled={!passwordStrength.isOk || loading}
         >

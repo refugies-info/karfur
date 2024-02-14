@@ -108,8 +108,8 @@ const AuthLogin = () => {
               },
               {
                 illustration: <Image alt="illustration" src={GoalIconUser} width={26} height={56} />,
-                label: "Créer mon espace personnel",
-                hintText: "Simplement pour sauvegarder des fiches",
+                label: "Sauvegarder mes fiches préférées",
+                hintText: "En créant mon espace personnel",
                 nativeInputProps: {
                   checked: role === RoleName.USER,
                   onChange: () => setRole(RoleName.USER),
