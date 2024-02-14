@@ -120,7 +120,7 @@ const AuthLogin = () => {
         <Checkbox
           options={[
             {
-              label: "J'accepte de recevoir l'actualité de Réfugiés.info (maximum 1 fois par mois)",
+              label: "Recevoir l’actualité mensuelle de Réfugiés.info",
               nativeInputProps: {
                 checked: subscribeNewsletter,
                 onChange: () => setSubscribeNewsletter((o) => !o),
@@ -136,7 +136,7 @@ const AuthLogin = () => {
         <Button
           iconId="fr-icon-arrow-right-line"
           iconPosition="right"
-          className={cls(styles.button, styles.mt)}
+          className={cls(styles.button, "mt-3")}
           nativeButtonProps={{ type: "submit" }}
           disabled={!passwordStrength.isOk || loading}
         >
