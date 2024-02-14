@@ -94,7 +94,7 @@ const AuthLogin = () => {
 
       {!has2FA && (
         <>
-          <div className={styles.separator}>
+          <div className={cls(styles.separator, "my-10")}>
             <span>ou</span>
           </div>
 

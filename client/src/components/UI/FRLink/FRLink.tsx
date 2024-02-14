@@ -26,7 +26,7 @@ const FRLink = (props: Props) => {
   }, [props.icon, props.children]);
 
   return !props.href ? (
-    <button onClick={props.onClick} className={cls("fr-link", styles.link, props.className)}>
+    <button onClick={props.onClick} className={cls("fr-link", styles.link, props.className)} type="button">
       {content}
     </button>
   ) : (

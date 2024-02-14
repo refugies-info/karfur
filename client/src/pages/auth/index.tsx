@@ -138,7 +138,7 @@ const AuthEmail = () => {
         </Button>
       </form>
 
-      <div className={styles.separator}>
+      <div className={cls(styles.separator, styles.mx)}>
         <span>ou connectez-vous avec</span>
       </div>
 

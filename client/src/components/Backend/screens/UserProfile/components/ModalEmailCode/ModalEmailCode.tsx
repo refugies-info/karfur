@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { createModal } from "@codegouvfr/react-dsfr/Modal";
 import CheckCode from "components/Pages/auth/CheckCode";
 
@@ -16,7 +15,13 @@ export const modalEmailCode = createModal({
 export const ModalEmailCode = ({ email, updateUser, error }: Props) => {
   return (
     <modalEmailCode.Component title="Entrez le code reçu">
-      <CheckCode type="updateUser" email={email} updateUser={updateUser} error={error} />
+      <CheckCode
+        type="updateUser"
+        email={email}
+        updateUser={updateUser}
+        error={error}
+        notYouCallback={() => modalEmailCode.close()}
+      />
     </modalEmailCode.Component>
   );
 };

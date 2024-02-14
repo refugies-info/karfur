@@ -77,7 +77,7 @@ describe("UserProfile", () => {
       });
     });
     act(() => {
-      fireEvent.click(component.getByText("Modifier mon profil"));
+      fireEvent.click(component.getByText("Modifier mes informations personnelles"));
     });
     await waitFor(() => expect(component.getByTitle("pseudo-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("firstname-input")).not.toBeDisabled());
@@ -100,7 +100,7 @@ describe("UserProfile", () => {
       });
     });
     act(() => {
-      fireEvent.click(component.getByText("Modifier mon profil"));
+      fireEvent.click(component.getByText("Modifier mes informations personnelles"));
     });
     await waitFor(() => expect(component.getByTitle("pseudo-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("firstname-input")).not.toBeDisabled());
