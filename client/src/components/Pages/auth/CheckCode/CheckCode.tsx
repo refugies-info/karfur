@@ -77,7 +77,6 @@ const CheckCode = (props: Props) => {
 
   return (
     <div className={cls(styles.container, props.type !== "updateUser" && styles.half)}>
-      <SEO title="Code de sécurité" />
       {props.type !== "updateUser" && (
         <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
           Retour

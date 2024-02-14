@@ -4,6 +4,7 @@ import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import API from "utils/API";
 import Layout from "components/Pages/auth/Layout";
 import CheckCode from "components/Pages/auth/CheckCode";
+import SEO from "components/Seo";
 
 const LoginCode = () => {
   const router = useRouter();
@@ -17,7 +18,12 @@ const LoginCode = () => {
     }
   }, [router, codeSent]);
 
-  return <CheckCode type="login" />;
+  return (
+    <>
+      <SEO title="Code de connexion" />
+      <CheckCode type="login" />
+    </>
+  );
 };
 
 export const getStaticProps = defaultStaticProps;
