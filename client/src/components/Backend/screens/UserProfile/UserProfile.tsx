@@ -1,22 +1,13 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useAsyncFn } from "react-use";
-import { useTranslation } from "next-i18next";
-import { StructureMemberRole, UpdateUserRequest } from "@refugies-info/api-types";
+import { StructureMemberRole } from "@refugies-info/api-types";
 import { Col, Row } from "reactstrap";
-import Button from "@codegouvfr/react-dsfr/Button";
-import Input from "@codegouvfr/react-dsfr/Input";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { ToggleSwitch } from "@codegouvfr/react-dsfr/ToggleSwitch";
-import PasswordInput from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { logger } from "logger";
 import API from "utils/API";
-import { setAuthToken } from "utils/authToken";
-import { isValidEmail, isValidPhone } from "lib/validateFields";
 import { cls } from "lib/classname";
-import { getPasswordStrength } from "lib/validatePassword";
 import { userDetailsSelector, userSelector } from "services/User/user.selectors";
-import { fetchUserActionCreator } from "services/User/user.actions";
 import { userStructureRoleSelector, userStructureSelector } from "services/UserStructure/userStructure.selectors";
 import {
   EditAvatar,
@@ -24,16 +15,11 @@ import {
   LanguageBadge,
   ModalDepartments,
   modalDepartments,
-  modalEmailCode,
-  ModalEmailCode,
   ModalLanguage,
   modalLanguage,
-  modalResetPassword,
-  ModalResetPassword,
   Tag,
+  UserProfileForm,
 } from "./components";
-import ErrorMessage from "components/UI/ErrorMessage";
-import FRLink from "components/UI/FRLink";
 import styles from "./UserProfile.module.scss";
 
 interface Props {
@@ -42,28 +28,14 @@ interface Props {
 
 export const UserProfile = (props: Props) => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
   const user = useSelector(userSelector);
   const userDetails = useSelector(userDetailsSelector);
   const userStructure = useSelector(userStructureSelector);
   const userStructureRole = useSelector(userStructureRoleSelector);
 
   const [edition, setEdition] = useState(false);
-  const [username, setUsername] = useState<string>(userDetails?.username || "");
-  const [usernameError, setUsernameError] = useState<string | null>(null);
-  const [firstName, setFirstName] = useState<string>(userDetails?.firstName || "");
-  const [email, setEmail] = useState<string>(userDetails?.email || "");
-  const [emailHint, setEmailHint] = useState<boolean>(false);
-  const [emailError, setEmailError] = useState<string | null>(null);
-  const [emailCodeError, setEmailCodeError] = useState<string | null>(null);
-  const [phone, setPhone] = useState<string>(userDetails?.phone || "");
-  const [phoneError, setPhoneError] = useState<string | null>(null);
   const [newsletter, setNewsletter] = useState<boolean | null>(null);
   const [nbWordsTranslated, setNbWordsTranslated] = useState<number | null>(null);
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [passwordError, setPasswordError] = useState<string | null>(null);
-  const passwordStrength = useMemo(() => getPasswordStrength(newPassword), [newPassword]);
 
   useEffect(() => {
     document.title = props.title;
@@ -102,99 +74,6 @@ export const UserProfile = (props: Props) => {
     }
   }, [dispatch, user, userDetails, nbWordsTranslated]);
 
-  // Fill form
-  useEffect(() => {
-    if (!userDetails) return;
-    if (userDetails.username) setUsername(userDetails.username);
-    if (userDetails.firstName) setFirstName(userDetails.firstName);
-    if (userDetails.email) setEmail(userDetails.email);
-    if (userDetails.phone) setPhone(userDetails.phone);
-  }, [dispatch, userDetails]);
-
-  // Form validation
-  useEffect(() => {
-    if (phone && !isValidPhone(phone))
-      setPhoneError("Ce n'est pas un numéro de téléphone valide, vérifiez votre saisie.");
-    else setPhoneError(null);
-  }, [phone]);
-
-  useEffect(() => {
-    if (!email) setEmailError("L'email est obligatoire");
-    else if (!isValidEmail(email)) setEmailError("Ce n'est pas une adresse email valide, vérifiez votre saisie.");
-    else setEmailError(null);
-  }, [email]);
-
-  useEffect(() => {
-    const usernameMandatory = user.admin || user.contributeur || user.expertTrad || user.traducteur;
-    if (!username && usernameMandatory) setUsernameError("Veuillez choisir un pseudonyme.");
-    else setUsernameError(null); // needed to reset api errors
-  }, [username, user]);
-
-  const [{ loading, error }, submit] = useAsyncFn(
-    async (e: any, code?: string) => {
-      e?.preventDefault();
-      setPasswordError(null);
-      setEmailCodeError(null);
-      if (!userDetails || phoneError || emailError || usernameError) return;
-      const updateUserRequest: UpdateUserRequest = {
-        action: "modify-my-details",
-        user: {
-          username,
-          firstName,
-          email,
-          phone,
-          code,
-        },
-      };
-      if (!oldPassword && newPassword) {
-        setPasswordError("Veuillez renseigner votre ancien mot de passe.");
-        return;
-      }
-      if (oldPassword && newPassword && !userDetails.sso) {
-        updateUserRequest.user.password = {
-          oldPassword,
-          newPassword,
-        };
-      }
-      try {
-        const data = await API.updateUser(userDetails._id, updateUserRequest);
-        if (data.token) setAuthToken(data.token);
-        dispatch(fetchUserActionCreator());
-        setEdition(false);
-        // reset password inputs
-        if (updateUserRequest.user.password) {
-          setOldPassword("");
-          setNewPassword("");
-        }
-      } catch (e: any) {
-        const errorCode = e.response?.data?.code;
-        if (errorCode === "NO_CODE_SUPPLIED") {
-          modalEmailCode.open();
-          return;
-        } else if (errorCode === "WRONG_CODE") {
-          setEmailCodeError("Code incorrect, veuillez réessayer.");
-          return;
-        } else if (errorCode === "INVALID_PASSWORD") {
-          setPasswordError("Mot de passe incorrect, vérifiez votre saisie");
-        } else if (errorCode === "USED_PASSWORD") {
-          setPasswordError("Le nouveau mot de passe doit être différent du mot de passe actuel actuel.");
-        } else if (errorCode === "PASSWORD_TOO_WEAK") {
-          setPasswordError(
-            "Votre mot de passe ne contient pas l'un des éléments suivants : 7 caractères minimum, 1 caractère spécial, 1 chiffre minimum.",
-          );
-        } else if (errorCode === "USERNAME_TAKEN") {
-          setUsernameError("Ce nom d'utilisateur est déjà pris. Veuillez en choisir un autre.");
-        } else if (errorCode === "EMAIL_TAKEN") {
-          setEmailError("Un compte Réfugiés.info est déjà associé à cette adresse email.");
-        } else {
-          throw new Error("Une erreur est survenue. Veuillez réessayer");
-        }
-      }
-      modalEmailCode.close();
-    },
-    [userDetails, username, firstName, email, phone, phoneError, emailError, usernameError, oldPassword, newPassword],
-  );
-
   if (!userDetails) return <div>Une erreur est survenue, veuillez recharger la page&nbsp;!</div>;
 
   return (
@@ -225,7 +104,11 @@ export const UserProfile = (props: Props) => {
               <EditAvatar />
             </div>
 
-            <h2 className="my-6">Activité</h2>
+            {(nbWordsTranslated !== null ||
+              userStructure ||
+              (user.caregiver && userDetails.partner) ||
+              user.admin ||
+              user.expertTrad) && <h2 className="my-6">Activité</h2>}
             {nbWordsTranslated !== null && (
               <div className={styles.info}>
                 <label>Nombre de mots traduits</label>
@@ -234,9 +117,10 @@ export const UserProfile = (props: Props) => {
             )}
             {userStructure && (
               <div className={styles.info}>
+                <label>Structure</label>
                 <p>{userStructure.nom}</p>
                 {userStructureRole?.includes(StructureMemberRole.ADMIN) && (
-                  <Badge severity="success" noIcon>
+                  <Badge severity="success" noIcon className="mt-2" as="span">
                     Responsable
                   </Badge>
                 )}
@@ -245,7 +129,7 @@ export const UserProfile = (props: Props) => {
 
             {user.caregiver && userDetails.partner && (
               <div className={styles.info}>
-                <label>Partenaire</label>
+                <label>Structure partenaire</label>
                 <p>{userDetails.partner}</p>
               </div>
             )}
@@ -260,134 +144,7 @@ export const UserProfile = (props: Props) => {
           </Col>
 
           <Col>
-            <div className="d-flex align-items-center justify-content-between">
-              <h2>Informations personnelles</h2>
-              {edition ? (
-                <Button
-                  priority="primary"
-                  size="small"
-                  onClick={submit}
-                  iconId="fr-icon-save-3-line"
-                  iconPosition="right"
-                  disabled={loading}
-                  className={styles.fix_align}
-                >
-                  Sauvegarder les modifications
-                </Button>
-              ) : (
-                <Button
-                  priority="secondary"
-                  size="small"
-                  onClick={() => setEdition(true)}
-                  iconId="fr-icon-edit-box-line"
-                  iconPosition="right"
-                  className={styles.fix_align}
-                >
-                  Modifier mon profil
-                </Button>
-              )}
-            </div>
-
-            <div className={cls(styles.block, styles.form, edition && styles.edit, "mb-10")}>
-              <form onSubmit={submit}>
-                <Input
-                  label="Pseudonyme public"
-                  state={!!usernameError && edition ? "error" : "default"}
-                  stateRelatedMessage={usernameError}
-                  hintText="Votre pseudonyme apparaît sur les fiches auxquelles vous contribuez."
-                  nativeInputProps={{
-                    name: "pseudo",
-                    readOnly: !edition,
-                    value: username || (!edition ? "Non défini" : ""),
-                    onChange: (e: any) => setUsername(e.target.value),
-                    title: "pseudo-input",
-                  }}
-                  disabled={loading}
-                  className={!username ? styles.empty : ""}
-                />
-                <Input
-                  label="Prénom"
-                  hintText="Votre prénom n’est pas public, il est utilisé pour échanger avec vous directement."
-                  nativeInputProps={{
-                    name: "firstName",
-                    readOnly: !edition,
-                    value: firstName || (!edition ? "Non défini" : ""),
-                    onChange: (e: any) => setFirstName(e.target.value),
-                    title: "firstname-input",
-                  }}
-                  disabled={loading}
-                  className={!firstName ? styles.empty : ""}
-                />
-                <Input
-                  label="Email"
-                  state={!!emailError && edition ? "error" : "default"}
-                  stateRelatedMessage={emailError}
-                  hintText={
-                    emailHint
-                      ? "Saisissez la nouvelle adresse email que vous souhaitez associer à votre compte. Nous enverrons un code de vérification à cette adresse."
-                      : null
-                  }
-                  nativeInputProps={{
-                    name: "email",
-                    readOnly: !edition,
-                    value: email || (!edition ? "Non défini" : ""),
-                    onChange: (e: any) => setEmail(e.target.value),
-                    onFocus: () => setEmailHint(true),
-                    onBlur: () => setEmailHint(false),
-                    title: "email-input",
-                  }}
-                  disabled={loading}
-                  className={!email ? styles.empty : ""}
-                />
-                <Input
-                  label="Téléphone"
-                  state={!!phoneError && edition ? "error" : "default"}
-                  stateRelatedMessage={phoneError}
-                  nativeInputProps={{
-                    name: "phone",
-                    readOnly: !edition,
-                    value: phone || (!edition ? "Non défini" : ""),
-                    onChange: (e: any) => setPhone(e.target.value),
-                    title: "phone-input",
-                  }}
-                  disabled={loading}
-                  className={!phone ? styles.empty : ""}
-                />
-                {edition && !userDetails.sso && (
-                  <>
-                    <PasswordInput
-                      label="Mot de passe actuel"
-                      messages={[]}
-                      nativeInputProps={{
-                        name: "old-password",
-                        value: oldPassword,
-                        onChange: (e: any) => setOldPassword(e.target.value),
-                        title: "old-password-input",
-                      }}
-                    />
-                    <FRLink onClick={() => modalResetPassword.open()} className={styles.link}>
-                      Mot de passe oublié&nbsp;?
-                    </FRLink>
-                    <PasswordInput
-                      label="Nouveau mot de passe"
-                      messages={passwordStrength.criterias.map((criteria) => ({
-                        message: t(criteria.label),
-                        severity: !newPassword ? "info" : criteria.isOk ? "valid" : "error",
-                      }))}
-                      nativeInputProps={{
-                        name: "new-password",
-                        value: newPassword,
-                        onChange: (e: any) => setNewPassword(e.target.value),
-                        title: "new-password-input",
-                      }}
-                      className="mt-3"
-                    />
-                    <ErrorMessage error={passwordError} />
-                  </>
-                )}
-                <ErrorMessage error={error?.message} />
-              </form>
-            </div>
+            <UserProfileForm edition={edition} setEdition={setEdition} />
 
             <h2>Préférences</h2>
             <div className={cls(styles.block, "mb-4")}>
@@ -445,8 +202,6 @@ export const UserProfile = (props: Props) => {
 
       <ModalDepartments />
       <ModalLanguage />
-      <ModalResetPassword email={userDetails?.email || ""} />
-      <ModalEmailCode email={email} updateUser={(code: string) => submit(null, code)} error={emailCodeError} />
     </div>
   );
 };
