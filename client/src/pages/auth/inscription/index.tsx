@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useAsyncFn } from "react-use";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import { Spinner } from "reactstrap";
 import { RegisterRequest } from "@refugies-info/api-types";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
@@ -75,6 +76,16 @@ const AuthLogin = () => {
       <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
         Retour
       </Button>
+
+      {loading && (
+        <div className={styles.mini_loader}>
+          <div className={styles.message}>
+            <p>Création de compte...</p>
+            <Spinner className={styles.spinner} />
+          </div>
+        </div>
+      )}
+
       <div className={styles.title}>
         <h1>Créez votre compte</h1>
         <Tag
