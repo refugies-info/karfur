@@ -34,7 +34,6 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
   const [usernameError, setUsernameError] = useState<string | null>(null);
   const [firstName, setFirstName] = useState<string>(userDetails?.firstName || "");
   const [email, setEmail] = useState<string>(userDetails?.email || "");
-  const [emailHint, setEmailHint] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string | null>(null);
   const [emailCodeError, setEmailCodeError] = useState<string | null>(null);
   const [phone, setPhone] = useState<string>(userDetails?.phone || "");
@@ -229,7 +228,7 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
             state={!!emailError && edition ? "error" : "default"}
             stateRelatedMessage={emailError}
             hintText={
-              emailHint
+              edition
                 ? "Saisissez la nouvelle adresse email que vous souhaitez associer à votre compte. Nous enverrons un code de vérification à cette adresse."
                 : null
             }
@@ -238,8 +237,6 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
               readOnly: !edition,
               value: email || (!edition ? "Non défini" : ""),
               onChange: (e: any) => setEmail(e.target.value),
-              onFocus: () => setEmailHint(true),
-              onBlur: () => setEmailHint(false),
               title: "email-input",
             }}
             disabled={loading}
