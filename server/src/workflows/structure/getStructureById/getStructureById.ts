@@ -18,13 +18,15 @@ const getMainRole = (membre: Membre) => {
 
 const getMembers = async (structure: Structure) => {
   const structureMembres = structure.membres || [];
-  const neededFields = { username: 1, picture: 1, last_connected: 1, roles: 1, added_at: 1 };
+  const neededFields = { username: 1, email: 1, picture: 1, last_connected: 1, roles: 1, added_at: 1 };
 
   const members = await Promise.all(
     structureMembres.map((membre) =>
       getUserById(membre.userId.toString(), neededFields).then((user) => {
+        if (!user) return null;
         const res: StructureMember = {
           username: user.username,
+          email: user.email,
           picture: user.picture,
           last_connected: user.last_connected,
           roles: membre.roles,
@@ -36,7 +38,7 @@ const getMembers = async (structure: Structure) => {
       }),
     ),
   );
-  return members;
+  return members.filter(u => !!u);
 };
 
 export const getStructureById = async (

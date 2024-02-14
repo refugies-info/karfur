@@ -112,6 +112,7 @@ export enum StructureMemberRole {
 export interface StructureMember {
   userId: string;
   username?: string;
+  email?: string;
   picture: Picture;
   last_connected: Date;
   roles: StructureMemberRole[];

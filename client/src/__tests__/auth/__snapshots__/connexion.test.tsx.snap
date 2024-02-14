@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auth/connexion renders connexion if email 1`] = `
+<div
+  className="container half"
+>
+  <button
+    className="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
+    id="fr-button-:r6:"
+    onClick={[Function]}
+    style={{}}
+  >
+    Retour
+  </button>
+  <div
+    className="title"
+  >
+    <h1>
+      Ravis de vous revoir !
+    </h1>
+    <button
+      className="fr-tag fr-tag--dismiss tag"
+      id="fr-tag-:r7:"
+      onClick={[Function]}
+      style={{}}
+    >
+      test@example.com
+    </button>
+  </div>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="fr-password"
+      id="password-input-:r8:"
+    >
+      <label
+        className="fr-label"
+        htmlFor="password-:r9:"
+      >
+        Mot de passe
+      </label>
+      <div
+        className="fr-input-wrap"
+      >
+        <input
+          autoFocus={true}
+          className="fr-password__input fr-input"
+          disabled={false}
+          id="password-:r9:"
+          name="password"
+          type="password"
+        />
+      </div>
+      <div
+        className="fr-password__checkbox fr-checkbox-group fr-checkbox-group--sm"
+      >
+        <input
+          aria-label="Afficher le mot de passe"
+          id="password-:r9:-toggle-show"
+          type="checkbox"
+        />
+        <label
+          className="fr-password__checkbox fr-label"
+          htmlFor="password-:r9:-toggle-show"
+        >
+          Afficher
+        </label>
+      </div>
+    </div>
+    <div
+      className="mt-2 mb"
+    >
+      <a
+        className="fr-link link"
+        href="/auth/reinitialiser-mot-de-passe?email=test@example.com"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onTouchStart={[Function]}
+      >
+        Mot de passe oublié ?
+      </a>
+    </div>
+    <button
+      className="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button"
+      disabled={false}
+      id="fr-button-:ra:"
+      style={{}}
+      type="submit"
+    >
+      Me connecter
+    </button>
+  </form>
+  <div
+    className="separator my-10"
+  >
+    <span>
+      ou
+    </span>
+  </div>
+  <a
+    className="fr-btn fr-btn--tertiary button"
+    href="/auth/code-connexion?email=test@example.com"
+    id="fr-button-:rb:"
+    style={{}}
+  >
+    Me connecter avec un code reçu par mail
+  </a>
+</div>
+`;
+
+exports[`auth/connexion renders null if no email 1`] = `null`;
