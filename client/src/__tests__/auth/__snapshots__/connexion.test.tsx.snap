@@ -92,7 +92,7 @@ exports[`auth/connexion renders connexion if email 1`] = `
     </button>
   </form>
   <div
-    className="separator"
+    className="separator my-10"
   >
     <span>
       ou

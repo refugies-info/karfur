@@ -57,7 +57,7 @@ exports[`auth renders auth 1`] = `
     </button>
   </form>
   <div
-    className="separator"
+    className="separator mx"
   >
     <span>
       ou connectez-vous avec
