@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Languages } from "@refugies-info/api-types";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 import Button from "components/UI/Button";
 import BaseModal from "components/UI/BaseModal";
 import BubbleFlag from "components/UI/BubbleFlag";
@@ -22,7 +22,6 @@ interface Props {
 const MAX_STEP = 5;
 
 const ModalWelcome = (props: Props) => {
-  const { Event } = useEvent();
   const [step, setStep] = useState<number>(1);
 
   const validate = () => {

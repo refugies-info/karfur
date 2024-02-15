@@ -1,7 +1,5 @@
-import { GetUserInfoResponse, UserStatus } from "@refugies-info/api-types";
-import moment from "moment";
+import { RoleName, GetUserInfoResponse, UserStatus } from "@refugies-info/api-types";
 
-const date = moment("2019-05-01 12:00:00");
 export const testUser: GetUserInfoResponse = {
   username: "test",
   _id: "testObjectId",
@@ -12,21 +10,22 @@ export const testUser: GetUserInfoResponse = {
   email: "",
   selectedLanguages: [],
   status: UserStatus.ACTIVE,
+  sso: false
 };
 
 export const testUserWithRoles: GetUserInfoResponse = {
   ...testUser,
   structures: ["testObjectId"],
   roles: [
-    { nom: "Admin", _id: "testObjectId", nomPublic: "Admin" },
-    { nom: "Trad", _id: "testObjectId", nomPublic: "Trad" },
+    { nom: RoleName.ADMIN, _id: "testObjectId", nomPublic: "Admin" },
+    { nom: RoleName.TRAD, _id: "testObjectId", nomPublic: "Trad" },
     {
-      nom: "ExpertTrad",
+      nom: RoleName.EXPERT_TRAD,
       _id: "testObjectId",
       nomPublic: "ExpertTrad"
     },
     {
-      nom: "Contrib",
+      nom: RoleName.CONTRIB,
       _id: "testObjectId",
       nomPublic: "Contrib"
     }

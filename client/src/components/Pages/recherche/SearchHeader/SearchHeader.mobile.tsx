@@ -12,6 +12,7 @@ import {
 import { addToQueryActionCreator, setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
@@ -20,7 +21,6 @@ import DropdownMenuMobile from "../DropdownMenuMobile";
 import { SecondaryFilterOptions } from "../SecondaryFilter/SecondaryFilter";
 import styles from "./SearchHeader.mobile.module.scss";
 import commonStyles from "scss/components/searchHeader.module.scss";
-import { useEvent } from "hooks";
 
 interface Props {
   nbResults: number;
@@ -47,7 +47,6 @@ interface Props {
 const SearchHeaderMobile = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { Event } = useEvent();
 
   const {
     locationSearch,
@@ -92,7 +91,7 @@ const SearchHeaderMobile = (props: Props) => {
         if (!prevState) Event("USE_SEARCH", "open filter", "location");
         return !prevState;
       }),
-    [Event],
+    [],
   );
 
   // THEME
@@ -104,7 +103,7 @@ const SearchHeaderMobile = (props: Props) => {
         if (!prevState) Event("USE_SEARCH", "open filter", "theme");
         return !prevState;
       }),
-    [Event],
+    [],
   );
 
   // FILTERS
@@ -116,7 +115,7 @@ const SearchHeaderMobile = (props: Props) => {
         if (!prevState) Event("USE_SEARCH", "open filter", "mobile filters");
         return !prevState;
       }),
-    [Event],
+    [],
   );
   const resetFilters = useCallback(() => {
     addToQuery({ age: [], frenchLevel: [], language: [] });

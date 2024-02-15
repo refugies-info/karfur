@@ -32,9 +32,11 @@ jest.mock("./log", () => ({
   logLogin: jest.fn().mockResolvedValue(undefined)
 })); */
 
+import { RoleName } from "@refugies-info/api-types";
+
 const reqRoles = [
-  { nom: "Admin", _id: "id_admin" },
-  { nom: "hasStructure", _id: "has_structure" }
+  { nom: RoleName.ADMIN, _id: "id_admin" },
+  { nom: RoleName.STRUCTURE, _id: "has_structure" }
 ];
 
 type MockResponse = { json: any; status: any };
@@ -45,7 +47,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-const userRole = { nom: "User", _id: "id" };
+const userRole = { nom: RoleName.USER, _id: "id" };
 
 describe.skip("login", () => {
   beforeEach(() => {
@@ -87,7 +89,7 @@ describe.skip("login", () => {
     register.mockResolvedValueOnce({ user: "user", token: "token" });
     await login(req, res);
     expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
-    expect(getRoleByName).toHaveBeenCalledWith("User");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.USER);
     expect(register).toHaveBeenCalledWith(
       { password: "password", username: "test" },
       userRole
@@ -108,7 +110,7 @@ describe.skip("login", () => {
     register.mockRejectedValueOnce(new Error("INTERNAL"));
     await login(req, res);
     expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
-    expect(getRoleByName).toHaveBeenCalledWith("User");
+    expect(getRoleByName).toHaveBeenCalledWith(RoleName.USER);
     expect(register).toHaveBeenCalledWith(
       { password: "password", username: "test" },
       userRole

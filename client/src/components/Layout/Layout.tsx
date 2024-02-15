@@ -29,10 +29,12 @@ import locale from "utils/locale";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
+import NewProfileModal from "components/Modals/NewProfileModal";
 import styles from "./Layout.module.scss";
 import AppLoader from "./AppLoader";
+import TempBanner from "./TempBanner";
+import AutoAddFavorite from "./AutoAddFavorite";
 import { setAnalyticsUserId } from "lib/tracking";
-import NoEmailModal from "components/Modals/NoEmailModal";
 
 interface Props {
   children: any;
@@ -108,7 +110,7 @@ const Layout = (props: Props) => {
       dispatch(fetchUserActionCreator());
     }
     if (user) {
-      setAnalyticsUserId(user.username);
+      setAnalyticsUserId(user.email);
     }
   }, [user, isUserLoading, hasUserError, dispatch]);
 
@@ -166,12 +168,14 @@ const Layout = (props: Props) => {
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <Navbar />
+      <TempBanner />
       <AppLoader>
         <div className={styles.main}>
           <main className={styles.content}>{props.children}</main>
         </div>
       </AppLoader>
       <Footer />
+      <AutoAddFavorite />
       <LanguageModal
         show={showLangModal}
         currentLanguage={router.locale || "fr"}
@@ -181,7 +185,7 @@ const Layout = (props: Props) => {
         isLanguagesLoading={isLanguagesLoading}
       />
       <MobileAppModal show={!!showMobileModal} toggle={toggleMobileAppModal} />
-      {showEmailModal && <NoEmailModal />}
+      <NewProfileModal />
       <SubscribeNewsletterModal />
     </div>
   );

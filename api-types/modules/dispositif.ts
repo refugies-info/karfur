@@ -242,7 +242,7 @@ export type GetDispositifResponse = {
   sponsors?: (Sponsor | ContentStructure)[];
   participants: SimpleUser[];
   merci: { created_at: Date; userId?: Id }[];
-  creatorId: { _id: Id, username: string };
+  creatorId: { _id: Id, username?: string };
   metadatas: Metadatas;
   map: Poi[] | null;
   availableLanguages: string[];
@@ -328,7 +328,8 @@ export interface GetNbContentsForCountyResponse {
 
 type Author = {
   _id: Id;
-  username: string;
+  email: string;
+  username?: string;
 };
 
 /**

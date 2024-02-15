@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 import BaseModal from "components/UI/BaseModal";
 import Button from "components/UI/Button";
 import { StepsFooter } from "../components";
@@ -19,7 +19,6 @@ interface Props {
 const MAX_STEP = 5;
 
 const ModalWelcome = (props: Props) => {
-  const { Event } = useEvent();
   const [step, setStep] = useState<number>(1);
 
   const validate = () => {

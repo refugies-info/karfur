@@ -5,6 +5,8 @@ import { proceedWithLogin } from "../../../modules/users/users.service";
 import { userRespoStructureId } from "../../../modules/structure/structure.service";
  *//* import { UserModel } from "src/typegoose/User"; */
 
+import { RoleName } from "@refugies-info/api-types";
+
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
   const res: MockResponse = {};
@@ -127,7 +129,7 @@ describe.skip("setNewPassword", () => {
         newPassword: "password",
         reset_password_token: "token"
       },
-      roles: [{ nom: "Admin", _id: "Admin" }]
+      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }]
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(401);
@@ -146,7 +148,7 @@ describe.skip("setNewPassword", () => {
         newPassword: "a",
         reset_password_token: "token"
       },
-      roles: [{ nom: "Admin", _id: "Admin" }]
+      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }]
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(401);
@@ -168,7 +170,7 @@ describe.skip("setNewPassword", () => {
         newPassword: "password1&",
         reset_password_token: "token"
       },
-      roles: [{ nom: "Admin", _id: "Admin" }]
+      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }]
     };
     await setNewPassword(req, res);
     expect(login2FA).toHaveBeenCalled();
@@ -189,7 +191,7 @@ describe.skip("setNewPassword", () => {
         newPassword: "password1&",
         reset_password_token: "token"
       },
-      roles: [{ nom: "Admin", _id: "Admin" }]
+      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }]
     };
     await setNewPassword(req, res);
     expect(login2FA).not.toHaveBeenCalled();
@@ -210,7 +212,7 @@ describe.skip("setNewPassword", () => {
         newPassword: "password1&",
         reset_password_token: "token"
       },
-      roles: [{ nom: "Admin", _id: "Admin" }]
+      roles: [{ nom: RoleName.ADMIN, _id: "Admin" }]
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(200);

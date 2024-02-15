@@ -1,0 +1,662 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfile should render correctly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="mb-10 align-items-center row"
+    >
+      <div
+        className="col"
+      >
+        <h1>
+          Mon profil
+        </h1>
+      </div>
+      <div
+        className="text-end text-nowrap col"
+      />
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="flex-grow-0 col"
+      >
+        <h2>
+          Photo de profil
+        </h2>
+        <div
+          className="block"
+        >
+          <div
+            className="container"
+          >
+            <div
+              className="avatar"
+            >
+              <img
+                alt="user picture"
+                data-nimg="1"
+                decoding="async"
+                height={160}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+                style={
+                  {
+                    "color": "transparent",
+                  }
+                }
+                width={160}
+              />
+            </div>
+            <p
+              className="small my-4"
+            >
+              Votre photo apparaît sur les fiches auxquelles vous contribuez.
+            </p>
+            <button
+              className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right position-relative"
+            >
+              Modifier ma photo
+              <input
+                id="avatar"
+                onChange={[Function]}
+                type="file"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col"
+      >
+        <div
+          className="d-flex align-items-center justify-content-between"
+        >
+          <h2>
+            Informations personnelles
+          </h2>
+          <button
+            className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-edit-box-line fr-btn--icon-right fix_align"
+            id="fr-button-:r0:"
+            onClick={[Function]}
+            style={{}}
+          >
+            Modifier mes informations personnelles
+          </button>
+        </div>
+        <div
+          className="block form mb-10"
+        >
+          <form
+            onSubmit={[Function]}
+          >
+            <div
+              className="fr-input-group"
+            >
+              <label
+                className="fr-label"
+                htmlFor="input-:r1:"
+              >
+                Pseudonyme public
+                <span
+                  className="fr-hint-text"
+                >
+                  Votre pseudonyme apparaît sur les fiches auxquelles vous contribuez.
+                </span>
+              </label>
+              <input
+                aria-describedby="input-:r1:-desc-error"
+                className="fr-input"
+                id="input-:r1:"
+                name="pseudo"
+                onChange={[Function]}
+                readOnly={true}
+                title="pseudo-input"
+                type="text"
+                value="test"
+              />
+            </div>
+            <div
+              className="fr-input-group empty"
+            >
+              <label
+                className="fr-label"
+                htmlFor="input-:r2:"
+              >
+                Prénom
+                <span
+                  className="fr-hint-text"
+                >
+                  Votre prénom n’est pas public, il est utilisé pour échanger avec vous directement.
+                </span>
+              </label>
+              <input
+                aria-describedby="input-:r2:-desc-error"
+                className="fr-input"
+                id="input-:r2:"
+                name="firstName"
+                onChange={[Function]}
+                readOnly={true}
+                title="firstname-input"
+                type="text"
+                value="Non défini"
+              />
+            </div>
+            <div
+              className="fr-input-group empty"
+            >
+              <label
+                className="fr-label"
+                htmlFor="input-:r3:"
+              >
+                Email
+                <span
+                  className="fr-hint-text"
+                />
+              </label>
+              <input
+                aria-describedby="input-:r3:-desc-error"
+                className="fr-input"
+                id="input-:r3:"
+                name="email"
+                onChange={[Function]}
+                readOnly={true}
+                title="email-input"
+                type="text"
+                value="Non défini"
+              />
+            </div>
+            <div
+              className="fr-input-group empty"
+            >
+              <label
+                className="fr-label"
+                htmlFor="input-:r4:"
+              >
+                Téléphone
+              </label>
+              <input
+                aria-describedby="input-:r4:-desc-error"
+                className="fr-input"
+                id="input-:r4:"
+                name="phone"
+                onChange={[Function]}
+                readOnly={true}
+                title="phone-input"
+                type="text"
+                value="Non défini"
+              />
+            </div>
+            <div
+              className="fr-input-group"
+            >
+              <label
+                className="fr-label"
+                htmlFor="input-:r5:"
+              >
+                Mot de passe actuel
+              </label>
+              <input
+                aria-describedby="input-:r5:-desc-error"
+                className="fr-input"
+                id="input-:r5:"
+                name="fake-password-input"
+                readOnly={true}
+                title="fake-password-input"
+                type="text"
+                value="********"
+              />
+            </div>
+            <button
+              className="fr-link link link"
+              onClick={[Function]}
+              type="button"
+            >
+              Mot de passe oublié ?
+            </button>
+          </form>
+          <button
+            aria-controls="user-email-code-modal"
+            aria-hidden={true}
+            className="fr-btn fr-hidden"
+            data-fr-opened={false}
+            id="user-email-code-modal-hidden-control-button"
+            style={{}}
+            tabIndex={-1}
+            type="button"
+          >
+             
+          </button>
+          <dialog
+            aria-labelledby="fr-modal-title-user-email-code-modal"
+            className="fr-modal"
+            data-fr-concealing-backdrop={true}
+            id="user-email-code-modal"
+            role="dialog"
+          >
+            <div
+              className="fr-container fr-container--fluid fr-container-md"
+            >
+              <div
+                className="fr-grid-row fr-grid-row--center"
+              >
+                <div
+                  className="fr-col-12 fr-col-md-8 fr-col-lg-6"
+                >
+                  <div
+                    className="fr-modal__body"
+                  >
+                    <div
+                      className="fr-modal__header"
+                    >
+                      <button
+                        aria-controls="user-email-code-modal"
+                        className="fr-btn--close fr-btn"
+                        title="Fermer"
+                        type="button"
+                      >
+                        Fermer
+                      </button>
+                    </div>
+                    <div
+                      className="fr-modal__content"
+                    >
+                      <h1
+                        className="fr-modal__title"
+                        id="fr-modal-title-user-email-code-modal"
+                      >
+                        Entrez le code reçu
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </dialog>
+          <button
+            aria-controls="user-password-modal"
+            aria-hidden={true}
+            className="fr-btn fr-hidden"
+            data-fr-opened={false}
+            id="user-password-modal-hidden-control-button"
+            style={{}}
+            tabIndex={-1}
+            type="button"
+          >
+             
+          </button>
+          <dialog
+            aria-labelledby="fr-modal-title-user-password-modal"
+            className="fr-modal"
+            data-fr-concealing-backdrop={true}
+            id="user-password-modal"
+            role="dialog"
+          >
+            <div
+              className="fr-container fr-container--fluid fr-container-md"
+            >
+              <div
+                className="fr-grid-row fr-grid-row--center"
+              >
+                <div
+                  className="fr-col-12 fr-col-md-8 fr-col-lg-6"
+                >
+                  <div
+                    className="fr-modal__body"
+                  >
+                    <div
+                      className="fr-modal__header"
+                    >
+                      <button
+                        aria-controls="user-password-modal"
+                        className="fr-btn--close fr-btn"
+                        title="Fermer"
+                        type="button"
+                      >
+                        Fermer
+                      </button>
+                    </div>
+                    <div
+                      className="fr-modal__content"
+                    >
+                      <h1
+                        className="fr-modal__title"
+                        id="fr-modal-title-user-password-modal"
+                      >
+                        Mot de passe oublié
+                      </h1>
+                      <p>
+                        Nous allons vous envoyer un mail avec des instructions pour le réinitialiser.
+                      </p>
+                      <form
+                        className="container"
+                        onSubmit={[Function]}
+                      >
+                        <div
+                          className="fr-input-group mb-0"
+                        >
+                          <label
+                            className="fr-label"
+                            htmlFor="input-:r8:"
+                          >
+                            Adresse mail
+                          </label>
+                          <input
+                            aria-describedby="input-:r8:-desc-error"
+                            autoFocus={true}
+                            className="fr-input"
+                            defaultValue=""
+                            id="input-:r8:"
+                            name="email"
+                            type="email"
+                          />
+                        </div>
+                        <div
+                          className="text-end"
+                        >
+                          <button
+                            className="fr-btn fr-icon-mail-line fr-btn--icon-right button mt"
+                            id="fr-button-:r9:"
+                            style={{}}
+                            type="submit"
+                          >
+                            Envoyer le lien de réinitialisation
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </dialog>
+        </div>
+        <h2>
+          Préférences
+        </h2>
+        <div
+          className="block mb-4"
+        >
+          <div
+            className="d-flex justify-content-between mb-3"
+          >
+            <label
+              className="label"
+            >
+              Départements pour la recherche
+            </label>
+            <button
+              className="button"
+              onClick={[Function]}
+            >
+              <i
+                className="fr-icon-map-pin-2-line icon"
+              />
+              Modifier
+            </button>
+          </div>
+          <p
+            className="empty"
+          >
+            Non défini
+          </p>
+        </div>
+        <div
+          className="block"
+        >
+          <label
+            className="label mb-2"
+            htmlFor="newsletter"
+          >
+            Communication par email
+          </label>
+          <div
+            className="fr-toggle"
+            id="fr-toggle-:ra:"
+          >
+            <input
+              aria-describedby="fr-toggle-:ra:-hint-text"
+              checked={false}
+              className="fr-toggle__input"
+              disabled={true}
+              id="fr-toggle-:ra:-input"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <label
+              className="fr-toggle__label"
+              htmlFor="fr-toggle-:ra:-input"
+            >
+              <span>
+                <strong>
+                  La lettre d’information de Réfugiés.info
+                </strong>
+                 : actualités, nouveaux contenus, mises à jour, événements.
+              </span>
+            </label>
+            <p
+              className="fr-hint-text"
+              id="fr-toggle-:ra:-hint-text"
+            >
+              Maximum 1 fois par mois
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    aria-controls="user-departments-modal"
+    aria-hidden={true}
+    className="fr-btn fr-hidden"
+    data-fr-opened={false}
+    id="user-departments-modal-hidden-control-button"
+    style={{}}
+    tabIndex={-1}
+    type="button"
+  >
+     
+  </button>
+  <dialog
+    aria-labelledby="fr-modal-title-user-departments-modal"
+    className="fr-modal"
+    data-fr-concealing-backdrop={true}
+    id="user-departments-modal"
+    role="dialog"
+  >
+    <div
+      className="fr-container fr-container--fluid fr-container-md"
+    >
+      <div
+        className="fr-grid-row fr-grid-row--center"
+      >
+        <div
+          className="fr-col-12 fr-col-md-8 fr-col-lg-6"
+        >
+          <div
+            className="fr-modal__body"
+          >
+            <div
+              className="fr-modal__header"
+            >
+              <button
+                aria-controls="user-departments-modal"
+                className="fr-btn--close fr-btn"
+                title="Fermer"
+                type="button"
+              >
+                Fermer
+              </button>
+            </div>
+            <div
+              className="fr-modal__content"
+            >
+              <h1
+                className="fr-modal__title"
+                id="fr-modal-title-user-departments-modal"
+              >
+                Départements pour la recherche
+              </h1>
+              <p
+                className="mb-8"
+              >
+                Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Les démarches nationales resteront visibles.
+              </p>
+              <form
+                onSubmit={[Function]}
+              >
+                <label
+                  className="mb-2"
+                  htmlFor="location"
+                >
+                  Nom ou numéro du département
+                </label>
+                <div
+                  className="position-relative"
+                >
+                  <div />
+                </div>
+                <div
+                  className="text-end"
+                >
+                  <button
+                    className="fr-btn fr-icon-check-line fr-btn--icon-right button mt-12"
+                    disabled={true}
+                    id="fr-button-:rc:"
+                    style={{}}
+                    type="submit"
+                  >
+                    Valider
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <button
+    aria-controls="user-language-modal"
+    aria-hidden={true}
+    className="fr-btn fr-hidden"
+    data-fr-opened={false}
+    id="user-language-modal-hidden-control-button"
+    style={{}}
+    tabIndex={-1}
+    type="button"
+  >
+     
+  </button>
+  <dialog
+    aria-labelledby="fr-modal-title-user-language-modal"
+    className="fr-modal"
+    data-fr-concealing-backdrop={true}
+    id="user-language-modal"
+    role="dialog"
+  >
+    <div
+      className="fr-container fr-container--fluid fr-container-md"
+    >
+      <div
+        className="fr-grid-row fr-grid-row--center"
+      >
+        <div
+          className="fr-col-12 fr-col-md-8 fr-col-lg-6"
+        >
+          <div
+            className="fr-modal__body"
+          >
+            <div
+              className="fr-modal__header"
+            >
+              <button
+                aria-controls="user-language-modal"
+                className="fr-btn--close fr-btn"
+                title="Fermer"
+                type="button"
+              >
+                Fermer
+              </button>
+            </div>
+            <div
+              className="fr-modal__content"
+            >
+              <h1
+                className="fr-modal__title"
+                id="fr-modal-title-user-language-modal"
+              >
+                <div
+                  className="mb-6"
+                >
+                  Langues de traduction
+                </div>
+              </h1>
+              <form
+                onSubmit={[Function]}
+              >
+                <label
+                  className="choice mb-4 rounded-0"
+                  htmlFor="language"
+                  onClick={[Function]}
+                >
+                  <input
+                    defaultChecked={false}
+                    name="language"
+                    type="checkbox"
+                    value="en"
+                  />
+                  <i
+                    className="ri-checkbox-blank-line me-2"
+                  />
+                  <span
+                    className="text"
+                  >
+                    <strong>
+                      Anglais
+                    </strong>
+                     - 
+                    English
+                  </span>
+                  <span
+                    className="flag fi fi-en"
+                    title="en"
+                  />
+                </label>
+                <div
+                  className="text-end"
+                >
+                  <button
+                    className="fr-btn fr-icon-check-line fr-btn--icon-right button mt-8"
+                    disabled={true}
+                    id="fr-button-:re:"
+                    style={{}}
+                    type="submit"
+                  >
+                    Valider
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</div>
+`;
+
+exports[`UserProfile should render correctly when loading 1`] = `
+<div>
+  Une erreur est survenue, veuillez recharger la page !
+</div>
+`;

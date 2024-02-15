@@ -4,7 +4,7 @@ import { getStructuresWithDispos } from "../../../modules/structure/structure.re
 import { getUsersById } from "../../../modules/users/users.repository";
 import { UserId } from "../../../typegoose";
 import pick from "lodash/pick";
-import { GetAllStructuresResponse, Id, SimpleUser } from "@refugies-info/api-types";
+import { GetAllStructuresResponse, Id, SimpleUser, StructureMemberRole } from "@refugies-info/api-types";
 
 // type StructureStatusType = "Actif" | "En attente" | "Supprimé";
 
@@ -35,7 +35,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
       );
       const nbFiches = dispositifsAssocies.length;
       const responsablesArray = structure.membres
-        ? structure.membres.filter((user) => user.roles && user.userId && user.roles.includes("administrateur"))
+        ? structure.membres.filter((user) => user.roles && user.userId && user.roles.includes(StructureMemberRole.ADMIN))
         : [];
       const responsableId = responsablesArray.length > 0 ? responsablesArray[0].userId : null;
       const createur: SimpleUser | null = structure.createur[0] || null;

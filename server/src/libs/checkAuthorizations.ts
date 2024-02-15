@@ -1,7 +1,7 @@
 import { Dispositif, Structure, User } from "../typegoose";
 import logger from "../logger";
 import { UnauthorizedError } from "../errors";
-import { DispositifStatus } from "@refugies-info/api-types";
+import { DispositifStatus, StructureMemberRole } from "@refugies-info/api-types";
 
 // Dispositif edition
 export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User, hasDraftVersion: boolean) => {
@@ -11,7 +11,7 @@ export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user:
     return true;
   }
 
-  // author can moodify
+  // author can modify
   const firstDraftVersion = dispositif.status === DispositifStatus.DRAFT && !hasDraftVersion; // the never published draft
   const authorCanModify = [ // or waiting content
     DispositifStatus.WAITING_STRUCTURE,
@@ -63,12 +63,12 @@ const isUserAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) 
   if (sponsor && !userInStructure) return false; // user not in structure
 
   // user is responsable of structure
-  if (userInStructure.roles.includes("administrateur")) {
+  if (userInStructure.roles.includes(StructureMemberRole.ADMIN)) {
     return true;
   }
 
   // user is redacteur of structure and author
-  if (userInStructure.roles.includes("contributeur") && isAuthor) {
+  if (userInStructure.roles.includes(StructureMemberRole.CONTRIB) && isAuthor) {
     return true;
   }
 

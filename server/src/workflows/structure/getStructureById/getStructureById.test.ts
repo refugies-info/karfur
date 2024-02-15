@@ -3,6 +3,8 @@
 import { getStructureFromDB } from "../../../modules/structure/structure.repository";
 import { getUserById } from "../../../modules/users/users.repository"; */
 
+import { RoleName } from "@refugies-info/api-types";
+
 const structure = { id: "id" };
 
 /* jest.mock("../../../modules/structure/structure.repository", () => ({
@@ -284,7 +286,7 @@ describe.skip("getStructureById", () => {
     const res = mockResponse();
     await getStructureById(
       {
-        user: { roles: [{ nom: "Admin" }] },
+        user: { roles: [{ nom: RoleName.ADMIN }] },
         userId: "userId",
         query: {
           id: "id",
@@ -451,7 +453,7 @@ describe.skip("getStructureById", () => {
     const res = mockResponse();
     await getStructureById(
       {
-        user: { roles: [{ nom: "Admin" }] },
+        user: { roles: [{ nom: RoleName.ADMIN }] },
         userId: "userId",
         query: {
           id: "id",

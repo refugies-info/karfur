@@ -3,7 +3,7 @@ import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import { GetAllStructuresResponse } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
-import { StyledStatusContainer } from "containers/Backend/Admin/sharedComponents/SubComponents";
+import { StyledStatusContainer } from "components/Backend/screens/Admin/sharedComponents/SubComponents";
 import styles from "./SearchStructureResult.module.scss";
 
 export interface SearchStructureResultProps {

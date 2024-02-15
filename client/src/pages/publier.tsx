@@ -4,6 +4,7 @@ import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
 import { useInView } from "react-intersection-observer";
+import { RoleName } from "@refugies-info/api-types";
 import { wrapper } from "services/configureStore";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
@@ -419,6 +420,7 @@ const RecensezVotreAction = (props: Props) => {
           subtitleLoggedIn={t("Publish.registerLoggedIn")}
           btnLoggedIn={t("Publish.navbarItem5")}
           subtitleMobile={t("Publish.registerMobile")}
+          associatedRole={RoleName.CONTRIB}
         />
       </div>
 

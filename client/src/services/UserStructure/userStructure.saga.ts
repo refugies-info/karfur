@@ -14,7 +14,7 @@ import { userStructureSelector } from "./userStructure.selectors";
 import { userSelector } from "../User/user.selectors";
 import Router from "next/router";
 import { setUserRoleInStructureActionCreator } from "../User/user.actions";
-import { GetStructureResponse, PatchStructureRequest, PatchStructureRolesRequest } from "@refugies-info/api-types";
+import { GetStructureResponse, PatchStructureRequest, PatchStructureRolesRequest, StructureMemberRole } from "@refugies-info/api-types";
 import { UserState } from "services/User/user.reducer";
 
 export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructureActionCreator>): SagaIterator {
@@ -30,7 +30,7 @@ export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructure
     const structureMembers = data ? data.membres : [];
     const userInStructure = structureMembers.filter((member) => member.userId === userId);
     const userRoles = userInStructure.length > 0 ? userInStructure[0].roles : [];
-    const isUserContribOrAdmin = userRoles.includes("administrateur") || userRoles.includes("contributeur");
+    const isUserContribOrAdmin = userRoles.includes(StructureMemberRole.ADMIN) || userRoles.includes(StructureMemberRole.CONTRIB);
 
     yield put(setUserRoleInStructureActionCreator(userRoles));
     if (shouldRedirect && !isUserContribOrAdmin) {
@@ -70,7 +70,7 @@ export function* updateUserStructure(action: ReturnType<typeof updateUserStructu
         query = {
           membreId: membres.userId.toString(),
           action: "create",
-          role: "contributeur",
+          role: StructureMemberRole.CONTRIB,
         };
       } else if (membres.type === "modify" && membres.newRole) {
         query = {

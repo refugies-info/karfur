@@ -16,10 +16,13 @@ import {
   ResetPasswordRequest,
   ResetPasswordResponse,
   SelectedLanguagesRequest,
-  UpdatePasswordRequest,
-  UpdatePasswordResponse,
   UpdateUserRequest,
   GetUserFavoritesRequest,
+  RegisterRequest,
+  CheckCodeRequest,
+  CheckUserExistsResponse,
+  SendCodeRequest,
+  UpdateUserResponse,
 } from "@refugies-info/api-types";
 
 import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
@@ -28,7 +31,6 @@ import { getActiveUsers } from "../workflows/users/getActiveUsers";
 import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
-import { changePassword } from "../workflows/users/changePassword";
 import { setNewPassword } from "../workflows/users/setNewPassword";
 import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
 import { deleteUser } from "../workflows/users/deleteUser";
@@ -39,6 +41,9 @@ import { deleteUserFavorites } from "../workflows/users/deleteUserFavorites";
 import { resetPassword } from "../workflows/users/resetPassword";
 import { checkResetToken } from "../workflows/users/checkResetToken";
 import { checkUserExists } from "../workflows/users/checkUserExists";
+import { checkCode } from "../workflows/users/checkCode";
+import { register } from "../workflows/users/register";
+import { sendCode } from "../workflows/users/sendCode";
 
 // import { UserStatus } from "../typegoose/User";
 
@@ -52,9 +57,31 @@ import { checkUserExists } from "../workflows/users/checkUserExists";
 @Route("user")
 export class UserController extends Controller {
   @Security("fromSite")
+  @Post("/register")
+  public async register(@Body() body: RegisterRequest): ResponseWithData<LoginResponse> {
+    const data = await register(body);
+    return { text: "success", data };
+  }
+
+  @Security("fromSite")
   @Post("/login")
   public async login(@Body() body: LoginRequest): ResponseWithData<LoginResponse> {
-    return login(body);
+    const data = await login(body);
+    return { text: "success", data };
+  }
+
+  @Security("fromSite")
+  @Post("/check-code")
+  public async checkCode(@Body() body: CheckCodeRequest): ResponseWithData<LoginResponse> {
+    const data = await checkCode(body);
+    return { text: "success", data };
+  }
+
+  @Security("fromSite")
+  @Post("/send-code")
+  public async sendCode(@Body() body: SendCodeRequest): Response {
+    await sendCode(body);
+    return { text: "success" };
   }
 
   @Security("jwt")
@@ -70,8 +97,9 @@ export class UserController extends Controller {
   }
 
   @Get("/exists")
-  public async getExists(@Query() username: string): Response {
-    return checkUserExists(username);
+  public async getExists(@Query() email: string): ResponseWithData<CheckUserExistsResponse> {
+    const data = await checkUserExists(email);
+    return { text: "success", data }
   }
 
   @Security({ jwt: ["admin"] })
@@ -137,30 +165,26 @@ export class UserController extends Controller {
   public async getUserInfo(@Request() request: IRequest): ResponseWithData<GetUserInfoResponse> {
     return {
       text: "success",
-      data: pick(request.user.toObject(), [
-        "structures",
-        "_id",
-        "roles",
-        "contributions",
-        "username",
-        "status",
-        "email",
-        "phone",
-        "picture",
-        "favorites",
-        "selectedLanguages",
-      ]),
+      data: {
+        ...pick(request.user.toObject(), [
+          "structures",
+          "_id",
+          "roles",
+          "contributions",
+          "username",
+          "firstName",
+          "status",
+          "email",
+          "phone",
+          "picture",
+          "favorites",
+          "selectedLanguages",
+          "partner",
+          "departments",
+        ]),
+        sso: !request.user.password
+      }
     };
-  }
-
-  @Security({ jwt: [], fromSite: [] })
-  @Patch("/{id}/password")
-  public async updatePassword(
-    @Path() id: string,
-    @Request() request: ExRequest,
-    @Body() body: UpdatePasswordRequest,
-  ): ResponseWithData<UpdatePasswordResponse> {
-    return changePassword(id, body, request.user);
   }
 
   @Security({ jwt: [], fromSite: [] })
@@ -169,8 +193,10 @@ export class UserController extends Controller {
     @Path() id: string,
     @Request() request: ExRequest,
     @Body() body: UpdateUserRequest,
-  ): Response {
-    return updateUser(id, body, request.user);
+  ): ResponseWithData<UpdateUserResponse> {
+    const token = await updateUser(id, body, request.user);
+    const data = token ? { token } : {};
+    return { text: "success", data };
   }
 
   @Delete("/{id}")

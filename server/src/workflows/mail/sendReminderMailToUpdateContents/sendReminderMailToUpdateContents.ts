@@ -10,6 +10,7 @@ import { sendUpdateReminderMailService } from "../../../modules/mail/mail.servic
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { log } from "./log";
 import { Dispositif } from "../../../typegoose";
+import { StructureMemberRole } from "@refugies-info/api-types";
 
 export const sendReminderMailToUpdateContents = async (): Response => {
   logger.error("REFACTOR TODO");
@@ -38,7 +39,7 @@ export const sendReminderMailToUpdateContents = async (): Response => {
             await Promise.all(
               dispositif.getMainSponsor().membres.map(async (membre) => {
                 try {
-                  if (membre.roles.includes("administrateur")) {
+                  if (membre.roles.includes(StructureMemberRole.ADMIN)) {
                     let user = await getUserById(membre.userId.toString(), {
                       username: 1,
                       email: 1

@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { ContentType, Metadatas } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 import PageContext from "utils/pageContext";
 import { jsUcfirst } from "lib";
 import { formatDepartment } from "lib/departments";
@@ -20,7 +20,6 @@ interface Props {
 
 const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
   const { t } = useTranslation();
-  const { Event } = useEvent();
   const { mode } = useContext(PageContext);
   const isEditMode = useMemo(() => mode === "edit", [mode]);
 
@@ -51,7 +50,7 @@ const CardLocation = ({ data, typeContenu, color, onClick }: Props) => {
         ))}
       </>
     );
-  }, [data, t, Event, isEditMode]);
+  }, [data, t, isEditMode]);
 
   return (
     <BaseCard

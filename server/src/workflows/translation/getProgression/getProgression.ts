@@ -20,34 +20,34 @@ export const computeIndicator = async (userId: string, start: Date, end: Date): 
     },
   ]).then((results) => results.shift());
 
-export const computeAllIndicators = async (userId: string): Promise<GetProgressionResponse> => {
+export const computeAllIndicators = async (userId: string, onlyTotal: boolean): Promise<GetProgressionResponse> => {
   logger.info("[computeAllIndicators] received for userId", userId);
-  var start = new Date();
-  var end3 = new Date();
-  var end6 = new Date();
-  var end12 = new Date();
-  //we define the different time periods 3/6/12 months
-  end3.setMonth(end3.getMonth() - 3);
-  end6.setMonth(end6.getMonth() - 6);
-  end12.setMonth(end12.getMonth() - 12);
-  //start.setHours(0, 0, 0, 0);
-
-  //we aggregate the number of words and time spent in these periods
   try {
     logger.info("[computeAllIndicators] computing indicators");
-    const threeMonthsIndicator = await computeIndicator(userId, start, end3);
-
-    const sixMonthsIndicator = await computeIndicator(userId, start, end6);
-    const twelveMonthsIndicator = await computeIndicator(userId, start, end12);
-
     const totalIndicator = await computeGlobalIndicator(userId);
 
-    return {
-      twelveMonthsIndicator,
-      sixMonthsIndicator,
-      threeMonthsIndicator,
-      totalIndicator,
+    let response: GetProgressionResponse = {
+      totalIndicator
     };
+
+    if (!onlyTotal) {
+      var start = new Date();
+      var end3 = new Date();
+      var end6 = new Date();
+      var end12 = new Date();
+      //we define the different time periods 3/6/12 months
+      end3.setMonth(end3.getMonth() - 3);
+      end6.setMonth(end6.getMonth() - 6);
+      end12.setMonth(end12.getMonth() - 12);
+      //start.setHours(0, 0, 0, 0);
+
+      //we aggregate the number of words and time spent in these periods
+      response.threeMonthsIndicator = await computeIndicator(userId, start, end3);
+      response.sixMonthsIndicator = await computeIndicator(userId, start, end6);
+      response.twelveMonthsIndicator = await computeIndicator(userId, start, end12);
+    }
+
+    return response;
   } catch (e) {
     logger.error("[computeAllIndicators] error", e);
     return {
@@ -59,6 +59,6 @@ export const computeAllIndicators = async (userId: string): Promise<GetProgressi
   }
 };
 
-const getProgression = (userId: string): Promise<GetProgressionResponse> => computeAllIndicators(userId);
+const getProgression = (userId: string, onlyTotal: boolean): Promise<GetProgressionResponse> => computeAllIndicators(userId, onlyTotal);
 
 export default getProgression;

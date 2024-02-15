@@ -8,7 +8,7 @@ import useUserToolItem from "./NavbarItems/UserToolItem/useUserToolItem";
 import isInBrowser from "lib/isInBrowser";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import { useDispatch } from "react-redux";
-import useBackendNavigation from "containers/Backend/Navigation/useBackendNavigation";
+import useBackendNavigation from "components/Backend/Navigation/useBackendNavigation";
 import { useLanguageItem } from "./NavbarItems";
 import styled from "styled-components";
 import Image from "next/image";

@@ -1,6 +1,7 @@
 // Password required criterias
+type Label = "Register.criteria_special" | "Register.criteria_number" | "Register.criteria_minlength";
 type Criteria = {
-  label: string;
+  label: Label;
   validate: (password: string) => boolean
 }
 const passwordStrengthCriterias: Criteria[] = [
@@ -12,7 +13,7 @@ const passwordStrengthCriterias: Criteria[] = [
 // Calculate strength
 type PasswordStrength = {
   isOk: boolean;
-  criterias: { isOk: boolean, label: string }[]
+  criterias: { isOk: boolean, label: Label }[]
 }
 export const getPasswordStrength = (password: string): PasswordStrength => {
   const criterias = passwordStrengthCriterias.map(criteria => ({

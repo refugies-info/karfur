@@ -1,22 +1,18 @@
-import React, { useCallback, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useCallback, useMemo, useState } from "react";
 import { Container } from "reactstrap";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
-import qs from "query-string";
+import { RoleName } from "@refugies-info/api-types";
+import Button from "@codegouvfr/react-dsfr/Button";
 import { getPath } from "routes";
 import { cls } from "lib/classname";
-import { userDetailsSelector } from "services/User/user.selectors";
-import FInput from "components/UI/FInput/FInput";
-import FButton from "components/UI/FButton";
-import Checkbox from "components/UI/Checkbox";
+import { setLoginRedirect, setRegisterInfos } from "lib/loginRedirect";
+import { useAuth, useWindowSize } from "hooks";
 import { ReceiveInvitationMailModal } from "components/Modals";
+import MobileRegisterImg from "assets/staticPages/publier/mobile-register.png";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./Register.module.scss";
-import useWindowSize from "hooks/useWindowSize";
-import MobileRegisterImg from "assets/staticPages/publier/mobile-register.png";
 
 interface Props {
   subtitleForm: string;
@@ -24,36 +20,33 @@ interface Props {
   btnLoggedIn: string;
   onClickLoggedIn: () => void;
   subtitleMobile: string;
+  associatedRole: RoleName.TRAD | RoleName.CONTRIB;
 }
 
 const Register = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const { isTablet } = useWindowSize();
+  const { isAuth } = useAuth();
 
   const [showInvitationEmailModal, setShowInvitationEmailModal] = useState(false);
   const toggleShowInvitationEmailModal = useCallback(() => {
     setShowInvitationEmailModal((o) => !o);
   }, []);
 
-  const [username, setUsername] = useState("");
-  const [acceptConditions, setAcceptConditions] = useState(false);
-  const isLoggedIn = !!useSelector(userDetailsSelector);
-
-  const onSubmit = () => {
-    router.push({
-      pathname: getPath("/register", router.locale),
-      search: qs.stringify({ username: username }),
-    });
+  const onRegister = () => {
+    setLoginRedirect("#register");
+    setRegisterInfos({ role: props.associatedRole });
+    router.push(getPath("/auth", "fr"));
   };
 
   const title = useMemo(
-    () => <h2 className={cls(commonStyles.title2, "text-center", "mb-0")}>{t("StaticPages.registerTitle")}</h2>,
+    () => <h2 className={cls(commonStyles.title2, "mb-0")}>{t("StaticPages.registerTitle")}</h2>,
     [t],
   );
 
   return (
-    <Container className={cls(styles.register, isLoggedIn && styles.logged_in)}>
+    <Container className={cls(styles.register)}>
       {isTablet ? (
         <>
           <div className={styles.image}>
@@ -61,9 +54,14 @@ const Register = (props: Props) => {
           </div>
           {title}
           <p className={cls(commonStyles.subtitle)}>{props.subtitleMobile}</p>
-          <FButton type="login" name="email-outline" className={styles.btn} onClick={toggleShowInvitationEmailModal}>
+          <Button
+            onClick={toggleShowInvitationEmailModal}
+            iconId="fr-icon-mail-line"
+            iconPosition="right"
+            className={cls(styles.submit_btn, "mt-14")}
+          >
             {t("StaticPages.registerMobileCTA")}
-          </FButton>
+          </Button>
 
           <ReceiveInvitationMailModal
             toggle={toggleShowInvitationEmailModal}
@@ -74,59 +72,25 @@ const Register = (props: Props) => {
       ) : (
         <>
           {title}
-          <p className={cls(commonStyles.subtitle)}>{isLoggedIn ? props.subtitleLoggedIn : props.subtitleForm}</p>
-          {isLoggedIn ? (
-            <>
-              <FButton
-                type="login"
-                name="plus-circle-outline"
-                className={styles.write_btn}
-                onClick={props.onClickLoggedIn}
-              >
-                {props.btnLoggedIn}
-              </FButton>
-            </>
+          <p className={cls(commonStyles.subtitle, "mb-14")}>{isAuth ? props.subtitleLoggedIn : props.subtitleForm}</p>
+          {isAuth ? (
+            <Button
+              onClick={props.onClickLoggedIn}
+              iconId="fr-icon-add-circle-line"
+              iconPosition="right"
+              className={styles.submit_btn}
+            >
+              {props.btnLoggedIn}
+            </Button>
           ) : (
-            <>
-              <div className={cls(styles.conditions)}>
-                <Checkbox
-                  id="register-conditions"
-                  className={styles.checkbox}
-                  checked={acceptConditions}
-                  onChange={() => setAcceptConditions((a) => !a)}
-                >
-                  {t("StaticPages.registerConditions")}
-                </Checkbox>
-              </div>
-
-              <FInput
-                prepend
-                prependName="person-outline"
-                id="username"
-                type="text"
-                placeholder={t("Login.Pseudonyme", "Pseudonyme")}
-                newSize
-                onChange={(e: any) => setUsername(e.target.value)}
-                className={styles.input}
-                autoFocus={false}
-              />
-              <FButton
-                type="login"
-                name="log-in-outline"
-                className={styles.btn}
-                disabled={!acceptConditions || !username}
-                onClick={onSubmit}
-              >
-                {t("StaticPages.registerCTA")}
-              </FButton>
-
-              <p className={styles.login}>
-                {t("Register.already_an_account")}
-                <Link legacyBehavior href={getPath("/login", router.locale)}>
-                  <a className={styles.link}>{t("Register.Se connecter")}</a>
-                </Link>
-              </p>
-            </>
+            <Button
+              onClick={onRegister}
+              iconId="fr-icon-arrow-right-line"
+              iconPosition="right"
+              className={styles.submit_btn}
+            >
+              {t("login_or_signup")}
+            </Button>
           )}
         </>
       )}

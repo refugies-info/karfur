@@ -22,6 +22,16 @@ export interface Picture {
   secure_url: string;
 }
 
+export enum RoleName {
+  ADMIN = "Admin",
+  EXPERT_TRAD = "ExpertTrad",
+  TRAD = "Trad",
+  CONTRIB = "Contrib",
+  CAREGIVER = "Aidant",
+  STRUCTURE = "hasStructure",
+  USER = "User"
+}
+
 // Theme
 export interface ThemeColors {
   color100: string;
@@ -87,18 +97,25 @@ export enum UserStatus {
 
 export interface SimpleUser {
   _id: Id;
-  username: string;
-  picture?: Picture;
   email?: string;
+  username?: string;
+  picture?: Picture;
   roles?: string[];
+}
+
+export enum StructureMemberRole {
+  ADMIN = "administrateur",
+  CONTRIB = "contributeur",
+  CREATOR = "createur", // TODO: delete (unused) and remove in DB. Next, transform role from [] to string
 }
 
 export interface StructureMember {
   userId: string;
-  username: string;
+  username?: string;
+  email?: string;
   picture: Picture;
   last_connected: Date;
-  roles: string[];
+  roles: StructureMemberRole[];
   added_at: Date;
   mainRole: "Rédacteur" | "Responsable" | "Exclu";
 }

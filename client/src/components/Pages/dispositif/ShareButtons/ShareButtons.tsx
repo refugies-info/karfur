@@ -3,16 +3,15 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { ContentType } from "@refugies-info/api-types";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
+import { Event } from "lib/tracking";
 import Button from "components/UI/Button";
 import Toast from "components/UI/Toast";
 import Tooltip from "components/UI/Tooltip";
 import styles from "./ShareButtons.module.scss";
-import { useEvent } from "hooks";
 
 const ShareButtons = () => {
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
-  const { Event } = useEvent();
 
   const shareEmail = useCallback(() => {
     if (!dispositif) return;
@@ -23,19 +22,19 @@ const ShareButtons = () => {
         : `${dispositif.titreInformatif}`;
     const mailBody = `Voici le lien vers cette fiche : ${window.location.href}`;
     window.location.href = `mailto:?subject=${mailSubject}&body=${mailBody}`;
-  }, [Event, dispositif]);
+  }, [dispositif]);
 
   const [showToastLink, setShowToastLink] = useState(false);
   const copyLink = useCallback(() => {
     Event("Share", "Copy", "from dispositif sidebar");
     navigator.clipboard.writeText(window.location.href);
     setShowToastLink(true);
-  }, [Event]);
+  }, []);
 
   const print = useCallback(() => {
     Event("Share", "Print", "from dispositif sidebar");
     window.print();
-  }, [Event]);
+  }, []);
 
   const shareFacebook = useCallback(() => {
     Event("Share", "Facebook", "from dispositif sidebar");
@@ -44,7 +43,7 @@ const ShareButtons = () => {
       "_blank",
       "location=yes,height=570,width=520,scrollbars=yes,status=yes",
     );
-  }, [Event]);
+  }, []);
 
   const shareLinkedin = useCallback(() => {
     Event("Share", "Linkedin", "from dispositif sidebar");
@@ -53,7 +52,7 @@ const ShareButtons = () => {
       "_blank",
       "location=yes,height=570,width=520,scrollbars=yes,status=yes",
     );
-  }, [Event]);
+  }, []);
 
   return (
     <div className={styles.container}>

@@ -1,25 +1,39 @@
-// @ts-nocheck
-import { addStructureForUsers, proceedWithLogin, getUsersFromStructureMembres } from "../users.service";
-import { updateUserInDB, getUserById, addStructureForUsersInDB } from "../users.repository";
+import { DocumentType } from "@typegoose/typegoose";
+import { ObjectId, Role, RoleModel, UserModel } from "../../../typegoose";
+import { addStructureForUsers, registerUser, getUsersFromStructureMembres, updateLastConnected } from "../users.service";
+import { sendWelcomeMail } from "../../mail/mail.service";
+import { addLog } from "../../logs/logs.service";
+import * as usersRep from "../users.repository";
+import { RoleName } from "@refugies-info/api-types";
+import * as roleRep from "../../role/role.repository";
+import { user } from "../../../__fixtures__";
 
-jest.mock("../users.repository", () => ({
-  getUserById: jest.fn(),
-  updateUserInDB: jest.fn(),
-  addStructureForUsersInDB: jest.fn().mockResolvedValueOnce()
+jest.mock("../../role/role.repository", () => ({
+  getRoleByName: jest.fn(),
+}));
+jest.mock("../../mail/mail.service", () => ({
+  sendWelcomeMail: jest.fn(),
+}));
+jest.mock("../../logs/logs.service", () => ({
+  addLog: jest.fn(),
 }));
 jest.mock("../../../logger");
 
-describe.skip("addStructureForUsers", () => {
+const userId = new ObjectId("6569af9815c38bd134125ff3"); // see fixture
+
+describe("addStructureForUsers", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   it("should add the structure to the user", async () => {
+    //@ts-expect-error
+    jest.spyOn(usersRep, "addStructureForUsersInDB").mockResolvedValue(() => { });
     await addStructureForUsers(["userId"], "structId");
-    expect(addStructureForUsersInDB).toHaveBeenCalledWith(["userId"], "structId");
+    expect(usersRep.addStructureForUsersInDB).toHaveBeenCalledWith(["userId"], "structId");
   });
 
   it("should throw when addStructureForUsersInDB throws", async () => {
-    addStructureForUsersInDB.mockRejectedValueOnce(new Error("error"));
+    jest.spyOn(usersRep, "addStructureForUsersInDB").mockRejectedValueOnce(new Error("error"));
     try {
       await addStructureForUsers(["userId"], "structId");
     } catch (error) {
@@ -29,21 +43,25 @@ describe.skip("addStructureForUsers", () => {
   });
 });
 
-describe.skip("proceedWithLogin", () => {
+describe("updateLastConnected", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+
+    const mockDate = new Date(1466424490000);
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(mockDate);
   });
-  const mockDate = new Date(1466424490000);
-  jest.spyOn(global, "Date").mockImplementation(() => mockDate);
 
   it("should call updateUserInDB", async () => {
-    await proceedWithLogin({ _id: "id", username: "test" });
-    expect(updateUserInDB).toHaveBeenCalledWith("id", {
-      last_connected: mockDate
+    //@ts-expect-error
+    jest.spyOn(usersRep, "updateUserInDB").mockResolvedValue(() => { });
+    await updateLastConnected(user);
+    expect(usersRep.updateUserInDB).toHaveBeenCalledWith(userId, {
+      last_connected: new Date(1466424490000)
     });
   });
 });
-
+/*
 describe.skip("getUsersFromStructureMembres", () => {
   const membres = [
     { role: [] },
@@ -82,5 +100,47 @@ describe.skip("getUsersFromStructureMembres", () => {
       { username: "pseudo3", _id: "userId3", email: "email3" },
       { username: "pseudo4", _id: "userId4", email: "email4" }
     ]);
+  });
+});*/
+
+const roleId = new ObjectId("6569af9815c38bd134125ff3");
+describe("registerUser", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    const mockDate = new Date(1466424490000);
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(mockDate);
+
+    jest.spyOn(roleRep, "getRoleByName").mockImplementation(async (roleName: RoleName): Promise<DocumentType<Role>> => {
+      const role = new Role()
+      role._id = roleId;
+      role.nom = roleName;
+      role.nomPublic = ""
+      return new RoleModel(role);
+    })
+
+    jest.spyOn(usersRep, "createUser").mockImplementation(async userData => new UserModel({ ...user, ...userData }));
+  });
+
+
+  it("should create user", async () => {
+    const data = { email: "test@example.com" };
+    await registerUser(data);
+    expect(usersRep.createUser).toHaveBeenCalledWith({
+      email: "test@example.com",
+      firstName: null,
+      password: null,
+      roles: [roleId],
+      status: "Actif",
+      last_connected: new Date(1466424490000),
+    });
+    expect(sendWelcomeMail).toHaveBeenCalledWith("test@example.com", null, userId)
+    expect(addLog).toHaveBeenCalledWith(userId, "User", "Utilisateur créé : première connexion")
+  });
+
+
+  afterEach(() => {
+    jest.useRealTimers();
   });
 });

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
 import latestActionsSaga, { fetchUser, saveUser } from "../user.saga";
 import { FETCH_USER, SAVE_USER } from "../user.actionTypes";
@@ -93,12 +92,12 @@ describe("[Saga] User", () => {
     it("should call update user and fetch user", () => {
       testSaga(saveUser, {
         type: SAVE_USER,
-        payload: { id: "id", value: { username: "new" } }
+        payload: { id: "id", value: { user: { email: "new" }, action: "modify-my-details" } }
       })
         .next()
         .put(startLoading(LoadingStatusKey.SAVE_USER))
         .next()
-        .call(API.updateUser, "id", { username: "new" })
+        .call(API.updateUser, "id", { user: { email: "new" }, action: "modify-my-details" })
         .next()
         .put(fetchUserActionCreator())
         .next()
@@ -110,12 +109,12 @@ describe("[Saga] User", () => {
     it("should call update user and set user null if update user throws", () => {
       testSaga(saveUser, {
         type: SAVE_USER,
-        payload: { id: "id", value: { username: "new" } }
+        payload: { id: "id", value: { user: { email: "new" }, action: "modify-my-details" } }
       })
         .next()
         .put(startLoading(LoadingStatusKey.SAVE_USER))
         .next()
-        .call(API.updateUser, "id", { username: "new" })
+        .call(API.updateUser, "id", { user: { email: "new" }, action: "modify-my-details" })
         .throw(new Error("test"))
         .put(setUserActionCreator(null))
         .next()

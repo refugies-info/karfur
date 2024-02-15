@@ -2,6 +2,8 @@
 /* import { getAllUsers } from "./getAllUsers";
 import { getAllUsersFromDB } from "../../../modules/users/users.repository"; */
 
+import { RoleName } from "@refugies-info/api-types";
+
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
   const res: MockResponse = {};
@@ -33,7 +35,7 @@ const user1 = {
   picture: { secure_url: "secure_url1" },
   status: "Actif",
   created_at: "created_at",
-  roles: [{ nom: "Admin" }, { nom: "ExpertTrad" }, { nom: "Trad" }, { nom: "User" }, { nom: "Contrib" }],
+  roles: [{ nom: RoleName.ADMIN }, { nom: RoleName.EXPERT_TRAD }, { nom: RoleName.TRAD }, { nom: RoleName.USER }, { nom: RoleName.CONTRIB }],
   structures: [
     {
       _id: "id_structure",
@@ -62,7 +64,7 @@ const user2 = {
   username: "username2",
   _id: "id2",
   picture: { secure_url: "secure_url2" },
-  roles: [{ nom: "User" }],
+  roles: [{ nom: RoleName.USER }],
   status: "Actif",
   created_at: "created_at",
   email: "email2",
@@ -73,7 +75,7 @@ const user2 = {
 const user3 = {
   ...user1,
   _id: "id3",
-  roles: [{ nom: "ExpertTrad" }],
+  roles: [{ nom: RoleName.EXPERT_TRAD }],
   structures: []
 };
 
@@ -92,7 +94,7 @@ const user4 = {
 const user5 = {
   ...user1,
   _id: "id5",
-  roles: [{ nom: "ExpertTrad" }],
+  roles: [{ nom: RoleName.EXPERT_TRAD }],
   structures: [
     {
       _id: "id_structure",
@@ -109,7 +111,7 @@ const simplifiedUserAdmin1 = {
   picture: { secure_url: "secure_url1" },
   status: "Actif",
   created_at: "created_at",
-  roles: ["Admin", "ExpertTrad", "Responsable"],
+  roles: [RoleName.ADMIN, RoleName.EXPERT_TRAD, "Responsable"],
   structures: [
     {
       nom: "struct1",
@@ -155,7 +157,7 @@ const simplifiedUserAdmin2 = {
 const simplifiedUserAdmin3 = {
   ...simplifiedUserAdmin1,
   _id: "id3",
-  roles: ["ExpertTrad"],
+  roles: [RoleName.EXPERT_TRAD],
   nbStructures: 0,
   structures: [],
   nbContributions: 0
@@ -164,7 +166,7 @@ const simplifiedUserAdmin3 = {
 const simplifiedUserAdmin4 = {
   ...simplifiedUserAdmin1,
   _id: "id4",
-  roles: ["Admin", "ExpertTrad"],
+  roles: [RoleName.ADMIN, RoleName.EXPERT_TRAD],
   nbStructures: 1,
   structures: [
     {
@@ -179,7 +181,7 @@ const simplifiedUserAdmin4 = {
 const simplifiedUserAdmin5 = {
   ...simplifiedUserAdmin1,
   _id: "id5",
-  roles: ["ExpertTrad", "Responsable"],
+  roles: [RoleName.EXPERT_TRAD, "Responsable"],
   nbStructures: 1,
   structures: [
     {

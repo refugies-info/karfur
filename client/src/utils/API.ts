@@ -55,6 +55,7 @@ import {
   ImprovementsRequest,
   LoginRequest,
   LoginResponse,
+  CheckCodeRequest,
   MainSponsorRequest,
   NeedRequest,
   NewPasswordRequest,
@@ -86,13 +87,16 @@ import {
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
   UpdateDispositifResponse,
-  UpdatePasswordRequest,
-  UpdatePasswordResponse,
   UpdatePositionsNeedResponse,
   UpdatePositionsRequest,
   UpdateUserRequest,
   WidgetRequest,
-  PublishTranslationRequest
+  PublishTranslationRequest,
+  CheckUserExistsResponse,
+  SendCodeRequest,
+  RegisterRequest,
+  IsInContactResponse,
+  UpdateUserResponse
 } from "@refugies-info/api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -152,12 +156,20 @@ const API = {
     const headers = getHeaders();
     return instance.post<any, APIResponse<LoginResponse>>("/user/login", body, { headers }).then(response => response.data.data)
   },
-  checkUserExists: (username: string): Promise<null> => {
-    return instance.get<any, null>(`/user/exists?username=${username}`).then(() => null);
-  },
-  updatePassword: (id: Id, body: UpdatePasswordRequest): Promise<UpdatePasswordResponse> => {
+  checkCode: (body: CheckCodeRequest): Promise<LoginResponse> => {
     const headers = getHeaders();
-    return instance.patch<any, APIResponse<UpdatePasswordResponse>>(`/user/${id}/password`, body, { headers }).then(response => response.data.data)
+    return instance.post<any, APIResponse<LoginResponse>>("/user/check-code", body, { headers }).then(response => response.data.data)
+  },
+  sendCode: (body: SendCodeRequest): Promise<null> => {
+    const headers = getHeaders();
+    return instance.post<any, null>("/user/send-code", body, { headers }).then(() => null)
+  },
+  checkUserExists: (email: string): Promise<CheckUserExistsResponse> => {
+    return instance.get<any, APIResponse<CheckUserExistsResponse>>(`/user/exists?email=${email}`).then(response => response.data.data)
+  },
+  register: (body: RegisterRequest): Promise<LoginResponse> => {
+    const headers = getHeaders();
+    return instance.post<any, APIResponse<LoginResponse>>("/user/register", body, { headers }).then(response => response.data.data)
   },
   resetPassword: (body: ResetPasswordRequest): Promise<ResetPasswordResponse> => {
     return instance.post<any, APIResponse<ResetPasswordResponse>>("/user/password/reset", body).then(response => response.data.data)
@@ -182,9 +194,9 @@ const API = {
     const headers = getHeaders(options?.token);
     return instance.get<any, APIResponse<GetUserInfoResponse>>("/user", { headers }).then(response => response.data.data)
   },
-  updateUser: (id: Id, body: UpdateUserRequest): Promise<null> => {
+  updateUser: (id: Id, body: UpdateUserRequest): Promise<UpdateUserResponse> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/user/${id}`, body, { headers }).then(() => null);
+    return instance.patch<any, APIResponse<UpdateUserResponse>>(`/user/${id}`, body, { headers }).then(response => response.data.data)
   },
   deleteUser: (query: Id): Promise<null> => {
     const headers = getHeaders();
@@ -328,6 +340,14 @@ const API = {
   sendSubscriptionReminderMail: (body: SubscriptionRequest): Promise<null> => {
     const headers = getHeaders();
     return instance.post<any, null>("/mail/sendSubscriptionReminderMail", body, { headers }).then(() => null);
+  },
+  isInContacts: (): Promise<IsInContactResponse> => {
+    const headers = getHeaders();
+    return instance.get<any, APIResponse<IsInContactResponse>>("/mail/contacts", { headers }).then(response => response.data.data);
+  },
+  deleteContact: (): Promise<null> => {
+    const headers = getHeaders();
+    return instance.delete<any, null>("/mail/contacts", { headers }).then(() => null);
   },
   contacts: (body: AddContactRequest): Promise<null> => {
     const headers = getHeaders();

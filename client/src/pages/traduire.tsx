@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { TranslationStatisticsResponse } from "@refugies-info/api-types";
+import { RoleName, TranslationStatisticsResponse } from "@refugies-info/api-types";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
 import { useInView } from "react-intersection-observer";
@@ -334,6 +334,7 @@ const RecensezVotreAction = (props: Props) => {
           subtitleLoggedIn={t("Translate.registerLoggedIn")}
           btnLoggedIn={t("Translate.registerBtnLoggedIn")}
           subtitleMobile={t("Translate.registerMobile")}
+          associatedRole={RoleName.TRAD}
         />
       </div>
     </div>

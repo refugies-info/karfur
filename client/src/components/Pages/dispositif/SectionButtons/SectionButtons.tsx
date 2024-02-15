@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { InfoSection } from "@refugies-info/api-types";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { changeRate, pauseAudio, readAudio, resumeAudio } from "lib/readAudio";
-import { useEvent, useLocale } from "hooks";
+import { useLocale } from "hooks";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import Button from "components/UI/Button";
 
@@ -25,7 +26,6 @@ interface Props {
 const SectionButtons = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const { Event } = useEvent();
 
   // tts
   const [showTtsButtons, setShowTtsButtons] = useState(false);
@@ -50,7 +50,7 @@ const SectionButtons = (props: Props) => {
       resumeAudio();
     }
     setIsPlaying(true);
-  }, [locale, props.content, showTtsButtons, Event]);
+  }, [locale, props.content, showTtsButtons]);
 
   const pause = useCallback(() => {
     pauseAudio();

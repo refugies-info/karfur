@@ -8,7 +8,7 @@ export interface GetLogResponse {
   objectId: Id;
   model_object: "User" | "Dispositif" | "Structure";
   text: string;
-  author: { username: string };
+  author: { email: string, username?: string };
   dynamicId?: {
     nom?: string
     username?: string
