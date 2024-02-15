@@ -60,7 +60,7 @@ exports[`UserProfile should render correctly 1`] = `
             <p
               className="small my-4"
             >
-              Votre photo apparaît sur les fiches auxquelles vous contribuer.
+              Votre photo apparaît sur les fiches auxquelles vous contribuez.
             </p>
             <button
               className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right position-relative"

@@ -5,19 +5,19 @@ const { accountSid, authToken } = process.env;
 
 // Init Twilio service
 const client = require("twilio")(accountSid, authToken);
-const twilioService: any = new Promise((resolve) => {
-  client.verify.services.list({ limit: 1 }).then((existingServices: any) => {
+
+const getTwilioService = () => {
+  return client.verify.services.list({ limit: 1 }).then((existingServices: any) => {
     if (existingServices.length === 0) {
-      client.verify.services.create({ friendlyName: "Réfugiés.info" }).then((res: any) => resolve(res));
-    } else {
-      resolve(existingServices[0]);
+      return client.verify.services.create({ friendlyName: "Réfugiés.info" })
     }
+    return existingServices[0];
   });
-});
+}
 
 export const requestEmailLogin = async (email: string) => {
   try {
-    const service = await twilioService;
+    const service = await getTwilioService();
     logger.info("[Login] using twilio service", { sid: service.sid });
     await client.verify.services(service.sid).verifications.create({ to: email, channel: "email" });
   } catch (e) {
@@ -32,7 +32,7 @@ export const requestEmailLogin = async (email: string) => {
 };
 
 export const verifyCode = async (email: string, code: string) => {
-  const service = await twilioService;
+  const service = await getTwilioService();
   logger.info("[Login] using twilio service", { sid: service.sid });
   const check = await client.verify.services(service.sid).verificationChecks.create({ to: email, code: code });
 
