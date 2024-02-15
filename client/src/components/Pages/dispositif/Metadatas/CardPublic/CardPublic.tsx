@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import { useTranslation } from "next-i18next";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 import { Metadatas } from "@refugies-info/api-types";
 import PageContext from "utils/pageContext";
 import BaseCard from "../BaseCard";
@@ -31,7 +31,6 @@ interface Props {
 
 const CardPublic = ({ dataPublicStatus, dataPublic, dataFrenchLevel, dataAge, color, onClick }: Props) => {
   const { t } = useTranslation();
-  const { Event } = useEvent();
   const { mode } = useContext(PageContext);
   const isEditMode = useMemo(() => mode === "edit", [mode]);
 

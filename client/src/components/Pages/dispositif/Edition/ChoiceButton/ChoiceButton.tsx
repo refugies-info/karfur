@@ -12,6 +12,7 @@ interface Props {
   selected: boolean;
   onSelect: () => void;
   image?: any;
+  illuComponent?: React.ReactNode;
   type: "radio" | "checkbox";
   size?: "lg" | "sm";
   className?: string;
@@ -33,7 +34,7 @@ const ChoiceButton = (props: Props) => {
       className={cls(
         styles.choice,
         props.size && styles[props.size],
-        !!props.image && styles.has_image,
+        (!!props.image || !!props.illuComponent) && styles.has_image,
         props.selected && styles.selected,
         props.className,
       )}
@@ -68,6 +69,7 @@ const ChoiceButton = (props: Props) => {
       </span>
 
       {props.image && <Image src={props.image} width={48} height={48} alt="" />}
+      {props.illuComponent || null}
     </button>
   );
 };

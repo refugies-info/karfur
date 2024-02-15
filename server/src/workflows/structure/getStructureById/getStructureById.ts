@@ -6,25 +6,27 @@ import { getUserById } from "../../../modules/users/users.repository";
 import { Dispositif, Structure, User } from "../../../typegoose";
 import { NotFoundError } from "../../../errors";
 import { getStructureDispositifs } from "../../../modules/dispositif/dispositif.repository";
-import { DispositifStatus, GetStructureResponse, Languages, StructureMember } from "@refugies-info/api-types";
+import { DispositifStatus, GetStructureResponse, Languages, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
 import { Membre } from "../../../typegoose/Structure";
 import { omit } from "lodash";
 
 const getMainRole = (membre: Membre) => {
-  if (membre.roles.includes("administrateur")) return "Responsable";
-  if (membre.roles.includes("contributeur")) return "Rédacteur";
+  if (membre.roles.includes(StructureMemberRole.ADMIN)) return "Responsable";
+  if (membre.roles.includes(StructureMemberRole.CONTRIB)) return "Rédacteur";
   return "Exclu";
 }
 
 const getMembers = async (structure: Structure) => {
   const structureMembres = structure.membres || [];
-  const neededFields = { username: 1, picture: 1, last_connected: 1, roles: 1, added_at: 1 };
+  const neededFields = { username: 1, email: 1, picture: 1, last_connected: 1, roles: 1, added_at: 1 };
 
   const members = await Promise.all(
     structureMembres.map((membre) =>
       getUserById(membre.userId.toString(), neededFields).then((user) => {
+        if (!user) return null;
         const res: StructureMember = {
           username: user.username,
+          email: user.email,
           picture: user.picture,
           last_connected: user.last_connected,
           roles: membre.roles,
@@ -36,7 +38,7 @@ const getMembers = async (structure: Structure) => {
       }),
     ),
   );
-  return members;
+  return members.filter(u => !!u);
 };
 
 export const getStructureById = async (

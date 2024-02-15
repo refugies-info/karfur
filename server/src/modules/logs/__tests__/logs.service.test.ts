@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { groupLogs } from "../logs.service";
 import { logs } from "../../../__fixtures__/logs";
 
@@ -16,7 +15,7 @@ describe("groupLogs", () => {
         objectId: "obj_1",
         model_object: "Dispositif",
         text: "Thèmes modifiés",
-        author: { username: "user_1" },
+        author: { username: "user_1", email: "user_1@example.com" },
         created_at: new Date("2023-04-05T11:24:00")
       },
       {
@@ -24,7 +23,7 @@ describe("groupLogs", () => {
         objectId: "obj_1",
         model_object: "Dispositif",
         text: "Contenu modifié",
-        author: { username: "user_2" },
+        author: { username: "user_2", email: "user_2@example.com" },
         created_at: new Date("2023-04-05T13:24:00")
       },
       {
@@ -32,7 +31,7 @@ describe("groupLogs", () => {
         objectId: "obj_1",
         model_object: "Dispositif",
         text: "Contenu modifié",
-        author: { username: "user_1" },
+        author: { username: "user_1", email: "user_1@example.com" },
         created_at: new Date("2023-04-05T14:24:00")
       },
       {
@@ -40,7 +39,7 @@ describe("groupLogs", () => {
         objectId: "obj_1",
         model_object: "Dispositif",
         text: "Contenu modifié",
-        author: { username: "user_1" },
+        author: { username: "user_1", email: "user_1@example.com" },
         created_at: new Date("2023-04-06T10:24:00")
       },
     ]);

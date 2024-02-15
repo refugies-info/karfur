@@ -1,4 +1,4 @@
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 import Button from "components/UI/Button";
 import styles from "./BottomButtons.module.scss";
 
@@ -9,8 +9,6 @@ interface Props {
 }
 
 const BottomButtons = ({ cancel, saveTrad, disabled }: Props) => {
-  const { Event } = useEvent();
-
   return (
     <div className={styles.buttons}>
       <Button priority="secondary" onClick={cancel} evaIcon="close-outline" iconPosition="right">

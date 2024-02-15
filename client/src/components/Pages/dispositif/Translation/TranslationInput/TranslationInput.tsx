@@ -2,10 +2,11 @@ import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useAsyncFn, useNumber } from "react-use";
 import { useWatch } from "react-hook-form";
 import { Languages } from "@refugies-info/api-types";
-import { useEvent, useUser } from "hooks";
+import { useUser } from "hooks";
 import { Suggestion } from "hooks/dispositif";
 import { checkIsRTL } from "hooks/useRTL";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import API from "utils/API";
 import PageContext from "utils/pageContext";
 import TranslationStatus from "./TranslationStatus";
@@ -52,7 +53,6 @@ const TranslationInput = (props: Props) => {
     maxLength,
   } = props;
   const { user } = useUser();
-  const { Event } = useEvent();
   const pageContext = useContext(PageContext);
   const isRTL = useMemo(() => checkIsRTL(locale), [locale]);
 
@@ -166,7 +166,7 @@ const TranslationInput = (props: Props) => {
     validate(section, { text: oldSuggestion.text, unfinished: oldSuggestion.toFinish });
     closeInput();
     Event("DISPO_TRAD", "cancel", "Translation Input");
-  }, [section, oldSuggestion, validate, closeInput, Event]);
+  }, [section, oldSuggestion, validate, closeInput]);
   const deleteTranslation = useCallback(() => {
     deleteTrad(section);
     setValidatedIndex(null);

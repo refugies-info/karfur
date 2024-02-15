@@ -9,9 +9,9 @@ const initialMockUserState = {
   traducteur: false,
   expertTrad: false,
   contributeur: false,
+  caregiver: false,
   hasStructure: false,
-  userId: "",
-  userFetched: false,
+  userId: null,
   rolesInStructure: []
 };
 const initialMockLangueState: LangueState = {

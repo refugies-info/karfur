@@ -82,7 +82,7 @@ const SearchBar = (props: Props) => {
     if (!props.array) return [];
     //@ts-ignore
     return props.array.filter((child) => {
-      return regex.test(removeAccents(child.username)) || regex.test(removeAccents(child.email));
+      return (child.username && regex.test(removeAccents(child.username))) || regex.test(removeAccents(child.email));
     });
   };
 

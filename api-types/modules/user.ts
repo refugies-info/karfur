@@ -1,14 +1,57 @@
-import { Id, Picture, SimpleDispositif, UserStatus, UserStructure } from "../generics";
+import { Id, Picture, RoleName, SimpleDispositif, UserStatus, UserStructure } from "../generics";
+
+interface AuthPassword {
+  email: string;
+  password: string;
+}
+interface AuthGoogle {
+  authCode: string;
+}
+interface AuthMicrosoft {
+  authCode: string | null; // null means we ask for the auth url
+}
 
 /**
  * @url POST /user/login
  */
 export interface LoginRequest {
-  username: string;
+  authPassword?: AuthPassword;
+  authGoogle?: AuthGoogle;
+  authMicrosoft?: AuthMicrosoft;
+  role?: RoleName.CONTRIB | RoleName.TRAD; // in case we need to create a new account with sso
+}
+
+/**
+ * @url GET /user/exists
+ */
+export interface CheckUserExistsResponse {
+  verificationCode: boolean;
+}
+
+/**
+ * @url POST /user/check-code
+ */
+export interface CheckCodeRequest {
+  code: string;
+  email: string;
+}
+
+/**
+ * @url POST /user/send-code
+ */
+export interface SendCodeRequest {
+  email: string;
+}
+
+/**
+ * @url POST /user/register
+ */
+export interface RegisterRequest {
+  email: string;
   password: string;
-  code?: string;
-  email?: string;
-  phone?: string;
+  subscribeNewsletter?: boolean;
+  firstName?: string;
+  role?: RoleName.CONTRIB | RoleName.TRAD;
 }
 
 /**
@@ -41,18 +84,10 @@ export interface DeleteUserFavoriteRequest {
 }
 
 /**
- * @url PATCH /user/{id}/password
- */
-export interface UpdatePasswordRequest {
-  currentPassword: string;
-  newPassword: string;
-}
-
-/**
  * @url POST /user/password/reset
  */
 export interface ResetPasswordRequest {
-  username: string;
+  email: string;
 }
 
 /**
@@ -62,8 +97,6 @@ export interface NewPasswordRequest {
   newPassword: string;
   reset_password_token: string;
   code?: string;
-  email?: string;
-  phone?: string;
 }
 
 /**
@@ -71,17 +104,32 @@ export interface NewPasswordRequest {
  */
 export interface UpdateUserRequest {
   user: {
-    roles?: string[];
+    roles?: RoleName[];
     email?: string;
     phone?: string;
     code?: string;
     username?: string;
+    firstName?: string;
     picture?: Picture;
     adminComments?: string;
     selectedLanguages?: string[];
+    partner?: string;
+    departments?: string[];
+    password?: {
+      oldPassword: string;
+      newPassword: string;
+    }
   };
   action: "modify-with-roles" | "modify-my-details";
 }
+
+/**
+ * @url PATCH /user/{id}
+ */
+export interface UpdateUserResponse {
+  token?: string; // if user reset password
+}
+
 
 /**
  * @url GET /user
@@ -91,12 +139,16 @@ export interface GetUserInfoResponse {
   contributions: string[];
   email: string;
   phone: string;
-  roles: { _id: string; nom: string; nomPublic: string }[];
+  roles: { _id: string; nom: RoleName; nomPublic: string }[];
   selectedLanguages: string[];
   status: UserStatus;
   structures: string[];
-  username: string;
+  sso: boolean;
+  username?: string;
+  firstName?: string;
   picture?: Picture;
+  partner?: string;
+  departments?: string[];
   favorites?: {
     dispositifId: Id;
     created_at: Date;
@@ -108,6 +160,7 @@ export interface GetUserInfoResponse {
  */
 export interface LoginResponse {
   token: string;
+  userCreated?: boolean;
 }
 
 /**
@@ -115,7 +168,7 @@ export interface LoginResponse {
  */
 export interface GetActiveUsersResponse {
   _id: Id;
-  username: string;
+  username?: string;
   picture: Picture;
   status: UserStatus;
   email: string;
@@ -126,12 +179,12 @@ export interface GetActiveUsersResponse {
  */
 export interface GetAllUsersResponse {
   _id: Id;
-  username: string;
+  username?: string;
   picture?: Picture;
   status?: UserStatus;
   created_at?: Date;
   roles?: string[];
-  email?: string;
+  email: string;
   phone?: string;
   selectedLanguages?: { langueCode: string; langueFr: string }[];
   structures?: UserStructure[];
@@ -167,10 +220,3 @@ export interface NewPasswordResponse {
  * @url GET /user/favorites
  */
 export type GetUserFavoritesResponse = SimpleDispositif;
-
-/**
- * @url PATCH /user/{id}/password
- */
-export interface UpdatePasswordResponse {
-  token: string;
-}

@@ -10,7 +10,7 @@ import { activatedLanguages } from "data/activatedLanguages";
 import styles from "./LanguageModal.module.scss";
 import { getPath } from "routes";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 
 interface Props {
   show: boolean;
@@ -24,7 +24,6 @@ interface Props {
 const LanguageModal = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
-  const { Event } = useEvent();
 
   const getAvancementTrad = (i18nCode: string) => {
     if (i18nCode === "fr") return 1;
@@ -37,7 +36,7 @@ const LanguageModal = (props: Props) => {
       Event("CHANGE_LANGUAGE", ln, "Global Modal");
       props.changeLanguage(ln);
     },
-    [props, Event],
+    [props],
   );
 
   const pressSpace = (e: any, ln: string) => {

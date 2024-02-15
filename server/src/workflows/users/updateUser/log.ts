@@ -1,9 +1,15 @@
 import { Types } from "mongoose";
 import { User } from "../../../typegoose";
 import { addLog, optionsType } from "../../../modules/logs/logs.service";
-import { Id, UpdateUserRequest } from "@refugies-info/api-types";
+import { Id } from "@refugies-info/api-types";
 
-export const log = async (id: Id, user: UpdateUserRequest["user"], userFromDb: User, authorId: Types.ObjectId) => {
+type LogUser = {
+  phone?: string;
+  email?: string;
+  username: string;
+}
+
+export const log = async (id: Id, user: LogUser, userFromDb: User, authorId: Types.ObjectId) => {
   const logOptions: optionsType = {
     author: authorId,
     link: {

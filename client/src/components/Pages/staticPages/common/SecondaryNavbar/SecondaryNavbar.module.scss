@@ -65,7 +65,7 @@
 
   &.active,
   &.blue {
-    color: white;
+    color: white !important;
     border-color: transparent;
     font-weight: bold;
     align-items: center;

@@ -1,10 +1,11 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { useScrollDirection } from "hooks/useScrollDirection";
 import useWindowSize from "hooks/useWindowSize";
 import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
@@ -12,7 +13,6 @@ import SearchHeaderMobile from "./SearchHeader.mobile";
 import SearchHeaderDesktop from "./SearchHeader.desktop";
 import ResultsFilter from "../ResultsFilter";
 import styles from "./SearchHeader.module.scss";
-import { useEvent } from "hooks";
 
 const SCROLL_LIMIT = parseInt(styles.scrollLimit.replace("px", ""));
 
@@ -26,7 +26,6 @@ const SearchHeader = (props: Props) => {
   const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
   const headerRef = useRef<HTMLDivElement | null>(null);
-  const { Event } = useEvent();
 
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
@@ -41,7 +40,7 @@ const SearchHeader = (props: Props) => {
       dispatch(addToQueryActionCreator({ search: e.target.value }));
       Event("USE_SEARCH", "use keyword filter", "use searchbar");
     },
-    [Event, dispatch],
+    [dispatch],
   );
   const resetSearch = useCallback(() => addToQuery({ search: "" }), [addToQuery]);
 
@@ -49,13 +48,10 @@ const SearchHeader = (props: Props) => {
   const [themeSearch, setThemeSearch] = useState("");
   const resetThemeSearch = useCallback(() => setThemeSearch(""), []);
 
-  const onChangeThemeInput = useCallback(
-    (e: any) => {
-      setThemeSearch(e.target.value);
-      Event("USE_SEARCH", "use theme filter", "use searchbar");
-    },
-    [Event],
-  );
+  const onChangeThemeInput = useCallback((e: any) => {
+    setThemeSearch(e.target.value);
+    Event("USE_SEARCH", "use theme filter", "use searchbar");
+  }, []);
   const resetTheme = useCallback(() => {
     setThemeSearch("");
     addToQuery({ needs: [], themes: [] });

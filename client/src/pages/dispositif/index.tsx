@@ -42,7 +42,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   if (!req.cookies.authorization) {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/auth",
         permanent: false,
       },
     };

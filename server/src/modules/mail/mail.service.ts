@@ -3,7 +3,7 @@ import logger from "../../logger";
 import { addMailEvent } from "./mail.repository";
 import { DispositifId, UserId } from "../../typegoose";
 
-export const sendWelcomeMail = async (email: string, username: string, userId: UserId) => {
+export const sendWelcomeMail = async (email: string, firstName: string, userId: UserId) => {
   try {
     logger.info("[sendWelcomeMail] received", { email });
     const dynamicData = {
@@ -15,12 +15,12 @@ export const sendWelcomeMail = async (email: string, username: string, userId: U
       // cc: "contact@refugies.info",
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
-        pseudo: username
+        firstName, email
       }
     };
     const templateName = "newUserWelcome";
     sendMail(templateName, dynamicData, true);
-    await addMailEvent({ templateName, username, email, userId });
+    await addMailEvent({ templateName, email, userId });
     return;
   } catch (error) {
     logger.error("[sendWelcomeMail] error", { email, error: error.message });
@@ -38,7 +38,6 @@ export const sendResetPasswordMail = async (username: string, lien_reinitialisat
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
-        Pseudonyme: username,
         lien_reinitialisation: lien_reinitialisation
       }
     };
@@ -48,32 +47,6 @@ export const sendResetPasswordMail = async (username: string, lien_reinitialisat
     return;
   } catch (error) {
     logger.error("[sendResetPasswordMail] error", {
-      email,
-      error: error.message
-    });
-  }
-};
-
-export const sendResetPhoneNumberMail = async (username: string, email: string) => {
-  try {
-    logger.info("[sendResetPhoneNumberMail] received", { email });
-    const dynamicData = {
-      to: email,
-      from: {
-        email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info"
-      },
-      reply_to: "contact@email.refugies.info",
-      dynamicTemplateData: {
-        pseudonyme: username
-      }
-    };
-    const templateName = "changePhoneNumber";
-    sendMail(templateName, dynamicData, true);
-    await addMailEvent({ templateName, username, email });
-    return;
-  } catch (error) {
-    logger.error("[sendResetPhoneNumberMail] error", {
       email,
       error: error.message
     });
@@ -503,7 +476,7 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
 interface NewResponsableMail {
   userId: UserId;
   email: string;
-  pseudonyme: string;
+  firstName: string;
   nomstructure: string;
 }
 
@@ -519,7 +492,7 @@ export const sendNewReponsableMailService = async (data: NewResponsableMail) => 
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
-        pseudonyme: data.pseudonyme,
+        firstName: data.firstName,
         nomstructure: data.nomstructure
       }
     };
@@ -527,7 +500,6 @@ export const sendNewReponsableMailService = async (data: NewResponsableMail) => 
     sendMail(templateName, dynamicData, true);
     await addMailEvent({
       templateName,
-      username: data.pseudonyme,
       email: data.email,
       userId: data.userId
     });

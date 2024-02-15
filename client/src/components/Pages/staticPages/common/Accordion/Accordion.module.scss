@@ -125,9 +125,18 @@
   }
 }
 
-.youtube {
+.youtube,
+.no_cookie {
   border: 8px solid $white;
   border-radius: u(2);
   box-shadow: 0 4px 18px 0 #0000001a;
   max-width: 100%;
+}
+
+.no_cookie {
+  display: flex;
+  padding: u(2);
+  align-items: center;
+  text-align: center;
+  color: var(--text-disabled-grey);
 }

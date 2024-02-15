@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { Languages } from "@refugies-info/api-types";
-import { useEvent } from "hooks";
+import { Event } from "lib/tracking";
 import PageContext from "utils/pageContext";
 import BaseModal from "components/UI/BaseModal";
 import Button from "components/UI/Button";
@@ -28,7 +28,6 @@ interface Props {
 
 const PublishModal = (props: Props) => {
   const { toggle, onQuit, isComplete } = props;
-  const { Event } = useEvent();
   const pageContext = useContext(PageContext);
   const [screenStep, setScreenStep] = useState(0);
   const title = useMemo(() => {
@@ -61,7 +60,7 @@ const PublishModal = (props: Props) => {
         "Missing Steps",
       );
     }
-  }, [props.show, Event, props.missingSteps]);
+  }, [props.show, props.missingSteps]);
   return (
     <BaseModal show={props.show} toggle={closeModal} title={title} small>
       {isComplete ? (
