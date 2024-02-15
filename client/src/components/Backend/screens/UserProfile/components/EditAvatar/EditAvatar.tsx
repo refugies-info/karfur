@@ -44,7 +44,7 @@ const EditAvatar = (props: Props) => {
         {isPictureUploading && <Spinner className={styles.spinner} />}
         <Image src={user?.picture?.secure_url || marioProfile} width="160" height="160" alt="user picture" />
       </div>
-      <p className={cls(styles.small, "my-4")}>Votre photo apparaît sur les fiches auxquelles vous contribuer.</p>
+      <p className={cls(styles.small, "my-4")}>Votre photo apparaît sur les fiches auxquelles vous contribuez.</p>
       <button className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right position-relative">
         Modifier ma photo
         <input type="file" id="avatar" onChange={handleFileInputChange} />
