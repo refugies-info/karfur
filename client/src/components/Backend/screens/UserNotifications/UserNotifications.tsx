@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import {
   fetchUserStructureActionCreator,
-  setUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
 import { userStructureIdSelector } from "services/User/user.selectors";

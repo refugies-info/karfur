@@ -6,7 +6,6 @@ import "jest-styled-components";
 import UserNotifications from "../UserNotifications";
 import {
   fetchUserStructureActionCreator,
-  setUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
 import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
@@ -18,7 +17,6 @@ jest.mock("services/UserStructure/userStructure.actions", () => {
   const actions = jest.requireActual("services/UserStructure/userStructure.actions");
   return {
     fetchUserStructureActionCreator: jest.fn(actions.fetchUserStructureActionCreator),
-    setUserStructureActionCreator: jest.fn(actions.setUserStructureActionCreator),
     updateUserStructureActionCreator: jest.fn(actions.updateUserStructureActionCreator),
   };
 });

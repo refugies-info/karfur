@@ -3,20 +3,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { useRouter } from "next/router";
 import { useLanguages, useUser, useRouterLocale } from "hooks";
-import { GetProgressionResponse, Id, Languages } from "@refugies-info/api-types";
+import {
+  GetDispositifsWithTranslationAvancementResponse,
+  GetProgressionResponse,
+  Id,
+  Languages,
+} from "@refugies-info/api-types";
 import API from "utils/API";
 import { activatedLanguages } from "data/activatedLanguages";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { dispositifsWithTranslationsStatusSelector } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.selectors";
-import { needsSelector } from "services/Needs/needs.selectors";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import { LoadingDispositifsWithTranslationsStatus } from "./components/LoadingDispositifsWithTranslationsStatus";
 import { StartTranslating } from "./components/StartTranslating";
 import { TranslationsAvancement, OneNeedTranslationModal, TranslationLanguagesChoiceModal } from "./components";
 import { FrameModal } from "components/Modals";
-import { CompleteProfilModal } from "components/Modals/CompleteProfilModal/CompleteProfilModal";
+import { PseudoModal, pseudoModal } from "components/Modals/PseudoModal";
 import styles from "./UserTranslation.module.scss";
 
 const availableLanguages = activatedLanguages.map((l) => l.i18nCode).filter((ln) => ln !== "fr");
@@ -36,21 +40,18 @@ const UserTranslation = (props: Props) => {
   const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS));
 
   const [showTraducteurModal, setShowTraducteurModal] = useState(false);
-  const [showCompleteProfilModal, setShowCompleteProfilModal] = useState(false);
   const [selectedNeedId, setSelectedNeedId] = useState<Id | null>(null);
 
-  const toggleTraducteurModal = () => setShowTraducteurModal(!showTraducteurModal);
-  const toggleCompleteProfilModal = () => setShowCompleteProfilModal(!showCompleteProfilModal);
+  const toggleTraducteurModal = () => {
+    if (!user) return;
+    if (!user.user?.username) {
+      pseudoModal.open();
+    } else {
+      setShowTraducteurModal(!showTraducteurModal);
+    }
+  };
   const [showTutoModal, setShowTutoModal] = useState(false);
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
-
-  /**
-   * Ce truc semble fait de manière vraiment étrange
-   * FIXME
-   * @deprecated
-   */
-  const [elementToTranslate, setElementToTranslate] = useState<any>(null);
-
   const [indicators, setIndicators] = useState<null | GetProgressionResponse>(null);
 
   useEffect(() => {
@@ -107,16 +108,6 @@ const UserTranslation = (props: Props) => {
 
   const langue = getLanguageByCode(langueInUrl);
 
-  const router = useRouter();
-  const completeProfileModalCallback = () => {
-    if (!langue || !elementToTranslate) return;
-    if (!user.expertTrad && elementToTranslate.tradStatus === "VALIDATED") return;
-    return router.push({
-      pathname: `/${elementToTranslate.typeContenu || "dispositif"}/${elementToTranslate._id}/translate`,
-      search: `?language=${langue._id.toString()}`,
-    });
-  };
-
   if (isLoading)
     return (
       <div className={styles.main}>
@@ -126,60 +117,44 @@ const UserTranslation = (props: Props) => {
       </div>
     );
 
-  if (dispositifsWithTranslations.length === 0 || userTradLanguages.length === 0) {
-    return (
-      <div className={styles.main}>
-        <div className={styles.container}>
-          <StartTranslating toggleTraducteurModal={toggleTraducteurModal} toggleTutoModal={toggleTutoModal} />
-          {showTraducteurModal && (
-            <TranslationLanguagesChoiceModal show={showTraducteurModal} toggle={toggleTraducteurModal} />
-          )}
-          {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Traduction"} />}
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className={styles.main}>
       <div className={styles.container}>
-        <TranslationsAvancement
-          history={history}
-          actualLanguage={langue}
-          isExpert={user.expertTrad}
-          isAdmin={user.admin}
-          data={dispositifsWithTranslations}
-          toggleTraducteurModal={toggleTraducteurModal}
-          toggleTutoModal={toggleTutoModal}
-          nbWords={nbWords}
-          timeSpent={timeSpent}
-          toggleCompleteProfilModal={toggleCompleteProfilModal}
-          setElementToTranslate={setElementToTranslate}
-          user={user.user}
-          setSelectedNeedId={setSelectedNeedId}
-        />
+        {dispositifsWithTranslations.length === 0 || userTradLanguages.length === 0 ? (
+          <StartTranslating toggleTraducteurModal={toggleTraducteurModal} toggleTutoModal={toggleTutoModal} />
+        ) : (
+          <>
+            <TranslationsAvancement
+              history={history}
+              actualLanguage={langue}
+              isExpert={user.expertTrad}
+              isAdmin={user.admin}
+              data={dispositifsWithTranslations}
+              toggleTraducteurModal={toggleTraducteurModal}
+              toggleTutoModal={toggleTutoModal}
+              nbWords={nbWords}
+              timeSpent={timeSpent}
+              user={user.user}
+              setSelectedNeedId={setSelectedNeedId}
+            />
+
+            {selectedNeedId && (
+              <OneNeedTranslationModal
+                show={!!selectedNeedId}
+                toggle={() => setSelectedNeedId(null)}
+                selectedNeedId={selectedNeedId}
+                langueI18nCode={langueInUrl}
+                countryCode={langue?.langueCode}
+              />
+            )}
+          </>
+        )}
 
         {showTraducteurModal && (
           <TranslationLanguagesChoiceModal show={showTraducteurModal} toggle={toggleTraducteurModal} />
         )}
         {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Traduction"} />}
-        {showCompleteProfilModal && (
-          <CompleteProfilModal
-            show={showCompleteProfilModal}
-            toggle={toggleCompleteProfilModal}
-            user={user.user}
-            onComplete={completeProfileModalCallback}
-          />
-        )}
-        {selectedNeedId && (
-          <OneNeedTranslationModal
-            show={!!selectedNeedId}
-            toggle={() => setSelectedNeedId(null)}
-            selectedNeedId={selectedNeedId}
-            langueI18nCode={langueInUrl}
-            countryCode={langue?.langueCode}
-          />
-        )}
+        <PseudoModal successCallback={() => setShowTraducteurModal(true)} />
       </div>
     </div>
   );
