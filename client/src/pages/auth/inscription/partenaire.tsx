@@ -41,7 +41,7 @@ const AuthLogin = () => {
           user: { partner },
           action: "modify-my-details",
         });
-        next(partner === "" ? null : [RoleName.CAREGIVER]);
+        next(partner === "" ? [RoleName.USER] : [RoleName.CAREGIVER]);
       } catch (e: any) {
         logger.error(e);
         setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
