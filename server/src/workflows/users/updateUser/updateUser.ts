@@ -74,10 +74,15 @@ const updateAsMyself = async (id: string, request: UpdateUserRequest["user"], us
     newUser.roles = newRoles;
     newUser.selectedLanguages = request.selectedLanguages.map(ln => new ObjectId(ln));
   }
-  if (request.partner) {
+  if (request.partner !== undefined) {
     const caregiverRole = roles.find(r => r.nom === RoleName.CAREGIVER);
-    const newRoles = uniqIds([...userFromDB.roles, caregiverRole._id]);
-    newUser.roles = newRoles;
+    if (request.partner === "") { // remove partner -> remove TS role
+      const newRoles = userFromDB.roles.filter(r => r._id.toString() !== caregiverRole._id.toString());
+      newUser.roles = newRoles;
+    } else { // add partner -> add ts role
+      const newRoles = uniqIds([...userFromDB.roles, caregiverRole._id]);
+      newUser.roles = newRoles;
+    }
   }
   if (request.username !== undefined) {
     if (request.username !== "") {

@@ -34,10 +34,8 @@ interface Props {
   isAdmin: boolean;
   toggleTraducteurModal: () => void;
   toggleTutoModal: () => void;
-  toggleCompleteProfilModal: () => void;
   nbWords: number;
   timeSpent: number;
-  setElementToTranslate: any;
   user: GetUserInfoResponse | null;
   setSelectedNeedId: (id: Id) => void;
 }
@@ -253,8 +251,6 @@ const TranslationsAvancement = (props: Props) => {
           history={props.history}
           isAdmin={props.isAdmin}
           languei18nCode={props.actualLanguage.i18nCode}
-          toggleCompleteProfilModal={props.toggleCompleteProfilModal}
-          setElementToTranslate={props.setElementToTranslate}
           user={props.user}
         />
       )}

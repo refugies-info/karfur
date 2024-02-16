@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { ModalBody, ModalFooter } from "reactstrap";
+import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
 import { getPath } from "routes";
 import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -10,8 +11,8 @@ import { assetsOnServer } from "assets/assetsOnServer";
 import { userSelector } from "services/User/user.selectors";
 import WriteContentCard from "./WriteContentCard";
 import Modal from "../Modal";
-import { CompleteProfilModal } from "../CompleteProfilModal/CompleteProfilModal";
 import styles from "./WriteContentModal.module.scss";
+import { pseudoModal, PseudoModal } from "../PseudoModal";
 
 interface Props {
   show: boolean;
@@ -22,28 +23,28 @@ const WriteContentModal = ({ show, close }: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const user = useSelector(userSelector);
+  const isPseudoModalOpen = useIsModalOpen(pseudoModal);
 
   const [selected, setSelected] = useState<"dispositif" | "demarche" | null>(null);
-  const [showCompleteProfilModal, setShowCompleteProfilModal] = useState(false);
   const [showWriteModal, setShowWriteModal] = useState(false);
 
   useEffect(() => {
     if (show) {
-      const hasEmail = user.user && user.user.email;
-      if (hasEmail) {
+      const hasUsername = user.user && user.user.username;
+      if (hasUsername) {
         setShowWriteModal(true);
       } else {
-        setShowCompleteProfilModal(true);
+        pseudoModal.open();
       }
     }
   }, [show, user.user]);
 
   useEffect(() => {
-    if (show && !showWriteModal && !showCompleteProfilModal) {
+    if (show && !showWriteModal && !isPseudoModalOpen) {
       close();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showWriteModal, showCompleteProfilModal, close]);
+  }, [showWriteModal, isPseudoModalOpen, close]);
 
   const navigate = () => {
     const path = selected === "dispositif" ? "/dispositif" : "/demarche";
@@ -52,15 +53,7 @@ const WriteContentModal = ({ show, close }: Props) => {
 
   return (
     <>
-      <CompleteProfilModal
-        show={showCompleteProfilModal}
-        toggle={() => setShowCompleteProfilModal((o) => !o)}
-        user={user.user}
-        onComplete={() => {
-          setShowWriteModal(true);
-          setShowCompleteProfilModal(false);
-        }}
-      />
+      <PseudoModal successCallback={() => setShowWriteModal(true)} />
 
       <Modal show={showWriteModal} toggle={() => setShowWriteModal((o) => !o)} className={styles.modal}>
         <ModalBody>
