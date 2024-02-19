@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUserFavoritesActionCreator,
@@ -44,9 +44,12 @@ const UserFavorites = (props: Props) => {
 
   const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_FAVORITES));
   const isLoadingUpdate = useSelector(isLoadingSelector(LoadingStatusKey.UPDATE_USER_FAVORITES));
-  const isLoading = isLoadingFetch || isLoadingUpdate;
-
   const favorites = useSelector(userFavoritesSelector);
+  const isLoading = useMemo(
+    () => (isLoadingFetch || isLoadingUpdate) && favorites.length === 0,
+    [isLoadingFetch, isLoadingUpdate, favorites.length],
+  );
+
   const [showDeleteToast, setShowDeleteToast] = useState(false);
 
   const removeAllFavorites = () => {
