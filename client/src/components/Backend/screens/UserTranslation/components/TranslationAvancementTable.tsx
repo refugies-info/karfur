@@ -123,7 +123,7 @@ export const TranslationAvancementTable = (props: Props) => {
     if (!props.isExpert && element.tradStatus === "VALIDATED") return;
     router.push({
       pathname: `/${element.type || "dispositif"}/${element._id}/translate`,
-      search: `?language=${langue._id.toString()}`,
+      search: `?language=${langue.i18nCode}`,
     });
   };
 

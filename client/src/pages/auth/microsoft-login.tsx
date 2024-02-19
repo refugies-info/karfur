@@ -9,6 +9,7 @@ import { getRegisterInfos } from "lib/loginRedirect";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
+import { Event } from "lib/tracking";
 
 const AuthMicrosoftLogin = () => {
   const router = useRouter();
@@ -37,6 +38,7 @@ const AuthMicrosoftLogin = () => {
         role: registerInfos?.role, // set role in case new account
       })
         .then((res) => {
+          Event("AUTH", "microsoft login", "success");
           if (res.userCreated) start(res.token, registerInfos?.role);
           else logUser(res.token);
         })
