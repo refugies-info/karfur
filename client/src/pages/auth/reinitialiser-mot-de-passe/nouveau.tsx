@@ -12,6 +12,7 @@ import API from "utils/API";
 import { cls } from "lib/classname";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { getPasswordStrength } from "lib/validatePassword";
+import { Event } from "lib/tracking";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import styles from "scss/components/auth.module.scss";
@@ -44,6 +45,7 @@ const AuthNewPassword = (props: Props) => {
           code,
         });
         if (!res.token) throw new Error();
+        Event("AUTH", "reset password", "new password ok");
         logUser(res.token);
       } catch (e: any) {
         const errorCode = e.response?.data?.code;

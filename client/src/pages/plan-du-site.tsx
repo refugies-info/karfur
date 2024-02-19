@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "scss/pages/legal-pages.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { Event } from "lib/tracking";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -68,12 +69,12 @@ const PlanDuSite = () => {
           <Link href="/#application">{t("MobileAppModal.download")}</Link>
         </li>
         <li>
-          <Link href={getPath("/auth", "fr")} prefetch={false}>
+          <Link href={getPath("/auth", "fr")} prefetch={false} onClick={() => Event("AUTH", "start", "footer")}>
             {t("Toolbar.Inscription", "Inscription")}
           </Link>
         </li>
         <li>
-          <Link href={getPath("/auth", "fr")} prefetch={false}>
+          <Link href={getPath("/auth", "fr")} prefetch={false} onClick={() => Event("AUTH", "start", "footer")}>
             {t("Toolbar.Connexion", "Connexion")}
           </Link>
         </li>
