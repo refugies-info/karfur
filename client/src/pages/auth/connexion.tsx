@@ -9,6 +9,7 @@ import { useLogin } from "hooks";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import FRLink from "components/UI/FRLink";
@@ -30,6 +31,7 @@ const AuthLogin = () => {
           authPassword: { email, password },
         });
         if (!res.token) throw new Error();
+        Event("AUTH", "password login", "success");
         logUser(res.token);
       } catch (e: any) {
         const error = handleError(e.response?.data?.code, e.response?.data?.data?.email || "");

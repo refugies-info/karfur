@@ -13,6 +13,7 @@ import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import { isValidEmail } from "lib/validateFields";
 import { getRegisterInfos } from "lib/loginRedirect";
+import { Event } from "lib/tracking";
 import SEO from "components/Seo";
 import ErrorMessage from "components/UI/ErrorMessage";
 import Layout from "components/Pages/auth/Layout";
@@ -38,6 +39,7 @@ const AuthEmail = () => {
         return;
       }
       try {
+        Event("AUTH", "password login", "start");
         const res = await API.checkUserExists(email);
         router.push(getPath("/auth/connexion", "fr", `?email=${email}${res.verificationCode ? "&2fa=true" : ""}`));
       } catch (e) {
@@ -52,6 +54,7 @@ const AuthEmail = () => {
       logger.error("[loginGoogle] Wrong Google provider configuration");
       return;
     }
+    Event("AUTH", "google login", "start");
     googleProvider.useGoogleLogin({
       flow: "auth-code",
       onSuccess: ({ code }) => {
@@ -63,6 +66,7 @@ const AuthEmail = () => {
           role: registerInfos?.role, // set role in case new account
         })
           .then((res) => {
+            Event("AUTH", "google login", "success");
             if (res.userCreated) start(res.token, registerInfos?.role);
             else logUser(res.token);
           })
@@ -80,6 +84,7 @@ const AuthEmail = () => {
 
   const loginMicrosoft = useCallback(async () => {
     try {
+      Event("AUTH", "microsoft login", "start");
       await API.login({
         authMicrosoft: {
           authCode: null, // send a null code to get the auth url
