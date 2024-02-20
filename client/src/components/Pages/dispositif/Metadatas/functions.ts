@@ -7,7 +7,7 @@ import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import imgCb from "assets/dispositif/form-icons/conditions-cb.svg";
 import imgDriver from "assets/dispositif/form-icons/conditions-driver.svg";
 import imgOfpra from "assets/dispositif/form-icons/conditions-ofpra.svg";
-import imgPoleEmploi from "assets/dispositif/form-icons/conditions-pole-emploi.svg";
+import imgFranceTravail from "assets/dispositif/form-icons/conditions-france-travail.svg";
 import imgTse from "assets/dispositif/form-icons/conditions-tse.svg";
 import imgOfii from "assets/dispositif/form-icons/conditions-ofii.svg";
 import imgDiploma from "assets/dispositif/form-icons/conditions-school.svg";
@@ -65,7 +65,7 @@ export const getConditionImage = (condition: conditionType) => {
     case "bank account":
       return imgCb;
     case "pole emploi":
-      return imgPoleEmploi;
+      return imgFranceTravail;
     case "driver license":
       return imgDriver;
     case "school":
