@@ -343,7 +343,7 @@ export const deleteDispositifInDb = async (id: string, user: User) => {
     )
   ]);
 
-  await updateDispositifInDB(id, { status: DispositifStatus.DELETED, deletionDate: new Date() });
+  await updateDispositifInDB(id, { status: DispositifStatus.DELETED, deletionDate: new Date(), hasDraftVersion: false });
 };
 
 export const buildNewDispositif = async (
