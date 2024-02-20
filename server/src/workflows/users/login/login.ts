@@ -38,11 +38,14 @@ const authWithPassword = async (user: DocumentType<User>, password: string): Pro
   return true;
 }
 
-const authWithGoogle = async (loginRequest: LoginRequest): Promise<string | null> => {
+const authWithGoogle = async (loginRequest: LoginRequest): Promise<{ email: string, name: string } | null> => {
   logger.info("[authWithGoogle] start");
   const { tokens } = await oauth2Client.getToken(loginRequest.authGoogle.authCode)
   const res = await oauth2Client.verifyIdToken({ idToken: tokens.id_token });
-  return res.getPayload().email || null;
+
+  const email = res.getPayload().email;
+  const name = res.getPayload().given_name || "";
+  return email ? { email, name } : null;
 }
 
 const authWithMicrosoft = async (loginRequest: LoginRequest): Promise<string | null> => {
@@ -69,14 +72,19 @@ export const login = async (body: LoginRequest): Promise<LoginResponse> => {
 
   try {
     let email: string | null = body.authPassword?.email || null;
-    if (body.authGoogle) email = await authWithGoogle(body);
+    let name: string | null = null;
+    if (body.authGoogle) {
+      const data = await authWithGoogle(body);
+      email = data.email;
+      name = data.name;
+    }
     if (body.authMicrosoft) email = await authWithMicrosoft(body);
 
     const user = await getUserByEmailFromDB(email).populate("roles");
     if (!user) {
       // if sso and no user, create account
       if (body.authGoogle || body.authMicrosoft) {
-        const user = await registerUser({ email, role: body.role });
+        const user = await registerUser({ email, role: body.role, firstName: name });
         return { token: user.getToken(), userCreated: true };
       }
       throw new LoginError(LoginErrorType.NO_ACCOUNT, { email });
