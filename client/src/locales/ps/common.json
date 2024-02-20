@@ -274,6 +274,7 @@
     "addToFavorites": "په زړه پورې ته یې ور زیات کړئ",
     "addedToFavorites": "په زړه پورې ته اضافه شو",
     "messageAddedToFavorites": "فایل په زړه پورې ته اضافه شو!",
+    "removeFromFavorites": "دغوره ځای څخه لری کول",
     "messageRemovedFromFavorites": "فایل د زړه پورې څخه حذف شو!",
     "Oups": "اوه!",
     "Ville": "ښار",
