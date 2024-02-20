@@ -45,7 +45,7 @@ export const FavoriteButton = (props: Props) => {
       <Button
         className={cls(styles.btn, isFavorite && styles.active, props.className)}
         onClick={onClick}
-        title={t("Dispositif.addToFavorites")}
+        title={isFavorite ? t("Dispositif.removeFromFavorites") : t("Dispositif.addToFavorites")}
       >
         <EVAIcon name="star-outline" fill="dark" className={styles.icon_outline} size={20} />
         <EVAIcon name="star" fill={isFavorite ? "white" : "dark"} className={styles.icon_fill} size={20} />

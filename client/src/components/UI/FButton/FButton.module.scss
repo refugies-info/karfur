@@ -37,6 +37,7 @@ body .btn {
 
     svg {
       fill: $gray90;
+      transition: all 0.5s ease;
     }
   }
   &:not(.theme) {
@@ -111,7 +112,7 @@ body .btn {
       fill: $white;
     }
     &:hover {
-      color: black;
+      color: black !important;
       svg {
         fill: black;
       }
