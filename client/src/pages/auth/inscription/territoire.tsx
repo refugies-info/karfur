@@ -1,6 +1,5 @@
 import { ReactElement, useMemo, useCallback, useState } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { useRegisterFlow } from "hooks";
@@ -9,6 +8,7 @@ import { cls } from "lib/classname";
 import { getInscriptionMessage, getLoginRedirect } from "lib/loginRedirect";
 import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
+import Loader from "components/Pages/auth/Loader";
 import { EditDepartments } from "components/User";
 import styles from "scss/components/auth.module.scss";
 
@@ -30,11 +30,7 @@ const AuthLogin = () => {
     <div className={cls(styles.container, styles.full)}>
       <SEO title="Votre territoire" />
       {isLoading ? (
-        <div className={styles.loader}>
-          <Image src="/images/logo-navbar-ri.svg" width="45" height="45" alt="" />
-          <p className="mt-6 mb-2">Création de votre espace...</p>
-          {inscriptionMessage && <p>{inscriptionMessage}</p>}
-        </div>
+        <Loader text="Création de votre espace..." subtitle={inscriptionMessage} />
       ) : (
         <div className={styles.container_inner}>
           <Button
