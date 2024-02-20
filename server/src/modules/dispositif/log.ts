@@ -1,6 +1,7 @@
 import { CreateDispositifRequest } from "@refugies-info/api-types";
 import { StructureId, UserId } from "../../typegoose";
 import { addLog } from "../logs/logs.service";
+import { addToStructureNotes } from "../structure/structure.repository";
 
 export const log = async (structureId: StructureId, authorId: UserId) => {
   await addLog(structureId, "Structure", "La structure est créée", { author: authorId });
@@ -23,11 +24,9 @@ export const logContact = async (authorId: UserId, structureId: StructureId | nu
   );
 
   if (structureId) {
-    await addLog(
+    await addToStructureNotes(
       structureId,
-      "Structure",
-      text,
-      { author: authorId }
+      text.replaceAll("<br/>", "")
     );
   }
 };

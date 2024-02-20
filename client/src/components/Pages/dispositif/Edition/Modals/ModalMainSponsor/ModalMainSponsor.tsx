@@ -65,7 +65,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
       setValue("mainSponsor", mainSponsor);
     }
 
-    if (!!authorContact.name && !!authorContact.phone && !!authorContact.email) {
+    if (!!authorContact.name && !!authorContact.email) {
       setValue("contact", {
         ...authorContact,
         isMember: !unknownContact,
@@ -128,7 +128,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
           4 (no) ThanksMessage
         5 (notFound) CreateStructure
           6 MemberOfStructure
-            7 (yes) AuthorContact
+            7 (yes) AuthorContact + phone
               8 ThanksMessage
             9 (no) StructureContact
               10 (formOk) ThanksMessage
@@ -262,7 +262,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
           {step === 6 && (
             <MemberOfStructure memberOfStructure={memberOfStructure} setMemberOfStructure={setMemberOfStructure} />
           )}
-          {step === 7 && <AuthorContact contact={authorContact} setContact={setAuthorContact} />}
+          {step === 7 && <AuthorContact contact={authorContact} setContact={setAuthorContact} phone={true} />}
           {step === 8 && <ThanksMessage publish={setData} content={textContent.content} />}
           {step === 9 && (
             <StructureContact

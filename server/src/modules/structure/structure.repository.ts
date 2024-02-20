@@ -130,3 +130,13 @@ export const getStructureName = async (
   id: Id,
 ) => StructureModel.findById(id, { "nom": 1 })
   .then(res => res?.nom)
+
+export const addToStructureNotes = async (structureId: StructureId, text: string) => {
+  return StructureModel.findOneAndUpdate(
+    {
+      _id: structureId,
+    },
+    { $set: { adminComments: text } },
+    { upsert: true, new: true },
+  );
+};
