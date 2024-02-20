@@ -7,6 +7,7 @@ import { useEditionMode } from "hooks";
 import { FooterConsentManagementItem, FooterPersonalDataPolicyItem } from "hooks/useConsentContext";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import { themesSelector } from "services/Themes/themes.selectors";
+import Link from "next/link";
 
 const Footer = () => {
   const router = useRouter();
@@ -40,7 +41,19 @@ const Footer = () => {
         href: "/",
         title: "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)",
       }}
-      bottomItems={[<FooterPersonalDataPolicyItem key={2} />, <FooterConsentManagementItem key={3} />]}
+      bottomItems={[
+        <FooterPersonalDataPolicyItem key={2} />,
+        <FooterConsentManagementItem key={3} />,
+        <Link
+          href="https://kit.refugies.info/stats/"
+          key={4}
+          className="fr-footer__bottom-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Statistiques
+        </Link>,
+      ]}
       termsLinkProps={{
         href: getPath("/mentions-legales", router.locale),
         title: t("Footer.legal_terms", "Mentions légales"),

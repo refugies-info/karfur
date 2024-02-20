@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
 import { userSelector } from "services/User/user.selectors";
-
+import { HeaderProps } from "@codegouvfr/react-dsfr/Header";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
+import { Event } from "lib/tracking";
 import history from "utils/backendHistory";
 import useRouterLocale from "hooks/useRouterLocale";
 import { isMobileOnly } from "react-device-detect";
 import { useAuth } from "hooks";
-import { HeaderProps } from "@codegouvfr/react-dsfr/Header";
 
 const useUserToolItem = (): HeaderProps.QuickAccessItem | null => {
   const router = useRouter();
@@ -43,6 +43,7 @@ const useUserToolItem = (): HeaderProps.QuickAccessItem | null => {
         linkProps: {
           href: getPath("/auth", "fr"),
           prefetch: false,
+          onClick: () => Event("AUTH", "start", "navbar"),
         },
         text: t("Toolbar.Connexion", "Connexion"),
       };

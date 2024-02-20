@@ -79,10 +79,15 @@ const TranslationInput = (props: Props) => {
   // Google translate
   const [googleTranslateValue, setGoogleTranslateValue] = useState("");
   const [{ loading }, translate] = useAsyncFn(() =>
-    API.get_translation({ q: initialText, language: locale as Languages }).then((res) => {
-      setGoogleTranslateValue(res);
-      return res;
-    }),
+    API.get_translation({ q: initialText, language: locale as Languages })
+      .then((res) => {
+        setGoogleTranslateValue(res);
+        return res;
+      })
+      .catch(() => {
+        setGoogleTranslateValue(" ");
+        return " ";
+      }),
   );
 
   // if index = last, get Google Translate value as suggestion
