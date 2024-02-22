@@ -136,7 +136,7 @@ export const addToStructureNotes = async (structureId: StructureId, text: string
     {
       _id: structureId,
     },
-    { $set: { adminComments: text } },
+    [{ $set: { adminComments: { $concat: [{ $ifNull: ["$adminComments", ""] }, text] } } }],
     { upsert: true, new: true },
   );
 };
