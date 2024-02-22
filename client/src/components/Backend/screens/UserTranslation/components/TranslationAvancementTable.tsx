@@ -21,6 +21,7 @@ import {
 } from "@refugies-info/api-types";
 import { handleApiError } from "lib/handleApiErrors";
 import { useRouter } from "next/router";
+import { useLanguages } from "hooks";
 
 moment.locale("fr");
 
@@ -30,8 +31,6 @@ interface Props {
   history: any;
   isAdmin: boolean;
   languei18nCode: string;
-  setElementToTranslate: any;
-  toggleCompleteProfilModal: () => void;
   user: GetUserInfoResponse | null;
 }
 
@@ -68,23 +67,7 @@ const defaultSortedHeader = {
 };
 export const TranslationAvancementTable = (props: Props) => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
-  const router = useRouter();
 
-  const goToTraduction = (event: any, element: GetDispositifsWithTranslationAvancementResponse) => {
-    if (props.user && props.user.email === "") {
-      props.toggleCompleteProfilModal();
-      props.setElementToTranslate(element);
-      event.preventDefault();
-    } else {
-      router.push({
-        pathname: `/${element.type}/${element._id}/translate`,
-        search: `?language=${props.languei18nCode}`,
-      });
-      if (!props.languei18nCode || (!props.isExpert && element.tradStatus === "VALIDATED")) {
-        event.preventDefault();
-      }
-    }
-  };
   const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {
       const sens = sortedHeader.sens === "up" ? "down" : "up";
@@ -132,6 +115,18 @@ export const TranslationAvancementTable = (props: Props) => {
     });
   };
 
+  const router = useRouter();
+  const { getLanguageByCode } = useLanguages();
+  const goToTranslation = (element: GetDispositifsWithTranslationAvancementResponse) => {
+    const langue = getLanguageByCode(props.languei18nCode);
+    if (!langue || !props.user) return;
+    if (!props.isExpert && element.tradStatus === "VALIDATED") return;
+    router.push({
+      pathname: `/${element.type || "dispositif"}/${element._id}/translate`,
+      search: `?language=${langue.i18nCode}`,
+    });
+  };
+
   const sortedData = sortData(props.data, sortedHeader);
   return (
     <TableContainer>
@@ -175,7 +170,13 @@ export const TranslationAvancementTable = (props: Props) => {
                 </td>
                 <td className="align-middle">
                   <div style={{ maxWidth: "350px" }}>
-                    <button data-test-id={`test-line-${element._id}`} onClick={(e) => goToTraduction(e, element)}>
+                    <button
+                      data-test-id={`test-line-${element._id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        goToTranslation(element);
+                      }}
+                    >
                       <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
                     </button>
                   </div>

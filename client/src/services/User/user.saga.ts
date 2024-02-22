@@ -7,7 +7,6 @@ import {
   fetchUserActionCreator,
   saveUserActionCreator,
 } from "./user.actions";
-import Router from "next/router";
 import { logger } from "../../logger";
 import {
   startLoading,
@@ -18,6 +17,7 @@ import {
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
 import { AxiosError } from "axios";
 import { GetUserInfoResponse } from "@refugies-info/api-types";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 
 export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
@@ -30,6 +30,9 @@ export function* fetchUser(
     if (authenticated) {
       const data: GetUserInfoResponse = yield call(API.getUser, { token: action.payload?.token });
       yield put(setUserActionCreator(data));
+      if ((data.departments?.length || 0) > 0) {
+        yield put(addToQueryActionCreator({ departments: (data.departments || [])?.map(dep => dep.split(" - ")[1]) }))
+      }
       if (data.structures && data.structures.length > 0) {
         yield put(
           fetchUserStructureActionCreator({

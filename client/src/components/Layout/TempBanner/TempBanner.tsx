@@ -4,7 +4,7 @@ import { useLocalStorage } from "react-use";
 
 interface Props {}
 
-/* TODO: delete after 2024-03-16 */
+/* TODO: delete after 2024-03-01 */
 const TempBanner = (props: Props) => {
   const [loaded, setLoaded] = useState(false); // use initial loading to prevent banner flash
   const [value, setValue] = useLocalStorage("showTempBanner1", true);
@@ -12,7 +12,7 @@ const TempBanner = (props: Props) => {
   useEffect(() => setLoaded(true), []);
 
   const showBanner = useMemo(() => {
-    const limitDate = new Date("2024-03-16").getTime();
+    const limitDate = new Date("2024-03-01").getTime();
     const now = new Date().getTime();
     return loaded && value === true && limitDate > now;
   }, [loaded, value]);

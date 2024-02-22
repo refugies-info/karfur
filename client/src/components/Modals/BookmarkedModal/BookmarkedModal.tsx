@@ -5,6 +5,7 @@ import { Id } from "@refugies-info/api-types";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { getPath } from "routes";
 import { setLoginRedirect } from "lib/loginRedirect";
+import { Event } from "lib/tracking";
 import BaseModal from "components/UI/BaseModal";
 import styles from "./BookmarkedModal.module.scss";
 
@@ -21,6 +22,7 @@ const BookmarkedModal = (props: Props) => {
 
   const redirect = useCallback(() => {
     setLoginRedirect(props.dispositifId ? { addFavorite: props.dispositifId.toString() } : undefined);
+    Event("AUTH", "start", "bookmark");
     router.push(getPath("/auth", "fr"));
   }, [props.dispositifId, router]);
 
