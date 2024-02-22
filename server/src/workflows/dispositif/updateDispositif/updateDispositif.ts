@@ -41,13 +41,13 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
 
   const draftOldDispositif = await getDraftDispositifById(
     id,
-    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1, lastModificationDate: 1 },
+    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1, lastModificationDate: 1, theme: 1, secondaryThemes: 1 },
     "mainSponsor",
   );
 
   const oldDispositif = draftOldDispositif || await getDispositifById(
     id,
-    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1, lastModificationDate: 1 },
+    { typeContenu: 1, translations: 1, mainSponsor: 1, creatorId: 1, status: 1, lastModificationDate: 1, theme: 1, secondaryThemes: 1 },
     "mainSponsor",
   );
   checkUserIsAuthorizedToModifyDispositif(oldDispositif, user, !!draftOldDispositif);
@@ -94,7 +94,7 @@ export const updateDispositif = async (id: string, body: UpdateDispositifRequest
 
   if (!newDispositif) throw new Error("dispositif not found");
   await addNewParticipant(new ObjectId(id), user._id);
-  await log(newDispositif, oldDispositif, user._id);
+  await log(newDispositif, oldDispositif, user._id, needsDraftVersion);
 
   // send notif only if non-admin user, and is today (= 1 notif per day maximum), and is active or waiting
   const isActive = oldDispositif.status === DispositifStatus.ACTIVE || !!draftOldDispositif;

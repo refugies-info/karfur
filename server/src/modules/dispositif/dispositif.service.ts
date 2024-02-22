@@ -204,7 +204,17 @@ const rebuildTranslations = async (
 export const publishDispositif = async (dispositifId: DispositifId, userId: UserId, keepTranslations?: boolean) => {
   const oldDispositif = await getDispositifById(
     dispositifId,
-    { status: 1, creatorId: 1, theme: 1, mainSponsor: 1, translations: 1, typeContenu: 1, metadatas: 1, hasDraftVersion: 1 }
+    {
+      status: 1,
+      creatorId: 1,
+      theme: 1,
+      mainSponsor: 1,
+      translations: 1,
+      typeContenu: 1,
+      metadatas: 1,
+      hasDraftVersion: 1,
+      publishedAt: 1
+    }
   );
 
   let draftDispositif = null;
@@ -225,17 +235,22 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
         hasDraftVersion: 1,
         lastModificationDate: 1,
         lastModificationAuthor: 1,
-        needs: 1
+        needs: 1,
+        publishedAt: 1
       }
     );
   }
 
   const newDispositif: Partial<Dispositif> = {
     status: DispositifStatus.ACTIVE,
-    publishedAt: new Date(),
-    publishedAtAuthor: new ObjectId(userId),
     hasDraftVersion: false
   };
+
+  // set published date only at 1rst publication
+  if (!oldDispositif.publishedAt) {
+    newDispositif.publishedAt = new Date();
+    newDispositif.publishedAtAuthor = new ObjectId(userId);
+  }
 
   if (draftDispositif) {
     const newTranslations = await rebuildTranslations(oldDispositif, draftDispositif.translations.fr, keepTranslations || false);
