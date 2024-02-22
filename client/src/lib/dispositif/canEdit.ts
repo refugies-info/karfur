@@ -1,12 +1,26 @@
 import { DispositifStatus, GetDispositifResponse, GetUserInfoResponse, RoleName } from "@refugies-info/api-types";
-import { isNotStatus } from "./isStatus";
+import { hasRole } from "lib/hasRole";
+import { isStatus } from "./isStatus";
 
 export const canEdit = (dispositif: GetDispositifResponse | null, user: GetUserInfoResponse | null) => {
   if (!user || !dispositif) return false;
-  if (user.contributions.includes(dispositif._id.toString())) return true;
-  if (user.roles.find(r => r.nom === RoleName.ADMIN)) return true;
+  if (hasRole(user, RoleName.ADMIN)) return true;
 
-  const isFromStructure = dispositif.mainSponsor?._id && user.structures.includes(dispositif.mainSponsor._id.toString());
-  if (isFromStructure && isNotStatus(dispositif.status, [DispositifStatus.KO_STRUCTURE, DispositifStatus.WAITING_STRUCTURE])) return true;
+  const firstDraftVersion = isStatus(dispositif.status, DispositifStatus.DRAFT); // the never published draft
+  const authorCanModify = [ // or waiting content
+    DispositifStatus.WAITING_STRUCTURE,
+    DispositifStatus.KO_STRUCTURE,
+  ];
+  const isEditableByAuthor = firstDraftVersion || authorCanModify.includes(dispositif.status);
+  const isAuthor = dispositif.creatorId._id.toString() === user._id.toString();
+  if (isEditableByAuthor && isAuthor) {
+    return true;
+  }
+
+  const isFromStructure = dispositif.mainSponsor?._id && user.structures.includes(dispositif.mainSponsor?._id.toString());
+  if (isFromStructure) {
+    return true;
+  }
+
   return false;
 }
