@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { CreateDispositifRequest, Id, MainSponsor } from "@refugies-info/api-types";
@@ -39,7 +39,7 @@ interface Props {
 
 const ModalMainSponsor = ({ show, toggle }: Props) => {
   const user = useSelector(userSelector);
-  const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
+  const { setValue, getValues, watch } = useFormContext<CreateDispositifRequest>();
   const userStructure = useSelector(userStructureSelector);
   const [selectedStructure, setSelectedStructure] = useState<Id | null>(getValues("mainSponsor") || null);
   const [step, setStep] = useState(getInitialStep(selectedStructure, userStructure?._id || null));
@@ -53,6 +53,11 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   });
   const [structureContact, setStructureContact] = useState<ContactInfos>(defaultContact);
   const [mainSponsor, setMainSponsor] = useState<MainSponsor>(defaultSponsor);
+
+  const mainSponsorValue = watch("mainSponsor");
+  useEffect(() => {
+    if (mainSponsorValue === null) setSelectedStructure(null);
+  }, [mainSponsorValue]);
 
   const goToInitialStep = useCallback(() => {
     setStep(getInitialStep(selectedStructure, userStructure?._id || null));
