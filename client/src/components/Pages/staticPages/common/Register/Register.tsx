@@ -7,6 +7,7 @@ import { RoleName } from "@refugies-info/api-types";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { getPath } from "routes";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { setLoginRedirect, setRegisterInfos } from "lib/loginRedirect";
 import { useAuth, useWindowSize } from "hooks";
 import { ReceiveInvitationMailModal } from "components/Modals";
@@ -37,6 +38,7 @@ const Register = (props: Props) => {
   const onRegister = () => {
     setLoginRedirect("#register");
     setRegisterInfos({ role: props.associatedRole });
+    Event("AUTH", "start", props.associatedRole === RoleName.TRAD ? "translate_page" : "publish_page");
     router.push(getPath("/auth", "fr"));
   };
 

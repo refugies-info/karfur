@@ -1,9 +1,9 @@
-import { FavoritesContainer, CardsContainer } from "./SubComponents";
 import React from "react";
 import TitleWithNumber from "components/Backend/TitleWithNumber";
 import styled from "styled-components";
 import FButton from "components/UI/FButton";
 import { colors } from "colors";
+import styles from "../UserFavorites.module.scss";
 
 const HelpCard = styled.div`
   background: ${colors.white};
@@ -18,8 +18,6 @@ const HelpCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-right: 8px;
-  margin-left: 8px;
 `;
 
 const EmptyCardContainer = styled.div`
@@ -27,8 +25,6 @@ const EmptyCardContainer = styled.div`
   border-radius: 12px;
   width: 248px;
   height: 248px;
-  margin-right: 8px;
-  margin-left: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -86,7 +82,7 @@ const EmptyCard = () => (
   </EmptyCardContainer>
 );
 export const NoFavorites = (props: { t: any; toggleTutoModal: () => void }) => (
-  <FavoritesContainer>
+  <div className={styles.container}>
     <div style={{ marginRight: "40px", marginLeft: "40px" }}>
       <TitleWithNumber
         amount={0}
@@ -94,7 +90,7 @@ export const NoFavorites = (props: { t: any; toggleTutoModal: () => void }) => (
         textPlural={props.t("UserFavorites.contents_saved", "fiches sauvegardées")}
       />
     </div>
-    <CardsContainer>
+    <div className={styles.cards}>
       <HelpCard>
         {props.t("UserFavorites.Comment ajouter", "Comment ajouter des fiches en favoris ?")}
         <FButton type="tuto" name={"question-mark-circle-outline"} className="me-2" onClick={props.toggleTutoModal}>
@@ -104,6 +100,6 @@ export const NoFavorites = (props: { t: any; toggleTutoModal: () => void }) => (
       <EmptyCard />
       <EmptyCard />
       <EmptyCard />
-    </CardsContainer>
-  </FavoritesContainer>
+    </div>
+  </div>
 );

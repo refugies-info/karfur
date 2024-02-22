@@ -3,6 +3,7 @@ import { ResetPasswordResponse } from "@refugies-info/api-types";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { logger } from "logger";
+import { Event } from "lib/tracking";
 import { cls } from "lib/classname";
 import API from "utils/API";
 import styles from "./ForgotPassword.module.scss";
@@ -22,6 +23,7 @@ const ForgotPassword = ({ email, buttonFullWidth, successCallback }: Props) => {
       const email = e.target.email.value;
       try {
         const res = await API.resetPassword({ email });
+        Event("AUTH", "reset password", "mail sent");
         successCallback(res);
       } catch (e: any) {
         logger.error(e);

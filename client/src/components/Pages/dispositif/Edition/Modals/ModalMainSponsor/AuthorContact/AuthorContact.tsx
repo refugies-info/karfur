@@ -7,6 +7,7 @@ import styles from "./AuthorContact.module.scss";
 interface Props {
   contact: ContactInfos;
   setContact: React.Dispatch<React.SetStateAction<ContactInfos>>;
+  phone?: boolean;
 }
 
 const AuthorContact = (props: Props) => {
@@ -32,6 +33,18 @@ const AuthorContact = (props: Props) => {
         valid={!!props.contact.email}
         className="mb-4"
       />
+      {props.phone && (
+        <Input
+          id="author-contact-phone"
+          label="Votre numéro de téléphone"
+          type="text"
+          icon="phone-outline"
+          value={props.contact.phone}
+          onChange={(e: any) => props.setContact({ ...props.contact, phone: e.target.value })}
+          valid={!!props.contact.phone}
+          className="mb-4"
+        />
+      )}
       <Input
         id="author-contact-comments"
         label="Pourquoi avez-vous proposé cette fiche ?"

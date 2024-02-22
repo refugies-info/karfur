@@ -1,17 +1,15 @@
 import React from "react";
-import { FavoritesContainer, CardsContainer } from "./SubComponents";
 import TitleWithNumber from "components/Backend/TitleWithNumber";
 import styled from "styled-components";
 import Skeleton from "react-loading-skeleton";
 import { colors } from "colors";
+import styles from "../UserFavorites.module.scss";
 
 const LoadingCardContainer = styled.div`
   background: ${colors.white};
   border-radius: 12px;
   width: 248px;
   height: 248px;
-  margin-right: 8px;
-  margin-left: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -42,8 +40,8 @@ const LoadingCard = () => (
 );
 
 export const FavoritesLoading = (props: { t: any }) => (
-  <FavoritesContainer>
-    <div style={{ marginRight: "40px", marginLeft: "40px" }}>
+  <div className={styles.container}>
+    <div className={styles.title}>
       <TitleWithNumber
         amount={0}
         textSingular={props.t("UserFavorites.content_saved", "fiche sauvegardée")}
@@ -51,10 +49,10 @@ export const FavoritesLoading = (props: { t: any }) => (
         isLoading={true}
       />
     </div>
-    <CardsContainer>
+    <div className={styles.cards}>
       <LoadingCard />
       <LoadingCard />
       <LoadingCard />
-    </CardsContainer>
-  </FavoritesContainer>
+    </div>
+  </div>
 );

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { CreateDispositifRequest, Id, MainSponsor } from "@refugies-info/api-types";
@@ -39,7 +39,7 @@ interface Props {
 
 const ModalMainSponsor = ({ show, toggle }: Props) => {
   const user = useSelector(userSelector);
-  const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
+  const { setValue, getValues, watch } = useFormContext<CreateDispositifRequest>();
   const userStructure = useSelector(userStructureSelector);
   const [selectedStructure, setSelectedStructure] = useState<Id | null>(getValues("mainSponsor") || null);
   const [step, setStep] = useState(getInitialStep(selectedStructure, userStructure?._id || null));
@@ -54,6 +54,11 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   const [structureContact, setStructureContact] = useState<ContactInfos>(defaultContact);
   const [mainSponsor, setMainSponsor] = useState<MainSponsor>(defaultSponsor);
 
+  const mainSponsorValue = watch("mainSponsor");
+  useEffect(() => {
+    if (mainSponsorValue === null) setSelectedStructure(null);
+  }, [mainSponsorValue]);
+
   const goToInitialStep = useCallback(() => {
     setStep(getInitialStep(selectedStructure, userStructure?._id || null));
   }, [selectedStructure, userStructure]);
@@ -65,7 +70,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
       setValue("mainSponsor", mainSponsor);
     }
 
-    if (!!authorContact.name && !!authorContact.phone && !!authorContact.email) {
+    if (!!authorContact.name && !!authorContact.email) {
       setValue("contact", {
         ...authorContact,
         isMember: !unknownContact,
@@ -128,7 +133,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
           4 (no) ThanksMessage
         5 (notFound) CreateStructure
           6 MemberOfStructure
-            7 (yes) AuthorContact
+            7 (yes) AuthorContact + phone
               8 ThanksMessage
             9 (no) StructureContact
               10 (formOk) ThanksMessage
@@ -262,7 +267,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
           {step === 6 && (
             <MemberOfStructure memberOfStructure={memberOfStructure} setMemberOfStructure={setMemberOfStructure} />
           )}
-          {step === 7 && <AuthorContact contact={authorContact} setContact={setAuthorContact} />}
+          {step === 7 && <AuthorContact contact={authorContact} setContact={setAuthorContact} phone={true} />}
           {step === 8 && <ThanksMessage publish={setData} content={textContent.content} />}
           {step === 9 && (
             <StructureContact

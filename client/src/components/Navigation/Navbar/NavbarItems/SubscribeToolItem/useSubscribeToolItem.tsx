@@ -1,7 +1,7 @@
 import { HeaderProps } from "@codegouvfr/react-dsfr/Header";
 import { useTranslation } from "next-i18next";
 import { isMobileOnly } from "react-device-detect";
-
+import { Event } from "lib/tracking";
 import { getPath } from "routes";
 import { useAuth } from "hooks";
 
@@ -16,6 +16,7 @@ const useSubscribeToolItem = (): HeaderProps.QuickAccessItem | null => {
     linkProps: {
       href: getPath("/auth", "fr"),
       prefetch: false,
+      onClick: () => Event("AUTH", "start", "navbar"),
     },
     text: t("Toolbar.Inscription", "Inscription"),
   };
