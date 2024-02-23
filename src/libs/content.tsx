@@ -149,6 +149,25 @@ const getTimeSlots = (
   return timeSlots.map((slot) => t(`Infocards.${slot}`)).join(", ");
 };
 
+const getPrice = (price: Metadatas["price"] | null | undefined, t: any) => {
+  if (!price) return "";
+  if (price.values?.[0] === 0)
+    return capitalizeFirstLetter(t("Infocards.free"));
+  if (price.values.length === 0)
+    return capitalizeFirstLetter(t("Infocards.freeAmount"));
+  if (price.values.length === 2)
+    return `${capitalizeFirstLetter(
+      t("Infocards.priceBetween", {
+        min: price.values[0],
+        max: price.values[1],
+        details: price.details ? t(`Infocards.${price.details}`) : "",
+      })
+    )}`;
+  return `${price.values[0]}€ ${
+    price.details ? t(`Infocards.${price.details}`) : ""
+  }`;
+};
+
 export const getDescriptionNew = (
   metadatas: Metadatas,
   key: keyof Metadatas,
@@ -183,9 +202,7 @@ export const getDescriptionNew = (
     case "age":
       return getAge(metadatas.age, t);
     case "price":
-      return metadatas.price?.values[0] === 0
-        ? t("content_screen.free", "Gratuit")
-        : metadatas.price?.values[0] + "€ " + metadatas.price?.details;
+      return getPrice(metadatas.price, t);
     case "commitment":
       return getCommitment(metadatas.commitment, t);
     case "frequency":
