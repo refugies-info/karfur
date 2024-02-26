@@ -12,7 +12,7 @@ export const canEdit = (dispositif: GetDispositifResponse | null, user: GetUserI
     DispositifStatus.KO_STRUCTURE,
   ];
   const isEditableByAuthor = firstDraftVersion || authorCanModify.includes(dispositif.status);
-  const isAuthor = dispositif.creatorId._id.toString() === user._id.toString();
+  const isAuthor = dispositif.creatorId?._id.toString() === user._id.toString();
   if (isEditableByAuthor && isAuthor) {
     return true;
   }
