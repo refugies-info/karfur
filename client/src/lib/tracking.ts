@@ -58,6 +58,9 @@ export const Event = (category: string, action: string, label: string) => {
     action,
     label,
   });
+  //@ts-ignore
+  // eslint-disable-next-line no-undef
+  plausible(category, { props: { action, label } })
 };
 
 
