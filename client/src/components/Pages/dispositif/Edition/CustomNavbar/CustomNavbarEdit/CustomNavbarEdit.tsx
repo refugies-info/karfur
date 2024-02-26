@@ -84,7 +84,7 @@ const CustomNavbarEdit = (props: Props) => {
         toggleQuitModal();
       }
     },
-    [dispositif, progress, totalSteps, toggleQuitModal, quit, Event],
+    [dispositif, progress, totalSteps, toggleQuitModal, quit],
   );
 
   // Publish
@@ -109,7 +109,7 @@ const CustomNavbarEdit = (props: Props) => {
       togglePublishModal();
       Event("DISPO_CREATE", "click validate", "Navbar");
     },
-    [togglePublishModal, Event],
+    [togglePublishModal],
   );
 
   return (

@@ -317,7 +317,7 @@ export const getDraftDispositifById = async (
 
 export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) =>
   await DispositifModel.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate<{
-    mainSponsor: { nom: string };
+    mainSponsor: { _id: string, nom: string };
   }>("mainSponsor", "nom");
 
 export const getDispositifByIdWithMainSponsor = async (

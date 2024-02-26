@@ -7,7 +7,7 @@ const userContrib1: GetUserContributionsResponse = {
   typeContenu: ContentType.DISPOSITIF,
   titreInformatif: "ti1",
   titreMarque: "tm1",
-  mainSponsor: { nom: "" },
+  mainSponsor: { _id: "s1", nom: "" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.DRAFT,
@@ -19,14 +19,13 @@ const formattedUserContrib1: FormattedUserContribution = {
   typeContenu: ContentType.DISPOSITIF,
   titreInformatif: "ti1",
   titreMarque: "tm1",
-  mainSponsor: { nom: "" },
+  mainSponsor: { _id: "s1", nom: "" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.DRAFT,
   responsabilite: "Moi",
   isAuthorizedToDelete: true,
   hasDraftVersion: false
-
 };
 
 const userContrib2: GetUserContributionsResponse = {
@@ -34,7 +33,7 @@ const userContrib2: GetUserContributionsResponse = {
   typeContenu: ContentType.DEMARCHE,
   titreInformatif: "ti2",
   titreMarque: "marque",
-  mainSponsor: { nom: "sponsor2" },
+  mainSponsor: { _id: "s1", nom: "sponsor2" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.ACTIVE,
@@ -44,7 +43,7 @@ const formattedUserContrib2: FormattedUserContribution = {
   _id: "id2",
   typeContenu: ContentType.DEMARCHE,
   titreInformatif: "ti2",
-  mainSponsor: { nom: "sponsor2" },
+  mainSponsor: { _id: "s1", nom: "sponsor2" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.ACTIVE,
@@ -60,7 +59,7 @@ const userContrib3: GetUserContributionsResponse = {
   typeContenu: ContentType.DISPOSITIF,
   titreInformatif: "ti3",
   titreMarque: "tm3",
-  mainSponsor: { nom: "structure" },
+  mainSponsor: { _id: "s1", nom: "structure" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.WAITING_ADMIN,
@@ -72,7 +71,7 @@ const formattedUserContrib3: FormattedUserContribution = {
   typeContenu: ContentType.DISPOSITIF,
   titreInformatif: "ti3",
   titreMarque: "tm3",
-  mainSponsor: { nom: "structure" },
+  mainSponsor: { _id: "s1", nom: "structure" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.WAITING_ADMIN,
@@ -87,7 +86,7 @@ const userContrib4: GetUserContributionsResponse = {
   typeContenu: ContentType.DISPOSITIF,
   titreInformatif: "ti4",
   titreMarque: "tm4",
-  mainSponsor: { nom: "structure" },
+  mainSponsor: { _id: "s1", nom: "structure" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.KO_STRUCTURE,
@@ -99,7 +98,7 @@ const formattedUserContrib4: FormattedUserContribution = {
   typeContenu: ContentType.DISPOSITIF,
   titreInformatif: "ti4",
   titreMarque: "tm4",
-  mainSponsor: { nom: "structure" },
+  mainSponsor: { _id: "s1", nom: "structure" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.KO_STRUCTURE,
@@ -114,7 +113,7 @@ const userContrib5: GetUserContributionsResponse = {
   typeContenu: ContentType.DISPOSITIF,
   titreInformatif: "ti5",
   titreMarque: "tm5",
-  mainSponsor: { nom: "structure" },
+  mainSponsor: { _id: "s1", nom: "structure" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.WAITING_STRUCTURE,
@@ -126,14 +125,40 @@ const formattedUserContrib5: FormattedUserContribution = {
   typeContenu: ContentType.DISPOSITIF,
   titreInformatif: "ti5",
   titreMarque: "tm5",
-  mainSponsor: { nom: "structure" },
+  mainSponsor: { _id: "s1", nom: "structure" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.WAITING_STRUCTURE,
   responsabilite: "Moi",
   isAuthorizedToDelete: true,
   hasDraftVersion: false
+};
 
+
+const userContrib6: GetUserContributionsResponse = {
+  _id: "id6",
+  typeContenu: ContentType.DISPOSITIF,
+  titreInformatif: "ti6",
+  titreMarque: "tm6",
+  mainSponsor: { _id: "s2", nom: "structure" },
+  nbMercis: 0,
+  nbVues: 0,
+  status: DispositifStatus.ACTIVE,
+  hasDraftVersion: false
+
+};
+const formattedUserContrib6: FormattedUserContribution = {
+  _id: "id6",
+  typeContenu: ContentType.DISPOSITIF,
+  titreInformatif: "ti6",
+  titreMarque: "tm6",
+  mainSponsor: { _id: "s2", nom: "structure" },
+  nbMercis: 0,
+  nbVues: 0,
+  status: DispositifStatus.ACTIVE,
+  responsabilite: "structure",
+  isAuthorizedToDelete: false,
+  hasDraftVersion: false
 };
 
 const userContribs = [
@@ -142,6 +167,7 @@ const userContribs = [
   userContrib3,
   userContrib4,
   userContrib5,
+  userContrib6
 ];
 
 const userStructureContrib1: GetStructureDispositifResponse = {
@@ -168,7 +194,7 @@ const formattedUserStructureContrib1: FormattedUserContribution = {
   typeContenu: ContentType.DISPOSITIF,
   titreInformatif: "ti1s",
   titreMarque: "tm1s",
-  mainSponsor: { nom: "structure" },
+  mainSponsor: { _id: "s1", nom: "structure" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.DRAFT,
@@ -234,7 +260,7 @@ const formattedUserStructureContrib4: FormattedUserContribution = {
   typeContenu: ContentType.DISPOSITIF,
   titreInformatif: "ti4s",
   titreMarque: "tm4s",
-  mainSponsor: { nom: "structure" },
+  mainSponsor: { _id: "s1", nom: "structure" },
   nbMercis: 0,
   nbVues: 0,
   status: DispositifStatus.ACTIVE,
@@ -272,8 +298,9 @@ describe("formatContributions", () => {
     const result = formatContributions(
       userContribs,
       userStructureContrib,
-      { _id: "", createur: "", adminPercentageProgressionStatus: "", dispositifsAssocies: [], nom: "structure", membres: [{ userId: "userId", roles: [StructureMemberRole.CONTRIB], username: "user", picture: { secure_url: "", imgId: "", public_id: "" }, last_connected: new Date(), added_at: new Date(), mainRole: "Responsable" }] },
-      "userId"
+      { _id: "s1", createur: "", adminPercentageProgressionStatus: "", dispositifsAssocies: [], nom: "structure", membres: [{ userId: "userId", roles: [StructureMemberRole.CONTRIB], username: "user", picture: { secure_url: "", imgId: "", public_id: "" }, last_connected: new Date(), added_at: new Date(), mainRole: "Responsable" }] },
+      "userId",
+      false
     );
     expect(result).toEqual([
       formattedUserContrib1,
@@ -281,6 +308,7 @@ describe("formatContributions", () => {
       formattedUserContrib3,
       formattedUserContrib4,
       formattedUserContrib5,
+      formattedUserContrib6,
       { ...formattedUserStructureContrib1, isAuthorizedToDelete: false },
       { ...formattedUserStructureContrib4, isAuthorizedToDelete: false },
     ]);
@@ -290,8 +318,9 @@ describe("formatContributions", () => {
     const result = formatContributions(
       userContribs,
       userStructureContrib,
-      { _id: "", createur: "", adminPercentageProgressionStatus: "", dispositifsAssocies: [], nom: "structure", membres: [{ userId: "userId", roles: [StructureMemberRole.CONTRIB, StructureMemberRole.ADMIN], username: "user", picture: { secure_url: "", imgId: "", public_id: "" }, last_connected: new Date(), added_at: new Date(), mainRole: "Responsable" }] },
-      "userId"
+      { _id: "s1", createur: "", adminPercentageProgressionStatus: "", dispositifsAssocies: [], nom: "structure", membres: [{ userId: "userId", roles: [StructureMemberRole.CONTRIB, StructureMemberRole.ADMIN], username: "user", picture: { secure_url: "", imgId: "", public_id: "" }, last_connected: new Date(), added_at: new Date(), mainRole: "Responsable" }] },
+      "userId",
+      true
     );
     expect(result).toEqual([
       formattedUserContrib1,
@@ -299,6 +328,7 @@ describe("formatContributions", () => {
       formattedUserContrib3,
       formattedUserContrib4,
       formattedUserContrib5,
+      { ...formattedUserContrib6, isAuthorizedToDelete: true },
       { ...formattedUserStructureContrib1, isAuthorizedToDelete: true },
       { ...formattedUserStructureContrib4, isAuthorizedToDelete: true },
     ]);
