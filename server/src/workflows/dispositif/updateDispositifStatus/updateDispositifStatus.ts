@@ -1,7 +1,6 @@
 import { DispositifStatusRequest, DispositifStatus } from "@refugies-info/api-types";
 import logger from "../../../logger";
-import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { deleteDispositifInDb, publishDispositif } from "../../../modules/dispositif/dispositif.service";
+import { deleteDispositifInDb, publishDispositif, saveAndOverwriteDraft } from "../../../modules/dispositif/dispositif.service";
 import { log } from "./log";
 import { Dispositif, User } from "../../../typegoose";
 import { Response } from "../../../types/interface";
@@ -19,7 +18,8 @@ export const updateDispositifStatus = async (id: string, body: DispositifStatusR
     return { text: "success" };
   }
 
-  const newDispositif: Partial<Dispositif> = { status: body.status };
-  await updateDispositifInDB(id, newDispositif);
+  const updatedDispositif: Partial<Dispositif> = { status: body.status };
+  await saveAndOverwriteDraft(id, updatedDispositif, true); // overwrite with draft if available
+
   return { text: "success" };
 };

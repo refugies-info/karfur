@@ -261,6 +261,7 @@ export interface GetUserContributionsResponse {
   titreMarque: string;
   typeContenu: ContentType;
   mainSponsor: {
+    _id: Id;
     nom: string;
   };
   nbVues: number;
