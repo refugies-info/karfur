@@ -43,30 +43,6 @@ const storeCampaignInfosInCookie = () => {
 }
 
 /**
- * Inits GA with consent option, or update if already initialized
- */
-export const initGA = (consent: boolean) => {
-  if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") return;
-  const trackingId = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS;
-
-  if (!ReactGA.isInitialized) {
-    ReactGA.gtag("consent", "default", {
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-      analytics_storage: consent ? "granted" : "denied",
-    });
-    if (trackingId) ReactGA.initialize(trackingId);
-  } else {
-    ReactGA.gtag("consent", "update", {
-      analytics_storage: consent ? "granted" : "denied",
-    });
-  }
-  storeCampaignInfosInCookie();
-};
-
-
-/**
  * Event - Add custom tracking event.
  * @param {string} category
  * @param {string} action
@@ -82,6 +58,31 @@ export const Event = (category: string, action: string, label: string) => {
     action,
     label,
   });
+};
+
+
+/**
+ * Inits GA with consent option, or update if already initialized
+ */
+export const initGA = (consent: boolean) => {
+  if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") return;
+  const trackingId = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS;
+
+  if (!ReactGA.isInitialized) {
+    ReactGA.gtag("consent", "default", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: consent ? "granted" : "denied",
+    });
+    if (trackingId) ReactGA.initialize(trackingId);
+    Event("SESSION", "count", "start");
+  } else {
+    ReactGA.gtag("consent", "update", {
+      analytics_storage: consent ? "granted" : "denied",
+    });
+  }
+  storeCampaignInfosInCookie();
 };
 
 export const setAnalyticsUserId = (id: string) => {
