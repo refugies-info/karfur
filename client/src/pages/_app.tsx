@@ -11,7 +11,7 @@ import { wrapper } from "services/configureStore";
 import { PageOptions } from "types/interface";
 import Layout from "components/Layout/Layout";
 import "scss/index.scss";
-import { initGA } from "lib/tracking";
+import { Event, initGA } from "lib/tracking";
 import { isRoute } from "routes";
 
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
@@ -77,6 +77,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const { finalityConsent } = useConsent();
   useEffectOnce(() => {
     initGA(!!finalityConsent?.analytics);
+    if (finalityConsent === undefined) Event("SESSION", "count", "first");
   });
 
   // Loader

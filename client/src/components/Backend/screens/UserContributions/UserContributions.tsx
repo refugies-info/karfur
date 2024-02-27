@@ -92,6 +92,7 @@ const UserContributions = (props: Props) => {
     userStructureContributions,
     userStructure,
     user?.user?._id,
+    !!user?.admin,
   );
 
   const deleteDispositif = (event: any, dispositifId: Id, isAuthorizedToDelete: boolean) => {
