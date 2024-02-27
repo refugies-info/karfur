@@ -5,6 +5,8 @@ import { templatesIds } from "./templatesIds";
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+const UNSUBSCRIBE_GROUP_ID = 137241;
+
 export const sendMail = (
   templateName: TemplateName,
   dynamicData: DynamicData,
@@ -27,6 +29,10 @@ export const sendMail = (
   const msg: any = {
     ...dynamicData,
     template_id: templatesIds[templateName],
+    asm: {
+      groupId: UNSUBSCRIBE_GROUP_ID,
+      groupsToDisplay: [UNSUBSCRIBE_GROUP_ID]
+    },
   };
 
   if (bypassUnsubscribe) {
