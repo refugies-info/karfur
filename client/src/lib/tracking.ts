@@ -60,7 +60,7 @@ export const Event = (category: string, action: string, label: string) => {
   });
   //@ts-ignore
   // eslint-disable-next-line no-undef
-  plausible(category, { props: { action, label } })
+  if (!!window.plausible) plausible(category, { props: { action, label } })
   window._paq?.push(["trackEvent", category, action, label]);
 };
 
