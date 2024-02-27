@@ -251,7 +251,7 @@ export const FilterCityComponent = (props: Props) => {
   const isOnValidateDisabled =
     userLocation.city === selectedCity || (!userLocation.city && !selectedCity);
   return (
-    <Rows layout="1 auto" verticalAlign="flex-end">
+    <Rows verticalAlign="space-between">
       <View>
         <Title>
           {t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}

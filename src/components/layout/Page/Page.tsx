@@ -177,6 +177,7 @@ const Page = ({
         paddingBottom: theme.insets.bottom,
         flexGrow: 1,
       },
+      contentContainerStyle: { flexGrow: 1 },
       onMomentumScrollEnd: onScrollEnd,
       onScroll: handleScroll,
       onScrollEndDrag: onScrollEnd,

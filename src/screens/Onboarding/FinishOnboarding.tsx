@@ -44,6 +44,7 @@ const FakeTabBarArrowContainer = styled.View<{ width: number }>`
 `;
 const ButtonContainer = styled.View`
   padding-horizontal: ${styles.margin * 3}px;
+  margin-bottom: ${styles.margin * 4}px;
 `;
 
 export const FinishOnboarding = ({}: StackScreenProps<
