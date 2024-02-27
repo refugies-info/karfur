@@ -491,6 +491,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
+    contentContainerStyle={
+      {
+        "flexGrow": 1,
+      }
+    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
@@ -2015,6 +2020,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
+    contentContainerStyle={
+      {
+        "flexGrow": 1,
+      }
+    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
@@ -3443,6 +3453,11 @@ exports[`Filter age should select age when click on it 1`] = `
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
+    contentContainerStyle={
+      {
+        "flexGrow": 1,
+      }
+    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}

@@ -1836,6 +1836,11 @@ exports[`Filter french level should render correctly when no french level select
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
+    contentContainerStyle={
+      {
+        "flexGrow": 1,
+      }
+    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}

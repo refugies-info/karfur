@@ -491,6 +491,11 @@ exports[`Filter city should render correctly when city selected 1`] = `
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
+    contentContainerStyle={
+      {
+        "flexGrow": 1,
+      }
+    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
@@ -552,16 +557,16 @@ exports[`Filter city should render correctly when city selected 1`] = `
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
-              "justifyContent": "flex-end",
+              "justifyContent": "space-between",
             }
           }
-          verticalAlign="flex-end"
+          verticalAlign="space-between"
         >
           <View
             style={
               {
-                "flexBasis": 0,
-                "flexGrow": 1,
+                "flexBasis": "auto",
+                "flexGrow": 0,
                 "marginBottom": 16,
               }
             }
@@ -1717,6 +1722,11 @@ exports[`Filter city should render correctly when no city 1`] = `
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
+    contentContainerStyle={
+      {
+        "flexGrow": 1,
+      }
+    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
@@ -1778,16 +1788,16 @@ exports[`Filter city should render correctly when no city 1`] = `
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
-              "justifyContent": "flex-end",
+              "justifyContent": "space-between",
             }
           }
-          verticalAlign="flex-end"
+          verticalAlign="space-between"
         >
           <View
             style={
               {
-                "flexBasis": 0,
-                "flexGrow": 1,
+                "flexBasis": "auto",
+                "flexGrow": 0,
                 "marginBottom": 16,
               }
             }

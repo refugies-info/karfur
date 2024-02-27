@@ -335,6 +335,11 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
   </View>
   <RCTScrollView
     alwaysBounceVertical={false}
+    contentContainerStyle={
+      {
+        "flexGrow": 1,
+      }
+    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
