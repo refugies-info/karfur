@@ -201,16 +201,25 @@ const rebuildTranslations = async (
   return { ...newTranslations, fr: translationContent };
 };
 
-export const publishDispositif = async (dispositifId: DispositifId, userId: UserId, keepTranslations?: boolean) => {
-  const oldDispositif = await getDispositifById(
-    dispositifId,
-    { status: 1, creatorId: 1, theme: 1, mainSponsor: 1, translations: 1, typeContenu: 1, metadatas: 1, hasDraftVersion: 1 }
-  );
+/**
+ * Overwrite dispositif _id_ with content of draft available and content of _newDispositif_
+ * @param id
+ * @param newDispositif
+ * @param keepTranslations
+ * @returns updatedDispositif
+ */
+export const saveAndOverwriteDraft = async (
+  id: DispositifId,
+  newDispositif: Partial<Dispositif>,
+  keepTranslations?: boolean
+): Promise<{ updatedDispositif: Dispositif, hasDraftVersion: boolean }> => {
+  const dispositifToSave = cloneDeep(newDispositif);
+  const oldDispositif = await getDispositifById(id, { hasDraftVersion: 1, translations: 1 });
 
   let draftDispositif = null;
   if (oldDispositif.hasDraftVersion) {
     draftDispositif = await getDraftDispositifById(
-      dispositifId,
+      id,
       {
         status: 1,
         creatorId: 1,
@@ -225,38 +234,62 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
         hasDraftVersion: 1,
         lastModificationDate: 1,
         lastModificationAuthor: 1,
-        needs: 1
+        needs: 1,
+        publishedAt: 1
       }
     );
   }
 
-  const newDispositif: Partial<Dispositif> = {
-    status: DispositifStatus.ACTIVE,
-    publishedAt: new Date(),
-    publishedAtAuthor: new ObjectId(userId),
-    hasDraftVersion: false
-  };
-
   if (draftDispositif) {
     const newTranslations = await rebuildTranslations(oldDispositif, draftDispositif.translations.fr, keepTranslations || false);
-    newDispositif.translations = newTranslations;
-    newDispositif.mainSponsor = draftDispositif.mainSponsor;
-    newDispositif.theme = draftDispositif.theme;
-    newDispositif.secondaryThemes = draftDispositif.secondaryThemes;
-    newDispositif.metadatas = draftDispositif.metadatas;
-    newDispositif.map = draftDispositif.map;
-    newDispositif.sponsors = draftDispositif.sponsors;
-    newDispositif.lastModificationDate = draftDispositif.lastModificationDate;
-    newDispositif.lastModificationAuthor = draftDispositif.lastModificationAuthor;
-    newDispositif.needs = draftDispositif.needs;
-    newDispositif.nbMots = draftDispositif.nbMots;
+    dispositifToSave.translations = newTranslations;
+    dispositifToSave.mainSponsor = draftDispositif.mainSponsor;
+    dispositifToSave.theme = draftDispositif.theme;
+    dispositifToSave.secondaryThemes = draftDispositif.secondaryThemes;
+    dispositifToSave.metadatas = draftDispositif.metadatas;
+    dispositifToSave.map = draftDispositif.map;
+    dispositifToSave.sponsors = draftDispositif.sponsors;
+    dispositifToSave.lastModificationDate = draftDispositif.lastModificationDate;
+    dispositifToSave.lastModificationAuthor = draftDispositif.lastModificationAuthor;
+    dispositifToSave.needs = draftDispositif.needs;
+    dispositifToSave.nbMots = draftDispositif.nbMots;
   }
 
-  const newDispo = await updateDispositifInDB(dispositifId, newDispositif);
-  if (draftDispositif) await deleteDraftDispositif(dispositifId);
+  const updatedDispositif = await updateDispositifInDB(id, { ...dispositifToSave, hasDraftVersion: false });
+  if (draftDispositif) await deleteDraftDispositif(id);
+  return { updatedDispositif, hasDraftVersion: !!draftDispositif };
+}
+
+export const publishDispositif = async (dispositifId: DispositifId, userId: UserId, keepTranslations?: boolean) => {
+  const oldDispositif = await getDispositifById(
+    dispositifId,
+    {
+      status: 1,
+      creatorId: 1,
+      theme: 1,
+      mainSponsor: 1,
+      translations: 1,
+      typeContenu: 1,
+      metadatas: 1,
+      hasDraftVersion: 1,
+      publishedAt: 1
+    }
+  );
+
+
+  const newDispositif: Partial<Dispositif> = {
+    status: DispositifStatus.ACTIVE,
+  };
+
+  // set published date only at 1rst publication
+  if (!oldDispositif.publishedAt) {
+    newDispositif.publishedAt = new Date();
+    newDispositif.publishedAtAuthor = new ObjectId(userId);
+  }
+  const { updatedDispositif, hasDraftVersion } = await saveAndOverwriteDraft(dispositifId, newDispositif, keepTranslations);
 
   try {
-    await deleteLineBreaksInDispositif(newDispo);
+    await deleteLineBreaksInDispositif(updatedDispositif);
   } catch (error) {
     logger.error("[publishDispositif] error while deleting line breaks", { error: error.message });
   }
@@ -267,17 +300,17 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     logger.error("[publishDispositif] error while updating languages avancement", { error: error.message });
   }
 
-  const themesList = [newDispo.getTheme(), ...newDispo.getSecondaryThemes()];
+  const themesList = [updatedDispositif.getTheme(), ...updatedDispositif.getSecondaryThemes()];
 
   try {
     await addOrUpdateDispositifInContenusAirtable(
-      newDispo.translations.fr.content.titreInformatif,
-      newDispo.translations.fr.content.titreMarque,
-      newDispo._id,
+      updatedDispositif.translations.fr.content.titreInformatif,
+      updatedDispositif.translations.fr.content.titreMarque,
+      updatedDispositif._id,
       themesList,
-      newDispo.typeContenu,
+      updatedDispositif.typeContenu,
       null,
-      newDispo.getDepartements(),
+      updatedDispositif.getDepartements(),
       false,
     );
   } catch (error) {
@@ -285,7 +318,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   }
 
   // only if first publication
-  if (!draftDispositif) {
+  if (!hasDraftVersion) {
     try {
       await Promise.all([
         notifyChange(NotifType.PUBLISHED, dispositifId, userId),
@@ -296,7 +329,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     }
 
     try {
-      await sendMailWhenDispositifPublished(newDispo);
+      await sendMailWhenDispositifPublished(updatedDispositif);
     } catch (error) {
       logger.error("[publishDispositif] error while sending email", {
         error: error.message,
@@ -343,7 +376,7 @@ export const deleteDispositifInDb = async (id: string, user: User) => {
     )
   ]);
 
-  await updateDispositifInDB(id, { status: DispositifStatus.DELETED, deletionDate: new Date() });
+  await updateDispositifInDB(id, { status: DispositifStatus.DELETED, deletionDate: new Date(), hasDraftVersion: false });
 };
 
 export const buildNewDispositif = async (

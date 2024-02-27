@@ -32,7 +32,10 @@ export const prepareDeleteContrib = (
           });
           const dispositifs = [...allDispositifs];
           const newDispositif = dispositifs.find((d) => d._id === dispositifId);
-          if (newDispositif) newDispositif.status = DispositifStatus.DELETED;
+          if (newDispositif) {
+            newDispositif.status = DispositifStatus.DELETED;
+            newDispositif.hasDraftVersion = false;
+          }
           dispatch(setAllDispositifsActionsCreator(dispositifs));
         })
         .catch(() => {
