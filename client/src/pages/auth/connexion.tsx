@@ -5,7 +5,7 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { getPath } from "routes";
-import { useLogin } from "hooks";
+import { useAuthRedirect, useLogin } from "hooks";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
@@ -17,6 +17,7 @@ import FRLink from "components/UI/FRLink";
 import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
+  useAuthRedirect();
   const router = useRouter();
   const { logUser, handleError } = useLogin();
   const email: string = useMemo(() => router.query.email as string, [router.query]);

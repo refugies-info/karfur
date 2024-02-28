@@ -51,7 +51,7 @@ export const UserStructureComponent = (props: Props) => {
       dispatch(
         fetchUserStructureActionCreator({
           structureId: userStructure._id,
-          shouldRedirect: true,
+          shouldRedirect: false,
         }),
       );
     }

@@ -38,8 +38,6 @@ export const loginExceptionsManager = (error: LoginError) => {
       throw new InvalidRequestError("No code supplied", "NO_CODE_SUPPLIED", error.data);
     case LoginErrorType.USER_DELETED:
       throw new NotFoundError("Utilisateur supprimé", "USER_DELETED", error.data);
-    case LoginErrorType.ADMIN_FORBIDDEN:
-      throw new AuthenticationError("Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site", "ADMIN_FORBIDDEN"); // 401
     case LoginErrorType.NO_EMAIL:
       throw new AuthenticationError("Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.", "NO_EMAIL"); // 401
     case LoginErrorType.NO_ACCOUNT:
