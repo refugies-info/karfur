@@ -55,7 +55,7 @@ describe("UserNotifications", () => {
 
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
-      shouldRedirect: true,
+      shouldRedirect: false,
     });
     expect(component.toJSON()).toMatchSnapshot();
   });
@@ -80,7 +80,7 @@ describe("UserNotifications", () => {
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
-      shouldRedirect: true,
+      shouldRedirect: false,
     });
     expect(fetchSelectedStructureActionCreator).toHaveBeenCalledWith({
       id: "1",
@@ -145,7 +145,7 @@ describe("UserNotifications", () => {
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
-      shouldRedirect: true,
+      shouldRedirect: false,
     });
     expect(fetchSelectedStructureActionCreator).toHaveBeenCalledWith({
       id: "1",
@@ -174,7 +174,7 @@ describe("UserNotifications", () => {
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
-      shouldRedirect: true,
+      shouldRedirect: false,
     });
     expect(fetchSelectedStructureActionCreator).toHaveBeenCalledWith({
       id: "1",
@@ -206,7 +206,7 @@ describe("UserNotifications", () => {
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
-      shouldRedirect: true,
+      shouldRedirect: false,
     });
     expect(fetchSelectedStructureActionCreator).toHaveBeenCalledWith({
       id: "1",
@@ -236,7 +236,7 @@ describe("UserNotifications", () => {
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
-      shouldRedirect: true,
+      shouldRedirect: false,
     });
     expect(fetchSelectedStructureActionCreator).toHaveBeenCalledWith({
       id: "1",
