@@ -7,3 +7,4 @@ export * from "./ModalDepartments";
 export * from "./ModalLanguage";
 export * from "./ModalResetPassword";
 export * from "./ModalEmailCode";
+export * from "./ModalDeleteAccount";

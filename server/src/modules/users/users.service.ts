@@ -15,6 +15,8 @@ import { RoleName, UserStatus } from "@refugies-info/api-types";
 import { getRoleByName } from "../role/role.repository";
 import { sendWelcomeMail } from "../mail/mail.service";
 import { addLog } from "../logs/logs.service";
+import { removeMemberFromStructure } from "../structure/structure.repository";
+import { generateRandomId } from "../../libs/generateRandomId";
 
 export const addStructureForUsers = async (userIds: UserId[], structureId: StructureId) => {
   logger.info("[addStructure] add structure for membres", { userIds, structureId });
@@ -110,4 +112,23 @@ export const registerUser = async (data: RegisterUser) => {
   await addLog(user._id, "User", "Utilisateur créé : première connexion");
 
   return user;
+}
+
+export const deleteUser = async (user: User) => {
+  if (user.structures) {
+    await Promise.all(user.structures?.map((structure) => removeMemberFromStructure(structure._id, user._id)));
+  }
+
+  await updateUserInDB(user._id, {
+    username: `utilisateur_${generateRandomId()}`,
+    password: "",
+    email: "",
+    phone: "",
+    picture: null,
+    roles: [],
+    authy_id: "",
+    reset_password_token: "",
+    structures: [],
+    status: UserStatus.DELETED,
+  });
 }

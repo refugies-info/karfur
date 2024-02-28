@@ -1,114 +1,61 @@
-// @ts-nocheck
-import deleteUser from "./deleteUser";
-import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
-import { removeMemberFromStructure } from "../../../modules/structure/structure.repository";
-import { sendAccountDeletedMailService } from "../../../modules/mail/mail.service";
-import {
-  checkIfUserIsAdmin,
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { deleteUser } from "./deleteUser";
+import * as usersRep from "../../../modules/users/users.repository";
+import * as usersServ from "../../../modules/users/users.service";
+import * as mailServ from "../../../modules/mail/mail.service";
+import { UserModel } from "../../../typegoose";
 
 jest.mock("../../../modules/users/users.repository", () => ({
-  updateUserInDB: jest.fn(),
   getUserById: jest.fn()
 }));
-jest.mock("../../../modules/structure/structure.repository", () => ({
-  removeMemberFromStructure: jest.fn(),
-}));
-jest.mock("../../../libs/checkAuthorizations", () => ({
-  checkRequestIsFromSite: jest.fn().mockReturnValue(true),
-  checkIfUserIsAdmin: jest.fn().mockReturnValue(true),
-}));
-jest.mock("../../../libs/generateRandomId", () => ({
-  generateRandomId: jest.fn().mockReturnValue(1),
+jest.mock("../../../modules/users/users.service", () => ({
+  deleteUser: jest.fn()
 }));
 jest.mock("../../../modules/mail/mail.service", () => ({
   sendAccountDeletedMailService: jest.fn().mockReturnValue(1),
 }));
 
-type MockResponse = { json: any; status: any };
-const mockResponse = (): MockResponse => {
-  const res: MockResponse = {};
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
-  return res;
-};
 
-describe.skip("deleteUser", () => {
+describe("deleteUser", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  const res = mockResponse();
+  it("should get user and return error if no user", async () => {
+    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    getUserByIdMock.mockResolvedValue(null);
 
-  it("should return 405 if not from site", async () => {
-    checkRequestIsFromSite.mockImplementationOnce(() => {
-      throw new Error("NOT_FROM_SITE");
-    });
-    const req = {
-      fromSite: false,
-      params: {}
-    };
-    await deleteUser[1](req, res);
-    expect(res.status).toHaveBeenCalledWith(405);
+    try {
+      await deleteUser("id");
+    } catch (error) {
+      expect(getUserByIdMock).toHaveBeenCalledWith("id", { email: 1, structures: 1 });
+      expect(error.message).toBe("INVALID_REQUEST");
+    }
+    expect.assertions(2);
   });
-  it("should return 403 if not admin", async () => {
-    checkIfUserIsAdmin.mockImplementationOnce(() => {
-      throw new Error("NOT_AUTHORIZED");
-    })
-    const req = {
-      user: { roles: [] },
-      params: {}
-    };
-    await deleteUser[1](req, res);
-    expect(res.status).toHaveBeenCalledWith(403);
-  });
+  it("should get user and delete it. No email if not available", async () => {
+    const user = new UserModel({ email: null });
+    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    getUserByIdMock.mockResolvedValue(user);
 
-  it("should return 400 if user does not exist", async () => {
-    getUserById.mockImplementationOnce(() => {
-      return null
-    })
-    const req = {
-      user: { roles: [], userId: "id" },
-      params: { id: "userId" }
-    };
-    await deleteUser[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", { structures: 1, email: 1 });
-    expect(updateUserInDB).not.toHaveBeenCalled();
-    expect(removeMemberFromStructure).not.toHaveBeenCalled();
-    expect(sendAccountDeletedMailService).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(400);
-  });
+    const deleteUserMock = jest.spyOn(usersServ, 'deleteUser');
+    const sendMailMock = jest.spyOn(mailServ, 'sendAccountDeletedMailService');
 
-  it("should return 200", async () => {
-    getUserById.mockImplementationOnce(() => {
-      return {
-        structures: ["structure1", "structure2"],
-        email: "test@test.com"
-      }
-    })
-    const req = {
-      user: { roles: [], userId: "id" },
-      params: { id: "userId" }
-    };
-    await deleteUser[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", { structures: 1, email: 1 });
-    expect(removeMemberFromStructure).toHaveBeenCalledWith("structure1", "userId");
-    expect(removeMemberFromStructure).toHaveBeenCalledWith("structure2", "userId");
-    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
-      username: "utilisateur_1",
-      password: "",
-      phone: "",
-      email: "",
-      picture: null,
-      authy_id: "",
-      cookies: null,
-      reset_password_token: "",
-      structures: [],
-      roles: [],
-      status: "Exclu"
-    });
-    expect(sendAccountDeletedMailService).toHaveBeenCalledWith("test@test.com");
-    expect(res.status).toHaveBeenCalledWith(200);
+    await deleteUser("id");
+    expect(getUserByIdMock).toHaveBeenCalledWith("id", { email: 1, structures: 1 });
+    expect(deleteUserMock).toHaveBeenCalledWith(user);
+    expect(sendMailMock).not.toHaveBeenCalled();
+  });
+  it("should get user and delete it. Email if available", async () => {
+    const user = new UserModel({ email: "test@example.com" });
+    const getUserByIdMock = jest.spyOn(usersRep, 'getUserById');
+    getUserByIdMock.mockResolvedValue(user);
+
+    const deleteUserMock = jest.spyOn(usersServ, 'deleteUser');
+    const sendMailMock = jest.spyOn(mailServ, 'sendAccountDeletedMailService');
+
+    await deleteUser("id");
+    expect(getUserByIdMock).toHaveBeenCalledWith("id", { email: 1, structures: 1 });
+    expect(deleteUserMock).toHaveBeenCalledWith(user);
+    expect(sendMailMock).toHaveBeenCalledWith("test@example.com");
   });
 });
