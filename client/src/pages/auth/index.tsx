@@ -6,7 +6,7 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { getPath } from "routes";
 import { logger } from "logger";
-import { useLogin, useRegisterFlow } from "hooks";
+import { useAuthRedirect, useLogin, useRegisterFlow } from "hooks";
 import { googleProvider } from "utils/googleSignIn";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
@@ -25,6 +25,7 @@ import OutlookIcon from "assets/auth/providers/outlook-icon.svg";
 import styles from "scss/components/auth.module.scss";
 
 const AuthEmail = () => {
+  useAuthRedirect(false);
   const router = useRouter();
   const { logUser, handleError } = useLogin();
   const { start } = useRegisterFlow(null);

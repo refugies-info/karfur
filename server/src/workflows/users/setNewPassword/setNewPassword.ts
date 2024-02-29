@@ -20,7 +20,6 @@ export const setNewPassword = async (body: NewPasswordRequest): ResponseWithData
     if (!user) throw new LoginError(LoginErrorType.USER_NOT_EXISTS);
     if (!user.email) throw new LoginError(LoginErrorType.NO_EMAIL);
     if (passwordHash.verify(body.newPassword, user.password)) throw new LoginError(LoginErrorType.USED_PASSWORD);
-    if (user.isAdmin()) throw new LoginError(LoginErrorType.ADMIN_FORBIDDEN);
     if (!isPasswordOk(body.newPassword)) throw new LoginError(LoginErrorType.PASSWORD_TOO_WEAK);
 
     const userStructureId = await userRespoStructureId(

@@ -60,7 +60,7 @@ export const Event = (category: string, action: string, label: string) => {
   });
   //@ts-ignore
   // eslint-disable-next-line no-undef
-  plausible(category, { props: { action, label } })
+  if (!!window.plausible) plausible(category, { props: { action, label } })
   window._paq?.push(["trackEvent", category, action, label]);
 };
 
@@ -75,7 +75,7 @@ const initMatomo = () => {
  * Inits GA with consent option, or update if already initialized
  */
 export const initGA = (consent: boolean) => {
-  // if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") return;
+  if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") return;
   const trackingId = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS;
 
   if (!ReactGA.isInitialized) {

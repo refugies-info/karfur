@@ -44,6 +44,7 @@ import { checkUserExists } from "../workflows/users/checkUserExists";
 import { checkCode } from "../workflows/users/checkCode";
 import { register } from "../workflows/users/register";
 import { sendCode } from "../workflows/users/sendCode";
+import { deleteMyAccount } from "../workflows/users/deleteMyAccount";
 
 // import { UserStatus } from "../typegoose/User";
 
@@ -202,6 +203,14 @@ export class UserController extends Controller {
   @Delete("/{id}")
   @Security({ jwt: ["admin"], fromSite: [] })
   public async deleteUser(@Path() id: string): Response {
-    return deleteUser(id);
+    await deleteUser(id);
+    return { text: "success" };
+  }
+
+  @Delete("/")
+  @Security({ jwt: [], fromSite: [] })
+  public async deleteMyAccount(@Request() request: IRequest): Response {
+    await deleteMyAccount(request.user);
+    return { text: "success" };
   }
 }

@@ -6,5 +6,8 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "useTabs": false,
-  "endOfLine": "auto"
+  "endOfLine": "auto",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "arrowParens": "always"
 }
