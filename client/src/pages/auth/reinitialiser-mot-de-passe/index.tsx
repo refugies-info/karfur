@@ -9,8 +9,10 @@ import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import { ForgotPassword } from "components/User";
 import styles from "scss/components/auth.module.scss";
+import { useAuthRedirect } from "hooks";
 
 const AuthForgotPassword = () => {
+  useAuthRedirect(false);
   const router = useRouter();
   const email: string = useMemo(() => router.query.email as string, [router.query]);
 

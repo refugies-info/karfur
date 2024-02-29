@@ -4,6 +4,7 @@ import { StructureMemberRole } from "@refugies-info/api-types";
 import { Col, Row } from "reactstrap";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { ToggleSwitch } from "@codegouvfr/react-dsfr/ToggleSwitch";
+import Button from "@codegouvfr/react-dsfr/Button";
 import { logger } from "logger";
 import API from "utils/API";
 import { cls } from "lib/classname";
@@ -13,6 +14,8 @@ import {
   EditAvatar,
   EditButton,
   LanguageBadge,
+  ModalDeleteAccount,
+  modalDeleteAccount,
   ModalDepartments,
   modalDepartments,
   ModalLanguage,
@@ -84,7 +87,8 @@ export const UserProfile = (props: Props) => {
             <h1>Mon profil</h1>
           </Col>
           <Col className="text-end text-nowrap">
-            {/* <Button
+            <Button
+              onClick={() => modalDeleteAccount.open()}
               disabled={edition}
               priority="secondary"
               size="small"
@@ -93,7 +97,7 @@ export const UserProfile = (props: Props) => {
               className={cls(styles.danger, "ms-2")}
             >
               Supprimer mon profil
-            </Button> */}
+            </Button>
           </Col>
         </Row>
 
@@ -202,6 +206,7 @@ export const UserProfile = (props: Props) => {
 
       <ModalDepartments />
       <ModalLanguage />
+      <ModalDeleteAccount />
     </div>
   );
 };
