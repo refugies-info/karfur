@@ -83,6 +83,9 @@ export class User extends Base {
   @prop()
   public created_at?: Date;
 
+  @prop()
+  public mfaCode?: string;
+
   public authenticate(this: DocumentType<User>, password: string) {
     return passwordHash.verify(password, this.password.toString());
   }

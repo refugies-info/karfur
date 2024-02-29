@@ -28,6 +28,10 @@ describe("auth/connexion", () => {
     expect(component.toJSON()).toMatchSnapshot();
   });
   it("renders code-securite if email", () => {
+    const url = "http://refugies.info/auth/code-securite?email=test@example.com";
+    Object.defineProperty(window, "location", {
+      value: new URL(url),
+    });
     act(() => {
       mockRouter.push("/auth/code-securite?email=test@example.com");
     });

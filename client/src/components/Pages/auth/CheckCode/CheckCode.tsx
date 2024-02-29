@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useCookie } from "react-use";
 import { Col, Row } from "reactstrap";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -30,6 +31,7 @@ const CheckCode = (props: Props) => {
   const [code, setCode] = useState("");
   const { logUser } = useLogin();
   const [isLoading, setIsLoading] = useState(false);
+  const [mfaCodeCookie, updateMfaCodeCookie, deleteMfaCodeCookie] = useCookie("mfa-code");
 
   // use error from parent component
   useEffect(() => {
@@ -44,8 +46,9 @@ const CheckCode = (props: Props) => {
       setIsLoading(true);
       try {
         if (props.type !== "updateUser") {
-          const res = await API.checkCode({ email, code });
+          const res = await API.checkCode({ email, code, mfaCode: mfaCodeCookie || "" });
           if (!res.token) throw new Error();
+          deleteMfaCodeCookie();
           logUser(res.token);
         } else {
           await updateUser?.(code);
@@ -61,7 +64,7 @@ const CheckCode = (props: Props) => {
         }
       }
     },
-    [logUser, email, code, props.type, updateUser],
+    [logUser, email, code, props.type, updateUser, mfaCodeCookie, deleteMfaCodeCookie],
   );
 
   const resendCode = useCallback(
