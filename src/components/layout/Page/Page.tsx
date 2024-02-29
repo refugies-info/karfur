@@ -104,6 +104,15 @@ const Page = ({
   const offset = voiceoverOffset || 200;
   const { setScroll } = useVoiceover(scrollview || contentScrollview, offset);
 
+  const resetScroll = useCallback(() => {
+    setScroll(0, 0);
+  }, [setScroll]);
+
+  // on mount, reset scroll
+  useEffect(() => {
+    resetScroll();
+  }, [resetScroll]);
+
   const onScrollEnd = useCallback(
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
       setScroll(
@@ -177,10 +186,6 @@ const Page = ({
     }),
     [onScrollEnd, handleScroll, scrollview, contentScrollview]
   );
-
-  const resetScroll = useCallback(() => {
-    setScroll(0, 0);
-  }, [setScroll]);
 
   return (
     <PageContainer backgroundColor={backgroundColor}>
