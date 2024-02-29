@@ -14,6 +14,10 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   }),
 }));
 
+jest.mock("../../../utils/logEvent", () => ({
+  logEventInFirebase: jest.fn(),
+}));
+
 describe("Search Screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();

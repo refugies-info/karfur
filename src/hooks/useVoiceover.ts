@@ -1,5 +1,5 @@
 import { useIsFocused } from "@react-navigation/native";
-import { MutableRefObject, useEffect } from "react";
+import { MutableRefObject, useCallback, useEffect } from "react";
 import { ScrollView, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
@@ -29,11 +29,11 @@ export const useVoiceover = (
   }, [currentReadingItem]);
 
   // Save scroll locally in component, and in Redux
-  const setScroll = (currentScroll: number, _offset: number) => {
+  const setScroll = useCallback((currentScroll: number, _offset: number) => {
     if (isFocused) {
       dispatch(setScrollReading(currentScroll));
     }
-  };
+  }, [isFocused]);
 
   return { setScroll };
 };
