@@ -10,7 +10,7 @@ import styles from "scss/components/auth.module.scss";
 import { useAuthRedirect } from "hooks";
 
 const AuthResetMailSent = () => {
-  useAuthRedirect();
+  useAuthRedirect(false);
   const router = useRouter();
   const email = useMemo(() => router.query.email as string, [router.query]);
 

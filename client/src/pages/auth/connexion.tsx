@@ -17,7 +17,7 @@ import FRLink from "components/UI/FRLink";
 import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
-  useAuthRedirect();
+  useAuthRedirect(true);
   const router = useRouter();
   const { logUser, handleError } = useLogin();
   const email: string = useMemo(() => router.query.email as string, [router.query]);
@@ -46,9 +46,7 @@ const AuthLogin = () => {
     [router, email, logUser],
   );
 
-  // TODO: if auth -> redirect
   if (!email) return null;
-
   return (
     <div className={cls(styles.container, styles.half)}>
       <SEO title="Ravis de vous revoir !" />

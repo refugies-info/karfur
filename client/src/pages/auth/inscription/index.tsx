@@ -24,7 +24,7 @@ import ErrorMessage from "components/UI/ErrorMessage";
 import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
-  useAuthRedirect();
+  useAuthRedirect(true);
   const router = useRouter();
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -110,7 +110,7 @@ const AuthLogin = () => {
         />
         <PasswordInput
           label="Mot de passe"
-          messages={passwordStrength.criterias.map(criteria => ({
+          messages={passwordStrength.criterias.map((criteria) => ({
             message: t(criteria.label),
             severity: !password ? "info" : criteria.isOk ? "valid" : "error",
           }))}
@@ -124,7 +124,7 @@ const AuthLogin = () => {
               label: "Recevoir l’actualité mensuelle de Réfugiés.info",
               nativeInputProps: {
                 checked: subscribeNewsletter,
-                onChange: () => setSubscribeNewsletter(o => !o),
+                onChange: () => setSubscribeNewsletter((o) => !o),
               },
             },
           ]}

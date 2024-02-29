@@ -12,7 +12,7 @@ import styles from "scss/components/auth.module.scss";
 import { useAuthRedirect } from "hooks";
 
 const AuthForgotPassword = () => {
-  useAuthRedirect();
+  useAuthRedirect(false);
   const router = useRouter();
   const email: string = useMemo(() => router.query.email as string, [router.query]);
 

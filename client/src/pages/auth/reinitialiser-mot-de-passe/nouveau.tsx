@@ -22,7 +22,7 @@ interface Props {
 }
 
 const AuthNewPassword = (props: Props) => {
-  useAuthRedirect();
+  useAuthRedirect(false);
   const router = useRouter();
   const { t } = useTranslation();
   const { logUser } = useLogin();
@@ -104,7 +104,7 @@ const AuthNewPassword = (props: Props) => {
                         severity: "error",
                       },
                     ]
-                  : passwordStrength.criterias.map(criteria => ({
+                  : passwordStrength.criterias.map((criteria) => ({
                       message: t(criteria.label),
                       severity: !password ? "info" : criteria.isOk ? "valid" : "error",
                     }))

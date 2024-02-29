@@ -12,7 +12,7 @@ import styles from "scss/components/auth.module.scss";
 import { Event } from "lib/tracking";
 
 const AuthMicrosoftLogin = () => {
-  useAuthRedirect();
+  useAuthRedirect(false);
   const router = useRouter();
   const code: string = useMemo(() => router.query.code as string, [router.query]);
   const authError: string = useMemo(() => router.query.error as string, [router.query]);
@@ -38,12 +38,12 @@ const AuthMicrosoftLogin = () => {
         },
         role: registerInfos?.role, // set role in case new account
       })
-        .then(res => {
+        .then((res) => {
           Event("AUTH", "microsoft login", "success");
           if (res.userCreated) start(res.token, registerInfos?.role);
           else logUser(res.token);
         })
-        .catch(e => {
+        .catch((e) => {
           const error = handleError(e.response?.data?.code, e.response?.data?.data?.email || "");
           if (error) setError(error);
         });
