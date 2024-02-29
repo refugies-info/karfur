@@ -25,7 +25,7 @@ import OutlookIcon from "assets/auth/providers/outlook-icon.svg";
 import styles from "scss/components/auth.module.scss";
 
 const AuthEmail = () => {
-  useAuthRedirect();
+  useAuthRedirect(false);
   const router = useRouter();
   const { logUser, handleError } = useLogin();
   const { start } = useRegisterFlow(null);
@@ -69,18 +69,18 @@ const AuthEmail = () => {
           },
           role: registerInfos?.role, // set role in case new account
         })
-          .then(res => {
+          .then((res) => {
             Event("AUTH", "google login", "success");
             if (res.userCreated) start(res.token, registerInfos?.role);
             else logUser(res.token);
           })
-          .catch(e => {
+          .catch((e) => {
             setIsLoading(false);
             const error = handleError(e.response?.data?.code, e.response?.data?.data?.email || "");
             if (error) setError(error);
           });
       },
-      onError: err => {
+      onError: (err) => {
         setIsLoading(false);
         logger.error("[loginGoogle] Failed to login with google", err);
         setError("Erreur, vous n'êtes pas authentifié avec votre compte Google, veuillez réessayer.");

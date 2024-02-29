@@ -6,7 +6,7 @@ import SEO from "components/Seo";
 import { useAuthRedirect } from "hooks";
 
 const SecurityCode = () => {
-  useAuthRedirect();
+  useAuthRedirect(true);
 
   return (
     <>

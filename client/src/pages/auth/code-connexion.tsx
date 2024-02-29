@@ -8,7 +8,7 @@ import SEO from "components/Seo";
 import { useAuthRedirect } from "hooks";
 
 const LoginCode = () => {
-  useAuthRedirect();
+  useAuthRedirect(true);
   const router = useRouter();
   const [codeSent, setCodeSent] = useState(false);
 
