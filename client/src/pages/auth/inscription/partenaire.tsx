@@ -23,7 +23,7 @@ const AuthLogin = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [partner, setPartner] = useState<string | null>(null);
-  const { userId, userDetails, getStepCount, next } = useRegisterFlow("partenaire");
+  const { userId, userDetails, getStepCount, next } = useRegisterFlow("partenaire", true);
   const stepCount = useMemo(() => getStepCount(partner === "" ? null : [RoleName.CAREGIVER]), [partner, getStepCount]);
 
   useEffect(() => {

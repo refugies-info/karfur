@@ -712,12 +712,12 @@ exports[`UserProfile should render correctly 1`] = `
                 className="fr-modal__title"
                 id="fr-modal-title-delete-account-modal"
               >
-                Êtes-vous sûr ?
+                Êtes-vous sûrs de vouloir supprimer votre compte ?
               </h1>
               <p
                 className="mb-8"
               >
-                Souhaitez-vous supprimer votre compte ? Cette action est irréversible.
+                Vous perdrez l'accès à vos favoris ainsi qu'à votre structure et aux fiches que vous avez rédigées.
               </p>
             </div>
             <div
@@ -735,7 +735,7 @@ exports[`UserProfile should render correctly 1`] = `
                     onClick={[Function]}
                     style={{}}
                   >
-                    Oui, le supprimer
+                    Supprimer mon compte
                   </button>
                 </li>
                 <li>

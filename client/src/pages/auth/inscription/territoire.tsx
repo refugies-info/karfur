@@ -16,7 +16,7 @@ const AuthLogin = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [inscriptionMessage, setInscriptionMessage] = useState("");
-  const { userDetails, getStepCount, back } = useRegisterFlow("territoire");
+  const { userDetails, getStepCount, back } = useRegisterFlow("territoire", true);
   const successCallback = useCallback(() => {
     const loginRedirect = getLoginRedirect(userDetails?.roles);
     setInscriptionMessage(getInscriptionMessage(loginRedirect));

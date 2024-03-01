@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffectOnce } from "react-use";
 import { RoleName } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { setAuthToken } from "utils/authToken";
+import API from "utils/API";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -11,11 +13,17 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 
 type Step = "objectif" | "partenaire" | "langue" | "pseudo" | "territoire";
 
-const useRegisterFlow = (currentStep: Step | null) => {
+const useRegisterFlow = (currentStep: Step | null, redirectIfAnonymous?: boolean) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const userDetails = useSelector(userDetailsSelector);
   const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
+
+  useEffectOnce(() => {
+    if (redirectIfAnonymous && !API.isAuth()) {
+      router.push("/fr/auth");
+    }
+  })
 
   /**
    * Fetch user info if not available yet
