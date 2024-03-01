@@ -34,6 +34,7 @@ export interface CheckUserExistsResponse {
 export interface CheckCodeRequest {
   code: string;
   email: string;
+  mfaCode?: string; // should be defined in case of 2fa
 }
 
 /**

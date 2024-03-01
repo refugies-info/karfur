@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffectOnce } from "react-use";
 import { useRouter } from "next/router";
 import API from "utils/API";
 
@@ -8,13 +8,12 @@ import API from "utils/API";
  */
 const useAuthRedirect = (needEmail: boolean) => {
   const router = useRouter();
-  const email: string = useMemo(() => router.query.email as string, [router.query]);
 
-  useEffect(() => {
+  useEffectOnce(() => {
     if (API.isAuth()) router.push("/backend/user-profile");
+    const email = new URLSearchParams(window.location.search).get("email");
     if (!email && needEmail) router.push("/fr/auth");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  })
 
   return null;
 }

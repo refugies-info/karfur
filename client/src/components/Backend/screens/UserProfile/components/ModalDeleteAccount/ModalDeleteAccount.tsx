@@ -1,6 +1,5 @@
 import { useAsyncFn } from "react-use";
 import { createModal } from "@codegouvfr/react-dsfr/Modal";
-import Button from "@codegouvfr/react-dsfr/Button";
 import API from "utils/API";
 import ErrorMessage from "components/UI/ErrorMessage";
 import styles from "./ModalDeleteAccount.module.scss";
@@ -21,7 +20,7 @@ export const ModalDeleteAccount = (props: Props) => {
 
   return (
     <modalDeleteAccount.Component
-      title="Êtes-vous sûr ?"
+      title="Êtes-vous sûrs de vouloir supprimer votre compte ?"
       buttons={[
         {
           onClick: () => modalDeleteAccount.close(),
@@ -30,7 +29,7 @@ export const ModalDeleteAccount = (props: Props) => {
           disabled: loading,
         },
         {
-          children: "Oui, le supprimer",
+          children: "Supprimer mon compte",
           onClick: onValidate,
           priority: "primary",
           iconId: "fr-icon-delete-bin-line",
@@ -39,7 +38,9 @@ export const ModalDeleteAccount = (props: Props) => {
         },
       ]}
     >
-      <p className="mb-8">Souhaitez-vous supprimer votre compte&nbsp;? Cette action est irréversible.</p>
+      <p className="mb-8">
+        Vous perdrez l'accès à vos favoris ainsi qu'à votre structure et aux fiches que vous avez rédigées.
+      </p>
       <ErrorMessage error={error?.message} />
     </modalDeleteAccount.Component>
   );

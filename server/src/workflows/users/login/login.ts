@@ -3,7 +3,7 @@ import { OAuth2Client } from "google-auth-library";
 import msal from "@azure/msal-node";
 import { LoginRequest, LoginResponse, UserStatus } from "@refugies-info/api-types";
 import logger from "../../../logger";
-import { getUserByEmailFromDB } from "../../../modules/users/users.repository";
+import { getUserByEmailFromDB, updateUserInDB } from "../../../modules/users/users.repository";
 import { requestEmailLogin } from "../../../modules/users/login2FA";
 import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
 import { User } from "../../../typegoose/User";
@@ -99,7 +99,9 @@ export const login = async (body: LoginRequest): Promise<LoginResponse> => {
     const userNeeds2FA = await needs2FA(user);
     if (userNeeds2FA) {
       await requestEmailLogin(email);
-      throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED, { email });
+      const randomCode = Math.round(Math.random() * 100000000).toString();
+      await updateUserInDB(user._id, { mfaCode: randomCode });
+      throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED, { email, code: randomCode });
     } else {
       const token = await logUser(user);
       return { token };
