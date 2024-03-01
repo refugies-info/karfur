@@ -26,7 +26,7 @@ const cca = new msal.ConfidentialClientApplication({
 const MICROSOFT_REDIRECT_URL = process.env.FRONT_SITE_URL + "/fr/auth/microsoft-login";
 const MICROSOFT_SCOPES = ["User.Read"];
 
-const authWithPassword = async (user: DocumentType<User>, password: string): Promise<boolean> => {
+export const authWithPassword = async (user: DocumentType<User>, password: string): Promise<boolean> => {
   logger.info("[authWithPassword] start", { email: user.email });
 
   if (!user.authenticate(password)) {
@@ -38,7 +38,7 @@ const authWithPassword = async (user: DocumentType<User>, password: string): Pro
   return true;
 }
 
-const authWithGoogle = async (loginRequest: LoginRequest): Promise<{ email: string, name: string } | null> => {
+export const authWithGoogle = async (loginRequest: LoginRequest): Promise<{ email: string, name: string } | null> => {
   logger.info("[authWithGoogle] start");
   const { tokens } = await oauth2Client.getToken(loginRequest.authGoogle.authCode)
   const res = await oauth2Client.verifyIdToken({ idToken: tokens.id_token });
@@ -48,7 +48,7 @@ const authWithGoogle = async (loginRequest: LoginRequest): Promise<{ email: stri
   return email ? { email, name } : null;
 }
 
-const authWithMicrosoft = async (loginRequest: LoginRequest): Promise<string | null> => {
+export const authWithMicrosoft = async (loginRequest: LoginRequest): Promise<string | null> => {
   logger.info("[authWithMicrosoft] start");
   if (loginRequest.authMicrosoft.authCode === null) {
     const url = await cca.getAuthCodeUrl({
