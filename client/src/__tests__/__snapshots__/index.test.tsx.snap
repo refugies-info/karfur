@@ -2859,13 +2859,6 @@ exports[`homepage renders homepage 1`] = `
               onTouchStart={[Function]}
               title="Demander le RSA"
             >
-              <div
-                className="update"
-              >
-                <span>
-                  Recherche.updated
-                </span>
-              </div>
               <div>
                 <img
                   alt=""
@@ -3442,13 +3435,6 @@ exports[`homepage renders homepage 1`] = `
               onTouchStart={[Function]}
               title="Faire et utiliser une e-photo"
             >
-              <div
-                className="update"
-              >
-                <span>
-                  Recherche.updated
-                </span>
-              </div>
               <div>
                 <img
                   alt=""
@@ -3611,13 +3597,6 @@ exports[`homepage renders homepage 1`] = `
               onTouchStart={[Function]}
               title="Créer un compte personnel sur le site Étrangers en France"
             >
-              <div
-                className="update"
-              >
-                <span>
-                  Recherche.updated
-                </span>
-              </div>
               <div>
                 <img
                   alt=""
@@ -3870,13 +3849,6 @@ exports[`homepage renders homepage 1`] = `
               onTouchStart={[Function]}
               title="Demander des aides au logement"
             >
-              <div
-                className="update"
-              >
-                <span>
-                  Recherche.updated
-                </span>
-              </div>
               <div>
                 <img
                   alt=""
@@ -4489,13 +4461,6 @@ exports[`homepage renders homepage 1`] = `
               onTouchStart={[Function]}
               title="Acheter une voiture"
             >
-              <div
-                className="update"
-              >
-                <span>
-                  Recherche.updated
-                </span>
-              </div>
               <div>
                 <img
                   alt=""
