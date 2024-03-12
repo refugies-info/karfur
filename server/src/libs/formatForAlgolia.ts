@@ -34,6 +34,16 @@ const getAllThemeTitles = (theme: Theme, activeLanguages: Langue[], property: "n
   return titles;
 };
 
+const getLocation = (dispositif: Dispositif): AlgoliaObject["location"] => {
+  const location = dispositif.metadatas.location;
+  if (Array.isArray(location)) {
+    return "0_localized"
+  }
+  if (location === "france") return "1_france";
+  if (location === "online") return "2_online";
+  return undefined;
+}
+
 export const formatForAlgolia = (
   content: Dispositif | Need | Theme,
   activeLanguages: Langue[] | null = null,
@@ -42,6 +52,8 @@ export const formatForAlgolia = (
   if (type === "dispositif") {
     const dispositif = content as Dispositif;
     const mainSponsor = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
+    const location = getLocation(dispositif);
+
     return {
       objectID: dispositif._id,
       ...extractValuesPerLanguage(dispositif.translations, "content.titreInformatif", "title"),
@@ -56,6 +68,7 @@ export const formatForAlgolia = (
       sponsorName: mainSponsor?.nom,
       priority: dispositif.typeContenu === "dispositif" ? 30 : 40,
       webOnly: dispositif.webOnly || false,
+      location
     };
   } else if (type === "need") {
     const need = content as Need;
