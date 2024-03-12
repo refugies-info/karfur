@@ -24,7 +24,6 @@ import commonStyles from "scss/components/searchHeader.module.scss";
 
 interface Props {
   nbResults: number;
-  searchMinified: boolean;
 
   // filterProps
   locationSearch: string;
@@ -186,11 +185,7 @@ const SearchHeaderDesktop = (props: Props) => {
   return (
     <div className={styles.container}>
       <Container className={styles.container_inner}>
-        {props.searchMinified ? (
-          <h1 className="h1 text-white">{t("Recherche.titleHome", { count: props.nbResults })}</h1>
-        ) : (
-          <h1 className="h1 text-white">{t("Recherche.titleResults", { count: props.nbResults })}</h1>
-        )}
+        <h1 className="h1 text-white">{t("Recherche.titleResults", { count: props.nbResults })}</h1>
         <div className={styles.inputs}>
           <Dropdown
             isOpen={locationOpen || inputFocused.location}
@@ -256,50 +251,48 @@ const SearchHeaderDesktop = (props: Props) => {
           </div>
         </div>
 
-        {!props.searchMinified && (
-          <div className={styles.subheader}>
-            <div className={styles.filters}>
-              <SecondaryFilter
-                mobile={false}
-                label={query.age.length === 0 ? t("Recherche.filterAge", "Tranche d'âge") : ageDisplayedValue}
-                selected={query.age}
-                //@ts-ignore
-                setSelected={selectAgeOption}
-                options={ageOptions}
-                gaType="age"
-              />
-              <SecondaryFilter
-                mobile={false}
-                label={
-                  query.frenchLevel.length === 0
-                    ? t("Recherche.filterFrenchLevel", "Niveau de français")
-                    : frenchLevelDisplayedValue
-                }
-                selected={query.frenchLevel}
-                //@ts-ignore
-                setSelected={selectFrenchLevelOption}
-                options={frenchLevelOptions}
-                gaType="frenchLevel"
-              />
-              <SecondaryFilter
-                mobile={false}
-                label={
-                  query.language.length === 0
-                    ? t("Recherche.filterLanguage", "Fiches traduites en")
-                    : languageDisplayedValue
-                }
-                selected={query.language}
-                setSelected={selectLanguageOption}
-                options={languagesOptions}
-                gaType="language"
-              />
-            </div>
-            <Button className={styles.reset} onClick={() => dispatch(resetQueryActionCreator())}>
-              <EVAIcon name="refresh-outline" fill="white" className="me-2" />
-              {t("Recherche.resetFilters", "Effacer tous les filtres")}
-            </Button>
+        <div className={styles.subheader}>
+          <div className={styles.filters}>
+            <SecondaryFilter
+              mobile={false}
+              label={query.age.length === 0 ? t("Recherche.filterAge", "Tranche d'âge") : ageDisplayedValue}
+              selected={query.age}
+              //@ts-ignore
+              setSelected={selectAgeOption}
+              options={ageOptions}
+              gaType="age"
+            />
+            <SecondaryFilter
+              mobile={false}
+              label={
+                query.frenchLevel.length === 0
+                  ? t("Recherche.filterFrenchLevel", "Niveau de français")
+                  : frenchLevelDisplayedValue
+              }
+              selected={query.frenchLevel}
+              //@ts-ignore
+              setSelected={selectFrenchLevelOption}
+              options={frenchLevelOptions}
+              gaType="frenchLevel"
+            />
+            <SecondaryFilter
+              mobile={false}
+              label={
+                query.language.length === 0
+                  ? t("Recherche.filterLanguage", "Fiches traduites en")
+                  : languageDisplayedValue
+              }
+              selected={query.language}
+              setSelected={selectLanguageOption}
+              options={languagesOptions}
+              gaType="language"
+            />
           </div>
-        )}
+          <Button className={styles.reset} onClick={() => dispatch(resetQueryActionCreator())}>
+            <EVAIcon name="refresh-outline" fill="white" className="me-2" />
+            {t("Recherche.resetFilters", "Effacer tous les filtres")}
+          </Button>
+        </div>
       </Container>
 
       {inputFocused.search /* search backdrop placed here to cover only header */ && (

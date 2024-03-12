@@ -17,7 +17,6 @@ import styles from "./SearchHeader.module.scss";
 const SCROLL_LIMIT = parseInt(styles.scrollLimit.replace("px", ""));
 
 interface Props {
-  searchMinified: boolean;
   nbResults: number;
 }
 
@@ -154,12 +153,12 @@ const SearchHeader = (props: Props) => {
       {scrolled && <div className={styles.placeholder} style={{ height: placeholderHeight }}></div>}
       <div ref={headerRef} className={cls(scrolled && `${styles.scrolled} scrolled`)}>
         {!isMobile ? (
-          <SearchHeaderDesktop searchMinified={props.searchMinified} nbResults={props.nbResults} {...filterProps} />
+          <SearchHeaderDesktop nbResults={props.nbResults} {...filterProps} />
         ) : (
           <SearchHeaderMobile nbResults={props.nbResults} {...filterProps} />
         )}
 
-        {!props.searchMinified && <ResultsFilter />}
+        <ResultsFilter />
       </div>
     </>
   );

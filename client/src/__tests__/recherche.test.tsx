@@ -15,19 +15,6 @@ describe("recherche", () => {
 
   let component: ReactTestRenderer;
 
-  it("renders home search", () => {
-    window.scrollTo = jest.fn();
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: recherche,
-        reduxState: {
-          ...initialMockStore,
-        },
-      });
-    });
-    expect(component.toJSON()).toMatchSnapshot();
-  });
-
   it("renders search results", () => {
     window.scrollTo = jest.fn();
 
