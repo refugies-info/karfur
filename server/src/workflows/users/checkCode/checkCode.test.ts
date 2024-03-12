@@ -1,11 +1,7 @@
 import { checkCode } from "./checkCode";
-import * as usersRep from "../../../modules/users/users.repository";
 import * as auth from "../../../modules/users/auth";
 import * as login2FA from "../../../modules/users/login2FA";
-import { UserModel } from "../../../typegoose";
 import { LoginErrorType } from "../../../modules/users/LoginError";
-import { UserStatus } from "@refugies-info/api-types";
-import passwordHash from "password-hash";
 
 
 jest.mock("../../../modules/users/login2FA", () => ({
