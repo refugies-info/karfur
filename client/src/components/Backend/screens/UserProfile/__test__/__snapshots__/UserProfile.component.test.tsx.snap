@@ -525,10 +525,15 @@ exports[`UserProfile should render correctly 1`] = `
                 onSubmit={[Function]}
               >
                 <label
-                  className="mb-2"
+                  className="fr-label mb-2"
                   htmlFor="location"
                 >
                   Nom ou numéro du département
+                  <span
+                    className="fr-hint-text"
+                  >
+                    Plusieurs choix possibles
+                  </span>
                 </label>
                 <div
                   className="position-relative"
