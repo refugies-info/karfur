@@ -31,6 +31,9 @@ export const updateNotificationsSettings = async (uid: string, payload: Partial<
 export const updateOrCreateAppUser = async (payload: AppUser, themeIds: string[]) => {
   const appUser = await AppUserModel.findOne({ uid: payload.uid });
 
+  // delete outdated appusers with the same ExpoPushToken
+  await AppUserModel.deleteMany({ uid: { $ne: payload.uid }, expoPushToken: payload.expoPushToken })
+
   if (appUser) {
     await AppUserModel.updateOne({ uid: payload.uid }, payload, { upsert: true, new: true });
     return AppUserModel.findOne({ uid: payload.uid }); // fix wrong type after updateOne

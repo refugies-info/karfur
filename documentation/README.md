@@ -26,18 +26,20 @@ Both of these projects should follow these standards:
 - All text should be in **english** (features, comments, commit messages and github discussions).
 - For typing, we use **typescript** on client and server.
 
-### Git flow
+### Workflow
 
-We use 3 branches which triggers the deployment automatically:
+We use 3 git branches which triggers the deployment automatically:
 
 - `dev` for development
 - `staging-frontend` and `staging-backend` for staging
 - `master-frontend` and `master-backend` for production
 
+You can follow the build status on GCP: https://console.cloud.google.com/home/dashboard?project=refugies-info
+
 For all the new features, you must follow this process:
 
 - create a `feature` branch with your changes
-- open a pull request to `dev`. Add the `bug` or `enhancement` tag.
+- open a pull request to `dev`. Add the `bug` or `enhancement` tag. Add the ticket link to the PR, and the PR link in the ticket.
 - once it's merged, open a pull request to `staging-\[frontend|backend\]` to test the feature.  
   Name it `[STG-FRONT|BACK]` and add the `release` tag.  
   You can also use the command `npm run pr:stg` from the right folder to create it automatically (needs `gh` installed locally)
