@@ -24,13 +24,11 @@ import decodeQuery from "lib/recherche/decodeUrlQuery";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { isHomeSearchVisible } from "lib/recherche/isHomeSearchVisible";
 import { getDepartmentsNotDeployed } from "lib/recherche/functions";
 import { generateLightResults } from "lib/recherche/generateLightResults";
 import SEO from "components/Seo";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import SearchHeader from "components/Pages/recherche/SearchHeader";
-import HomeSearch from "components/Pages/recherche/HomeSearch";
 import { getPath, isRoute } from "routes";
 import styles from "scss/pages/recherche.module.scss";
 
@@ -64,8 +62,6 @@ const Recherche = () => {
   const query = useSelector(searchQuerySelector);
   const filteredResult = useSelector(searchResultsSelector);
 
-  const [showHome, setShowHome] = useState(isHomeSearchVisible(query));
-
   // when navigating, save state to prevent loop on search page
   const [isNavigating, setIsNavigating] = useState(false);
   useEffect(() => {
@@ -79,9 +75,6 @@ const Recherche = () => {
   }, [router]);
 
   useEffect(() => {
-    // toggle home screen
-    setShowHome(isHomeSearchVisible(query));
-
     // update url
     const updateUrl = () => {
       const locale = router.locale;
@@ -124,15 +117,11 @@ const Recherche = () => {
   return (
     <div className={cls(styles.container)}>
       <SEO title={t("Recherche.pageTitle", "Recherche")} />
-      <SearchHeader searchMinified={showHome} nbResults={nbResults} />
+      <SearchHeader nbResults={nbResults} />
 
-      {!showHome ? (
-        <Container className={styles.container_inner}>
-          <SearchResults departmentsNotDeployed={departmentsNotDeployed} />
-        </Container>
-      ) : (
-        <HomeSearch />
-      )}
+      <Container className={styles.container_inner}>
+        <SearchResults departmentsNotDeployed={departmentsNotDeployed} />
+      </Container>
     </div>
   );
 };
@@ -151,9 +140,8 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   const initialQuery = decodeQuery(query, store.getState().themes.activeThemes);
   store.dispatch(addToQueryActionCreator(initialQuery));
 
-  const homeVisible = isHomeSearchVisible(initialQuery);
   const results = queryDispositifs(initialQuery, store.getState().activeDispositifs);
-  store.dispatch(setSearchResultsActionCreator(generateLightResults(results, homeVisible)));
+  store.dispatch(setSearchResultsActionCreator(generateLightResults(results)));
 
   return {
     props: {

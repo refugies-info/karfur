@@ -1,5 +1,4 @@
 import { GetDispositifsResponse } from "@refugies-info/api-types";
-import { HOME_MAX_SHOWN_DEMARCHES, HOME_MAX_SHOWN_DISPOSITIFS } from "components/Pages/recherche/HomeSearch/HomeSearch";
 import { MAX_SHOWN_DEMARCHES, MAX_SHOWN_DISPOSITIFS } from "components/Pages/recherche/SearchResults/SearchResults";
 import { Results } from "services/SearchResults/searchResults.reducer";
 
@@ -20,11 +19,11 @@ const getSearchDispositifs = (dispositifs: GetDispositifsResponse[], max: number
  * @param homeVisible - is home shown or not
  * @returns - results lighter
  */
-export const generateLightResults = (results: Results, homeVisible: boolean) => {
+export const generateLightResults = (results: Results) => {
   const lightResults: Results = {
-    dispositifs: getSearchDispositifs(results.dispositifs, homeVisible ? HOME_MAX_SHOWN_DISPOSITIFS : MAX_SHOWN_DISPOSITIFS),
-    demarches: getSearchDispositifs(results.demarches, homeVisible ? HOME_MAX_SHOWN_DEMARCHES : MAX_SHOWN_DEMARCHES),
-    dispositifsSecondaryTheme: getSearchDispositifs(results.dispositifsSecondaryTheme, homeVisible ? 0 : MAX_SHOWN_DISPOSITIFS)
+    dispositifs: getSearchDispositifs(results.dispositifs, MAX_SHOWN_DISPOSITIFS),
+    demarches: getSearchDispositifs(results.demarches, MAX_SHOWN_DEMARCHES),
+    dispositifsSecondaryTheme: getSearchDispositifs(results.dispositifsSecondaryTheme, MAX_SHOWN_DISPOSITIFS)
   };
 
   return lightResults;
