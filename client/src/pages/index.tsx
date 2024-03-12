@@ -122,13 +122,13 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   const demarches = await API.getDispositifs({
     type: ContentType.DEMARCHE,
     limit: 15,
-    sort: "publishedAt",
+    sort: "nbVues",
     locale: locale || "fr",
   });
   const dispositifs = await API.getDispositifs({
     type: ContentType.DISPOSITIF,
     limit: 15,
-    sort: "publishedAt",
+    sort: "nbVues",
     locale: locale || "fr",
   });
 
