@@ -21,7 +21,8 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
     nbVues: 1,
     typeContenu: 1,
     webOnly: 1,
-    mainSponsor: 1
+    mainSponsor: 1,
+    metadatas: 1
   };
 
   const contentsArray = await getActiveContentsFiltered(neededFields, { status: DispositifStatus.ACTIVE });
