@@ -102,7 +102,7 @@ describe("notification helpers", () => {
 
     const req2 = {
       age: { min: 18, max: 25 },
-      departments: ["Ille-et-Vilaine"],
+      departments: ["35 - Ille-et-Vilaine"],
       type: ContentType.DISPOSITIF,
       mainThemeId: "theme1"
     }
