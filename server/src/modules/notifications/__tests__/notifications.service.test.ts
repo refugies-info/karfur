@@ -9,10 +9,68 @@ import { AdminOptionsModel, NotificationModel, DispositifModel, AppUser, AppUser
 import { demarche, dispositif } from "../../../__fixtures__";
 import { targets } from "../__fixtures__/targets";
 
-describe("notifications.service", () => {
+describe("getNotificationsToSend", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
+
+  it("remove not allowed users", async () => {
+    const getUsersNotifsNotAllowedMock = jest.spyOn(notifications, 'getUsersNotifsNotAllowed');
+    getUsersNotifsNotAllowedMock.mockResolvedValue(["1", "2"]);
+
+    const savedNotifications: Notification[] = [{
+      uid: "1",
+      seen: false,
+      title: "test",
+      data: {}
+    },
+    {
+      uid: "2",
+      seen: false,
+      title: "test",
+      data: {}
+    },
+    {
+      uid: "3",
+      seen: false,
+      title: "test",
+      data: {}
+    }];
+
+    const tokens = {
+      "1": "expo1",
+      "2": "expo2",
+      "3": "expo3",
+    }
+    const res = await notifications.getNotificationsToSend(savedNotifications.map(n => new NotificationModel(n)), tokens);
+    expect(getUsersNotifsNotAllowedMock).toHaveBeenCalled();
+    expect(res).toEqual([{
+      to: "expo3",
+      title: "Réfugiés.info",
+      body: "test",
+      data: {
+        notificationId: expect.anything()
+      },
+    }])
+  });
+
+});
+
+describe("sendNotifications", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("sendNotifications if active", async () => {
+    jest.spyOn(adminOptionsRepository, "getAdminOption").mockResolvedValue(new AdminOptionsModel({ value: true }))
+
+    const spy = jest.spyOn(notifications.expo, "chunkPushNotifications")
+    const spySendNotif = jest.spyOn(notifications.expo, "sendPushNotificationsAsync")
+    await notifications.sendNotifications([]);
+    expect(spy).toHaveBeenCalledWith([]);
+    expect(spySendNotif).not.toHaveBeenCalled();
+  });
+
 
   it("sendNotifications if active", async () => {
     jest.spyOn(adminOptionsRepository, "getAdminOption").mockResolvedValue(new AdminOptionsModel({ value: true }))
@@ -58,6 +116,13 @@ describe("notifications.service", () => {
     expect(spySendNotif).not.toHaveBeenCalled();
   });
 
+});
+
+describe("sendNotificationsForDispositif", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should send notifications to all eligible users for a given dispositif', async () => {
     // Mock dependencies
     const getDispositifByIdMock = jest.spyOn(dispositifRepository, 'getDispositifById');
@@ -67,6 +132,7 @@ describe("notifications.service", () => {
     const getNotificationEmojiMock = jest.spyOn(notificationsService, 'getNotificationEmoji');
     const updateDispositifInDBMock = jest.spyOn(dispositifRepository, 'updateDispositifInDB');
     const insertNotificationsMock = jest.spyOn(NotificationModel, 'insertMany');
+    const getNotificationsToSendMock = jest.spyOn(notifications, 'getNotificationsToSend');
     const sendNotifications = jest.spyOn(notifications, 'sendNotifications');
 
     // Mock data
@@ -106,6 +172,7 @@ describe("notifications.service", () => {
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue('🔔');
     insertNotificationsMock.mockResolvedValue(savedNotifications.map(n => new NotificationModel(n)));
+    getNotificationsToSendMock.mockResolvedValue(messages);
     updateDispositifInDBMock.mockResolvedValue(dispositif);
 
     // Call the function
@@ -133,6 +200,7 @@ describe("notifications.service", () => {
         contentId: dispositif._id.toString(),
       },
     })));
+    expect(getNotificationsToSendMock).toHaveBeenCalled();
     expect(updateDispositifInDBMock).toHaveBeenCalledWith(dispositifId, { notificationsSent: { [lang]: true } });
     // FIXME: randomly generated nested id
     expect(sendNotifications).toHaveBeenCalledWith(messages.map(m => ({ ...m, data: { notificationId: expect.anything() } })));
@@ -147,6 +215,7 @@ describe("notifications.service", () => {
     const getNotificationEmojiMock = jest.spyOn(notificationsService, 'getNotificationEmoji');
     const updateDispositifInDBMock = jest.spyOn(dispositifRepository, 'updateDispositifInDB');
     const insertNotificationsMock = jest.spyOn(NotificationModel, 'insertMany');
+    const getNotificationsToSendMock = jest.spyOn(notifications, 'getNotificationsToSend');
     const sendNotifications = jest.spyOn(notifications, 'sendNotifications');
 
     // Mock data
@@ -168,6 +237,7 @@ describe("notifications.service", () => {
     expect(getNotificationEmojiMock).not.toHaveBeenCalled();
     expect(insertNotificationsMock).not.toHaveBeenCalled();
     expect(updateDispositifInDBMock).not.toHaveBeenCalled();
+    expect(getNotificationsToSendMock).not.toHaveBeenCalled();
     expect(sendNotifications).not.toHaveBeenCalled();
   });
 
@@ -180,6 +250,7 @@ describe("notifications.service", () => {
     const getNotificationEmojiMock = jest.spyOn(notificationsService, 'getNotificationEmoji');
     const updateDispositifInDBMock = jest.spyOn(dispositifRepository, 'updateDispositifInDB');
     const insertNotificationsMock = jest.spyOn(NotificationModel, 'insertMany');
+    const getNotificationsToSendMock = jest.spyOn(notifications, 'getNotificationsToSend');
     const sendNotifications = jest.spyOn(notifications, 'sendNotifications');
 
     // Mock data
@@ -201,8 +272,16 @@ describe("notifications.service", () => {
     expect(getNotificationEmojiMock).not.toHaveBeenCalled();
     expect(insertNotificationsMock).not.toHaveBeenCalled();
     expect(updateDispositifInDBMock).not.toHaveBeenCalled();
+    expect(getNotificationsToSendMock).not.toHaveBeenCalled();
     expect(sendNotifications).not.toHaveBeenCalled();
   });
+
+});
+describe("sendNotificationsForDemarche", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
 
   it('should send notifications to all eligible users for a given demarche', async () => {
     // Mock dependencies
@@ -213,6 +292,7 @@ describe("notifications.service", () => {
     const getNotificationEmojiMock = jest.spyOn(notificationsService, 'getNotificationEmoji');
     const updateDispositifInDBMock = jest.spyOn(dispositifRepository, 'updateDispositifInDB');
     const insertNotificationsMock = jest.spyOn(NotificationModel, 'insertMany');
+    const getNotificationsToSendMock = jest.spyOn(notifications, 'getNotificationsToSend');
     const sendNotifications = jest.spyOn(notifications, 'sendNotifications');
 
     // Mock data
@@ -251,6 +331,7 @@ describe("notifications.service", () => {
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue('🔔');
     insertNotificationsMock.mockResolvedValue(savedNotifications.map(n => new NotificationModel(n)));
+    getNotificationsToSendMock.mockResolvedValue(messages);
     updateDispositifInDBMock.mockResolvedValue(dispositif);
 
     // Call the function
@@ -278,6 +359,7 @@ describe("notifications.service", () => {
         contentId: demarche._id.toString(),
       },
     })));
+    expect(getNotificationsToSendMock).toHaveBeenCalled();
     expect(updateDispositifInDBMock).toHaveBeenCalledWith(dispositifId, {
       notificationsSent: {
         ar: true,
