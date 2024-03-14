@@ -13,5 +13,7 @@ export const sortDispositifs = (dispA: GetDispositifsResponse, dispB: GetDisposi
   const sortKey = sortOptionsValues[sortOption];
   const valA = get(dispA, sortKey);
   const valB = get(dispB, sortKey);
+  if (!valA) return -1;
+  if (!valB) return 1;
   return valA > valB ? -1 : valA < valB ? 1 : 0;
 }
