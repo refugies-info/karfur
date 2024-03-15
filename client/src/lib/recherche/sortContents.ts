@@ -3,6 +3,7 @@ import get from "lodash/get";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 
 const sortOptionsValues = {
+  "location": "metadatas.location",
   "date": "publishedAt",
   "view": "nbVues",
   "theme": "theme"
@@ -13,5 +14,13 @@ export const sortDispositifs = (dispA: GetDispositifsResponse, dispB: GetDisposi
   const sortKey = sortOptionsValues[sortOption];
   const valA = get(dispA, sortKey);
   const valB = get(dispB, sortKey);
+  if (sortKey === "metadatas.location") { // if location sort, first localized contents
+    if ((Array.isArray(valA) && !Array.isArray(valB)) || (!!valA && !valB)) return -1
+    if ((Array.isArray(valB) && !Array.isArray(valA)) || (!!valB && !valA)) return 1
+    return 0;
+  }
+
+  if (!valA) return -1;
+  if (!valB) return 1;
   return valA > valB ? -1 : valA < valB ? 1 : 0;
 }

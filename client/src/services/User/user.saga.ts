@@ -31,7 +31,7 @@ export function* fetchUser(
       const data: GetUserInfoResponse = yield call(API.getUser, { token: action.payload?.token });
       yield put(setUserActionCreator(data));
       if ((data.departments?.length || 0) > 0) {
-        yield put(addToQueryActionCreator({ departments: (data.departments || [])?.map(dep => dep.split(" - ")[1]) }))
+        yield put(addToQueryActionCreator({ departments: (data.departments || [])?.map(dep => dep.split(" - ")[1]), sort: "location" }))
       }
       if (data.structures && data.structures.length > 0) {
         yield put(
