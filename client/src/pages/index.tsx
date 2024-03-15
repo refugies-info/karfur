@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "next-i18next";
 import isInBrowser from "lib/isInBrowser";
+import { Event } from "lib/tracking";
 import SEO from "components/Seo";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import {
@@ -52,6 +53,7 @@ const Homepage = (props: Props) => {
   useEffect(() => {
     if (isInBrowser() && new URLSearchParams(window.location.search).get("newsletter") === "") {
       dispatch(toggleNewsletterModalAction(true));
+      Event("NEWSLETTER", "open modal", "url param");
     }
   }, [dispatch]);
 
