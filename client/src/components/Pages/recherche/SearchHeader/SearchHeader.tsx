@@ -68,7 +68,7 @@ const SearchHeader = (props: Props) => {
   );
   const resetDepartment = useCallback(() => {
     setLocationSearch("");
-    addToQuery({ departments: [] });
+    addToQuery({ departments: [], sort: "date" });
   }, [setLocationSearch, addToQuery]);
 
   // AGE
