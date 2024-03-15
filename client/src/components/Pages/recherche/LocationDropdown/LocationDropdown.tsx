@@ -48,6 +48,7 @@ const LocationDropdown = (props: Props) => {
           dispatch(
             addToQueryActionCreator({
               departments: [...new Set(depName ? [...oldDeps, depName] : [...oldDeps])],
+              sort: "location",
             }),
           );
         }
@@ -66,9 +67,11 @@ const LocationDropdown = (props: Props) => {
 
   const removeDepartement = useCallback(
     (dep: string) => {
+      const newDepartments = query.departments.filter((d) => d !== dep);
       dispatch(
         addToQueryActionCreator({
-          departments: query.departments.filter((d) => d !== dep),
+          departments: newDepartments,
+          sort: newDepartments.length === 0 ? "date" : "location",
         }),
       );
     },
@@ -87,6 +90,7 @@ const LocationDropdown = (props: Props) => {
               dispatch(
                 addToQueryActionCreator({
                   departments: [response.data[0].departement.nom],
+                  sort: "location",
                 }),
               );
             }

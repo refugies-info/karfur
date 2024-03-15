@@ -6,6 +6,7 @@ import useSpeekToolItem from "./NavbarItems/SpeekToolItem/useSpeekToolItem";
 import useSubscribeToolItem from "./NavbarItems/SubscribeToolItem/useSubscribeToolItem";
 import useUserToolItem from "./NavbarItems/UserToolItem/useUserToolItem";
 import isInBrowser from "lib/isInBrowser";
+import { Event } from "lib/tracking";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import { useDispatch } from "react-redux";
 import useBackendNavigation from "components/Backend/Navigation/useBackendNavigation";
@@ -107,6 +108,7 @@ const Navbar = () => {
                   href: "#",
                   onClick: () => {
                     dispatch(toggleNewsletterModalAction());
+                    Event("NEWSLETTER", "open modal", "navbar");
                   },
                 },
                 text: t("Toolbar.newsletter", "S'inscrire à la newsletter"),

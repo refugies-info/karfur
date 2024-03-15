@@ -4,6 +4,7 @@ import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { newsletter } from "assets/figma";
 import FInput from "components/UI/FInput/FInput";
+import { Event } from "lib/tracking";
 import Swal from "sweetalert2";
 import API from "utils/API";
 import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
@@ -118,6 +119,7 @@ export const SubscribeNewsletterModal = () => {
       toggle();
       API.contacts({ email })
         .then(() => {
+          Event("NEWSLETTER", "subscribe", "newsletter modal");
           Swal.fire({
             title: "Yay...",
             text: "Mail correctement enregistré !",

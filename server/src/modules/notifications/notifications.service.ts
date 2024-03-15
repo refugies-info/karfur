@@ -1,4 +1,5 @@
 import { Expo, ExpoPushMessage } from "expo-server-sdk";
+import uniq from "lodash/uniq";
 
 import { getDispositifById, updateDispositifInDB } from "../../modules/dispositif/dispositif.repository";
 import { getAllAppUsers } from "../../modules/appusers/appusers.repository";
@@ -9,10 +10,76 @@ import { availableLanguages } from "../../libs/getFormattedLocale";
 
 import { parseDispositif, filterTargets, filterTargetsForDemarche, getNotificationEmoji } from "./helpers";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
-import { Dispositif, DispositifId, NotificationModel } from "../../typegoose";
+import { Dispositif, DispositifId, Notification, NotificationModel } from "../../typegoose";
 import { ContentType, Languages } from "@refugies-info/api-types";
 
 export const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
+
+/**
+ * Returns appusers uid which have more than maxNotifs in the last nbDays
+ * @param nbDays
+ * @param maxNotifs
+ * @returns uid of the appuser and nb notifs sent
+ */
+const getUserMaxNotifs = (nbDays: number, maxNotifs: number): Promise<{ _id: string, count: number }[]> => {
+  return NotificationModel.aggregate(
+    [
+      {
+        $match: {
+          $expr: {
+            $gte: [
+              "$createdAt",
+              {
+                $add: [
+                  new Date(),
+                  -1000 * 60 * 60 * 24 * nbDays
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        $group: { _id: "$uid", count: { $sum: 1 } }
+      },
+      {
+        $match: {
+          count: { $gte: maxNotifs }
+        }
+      }
+    ]
+  );
+}
+
+/**
+ * returns uids of appusers which should not receive notifications
+ * @returns
+ */
+export const getUsersNotifsNotAllowed = async (): Promise<string[]> => {
+  const usersLastDay = await getUserMaxNotifs(1, 3);
+  const usersLastWeek = await getUserMaxNotifs(7, 7);
+  return uniq([...usersLastDay.map(u => u._id), ...usersLastWeek.map(u => u._id)]);
+}
+
+export const getNotificationsToSend = async (notifications: Notification[], tokens: Record<string, string>) => {
+  const usersNotAllowed = await getUsersNotifsNotAllowed();
+  const messages: ExpoPushMessage[] = notifications
+    .map((notification) => {
+      if (usersNotAllowed.includes(notification.uid)) return null;
+      return {
+        to: tokens[notification.uid],
+        title: "Réfugiés.info",
+        body: notification.title,
+        data: {
+          ...notification.data,
+          notificationId: notification._id.toString(),
+        },
+      };
+    })
+    .filter((message) => message?.to);
+
+  return messages;
+}
 
 export const isNotificationsActive = async () => {
   const adminOption = await getAdminOption("activesNotifications");
@@ -132,20 +199,7 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
         }),
       );
 
-      const messages: ExpoPushMessage[] = savedNotifications
-        .map((notification) => {
-          return {
-            to: tokens[notification.uid],
-            title: "Réfugiés.info",
-            body: notification.title,
-            data: {
-              ...notification.data,
-              notificationId: notification._id.toString(),
-            },
-          };
-        })
-        .filter((message) => message.to);
-
+      const messages = await getNotificationsToSend(savedNotifications, tokens);
       await sendNotifications(messages);
 
       const payload = dispositif?.notificationsSent || {};
@@ -218,20 +272,7 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
         }),
       );
 
-      const messages: ExpoPushMessage[] = savedNotifications
-        .map((notification) => {
-          return {
-            to: tokens[notification.uid],
-            title: "Réfugiés.info",
-            body: notification.title,
-            data: {
-              ...notification.data,
-              notificationId: notification._id.toString(),
-            },
-          };
-        })
-        .filter((message) => message.to);
-
+      const messages = await getNotificationsToSend(savedNotifications, tokens);
       await sendNotifications(messages);
 
       const payload = demarche?.notificationsSent || {};

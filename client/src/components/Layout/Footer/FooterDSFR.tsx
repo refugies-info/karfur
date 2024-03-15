@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
 import { useEditionMode } from "hooks";
 import { FooterConsentManagementItem, FooterPersonalDataPolicyItem } from "hooks/useConsentContext";
+import { Event } from "lib/tracking";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import { themesSelector } from "services/Themes/themes.selectors";
 import Link from "next/link";
@@ -128,7 +129,10 @@ const Footer = () => {
             {
               linkProps: {
                 href: "/",
-                onClick: () => dispatch(toggleNewsletterModalAction()),
+                onClick: () => {
+                  dispatch(toggleNewsletterModalAction());
+                  Event("NEWSLETTER", "open modal", "footer");
+                },
               },
               text: t("Footer.subscribe_to_newsletter", "S’inscrire à la newsletter"),
             },
