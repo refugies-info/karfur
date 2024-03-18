@@ -4,32 +4,32 @@ import { getLoginRedirect, setLoginRedirect } from "./loginRedirect";
 const roleAdmin: GetUserInfoResponse["roles"] = [{
   _id: "id",
   nom: RoleName.ADMIN,
-  nomPublic: ""
+  nomPublique: ""
 }];
 const roleExpert: GetUserInfoResponse["roles"] = [{
   _id: "id",
   nom: RoleName.EXPERT_TRAD,
-  nomPublic: ""
+  nomPublique: ""
 }];
 const roleTrad: GetUserInfoResponse["roles"] = [{
   _id: "id",
   nom: RoleName.TRAD,
-  nomPublic: ""
+  nomPublique: ""
 }];
 const roleAidant: GetUserInfoResponse["roles"] = [{
   _id: "id",
   nom: RoleName.CAREGIVER,
-  nomPublic: ""
+  nomPublique: ""
 }];
 const roleContrib: GetUserInfoResponse["roles"] = [{
   _id: "id",
   nom: RoleName.CONTRIB,
-  nomPublic: ""
+  nomPublique: ""
 }];
 const roleUser: GetUserInfoResponse["roles"] = [{
   _id: "id",
   nom: RoleName.USER,
-  nomPublic: ""
+  nomPublique: ""
 }];
 
 describe("setLoginRedirect", () => {
