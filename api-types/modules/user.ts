@@ -140,7 +140,7 @@ export interface GetUserInfoResponse {
   contributions: string[];
   email: string;
   phone: string;
-  roles: { _id: string; nom: RoleName; nomPublic: string }[];
+  roles: { _id: string; nom: RoleName; nomPublique: string }[];
   selectedLanguages: string[];
   status: UserStatus;
   structures: string[];

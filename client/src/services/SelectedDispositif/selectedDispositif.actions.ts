@@ -1,4 +1,5 @@
 import {
+  CLEAR_SELECTED_DISPOSITIF,
   FETCH_SELECTED_DISPOSITIF,
   SET_SELECTED_DISPOSITIF,
   UPDATE_SELECTED_DISPOSITIF,
@@ -22,10 +23,13 @@ export const updateSelectedDispositifActionCreator = (
   value: Partial<GetDispositifResponse>
 ) => action(UPDATE_SELECTED_DISPOSITIF, value);
 
+export const clearSelectedDispositifActionCreator = () => action(CLEAR_SELECTED_DISPOSITIF);
+
 const actions = {
   fetchSelectedDispositifActionCreator,
   setSelectedDispositifActionCreator,
   updateSelectedDispositifActionCreator,
+  clearSelectedDispositifActionCreator,
 };
 
 export type SelectedDispositifActions = ActionType<typeof actions>;

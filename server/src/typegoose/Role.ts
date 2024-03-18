@@ -8,5 +8,5 @@ export class Role extends Base {
   public nom!: RoleName;
 
   @prop()
-  public nomPublic?: string;
+  public nomPublique?: string;
 }
