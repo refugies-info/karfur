@@ -35,7 +35,7 @@ export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>)
     selectedLanguages: { langueCode: string; langueFr: string; _id: LangueId }[];
     roles: Role[];
     structures: (Structure & { _id: Id })[];
-  }>([{ path: "selectedLanguages", select: "_id langueCode langueFr" }, { path: "roles" }, { path: "structures" }]);
+  }>([{ path: "selectedLanguages", select: "_id langueCode langueFr" }, { path: "roles", select: "nom nomPublique" }, { path: "structures" }]);
 
 // update
 export const updateUserInDB = async (
