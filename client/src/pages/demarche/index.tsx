@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { END } from "redux-saga";
+import { useDispatch } from "react-redux";
 import { FormProvider, useForm } from "react-hook-form";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ContentType, CreateDispositifRequest } from "@refugies-info/api-types";
@@ -11,6 +12,7 @@ import { wrapper } from "services/configureStore";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
+import { clearSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 import Dispositif from "components/Content/Dispositif";
 import { ModalWelcome } from "components/Pages/dispositif/Edition/Modals";
 
@@ -22,6 +24,12 @@ const DemarchePage = (props: Props) => {
   const methods = useForm<CreateDispositifRequest>({ defaultValues: getInitialValue(ContentType.DEMARCHE) });
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);
   const dispositifFormContext = useDispositifForm();
+
+  // reset dispositif to be considered as creation and not edition
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(clearSelectedDispositifActionCreator());
+  }, [dispatch]);
 
   return (
     <PageContext.Provider value={dispositifFormContext}>
