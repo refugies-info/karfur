@@ -16,6 +16,7 @@ export interface Props {
   access: RoleName.STRUCTURE | RoleName.ADMIN | "all";
   iconName: string;
   iconColor?: string;
+  textColor?: string;
   onClick?: () => void;
   route?: PathNames;
   title?: string;
@@ -25,6 +26,7 @@ const useBackendNavItem = ({
   access,
   iconName,
   iconColor,
+  textColor,
   route,
   title,
   onClick,
@@ -69,7 +71,9 @@ const useBackendNavItem = ({
     text: (
       <>
         <EVAIcon fill={color} name={iconName} />
-        <span className={styles.item}>{title}</span>
+        <span className={styles.item} style={textColor ? { color: textColor } : {}}>
+          {title}
+        </span>
       </>
     ),
   };
