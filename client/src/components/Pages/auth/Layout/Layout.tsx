@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
+import { Notice } from "@codegouvfr/react-dsfr/Notice";
 import { useChangeLanguage, useLocale, useRTL } from "hooks";
 import { cls } from "lib/classname";
 import AuthNavbar from "components/Navigation/AuthNavbar";
@@ -12,6 +13,7 @@ import styles from "./Layout.module.scss";
 interface Props {
   children: any;
   fullWidth?: boolean;
+  loginHelp?: boolean;
 }
 
 const Layout = (props: Props) => {
@@ -29,6 +31,34 @@ const Layout = (props: Props) => {
   return (
     <div className={styles.container} dir={isRTL ? "rtl" : "ltr"}>
       <AuthNavbar />
+      {props.loginHelp && (
+        <Notice
+          isClosable
+          title={
+            <>
+              Vous n'arrivez pas à vous connecter ? Consultez notre{" "}
+              <a
+                href="https://help.refugies.info/fr/article/je-narrive-pas-a-me-connecter-a-mon-compte-refugiesinfo-1n02al9/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-decoration-underline"
+              >
+                article d'aide
+              </a>{" "}
+              ou contactez-nous{" "}
+              <a
+                href="https://go.crisp.chat/chat/embed/?website_id=74e04b98-ef6b-4cb0-9daf-f8a2b643e121"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-decoration-underline"
+              >
+                via notre livechat
+              </a>
+              .
+            </>
+          }
+        />
+      )}
       <div className={styles.row}>
         <main className={cls(styles.main, props.fullWidth && styles.full_width)}>{props.children}</main>
 

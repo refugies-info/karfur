@@ -17,17 +17,17 @@ export const testUserWithRoles: GetUserInfoResponse = {
   ...testUser,
   structures: ["testObjectId"],
   roles: [
-    { nom: RoleName.ADMIN, _id: "testObjectId", nomPublic: "Admin" },
-    { nom: RoleName.TRAD, _id: "testObjectId", nomPublic: "Trad" },
+    { nom: RoleName.ADMIN, _id: "testObjectId", nomPublique: "Admin" },
+    { nom: RoleName.TRAD, _id: "testObjectId", nomPublique: "Trad" },
     {
       nom: RoleName.EXPERT_TRAD,
       _id: "testObjectId",
-      nomPublic: "ExpertTrad"
+      nomPublique: "ExpertTrad"
     },
     {
       nom: RoleName.CONTRIB,
       _id: "testObjectId",
-      nomPublic: "Contrib"
+      nomPublique: "Contrib"
     }
   ]
 };

@@ -152,4 +152,4 @@ export const getStaticProps = defaultStaticProps;
 export default AuthLogin;
 
 // override default layout and options
-AuthLogin.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthLogin.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;

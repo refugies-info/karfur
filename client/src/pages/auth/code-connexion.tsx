@@ -32,4 +32,4 @@ export const getStaticProps = defaultStaticProps;
 export default LoginCode;
 
 // override default layout and options
-LoginCode.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+LoginCode.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;

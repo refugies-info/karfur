@@ -190,4 +190,4 @@ export const getStaticProps = defaultStaticProps;
 export default AuthEmail;
 
 // override default layout and options
-AuthEmail.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthEmail.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;
