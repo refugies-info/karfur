@@ -117,7 +117,7 @@ describe("registerUser", () => {
       const role = new Role()
       role._id = roleId;
       role.nom = roleName;
-      role.nomPublic = ""
+      role.nomPublique = ""
       return new RoleModel(role);
     })
 
