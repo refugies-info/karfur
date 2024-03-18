@@ -39,4 +39,4 @@ export const getStaticProps = defaultStaticProps;
 export default AuthResetMailSent;
 
 // override default layout and options
-AuthResetMailSent.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthResetMailSent.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;

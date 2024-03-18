@@ -46,4 +46,4 @@ export const getStaticProps = defaultStaticProps;
 export default AuthForgotPassword;
 
 // override default layout and options
-AuthForgotPassword.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthForgotPassword.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;

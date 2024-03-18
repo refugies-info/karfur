@@ -65,4 +65,4 @@ export const getStaticProps = defaultStaticProps;
 export default AuthMicrosoftLogin;
 
 // override default layout and options
-AuthMicrosoftLogin.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthMicrosoftLogin.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;

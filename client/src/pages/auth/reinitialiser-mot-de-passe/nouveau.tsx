@@ -168,4 +168,4 @@ export const getServerSideProps = wrapper.getServerSideProps(() => async ({ quer
 export default AuthNewPassword;
 
 // override default layout and options
-AuthNewPassword.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthNewPassword.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;
