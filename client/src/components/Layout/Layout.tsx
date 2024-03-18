@@ -32,7 +32,6 @@ import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterM
 import NewProfileModal from "components/Modals/NewProfileModal";
 import styles from "./Layout.module.scss";
 import AppLoader from "./AppLoader";
-import TempBanner from "./TempBanner";
 import AutoAddFavorite from "./AutoAddFavorite";
 import { setAnalyticsUserId } from "lib/tracking";
 
@@ -168,7 +167,6 @@ const Layout = (props: Props) => {
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <Navbar />
-      <TempBanner />
       <AppLoader>
         <div className={styles.main}>
           <main className={styles.content}>{props.children}</main>
