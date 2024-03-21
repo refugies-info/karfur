@@ -1,6 +1,6 @@
 export type AgeOptions = "-18" | "18-25" | "+25";
 export type FrenchOptions = "a" | "b" | "c";
-export type SortOptions = "date" | "view" | "theme";
+export type SortOptions = "date" | "view" | "theme" | "location";
 export type TypeOptions = "dispositif" | "demarche" | "all";
 
 export type AgeFilters = {
@@ -35,6 +35,7 @@ export const frenchLevelFilter: FrenchFilters = [
   { key: "c", value: "Filters.frenchLevelC", backwardCompatibility: ["bien"] }
 ];
 export const sortOptions: SortFilters = [
+  { key: "location", value: "Filters.sortLocation", backwardCompatibility: "" },
   { key: "theme", value: "Filters.sortTheme", backwardCompatibility: "theme" },
   { key: "date", value: "Filters.sortDate", backwardCompatibility: "created_at" },
   { key: "view", value: "Filters.sortView", backwardCompatibility: "nbVues" },

@@ -452,6 +452,5 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
     isMetadataOk(dispositif.metadatas?.conditions),
     dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.location),
   ];
-  logger.info("test", conditions)
   return conditions.filter((c) => !c).length === 0;
 };

@@ -1,4 +1,5 @@
 export { default as useAuth } from "./useAuth";
+export { default as useAuthRedirect } from "./useAuthRedirect";
 export { default as useChangeLanguage } from "./useChangeLanguage";
 export { default as useContentLocale } from "./useContentLocale";
 export { default as useDepartmentAutocomplete } from "./useDepartmentAutocomplete";

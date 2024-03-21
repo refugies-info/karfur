@@ -6,7 +6,7 @@ import Input from "@codegouvfr/react-dsfr/Input";
 import PasswordInput from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { wrapper } from "services/configureStore";
-import { useLogin } from "hooks";
+import { useAuthRedirect, useLogin } from "hooks";
 import { logger } from "logger";
 import API from "utils/API";
 import { cls } from "lib/classname";
@@ -22,6 +22,7 @@ interface Props {
 }
 
 const AuthNewPassword = (props: Props) => {
+  useAuthRedirect(false);
   const router = useRouter();
   const { t } = useTranslation();
   const { logUser } = useLogin();
@@ -167,4 +168,4 @@ export const getServerSideProps = wrapper.getServerSideProps(() => async ({ quer
 export default AuthNewPassword;
 
 // override default layout and options
-AuthNewPassword.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthNewPassword.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;

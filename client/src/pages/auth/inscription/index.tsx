@@ -12,7 +12,7 @@ import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { logger } from "logger";
 import { getPath } from "routes";
-import { useRegisterFlow } from "hooks";
+import { useAuthRedirect, useRegisterFlow } from "hooks";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
@@ -24,6 +24,7 @@ import ErrorMessage from "components/UI/ErrorMessage";
 import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
+  useAuthRedirect(true);
   const router = useRouter();
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -151,4 +152,4 @@ export const getStaticProps = defaultStaticProps;
 export default AuthLogin;
 
 // override default layout and options
-AuthLogin.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthLogin.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;

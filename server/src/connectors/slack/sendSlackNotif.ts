@@ -48,3 +48,34 @@ export const sendSlackNotif = async (title: string, text: string, link: string) 
     logger.error("[sendSlackNotif] error", e);
   }
 }
+
+export const slackDeletedAccount = async (email: string) => {
+  if (process.env.NODE_ENV === "dev") {
+    logger.info("[sendSlackNotif] notif not sent in DEV: ", { email });
+    return;
+  }
+  logger.info("[sendSlackNotif] send notif: ", { email });
+  const prefix = process.env.NODE_ENV === "staging" ? "[STAGING] " : "";
+  try {
+    await webhook?.send({
+      "blocks": [{
+        "type": "header",
+        "text": {
+          "type": "plain_text",
+          "text": `${prefix} :x: Un utilisateur a supprimé son compte`,
+          "emoji": true
+        }
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": `L'utilisateur avec l'adresse mail ${email} a supprimé son compte via son espace personnel`
+        }
+      },
+      ]
+    });
+  } catch (e) {
+    logger.error("[sendSlackNotif] error", e);
+  }
+}

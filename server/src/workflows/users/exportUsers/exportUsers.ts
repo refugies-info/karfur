@@ -1,11 +1,8 @@
 import logger from "../../../logger";
 import { getAllUsersForAdminFromDB } from "../../../modules/users/users.repository";
-import mongoose from "mongoose";
-import { asyncForEach } from "../../../libs/asyncForEach";
 import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
 import { Response } from "../../../types/interface";
-import { Role } from "../../../typegoose";
-import { Id, ProgressionIndicator } from "@refugies-info/api-types";
+import { ProgressionIndicator } from "@refugies-info/api-types";
 import { airtableUserBase } from "../../../connectors/airtable/airtable";
 
 interface UserToExport {
@@ -23,25 +20,10 @@ interface UserToExport {
     "Env": string;
   };
 }
-interface User {
-  _id: mongoose.Types.ObjectId;
-  username?: string;
-  created_at?: Date;
-  last_connected?: Date;
-  roles?: Role[];
-  email?: string;
-  langues?: {
-    langueCode: string;
-    langueFr: string;
-  }[];
-  structures?: { _id: Id; nom: string }[];
-  nbStructures?: number;
-  nbContributions?: number;
-}
 
-const exportUsersInAirtable = (users: UserToExport[]) => {
+const exportUsersInAirtable = (users: UserToExport[]): void => {
   logger.info(`[exportUsersInAirtable] export ${users.length} users in airtable`);
-  airtableUserBase("Users").create(users, { typecast: true }, function (err: Error) {
+  return airtableUserBase("Users").create(users, { typecast: true }, function (err: Error) {
     if (err) {
       logger.error("[exportUsersInAirtable] error while exporting users to airtable", {
         usersId: users.map((user) => user.fields.Pseudonyme),
@@ -54,16 +36,14 @@ const exportUsersInAirtable = (users: UserToExport[]) => {
   });
 };
 
-const formatUser = (user: User, indicators: ProgressionIndicator): UserToExport => {
+const formatUser = (user: Awaited<ReturnType<typeof getAllUsersForAdminFromDB>>[0], indicators: ProgressionIndicator): UserToExport => {
   logger.info(`[formatUser] format user with id ${user._id}`);
   const structure =
     user.structures && user.structures.length > 0 ? user.structures.map((structure) => structure.nom).join() : "";
   const createdAt = user.created_at ? user.created_at.toISOString() : "";
   const last_connected = user.last_connected ? user.last_connected.toISOString() : "";
-  const roleNames = user.roles.map((r) => r.nomPublic);
-  const rolesWithTraducteur = user.langues.length > 0 ? roleNames.concat(["Traducteur"]) : roleNames;
-
-  const langues = user.langues.map((langue) => langue.langueFr);
+  const roleNames = user.roles.filter(r => r.nom !== "User").map((r) => r.nomPublique);
+  const langues = user.selectedLanguages.map((langue) => langue.langueFr);
   const nbWords = Math.floor(indicators?.wordsCount || 0);
   const timeSpent = Math.floor((indicators?.timeSpent || 0) / 60 / 1000);
 
@@ -73,12 +53,12 @@ const formatUser = (user: User, indicators: ProgressionIndicator): UserToExport 
       "Email": user.email,
       "Date de création": createdAt,
       "Date de dernière visite": last_connected,
-      "Role": rolesWithTraducteur,
+      "Role": roleNames,
       "Mots traduits": nbWords,
       "Temps passé à traduire": timeSpent,
       "Structure": structure,
       "Langues": langues,
-      "Nb fiches avec contribution": user.nbContributions,
+      "Nb fiches avec contribution": (user.contributions || []).length,
       "Env": process.env.NODE_ENV,
     },
   };
@@ -101,7 +81,7 @@ export const exportUsers = async (): Response => {
 
   const users = await getAllUsersForAdminFromDB(neededFields);
   let usersToExport: UserToExport[] = [];
-  await asyncForEach(users, async (user) => {
+  for (const user of users) {
     logger.info(`[exportUsers] get indicators user ${user._id}`);
     const totalIndicator = await computeGlobalIndicator(user._id.toString());
     const formattedUser = formatUser(user, totalIndicator);
@@ -111,7 +91,7 @@ export const exportUsers = async (): Response => {
       exportUsersInAirtable(usersToExport);
       usersToExport = [];
     }
-  });
+  }
 
   if (usersToExport.length > 0) {
     exportUsersInAirtable(usersToExport);

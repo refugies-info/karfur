@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useCookie } from "react-use";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { setAuthToken } from "utils/authToken";
@@ -14,6 +15,7 @@ const useLogin = () => {
   const userDetails = useSelector(userDetailsSelector);
   const [hasRedirected, setHasRedirected] = useState<"no" | "pending" | "yes">("no");
   const { isAuth } = useAuth();
+  const [mfaCodeCookie, updateMfaCodeCookie, deleteMfaCodeCookie] = useCookie("mfa-code");
 
   const logUser = useCallback((token: string) => {
     setAuthToken(token);
@@ -21,9 +23,10 @@ const useLogin = () => {
     setHasRedirected("pending");
   }, [dispatch]);
 
-  const handleError = useCallback((errorCode: string | undefined, email: string): string | null => {
+  const handleError = useCallback((errorCode: string | undefined, email: string, data?: any): string | null => {
     if (errorCode === "NO_CODE_SUPPLIED") {
       if (!email) return ("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
+      if (data?.code) updateMfaCodeCookie(data.code);
       router.push(getPath("/auth/code-securite", "fr", `?email=${email}`));
       return null;
     }
@@ -35,7 +38,7 @@ const useLogin = () => {
     if (errorCode === "INVALID_PASSWORD") return "Mot de passe incorrect. Réessayez ou cliquez sur 'Mot de passe oublié' pour le réinitialiser.";
     if (errorCode === "USER_DELETED") return "Cet utilisateur n'existe pas ou a été supprimé. Veuillez créer un nouveau compte.";
     return ("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
-  }, [router]);
+  }, [router, updateMfaCodeCookie]);
 
   useEffect(() => {
     if (hasRedirected === "pending" && isAuth && userDetails) {

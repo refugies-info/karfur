@@ -13,7 +13,6 @@ export const resetPassword = async (body: ResetPasswordRequest): ResponseWithDat
 
   const user = await getUserByEmailFromDB(body.email);
   if (!user) throw new LoginError(LoginErrorType.USER_NOT_EXISTS);
-  if (user.isAdmin()) throw new LoginError(LoginErrorType.ADMIN_FORBIDDEN);
 
   await new Promise((resolve, reject) => {
     crypto.randomBytes(20, async function (errb, buffer) {

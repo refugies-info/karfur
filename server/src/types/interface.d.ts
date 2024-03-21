@@ -129,4 +129,5 @@ export interface AlgoliaObject {
   typeContenu: "demarche" | "dispositif" | "besoin" | "theme";
   priority: number;
   webOnly: boolean;
+  location?: "0_localized" | "1_france" | "2_online";
 }

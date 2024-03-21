@@ -38,8 +38,6 @@ export const loginExceptionsManager = (error: LoginError) => {
       throw new InvalidRequestError("No code supplied", "NO_CODE_SUPPLIED", error.data);
     case LoginErrorType.USER_DELETED:
       throw new NotFoundError("Utilisateur supprimé", "USER_DELETED", error.data);
-    case LoginErrorType.ADMIN_FORBIDDEN:
-      throw new AuthenticationError("Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site", "ADMIN_FORBIDDEN"); // 401
     case LoginErrorType.NO_EMAIL:
       throw new AuthenticationError("Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.", "NO_EMAIL"); // 401
     case LoginErrorType.NO_ACCOUNT:
@@ -76,11 +74,23 @@ export const logUser = async (user: DocumentType<User> | string): Promise<string
  * @param user - user object or email
  */
 export const needs2FA = async (user: DocumentType<User> | string): Promise<boolean> => {
-  const userDocument: DocumentType<User> = typeof user === "string" ? await getUserByEmailFromDB(user) : user;
+  const userDocument: DocumentType<User> = typeof user === "string" ? await getUserByEmailFromDB(user).populate("roles") : user;
   if (!userDocument) return false;
   const userIsAdmin = userDocument.isAdmin();
   const userIsExpertTrad = userDocument.isExpert();
   const userStructureId = await userRespoStructureId(userDocument.structures.map((s) => s._id) || [], userDocument._id);
   return !!(userIsAdmin || userStructureId || userIsExpertTrad);
+}
+
+
+/**
+ * Has logged in before 2fa
+ * @param mfaCode
+ */
+export const isMfaCodeOk = async (mfaCode: string | undefined, email: string): Promise<boolean> => {
+  if (!mfaCode) return false;
+  const user: DocumentType<User> = await getUserByEmailFromDB(email);
+  if (!user) return false;
+  return user.mfaCode === mfaCode;
 }
 

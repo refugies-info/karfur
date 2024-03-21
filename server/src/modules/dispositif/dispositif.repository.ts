@@ -96,7 +96,7 @@ export const getSimpleDispositifs = async (
   query: FilterQuery<Dispositif>,
   locale: Languages,
   limit: number = 0,
-  sort: any = {},
+  sort: object = {},
 ) => {
   return getDispositifArray(
     query,

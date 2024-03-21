@@ -198,6 +198,10 @@ const API = {
     const headers = getHeaders();
     return instance.patch<any, APIResponse<UpdateUserResponse>>(`/user/${id}`, body, { headers }).then(response => response.data.data)
   },
+  deleteMyAccount: (): Promise<null> => {
+    const headers = getHeaders();
+    return instance.delete<any, null>("/user", { headers }).then(() => null);
+  },
   deleteUser: (query: Id): Promise<null> => {
     const headers = getHeaders();
     return instance.delete<any, null>(`/user/${query}`, { headers }).then(() => null);

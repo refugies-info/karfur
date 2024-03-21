@@ -1,234 +1,216 @@
-// @ts-nocheck
-/* import { login } from "./login";
-import { getUserByUsernameFromDB } from "../../../modules/users/users.repository";
-import { getRoleByName } from "../../../controllers/role/role.repository";
-import { register } from "../../../modules/users/register";
-import { login2FA } from "../../../modules/users/login2FA";
-import { proceedWithLogin } from "../../../modules/users/users.service";
-import { userRespoStructureId } from "../../../modules/structure/structure.service";
-import { logRegister, logLogin } from "./log";
+import * as endpoint from "./login";
+import * as usersRep from "../../../modules/users/users.repository";
+import * as auth from "../../../modules/users/auth";
+import * as login2FA from "../../../modules/users/login2FA";
+import * as usersServ from "../../../modules/users/users.service";
+import { User } from "../../../typegoose";
+import { LoginErrorType } from "../../../modules/users/LoginError";
+import { RoleName, UserStatus } from "@refugies-info/api-types";
 
-jest.mock("../../../modules/users/users.repository", () => ({
-  getUserByUsernameFromDB: jest.fn(),
-}));
+jest.mock("google-auth-library");
+jest.mock("@azure/msal-node");
 
-jest.mock("../../../controllers/role/role.repository", () => ({
-  getRoleByName: jest.fn(),
-}));
-jest.mock("../../../modules/users/register", () => ({
-  register: jest.fn(),
-}));
 jest.mock("../../../modules/users/login2FA", () => ({
-  login2FA: jest.fn(),
+  verifyCode: jest.fn(),
+  requestEmailLogin: jest.fn()
 }));
+
+jest.mock("../../../modules/users/auth", () => ({
+  loginExceptionsManager: jest.fn(),
+  logUser: jest.fn(),
+  needs2FA: jest.fn(),
+}))
 jest.mock("../../../modules/users/users.service", () => ({
-  proceedWithLogin: jest.fn(),
-}));
-jest.mock("../../../modules/structure/structure.service", () => ({
-  userRespoStructureId: jest.fn(),
-}));
-jest.mock("./log", () => ({
-  logRegister: jest.fn().mockResolvedValue(undefined),
-  logLogin: jest.fn().mockResolvedValue(undefined)
-})); */
+  registerUser: jest.fn(),
+}))
 
-import { RoleName } from "@refugies-info/api-types";
-
-const reqRoles = [
-  { nom: RoleName.ADMIN, _id: "id_admin" },
-  { nom: RoleName.STRUCTURE, _id: "has_structure" }
-];
-
-type MockResponse = { json: any; status: any };
-const mockResponse = (): MockResponse => {
-  const res: MockResponse = {};
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
-  return res;
-};
-
-const userRole = { nom: RoleName.USER, _id: "id" };
-
-describe.skip("login", () => {
+describe("login", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  const res = mockResponse();
 
-  it("should throw if no password", async () => {
-    const req = { body: { username: "test" } };
-    await login(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  it("password: user does not exist", async () => {
+    const authWithGoogleMock = jest.spyOn(endpoint, 'authWithGoogle').mockResolvedValue(null);
+    const authWithMicrosoftMock = jest.spyOn(endpoint, 'authWithMicrosoft').mockResolvedValue(null);
+    //@ts-ignore
+    const getUserMock = jest.spyOn(usersRep, 'getUserByEmailFromDB').mockReturnValue({ populate: async (): Promise<User | null> => null });
+    const logUserMock = jest.spyOn(auth, 'logUser');
+
+    await endpoint.login({ authPassword: { email: "test@example.com", password: "pwd" } });
+    expect(getUserMock).toHaveBeenCalledWith("test@example.com");
+    expect(logUserMock).not.toHaveBeenCalled();
+    expect(auth.loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.NO_ACCOUNT));
   });
 
-  it("should throw if no username", async () => {
-    const req = { body: { password: "test" } };
-    await login(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  it("password: user deleted", async () => {
+    const authWithGoogleMock = jest.spyOn(endpoint, 'authWithGoogle').mockResolvedValue(null);
+    const authWithMicrosoftMock = jest.spyOn(endpoint, 'authWithMicrosoft').mockResolvedValue(null);
+    //@ts-ignore
+    const getUserMock = jest.spyOn(usersRep, 'getUserByEmailFromDB').mockReturnValue({ populate: async (): Promise<User | null> => ({ status: UserStatus.DELETED }) });
+    const logUserMock = jest.spyOn(auth, 'logUser');
+
+    await endpoint.login({ authPassword: { email: "test@example.com", password: "pwd" } });
+    expect(getUserMock).toHaveBeenCalledWith("test@example.com");
+    expect(logUserMock).not.toHaveBeenCalled();
+    expect(auth.loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.USER_DELETED));
   });
 
-  it("should throw if not from site", async () => {
-    const req = { body: { password: "test", username: "test" } };
-    await login(req, res);
-    expect(res.status).toHaveBeenCalledWith(403);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Création d'utilisateur ou login impossible par API",
-    });
+  it("password: no password -> sso", async () => {
+    const authWithGoogleMock = jest.spyOn(endpoint, 'authWithGoogle').mockResolvedValue(null);
+    const authWithMicrosoftMock = jest.spyOn(endpoint, 'authWithMicrosoft').mockResolvedValue(null);
+    //@ts-ignore
+    const getUserMock = jest.spyOn(usersRep, 'getUserByEmailFromDB').mockReturnValue({ populate: async (): Promise<User | null> => ({ status: UserStatus.ACTIVE, password: null }) });
+    const logUserMock = jest.spyOn(auth, 'logUser');
+
+    await endpoint.login({ authPassword: { email: "test@example.com", password: "pwd" } });
+    expect(getUserMock).toHaveBeenCalledWith("test@example.com");
+    expect(logUserMock).not.toHaveBeenCalled();
+    expect(auth.loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.SSO_NO_PASSWORD));
   });
 
-  const req = {
-    body: { password: "password", username: "test" },
-    fromSite: true,
-  };
-
-  it("should call getUserByUsernameFromDB, and register if no user", async () => {
-    getUserByUsernameFromDB.mockResolvedValueOnce(null);
-    getRoleByName.mockResolvedValueOnce(userRole);
-    register.mockResolvedValueOnce({ user: "user", token: "token" });
-    await login(req, res);
-    expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
-    expect(getRoleByName).toHaveBeenCalledWith(RoleName.USER);
-    expect(register).toHaveBeenCalledWith(
-      { password: "password", username: "test" },
-      userRole
-    );
-    expect(login2FA).not.toHaveBeenCalled();
-    expect(proceedWithLogin).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Succès",
-      token: "token",
-      data: "user",
+  it("password: wrong password", async () => {
+    const authWithGoogleMock = jest.spyOn(endpoint, 'authWithGoogle').mockResolvedValue(null);
+    const authWithMicrosoftMock = jest.spyOn(endpoint, 'authWithMicrosoft').mockResolvedValue(null);
+    const getUserMock = jest.spyOn(usersRep, 'getUserByEmailFromDB').mockReturnValue({
+      //@ts-ignore
+      populate: async (): Promise<User | null> => ({
+        status: UserStatus.ACTIVE,
+        password: "pwd2",
+        authenticate: () => false
+      })
     });
+    const logUserMock = jest.spyOn(auth, 'logUser');
+
+    await endpoint.login({ authPassword: { email: "test@example.com", password: "pwd" } });
+    expect(getUserMock).toHaveBeenCalledWith("test@example.com");
+    expect(logUserMock).not.toHaveBeenCalled();
+    expect(auth.loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.INVALID_PASSWORD));
+  });
+  it("password: right password, no 2FA", async () => {
+    const authWithGoogleMock = jest.spyOn(endpoint, 'authWithGoogle').mockResolvedValue(null);
+    const authWithMicrosoftMock = jest.spyOn(endpoint, 'authWithMicrosoft').mockResolvedValue(null);
+    const getUserMock = jest.spyOn(usersRep, 'getUserByEmailFromDB').mockReturnValue({
+      //@ts-ignore
+      populate: async (): Promise<User | null> => ({
+        status: UserStatus.ACTIVE,
+        password: "pwd2",
+        authenticate: () => true
+      })
+    });
+    const logUserMock = jest.spyOn(auth, 'logUser').mockResolvedValue("token");
+    const needs2FAMock = jest.spyOn(auth, 'needs2FA').mockResolvedValue(false);
+
+    const res = await endpoint.login({ authPassword: { email: "test@example.com", password: "pwd" } });
+    expect(getUserMock).toHaveBeenCalledWith("test@example.com");
+    expect(needs2FAMock).toHaveBeenCalled();
+    expect(logUserMock).toHaveBeenCalled();
+    expect(res).toEqual({ token: "token" })
+  });
+  it("password: right password with 2FA, no code", async () => {
+    const authWithGoogleMock = jest.spyOn(endpoint, 'authWithGoogle').mockResolvedValue(null);
+    const authWithMicrosoftMock = jest.spyOn(endpoint, 'authWithMicrosoft').mockResolvedValue(null);
+    const getUserMock = jest.spyOn(usersRep, 'getUserByEmailFromDB').mockReturnValue({
+      //@ts-ignore
+      populate: async (): Promise<User | null> => ({
+        status: UserStatus.ACTIVE,
+        password: "pwd2",
+        authenticate: () => true
+      })
+    });
+    const logUserMock = jest.spyOn(auth, 'logUser').mockResolvedValue("token");
+    const needs2FAMock = jest.spyOn(auth, 'needs2FA').mockResolvedValue(true);
+    const requestEmailLoginMock = jest.spyOn(login2FA, 'requestEmailLogin').mockResolvedValue(true);
+    //@ts-ignore
+    const updateUserMock = jest.spyOn(usersRep, 'updateUserInDB').mockResolvedValue(null);
+
+    await endpoint.login({ authPassword: { email: "test@example.com", password: "pwd" } });
+    expect(getUserMock).toHaveBeenCalledWith("test@example.com");
+    expect(needs2FAMock).toHaveBeenCalled();
+    expect(requestEmailLoginMock).toHaveBeenCalledWith("test@example.com");
+    expect(updateUserMock).toHaveBeenCalled();
+    expect(logUserMock).not.toHaveBeenCalled();
+    expect(auth.loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.NO_CODE_SUPPLIED));
   });
 
-  it("should return a 500 if register throws", async () => {
-    getUserByUsernameFromDB.mockResolvedValueOnce(null);
-    getRoleByName.mockResolvedValueOnce(userRole);
-    register.mockRejectedValueOnce(new Error("INTERNAL"));
-    await login(req, res);
-    expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
-    expect(getRoleByName).toHaveBeenCalledWith(RoleName.USER);
-    expect(register).toHaveBeenCalledWith(
-      { password: "password", username: "test" },
-      userRole
-    );
-    expect(login2FA).not.toHaveBeenCalled();
-    expect(proceedWithLogin).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
+  it("google: no account", async () => {
+    const authWithGoogleMock = jest.spyOn(endpoint, 'authWithGoogle').mockResolvedValue({ email: "test@example.com", name: "test" });
+    const authWithMicrosoftMock = jest.spyOn(endpoint, 'authWithMicrosoft').mockResolvedValue(null);
+    const getUserMock = jest.spyOn(usersRep, 'getUserByEmailFromDB').mockReturnValue({
+      //@ts-ignore
+      populate: async (): Promise<User | null> => null
     });
+    const logUserMock = jest.spyOn(auth, 'logUser').mockResolvedValue("token");
+    const needs2FAMock = jest.spyOn(auth, 'needs2FA').mockResolvedValue(true);
+    const requestEmailLoginMock = jest.spyOn(login2FA, 'requestEmailLogin').mockResolvedValue(true);
+    //@ts-ignore
+    const updateUserMock = jest.spyOn(usersRep, 'updateUserInDB').mockResolvedValue(null);
+    //@ts-ignore
+    const registerUserMock = jest.spyOn(usersServ, 'registerUser').mockResolvedValue({ getToken: () => "token" });
+
+    const res = await endpoint.login({ authGoogle: { authCode: "code" }, role: RoleName.CONTRIB });
+    expect(authWithGoogleMock).toHaveBeenCalled();
+    expect(getUserMock).toHaveBeenCalledWith("test@example.com");
+    expect(registerUserMock).toHaveBeenCalledWith({ email: "test@example.com", role: RoleName.CONTRIB, firstName: "test" });
+    expect(needs2FAMock).not.toHaveBeenCalled();
+    expect(requestEmailLoginMock).not.toHaveBeenCalled();
+    expect(updateUserMock).not.toHaveBeenCalled();
+    expect(logUserMock).not.toHaveBeenCalled();
+    expect(auth.loginExceptionsManager).not.toHaveBeenCalled();
+    expect(res).toEqual({ token: "token", userCreated: true })
   });
 
-  it("should throw invalid password if not authenticate", async () => {
-    getUserByUsernameFromDB.mockResolvedValueOnce({
-      authenticate: () => false,
+  it("microsoft: no account", async () => {
+    const authWithGoogleMock = jest.spyOn(endpoint, 'authWithGoogle').mockResolvedValue(null);
+    const authWithMicrosoftMock = jest.spyOn(endpoint, 'authWithMicrosoft').mockResolvedValue("test@example.com");
+    const getUserMock = jest.spyOn(usersRep, 'getUserByEmailFromDB').mockReturnValue({
+      //@ts-ignore
+      populate: async (): Promise<User | null> => null
     });
+    const logUserMock = jest.spyOn(auth, 'logUser').mockResolvedValue("token");
+    const needs2FAMock = jest.spyOn(auth, 'needs2FA').mockResolvedValue(true);
+    const requestEmailLoginMock = jest.spyOn(login2FA, 'requestEmailLogin').mockResolvedValue(true);
+    //@ts-ignore
+    const updateUserMock = jest.spyOn(usersRep, 'updateUserInDB').mockResolvedValue(null);
+    //@ts-ignore
+    const registerUserMock = jest.spyOn(usersServ, 'registerUser').mockResolvedValue({ getToken: () => "token" });
 
-    await login(req, res);
-    expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
-    expect(getRoleByName).not.toHaveBeenCalled();
-    expect(register).not.toHaveBeenCalled();
-    expect(login2FA).not.toHaveBeenCalled();
-    expect(proceedWithLogin).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(401);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Mot de passe incorrect",
-    });
+    const res = await endpoint.login({ authMicrosoft: { authCode: "code" }, role: RoleName.CONTRIB });
+    expect(authWithMicrosoftMock).toHaveBeenCalled();
+    expect(getUserMock).toHaveBeenCalledWith("test@example.com");
+    expect(registerUserMock).toHaveBeenCalledWith({ email: "test@example.com", role: RoleName.CONTRIB, firstName: null });
+    expect(needs2FAMock).not.toHaveBeenCalled();
+    expect(requestEmailLoginMock).not.toHaveBeenCalled();
+    expect(updateUserMock).not.toHaveBeenCalled();
+    expect(logUserMock).not.toHaveBeenCalled();
+    expect(auth.loginExceptionsManager).not.toHaveBeenCalled();
+    expect(res).toEqual({ token: "token", userCreated: true })
   });
 
-  it("should call login2FA if user is admin", async () => {
-    const authenticate = () => true;
-    getUserByUsernameFromDB.mockResolvedValueOnce({
-      authenticate,
-      roles: ["id_admin"],
+  it("microsoft: logged in", async () => {
+    const authWithGoogleMock = jest.spyOn(endpoint, 'authWithGoogle').mockResolvedValue(null);
+    const authWithMicrosoftMock = jest.spyOn(endpoint, 'authWithMicrosoft').mockResolvedValue("test@example.com");
+    const getUserMock = jest.spyOn(usersRep, 'getUserByEmailFromDB').mockReturnValue({
+      //@ts-ignore
+      populate: async (): Promise<User | null> => ({
+        status: UserStatus.ACTIVE,
+      })
     });
+    const logUserMock = jest.spyOn(auth, 'logUser').mockResolvedValue("token");
+    const needs2FAMock = jest.spyOn(auth, 'needs2FA').mockResolvedValue(false);
+    const requestEmailLoginMock = jest.spyOn(login2FA, 'requestEmailLogin').mockResolvedValue(true);
+    //@ts-ignore
+    const updateUserMock = jest.spyOn(usersRep, 'updateUserInDB').mockResolvedValue(null);
+    const registerUserMock = jest.spyOn(usersServ, 'registerUser')
 
-    await login({ ...req, roles: reqRoles }, res);
-
-    expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
-    expect(getRoleByName).not.toHaveBeenCalled();
-    expect(register).not.toHaveBeenCalled();
-    expect(login2FA).toHaveBeenCalledWith(
-      { password: "password", username: "test" },
-      {
-        authenticate,
-        roles: ["id_admin"],
-      },
-      "admin"
-    );
-    expect(proceedWithLogin).toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(200);
-  });
-
-  it("should call login2FA if user has structure", async () => {
-    const authenticate = () => true;
-    getUserByUsernameFromDB.mockResolvedValueOnce({
-      authenticate,
-      roles: ["has_structure"],
-    });
-    userRespoStructureId.mockResolvedValueOnce("structureId");
-
-    await login({ ...req, roles: reqRoles }, res);
-
-    expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
-    expect(getRoleByName).not.toHaveBeenCalled();
-    expect(register).not.toHaveBeenCalled();
-    expect(login2FA).toHaveBeenCalledWith(
-      { password: "password", username: "test" },
-      {
-        authenticate,
-        roles: ["has_structure"],
-      },
-      "structureId"
-    );
-    expect(proceedWithLogin).toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(200);
-  });
-
-  it("should call proceedWithLogin if user is not admin or respo", async () => {
-    const authenticate = () => true;
-    const user = {
-      authenticate,
-      roles: ["id_user"],
-      getToken: () => "token",
-    };
-    getUserByUsernameFromDB.mockResolvedValueOnce(user);
-    userRespoStructureId.mockResolvedValueOnce(null);
-
-    await login({ ...req, roles: reqRoles }, res);
-
-    expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
-    expect(getRoleByName).not.toHaveBeenCalled();
-    expect(register).not.toHaveBeenCalled();
-    expect(login2FA).not.toHaveBeenCalled();
-    expect(proceedWithLogin).toHaveBeenCalledWith(user);
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      token: "token",
-      text: "Authentification réussi",
-    });
-  });
-
-  it("should return 405 if user is Exclu", async () => {
-    const user = {
-      status: "Exclu",
-    };
-    getUserByUsernameFromDB.mockResolvedValueOnce(user);
-
-    await login({ ...req, roles: reqRoles }, res);
-
-    expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
-    expect(getRoleByName).not.toHaveBeenCalled();
-    expect(register).not.toHaveBeenCalled();
-    expect(login2FA).not.toHaveBeenCalled();
-    expect(proceedWithLogin).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(405);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Utilisateur supprimé",
-    });
+    const res = await endpoint.login({ authMicrosoft: { authCode: "code" } });
+    expect(authWithMicrosoftMock).toHaveBeenCalled();
+    expect(getUserMock).toHaveBeenCalledWith("test@example.com");
+    expect(registerUserMock).not.toHaveBeenCalled();
+    expect(needs2FAMock).toHaveBeenCalled();
+    expect(requestEmailLoginMock).not.toHaveBeenCalled();
+    expect(updateUserMock).not.toHaveBeenCalled();
+    expect(logUserMock).toHaveBeenCalled();
+    expect(auth.loginExceptionsManager).not.toHaveBeenCalled();
+    expect(res).toEqual({ token: "token" })
   });
 });

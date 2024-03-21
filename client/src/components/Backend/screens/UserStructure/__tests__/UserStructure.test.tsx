@@ -55,7 +55,7 @@ describe("UserStructure", () => {
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
-      shouldRedirect: true,
+      shouldRedirect: false,
     });
 
     //@ts-ignore

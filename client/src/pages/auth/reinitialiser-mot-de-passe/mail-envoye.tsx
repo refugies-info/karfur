@@ -7,8 +7,10 @@ import SEO from "components/Seo";
 import Layout from "components/Pages/auth/Layout";
 import { ForgotPasswordMailSent } from "components/User";
 import styles from "scss/components/auth.module.scss";
+import { useAuthRedirect } from "hooks";
 
 const AuthResetMailSent = () => {
+  useAuthRedirect(false);
   const router = useRouter();
   const email = useMemo(() => router.query.email as string, [router.query]);
 
@@ -37,4 +39,4 @@ export const getStaticProps = defaultStaticProps;
 export default AuthResetMailSent;
 
 // override default layout and options
-AuthResetMailSent.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthResetMailSent.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;
