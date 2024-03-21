@@ -7,6 +7,7 @@ import styles from "./CompleteContent.module.scss";
 
 interface Props {
   publish: () => void;
+  isPublishing: boolean;
   locale?: Languages;
   nbWords: number;
 }
@@ -32,6 +33,7 @@ const CompleteContent = (props: Props) => {
           }}
           evaIcon="arrow-forward-outline"
           iconPosition="right"
+          disabled={props.isPublishing}
         >
           Publier
         </Button>

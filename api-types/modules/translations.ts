@@ -1,4 +1,4 @@
-import { ContentType, InfoSection, InfoSections, Languages, Picture, RichText, Uuid } from "../generics";
+import { ContentType, InfoSection, InfoSections, Languages, Picture, RichText } from "../generics";
 
 export type TraductionsType = "suggestion" | "validation";
 
@@ -153,4 +153,16 @@ export interface TranslationStatisticsResponse extends Statistics { }
 export interface PublishTranslationRequest {
   dispositifId: string;
   language: Languages;
+}
+
+export interface TranslatorFeedback {
+  translatorId: string;
+  note: number;
+  comment: string;
+}
+
+export interface SendFeedbackRequest {
+  contentId: string;
+  language: Languages;
+  feedbacks: TranslatorFeedback[];
 }
