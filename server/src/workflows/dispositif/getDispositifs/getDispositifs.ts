@@ -13,7 +13,7 @@ export const getDispositifs = async (query: GetDispositifsRequest): ResponseWith
   const dbQuery: FilterQuery<Dispositif> = { status: DispositifStatus.ACTIVE };
   if (type) dbQuery.typeContenu = type;
 
-  const result = await getSimpleDispositifs(dbQuery, selectedLocale, limit, sort);
+  const result = await getSimpleDispositifs(dbQuery, selectedLocale, limit, sort ? { [sort]: -1 } : {});
   return {
     text: "success",
     data: result,

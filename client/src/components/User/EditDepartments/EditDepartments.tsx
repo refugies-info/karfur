@@ -83,8 +83,9 @@ const EditDepartments = (props: Props) => {
 
   return (
     <form onSubmit={submit}>
-      <label htmlFor="location" className="mb-2">
+      <label htmlFor="location" className="fr-label mb-2">
         Nom ou numéro du département
+        <span className="fr-hint-text">Plusieurs choix possibles</span>
       </label>
       <div className="position-relative">
         <div ref={suggestionsRef}>

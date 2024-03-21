@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
@@ -18,7 +18,7 @@ import styles from "./DemarcheCard.module.scss";
 import { GetDispositifsResponse } from "@refugies-info/api-types";
 import { getReadableText } from "lib/getReadableText";
 
-const ONE_DAY_MS = 86400000;
+const THREE_MONTHS_MS = 3 * 2629746000;
 
 type DemarcheLinkProps = {
   $background: string; // use $ to prevent attribute to be passed to HTML
@@ -47,14 +47,15 @@ const DemarcheCard = (props: Props) => {
   const demarcheThemes = [theme, ...getThemes(props.demarche.secondaryThemes || [], themes)];
   const { params: utmParams } = useUtmz();
 
-  const lastModificationDate = props.demarche.lastModificationDate
-    ? new Date(props.demarche.lastModificationDate)
-    : null;
-  const publishedAt = props.demarche.publishedAt ? new Date(props.demarche.publishedAt) : null;
+  // updated in the last 3 months
+  const hasUpdate = useMemo(() => {
+    const today = new Date();
+    const lastModificationDate = props.demarche.lastModificationDate
+      ? new Date(props.demarche.lastModificationDate)
+      : null;
 
-  // more than 1 day between publication and edition
-  const hasUpdate =
-    lastModificationDate && publishedAt && lastModificationDate.getTime() - publishedAt.getTime() > ONE_DAY_MS;
+    return lastModificationDate && today.getTime() - lastModificationDate.getTime() < THREE_MONTHS_MS;
+  }, [props.demarche.lastModificationDate]);
 
   return (
     <div className={commonStyles.wrapper}>

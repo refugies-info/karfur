@@ -54,7 +54,7 @@ export function* updateDispositifReaction(
     yield put(
       fetchUserStructureActionCreator({
         structureId,
-        shouldRedirect: true,
+        shouldRedirect: false,
       })
     );
     logger.info(

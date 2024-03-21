@@ -5,8 +5,10 @@ import API from "utils/API";
 import Layout from "components/Pages/auth/Layout";
 import CheckCode from "components/Pages/auth/CheckCode";
 import SEO from "components/Seo";
+import { useAuthRedirect } from "hooks";
 
 const LoginCode = () => {
+  useAuthRedirect(true);
   const router = useRouter();
   const [codeSent, setCodeSent] = useState(false);
 
@@ -30,4 +32,4 @@ export const getStaticProps = defaultStaticProps;
 export default LoginCode;
 
 // override default layout and options
-LoginCode.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+LoginCode.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;

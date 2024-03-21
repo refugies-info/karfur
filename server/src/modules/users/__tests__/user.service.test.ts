@@ -1,6 +1,6 @@
 import { DocumentType } from "@typegoose/typegoose";
 import { ObjectId, Role, RoleModel, UserModel } from "../../../typegoose";
-import { addStructureForUsers, registerUser, getUsersFromStructureMembres, updateLastConnected } from "../users.service";
+import { addStructureForUsers, registerUser, updateLastConnected } from "../users.service";
 import { sendWelcomeMail } from "../../mail/mail.service";
 import { addLog } from "../../logs/logs.service";
 import * as usersRep from "../users.repository";
@@ -57,7 +57,8 @@ describe("updateLastConnected", () => {
     jest.spyOn(usersRep, "updateUserInDB").mockResolvedValue(() => { });
     await updateLastConnected(user);
     expect(usersRep.updateUserInDB).toHaveBeenCalledWith(userId, {
-      last_connected: new Date(1466424490000)
+      last_connected: new Date(1466424490000),
+      mfaCode: null
     });
   });
 });
@@ -116,7 +117,7 @@ describe("registerUser", () => {
       const role = new Role()
       role._id = roleId;
       role.nom = roleName;
-      role.nomPublic = ""
+      role.nomPublique = ""
       return new RoleModel(role);
     })
 

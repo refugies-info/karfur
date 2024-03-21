@@ -25,7 +25,7 @@ const AuthLogin = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [role, setRole] = useState<RoleName.USER | RoleName.CONTRIB | RoleName.TRAD | null>(null);
-  const { userId, userDetails, getStepCount, next, back } = useRegisterFlow("objectif");
+  const { userId, userDetails, getStepCount, next, back } = useRegisterFlow("objectif", true);
 
   useEffect(() => {
     if (hasRole(userDetails, RoleName.TRAD)) setRole(RoleName.TRAD);

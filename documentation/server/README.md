@@ -98,8 +98,7 @@ Open a new terminal tab and launch the server:
 
 ```bash
 > cd karfur/server                # go into app's directory
-> npm install -g nodemon ts-node  # install globally some dependencies
-> nodemon                         # serve at localhost:8000
+> npm run dev                     # serve at localhost:8000
 ```
 
 If you need to develop on `server` and `api-types`, you may need to made some change in `server/package.json` :

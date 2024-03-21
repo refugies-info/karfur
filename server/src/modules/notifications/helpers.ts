@@ -86,7 +86,7 @@ export const filterTargets = (targets: AppUser[], requirements: Requirements, la
 
     const ageOk = !target.age || (parsedAge.min >= age.min && parsedAge.max <= age.max);
     const departmentsOk =
-      (Array.isArray(departments) && departments.includes(target.department) && notificationsSettings.local) ||
+      (Array.isArray(departments) && departments.map(dep => dep.split(" - ")[1]).includes(target.department) && notificationsSettings.local) ||
       (departments === ALL && notificationsSettings.global);
 
     const typeOk = type === ContentType.DISPOSITIF ? true : notificationsSettings?.demarches;

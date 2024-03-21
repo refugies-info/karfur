@@ -1,6 +1,6 @@
 import { ReactElement, useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useLogin, useRegisterFlow } from "hooks";
+import { useAuthRedirect, useLogin, useRegisterFlow } from "hooks";
 import { getPath } from "routes";
 import API from "utils/API";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
@@ -12,6 +12,7 @@ import styles from "scss/components/auth.module.scss";
 import { Event } from "lib/tracking";
 
 const AuthMicrosoftLogin = () => {
+  useAuthRedirect(false);
   const router = useRouter();
   const code: string = useMemo(() => router.query.code as string, [router.query]);
   const authError: string = useMemo(() => router.query.error as string, [router.query]);
@@ -64,4 +65,4 @@ export const getStaticProps = defaultStaticProps;
 export default AuthMicrosoftLogin;
 
 // override default layout and options
-AuthMicrosoftLogin.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+AuthMicrosoftLogin.getLayout = (page: ReactElement) => <Layout loginHelp>{page}</Layout>;

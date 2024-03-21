@@ -3,7 +3,7 @@ import { OAuth2Client } from "google-auth-library";
 import msal from "@azure/msal-node";
 import { LoginRequest, LoginResponse, UserStatus } from "@refugies-info/api-types";
 import logger from "../../../logger";
-import { getUserByEmailFromDB } from "../../../modules/users/users.repository";
+import { getUserByEmailFromDB, updateUserInDB } from "../../../modules/users/users.repository";
 import { requestEmailLogin } from "../../../modules/users/login2FA";
 import LoginError, { LoginErrorType } from "../../../modules/users/LoginError";
 import { User } from "../../../typegoose/User";
@@ -26,7 +26,7 @@ const cca = new msal.ConfidentialClientApplication({
 const MICROSOFT_REDIRECT_URL = process.env.FRONT_SITE_URL + "/fr/auth/microsoft-login";
 const MICROSOFT_SCOPES = ["User.Read"];
 
-const authWithPassword = async (user: DocumentType<User>, password: string): Promise<boolean> => {
+export const authWithPassword = async (user: DocumentType<User>, password: string): Promise<boolean> => {
   logger.info("[authWithPassword] start", { email: user.email });
 
   if (!user.authenticate(password)) {
@@ -38,7 +38,7 @@ const authWithPassword = async (user: DocumentType<User>, password: string): Pro
   return true;
 }
 
-const authWithGoogle = async (loginRequest: LoginRequest): Promise<{ email: string, name: string } | null> => {
+export const authWithGoogle = async (loginRequest: LoginRequest): Promise<{ email: string, name: string } | null> => {
   logger.info("[authWithGoogle] start");
   const { tokens } = await oauth2Client.getToken(loginRequest.authGoogle.authCode)
   const res = await oauth2Client.verifyIdToken({ idToken: tokens.id_token });
@@ -48,7 +48,7 @@ const authWithGoogle = async (loginRequest: LoginRequest): Promise<{ email: stri
   return email ? { email, name } : null;
 }
 
-const authWithMicrosoft = async (loginRequest: LoginRequest): Promise<string | null> => {
+export const authWithMicrosoft = async (loginRequest: LoginRequest): Promise<string | null> => {
   logger.info("[authWithMicrosoft] start");
   if (loginRequest.authMicrosoft.authCode === null) {
     const url = await cca.getAuthCodeUrl({
@@ -99,7 +99,9 @@ export const login = async (body: LoginRequest): Promise<LoginResponse> => {
     const userNeeds2FA = await needs2FA(user);
     if (userNeeds2FA) {
       await requestEmailLogin(email);
-      throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED, { email });
+      const randomCode = Math.round(Math.random() * 100000000).toString();
+      await updateUserInDB(user._id, { mfaCode: randomCode });
+      throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED, { email, code: randomCode });
     } else {
       const token = await logUser(user);
       return { token };

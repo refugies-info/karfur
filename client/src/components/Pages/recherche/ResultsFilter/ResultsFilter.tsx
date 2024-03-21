@@ -102,7 +102,9 @@ const ResultsFilter = (props: Props) => {
               {sortOptions
                 .filter((option) => {
                   // do not show theme option if 1 theme only is selected
-                  if (themesDisplayed.length === 1) return option.key !== "theme";
+                  if (themesDisplayed.length === 1 && option.key === "theme") return false;
+                  // do not show location if no department
+                  if (query.departments.length === 0 && option.key === "location") return false;
                   return true;
                 })
                 .map((option, i) => {

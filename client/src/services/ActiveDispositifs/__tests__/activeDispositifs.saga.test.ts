@@ -88,7 +88,7 @@ describe("[Saga] Active dispositifs", () => {
         .put(
           fetchUserStructureActionCreator({
             structureId: "id",
-            shouldRedirect: true,
+            shouldRedirect: false,
           })
         )
         .next()
@@ -112,7 +112,7 @@ describe("[Saga] Active dispositifs", () => {
         .put(
           fetchUserStructureActionCreator({
             structureId: "id",
-            shouldRedirect: true,
+            shouldRedirect: false,
           })
         )
         .next()

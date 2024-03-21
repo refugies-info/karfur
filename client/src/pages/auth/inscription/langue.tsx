@@ -14,7 +14,7 @@ import { EditLanguage } from "components/User";
 import styles from "scss/components/auth.module.scss";
 
 const AuthLogin = () => {
-  const { userId, getStepCount, next, back } = useRegisterFlow("langue");
+  const { userId, getStepCount, next, back } = useRegisterFlow("langue", true);
   const stepCount = useMemo(() => getStepCount(null), [getStepCount]);
 
   const successCallback = useCallback(() => {
