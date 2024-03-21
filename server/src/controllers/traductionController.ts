@@ -9,7 +9,8 @@ import {
   getTraductionsForReview,
   saveTranslation,
   translate,
-  publishTranslation
+  publishTranslation,
+  sendFeedback
 } from "../workflows";
 import {
   DeleteTranslationsRequest,
@@ -21,6 +22,7 @@ import {
   PublishTranslationRequest,
   SaveTranslationRequest,
   SaveTranslationResponse,
+  SendFeedbackRequest,
   TranslateRequest,
   TranslationStatisticsRequest,
   TranslationStatisticsResponse
@@ -130,5 +132,17 @@ export class TranslationController extends Controller {
     @Request() request: IRequest,
   ): Response {
     return publishTranslation(body, request.user).then(() => ({ text: "success" }));
+  }
+
+  @Post("/feedback")
+  @Security({
+    jwt: ["expert"],
+    fromSite: [],
+  })
+  public sendFeedback(
+    @Body() body: SendFeedbackRequest,
+    @Request() request: IRequest,
+  ): Response {
+    return sendFeedback(body, request.user).then(() => ({ text: "success" }));
   }
 }

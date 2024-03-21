@@ -96,7 +96,8 @@ import {
   SendCodeRequest,
   RegisterRequest,
   IsInContactResponse,
-  UpdateUserResponse
+  UpdateUserResponse,
+  SendFeedbackRequest
 } from "@refugies-info/api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -466,6 +467,10 @@ const API = {
   publishTraduction: (query: PublishTranslationRequest): Promise<null> => {
     const headers = getHeaders();
     return instance.post<any, null>("/traduction/publish", query, { headers }).then(() => null);
+  },
+  sendFeedback: (query: SendFeedbackRequest): Promise<null> => {
+    const headers = getHeaders();
+    return instance.post<any, null>("/traduction/feedback", query, { headers }).then(() => null);
   },
 
   getTraductionsForReview: ({ dispositif, language }: { dispositif: string; language: string }, options?: RequestOptions): Promise<GetTraductionsForReviewResponse> => {

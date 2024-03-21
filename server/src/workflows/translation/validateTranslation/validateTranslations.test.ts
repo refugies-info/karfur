@@ -1,6 +1,5 @@
 // @ts-nocheck
 /* import { validateTranslations } from "./validateTranslation";
-import { addOrUpdateDispositifInContenusAirtable } from "controllers/miscellaneous/airtable";
 import { validateTradInDB, deleteTradsInDB } from "modules/traductions/traductions.repository";
 import { insertInDispositif } from "modules/dispositif/insertInDispositif";
 import { updateLanguagesAvancement } from "modules/langues/langues.service";
@@ -22,10 +21,6 @@ const mockResponse = (): MockResponse => {
 }));
 jest.mock("modules/mail/sendPublishedTradMailToTraductors", () => ({
   sendPublishedTradMailToTraductors: jest.fn(),
-}));
-
-jest.mock("controllers/miscellaneous/airtable", () => ({
-  addOrUpdateDispositifInContenusAirtable: jest.fn(),
 }));
 
 jest.mock("modules/traductions/traductions.repository", () => ({
@@ -75,7 +70,7 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).not.toHaveBeenCalled();
     expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
     expect(insertInDispositif).not.toHaveBeenCalled();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(405);
@@ -88,7 +83,7 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).not.toHaveBeenCalled();
     expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
     expect(insertInDispositif).not.toHaveBeenCalled();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
@@ -101,7 +96,7 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).not.toHaveBeenCalled();
     expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
     expect(insertInDispositif).not.toHaveBeenCalled();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
@@ -114,7 +109,7 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).not.toHaveBeenCalled();
     expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
     expect(insertInDispositif).not.toHaveBeenCalled();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
@@ -131,7 +126,7 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).not.toHaveBeenCalled();
     expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
     expect(insertInDispositif).not.toHaveBeenCalled();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(401);
@@ -171,16 +166,6 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
     expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale", dispoFromDB);
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
-      "",
-      "",
-      "id_dispo",
-      [],
-      "dispositif",
-      "locale",
-      [],
-      false,
-    );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(dispoFromDB, "locale");
     expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
@@ -208,16 +193,6 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
     expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale", dispoFromDB);
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
-      "",
-      "",
-      "id_dispo",
-      [],
-      "dispositif",
-      "locale",
-      [],
-      false,
-    );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(dispoFromDB, "locale");
     expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
@@ -246,7 +221,6 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
     expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale", dispoFromDB);
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
@@ -275,7 +249,6 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
     expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale", dispoFromDB);
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith([], "locale", "dispositif", "TI", "TM", "id");
@@ -290,7 +263,6 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).not.toHaveBeenCalled();
     expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
     expect(insertInDispositif).not.toHaveBeenCalled();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToTraductors).not.toHaveBeenCalled();
@@ -304,7 +276,6 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
     expect(insertInDispositif).not.toHaveBeenCalled();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToTraductors).not.toHaveBeenCalled();
@@ -319,42 +290,10 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
     expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale", dispoFromDB);
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToTraductors).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
-  });
-
-  it("should return 200 if addOrUpdateDispositifInContenusAirtable throws", async () => {
-    insertInDispositif.mockResolvedValueOnce({
-      insertedDispositif: {
-        typeContenu: "dispositif",
-        id: "id_dispo",
-      },
-      traductorIdsList: [],
-    });
-    updateLanguagesAvancement.mockRejectedValueOnce(new Error("erreur"));
-
-    await validateTranslations({ ...req, user: { roles: [{ nom: RoleName.ADMIN }] } }, res);
-    expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
-    expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
-    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
-    expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale", dispoFromDB);
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
-      "",
-      "",
-      "id_dispo",
-      [],
-      "dispositif",
-      "locale",
-      [],
-      false,
-    );
-    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(dispoFromDB, "locale");
-    expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith([], "locale", "dispositif", "TI", "TM", "id");
-    expect(res.status).toHaveBeenCalledWith(200);
   });
 
   it("should return 500 if getDispositifByIdWithAllFields throws", async () => {
@@ -372,7 +311,6 @@ describe.skip("validateTranslations", () => {
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
     expect(insertInDispositif).not.toHaveBeenCalled();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToTraductors).not.toHaveBeenCalled();
@@ -399,16 +337,6 @@ describe.skip("validateTranslations", () => {
 
       "locale",
       dispoFromDB,
-    );
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
-      "",
-      "",
-      "id_dispo",
-      [],
-      "dispositif",
-      "locale",
-      [],
-      false,
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(dispoFromDB, "locale");
