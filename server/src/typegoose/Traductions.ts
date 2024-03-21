@@ -83,6 +83,9 @@ export class Traductions extends Base {
   public toReview?: string[];
 
   @prop({ type: () => [String] })
+  public toReviewCache?: string[]; // defined only at creation time, to keep track of what has been reviewed when finished
+
+  @prop({ type: () => [String] })
   public toFinish?: string[];
 
   @prop()

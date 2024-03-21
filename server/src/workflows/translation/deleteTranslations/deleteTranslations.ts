@@ -6,7 +6,6 @@ const deleteTranslations = (dispositifId: string, locale: Languages): Promise<[D
   Promise.all([
     DispositifModel.findByIdAndUpdate(dispositifId, { $unset: { [`translations.${locale}`]: "" } }),
     TraductionsModel.deleteMany({ dispositifId, language: locale }),
-    // TODO: maj airtable?
   ]);
 
 export default deleteTranslations;

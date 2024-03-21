@@ -1,7 +1,7 @@
 import logger from "../../../logger";
 import { cloneDeep, set } from "lodash";
 import { DemarcheContent, DispositifContent, Languages, TranslationContent } from "@refugies-info/api-types";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../connectors/airtable/addOrUpdateDispositifInContenusAirtable";
+import { addTradToAirtable } from "../../../modules/traductions/traductions.service";
 import { deleteTradsInDB } from "../../../modules/traductions/traductions.repository";
 import { getLanguageByCode } from "../../../modules/langues/langues.repository";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
@@ -25,7 +25,7 @@ const deleteLineBreaksInTranslation = (translation: Partial<TranslationContent>)
   return newTranslation;
 }
 
-const validateTranslation = (dispositif: Dispositif, language: Languages, translation: Traductions) => {
+const validateTranslation = (dispositif: Dispositif, language: Languages, translation: Traductions, username: string) => {
   const isFirstValidation = !dispositif.translations[language]; // else, expert is just changing validated translation
   return DispositifModel.updateOne(
     { _id: dispositif._id },
@@ -47,20 +47,7 @@ const validateTranslation = (dispositif: Dispositif, language: Languages, transl
       Promise.all([
         deleteTradsInDB(dispositif._id, language),
         getLanguageByCode(language).then(langue => log(dispositif._id, translation.userId as UserId, langue._id)),
-        addOrUpdateDispositifInContenusAirtable(
-          "",
-          "",
-          dispositif._id,
-          [],
-          dispositif.typeContenu,
-          language,
-          dispositif.getDepartements(),
-          false,
-        ).catch((error) => {
-          logger.error("[validateTranslations] error while updating contenu in airtable", {
-            error,
-          });
-        }),
+        isFirstValidation ? addTradToAirtable(dispositif, language, translation, username) : null,
         isFirstValidation ? sendNotificationsForDispositif(dispositif._id, language).catch((error) => {
           logger.error("[validateTranslations] error while sending notifications", error);
         }) : null,

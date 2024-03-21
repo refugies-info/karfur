@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { Languages } from "@refugies-info/api-types";
+import { GetTraductionsForReview, Languages } from "@refugies-info/api-types";
 import { Event } from "lib/tracking";
 import PageContext from "utils/pageContext";
 import BaseModal from "components/UI/BaseModal";
@@ -9,7 +9,7 @@ import StepBar from "../../StepBar";
 import { StepStatus } from "../../MissingSteps/MissingSteps";
 import { Step } from "hooks/dispositif";
 import CompleteContent from "./CompleteContent";
-import AirtableForm from "./AirtableForm";
+import NotationForm from "./NotationForm";
 import styles from "./PublishModal.module.scss";
 
 interface Props {
@@ -17,6 +17,7 @@ interface Props {
   toggle: () => void;
   onQuit: () => void;
   onPublish: () => Promise<void>;
+  isPublishing: boolean;
   isComplete: boolean;
   missingSteps: Step[];
   pendingSteps: Step[];
@@ -24,6 +25,7 @@ interface Props {
   progress: number;
   locale?: Languages;
   nbWords: number;
+  translators?: GetTraductionsForReview["author"][];
 }
 
 const PublishModal = (props: Props) => {
@@ -32,9 +34,7 @@ const PublishModal = (props: Props) => {
   const [screenStep, setScreenStep] = useState(0);
   const title = useMemo(() => {
     if (isComplete) {
-      return screenStep === 0
-        ? "Tout est prêt, vous pouvez publier la fiche !"
-        : "Pensez à bien remplir le formulaire sur Airtable !";
+      return screenStep === 0 ? "Tout est prêt, vous pouvez publier la fiche !" : "Qu'avez-vous pensé des bénévoles ?";
     }
     return `Plus que ${props.missingSteps.length} étapes`;
   }, [isComplete, props.missingSteps, screenStep]);
@@ -68,13 +68,19 @@ const PublishModal = (props: Props) => {
           <CompleteContent
             locale={props.locale}
             nbWords={props.nbWords}
+            isPublishing={props.isPublishing}
             publish={() => {
-              props.onPublish();
-              setScreenStep(1);
+              props.onPublish().then(() => {
+                if ((props.translators || []).length > 0) {
+                  setScreenStep(1);
+                } else {
+                  onQuit();
+                }
+              });
             }}
           />
         ) : (
-          <AirtableForm locale={props.locale} />
+          <NotationForm locale={props.locale} translators={props.translators || []} onDone={onQuit} />
         )
       ) : (
         <>

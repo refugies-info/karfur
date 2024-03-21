@@ -76,8 +76,8 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
     useBackendNavItem({
       onClick: disconnect,
       iconName: "log-out-outline",
-      iconColor: "#e55039",
-      textColor: "#e55039",
+      iconColor: "var(--text-default-error)",
+      textColor: "var(--text-default-error)",
       title: t("Toolbar.logout"),
       access: "all",
     })
