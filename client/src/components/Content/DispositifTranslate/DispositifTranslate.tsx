@@ -76,6 +76,7 @@ const Dispositif = (props: Props) => {
         defaultTranslation={defaultTraduction}
         locale={locale}
         progress={progress}
+        translators={traductions.map((t) => t.author).filter((auth) => auth.id.toString() !== user.userId?.toString())}
       />
       <Row className="gx-0">
         <Col xs="6" className={cls(styles.col, "bg-white")}>

@@ -3,7 +3,6 @@ import { updateLanguagesAvancement } from "../langues/langues.service";
 import logger from "../../logger";
 import { cloneDeep, isEmpty, omit, unset, set } from "lodash";
 import { TraductionsType } from "../../typegoose/Traductions";
-import { addOrUpdateDispositifInContenusAirtable } from "../../connectors/airtable/addOrUpdateDispositifInContenusAirtable";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
 import { Dispositif, DispositifId, ObjectId, Structure, Traductions, TraductionsModel, User, UserId } from "../../typegoose";
@@ -21,7 +20,6 @@ import {
 } from "@refugies-info/api-types";
 import { createStructureInDB } from "../structure/structure.repository";
 import { checkUserIsAuthorizedToDeleteDispositif } from "../../libs/checkAuthorizations";
-import { getDispositifDepartments } from "../../libs/getDispositifDepartments";
 import { log } from "./log";
 import { TranslationContent } from "../../typegoose/Dispositif";
 import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
@@ -176,6 +174,7 @@ const rebuildTranslations = async (
           translation.timeSpent = 0;
           translation.type = TraductionsType.VALIDATION;
           translation.toReview = toReview;
+          translation.toReviewCache = toReview;
           translation.userId = value.validatorId;
           translation.avancement = Traductions.computeAvancement(dispositif, translation);
           return translation;
@@ -300,23 +299,6 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
     logger.error("[publishDispositif] error while updating languages avancement", { error: error.message });
   }
 
-  const themesList = [updatedDispositif.getTheme(), ...updatedDispositif.getSecondaryThemes()];
-
-  try {
-    await addOrUpdateDispositifInContenusAirtable(
-      updatedDispositif.translations.fr.content.titreInformatif,
-      updatedDispositif.translations.fr.content.titreMarque,
-      updatedDispositif._id,
-      themesList,
-      updatedDispositif.typeContenu,
-      null,
-      updatedDispositif.getDepartements(),
-      false,
-    );
-  } catch (error) {
-    logger.error("[publishDispositif] error while updating contenu in airtable", { error: error.message });
-  }
-
   // only if first publication
   if (!hasDraftVersion) {
     try {
@@ -361,21 +343,7 @@ export const deleteDispositifInDb = async (id: string, user: User) => {
       await notifyChange(NotifType.DELETED, id, user._id);
     }
   }
-
-  await Promise.all([
-    notifyChangeIf(id, user, dispositif),
-    addOrUpdateDispositifInContenusAirtable(
-      dispositif.translations?.fr?.content?.titreInformatif || "",
-      dispositif.translations?.fr?.content?.titreMarque || "",
-      dispositif._id,
-      [],
-      dispositif.typeContenu,
-      null,
-      getDispositifDepartments(dispositif),
-      true,
-    )
-  ]);
-
+  await notifyChangeIf(id, user, dispositif);
   await updateDispositifInDB(id, { status: DispositifStatus.DELETED, deletionDate: new Date(), hasDraftVersion: false });
 };
 
