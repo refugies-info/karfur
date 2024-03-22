@@ -1,4 +1,5 @@
 import { GetLogResponse, Id } from "@refugies-info/api-types";
+import isEmpty from "lodash/isEmpty";
 import logger from "../../logger";
 import { DispositifId, LangueId, Log, StructureId, UserId, ObjectId } from "../../typegoose";
 import { createLog } from "./logs.repository";
@@ -50,9 +51,27 @@ const datesAreOnSameDay = (first: Date, second: Date) =>
   first.getMonth() === second.getMonth() &&
   first.getDate() === second.getDate();
 
+const sameDynamicIds = (first: GetLogResponse["dynamicId"], second: GetLogResponse["dynamicId"]) => {
+  if (
+    (isEmpty(first) && isEmpty(second)) ||
+    (first.langueFr && second.langueFr && first.langueFr === second.langueFr) ||
+    (first.nom && second.nom && first.nom === second.nom) ||
+    (first.titreInformatif && second.titreInformatif && first.titreInformatif === second.titreInformatif) ||
+    (first.username && second.username && first.username === second.username)
+  ) {
+    return true;
+  }
+  return false
+}
+
 export const groupLogs = (logs: GetLogResponse[]): GetLogResponse[] => {
   return logs.reduceRight((prev, curr) => {
-    if (prev.find(l => datesAreOnSameDay(l.created_at, curr.created_at) && l.author?.username === curr.author?.username && l.text === curr.text)) return prev;
+    if (prev.find(l =>
+      datesAreOnSameDay(l.created_at, curr.created_at) &&
+      l.author?.username === curr.author?.username &&
+      l.text === curr.text &&
+      sameDynamicIds(l.dynamicId, curr.dynamicId)
+    )) return prev;
     return [curr, ...prev];
   }, [] as GetLogResponse[]);
 }
