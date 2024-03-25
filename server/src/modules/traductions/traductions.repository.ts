@@ -75,9 +75,9 @@ export const addToReview = async (dispositifId: Id, toReview: string[], disposit
   const result = await TraductionsModel.updateMany(
     query,
     {
-      $push: {
-        toReview: { $each: toReview },
-        toReviewCache: { $each: toReview }
+      $addToSet: {
+        toReview: toReview,
+        toReviewCache: toReview
       }
     }
   );
