@@ -23,7 +23,9 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
     <View style={{ flexDirection: "row" }}>
       <ReadableText
         ref={ref}
-        text={props.htmlContent.replace(/<[^>]*>?/gm, "")}
+        text={props.htmlContent
+          .replaceAll("</p>", "</p> ") // wait before starting to read new sentence
+          .replaceAll(/<[^>]*>?/gm, "")}
         heightOffset={props.fromAccordion}
       >
         <HTML
