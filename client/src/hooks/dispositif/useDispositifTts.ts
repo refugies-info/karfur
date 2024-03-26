@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import useLocale from "hooks/useLocale";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
@@ -14,6 +15,7 @@ import { Event } from "lib/tracking";
 const useDispositifTts = () => {
   const locale = useLocale();
 
+  const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
@@ -23,8 +25,8 @@ const useDispositifTts = () => {
   const [isLoadingTts, setIsLoadingTts] = useState(false);
   const isPlayingTts = useMemo(() => sectionPlaying !== null, [sectionPlaying]);
   const text = useMemo(
-    () => getAllPageReadableText(dispositif, theme, secondaryThemes, needs),
-    [dispositif, theme, secondaryThemes, needs],
+    () => getAllPageReadableText(dispositif, theme, secondaryThemes, needs, t),
+    [dispositif, theme, secondaryThemes, needs, t],
   );
 
   const toggleReading = useCallback(() => {
