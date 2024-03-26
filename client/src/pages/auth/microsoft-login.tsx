@@ -44,7 +44,8 @@ const AuthMicrosoftLogin = () => {
           else logUser(res.token);
         })
         .catch((e) => {
-          const error = handleError(e.response?.data?.code, e.response?.data?.data?.email || "");
+          const responseData = e.response?.data?.data;
+          const error = handleError(e.response?.data?.code, responseData?.email || "", responseData?.code);
           if (error) setError(error);
         });
     }

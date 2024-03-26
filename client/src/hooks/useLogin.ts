@@ -23,10 +23,10 @@ const useLogin = () => {
     setHasRedirected("pending");
   }, [dispatch]);
 
-  const handleError = useCallback((errorCode: string | undefined, email: string, data?: any): string | null => {
+  const handleError = useCallback((errorCode: string | undefined, email: string, mfaCode: string | undefined): string | null => {
     if (errorCode === "NO_CODE_SUPPLIED") {
       if (!email) return ("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
-      if (data?.code) updateMfaCodeCookie(data.code);
+      if (mfaCode) updateMfaCodeCookie(mfaCode);
       router.push(getPath("/auth/code-securite", "fr", `?email=${email}`));
       return null;
     }
