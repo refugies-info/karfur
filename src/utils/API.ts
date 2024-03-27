@@ -12,6 +12,7 @@ import {
   Languages,
   MarkAsSeenRequest,
   PostAppUserResponse,
+  TtsRequest,
   ViewsType,
 } from "@refugies-info/api-types";
 
@@ -127,3 +128,9 @@ export const retrieveTechnicalInfo = () =>
     },
     "POST"
   );
+
+export const getTts = (request: TtsRequest) =>
+  makeApiRequest("/tts", request, "POST", {
+    responseType: "arraybuffer",
+    responseEncoding: "iso-8859-1",
+  }).then<TtsRequest, any>((_: any) => _.data)

@@ -33,6 +33,8 @@ import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { logger } from "../../logger";
+import { apiCaller } from "../../utils/ConfigAPI";
+import { AVPlaybackStatusError, AVPlaybackStatusSuccess, Audio } from "expo-av";
 
 const Container = styled.View<{ bottomInset: number }>`
   position: absolute;
@@ -102,6 +104,7 @@ const Button = styled(TouchableOpacity)<ButtonProps>`
 `;
 
 const MAX_RATE = 1.2;
+const AZURE_TTS = true;
 
 const sortItems = (a: ReadingItem, b: ReadingItem) => {
   if (a.posY < b.posY) return -1;
@@ -166,7 +169,37 @@ export const ReadButton = (props: Props) => {
   const readText = useCallback(
     (item: ReadingItem, readingList: ReadingItem[]) => {
       setIsPaused(false);
-      Speech.speak(item.text, {
+      if (AZURE_TTS) {
+        return apiCaller
+          .getTts({ text: item.text, locale: currentLanguageI18nCode || "fr" })
+          .then((audioData: any) => {
+            var blob = new Blob([audioData], { type: "audio/wav" });
+            var blobUrl = window.URL.createObjectURL(blob);
+
+            Audio.Sound.createAsync(
+              { uri: `data:audio/mpeg;base64,${blobUrl}` },
+              undefined,
+              (status) => {
+                if ((status as AVPlaybackStatusError).error) {
+                  logger.error(
+                    "readText error",
+                    (status as AVPlaybackStatusError).error
+                  );
+                } else if (
+                  (status as AVPlaybackStatusSuccess).didJustFinish &&
+                  readingList[readingList.length - 1].id === item.id
+                ) {
+                  dispatch(setReadingItem(null));
+                }
+              }
+            ).then(({ sound }) => {
+              dispatch(setReadingItem(item));
+              sound.playAsync();
+            });
+          });
+      }
+
+      return Speech.speak(item.text, {
         rate: rate,
         language: currentLanguageI18nCode || "fr",
         onStart: () => {
