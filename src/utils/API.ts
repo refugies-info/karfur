@@ -18,6 +18,8 @@ import {
 
 import { makeApiRequest, ResponseWith } from "../hooks/useApi";
 import { apiCaller } from "./ConfigAPI";
+import ReactNativeBlobUtil from "react-native-blob-util";
+import Config from "../libs/getEnvironment";
 
 export const getLanguages = (): Promise<GetLanguagesResponse[]> =>
   makeApiRequest<null, ResponseWith<GetLanguagesResponse[]>>(
@@ -129,8 +131,29 @@ export const retrieveTechnicalInfo = () =>
     "POST"
   );
 
-export const getTts = (request: TtsRequest) =>
-  makeApiRequest("/tts", request, "POST", {
-    responseType: "arraybuffer",
-    responseEncoding: "iso-8859-1",
-  }).then<TtsRequest, any>((_: any) => _.data)
+// Fetch file as a blob, cache it and return the file path
+export async function fetchAudio(
+  request: TtsRequest
+): Promise<string> {
+  const baseUrl = Config.dbUrl
+  const headers = {
+    "Content-Type": "application/json",
+    "site-secret": Config.siteSecret || "",
+  }
+
+  const response = await ReactNativeBlobUtil.config({
+    // add this option that makes response data to be stored as a file,
+    // this is much more performant.
+    fileCache: true,
+    appendExt: "mp3",
+  }).fetch(
+    "POST",
+    `${baseUrl}/tts`,
+    headers,
+    JSON.stringify(request),
+  )
+  const { status } = response.respInfo
+  if (status !== 200) throw new Error(`HTTP error! status: ${status}`)
+  return response.path()
+}
+

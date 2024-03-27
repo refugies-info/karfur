@@ -33,8 +33,9 @@ import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { logger } from "../../logger";
-import { apiCaller } from "../../utils/ConfigAPI";
-import { AVPlaybackStatusError, AVPlaybackStatusSuccess, Audio } from "expo-av";
+import { AVPlaybackStatusSuccess, Audio } from "expo-av";
+import { fetchAudio } from "../../utils/API";
+import ReactNativeBlobUtil from "react-native-blob-util";
 
 const Container = styled.View<{ bottomInset: number }>`
   position: absolute;
@@ -106,6 +107,17 @@ const Button = styled(TouchableOpacity)<ButtonProps>`
 const MAX_RATE = 1.2;
 const AZURE_TTS = true;
 
+// wait for a sound to finish playing
+const waitForDiJustFinishedPlaying = (sound: Audio.Sound) =>
+  new Promise((resolve) => {
+    sound.setOnPlaybackStatusUpdate(
+      //@ts-ignore
+      (playbackStatus: AVPlaybackStatusSuccess) => {
+        if (playbackStatus.didJustFinish) resolve(null);
+      }
+    );
+  });
+
 const sortItems = (a: ReadingItem, b: ReadingItem) => {
   if (a.posY < b.posY) return -1;
   else if (a.posY > b.posY) return 1;
@@ -167,36 +179,26 @@ export const ReadButton = (props: Props) => {
   }, [currentItem]);
 
   const readText = useCallback(
-    (item: ReadingItem, readingList: ReadingItem[]) => {
+    async (item: ReadingItem, readingList: ReadingItem[]) => {
       setIsPaused(false);
       if (AZURE_TTS) {
-        return apiCaller
-          .getTts({ text: item.text, locale: currentLanguageI18nCode || "fr" })
-          .then((audioData: any) => {
-            var blob = new Blob([audioData], { type: "audio/wav" });
-            var blobUrl = window.URL.createObjectURL(blob);
+        const path = await fetchAudio({
+          text: item.text,
+          locale: currentLanguageI18nCode || "fr",
+        });
+        const { sound } = await Audio.Sound.createAsync(
+          { uri: `file://${path}` },
+          {
+            shouldPlay: true,
+            progressUpdateIntervalMillis: 10,
+          }
+        );
 
-            Audio.Sound.createAsync(
-              { uri: `data:audio/mpeg;base64,${blobUrl}` },
-              undefined,
-              (status) => {
-                if ((status as AVPlaybackStatusError).error) {
-                  logger.error(
-                    "readText error",
-                    (status as AVPlaybackStatusError).error
-                  );
-                } else if (
-                  (status as AVPlaybackStatusSuccess).didJustFinish &&
-                  readingList[readingList.length - 1].id === item.id
-                ) {
-                  dispatch(setReadingItem(null));
-                }
-              }
-            ).then(({ sound }) => {
-              dispatch(setReadingItem(item));
-              sound.playAsync();
-            });
-          });
+        await waitForDiJustFinishedPlaying(sound);
+
+        // Don't forget to clean the cache when you're done playing the file, it is not done automatically
+        ReactNativeBlobUtil.fs.unlink(path);
+        return;
       }
 
       return Speech.speak(item.text, {
