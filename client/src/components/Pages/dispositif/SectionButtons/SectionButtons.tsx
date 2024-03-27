@@ -11,7 +11,7 @@ import Button from "components/UI/Button";
 
 import Tooltip from "components/UI/Tooltip";
 import Toast from "components/UI/Toast";
-import { getPlayIcon, getReadableText } from "./functions";
+import { getPlayIcon, getTextToRead } from "./functions";
 import styles from "./SectionButtons.module.scss";
 import ReactionModal from "./ReactionModal";
 
@@ -37,7 +37,7 @@ const SectionButtons = (props: Props) => {
     if (!showTtsButtons) {
       // start
       readAudio(
-        getReadableText(props.content),
+        getTextToRead(props.content),
         locale,
         () => setIsPlaying(false),
         true,

@@ -8,10 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "lib": ["es6", "dom", "ES2021.String"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -26,10 +23,6 @@
     "incremental": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }
