@@ -76,11 +76,8 @@ const AuthEmail = () => {
           })
           .catch((e) => {
             setIsLoading(false);
-            const error = handleError(
-              e.response?.data?.code,
-              e.response?.data?.data?.email || "",
-              e.response?.data?.data,
-            );
+            const responseData = e.response?.data?.data;
+            const error = handleError(e.response?.data?.code, responseData?.email || "", responseData?.code);
             if (error) setError(error);
           });
       },
