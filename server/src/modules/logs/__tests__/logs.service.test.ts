@@ -42,6 +42,28 @@ describe("groupLogs", () => {
         author: { username: "user_1", email: "user_1@example.com" },
         created_at: new Date("2023-04-06T10:24:00")
       },
+      {
+        _id: "7",
+        objectId: "obj_1",
+        model_object: "Dispositif",
+        text: "Traduction validée en : {{dynamic}}",
+        author: { username: "user_1", email: "user_1@example.com" },
+        dynamicId: {
+          langueFr: "Ukrainien"
+        },
+        created_at: new Date("2023-04-06T10:24:00")
+      },
+      {
+        _id: "8",
+        objectId: "obj_1",
+        model_object: "Dispositif",
+        text: "Traduction validée en : {{dynamic}}",
+        author: { username: "user_1", email: "user_1@example.com" },
+        dynamicId: {
+          langueFr: "Arabe"
+        },
+        created_at: new Date("2023-04-06T10:25:00")
+      },
     ]);
   });
 });

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ContentType, Languages, TranslationContent } from "@refugies-info/api-types";
+import { ContentType, GetTraductionsForReview, Languages, TranslationContent } from "@refugies-info/api-types";
 import PageContext from "utils/pageContext";
 import { Progress } from "hooks/dispositif";
 import CustomNavbarTranslate from "./CustomNavbarTranslate";
@@ -12,13 +12,14 @@ interface Props {
   defaultTranslation?: TranslationContent;
   locale?: Languages;
   progress?: Progress;
+  translators?: GetTraductionsForReview["author"][];
 }
 
 /**
  * Navbar of edition or translate mode, which shows progress and validate buttons.
  * Responsible for autosave
  */
-const CustomNavbar = ({ typeContenu, defaultTranslation, locale, progress }: Props) => {
+const CustomNavbar = ({ typeContenu, defaultTranslation, locale, progress, translators }: Props) => {
   const { mode } = useContext(PageContext);
   return mode === "translate" ? (
     <CustomNavbarTranslate
@@ -26,6 +27,7 @@ const CustomNavbar = ({ typeContenu, defaultTranslation, locale, progress }: Pro
       defaultTranslation={defaultTranslation}
       locale={locale}
       progress={progress}
+      translators={translators}
     />
   ) : (
     <CustomNavbarEdit typeContenu={typeContenu} />

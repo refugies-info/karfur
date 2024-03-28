@@ -1,9 +1,9 @@
 import { useCallback, useContext, useMemo } from "react";
-import { useToggle } from "react-use";
+import { useAsyncFn, useToggle } from "react-use";
 import { useRouter } from "next/router";
 import { useUser } from "hooks";
 import { Progress } from "hooks/dispositif";
-import { ContentType, Languages, TranslationContent } from "@refugies-info/api-types";
+import { ContentType, GetTraductionsForReview, Languages, TranslationContent } from "@refugies-info/api-types";
 import API from "utils/API";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
@@ -24,6 +24,7 @@ interface Props {
   defaultTranslation?: TranslationContent;
   locale?: Languages;
   progress?: Progress;
+  translators?: GetTraductionsForReview["author"][];
 }
 
 const defaultProgress: Progress = {
@@ -66,7 +67,7 @@ const CustomNavbarTranslate = (props: Props) => {
 
   // Publish
   const [showPublishModal, togglePublishModal] = useToggle(false);
-  const handlePublish = useCallback(async () => {
+  const [{ loading }, handlePublish] = useAsyncFn(async () => {
     const id = router.query.id as string;
     if (!id || !progress.isComplete || !locale) return;
     await API.publishTraduction({ dispositifId: id, language: locale });
@@ -175,6 +176,7 @@ const CustomNavbarTranslate = (props: Props) => {
         toggle={togglePublishModal}
         onQuit={quit}
         onPublish={handlePublish}
+        isPublishing={loading}
         missingSteps={progress.missingSteps}
         pendingSteps={progress.pendingSteps}
         reviewSteps={progress.reviewSteps}
@@ -182,6 +184,7 @@ const CustomNavbarTranslate = (props: Props) => {
         progress={progress.doneSteps}
         locale={locale}
         nbWords={progress.totalWords}
+        translators={props.translators}
       />
       <SaveErrorModal show={hasError} />
     </div>
