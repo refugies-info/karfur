@@ -61,6 +61,7 @@ export const removeTraductionsSections = async (dispositifId: Id, sections: stri
       $unset: unsetSections,
       $pull: {
         toReview: { $in: sections },
+        toReviewCache: { $in: sections },
         toFinish: { $in: sections }
       },
     }
@@ -73,7 +74,12 @@ export const addToReview = async (dispositifId: Id, toReview: string[], disposit
   const query: FilterQuery<Traductions> = { dispositifId: dispositifId, type: TraductionsType.VALIDATION };
   const result = await TraductionsModel.updateMany(
     query,
-    { $push: { toReview: { $each: toReview } } }
+    {
+      $addToSet: {
+        toReview: toReview,
+        toReviewCache: toReview
+      }
+    }
   );
   await updateAvancements(query, dispositif);
   return result;

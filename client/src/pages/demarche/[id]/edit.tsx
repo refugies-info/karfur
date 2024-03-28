@@ -41,7 +41,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   if (query.id) {
     const action = fetchSelectedDispositifActionCreator({
       selectedDispositifId: query.id as string,
-      locale: locale || "fr",
+      locale: "fr",
       token: req.cookies.authorization,
     });
     store.dispatch(action);

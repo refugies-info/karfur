@@ -1,6 +1,4 @@
-// @ts-nocheck
 import { isPasswordOk } from "../validatePassword";
-
 
 describe("validatePassword", () => {
   it("should be KO - too short", () => {

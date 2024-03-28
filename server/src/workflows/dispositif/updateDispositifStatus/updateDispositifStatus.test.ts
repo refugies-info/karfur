@@ -10,7 +10,6 @@ import {
   checkUserIsAuthorizedToDeleteDispositif
 } from "../../../libs/checkAuthorizations";
 import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../connectors/airtable/airtable";
 import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
@@ -56,7 +55,6 @@ describe.skip("updateDispositifStatus", () => {
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "En attente",
     });
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
@@ -86,7 +84,6 @@ describe.skip("updateDispositifStatus", () => {
     };
     const res = mockResponse();
     await updateDispositifStatus(req, res);
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
 
     expect(publishDispositif).toHaveBeenCalledWith("id", "userId");
     expect(res.status).toHaveBeenCalledWith(200);
@@ -105,7 +102,6 @@ describe.skip("updateDispositifStatus", () => {
     };
     const res = mockResponse();
     await updateDispositifStatus(req, res);
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
 
     expect(publishDispositif).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(404);
@@ -144,8 +140,6 @@ describe.skip("updateDispositifStatus", () => {
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "Supprimé",
     });
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
-
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
@@ -175,7 +169,6 @@ describe.skip("updateDispositifStatus", () => {
       "userId",
       []
     );
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
 
     expect(updateDispositifInDB).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
@@ -218,17 +211,6 @@ describe.skip("updateDispositifStatus", () => {
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "Supprimé",
     });
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
-      "TI",
-      "TM",
-      "id",
-      [],
-      "dispositif",
-      null,
-      [],
-      true
-    );
-
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });

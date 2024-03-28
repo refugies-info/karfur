@@ -9,7 +9,7 @@ const publishTranslation = (
   { language, dispositifId }: PublishTranslationRequest,
   user: User,
 ): Promise<void> =>
-  getDispositifById(dispositifId).then(async (dispositif) => {
+  getDispositifById(dispositifId, { translations: 1, typeContenu: 1 }).then(async (dispositif) => {
     const userIsExpert = user.isExpert() || user.isAdmin();
     if (dispositif.isTranslatedIn(language) && !userIsExpert) {
       throw new Error(`Dispositif is already translated in ${language}`);
@@ -27,7 +27,7 @@ const publishTranslation = (
      * Sinon, il faut publier la traduction de la fiche
      * puis supprimer l'ensemble des traductions.
      */
-    await validateTranslation(dispositif, language, traduction);
+    await validateTranslation(dispositif, language, traduction, user.username);
     await addNewParticipant(dispositifId, user._id);
   });
 
