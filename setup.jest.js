@@ -7,6 +7,8 @@ jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
 // });
 // jest.mock("expo-speech", () => {});
 
+jest.mock("react-native-blob-util", () => {});
+
 jest.mock("@react-native-firebase/analytics", () => {
   return () => ({
     logEvent: jest.fn(),
