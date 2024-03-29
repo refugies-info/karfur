@@ -4,6 +4,7 @@ import { updateIndicator } from "../../../modules/indicators/indicators.service"
 import { addNewParticipant, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { TraductionsType } from "../../../typegoose/Traductions";
+import { getOtherValidationForDispositif } from "../../../modules/traductions/traductions.repository";
 
 const saveTranslation = (
   { timeSpent, language, dispositifId, translated, toFinish, toReview }: SaveTranslationRequest,
@@ -28,6 +29,14 @@ const saveTranslation = (
     // ensure titreMarque is saved empty for demarches, to calculate progress properly
     if (dispositif.typeContenu === ContentType.DEMARCHE && isUndefined(_traduction.translated.content.titreMarque)) {
       _traduction.translated.content.titreMarque = "";
+    }
+
+    // copy toReviewCache from other traductions if it exists
+    if (user.isExpert()) {
+      const otherValidation = await getOtherValidationForDispositif(language, dispositifId, user._id);
+      if (otherValidation?.toReviewCache) {
+        _traduction.toReviewCache = otherValidation.toReviewCache;
+      }
     }
 
     _traduction.avancement = Traductions.computeAvancement(dispositif, _traduction);

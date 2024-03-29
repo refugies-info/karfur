@@ -35,7 +35,8 @@ const LocationDropdown = (props: Props) => {
     },
   });
   const onSelectPrediction = useCallback(
-    (id: string) => {
+    (id: string, name: string) => {
+      Event("USE_SEARCH", "choose location option", name);
       Event("USE_SEARCH", "click filter", "location");
       placesService?.getDetails({ placeId: id }, (placeDetails) => {
         const departement = (placeDetails?.address_components || []).find((comp) =>
@@ -127,8 +128,8 @@ const LocationDropdown = (props: Props) => {
       {placePredictions.slice(0, 5).map((p, i) => (
         <Button
           key={i}
-          onClick={() => onSelectPrediction(p.place_id)}
-          onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id))}
+          onClick={() => onSelectPrediction(p.place_id, getPlaceName(p))}
+          onKeyDown={(e) => onEnterOrSpace(e, () => onSelectPrediction(p.place_id, getPlaceName(p)))}
           className={styles.btn}
         >
           <span className={styles.icon}>
