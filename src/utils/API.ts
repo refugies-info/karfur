@@ -1,11 +1,11 @@
 import Constants from "expo-constants";
+import ReactNativeBlobUtil from "react-native-blob-util";
 import {
   AppUserRequest,
   GetContentsForAppRequest,
   GetContentsForAppResponse,
   GetDispositifResponse,
   GetLanguagesResponse,
-  GetNbContentsForCountyRequest,
   GetNbContentsForCountyResponse,
   GetNeedResponse,
   GetThemeResponse,
@@ -17,9 +17,8 @@ import {
 } from "@refugies-info/api-types";
 
 import { makeApiRequest, ResponseWith } from "../hooks/useApi";
-import { apiCaller } from "./ConfigAPI";
-import ReactNativeBlobUtil from "react-native-blob-util";
-import Config from "../libs/getEnvironment";
+import { apiCaller, dbURL, headers } from "./ConfigAPI";
+import { logger } from "../logger";
 
 export const getLanguages = (): Promise<GetLanguagesResponse[]> =>
   makeApiRequest<null, ResponseWith<GetLanguagesResponse[]>>(
@@ -131,29 +130,26 @@ export const retrieveTechnicalInfo = () =>
     "POST"
   );
 
-// Fetch file as a blob, cache it and return the file path
-export async function fetchAudio(
-  request: TtsRequest
-): Promise<string> {
-  const baseUrl = Config.dbUrl
-  const headers = {
-    "Content-Type": "application/json",
-    "site-secret": Config.siteSecret || "",
-  }
-
+/**
+ * Fetch file as a blob, cache it and return the file path
+ * @param request
+ * @returns file path
+ */
+export const fetchAudio = async (request: TtsRequest): Promise<string> => {
   const response = await ReactNativeBlobUtil.config({
-    // add this option that makes response data to be stored as a file,
-    // this is much more performant.
-    fileCache: true,
+    fileCache: true, // add this option that makes response data to be stored as a file,
     appendExt: "mp3",
   }).fetch(
     "POST",
-    `${baseUrl}/tts`,
+    `${dbURL}/tts`,
     headers,
     JSON.stringify(request),
-  )
-  const { status } = response.respInfo
-  if (status !== 200) throw new Error(`HTTP error! status: ${status}`)
-  return response.path()
+  );
+  const { status } = response.respInfo;
+  if (status !== 200) {
+    logger.error(`fetchAudio error ${status}`, {});
+    throw new Error(`FetchAudio error: ${status}`);
+  }
+  return response.path();
 }
 

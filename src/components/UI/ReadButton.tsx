@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import * as Haptics from "expo-haptics";
 import { deactivateKeepAwake } from "expo-keep-awake";
-import * as Speech from "expo-speech";
 import {
   Image,
   Platform,
@@ -33,9 +32,7 @@ import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { logger } from "../../logger";
-import { AVPlaybackStatusSuccess, Audio } from "expo-av";
-import { fetchAudio } from "../../utils/API";
-import ReactNativeBlobUtil from "react-native-blob-util";
+import { Reader, getTtsReader } from "../../libs/ttsReader";
 
 const Container = styled.View<{ bottomInset: number }>`
   position: absolute;
@@ -105,18 +102,6 @@ const Button = styled(TouchableOpacity)<ButtonProps>`
 `;
 
 const MAX_RATE = 1.2;
-const AZURE_TTS = true;
-
-// wait for a sound to finish playing
-const waitForDiJustFinishedPlaying = (sound: Audio.Sound) =>
-  new Promise((resolve) => {
-    sound.setOnPlaybackStatusUpdate(
-      //@ts-ignore
-      (playbackStatus: AVPlaybackStatusSuccess) => {
-        if (playbackStatus.didJustFinish) resolve(null);
-      }
-    );
-  });
 
 const sortItems = (a: ReadingItem, b: ReadingItem) => {
   if (a.posY < b.posY) return -1;
@@ -128,7 +113,7 @@ const sortItems = (a: ReadingItem, b: ReadingItem) => {
 const getReadingList = (
   list: ReadingItem[],
   startFromId: string | null,
-  offset: number
+  offset: number = 0
 ) => {
   const toRead = list.filter((item) => item);
   if (toRead.length === 0) return [];
@@ -147,16 +132,15 @@ export const ReadButton = (props: Props) => {
   const { fontScale } = useWindowDimensions();
 
   const [isPaused, setIsPaused] = useState(false);
+  const [isStopped, setIsStopped] = useState(false);
   const [rate, setRate] = useState(1);
   const [resolvedReadingList, setResolvedReadingList] = useState<ReadingItem[]>(
     []
   );
   const [isLoading, setIsLoading] = useState(false);
-
   const scale = useSharedValue(0);
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [
-      //@ts-ignore
       {
         scale: withSpring(scale.value, {
           mass: 0.5,
@@ -178,46 +162,121 @@ export const ReadButton = (props: Props) => {
     setIsReading(!!currentItem);
   }, [currentItem]);
 
-  const readText = useCallback(
-    async (item: ReadingItem, readingList: ReadingItem[]) => {
-      setIsPaused(false);
-      if (AZURE_TTS) {
-        const path = await fetchAudio({
-          text: item.text,
-          locale: currentLanguageI18nCode || "fr",
-        });
-        const { sound } = await Audio.Sound.createAsync(
-          { uri: `file://${path}` },
-          {
-            shouldPlay: true,
-            progressUpdateIntervalMillis: 10,
-          }
-        );
+  const [reader, setReader] = useState<Reader | null>(null);
+  /**
+   * Recursively reads a list item by item
+   * @param toRead
+   * @param indexToRead
+   * @returns
+   */
+  const readList = async (toRead: ReadingItem[], indexToRead: number = 0) => {
+    logger.info("Reading: ", toRead[indexToRead].text.slice(0, 30));
+    if (isStopped) {
+      // if reader stopped, do not continue reading
+      setIsStopped(false); // reset isStopped
+      return;
+    }
+    if (isPaused) setIsPaused(false);
+    dispatch(setReadingItem(toRead[indexToRead]));
 
-        await waitForDiJustFinishedPlaying(sound);
+    const reader = await getTtsReader(
+      // get reader
+      toRead[indexToRead].text,
+      currentLanguageI18nCode,
+      rate
+    );
+    setReader(reader);
+    await reader.play(); // and start reading
 
-        // Don't forget to clean the cache when you're done playing the file, it is not done automatically
-        ReactNativeBlobUtil.fs.unlink(path);
-        return;
+    // read next or stop
+    if (indexToRead === toRead.length - 1) {
+      dispatch(setReadingItem(null));
+    } else {
+      readList(toRead, indexToRead + 1);
+    }
+  };
+
+  // next or previous
+  const goTo = (dir: "next" | "prev") => {
+    reader?.stop();
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    if (currentItem) {
+      const toRead = getReadingList(
+        resolvedReadingList,
+        currentItem.id,
+        dir === "next" ? 1 : -1
+      );
+      readList(toRead);
+    }
+  };
+
+  // stop
+  const stopVoiceOver = useCallback(() => {
+    deactivateKeepAwake("voiceover");
+    reader?.stop();
+    if (isReading) {
+      // test to prevent haptic on any navigate
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      setIsStopped(true);
+    }
+    dispatch(setReadingItem(null));
+    setIsPaused(false);
+  }, [isReading, reader]);
+
+  // stop when reset
+  useEffect(() => {
+    if (readingList === null) {
+      stopVoiceOver();
+    }
+  }, [readingList]);
+
+  // change rate
+  const changeRate = () => {
+    setRate((rate) => (rate === 1 ? MAX_RATE : 1));
+  };
+  useEffect(() => {
+    reader?.stop();
+    if (currentItem) {
+      const toRead = getReadingList(resolvedReadingList, currentItem.id);
+      readList(toRead);
+    }
+  }, [rate]);
+
+  // change language
+  useEffect(() => {
+    stopVoiceOver();
+  }, [currentLanguageI18nCode]);
+
+  // pause
+  const resumeReading = () => {
+    if (currentItem) {
+      const toRead = getReadingList(resolvedReadingList, currentItem.id);
+      readList(toRead);
+    }
+  };
+  useEffect(() => {
+    if (isPaused) {
+      if (Platform.OS === "android") {
+        // TODO: test if fixed on android?
+        reader?.stop();
+      } else {
+        reader?.pause();
       }
+    } else {
+      if (Platform.OS === "android") {
+        resumeReading();
+      } else {
+        reader?.resume();
+      }
+    }
+  }, [isPaused]);
 
-      return Speech.speak(item.text, {
-        rate: rate,
-        language: currentLanguageI18nCode || "fr",
-        onStart: () => {
-          logger.info("Reading: ", item.text.slice(0, 30));
-          dispatch(setReadingItem(item));
-        },
-        onDone: () => {
-          if (readingList[readingList.length - 1].id === item.id) {
-            dispatch(setReadingItem(null));
-          }
-        },
-      });
-    },
-    [rate, currentLanguageI18nCode]
-  );
+  // show menu
+  useEffect(() => {
+    scale.value = isReading ? 1 : 0;
+  }, [isReading]);
 
+  // start
   const startToRead = useCallback(() => {
     if (readingList && readingListLength > 0) {
       setIsLoading(true);
@@ -248,10 +307,9 @@ export const ReadButton = (props: Props) => {
           );
           const toRead = getReadingList(
             sortedReadingList,
-            firstItem?.id || null,
-            0
+            firstItem?.id || null
           );
-          for (const itemToRead of toRead) readText(itemToRead, toRead);
+          readList(toRead);
           setIsLoading(false);
         })
         .catch((e) => {
@@ -259,91 +317,6 @@ export const ReadButton = (props: Props) => {
         });
     }
   }, [readingList, currentScroll]);
-
-  const goToNext = () => {
-    Speech.stop();
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    if (currentItem) {
-      const toRead = getReadingList(resolvedReadingList, currentItem.id, 1);
-      for (const itemToRead of toRead) readText(itemToRead, toRead);
-    }
-  };
-
-  const goToPrevious = () => {
-    Speech.stop();
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    if (currentItem) {
-      const toRead = getReadingList(resolvedReadingList, currentItem.id, -1);
-      for (const itemToRead of toRead) readText(itemToRead, toRead);
-    }
-  };
-
-  const resumeReading = () => {
-    if (currentItem) {
-      const toRead = getReadingList(resolvedReadingList, currentItem.id, 0);
-      for (const itemToRead of toRead) readText(itemToRead, toRead);
-    }
-  };
-
-  const stopVoiceOver = useCallback(() => {
-    deactivateKeepAwake("voiceover");
-    Speech.stop();
-    if (isReading) {
-      // test to prevent haptic on any navigate
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    }
-    dispatch(setReadingItem(null));
-    setIsPaused(false);
-  }, [isReading]);
-
-  const changeRate = () => {
-    setRate((rate) => (rate === 1 ? MAX_RATE : 1));
-  };
-
-  // Stop when reset
-  useEffect(() => {
-    if (readingList === null) {
-      stopVoiceOver();
-    }
-  }, [readingList]);
-
-  // change rate
-  useEffect(() => {
-    Speech.stop();
-    if (currentItem) {
-      const toRead = getReadingList(resolvedReadingList, currentItem.id, 0);
-      for (const itemToRead of toRead) readText(itemToRead, toRead);
-    }
-  }, [rate]);
-
-  // change language
-  useEffect(() => {
-    stopVoiceOver();
-  }, [currentLanguageI18nCode]);
-
-  // pause
-  useEffect(() => {
-    if (isPaused) {
-      if (Platform.OS === "android") {
-        Speech.stop();
-      } else {
-        Speech.pause();
-      }
-    } else {
-      if (Platform.OS === "android") {
-        resumeReading();
-      } else {
-        Speech.resume();
-      }
-    }
-  }, [isPaused]);
-
-  // show menu
-  useEffect(() => {
-    scale.value = isReading ? 1 : 0;
-  }, [isReading]);
-
-  // start
   const toggleVoiceOver = () => {
     if (!isReading) {
       startToRead();
@@ -385,7 +358,7 @@ export const ReadButton = (props: Props) => {
         <Button onPress={changeRate}>
           <StyledTextSmallBold>{rate === 1 ? "x1" : "x2"}</StyledTextSmallBold>
         </Button>
-        <Button onPress={goToPrevious} ml>
+        <Button onPress={() => goTo("prev")} ml>
           <Icon
             name={"arrow-back-outline"}
             height={24}
@@ -394,7 +367,7 @@ export const ReadButton = (props: Props) => {
           />
         </Button>
         <Space />
-        <Button onPress={goToNext} mr>
+        <Button onPress={() => goTo("next")} mr>
           <Icon
             name={"arrow-forward-outline"}
             height={24}
