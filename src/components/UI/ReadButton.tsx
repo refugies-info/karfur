@@ -256,14 +256,10 @@ export const ReadButton = (props: Props) => {
   };
   useEffect(() => {
     if (isPaused) {
-      if (Platform.OS === "android") {
-        // TODO: test if fixed on android?
-        reader?.stop();
-      } else {
-        reader?.pause();
-      }
+      reader?.pause();
     } else {
-      if (Platform.OS === "android") {
+      // pause and resume not available in android
+      if (!reader?.canResume) {
         resumeReading();
       } else {
         reader?.resume();

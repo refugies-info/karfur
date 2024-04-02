@@ -3,14 +3,14 @@ import { AVPlaybackStatusSuccess, Audio } from "expo-av";
 import ReactNativeBlobUtil from "react-native-blob-util";
 import { fetchAudio } from "../utils/API";
 import { Platform } from "react-native";
-
-const AZURE_TTS = true;
+import { logger } from "../logger";
 
 export interface Reader {
   play: () => Promise<void>;
   stop: () => void;
   pause: () => void;
   resume: () => void;
+  canResume: boolean;
 }
 
 // wait for a sound to finish playing
@@ -60,6 +60,7 @@ const getAzureReader = async (
     stop: () => sound.stopAsync(),
     pause: () => sound.pauseAsync(),
     resume: () => sound.playAsync(),
+    canResume: true
   };
 }
 
@@ -86,8 +87,21 @@ const getNativeReader = (
       });
     }),
   stop: () => Speech.stop(),
-  pause: () => Speech.pause(),
-  resume: () => Speech.resume(),
+  pause: () => {
+    if (Platform.OS === "android") {
+      Speech.stop();
+    } else {
+      Speech.pause()
+    }
+  },
+  resume: () => {
+    if (Platform.OS === "android") {
+      logger.error("Resume not implemented in Android")
+    } else {
+      Speech.resume();
+    }
+  },
+  canResume: false
 })
 
 const needsAzureTts = (language: string | null) => {
