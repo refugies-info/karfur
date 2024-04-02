@@ -1,12 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import * as Haptics from "expo-haptics";
 import { deactivateKeepAwake } from "expo-keep-awake";
-import {
-  Image,
-  Platform,
-  TouchableOpacity,
-  useWindowDimensions,
-} from "react-native";
+import { Image, TouchableOpacity, useWindowDimensions } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -132,7 +127,7 @@ export const ReadButton = (props: Props) => {
   const { fontScale } = useWindowDimensions();
 
   const [isPaused, setIsPaused] = useState(false);
-  const [isStopped, setIsStopped] = useState(false);
+  const isStopped = useRef<boolean>(false);
   const [rate, setRate] = useState(1);
   const [resolvedReadingList, setResolvedReadingList] = useState<ReadingItem[]>(
     []
@@ -171,9 +166,9 @@ export const ReadButton = (props: Props) => {
    */
   const readList = async (toRead: ReadingItem[], indexToRead: number = 0) => {
     logger.info("Reading: ", toRead[indexToRead].text.slice(0, 30));
-    if (isStopped) {
-      // if reader stopped, do not continue reading
-      setIsStopped(false); // reset isStopped
+    // if reader stopped, do not continue reading
+    if (isStopped.current) {
+      isStopped.current = false; // reset isStopped
       return;
     }
     if (isPaused) setIsPaused(false);
@@ -188,6 +183,12 @@ export const ReadButton = (props: Props) => {
     setReader(reader);
     await reader.play(); // and start reading
 
+    // if has been stopped before ending, no next
+    if (isStopped.current) {
+      isStopped.current = false; // reset isStopped
+      return;
+    }
+
     // read next or stop
     if (indexToRead === toRead.length - 1) {
       dispatch(setReadingItem(null));
@@ -196,18 +197,64 @@ export const ReadButton = (props: Props) => {
     }
   };
 
+  // start
+  const startToRead = useCallback(() => {
+    if (readingList && readingListLength > 0) {
+      setIsLoading(true);
+      deactivateKeepAwake("voiceover").catch((e) => {
+        logger.error(e);
+      });
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch((e) => {
+        logger.error(e);
+      });
+
+      logger.info("startToRead, nb items :", readingListLength);
+      Promise.all(
+        Object.values(readingList).map((r) =>
+          r?.current?.getReadingItem(currentScroll)
+        )
+      )
+        .then((res) => res.filter((r) => !!r) as ReadingItem[])
+        .then((res) => {
+          // logger.info("startToRead:: res", res);
+          logEventInFirebase(FirebaseEvent.START_VOICEOVER, {
+            locale: currentLanguageI18nCode,
+          });
+          const sortedReadingList = res.sort(sortItems);
+          setResolvedReadingList(sortedReadingList);
+          const scrollLimit = currentScroll === 0 ? 0 : currentScroll + 200; // arbitrary offset to select element in the middle of the screen is scrolled
+          const firstItem = sortedReadingList.find(
+            (item) => item.posY >= scrollLimit
+          );
+          const toRead = getReadingList(
+            sortedReadingList,
+            firstItem?.id || null
+          );
+          readList(toRead);
+          setIsLoading(false);
+        })
+        .catch((e) => {
+          logger.error(e);
+        });
+    }
+  }, [readingList, currentScroll]);
+
   // next or previous
   const goTo = (dir: "next" | "prev") => {
-    reader?.stop();
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    if (currentItem) {
-      const toRead = getReadingList(
-        resolvedReadingList,
-        currentItem.id,
-        dir === "next" ? 1 : -1
-      );
-      readList(toRead);
-    }
+    isStopped.current = true;
+    reader?.stop();
+    setTimeout(() => {
+      // setTimeout to ensure it happens after previous readList resolve
+      if (currentItem) {
+        const toRead = getReadingList(
+          resolvedReadingList,
+          currentItem.id,
+          dir === "next" ? 1 : -1
+        );
+        readList(toRead);
+      }
+    }, 100);
   };
 
   // stop
@@ -217,7 +264,7 @@ export const ReadButton = (props: Props) => {
     if (isReading) {
       // test to prevent haptic on any navigate
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      setIsStopped(true);
+      isStopped.current = true;
     }
     dispatch(setReadingItem(null));
     setIsPaused(false);
@@ -272,47 +319,6 @@ export const ReadButton = (props: Props) => {
     scale.value = isReading ? 1 : 0;
   }, [isReading]);
 
-  // start
-  const startToRead = useCallback(() => {
-    if (readingList && readingListLength > 0) {
-      setIsLoading(true);
-      deactivateKeepAwake("voiceover").catch((e) => {
-        logger.error(e);
-      });
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch((e) => {
-        logger.error(e);
-      });
-
-      logger.info("startToRead, nb items :", readingListLength);
-      Promise.all(
-        Object.values(readingList).map((r) =>
-          r?.current?.getReadingItem(currentScroll)
-        )
-      )
-        .then((res) => res.filter((r) => !!r) as ReadingItem[])
-        .then((res) => {
-          // logger.info("startToRead:: res", res);
-          logEventInFirebase(FirebaseEvent.START_VOICEOVER, {
-            locale: currentLanguageI18nCode,
-          });
-          const sortedReadingList = res.sort(sortItems);
-          setResolvedReadingList(sortedReadingList);
-          const scrollLimit = currentScroll === 0 ? 0 : currentScroll + 200; // arbitrary offset to select element in the middle of the screen is scrolled
-          const firstItem = sortedReadingList.find(
-            (item) => item.posY >= scrollLimit
-          );
-          const toRead = getReadingList(
-            sortedReadingList,
-            firstItem?.id || null
-          );
-          readList(toRead);
-          setIsLoading(false);
-        })
-        .catch((e) => {
-          logger.error(e);
-        });
-    }
-  }, [readingList, currentScroll]);
   const toggleVoiceOver = () => {
     if (!isReading) {
       startToRead();

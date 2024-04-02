@@ -20,6 +20,7 @@ const waitForDiJustFinishedPlaying = (sound: Audio.Sound) =>
       //@ts-ignore
       (playbackStatus: AVPlaybackStatusSuccess) => {
         if (playbackStatus.didJustFinish) resolve(null);
+        if (!playbackStatus.shouldPlay && playbackStatus.positionMillis === 0) resolve(null); // sound stopped
       }
     );
   });
@@ -44,7 +45,8 @@ const getAzureReader = async (
     { uri: `file://${path}` },
     {
       progressUpdateIntervalMillis: 10,
-      rate
+      rate,
+      positionMillis: 1, // used to detect if sound has been stopped (> 0 : will play, = 0 : has stopped)
     }
   );
 
@@ -81,9 +83,7 @@ const getNativeReader = (
       Speech.speak(text, {
         rate: rate,
         language: language || "fr",
-        onDone: () => {
-          resolve();
-        },
+        onDone: () => resolve(),
       });
     }),
   stop: () => Speech.stop(),
@@ -101,7 +101,7 @@ const getNativeReader = (
       Speech.resume();
     }
   },
-  canResume: false
+  canResume: Platform.OS === "android" ? false : true
 })
 
 const needsAzureTts = (language: string | null) => {

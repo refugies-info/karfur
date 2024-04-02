@@ -33,8 +33,7 @@ export const getUid = async (): Promise<string> => {
 export const makeApiRequest = async <Request extends any, T extends any>(
   url: string,
   payload: Request,
-  method: Method = "GET",
-  extraHeaders: Object = {}
+  method: Method = "GET"
 ): Promise<T> => {
   try {
     let headers = {};
@@ -43,7 +42,6 @@ export const makeApiRequest = async <Request extends any, T extends any>(
     if (uid) {
       headers = {
         "x-app-uid": uid,
-        ...extraHeaders
       };
     }
 
