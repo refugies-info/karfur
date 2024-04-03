@@ -20,6 +20,9 @@ export const getTraductionsByLanguageAndDispositif = (
 export const getValidation = (language: Languages, dispositifId: DispositifId, userId: UserId) =>
   TraductionsModel.findOne({ language, dispositifId, userId });
 
+export const getOtherValidationForDispositif = (language: Languages, dispositifId: DispositifId, userId: UserId) =>
+  TraductionsModel.findOne({ language, dispositifId, userId: { $ne: userId }, type: TraductionsType.VALIDATION });
+
 export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages): Promise<DeleteResult> =>
   TraductionsModel.deleteMany({
     dispositifId,
