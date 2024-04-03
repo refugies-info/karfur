@@ -242,8 +242,9 @@ export const ReadButton = (props: Props) => {
   // next or previous
   const goTo = (dir: "next" | "prev") => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    isStopped.current = true;
+    setIsPaused(false);
     reader?.stop();
+    isStopped.current = true;
     setTimeout(() => {
       // setTimeout to ensure it happens after previous readList resolve
       if (currentItem) {
@@ -302,6 +303,7 @@ export const ReadButton = (props: Props) => {
     }
   };
   useEffect(() => {
+    if (isStopped.current) return;
     if (isPaused) {
       reader?.pause();
     } else {
