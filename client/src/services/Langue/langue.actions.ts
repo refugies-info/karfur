@@ -12,7 +12,7 @@ export const setLanguesActionCreator = (value: GetLanguagesResponse[]) =>
 
 export const fetchLanguesActionCreator = () => action(FETCH_LANGUES);
 
-export const toggleLangueModalActionCreator = () => action(TOGGLE_LANG_MODAL);
+export const toggleLangueModalActionCreator = (payload?: boolean) => action(TOGGLE_LANG_MODAL, payload);
 
 export const toggleLangueActionCreator = (value: string) =>
   action(TOGGLE_LANGUE, value);

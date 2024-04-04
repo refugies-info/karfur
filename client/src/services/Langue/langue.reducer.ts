@@ -22,6 +22,6 @@ export const langueReducer = createReducer<LangueState, LangueActions>(initialLa
     locale.saveInCache(action.payload);
     return { ...state, languei18nCode: action.payload };
   },
-  TOGGLE_LANG_MODAL: (state) => ({ ...state, showLangModal: !state.showLangModal }),
+  TOGGLE_LANG_MODAL: (state, action) => ({ ...state, showLangModal: action.payload !== undefined ? action.payload : !state.showLangModal }),
   SET_LANGUES: (state, action) => ({ ...state, langues: action.payload })
 });
