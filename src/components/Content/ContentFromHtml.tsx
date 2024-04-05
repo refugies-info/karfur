@@ -1,14 +1,18 @@
 import HTML from "react-native-render-html";
 import * as React from "react";
+import * as Linking from "expo-linking";
+import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "react-native";
 import { styles } from "../../theme";
 import { RTLView } from "../BasicComponents";
 import { TextNormal, TextNormalBold } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { getScreenFromUrl } from "../../libs/getScreenFromUrl";
 import { ReadableText } from "../ReadableText";
 import { Card, Columns, Rows, RowsSpacing, Spacer } from "../layout";
 import { useTheme } from "styled-components/native";
 import { Icon } from "../iconography";
+import { Link } from "../Profil/Typography";
 
 interface Props {
   htmlContent: string;
@@ -18,6 +22,18 @@ interface Props {
 export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
   const theme = useTheme();
   const { t, isRTL } = useTranslationWithRTL();
+
+  const navigation = useNavigation();
+  /**
+   * Opens url in app if possible
+   * @param url
+   */
+  const handleOpenUrl = (url: string) => {
+    if (!url.includes("refugies.info")) Linking.openURL(url);
+    const screen = getScreenFromUrl(url);
+    //@ts-ignore
+    if (screen) navigation.navigate(screen.rootNavigator, screen.screenParams);
+  };
 
   return (
     <View style={{ flexDirection: "row" }}>
@@ -84,6 +100,15 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
             lineHeight: 20,
           }}
           renderers={{
+            a: (attrs, children, _cssStyles, passProps) => (
+              <Link
+                accessibilityRole="link"
+                onPress={() => handleOpenUrl(attrs.href.toString())}
+                key={passProps.key}
+              >
+                {children}
+              </Link>
+            ),
             ul: (_, children, _cssStyles, passProps) => (
               <View
                 key={passProps.key}
