@@ -1,80 +1,83 @@
+import { GetDispositifsWithTranslationAvancementResponse, ContentType, TraductionsStatus } from "@refugies-info/api-types";
+
 const content1 = {
-  avancementExpert: 0,
-  avancementTrad: 0.7333333333333333,
-  created_at: "2019-11-08T10:53:52.398Z",
+  avancementTrad: 700,
+  avancementValidation: 0,
+  created_at: new Date("2019-11-08T10:53:52.398Z"),
   lastTradUpdatedAt: 1612514769665,
   nbMots: 812,
   titreInformatif: "Demander un logement social (HLM)",
-  tradStatus: "À revoir",
-  typeContenu: "demarche",
+  titreMarque: "",
+  tradStatus: TraductionsStatus.TO_REVIEW,
+  type: ContentType.DEMARCHE,
   _id: "id1",
 };
 
 const content2 = {
-  avancementExpert: 0.5,
-  avancementTrad: 1,
-  created_at: "2019-11-08T10:53:52.398Z",
+  avancementTrad: 812,
+  avancementValidation: 406,
+  created_at: new Date("2019-11-08T10:53:52.398Z"),
   lastTradUpdatedAt: 1612514769665,
   nbMots: 812,
   titreInformatif: "T2",
   titreMarque: "TM2",
-  tradStatus: "En attente",
-  typeContenu: "dispositif",
+  tradStatus: TraductionsStatus.PENDING,
+  type: ContentType.DISPOSITIF,
   _id: "id2",
 };
 const content3 = {
-  avancementExpert: 0,
   avancementTrad: 0,
-  created_at: "2019-11-08T10:53:52.398Z",
+  avancementValidation: 0,
+  created_at: new Date("2019-11-08T10:53:52.398Z"),
   lastTradUpdatedAt: 1612514769665,
   nbMots: 812,
   titreInformatif: "T3",
   titreMarque: "TM3",
-  tradStatus: "À traduire",
-  typeContenu: "dispositif",
+  tradStatus: TraductionsStatus.TO_TRANSLATE,
+  type: ContentType.DISPOSITIF,
   _id: "id3",
 };
 
 const content4 = {
-  avancementExpert: 0,
-  avancementTrad: 1,
-  created_at: "2019-11-08T10:53:52.398Z",
+  avancementTrad: 812,
+  avancementValidation: 0,
+  created_at: new Date("2019-11-08T10:53:52.398Z"),
   lastTradUpdatedAt: 1612514769665,
   nbMots: 812,
   titreInformatif: "T4",
   titreMarque: "TM4",
-  tradStatus: "Validée",
-  typeContenu: "demarche",
+  tradStatus: TraductionsStatus.VALIDATED,
+  type: ContentType.DEMARCHE,
   _id: "id4",
 };
 
 const content5 = {
-  avancementExpert: 0,
-  avancementTrad: 1,
-  created_at: "2019-11-08T10:53:52.398Z",
+  avancementTrad: 812,
+  avancementValidation: 0,
+  created_at: new Date("2019-11-08T10:53:52.398Z"),
   lastTradUpdatedAt: 1612514769665,
   nbMots: 812,
   titreInformatif: "T5",
   titreMarque: "TM5",
-  tradStatus: "À traduire",
-  typeContenu: "demarche",
+  tradStatus: TraductionsStatus.TO_TRANSLATE,
+  type: ContentType.DEMARCHE,
   _id: "id5",
 };
 
 const content6 = {
-  avancementExpert: 0,
-  avancementTrad: 0.7333333333333333,
-  created_at: "2019-11-08T10:53:52.398Z",
+  avancementTrad: 700,
+  avancementValidation: 0,
+  created_at: new Date("2019-11-08T10:53:52.398Z"),
   lastTradUpdatedAt: 1612514769665,
   nbMots: 812,
   titreInformatif: "TI6",
   titreMarque: "TM6",
-  tradStatus: "À revoir",
-  typeContenu: "dispositif",
+  tradStatus: TraductionsStatus.TO_REVIEW,
+  type: ContentType.DISPOSITIF,
   _id: "id6",
 };
 
-export const dispositifsWithTranslations = [
+export const dispositifsWithTranslations: GetDispositifsWithTranslationAvancementResponse[] = [
   content1,
   content2,
   content3,
