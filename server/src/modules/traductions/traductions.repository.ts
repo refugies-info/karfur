@@ -41,7 +41,7 @@ const updateAvancements = async (query: FilterQuery<Traductions>, dispositif: Di
   const traductions: Traductions[] = await TraductionsModel.find(query);
   await Promise.all(traductions.map(traduction => TraductionsModel.updateOne(
     { _id: traduction._id },
-    { avancement: Traductions.computeAvancement(dispositif, traduction) }
+    { finished: Traductions.computeFinished(dispositif, traduction) }
   )));
 }
 
