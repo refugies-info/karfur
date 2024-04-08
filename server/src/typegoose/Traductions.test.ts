@@ -115,7 +115,7 @@ const trad_avancement: RecursivePartial<TranslationContent> = {
   validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4")
 };
 
-describe.skip("Traductions", () => {
+describe("Traductions", () => {
   describe("diff", () => {
     it("should return empty array", () => {
       expect(Traductions.diff(trad, trad)).toEqual({ added: [], removed: [], modified: [] });
@@ -147,7 +147,6 @@ describe.skip("Traductions", () => {
           "content.titreMarque",
           "content.next.my-uuid-v4-key-2.title",
           "content.next.my-uuid-v4-key-2.text",
-          "metadatas.important",
         ],
         added: ["content.how.my-uuid-v4-key-2.title", "content.how.my-uuid-v4-key-2.text"],
         removed: ["content.next.my-uuid-v4-key.title", "content.next.my-uuid-v4-key.text"],
