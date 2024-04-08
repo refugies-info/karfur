@@ -17,9 +17,9 @@ const publishTranslation = (
     const traduction = await getValidation(language, dispositifId, user._id);
 
     /**
-     * Si l'avancement est < à 100% ou pas faite par un expert => erreur
+     * Si la traduction n'est pas terminée ou pas faite par un expert => erreur
      */
-    if (traduction.avancement < 1 || !user.isExpert()) {
+    if (!traduction.finished || !user.isExpert()) {
       throw new UnauthorizedError("You cannot publish this dispositif");
     }
 

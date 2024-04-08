@@ -9,6 +9,29 @@ import logger from "../../../logger";
 import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
 import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";
 import { Dispositif } from "../../../typegoose";
+import { TranslationContent } from "../../../typegoose/Dispositif";
+import { countDispositifWordsForSections } from "../../../libs/wordCounter";
+
+/**
+ * Returns nb words translated or validated for a dispositif.
+ * If several translators participated, it counts the total of both works
+ * @param traductions - all Translation objects for a dispositif
+ * @param validation - if we count only validation or all translations
+ * @param originalContent - content of the dispositif in FR
+ * @returns the number of words translated / validated
+ */
+const getNbWordsDone = (
+  traductions: Awaited<ReturnType<typeof getTraductionsByLanguage>>,
+  validation: boolean,
+  originalContent: TranslationContent
+): number => {
+  const translated = [...new Set(
+    ...traductions
+      .filter(t => validation ? t.type === TraductionsType.VALIDATION : true)
+      .map(t => t.sectionsTranslated))
+  ];
+  return countDispositifWordsForSections(originalContent, translated);
+}
 
 export const getDispositifsWithTranslationAvancement = async (locale: Languages) => {
   logger.info("[getDispositifsWithTranslationAvancement] received with locale", { locale });
@@ -21,7 +44,7 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
   });
 
   const traductions = await getTraductionsByLanguage(locale, {
-    avancement: 1,
+    finished: 1,
     dispositifId: 1,
     translated: 1,
     updatedAt: 1,
@@ -40,15 +63,8 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
       dispositif.translations[locale]?.created_at.getTime() || 0,
       ...correspondingTrads.map((z) => z.updatedAt.getTime() || 0),
     );
-    const avancementTrad = Math.max(0, ...correspondingTrads.map((z) => z.avancement || -1));
-    const avancementValidation = Math.max(
-      0,
-      ...correspondingTrads
-        .filter((y) => {
-          return y.type === "validation";
-        })
-        .map((z) => z.avancement || -1),
-    );
+    const avancementTrad = getNbWordsDone(correspondingTrads, false, dispositif.translations.fr);
+    const avancementValidation = getNbWordsDone(correspondingTrads, true, dispositif.translations.fr);
 
     const dispositifData = {
       _id: dispositif._id.toString(),
@@ -69,8 +85,8 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
     if (dispositif.isTranslatedIn(locale)) {
       return results.push({
         ...dispositifData,
-        avancementTrad: 1,
-        avancementValidation: 1,
+        avancementTrad: dispositif.nbMots,
+        avancementValidation: dispositif.nbMots,
         tradStatus: TraductionsStatus.VALIDATED,
       });
     }
@@ -89,7 +105,7 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
      * Aucune traduction suggérée n'est complète
      * Alors le dispositif est à traduire
      */
-    if (some(correspondingTrads, (trad) => trad.type === TraductionsType.SUGGESTION && trad.avancement >= 1)) {
+    if (some(correspondingTrads, (trad) => trad.type === TraductionsType.SUGGESTION && trad.finished)) {
       return results.push({
         ...dispositifData,
         tradStatus: TraductionsStatus.PENDING,

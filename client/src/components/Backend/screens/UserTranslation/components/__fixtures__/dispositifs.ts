@@ -22,8 +22,8 @@ export const data2: GetDispositifsWithTranslationAvancementResponse = {
   nbMots: 2,
   created_at: new Date(),
   lastTradUpdatedAt: null,
-  avancementTrad: 1,
-  avancementValidation: 1
+  avancementTrad: 2,
+  avancementValidation: 2
 };
 export const data3: GetDispositifsWithTranslationAvancementResponse = {
   tradStatus: TraductionsStatus.TO_REVIEW,
@@ -34,8 +34,8 @@ export const data3: GetDispositifsWithTranslationAvancementResponse = {
   nbMots: 3,
   created_at: new Date(),
   lastTradUpdatedAt: null,
-  avancementTrad: 1,
-  avancementValidation: 1
+  avancementTrad: 3,
+  avancementValidation: 3
 };
 
 export const data4: GetDispositifsWithTranslationAvancementResponse = {
@@ -47,8 +47,8 @@ export const data4: GetDispositifsWithTranslationAvancementResponse = {
   nbMots: 4,
   created_at: new Date(),
   lastTradUpdatedAt: null,
-  avancementTrad: 1,
-  avancementValidation: 1
+  avancementTrad: 4,
+  avancementValidation: 4
 };
 
 export const data8: GetDispositifsWithTranslationAvancementResponse = {
@@ -60,8 +60,8 @@ export const data8: GetDispositifsWithTranslationAvancementResponse = {
   nbMots: 8,
   created_at: new Date(),
   lastTradUpdatedAt: null,
-  avancementTrad: 1,
-  avancementValidation: 1
+  avancementTrad: 8,
+  avancementValidation: 8
 };
 
 export const data5: GetDispositifsWithTranslationAvancementResponse = {
@@ -73,8 +73,8 @@ export const data5: GetDispositifsWithTranslationAvancementResponse = {
   nbMots: 5,
   created_at: new Date(),
   lastTradUpdatedAt: null,
-  avancementTrad: 1,
-  avancementValidation: 1
+  avancementTrad: 5,
+  avancementValidation: 5
 };
 
 export const data6: GetDispositifsWithTranslationAvancementResponse = {
@@ -86,8 +86,8 @@ export const data6: GetDispositifsWithTranslationAvancementResponse = {
   nbMots: 6,
   created_at: new Date(),
   lastTradUpdatedAt: null,
-  avancementTrad: 1,
-  avancementValidation: 1
+  avancementTrad: 6,
+  avancementValidation: 6
 };
 
 export const data7: GetDispositifsWithTranslationAvancementResponse = {
@@ -99,8 +99,8 @@ export const data7: GetDispositifsWithTranslationAvancementResponse = {
   nbMots: 7,
   created_at: new Date(),
   lastTradUpdatedAt: null,
-  avancementTrad: 1,
-  avancementValidation: 1
+  avancementTrad: 7,
+  avancementValidation: 7
 };
 
 export const data: GetDispositifsWithTranslationAvancementResponse[] = [data1, data2, data3, data4, data5, data6, data7, data8];

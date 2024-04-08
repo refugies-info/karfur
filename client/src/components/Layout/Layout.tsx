@@ -69,7 +69,14 @@ const Layout = (props: Props) => {
       changeLanguageCallback(storedLanguei18nCode);
     } else if (!storedLanguei18nCode) {
       if (!showLangModal) {
-        dispatch(toggleLangueModalActionCreator());
+        if (isMobileOnly) {
+          setTimeout(() => {
+            // on mobiles, wait 5 seconds
+            dispatch(toggleLangueModalActionCreator(true));
+          }, 5000);
+        } else {
+          dispatch(toggleLangueModalActionCreator(true));
+        }
       }
     } else {
       const locale = router.locale || "fr";
