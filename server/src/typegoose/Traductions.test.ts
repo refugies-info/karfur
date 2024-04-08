@@ -155,20 +155,20 @@ describe.skip("Traductions", () => {
     });
   });
 
-  describe("computeAvancement", () => {
-    it("should return 1.00 avancement", () => {
+  describe("computeFinished", () => {
+    it("should return true", () => {
       // @ts-ignore because we inject a partial Dispositif & partial Traductions
-      expect(Traductions.computeAvancement({ translations: { fr: trad } }, { translated: trad })).toEqual(1);
+      expect(Traductions.computeFinished({ translations: { fr: trad } }, { translated: trad })).toEqual(true);
     });
-    it("should return 0 avancement", () => {
+    it("should return false", () => {
       // @ts-ignore because we inject a partial Dispositif & partial Traductions
-      expect(Traductions.computeAvancement({ translations: { fr: trad } }, { translated: { content: {} } })).toEqual(0);
+      expect(Traductions.computeFinished({ translations: { fr: trad } }, { translated: { content: {} } })).toEqual(false);
     });
-    it("should return 0.5 avancement", () => {
+    it("should return false", () => {
       expect(
         // @ts-ignore because we inject a partial Dispositif & partial Traductions
-        Traductions.computeAvancement({ translations: { fr: trad_complete } }, { translated: trad_avancement }),
-      ).toEqual(0.5);
+        Traductions.computeFinished({ translations: { fr: trad_complete } }, { translated: trad_avancement }),
+      ).toEqual(false);
     });
   });
 });
