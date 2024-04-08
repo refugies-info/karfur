@@ -1,14 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { useRouter } from "next/router";
 import { useLanguages, useUser, useRouterLocale } from "hooks";
-import {
-  GetDispositifsWithTranslationAvancementResponse,
-  GetProgressionResponse,
-  Id,
-  Languages,
-} from "@refugies-info/api-types";
+import { GetProgressionResponse, Id, Languages } from "@refugies-info/api-types";
 import API from "utils/API";
 import { activatedLanguages } from "data/activatedLanguages";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";

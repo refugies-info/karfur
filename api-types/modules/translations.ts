@@ -88,7 +88,6 @@ export interface SaveTranslationResponse {
     language: Languages;
     translated: Partial<TranslationContent>;
     timeSpent: number;
-    avancement: number;
     toReview?: string[];
     type: TraductionsType;
     created_at: Date;
@@ -108,8 +107,8 @@ export interface GetDispositifsWithTranslationAvancementResponse {
   created_at: Date;
   type: ContentType;
   lastTradUpdatedAt: number | null;
-  avancementTrad: number;
-  avancementValidation: number;
+  avancementTrad: number; // word count
+  avancementValidation: number; // word count
   tradStatus: TraductionsStatus;
 }
 
