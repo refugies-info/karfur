@@ -1,9 +1,18 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { ComponentType, useCallback } from "react";
+import {
+  useIsFocused,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
+import React, { ComponentType, useCallback, useEffect, useMemo } from "react";
+import { useSelector } from "react-redux";
 import { Platform, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import useToggle from "react-use/lib/useToggle";
 import styled, { useTheme } from "styled-components/native";
+import {
+  hasUserSeenOnboardingSelector,
+  initialUrlSelector,
+} from "../../../services/redux/User/user.selectors";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 import { LanguageChoiceModal } from "../../../screens/Modals/LanguageChoiceModal";
 import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
@@ -17,6 +26,8 @@ import { IconButton } from "../../iconography";
 import upperFirst from "lodash/upperFirst";
 import { HeaderContentProps } from "./HeaderContentProps";
 import Spacer from "../Spacer";
+import { getLocaleFromUrl } from "../../../libs/getScreenFromUrl";
+import { selectedContentSelector } from "../../../services";
 
 const Container = styled.SafeAreaView`
   min-height: ${({ theme }) => theme.layout.header.minHeight}px;
@@ -84,6 +95,37 @@ export const Header = ({
     toggleLanguageModal();
   };
 
+  // if initialUrl (deeplink) and FR: wait 2 sec and show language modal
+  const initialUrl = useSelector(initialUrlSelector);
+  const initialUrlLocale = useMemo(
+    () => (initialUrl ? getLocaleFromUrl(initialUrl) : null),
+    [initialUrl]
+  );
+  const selectedContent = useSelector(
+    selectedContentSelector(initialUrlLocale)
+  );
+  const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    if (
+      initialUrl &&
+      initialUrlLocale === "fr" &&
+      !hasUserSeenOnboarding &&
+      selectedContent &&
+      isFocused
+    ) {
+      setTimeout(() => {
+        toggleLanguageModal();
+      }, 2000);
+    }
+  }, [
+    initialUrl,
+    initialUrlLocale,
+    selectedContent,
+    hasUserSeenOnboarding,
+    isFocused,
+  ]);
+
   return (
     <>
       <Container>
@@ -105,7 +147,7 @@ export const Header = ({
             <View>
               <IconButton
                 accessibilityLabel={t("global.back_button_accessibility")}
-                iconName="arrow-back-outline"
+                iconName={!initialUrl ? "arrow-back-outline" : "close-outline"}
                 onPress={onPress}
               />
             </View>

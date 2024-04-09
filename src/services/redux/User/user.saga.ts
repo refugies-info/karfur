@@ -47,7 +47,7 @@ import {
   deleteItemInAsyncStorage,
 } from "./functions";
 import { fetchContentsActionCreator } from "../Contents/contents.actions";
-import { hasUserSeenOnboardingSelector, userFavorites } from "./user.selectors";
+import { shouldLoadContentSelector, userFavorites } from "./user.selectors";
 import {
   startLoading,
   LoadingStatusKey,
@@ -296,8 +296,8 @@ export function* getUserInfos(): SagaIterator {
         error: error.message,
       });
     }
-    const hasUserSeenOnboarding = yield select(hasUserSeenOnboardingSelector);
-    if (hasUserSeenOnboarding) {
+    const shouldLoadContent = yield select(shouldLoadContentSelector);
+    if (shouldLoadContent) {
       // start loader
       yield put(startLoading(LoadingStatusKey.FETCH_CONTENTS));
     }
@@ -346,7 +346,7 @@ export function* getUserInfos(): SagaIterator {
         error: error.message,
       });
     }
-    if (hasUserSeenOnboarding) {
+    if (shouldLoadContent) {
       // when user infos loaded, load content
       yield put(fetchContentsActionCreator());
     }

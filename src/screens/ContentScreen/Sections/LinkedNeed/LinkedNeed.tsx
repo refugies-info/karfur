@@ -11,9 +11,10 @@ import { NeedsSummary } from "../../../../components/Needs/NeedsSummary";
 
 interface LinkedNeedProps {
   needId: Id;
+  beforeNavigate?: () => boolean;
 }
 
-const LinkedNeed = ({ needId }: LinkedNeedProps) => {
+const LinkedNeed = ({ needId, beforeNavigate }: LinkedNeedProps) => {
   const need = useSelector(needSelector(needId));
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const theme = useSelector(themeSelector(need?.theme._id.toString()));
@@ -37,6 +38,7 @@ const LinkedNeed = ({ needId }: LinkedNeedProps) => {
       needTextFr={need.fr.text}
       style={{ marginBottom: styles.margin * 2 }}
       theme={theme}
+      beforeNavigate={beforeNavigate}
     />
   );
 };

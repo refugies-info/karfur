@@ -11,15 +11,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { Subscription } from "expo-modules-core";
 import * as Notifications from "expo-notifications";
 import { useQueryClient } from "react-query";
-
+import * as Linking from "expo-linking";
 import { styles } from "../theme";
 
 import { RootStackParamList } from "../../types";
 
 import { markNotificationAsSeen } from "../utils/API";
 
-import { getUserInfosActionCreator } from "../services/redux/User/user.actions";
-import { hasUserSeenOnboardingSelector } from "../services/redux/User/user.selectors";
+import {
+  getUserInfosActionCreator,
+  saveSelectedLanguageActionCreator,
+  setInitialUrlActionCreator,
+} from "../services/redux/User/user.actions";
+import {
+  hasUserSeenOnboardingSelector,
+  initialUrlSelector,
+} from "../services/redux/User/user.selectors";
 import { setUserHasNewFavoritesActionCreator } from "../services/redux/User/user.actions";
 import { fetchNeedsActionCreator } from "../services/redux/Needs/needs.actions";
 
@@ -33,6 +40,7 @@ import {
   getNotificationFromStack,
   notificationDataStackLength,
 } from "../libs/notifications";
+import { getLocaleFromUrl } from "../libs/getScreenFromUrl";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -68,6 +76,31 @@ export const RootNavigator = () => {
     checkIfUserHasNewFavorites();
     dispatch(getUserInfosActionCreator());
     dispatch(fetchNeedsActionCreator());
+  }, []);
+
+  // Initial URL
+  const initialUrl = useSelector(initialUrlSelector);
+  useEffect(() => {
+    const saveInitialUrl = (event: Linking.EventType | string | null) => {
+      if (event) {
+        let url = typeof event === "object" ? event.url : event;
+        if (!url.includes("refugies.info")) return;
+        dispatch(
+          saveSelectedLanguageActionCreator({
+            langue: getLocaleFromUrl(url),
+            shouldFetchContents: false,
+          })
+        );
+        dispatch(setInitialUrlActionCreator(url));
+      }
+    };
+
+    const emitter = Linking.addEventListener("url", (event) =>
+      saveInitialUrl(event)
+    );
+    Linking.getInitialURL().then(saveInitialUrl);
+
+    return emitter.remove;
   }, []);
 
   //Notifications listener
@@ -159,7 +192,7 @@ export const RootNavigator = () => {
       onReady={() => setNavigationReady(true)}
     >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!hasUserSeenOnboarding ? (
+        {!hasUserSeenOnboarding && !initialUrl ? (
           <Stack.Screen
             name="OnboardingNavigator"
             component={OnboardingStackNavigator}

@@ -20,6 +20,10 @@ export interface UserState {
   favorites: string[];
   localizedWarningHidden: boolean;
   initialUrlUsed: boolean;
+  /**
+   * Deeplink received to open app
+   */
+  initialUrl: string | null;
   redirectDispositif: {
     contentId: ObjectId;
     needId: ObjectId;
@@ -39,6 +43,7 @@ export const initialUserState: UserState = {
   favorites: [],
   localizedWarningHidden: false,
   initialUrlUsed: false,
+  initialUrl: null,
   redirectDispositif: null,
 };
 
@@ -85,6 +90,10 @@ export const userReducer = createReducer<UserState, UserActions>(
     SET_INITIAL_URL_USED: (state, action) => ({
       ...state,
       initialUrlUsed: action.payload,
+    }),
+    SET_INITIAL_URL: (state, action) => ({
+      ...state,
+      initialUrl: action.payload,
     }),
     SET_REDIRECT_DISPOSITIF: (state, action) => ({
       ...state,

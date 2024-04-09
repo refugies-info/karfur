@@ -6,6 +6,12 @@ import { ReadableText, Spacer, StyledTextSmallBold } from "../../../components";
 import { useTranslationWithRTL } from "../../../hooks";
 import { styles } from "../../../theme";
 import { LinkedNeed, LinkedTheme } from "../Sections";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  hasUserSeenOnboardingSelector,
+  initialUrlSelector,
+} from "../../../services/redux/User/user.selectors";
+import { setInitialUrlActionCreator } from "../../../services/redux/User/user.actions";
 
 interface Props {
   needs?: Id[];
@@ -20,6 +26,20 @@ const LinkedThemesNeedsComponent = ({
 }: Props) => {
   const { t } = useTranslationWithRTL();
 
+  // before leaving, if initialUrl (deeplink), clear it to return to onboarding if needed
+  const initialUrl = useSelector(initialUrlSelector);
+  const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
+  const dispatch = useDispatch();
+  /**
+   * Returns true if should navigate, false if not
+   */
+  const beforeNavigate = (): boolean => {
+    if (!initialUrl) return true;
+    dispatch(setInitialUrlActionCreator(null));
+    if (!hasUserSeenOnboarding) return false;
+    return true;
+  };
+
   return (
     <>
       <StyledTextSmallBold accessibilityRole="header">
@@ -32,10 +52,18 @@ const LinkedThemesNeedsComponent = ({
         {needs &&
           !isEmpty(needs) &&
           needs.map((need) => (
-            <LinkedNeed key={need.toString()} needId={need} />
+            <LinkedNeed
+              key={need.toString()}
+              needId={need}
+              beforeNavigate={beforeNavigate}
+            />
           ))}
         {theme && !isEmpty(theme) && (
-          <LinkedTheme key={theme.toString()} themeId={theme} />
+          <LinkedTheme
+            key={theme.toString()}
+            themeId={theme}
+            beforeNavigate={beforeNavigate}
+          />
         )}
         {secondaryThemes &&
           !isEmpty(secondaryThemes) &&
@@ -43,6 +71,7 @@ const LinkedThemesNeedsComponent = ({
             <LinkedTheme
               key={secondaryTheme.toString()}
               themeId={secondaryTheme}
+              beforeNavigate={beforeNavigate}
             />
           ))}
       </View>

@@ -1,7 +1,9 @@
+import { Languages } from "@refugies-info/api-types";
+
 export const getScreenFromUrl = (url: string): {
-  rootNavigator: "Explorer" | "Profil"
+  rootNavigator: "Explorer" | "Profil"
   screenParams: any
-}|null => {
+} | null => {
   // Dispositif
   const rxDispositif = /([a-z][a-z]\/)?(dispositif|program)\/[a-z|0-9]*/g;
   const resDispositif = rxDispositif.exec(url);
@@ -79,3 +81,15 @@ export const getScreenFromUrl = (url: string): {
     }
   };
 };
+
+
+/**
+ * Get the langage from a RI url
+ * @param url: RI website url
+ * @returns Languages locale
+ */
+export const getLocaleFromUrl = (url: string): Languages => {
+  const languageCodeRegex = /\/([a-z]{2})\//;
+  const match = url.match(languageCodeRegex);
+  return match ? match[1] as Languages : "fr";
+}

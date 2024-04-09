@@ -11,10 +11,6 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { deactivateKeepAwake } from "expo-keep-awake";
-import * as Speech from "expo-speech";
-import * as Linking from "expo-linking";
-import { setReadingItem } from "../services/redux/VoiceOver/voiceOver.actions";
 import { BottomTabParamList } from "../../types";
 import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
 import { ProfileNavigator } from "./BottomTabBar/ProfileNavigator";
@@ -26,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import {
   currentI18nCodeSelector,
+  initialUrlSelector,
   isInitialUrlUsedSelector,
 } from "../services/redux/User/user.selectors";
 import { noVoiceover } from "../libs/noVoiceover";
@@ -140,32 +137,19 @@ export default function BottomTabNavigator() {
     return unsubscribeState;
   }, [navigation]);
 
-  // Handle share link
-  const handleOpenUrl = (event: Linking.EventType | string | null) => {
-    if (event) {
-      let url = typeof event === "object" ? event.url : event;
-      logger.info("[initialUrl]", url);
-      if (!url.includes("refugies.info")) return;
-      const screen = getScreenFromUrl(url);
+  const initialUrl = useSelector(initialUrlSelector);
+  const isInitialUrlUsed = useSelector(isInitialUrlUsedSelector);
+  React.useEffect(() => {
+    if (!isInitialUrlUsed && initialUrl) {
+      if (!initialUrl.includes("refugies.info")) return;
+      const screen = getScreenFromUrl(initialUrl);
       if (screen) {
         //@ts-ignore
         navigation.navigate(screen.rootNavigator, screen.screenParams);
       }
+      dispatch(setInitialUrlUsed(true));
     }
-  };
-  const isInitialUrlUsed = useSelector(isInitialUrlUsedSelector);
-  React.useEffect(() => {
-    const emitter = Linking.addEventListener("url", (event) =>
-      handleOpenUrl(event)
-    );
-    if (!isInitialUrlUsed) {
-      Linking.getInitialURL()
-        .then(handleOpenUrl)
-        .then(() => dispatch(setInitialUrlUsed(true)));
-    }
-
-    return emitter.remove;
-  }, []);
+  }, [initialUrl, isInitialUrlUsed]);
 
   return (
     <BottomTab.Navigator

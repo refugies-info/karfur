@@ -14,6 +14,8 @@ import { selectedContentSelector } from "../../services/redux/SelectedContent/se
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
+  initialUrlSelector,
+  hasUserSeenOnboardingSelector,
 } from "../../services/redux/User/user.selectors";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
@@ -51,6 +53,7 @@ import { ContentTabBar } from "./ContentTabBar";
 import { MapMarkers } from "./MapMarkers";
 import { Sponsors } from "./Sponsors";
 import { LinkedThemesNeeds } from "./LinkedThemesNeeds";
+import { setInitialUrlActionCreator } from "../../services/redux/User/user.actions";
 
 export type ContentScreenType = CompositeScreenProps<
   StackScreenProps<ExplorerParamList, "ContentScreen">,
@@ -140,6 +143,19 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   const lastModificationDate = useMemo(
     () => selectedContent?.lastModificationDate,
     [selectedContent]
+  );
+
+  // before leaving, if initialUrl (deeplink), clear it to return to onboarding if necessary
+  const initialUrl = useSelector(initialUrlSelector);
+  const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
+  useEffect(
+    () =>
+      navigation.addListener("beforeRemove", (e) => {
+        if (!initialUrl) return;
+        if (!hasUserSeenOnboarding) e.preventDefault();
+        dispatch(setInitialUrlActionCreator(null));
+      }),
+    [navigation, hasUserSeenOnboarding, initialUrl]
   );
 
   if (isLoading)

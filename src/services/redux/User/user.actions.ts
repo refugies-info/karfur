@@ -28,6 +28,7 @@ import {
   REMOVE_USER_ALL_FAVORITES,
   REMOVE_USER_LOCALIZED_WARNING_HIDDEN,
   SET_INITIAL_URL_USED,
+  SET_INITIAL_URL,
   SET_REDIRECT_DISPOSITIF,
 } from "./user.actionTypes";
 import { ObjectId } from "../../../types/interface";
@@ -67,6 +68,9 @@ export const removeUserLocalizedWarningHiddenActionCreator = () =>
 
 export const setInitialUrlUsed = (value: boolean) =>
   action(SET_INITIAL_URL_USED, value);
+
+export const setInitialUrlActionCreator = (value: string | null) =>
+  action(SET_INITIAL_URL, value);
 
 export const setRedirectDispositifActionCreator = (
   value: {
@@ -170,6 +174,7 @@ const actions = {
   removeUserFavoriteActionCreator,
   removeUserAllFavoritesActionCreator,
   setInitialUrlUsed,
+  setInitialUrlActionCreator,
   setRedirectDispositifActionCreator,
 };
 export type UserActions = ActionType<typeof actions>;

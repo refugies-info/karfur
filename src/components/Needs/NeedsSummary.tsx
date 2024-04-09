@@ -45,6 +45,7 @@ interface Props {
   style?: any;
   theme: GetThemeResponse;
   pressCallback?: () => void;
+  beforeNavigate?: () => boolean;
 }
 
 type NeedsScreenNavigationProp = StackNavigationProp<ExplorerParamList>;
@@ -61,20 +62,24 @@ const NeedsSummaryComponent = ({
   style = {},
   theme,
   pressCallback,
+  beforeNavigate,
 }: Props) => {
   const navigation = useNavigation<NeedsScreenNavigationProp>();
   const goToContent = useCallback(() => {
-    logEventInFirebase(FirebaseEvent.CLIC_NEED, {
-      need: needTextFr,
-    });
-    if (pressCallback) pressCallback();
+    const shouldNavigate = !beforeNavigate ? true : beforeNavigate();
+    if (shouldNavigate) {
+      logEventInFirebase(FirebaseEvent.CLIC_NEED, {
+        need: needTextFr,
+      });
+      if (pressCallback) pressCallback();
 
-    navigation.navigate("ContentsScreen", {
-      theme: theme,
-      needId: id,
-      backScreen: backScreen,
-    });
-    return;
+      navigation.navigate("ContentsScreen", {
+        theme: theme,
+        needId: id,
+        backScreen: backScreen,
+      });
+      return;
+    }
   }, [needTextFr, theme, id, backScreen, pressCallback]);
 
   return (

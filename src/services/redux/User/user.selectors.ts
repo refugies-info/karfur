@@ -33,5 +33,11 @@ export const isLocalizedWarningHiddenSelector = (state: RootState) =>
 export const isInitialUrlUsedSelector = (state: RootState) =>
   state.user.initialUrlUsed;
 
+export const initialUrlSelector = (state: RootState) =>
+  state.user.initialUrl;
+
 export const redirectDispositifSelector = (state: RootState) =>
   state.user.redirectDispositif;
+
+export const shouldLoadContentSelector = (state: RootState) =>
+  state.user.hasUserSeenOnboarding || !!state.user.initialUrl;

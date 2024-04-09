@@ -9,9 +9,10 @@ import { ContentScreenType } from "../../ContentScreen";
 
 export interface LinkedThemesProps {
   themeId: Id;
+  beforeNavigate?: () => boolean;
 }
 
-const LinkedThemes = ({ themeId }: LinkedThemesProps) => {
+const LinkedThemes = ({ themeId, beforeNavigate }: LinkedThemesProps) => {
   const navigation = useNavigation<ContentScreenType["navigation"]>();
   const theme = useSelector(themeSelector(themeId.toString()));
   const currentLanguage = useSelector(currentI18nCodeSelector);
@@ -19,15 +20,18 @@ const LinkedThemes = ({ themeId }: LinkedThemesProps) => {
   if (!theme) return null;
 
   const onPress = useCallback(() => {
-    // logEventInFirebase(FirebaseEvent.CLIC_THEME, {
-    //   theme: theme.name.fr,
-    //   view: "list",
-    // });
+    const shouldNavigate = !beforeNavigate ? true : beforeNavigate();
+    if (shouldNavigate) {
+      // logEventInFirebase(FirebaseEvent.CLIC_THEME, {
+      //   theme: theme.name.fr,
+      //   view: "list",
+      // });
 
-    navigation.navigate("NeedsScreen", {
-      theme,
-    });
-    return;
+      navigation.navigate("NeedsScreen", {
+        theme,
+      });
+      return;
+    }
   }, [navigation]);
 
   return (
