@@ -5,8 +5,15 @@ import Modal from "react-native-modal";
 import useNotificationsModal from "./useNotificationsModal";
 import { EnableNotifications } from "../EnableNotifications";
 
-const NotificationsModal = () => {
-  const { visible, hide } = useNotificationsModal();
+interface Props {
+  /**
+   * delay in ms before showing the modal for the first time
+   */
+  delay?: number;
+}
+
+const NotificationsModal = (props: Props) => {
+  const { visible, hide } = useNotificationsModal(props.delay || 0);
   return (
     <Modal isVisible={visible}>
       <ScrollView>

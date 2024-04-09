@@ -11,6 +11,7 @@ import { TagsCarousel } from "../../components/Explorer/TagsCarousel";
 import {
   redirectDispositifSelector,
   currentI18nCodeSelector,
+  hasUserSeenOnboardingSelector,
 } from "../../services/redux/User/user.selectors";
 import { ExplorerParamList } from "../../../types";
 import { logEventInFirebase } from "../../utils/logEvent";
@@ -46,6 +47,7 @@ export const ExplorerScreen = ({
   const [tabSelected, setTabSelected] = useState("galery");
   const themes = useSelector(themesSelector);
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
+  const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
 
   // When the screen gets focus, redirect if needed
   const redirectDispositif = useSelector(redirectDispositifSelector);
@@ -136,7 +138,7 @@ export const ExplorerScreen = ({
           )}
         </Rows>
       </Page>
-      <NotificationsModal />
+      <NotificationsModal delay={hasUserSeenOnboarding ? 0 : 60000} />
     </>
   );
 };

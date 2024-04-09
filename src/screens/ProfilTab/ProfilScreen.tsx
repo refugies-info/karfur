@@ -81,7 +81,7 @@ export const ProfilScreen = ({
     dispatch(removeUserFrenchLevelActionCreator(true));
     dispatch(removeUserAgeActionCreator(true));
     dispatch(removeUserLocationActionCreator(true));
-    updateAppUser({
+    return updateAppUser({
       selectedLanguage: undefined,
       city: undefined,
       department: undefined,
@@ -94,21 +94,13 @@ export const ProfilScreen = ({
   const reinitializeApp = () => {
     analytics()
       .resetAnalyticsData()
+      .then(() => deleteUserData())
       .then(() => {
         dispatch(removeSelectedLanguageActionCreator());
-        deleteUserData();
         dispatch(removeUserHasNewFavoritesActionCreator());
         dispatch(removeUserLocalizedWarningHiddenActionCreator());
         dispatch(removeUserAllFavoritesActionCreator());
         dispatch(removeHasUserSeenOnboardingActionCreator());
-        updateAppUser({
-          selectedLanguage: undefined,
-          city: undefined,
-          department: undefined,
-          age: undefined,
-          frenchLevel: undefined,
-          expoPushToken: undefined,
-        });
       });
   };
 
