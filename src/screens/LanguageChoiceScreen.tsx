@@ -20,7 +20,7 @@ export const LanguageChoiceScreen = ({
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   useEffect(() => {
     if (selectedLanguage) navigation.navigate("OnboardingStart");
-  }, [navigation]);
+  }, [navigation, selectedLanguage]);
 
   const changeLanguage = (ln: Languages) => {
     i18n.changeLanguage(ln);
@@ -30,7 +30,6 @@ export const LanguageChoiceScreen = ({
         shouldFetchContents: false,
       })
     );
-    return;
   };
   return (
     <Page

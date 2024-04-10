@@ -70,7 +70,7 @@ describe("ContentScreen", () => {
   });
 
   it("should render correctly", async () => {
-    const navigation = { navigate: jest.fn() };
+    const navigation = { navigate: jest.fn(), addListener: jest.fn() };
     const route = {
       params: {
         contentId: "",
@@ -104,7 +104,7 @@ describe("ContentScreen", () => {
   });
 
   it("should toggle map modal", async () => {
-    const navigation = { navigate: jest.fn() };
+    const navigation = { navigate: jest.fn(), addListener: jest.fn() };
     const route = {
       params: {
         contentId: "",

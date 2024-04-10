@@ -40,7 +40,7 @@ import {
   LoadingStatusKey,
 } from "../../LoadingStatus/loadingStatus.actions";
 import { fetchContentsActionCreator } from "../../Contents/contents.actions";
-import { hasUserSeenOnboardingSelector } from "../user.selectors";
+import { hasUserSeenOnboardingSelector, shouldLoadContentSelector } from "../user.selectors";
 import { logEventInFirebase } from "../../../../utils/logEvent";
 import { FirebaseEvent } from "../../../../utils/eventsUsedInFirebase";
 import { MobileFrenchLevel } from "@refugies-info/api-types";
@@ -255,15 +255,15 @@ describe("[Saga] user", () => {
     it("should call functions and set data when shouldFetchContents true", () => {
       testSaga(saveUserAge, {
         type: "SAVE_USER_AGE",
-        payload: { age: "age", shouldFetchContents: true },
+        payload: { age: "18 à 25 ans", shouldFetchContents: true },
       })
         .next()
-        .call(saveItemInAsyncStorage, "AGE", "age")
+        .call(saveItemInAsyncStorage, "AGE", "18 à 25 ans")
         .next()
-        .put(setUserAgeActionCreator("age"))
+        .put(setUserAgeActionCreator("18 à 25 ans"))
         .next()
         .call(logEventInFirebase, FirebaseEvent.VALIDATE_AGE, {
-          age: "age",
+          age: "18 à 25 ans",
         })
         .next()
         .put(fetchContentsActionCreator())
@@ -274,15 +274,15 @@ describe("[Saga] user", () => {
     it("should call functions and set data when shouldFetchContents false", () => {
       testSaga(saveUserAge, {
         type: "SAVE_USER_AGE",
-        payload: { age: "age", shouldFetchContents: false },
+        payload: { age: "18 à 25 ans", shouldFetchContents: false },
       })
         .next()
-        .call(saveItemInAsyncStorage, "AGE", "age")
+        .call(saveItemInAsyncStorage, "AGE", "18 à 25 ans")
         .next()
-        .put(setUserAgeActionCreator("age"))
+        .put(setUserAgeActionCreator("18 à 25 ans"))
         .next()
         .call(logEventInFirebase, FirebaseEvent.VALIDATE_AGE, {
-          age: "age",
+          age: "18 à 25 ans",
         })
         .next()
         .isDone();
@@ -291,10 +291,10 @@ describe("[Saga] user", () => {
     it("should call functions and set null if saveItemInAsyncStorage throws", () => {
       testSaga(saveUserAge, {
         type: "SAVE_USER_AGE",
-        payload: { age: "age", shouldFetchContents: true },
+        payload: { age: "18 à 25 ans", shouldFetchContents: true },
       })
         .next()
-        .call(saveItemInAsyncStorage, "AGE", "age")
+        .call(saveItemInAsyncStorage, "AGE", "18 à 25 ans")
         .throw(new Error("error"))
         .put(setUserAgeActionCreator(null))
         .next()
@@ -368,7 +368,7 @@ describe("[Saga] user", () => {
         .next(null)
         .put(setHasUserSeenOnboardingActionCreator(false))
         .next(null)
-        .select(hasUserSeenOnboardingSelector)
+        .select(shouldLoadContentSelector)
         .next(false)
         .call(getItemInAsyncStorage, "SELECTED_LANGUAGE")
         .next(null)
@@ -394,7 +394,7 @@ describe("[Saga] user", () => {
         .next("TRUE")
         .put(setHasUserSeenOnboardingActionCreator(true))
         .next(null)
-        .select(hasUserSeenOnboardingSelector)
+        .select(shouldLoadContentSelector)
         .next(true)
         .put(startLoading(LoadingStatusKey.FETCH_CONTENTS))
         .next(null)
@@ -411,8 +411,8 @@ describe("[Saga] user", () => {
         .put(setUserLocationActionCreator({ city: "city", dep: "dep" }))
         .next()
         .call(getItemInAsyncStorage, "AGE")
-        .next("age")
-        .put(setUserAgeActionCreator("age"))
+        .next("18 à 25 ans")
+        .put(setUserAgeActionCreator("18 à 25 ans"))
         .next()
         .call(getItemInAsyncStorage, "FRENCH_LEVEL")
         .next(MobileFrenchLevel["Je parle un peu"])
@@ -437,7 +437,7 @@ describe("[Saga] user", () => {
         .next()
         .call(getItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING")
         .throw(new Error("error"))
-        .select(hasUserSeenOnboardingSelector)
+        .select(shouldLoadContentSelector)
         .next(false)
         .call(getItemInAsyncStorage, "SELECTED_LANGUAGE")
         .throw(new Error("error"))

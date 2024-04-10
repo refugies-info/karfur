@@ -650,7 +650,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       <Text
                         style={{}}
                       >
-                        CONTENT_SCREEN.UPDATED_AGO RELATIVE_DATE.YEAR_ONE
+                        CONTENT_SCREEN.UPDATED_AGO RELATIVE_DATE.YEAR_OTHER
                       </Text>
                       <View />
                     </Text>
@@ -9056,7 +9056,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       <Text
                         style={{}}
                       >
-                        CONTENT_SCREEN.UPDATED_AGO RELATIVE_DATE.YEAR_ONE
+                        CONTENT_SCREEN.UPDATED_AGO RELATIVE_DATE.YEAR_OTHER
                       </Text>
                       <View />
                     </Text>
