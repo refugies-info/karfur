@@ -63,22 +63,31 @@ const Layout = (props: Props) => {
   };
 
   useEffect(() => {
+    // wait 5 seconds before showing modal
+    const waitAndShow = () => {
+      setTimeout(() => {
+        dispatch(toggleLangueModalActionCreator(true));
+      }, 5000);
+    };
+
     // Language popup
     const storedLanguei18nCode = locale.getFromCache();
+    const isSharedSmsLink = new URLSearchParams(window.location.search).get("share") === "sms";
+
     if (storedLanguei18nCode && storedLanguei18nCode !== "fr" && storedLanguei18nCode !== router.locale) {
+      // if locale saved and not same as in URL
       changeLanguageCallback(storedLanguei18nCode);
-    } else if (!storedLanguei18nCode) {
+    } else if (!storedLanguei18nCode && !isSharedSmsLink) {
+      // if no locale selected and not a shared link
       if (!showLangModal) {
-        if (isMobileOnly) {
-          setTimeout(() => {
-            // on mobiles, wait 5 seconds
-            dispatch(toggleLangueModalActionCreator(true));
-          }, 5000);
-        } else {
-          dispatch(toggleLangueModalActionCreator(true));
-        }
+        if (isMobileOnly) waitAndShow();
+        else dispatch(toggleLangueModalActionCreator(true));
       }
+    } else if (isSharedSmsLink && router.locale === "fr") {
+      // if shared link and FR
+      waitAndShow();
     } else {
+      // set locale
       const locale = router.locale || "fr";
       if (!["fr", "default"].includes(locale)) {
         dispatch(toggleLangueActionCreator(locale));
