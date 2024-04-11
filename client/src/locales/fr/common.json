@@ -274,7 +274,9 @@
     "messageRemovedFromFavorites": "Fiche retirée des favoris !",
     "Oups": "Oups !",
     "Ville": "Ville",
-    "compris": "Ok, j’ai compris"
+    "compris": "Ok, j’ai compris",
+    "freeApp": "Application gratuite",
+    "downloadAppButton": "Télécharger"
   },
   "Infocards": {
     "availability": "Disponibilité demandée",

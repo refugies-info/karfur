@@ -33,6 +33,7 @@ import NewProfileModal from "components/Modals/NewProfileModal";
 import styles from "./Layout.module.scss";
 import AppLoader from "./AppLoader";
 import AutoAddFavorite from "./AutoAddFavorite";
+import DownloadAppBanner from "./DownloadAppBanner";
 import { setAnalyticsUserId } from "lib/tracking";
 
 interface Props {
@@ -176,12 +177,9 @@ const Layout = (props: Props) => {
     }
   };
 
-  // only on desktop, if user has no email and is not currently setting it
-  const showEmailModal =
-    !isMobileOnly && !!user && !user?.email && !window.location.pathname.includes("backend/user-profile");
-
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
+      <DownloadAppBanner />
       <Navbar />
       <AppLoader>
         <div className={styles.main}>
