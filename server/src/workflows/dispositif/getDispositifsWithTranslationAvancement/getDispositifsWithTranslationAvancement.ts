@@ -105,17 +105,20 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
       });
     }
 
-    /*
-     * Aucune traduction suggérée n'est complète
-     * Alors le dispositif est à traduire
+    /**
+     * Si tous les mots sont traduits, la traduction est à valider
      */
-    if (some(correspondingTrads, (trad) => trad.type === TraductionsType.SUGGESTION && trad.finished)) {
+    if (avancementTrad >= dispositif.nbMots) {
       return results.push({
         ...dispositifData,
         tradStatus: TraductionsStatus.PENDING,
       });
     }
 
+    /*
+     * Aucune traduction suggérée n'est complète
+     * Alors le dispositif est à traduire
+     */
     return results.push({
       ...dispositifData,
       tradStatus: TraductionsStatus.TO_TRANSLATE,
