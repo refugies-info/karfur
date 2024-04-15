@@ -541,10 +541,9 @@
     "retry_search": "Essayez d’élargir votre recherche en désactivant certains tags"
   },
   "MobileAppModal": {
-    "stay": "Rester sur le navigateur",
     "download": "Télécharger l’application",
-    "subtitle": "Gratuite et plus facile à utiliser :",
-    "title": "Application mobile disponible !"
+    "continue": "Continuer quand même",
+    "description": "Sur votre smartphone, utilisez l’application Réfugiés.info, c’est plus facile et adapté ! L’application est gratuite et disponiblesur Android et Apple."
   },
   "StaticPages": {
     "helpTitle": "Vous n’êtes pas seul",

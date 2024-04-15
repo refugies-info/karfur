@@ -18,9 +18,9 @@ import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/lo
 
 import Navbar from "components/Navigation/Navbar";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
-import MobileAppModal from "components/Modals/MobileAppModal/MobileAppModal";
 import Footer from "components/Layout/Footer";
 import { readAudio, stopAudio } from "lib/readAudio";
+import { isContentPage } from "lib/isContentPage";
 import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
@@ -30,6 +30,7 @@ import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import NewProfileModal from "components/Modals/NewProfileModal";
+import DownloadAppModal from "components/Modals/DownloadAppModal";
 import styles from "./Layout.module.scss";
 import AppLoader from "./AppLoader";
 import AutoAddFavorite from "./AutoAddFavorite";
@@ -98,24 +99,25 @@ const Layout = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Mobile popup
   useEffect(() => {
-    // Mobile popup
-    if (
-      languageLoaded &&
-      isMobileOnly &&
-      !localStorage.getItem("hideMobileAppModal") &&
-      !showLangModal &&
-      showMobileModal === null
-    ) {
+    if (!languageLoaded || !isMobileOnly || showMobileModal !== null) return;
+
+    const historyLength = props.history.length;
+    // if user lands on homepage
+    if (historyLength === 1 && props.history[0] === "/") {
       setTimeout(() => {
-        // open modal after 1 min
-        localStorage.setItem("hideMobileAppModal", "true");
         toggleMobileAppModal();
-      }, 60000);
+      }, 10000);
+    }
+
+    // if previous page was a content page
+    else if (historyLength > 1 && isContentPage(props.history[1])) {
+      toggleMobileAppModal();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showLangModal, languageLoaded]);
+  }, [showLangModal, languageLoaded, props.history]);
 
   // USER
   const user = useSelector(userDetailsSelector);
@@ -196,7 +198,7 @@ const Layout = (props: Props) => {
         languages={langues}
         isLanguagesLoading={isLanguagesLoading}
       />
-      <MobileAppModal show={!!showMobileModal} toggle={toggleMobileAppModal} />
+      <DownloadAppModal show={!!showMobileModal} toggle={toggleMobileAppModal} />
       <NewProfileModal />
       <SubscribeNewsletterModal />
     </div>
