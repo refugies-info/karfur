@@ -131,6 +131,7 @@
     "status_refugie": "قانوني اسناد لرونکي کډوال",
     "status_asile": "پناه غوښتونکي",
     "status_subsidiaire": "د فرعي محافظت ګټه اخیستونکي کسان",
+    "status_temporaire": "د لنډمهاله خوندیتوب ګټه اخیستونکي کسان",
     "status_apatride": "بې وطنه کسان",
     "status_french": "فرانسوي اتباع",
     "in_partnership_with": "په همکاري د",
@@ -144,7 +145,8 @@
     "nbThanks": "{{count}} مننه کونکي",
     "online": "آنلاین",
     "callout_info": "اضافي معلومات",
-    "callout_important": "مهم"
+    "callout_important": "مهم",
+    "informations": "مهم معلومات"
   },
   "Infocards": {
     "proposedBy": "د.........لخوا وړاندیز شوي",

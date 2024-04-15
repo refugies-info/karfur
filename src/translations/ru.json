@@ -131,6 +131,7 @@
     "status_refugie": "Со статусом беженца",
     "status_asile": "Просители убежища",
     "status_subsidiaire": "Пользующиеся субсидиарной защитой",
+    "status_temporaire": "Пользующиеся временной защитой",
     "status_apatride": "Апартеиды (лица без гражданства)",
     "status_french": "Граждане Франции",
     "in_partnership_with": "Совместно с",
@@ -144,7 +145,8 @@
     "nbThanks": "Сказали спасибо: {{count}}",
     "online": "онлайн",
     "callout_info": "Полезно знать",
-    "callout_important": "Важно"
+    "callout_important": "Важно",
+    "informations": "Важная информация"
   },
   "Infocards": {
     "proposedBy": "Предложено",

@@ -131,6 +131,7 @@
     "status_refugie": "ስደተኛታት",
     "status_asile": "ሓተትቲ ዑቕባ",
     "status_subsidiaire": "ናይ ዑቕባ መሰል ተጠቐምቲ",
+    "status_temporaire": "ግዝያዊ ዑቕባ ተጠቐምቲ",
     "status_apatride": "ሃገር ኣልባ ሰባት",
     "status_french": "ዜጋታት ፈረንሳ",
     "in_partnership_with": "ብ ሊንክ ወይ ፈለግ ሼር ግበሩዎ",
@@ -144,7 +145,8 @@
     "nbThanks": "{{count}} ነመስግን",
     "online": "ብ ኦንላይን",
     "callout_info": "ኣስተውዕል",
-    "callout_important": "ኣገዳሲ"
+    "callout_important": "ኣገዳሲ",
+    "informations": "ኣገደቲ ሓበሬታ"
   },
   "Infocards": {
     "proposedBy": "ኣዳላዊ",

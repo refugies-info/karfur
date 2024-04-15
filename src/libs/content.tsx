@@ -180,6 +180,7 @@ export const getDescriptionNew = (
           t("content_screen.status_refugie"),
           t("content_screen.status_asile"),
           t("content_screen.status_subsidiaire"),
+          t("content_screen.status_temporaire"),
           t("content_screen.status_apatride"),
           t("content_screen.status_french"),
         ].join(", ");

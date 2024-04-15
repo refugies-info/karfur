@@ -131,6 +131,7 @@
     "status_refugie": "پناهندگان قانونی",
     "status_asile": "پناهجو",
     "status_subsidiaire": "ذینفعان حفاظت فرعی",
+    "status_temporaire": "ذینفعان حفاظت موقت",
     "status_apatride": "افراد بدون تابعیت",
     "status_french": "شهروندان فرانسوی",
     "in_partnership_with": "با همکاری",
@@ -144,7 +145,8 @@
     "nbThanks": "{{count}} تشکر",
     "online": "آنلاین",
     "callout_info": "خوب است بدانید",
-    "callout_important": "مهم"
+    "callout_important": "مهم",
+    "informations": "اطلاعات مهم"
   },
   "Infocards": {
     "proposedBy": "پیشنهاد شده توسط",

@@ -131,6 +131,7 @@
     "status_refugie": "لاجئون",
     "status_asile": "طالبي لجوء",
     "status_subsidiaire": "المستفيدين من الحماية الفرعية",
+    "status_temporaire": "المستفيدين من الحماية المؤقتة",
     "status_apatride": "عديمي الجنسية",
     "status_french": "المواطنين الفرنسيين",
     "in_partnership_with": "بالشراكة مع",
@@ -144,7 +145,8 @@
     "nbThanks": "{{count}}  شكر",
     "online": "على الانترنيت",
     "callout_info": "معلومة مفيدة",
-    "callout_important": "أمر هام"
+    "callout_important": "أمر هام",
+    "informations": "معلومات مهمة"
   },
   "Infocards": {
     "proposedBy": "تم طرح العرض من خلال",

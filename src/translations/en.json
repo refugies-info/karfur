@@ -131,6 +131,7 @@
     "status_refugie": "Statutory refugees",
     "status_asile": "Asylum seekers",
     "status_subsidiaire": "Beneficiaries of subsidiary protection",
+    "status_temporaire": "Beneficiaries of temporary protection",
     "status_apatride": "Stateless people",
     "status_french": "French citizens",
     "in_partnership_with": "In partnership with",
@@ -144,7 +145,8 @@
     "nbThanks": "{{count}} thanks",
     "online": "online",
     "callout_info": "Good to know",
-    "callout_important": "Important"
+    "callout_important": "Important",
+    "informations": "Important information"
   },
   "Infocards": {
     "proposedBy": "Proposed by",
