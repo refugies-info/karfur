@@ -18,9 +18,9 @@ import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/lo
 
 import Navbar from "components/Navigation/Navbar";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
-import MobileAppModal from "components/Modals/MobileAppModal/MobileAppModal";
 import Footer from "components/Layout/Footer";
 import { readAudio, stopAudio } from "lib/readAudio";
+import { isContentPage } from "lib/isContentPage";
 import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
@@ -30,9 +30,11 @@ import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import NewProfileModal from "components/Modals/NewProfileModal";
+import DownloadAppModal from "components/Modals/DownloadAppModal";
 import styles from "./Layout.module.scss";
 import AppLoader from "./AppLoader";
 import AutoAddFavorite from "./AutoAddFavorite";
+import DownloadAppBanner from "./DownloadAppBanner";
 import { setAnalyticsUserId } from "lib/tracking";
 
 interface Props {
@@ -63,22 +65,31 @@ const Layout = (props: Props) => {
   };
 
   useEffect(() => {
+    // wait 5 seconds before showing modal
+    const waitAndShow = () => {
+      setTimeout(() => {
+        dispatch(toggleLangueModalActionCreator(true));
+      }, 5000);
+    };
+
     // Language popup
     const storedLanguei18nCode = locale.getFromCache();
+    const isSharedSmsLink = new URLSearchParams(window.location.search).get("share") === "sms";
+
     if (storedLanguei18nCode && storedLanguei18nCode !== "fr" && storedLanguei18nCode !== router.locale) {
+      // if locale saved and not same as in URL
       changeLanguageCallback(storedLanguei18nCode);
-    } else if (!storedLanguei18nCode) {
+    } else if (!storedLanguei18nCode && !isSharedSmsLink) {
+      // if no locale selected and not a shared link
       if (!showLangModal) {
-        if (isMobileOnly) {
-          setTimeout(() => {
-            // on mobiles, wait 5 seconds
-            dispatch(toggleLangueModalActionCreator(true));
-          }, 5000);
-        } else {
-          dispatch(toggleLangueModalActionCreator(true));
-        }
+        if (isMobileOnly) waitAndShow();
+        else dispatch(toggleLangueModalActionCreator(true));
       }
+    } else if (isSharedSmsLink && router.locale === "fr") {
+      // if shared link and FR
+      waitAndShow();
     } else {
+      // set locale
       const locale = router.locale || "fr";
       if (!["fr", "default"].includes(locale)) {
         dispatch(toggleLangueActionCreator(locale));
@@ -88,24 +99,25 @@ const Layout = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Mobile popup
   useEffect(() => {
-    // Mobile popup
-    if (
-      languageLoaded &&
-      isMobileOnly &&
-      !localStorage.getItem("hideMobileAppModal") &&
-      !showLangModal &&
-      showMobileModal === null
-    ) {
+    if (!languageLoaded || !isMobileOnly || showMobileModal !== null) return;
+
+    const historyLength = props.history.length;
+    // if user lands on homepage
+    if (historyLength === 1 && props.history[0] === "/") {
       setTimeout(() => {
-        // open modal after 1 min
-        localStorage.setItem("hideMobileAppModal", "true");
         toggleMobileAppModal();
-      }, 60000);
+      }, 10000);
+    }
+
+    // if previous page was a content page
+    else if (historyLength > 1 && isContentPage(props.history[1])) {
+      toggleMobileAppModal();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showLangModal, languageLoaded]);
+  }, [showLangModal, languageLoaded, props.history]);
 
   // USER
   const user = useSelector(userDetailsSelector);
@@ -167,12 +179,9 @@ const Layout = (props: Props) => {
     }
   };
 
-  // only on desktop, if user has no email and is not currently setting it
-  const showEmailModal =
-    !isMobileOnly && !!user && !user?.email && !window.location.pathname.includes("backend/user-profile");
-
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
+      <DownloadAppBanner />
       <Navbar />
       <AppLoader>
         <div className={styles.main}>
@@ -189,7 +198,7 @@ const Layout = (props: Props) => {
         languages={langues}
         isLanguagesLoading={isLanguagesLoading}
       />
-      <MobileAppModal show={!!showMobileModal} toggle={toggleMobileAppModal} />
+      <DownloadAppModal show={!!showMobileModal} toggle={toggleMobileAppModal} />
       <NewProfileModal />
       <SubscribeNewsletterModal />
     </div>

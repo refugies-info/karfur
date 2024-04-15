@@ -12,6 +12,7 @@ import { PageOptions } from "types/interface";
 import Layout from "components/Layout/Layout";
 import "scss/index.scss";
 import { Event, initGA } from "lib/tracking";
+import { isContentPage } from "lib/isContentPage";
 import { isRoute } from "routes";
 
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
@@ -101,10 +102,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   // CRISP
   useEffect(() => {
     const toggleDataPageAttribute = (url: string) => {
-      const isContentPage = ["/demarche/", "/dispositif/", "/procedure/", "/program/"].some((path) =>
-        url.includes(path),
-      );
-      if (isContentPage) document.body.setAttribute("data-page", "content");
+      if (isContentPage(url)) document.body.setAttribute("data-page", "content");
       else document.body.setAttribute("data-page", "");
     };
 

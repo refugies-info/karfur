@@ -510,10 +510,7 @@
     "retry_search": "Try to expand your search by removing some tags"
   },
   "MobileAppModal": {
-    "stay": "Stay on the browser",
-    "download": "Download the application",
-    "subtitle": "Free and easier to use:",
-    "title": "Mobile application available!"
+    "download": "Download the application"
   },
   "StaticPages": {
     "helpTitle": "You are not alone",

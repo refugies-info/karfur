@@ -12,6 +12,7 @@ import { Dispositif } from "../../../typegoose";
 import { TranslationContent } from "../../../typegoose/Dispositif";
 import { countDispositifWordsForSections } from "../../../libs/wordCounter";
 
+/* TODO: test this */
 /**
  * Returns nb words translated or validated for a dispositif.
  * If several translators participated, it counts the total of both works
@@ -26,9 +27,12 @@ const getNbWordsDone = (
   originalContent: TranslationContent
 ): number => {
   const translated = [...new Set(
-    ...traductions
-      .filter(t => validation ? t.type === TraductionsType.VALIDATION : true)
-      .map(t => t.sectionsTranslated))
+    [].concat(
+      ...traductions
+        .filter(t => validation ? t.type === TraductionsType.VALIDATION : true)
+        .map(t => t.sectionsTranslated)
+    )
+  )
   ];
   return countDispositifWordsForSections(originalContent, translated);
 }
@@ -101,17 +105,20 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
       });
     }
 
-    /*
-     * Aucune traduction suggérée n'est complète
-     * Alors le dispositif est à traduire
+    /**
+     * Si tous les mots sont traduits, la traduction est à valider
      */
-    if (some(correspondingTrads, (trad) => trad.type === TraductionsType.SUGGESTION && trad.finished)) {
+    if (avancementTrad >= dispositif.nbMots) {
       return results.push({
         ...dispositifData,
         tradStatus: TraductionsStatus.PENDING,
       });
     }
 
+    /*
+     * Aucune traduction suggérée n'est complète
+     * Alors le dispositif est à traduire
+     */
     return results.push({
       ...dispositifData,
       tradStatus: TraductionsStatus.TO_TRANSLATE,

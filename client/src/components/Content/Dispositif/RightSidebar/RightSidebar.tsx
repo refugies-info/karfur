@@ -92,9 +92,11 @@ const RightSidebar = () => {
     <div className={styles.container}>
       {!needsApproval ? (
         <>
-          <Tooltip target="no-tts-tooltip" placement="top" hide={ttsEnabled}>
-            Écouter la fiche en tigrinya n'est pas possible pour le moment.
-          </Tooltip>
+          {!ttsEnabled && (
+            <Tooltip target="no-tts-tooltip" placement="top">
+              Écouter la fiche en tigrinya n'est pas possible pour le moment.
+            </Tooltip>
+          )}
           <Button
             onClick={toggleReading}
             evaIcon={isPlayingTts ? "stop-circle" : "play-circle"}
