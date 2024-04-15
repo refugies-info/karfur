@@ -41,6 +41,8 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
         ref={ref}
         text={props.htmlContent
           .replaceAll("</p>", "</p> ") // wait before starting to read new sentence
+          .replaceAll("</ul>", ".</ul> ") // wait after reading list
+          .replaceAll("</li>", ",</li> ") // wait after reading list item
           .replaceAll(/<[^>]*>?/gm, "")}
         heightOffset={props.fromAccordion}
       >

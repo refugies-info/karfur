@@ -1,7 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import * as Haptics from "expo-haptics";
 import { deactivateKeepAwake } from "expo-keep-awake";
-import { Image, TouchableOpacity, useWindowDimensions } from "react-native";
+import {
+  ActivityIndicator,
+  Image,
+  TouchableOpacity,
+  useWindowDimensions,
+} from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -11,12 +16,16 @@ import { Icon } from "react-native-eva-icons";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { setReadingItem } from "../../services/redux/VoiceOver/voiceOver.actions";
+import {
+  setReadingItem,
+  setShouldStop,
+} from "../../services/redux/VoiceOver/voiceOver.actions";
 import {
   currentItemSelector,
   currentScrollSelector,
   readingListLengthSelector,
   readingListSelector,
+  shouldStopSelector,
 } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { styles } from "../../theme";
 import Pause from "../../theme/images/voiceover/pause_icon.svg";
@@ -37,7 +46,7 @@ const Container = styled.View<{ bottomInset: number }>`
   align-items: center;
   justify-content: center;
 `;
-const PlayContainer = styled(TouchableOpacity)<{ loading: boolean }>`
+const PlayContainer = styled(TouchableOpacity)`
   width: 56px;
   position: absolute;
   bottom: 0;
@@ -46,7 +55,6 @@ const PlayContainer = styled(TouchableOpacity)<{ loading: boolean }>`
   align-items: center;
   justify-content: center;
   z-index: 2;
-  opacity: ${({ loading }) => (loading ? 0.4 : 1)};
 `;
 const PlayButton = styled.View`
   width: 56px;
@@ -174,6 +182,7 @@ export const ReadButton = (props: Props) => {
     if (isPaused) setIsPaused(false);
     dispatch(setReadingItem(toRead[indexToRead]));
 
+    setIsLoading(true);
     const reader = await getTtsReader(
       // get reader
       toRead[indexToRead].text,
@@ -181,6 +190,7 @@ export const ReadButton = (props: Props) => {
       rate
     );
     setReader(reader);
+    setIsLoading(false);
     await reader.play(); // and start reading
 
     // if has been stopped before ending, no next
@@ -197,7 +207,7 @@ export const ReadButton = (props: Props) => {
     }
   };
 
-  // start
+  // START
   const startToRead = useCallback(() => {
     if (readingList && readingListLength > 0) {
       setIsLoading(true);
@@ -230,8 +240,8 @@ export const ReadButton = (props: Props) => {
             sortedReadingList,
             firstItem?.id || null
           );
-          readList(toRead);
           setIsLoading(false);
+          readList(toRead);
         })
         .catch((e) => {
           logger.error(e);
@@ -239,7 +249,7 @@ export const ReadButton = (props: Props) => {
     }
   }, [readingList, currentScroll]);
 
-  // next or previous
+  // NAVIGATE
   const goTo = (dir: "next" | "prev") => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setIsPaused(false);
@@ -258,7 +268,7 @@ export const ReadButton = (props: Props) => {
     }, 100);
   };
 
-  // stop
+  // STOP
   const stopVoiceOver = useCallback(() => {
     deactivateKeepAwake("voiceover");
     reader?.stop();
@@ -269,33 +279,45 @@ export const ReadButton = (props: Props) => {
     }
     dispatch(setReadingItem(null));
     setIsPaused(false);
+    dispatch(setShouldStop(false));
   }, [isReading, reader]);
 
-  // stop when reset
+  // stopped by a component
+  const shouldStop = useSelector(shouldStopSelector);
   useEffect(() => {
-    if (readingList === null) {
+    if (shouldStop && isReading) {
       stopVoiceOver();
     }
-  }, [readingList]);
-
-  // change rate
-  const changeRate = () => {
-    setRate((rate) => (rate === 1 ? MAX_RATE : 1));
-  };
-  useEffect(() => {
-    reader?.stop();
-    if (currentItem) {
-      const toRead = getReadingList(resolvedReadingList, currentItem.id);
-      readList(toRead);
-    }
-  }, [rate]);
+  }, [shouldStop, stopVoiceOver]);
 
   // change language
   useEffect(() => {
     stopVoiceOver();
   }, [currentLanguageI18nCode]);
 
-  // pause
+  // RATE
+  const changeRate = () => {
+    setRate((rate) => (rate === 1 ? MAX_RATE : 1));
+  };
+  useEffect(() => {
+    if (!reader) return;
+    if (reader.canChangeRate) {
+      reader.setRate(rate);
+    } else {
+      setIsPaused(false);
+      reader.stop();
+      isStopped.current = true;
+      // setTimeout to ensure it happens after previous readList resolve
+      setTimeout(() => {
+        if (currentItem) {
+          const toRead = getReadingList(resolvedReadingList, currentItem.id);
+          readList(toRead);
+        }
+      }, 100);
+    }
+  }, [rate]);
+
+  // PAUSE
   const resumeReading = () => {
     if (currentItem) {
       const toRead = getReadingList(resolvedReadingList, currentItem.id);
@@ -316,12 +338,13 @@ export const ReadButton = (props: Props) => {
     }
   }, [isPaused]);
 
-  // show menu
+  // MENU
   useEffect(() => {
     scale.value = isReading ? 1 : 0;
   }, [isReading]);
 
   const toggleVoiceOver = () => {
+    dispatch(setShouldStop(false));
     if (!isReading) {
       startToRead();
     } else {
@@ -332,7 +355,6 @@ export const ReadButton = (props: Props) => {
   return (
     <Container bottomInset={props.bottomInset}>
       <PlayContainer
-        loading={isLoading}
         onPress={toggleVoiceOver}
         activeOpacity={0.8}
         accessibilityRole="button"
@@ -340,7 +362,12 @@ export const ReadButton = (props: Props) => {
         accessibilityLabel={t("tab_bar.listen", "Écouter")}
       >
         <PlayButton>
-          {isReading && !isPaused ? (
+          {isLoading ? (
+            <ActivityIndicator
+              style={{ width: 16, height: 16 }}
+              color="white"
+            />
+          ) : isReading && !isPaused ? (
             <Pause width={16} height={16} />
           ) : (
             <Play width={16} height={16} />

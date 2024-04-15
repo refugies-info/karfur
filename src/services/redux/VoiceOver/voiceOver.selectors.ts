@@ -11,3 +11,6 @@ export const currentItemSelector = (state: RootState) =>
 
 export const currentScrollSelector = (state: RootState) =>
   state.voiceOver.currentScroll;
+
+export const shouldStopSelector = (state: RootState) =>
+  state.voiceOver.shouldStop;

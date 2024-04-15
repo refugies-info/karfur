@@ -7,12 +7,14 @@ export interface VoiceOverState {
   readingList: Record<string, MutableRefObject<ReadingObject | undefined>> | null;
   currentItem: ReadingItem | null;
   currentScroll: number;
+  shouldStop: boolean;
 }
 
 export const initialVoiceOverState = {
   readingList: null,
   currentItem: null,
   currentScroll: 0,
+  shouldStop: false
 };
 
 export const voiceOverReducer = createReducer<
@@ -40,5 +42,9 @@ export const voiceOverReducer = createReducer<
   VOICEOVER_UPDATE_SCROLL: (state, action) => ({
     ...state,
     currentScroll: action.payload
+  }),
+  VOICEOVER_SHOULD_STOP: (state, action) => ({
+    ...state,
+    shouldStop: action.payload
   }),
 });

@@ -10,7 +10,9 @@ export interface Reader {
   stop: () => void;
   pause: () => void;
   resume: () => void;
+  setRate: (rate: number) => void;
   canResume: boolean;
+  canChangeRate: boolean;
 }
 
 // wait for a sound to finish playing
@@ -62,7 +64,9 @@ const getAzureReader = async (
     stop: () => sound.stopAsync(),
     pause: () => sound.pauseAsync(),
     resume: () => sound.playAsync(),
-    canResume: true
+    setRate: (rate: number) => sound.setRateAsync(rate, true),
+    canResume: true,
+    canChangeRate: true
   };
 }
 
@@ -78,14 +82,13 @@ const getNativeReader = (
   language: string | null,
   rate: number
 ): Reader => ({
-  play: () =>
-    new Promise((resolve) => {
-      Speech.speak(text, {
-        rate: rate,
-        language: language || "fr",
-        onDone: () => resolve(),
-      });
-    }),
+  play: () => new Promise((resolve) => {
+    Speech.speak(text, {
+      rate: rate,
+      language: language || "fr",
+      onDone: () => resolve(),
+    });
+  }),
   stop: () => Speech.stop(),
   pause: () => {
     if (Platform.OS === "android") {
@@ -101,7 +104,9 @@ const getNativeReader = (
       Speech.resume();
     }
   },
-  canResume: Platform.OS === "android" ? false : true
+  setRate: () => { },
+  canResume: Platform.OS === "android" ? false : true,
+  canChangeRate: false
 })
 
 const needsAzureTts = (language: string | null) => {
