@@ -46,6 +46,7 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { logger } from "../../logger";
 import { Reader, getTtsReader } from "../../libs/ttsReader";
+import { debounce } from "lodash";
 
 const Container = styled.View<{ bottomInset: number }>`
   position: absolute;
@@ -204,15 +205,15 @@ export const ReadButton = (props: Props) => {
     dispatch(setReadingItem(toRead[indexToRead]));
 
     setIsLoading(true);
-    const reader = await getTtsReader(
+    const newReader = await getTtsReader(
       // get reader
       toRead[indexToRead].text,
       currentLanguageI18nCode,
       rate
     );
-    setReader(reader);
+    setReader(newReader);
     setIsLoading(false);
-    await reader.play(); // and start reading
+    await newReader.play(); // and start reading
 
     // if has been stopped before ending, no next
     if (isStopped.current) {
@@ -288,6 +289,8 @@ export const ReadButton = (props: Props) => {
       }
     }, 100);
   };
+  const debouncedNext = debounce(() => goTo("next"), 200);
+  const debouncedPrev = debounce(() => goTo("prev"), 200);
 
   // STOP
   const stopVoiceOver = useCallback(() => {
@@ -425,7 +428,7 @@ export const ReadButton = (props: Props) => {
         <Button onPress={changeRate}>
           <StyledTextSmallBold>{rate === 1 ? "x1" : "x2"}</StyledTextSmallBold>
         </Button>
-        <Button onPress={() => goTo("prev")} ml>
+        <Button onPress={debouncedPrev} ml>
           <Icon
             name={"arrow-back-outline"}
             height={24}
@@ -434,7 +437,7 @@ export const ReadButton = (props: Props) => {
           />
         </Button>
         <Space />
-        <Button onPress={() => goTo("next")} mr>
+        <Button onPress={debouncedNext} mr>
           <Icon
             name={"arrow-forward-outline"}
             height={24}
