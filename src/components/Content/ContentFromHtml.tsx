@@ -19,6 +19,14 @@ interface Props {
   windowWidth: number;
   fromAccordion?: boolean;
 }
+
+const sanitizeForReading = (htmlContent: string) =>
+  htmlContent
+    .replaceAll("</p>", "</p> ") // wait before starting to read new sentence
+    .replaceAll("</ul>", ".</ul> ") // wait after reading list
+    .replaceAll(/&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-fA-F]{1,6});/gm, "") // remove html character entities
+    .replaceAll(/<[^>]*>?/gm, "");
+
 export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
   const theme = useTheme();
   const { t, isRTL } = useTranslationWithRTL();
@@ -39,11 +47,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
     <View style={{ flexDirection: "row" }}>
       <ReadableText
         ref={ref}
-        text={props.htmlContent
-          .replaceAll("</p>", "</p> ") // wait before starting to read new sentence
-          .replaceAll("</ul>", ".</ul> ") // wait after reading list
-          .replaceAll("</li>", ",</li> ") // wait after reading list item
-          .replaceAll(/<[^>]*>?/gm, "")}
+        text={sanitizeForReading(props.htmlContent)}
         heightOffset={props.fromAccordion}
       >
         <HTML
