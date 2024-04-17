@@ -6,20 +6,20 @@ import { activatedLanguages } from "../data/languagesData";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { OnboardingParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { Page } from "../components";
+import PageOnboarding from "../components/layout/PageOnboarding";
 import { Languages } from "@refugies-info/api-types";
 import { selectedI18nCodeSelector } from "../services/redux/User/user.selectors";
 
 export const LanguageChoiceScreen = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "LanguageChoice">) => {
-  const { i18n, t } = useTranslationWithRTL();
+  const { i18n } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
   // when language selected (or if already selected), navigate to next screen
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   useEffect(() => {
-    if (selectedLanguage) navigation.navigate("OnboardingStart");
+    if (selectedLanguage) navigation.navigate("OnboardingSteps");
   }, [navigation, selectedLanguage]);
 
   const changeLanguage = (ln: Languages) => {
@@ -30,14 +30,10 @@ export const LanguageChoiceScreen = ({
         shouldFetchContents: false,
       })
     );
+    navigation.navigate("OnboardingSteps"); // needed in case we re-select same language
   };
   return (
-    <Page
-      headerIconName="globe-2-outline"
-      headerTitle={t("global.language", "Langue")}
-      hideLanguageSwitch
-      showLogo
-    >
+    <PageOnboarding hideNavbar>
       {activatedLanguages.map((language, index) => (
         <LanguageDetailsButton
           hideRadio
@@ -47,6 +43,6 @@ export const LanguageChoiceScreen = ({
           onPress={() => changeLanguage(language.i18nCode)}
         />
       ))}
-    </Page>
+    </PageOnboarding>
   );
 };

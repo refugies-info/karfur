@@ -1,7 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { OnboardingParamList } from "../../types";
-import { OnboardingStart } from "../screens/Onboarding/OnboardingStart";
 import { OnboardingSteps } from "../screens/Onboarding/OnboardingSteps";
 import { FilterCity } from "../screens/Onboarding/FilterCity";
 import { FilterAge } from "../screens/Onboarding/FilterAge";
@@ -16,10 +15,6 @@ export const OnboardingStackNavigator = () => (
     <OnBoardingNavigator.Screen
       name="LanguageChoice"
       component={LanguageChoiceScreen}
-    />
-    <OnBoardingNavigator.Screen
-      name="OnboardingStart"
-      component={OnboardingStart}
     />
     <OnBoardingNavigator.Screen
       name="OnboardingSteps"

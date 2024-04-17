@@ -1,71 +1,52 @@
 import * as React from "react";
-
 import styled from "styled-components/native";
-import { StyleSheet } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { styles } from "../../theme";
+import { View } from "react-native";
 import { onboardingCarouselData } from "./OnboardingCarouselData";
 import { TextBigBold } from "../StyledText";
-import { CarouselStepImage } from "./CarouselStepImage";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 interface Props {
   step: number;
 }
 
-const StyledText = styled(TextBigBold)`
-  color: ${({ theme }) => theme.colors.white};
-  width: 100%;
+const ImageBackground = styled.View`
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
-
-const TextContainer = styled.ScrollView`
-  max-width: 100%;
-  flex-grow: 0;
-  margin-bottom: ${({ theme }) => theme.margin * 4}px;
-`;
-
-const ImagesContainer = styled.View`
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
+const ImageForeground = styled.View`
+  z-index: 2;
+  height: 55%;
+  flex-direction: row;
+  align-items: flex-end;
   justify-content: center;
-  margin-top: ${styles.margin * 5}px;
 `;
-const stylesheet = StyleSheet.create({
-  card: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    alignContent: "center",
-    paddingHorizontal: styles.margin * 3,
-    paddingTop: styles.margin * 6,
-    paddingBottom: 160,
-  },
-});
+const TextContainer = styled.View`
+  padding: ${({ theme }) => theme.margin * 3}px;
+  height: 45%;
+  justify-content: center;
+`;
+const StyledText = styled(TextBigBold)`
+  width: 100%;
+  text-align: center;
+`;
+
 export const OnboardingCarouselElement = (props: Props) => {
   const { t } = useTranslationWithRTL();
-  const correspondingData = onboardingCarouselData.filter(
-    (element) => element.stepNumber === props.step
-  )[0];
+  const onboardingElement = onboardingCarouselData[props.step];
+
   return (
-    <LinearGradient
-      colors={[correspondingData.lightColor, correspondingData.darkColor]}
-      style={[stylesheet.card]}
-    >
-      <ImagesContainer>
-        <CarouselStepImage step={props.step} />
-      </ImagesContainer>
+    <View>
+      <ImageBackground>{onboardingElement.background}</ImageBackground>
+      <ImageForeground>{onboardingElement.image}</ImageForeground>
       <TextContainer>
         <StyledText accessibilityRole="text">
-          {t(
-            "onboarding_screens." + correspondingData.text,
-            correspondingData.text
-          )}
+          {t("onboarding_screens." + onboardingElement.text)}
         </StyledText>
       </TextContainer>
-    </LinearGradient>
+    </View>
   );
 };

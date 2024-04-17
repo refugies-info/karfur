@@ -15,7 +15,6 @@ import {
   userAgeSelector,
   userFrenchLevelSelector,
 } from "../../services/redux/User/user.selectors";
-import ArrowOnboarding from "../../theme/images/onboarding/arrow-onboarding.svg";
 import { View, Dimensions } from "react-native";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
@@ -100,9 +99,9 @@ export const FinishOnboarding = ({}: StackScreenProps<
         ) : (
           <View>
             <FakeTabBar width={fakeTabBarWidth} />
-            <FakeTabBarArrowContainer width={fakeTabBarWidth}>
-              <ArrowOnboarding style={{ width: "100%" }} />
-            </FakeTabBarArrowContainer>
+            <FakeTabBarArrowContainer
+              width={fakeTabBarWidth}
+            ></FakeTabBarArrowContainer>
           </View>
         )}
         {hasUserEnteredInfos && (

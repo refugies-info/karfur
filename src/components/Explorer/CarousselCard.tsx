@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 import { RTLView } from "../BasicComponents";
 import { styles } from "../../theme";
@@ -21,9 +21,6 @@ interface Props {
   cardHeight: number;
 }
 
-const ButtonContainer = styled.TouchableOpacity`
-  padding-vertical: ${styles.margin}px;
-`;
 const StyledContainer = styled(RTLView)<{ backgroundColor: string }>`
   margin-horizontal: ${styles.margin * 2}px;
   margin-bottom: ${styles.margin * 2}px;
@@ -57,7 +54,7 @@ const CarousselCardComponent = (props: Props) => {
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   return (
-    <ButtonContainer
+    <TouchableOpacity
       accessibilityRole="button"
       accessibilityLabel={props.theme.name[currentLanguageI18nCode || "fr"]}
       activeOpacity={0.7}
@@ -93,7 +90,7 @@ const CarousselCardComponent = (props: Props) => {
           )}
         </StyledContainer>
       </CardGradient>
-    </ButtonContainer>
+    </TouchableOpacity>
   );
 };
 

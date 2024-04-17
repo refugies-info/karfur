@@ -2,7 +2,7 @@
   "NSLocationWhenInUseUsageDescription": "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
   "NSLocationUsageDescription": "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
   "onboarding_screens": {
-    "bonjour": "Hello and welcome to Refugees.info!",
+    "step0": "Hello and welcome to Refugees.info!",
     "step1": "Here you can find information on how to proceed.",
     "step2": "You can also find associations and activities near your home.",
     "step3": "It is an official application, supported by the state.",
@@ -25,9 +25,7 @@
     "thank_you": "Merci !",
     "start_searching_button": "Start my search",
     "skip_step_button": "Not now",
-    "next_button": "Next",
-    "continue_button": "Continue",
-    "startonboarding_screens_start": "Let's go"
+    "next_button": "Next"
   },
   "tab_bar": {
     "explorer": "Explore",
