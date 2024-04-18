@@ -4,6 +4,7 @@ import { updateIndicator } from "../../../modules/indicators/indicators.service"
 import { addNewParticipant, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { ObjectId, Traductions, TraductionsModel, User } from "../../../typegoose";
 import { TraductionsType } from "../../../typegoose/Traductions";
+import { getOtherValidationForDispositif } from "../../../modules/traductions/traductions.repository";
 
 const saveTranslation = (
   { timeSpent, language, dispositifId, translated, toFinish, toReview }: SaveTranslationRequest,
@@ -30,7 +31,15 @@ const saveTranslation = (
       _traduction.translated.content.titreMarque = "";
     }
 
-    _traduction.avancement = Traductions.computeAvancement(dispositif, _traduction);
+    // copy toReviewCache from other traductions if it exists
+    if (user.isExpert()) {
+      const otherValidation = await getOtherValidationForDispositif(language, dispositifId, user._id);
+      if (otherValidation?.toReviewCache) {
+        _traduction.toReviewCache = otherValidation.toReviewCache;
+      }
+    }
+
+    _traduction.finished = Traductions.computeFinished(dispositif, _traduction);
 
     const wordsCount = _traduction.countWords();
 

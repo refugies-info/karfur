@@ -1,0 +1,36 @@
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+
+.modal {
+  margin: 0 !important;
+
+  .content {
+    border-radius: 0;
+    padding: u(6);
+    height: 100vh;
+  }
+}
+
+.illu {
+  width: 100%;
+  height: auto;
+}
+
+.text {
+  @include dsfr-text("chapo");
+  margin-top: u(4);
+  margin-bottom: u(5);
+  text-align:center;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons > button,
+.buttons > a {
+  width: 100%;
+  justify-content: center;
+}

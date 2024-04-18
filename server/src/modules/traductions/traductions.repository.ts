@@ -20,6 +20,9 @@ export const getTraductionsByLanguageAndDispositif = (
 export const getValidation = (language: Languages, dispositifId: DispositifId, userId: UserId) =>
   TraductionsModel.findOne({ language, dispositifId, userId });
 
+export const getOtherValidationForDispositif = (language: Languages, dispositifId: DispositifId, userId: UserId) =>
+  TraductionsModel.findOne({ language, dispositifId, userId: { $ne: userId }, type: TraductionsType.VALIDATION });
+
 export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages): Promise<DeleteResult> =>
   TraductionsModel.deleteMany({
     dispositifId,
@@ -38,7 +41,7 @@ const updateAvancements = async (query: FilterQuery<Traductions>, dispositif: Di
   const traductions: Traductions[] = await TraductionsModel.find(query);
   await Promise.all(traductions.map(traduction => TraductionsModel.updateOne(
     { _id: traduction._id },
-    { avancement: Traductions.computeAvancement(dispositif, traduction) }
+    { finished: Traductions.computeFinished(dispositif, traduction) }
   )));
 }
 

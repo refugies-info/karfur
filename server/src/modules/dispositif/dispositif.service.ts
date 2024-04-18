@@ -176,7 +176,7 @@ const rebuildTranslations = async (
           translation.toReview = toReview;
           translation.toReviewCache = toReview;
           translation.userId = value.validatorId;
-          translation.avancement = Traductions.computeAvancement(dispositif, translation);
+          translation.finished = Traductions.computeFinished(dispositif, translation);
           return translation;
         });
       logger.info("translationsReviews", translationsReviews);

@@ -54,7 +54,7 @@ const headersExpert = [
   { name: "Type", order: "type" },
   { name: "Titre", order: "titreInformatif" },
   { name: "Progression", order: "avancementTrad" },
-  { name: "Validation", order: "avancementExpert" },
+  { name: "Validation", order: "avancementValidation" },
   { name: "Mots", order: "nbMots" },
   { name: "Depuis", order: "created_at" },
   { name: "Statut", order: "tradStatus" },
@@ -184,18 +184,22 @@ export const TranslationAvancementTable = (props: Props) => {
 
                 <td className="align-middle">
                   {(!props.isExpert || element.tradStatus === "TO_TRANSLATE") && (
-                    <ProgressWithValue avancementTrad={element.avancementTrad} isExpert={props.isExpert} />
+                    <ProgressWithValue
+                      avancementTrad={element.avancementTrad / element.nbMots}
+                      isExpert={props.isExpert}
+                    />
                   )}
                 </td>
                 {props.isExpert && (
                   <td className="align-middle">
-                    <ProgressWithValue avancementTrad={element.avancementValidation} isExpert={props.isExpert} />
+                    <ProgressWithValue
+                      avancementTrad={element.avancementValidation / element.nbMots}
+                      isExpert={props.isExpert}
+                    />
                   </td>
                 )}
 
-                <td className="align-middle">
-                  {Math.ceil((element.nbMots || 0) * (element.avancementTrad || 0)) + " / " + element.nbMots}
-                </td>
+                <td className="align-middle">{element.avancementTrad + " / " + element.nbMots}</td>
                 <td className="align-middle">{element.created_at ? nbDays : "Non disponible"}</td>
                 <td className="align-middle">
                   <TradStatus status={element.tradStatus} />

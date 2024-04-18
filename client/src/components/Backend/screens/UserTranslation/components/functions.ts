@@ -28,6 +28,10 @@ export const sortData = (
       return compare(valueAWithoutAccent, valueBWithoutAccent, sortedHeader.sens);
     }
 
+    if (sortedHeader.order === "avancementTrad" || sortedHeader.order === "avancementValidation") {
+      return compare(a[sortedHeader.order] / a.nbMots, b[sortedHeader.order] / b.nbMots, sortedHeader.sens);
+    }
+
     return compare(valueA, valueB, sortedHeader.sens);
   });
   return dispositifsToDisplay;
