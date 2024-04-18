@@ -7,14 +7,12 @@ import styled from "styled-components";
 import { getPath } from "routes";
 import { useLocale } from "hooks";
 import { cls } from "lib/classname";
-import { getLinkedThemesReadableText } from "lib/getReadableText";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { Event } from "lib/tracking";
 import { secondaryThemesSelector, themeSelector, themesSelector } from "services/Themes/themes.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { dispositifNeedsSelector } from "services/Needs/needs.selectors";
 import SearchThemeButton from "components/UI/SearchThemeButton";
-import SectionButtons from "../SectionButtons";
 import styles from "./LinkedThemes.module.scss";
 
 interface LinkNeedProps {
@@ -82,7 +80,6 @@ const LinkedThemes = () => {
           );
         })}
       </div>
-      <SectionButtons id="themes" content={getLinkedThemesReadableText(theme, secondaryThemes, needs)} />
     </div>
   );
 };

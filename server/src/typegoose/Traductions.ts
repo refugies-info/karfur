@@ -77,7 +77,7 @@ export class Traductions extends Base {
   public timeSpent: number;
 
   @prop()
-  public avancement: number;
+  public finished: boolean;
 
   @prop({ type: () => [String] })
   public toReview?: string[];
@@ -107,13 +107,13 @@ export class Traductions extends Base {
    */
   public get status(): TraductionsStatus {
     if (this.type === TraductionsType.VALIDATION) {
-      return isEmpty(this.toReview) && this.avancement === 1
+      return isEmpty(this.toReview) && this.finished
         ? TraductionsStatus.VALIDATED
         : TraductionsStatus.TO_REVIEW;
     }
 
     // if type === "suggestion"
-    return this.avancement === 1 ? TraductionsStatus.PENDING : TraductionsStatus.TO_TRANSLATE;
+    return this.finished ? TraductionsStatus.PENDING : TraductionsStatus.TO_TRANSLATE;
   }
 
   public getUser(): User {
@@ -138,11 +138,17 @@ export class Traductions extends Base {
     return { added, modified, removed };
   }
 
-  public static computeAvancement(dispositif: Dispositif, translation: Traductions): number {
+  public static computeFinished(dispositif: Dispositif, translation: Traductions): boolean {
     const dispositifSectionsCounter = keys(dispositif.translations.fr).length;
     const translationSectionsCounter = keys(translation.translated).length;
     const notFinished = [...new Set([...(translation.toFinish || []), ...(translation.toReview || [])])].length;
-    return (translationSectionsCounter - notFinished) / dispositifSectionsCounter;
+    return ((translationSectionsCounter - notFinished) / dispositifSectionsCounter) >= 1;
+  }
+
+  public get sectionsTranslated(): string[] {
+    const translatedSections = keys(this.translated);
+    const notFinished = [...new Set([...(this.toFinish || []), ...(this.toReview || [])])];
+    return translatedSections.filter(t => !notFinished.includes(t));
   }
 }
 

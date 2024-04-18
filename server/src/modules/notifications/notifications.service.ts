@@ -62,7 +62,7 @@ export const getUsersNotifsNotAllowed = async (): Promise<string[]> => {
 }
 
 export const getNotificationsToSend = async (notifications: Notification[], tokens: Record<string, string>) => {
-  const usersNotAllowed = await getUsersNotifsNotAllowed();
+  const usersNotAllowed: string[] = []; // await getUsersNotifsNotAllowed(); // FIXME: temporary removed to send survey to TS
   const messages: ExpoPushMessage[] = notifications
     .map((notification) => {
       if (usersNotAllowed.includes(notification.uid)) return null;

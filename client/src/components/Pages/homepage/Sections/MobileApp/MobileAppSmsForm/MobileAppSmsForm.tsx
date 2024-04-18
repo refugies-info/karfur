@@ -4,6 +4,7 @@ import { useTranslation } from "next-i18next";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import { isValidPhone } from "lib/validateFields";
+import { Event } from "lib/tracking";
 import { languei18nSelector, allLanguesSelector } from "services/Langue/langue.selectors";
 import Input from "components/UI/Input";
 import FButton from "components/UI/FButton";
@@ -40,6 +41,7 @@ const MobileAppSmsForm = () => {
             icon: "success",
             timer: 1500,
           });
+          Event("SEND_SMS", "download app", "homepage");
           setPhone("");
         })
         .catch((e) => {
@@ -52,6 +54,7 @@ const MobileAppSmsForm = () => {
 
   return (
     <div className={styles.container}>
+      <label>{t("Homepage.mobileAppFormLabelDetails")}</label>
       <div className={styles.sms_form}>
         <Input
           type="text"

@@ -39,7 +39,7 @@ const saveTranslation = (
       }
     }
 
-    _traduction.avancement = Traductions.computeAvancement(dispositif, _traduction);
+    _traduction.finished = Traductions.computeFinished(dispositif, _traduction);
 
     const wordsCount = _traduction.countWords();
 

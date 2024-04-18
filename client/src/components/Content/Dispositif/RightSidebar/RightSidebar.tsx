@@ -6,12 +6,14 @@ import { useFavorites, useLocale, useAuth, useContentLocale, useChangeLanguage, 
 import { useDispositifTts } from "hooks/dispositif";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
+import { hasTTSAvailable } from "data/activatedLanguages";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import Button from "components/UI/Button";
 import Toast from "components/UI/Toast";
 import BookmarkedModal from "components/Modals/BookmarkedModal";
 import { ShareButtons, SMSForm, LangueMenu, StructureReceiveDispositif } from "components/Pages/dispositif";
+import Tooltip from "components/UI/Tooltip";
 import styles from "./RightSidebar.module.scss";
 
 const RightSidebar = () => {
@@ -84,15 +86,24 @@ const RightSidebar = () => {
     );
   }, [dispositif, user]);
 
+  const ttsEnabled = useMemo(() => hasTTSAvailable.includes(locale), [locale]);
+
   return (
     <div className={styles.container}>
       {!needsApproval ? (
         <>
+          {!ttsEnabled && (
+            <Tooltip target="no-tts-tooltip" placement="top">
+              Écouter la fiche en tigrinya n'est pas possible pour le moment.
+            </Tooltip>
+          )}
           <Button
             onClick={toggleReading}
             evaIcon={isPlayingTts ? "stop-circle" : "play-circle"}
             isLoading={isLoadingTts}
             className={cls(styles.btn, isPlayingTts && styles.playing)}
+            disabled={!ttsEnabled}
+            id="no-tts-tooltip"
           >
             {isPlayingTts ? t("Dispositif.stop") : t("Dispositif.listen")}
           </Button>

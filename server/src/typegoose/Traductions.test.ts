@@ -115,7 +115,7 @@ const trad_avancement: RecursivePartial<TranslationContent> = {
   validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4")
 };
 
-describe.skip("Traductions", () => {
+describe("Traductions", () => {
   describe("diff", () => {
     it("should return empty array", () => {
       expect(Traductions.diff(trad, trad)).toEqual({ added: [], removed: [], modified: [] });
@@ -147,7 +147,6 @@ describe.skip("Traductions", () => {
           "content.titreMarque",
           "content.next.my-uuid-v4-key-2.title",
           "content.next.my-uuid-v4-key-2.text",
-          "metadatas.important",
         ],
         added: ["content.how.my-uuid-v4-key-2.title", "content.how.my-uuid-v4-key-2.text"],
         removed: ["content.next.my-uuid-v4-key.title", "content.next.my-uuid-v4-key.text"],
@@ -155,20 +154,20 @@ describe.skip("Traductions", () => {
     });
   });
 
-  describe("computeAvancement", () => {
-    it("should return 1.00 avancement", () => {
+  describe("computeFinished", () => {
+    it("should return true", () => {
       // @ts-ignore because we inject a partial Dispositif & partial Traductions
-      expect(Traductions.computeAvancement({ translations: { fr: trad } }, { translated: trad })).toEqual(1);
+      expect(Traductions.computeFinished({ translations: { fr: trad } }, { translated: trad })).toEqual(true);
     });
-    it("should return 0 avancement", () => {
+    it("should return false", () => {
       // @ts-ignore because we inject a partial Dispositif & partial Traductions
-      expect(Traductions.computeAvancement({ translations: { fr: trad } }, { translated: { content: {} } })).toEqual(0);
+      expect(Traductions.computeFinished({ translations: { fr: trad } }, { translated: { content: {} } })).toEqual(false);
     });
-    it("should return 0.5 avancement", () => {
+    it("should return false", () => {
       expect(
         // @ts-ignore because we inject a partial Dispositif & partial Traductions
-        Traductions.computeAvancement({ translations: { fr: trad_complete } }, { translated: trad_avancement }),
-      ).toEqual(0.5);
+        Traductions.computeFinished({ translations: { fr: trad_complete } }, { translated: trad_avancement }),
+      ).toEqual(false);
     });
   });
 });

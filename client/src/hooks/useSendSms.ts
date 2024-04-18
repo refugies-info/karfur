@@ -23,8 +23,7 @@ const useSendSms = () => {
       url: `https://refugies.info/${ln}${getPath(
         dispositif?.typeContenu === ContentType.DEMARCHE ? "/demarche/[id]" : "/dispositif/[id]",
         ln,
-      ).replace("[id]", dispositif?._id.toString() || "")}${campaign ? `?utm_source=twilio&utm_medium=sms&${campaign}` : ""
-        }`,
+      ).replace("[id]", dispositif?._id.toString() || "")}?share=sms${campaign ? `&utm_source=twilio&utm_medium=sms&${campaign}` : ""}`,
       locale: ln,
     });
   }, [dispositif, utmz]);

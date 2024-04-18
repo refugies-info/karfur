@@ -11,6 +11,12 @@
   @include isTablet() {
     display: none;
   }
+
+  label {
+    margin-bottom: u(4);
+    font-weight: bold;
+    @include text("h5");
+  }
 }
 
 .sms_form {

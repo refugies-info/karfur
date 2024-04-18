@@ -8,6 +8,7 @@
     "btn_translate": "Je traduis",
     "mobileAppTitle": "Téléchargez l’application Réfugiés.info !",
     "mobileAppSubtitle": "Gratuite et accessible à tous, elle s’adresse aux personnes réfugiées mais aussi à leurs accompagnants. Vous y trouverez de l’information simplifiée, traduite en 7 langues, écoutable et facilement partageable.",
+    "mobileAppFormLabelDetails": "Envoyez le lien de téléchargement par SMS",
     "mobileAppFormLabel": "N° de téléphone",
     "mobileAppFormInstructions": "Vous recevrez le lien pour télécharger l’application par message. Pas d’inquiétude, on ne garde pas votre numéro !",
     "mobileAppReviews": "100+ notes et avis",
@@ -273,7 +274,9 @@
     "messageRemovedFromFavorites": "Fiche retirée des favoris !",
     "Oups": "Oups !",
     "Ville": "Ville",
-    "compris": "Ok, j’ai compris"
+    "compris": "Ok, j’ai compris",
+    "freeApp": "Application gratuite",
+    "downloadAppButton": "Télécharger"
   },
   "Infocards": {
     "availability": "Disponibilité demandée",
@@ -538,10 +541,9 @@
     "retry_search": "Essayez d’élargir votre recherche en désactivant certains tags"
   },
   "MobileAppModal": {
-    "stay": "Rester sur le navigateur",
     "download": "Télécharger l’application",
-    "subtitle": "Gratuite et plus facile à utiliser :",
-    "title": "Application mobile disponible !"
+    "continue": "Continuer quand même",
+    "description": "Sur votre smartphone, utilisez l’application Réfugiés.info, c’est plus facile et adapté !"
   },
   "StaticPages": {
     "helpTitle": "Vous n’êtes pas seul",

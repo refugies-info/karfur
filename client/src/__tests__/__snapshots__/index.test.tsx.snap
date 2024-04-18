@@ -2203,6 +2203,9 @@ exports[`homepage renders homepage 1`] = `
           <div
             className="container"
           >
+            <label>
+              Homepage.mobileAppFormLabelDetails
+            </label>
             <div
               className="sms_form"
             >
