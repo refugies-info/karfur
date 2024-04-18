@@ -14,7 +14,8 @@ describe("getNotificationsToSend", () => {
     jest.clearAllMocks();
   });
 
-  it("remove not allowed users", async () => {
+  // FIXME: temporary removed to send survey to TS. Can be restored if the function is used again
+  it.skip("remove not allowed users", async () => {
     const getUsersNotifsNotAllowedMock = jest.spyOn(notifications, 'getUsersNotifsNotAllowed');
     getUsersNotifsNotAllowedMock.mockResolvedValue(["1", "2"]);
 

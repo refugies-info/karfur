@@ -105,14 +105,17 @@ const Layout = (props: Props) => {
 
     const historyLength = props.history.length;
     // if user lands on homepage
-    if (historyLength === 1 && props.history[0] === "/") {
+    if (
+      (historyLength === 1 && props.history[0] === "/") || // homepage first
+      (historyLength === 2 && props.history[1] === "/" && props.history[0].match(/^\/[a-z][a-z]/gm)) // homepage and select language
+    ) {
       setTimeout(() => {
         toggleMobileAppModal();
       }, 10000);
     }
 
-    // if previous page was a content page
-    else if (historyLength > 1 && isContentPage(props.history[1])) {
+    // if previous page was a content page (but not current one)
+    else if (historyLength > 1 && isContentPage(props.history[1]) && !isContentPage(props.history[0])) {
       toggleMobileAppModal();
     }
 
