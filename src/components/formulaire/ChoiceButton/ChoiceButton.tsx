@@ -27,20 +27,19 @@ const MainContainer = styled(RTLTouchableOpacity)<{
       ? "transparent"
       : theme.colors.white};
   ${({ selected, flatStyle, theme }) =>
-    selected || flatStyle ? "" : theme.shadows.lg};
-  border-radius: ${({ theme }) => theme.radius * 2}px;
+    selected || flatStyle ? "" : theme.shadows.sm_dsfr};
   margin-bottom: ${({ flatStyle, theme }) =>
     !flatStyle ? theme.margin * 3 : 0}px;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: ${({ theme }) => theme.margin * 2 - 2}px;
-  border-width: 2px;
+  border-width: 1px;
   border-color: ${({ selected, flatStyle, theme }) =>
     selected
       ? theme.colors.darkBlue
       : flatStyle
       ? "transparent"
-      : theme.colors.white};
+      : theme.colors.borderGrey};
 `;
 
 export const ChoiceButton = ({

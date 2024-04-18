@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Image } from "react-native";
+import styled from "styled-components/native";
 import { saveSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
 import { LanguageDetailsButton } from "../components";
 import { activatedLanguages } from "../data/languagesData";
@@ -9,6 +11,14 @@ import { StackScreenProps } from "@react-navigation/stack";
 import PageOnboarding from "../components/layout/PageOnboarding";
 import { Languages } from "@refugies-info/api-types";
 import { selectedI18nCodeSelector } from "../services/redux/User/user.selectors";
+import HelloIllu from "../theme/images/onboarding/hello.png";
+
+const ImageContainer = styled.View`
+  margin-top: ${({ theme }) => theme.margin * 2}px;
+  margin-bottom: ${({ theme }) => theme.margin * 4}px;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const LanguageChoiceScreen = ({
   navigation,
@@ -34,6 +44,15 @@ export const LanguageChoiceScreen = ({
   };
   return (
     <PageOnboarding hideNavbar>
+      <ImageContainer>
+        <Image
+          source={HelloIllu}
+          width={80}
+          height={80}
+          alt=""
+          style={{ width: 80, height: 80 }}
+        />
+      </ImageContainer>
       {activatedLanguages.map((language, index) => (
         <LanguageDetailsButton
           hideRadio

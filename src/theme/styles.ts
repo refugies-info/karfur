@@ -5,6 +5,7 @@ const colors: Record<string, string> = {
   grey: "#EDEBEB",
   grey60: "#C6C6C6",
   grey70: "#ABABAB",
+  borderGrey: "#DDDDDD",
   white: "#FFFFFF",
   lightGrey: "#F6F6F6",
   admin100: "#443023",
@@ -140,6 +141,13 @@ const shadows = {
       shadow-radius: 8px;
       elevation: 5;
     `,
+  sm_dsfr: `
+      shadow-color: #000012;
+      shadow-opacity: 0.16;
+      shadow-offset: 0 2px;
+      shadow-radius: 6px;
+      elevation: 2;
+  `
 };
 
 const shadowsStylesheet = {
