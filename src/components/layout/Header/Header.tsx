@@ -3,7 +3,13 @@ import {
   useNavigation,
   useRoute,
 } from "@react-navigation/native";
-import React, { ComponentType, useCallback, useEffect, useMemo } from "react";
+import React, {
+  ComponentType,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useSelector } from "react-redux";
 import { Platform, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
@@ -106,17 +112,20 @@ export const Header = ({
   );
   const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
   const isFocused = useIsFocused();
+  const [languageSelected, setLanguageSelected] = useState(false);
   useEffect(() => {
     if (
       initialUrl &&
       initialUrlLocale === "fr" &&
       !hasUserSeenOnboarding &&
       selectedContent &&
-      isFocused
+      isFocused &&
+      !languageSelected
     ) {
+      setLanguageSelected(true);
       setTimeout(() => {
         toggleLanguageModal();
-      }, 2000);
+      }, 3000);
     }
   }, [
     initialUrl,
