@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { GetDispositifResponse } from "@refugies-info/api-types";
-import styled from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import {
   Button,
   Card,
@@ -45,6 +45,7 @@ export interface MercisProps {
 const Mercis = ({ dispositif }: MercisProps) => {
   const dispatch = useDispatch();
   const { t } = useTranslationWithRTL();
+  const theme = useTheme();
   const currentLanguage = useSelector(currentI18nCodeSelector) || "fr";
 
   const [thanks, setThanks] = useState<string[]>([]);
@@ -122,9 +123,15 @@ const Mercis = ({ dispositif }: MercisProps) => {
             <Columns layout="auto" horizontalAlign="center">
               <Button
                 accessibilityLabel="Dire merci"
-                color={hasThanked ? "#fff" : "#000091"}
-                iconColor={hasThanked ? "#fff" : "#000091"}
-                backgroundColor={hasThanked ? "#000091" : undefined}
+                color={
+                  hasThanked ? theme.colors.white : theme.colors.dsfr_action
+                }
+                iconColor={
+                  hasThanked ? theme.colors.white : theme.colors.dsfr_action
+                }
+                backgroundColor={
+                  hasThanked ? theme.colors.dsfr_action : undefined
+                }
                 iconName="thumb_up"
                 loading={state.loading}
                 onPress={merci}

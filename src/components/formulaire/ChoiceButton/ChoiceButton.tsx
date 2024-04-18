@@ -39,7 +39,7 @@ const MainContainer = styled(RTLTouchableOpacity)<{
       ? theme.colors.darkBlue
       : flatStyle
       ? "transparent"
-      : theme.colors.borderGrey};
+      : theme.colors.dsfr_borderGrey};
 `;
 
 export const ChoiceButton = ({

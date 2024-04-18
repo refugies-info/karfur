@@ -11,7 +11,7 @@ import { ReadButton } from "../../UI";
 export const TAB_BAR_HEIGHT = 80;
 
 const PageContainer = styled.View`
-  background-color: #f5f5fe;
+  background-color: ${({ theme }) => theme.colors.dsfr_backgroundBlue};
   flex: 1;
 `;
 const ContentContainer = styled.View`
@@ -31,7 +31,7 @@ const BottomTabBar = styled.View<{ insetBottom: number }>`
   flex-direction: row;
   justify-content: space-between;
   border-top-width: 1px;
-  border-color: #ddd;
+  border-color: ${({ theme }) => theme.colors.dsfr_borderGrey};
 `;
 
 const READ_BUTTON_SIZE = 64;
