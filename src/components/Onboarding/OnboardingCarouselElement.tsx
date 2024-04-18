@@ -4,9 +4,11 @@ import { View } from "react-native";
 import { onboardingCarouselData } from "./OnboardingCarouselData";
 import { TextBigBold } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { ReadableText } from "../ReadableText";
 
 interface Props {
   step: number;
+  focused: boolean;
 }
 
 const ImageBackground = styled.View`
@@ -44,7 +46,9 @@ export const OnboardingCarouselElement = (props: Props) => {
       <ImageForeground>{onboardingElement.image}</ImageForeground>
       <TextContainer>
         <StyledText accessibilityRole="text">
-          {t("onboarding_screens." + onboardingElement.text)}
+          <ReadableText isFocused={props.focused}>
+            {t("onboarding_screens." + onboardingElement.text)}
+          </ReadableText>
         </StyledText>
       </TextContainer>
     </View>

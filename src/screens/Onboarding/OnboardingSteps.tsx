@@ -58,7 +58,12 @@ export const OnboardingSteps = ({
         data={[...new Array(MAX_STEP).keys()]}
         scrollAnimationDuration={500}
         onSnapToItem={(index) => setIndex(index)}
-        renderItem={({ index }) => <OnboardingCarouselElement step={index} />}
+        renderItem={(item) => (
+          <OnboardingCarouselElement
+            step={item.index}
+            focused={index === item.index}
+          />
+        )}
       />
     </PageOnboarding>
   );

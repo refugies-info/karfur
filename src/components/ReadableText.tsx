@@ -17,6 +17,8 @@ interface Props {
   heightOffset?: boolean;
   // for header elements, force position to 0 so they are not in the middle of a list if it's scrolled
   overridePosY?: number;
+  // for carousel, override isFocused
+  isFocused?: boolean;
 }
 
 export const ReadableText = React.forwardRef((props: Props, ref: any) => {
@@ -31,12 +33,15 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
     return props.text || (props.children as string) || "";
   }, [props.text, props.children]);
 
+  const elementFocused =
+    props.isFocused !== undefined ? props.isFocused : isFocused;
+
   // Attach the properties/methods to the ref
   const readingObject = useRef<ReadingObject>();
   readingObject.current = {
     getReadingItem: (currentScroll: number) => {
       return new Promise((resolve) => {
-        if (!refView.current || !isFocused) {
+        if (!refView.current || !elementFocused) {
           resolve(undefined);
           return;
         }
