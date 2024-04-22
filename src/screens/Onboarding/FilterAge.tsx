@@ -1,39 +1,46 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
-import { OnboardingParamList } from "../../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { GetContentsForAppRequest } from "@refugies-info/api-types";
 import { StackScreenProps } from "@react-navigation/stack";
+import { OnboardingParamList } from "../../../types";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
-import { BottomButtons } from "../../components/Onboarding/BottomButtons";
 import { Title } from "../../components/Onboarding/SharedStyledComponents";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ageFilters } from "../../data/filtersData";
 import { Explaination } from "../../components/Onboarding/Explaination";
-import { useDispatch, useSelector } from "react-redux";
 import {
   saveUserAgeActionCreator,
   removeUserAgeActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userAgeSelector } from "../../services/redux/User/user.selectors";
-import { FilterButton, Page, Rows } from "../../components";
-import { GetContentsForAppRequest } from "@refugies-info/api-types";
+import { FilterButton, RadioGroup, Rows } from "../../components";
+import PageOnboarding from "../../components/layout/PageOnboarding";
 
 export const FilterAge = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterAge">) => {
-  const [selectedAge, setSelectedAge] = React.useState<
-    GetContentsForAppRequest["age"] | null
-  >(null);
-  const navigateToNextScreen = () => navigation.navigate("FilterFrenchLevel");
-
+  const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
+  const [selectedAge, setSelectedAge] = useState<
+    GetContentsForAppRequest["age"] | null
+  >(null);
   const userAge = useSelector(userAgeSelector);
 
   useEffect(() => {
-    if (userAge) {
-      setSelectedAge(userAge);
-    }
+    if (userAge) setSelectedAge(userAge);
   }, [userAge]);
+
+  const navigateToNextScreen = useCallback(
+    () => navigation.navigate("FilterFrenchLevel"),
+    [navigation]
+  );
+
+  const onSkip = useCallback(() => {
+    dispatch(removeUserAgeActionCreator(false));
+    return navigateToNextScreen();
+  }, [navigateToNextScreen]);
 
   const onValidate = () => {
     if (selectedAge) {
@@ -45,24 +52,21 @@ export const FilterAge = ({
       );
       return navigateToNextScreen();
     }
-    dispatch(removeUserAgeActionCreator(false));
-    return navigateToNextScreen();
+    onSkip();
   };
 
   const onAgeClick = (age: GetContentsForAppRequest["age"]) => {
-    if (selectedAge && selectedAge === age) {
-      return setSelectedAge(null);
-    }
+    if (selectedAge && selectedAge === age) return setSelectedAge(null);
     return setSelectedAge(age);
   };
 
-  const { t } = useTranslationWithRTL();
   return (
-    <Page
-      headerIconName={"person-outline"}
-      headerTitle={t("onboarding_screens.me", "Créer mon profil")}
-      hideLanguageSwitch
+    <PageOnboarding
+      onPrevious={() => navigation.navigate("FilterCity")}
+      onNext={onValidate}
     >
+      <OnboardingProgressBar step={2} onSkip={onSkip} />
+
       <Rows layout="1 auto" verticalAlign="space-between">
         <View>
           <Title>{t("onboarding_screens.age", "Quel âge as-tu ?")}</Title>
@@ -70,7 +74,7 @@ export const FilterAge = ({
             step={2}
             defaultText="C’est pour te montrer les démarches et les activités pour ton âge."
           />
-          <View accessibilityRole="radiogroup">
+          <RadioGroup>
             {ageFilters.map((age) => (
               <FilterButton
                 key={age.name}
@@ -79,17 +83,9 @@ export const FilterAge = ({
                 onPress={() => onAgeClick(age.key)}
               />
             ))}
-          </View>
-        </View>
-        <View>
-          <OnboardingProgressBar step={2} />
-          <BottomButtons
-            isRightButtonDisabled={!selectedAge}
-            onLeftButtonClick={onValidate}
-            onRightButtonClick={onValidate}
-          />
+          </RadioGroup>
         </View>
       </Rows>
-    </Page>
+    </PageOnboarding>
   );
 };

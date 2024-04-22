@@ -22,9 +22,7 @@ export const AgeProfilScreen = ({
   const [selectedAge, setSelectedAge] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    if (userAge) {
-      setSelectedAge(userAge);
-    }
+    if (userAge) setSelectedAge(userAge);
   }, [userAge]);
 
   const removeAge = () => {

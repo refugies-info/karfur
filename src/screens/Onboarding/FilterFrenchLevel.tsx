@@ -1,36 +1,33 @@
-import React from "react";
-import { OnboardingParamList } from "../../../types";
+import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { View } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
+import { MobileFrenchLevel } from "@refugies-info/api-types";
+import { OnboardingParamList } from "../../../types";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
-import { BottomButtons } from "../../components/Onboarding/BottomButtons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Title } from "../../components/Onboarding/SharedStyledComponents";
 import { frenchLevelFilters } from "../../data/filtersData";
 import { Explaination } from "../../components/Onboarding/Explaination";
-import { useDispatch, useSelector } from "react-redux";
 import {
   saveUserFrenchLevelActionCreator,
   removeUserFrenchLevelActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
-import { FilterButton, Page, RadioGroup, Rows } from "../../components";
-import { View } from "react-native";
-import { MobileFrenchLevel } from "@refugies-info/api-types";
+import { FilterButton, RadioGroup, Rows } from "../../components";
+import PageOnboarding from "../../components/layout/PageOnboarding";
 
 export const FilterFrenchLevel = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterFrenchLevel">) => {
-  const [selectedFrenchLevel, setSelectedFrenchLevel] =
-    React.useState<null | MobileFrenchLevel>(null);
   const { t } = useTranslationWithRTL();
-
-  const navigateToNextScreen = () => navigation.navigate("FinishOnboarding");
-
   const dispatch = useDispatch();
 
+  const [selectedFrenchLevel, setSelectedFrenchLevel] =
+    useState<null | MobileFrenchLevel>(null);
   const userFrenchLevel = useSelector(userFrenchLevelSelector);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (userFrenchLevel) {
       const formattedLevel = frenchLevelFilters.find(
         (frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel
@@ -40,6 +37,16 @@ export const FilterFrenchLevel = ({
       }
     }
   }, [userFrenchLevel]);
+
+  const navigateToNextScreen = useCallback(
+    () => navigation.navigate("FinishOnboarding"),
+    [navigation]
+  );
+
+  const onSkip = useCallback(() => {
+    dispatch(removeUserFrenchLevelActionCreator(false));
+    return navigateToNextScreen();
+  }, [navigateToNextScreen]);
 
   const onValidate = () => {
     if (selectedFrenchLevel) {
@@ -51,24 +58,21 @@ export const FilterFrenchLevel = ({
       );
       return navigateToNextScreen();
     }
-    dispatch(removeUserFrenchLevelActionCreator(false));
-    return navigateToNextScreen();
+    onSkip();
   };
 
   const onSelectFrenchLevel = (frenchLevel: MobileFrenchLevel) => {
-    if (selectedFrenchLevel === frenchLevel) {
-      setSelectedFrenchLevel(null);
-    } else {
-      setSelectedFrenchLevel(frenchLevel);
-    }
+    if (selectedFrenchLevel === frenchLevel)
+      return setSelectedFrenchLevel(null);
+    return setSelectedFrenchLevel(frenchLevel);
   };
 
   return (
-    <Page
-      headerIconName={"person-outline"}
-      headerTitle={t("onboarding_screens.me", "Créer mon profil")}
-      hideLanguageSwitch
+    <PageOnboarding
+      onPrevious={() => navigation.navigate("FilterAge")}
+      onNext={onValidate}
     >
+      <OnboardingProgressBar step={3} onSkip={onSkip} />
       <Rows layout="1 auto" verticalAlign="space-between">
         <View>
           <Title>
@@ -98,15 +102,7 @@ export const FilterFrenchLevel = ({
             ))}
           </RadioGroup>
         </View>
-        <View>
-          <OnboardingProgressBar step={3} />
-          <BottomButtons
-            isRightButtonDisabled={!selectedFrenchLevel}
-            onLeftButtonClick={onValidate}
-            onRightButtonClick={onValidate}
-          />
-        </View>
       </Rows>
-    </Page>
+    </PageOnboarding>
   );
 };

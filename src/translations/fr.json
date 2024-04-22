@@ -8,7 +8,6 @@
     "step3": "C'est une application officielle, soutenue par le gouvernement.",
     "step4": "Toute l'application est gratuite ! Pas besoin de payer.",
     "end_no_info": "Tu pourras renseigner ces informations plus tard en cliquant sur « Moi ».",
-    "me": "Moi",
     "help_1": "C’est pour te montrer les associations et les activités à côté de chez toi.",
     "help_2": "C’est pour te montrer les démarches et les activités pour ton âge.",
     "help_3": "C’est pour te montrer les formations selon ton niveau de français.",
@@ -25,7 +24,8 @@
     "thank_you": "Merci !",
     "start_searching_button": "Commencer à chercher",
     "skip_step_button": "Passer l'étape",
-    "next_button": "Suivant"
+    "next_button": "Suivant",
+    "skip": "Passer"
   },
   "tab_bar": {
     "explorer": "Explorer",

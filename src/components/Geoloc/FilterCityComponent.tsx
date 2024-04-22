@@ -6,7 +6,7 @@ import { TextSmallBold, StyledTextSmallBold } from "../StyledText";
 import React from "react";
 import { GoogleAPISuggestion } from "../../../types";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { userLocationSelector } from "../../services/redux/User/user.selectors";
 import {
   getCitiesFromGoogleAPI,
@@ -17,20 +17,12 @@ import {
   getDepartementFromResult,
   getCityFromResult,
 } from "../../libs/geolocalisation";
-import {
-  saveUserLocationActionCreator,
-  removeUserLocationActionCreator,
-  removeUserLocalizedWarningHiddenActionCreator,
-} from "../../services/redux/User/user.actions";
 import { Title, Label } from "../Onboarding/SharedStyledComponents";
 import { View, ActivityIndicator } from "react-native";
 import { SearchBarCity } from "../Onboarding/SearchBarCity";
 import { Icon } from "react-native-eva-icons";
 import { Explaination } from "../Onboarding/Explaination";
 import { ErrorComponent } from "../ErrorComponent";
-import { OnboardingProgressBar } from "../Onboarding/OnboardingProgressBar";
-import { BottomButtons } from "../Onboarding/BottomButtons";
-import { CustomButton } from "../CustomButton";
 import { Rows } from "../layout";
 
 const GeolocContainer = styled(RTLTouchableOpacity)<{ hasError: boolean }>`
@@ -70,24 +62,27 @@ const SelectedCityText = styled(StyledTextSmallBold)<{ isRTL: boolean }>`
 const ICON_SIZE = 24;
 
 interface Props {
-  navigation: any;
-  isOnboardingScreen: boolean;
+  selectedCity: string;
+  setSelectedCity: React.Dispatch<React.SetStateAction<string>>;
+  selectedDepartment: string;
+  setSelectedDepartment: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const FilterCityComponent = (props: Props) => {
+export const FilterCityComponent = ({
+  selectedCity,
+  setSelectedCity,
+  selectedDepartment,
+  setSelectedDepartment,
+}: Props) => {
   const [enteredText, setEnteredText] = React.useState("");
   const [suggestions, setSuggestions] = React.useState<GoogleAPISuggestion[]>(
     []
   );
   const [error, setError] = React.useState("");
-  const [selectedCity, setSelectedCity] = React.useState("");
-  const [selectedDepartment, setSelectedDepartment] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
   const { t, isRTL } = useTranslationWithRTL();
 
   const defaultError = t("global.error", "Une erreur est survenue, réessaie.");
-
-  const dispatch = useDispatch();
 
   const resetData = () => {
     setEnteredText("");
@@ -225,31 +220,6 @@ export const FilterCityComponent = (props: Props) => {
     }
   };
 
-  const navigateToNextScreen = () =>
-    props.isOnboardingScreen
-      ? props.navigation.navigate("FilterAge")
-      : props.navigation.goBack();
-
-  const onValidate = () => {
-    if (selectedCity && selectedDepartment) {
-      dispatch(
-        saveUserLocationActionCreator({
-          city: selectedCity,
-          dep: selectedDepartment,
-          shouldFetchContents: props.isOnboardingScreen ? false : true,
-        })
-      );
-    } else {
-      dispatch(
-        removeUserLocationActionCreator(props.isOnboardingScreen ? false : true)
-      );
-    }
-    dispatch(removeUserLocalizedWarningHiddenActionCreator());
-    return navigateToNextScreen();
-  };
-
-  const isOnValidateDisabled =
-    userLocation.city === selectedCity || (!userLocation.city && !selectedCity);
   return (
     <Rows verticalAlign="space-between">
       <View>
@@ -318,41 +288,6 @@ export const FilterCityComponent = (props: Props) => {
           </View>
         )}
       </View>
-      {props.isOnboardingScreen ? (
-        <View>
-          <OnboardingProgressBar step={1} />
-          <BottomButtons
-            isRightButtonDisabled={!selectedCity || !selectedDepartment}
-            onLeftButtonClick={onValidate}
-            onRightButtonClick={onValidate}
-          />
-        </View>
-      ) : (
-        <Rows>
-          <CustomButton
-            i18nKey="global.validate"
-            defaultText="Valider"
-            textColor={styles.colors.white}
-            onPress={() => {
-              if (isOnValidateDisabled) return;
-              onValidate();
-            }}
-            backgroundColor={styles.colors.darkBlue}
-            iconName="checkmark-outline"
-            isDisabled={isOnValidateDisabled}
-            iconFirst={true}
-          />
-
-          <CustomButton
-            i18nKey="global.cancel"
-            defaultText="Annuler"
-            textColor={styles.colors.black}
-            onPress={props.navigation.goBack}
-            isTextNotBold={true}
-            isDisabled={isOnValidateDisabled}
-          />
-        </Rows>
-      )}
     </Rows>
   );
 };

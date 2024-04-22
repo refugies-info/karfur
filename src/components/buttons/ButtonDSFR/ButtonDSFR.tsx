@@ -15,16 +15,19 @@ export interface ButtonProps {
   onPress: TouchableOpacityProps["onPress"];
   title?: string;
   priority: "primary" | "secondary" | "tertiary" | "tertiary no outline";
+  size?: "default" | "small";
 }
 
 const ButtonText = styled.Text<{
   color: string;
   disabled: boolean;
+  size: "default" | "small" | undefined;
 }>`
   color: ${({ theme, color, disabled }) =>
     disabled ? theme.colors.dsfr_borderGrey : color};
   font-family: ${({ theme }) => theme.fonts.button.family};
-  font-size: ${({ theme }) => theme.fonts.button.size};
+  font-size: ${({ theme, size }) =>
+    size === "small" ? theme.fonts.button.sizeSmall : theme.fonts.button.size};
   font-weight: ${({ theme }) => theme.fonts.button.weight};
 `;
 
@@ -49,11 +52,11 @@ const Button = ({
   loading = false,
   onPress,
   title,
+  size,
 }: ButtonProps) => {
   const theme = useTheme();
   const backgroundColor = useMemo(
-    () =>
-      priority === "primary" ? theme.colors.dsfr_action : theme.colors.white,
+    () => (priority === "primary" ? theme.colors.dsfr_action : "transparent"),
     [priority]
   );
   const color = useMemo(
@@ -70,7 +73,7 @@ const Button = ({
       case "tertiary":
         return theme.colors.dsfr_borderGrey;
       default:
-        return theme.colors.white;
+        return "transparent";
     }
   }, [priority]);
 
@@ -105,7 +108,7 @@ const Button = ({
       >
         {!iconAfter && icon}
         {title && (
-          <ButtonText color={color} disabled={disabled || loading}>
+          <ButtonText color={color} disabled={disabled || loading} size={size}>
             {title}
           </ButtonText>
         )}

@@ -8,6 +8,8 @@ const colors: Record<string, string> = {
   dsfr_borderGrey: "#DDDDDD",
   dsfr_action: "#000091",
   dsfr_backgroundBlue: "#f5f5fe",
+  dsfr_blueActive: "#2323FF",
+  dsfr_backgroundDisabled: "#e5e5e5",
   white: "#FFFFFF",
   lightGrey: "#F6F6F6",
   admin100: "#443023",
@@ -104,6 +106,7 @@ const fonts = {
   button: {
     family: "circularBook",
     size: "19px",
+    sizeSmall: "14px",
     weight: "normal",
   },
 };
