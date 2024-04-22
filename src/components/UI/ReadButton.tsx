@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import * as Haptics from "expo-haptics";
 import { deactivateKeepAwake } from "expo-keep-awake";
 import {
@@ -28,10 +34,13 @@ import {
   shouldStopSelector,
 } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { styles } from "../../theme";
-import Pause from "../../theme/images/voiceover/pause_icon.svg";
-import Play from "../../theme/images/voiceover/play_icon.svg";
+import { PauseIcon, PlayIcon } from "../../theme/images/voiceover";
 import { ReadingItem } from "../../types/interface";
-import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
+import {
+  StyledTextSmallBold,
+  StyledTextVerySmall,
+  StyledTextVerySmallBold,
+} from "../StyledText";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -56,15 +65,25 @@ const PlayContainer = styled(TouchableOpacity)`
   justify-content: center;
   z-index: 2;
 `;
-const PlayButton = styled.View`
-  width: 56px;
-  height: 56px;
-  border-radius: 28px;
-  background-color: ${({ theme }) => theme.colors.darkBlue};
+const PlayButtonWrapper = styled.View`
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+`;
+const PlayButton = styled.View<{ white: boolean }>`
+  width: 54px;
+  height: 54px;
+  border-radius: 27px;
   z-index: 20;
   align-items: center;
   justify-content: center;
-  ${styles.shadows.blue}
+  background-color: ${({ theme, white }) =>
+    white ? "white" : theme.colors.darkBlue};
+  border: ${({ theme, white }) =>
+    white ? `1px solid ${theme.colors.darkBlue}` : "none"};
 `;
 const Buttons = styled(Animated.View)`
   flex-direction: row;
@@ -127,6 +146,8 @@ const getReadingList = (
 
 interface Props {
   bottomInset: number;
+  white?: boolean;
+  bold?: boolean;
 }
 
 export const ReadButton = (props: Props) => {
@@ -352,6 +373,14 @@ export const ReadButton = (props: Props) => {
     }
   };
 
+  const colors = useMemo(
+    () => ({
+      icon: props.white ? styles.colors.darkBlue : "#ffffff",
+      text: props.white ? styles.colors.darkBlue : styles.colors.darkGrey,
+    }),
+    [props.white]
+  );
+
   return (
     <Container bottomInset={props.bottomInset}>
       <PlayContainer
@@ -361,23 +390,30 @@ export const ReadButton = (props: Props) => {
         accessible={true}
         accessibilityLabel={t("tab_bar.listen", "Écouter")}
       >
-        <PlayButton>
-          {isLoading ? (
-            <ActivityIndicator
-              style={{ width: 16, height: 16 }}
-              color="white"
-            />
-          ) : isReading && !isPaused ? (
-            <Pause width={16} height={16} />
+        <PlayButtonWrapper>
+          <PlayButton white={!!props.white}>
+            {isLoading ? (
+              <ActivityIndicator
+                style={{ width: 20, height: 20 }}
+                color={colors.icon}
+              />
+            ) : isReading && !isPaused ? (
+              <PauseIcon size={20} color={colors.icon} />
+            ) : (
+              <PlayIcon size={20} color={colors.icon} />
+            )}
+          </PlayButton>
+        </PlayButtonWrapper>
+        {fontScale < 1.3 &&
+          (props.bold ? (
+            <StyledTextVerySmallBold style={{ color: colors.text }}>
+              {t("tab_bar.listen", "Écouter")}
+            </StyledTextVerySmallBold>
           ) : (
-            <Play width={16} height={16} />
-          )}
-        </PlayButton>
-        {fontScale < 1.3 && (
-          <StyledTextVerySmall style={{ color: styles.colors.darkGrey }}>
-            {t("tab_bar.listen", "Écouter")}
-          </StyledTextVerySmall>
-        )}
+            <StyledTextVerySmall style={{ color: colors.text }}>
+              {t("tab_bar.listen", "Écouter")}
+            </StyledTextVerySmall>
+          ))}
       </PlayContainer>
       <Buttons style={[animatedStyle]}>
         <BackgroundContainer>

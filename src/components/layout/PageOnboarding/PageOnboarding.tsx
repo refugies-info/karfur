@@ -111,7 +111,7 @@ const PageOnboarding = ({
             ></ButtonDSFR>
           )}
           <ReadButtonContainer>
-            <ReadButton bottomInset={0} />
+            <ReadButton bottomInset={0} white bold />
           </ReadButtonContainer>
           {onNext && (
             <ButtonDSFR
