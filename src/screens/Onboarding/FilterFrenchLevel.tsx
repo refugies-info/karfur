@@ -88,20 +88,22 @@ export const FilterFrenchLevel = ({
             defaultText="C’est pour te montrer les formations faites pour ton niveau de français."
           />
           <RadioGroup>
-            {frenchLevelFilters.map((frenchLevel) => (
-              <FilterButton
-                key={frenchLevel.name}
-                text={frenchLevel.name}
-                isSelected={
-                  !!selectedFrenchLevel &&
-                  frenchLevel.key === selectedFrenchLevel
-                }
-                onPress={() => {
-                  onSelectFrenchLevel(frenchLevel.key);
-                }}
-                details={frenchLevel.cecrCorrespondency}
-              />
-            ))}
+            {frenchLevelFilters
+              .filter((f) => f.name !== "no_french_level_filter")
+              .map((frenchLevel) => (
+                <FilterButton
+                  key={frenchLevel.name}
+                  text={frenchLevel.name}
+                  isSelected={
+                    !!selectedFrenchLevel &&
+                    frenchLevel.key === selectedFrenchLevel
+                  }
+                  onPress={() => {
+                    onSelectFrenchLevel(frenchLevel.key);
+                  }}
+                  details={frenchLevel.cecrCorrespondency}
+                />
+              ))}
           </RadioGroup>
         </View>
       </Rows>

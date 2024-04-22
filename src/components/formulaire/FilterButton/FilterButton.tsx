@@ -13,7 +13,8 @@ export interface FilterButtonProps {
 
 const StyledText = styled(TextSmallBold)<{ isSelected: boolean }>`
   color: ${({ isSelected, theme }) =>
-    isSelected ? theme.colors.darkBlue : theme.colors.black};
+    isSelected ? theme.colors.dsfr_action : theme.colors.dsfr_dark};
+  padding-vertical: ${({ theme }) => theme.margin / 2}px;
 `;
 
 const FilterButton = (props: FilterButtonProps) => {

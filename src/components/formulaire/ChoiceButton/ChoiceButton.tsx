@@ -22,7 +22,7 @@ const MainContainer = styled(RTLTouchableOpacity)<{
 }>`
   background-color: ${({ selected, flatStyle, theme }) =>
     selected
-      ? theme.colors.lightBlue
+      ? theme.colors.dsfr_actionLowBlue
       : flatStyle
       ? "transparent"
       : theme.colors.white};
@@ -32,11 +32,11 @@ const MainContainer = styled(RTLTouchableOpacity)<{
     !flatStyle ? theme.margin * 3 : 0}px;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: ${({ theme }) => theme.margin * 2 - 2}px;
+  padding: ${({ theme }) => theme.margin * 2}px;
   border-width: 1px;
   border-color: ${({ selected, flatStyle, theme }) =>
     selected
-      ? theme.colors.darkBlue
+      ? theme.colors.dsfr_action
       : flatStyle
       ? "transparent"
       : theme.colors.dsfr_borderGrey};
@@ -52,7 +52,6 @@ export const ChoiceButton = ({
   style = {},
   testID,
 }: ChoiceButtonProps) => {
-  const theme = useTheme();
   return (
     <MainContainer
       accessibilityRole={accessibilityRole}
@@ -64,18 +63,7 @@ export const ChoiceButton = ({
     >
       <Columns RTLBehaviour layout="1 auto" verticalAlign="center">
         {children}
-        {!hideRadio && (
-          <RadioButton selected={isSelected}>
-            {isSelected && (
-              <Icon
-                name="checkmark-outline"
-                width={16}
-                height={16}
-                fill={theme.colors.white}
-              />
-            )}
-          </RadioButton>
-        )}
+        {!hideRadio && <RadioButton isSelected={isSelected} />}
       </Columns>
     </MainContainer>
   );

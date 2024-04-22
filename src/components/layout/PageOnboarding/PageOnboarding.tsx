@@ -74,9 +74,14 @@ const PageOnboarding = ({
     resetScroll();
   }, [resetScroll]);
 
+  // use reduced insets
   const insetBottom = useMemo(
     () => (insets.bottom > 0 ? insets.bottom - 8 : 0),
     [insets.bottom]
+  );
+  const insetTop = useMemo(
+    () => (insets.top > 0 ? insets.top - 8 : 0),
+    [insets.top]
   );
 
   return (
@@ -91,7 +96,7 @@ const PageOnboarding = ({
           scrollIndicatorInsets={{ right: 1 }}
           contentContainerStyle={{
             paddingBottom: insetBottom + TAB_BAR_HEIGHT,
-            paddingTop: insets.top,
+            paddingTop: insetTop,
           }}
         >
           <ContentContainer>{children}</ContentContainer>

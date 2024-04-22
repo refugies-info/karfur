@@ -1,20 +1,23 @@
-import styled from "styled-components/native";
+import React from "react";
+import { Icon } from "react-native-eva-icons";
+import { useTheme } from "styled-components/native";
 
-export interface RadioButtonProps {
-  selected: boolean;
+interface Props {
+  isSelected: boolean;
 }
 
-const RadioButton = styled.View<RadioButtonProps>`
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
-  border-width: 1px;
-  border-color: ${({ selected, theme }) =>
-    selected ? "transparent" : theme.colors.darkGrey};
-  background-color: ${({ selected, theme }) =>
-    !selected ? "transparent" : theme.colors.darkBlue};
-  align-items: center;
-  justify-content: center;
-`;
+export const RadioButton = (props: Props) => {
+  const theme = useTheme();
+  return (
+    <Icon
+      name={props.isSelected ? "radio-button-on" : "radio-button-off"}
+      width={24}
+      height={24}
+      fill={
+        props.isSelected ? theme.colors.dsfr_action : theme.colors.dsfr_dark
+      }
+    />
+  );
+};
 
 export default RadioButton;
