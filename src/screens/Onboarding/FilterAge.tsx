@@ -14,7 +14,7 @@ import {
   removeUserAgeActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userAgeSelector } from "../../services/redux/User/user.selectors";
-import { FilterButton, RadioGroup, Rows } from "../../components";
+import { FilterButton, RadioGroup, ReadableText, Rows } from "../../components";
 import PageOnboarding from "../../components/layout/PageOnboarding";
 
 export const FilterAge = ({
@@ -69,7 +69,11 @@ export const FilterAge = ({
 
       <Rows layout="1 auto" verticalAlign="space-between">
         <View>
-          <Title>{t("onboarding_screens.age", "Quel âge as-tu ?")}</Title>
+          <Title>
+            <ReadableText>
+              {t("onboarding_screens.age", "Quel âge as-tu ?")}
+            </ReadableText>
+          </Title>
           <Explaination
             step={2}
             defaultText="C’est pour te montrer les démarches et les activités pour ton âge."

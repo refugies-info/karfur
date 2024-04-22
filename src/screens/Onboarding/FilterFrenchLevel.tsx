@@ -14,7 +14,7 @@ import {
   removeUserFrenchLevelActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
-import { FilterButton, RadioGroup, Rows } from "../../components";
+import { FilterButton, RadioGroup, ReadableText, Rows } from "../../components";
 import PageOnboarding from "../../components/layout/PageOnboarding";
 
 export const FilterFrenchLevel = ({
@@ -76,10 +76,12 @@ export const FilterFrenchLevel = ({
       <Rows layout="1 auto" verticalAlign="space-between">
         <View>
           <Title>
-            {t(
-              "onboarding_screens.french_level",
-              "Quel est ton niveau en français ?"
-            )}
+            <ReadableText>
+              {t(
+                "onboarding_screens.french_level",
+                "Quel est ton niveau en français ?"
+              )}
+            </ReadableText>
           </Title>
           <Explaination
             step={3}

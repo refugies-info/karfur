@@ -1,6 +1,7 @@
 import { Dimensions } from "react-native";
 import * as React from "react";
 import { StackScreenProps } from "@react-navigation/stack";
+import { useIsFocused } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
 import styled from "styled-components/native";
@@ -25,6 +26,7 @@ export const OnboardingSteps = ({
   const width = Dimensions.get("window").width;
   const height = Dimensions.get("window").height;
   const insets = useSafeAreaInsets();
+  const isFocused = useIsFocused();
   const ref = React.useRef<ICarouselInstance>(null);
   const [index, setIndex] = React.useState(0);
 
@@ -61,7 +63,7 @@ export const OnboardingSteps = ({
         renderItem={(item) => (
           <OnboardingCarouselElement
             step={item.index}
-            focused={index === item.index}
+            focused={isFocused && index === item.index}
           />
         )}
       />

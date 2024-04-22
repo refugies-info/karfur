@@ -24,6 +24,7 @@ import { Icon } from "react-native-eva-icons";
 import { Explaination } from "../Onboarding/Explaination";
 import { ErrorComponent } from "../ErrorComponent";
 import { Rows } from "../layout";
+import { ReadableText } from "../ReadableText";
 
 const GeolocContainer = styled(RTLTouchableOpacity)<{ hasError: boolean }>`
   background-color: ${styles.colors.lightBlue};
@@ -224,7 +225,9 @@ export const FilterCityComponent = ({
     <Rows verticalAlign="space-between">
       <View>
         <Title>
-          {t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}
+          <ReadableText>
+            {t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}
+          </ReadableText>
         </Title>
         <Explaination
           step={1}
