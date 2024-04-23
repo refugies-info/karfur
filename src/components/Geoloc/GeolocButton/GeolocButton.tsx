@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import * as Location from "expo-location";
-import styled, { useTheme } from "styled-components/native";
+import styled from "styled-components/native";
 import { RTLTouchableOpacity } from "../../BasicComponents";
 import { styles } from "../../../theme";
 import { StyledTextSmall, StyledTextVerySmall } from "../../StyledText";
@@ -52,7 +52,6 @@ const GeolocButton = ({
   setLoading,
   onError,
 }: Props) => {
-  const theme = useTheme();
   const [error, setError] = React.useState("");
   const { t, isRTL } = useTranslationWithRTL();
 

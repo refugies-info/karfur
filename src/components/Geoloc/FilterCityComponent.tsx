@@ -50,7 +50,7 @@ export const FilterCityComponent = ({
   );
   const [error, setError] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
-  const { t, isRTL } = useTranslationWithRTL();
+  const { t } = useTranslationWithRTL();
 
   const defaultError = t("global.error", "Une erreur est survenue, réessaie.");
 

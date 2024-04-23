@@ -1,7 +1,6 @@
 import React from "react";
 import { Icon } from "react-native-eva-icons";
-import styled from "styled-components/native";
-import { useTheme } from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import { RTLTouchableOpacity } from "../../BasicComponents";
 import { StyledTextSmallBold } from "../../StyledText";
 
