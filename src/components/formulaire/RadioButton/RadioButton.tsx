@@ -2,11 +2,11 @@ import React from "react";
 import { Icon } from "react-native-eva-icons";
 import { useTheme } from "styled-components/native";
 
-interface Props {
+export interface RadioButtonProps {
   isSelected: boolean;
 }
 
-export const RadioButton = (props: Props) => {
+export const RadioButton = (props: RadioButtonProps) => {
   const theme = useTheme();
   return (
     <Icon
