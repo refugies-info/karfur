@@ -118,6 +118,7 @@ const PageOnboarding = ({
               onPress={onPrevious}
               priority="secondary"
               iconName="arrow-back"
+              testID="test-next-button"
             ></ButtonDSFR>
           )}
           <ReadButtonContainer>
@@ -129,6 +130,7 @@ const PageOnboarding = ({
               onPress={onNext}
               priority="primary"
               iconName="arrow-forward-outline"
+              testID="test-prev-button"
             ></ButtonDSFR>
           )}
         </BottomTabBar>

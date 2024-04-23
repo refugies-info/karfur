@@ -23,6 +23,7 @@ export interface ButtonProps {
   priority: "primary" | "secondary" | "tertiary" | "tertiary no outline";
   size?: "default" | "small";
   style?: StyleProp<ViewStyle>;
+  testID?: string;
 }
 
 const ButtonText = styled.Text<{
@@ -62,6 +63,7 @@ const Button = ({
   title,
   size,
   style,
+  testID,
 }: ButtonProps) => {
   const theme = useTheme();
   const backgroundColor = useMemo(
@@ -109,6 +111,7 @@ const Button = ({
       backgroundColor={backgroundColor}
       borderColor={borderColor}
       style={style}
+      testID={testID}
     >
       <Columns
         layout="auto"

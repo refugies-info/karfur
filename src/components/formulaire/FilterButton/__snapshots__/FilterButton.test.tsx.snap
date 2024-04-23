@@ -33,30 +33,26 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
   style={
     {
       "backgroundColor": "#FFFFFF",
-      "borderBottomLeftRadius": 12,
-      "borderBottomRightRadius": 12,
-      "borderColor": "#FFFFFF",
-      "borderTopLeftRadius": 12,
-      "borderTopRightRadius": 12,
-      "borderWidth": 2,
+      "borderColor": "#DDDDDD",
+      "borderWidth": 1,
       "display": "flex",
-      "elevation": 6,
+      "elevation": 2,
       "flexDirection": "row",
       "flexWrap": "wrap",
       "justifyContent": "space-between",
       "marginBottom": 24,
       "opacity": 1,
-      "paddingBottom": 14,
-      "paddingLeft": 14,
-      "paddingRight": 14,
-      "paddingTop": 14,
-      "shadowColor": "#212121",
+      "paddingBottom": 16,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
+      "shadowColor": "#000012",
       "shadowOffset": {
-        "height": 1,
-        "width": 1,
+        "height": 2,
+        "width": 0,
       },
       "shadowOpacity": 0.16,
-      "shadowRadius": 8,
+      "shadowRadius": 6,
     }
   }
   testID="test-filter-Test choice"
@@ -96,10 +92,11 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
         selectable={true}
         style={
           {
-            "color": "#212121",
+            "color": "#161616",
             "fontFamily": "circularBold",
             "fontSize": 16,
             "lineHeight": 20,
+            "paddingVertical": 4,
             "textAlign": "left",
           }
         }
@@ -116,23 +113,100 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
       }
     >
       <View
-        selected={false}
+        collapsable={false}
         style={
           {
-            "alignItems": "center",
-            "backgroundColor": "transparent",
-            "borderBottomLeftRadius": 12,
-            "borderBottomRightRadius": 12,
-            "borderColor": "#5E5E5E",
-            "borderTopLeftRadius": 12,
-            "borderTopRightRadius": 12,
-            "borderWidth": 1,
-            "height": 24,
-            "justifyContent": "center",
-            "width": 24,
+            "transform": [
+              {
+                "scale": 1,
+              },
+            ],
           }
         }
-      />
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight="24"
+          bbWidth="24"
+          fill="#161616"
+          focusable={false}
+          height={24}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            [
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 24,
+                "width": 24,
+              },
+            ]
+          }
+          vbHeight={24}
+          vbWidth={24}
+          width={24}
+        >
+          <RNSVGGroup
+            fill={
+              {
+                "payload": 4279637526,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup
+              fill={
+                {
+                  "payload": 4278190080,
+                  "type": 0,
+                }
+              }
+            >
+              <RNSVGGroup
+                fill={
+                  {
+                    "payload": 4278190080,
+                    "type": 0,
+                  }
+                }
+              >
+                <RNSVGRect
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                  height="24"
+                  opacity={0}
+                  width="24"
+                  x="0"
+                  y="0"
+                />
+                <RNSVGPath
+                  d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                />
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
     </View>
   </View>
 </View>
@@ -170,23 +244,19 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     {
-      "backgroundColor": "#DAE0FB",
-      "borderBottomLeftRadius": 12,
-      "borderBottomRightRadius": 12,
-      "borderColor": "#0421B1",
-      "borderTopLeftRadius": 12,
-      "borderTopRightRadius": 12,
-      "borderWidth": 2,
+      "backgroundColor": "#E3E3FD",
+      "borderColor": "#000091",
+      "borderWidth": 1,
       "display": "flex",
       "flexDirection": "row",
       "flexWrap": "wrap",
       "justifyContent": "space-between",
       "marginBottom": 24,
       "opacity": 1,
-      "paddingBottom": 14,
-      "paddingLeft": 14,
-      "paddingRight": 14,
-      "paddingTop": 14,
+      "paddingBottom": 16,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
     }
   }
   testID="test-filter-Test choice"
@@ -226,10 +296,11 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
         selectable={true}
         style={
           {
-            "color": "#0421B1",
+            "color": "#000091",
             "fontFamily": "circularBold",
             "fontSize": 16,
             "lineHeight": 20,
+            "paddingVertical": 4,
             "textAlign": "left",
           }
         }
@@ -241,10 +312,11 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
           selectable={true}
           style={
             {
-              "color": "#0421B1",
+              "color": "#000091",
               "fontFamily": "circularBold",
               "fontSize": 16,
               "lineHeight": 20,
+              "paddingVertical": 4,
               "textAlign": "left",
             }
           }
@@ -265,73 +337,63 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
       }
     >
       <View
-        selected={true}
+        collapsable={false}
         style={
           {
-            "alignItems": "center",
-            "backgroundColor": "#0421B1",
-            "borderBottomLeftRadius": 12,
-            "borderBottomRightRadius": 12,
-            "borderColor": "transparent",
-            "borderTopLeftRadius": 12,
-            "borderTopRightRadius": 12,
-            "borderWidth": 1,
-            "height": 24,
-            "justifyContent": "center",
-            "width": 24,
+            "transform": [
+              {
+                "scale": 1,
+              },
+            ],
           }
         }
       >
-        <View
-          collapsable={false}
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight="24"
+          bbWidth="24"
+          fill="#000091"
+          focusable={false}
+          height={24}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
           style={
-            {
-              "transform": [
-                {
-                  "scale": 1,
-                },
-              ],
-            }
+            [
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 24,
+                "width": 24,
+              },
+            ]
           }
+          vbHeight={24}
+          vbWidth={24}
+          width={24}
         >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight="16"
-            bbWidth="16"
-            fill="#FFFFFF"
-            focusable={false}
-            height={16}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
-            style={
+          <RNSVGGroup
+            fill={
+              {
+                "payload": 4278190225,
+                "type": 0,
+              }
+            }
+            propList={
               [
-                {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                {
-                  "flex": 0,
-                  "height": 16,
-                  "width": 16,
-                },
+                "fill",
               ]
             }
-            vbHeight={24}
-            vbWidth={24}
-            width={16}
           >
             <RNSVGGroup
               fill={
                 {
-                  "payload": 4294967295,
+                  "payload": 4278190080,
                   "type": 0,
                 }
-              }
-              propList={
-                [
-                  "fill",
-                ]
               }
             >
               <RNSVGGroup
@@ -342,41 +404,41 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
                   }
                 }
               >
-                <RNSVGGroup
+                <RNSVGRect
                   fill={
                     {
                       "payload": 4278190080,
                       "type": 0,
                     }
                   }
-                >
-                  <RNSVGRect
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
+                  height="24"
+                  opacity={0}
+                  width="24"
+                  x="0"
+                  y="0"
+                />
+                <RNSVGPath
+                  d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
                     }
-                    height="24"
-                    opacity={0}
-                    width="24"
-                    x="0"
-                    y="0"
-                  />
-                  <RNSVGPath
-                    d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
+                  }
+                />
+                <RNSVGPath
+                  d="M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
                     }
-                  />
-                </RNSVGGroup>
+                  }
+                />
               </RNSVGGroup>
             </RNSVGGroup>
-          </RNSVGSvgView>
-        </View>
+          </RNSVGGroup>
+        </RNSVGSvgView>
       </View>
     </View>
   </View>
@@ -415,23 +477,19 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     {
-      "backgroundColor": "#DAE0FB",
-      "borderBottomLeftRadius": 12,
-      "borderBottomRightRadius": 12,
-      "borderColor": "#0421B1",
-      "borderTopLeftRadius": 12,
-      "borderTopRightRadius": 12,
-      "borderWidth": 2,
+      "backgroundColor": "#E3E3FD",
+      "borderColor": "#000091",
+      "borderWidth": 1,
       "display": "flex",
       "flexDirection": "row",
       "flexWrap": "wrap",
       "justifyContent": "space-between",
       "marginBottom": 24,
       "opacity": 1,
-      "paddingBottom": 14,
-      "paddingLeft": 14,
-      "paddingRight": 14,
-      "paddingTop": 14,
+      "paddingBottom": 16,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+      "paddingTop": 16,
     }
   }
   testID="test-filter-Test choice"
@@ -471,10 +529,11 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
         selectable={true}
         style={
           {
-            "color": "#0421B1",
+            "color": "#000091",
             "fontFamily": "circularBold",
             "fontSize": 16,
             "lineHeight": 20,
+            "paddingVertical": 4,
             "textAlign": "left",
           }
         }
@@ -491,73 +550,63 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
       }
     >
       <View
-        selected={true}
+        collapsable={false}
         style={
           {
-            "alignItems": "center",
-            "backgroundColor": "#0421B1",
-            "borderBottomLeftRadius": 12,
-            "borderBottomRightRadius": 12,
-            "borderColor": "transparent",
-            "borderTopLeftRadius": 12,
-            "borderTopRightRadius": 12,
-            "borderWidth": 1,
-            "height": 24,
-            "justifyContent": "center",
-            "width": 24,
+            "transform": [
+              {
+                "scale": 1,
+              },
+            ],
           }
         }
       >
-        <View
-          collapsable={false}
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight="24"
+          bbWidth="24"
+          fill="#000091"
+          focusable={false}
+          height={24}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
           style={
-            {
-              "transform": [
-                {
-                  "scale": 1,
-                },
-              ],
-            }
+            [
+              {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              {
+                "flex": 0,
+                "height": 24,
+                "width": 24,
+              },
+            ]
           }
+          vbHeight={24}
+          vbWidth={24}
+          width={24}
         >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight="16"
-            bbWidth="16"
-            fill="#FFFFFF"
-            focusable={false}
-            height={16}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
-            style={
+          <RNSVGGroup
+            fill={
+              {
+                "payload": 4278190225,
+                "type": 0,
+              }
+            }
+            propList={
               [
-                {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                {
-                  "flex": 0,
-                  "height": 16,
-                  "width": 16,
-                },
+                "fill",
               ]
             }
-            vbHeight={24}
-            vbWidth={24}
-            width={16}
           >
             <RNSVGGroup
               fill={
                 {
-                  "payload": 4294967295,
+                  "payload": 4278190080,
                   "type": 0,
                 }
-              }
-              propList={
-                [
-                  "fill",
-                ]
               }
             >
               <RNSVGGroup
@@ -568,41 +617,41 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
                   }
                 }
               >
-                <RNSVGGroup
+                <RNSVGRect
                   fill={
                     {
                       "payload": 4278190080,
                       "type": 0,
                     }
                   }
-                >
-                  <RNSVGRect
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
+                  height="24"
+                  opacity={0}
+                  width="24"
+                  x="0"
+                  y="0"
+                />
+                <RNSVGPath
+                  d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
                     }
-                    height="24"
-                    opacity={0}
-                    width="24"
-                    x="0"
-                    y="0"
-                  />
-                  <RNSVGPath
-                    d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
+                  }
+                />
+                <RNSVGPath
+                  d="M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
                     }
-                  />
-                </RNSVGGroup>
+                  }
+                />
               </RNSVGGroup>
             </RNSVGGroup>
-          </RNSVGSvgView>
-        </View>
+          </RNSVGGroup>
+        </RNSVGSvgView>
       </View>
     </View>
   </View>

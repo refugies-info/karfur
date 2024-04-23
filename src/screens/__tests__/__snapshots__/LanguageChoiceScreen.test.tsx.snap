@@ -2,399 +2,67 @@
 
 exports[`LanguageChoiceScreen should render correctly 1`] = `
 <View
-  backgroundColor="transparent"
+  darkBackground={false}
   style={
     {
-      "backgroundColor": "transparent",
+      "backgroundColor": "#f5f5fe",
       "flexBasis": 0,
       "flexGrow": 1,
       "flexShrink": 1,
-      "minHeight": "100%",
-      "minWidth": "100%",
     }
   }
 >
-  <View
-    animatedStyle={
-      {
-        "value": {},
-      }
-    }
-    collapsable={false}
-    style={
-      {
-        "backgroundColor": "white",
-        "left": 0,
-        "paddingHorizontal": 24,
-        "paddingVertical": 8,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-        "zIndex": 2,
-      }
-    }
-  >
-    <RCTSafeAreaView
-      style={
-        {
-          "minHeight": 65,
-          "paddingBottom": 20,
-          "paddingTop": 0,
-        }
-      }
-    >
-      <View
-        RTLBehaviour={false}
-        animatedStyle={
-          {
-            "value": {},
-          }
-        }
-        collapsable={false}
-        horizontalAlign="space-between"
-        style={
-          {
-            "alignItems": "center",
-            "flexBasis": "auto",
-            "flexDirection": "row",
-            "flexGrow": 1,
-            "justifyContent": "space-between",
-          }
-        }
-        verticalAlign="center"
-      >
-        <View
-          style={
-            {
-              "flexBasis": 0,
-              "flexGrow": 1,
-              "marginRight": 8,
-            }
-          }
-        >
-          <react-native-svg
-            accessibilityLabel="Réfugiés point info"
-            accessibilityRole="image"
-            accessible={true}
-            height={40}
-            width={58}
-          />
-        </View>
-        <View
-          style={
-            {
-              "flexBasis": 0,
-              "flexGrow": 1,
-              "marginRight": 8,
-            }
-          }
-        >
-          <View
-            RTLBehaviour={true}
-            animatedStyle={
-              {
-                "value": {},
-              }
-            }
-            collapsable={false}
-            horizontalAlign="flex-start"
-            style={
-              {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              }
-            }
-            verticalAlign="center"
-          >
-            <View
-              style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                  "marginRight": 8,
-                }
-              }
-            >
-              <View
-                collapsable={false}
-                style={
-                  {
-                    "transform": [
-                      {
-                        "scale": 1,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
-                  fill="#212121"
-                  focusable={false}
-                  height={24}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={24}
-                >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4280361249,
-                        "type": 0,
-                      }
-                    }
-                    propList={
-                      [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
-                        <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                          height="24"
-                          opacity={0}
-                          width="24"
-                          x="0"
-                          y="0"
-                        />
-                        <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                          height="24"
-                          opacity={0}
-                          width="24"
-                          x="0"
-                          y="0"
-                        />
-                        <RNSVGPath
-                          d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 2a8.19 8.19 0 0 1 1.79.21 2.61 2.61 0 0 1-.78 1c-.22.17-.46.31-.7.46a4.56 4.56 0 0 0-1.85 1.67 6.49 6.49 0 0 0-.62 3.3c0 1.36 0 2.16-.95 2.87-1.37 1.07-3.46.47-4.76-.07A8.33 8.33 0 0 1 4 12a8 8 0 0 1 8-8zM5 15.8a8.42 8.42 0 0 0 2 .27 5 5 0 0 0 3.14-1c1.71-1.34 1.71-3.06 1.71-4.44a4.76 4.76 0 0 1 .37-2.34 2.86 2.86 0 0 1 1.12-.91 9.75 9.75 0 0 0 .92-.61 4.55 4.55 0 0 0 1.4-1.87A8 8 0 0 1 19 8.12c-1.43.2-3.46.67-3.86 2.53A7 7 0 0 0 15 12a2.93 2.93 0 0 1-.29 1.47l-.1.17c-.65 1.08-1.38 2.31-.39 4 .12.21.25.41.38.61a2.29 2.29 0 0 1 .52 1.08A7.89 7.89 0 0 1 12 20a8 8 0 0 1-7-4.2zm11.93 2.52a6.79 6.79 0 0 0-.63-1.14c-.11-.16-.22-.32-.32-.49-.39-.68-.25-1 .38-2l.1-.17a4.77 4.77 0 0 0 .54-2.43 5.42 5.42 0 0 1 .09-1c.16-.73 1.71-.93 2.67-1a7.94 7.94 0 0 1-2.86 8.28z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        />
-                      </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-              </View>
-            </View>
-            <View
-              style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                }
-              }
-            >
-              <Text
-                accessibilityRole="header"
-                ellipsizeMode="tail"
-                invertedColor={false}
-                numberOfLines={2}
-                selectable={true}
-                style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  }
-                }
-              >
-                Global.language
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={
-            {
-              "flexBasis": "auto",
-              "flexGrow": 0,
-            }
-          }
-        >
-          <View
-            RTLBehaviour={false}
-            animatedStyle={
-              {
-                "value": {},
-              }
-            }
-            collapsable={false}
-            horizontalAlign="flex-end"
-            style={
-              {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-end",
-              }
-            }
-            verticalAlign="center"
-          >
-            <View
-              style={
-                {
-                  "flexBasis": "auto",
-                  "flexGrow": 0,
-                }
-              }
-            >
-              <View
-                style={
-                  {
-                    "minWidth": 48,
-                  }
-                }
-                width={48}
-              />
-            </View>
-          </View>
-        </View>
-      </View>
-    </RCTSafeAreaView>
-    <Modal
-      animationType="none"
-      deviceHeight={null}
-      deviceWidth={null}
-      hardwareAccelerated={false}
-      hideModalContentWhileAnimating={false}
-      onBackdropPress={[Function]}
-      onModalHide={[Function]}
-      onModalWillHide={[Function]}
-      onModalWillShow={[Function]}
-      onRequestClose={[Function]}
-      panResponderThreshold={4}
-      scrollHorizontal={false}
-      scrollOffset={0}
-      scrollOffsetMax={0}
-      scrollTo={null}
-      statusBarTranslucent={false}
-      supportedOrientations={
-        [
-          "portrait",
-          "landscape",
-        ]
-      }
-      swipeThreshold={100}
-      transparent={true}
-      visible={false}
-    />
-  </View>
   <RCTScrollView
     alwaysBounceVertical={false}
     contentContainerStyle={
       {
-        "flexGrow": 1,
+        "paddingBottom": 80,
+        "paddingTop": 0,
       }
     }
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollEndDrag={[Function]}
-    scrollEventThrottle={26}
     scrollIndicatorInsets={
       {
         "right": 1,
       }
     }
     style={
-      [
-        {
-          "paddingBottom": 24,
-        },
-        {
-          "flexGrow": 1,
-          "paddingBottom": 0,
-        },
-      ]
+      {
+        "paddingBottom": 24,
+      }
     }
   >
     <View>
       <View
-        onLayout={[Function]}
         style={
           {
-            "marginBottom": 24,
+            "paddingHorizontal": 24,
+            "paddingVertical": 24,
           }
         }
       >
         <View
           style={
             {
-              "bottom": 0,
-              "left": 0,
-              "right": 0,
-              "top": 0,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "marginBottom": 32,
+              "marginTop": 16,
             }
           }
-        />
-      </View>
-      <View
-        backgroundColor="transparent"
-        style={
-          [
-            {
-              "backgroundColor": "transparent",
-              "flexGrow": 1,
-              "paddingHorizontal": 24,
-              "paddingTop": 24,
-            },
-            {},
-          ]
-        }
-      >
+        >
+          <Image
+            alt=""
+            height={80}
+            source={1}
+            style={
+              {
+                "height": 80,
+                "width": 80,
+              }
+            }
+            width={80}
+          />
+        </View>
         <View
           accessibilityRole="button"
           accessibilityState={
@@ -427,30 +95,26 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           style={
             {
               "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderColor": "#FFFFFF",
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "borderWidth": 2,
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
               "display": "flex",
-              "elevation": 6,
+              "elevation": 2,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
               "marginBottom": 24,
               "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
               "shadowOffset": {
-                "height": 1,
-                "width": 1,
+                "height": 2,
+                "width": 0,
               },
               "shadowOpacity": 0.16,
-              "shadowRadius": 8,
+              "shadowRadius": 6,
             }
           }
           testID="test-language-button-Français"
@@ -609,30 +273,26 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           style={
             {
               "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderColor": "#FFFFFF",
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "borderWidth": 2,
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
               "display": "flex",
-              "elevation": 6,
+              "elevation": 2,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
               "marginBottom": 24,
               "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
               "shadowOffset": {
-                "height": 1,
-                "width": 1,
+                "height": 2,
+                "width": 0,
               },
               "shadowOpacity": 0.16,
-              "shadowRadius": 8,
+              "shadowRadius": 6,
             }
           }
           testID="test-language-button-Ukrainien"
@@ -814,30 +474,26 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           style={
             {
               "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderColor": "#FFFFFF",
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "borderWidth": 2,
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
               "display": "flex",
-              "elevation": 6,
+              "elevation": 2,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
               "marginBottom": 24,
               "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
               "shadowOffset": {
-                "height": 1,
-                "width": 1,
+                "height": 2,
+                "width": 0,
               },
               "shadowOpacity": 0.16,
-              "shadowRadius": 8,
+              "shadowRadius": 6,
             }
           }
           testID="test-language-button-Persan/Dari"
@@ -1019,30 +675,26 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           style={
             {
               "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderColor": "#FFFFFF",
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "borderWidth": 2,
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
               "display": "flex",
-              "elevation": 6,
+              "elevation": 2,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
               "marginBottom": 24,
               "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
               "shadowOffset": {
-                "height": 1,
-                "width": 1,
+                "height": 2,
+                "width": 0,
               },
               "shadowOpacity": 0.16,
-              "shadowRadius": 8,
+              "shadowRadius": 6,
             }
           }
           testID="test-language-button-Arabe"
@@ -1224,30 +876,26 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           style={
             {
               "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderColor": "#FFFFFF",
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "borderWidth": 2,
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
               "display": "flex",
-              "elevation": 6,
+              "elevation": 2,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
               "marginBottom": 24,
               "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
               "shadowOffset": {
-                "height": 1,
-                "width": 1,
+                "height": 2,
+                "width": 0,
               },
               "shadowOpacity": 0.16,
-              "shadowRadius": 8,
+              "shadowRadius": 6,
             }
           }
           testID="test-language-button-Anglais"
@@ -1429,30 +1077,26 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           style={
             {
               "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderColor": "#FFFFFF",
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "borderWidth": 2,
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
               "display": "flex",
-              "elevation": 6,
+              "elevation": 2,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
               "marginBottom": 24,
               "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
               "shadowOffset": {
-                "height": 1,
-                "width": 1,
+                "height": 2,
+                "width": 0,
               },
               "shadowOpacity": 0.16,
-              "shadowRadius": 8,
+              "shadowRadius": 6,
             }
           }
           testID="test-language-button-Pachto"
@@ -1634,30 +1278,26 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           style={
             {
               "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderColor": "#FFFFFF",
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "borderWidth": 2,
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
               "display": "flex",
-              "elevation": 6,
+              "elevation": 2,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
               "marginBottom": 24,
               "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
               "shadowOffset": {
-                "height": 1,
-                "width": 1,
+                "height": 2,
+                "width": 0,
               },
               "shadowOpacity": 0.16,
-              "shadowRadius": 8,
+              "shadowRadius": 6,
             }
           }
           testID="test-language-button-Russe"
@@ -1839,30 +1479,26 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           style={
             {
               "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderColor": "#FFFFFF",
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "borderWidth": 2,
+              "borderColor": "#DDDDDD",
+              "borderWidth": 1,
               "display": "flex",
-              "elevation": 6,
+              "elevation": 2,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
               "marginBottom": 24,
               "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
+              "paddingBottom": 16,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 16,
+              "shadowColor": "#000012",
               "shadowOffset": {
-                "height": 1,
-                "width": 1,
+                "height": 2,
+                "width": 0,
               },
               "shadowOpacity": 0.16,
-              "shadowRadius": 8,
+              "shadowRadius": 6,
             }
           }
           testID="test-language-button-Tigrinya"
