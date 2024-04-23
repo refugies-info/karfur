@@ -1,14 +1,14 @@
 import React, { useState, useRef } from "react";
-import { View, TextInput, TouchableOpacity, PixelRatio } from "react-native";
-import styled from "styled-components/native";
+import { View, TextInput, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-eva-icons";
+import Modal from "react-native-modal";
+import { SafeAreaView } from "react-native-safe-area-context";
+import styled from "styled-components/native";
 import { styles } from "../../theme";
 import { GoogleAPISuggestion } from "../../../types";
-import { StyledTextSmall } from "../StyledText";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
-import Modal from "react-native-modal";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { SafeAreaView } from "react-native-safe-area-context";
+import CityChoice from "../Geoloc/CityChoice";
 
 const MainContainer = styled.View`
   flex-direction: row;
@@ -17,15 +17,16 @@ const MainContainer = styled.View`
 const InputContainer = styled(RTLView)`
   min-height: 56px;
   width: 100%;
-  border-radius: ${styles.radius * 2}px;
   padding: ${styles.margin * 2}px;
-  background-color: ${styles.colors.white};
-  border: 1px solid ${styles.colors.darkGrey};
+  background-color: ${styles.colors.dsfr_actionLowBlue};
+  border: 1px solid ${styles.colors.dsfr_action};
   flex: 1;
 `;
 const StyledInput = styled.TextInput<{ isRTL: boolean }>`
   height: 100%;
   width: 100%;
+  color: ${styles.colors.dsfr_action};
+  font-family: ${({ theme }) => theme.fonts.families.circularBold};
   margin-left: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
   margin-right: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
   text-align: ${({ isRTL }) => (isRTL ? "right" : "left")};
@@ -34,12 +35,12 @@ const StyledInput = styled.TextInput<{ isRTL: boolean }>`
 const FakeInput = styled(RTLTouchableOpacity)`
   min-height: 56px;
   width: 100%;
-  border-radius: ${styles.radius * 2}px;
   padding: ${styles.margin * 2}px;
   background-color: ${styles.colors.white};
-  border: 1px solid ${styles.colors.darkGrey};
+  border: 1px solid ${styles.colors.dsfr_borderGrey};
   justify-content: flex-start;
   align-items: center;
+  ${({ theme }) => theme.shadows.sm_dsfr}
 `;
 const FakeInputText = styled.Text<{ isRTL: boolean }>`
   color: ${styles.colors.darkGrey};
@@ -48,14 +49,6 @@ const FakeInputText = styled.Text<{ isRTL: boolean }>`
 `;
 const SuggestionsContainer = styled.ScrollView`
   margin-top: ${styles.margin}px;
-`;
-const SuggestionContainer = styled(RTLTouchableOpacity)`
-  padding: ${styles.margin * 2}px;
-`;
-const Separator = styled.View`
-  height: 1px;
-  background-color: ${styles.colors.grey60};
-  margin-horizontal: ${styles.margin * 2}px;
 `;
 const TextModal = styled(Modal)`
   justify-content: flex-start;
@@ -67,6 +60,7 @@ interface Props {
   suggestions: GoogleAPISuggestion[];
   onChangeText: (data: string) => void;
   selectSuggestion: (suggestion: GoogleAPISuggestion) => void;
+  geoloc: React.ReactNode;
 }
 
 export const SearchBarCity = (props: Props) => {
@@ -95,9 +89,7 @@ export const SearchBarCity = (props: Props) => {
           width={24}
           fill={styles.colors.darkGrey}
         />
-        <FakeInputText isRTL={isRTL}>
-          {t("onboarding_screens.placeholder", "Exemple : Paris")}
-        </FakeInputText>
+        <FakeInputText isRTL={isRTL}>Paris, Lyon...</FakeInputText>
       </FakeInput>
 
       <TextModal
@@ -120,25 +112,14 @@ export const SearchBarCity = (props: Props) => {
                 name="arrow-back-outline"
                 height={24}
                 width={24}
-                fill={styles.colors.darkGrey}
+                fill={styles.colors.dsfr_action}
               />
             </TouchableOpacity>
             <InputContainer>
-              <Icon
-                name="search-outline"
-                height={24}
-                width={24}
-                fill={styles.colors.darkGrey}
-              />
               <StyledInput
                 // @ts-ignore
                 ref={input}
                 value={props.enteredText}
-                placeholder={t(
-                  "onboarding_screens.placeholder",
-                  "Exemple : Paris"
-                )}
-                placeholderTextColor={styles.colors.darkGrey}
                 onChangeText={props.onChangeText}
                 isRTL={isRTL}
                 testID="test-city-input"
@@ -153,33 +134,24 @@ export const SearchBarCity = (props: Props) => {
                   name="close-outline"
                   height={24}
                   width={24}
-                  fill={styles.colors.darkGrey}
+                  fill={styles.colors.dsfr_action}
                 />
               </TouchableOpacity>
             </InputContainer>
           </MainContainer>
-          {props.suggestions.length > 0 && (
-            <SuggestionsContainer
-              keyboardShouldPersistTaps={"handled"}
-              keyboardDismissMode="on-drag"
-            >
-              {props.suggestions.map((suggestion, index) => (
-                <View key={suggestion.place_id}>
-                  <SuggestionContainer
-                    onPress={() => props.selectSuggestion(suggestion)}
-                    accessibilityRole="button"
-                  >
-                    <StyledTextSmall>
-                      {suggestion &&
-                        suggestion.structured_formatting &&
-                        suggestion.structured_formatting.main_text}
-                    </StyledTextSmall>
-                  </SuggestionContainer>
-                  {index !== props.suggestions.length - 1 && <Separator />}
-                </View>
-              ))}
-            </SuggestionsContainer>
-          )}
+          <SuggestionsContainer
+            keyboardShouldPersistTaps={"handled"}
+            keyboardDismissMode="on-drag"
+          >
+            {props.geoloc}
+            {(props.suggestions || []).map((suggestion) => (
+              <CityChoice
+                key={suggestion.place_id}
+                city={suggestion?.structured_formatting?.main_text}
+                onSelect={() => props.selectSuggestion(suggestion)}
+              />
+            ))}
+          </SuggestionsContainer>
         </SafeAreaView>
       </TextModal>
     </View>

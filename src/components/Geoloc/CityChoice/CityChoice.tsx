@@ -1,0 +1,44 @@
+import React from "react";
+import styled from "styled-components/native";
+import { RTLTouchableOpacity, RTLView } from "../../BasicComponents";
+import { StyledTextSmall, StyledTextSmallBold } from "../../StyledText";
+import CityIcon from "../../../theme/images/onboarding/city-icon.svg";
+
+const CityText = styled(StyledTextSmallBold)`
+  color: ${({ theme }) => theme.colors.dsfr_dark};
+`;
+const DepartmentText = styled(StyledTextSmall)`
+  color: ${({ theme }) => theme.colors.dsfr_mentionGrey};
+  margin-horizontal: ${({ theme }) => theme.margin}px;
+`;
+
+const ButtonContainer = styled(RTLTouchableOpacity)`
+  padding-vertical: ${({ theme }) => theme.margin * 2}px;
+  align-items: center;
+  gap: ${({ theme }) => theme.margin * 1.5}px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: ${({ theme }) => theme.colors.dsfr_actionLowBlue};
+`;
+
+const ICON_SIZE = 24;
+
+interface Props {
+  city: string;
+  department?: string;
+  onSelect: () => void;
+}
+
+const CityChoice = ({ city, department, onSelect }: Props) => {
+  return (
+    <ButtonContainer onPress={onSelect} accessibilityRole="button">
+      <CityIcon width={ICON_SIZE} height={ICON_SIZE} />
+      <RTLView>
+        <CityText>{city}</CityText>
+        {department && <DepartmentText>({department})</DepartmentText>}
+      </RTLView>
+    </ButtonContainer>
+  );
+};
+
+export default CityChoice;

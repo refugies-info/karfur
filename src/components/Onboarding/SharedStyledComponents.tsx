@@ -1,14 +1,16 @@
 import styled from "styled-components/native";
-import { TextBigBold, TextVerySmallBold } from "../../components/StyledText";
+import {
+  StyledTextBigBold,
+  StyledTextSmall,
+} from "../../components/StyledText";
 import { styles } from "../../theme";
 
-export const Title = styled(TextBigBold)`
+export const Title = styled(StyledTextBigBold)`
   margin-bottom: ${styles.margin * 2}px;
 `;
 
-export const Label = styled(TextVerySmallBold)`
-  text-transform: uppercase;
-  margin-bottom: ${styles.margin * 2}px;
+export const Label = styled(StyledTextSmall)`
+  margin-bottom: ${styles.margin}px;
 `;
 
 export const ContentContainer = styled.View`

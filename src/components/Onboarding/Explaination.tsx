@@ -6,7 +6,7 @@ import { StyledTextSmall } from "../StyledText";
 import { ReadableText } from "../ReadableText";
 
 const StyledText = styled(StyledTextSmall)`
-  color: ${styles.colors.darkGrey};
+  color: ${styles.colors.dsfr_grey};
   margin-bottom: ${styles.margin * 6}px;
 `;
 
