@@ -283,7 +283,6 @@
     "noneYetSubtitle1": "Quand tu recevras des notifications, elles apparaîtront ici. Va dans les",
     "settings": "paramètres",
     "noneYetSubtitle2": "pour choisir celles que tu souhaites recevoir.",
-    "newInfoEveryWeek": "De nouvelles informations chaque semaine !",
     "beInformed": "Sois informé quand nous publions une fiche qui peut t’intéresser.",
     "enableNotifications": "Activer les notifications",
     "markAsSeen": "Marquer comme vu",
@@ -296,7 +295,8 @@
     "settingsGlobal": "Fiches pour toute la France",
     "settingsGlobalSubtitle": "Exemple : Cours en ligne",
     "settingsDemarches": "Fiches démarches",
-    "settingsDemarchesSubtitle": "Exemple : Obtenir la nationalité"
+    "settingsDemarchesSubtitle": "Exemple : Obtenir la nationalité",
+    "activateTitle": "Active les notifications !"
   },
   "global": {
     "close": "Fermer",

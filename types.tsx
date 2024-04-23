@@ -60,6 +60,7 @@ export type OnboardingParamList = {
   FilterFrenchLevel: undefined;
   FinishOnboarding: undefined;
   LanguageChoice: undefined;
+  ActivateNotificationsScreen: undefined;
 };
 
 export type ProfileParamList = {

@@ -1,96 +1,89 @@
 import React from "react";
 import LottieView from "lottie-react-native";
-import { StyleSheet, View } from "react-native";
-
-import { styles } from "../../theme";
-
+import { View } from "react-native";
 import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-
 import {
   StyledTextBigBold,
-  StyledTextNormal,
+  StyledTextSmall,
 } from "../../components/StyledText";
-import { CustomButton } from "../CustomButton";
 import styled, { useTheme } from "styled-components/native";
+import { ReadableText } from "../ReadableText";
+import { ButtonDSFR } from "../buttons";
+import { Spacer } from "../layout";
 
-const Container = styled.View`
-  display: flex;
-  margin-top: ${({ theme }) => theme.insets.top}px;
-  border-radius: ${({ theme }) => theme.radius * 2}px;
-  background-color: ${({ theme }) => theme.colors.white};
-  align-items: ${({ theme }) => (theme.i18n.isRTL ? "flex-end" : "flex-start")};
-  justify-content: space-between;
-  padding: ${({ theme }) => theme.margin * 3}px;
+const Title = styled(StyledTextBigBold)`
+  margin-top: ${({ theme }) => theme.margin * 8}px;
 `;
-
-const stylesheet = StyleSheet.create({
-  lottieContainer: {
-    height: 160,
-    width: 160,
-  },
-  titles: {
-    alignSelf: "center",
-    marginBottom: styles.margin * 2,
-  },
-  separator: {
-    marginVertical: styles.margin * 2,
-  },
-});
+const Subtitle = styled(StyledTextSmall)`
+  margin-top: ${({ theme }) => theme.margin * 2}px;
+  text-align: center;
+`;
+const Container = styled.View`
+  align-items: center;
+  margin-vertical: 20%;
+`;
+const LottieContainer = styled.View`
+  height: 120px;
+  width: 120px;
+`;
 
 interface Props {
   onDismiss?: () => void | undefined;
+  onDone?: () => void | undefined;
 }
 
-export const EnableNotifications = ({ onDismiss }: Props) => {
-  const { t } = useTranslationWithRTL();
+export const EnableNotifications = ({ onDismiss, onDone }: Props) => {
   const theme = useTheme();
+  const { t } = useTranslationWithRTL();
   const [, registerForNotifications] = useNotificationsStatus();
 
+  const register = async () => {
+    await registerForNotifications();
+    onDone?.();
+  };
+
   return (
-    <Container>
-      <LottieView
-        colorFilters={[{ keypath: "bell icon", color: "#ffcd31" }]}
-        style={stylesheet.lottieContainer}
-        source={require("../../theme/lottie/notification-bell-animation.json")}
-        autoPlay
-        loop
-        speed={1.2}
-      />
-      <View style={stylesheet.titles}>
-        <StyledTextBigBold>
-          {t("notifications.newInfoEveryWeek")}
-        </StyledTextBigBold>
-        <View style={stylesheet.separator} />
-        <StyledTextNormal>{t("notifications.beInformed")}</StyledTextNormal>
-      </View>
-      <CustomButton
-        i18nKey="notifications.enableNotifications"
-        backgroundColor={theme.colors.darkBlue}
+    <View>
+      <Container>
+        <LottieContainer>
+          <LottieView
+            colorFilters={[{ keypath: "bell icon", color: "#c8c8c8" }]}
+            source={require("../../theme/lottie/notification-bell-animation.json")}
+            autoPlay
+            loop
+            speed={1.2}
+          />
+        </LottieContainer>
+        <Title>
+          <ReadableText>{t("notifications.activateTitle")}</ReadableText>
+        </Title>
+        <Subtitle>
+          <ReadableText>{t("notifications.beInformed")}</ReadableText>
+        </Subtitle>
+      </Container>
+
+      <ButtonDSFR
+        title={t("notifications.enableNotifications")}
+        accessibilityLabel={t("notifications.enableNotifications")}
+        priority="primary"
         iconName="checkmark-outline"
-        defaultText="Activer les notifications"
-        textColor={theme.colors.white}
-        onPress={registerForNotifications}
-        isTextNotBold={true}
+        iconAfter
+        onPress={register}
+        style={{ width: "100%" }}
       />
       {onDismiss && (
         <>
-          <View
-            style={{
-              marginVertical: theme.margin,
-            }}
-          />
-          <CustomButton
-            i18nKey="notifications.notNow"
-            backgroundColor={theme.colors.white}
-            defaultText="Pas maintenant"
-            textColor={theme.colors.black}
+          <Spacer height={theme.margin * 2} />
+          <ButtonDSFR
+            title={t("notifications.notNow")}
+            accessibilityLabel={t("notifications.notNow")}
             onPress={onDismiss}
-            isTextNotBold={true}
-            withShadows={false}
+            priority="tertiary no outline"
+            style={{ width: "100%" }}
           />
         </>
       )}
-    </Container>
+    </View>
   );
 };

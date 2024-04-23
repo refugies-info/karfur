@@ -39,7 +39,7 @@ export const FilterFrenchLevel = ({
   }, [userFrenchLevel]);
 
   const navigateToNextScreen = useCallback(
-    () => navigation.navigate("FinishOnboarding"),
+    () => navigation.navigate("ActivateNotificationsScreen"),
     [navigation]
   );
 

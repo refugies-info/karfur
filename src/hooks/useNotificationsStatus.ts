@@ -15,7 +15,7 @@ import crashlytics from "@react-native-firebase/crashlytics";
 
 import { updateAppUser } from "../utils/API";
 
-export const useNotificationsStatus = (): [boolean, () => void, string] => {
+export const useNotificationsStatus = (): [boolean, () => Promise<void>, string] => {
   const [status, setStatus] = useState<PermissionStatus>(
     PermissionStatus.GRANTED
   );
