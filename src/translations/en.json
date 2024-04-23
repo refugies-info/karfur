@@ -17,11 +17,8 @@
     "position_button": "Use my location",
     "age": "How old are you?",
     "french_level": "What is your level of French?",
-    "end": "The application is ready. Now you can search for information.",
     "error_geoloc_acces": "Oh no! There's a problem. Check your phone settings to make sure you have enabled location.",
     "back_button_accessibility": "Return to previous page",
-    "thank_you": "Merci !",
-    "start_searching_button": "Start my search",
     "skip_step_button": "Not now",
     "next_button": "Next"
   },

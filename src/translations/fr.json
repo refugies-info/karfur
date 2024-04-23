@@ -17,14 +17,13 @@
     "position_button": "Utiliser ma position",
     "age": "Tu as quel âge ?",
     "french_level": "C'est quoi ton niveau de français ?",
-    "end": "L’application est prête. Maintenant, tu peux chercher des informations.",
     "error_geoloc_acces": "Oh non, il y a un problème. Vérifie dans les paramètres de ton téléphone que tu as autorisé la localisation.",
     "back_button_accessibility": "Retour vers la page précédente",
-    "thank_you": "Merci !",
-    "start_searching_button": "Commencer à chercher",
     "skip_step_button": "Passer l'étape",
     "next_button": "Suivant",
-    "skip": "Passer"
+    "skip": "Passer",
+    "ready": "L'application est prête !",
+    "start": "C'est parti !"
   },
   "tab_bar": {
     "explorer": "Explorer",

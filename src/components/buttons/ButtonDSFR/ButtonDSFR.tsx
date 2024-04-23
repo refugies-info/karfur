@@ -1,8 +1,14 @@
 import React, { useMemo } from "react";
-import { TouchableOpacity, TouchableOpacityProps } from "react-native";
+import {
+  StyleProp,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  ViewStyle,
+} from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { Icon } from "../../iconography";
 import { Columns, ColumnsSpacing } from "../../layout";
+import { ReadableText } from "../../ReadableText";
 
 const ICON_SIZE = 24;
 
@@ -16,6 +22,7 @@ export interface ButtonProps {
   title?: string;
   priority: "primary" | "secondary" | "tertiary" | "tertiary no outline";
   size?: "default" | "small";
+  style?: StyleProp<ViewStyle>;
 }
 
 const ButtonText = styled.Text<{
@@ -41,6 +48,7 @@ const Container = styled(TouchableOpacity)<{
   border-width: 1px;
   padding: ${({ theme }) => theme.margin * 1.5}px;
   max-height: 50px;
+  align-items: center;
 `; // FIXME: max height not clean?
 
 const Button = ({
@@ -53,6 +61,7 @@ const Button = ({
   onPress,
   title,
   size,
+  style,
 }: ButtonProps) => {
   const theme = useTheme();
   const backgroundColor = useMemo(
@@ -99,6 +108,7 @@ const Button = ({
       disabled={disabled || loading}
       backgroundColor={backgroundColor}
       borderColor={borderColor}
+      style={style}
     >
       <Columns
         layout="auto"
@@ -109,7 +119,7 @@ const Button = ({
         {!iconAfter && icon}
         {title && (
           <ButtonText color={color} disabled={disabled || loading} size={size}>
-            {title}
+            <ReadableText>{title}</ReadableText>
           </ButtonText>
         )}
         {iconAfter && icon}

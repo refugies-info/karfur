@@ -1,17 +1,20 @@
 import React, { ReactNode, useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { useVoiceover } from "../../../hooks/useVoiceover";
 import ScrollableContent from "../ScrollableContent";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ButtonDSFR } from "../../buttons";
 import { ReadButton } from "../../UI";
 
 export const TAB_BAR_HEIGHT = 80;
 
-const PageContainer = styled.View`
-  background-color: ${({ theme }) => theme.colors.dsfr_backgroundBlue};
+const PageContainer = styled.View<{ darkBackground: boolean }>`
+  background-color: ${({ theme, darkBackground }) =>
+    darkBackground
+      ? theme.colors.dsfr_actionLowBlue
+      : theme.colors.dsfr_backgroundBlue};
   flex: 1;
 `;
 const ContentContainer = styled.View`
@@ -49,6 +52,7 @@ export interface PageProps {
   onPrevious?: () => void;
   hideNavbar?: boolean;
   noScrollable?: boolean;
+  darkBackground?: boolean;
 }
 
 const PageOnboarding = ({
@@ -57,6 +61,7 @@ const PageOnboarding = ({
   onPrevious,
   hideNavbar,
   noScrollable,
+  darkBackground,
 }: PageProps) => {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
@@ -85,7 +90,7 @@ const PageOnboarding = ({
   );
 
   return (
-    <PageContainer>
+    <PageContainer darkBackground={!!darkBackground}>
       {noScrollable ? (
         <View style={{ paddingBottom: insetBottom + TAB_BAR_HEIGHT }}>
           {children}

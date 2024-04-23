@@ -1,56 +1,48 @@
 import * as React from "react";
-import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
+import { View, Dimensions } from "react-native";
+import styled from "styled-components/native";
+import LottieView from "lottie-react-native";
+import { OnboardingParamList } from "../../../types";
 import { saveHasUserSeenOnboardingActionCreator } from "../../services/redux/User/user.actions";
-import styled, { useTheme } from "styled-components/native";
 import { styles } from "../../theme";
-import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { StyledTextBigBold } from "../../components/StyledText";
-import LottieView from "lottie-react-native";
 import { fetchContentsActionCreator } from "../../services/redux/Contents/contents.actions";
 import {
   userLocationSelector,
   userAgeSelector,
   userFrenchLevelSelector,
 } from "../../services/redux/User/user.selectors";
-import { View, Dimensions } from "react-native";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { FakeTabBar } from "../../navigation/components/FakeTabBar";
-import { Page } from "../../components";
+import { ButtonDSFR, ReadableText } from "../../components";
+import PageOnboarding from "../../components/layout/PageOnboarding";
 
-const StyledText = styled(StyledTextBigBold)<{ marginTop?: number }>`
-  color: ${styles.colors.white};
-  text-align: center;
-  margin-top: ${({ marginTop }) =>
-    marginTop ? marginTop : styles.margin * 2}px;
-  margin-bottom: ${styles.margin}px;
+const Title = styled(StyledTextBigBold)`
+  color: ${({ theme }) => theme.colors.dsfr_action};
+  margin-top: ${({ theme }) => theme.margin * 8}px;
 `;
-const ElementsContainer = styled.ScrollView`
-  display: flex;
-  flex-direction: column;
+const Container = styled.View`
+  align-items: center;
+  margin-vertical: 30%;
 `;
 const LottieContainer = styled.View`
-  height: 100px;
-  width: 100px;
+  height: 180px;
+  width: 164px;
 `;
 const FakeTabBarArrowContainer = styled.View<{ width: number }>`
   width: ${({ width }) => width}px;
   align-items: flex-end;
   margin-top: ${styles.margin * 2}px;
 `;
-const ButtonContainer = styled.View`
-  padding-horizontal: ${styles.margin * 3}px;
-  margin-bottom: ${styles.margin * 4}px;
-`;
 
 export const FinishOnboarding = ({}: StackScreenProps<
   OnboardingParamList,
   "FinishOnboarding"
 >) => {
-  const theme = useTheme();
   const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
@@ -58,8 +50,9 @@ export const FinishOnboarding = ({}: StackScreenProps<
   const age = useSelector(userAgeSelector);
   const frenchLevel = useSelector(userFrenchLevelSelector);
 
+  // TODO: restore when design ready
   const hasUserEnteredInfos =
-    !!frenchLevel || !!age || !!location.city || !!location.department;
+    true; /* !!frenchLevel || !!age || !!location.city || !!location.department; */
 
   const fakeTabBarWidth = Dimensions.get("screen").width * 0.88;
 
@@ -76,18 +69,8 @@ export const FinishOnboarding = ({}: StackScreenProps<
     } catch (e) {}
   };
   return (
-    <Page
-      backgroundColor={theme.colors.darkBlue}
-      headerBackgroundColor="transparent"
-      hideLanguageSwitch
-    >
-      <ElementsContainer
-        contentContainerStyle={{
-          alignItems: "center",
-          flexGrow: 1,
-          justifyContent: "center",
-        }}
-      >
+    <PageOnboarding darkBackground>
+      <Container>
         {hasUserEnteredInfos ? (
           <LottieContainer>
             <LottieView
@@ -99,41 +82,29 @@ export const FinishOnboarding = ({}: StackScreenProps<
         ) : (
           <View>
             <FakeTabBar width={fakeTabBarWidth} />
-            <FakeTabBarArrowContainer
-              width={fakeTabBarWidth}
-            ></FakeTabBarArrowContainer>
+            <FakeTabBarArrowContainer width={fakeTabBarWidth} />
           </View>
         )}
-        {hasUserEnteredInfos && (
-          <StyledText>
-            {t("onboarding_screens.thank_you", "Merci !")}
-          </StyledText>
-        )}
-        <StyledText
-          marginTop={
-            hasUserEnteredInfos ? styles.margin * 2 : styles.margin * 6
-          }
-        >
-          {hasUserEnteredInfos
-            ? t(
-                "onboarding_screens.end",
-                "L’application est maintenant adaptée à ton profil."
-              )
-            : t(
-                "onboarding_screens.end_no_info",
-                "Tu pourras renseigner ces informations plus tard en cliquant sur « Moi »."
-              )}
-        </StyledText>
-      </ElementsContainer>
-      <ButtonContainer>
-        <CustomButton
-          i18nKey="onboarding_screens.start_searching_button"
-          defaultText="Démarrer"
-          textColor={styles.colors.darkBlue}
-          onPress={finishOnboarding}
-          iconName="arrow-forward-outline"
-        />
-      </ButtonContainer>
-    </Page>
+        <Title>
+          <ReadableText>
+            {hasUserEnteredInfos
+              ? t("onboarding_screens.ready")
+              : t(
+                  "onboarding_screens.end_no_info",
+                  "Tu pourras renseigner ces informations plus tard en cliquant sur « Moi »."
+                )}
+          </ReadableText>
+        </Title>
+      </Container>
+      <ButtonDSFR
+        title={t("onboarding_screens.start")}
+        accessibilityLabel={t("onboarding_screens.start")}
+        onPress={finishOnboarding}
+        priority="primary"
+        iconName="arrow-forward-outline"
+        iconAfter
+        style={{ width: "100%" }}
+      />
+    </PageOnboarding>
   );
 };
