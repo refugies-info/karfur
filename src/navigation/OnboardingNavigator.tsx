@@ -6,7 +6,7 @@ import { FilterCity } from "../screens/Onboarding/FilterCity";
 import { FilterAge } from "../screens/Onboarding/FilterAge";
 import { FilterFrenchLevel } from "../screens/Onboarding/FilterFrenchLevel";
 import { FinishOnboarding } from "../screens/Onboarding/FinishOnboarding";
-import { LanguageChoiceScreen } from "../screens/LanguageChoiceScreen";
+import { LanguageChoiceScreen } from "../screens/Onboarding/LanguageChoiceScreen";
 import { ActivateNotificationsScreen } from "../screens/Onboarding/ActivateNotificationsScreen";
 
 const OnBoardingNavigator = createStackNavigator<OnboardingParamList>();

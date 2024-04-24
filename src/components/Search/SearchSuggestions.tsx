@@ -12,6 +12,7 @@ import { currentI18nCodeSelector } from "../../services/redux/User/user.selector
 import { SectionTitle } from "../typography";
 import { useTheme } from "styled-components/native";
 import { ContentForApp } from "@refugies-info/api-types";
+import { Spacer } from "../layout";
 
 interface Props {
   contents: ContentForApp[];
@@ -32,6 +33,7 @@ const SearchSuggestions = (props: Props) => {
 
   return (
     <>
+      <Spacer height={_theme.margin * 3} />
       <SectionTitle>
         <ReadableText>
           {t(

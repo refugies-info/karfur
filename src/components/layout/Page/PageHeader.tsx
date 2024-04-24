@@ -15,6 +15,7 @@ export interface PageHeaderProps {
   isDarkBackground: boolean;
   onHeaderLayout: (e: any) => any;
   HeaderContentInternal: React.ComponentType<HeaderContentProps>;
+  style?: any;
 }
 
 const MainContainer = styled(SafeAreaViewTopInset)<{
@@ -40,6 +41,7 @@ const PageHeader = memo(function PageHeader({
   headerBackgroundImage,
   isDarkBackground,
   HeaderContentInternal,
+  style,
 }: PageHeaderProps) {
   const Container = useMemo(
     () =>
@@ -56,10 +58,7 @@ const PageHeader = memo(function PageHeader({
   );
 
   return (
-    <Container
-      onLayout={onHeaderLayout}
-      style={{ marginBottom: styles.margin * 3 }}
-    >
+    <Container onLayout={onHeaderLayout} style={style}>
       <MainContainer
         backgroundColor={
           headerBackgroundImage ? "rgba(255,255,255,0)" : headerBackgroundColor

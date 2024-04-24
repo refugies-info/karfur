@@ -223,6 +223,7 @@ const Page = ({
               headerBackgroundColor={headerBackgroundColor}
               headerBackgroundImage={headerBackgroundImage}
               HeaderContent={HeaderContent}
+              style={{ marginBottom: theme.margin * 3 }}
             />
           }
         />
