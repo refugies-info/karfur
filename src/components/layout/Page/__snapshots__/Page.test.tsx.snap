@@ -897,11 +897,6 @@ exports[`Page snapshot test suite should render without bug 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={
-          {
-            "marginBottom": 24,
-          }
-        }
       >
         <View
           style={

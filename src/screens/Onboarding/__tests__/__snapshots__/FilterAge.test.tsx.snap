@@ -44,6 +44,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
           style={
             {
               "alignItems": "center",
+              "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
               "paddingBottom": 16,
@@ -53,6 +54,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
           <View
             style={
               {
+                "alignItems": "center",
+                "display": "flex",
                 "flexDirection": "row",
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -84,6 +87,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -123,6 +127,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -160,6 +165,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -218,7 +224,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
             }
           >
             <View
-              RTLBehaviour={false}
+              RTLBehaviour={true}
               animatedStyle={
                 {
                   "value": {},
@@ -382,28 +388,34 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={true}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#000091",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        age_10_17
+                        <Text
+                          isRTL={false}
+                          isSelected={true}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#000091",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          age_10_17
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -600,28 +612,34 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        age_18_25
+                        <Text
+                          isRTL={false}
+                          isSelected={false}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#161616",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          age_18_25
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -809,28 +827,34 @@ exports[`Filter age should render correctly when age selected 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        age_26_100
+                        <Text
+                          isRTL={false}
+                          isSelected={false}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#161616",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          age_26_100
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -1006,7 +1030,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
       testID="test-next-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},
@@ -1979,7 +2003,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
       testID="test-prev-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},
@@ -2168,6 +2192,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           style={
             {
               "alignItems": "center",
+              "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
               "paddingBottom": 16,
@@ -2177,6 +2202,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           <View
             style={
               {
+                "alignItems": "center",
+                "display": "flex",
                 "flexDirection": "row",
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -2208,6 +2235,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -2247,6 +2275,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -2284,6 +2313,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -2342,7 +2372,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             }
           >
             <View
-              RTLBehaviour={false}
+              RTLBehaviour={true}
               animatedStyle={
                 {
                   "value": {},
@@ -2514,28 +2544,34 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        age_10_17
+                        <Text
+                          isRTL={false}
+                          isSelected={false}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#161616",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          age_10_17
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -2723,28 +2759,34 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        age_18_25
+                        <Text
+                          isRTL={false}
+                          isSelected={false}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#161616",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          age_18_25
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -2932,28 +2974,34 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        age_26_100
+                        <Text
+                          isRTL={false}
+                          isSelected={false}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#161616",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          age_26_100
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -3129,7 +3177,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       testID="test-next-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},
@@ -4102,7 +4150,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       testID="test-prev-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},
@@ -4291,6 +4339,7 @@ exports[`Filter age should select age when click on it 1`] = `
           style={
             {
               "alignItems": "center",
+              "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
               "paddingBottom": 16,
@@ -4300,6 +4349,8 @@ exports[`Filter age should select age when click on it 1`] = `
           <View
             style={
               {
+                "alignItems": "center",
+                "display": "flex",
                 "flexDirection": "row",
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -4331,6 +4382,7 @@ exports[`Filter age should select age when click on it 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -4370,6 +4422,7 @@ exports[`Filter age should select age when click on it 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -4407,6 +4460,7 @@ exports[`Filter age should select age when click on it 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -4465,7 +4519,7 @@ exports[`Filter age should select age when click on it 1`] = `
             }
           >
             <View
-              RTLBehaviour={false}
+              RTLBehaviour={true}
               animatedStyle={
                 {
                   "value": {},
@@ -4637,28 +4691,34 @@ exports[`Filter age should select age when click on it 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        age_10_17
+                        <Text
+                          isRTL={false}
+                          isSelected={false}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#161616",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          age_10_17
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -4846,28 +4906,34 @@ exports[`Filter age should select age when click on it 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        age_18_25
+                        <Text
+                          isRTL={false}
+                          isSelected={false}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#161616",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          age_18_25
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -5047,28 +5113,34 @@ exports[`Filter age should select age when click on it 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={true}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#000091",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        age_26_100
+                        <Text
+                          isRTL={false}
+                          isSelected={true}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#000091",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          age_26_100
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -5253,7 +5325,7 @@ exports[`Filter age should select age when click on it 1`] = `
       testID="test-next-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},
@@ -6226,7 +6298,7 @@ exports[`Filter age should select age when click on it 1`] = `
       testID="test-prev-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},

@@ -351,11 +351,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={
-          {
-            "marginBottom": 24,
-          }
-        }
       >
         <View
           style={

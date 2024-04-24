@@ -297,7 +297,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
             }
           >
             <View
-              RTLBehaviour={false}
+              RTLBehaviour={true}
               animatedStyle={
                 {
                   "value": {},
@@ -511,7 +511,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
             }
           >
             <View
-              RTLBehaviour={false}
+              RTLBehaviour={true}
               animatedStyle={
                 {
                   "value": {},

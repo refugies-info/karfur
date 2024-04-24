@@ -337,11 +337,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={
-          {
-            "marginBottom": 24,
-          }
-        }
       >
         <View
           style={
@@ -3914,11 +3909,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={
-          {
-            "marginBottom": 24,
-          }
-        }
       >
         <View
           style={
@@ -7491,11 +7481,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={
-          {
-            "marginBottom": 24,
-          }
-        }
       >
         <View
           style={

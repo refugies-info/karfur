@@ -183,6 +183,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
         {
           "flexBasis": "auto",
           "flexGrow": 0,
+          "marginRight": 8,
         }
       }
     >
@@ -485,6 +486,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
         {
           "flexBasis": "auto",
           "flexGrow": 0,
+          "marginRight": 8,
         }
       }
     >
@@ -970,6 +972,7 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
         {
           "flexBasis": "auto",
           "flexGrow": 0,
+          "marginRight": 8,
         }
       }
     >

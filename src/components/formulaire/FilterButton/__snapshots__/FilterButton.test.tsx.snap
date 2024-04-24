@@ -86,29 +86,42 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
         }
       }
     >
-      <Text
-        isRTL={false}
-        isSelected={false}
-        selectable={true}
+      <View
+        collapsable={false}
         style={
-          {
-            "color": "#161616",
-            "fontFamily": "circularBold",
-            "fontSize": 16,
-            "lineHeight": 20,
-            "paddingVertical": 4,
-            "textAlign": "left",
-          }
+          [
+            {
+              "maxWidth": "100%",
+            },
+            {},
+          ]
         }
       >
-        filters.Test choice
-      </Text>
+        <Text
+          isRTL={false}
+          isSelected={false}
+          selectable={true}
+          style={
+            {
+              "color": "#161616",
+              "fontFamily": "circularBold",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "paddingVertical": 4,
+              "textAlign": "left",
+            }
+          }
+        >
+          filters.Test choice
+        </Text>
+      </View>
     </View>
     <View
       style={
         {
           "flexBasis": "auto",
           "flexGrow": 0,
+          "marginRight": 8,
         }
       }
     >
@@ -290,22 +303,17 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
         }
       }
     >
-      <Text
-        isRTL={false}
-        isSelected={true}
-        selectable={true}
+      <View
+        collapsable={false}
         style={
-          {
-            "color": "#000091",
-            "fontFamily": "circularBold",
-            "fontSize": 16,
-            "lineHeight": 20,
-            "paddingVertical": 4,
-            "textAlign": "left",
-          }
+          [
+            {
+              "maxWidth": "100%",
+            },
+            {},
+          ]
         }
       >
-        filters.Test choice
         <Text
           isRTL={false}
           isSelected={true}
@@ -321,18 +329,36 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
             }
           }
         >
-           
-          (
-          First detail/Second detail
-          )
+          filters.Test choice
+          <Text
+            isRTL={false}
+            isSelected={true}
+            selectable={true}
+            style={
+              {
+                "color": "#000091",
+                "fontFamily": "circularBold",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "paddingVertical": 4,
+                "textAlign": "left",
+              }
+            }
+          >
+             
+            (
+            First detail/Second detail
+            )
+          </Text>
         </Text>
-      </Text>
+      </View>
     </View>
     <View
       style={
         {
           "flexBasis": "auto",
           "flexGrow": 0,
+          "marginRight": 8,
         }
       }
     >
@@ -523,29 +549,42 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
         }
       }
     >
-      <Text
-        isRTL={false}
-        isSelected={true}
-        selectable={true}
+      <View
+        collapsable={false}
         style={
-          {
-            "color": "#000091",
-            "fontFamily": "circularBold",
-            "fontSize": 16,
-            "lineHeight": 20,
-            "paddingVertical": 4,
-            "textAlign": "left",
-          }
+          [
+            {
+              "maxWidth": "100%",
+            },
+            {},
+          ]
         }
       >
-        filters.Test choice
-      </Text>
+        <Text
+          isRTL={false}
+          isSelected={true}
+          selectable={true}
+          style={
+            {
+              "color": "#000091",
+              "fontFamily": "circularBold",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "paddingVertical": 4,
+              "textAlign": "left",
+            }
+          }
+        >
+          filters.Test choice
+        </Text>
+      </View>
     </View>
     <View
       style={
         {
           "flexBasis": "auto",
           "flexGrow": 0,
+          "marginRight": 8,
         }
       }
     >

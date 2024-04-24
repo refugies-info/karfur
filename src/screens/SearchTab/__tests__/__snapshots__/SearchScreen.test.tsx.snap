@@ -177,11 +177,6 @@ exports[`Search Screen should render correctly 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={
-          {
-            "marginBottom": 24,
-          }
-        }
       >
         <View
           style={
@@ -370,6 +365,14 @@ exports[`Search Screen should render correctly 1`] = `
           ]
         }
       >
+        <View
+          height={24}
+          style={
+            {
+              "minHeight": 24,
+            }
+          }
+        />
         <Text
           isRTL={false}
           selectable={true}

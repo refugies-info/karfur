@@ -44,6 +44,7 @@ exports[`Filter french level should render correctly when french level selected 
           style={
             {
               "alignItems": "center",
+              "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
               "paddingBottom": 16,
@@ -53,6 +54,8 @@ exports[`Filter french level should render correctly when french level selected 
           <View
             style={
               {
+                "alignItems": "center",
+                "display": "flex",
                 "flexDirection": "row",
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -84,6 +87,7 @@ exports[`Filter french level should render correctly when french level selected 
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -121,6 +125,7 @@ exports[`Filter french level should render correctly when french level selected 
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -160,6 +165,7 @@ exports[`Filter french level should render correctly when french level selected 
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -218,7 +224,7 @@ exports[`Filter french level should render correctly when french level selected 
             }
           >
             <View
-              RTLBehaviour={false}
+              RTLBehaviour={true}
               animatedStyle={
                 {
                   "value": {},
@@ -390,28 +396,34 @@ exports[`Filter french level should render correctly when french level selected 
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_0
+                        <Text
+                          isRTL={false}
+                          isSelected={false}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#161616",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          french_level_0
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -599,21 +611,8 @@ exports[`Filter french level should render correctly when french level selected 
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_a
                         <Text
                           isRTL={false}
                           isSelected={false}
@@ -629,18 +628,37 @@ exports[`Filter french level should render correctly when french level selected 
                             }
                           }
                         >
-                           
-                          (
-                          A1/A2
-                          )
+                          french_level_a
+                          <Text
+                            isRTL={false}
+                            isSelected={false}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#161616",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                             
+                            (
+                            A1/A2
+                            )
+                          </Text>
                         </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -820,21 +838,8 @@ exports[`Filter french level should render correctly when french level selected 
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={true}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#000091",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_b
                         <Text
                           isRTL={false}
                           isSelected={true}
@@ -850,18 +855,37 @@ exports[`Filter french level should render correctly when french level selected 
                             }
                           }
                         >
-                           
-                          (
-                          B1/B2
-                          )
+                          french_level_b
+                          <Text
+                            isRTL={false}
+                            isSelected={true}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#000091",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                             
+                            (
+                            B1/B2
+                            )
+                          </Text>
                         </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -1058,21 +1082,8 @@ exports[`Filter french level should render correctly when french level selected 
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_c
                         <Text
                           isRTL={false}
                           isSelected={false}
@@ -1088,18 +1099,37 @@ exports[`Filter french level should render correctly when french level selected 
                             }
                           }
                         >
-                           
-                          (
-                          C1/C2
-                          )
+                          french_level_c
+                          <Text
+                            isRTL={false}
+                            isSelected={false}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#161616",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                             
+                            (
+                            C1/C2
+                            )
+                          </Text>
                         </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -1275,7 +1305,7 @@ exports[`Filter french level should render correctly when french level selected 
       testID="test-next-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},
@@ -2248,7 +2278,7 @@ exports[`Filter french level should render correctly when french level selected 
       testID="test-prev-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},
@@ -2437,6 +2467,7 @@ exports[`Filter french level should render correctly when no french level select
           style={
             {
               "alignItems": "center",
+              "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
               "paddingBottom": 16,
@@ -2446,6 +2477,8 @@ exports[`Filter french level should render correctly when no french level select
           <View
             style={
               {
+                "alignItems": "center",
+                "display": "flex",
                 "flexDirection": "row",
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -2477,6 +2510,7 @@ exports[`Filter french level should render correctly when no french level select
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -2514,6 +2548,7 @@ exports[`Filter french level should render correctly when no french level select
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -2553,6 +2588,7 @@ exports[`Filter french level should render correctly when no french level select
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -2611,7 +2647,7 @@ exports[`Filter french level should render correctly when no french level select
             }
           >
             <View
-              RTLBehaviour={false}
+              RTLBehaviour={true}
               animatedStyle={
                 {
                   "value": {},
@@ -2783,28 +2819,34 @@ exports[`Filter french level should render correctly when no french level select
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_0
+                        <Text
+                          isRTL={false}
+                          isSelected={false}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#161616",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          french_level_0
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -2992,21 +3034,8 @@ exports[`Filter french level should render correctly when no french level select
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_a
                         <Text
                           isRTL={false}
                           isSelected={false}
@@ -3022,18 +3051,37 @@ exports[`Filter french level should render correctly when no french level select
                             }
                           }
                         >
-                           
-                          (
-                          A1/A2
-                          )
+                          french_level_a
+                          <Text
+                            isRTL={false}
+                            isSelected={false}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#161616",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                             
+                            (
+                            A1/A2
+                            )
+                          </Text>
                         </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -3221,21 +3269,8 @@ exports[`Filter french level should render correctly when no french level select
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_b
                         <Text
                           isRTL={false}
                           isSelected={false}
@@ -3251,18 +3286,37 @@ exports[`Filter french level should render correctly when no french level select
                             }
                           }
                         >
-                           
-                          (
-                          B1/B2
-                          )
+                          french_level_b
+                          <Text
+                            isRTL={false}
+                            isSelected={false}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#161616",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                             
+                            (
+                            B1/B2
+                            )
+                          </Text>
                         </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -3450,21 +3504,8 @@ exports[`Filter french level should render correctly when no french level select
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_c
                         <Text
                           isRTL={false}
                           isSelected={false}
@@ -3480,18 +3521,37 @@ exports[`Filter french level should render correctly when no french level select
                             }
                           }
                         >
-                           
-                          (
-                          C1/C2
-                          )
+                          french_level_c
+                          <Text
+                            isRTL={false}
+                            isSelected={false}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#161616",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                             
+                            (
+                            C1/C2
+                            )
+                          </Text>
                         </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -3667,7 +3727,7 @@ exports[`Filter french level should render correctly when no french level select
       testID="test-next-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},
@@ -4640,7 +4700,7 @@ exports[`Filter french level should render correctly when no french level select
       testID="test-prev-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},
@@ -4829,6 +4889,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           style={
             {
               "alignItems": "center",
+              "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
               "paddingBottom": 16,
@@ -4838,6 +4899,8 @@ exports[`Filter french level should select level when click on it 1`] = `
           <View
             style={
               {
+                "alignItems": "center",
+                "display": "flex",
                 "flexDirection": "row",
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -4869,6 +4932,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -4906,6 +4970,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -4945,6 +5010,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   }
                 }
                 collapsable={false}
+                isRTL={false}
                 style={
                   {
                     "backgroundColor": "#2323FF",
@@ -5003,7 +5069,7 @@ exports[`Filter french level should select level when click on it 1`] = `
             }
           >
             <View
-              RTLBehaviour={false}
+              RTLBehaviour={true}
               animatedStyle={
                 {
                   "value": {},
@@ -5175,28 +5241,34 @@ exports[`Filter french level should select level when click on it 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_0
+                        <Text
+                          isRTL={false}
+                          isSelected={false}
+                          selectable={true}
+                          style={
+                            {
+                              "color": "#161616",
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "paddingVertical": 4,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          french_level_0
+                        </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -5384,21 +5456,8 @@ exports[`Filter french level should select level when click on it 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_a
                         <Text
                           isRTL={false}
                           isSelected={false}
@@ -5414,18 +5473,37 @@ exports[`Filter french level should select level when click on it 1`] = `
                             }
                           }
                         >
-                           
-                          (
-                          A1/A2
-                          )
+                          french_level_a
+                          <Text
+                            isRTL={false}
+                            isSelected={false}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#161616",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                             
+                            (
+                            A1/A2
+                            )
+                          </Text>
                         </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -5605,21 +5683,8 @@ exports[`Filter french level should select level when click on it 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={true}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#000091",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_b
                         <Text
                           isRTL={false}
                           isSelected={true}
@@ -5635,18 +5700,37 @@ exports[`Filter french level should select level when click on it 1`] = `
                             }
                           }
                         >
-                           
-                          (
-                          B1/B2
-                          )
+                          french_level_b
+                          <Text
+                            isRTL={false}
+                            isSelected={true}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#000091",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                             
+                            (
+                            B1/B2
+                            )
+                          </Text>
                         </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -5843,21 +5927,8 @@ exports[`Filter french level should select level when click on it 1`] = `
                       }
                     >
                       <Text
-                        isRTL={false}
-                        isSelected={false}
-                        selectable={true}
-                        style={
-                          {
-                            "color": "#161616",
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "paddingVertical": 4,
-                            "textAlign": "left",
-                          }
-                        }
+                        style={{}}
                       >
-                        french_level_c
                         <Text
                           isRTL={false}
                           isSelected={false}
@@ -5873,18 +5944,37 @@ exports[`Filter french level should select level when click on it 1`] = `
                             }
                           }
                         >
-                           
-                          (
-                          C1/C2
-                          )
+                          french_level_c
+                          <Text
+                            isRTL={false}
+                            isSelected={false}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#161616",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                             
+                            (
+                            C1/C2
+                            )
+                          </Text>
                         </Text>
                       </Text>
+                      <View />
                     </View>
                     <View
                       style={
                         {
                           "flexBasis": "auto",
                           "flexGrow": 0,
+                          "marginRight": 8,
                         }
                       }
                     >
@@ -6060,7 +6150,7 @@ exports[`Filter french level should select level when click on it 1`] = `
       testID="test-next-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},
@@ -7033,7 +7123,7 @@ exports[`Filter french level should select level when click on it 1`] = `
       testID="test-prev-button"
     >
       <View
-        RTLBehaviour={false}
+        RTLBehaviour={true}
         animatedStyle={
           {
             "value": {},

@@ -480,6 +480,14 @@ exports[`Search results screen should render correctly 1`] = `
     }
   >
     <View>
+      <View
+        height={24}
+        style={
+          {
+            "minHeight": 24,
+          }
+        }
+      />
       <Text
         isRTL={false}
         selectable={true}
