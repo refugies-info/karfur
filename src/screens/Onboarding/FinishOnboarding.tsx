@@ -20,18 +20,21 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { FakeTabBar } from "../../navigation/components/FakeTabBar";
 import { ButtonDSFR, ReadableText } from "../../components";
 import PageOnboarding from "../../components/layout/PageOnboarding";
+import EndOnboardingIllu from "../../theme/images/onboarding/end-onboarding-illu.svg";
 
 const Title = styled(StyledTextBigBold)`
   color: ${({ theme }) => theme.colors.dsfr_action};
-  margin-top: ${({ theme }) => theme.margin * 8}px;
 `;
 const Container = styled.View`
   align-items: center;
-  margin-vertical: 30%;
+  margin-bottom: 30%;
 `;
 const LottieContainer = styled.View`
-  height: 180px;
-  width: 164px;
+  position: relative;
+  height: 350px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 `;
 const FakeTabBarArrowContainer = styled.View<{ width: number }>`
   width: ${({ width }) => width}px;
@@ -73,10 +76,19 @@ export const FinishOnboarding = ({}: StackScreenProps<
       <Container>
         {hasUserEnteredInfos ? (
           <LottieContainer>
+            <EndOnboardingIllu width={164} height={180} style={{ zIndex: 2 }} />
             <LottieView
-              source={require("../../theme/lottie/thumbs-up-emoji-animation.json")}
+              source={require("../../theme/lottie/onboarding-animation.json")}
               autoPlay
               loop
+              style={{
+                position: "absolute",
+                zIndex: 1,
+                width: "110%",
+                height: "110%",
+                top: "-5%",
+                left: "-3%",
+              }}
             />
           </LottieContainer>
         ) : (

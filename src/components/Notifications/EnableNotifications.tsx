@@ -49,10 +49,9 @@ export const EnableNotifications = ({ onDismiss, onDone }: Props) => {
         <LottieContainer>
           <LottieView
             colorFilters={[{ keypath: "bell icon", color: "#c8c8c8" }]}
-            source={require("../../theme/lottie/notification-bell-animation.json")}
+            source={require("../../theme/lottie/bell-animation.json")}
             autoPlay
             loop
-            speed={1.2}
           />
         </LottieContainer>
         <Title>
