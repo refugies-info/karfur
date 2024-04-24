@@ -18,6 +18,7 @@ import latestActionsSaga, {
   removeUserHasNewFavorites,
   saveUserLocalizedWarningHidden,
   removeUserLocalizedWarningHidden,
+  resetUser,
 } from "../user.saga";
 import {
   saveItemInAsyncStorage,
@@ -94,6 +95,8 @@ describe("[Saga] user", () => {
         .takeLatest("REMOVE_USER_FAVORITE", removeUserFavorite)
         .next()
         .takeLatest("REMOVE_USER_ALL_FAVORITES", removeUserAllFavorites)
+        .next()
+        .takeLatest("RESET_USER", resetUser)
         .next()
         .isDone();
     });
@@ -459,17 +462,21 @@ describe("[Saga] user", () => {
     it("should call functions and set data", () => {
       testSaga(removeSelectedLanguage)
         .next()
-        .call(deleteItemInAsyncStorage, "SELECTED_LANGUAGE")
-        .next()
         .put(setSelectedLanguageActionCreator(null))
         .next()
         .put(setCurrentLanguageActionCreator(null))
+        .next()
+        .call(deleteItemInAsyncStorage, "SELECTED_LANGUAGE")
         .next()
         .isDone();
     });
 
     it("should call functions and set fr if deleteItemInAsyncStorage throws", () => {
       testSaga(removeSelectedLanguage)
+        .next()
+        .put(setSelectedLanguageActionCreator(null))
+        .next()
+        .put(setCurrentLanguageActionCreator(null))
         .next()
         .call(deleteItemInAsyncStorage, "SELECTED_LANGUAGE")
         .throw(new Error("error"))
