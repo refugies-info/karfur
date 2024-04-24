@@ -56,6 +56,7 @@ export const LanguageChoiceScreen = ({
       {activatedLanguages.map((language, index) => (
         <LanguageDetailsButton
           hideRadio
+          iconOverride="chevron-right-outline"
           key={index}
           langueFr={language.langueFr}
           langueLoc={language.langueLoc}

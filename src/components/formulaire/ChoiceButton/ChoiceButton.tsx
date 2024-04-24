@@ -10,6 +10,7 @@ export interface ChoiceButtonProps {
   children: any;
   flatStyle?: boolean;
   hideRadio?: boolean;
+  iconOverride?: string;
   isSelected: boolean;
   onPress: () => void;
   style?: any;
@@ -51,7 +52,9 @@ export const ChoiceButton = ({
   onPress,
   style = {},
   testID,
+  iconOverride,
 }: ChoiceButtonProps) => {
+  const theme = useTheme();
   return (
     <MainContainer
       accessibilityRole={accessibilityRole}
@@ -61,9 +64,19 @@ export const ChoiceButton = ({
       style={style}
       testID={testID}
     >
-      <Columns RTLBehaviour layout="1 auto" verticalAlign="center">
+      <Columns RTLBehaviour layout="1 auto auto" verticalAlign="center">
         {children}
         {!hideRadio && <RadioButton isSelected={isSelected} />}
+        {!!iconOverride && (
+          <Icon
+            name={iconOverride}
+            width={24}
+            height={24}
+            fill={
+              isSelected ? theme.colors.dsfr_action : theme.colors.dsfr_dark
+            }
+          />
+        )}
       </Columns>
     </MainContainer>
   );

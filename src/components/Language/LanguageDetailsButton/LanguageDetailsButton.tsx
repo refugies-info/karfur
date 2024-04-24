@@ -34,6 +34,7 @@ export interface LanguageDetailsButtonProps {
   flatStyle?: boolean;
   hideRadio?: boolean;
   isSelected?: boolean;
+  iconOverride?: string;
   langueFr: string;
   langueLoc: string;
   onPress: ChoiceButtonProps["onPress"];
@@ -43,6 +44,7 @@ const LanguageDetailsButton = ({
   flatStyle,
   hideRadio,
   isSelected,
+  iconOverride,
   langueFr,
   langueLoc,
   onPress,
@@ -55,6 +57,7 @@ const LanguageDetailsButton = ({
       flatStyle={flatStyle}
       hideRadio={hideRadio}
       isSelected={!!isSelected}
+      iconOverride={iconOverride}
       onPress={onPress}
       testID={"test-language-button-" + langueFr}
     >
