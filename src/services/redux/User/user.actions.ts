@@ -30,6 +30,7 @@ import {
   SET_INITIAL_URL_USED,
   SET_INITIAL_URL,
   SET_REDIRECT_DISPOSITIF,
+  RESET_USER,
 } from "./user.actionTypes";
 import { ObjectId } from "../../../types/interface";
 import {
@@ -147,6 +148,9 @@ export const removeUserFavoriteActionCreator = (contentId: string) =>
 export const removeUserAllFavoritesActionCreator = () =>
   action(REMOVE_USER_ALL_FAVORITES);
 
+export const resetUserActionCreator = () =>
+  action(RESET_USER);
+
 const actions = {
   setHasUserSeenOnboardingActionCreator,
   setSelectedLanguageActionCreator,
@@ -176,5 +180,6 @@ const actions = {
   setInitialUrlUsed,
   setInitialUrlActionCreator,
   setRedirectDispositifActionCreator,
+  resetUserActionCreator
 };
 export type UserActions = ActionType<typeof actions>;

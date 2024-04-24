@@ -20,6 +20,11 @@ import {
   setUserFavoritesActionCreator,
   addUserFavoriteActionCreator,
   removeUserFavoriteActionCreator,
+  removeSelectedLanguageActionCreator,
+  removeUserHasNewFavoritesActionCreator,
+  removeUserLocalizedWarningHiddenActionCreator,
+  removeUserAllFavoritesActionCreator,
+  removeHasUserSeenOnboardingActionCreator,
 } from "./user.actions";
 import {
   SAVE_SELECTED_LANGUAGE,
@@ -40,6 +45,7 @@ import {
   ADD_USER_FAVORITE,
   REMOVE_USER_FAVORITE,
   REMOVE_USER_ALL_FAVORITES,
+  RESET_USER,
 } from "./user.actionTypes";
 import {
   saveItemInAsyncStorage,
@@ -80,9 +86,9 @@ export function* saveSelectedLanguage(
 export function* removeSelectedLanguage(): SagaIterator {
   try {
     logger.info("[removeSelectedLanguage] saga");
-    yield call(deleteItemInAsyncStorage, "SELECTED_LANGUAGE");
     yield put(setSelectedLanguageActionCreator(null));
     yield put(setCurrentLanguageActionCreator(null));
+    yield call(deleteItemInAsyncStorage, "SELECTED_LANGUAGE");
   } catch (error: any) {
     logger.error("Error while removing langue", { error: error.message });
     yield put(setSelectedLanguageActionCreator("fr"));
@@ -429,6 +435,19 @@ export function* removeUserAllFavorites(): SagaIterator {
   }
 }
 
+export function* resetUser(): SagaIterator {
+  try {
+    logger.info("[resetUser] saga");
+    yield put(removeSelectedLanguageActionCreator());
+    yield put(removeUserHasNewFavoritesActionCreator());
+    yield put(removeUserLocalizedWarningHiddenActionCreator());
+    yield put(removeUserAllFavoritesActionCreator());
+    yield put(removeHasUserSeenOnboardingActionCreator());
+  } catch (error: any) {
+    logger.error("Error while resetting user", { error: error.message });
+  }
+}
+
 function* latestActionsSaga() {
   yield takeLatest(SAVE_SELECTED_LANGUAGE, saveSelectedLanguage);
   yield takeLatest(SAVE_USER_HAS_SEEN_ONBOARDING, saveHasUserSeenOnboarding);
@@ -457,6 +476,7 @@ function* latestActionsSaga() {
   yield takeLatest(ADD_USER_FAVORITE, addUserFavorite);
   yield takeLatest(REMOVE_USER_FAVORITE, removeUserFavorite);
   yield takeLatest(REMOVE_USER_ALL_FAVORITES, removeUserAllFavorites);
+  yield takeLatest(RESET_USER, resetUser);
 }
 
 export default latestActionsSaga;

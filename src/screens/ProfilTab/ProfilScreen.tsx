@@ -10,11 +10,7 @@ import {
   removeUserFrenchLevelActionCreator,
   removeUserAgeActionCreator,
   removeUserLocationActionCreator,
-  removeHasUserSeenOnboardingActionCreator,
-  removeSelectedLanguageActionCreator,
-  removeUserHasNewFavoritesActionCreator,
-  removeUserLocalizedWarningHiddenActionCreator,
-  removeUserAllFavoritesActionCreator,
+  resetUserActionCreator,
 } from "../../services/redux/User/user.actions";
 import { ProfilDetailButton } from "../../components/Profil/ProfilDetailButton";
 import {
@@ -96,11 +92,7 @@ export const ProfilScreen = ({
       .resetAnalyticsData()
       .then(() => deleteUserData())
       .then(() => {
-        dispatch(removeSelectedLanguageActionCreator());
-        dispatch(removeUserHasNewFavoritesActionCreator());
-        dispatch(removeUserLocalizedWarningHiddenActionCreator());
-        dispatch(removeUserAllFavoritesActionCreator());
-        dispatch(removeHasUserSeenOnboardingActionCreator());
+        dispatch(resetUserActionCreator());
       });
   };
 
