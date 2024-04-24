@@ -23,12 +23,12 @@ const GeolocButtonContainer = styled(RTLTouchableOpacity)<{
   border-color: ${({ hasError, theme }) =>
     hasError ? theme.colors.dsfr_error : "transparent"};
   justify-content: space-between;
+  gap: ${({ theme }) => theme.margin * 2}px;
 `;
 
-const GeolocText = styled(StyledTextSmall)<{ isRTL: boolean }>`
+const GeolocText = styled(StyledTextSmall)`
   color: ${({ theme }) => theme.colors.dsfr_blueSun113};
   flex-grow: 1;
-  margin-left: ${({ theme }) => theme.margin * 2}px;
 `;
 
 const ErrorText = styled(StyledTextVerySmall)`
@@ -134,11 +134,11 @@ const GeolocButton = ({
           height={ICON_SIZE}
           fill={styles.colors.dsfr_blueSun113}
         />
-        <GeolocText isRTL={isRTL}>
+        <GeolocText>
           {t("onboarding_screens.position_button", "Utiliser ma position")}
         </GeolocText>
         <Icon
-          name="chevron-right-outline"
+          name={!isRTL ? "chevron-right-outline" : "chevron-left-outline"}
           width={ICON_SIZE}
           height={ICON_SIZE}
           fill={styles.colors.dsfr_blueSun113}

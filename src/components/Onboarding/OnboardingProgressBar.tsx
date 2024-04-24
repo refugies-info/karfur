@@ -9,15 +9,14 @@ import Animated, {
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks";
 import { ButtonDSFR } from "../buttons";
+import { RTLView } from "../BasicComponents";
 
-const MainContainer = styled.View`
-  flex-direction: row;
+const MainContainer = styled(RTLView)`
   align-items: center;
   padding-bottom: ${({ theme }) => theme.margin * 2}px;
   margin-bottom: ${({ theme }) => theme.margin * 2}px;
 `;
-const ProgressContainer = styled.View`
-  flex-direction: row;
+const ProgressContainer = styled(RTLView)`
   flex-grow: 1;
   flex-shrink: 1;
 `;
@@ -30,9 +29,9 @@ const ProgressBarContainer = styled.View`
   flex: 1;
   overflow: hidden;
 `;
-const ProgressBar = styled(Animated.View)`
+const ProgressBar = styled(Animated.View)<{ isRTL: boolean }>`
   position: absolute;
-  left: 0;
+  ${({ isRTL }) => (isRTL ? "right: 0" : "left: 0")};
   top: 0;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.dsfr_blueActive};
@@ -43,7 +42,7 @@ interface Props {
   onSkip: () => void;
 }
 export const OnboardingProgressBar = (props: Props) => {
-  const { t } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
   const width = useSharedValue(0);
   const animatedWidth = useAnimatedStyle(() => ({ width: `${width.value}%` }));
 
@@ -66,13 +65,13 @@ export const OnboardingProgressBar = (props: Props) => {
     <MainContainer>
       <ProgressContainer>
         <ProgressBarContainer>
-          <ProgressBar style={[getWidth(1)]} />
+          <ProgressBar style={[getWidth(1)]} isRTL={isRTL} />
         </ProgressBarContainer>
         <ProgressBarContainer>
-          <ProgressBar style={[getWidth(2)]} />
+          <ProgressBar style={[getWidth(2)]} isRTL={isRTL} />
         </ProgressBarContainer>
         <ProgressBarContainer>
-          <ProgressBar style={[getWidth(3)]} />
+          <ProgressBar style={[getWidth(3)]} isRTL={isRTL} />
         </ProgressBarContainer>
       </ProgressContainer>
       <ButtonDSFR

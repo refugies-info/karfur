@@ -118,6 +118,7 @@ const Button = ({
         spacing={
           !!title && !!icon ? ColumnsSpacing.Default : ColumnsSpacing.NoSpace
         }
+        RTLBehaviour
       >
         {!iconAfter && icon}
         {title && (
