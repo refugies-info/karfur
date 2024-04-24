@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { RTLTouchableOpacity, RTLView } from "../../BasicComponents";
 import { StyledTextSmall, StyledTextSmallBold } from "../../StyledText";
 import CityIcon from "../../../theme/images/onboarding/city-icon.svg";
+import { ReadableText } from "../../ReadableText";
 
 const CityText = styled(StyledTextSmallBold)`
   color: ${({ theme }) => theme.colors.dsfr_dark};
@@ -33,10 +34,12 @@ const CityChoice = ({ city, department, onSelect }: Props) => {
   return (
     <ButtonContainer onPress={onSelect} accessibilityRole="button">
       <CityIcon width={ICON_SIZE} height={ICON_SIZE} />
-      <RTLView>
-        <CityText>{city}</CityText>
-        {department && <DepartmentText>({department})</DepartmentText>}
-      </RTLView>
+      <ReadableText text={`${city} (${department})`}>
+        <RTLView>
+          <CityText>{city}</CityText>
+          {department && <DepartmentText>({department})</DepartmentText>}
+        </RTLView>
+      </ReadableText>
     </ButtonContainer>
   );
 };

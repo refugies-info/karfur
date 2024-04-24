@@ -12,6 +12,7 @@ import {
   getDepartementFromResult,
   getCityFromResult,
 } from "../../../libs/geolocalisation";
+import { ReadableText } from "../../ReadableText";
 
 const GeolocButtonContainer = styled(RTLTouchableOpacity)<{
   hasError: boolean;
@@ -135,7 +136,9 @@ const GeolocButton = ({
           fill={styles.colors.dsfr_blueSun113}
         />
         <GeolocText>
-          {t("onboarding_screens.position_button", "Utiliser ma position")}
+          <ReadableText>
+            {t("onboarding_screens.position_button", "Utiliser ma position")}
+          </ReadableText>
         </GeolocText>
         <Icon
           name={!isRTL ? "chevron-right-outline" : "chevron-left-outline"}

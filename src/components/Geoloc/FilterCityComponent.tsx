@@ -152,7 +152,11 @@ export const FilterCityComponent = ({
           step={1}
           defaultText="C’est pour te montrer les associations et les activités dans ta ville."
         />
-        <Label>{t("onboarding_screens.city_label", "Ta ville")}</Label>
+        <Label>
+          <ReadableText>
+            {t("onboarding_screens.city_label", "Ta ville")}
+          </ReadableText>
+        </Label>
         {!selectedCity && (
           <View>
             <SearchBarCity

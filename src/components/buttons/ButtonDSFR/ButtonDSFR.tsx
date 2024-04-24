@@ -24,6 +24,7 @@ export interface ButtonProps {
   size?: "default" | "small";
   style?: StyleProp<ViewStyle>;
   testID?: string;
+  noVoiceover?: boolean;
 }
 
 const ButtonText = styled.Text<{
@@ -64,6 +65,7 @@ const Button = ({
   size,
   style,
   testID,
+  noVoiceover,
 }: ButtonProps) => {
   const theme = useTheme();
   const backgroundColor = useMemo(
@@ -123,7 +125,9 @@ const Button = ({
         {!iconAfter && icon}
         {title && (
           <ButtonText color={color} disabled={disabled || loading} size={size}>
-            <ReadableText>{title}</ReadableText>
+            <ReadableText isFocused={noVoiceover ? false : undefined}>
+              {title}
+            </ReadableText>
           </ButtonText>
         )}
         {iconAfter && icon}

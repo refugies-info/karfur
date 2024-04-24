@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { TextSmallBold } from "../../StyledText";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 import ChoiceButton from "../ChoiceButton";
+import { ReadableText } from "../../ReadableText";
 
 export interface FilterButtonProps {
   text: string;
@@ -25,17 +26,19 @@ const FilterButton = (props: FilterButtonProps) => {
       isSelected={props.isSelected}
       testID={`test-filter-${props.text}`}
     >
-      <StyledText isSelected={props.isSelected}>
-        {t("filters." + props.text, props.text)}
-        {props.text !== "french_level_0" &&
-          props.text !== "no_french_level_filter" &&
-          props.details && (
-            <StyledText isSelected={props.isSelected}>
-              {" "}
-              ({props.details.join("/")})
-            </StyledText>
-          )}
-      </StyledText>
+      <ReadableText text={t("filters." + props.text)}>
+        <StyledText isSelected={props.isSelected}>
+          {t("filters." + props.text, props.text)}
+          {props.text !== "french_level_0" &&
+            props.text !== "no_french_level_filter" &&
+            props.details && (
+              <StyledText isSelected={props.isSelected}>
+                {" "}
+                ({props.details.join("/")})
+              </StyledText>
+            )}
+        </StyledText>
+      </ReadableText>
     </ChoiceButton>
   );
 };

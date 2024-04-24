@@ -80,6 +80,7 @@ export const OnboardingProgressBar = (props: Props) => {
         size="small"
         title={t("onboarding_screens.skip")}
         accessibilityLabel={t("onboarding_screens.skip")}
+        noVoiceover
       />
     </MainContainer>
   );
