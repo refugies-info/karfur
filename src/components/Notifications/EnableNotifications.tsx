@@ -52,6 +52,7 @@ export const EnableNotifications = ({ onDismiss, onDone }: Props) => {
             source={require("../../theme/lottie/bell-animation.json")}
             autoPlay
             loop
+            resizeMode="cover"
           />
         </LottieContainer>
         <Title>
