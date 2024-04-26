@@ -19,6 +19,8 @@ interface Props {
   overridePosY?: number;
   // for carousel, override isFocused
   isFocused?: boolean;
+  // if text is on dark background, change color
+  darkBg?: boolean;
 }
 
 export const ReadableText = React.forwardRef((props: Props, ref: any) => {
@@ -75,7 +77,12 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   }, []);
 
   return (
-    <ReadableColoredText text={props.text} id={id} ref={refView}>
+    <ReadableColoredText
+      text={props.text}
+      id={id}
+      ref={refView}
+      darkBg={props.darkBg}
+    >
       {props.children}
     </ReadableColoredText>
   );

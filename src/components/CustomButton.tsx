@@ -7,6 +7,7 @@ import { StyledTextSmallBold, StyledTextSmall } from "./StyledText";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
 import { ReadableText } from "./ReadableText";
+import { useTheme } from "styled-components/native";
 
 const ButtonContainer = styled(RTLTouchableOpacity)<{
   backgroundColor?: string;
@@ -83,6 +84,7 @@ const ICON_SIZE = 24;
 
 export const CustomButton = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
+  const theme = useTheme();
   const { withShadows = true } = props;
 
   const icon = (
@@ -119,7 +121,10 @@ export const CustomButton = (props: Props) => {
           hasIcon={!!props.iconName}
           style={props.textStyle || {}}
         >
-          <ReadableText overridePosY={props.readableOverridePosY}>
+          <ReadableText
+            overridePosY={props.readableOverridePosY}
+            darkBg={props.textColor === theme.colors.white ? true : false}
+          >
             {t(props.i18nKey, props.defaultText)}
           </ReadableText>
         </ColoredTextNormal>
@@ -131,7 +136,10 @@ export const CustomButton = (props: Props) => {
           hasIcon={!!props.iconName}
           style={props.textStyle || {}}
         >
-          <ReadableText overridePosY={props.readableOverridePosY}>
+          <ReadableText
+            overridePosY={props.readableOverridePosY}
+            darkBg={props.textColor === theme.colors.white ? true : false}
+          >
             {t(props.i18nKey, props.defaultText)}
           </ReadableText>
         </ColoredTextBold>

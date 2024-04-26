@@ -7,18 +7,22 @@ import { styles } from "../theme";
 interface Props {
   children?: string | ReactNode;
   text?: string;
+  darkBg?: boolean;
   id: string;
 }
 
-const activeStyle = { backgroundColor: styles.colors.lightBlue };
+const activeStyleLightBg = { backgroundColor: styles.colors.lightBlue };
+const activeStyleDarkBg = { backgroundColor: "rgba(255,255,255, 0.35)" };
 
 const ReadableColoredTextComponent = React.forwardRef(
   (props: Props, ref: any) => {
     const currentReadingItem = useSelector(currentItemSelector);
-    const textBackground = useMemo(
-      () => (currentReadingItem?.id === props.id ? activeStyle : {}),
-      [props.id, currentReadingItem]
-    );
+    const textBackground = useMemo(() => {
+      if (currentReadingItem?.id === props.id) {
+        return props.darkBg ? activeStyleDarkBg : activeStyleLightBg;
+      }
+      return {};
+    }, [props.id, currentReadingItem]);
 
     return props.text ? ( // if text given as prop, include content in a View
       <View

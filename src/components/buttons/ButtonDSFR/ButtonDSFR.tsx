@@ -125,7 +125,10 @@ const Button = ({
         {!iconAfter && icon}
         {title && (
           <ButtonText color={color} disabled={disabled || loading} size={size}>
-            <ReadableText isFocused={noVoiceover ? false : undefined}>
+            <ReadableText
+              isFocused={noVoiceover ? false : undefined}
+              darkBg={color === theme.colors.white ? true : false}
+            >
               {title}
             </ReadableText>
           </ButtonText>
