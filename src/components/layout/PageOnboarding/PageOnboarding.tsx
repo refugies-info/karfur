@@ -7,6 +7,9 @@ import { useVoiceover } from "../../../hooks/useVoiceover";
 import ScrollableContent from "../ScrollableContent";
 import { ButtonDSFR } from "../../buttons";
 import { ReadButton } from "../../UI";
+import { noVoiceover } from "../../../libs/noVoiceover";
+import { useSelector } from "react-redux";
+import { currentI18nCodeSelector } from "../../../services";
 
 export const TAB_BAR_HEIGHT = 80;
 
@@ -65,6 +68,7 @@ const PageOnboarding = ({
 }: PageProps) => {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   // Voiceover
   const contentScrollview = React.useRef<ScrollView>(null);
@@ -88,6 +92,8 @@ const PageOnboarding = ({
     () => (insets.top > 0 ? insets.top - 8 : 0),
     [insets.top]
   );
+
+  const noReadButton = noVoiceover(currentLanguageI18nCode);
 
   return (
     <PageContainer darkBackground={!!darkBackground}>
@@ -122,7 +128,7 @@ const PageOnboarding = ({
             ></ButtonDSFR>
           )}
           <ReadButtonContainer>
-            <ReadButton bottomInset={0} white bold />
+            {!noReadButton && <ReadButton bottomInset={0} white bold />}
           </ReadButtonContainer>
           {onNext && (
             <ButtonDSFR

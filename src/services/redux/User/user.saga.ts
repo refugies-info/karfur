@@ -67,12 +67,12 @@ export function* saveSelectedLanguage(
   try {
     const { langue: i18nCode, shouldFetchContents } = action.payload;
     logger.info("[saveSelectedLanguage] saga", { langue: i18nCode });
-    yield call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", i18nCode);
     yield put(setSelectedLanguageActionCreator(i18nCode));
     yield put(setCurrentLanguageActionCreator(i18nCode));
     yield call(logEventInFirebase, FirebaseEvent.VALIDATE_LANGUAGE, {
       language: i18nCode,
     });
+    yield call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", i18nCode);
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }

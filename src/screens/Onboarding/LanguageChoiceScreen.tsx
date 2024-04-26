@@ -32,8 +32,8 @@ export const LanguageChoiceScreen = ({
     if (selectedLanguage) navigation.navigate("OnboardingSteps");
   }, [navigation, selectedLanguage]);
 
-  const changeLanguage = (ln: Languages) => {
-    i18n.changeLanguage(ln);
+  const changeLanguage = async (ln: Languages) => {
+    await i18n.changeLanguage(ln);
     dispatch(
       saveSelectedLanguageActionCreator({
         langue: ln,

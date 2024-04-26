@@ -109,8 +109,6 @@ describe("[Saga] user", () => {
         payload: { langue: "en", shouldFetchContents: false },
       })
         .next()
-        .call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", "en")
-        .next()
         .put(setSelectedLanguageActionCreator("en"))
         .next()
         .put(setCurrentLanguageActionCreator("en"))
@@ -118,6 +116,8 @@ describe("[Saga] user", () => {
         .call(logEventInFirebase, FirebaseEvent.VALIDATE_LANGUAGE, {
           language: "en",
         })
+        .next()
+        .call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", "en")
         .next()
         .isDone();
     });
@@ -127,6 +127,14 @@ describe("[Saga] user", () => {
         type: "SAVE_SELECTED_LANGUAGE",
         payload: { langue: "en", shouldFetchContents: false },
       })
+        .next()
+        .put(setSelectedLanguageActionCreator("en"))
+        .next()
+        .put(setCurrentLanguageActionCreator("en"))
+        .next()
+        .call(logEventInFirebase, FirebaseEvent.VALIDATE_LANGUAGE, {
+          language: "en",
+        })
         .next()
         .call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", "en")
         .throw(new Error("error"))
@@ -143,8 +151,6 @@ describe("[Saga] user", () => {
         payload: { langue: "en", shouldFetchContents: true },
       })
         .next()
-        .call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", "en")
-        .next()
         .put(setSelectedLanguageActionCreator("en"))
         .next()
         .put(setCurrentLanguageActionCreator("en"))
@@ -152,6 +158,8 @@ describe("[Saga] user", () => {
         .call(logEventInFirebase, FirebaseEvent.VALIDATE_LANGUAGE, {
           language: "en",
         })
+        .next()
+        .call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", "en")
         .next()
         .put(fetchContentsActionCreator())
         .next()
