@@ -21,12 +21,17 @@
   },
   "dependencies": {},
   "engines": {
-    "node": "16.20.2"
+    "node": "20.13.1",
+    "npm": "10.7.0"
   },
   "devDependencies": {},
   "jest": {
     "setupFilesAfterEnv": [
       "./client/src/setupTests.js"
     ]
+  },
+  "volta": {
+    "node": "20.13.1",
+    "npm": "10.7.0"
   }
 }

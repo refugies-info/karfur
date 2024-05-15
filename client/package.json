@@ -104,7 +104,6 @@
     "@types/html-to-draftjs": "^1.4.0",
     "@types/jest": "^29.2.3",
     "@types/lodash": "^4.14.151",
-    "@types/moment": "^2.13.0",
     "@types/react": "^18.0.25",
     "@types/react-autosuggest": "^10.1.5",
     "@types/react-highlight-words": "^0.16.4",
@@ -134,5 +133,9 @@
     "ts-jest": "29.0.3",
     "typescript": "^4.9.3",
     "typescript-plugin-css-modules": "^3.4.0"
+  },
+  "volta": {
+    "node": "20.13.1",
+    "npm": "10.7.0"
   }
 }
