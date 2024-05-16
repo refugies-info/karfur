@@ -104,6 +104,7 @@
     "@types/html-to-draftjs": "^1.4.0",
     "@types/jest": "^29.2.3",
     "@types/lodash": "^4.14.151",
+    "@types/moment": "^2.13.0",
     "@types/react": "^18.0.25",
     "@types/react-autosuggest": "^10.1.5",
     "@types/react-highlight-words": "^0.16.4",
