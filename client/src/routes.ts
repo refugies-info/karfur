@@ -12,6 +12,7 @@ export type PathNames =
   | "/dispositif/[id]/edit"
   | "/publier"
   | "/traduire"
+  | "/agir"
   | "/qui-sommes-nous"
   | "/mentions-legales"
   | "/declaration-accessibilite"
@@ -51,6 +52,7 @@ const routes: Routes = {
   "/dispositif/[id]/edit": "/program/[id]/edit",
   "/publier": "/publish",
   "/traduire": "/translate",
+  "/agir": "/agir",
   "/qui-sommes-nous": "/who-are-we",
   "/mentions-legales": "/legal-notices",
   "/declaration-accessibilite": "/accessibility-statement",
