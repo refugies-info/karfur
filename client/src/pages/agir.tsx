@@ -82,10 +82,10 @@ const Agir = () => {
                   href: "#map",
                 }}
               >
-                Trouver l’opérateur de mon territoire
+                Trouver mon opérateur
               </Button>
             </Col>
-            <Col className="d-flex justify-content-center lg:justify-content-end">
+            <Col className="d-flex justify-content-center justify-lg-content-end">
               <Image src={AgirLogos} width={400} height={280} alt="" />
             </Col>
           </Row>
@@ -128,7 +128,7 @@ const Agir = () => {
 
       <Container>
         <span id="program" className={styles.anchor} />
-        <div className="py-10 lg:py-20" ref={refProgram}>
+        <div className="py-10 py-lg-20" ref={refProgram}>
           <span className={styles.step}>1</span>
           <Row className="gx-20">
             <Col lg="6">
@@ -171,8 +171,8 @@ const Agir = () => {
             </Col>
           </Row>
 
-          <Row className="mt-10 lg:mt-20">
-            <Col lg="4" className="mb-10 lg:mb-0">
+          <Row className="mt-10 mt-lg-20">
+            <Col lg="4" className="mb-10 mb-lg-0">
               <div className={styles.card}>
                 <Image src={IlluAccompagnement} width={80} height={80} alt="" className="mb-8" />
                 <h3 className="mb-4">L’accompagnement social</h3>
@@ -196,7 +196,7 @@ const Agir = () => {
                 </p>
               </div>
             </Col>
-            <Col lg="4" className="mb-10 lg:mb-0">
+            <Col lg="4" className="mb-10 mb-lg-0">
               <div className={styles.card}>
                 <Image src={IlluLogement} width={80} height={80} alt="" className="mb-8" />
                 <h3 className="mb-4">Le logement</h3>
@@ -207,7 +207,7 @@ const Agir = () => {
                 </p>
               </div>
             </Col>
-            <Col lg="4" className="mb-10 lg:mb-0">
+            <Col lg="4" className="mb-10 mb-lg-0">
               <div className={styles.card}>
                 <Image src={IlluEmploi} width={80} height={80} alt="" className="mb-8" />
                 <h3 className="mb-4">L’emploi</h3>
@@ -229,7 +229,7 @@ const Agir = () => {
         </div>
 
         <span id="operators" className={styles.anchor} />
-        <div className="py-10 lg:py-20" ref={refOperators}>
+        <div className="py-10 py-lg-20" ref={refOperators}>
           <span className={styles.step}>2</span>
 
           <Row className="gx-20">
@@ -267,9 +267,9 @@ const Agir = () => {
           </Row>
 
           <span id="map" className={styles.anchor} />
-          <div className="mt-10 lg:mt-20">
+          <div className="mt-10 mt-lg-20">
             <h3 className={styles.h3}>Trouver l’opérateur de mon territoire</h3>
-            <p>
+            <p className="w-lg-50 fst-italic">
               Sélectionner votre département sur la carte pour obtenir les coordonnées de l’opérateur sur votre
               territoire.
             </p>
@@ -277,16 +277,16 @@ const Agir = () => {
         </div>
       </Container>
       <span id="next" className={styles.anchor} />
-      <div className={cls(styles.next, "py-10 lg:py-20")} ref={refNext}>
+      <div className={cls(styles.next, "py-10 py-lg-20")} ref={refNext}>
         <Container>
           <h3 className={styles.h2}>Vous êtes acteur de l’intégration ?</h3>
           <p className={styles.subtitle}>
             Découvrez Réfugiés.info et comment l’utiliser au quotidien avec vos bénéficiaires.
           </p>
 
-          <div className={cls("mt-10 lg:mt-20", styles.cards)}>
+          <div className={cls("mt-10 mt-lg-20", styles.cards)}>
             <Row className="gx-6">
-              <Col lg="3" className="mb-4 lg:mb-0">
+              <Col lg="3" className="mb-4 mb-lg-0">
                 <Card
                   background
                   border
@@ -303,12 +303,12 @@ const Agir = () => {
                   className="h-100"
                 />
               </Col>
-              <Col lg="3" className="mb-4 lg:mb-0">
+              <Col lg="3" className="mb-4 mb-lg-0">
                 <Card
                   background
                   border
                   title="Je découvre les acteurs de mon département"
-                  desc="Les cours de français, les formations professionnelles, les loisirs"
+                  desc="Les cours de français, les formations professionnelles, les loisirs..."
                   enlargeLink
                   imageAlt=""
                   imageUrl={ActeursIlluDispositif.src}
@@ -320,12 +320,12 @@ const Agir = () => {
                   className="h-100"
                 />
               </Col>
-              <Col lg="3" className="mb-4 lg:mb-0">
+              <Col lg="3" className="mb-4 mb-lg-0">
                 <Card
                   background
                   border
                   title="Je recense mon action sur Réfugiés.info"
-                  desc="Vous êtes porteur d’un dispositif ? Recensez-le sur Réfugiés.info"
+                  desc="Vous êtes porteur d’un dispositif ? Recensez-le sur Réfugiés.info."
                   enlargeLink
                   imageAlt=""
                   imageUrl={ActeursIlluRecenser.src}
@@ -337,12 +337,12 @@ const Agir = () => {
                   className="h-100"
                 />
               </Col>
-              <Col lg="3" className="mb-4 lg:mb-0">
+              <Col lg="3" className="mb-4 mb-lg-0">
                 <Card
                   background
                   border
                   title="Je participe à un webinaire gratuit"
-                  desc="Comment utiliser Réfugiés.info avec vos bénéficiaires au quotidien"
+                  desc="Comment utiliser Réfugiés.info avec vos bénéficiaires au quotidien."
                   enlargeLink
                   imageAlt=""
                   imageUrl={ActeursIlluWebinaire.src}
