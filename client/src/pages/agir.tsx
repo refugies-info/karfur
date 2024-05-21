@@ -1,15 +1,18 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { Card } from "@codegouvfr/react-dsfr/Card";
+import { operatorsPerDepartment } from "data/agirOperators";
+import { getDepartmentFromNumber } from "lib/departments";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { cls } from "lib/classname";
 import { buildUrlQuery } from "lib/recherche/buildUrlQuery";
 import { getPath } from "routes";
 import SEO from "components/Seo";
+import MapFrance from "components/UI/MapFrance";
 import AgirLogos from "assets/agir/agir-logos.png";
 import IlluAccompagnement from "assets/agir/illu-accompagnement-social.svg";
 import IlluLogement from "assets/agir/illu-logement.svg";
@@ -21,8 +24,14 @@ import ActeursIlluWebinaire from "assets/agir/acteurs-illu-webinaire.png";
 import styles from "scss/pages/agir.module.scss";
 
 type Section = "program" | "operators" | "next";
+const MAP_COLORS = {
+  "#313278": Object.keys(operatorsPerDepartment),
+};
 
 const Agir = () => {
+  const [activeDep, setActiveDep] = useState("");
+  const operatorData = useMemo(() => operatorsPerDepartment[activeDep], [activeDep]);
+
   const [activeView, setActiveView] = useState<Section | null>(null);
   const [refProgram, inViewProgram] = useInView({ threshold: 0 });
   const [refOperators, inViewOperators] = useInView({ threshold: 0.6 });
@@ -273,6 +282,29 @@ const Agir = () => {
               Sélectionner votre département sur la carte pour obtenir les coordonnées de l’opérateur sur votre
               territoire.
             </p>
+            <Row>
+              <Col lg="8">
+                <MapFrance
+                  onSelectDep={(dep) => setActiveDep(dep)}
+                  colors={MAP_COLORS}
+                  selectable={Object.keys(operatorsPerDepartment)}
+                />
+              </Col>
+              <Col lg="4">
+                {activeDep && (
+                  <>
+                    <div className="fw-bold mb-1">{getDepartmentFromNumber(activeDep)}</div>
+                    {operatorData && (
+                      <div>
+                        {operatorData.operator}
+                        <br />
+                        {operatorData.email}
+                      </div>
+                    )}
+                  </>
+                )}
+              </Col>
+            </Row>
           </div>
         </div>
       </Container>
