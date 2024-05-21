@@ -24,3 +24,7 @@ export const formatDepartment = (depName: string) => {
   if (!dep[1]) return dep[0];
   return `${dep[1]} (${dep[0]})`;
 }
+
+export const getDepartmentFromNumber = (number: string): string => {
+  return departments.find(d => d.startsWith(number)) || "";
+}
