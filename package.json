@@ -120,5 +120,9 @@
   },
   "private": true,
   "version": "0.0.0",
-  "name": "refugies-info-app"
+  "name": "refugies-info-app",
+  "volta": {
+    "node": "20.13.1",
+    "yarn": "1.22.22"
+  }
 }
