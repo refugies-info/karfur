@@ -2,6 +2,9 @@
   "build": {
     "base": {
       "channel": "base",
+      "ios": {
+        "image": "latest"
+      },
       "node": "20.13.1"
     },
     "production": {
