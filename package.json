@@ -4,7 +4,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "test:types": "tsc --noEmit",
-    "test:unit": "jest --runInBand",
+    "test:unit": "jest --runInBand --detectOpenHandles",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache  --ignore-pattern dist",
     "test": "yarn test:lint && yarn test:unit && yarn test:types"
   },
