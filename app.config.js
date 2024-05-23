@@ -126,6 +126,7 @@ export default {
           },
         },
       ],
+      "expo-font",
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
     ],
