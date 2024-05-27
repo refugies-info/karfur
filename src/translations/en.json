@@ -19,8 +19,10 @@
     "french_level": "What is your level of French?",
     "error_geoloc_acces": "Oh no! There's a problem. Check your phone settings to make sure you have enabled location.",
     "back_button_accessibility": "Return to previous page",
-    "skip_step_button": "Not now",
-    "next_button": "Next"
+    "skip": "Not now",
+    "next_button": "Next",
+    "start": "Let's go!",
+    "ready": "The application is ready. Now you can search for information."
   },
   "tab_bar": {
     "explorer": "Explore",

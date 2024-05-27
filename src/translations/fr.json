@@ -19,10 +19,9 @@
     "french_level": "C'est quoi ton niveau de français ?",
     "error_geoloc_acces": "Oh non, il y a un problème. Vérifie dans les paramètres de ton téléphone que tu as autorisé la localisation.",
     "back_button_accessibility": "Retour vers la page précédente",
-    "skip_step_button": "Passer l'étape",
-    "next_button": "Suivant",
     "skip": "Passer",
-    "ready": "L'application est prête !",
+    "next_button": "Suivant",
+    "ready": "L’application est prête. Maintenant, tu peux chercher des informations.",
     "start": "C'est parti !"
   },
   "tab_bar": {
