@@ -47,6 +47,7 @@ export const FilterCity = ({
     <PageOnboarding
       onNext={onValidate}
       onPrevious={() => navigation.navigate("OnboardingSteps")}
+      disableNext={selectedDepartment === ""}
     >
       <OnboardingProgressBar step={1} onSkip={onSkip} />
       <FilterCityComponent

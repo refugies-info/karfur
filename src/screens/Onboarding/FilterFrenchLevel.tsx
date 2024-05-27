@@ -71,6 +71,7 @@ export const FilterFrenchLevel = ({
     <PageOnboarding
       onPrevious={() => navigation.navigate("FilterAge")}
       onNext={onValidate}
+      disableNext={selectedFrenchLevel === null}
     >
       <OnboardingProgressBar step={3} onSkip={onSkip} />
       <Rows layout="1 auto" verticalAlign="space-between">

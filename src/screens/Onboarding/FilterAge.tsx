@@ -64,6 +64,7 @@ export const FilterAge = ({
     <PageOnboarding
       onPrevious={() => navigation.navigate("FilterCity")}
       onNext={onValidate}
+      disableNext={selectedAge === null}
     >
       <OnboardingProgressBar step={2} onSkip={onSkip} />
 

@@ -51,6 +51,7 @@ const Container = styled(TouchableOpacity)<{
   padding: ${({ theme }) => theme.margin * 1.5}px;
   max-height: 50px;
   align-items: center;
+  opacity: ${({ disabled }) => (disabled ? "0.4" : "1")};
 `; // FIXME: max height not clean?
 
 const Button = ({

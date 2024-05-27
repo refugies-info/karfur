@@ -56,6 +56,7 @@ export interface PageProps {
   hideNavbar?: boolean;
   noScrollable?: boolean;
   darkBackground?: boolean;
+  disableNext?: boolean;
 }
 
 const PageOnboarding = ({
@@ -65,6 +66,7 @@ const PageOnboarding = ({
   hideNavbar,
   noScrollable,
   darkBackground,
+  disableNext,
 }: PageProps) => {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
@@ -137,6 +139,7 @@ const PageOnboarding = ({
               priority="primary"
               iconName="arrow-forward-outline"
               testID="test-prev-button"
+              disabled={disableNext}
             ></ButtonDSFR>
           )}
         </BottomTabBar>
