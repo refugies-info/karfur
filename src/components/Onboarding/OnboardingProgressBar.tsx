@@ -15,6 +15,7 @@ const MainContainer = styled(RTLView)`
   align-items: center;
   padding-bottom: ${({ theme }) => theme.margin * 2}px;
   margin-bottom: ${({ theme }) => theme.margin * 2}px;
+  margin-horizontal: ${({ theme }) => -theme.margin}px;
 `;
 const ProgressContainer = styled(RTLView)`
   flex-grow: 1;
