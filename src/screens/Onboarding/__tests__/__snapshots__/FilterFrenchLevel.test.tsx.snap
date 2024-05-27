@@ -47,6 +47,7 @@ exports[`Filter french level should render correctly when french level selected 
               "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
+              "marginHorizontal": -8,
               "paddingBottom": 16,
             }
           }
@@ -2268,7 +2269,7 @@ exports[`Filter french level should render correctly when french level selected 
           "borderColor": "#000091",
           "borderWidth": 1,
           "maxHeight": 50,
-          "opacity": 1,
+          "opacity": 0.4,
           "paddingBottom": 12,
           "paddingLeft": 12,
           "paddingRight": 12,
@@ -2470,6 +2471,7 @@ exports[`Filter french level should render correctly when no french level select
               "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
+              "marginHorizontal": -8,
               "paddingBottom": 16,
             }
           }
@@ -4660,7 +4662,7 @@ exports[`Filter french level should render correctly when no french level select
         {
           "busy": undefined,
           "checked": undefined,
-          "disabled": false,
+          "disabled": true,
           "expanded": undefined,
           "selected": undefined,
         }
@@ -4690,7 +4692,7 @@ exports[`Filter french level should render correctly when no french level select
           "borderColor": "#000091",
           "borderWidth": 1,
           "maxHeight": 50,
-          "opacity": 1,
+          "opacity": 0.4,
           "paddingBottom": 12,
           "paddingLeft": 12,
           "paddingRight": 12,
@@ -4892,6 +4894,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
+              "marginHorizontal": -8,
               "paddingBottom": 16,
             }
           }
@@ -7113,7 +7116,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           "borderColor": "#000091",
           "borderWidth": 1,
           "maxHeight": 50,
-          "opacity": 1,
+          "opacity": 0.4,
           "paddingBottom": 12,
           "paddingLeft": 12,
           "paddingRight": 12,

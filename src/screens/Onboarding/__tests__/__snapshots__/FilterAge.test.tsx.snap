@@ -47,6 +47,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
               "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
+              "marginHorizontal": -8,
               "paddingBottom": 16,
             }
           }
@@ -1993,7 +1994,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
           "borderColor": "#000091",
           "borderWidth": 1,
           "maxHeight": 50,
-          "opacity": 1,
+          "opacity": 0.4,
           "paddingBottom": 12,
           "paddingLeft": 12,
           "paddingRight": 12,
@@ -2195,6 +2196,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
+              "marginHorizontal": -8,
               "paddingBottom": 16,
             }
           }
@@ -4110,7 +4112,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         {
           "busy": undefined,
           "checked": undefined,
-          "disabled": false,
+          "disabled": true,
           "expanded": undefined,
           "selected": undefined,
         }
@@ -4140,7 +4142,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           "borderColor": "#000091",
           "borderWidth": 1,
           "maxHeight": 50,
-          "opacity": 1,
+          "opacity": 0.4,
           "paddingBottom": 12,
           "paddingLeft": 12,
           "paddingRight": 12,
@@ -4342,6 +4344,7 @@ exports[`Filter age should select age when click on it 1`] = `
               "display": "flex",
               "flexDirection": "row",
               "marginBottom": 16,
+              "marginHorizontal": -8,
               "paddingBottom": 16,
             }
           }
@@ -6288,7 +6291,7 @@ exports[`Filter age should select age when click on it 1`] = `
           "borderColor": "#000091",
           "borderWidth": 1,
           "maxHeight": 50,
-          "opacity": 1,
+          "opacity": 0.4,
           "paddingBottom": 12,
           "paddingLeft": 12,
           "paddingRight": 12,

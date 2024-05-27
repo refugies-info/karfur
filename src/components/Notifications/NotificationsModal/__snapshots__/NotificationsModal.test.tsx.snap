@@ -224,7 +224,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               <Text
                 style={{}}
               >
-                notifications.activateTitle
+                notifications.enableNotifications
               </Text>
               <View />
             </Text>
