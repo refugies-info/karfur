@@ -18,7 +18,7 @@ import {
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { FakeTabBar } from "../../navigation/components/FakeTabBar";
-import { ButtonDSFR, ReadableText } from "../../components";
+import { ButtonDSFR, ReadableText, Spacer } from "../../components";
 import PageOnboarding from "../../components/layout/PageOnboarding";
 import EndOnboardingIllu from "../../theme/images/onboarding/end-onboarding-illu.svg";
 
@@ -117,6 +117,7 @@ export const FinishOnboarding = ({}: StackScreenProps<
         iconAfter
         style={{ width: "100%" }}
       />
+      <Spacer height={50} />
     </PageOnboarding>
   );
 };

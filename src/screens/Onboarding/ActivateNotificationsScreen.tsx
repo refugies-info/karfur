@@ -3,6 +3,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { OnboardingParamList } from "../../../types";
 import PageOnboarding from "../../components/layout/PageOnboarding";
 import { EnableNotifications } from "../../components/Notifications/EnableNotifications";
+import { Spacer } from "../../components";
 
 export const ActivateNotificationsScreen = ({
   navigation,
@@ -14,6 +15,7 @@ export const ActivateNotificationsScreen = ({
   return (
     <PageOnboarding>
       <EnableNotifications onDismiss={onEnd} onDone={onEnd} />
+      <Spacer height={50} />
     </PageOnboarding>
   );
 };
