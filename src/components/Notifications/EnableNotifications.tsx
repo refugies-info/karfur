@@ -56,7 +56,7 @@ export const EnableNotifications = ({ onDismiss, onDone }: Props) => {
           />
         </LottieContainer>
         <Title>
-          <ReadableText>{t("notifications.activateTitle")}</ReadableText>
+          <ReadableText>{t("notifications.enableNotifications")}</ReadableText>
         </Title>
         <Subtitle>
           <ReadableText>{t("notifications.beInformed")}</ReadableText>
