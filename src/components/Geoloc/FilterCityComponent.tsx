@@ -25,9 +25,24 @@ import CityChoice from "./CityChoice";
 const CITIES = [
   { city: "Paris", department: "Paris" },
   { city: "Lyon", department: "Rhône" },
-  { city: "Saint-Denis", department: "Seine-Saint-Denis" },
+  { city: "Marseille", department: "Bouches-du-Rhône" },
+  { city: "Bordeaux", department: "Gironde" },
+  { city: "Rennes", department: "Ille-et-Vilaine" },
+  { city: "Toulouse", department: "Haute-Garonne" },
+  { city: "Lille", department: "Nord" },
   { city: "Strasbourg", department: "Bas-Rhin" },
   { city: "Nantes", department: "Loire-Atlantique" },
+  { city: "Nice", department: "Alpes-Maritimes" },
+  { city: "Metz", department: "Moselle" },
+  { city: "Grenoble", department: "Isère" },
+  { city: "Dijon", department: "Côte-d'Or" },
+  { city: "Mulhouse", department: "Haut-Rhin" },
+  { city: "Creil", department: "Oise" },
+  { city: "Charleville-Mezieres", department: "Ardennes" },
+  { city: "Angers", department: "Maine-et-Loire" },
+  { city: "Montpellier", department: "Hérault" },
+  { city: "Brest", department: "Finistère" },
+  { city: "Saint-Denis", department: "Seine-Saint-Denis" },
 ];
 
 interface Props {
