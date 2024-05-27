@@ -10,6 +10,7 @@ import PageOnboarding from "../../components/layout/PageOnboarding";
 import { OnboardingCarouselElement } from "../../components/Onboarding/OnboardingCarouselElement";
 import { TAB_BAR_HEIGHT } from "../../components/layout/PageOnboarding/PageOnboarding";
 import { OnboardingPagination } from "../../components/Onboarding/OnboardingPagination";
+import { useStopVoiceover } from "../../hooks/useStopVoiceover";
 
 const MAX_STEP = 5;
 
@@ -30,7 +31,11 @@ export const OnboardingSteps = ({
   const ref = React.useRef<ICarouselInstance>(null);
   const [index, setIndex] = React.useState(0);
 
+  // stop voiceover when changing screen
+  const stopVoiceover = useStopVoiceover();
+
   const onPrevious = () => {
+    stopVoiceover();
     if (index > 0) {
       ref.current?.prev();
     } else {
@@ -39,6 +44,7 @@ export const OnboardingSteps = ({
   };
 
   const onNext = () => {
+    stopVoiceover();
     if (index < MAX_STEP - 1) {
       ref.current?.next();
     } else {

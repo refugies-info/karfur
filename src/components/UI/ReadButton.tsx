@@ -18,6 +18,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import { useIsFocused } from "@react-navigation/native";
 import { Icon } from "react-native-eva-icons";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
@@ -158,6 +159,7 @@ export const ReadButton = (props: Props) => {
 
   const [isPaused, setIsPaused] = useState(false);
   const isStopped = useRef<boolean>(false);
+  const isInstanceReading = useRef<boolean>(false);
   const [rate, setRate] = useState(1);
   const [resolvedReadingList, setResolvedReadingList] = useState<ReadingItem[]>(
     []
@@ -195,6 +197,7 @@ export const ReadButton = (props: Props) => {
    * @returns
    */
   const readList = async (toRead: ReadingItem[], indexToRead: number = 0) => {
+    if (toRead.length === 0) return;
     logger.info("Reading: ", toRead[indexToRead].text.slice(0, 30));
     // if reader stopped, do not continue reading
     if (isStopped.current) {
@@ -213,6 +216,7 @@ export const ReadButton = (props: Props) => {
     );
     setReader(newReader);
     setIsLoading(false);
+    isInstanceReading.current = true;
     await newReader.play(); // and start reading
 
     // if has been stopped before ending, no next
@@ -305,6 +309,15 @@ export const ReadButton = (props: Props) => {
     setIsPaused(false);
     dispatch(setShouldStop(false));
   }, [isReading, reader]);
+
+  // is screen loses focus and current instance was reading, stop it
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    if (!isFocused && isReading && isInstanceReading.current === true) {
+      isInstanceReading.current = false;
+      stopVoiceOver();
+    }
+  }, [isFocused, stopVoiceOver]);
 
   // stopped by a component
   const shouldStop = useSelector(shouldStopSelector);
