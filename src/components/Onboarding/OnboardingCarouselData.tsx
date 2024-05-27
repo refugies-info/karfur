@@ -26,6 +26,7 @@ export const onboardingCarouselData = [
           resizeMode: "cover",
           width: "100%",
           height: 450,
+          top: 50,
         }}
       />
     ),

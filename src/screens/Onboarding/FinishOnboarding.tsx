@@ -27,7 +27,7 @@ const Title = styled(StyledTextBigBold)`
 `;
 const Container = styled.View`
   align-items: center;
-  margin-bottom: 30%;
+  margin-bottom: 15%;
 `;
 const LottieContainer = styled.View`
   position: relative;

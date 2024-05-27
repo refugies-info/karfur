@@ -70,7 +70,7 @@ export const EnableNotifications = ({ onDismiss, onDone }: Props) => {
         iconName="checkmark-outline"
         iconAfter
         onPress={register}
-        style={{ width: "100%" }}
+        style={{ width: "100%", maxHeight: 100 }}
       />
       {onDismiss && (
         <>
@@ -80,7 +80,7 @@ export const EnableNotifications = ({ onDismiss, onDone }: Props) => {
             accessibilityLabel={t("notifications.notNow")}
             onPress={onDismiss}
             priority="tertiary no outline"
-            style={{ width: "100%" }}
+            style={{ width: "100%", maxHeight: 100 }}
           />
         </>
       )}
