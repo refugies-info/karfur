@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isMobileOnly } from "react-device-detect";
 import { useRouter } from "next/router";
@@ -50,15 +50,31 @@ const Layout = (props: Props) => {
   const router = useRouter();
 
   const ttsActive = useSelector(ttsActiveSelector);
-  const showLangModal = useSelector(showLangModalSelector);
 
+  // Language modal
+  const showLangModal = useSelector(showLangModalSelector);
   const { changeLanguage } = useChangeLanguage();
-  const changeLanguageCallback = (lng: string) => {
-    changeLanguage(lng, "replace", () => setLanguageLoaded(true));
-    if (showLangModal) {
+
+  const changeLanguageCallback = useCallback(
+    (lng: string) => {
+      changeLanguage(lng, "replace", () => setLanguageLoaded(true));
+      if (showLangModal) {
+        dispatch(toggleLangueModalActionCreator());
+      }
+    },
+    [dispatch, changeLanguage, showLangModal],
+  );
+
+  const toggleLanguageModal = useCallback(() => {
+    const storedLanguei18nCode = locale.getFromCache();
+    if (!storedLanguei18nCode) {
+      // nothing in cache, save FR
+      changeLanguageCallback("fr");
+    } else {
+      // else, close modal
       dispatch(toggleLangueModalActionCreator());
     }
-  };
+  }, [dispatch, changeLanguageCallback]);
 
   const toggleMobileAppModal = () => {
     setShowMobileModal(!showMobileModal);
@@ -196,7 +212,7 @@ const Layout = (props: Props) => {
       <LanguageModal
         show={showLangModal}
         currentLanguage={router.locale || "fr"}
-        toggle={() => dispatch(toggleLangueModalActionCreator())}
+        toggle={toggleLanguageModal}
         changeLanguage={changeLanguageCallback}
         languages={langues}
         isLanguagesLoading={isLanguagesLoading}
