@@ -9,12 +9,13 @@ import { saveUserFrenchLevelActionCreator } from "../../services/redux/User/user
 import { Explaination } from "../../components/Onboarding/Explaination";
 import { FilterButton, Page, RadioGroup, Title } from "../../components";
 import { MobileFrenchLevel } from "@refugies-info/api-types";
+import { useTheme } from "styled-components/native";
 
 export const FrenchLevelProfilScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "FrenchLevelProfilScreen">) => {
   const dispatch = useDispatch();
-
+  const theme = useTheme();
   const userFrenchLevel = useSelector(userFrenchLevelSelector);
   const selectedFrenchLevel = frenchLevelFilters.find(
     (frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel
@@ -37,6 +38,8 @@ export const FrenchLevelProfilScreen = ({
     <Page
       headerTitle={t("profile_screens.french_level", "Niveau de français")}
       headerIconName="message-circle-outline"
+      backgroundColor={theme.colors.dsfr_backgroundBlue}
+      headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
     >
       <Title>
         {t(

@@ -23,6 +23,7 @@ import { ProfileParamList } from "../../../types";
 import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 import { Page, RadioGroup, SectionTitle, Separator } from "../../components";
 import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
+import { useTheme } from "styled-components/native";
 
 const stylesheet = StyleSheet.create({
   toggleContainer: {
@@ -40,6 +41,7 @@ export const NotificationsSettingsScreen = () => {
     useNavigation<
       StackNavigationProp<ProfileParamList, "NotificationsSettingsScreen">
     >();
+  const theme = useTheme();
   const [settings, updateSettings] = useNotificationsSettings();
   const [accessGranted] = useNotificationsStatus();
   const location = useSelector(userLocationSelector);
@@ -73,7 +75,12 @@ export const NotificationsSettingsScreen = () => {
     }
   };
   return (
-    <Page loading={!settings} headerTitle={t("notifications.notifications")}>
+    <Page
+      loading={!settings}
+      headerTitle={t("notifications.notifications")}
+      backgroundColor={theme.colors.dsfr_backgroundBlue}
+      headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
+    >
       {settings && (
         <>
           <SectionTitle>{t("notifications.newFiches")}</SectionTitle>

@@ -6,86 +6,98 @@ import { Icon } from "react-native-eva-icons";
 import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
 import { View } from "react-native";
 
-const ButtonContainer = styled(RTLTouchableOpacity)`
+const ButtonContainer = styled(RTLTouchableOpacity)<{ inList: boolean }>`
   align-items: center;
-  height: 56px;
-  padding-left: ${styles.margin * 2}px;
-  padding-right: ${styles.margin}px;
-
   justify-content: space-between;
+  padding-vertical: ${styles.margin * 2}px;
+  ${({ inList, theme }) =>
+    !inList
+      ? `
+  padding-horizontal: ${styles.margin * 2}px;
+  margin-bottom: ${styles.margin * 2}px;
+  border: 1px solid ${theme.colors.dsfr_borderGrey};
+  background-color: ${theme.colors.white};
+  ${theme.shadows.sm_dsfr}
+  `
+      : ""}
 `;
 
-const StyledCategoryText = styled(StyledTextSmallBold)<{ isRTL: boolean }>`
-  margin-left: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
-  margin-right: ${({ isRTL }) => (!isRTL ? 0 : styles.margin)}px;
-`;
-
-const StyledChoiceText = styled(StyledTextVerySmall)<{ isRTL: boolean }>`
-  color: ${styles.colors.darkGrey};
-  margin-right: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
-  margin-left: ${({ isRTL }) => (!isRTL ? 0 : styles.margin)}px;
-  max-width: 150px;
+const LabelContainer = styled(RTLView)`
+  flex-grow: 0;
   flex-shrink: 1;
-  text-align: ${({ isRTL }) => (isRTL ? "left" : "right")};
+  gap: ${styles.margin * 2}px;
 `;
 
-const Separator = styled.View`
-  height: 1px;
-  background-color: ${styles.colors.grey};
+const StyledLabel = styled(StyledTextSmallBold)<{ isEmpty: boolean }>`
+  flex: 1;
+  ${({ isEmpty, theme }) =>
+    isEmpty
+      ? `
+color: ${theme.colors.dsfr_disabledGrey};
+`
+      : ""}
 `;
+
+type IconRight = "edit" | "navigate" | "external";
 
 interface Props {
   iconName?: string;
-  iconImage?: any;
-  category: string;
-  userChoice?: string;
-  isFirst: boolean;
-  isLast: boolean;
-  isRTL: boolean;
-  onPress?: any;
+  iconImage?: React.ReactNode;
+  label: string;
+  onPress?: () => void;
+  inList?: boolean;
+  isEmpty?: boolean;
+  iconRight: IconRight;
 }
 
-const ICON_SIZE = 20;
+const ICON_SIZE = 24;
+const ICONS: Record<IconRight, string> = {
+  edit: "edit-2-outline",
+  navigate: "arrow-ios-forward-outline",
+  external: "external-link-outline",
+};
 
 export const ProfilDetailButton = (props: Props) => (
-  <View>
-    <ButtonContainer
-      onPress={props.onPress}
-      testID={"test-profil-button-" + props.iconName}
-      accessibilityRole="button"
-    >
-      <RTLView style={{ flexGrow: 0, flexShrink: 1 }}>
-        {props.iconName && (
-          <Icon
-            name={props.iconName}
-            width={ICON_SIZE}
-            height={ICON_SIZE}
-            fill={styles.colors.black}
-          />
-        )}
-        {props.iconImage && (
-          <props.iconImage width={ICON_SIZE} height={ICON_SIZE} />
-        )}
-        <StyledCategoryText isRTL={props.isRTL}>
-          {props.category}
-        </StyledCategoryText>
-      </RTLView>
-      <RTLView>
-        {props.userChoice && (
-          <StyledChoiceText isRTL={props.isRTL}>
-            {props.userChoice}
-          </StyledChoiceText>
-        )}
+  <ButtonContainer
+    onPress={props.onPress}
+    testID={"test-profil-button-" + props.iconName}
+    accessibilityRole="button"
+    inList={!!props.inList}
+  >
+    <LabelContainer>
+      {props.iconName && (
         <Icon
-          name={
-            props.isRTL ? "arrow-ios-back-outline" : "arrow-ios-forward-outline"
+          name={props.iconName}
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          fill={
+            props.isEmpty
+              ? styles.colors.dsfr_disabledGrey
+              : styles.colors.black
           }
-          width={24}
-          height={24}
-          fill={styles.colors.darkGrey}
         />
-      </RTLView>
-    </ButtonContainer>
-    {!props.isLast && <Separator />}
-  </View>
+      )}
+      {props.iconImage}
+      <StyledLabel numberOfLines={1} isEmpty={!!props.isEmpty}>
+        {props.label}
+      </StyledLabel>
+    </LabelContainer>
+    <RTLView>
+      {props.isEmpty ? (
+        <Icon
+          name="plus-circle"
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          fill={styles.colors.dsfr_success}
+        />
+      ) : (
+        <Icon
+          name={ICONS[props.iconRight]}
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          fill={styles.colors.dsfr_mentionGrey}
+        />
+      )}
+    </RTLView>
+  </ButtonContainer>
 );

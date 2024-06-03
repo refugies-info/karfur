@@ -54,7 +54,6 @@
     "no_age_filter": "Voir les fiches pour tous les âges"
   },
   "profile_screens": {
-    "delete_informations_button": "Supprimer mes informations",
     "reinit_app_button": "Réinitialiser l'application",
     "my_profile": "Mes informations",
     "my_language": "Langue",
@@ -70,7 +69,6 @@
     "all_levels": "Tous les niveaux",
     "all_ages": "Tous les âges",
     "reinit_app2": "Tes informations pour filtrer les fiches vont être supprimées. L'application va ensuite recommencer comme la première fois.",
-    "delete_data": "Tes informations pour filtrer les fiches vont être supprimées. Tu pouras voir toutes les fiches sans personnalisation.",
     "language_choice": "Quelle langue tu préfères ?",
     "accessibility": "Déclaration d'accessibilité"
   },

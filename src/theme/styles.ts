@@ -16,6 +16,8 @@ const colors: Record<string, string> = {
   dsfr_backgroundDisabled: "#e5e5e5",
   dsfr_error: "#CE0500",
   dsfr_mentionGrey: "#666666",
+  dsfr_disabledGrey: "#929292",
+  dsfr_success: "#18753C",
   white: "#FFFFFF",
   lightGrey: "#F6F6F6",
   admin100: "#443023",
@@ -103,6 +105,8 @@ const fonts = {
     small: 16,
     normal: 19,
     big: 25,
+    dsfr_l: 18,
+    dsfr_xl: 24
   },
   families: {
     circularStandard: "circularBook",

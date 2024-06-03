@@ -26,13 +26,13 @@ export const StyledTextNormalBold = styled(StyledText)`
 export const StyledTextSmall = styled(StyledText)`
   font-size: ${({ theme }) => theme.fonts.sizes.small}px;
   font-family: ${({ theme }) => theme.fonts.families.circularStandard};
-  line-height: 20px;
+  line-height: 24px;
 `;
 
 export const StyledTextSmallBold = styled(StyledText)`
   font-size: ${({ theme }) => theme.fonts.sizes.small}px;
   font-family: ${({ theme }) => theme.fonts.families.circularBold};
-  line-height: 20px;
+  line-height: 24px;
 `;
 
 export const StyledTextVerySmall = styled(StyledText)`
@@ -57,6 +57,18 @@ export const StyledTextBigBold = styled(StyledText)`
   font-size: ${({ theme }) => theme.fonts.sizes.big}px;
   font-family: ${({ theme }) => theme.fonts.families.circularBold};
   line-height: 32px;
+`;
+
+// DSFR
+export const StyledTextDSFR_XL = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.dsfr_xl}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularBold};
+  line-height: 32px;
+`;
+export const StyledTextDSFR_L = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.dsfr_l}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularBold};
+  line-height: 28px;
 `;
 
 // For back-compatibility

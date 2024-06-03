@@ -12,12 +12,14 @@ import {
 } from "../../services/redux/User/user.actions";
 import { userLocationSelector } from "../../services/redux/User/user.selectors";
 import { styles } from "../../theme";
+import { useTheme } from "styled-components/native";
 
 export const CityProfilScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "CityProfilScreen">) => {
   const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
+  const theme = useTheme();
   const userLocation = useSelector(userLocationSelector);
 
   const [selectedCity, setSelectedCity] = React.useState("");
@@ -45,6 +47,8 @@ export const CityProfilScreen = ({
     <Page
       headerTitle={t("profile_screens.city", "Ville")}
       headerIconName="pin-outline"
+      backgroundColor={theme.colors.dsfr_backgroundBlue}
+      headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
     >
       <Rows layout="1 auto">
         <FilterCityComponent

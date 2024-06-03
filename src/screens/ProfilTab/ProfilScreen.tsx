@@ -1,5 +1,8 @@
 import * as React from "react";
-import { TextVerySmallNormal } from "../../components/StyledText";
+import {
+  StyledTextDSFR_L,
+  TextVerySmallNormal,
+} from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
@@ -24,35 +27,45 @@ import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
 import { CustomButton } from "../../components/CustomButton";
-import AccessibleIcon from "../../theme/images/accessibility/accessible-icon.svg";
 import { ageFilters } from "../../data/filtersData";
 import { updateAppUser } from "../../utils/API";
 import { firstLetterUpperCase } from "../../libs";
-import { Page, SectionTitle } from "../../components";
+import { Columns, Flag, Page, Spacer } from "../../components";
 import { frenchLevelFilters } from "../../data/filtersData";
+import { useTheme } from "styled-components/native";
+import { H1 } from "../../components/Profil/Typography";
+import UserProfileIcon from "../../theme/images/profile/user-profile.svg";
+import { MascotteSpeaking } from "../../components/Profil/MascotteSpeaking";
 
-const DeleteDataContainer = styled.TouchableOpacity`
-  align-items: center;
-  margin-bottom: ${({ theme }) => theme.margin * 7}px;
+const Separator = styled.View`
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.dsfr_borderGrey};
 `;
 
 const ProfilButtonsContainer = styled.View`
   background-color: ${({ theme }) => theme.colors.white};
-  border-radius: ${({ theme }) => theme.radius * 2}px;
   margin-bottom: ${({ theme }) => theme.margin * 5}px;
-  ${({ theme }) => theme.shadows.lg}
+  border: 1px solid ${({ theme }) => theme.colors.dsfr_borderGrey};
+  padding-vertical: ${({ theme }) => theme.margin}px;
+  padding-horizontal: ${({ theme }) => theme.margin * 3}px;
+`;
+
+const Section = styled.View<{ darkBackground?: boolean }>`
+  background-color: ${({ theme, darkBackground }) =>
+    darkBackground ? theme.colors.dsfr_backgroundBlue : "white"};
+  padding-horizontal: ${({ theme }) => theme.margin * 3}px;
+  padding-top: ${({ theme }) => theme.margin * 3}px;
+`;
+const SectionTitle = styled(StyledTextDSFR_L)`
+  padding-vertical: ${({ theme }) => theme.margin * 2}px;
 `;
 
 export const ProfilScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "ProfilScreen">) => {
-  const [isDeleteDataModalVisible, setDeleteDataModalVisible] =
-    React.useState(false);
+  const theme = useTheme();
   const [isReinitAppModalVisible, setReinitAppModalVisible] =
     React.useState(false);
-
-  const toggleDeleteDataModal = () =>
-    setDeleteDataModalVisible(!isDeleteDataModalVisible);
 
   const toggleReinitAppModal = () =>
     setReinitAppModalVisible(!isReinitAppModalVisible);
@@ -103,165 +116,167 @@ export const ProfilScreen = ({
 
   return (
     <Page
-      headerIconName="person-outline"
-      headerTitle={t("tab_bar.profile", "Profil")}
-      hideBack
+      headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
+      contentContainerStyle={{ paddingHorizontal: 0, paddingTop: 0 }}
     >
-      <SectionTitle accessibilityRole="header">
-        {t("profile_screens.my_profile", "Mon profil")}
-      </SectionTitle>
-      <ProfilButtonsContainer>
-        <ProfilDetailButton
-          iconName="globe-2-outline"
-          category={t("profile_screens.my_language", "Langue choisie")}
-          userChoice={selectedLanguage.langueLoc}
-          isFirst={true}
-          isLast={false}
-          isRTL={isRTL}
-          onPress={() => navigation.navigate("LangueProfilScreen")}
-        />
+      <Section darkBackground>
+        <Columns RTLBehaviour layout="auto 1" verticalAlign="top">
+          <UserProfileIcon width={32} height={32} />
+          <H1
+            style={{ color: theme.colors.dsfr_action }}
+            accessibilityRole="header"
+          >
+            {t("profile_screens.my_profile", "Mes informations")}
+          </H1>
+        </Columns>
+
         <ProfilDetailButton
           iconName="pin-outline"
-          category={t("profile_screens.city", "Ville")}
-          userChoice={
-            selectedLocation.city ||
-            t("profile_screens.whole_country", "Toute la France")
-          }
-          isFirst={false}
-          isLast={false}
-          isRTL={isRTL}
+          label={selectedLocation.city || t("profile_screens.city", "Ville")}
           onPress={() => navigation.navigate("CityProfilScreen")}
+          isEmpty={selectedLocation.city === null}
+          iconRight="edit"
         />
         <ProfilDetailButton
           iconName="calendar-outline"
-          category={t("profile_screens.age", "age")}
-          userChoice={
+          label={
             selectedAgeName
               ? t("filters." + selectedAgeName, selectedAgeName)
-              : t("profile_screens.all_ages", "Tous les âges")
+              : t("profile_screens.age", "age")
           }
-          isFirst={false}
-          isLast={false}
-          isRTL={isRTL}
           onPress={() => navigation.navigate("AgeProfilScreen")}
+          isEmpty={!selectedAge}
+          iconRight="edit"
         />
         <ProfilDetailButton
           iconName="message-circle-outline"
-          category={t("profile_screens.french", "Français")}
-          userChoice={
+          label={
             selectedFrenchLevel
               ? t("filters." + formattedLevel?.name, selectedFrenchLevel)
-              : t("profile_screens.all_levels", "Tous les niveaux")
+              : t("profile_screens.french", "Français")
           }
-          isFirst={false}
-          isLast={true}
-          isRTL={isRTL}
           onPress={() => navigation.navigate("FrenchLevelProfilScreen")}
+          isEmpty={selectedFrenchLevel === null}
+          iconRight="edit"
         />
-      </ProfilButtonsContainer>
 
-      <DeleteDataContainer>
+        <MascotteSpeaking />
+      </Section>
+      <Spacer height={theme.margin * 2} />
+      <Section>
+        <ProfilButtonsContainer>
+          <SectionTitle accessibilityRole="header">
+            {firstLetterUpperCase(t("notifications.settings", "Paramètres"))}
+          </SectionTitle>
+          <ProfilDetailButton
+            iconImage={<Flag langueFr={selectedLanguage.langueFr} />}
+            label={selectedLanguage.langueLoc}
+            onPress={() => navigation.navigate("LangueProfilScreen")}
+            inList
+            iconRight="edit"
+          />
+          <Separator />
+          <ProfilDetailButton
+            iconName="bell-outline"
+            label={t("notifications.notifications", "Notifications")}
+            onPress={() => navigation.navigate("NotificationsSettingsScreen")}
+            inList
+            iconRight="edit"
+          />
+        </ProfilButtonsContainer>
+        <ProfilButtonsContainer>
+          <SectionTitle accessibilityRole="header">
+            {t(
+              "profile_screens.app_informations",
+              "Informations sur l'application"
+            )}
+          </SectionTitle>
+          <ProfilDetailButton
+            iconName="question-mark-circle-outline"
+            label={t("profile_screens.about_us", "Qui sommes-nous ?")}
+            onPress={() => navigation.navigate("AboutScreen")}
+            inList
+            iconRight="navigate"
+          />
+          <Separator />
+
+          <ProfilDetailButton
+            iconName="lock-outline"
+            label={t(
+              "profile_screens.privacy_policy",
+              "Politique de confidentialité"
+            )}
+            onPress={() => navigation.navigate("PrivacyPolicyScreen")}
+            inList
+            iconRight="navigate"
+          />
+          <Separator />
+
+          <ProfilDetailButton
+            iconName="file-text-outline"
+            label={t("profile_screens.legal_notice", "Mentions légales")}
+            onPress={() => navigation.navigate("LegalNoticeScreen")}
+            inList
+            iconRight="navigate"
+          />
+          <Separator />
+
+          <ProfilDetailButton
+            iconName="file-text-outline"
+            label={t(
+              "profile_screens.accessibility",
+              "Déclaration d'accessibilité"
+            )}
+            onPress={() => navigation.navigate("AccessibilityScreen")}
+            inList
+            iconRight="navigate"
+          />
+          <Separator />
+
+          <ProfilDetailButton
+            iconName="plus-circle-outline"
+            label={"Publier une fiche"}
+            onPress={() => navigation.navigate("AccessibilityScreen")}
+            inList
+            iconRight="external"
+          />
+          <Separator />
+
+          <ProfilDetailButton
+            iconName="globe-outline"
+            label={"Aider à traduire"}
+            onPress={() => navigation.navigate("AccessibilityScreen")}
+            inList
+            iconRight="external"
+          />
+        </ProfilButtonsContainer>
         <CustomButton
-          textColor={styles.colors.black}
-          i18nKey="profile_screens.delete_informations_button"
-          defaultText="Supprimer les données de mon profil"
-          onPress={toggleDeleteDataModal}
-          backgroundColor={styles.colors.grey60}
-          isTextNotBold={true}
-        />
-      </DeleteDataContainer>
-      <SectionTitle accessibilityRole="header">
-        {firstLetterUpperCase(t("notifications.settings", "Paramètres"))}
-      </SectionTitle>
-      <ProfilButtonsContainer>
-        <ProfilDetailButton
-          iconName="bell-outline"
-          category={t("notifications.notifications", "Notifications")}
-          isFirst={true}
-          isLast={true}
-          isRTL={isRTL}
-          onPress={() => navigation.navigate("NotificationsSettingsScreen")}
-        />
-      </ProfilButtonsContainer>
-      <SectionTitle accessibilityRole="header">
-        {t(
-          "profile_screens.app_informations",
-          "Informations sur l'application"
-        )}
-      </SectionTitle>
-      <ProfilButtonsContainer>
-        <ProfilDetailButton
-          iconName="question-mark-circle-outline"
-          category={t("profile_screens.about_us", "Qui sommes-nous ?")}
-          isFirst={true}
-          isLast={false}
-          isRTL={isRTL}
-          onPress={() => navigation.navigate("AboutScreen")}
-        />
-        <ProfilDetailButton
-          iconName="lock-outline"
-          category={t(
-            "profile_screens.privacy_policy",
-            "Politique de confidentialité"
-          )}
-          isFirst={false}
-          isLast={false}
-          isRTL={isRTL}
-          onPress={() => navigation.navigate("PrivacyPolicyScreen")}
-        />
-        <ProfilDetailButton
-          iconName="file-text-outline"
-          category={t("profile_screens.legal_notice", "Mentions légales")}
-          isFirst={false}
-          isLast={false}
-          isRTL={isRTL}
-          onPress={() => navigation.navigate("LegalNoticeScreen")}
-        />
-        <ProfilDetailButton
-          iconImage={AccessibleIcon}
-          category={t(
-            "profile_screens.accessibility",
-            "Déclaration d'accessibilité"
-          )}
-          isFirst={false}
-          isLast={true}
-          isRTL={isRTL}
-          onPress={() => navigation.navigate("AccessibilityScreen")}
-        />
-      </ProfilButtonsContainer>
-      <DeleteDataContainer>
-        <CustomButton
-          textColor={styles.colors.black}
+          textColor={styles.colors.dsfr_error}
           i18nKey="profile_screens.reinit_app_button"
           defaultText="Réinitialiser l'application"
           onPress={toggleReinitAppModal}
-          backgroundColor={styles.colors.grey60}
-          isTextNotBold={true}
+          withShadows={false}
+          iconName="refresh-outline"
+          iconFirst
         />
-      </DeleteDataContainer>
-      <TextVerySmallNormal
-        style={{ textAlign: "center", color: styles.colors.darkGrey }}
-      >
-        Version {Constants.expoConfig?.extra?.displayVersionNumber}
-      </TextVerySmallNormal>
-      <ConfirmationModal
-        isModalVisible={isDeleteDataModalVisible}
-        toggleModal={toggleDeleteDataModal}
-        text={t(
-          "profile_screens.delete_data",
-          "Es-tu sûr de vouloir supprimer les données de ton profil ?"
-        )}
-        onValidate={deleteUserData}
-      />
-      <ConfirmationModal
-        isModalVisible={isReinitAppModalVisible}
-        toggleModal={toggleReinitAppModal}
-        text={t(
-          "profile_screens.reinit_app2",
-          "Es-tu sûr de vouloir réinitialiser ton application ?"
-        )}
-        onValidate={reinitializeApp}
-      />
+        <Spacer height={theme.margin * 5} />
+        <TextVerySmallNormal
+          style={{ textAlign: "center", color: styles.colors.darkGrey }}
+        >
+          Version {Constants.expoConfig?.extra?.displayVersionNumber}
+        </TextVerySmallNormal>
+        <Spacer height={theme.margin * 5} />
+
+        <ConfirmationModal
+          isModalVisible={isReinitAppModalVisible}
+          toggleModal={toggleReinitAppModal}
+          text={t(
+            "profile_screens.reinit_app2",
+            "Es-tu sûr de vouloir réinitialiser ton application ?"
+          )}
+          onValidate={reinitializeApp}
+        />
+      </Section>
     </Page>
   );
 };

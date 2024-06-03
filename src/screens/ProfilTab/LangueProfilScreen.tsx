@@ -9,11 +9,13 @@ import { activatedLanguages } from "../../data/languagesData";
 import { LanguageDetailsButton } from "../../components";
 import { Page, Rows, RowsSpacing, Title } from "../../components";
 import { Languages } from "@refugies-info/api-types";
+import { useTheme } from "styled-components/native";
 
 export const LangueProfilScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "LangueProfilScreen">) => {
   const { t, i18n } = useTranslationWithRTL();
+  const theme = useTheme();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
 
@@ -33,6 +35,8 @@ export const LangueProfilScreen = ({
       headerTitle={t("profile_screens.my_language", "Langue choisie")}
       headerIconName="globe-2-outline"
       hideLanguageSwitch
+      backgroundColor={theme.colors.dsfr_backgroundBlue}
+      headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
     >
       <Title>
         {t(

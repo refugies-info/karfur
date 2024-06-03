@@ -54,7 +54,6 @@
     "no_age_filter": "مشاهده برگه ها برای همه سنین"
   },
   "profile_screens": {
-    "delete_informations_button": "حذف اطلاعات",
     "reinit_app_button": "حذف اطلاعات و اغاز دوباره",
     "my_profile": "من",
     "my_language": "زبان",
@@ -70,7 +69,6 @@
     "all_levels": "همه سطوح",
     "all_ages": "همه سنین",
     "reinit_app2": "اطلاعات شما (زبان، شهر، سن و سطح فرانسوی) حذف می شود و برنامه از ابتدا شروع می شود.",
-    "delete_data": "اطلاعات شما (زبان، شهر، سن و سطح فرانسوی) حذف می شود.",
     "language_choice": "زبان برنامه را انتخاب کنید",
     "accessibility": "دسترسی اطلاعات"
   },

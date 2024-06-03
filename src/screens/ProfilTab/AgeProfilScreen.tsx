@@ -12,11 +12,13 @@ import {
 } from "../../services/redux/User/user.actions";
 import { FilterButton, Page, RadioGroup, Title } from "../../components";
 import { GetContentsForAppRequest } from "@refugies-info/api-types";
+import { useTheme } from "styled-components/native";
 
 export const AgeProfilScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "AgeProfilScreen">) => {
   const dispatch = useDispatch();
+  const theme = useTheme();
   const { t } = useTranslationWithRTL();
   const userAge = useSelector(userAgeSelector);
   const [selectedAge, setSelectedAge] = React.useState<string | null>(null);
@@ -41,6 +43,8 @@ export const AgeProfilScreen = ({
     <Page
       headerTitle={t("profile_screens.age", "Âge")}
       headerIconName="calendar-outline"
+      backgroundColor={theme.colors.dsfr_backgroundBlue}
+      headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
     >
       <Title>{t("onboarding_screens.age", "Quel âge as-tu ?")}</Title>
       <Explaination
