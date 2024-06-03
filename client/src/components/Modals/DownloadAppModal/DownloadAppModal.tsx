@@ -23,6 +23,13 @@ const DownloadAppModal = ({ show, toggle }: Props) => {
 
   return (
     <Modal isOpen={show} toggle={toggle} className={styles.modal} contentClassName={styles.content}>
+      <Button
+        iconId="fr-icon-close-line"
+        onClick={toggle}
+        priority="tertiary no outline"
+        title={t("close")}
+        className={styles.close}
+      />
       <Image src={MobileAppIllu} width={327} alt="Réfugiés.info mobile app" className={styles.illu} />
 
       <p className={styles.text}>{t("MobileAppModal.description")}</p>
