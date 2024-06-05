@@ -18,6 +18,7 @@ const colors: Record<string, string> = {
   dsfr_mentionGrey: "#666666",
   dsfr_disabledGrey: "#929292",
   dsfr_success: "#18753C",
+  dsfr_purple: "#6A6AF4",
   white: "#FFFFFF",
   lightGrey: "#F6F6F6",
   admin100: "#443023",

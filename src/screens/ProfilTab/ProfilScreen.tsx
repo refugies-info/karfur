@@ -36,6 +36,7 @@ import { useTheme } from "styled-components/native";
 import { H1 } from "../../components/Profil/Typography";
 import UserProfileIcon from "../../theme/images/profile/user-profile.svg";
 import { MascotteSpeaking } from "../../components/Profil/MascotteSpeaking";
+import { Linking } from "react-native";
 
 const Separator = styled.View`
   height: 1px;
@@ -181,9 +182,19 @@ export const ProfilScreen = ({
             label={t("notifications.notifications", "Notifications")}
             onPress={() => navigation.navigate("NotificationsSettingsScreen")}
             inList
-            iconRight="edit"
+            iconRight="navigate"
           />
         </ProfilButtonsContainer>
+
+        <ProfilDetailButton
+          iconName="gift-outline"
+          label="Partager l'application"
+          onPress={() => {}}
+          iconRight="navigate"
+          purpleVariant
+        />
+        <Spacer height={theme.margin * 3} />
+
         <ProfilButtonsContainer>
           <SectionTitle accessibilityRole="header">
             {t(
@@ -236,7 +247,7 @@ export const ProfilScreen = ({
           <ProfilDetailButton
             iconName="plus-circle-outline"
             label={"Publier une fiche"}
-            onPress={() => navigation.navigate("AccessibilityScreen")}
+            onPress={() => Linking.openURL("https://refugies.info/fr/publier")}
             inList
             iconRight="external"
           />
@@ -245,7 +256,7 @@ export const ProfilScreen = ({
           <ProfilDetailButton
             iconName="globe-outline"
             label={"Aider à traduire"}
-            onPress={() => navigation.navigate("AccessibilityScreen")}
+            onPress={() => Linking.openURL("https://refugies.info/fr/traduire")}
             inList
             iconRight="external"
           />

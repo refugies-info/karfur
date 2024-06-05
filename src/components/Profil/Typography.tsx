@@ -1,6 +1,5 @@
 import {
   TextSmallNormal,
-  TextBigBold,
   TextSmallBold,
   TextNormalBold,
   StyledTextDSFR_XL,

@@ -1,23 +1,27 @@
 import * as React from "react";
 import styled from "styled-components/native";
+import { Icon } from "react-native-eva-icons";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { styles } from "../../theme";
-import { Icon } from "react-native-eva-icons";
-import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
-import { View } from "react-native";
+import { StyledTextSmallBold } from "../StyledText";
 
-const ButtonContainer = styled(RTLTouchableOpacity)<{ inList: boolean }>`
+const ButtonContainer = styled(RTLTouchableOpacity)<{
+  inList: boolean;
+  purpleVariant: boolean;
+}>`
   align-items: center;
   justify-content: space-between;
   padding-vertical: ${styles.margin * 2}px;
-  ${({ inList, theme }) =>
+  ${({ inList, purpleVariant, theme }) =>
     !inList
       ? `
   padding-horizontal: ${styles.margin * 2}px;
   margin-bottom: ${styles.margin * 2}px;
   border: 1px solid ${theme.colors.dsfr_borderGrey};
-  background-color: ${theme.colors.white};
-  ${theme.shadows.sm_dsfr}
+  background-color: ${
+    purpleVariant ? theme.colors.dsfr_backgroundBlue : theme.colors.white
+  };
+  ${!purpleVariant ? theme.shadows.sm_dsfr : ""}
   `
       : ""}
 `;
@@ -28,14 +32,15 @@ const LabelContainer = styled(RTLView)`
   gap: ${styles.margin * 2}px;
 `;
 
-const StyledLabel = styled(StyledTextSmallBold)<{ isEmpty: boolean }>`
+const StyledLabel = styled(StyledTextSmallBold)<{
+  isEmpty: boolean;
+  purpleVariant: boolean;
+}>`
   flex: 1;
   ${({ isEmpty, theme }) =>
-    isEmpty
-      ? `
-color: ${theme.colors.dsfr_disabledGrey};
-`
-      : ""}
+    isEmpty ? `color: ${theme.colors.dsfr_disabledGrey};` : ""}
+  ${({ purpleVariant, theme }) =>
+    purpleVariant ? `color: ${theme.colors.dsfr_purple};` : ""}
 `;
 
 type IconRight = "edit" | "navigate" | "external";
@@ -48,6 +53,7 @@ interface Props {
   inList?: boolean;
   isEmpty?: boolean;
   iconRight: IconRight;
+  purpleVariant?: boolean;
 }
 
 const ICON_SIZE = 24;
@@ -63,6 +69,7 @@ export const ProfilDetailButton = (props: Props) => (
     testID={"test-profil-button-" + props.iconName}
     accessibilityRole="button"
     inList={!!props.inList}
+    purpleVariant={!!props.purpleVariant}
   >
     <LabelContainer>
       {props.iconName && (
@@ -71,14 +78,20 @@ export const ProfilDetailButton = (props: Props) => (
           width={ICON_SIZE}
           height={ICON_SIZE}
           fill={
-            props.isEmpty
+            props.purpleVariant
+              ? styles.colors.dsfr_purple
+              : props.isEmpty
               ? styles.colors.dsfr_disabledGrey
               : styles.colors.black
           }
         />
       )}
       {props.iconImage}
-      <StyledLabel numberOfLines={1} isEmpty={!!props.isEmpty}>
+      <StyledLabel
+        numberOfLines={1}
+        isEmpty={!!props.isEmpty}
+        purpleVariant={!!props.purpleVariant}
+      >
         {props.label}
       </StyledLabel>
     </LabelContainer>
@@ -95,7 +108,11 @@ export const ProfilDetailButton = (props: Props) => (
           name={ICONS[props.iconRight]}
           width={ICON_SIZE}
           height={ICON_SIZE}
-          fill={styles.colors.dsfr_mentionGrey}
+          fill={
+            props.purpleVariant
+              ? styles.colors.dsfr_purple
+              : styles.colors.dsfr_mentionGrey
+          }
         />
       )}
     </RTLView>

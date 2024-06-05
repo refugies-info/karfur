@@ -1,11 +1,11 @@
 import * as React from "react";
-import styled from "styled-components/native";
-import { StyledTextSmall } from "../StyledText";
 import { Image, View } from "react-native";
-import { useTheme } from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
+import { StyledTextSmall } from "../StyledText";
 import { Columns } from "../layout";
 import { TextBubble } from "../../theme/images/profile/TextBubble";
 import IlluMascotte from "../../theme/images/profile/illu-mascotte.png";
+import { useTranslationWithRTL } from "../../hooks";
 
 const Text = styled(StyledTextSmall)`
   color: ${({ theme }) => theme.colors.dsfr_action};
@@ -18,6 +18,8 @@ interface Props {}
 
 export const MascotteSpeaking = (props: Props) => {
   const theme = useTheme();
+  const { t } = useTranslationWithRTL();
+
   return (
     <Columns
       layout="1 auto"
@@ -28,10 +30,7 @@ export const MascotteSpeaking = (props: Props) => {
       }}
     >
       <View style={{ position: "relative" }}>
-        <Text>
-          Grâce à ces information, tu vois seulement les fiches intéressantes
-          pour toi.
-        </Text>
+        <Text>{t("profile_screens.help_bubble")}</Text>
         <TextBubble />
       </View>
       <Image style={{ height: 96, width: 77 }} source={IlluMascotte} />
