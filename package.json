@@ -35,7 +35,7 @@
     "@refugies-info/api-types": "1.0.35",
     "algoliasearch": "^4.14.2",
     "babel-plugin-inline-dotenv": "^1.7.0",
-    "expo": "50",
+    "expo": "^50.0.0",
     "expo-av": "~13.10.6",
     "expo-build-properties": "~0.11.1",
     "expo-constants": "~15.4.6",
