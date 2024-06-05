@@ -1,21 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { View } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { MobileFrenchLevel } from "@refugies-info/api-types";
 import { OnboardingParamList } from "../../../types";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { Title } from "../../components/Onboarding/SharedStyledComponents";
 import { frenchLevelFilters } from "../../data/filtersData";
-import { Explaination } from "../../components/Onboarding/Explaination";
 import {
   saveUserFrenchLevelActionCreator,
   removeUserFrenchLevelActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
-import { FilterButton, RadioGroup, ReadableText, Rows } from "../../components";
+import { Rows } from "../../components";
 import PageOnboarding from "../../components/layout/PageOnboarding";
+import { FilterFrenchLevelComponent } from "../../components/Profil/FilterFrenchLevelComponent";
 
 export const FilterFrenchLevel = ({
   navigation,
@@ -75,38 +73,10 @@ export const FilterFrenchLevel = ({
     >
       <OnboardingProgressBar step={3} onSkip={onSkip} />
       <Rows layout="1 auto" verticalAlign="space-between">
-        <View>
-          <Title>
-            <ReadableText>
-              {t(
-                "onboarding_screens.french_level",
-                "Quel est ton niveau en français ?"
-              )}
-            </ReadableText>
-          </Title>
-          <Explaination
-            step={3}
-            defaultText="C’est pour te montrer les formations faites pour ton niveau de français."
-          />
-          <RadioGroup>
-            {frenchLevelFilters
-              .filter((f) => f.name !== "no_french_level_filter")
-              .map((frenchLevel) => (
-                <FilterButton
-                  key={frenchLevel.name}
-                  text={frenchLevel.name}
-                  isSelected={
-                    !!selectedFrenchLevel &&
-                    frenchLevel.key === selectedFrenchLevel
-                  }
-                  onPress={() => {
-                    onSelectFrenchLevel(frenchLevel.key);
-                  }}
-                  details={frenchLevel.cecrCorrespondency}
-                />
-              ))}
-          </RadioGroup>
-        </View>
+        <FilterFrenchLevelComponent
+          selectedFrenchLevel={selectedFrenchLevel}
+          onSelectFrenchLevel={onSelectFrenchLevel}
+        />
       </Rows>
     </PageOnboarding>
   );

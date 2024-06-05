@@ -4,14 +4,12 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { ProfileParamList } from "../../../types";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { FilterCityComponent } from "../../components/Geoloc/FilterCityComponent";
-import { CustomButton, Page, Rows } from "../../components";
+import { Page, Rows } from "../../components";
 import {
   removeUserLocalizedWarningHiddenActionCreator,
-  removeUserLocationActionCreator,
   saveUserLocationActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userLocationSelector } from "../../services/redux/User/user.selectors";
-import { styles } from "../../theme";
 import { useTheme } from "styled-components/native";
 
 export const CityProfilScreen = ({
@@ -25,24 +23,30 @@ export const CityProfilScreen = ({
   const [selectedCity, setSelectedCity] = React.useState("");
   const [selectedDepartment, setSelectedDepartment] = React.useState("");
 
-  const onValidate = () => {
-    if (selectedCity && selectedDepartment) {
-      dispatch(
-        saveUserLocationActionCreator({
-          city: selectedCity,
-          dep: selectedDepartment,
-          shouldFetchContents: true,
-        })
-      );
-    } else {
-      dispatch(removeUserLocationActionCreator(true));
-    }
-    dispatch(removeUserLocalizedWarningHiddenActionCreator());
-    navigation.goBack();
-  };
+  React.useEffect(() => {
+    const onValidate = () => {
+      if (selectedCity && selectedDepartment) {
+        dispatch(
+          saveUserLocationActionCreator({
+            city: selectedCity,
+            dep: selectedDepartment,
+            shouldFetchContents: true,
+          })
+        );
+      }
+      dispatch(removeUserLocalizedWarningHiddenActionCreator());
+      navigation.goBack();
+    };
 
-  const isOnValidateDisabled =
-    userLocation.city === selectedCity || (!userLocation.city && !selectedCity);
+    if (
+      selectedCity &&
+      userLocation.city !== selectedCity &&
+      selectedDepartment
+    ) {
+      onValidate();
+    }
+  }, [selectedCity, selectedDepartment]);
+
   return (
     <Page
       headerTitle={t("profile_screens.city", "Ville")}
@@ -57,31 +61,6 @@ export const CityProfilScreen = ({
           setSelectedCity={setSelectedCity}
           setSelectedDepartment={setSelectedDepartment}
         />
-
-        <Rows>
-          <CustomButton
-            i18nKey="global.validate"
-            defaultText="Valider"
-            textColor={styles.colors.white}
-            onPress={() => {
-              if (isOnValidateDisabled) return;
-              onValidate();
-            }}
-            backgroundColor={styles.colors.darkBlue}
-            iconName="checkmark-outline"
-            isDisabled={isOnValidateDisabled}
-            iconFirst={true}
-          />
-
-          <CustomButton
-            i18nKey="global.cancel"
-            defaultText="Annuler"
-            textColor={styles.colors.black}
-            onPress={navigation.goBack}
-            isTextNotBold={true}
-            isDisabled={isOnValidateDisabled}
-          />
-        </Rows>
       </Rows>
     </Page>
   );

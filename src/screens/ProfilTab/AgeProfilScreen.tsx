@@ -2,17 +2,13 @@ import * as React from "react";
 import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { ageFilters } from "../../data/filtersData";
-import { Explaination } from "../../components/Onboarding/Explaination";
 import { useDispatch, useSelector } from "react-redux";
 import { userAgeSelector } from "../../services/redux/User/user.selectors";
-import {
-  saveUserAgeActionCreator,
-  removeUserAgeActionCreator,
-} from "../../services/redux/User/user.actions";
-import { FilterButton, Page, RadioGroup, Title } from "../../components";
+import { saveUserAgeActionCreator } from "../../services/redux/User/user.actions";
+import { Page } from "../../components";
 import { GetContentsForAppRequest } from "@refugies-info/api-types";
 import { useTheme } from "styled-components/native";
+import { FilterAgeComponent } from "../../components/Profil/FilterAgeComponent";
 
 export const AgeProfilScreen = ({
   navigation,
@@ -21,17 +17,13 @@ export const AgeProfilScreen = ({
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
   const userAge = useSelector(userAgeSelector);
-  const [selectedAge, setSelectedAge] = React.useState<string | null>(null);
+  const [selectedAge, setSelectedAge] = React.useState<
+    GetContentsForAppRequest["age"] | undefined
+  >(undefined);
 
   React.useEffect(() => {
     if (userAge) setSelectedAge(userAge);
   }, [userAge]);
-
-  const removeAge = () => {
-    if (!selectedAge) return;
-    dispatch(removeUserAgeActionCreator(true));
-    return navigation.goBack();
-  };
 
   const onValidateAge = (age: GetContentsForAppRequest["age"]) => {
     if (selectedAge === age) return;
@@ -46,26 +38,10 @@ export const AgeProfilScreen = ({
       backgroundColor={theme.colors.dsfr_backgroundBlue}
       headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
     >
-      <Title>{t("onboarding_screens.age", "Quel âge as-tu ?")}</Title>
-      <Explaination
-        step={2}
-        defaultText="C’est pour te montrer les démarches et les activités pour ton âge."
+      <FilterAgeComponent
+        selectedAge={selectedAge}
+        onAgeClick={onValidateAge}
       />
-      <RadioGroup>
-        {ageFilters.map((age) => (
-          <FilterButton
-            key={age.name}
-            text={age.name}
-            isSelected={age.key === selectedAge}
-            onPress={() => onValidateAge(age.key)}
-          />
-        ))}
-        <FilterButton
-          text="no_age_filter"
-          isSelected={!selectedAge}
-          onPress={removeAge}
-        />
-      </RadioGroup>
     </Page>
   );
 };

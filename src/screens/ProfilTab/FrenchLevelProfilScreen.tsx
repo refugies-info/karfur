@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
 import { frenchLevelFilters } from "../../data/filtersData";
 import { saveUserFrenchLevelActionCreator } from "../../services/redux/User/user.actions";
-import { Explaination } from "../../components/Onboarding/Explaination";
-import { FilterButton, Page, RadioGroup, Title } from "../../components";
+import { Page } from "../../components";
 import { MobileFrenchLevel } from "@refugies-info/api-types";
 import { useTheme } from "styled-components/native";
+import { FilterFrenchLevelComponent } from "../../components/Profil/FilterFrenchLevelComponent";
 
 export const FrenchLevelProfilScreen = ({
   navigation,
@@ -17,13 +17,13 @@ export const FrenchLevelProfilScreen = ({
   const dispatch = useDispatch();
   const theme = useTheme();
   const userFrenchLevel = useSelector(userFrenchLevelSelector);
-  const selectedFrenchLevel = frenchLevelFilters.find(
-    (frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel
-  );
+  const selectedFrenchLevel: MobileFrenchLevel | null =
+    frenchLevelFilters.find(
+      (frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel
+    )?.key || null;
 
   const onValidateFrenchLevel = (frenchLevelKey: MobileFrenchLevel) => {
-    if (selectedFrenchLevel && selectedFrenchLevel.key === frenchLevelKey)
-      return;
+    if (selectedFrenchLevel && selectedFrenchLevel === frenchLevelKey) return;
     dispatch(
       saveUserFrenchLevelActionCreator({
         frenchLevel: frenchLevelKey,
@@ -41,30 +41,10 @@ export const FrenchLevelProfilScreen = ({
       backgroundColor={theme.colors.dsfr_backgroundBlue}
       headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
     >
-      <Title>
-        {t(
-          "onboarding_screens.french_level",
-          "Quel est ton niveau en français ?"
-        )}
-      </Title>
-      <Explaination
-        step={3}
-        defaultText="C’est pour te montrer les formations faites pour ton niveau de français."
+      <FilterFrenchLevelComponent
+        selectedFrenchLevel={selectedFrenchLevel}
+        onSelectFrenchLevel={onValidateFrenchLevel}
       />
-      <RadioGroup>
-        {frenchLevelFilters.map((frenchLevel) => (
-          <FilterButton
-            key={frenchLevel.name}
-            text={frenchLevel.name}
-            isSelected={
-              !!selectedFrenchLevel &&
-              frenchLevel.key === selectedFrenchLevel.key
-            }
-            onPress={() => onValidateFrenchLevel(frenchLevel.key)}
-            details={frenchLevel.cecrCorrespondency}
-          />
-        ))}
-      </RadioGroup>
     </Page>
   );
 };
