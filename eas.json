@@ -5,7 +5,8 @@
       "ios": {
         "image": "latest"
       },
-      "node": "20.13.1"
+      "node": "20.13.1",
+      "yarn": "1.22.22"
     },
     "production": {
       "extends": "base",
