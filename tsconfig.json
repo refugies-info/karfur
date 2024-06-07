@@ -4,10 +4,6 @@
     "jsx": "react",
     "strict": true,
     "allowJs": false,
-    "paths": {
-      // see fix https://github.com/facebook/react/issues/24304#issuecomment-1111184798
-      "react": ["./node_modules/@types/react"]
-    }
   },
   "exclude": [
     "node_modules",
