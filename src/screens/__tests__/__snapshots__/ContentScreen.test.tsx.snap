@@ -296,33 +296,6 @@ exports[`ContentScreen should render correctly 1`] = `
           </View>
         </View>
       </RCTSafeAreaView>
-      <Modal
-        animationType="none"
-        deviceHeight={null}
-        deviceWidth={null}
-        hardwareAccelerated={false}
-        hideModalContentWhileAnimating={false}
-        onBackdropPress={[Function]}
-        onModalHide={[Function]}
-        onModalWillHide={[Function]}
-        onModalWillShow={[Function]}
-        onRequestClose={[Function]}
-        panResponderThreshold={4}
-        scrollHorizontal={false}
-        scrollOffset={0}
-        scrollOffsetMax={0}
-        scrollTo={null}
-        statusBarTranslucent={false}
-        supportedOrientations={
-          [
-            "portrait",
-            "landscape",
-          ]
-        }
-        swipeThreshold={100}
-        transparent={true}
-        visible={false}
-      />
     </View>
     <RCTScrollView
       alwaysBounceVertical={false}
@@ -5094,11 +5067,6 @@ exports[`ContentScreen should render correctly 1`] = `
                   </View>
                 </View>
               </View>
-              <Modal
-                animationType="slide"
-                hardwareAccelerated={false}
-                visible={false}
-              />
             </View>
             <View
               style={
@@ -8777,33 +8745,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
           </View>
         </View>
       </RCTSafeAreaView>
-      <Modal
-        animationType="none"
-        deviceHeight={null}
-        deviceWidth={null}
-        hardwareAccelerated={false}
-        hideModalContentWhileAnimating={false}
-        onBackdropPress={[Function]}
-        onModalHide={[Function]}
-        onModalWillHide={[Function]}
-        onModalWillShow={[Function]}
-        onRequestClose={[Function]}
-        panResponderThreshold={4}
-        scrollHorizontal={false}
-        scrollOffset={0}
-        scrollOffsetMax={0}
-        scrollTo={null}
-        statusBarTranslucent={false}
-        supportedOrientations={
-          [
-            "portrait",
-            "landscape",
-          ]
-        }
-        swipeThreshold={100}
-        transparent={true}
-        visible={false}
-      />
     </View>
     <RCTScrollView
       alwaysBounceVertical={false}
