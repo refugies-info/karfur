@@ -15,6 +15,7 @@ import { MapBottomBar } from "./MapBottomBar";
 import { styles } from "../../theme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { SharedValue } from "react-native-reanimated"
 
 interface PropsType {
   map: MapGoogle;
@@ -169,7 +170,7 @@ export const Map = (props: PropsType) => {
         index={0}
         ref={(ref) => (bottomSheet = ref)}
         enablePanDownToClose={true}
-        snapPoints={animatedSnapPoints}
+        snapPoints={animatedSnapPoints as Readonly<SharedValue<(string | number)[]>>}
         handleHeight={animatedHandleHeight}
         contentHeight={animatedContentHeight}
         onChange={onChange}
