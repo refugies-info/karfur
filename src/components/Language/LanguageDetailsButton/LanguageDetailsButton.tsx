@@ -5,29 +5,26 @@ import { Flag } from "../Flag";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 import { ChoiceButton, ChoiceButtonProps } from "../../formulaire";
 import Columns from "../../layout/Columns";
+import { RTLView } from "../../BasicComponents";
+import NoVoiceover from "../../../theme/images/profile/no-voiceover.svg";
+import { noVoiceover } from "../../../libs/noVoiceover";
 
 const StyledTextBold = styled(StyledTextSmallBold)`
   text-align: left;
-  margin-left: ${({ theme }) => (!theme.i18n.isRTL ? theme.margin * 2 : 0)}px;
-  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin * 2 : 0)}px;
   color: ${({ theme }) => theme.colors.black};
 `;
-
 const StyledText = styled(StyledTextSmall)`
   text-align: left;
   color: ${({ theme }) => theme.colors.darkGrey};
 `;
-
 const FlagBackground = styled.View`
-  margin: 4px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.dsfr_borderGrey};
   width: 22px;
   height: 17px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  ${({ theme }) => theme.shadows.sm}
 `;
 
 export interface LanguageDetailsButtonProps {
@@ -37,6 +34,8 @@ export interface LanguageDetailsButtonProps {
   iconOverride?: string;
   langueFr: string;
   langueLoc: string;
+  langueCode: string;
+  showNoVoiceover?: boolean;
   onPress: ChoiceButtonProps["onPress"];
 }
 
@@ -47,9 +46,12 @@ const LanguageDetailsButton = ({
   iconOverride,
   langueFr,
   langueLoc,
+  langueCode,
+  showNoVoiceover,
   onPress,
 }: LanguageDetailsButtonProps) => {
   const { isRTL } = useTranslationWithRTL();
+  const noVoiceoverIcon = !!showNoVoiceover && noVoiceover(langueCode);
 
   return (
     <ChoiceButton
@@ -65,11 +67,21 @@ const LanguageDetailsButton = ({
         <FlagBackground>
           <Flag langueFr={langueFr} />
         </FlagBackground>
-        <StyledTextBold>{langueLoc}</StyledTextBold>
-        {langueFr !== "Français" && (
-          <StyledText>
-            {!isRTL ? " - " + langueFr : langueFr + " - "}
-          </StyledText>
+        <RTLView>
+          <StyledTextBold>{langueLoc}</StyledTextBold>
+          {langueFr !== "Français" && (
+            <StyledText>
+              {!isRTL ? " - " + langueFr : langueFr + " - "}
+            </StyledText>
+          )}
+        </RTLView>
+        {noVoiceoverIcon && (
+          <NoVoiceover
+            width={24}
+            height={24}
+            accessible={true}
+            accessibilityLabel="Vocalisation non disponible"
+          />
         )}
       </Columns>
     </ChoiceButton>

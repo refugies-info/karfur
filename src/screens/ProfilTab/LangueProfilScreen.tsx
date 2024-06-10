@@ -51,6 +51,8 @@ export const LangueProfilScreen = ({
             key={index}
             langueFr={language.langueFr}
             langueLoc={language.langueLoc}
+            langueCode={language.i18nCode}
+            showNoVoiceover
             onPress={() => changeLanguage(language.i18nCode)}
           />
         ))}

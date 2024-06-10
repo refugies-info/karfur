@@ -60,6 +60,7 @@ export const LanguageChoiceScreen = ({
           key={index}
           langueFr={language.langueFr}
           langueLoc={language.langueLoc}
+          langueCode={language.i18nCode}
           onPress={() => changeLanguage(language.i18nCode)}
         />
       ))}

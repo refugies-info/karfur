@@ -131,6 +131,7 @@ export const LanguageChoiceModal = (props: Props) => {
                   isSelected={isSelected}
                   langueFr={language.langueFr}
                   langueLoc={language.langueLoc}
+                  langueCode={language.i18nCode}
                   onPress={() => changeLanguage(language.i18nCode)}
                 />
                 {index !== activatedLanguages.length - 1 && <Separator />}
