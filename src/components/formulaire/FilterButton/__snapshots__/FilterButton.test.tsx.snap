@@ -97,23 +97,34 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
           ]
         }
       >
-        <Text
-          isRTL={false}
-          isSelected={false}
-          selectable={true}
+        <View
           style={
             {
-              "color": "#161616",
-              "fontFamily": "circularBold",
-              "fontSize": 16,
-              "lineHeight": 20,
-              "paddingVertical": 4,
-              "textAlign": "left",
+              "alignItems": "center",
+              "flexDirection": "row",
+              "gap": 4,
             }
           }
         >
-          filters.Test choice
-        </Text>
+          <Text
+            isRTL={false}
+            isSelected={false}
+            selectable={true}
+            style={
+              {
+                "color": "#161616",
+                "fontFamily": "circularBold",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "paddingVertical": 4,
+                "textAlign": "left",
+                "verticalAlign": "middle",
+              }
+            }
+          >
+            filters.Test choice
+          </Text>
+        </View>
       </View>
     </View>
     <View
@@ -314,22 +325,15 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
           ]
         }
       >
-        <Text
-          isRTL={false}
-          isSelected={true}
-          selectable={true}
+        <View
           style={
             {
-              "color": "#000091",
-              "fontFamily": "circularBold",
-              "fontSize": 16,
-              "lineHeight": 20,
-              "paddingVertical": 4,
-              "textAlign": "left",
+              "alignItems": "center",
+              "flexDirection": "row",
+              "gap": 4,
             }
           }
         >
-          filters.Test choice
           <Text
             isRTL={false}
             isSelected={true}
@@ -339,18 +343,81 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
                 "color": "#000091",
                 "fontFamily": "circularBold",
                 "fontSize": 16,
-                "lineHeight": 20,
+                "lineHeight": 24,
                 "paddingVertical": 4,
                 "textAlign": "left",
+                "verticalAlign": "middle",
               }
             }
           >
-             
-            (
-            First detail/Second detail
-            )
+            filters.Test choice
           </Text>
-        </Text>
+          <View
+            style={
+              {
+                "flexDirection": "row",
+                "gap": 4,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "backgroundColor": "#e8edff",
+                  "borderBottomLeftRadius": 4,
+                  "borderBottomRightRadius": 4,
+                  "borderTopLeftRadius": 4,
+                  "borderTopRightRadius": 4,
+                  "paddingHorizontal": 6,
+                }
+              }
+            >
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  {
+                    "color": "#0063cb",
+                    "fontFamily": "circularBold",
+                    "fontSize": 12,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                First detail
+              </Text>
+            </View>
+            <View
+              style={
+                {
+                  "backgroundColor": "#e8edff",
+                  "borderBottomLeftRadius": 4,
+                  "borderBottomRightRadius": 4,
+                  "borderTopLeftRadius": 4,
+                  "borderTopRightRadius": 4,
+                  "paddingHorizontal": 6,
+                }
+              }
+            >
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  {
+                    "color": "#0063cb",
+                    "fontFamily": "circularBold",
+                    "fontSize": 12,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Second detail
+              </Text>
+            </View>
+          </View>
+        </View>
       </View>
     </View>
     <View
@@ -560,23 +627,34 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
           ]
         }
       >
-        <Text
-          isRTL={false}
-          isSelected={true}
-          selectable={true}
+        <View
           style={
             {
-              "color": "#000091",
-              "fontFamily": "circularBold",
-              "fontSize": 16,
-              "lineHeight": 20,
-              "paddingVertical": 4,
-              "textAlign": "left",
+              "alignItems": "center",
+              "flexDirection": "row",
+              "gap": 4,
             }
           }
         >
-          filters.Test choice
-        </Text>
+          <Text
+            isRTL={false}
+            isSelected={true}
+            selectable={true}
+            style={
+              {
+                "color": "#000091",
+                "fontFamily": "circularBold",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "paddingVertical": 4,
+                "textAlign": "left",
+                "verticalAlign": "middle",
+              }
+            }
+          >
+            filters.Test choice
+          </Text>
+        </View>
       </View>
     </View>
     <View

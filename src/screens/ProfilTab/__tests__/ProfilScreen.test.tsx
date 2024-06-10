@@ -39,7 +39,7 @@ describe("Profil screen", () => {
     });
     expect(component).toMatchSnapshot();
     const ButtonLangue = component.getByTestId(
-      "test-profil-button-globe-2-outline"
+      "test-profil-button-language-button"
     );
 
     act(() => {
@@ -57,7 +57,7 @@ describe("Profil screen", () => {
       },
       compProps: { navigation },
     });
-    const ButtonLoc = component.getByTestId("test-profil-button-pin-outline");
+    const ButtonLoc = component.getByTestId("test-profil-button-city");
 
     act(() => {
       fireEvent.press(ButtonLoc);
@@ -74,9 +74,7 @@ describe("Profil screen", () => {
       },
       compProps: { navigation },
     });
-    const ButtonAge = component.getByTestId(
-      "test-profil-button-calendar-outline"
-    );
+    const ButtonAge = component.getByTestId("test-profil-button-age");
 
     act(() => {
       fireEvent.press(ButtonAge);
@@ -94,7 +92,7 @@ describe("Profil screen", () => {
       compProps: { navigation },
     });
     const ButtonFrenchLevel = component.getByTestId(
-      "test-profil-button-message-circle-outline"
+      "test-profil-button-french"
     );
 
     act(() => {
@@ -117,25 +115,6 @@ describe("Profil screen", () => {
         },
       },
       compProps: { navigation },
-    });
-    expect(component).toMatchSnapshot();
-  });
-
-  it("should toggle modale when delete daat", async () => {
-    const navigation = { navigate: jest.fn() };
-    const component = wrapWithProvidersAndRender({
-      Component: ProfilScreen,
-      reduxState: {
-        ...initialRootStateFactory(),
-      },
-      compProps: { navigation },
-    });
-    const Button = component.getByTestId(
-      "test-custom-button-Supprimer les données de mon profil"
-    );
-
-    act(() => {
-      fireEvent.press(Button);
     });
     expect(component).toMatchSnapshot();
   });

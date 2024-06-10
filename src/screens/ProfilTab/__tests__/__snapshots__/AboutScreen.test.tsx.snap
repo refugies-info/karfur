@@ -522,7 +522,7 @@ exports[`About screen should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
-                        "lineHeight": 20,
+                        "lineHeight": 24,
                         "textAlign": "left",
                       }
                     }
@@ -593,7 +593,7 @@ exports[`About screen should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
-                        "lineHeight": 20,
+                        "lineHeight": 24,
                         "textAlign": "left",
                       }
                     }
@@ -657,7 +657,7 @@ exports[`About screen should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
-                        "lineHeight": 20,
+                        "lineHeight": 24,
                         "textAlign": "left",
                       }
                     }
@@ -776,7 +776,7 @@ exports[`About screen should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
-                        "lineHeight": 20,
+                        "lineHeight": 24,
                         "textAlign": "left",
                       }
                     }
@@ -846,7 +846,7 @@ exports[`About screen should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
-                        "lineHeight": 20,
+                        "lineHeight": 24,
                         "textAlign": "left",
                       }
                     }
@@ -910,7 +910,7 @@ exports[`About screen should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBook",
                         "fontSize": 16,
-                        "lineHeight": 20,
+                        "lineHeight": 24,
                         "textAlign": "left",
                       }
                     }
@@ -1031,7 +1031,7 @@ exports[`About screen should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -1104,7 +1104,7 @@ exports[`About screen should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -1175,7 +1175,7 @@ exports[`About screen should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -1226,7 +1226,7 @@ exports[`About screen should render correctly 1`] = `
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 16,
-                  "lineHeight": 20,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 }
               }
@@ -2131,7 +2131,7 @@ exports[`About screen should render correctly 1`] = `
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
-                  "lineHeight": 20,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 }
               }
@@ -2393,7 +2393,7 @@ exports[`About screen should render correctly 1`] = `
                         "color": "#FFFFFF",
                         "fontFamily": "circularBold",
                         "fontSize": 16,
-                        "lineHeight": 20,
+                        "lineHeight": 24,
                         "marginLeft": 8,
                         "marginRight": 0,
                         "textAlign": "left",
@@ -2517,7 +2517,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -2540,7 +2540,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -2607,7 +2607,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -2630,7 +2630,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -2697,7 +2697,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -2720,7 +2720,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -2787,7 +2787,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -2810,7 +2810,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -2877,7 +2877,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -2900,7 +2900,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -2967,7 +2967,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -2990,7 +2990,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -3057,7 +3057,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -3080,7 +3080,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -3147,7 +3147,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -3170,7 +3170,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -3237,7 +3237,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -3260,7 +3260,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -3327,7 +3327,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -3350,7 +3350,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }
@@ -3417,7 +3417,7 @@ exports[`About screen should render correctly 1`] = `
                             "color": "#212121",
                             "fontFamily": "circularBold",
                             "fontSize": 16,
-                            "lineHeight": 20,
+                            "lineHeight": 24,
                             "marginBottom": 8,
                             "paddingBottom": 4,
                             "paddingLeft": 4,
@@ -3440,7 +3440,7 @@ exports[`About screen should render correctly 1`] = `
                           "flexWrap": "wrap",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
-                          "lineHeight": 20,
+                          "lineHeight": 24,
                           "textAlign": "left",
                         }
                       }

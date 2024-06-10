@@ -138,6 +138,7 @@ export const ProfilScreen = ({
           onPress={() => navigation.navigate("CityProfilScreen")}
           isEmpty={selectedLocation.city === null}
           iconRight="edit"
+          id="city"
         />
         <ProfilDetailButton
           iconName="calendar-outline"
@@ -149,6 +150,7 @@ export const ProfilScreen = ({
           onPress={() => navigation.navigate("AgeProfilScreen")}
           isEmpty={!selectedAge}
           iconRight="edit"
+          id="age"
         />
         <ProfilDetailButton
           iconName="message-circle-outline"
@@ -160,6 +162,7 @@ export const ProfilScreen = ({
           onPress={() => navigation.navigate("FrenchLevelProfilScreen")}
           isEmpty={selectedFrenchLevel === null}
           iconRight="edit"
+          id="french"
         />
 
         <MascotteSpeaking />
@@ -176,6 +179,7 @@ export const ProfilScreen = ({
             onPress={() => navigation.navigate("LangueProfilScreen")}
             inList
             iconRight="edit"
+            id="language-button"
           />
           <Separator />
           <ProfilDetailButton

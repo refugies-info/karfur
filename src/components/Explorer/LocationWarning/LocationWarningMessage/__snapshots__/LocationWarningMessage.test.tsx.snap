@@ -240,7 +240,7 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                   "flexShrink": 1,
                   "fontFamily": "circularBook",
                   "fontSize": 16,
-                  "lineHeight": 20,
+                  "lineHeight": 24,
                   "marginHorizontal": 8,
                   "textAlign": "left",
                 }
@@ -259,7 +259,7 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                     "color": "#0421B1",
                     "fontFamily": "circularBold",
                     "fontSize": 16,
-                    "lineHeight": 20,
+                    "lineHeight": 24,
                     "textAlign": "left",
                     "textDecorationLine": "underline",
                   }

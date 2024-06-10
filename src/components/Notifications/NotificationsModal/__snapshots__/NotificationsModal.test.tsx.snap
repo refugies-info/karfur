@@ -236,7 +236,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
-                  "lineHeight": 20,
+                  "lineHeight": 24,
                   "marginTop": 16,
                   "textAlign": "center",
                 }

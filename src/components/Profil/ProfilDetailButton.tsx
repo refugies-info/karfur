@@ -54,6 +54,7 @@ interface Props {
   isEmpty?: boolean;
   iconRight: IconRight;
   purpleVariant?: boolean;
+  id?: string;
 }
 
 const ICON_SIZE = 24;
@@ -66,7 +67,7 @@ const ICONS: Record<IconRight, string> = {
 export const ProfilDetailButton = (props: Props) => (
   <ButtonContainer
     onPress={props.onPress}
-    testID={"test-profil-button-" + props.iconName}
+    testID={"test-profil-button-" + props.id || props.iconName}
     accessibilityRole="button"
     inList={!!props.inList}
     purpleVariant={!!props.purpleVariant}

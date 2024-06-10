@@ -295,7 +295,7 @@ exports[`Filter french level should render correctly when french level selected 
                     "color": "#3A3A3A",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
-                    "lineHeight": 20,
+                    "lineHeight": 24,
                     "marginBottom": 48,
                     "textAlign": "left",
                   }
@@ -399,23 +399,34 @@ exports[`Filter french level should render correctly when french level selected 
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={false}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#161616",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_0
-                        </Text>
+                          <Text
+                            isRTL={false}
+                            isSelected={false}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#161616",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                                "verticalAlign": "middle",
+                              }
+                            }
+                          >
+                            french_level_0
+                          </Text>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -614,22 +625,15 @@ exports[`Filter french level should render correctly when french level selected 
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={false}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#161616",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_a
                           <Text
                             isRTL={false}
                             isSelected={false}
@@ -639,18 +643,81 @@ exports[`Filter french level should render correctly when french level selected 
                                 "color": "#161616",
                                 "fontFamily": "circularBold",
                                 "fontSize": 16,
-                                "lineHeight": 20,
+                                "lineHeight": 24,
                                 "paddingVertical": 4,
                                 "textAlign": "left",
+                                "verticalAlign": "middle",
                               }
                             }
                           >
-                             
-                            (
-                            A1/A2
-                            )
+                            french_level_a
                           </Text>
-                        </Text>
+                          <View
+                            style={
+                              {
+                                "flexDirection": "row",
+                                "gap": 4,
+                              }
+                            }
+                          >
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                A1
+                              </Text>
+                            </View>
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                A2
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -841,22 +908,15 @@ exports[`Filter french level should render correctly when french level selected 
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={true}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#000091",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_b
                           <Text
                             isRTL={false}
                             isSelected={true}
@@ -866,18 +926,81 @@ exports[`Filter french level should render correctly when french level selected 
                                 "color": "#000091",
                                 "fontFamily": "circularBold",
                                 "fontSize": 16,
-                                "lineHeight": 20,
+                                "lineHeight": 24,
                                 "paddingVertical": 4,
                                 "textAlign": "left",
+                                "verticalAlign": "middle",
                               }
                             }
                           >
-                             
-                            (
-                            B1/B2
-                            )
+                            french_level_b
                           </Text>
-                        </Text>
+                          <View
+                            style={
+                              {
+                                "flexDirection": "row",
+                                "gap": 4,
+                              }
+                            }
+                          >
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                B1
+                              </Text>
+                            </View>
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                B2
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -1085,22 +1208,15 @@ exports[`Filter french level should render correctly when french level selected 
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={false}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#161616",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_c
                           <Text
                             isRTL={false}
                             isSelected={false}
@@ -1110,18 +1226,81 @@ exports[`Filter french level should render correctly when french level selected 
                                 "color": "#161616",
                                 "fontFamily": "circularBold",
                                 "fontSize": 16,
-                                "lineHeight": 20,
+                                "lineHeight": 24,
                                 "paddingVertical": 4,
                                 "textAlign": "left",
+                                "verticalAlign": "middle",
                               }
                             }
                           >
-                             
-                            (
-                            C1/C2
-                            )
+                            french_level_c
                           </Text>
-                        </Text>
+                          <View
+                            style={
+                              {
+                                "flexDirection": "row",
+                                "gap": 4,
+                              }
+                            }
+                          >
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                C1
+                              </Text>
+                            </View>
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                C2
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -1735,7 +1914,7 @@ exports[`Filter french level should render correctly when french level selected 
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 16,
-                  "lineHeight": 20,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 }
               }
@@ -2719,7 +2898,7 @@ exports[`Filter french level should render correctly when no french level select
                     "color": "#3A3A3A",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
-                    "lineHeight": 20,
+                    "lineHeight": 24,
                     "marginBottom": 48,
                     "textAlign": "left",
                   }
@@ -2823,23 +3002,34 @@ exports[`Filter french level should render correctly when no french level select
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={false}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#161616",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_0
-                        </Text>
+                          <Text
+                            isRTL={false}
+                            isSelected={false}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#161616",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                                "verticalAlign": "middle",
+                              }
+                            }
+                          >
+                            french_level_0
+                          </Text>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -3038,22 +3228,15 @@ exports[`Filter french level should render correctly when no french level select
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={false}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#161616",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_a
                           <Text
                             isRTL={false}
                             isSelected={false}
@@ -3063,18 +3246,81 @@ exports[`Filter french level should render correctly when no french level select
                                 "color": "#161616",
                                 "fontFamily": "circularBold",
                                 "fontSize": 16,
-                                "lineHeight": 20,
+                                "lineHeight": 24,
                                 "paddingVertical": 4,
                                 "textAlign": "left",
+                                "verticalAlign": "middle",
                               }
                             }
                           >
-                             
-                            (
-                            A1/A2
-                            )
+                            french_level_a
                           </Text>
-                        </Text>
+                          <View
+                            style={
+                              {
+                                "flexDirection": "row",
+                                "gap": 4,
+                              }
+                            }
+                          >
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                A1
+                              </Text>
+                            </View>
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                A2
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -3273,22 +3519,15 @@ exports[`Filter french level should render correctly when no french level select
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={false}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#161616",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_b
                           <Text
                             isRTL={false}
                             isSelected={false}
@@ -3298,18 +3537,81 @@ exports[`Filter french level should render correctly when no french level select
                                 "color": "#161616",
                                 "fontFamily": "circularBold",
                                 "fontSize": 16,
-                                "lineHeight": 20,
+                                "lineHeight": 24,
                                 "paddingVertical": 4,
                                 "textAlign": "left",
+                                "verticalAlign": "middle",
                               }
                             }
                           >
-                             
-                            (
-                            B1/B2
-                            )
+                            french_level_b
                           </Text>
-                        </Text>
+                          <View
+                            style={
+                              {
+                                "flexDirection": "row",
+                                "gap": 4,
+                              }
+                            }
+                          >
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                B1
+                              </Text>
+                            </View>
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                B2
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -3508,22 +3810,15 @@ exports[`Filter french level should render correctly when no french level select
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={false}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#161616",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_c
                           <Text
                             isRTL={false}
                             isSelected={false}
@@ -3533,18 +3828,81 @@ exports[`Filter french level should render correctly when no french level select
                                 "color": "#161616",
                                 "fontFamily": "circularBold",
                                 "fontSize": 16,
-                                "lineHeight": 20,
+                                "lineHeight": 24,
                                 "paddingVertical": 4,
                                 "textAlign": "left",
+                                "verticalAlign": "middle",
                               }
                             }
                           >
-                             
-                            (
-                            C1/C2
-                            )
+                            french_level_c
                           </Text>
-                        </Text>
+                          <View
+                            style={
+                              {
+                                "flexDirection": "row",
+                                "gap": 4,
+                              }
+                            }
+                          >
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                C1
+                              </Text>
+                            </View>
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                C2
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -4158,7 +4516,7 @@ exports[`Filter french level should render correctly when no french level select
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 16,
-                  "lineHeight": 20,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 }
               }
@@ -5142,7 +5500,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                     "color": "#3A3A3A",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
-                    "lineHeight": 20,
+                    "lineHeight": 24,
                     "marginBottom": 48,
                     "textAlign": "left",
                   }
@@ -5246,23 +5604,34 @@ exports[`Filter french level should select level when click on it 1`] = `
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={false}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#161616",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_0
-                        </Text>
+                          <Text
+                            isRTL={false}
+                            isSelected={false}
+                            selectable={true}
+                            style={
+                              {
+                                "color": "#161616",
+                                "fontFamily": "circularBold",
+                                "fontSize": 16,
+                                "lineHeight": 24,
+                                "paddingVertical": 4,
+                                "textAlign": "left",
+                                "verticalAlign": "middle",
+                              }
+                            }
+                          >
+                            french_level_0
+                          </Text>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -5461,22 +5830,15 @@ exports[`Filter french level should select level when click on it 1`] = `
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={false}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#161616",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_a
                           <Text
                             isRTL={false}
                             isSelected={false}
@@ -5486,18 +5848,81 @@ exports[`Filter french level should select level when click on it 1`] = `
                                 "color": "#161616",
                                 "fontFamily": "circularBold",
                                 "fontSize": 16,
-                                "lineHeight": 20,
+                                "lineHeight": 24,
                                 "paddingVertical": 4,
                                 "textAlign": "left",
+                                "verticalAlign": "middle",
                               }
                             }
                           >
-                             
-                            (
-                            A1/A2
-                            )
+                            french_level_a
                           </Text>
-                        </Text>
+                          <View
+                            style={
+                              {
+                                "flexDirection": "row",
+                                "gap": 4,
+                              }
+                            }
+                          >
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                A1
+                              </Text>
+                            </View>
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                A2
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -5688,22 +6113,15 @@ exports[`Filter french level should select level when click on it 1`] = `
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={true}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#000091",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_b
                           <Text
                             isRTL={false}
                             isSelected={true}
@@ -5713,18 +6131,81 @@ exports[`Filter french level should select level when click on it 1`] = `
                                 "color": "#000091",
                                 "fontFamily": "circularBold",
                                 "fontSize": 16,
-                                "lineHeight": 20,
+                                "lineHeight": 24,
                                 "paddingVertical": 4,
                                 "textAlign": "left",
+                                "verticalAlign": "middle",
                               }
                             }
                           >
-                             
-                            (
-                            B1/B2
-                            )
+                            french_level_b
                           </Text>
-                        </Text>
+                          <View
+                            style={
+                              {
+                                "flexDirection": "row",
+                                "gap": 4,
+                              }
+                            }
+                          >
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                B1
+                              </Text>
+                            </View>
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                B2
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -5932,22 +6413,15 @@ exports[`Filter french level should select level when click on it 1`] = `
                       <Text
                         style={{}}
                       >
-                        <Text
-                          isRTL={false}
-                          isSelected={false}
-                          selectable={true}
+                        <View
                           style={
                             {
-                              "color": "#161616",
-                              "fontFamily": "circularBold",
-                              "fontSize": 16,
-                              "lineHeight": 20,
-                              "paddingVertical": 4,
-                              "textAlign": "left",
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "gap": 4,
                             }
                           }
                         >
-                          french_level_c
                           <Text
                             isRTL={false}
                             isSelected={false}
@@ -5957,18 +6431,81 @@ exports[`Filter french level should select level when click on it 1`] = `
                                 "color": "#161616",
                                 "fontFamily": "circularBold",
                                 "fontSize": 16,
-                                "lineHeight": 20,
+                                "lineHeight": 24,
                                 "paddingVertical": 4,
                                 "textAlign": "left",
+                                "verticalAlign": "middle",
                               }
                             }
                           >
-                             
-                            (
-                            C1/C2
-                            )
+                            french_level_c
                           </Text>
-                        </Text>
+                          <View
+                            style={
+                              {
+                                "flexDirection": "row",
+                                "gap": 4,
+                              }
+                            }
+                          >
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                C1
+                              </Text>
+                            </View>
+                            <View
+                              style={
+                                {
+                                  "backgroundColor": "#e8edff",
+                                  "borderBottomLeftRadius": 4,
+                                  "borderBottomRightRadius": 4,
+                                  "borderTopLeftRadius": 4,
+                                  "borderTopRightRadius": 4,
+                                  "paddingHorizontal": 6,
+                                }
+                              }
+                            >
+                              <Text
+                                isRTL={false}
+                                selectable={true}
+                                style={
+                                  {
+                                    "color": "#0063cb",
+                                    "fontFamily": "circularBold",
+                                    "fontSize": 12,
+                                    "lineHeight": 20,
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                C2
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
                       </Text>
                       <View />
                     </View>
@@ -6582,7 +7119,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 16,
-                  "lineHeight": 20,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 }
               }

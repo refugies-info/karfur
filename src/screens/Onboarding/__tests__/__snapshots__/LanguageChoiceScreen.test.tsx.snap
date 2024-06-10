@@ -181,26 +181,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     style={
                       {
                         "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
+                        "backgroundColor": "#DDDDDD",
                         "borderBottomLeftRadius": 4,
                         "borderBottomRightRadius": 4,
                         "borderTopLeftRadius": 4,
                         "borderTopRightRadius": 4,
                         "display": "flex",
-                        "elevation": 2,
                         "height": 17,
                         "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
                         "width": 22,
                       }
                     }
@@ -220,22 +208,30 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   }
                 >
-                  <Text
-                    selectable={true}
+                  <View
                     style={
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
                       }
                     }
                   >
-                    Français
-                  </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      Français
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -473,26 +469,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     style={
                       {
                         "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
+                        "backgroundColor": "#DDDDDD",
                         "borderBottomLeftRadius": 4,
                         "borderBottomRightRadius": 4,
                         "borderTopLeftRadius": 4,
                         "borderTopRightRadius": 4,
                         "display": "flex",
-                        "elevation": 2,
                         "height": 17,
                         "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
                         "width": 22,
                       }
                     }
@@ -512,45 +496,44 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   }
                 >
-                  <Text
-                    selectable={true}
+                  <View
                     style={
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
                       }
                     }
                   >
-                    Українська
-                  </Text>
-                </View>
-                <View
-                  style={
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    }
-                  }
-                >
-                  <Text
-                    selectable={true}
-                    style={
-                      {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
                       }
-                    }
-                  >
-                     - Ukrainien
-                  </Text>
+                    >
+                      Українська
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Ukrainien
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -788,26 +771,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     style={
                       {
                         "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
+                        "backgroundColor": "#DDDDDD",
                         "borderBottomLeftRadius": 4,
                         "borderBottomRightRadius": 4,
                         "borderTopLeftRadius": 4,
                         "borderTopRightRadius": 4,
                         "display": "flex",
-                        "elevation": 2,
                         "height": 17,
                         "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
                         "width": 22,
                       }
                     }
@@ -827,45 +798,44 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   }
                 >
-                  <Text
-                    selectable={true}
+                  <View
                     style={
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
                       }
                     }
                   >
-                    فارسی/ دری
-                  </Text>
-                </View>
-                <View
-                  style={
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    }
-                  }
-                >
-                  <Text
-                    selectable={true}
-                    style={
-                      {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
                       }
-                    }
-                  >
-                     - Persan/Dari
-                  </Text>
+                    >
+                      فارسی/ دری
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Persan/Dari
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -1103,26 +1073,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     style={
                       {
                         "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
+                        "backgroundColor": "#DDDDDD",
                         "borderBottomLeftRadius": 4,
                         "borderBottomRightRadius": 4,
                         "borderTopLeftRadius": 4,
                         "borderTopRightRadius": 4,
                         "display": "flex",
-                        "elevation": 2,
                         "height": 17,
                         "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
                         "width": 22,
                       }
                     }
@@ -1142,45 +1100,44 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   }
                 >
-                  <Text
-                    selectable={true}
+                  <View
                     style={
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
                       }
                     }
                   >
-                    العربية
-                  </Text>
-                </View>
-                <View
-                  style={
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    }
-                  }
-                >
-                  <Text
-                    selectable={true}
-                    style={
-                      {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
                       }
-                    }
-                  >
-                     - Arabe
-                  </Text>
+                    >
+                      العربية
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Arabe
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -1418,26 +1375,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     style={
                       {
                         "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
+                        "backgroundColor": "#DDDDDD",
                         "borderBottomLeftRadius": 4,
                         "borderBottomRightRadius": 4,
                         "borderTopLeftRadius": 4,
                         "borderTopRightRadius": 4,
                         "display": "flex",
-                        "elevation": 2,
                         "height": 17,
                         "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
                         "width": 22,
                       }
                     }
@@ -1457,45 +1402,44 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   }
                 >
-                  <Text
-                    selectable={true}
+                  <View
                     style={
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
                       }
                     }
                   >
-                    English
-                  </Text>
-                </View>
-                <View
-                  style={
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    }
-                  }
-                >
-                  <Text
-                    selectable={true}
-                    style={
-                      {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
                       }
-                    }
-                  >
-                     - Anglais
-                  </Text>
+                    >
+                      English
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Anglais
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -1733,26 +1677,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     style={
                       {
                         "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
+                        "backgroundColor": "#DDDDDD",
                         "borderBottomLeftRadius": 4,
                         "borderBottomRightRadius": 4,
                         "borderTopLeftRadius": 4,
                         "borderTopRightRadius": 4,
                         "display": "flex",
-                        "elevation": 2,
                         "height": 17,
                         "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
                         "width": 22,
                       }
                     }
@@ -1772,45 +1704,44 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   }
                 >
-                  <Text
-                    selectable={true}
+                  <View
                     style={
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
                       }
                     }
                   >
-                    پښتو
-                  </Text>
-                </View>
-                <View
-                  style={
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    }
-                  }
-                >
-                  <Text
-                    selectable={true}
-                    style={
-                      {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
                       }
-                    }
-                  >
-                     - Pachto
-                  </Text>
+                    >
+                      پښتو
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Pachto
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -2048,26 +1979,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     style={
                       {
                         "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
+                        "backgroundColor": "#DDDDDD",
                         "borderBottomLeftRadius": 4,
                         "borderBottomRightRadius": 4,
                         "borderTopLeftRadius": 4,
                         "borderTopRightRadius": 4,
                         "display": "flex",
-                        "elevation": 2,
                         "height": 17,
                         "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
                         "width": 22,
                       }
                     }
@@ -2087,45 +2006,44 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   }
                 >
-                  <Text
-                    selectable={true}
+                  <View
                     style={
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
                       }
                     }
                   >
-                    Русский
-                  </Text>
-                </View>
-                <View
-                  style={
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    }
-                  }
-                >
-                  <Text
-                    selectable={true}
-                    style={
-                      {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
                       }
-                    }
-                  >
-                     - Russe
-                  </Text>
+                    >
+                      Русский
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Russe
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
@@ -2363,26 +2281,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     style={
                       {
                         "alignItems": "center",
-                        "backgroundColor": "#FFFFFF",
+                        "backgroundColor": "#DDDDDD",
                         "borderBottomLeftRadius": 4,
                         "borderBottomRightRadius": 4,
                         "borderTopLeftRadius": 4,
                         "borderTopRightRadius": 4,
                         "display": "flex",
-                        "elevation": 2,
                         "height": 17,
                         "justifyContent": "center",
-                        "marginBottom": 4,
-                        "marginLeft": 4,
-                        "marginRight": 4,
-                        "marginTop": 4,
-                        "shadowColor": "#212121",
-                        "shadowOffset": {
-                          "height": 1,
-                          "width": 1,
-                        },
-                        "shadowOpacity": 0.4,
-                        "shadowRadius": 2,
                         "width": 22,
                       }
                     }
@@ -2402,45 +2308,44 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   }
                 >
-                  <Text
-                    selectable={true}
+                  <View
                     style={
                       {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "marginLeft": 16,
-                        "marginRight": 0,
-                        "textAlign": "left",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
                       }
                     }
                   >
-                    ትግርኛ
-                  </Text>
-                </View>
-                <View
-                  style={
-                    {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                    }
-                  }
-                >
-                  <Text
-                    selectable={true}
-                    style={
-                      {
-                        "color": "#5E5E5E",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#212121",
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
                       }
-                    }
-                  >
-                     - Tigrinya
-                  </Text>
+                    >
+                      ትግርኛ
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Tigrinya
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
