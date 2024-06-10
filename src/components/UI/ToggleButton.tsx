@@ -7,8 +7,6 @@ import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 import { TextSmallBold, TextVerySmallNormal } from "../StyledText";
-import { StreamlineIcon } from "../StreamlineIcon";
-import { Picture } from "@refugies-info/api-types";
 
 const ICON_SIZE = 24;
 
@@ -18,13 +16,13 @@ const stylesheet = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: styles.margin * 2,
+    paddingVertical: styles.margin * 2,
+    paddingHorizontal: 0,
   },
   leftContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: styles.margin,
     flex: 1,
   },
   icon: {
@@ -47,7 +45,7 @@ interface Props {
   enabled?: boolean; // Switch state
   title: string;
   subtitle?: string;
-  icon?: Picture;
+  icon?: React.ReactNode;
   onToggle?: (value: boolean) => void;
   disabled?: boolean; // Toggle button disabled
 }
@@ -88,17 +86,13 @@ export const ToggleButton = ({
         {icon && (
           <View
             style={{
-              marginRight: isRTL ? 0 : styles.margin,
-              marginLeft: isRTL ? styles.margin : 0,
+              marginRight: isRTL ? 0 : styles.margin * 1.5,
+              marginLeft: isRTL ? styles.margin * 1.5 : 0,
+              width: ICON_SIZE,
+              height: ICON_SIZE,
             }}
           >
-            <StreamlineIcon
-              icon={icon}
-              size={ICON_SIZE}
-              stroke={
-                disabled ? styles.colors.greyDisabled : styles.colors.black
-              }
-            />
+            {icon}
           </View>
         )}
         <View

@@ -38,6 +38,7 @@ import UserProfileIcon from "../../theme/images/profile/user-profile.svg";
 import { MascotteSpeaking } from "../../components/Profil/MascotteSpeaking";
 import { Linking } from "react-native";
 
+// TODO: use separator from components
 const Separator = styled.View`
   height: 1px;
   background-color: ${({ theme }) => theme.colors.dsfr_borderGrey};
