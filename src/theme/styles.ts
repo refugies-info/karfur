@@ -106,6 +106,7 @@ const fonts = {
     small: 16,
     normal: 19,
     big: 25,
+    dsfr_xs: 12,
     dsfr_l: 18,
     dsfr_xl: 24
   },

@@ -70,6 +70,11 @@ export const StyledTextDSFR_L = styled(StyledText)`
   font-family: ${({ theme }) => theme.fonts.families.circularBold};
   line-height: 28px;
 `;
+export const StyledTextDSFR_XS = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.dsfr_xs}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularBold};
+  line-height: 20px;
+`;
 
 // For back-compatibility
 export {
