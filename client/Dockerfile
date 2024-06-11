@@ -1,12 +1,12 @@
 # WARNING: using root folder as current context to make this dockerfile work
-FROM node:16-alpine AS deps
+FROM node:20.13.1-alpine AS deps
 RUN apk add --no-cache libc6-compat
 
 WORKDIR /usr/src/app
 COPY ./client/package*.json ./
 RUN npm ci --legacy-peer-deps
 
-FROM node:16-alpine AS builder
+FROM node:20.13.1-alpine AS builder
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 ARG APP_ENV=production
