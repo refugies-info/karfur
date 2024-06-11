@@ -67,8 +67,28 @@ RegisterRoutes(app);
 app.enable("strict routing");
 app.use(serverErrorHandler);
 
-app.get("*", (_req, res) => {
-  res.status(404).json({ message: "Not found" });
+// app.get("*", (_req, res) => {
+//   res.status(404).json({ message: "Not found" });
+// });
+
+
+// Comment this after you test
+app.get("/error", (_req, _res, _next) => {
+  // Create a new Error object
+  throw new Error("Intentional 500 Error");
+});
+
+
+// Middleware to Handle 404 Route error
+app.use((_req, res,) => {
+  res.status(404).send({ "message": "Not Found" });
+});
+
+// Middleware to handle 500 errors
+app.use((err: any, _req: any, res: any, next: any) => {
+
+  res.status(500).send({ "message": "Something broke!", error: err.message });
+  next();
 });
 const port = process.env.PORT;
 app.listen(port, () => logger.info(`Listening on port ${port}`));
