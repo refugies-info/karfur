@@ -1,10 +1,13 @@
-import React from "react";
 import LottieView from "lottie-react-native";
+import React from "react";
 import { View } from "react-native";
+import styled, { useTheme } from "styled-components/native";
+import {
+  StyledTextBigBold,
+  StyledTextSmall,
+} from "../../components/StyledText";
 import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { TextDSFR_XL, TextDSFR_MD } from "../../components/StyledText";
-import styled, { useTheme } from "styled-components/native";
 import { ReadableText } from "../ReadableText";
 import { ButtonDSFR } from "../buttons";
 import { Spacer } from "../layout";
@@ -50,6 +53,7 @@ export const EnableNotifications = ({ onDismiss, onDone }: Props) => {
             autoPlay
             loop
             resizeMode="cover"
+            style={{ width: "100%", height: "100%" }}
           />
         </LottieContainer>
         <Title>
