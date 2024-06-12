@@ -31,8 +31,8 @@ import {
   UpdateDispositifResponse
 } from "@refugies-info/api-types"
 import express from "express"
-import { NotFoundError } from "src/errors"
 import { Body, Controller, Delete, Get, Patch, Path, Post, Put, Queries, Query, Request, Route, Security } from "tsoa"
+import { NotFoundError } from "../errors"
 import logger from "../logger"
 import { Response, ResponseWithData } from "../types/interface"
 import {
