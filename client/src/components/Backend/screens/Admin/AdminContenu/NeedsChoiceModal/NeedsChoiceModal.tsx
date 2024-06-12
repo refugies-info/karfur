@@ -159,9 +159,13 @@ export const NeedsChoiceModal = (props: Props) => {
     if (primaryTheme) body.theme = primaryTheme.toString();
     if (selectedThemes) {
       body.secondaryThemes = [
-        ...selectedThemes.filter((t) => t !== primaryTheme),
-        ...(selectedThemesByAuthor?.filter((t) => t !== primaryTheme) || []),
-      ].map((t) => t.toString());
+        ...new Set(
+          [
+            ...selectedThemes.filter((t) => t !== primaryTheme),
+            ...(selectedThemesByAuthor?.filter((t) => t !== primaryTheme) || []),
+          ].map((t) => t.toString()),
+        ),
+      ];
     }
 
     if (props.dispositifId) {

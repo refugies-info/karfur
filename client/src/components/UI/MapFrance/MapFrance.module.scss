@@ -1,0 +1,12 @@
+.dep {
+  &.selectable {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  &.selected {
+    fill: #8586f6;
+  }
+}

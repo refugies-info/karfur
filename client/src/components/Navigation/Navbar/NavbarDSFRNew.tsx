@@ -88,6 +88,11 @@ const Navbar = () => {
         linkProps: { href: "https://parrainage.refugies.info/", target: "_blank" },
         text: t("Toolbar.for_ukraine", "Pour l'Ukraine"),
       },
+      {
+        linkProps: { href: getPath("/agir", router.locale), prefetch: false },
+        text: "AGIR",
+        isActive: isCurrent(getPath("/agir", router.locale)),
+      },
       !isMobileOnly
         ? {
             linkProps: { href: `${getPath("/", router.locale)}#application` },
