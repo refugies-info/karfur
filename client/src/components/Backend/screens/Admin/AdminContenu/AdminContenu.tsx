@@ -327,7 +327,7 @@ export const AdminContenu = () => {
     });
 
     const uniqueNeedsTheme = [...new Set(formattedNeedsTheme)];
-    const uniqueThemes = [element.theme, ...(element.secondaryThemes || [])];
+    const uniqueThemes = [...new Set([element.theme, ...(element.secondaryThemes || [])])];
 
     return uniqueNeedsTheme.sort().join(",") === uniqueThemes.sort().join(",");
   };

@@ -29,7 +29,7 @@ export const updateDispositifTagsOrNeeds = async (
 
   const newDispositif = {
     theme: new ObjectId(body.theme),
-    secondaryThemes: body.secondaryThemes.map((s) => new ObjectId(s)),
+    secondaryThemes: [...new Set(body.secondaryThemes)].map((s) => new ObjectId(s)),
     needs: newNeeds.map((n) => new ObjectId(n)),
     themesSelectedByAuthor: (body.theme || body.secondaryThemes) && user.isAdmin(),
   };
