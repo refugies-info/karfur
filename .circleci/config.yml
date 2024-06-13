@@ -17,6 +17,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install expected yarn version
+          command: corepack prepare yarn@1.22.22 --activate
+      - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
       - run:
