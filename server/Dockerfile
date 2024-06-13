@@ -4,6 +4,7 @@ FROM node:20.13.1-alpine
 # Copy package.json and install node modules
 WORKDIR /usr/src/app
 COPY ./server/package*.json ./
+RUN npm install --force --global yarn@1.22.22
 RUN yarn install --frozen-lockfile
 
 # Add app source code
