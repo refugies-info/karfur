@@ -8,7 +8,7 @@
       "name": "Next.js: debug server-side",
       "type": "node-terminal",
       "request": "launch",
-      "command": "cd client && npm run dev",
+      "command": "yarn workspace @refugies-info/client dev",
       "cwd": "${workspaceFolder}/client"
     },
     {
@@ -22,7 +22,7 @@
       "type": "node-terminal",
       "request": "launch",
       "cwd": "${workspaceFolder}/client",
-      "command": "npm run dev",
+      "command": "yarn workspace @refugies-info/client dev",
       "serverReadyAction": {
         "pattern": "started server on .+, url: (https?://.+)",
         "uriFormat": "%s",

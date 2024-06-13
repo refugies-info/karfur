@@ -4,7 +4,7 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /usr/src/app
 COPY ./client/package*.json ./
-RUN npm ci --legacy-peer-deps
+RUN yarn install --frozen-lockfile
 
 FROM node:20.13.1-alpine AS builder
 ENV NEXT_TELEMETRY_DISABLED 1
@@ -18,8 +18,8 @@ COPY ./client .
 RUN echo "NEXT_PUBLIC_REACT_APP_ENV = ${APP_ENV}" >> .env
 RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL = ${APP_SERVER_URL}" >> .env
 RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL = ${APP_SITE_URL}" >> .env
-RUN npm run build
+RUN yarn build
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]

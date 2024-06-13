@@ -54,10 +54,10 @@
   "homepage": "https://github.com/refugies-info/karfur#readme",
   "engines": {
     "node": "20.13.1",
-    "npm": "10.7.0"
+    "yarn": "1.22.22"
   },
   "volta": {
     "node": "20.13.1",
-    "npm": "10.7.0"
+    "yarn": "1.22.22"
   }
 }

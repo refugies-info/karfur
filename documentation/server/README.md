@@ -1,16 +1,23 @@
 # Server documentation
 
-This project is a Node based project, which connects to a MongoDB database.  
+This project is a Node based project, which connects to a MongoDB database.
 The source code is located at `/server`.
 
-- [Tech stack](#tech-stack)
-- [Setup](#setup)
-- [Development](#development)
-- [Testing](#testing)
-- [Deploy](#deploy)
-- [Architecture](#architecture)
-- [Development Guide](#development-guide)
-- [Commands reference](#reference)
+- [Server documentation](#server-documentation)
+  - [Tech stack](#tech-stack)
+  - [Setup](#setup)
+    - [Prerequisites](#prerequisites)
+    - [Install repository](#install-repository)
+    - [Setup your test database](#setup-your-test-database)
+  - [Development](#development)
+    - [Admin account creation](#admin-account-creation)
+  - [Configuration](#configuration)
+    - [Minimal mobile application version](#minimal-mobile-application-version)
+  - [Testing](#testing)
+  - [Deploy](#deploy)
+  - [Architecture](#architecture)
+  - [Development Guide](#development-guide)
+  - [Reference](#reference)
 
 ## Tech stack
 
@@ -29,7 +36,7 @@ This project is based on [Node@16](https://nodejs.org/en/). It includes the foll
 
 - [MongoDB](https://treehouse.github.io/installation-guides/mac/mongo-mac.html) 5.0
 - [Node](https://nodejs.org/en/download/) ^16.0.0
-- [npm](https://nodejs.org/en/download/package-manager/)
+- [Yarn](https://nodejs.org/en/download/package-manager/)
 
 Please note that you need mongo, the server and the client to run concurrently in different terminal session, in order to let them communicate.
 
@@ -44,7 +51,7 @@ Please note that you need mongo, the server and the client to run concurrently i
 2. Install the dependencies
 
 ```bash
-> npm install
+> yarn install --frozen-lockfile
 ```
 
 3. Copy the `/example-env-file.env` to `.env` and replace `demo` with the right values.
@@ -98,7 +105,7 @@ Open a new terminal tab and launch the server:
 
 ```bash
 > cd karfur/server                # go into app's directory
-> npm run dev                     # serve at localhost:8000
+> yarn dev                     # serve at localhost:8000
 ```
 
 If you need to develop on `server` and `api-types`, you may need to made some change in `server/package.json` :
@@ -137,7 +144,7 @@ You can use this fonctionnality in case of breaking changes in API.
 To launch the tests, run:
 
 ```bash
-> npm run test
+> yarn test
 ```
 
 It will execute:
@@ -173,20 +180,20 @@ Follow the [technical standards](general.md) to keep the codebase clean.
 
 ```bash
 # to launch server (without live reload)
-> npm start
+> yarn start
 
 # to transpile ts code
-> npm run tsc
+> yarn tsc
 
 # - starts the unit test runner
-> npm run test
+> yarn test
 
 # launch unit tests
-> npm run test:unit
+> yarn test:unit
 
 # launch linter tests
-> npm run test:lint
+> yarn test:lint
 
 # launch test types
-> npm run test:types
+> yarn test:types
 ```
