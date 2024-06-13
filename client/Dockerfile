@@ -4,6 +4,7 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /usr/src/app
 COPY ./client/package*.json ./
+RUN npm install --force --global yarn@1.22.22
 RUN yarn install --frozen-lockfile
 
 FROM node:20.13.1-alpine AS builder
@@ -15,6 +16,7 @@ ARG APP_SITE_URL=http://localhost:3000
 WORKDIR /usr/src/app
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY ./client .
+RUN npm install --force --global yarn@1.22.22
 RUN echo "NEXT_PUBLIC_REACT_APP_ENV = ${APP_ENV}" >> .env
 RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL = ${APP_SERVER_URL}" >> .env
 RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL = ${APP_SITE_URL}" >> .env
