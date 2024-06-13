@@ -8,10 +8,10 @@
   "license": "MIT",
   "main": "server.js",
   "scripts": {
+    "prebuild": "tsoa spec-and-routes",
+    "build": "tsc",
     "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "start": "node dist/src/server.js",
-    "pretsc": "tsoa spec-and-routes",
-    "tsc": "tsc",
     "test": "npm run test:lint && npm run test:types && npm run test:unit",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
     "test:types": "tsoa spec-and-routes && tsc --noEmit",
