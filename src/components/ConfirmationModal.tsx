@@ -1,11 +1,12 @@
-import { ScrollView, TouchableWithoutFeedback } from "react-native";
-import Modal from "react-native-modal";
 import React from "react";
-import styled from "styled-components/native";
-import { styles } from "../theme";
-import { StyledTextNormal } from "./StyledText";
-import { CustomButton } from "./CustomButton";
+import { Image, ScrollView, TouchableWithoutFeedback } from "react-native";
+import Modal from "react-native-modal";
+import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
+import { StyledTextNormal } from "./StyledText";
+import { Rows, Spacer } from "./layout";
+import { ButtonDSFR } from "./buttons";
+import IlluMascotte from "../theme/images/profile/illu-mascotte.png";
 
 interface Props {
   isModalVisible: boolean;
@@ -18,30 +19,25 @@ interface Props {
 }
 
 const ModalView = styled.View`
-  background-color: ${styles.colors.lightGrey};
-  padding-top: ${styles.margin}px;
-
-  border-top-right-radius: ${styles.radius * 2}px;
-  border-top-left-radius: ${styles.radius * 2}px;
+  background-color: ${({ theme }) => theme.colors.lightGrey};
+  padding-top: ${({ theme }) => theme.margin * 3}px;
 `;
 
 const TitleText = styled(StyledTextNormal)`
-  margin-top: ${styles.margin * 4}px;
-  margin-bottom: ${styles.margin * 3}px;
+  margin-top: ${({ theme }) => theme.margin * 3}px;
+  margin-bottom: ${({ theme }) => theme.margin * 5}px;
   align-self: center;
   text-align: center;
 `;
 
-const TopButtonContainer = styled.View`
-  margin-bottom: ${styles.margin * 2}px;
-`;
 const Backdrop = styled.View`
   flex: 1;
-  background-color: ${styles.colors.black};
+  background-color: ${({ theme }) => theme.colors.black};
 `;
 
 export const ConfirmationModal = (props: Props) => {
   const { t } = useTranslationWithRTL();
+  const theme = useTheme();
 
   const onValidate = () => {
     props.onValidate();
@@ -64,28 +60,31 @@ export const ConfirmationModal = (props: Props) => {
       <ModalView>
         <ScrollView
           contentContainerStyle={{
-            paddingBottom: styles.margin * 5,
-            paddingHorizontal: styles.margin * 3,
+            paddingBottom: theme.margin * 3,
+            paddingHorizontal: theme.margin * 3,
           }}
         >
+          <Rows horizontalAlign="center">
+            <Image style={{ height: 96, width: 77 }} source={IlluMascotte} />
+          </Rows>
           <TitleText>{props.text}</TitleText>
-          <TopButtonContainer>
-            <CustomButton
-              i18nKey={props.i18nKeyValidateButton || "global.validate"}
-              defaultText={props.defaultTextValidateButton || "Valider"}
-              textColor={styles.colors.white}
-              onPress={onValidate}
-              backgroundColor={styles.colors.darkBlue}
-              iconName={props.iconValidateButton || "arrow-forward-outline"}
-            />
-          </TopButtonContainer>
+          <ButtonDSFR
+            accessibilityLabel={t(
+              props.i18nKeyValidateButton || "global.validate"
+            )}
+            title={t(props.i18nKeyValidateButton || "global.validate")}
+            onPress={onValidate}
+            iconName={props.iconValidateButton || "arrow-forward-outline"}
+            iconAfter
+            priority="primary"
+          />
+          <Spacer height={theme.margin * 2} />
 
-          <CustomButton
-            i18nKey="global.cancel"
-            defaultText="Annuler"
-            textColor={styles.colors.black}
+          <ButtonDSFR
+            accessibilityLabel={t("global.cancel")}
+            title={t("global.cancel")}
             onPress={props.toggleModal}
-            isTextNotBold={true}
+            priority="tertiary no outline"
           />
         </ScrollView>
       </ModalView>
