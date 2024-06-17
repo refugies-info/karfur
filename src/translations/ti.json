@@ -49,9 +49,7 @@
     "french_level_0": "ብ ፈረንሳ  ኣየንብብን ኣይጽሕፍን እየ",
     "french_level_a": "ቅሩብ ይዛረብ",
     "french_level_b": "ደሓን ዝኾነ ይዛረብ",
-    "french_level_c": "ብጣዕሚ ጽቡቕ ጌረ ይዛረብ",
-    "no_french_level_filter": "ሰነዳት ብዛዕባ ደረጃ ቃንቃ ፈረንሳይ ኣብዚ ረኣይ\\ዪ",
-    "no_age_filter": "ሰነዳት ንኵሉ ዕድመ ዝምልከት ኣብዚ ረኣይ\\ዪ"
+    "french_level_c": "ብጣዕሚ ጽቡቕ ጌረ ይዛረብ"
   },
   "profile_screens": {
     "reinit_app_button": "ናተይ ሓበሬታት ሰሪዘ ከም ብሓድሽ ይጅምር",
@@ -65,9 +63,6 @@
     "legal_notice": "ምልክታታት ሕጊ",
     "privacy_policy": "ናይ ግልኹም ሓበሬታታት ንምንታይ የድሊ፧",
     "french": "ፈረንሳይ",
-    "whole_country": "ኣብ ኵሉ ቦታ ሃገረ ፈረንሳይ",
-    "all_levels": "ኵሉ ደረጃታት",
-    "all_ages": "ንኵሉ ዕድመ",
     "reinit_app2": "ዝተወሃቡ ናትካ\\ኪ  ሓበሬታት ብዛዕባ  ፣ ቃንቃ ፣ ከተማ፣ ዕድመ ፣ ደረጃ ቃንቃ ፈረንሳይ፣ ኣብዛ ኣፕኪኬሽን ክስረዙ ኢዮም፣ እዛ ኣፕሊኬሽን ከም ብሓድሽ ክትጅምር ኢያ ::",
     "language_choice": "ኣየናይ ቃንቃ ትምረጽ\\ጺ",
     "accessibility": "ቀሊል መግለጺ"

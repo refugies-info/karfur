@@ -49,9 +49,7 @@
     "french_level_0": "Je ne lis et n'écris pas le français",
     "french_level_a": "Je parle un peu",
     "french_level_b": "Je parle bien",
-    "french_level_c": "Je parle couramment",
-    "no_french_level_filter": "Voir les fiches pour tous les niveaux de français",
-    "no_age_filter": "Voir les fiches pour tous les âges"
+    "french_level_c": "Je parle couramment"
   },
   "profile_screens": {
     "reinit_app_button": "Réinitialiser l'application",
@@ -65,9 +63,6 @@
     "legal_notice": "Mentions légales",
     "privacy_policy": "Tes données, pour quoi faire ?",
     "french": "Français",
-    "whole_country": "Toute la France",
-    "all_levels": "Tous les niveaux",
-    "all_ages": "Tous les âges",
     "reinit_app2": "Tes informations pour filtrer les fiches vont être supprimées. L'application va ensuite recommencer comme la première fois.",
     "language_choice": "Quelle langue tu préfères ?",
     "accessibility": "Déclaration d'accessibilité",

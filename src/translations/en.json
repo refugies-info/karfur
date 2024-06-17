@@ -49,9 +49,7 @@
     "french_level_0": "I can't read or write French",
     "french_level_a": "I speak a little French",
     "french_level_b": "I speak French fairly well",
-    "french_level_c": "I speak French fluently",
-    "no_french_level_filter": "See cards for all levels of French",
-    "no_age_filter": "See cards for all ages"
+    "french_level_c": "I speak French fluently"
   },
   "profile_screens": {
     "reinit_app_button": "Delete my information and start again",
@@ -65,9 +63,6 @@
     "legal_notice": "Legal information",
     "privacy_policy": "What is your data for?",
     "french": "French",
-    "whole_country": "All of France",
-    "all_levels": "All levels",
-    "all_ages": "All ages",
     "reinit_app2": "Your information to filter the cards will be deleted. The application will then start again from the start.",
     "language_choice": "Which language do you prefer?",
     "accessibility": "Accessibility statement"
