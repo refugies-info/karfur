@@ -11,6 +11,7 @@ import { LegalNoticeScreen } from "../../screens/ProfilTab/LegalNoticeScreen";
 import { AboutScreen } from "../../screens/ProfilTab/AboutScreen";
 import { AccessibilityScreen } from "../../screens/ProfilTab/AccessibilityScreen";
 import { NotificationsSettingsScreen } from "../../screens/ProfilTab/NotificationsSettingsScreen";
+import { ShareScreen } from "../../screens/ProfilTab/ShareScreen";
 
 const ProfileStack = createStackNavigator<ProfileParamList>();
 
@@ -47,5 +48,6 @@ export const ProfileNavigator = () => (
       name="NotificationsSettingsScreen"
       component={NotificationsSettingsScreen}
     />
+    <ProfileStack.Screen name="ShareScreen" component={ShareScreen} />
   </ProfileStack.Navigator>
 );

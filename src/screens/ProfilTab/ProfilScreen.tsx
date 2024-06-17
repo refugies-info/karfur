@@ -194,7 +194,7 @@ export const ProfilScreen = ({
         <ProfilDetailButton
           iconName="gift-outline"
           label="Partager l'application"
-          onPress={() => {}}
+          onPress={() => navigation.navigate("ShareScreen")}
           iconRight="navigate"
           purpleVariant
         />

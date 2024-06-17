@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Linking, Platform } from "react-native";
+import { Image, Linking } from "react-native";
 import styled from "styled-components/native";
 import { Rows } from "./layout";
 import { Button } from "./buttons";
@@ -8,6 +8,7 @@ import { useTranslationWithRTL } from "../hooks";
 import Logo from "../theme/images/logo.svg";
 import AppInPhone from "../theme/images/app-in-phone.png";
 import { TextNormalBold } from "./StyledText";
+import { storeUrl } from "../data/storeLinks";
 
 const MainContainer = styled.View`
   padding-horizontal: 30px;
@@ -20,11 +21,6 @@ const MainContainer = styled.View`
 const ratio = 40 / 58;
 const LOGO_WIDTH = 100;
 const LOGO_HEIGHT = 100 * ratio;
-
-const storeUrl =
-  Platform.OS === "android"
-    ? "https://play.google.com/store/apps/details?id=com.refugiesinfo.app"
-    : "https://apps.apple.com/app/id1595597429";
 
 const OfflinePage = () => {
   const theme = useTheme();

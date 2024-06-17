@@ -74,6 +74,7 @@ export type ProfileParamList = {
   AboutScreen: undefined;
   AccessibilityScreen: undefined;
   NotificationsSettingsScreen: undefined;
+  ShareScreen: undefined;
 };
 
 export type LanguageChoiceParamList = {
