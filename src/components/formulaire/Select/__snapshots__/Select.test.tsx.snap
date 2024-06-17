@@ -213,7 +213,6 @@ exports[`Select snapshot test suite should render with label 1`] = `
       </View>
     </View>
   </View>
-  <View />
 </View>
 `;
 
@@ -428,6 +427,5 @@ exports[`Select snapshot test suite should render without bug 1`] = `
       </View>
     </View>
   </View>
-  <View />
 </View>
 `;
