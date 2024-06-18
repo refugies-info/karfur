@@ -11,7 +11,7 @@ RUN yarn install --frozen-lockfile
 ADD ./server /usr/src/app
 
 # Build app
-RUN yarn tsc
+RUN yarn build
 
 # Install berglas
 COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:latest /bin/berglas /bin/berglas
