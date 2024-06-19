@@ -9,8 +9,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getExpoPushTokenAsync } from "expo-notifications";
 import crashlytics from "@react-native-firebase/crashlytics";
 import aa from "search-insights";
-
-import useCachedResources from "./hooks/useCachedResources";
 import { RootNavigator } from "./navigation";
 import { Provider } from "react-redux";
 import { store } from "./services/redux/store";
@@ -66,15 +64,12 @@ const updateUserInfo = async () => {
 
 export default function App() {
   const { loading, error } = useAsync(retrieveTechnicalInfo);
-  const isLoadingComplete = useCachedResources();
 
   useEffect(() => {
     updateUserInfo();
   }, []);
 
-  if (!isLoadingComplete || loading) {
-    return null;
-  }
+  if (loading) return null;
 
   /**
    * The app must be upgraded to continue

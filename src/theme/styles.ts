@@ -109,11 +109,11 @@ const fonts = {
     xl: 24
   },
   families: {
-    marianneReg: "marianneReg",
-    marianneRegItalic: "marianneRegItalic",
-    marianneMed: "marianneMed",
-    // marianneMedItalic: "marianneMedItalic",
-    marianneBold: "marianneBold",
+    marianneReg: "Marianne-Regular",
+    marianneRegItalic: "Marianne-RegularItalic",
+    marianneMed: "Marianne-Medium",
+    // marianneMedItalic: "Marianne-MediumItalic",
+    marianneBold: "Marianne-Bold",
   },
   button: {
     family: "marianneReg",

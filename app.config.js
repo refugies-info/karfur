@@ -125,7 +125,18 @@ export default {
           },
         },
       ],
-      "expo-font",
+      [
+        "expo-font",
+        {
+          fonts: [
+            "./src/theme/fonts/Marianne-Regular.otf",
+            "./src/theme/fonts/Marianne-RegularItalic.otf",
+            "./src/theme/fonts/Marianne-Medium.otf",
+            // "./src/theme/fonts/Marianne-MediumItalic.otf",
+            "./src/theme/fonts/Marianne-Bold.otf",
+          ],
+        },
+      ],
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
     ],
