@@ -36,7 +36,7 @@ const ButtonText = styled(TextDSFR_L_Med)<{
   color: ${({ theme, color, disabled }) =>
     disabled ? theme.colors.dsfr_borderGrey : color};
   ${({ theme, size }) =>
-    size === "small" ? theme.fonts.button.sizeSmall : ""};
+    size === "small" ? `font-size: ${theme.fonts.button.sizeSmall};` : ""}
 `;
 
 const Container = styled(TouchableOpacity)<{
