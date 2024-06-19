@@ -26,7 +26,7 @@ const StyledInput = styled.TextInput<{ isRTL: boolean }>`
   height: 100%;
   width: 100%;
   color: ${styles.colors.dsfr_action};
-  font-family: ${({ theme }) => theme.fonts.families.circularBold};
+  font-family: ${({ theme }) => theme.fonts.families.marianneBold};
   margin-left: ${({ isRTL }) => (isRTL ? 0 : styles.margin)}px;
   margin-right: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
   text-align: ${({ isRTL }) => (isRTL ? "right" : "left")};

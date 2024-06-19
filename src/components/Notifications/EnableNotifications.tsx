@@ -3,19 +3,16 @@ import LottieView from "lottie-react-native";
 import { View } from "react-native";
 import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import {
-  StyledTextBigBold,
-  StyledTextSmall,
-} from "../../components/StyledText";
+import { TextDSFR_XL, TextDSFR_MD } from "../../components/StyledText";
 import styled, { useTheme } from "styled-components/native";
 import { ReadableText } from "../ReadableText";
 import { ButtonDSFR } from "../buttons";
 import { Spacer } from "../layout";
 
-const Title = styled(StyledTextBigBold)`
+const Title = styled(TextDSFR_XL)`
   margin-top: ${({ theme }) => theme.margin * 8}px;
 `;
-const Subtitle = styled(StyledTextSmall)`
+const Subtitle = styled(TextDSFR_MD)`
   margin-top: ${({ theme }) => theme.margin * 2}px;
   text-align: center;
 `;

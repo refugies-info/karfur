@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Platform, Image } from "react-native";
 import * as Linking from "expo-linking";
-import { TextSmallNormal, TextSmallBold } from "../../components/StyledText";
+import { TextDSFR_MD, TextDSFR_MD_Bold } from "../../components/StyledText";
 import { Icon } from "react-native-eva-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -74,10 +74,10 @@ export const AccessibilityScreen = ({}: StackScreenProps<
         L’application {isIOS ? "iOS" : "Android"} Réfugiés.info est{" "}
         {isIOS ? (
           <>
-            en <TextSmallBold>conformité partielle</TextSmallBold>
+            en <TextDSFR_MD_Bold>conformité partielle</TextDSFR_MD_Bold>
           </>
         ) : (
-          <TextSmallBold>non-conforme</TextSmallBold>
+          <TextDSFR_MD_Bold>non-conforme</TextDSFR_MD_Bold>
         )}{" "}
         avec EN 301 549 V3.2.1 en raison des non-conformités et des dérogations
         énumérées ci-dessous.
@@ -100,24 +100,22 @@ export const AccessibilityScreen = ({}: StackScreenProps<
       <RTLView
         style={{ alignItems: "flex-start", marginBottom: styles.margin }}
       >
-        <TextSmallNormal style={{ lineHeight: 22 }}> ✅ </TextSmallNormal>
-        <TextSmallNormal>
-          {isIOS ? "12" : "11"} critères sont respectés
-        </TextSmallNormal>
+        <TextDSFR_MD style={{ lineHeight: 22 }}> ✅ </TextDSFR_MD>
+        <TextDSFR_MD>{isIOS ? "12" : "11"} critères sont respectés</TextDSFR_MD>
       </RTLView>
       <RTLView
         style={{ alignItems: "flex-start", marginBottom: styles.margin }}
       >
-        <TextSmallNormal style={{ lineHeight: 22 }}> ❌ </TextSmallNormal>
-        <TextSmallNormal>
+        <TextDSFR_MD style={{ lineHeight: 22 }}> ❌ </TextDSFR_MD>
+        <TextDSFR_MD>
           {isIOS ? "12" : "13"} critères ne sont pas respectés
-        </TextSmallNormal>
+        </TextDSFR_MD>
       </RTLView>
       <RTLView
         style={{ alignItems: "flex-start", marginBottom: styles.margin * 3 }}
       >
-        <TextSmallNormal style={{ lineHeight: 22 }}> 🚫 </TextSmallNormal>
-        <TextSmallNormal>19 critères ne sont pas applicables</TextSmallNormal>
+        <TextDSFR_MD style={{ lineHeight: 22 }}> 🚫 </TextDSFR_MD>
+        <TextDSFR_MD>19 critères ne sont pas applicables</TextDSFR_MD>
       </RTLView>
 
       <Card style={{ marginBottom: 0 }}>
@@ -142,9 +140,7 @@ export const AccessibilityScreen = ({}: StackScreenProps<
           }}
         >
           <Legend color={styles.colors.travail80} />
-          <TextSmallNormal style={{ width: 180 }}>
-            critères conformes
-          </TextSmallNormal>
+          <TextDSFR_MD style={{ width: 180 }}>critères conformes</TextDSFR_MD>
         </RTLView>
         <RTLView
           style={{
@@ -154,9 +150,9 @@ export const AccessibilityScreen = ({}: StackScreenProps<
           }}
         >
           <Legend color={styles.colors.sante80} />
-          <TextSmallNormal style={{ width: 180 }}>
+          <TextDSFR_MD style={{ width: 180 }}>
             critères non conformes
-          </TextSmallNormal>
+          </TextDSFR_MD>
         </RTLView>
       </Card>
 
@@ -325,11 +321,11 @@ export const AccessibilityScreen = ({}: StackScreenProps<
             marginLeft: isRTL ? styles.margin : styles.margin * 2,
           }}
         />
-        <TextSmallNormal>
+        <TextDSFR_MD>
           Défenseur des droits{"\n"}
           Libre réponse 71120{"\n"}
           75342 Paris CEDEX 07
-        </TextSmallNormal>
+        </TextDSFR_MD>
       </RTLView>
 
       <UpdatedDate isRTL={isRTL} text="6 janvier 2022" />

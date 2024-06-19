@@ -5,11 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Image } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { styles } from "../../theme";
-import {
-  TextSmallBold,
-  TextSmallNormal,
-  TextVerySmallNormal,
-} from "../StyledText";
+import { TextDSFR_MD_Bold, TextDSFR_MD, TextDSFR_XS } from "../StyledText";
 import NoLogo from "../../theme/images/contents/structure_no_logo.png";
 import { DemarcheImage } from "./DemarcheImage";
 import { logEventInFirebase } from "../../utils/logEvent";
@@ -48,7 +44,7 @@ const ImageContainer = styled.View<{ hasMatch?: boolean; lightColor?: string }>`
   border-radius: ${({ theme }) => theme.radius * 2}px;
 `;
 
-const TitreInfoText = styled(TextSmallBold)<{
+const TitreInfoText = styled(TextDSFR_MD_Bold)<{
   color: string;
   isDispo?: boolean;
 }>`
@@ -56,12 +52,12 @@ const TitreInfoText = styled(TextSmallBold)<{
   margin-bottom: ${({ isDispo }) => (isDispo ? styles.margin : 0)}px;
 `;
 
-const DescInfoText = styled(TextSmallNormal)<{ color: string }>`
+const DescInfoText = styled(TextDSFR_MD)<{ color: string }>`
   color: ${({ color }) => color};
   margin: ${styles.margin * 2}px;
 `;
 
-const TitreMarqueText = styled(TextVerySmallNormal)<{ color: string }>`
+const TitreMarqueText = styled(TextDSFR_XS)<{ color: string }>`
   color: ${({ color }) => color};
 `;
 

@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-  StyledTextDSFR_L,
-  TextVerySmallNormal,
-} from "../../components/StyledText";
+import { TextDSFR_L_Bold, TextDSFR_XS } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
@@ -58,7 +55,7 @@ const Section = styled.View<{ darkBackground?: boolean }>`
   padding-horizontal: ${({ theme }) => theme.margin * 3}px;
   padding-top: ${({ theme }) => theme.margin * 3}px;
 `;
-const SectionTitle = styled(StyledTextDSFR_L)`
+const SectionTitle = styled(TextDSFR_L_Bold)`
   padding-vertical: ${({ theme }) => theme.margin * 2}px;
 `;
 
@@ -137,6 +134,7 @@ export const ProfilScreen = ({
           label={selectedLocation.city || t("profile_screens.city", "Ville")}
           onPress={() => navigation.navigate("CityProfilScreen")}
           isEmpty={selectedLocation.city === null}
+          isBold={selectedLocation.city !== null}
           iconRight="edit"
           id="city"
         />
@@ -149,6 +147,7 @@ export const ProfilScreen = ({
           }
           onPress={() => navigation.navigate("AgeProfilScreen")}
           isEmpty={!selectedAge}
+          isBold={!!selectedAge}
           iconRight="edit"
           id="age"
         />
@@ -161,6 +160,7 @@ export const ProfilScreen = ({
           }
           onPress={() => navigation.navigate("FrenchLevelProfilScreen")}
           isEmpty={selectedFrenchLevel === null}
+          isBold={selectedFrenchLevel !== null}
           iconRight="edit"
           id="french"
         />
@@ -276,11 +276,11 @@ export const ProfilScreen = ({
           iconFirst
         />
         <Spacer height={theme.margin * 5} />
-        <TextVerySmallNormal
+        <TextDSFR_XS
           style={{ textAlign: "center", color: styles.colors.darkGrey }}
         >
           Version {Constants.expoConfig?.extra?.displayVersionNumber}
-        </TextVerySmallNormal>
+        </TextDSFR_XS>
         <Spacer height={theme.margin * 5} />
 
         <ConfirmationModal

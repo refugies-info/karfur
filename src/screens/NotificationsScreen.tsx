@@ -46,17 +46,17 @@ const stylesheet = StyleSheet.create({
     marginHorizontal: styles.margin * 2,
   },
   noNotificationsTitle: {
-    fontSize: styles.fonts.sizes.normal,
+    fontSize: styles.fonts.sizes.l,
     color: styles.colors.darkGrey,
-    fontFamily: styles.fonts.families.circularBold,
+    fontFamily: styles.fonts.families.marianneBold,
     lineHeight: 24,
     marginVertical: styles.margin * 2,
     textAlign: "center",
   },
   noNotificationsSubtitle: {
-    fontSize: styles.fonts.sizes.small,
+    fontSize: styles.fonts.sizes.md,
     color: styles.colors.darkGrey,
-    fontFamily: styles.fonts.families.circularStandard,
+    fontFamily: styles.fonts.families.marianneReg,
     textAlign: "center",
     lineHeight: 20,
   },
@@ -128,7 +128,7 @@ export const NotificationsScreen = () => {
             <Text
               onPress={goToNotificationsSettingsScreen}
               style={{
-                fontFamily: styles.fonts.families.circularBold,
+                fontFamily: styles.fonts.families.marianneBold,
                 textDecorationLine: "underline",
               }}
             >

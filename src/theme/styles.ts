@@ -102,22 +102,22 @@ const images = {};
 
 const fonts = {
   sizes: {
-    verySmall: 13,
-    small: 16,
-    normal: 19,
-    big: 25,
-    dsfr_xs: 12,
-    dsfr_l: 18,
-    dsfr_xl: 24
+    xs: 12,
+    s: 14,
+    md: 16,
+    l: 18,
+    xl: 24
   },
   families: {
-    circularStandard: "circularBook",
-    circularBold: "circularBold",
-    circularItalic: "circularItalic",
+    marianneReg: "marianneReg",
+    marianneRegItalic: "marianneRegItalic",
+    marianneMed: "marianneMed",
+    // marianneMedItalic: "marianneMedItalic",
+    marianneBold: "marianneBold",
   },
   button: {
-    family: "circularBook",
-    size: "19px",
+    family: "marianneReg",
+    size: "18px",
     sizeSmall: "14px",
     weight: "normal",
   },

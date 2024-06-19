@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import styled from "styled-components/native";
-import { StyledTextSmall } from "./StyledText";
+import { TextDSFR_MD } from "./StyledText";
 
 const RedContainer = styled.View`
   background-color: ${({ theme }) => theme.colors.red};
@@ -12,7 +12,7 @@ const RedContainer = styled.View`
   margin-top: ${({ theme }) => theme.margin}px;
 `;
 
-const StyledText = styled(StyledTextSmall)`
+const StyledText = styled(TextDSFR_MD)`
   color: ${({ theme }) => theme.colors.white};
 `;
 

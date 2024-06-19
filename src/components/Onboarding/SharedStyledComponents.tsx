@@ -1,15 +1,12 @@
 import styled from "styled-components/native";
-import {
-  StyledTextBigBold,
-  StyledTextSmall,
-} from "../../components/StyledText";
+import { TextDSFR_XL, TextDSFR_MD } from "../../components/StyledText";
 import { styles } from "../../theme";
 
-export const Title = styled(StyledTextBigBold)`
+export const Title = styled(TextDSFR_XL)`
   margin-bottom: ${styles.margin * 2}px;
 `;
 
-export const Label = styled(StyledTextSmall)`
+export const Label = styled(TextDSFR_MD)`
   margin-bottom: ${styles.margin}px;
 `;
 

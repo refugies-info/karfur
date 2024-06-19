@@ -5,7 +5,7 @@ import * as Location from "expo-location";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity } from "../../BasicComponents";
 import { styles } from "../../../theme";
-import { StyledTextSmall, StyledTextVerySmall } from "../../StyledText";
+import { TextDSFR_MD_Med, TextDSFR_XS } from "../../StyledText";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 import { getPlaceIdFromLocationFromGoogleAPI } from "../../../utils/API";
 import {
@@ -27,12 +27,12 @@ const GeolocButtonContainer = styled(RTLTouchableOpacity)<{
   gap: ${({ theme }) => theme.margin * 2}px;
 `;
 
-const GeolocText = styled(StyledTextSmall)`
+const GeolocText = styled(TextDSFR_MD_Med)`
   color: ${({ theme }) => theme.colors.dsfr_blueSun113};
   flex-grow: 1;
 `;
 
-const ErrorText = styled(StyledTextVerySmall)`
+const ErrorText = styled(TextDSFR_XS)`
   color: ${({ theme }) => theme.colors.dsfr_error};
   margin-top: ${({ theme }) => theme.margin}px;
   margin-bottom: ${({ theme }) => theme.margin * 3}px;

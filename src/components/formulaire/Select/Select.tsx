@@ -5,7 +5,7 @@ import styled, { useTheme } from "styled-components/native";
 import { RTLTouchableOpacity } from "../../BasicComponents";
 import Columns from "../../layout/Columns";
 import { ReadableText } from "../../ReadableText";
-import { StyledTextSmall } from "../../StyledText";
+import { TextDSFR_MD } from "../../StyledText";
 
 export interface SelectProps {
   children: any;
@@ -30,7 +30,7 @@ export const Select = ({ children, label, onPress, testID }: SelectProps) => {
   const theme = useTheme();
   return (
     <View>
-      <StyledTextSmall>{label}</StyledTextSmall>
+      <TextDSFR_MD>{label}</TextDSFR_MD>
       <MainContainer
         accessibilityRole="button"
         onPress={onPress}

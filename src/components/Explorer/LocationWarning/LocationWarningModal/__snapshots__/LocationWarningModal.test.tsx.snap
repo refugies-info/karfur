@@ -302,8 +302,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontFamily": "marianneBold",
+                  "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
@@ -323,7 +323,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "fontFamily": "marianneBold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -494,8 +494,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontFamily": "marianneBold",
+                  "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
                 },
@@ -516,7 +516,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "fontFamily": "marianneBold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -546,8 +546,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             [
               {
                 "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
+                "fontFamily": "marianneBold",
+                "fontSize": 24,
                 "lineHeight": 32,
                 "textAlign": "left",
               },
@@ -566,14 +566,13 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             [
               {
                 "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 19,
+                "fontFamily": "marianneReg",
+                "fontSize": 16,
                 "lineHeight": 24,
                 "textAlign": "left",
               },
               {
                 "marginVertical": 16,
-                "textAlign": "center",
               },
             ]
           }
@@ -722,8 +721,8 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontFamily": "marianneBold",
+                  "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
                 }

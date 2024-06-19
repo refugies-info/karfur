@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "react-native";
 import { styles } from "../../theme";
 import { RTLView } from "../BasicComponents";
-import { TextNormal, TextNormalBold } from "../StyledText";
+import { TextDSFR_MD, TextDSFR_MD_Bold } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { getScreenFromUrl } from "../../libs/getScreenFromUrl";
 import { ReadableText } from "../ReadableText";
@@ -87,21 +87,21 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
           }}
           tagsStyles={{
             strong: {
-              fontFamily: styles.fonts.families.circularBold,
+              fontFamily: styles.fonts.families.marianneBold,
               fontWeight: null,
             },
             em: {
-              fontFamily: styles.fonts.families.circularItalic,
+              fontFamily: styles.fonts.families.marianneRegItalic,
             },
             b: {
-              fontFamily: styles.fonts.families.circularBold,
+              fontFamily: styles.fonts.families.marianneBold,
               textAlign: isRTL ? "right" : "left",
               fontWeight: null,
             },
           }}
           baseFontStyle={{
-            fontSize: styles.fonts.sizes.small,
-            fontFamily: styles.fonts.families.circularStandard,
+            fontSize: styles.fonts.sizes.md,
+            fontFamily: styles.fonts.families.marianneReg,
             textAlign: isRTL ? "right" : "left",
             lineHeight: 20,
           }}
@@ -145,11 +145,11 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                 >
                   <Text style={{ fontSize: 10 }}>{"\u25CF"}</Text>
                 </View>
-                <TextNormal style={{ flexShrink: 1 }}>{children}</TextNormal>
+                <TextDSFR_MD style={{ flexShrink: 1 }}>{children}</TextDSFR_MD>
               </RTLView>
             ),
             p: (_, children, _cssStyles, passProps) => (
-              <TextNormal
+              <TextDSFR_MD
                 key={passProps.key}
                 style={{
                   marginBottom: styles.margin,
@@ -157,7 +157,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                 }}
               >
                 {children}
-              </TextNormal>
+              </TextDSFR_MD>
             ),
             div: (_, children, _cssStyles, passProps) => {
               if (_["data-callout"] === "important") {
@@ -182,12 +182,12 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                         </View>
                         <View style={{ padding: 10 }}>
                           <Rows spacing={RowsSpacing.Text}>
-                            <TextNormalBold>
+                            <TextDSFR_MD_Bold>
                               {t(
                                 "content_screen.callout_important",
                                 "Important"
                               )}
-                            </TextNormalBold>
+                            </TextDSFR_MD_Bold>
                             {children}
                           </Rows>
                         </View>
@@ -231,9 +231,9 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                         </View>
                         <View style={{ padding: 10 }}>
                           <Rows spacing={RowsSpacing.Text}>
-                            <TextNormalBold style={{ color: "#6A6AF4" }}>
+                            <TextDSFR_MD_Bold style={{ color: "#6A6AF4" }}>
                               {t("content_screen.callout_info", "Bon à savoir")}
-                            </TextNormalBold>
+                            </TextDSFR_MD_Bold>
                             {children}
                           </Rows>
                         </View>

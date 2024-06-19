@@ -26,8 +26,8 @@ import {
   Page,
   RadioGroup,
   Separator,
-  StyledTextDSFR_L,
-  StyledTextSmall,
+  TextDSFR_L_Bold,
+  TextDSFR_MD,
 } from "../../components";
 import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
 
@@ -47,11 +47,11 @@ const stylesheet = StyleSheet.create({
     paddingHorizontal: styles.margin * 3,
   },
 });
-const SectionTitle = styled(StyledTextDSFR_L)`
+const SectionTitle = styled(TextDSFR_L_Bold)`
   margin-top: ${({ theme }) => theme.margin * 2}px;
   margin-bottom: ${({ theme }) => theme.margin}px;
 `;
-const SectionSubtitle = styled(StyledTextSmall)`
+const SectionSubtitle = styled(TextDSFR_MD)`
   margin-bottom: ${({ theme }) => theme.margin * 2}px;
   color: ${({ theme }) => theme.colors.dsfr_grey};
 `;

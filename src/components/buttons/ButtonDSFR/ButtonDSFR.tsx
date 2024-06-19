@@ -9,6 +9,7 @@ import styled, { useTheme } from "styled-components/native";
 import { Icon } from "../../iconography";
 import { Columns, ColumnsSpacing } from "../../layout";
 import { ReadableText } from "../../ReadableText";
+import { TextDSFR_L_Med } from "../../StyledText";
 
 const ICON_SIZE = 24;
 
@@ -27,17 +28,15 @@ export interface ButtonProps {
   noVoiceover?: boolean;
 }
 
-const ButtonText = styled.Text<{
+const ButtonText = styled(TextDSFR_L_Med)<{
   color: string;
   disabled: boolean;
   size: "default" | "small" | undefined;
 }>`
   color: ${({ theme, color, disabled }) =>
     disabled ? theme.colors.dsfr_borderGrey : color};
-  font-family: ${({ theme }) => theme.fonts.button.family};
-  font-size: ${({ theme, size }) =>
-    size === "small" ? theme.fonts.button.sizeSmall : theme.fonts.button.size};
-  font-weight: ${({ theme }) => theme.fonts.button.weight};
+  ${({ theme, size }) =>
+    size === "small" ? theme.fonts.button.sizeSmall : ""};
 `;
 
 const Container = styled(TouchableOpacity)<{
@@ -48,7 +47,7 @@ const Container = styled(TouchableOpacity)<{
   background-color: ${({ backgroundColor }) => backgroundColor};
   border-color: ${({ borderColor }) => borderColor};
   border-width: 1px;
-  padding: ${({ theme }) => theme.margin * 1.5}px;
+  padding: ${({ theme }) => theme.margin * 1.25}px;
   max-height: 50px;
   align-items: center;
   opacity: ${({ disabled }) => (disabled ? "0.4" : "1")};

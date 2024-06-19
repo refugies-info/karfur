@@ -218,11 +218,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   >
                     <Text
+                      isSelected={false}
                       selectable={true}
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "circularBold",
+                          "fontFamily": "marianneMed",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -230,6 +231,20 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       }
                     >
                       Français
+                    </Text>
+                    <Text
+                      selectable={true}
+                      style={
+                        {
+                          "color": "#5E5E5E",
+                          "fontFamily": "marianneReg",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                       - Français
                     </Text>
                   </View>
                 </View>
@@ -506,11 +521,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   >
                     <Text
+                      isSelected={false}
                       selectable={true}
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "circularBold",
+                          "fontFamily": "marianneMed",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -524,7 +540,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       style={
                         {
                           "color": "#5E5E5E",
-                          "fontFamily": "circularBook",
+                          "fontFamily": "marianneReg",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -808,11 +824,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   >
                     <Text
+                      isSelected={false}
                       selectable={true}
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "circularBold",
+                          "fontFamily": "marianneMed",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -826,7 +843,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       style={
                         {
                           "color": "#5E5E5E",
-                          "fontFamily": "circularBook",
+                          "fontFamily": "marianneReg",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -1110,11 +1127,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   >
                     <Text
+                      isSelected={false}
                       selectable={true}
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "circularBold",
+                          "fontFamily": "marianneMed",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -1128,7 +1146,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       style={
                         {
                           "color": "#5E5E5E",
-                          "fontFamily": "circularBook",
+                          "fontFamily": "marianneReg",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -1412,11 +1430,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   >
                     <Text
+                      isSelected={false}
                       selectable={true}
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "circularBold",
+                          "fontFamily": "marianneMed",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -1430,7 +1449,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       style={
                         {
                           "color": "#5E5E5E",
-                          "fontFamily": "circularBook",
+                          "fontFamily": "marianneReg",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -1714,11 +1733,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   >
                     <Text
+                      isSelected={false}
                       selectable={true}
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "circularBold",
+                          "fontFamily": "marianneMed",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -1732,7 +1752,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       style={
                         {
                           "color": "#5E5E5E",
-                          "fontFamily": "circularBook",
+                          "fontFamily": "marianneReg",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -2016,11 +2036,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   >
                     <Text
+                      isSelected={false}
                       selectable={true}
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "circularBold",
+                          "fontFamily": "marianneMed",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -2034,7 +2055,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       style={
                         {
                           "color": "#5E5E5E",
-                          "fontFamily": "circularBook",
+                          "fontFamily": "marianneReg",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -2318,11 +2339,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     }
                   >
                     <Text
+                      isSelected={false}
                       selectable={true}
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "circularBold",
+                          "fontFamily": "marianneMed",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -2336,7 +2358,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                       style={
                         {
                           "color": "#5E5E5E",
-                          "fontFamily": "circularBook",
+                          "fontFamily": "marianneReg",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",

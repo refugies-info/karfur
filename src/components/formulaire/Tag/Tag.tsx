@@ -2,7 +2,7 @@ import React from "react";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
 import { RTLTouchableOpacity } from "../../BasicComponents";
-import { StyledTextSmallBold } from "../../StyledText";
+import { TextDSFR_MD_Bold } from "../../StyledText";
 
 const TagContainer = styled(RTLTouchableOpacity)`
   background-color: ${({ theme }) => theme.colors.dsfr_action};
@@ -30,9 +30,9 @@ export const Tag = (props: TagProps) => {
       accessible={true}
       accessibilityLabel={props.accessibilityLabel}
     >
-      <StyledTextSmallBold style={{ color: "white" }}>
+      <TextDSFR_MD_Bold style={{ color: "white" }}>
         {props.children}
-      </StyledTextSmallBold>
+      </TextDSFR_MD_Bold>
       <Icon
         name="close-outline"
         fill={theme.colors.white}

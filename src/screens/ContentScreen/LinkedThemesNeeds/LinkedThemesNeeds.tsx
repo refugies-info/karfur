@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { View } from "react-native";
 import isEmpty from "lodash/isEmpty";
 import { Id } from "@refugies-info/api-types";
-import { ReadableText, Spacer, StyledTextSmallBold } from "../../../components";
+import { ReadableText, Spacer, TextDSFR_MD_Bold } from "../../../components";
 import { useTranslationWithRTL } from "../../../hooks";
 import { styles } from "../../../theme";
 import { LinkedNeed, LinkedTheme } from "../Sections";
@@ -42,11 +42,11 @@ const LinkedThemesNeedsComponent = ({
 
   return (
     <>
-      <StyledTextSmallBold accessibilityRole="header">
+      <TextDSFR_MD_Bold accessibilityRole="header">
         <ReadableText>
           {t("content_screen.related_topic", "THÉMATIQUES LIÉES")}
         </ReadableText>
-      </StyledTextSmallBold>
+      </TextDSFR_MD_Bold>
       <Spacer height={styles.margin * 2} />
       <View>
         {needs &&

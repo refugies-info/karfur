@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
-import { TextNormalBold } from "../../StyledText";
+import { TextDSFR_L_Bold } from "../../StyledText";
 
-const SectionTitle = styled(TextNormalBold)`
+const SectionTitle = styled(TextDSFR_L_Bold)`
   margin-bottom: ${({ theme }) => theme.margin * 2}px;
 `;
 

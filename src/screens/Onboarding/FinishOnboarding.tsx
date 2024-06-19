@@ -8,7 +8,7 @@ import { OnboardingParamList } from "../../../types";
 import { saveHasUserSeenOnboardingActionCreator } from "../../services/redux/User/user.actions";
 import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { StyledTextBigBold } from "../../components/StyledText";
+import { TextDSFR_XL } from "../../components/StyledText";
 import { fetchContentsActionCreator } from "../../services/redux/Contents/contents.actions";
 import {
   userLocationSelector,
@@ -22,7 +22,7 @@ import { ButtonDSFR, ReadableText, Spacer } from "../../components";
 import PageOnboarding from "../../components/layout/PageOnboarding";
 import EndOnboardingIllu from "../../theme/images/onboarding/end-onboarding-illu.svg";
 
-const Title = styled(StyledTextBigBold)`
+const Title = styled(TextDSFR_XL)`
   color: ${({ theme }) => theme.colors.dsfr_action};
 `;
 const Container = styled.View`

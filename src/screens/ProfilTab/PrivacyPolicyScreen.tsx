@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Image } from "react-native";
 import * as Linking from "expo-linking";
-import { TextSmallNormal, TextSmallBold } from "../../components/StyledText";
+import { TextDSFR_MD, TextDSFR_MD_Bold } from "../../components/StyledText";
 import { StackScreenProps } from "@react-navigation/stack";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -55,10 +55,10 @@ export const PrivacyPolicyScreen = ({
           }}
         />
         <ContentHighlight>
-          <TextSmallNormal>
+          <TextDSFR_MD>
             Tu n’es pas obligé de partager ces informations pour avoir accès à
             l’application.
-          </TextSmallNormal>
+          </TextDSFR_MD>
         </ContentHighlight>
         <P style={{ marginBottom: 0, marginTop: styles.margin * 3 }}>
           Nous utilisons ces informations comme des filtres, pour te proposer
@@ -81,7 +81,7 @@ export const PrivacyPolicyScreen = ({
               marginLeft: isRTL ? styles.margin : 0,
             }}
           />
-          <TextSmallNormal>la ville dans laquelle tu habites</TextSmallNormal>
+          <TextDSFR_MD>la ville dans laquelle tu habites</TextDSFR_MD>
         </RTLView>
         <RTLView style={{ marginBottom: styles.margin }}>
           <Icon
@@ -94,7 +94,7 @@ export const PrivacyPolicyScreen = ({
               marginLeft: isRTL ? styles.margin : 0,
             }}
           />
-          <TextSmallNormal>ta tranche d’âge</TextSmallNormal>
+          <TextDSFR_MD>ta tranche d’âge</TextDSFR_MD>
         </RTLView>
         <RTLView style={{ marginBottom: styles.margin * 3 }}>
           <Icon
@@ -107,7 +107,7 @@ export const PrivacyPolicyScreen = ({
               marginLeft: isRTL ? styles.margin : 0,
             }}
           />
-          <TextSmallNormal>ton niveau en français</TextSmallNormal>
+          <TextDSFR_MD>ton niveau en français</TextDSFR_MD>
         </RTLView>
         <P>
           Pour nous indiquer ta ville, tu peux utiliser les fonctionnalités de
@@ -115,11 +115,11 @@ export const PrivacyPolicyScreen = ({
           directement.
         </P>
         <ContentHighlight>
-          <TextSmallNormal>
+          <TextDSFR_MD>
             Si tu utilises la géolocalisation de ton téléphone, cette
             information pourra être conservée par iOS ou Android. Pense à
             regarder les paramètres de ton téléphone pour en savoir plus.
-          </TextSmallNormal>
+          </TextDSFR_MD>
         </ContentHighlight>
       </ContentCard>
       <ContentCard step={"3"} title={"Qui peut avoir accès à ces données ?"}>
@@ -198,9 +198,9 @@ export const PrivacyPolicyScreen = ({
           Politiques de Données Personnelles – c’est celles-ci qui s’appliquent.
         </P>
         <ContentHighlight>
-          <TextSmallNormal>
+          <TextDSFR_MD>
             Voici comment ces sociétés partenaires traitent tes données.
-          </TextSmallNormal>
+          </TextDSFR_MD>
 
           <RTLView style={{ marginVertical: styles.margin * 2 }}>
             <FirebaseLogo
@@ -211,7 +211,7 @@ export const PrivacyPolicyScreen = ({
                 marginLeft: isRTL ? styles.margin : 0,
               }}
             />
-            <TextSmallBold>Firebase</TextSmallBold>
+            <TextDSFR_MD_Bold>Firebase</TextDSFR_MD_Bold>
           </RTLView>
 
           <List
@@ -248,7 +248,7 @@ export const PrivacyPolicyScreen = ({
                 height: 32,
               }}
             />
-            <TextSmallBold>Google Analytics</TextSmallBold>
+            <TextDSFR_MD_Bold>Google Analytics</TextDSFR_MD_Bold>
           </RTLView>
 
           <List

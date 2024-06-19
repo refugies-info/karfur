@@ -6,7 +6,7 @@ export interface HeaderTitleProps {
 }
 
 const HeaderTitle = styled.Text<HeaderTitleProps>`
-  font-family: ${({ theme }) => theme.fonts.families.circularBold};
+  font-family: ${({ theme }) => theme.fonts.families.marianneBold};
   text-align: ${({ theme }) => (theme.i18n.isRTL ? "right" : "left")};
   color: ${({ invertedColor, theme }) =>
     invertedColor ? theme.colors.white : theme.colors.black};

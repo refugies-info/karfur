@@ -465,8 +465,8 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 24,
                     "textAlign": "left",
@@ -497,9 +497,9 @@ exports[`ContentScreen should render correctly 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 19,
-                      "lineHeight": 24,
+                      "fontFamily": "marianneReg",
+                      "fontSize": 18,
+                      "lineHeight": 28,
                       "textAlign": "left",
                     },
                     {
@@ -700,8 +700,8 @@ exports[`ContentScreen should render correctly 1`] = `
                   style={
                     {
                       "color": "#3D2884",
-                      "fontFamily": "circularBold",
-                      "fontSize": 25,
+                      "fontFamily": "marianneBold",
+                      "fontSize": 24,
                       "lineHeight": 32,
                       "marginBottom": 24,
                       "textAlign": "left",
@@ -744,8 +744,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             [
                               {
                                 "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 19,
+                                "fontFamily": "marianneReg",
+                                "fontSize": 16,
                                 "lineHeight": 24,
                                 "textAlign": "left",
                               },
@@ -769,7 +769,7 @@ exports[`ContentScreen should render correctly 1`] = `
                               selectable={true}
                               style={
                                 {
-                                  "fontFamily": "circularBook",
+                                  "fontFamily": "marianneReg",
                                   "fontSize": 16,
                                   "lineHeight": 20,
                                   "marginBottom": 16,
@@ -789,8 +789,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             [
                               {
                                 "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 19,
+                                "fontFamily": "marianneReg",
+                                "fontSize": 16,
                                 "lineHeight": 24,
                                 "textAlign": "left",
                               },
@@ -814,7 +814,7 @@ exports[`ContentScreen should render correctly 1`] = `
                               selectable={true}
                               style={
                                 {
-                                  "fontFamily": "circularBook",
+                                  "fontFamily": "marianneReg",
                                   "fontSize": 16,
                                   "lineHeight": 20,
                                   "marginBottom": 16,
@@ -834,8 +834,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             [
                               {
                                 "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 19,
+                                "fontFamily": "marianneReg",
+                                "fontSize": 16,
                                 "lineHeight": 24,
                                 "textAlign": "left",
                               },
@@ -859,7 +859,7 @@ exports[`ContentScreen should render correctly 1`] = `
                               selectable={true}
                               style={
                                 {
-                                  "fontFamily": "circularBook",
+                                  "fontFamily": "marianneReg",
                                   "fontSize": 16,
                                   "lineHeight": 20,
                                   "marginBottom": 16,
@@ -879,8 +879,8 @@ exports[`ContentScreen should render correctly 1`] = `
                             [
                               {
                                 "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 19,
+                                "fontFamily": "marianneReg",
+                                "fontSize": 16,
                                 "lineHeight": 24,
                                 "textAlign": "left",
                               },
@@ -904,7 +904,7 @@ exports[`ContentScreen should render correctly 1`] = `
                               selectable={true}
                               style={
                                 {
-                                  "fontFamily": "circularBook",
+                                  "fontFamily": "marianneReg",
                                   "fontSize": 16,
                                   "lineHeight": 20,
                                   "marginBottom": 16,
@@ -940,8 +940,8 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   {
                     "color": "#3D2884",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 24,
                     "textAlign": "left",
@@ -1003,9 +1003,9 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           {
                             "color": "#3D2884",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
+                            "fontFamily": "marianneBold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
                             "marginBottom": 12,
                             "textAlign": "left",
                           }
@@ -1602,7 +1602,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "textAlign": "left",
@@ -1622,7 +1622,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBook",
+                                      "fontFamily": "marianneReg",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "marginTop": 4,
@@ -1908,7 +1908,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "textAlign": "left",
@@ -1928,7 +1928,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBook",
+                                      "fontFamily": "marianneReg",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "marginTop": 4,
@@ -2535,7 +2535,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "textAlign": "left",
@@ -2555,7 +2555,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBook",
+                                      "fontFamily": "marianneReg",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "marginTop": 4,
@@ -2612,9 +2612,9 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           {
                             "color": "#3D2884",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
+                            "fontFamily": "marianneBold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
                             "marginBottom": 12,
                             "textAlign": "left",
                           }
@@ -2782,7 +2782,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBook",
+                                      "fontFamily": "marianneReg",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "marginTop": 4,
@@ -2838,9 +2838,9 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           {
                             "color": "#3D2884",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
+                            "fontFamily": "marianneBold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
                             "marginBottom": 12,
                             "textAlign": "left",
                           }
@@ -2928,7 +2928,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                 style={
                                   {
                                     "color": "#212121",
-                                    "fontFamily": "circularBook",
+                                    "fontFamily": "marianneReg",
                                     "fontSize": 16,
                                     "lineHeight": 24,
                                     "marginTop": 4,
@@ -2976,8 +2976,8 @@ exports[`ContentScreen should render correctly 1`] = `
                   style={
                     {
                       "color": "#3D2884",
-                      "fontFamily": "circularBold",
-                      "fontSize": 25,
+                      "fontFamily": "marianneBold",
+                      "fontSize": 24,
                       "lineHeight": 32,
                       "marginBottom": 24,
                       "textAlign": "left",
@@ -3120,7 +3120,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                     {
                                       "color": "#3D2884",
                                       "flexShrink": 1,
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
@@ -3315,8 +3315,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -3340,7 +3340,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -3360,8 +3360,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -3385,7 +3385,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -3533,7 +3533,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                     {
                                       "color": "#3D2884",
                                       "flexShrink": 1,
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
@@ -3728,8 +3728,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -3753,7 +3753,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -3773,8 +3773,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -3798,7 +3798,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -3946,7 +3946,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                     {
                                       "color": "#3D2884",
                                       "flexShrink": 1,
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
@@ -4141,8 +4141,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -4166,7 +4166,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -4198,8 +4198,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -4223,7 +4223,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -4270,8 +4270,8 @@ exports[`ContentScreen should render correctly 1`] = `
                   style={
                     {
                       "color": "#3D2884",
-                      "fontFamily": "circularBold",
-                      "fontSize": 25,
+                      "fontFamily": "marianneBold",
+                      "fontSize": 24,
                       "lineHeight": 32,
                       "marginBottom": 24,
                       "textAlign": "left",
@@ -4414,7 +4414,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                     {
                                       "color": "#3D2884",
                                       "flexShrink": 1,
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
@@ -4609,8 +4609,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -4634,7 +4634,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -4654,8 +4654,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -4679,7 +4679,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -4728,8 +4728,8 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   {
                     "color": "#3D2884",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 16,
                     "marginTop": 16,
@@ -4949,7 +4949,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           {
                             "color": "#212121",
-                            "fontFamily": "circularBold",
+                            "fontFamily": "marianneBold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginLeft": 8,
@@ -6428,9 +6428,9 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           {
                             "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
+                            "fontFamily": "marianneBold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
                             "marginBottom": 16,
                             "marginTop": 16,
                             "textAlign": "center",
@@ -6455,8 +6455,8 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           {
                             "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 19,
+                            "fontFamily": "marianneReg",
+                            "fontSize": 16,
                             "lineHeight": 24,
                             "marginHorizontal": 16,
                             "textAlign": "center",
@@ -6690,8 +6690,8 @@ exports[`ContentScreen should render correctly 1`] = `
                                       style={
                                         {
                                           "color": "#000091",
-                                          "fontFamily": "circularBook",
-                                          "fontSize": 19,
+                                          "fontFamily": "marianneReg",
+                                          "fontSize": 18,
                                           "fontWeight": "normal",
                                         }
                                       }
@@ -6749,7 +6749,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -6864,9 +6864,9 @@ exports[`ContentScreen should render correctly 1`] = `
                         {
                           "color": "#FFFFFF",
                           "flexShrink": 1,
-                          "fontFamily": "circularBold",
-                          "fontSize": 19,
-                          "lineHeight": 24,
+                          "fontFamily": "marianneBold",
+                          "fontSize": 18,
+                          "lineHeight": 28,
                           "marginLeft": 0,
                           "marginRight": 8,
                           "textAlign": "left",
@@ -6941,9 +6941,9 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 18,
+                    "lineHeight": 28,
                     "marginBottom": 16,
                     "textAlign": "left",
                   }
@@ -7039,7 +7039,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           {
                             "color": "#212121",
-                            "fontFamily": "circularBook",
+                            "fontFamily": "marianneReg",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "textAlign": "left",
@@ -7468,7 +7468,7 @@ exports[`ContentScreen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "circularBook",
+                "fontFamily": "marianneReg",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginLeft": 8,
@@ -7476,7 +7476,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 "textAlign": "left",
               },
               {
-                "fontSize": 13,
+                "fontSize": 12,
               },
             ]
           }
@@ -7774,7 +7774,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -8454,7 +8454,7 @@ exports[`ContentScreen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "circularBook",
+                "fontFamily": "marianneReg",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginLeft": 8,
@@ -8462,7 +8462,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 "textAlign": "left",
               },
               {
-                "fontSize": 13,
+                "fontSize": 12,
               },
             ]
           }
@@ -8946,8 +8946,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 24,
                     "textAlign": "left",
@@ -8978,9 +8978,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "fontFamily": "circularBook",
-                      "fontSize": 19,
-                      "lineHeight": 24,
+                      "fontFamily": "marianneReg",
+                      "fontSize": 18,
+                      "lineHeight": 28,
                       "textAlign": "left",
                     },
                     {
@@ -9181,8 +9181,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   style={
                     {
                       "color": "#3D2884",
-                      "fontFamily": "circularBold",
-                      "fontSize": 25,
+                      "fontFamily": "marianneBold",
+                      "fontSize": 24,
                       "lineHeight": 32,
                       "marginBottom": 24,
                       "textAlign": "left",
@@ -9225,8 +9225,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             [
                               {
                                 "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 19,
+                                "fontFamily": "marianneReg",
+                                "fontSize": 16,
                                 "lineHeight": 24,
                                 "textAlign": "left",
                               },
@@ -9250,7 +9250,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               selectable={true}
                               style={
                                 {
-                                  "fontFamily": "circularBook",
+                                  "fontFamily": "marianneReg",
                                   "fontSize": 16,
                                   "lineHeight": 20,
                                   "marginBottom": 16,
@@ -9270,8 +9270,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             [
                               {
                                 "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 19,
+                                "fontFamily": "marianneReg",
+                                "fontSize": 16,
                                 "lineHeight": 24,
                                 "textAlign": "left",
                               },
@@ -9295,7 +9295,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               selectable={true}
                               style={
                                 {
-                                  "fontFamily": "circularBook",
+                                  "fontFamily": "marianneReg",
                                   "fontSize": 16,
                                   "lineHeight": 20,
                                   "marginBottom": 16,
@@ -9315,8 +9315,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             [
                               {
                                 "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 19,
+                                "fontFamily": "marianneReg",
+                                "fontSize": 16,
                                 "lineHeight": 24,
                                 "textAlign": "left",
                               },
@@ -9340,7 +9340,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               selectable={true}
                               style={
                                 {
-                                  "fontFamily": "circularBook",
+                                  "fontFamily": "marianneReg",
                                   "fontSize": 16,
                                   "lineHeight": 20,
                                   "marginBottom": 16,
@@ -9360,8 +9360,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             [
                               {
                                 "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 19,
+                                "fontFamily": "marianneReg",
+                                "fontSize": 16,
                                 "lineHeight": 24,
                                 "textAlign": "left",
                               },
@@ -9385,7 +9385,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               selectable={true}
                               style={
                                 {
-                                  "fontFamily": "circularBook",
+                                  "fontFamily": "marianneReg",
                                   "fontSize": 16,
                                   "lineHeight": 20,
                                   "marginBottom": 16,
@@ -9421,8 +9421,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   {
                     "color": "#3D2884",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 24,
                     "textAlign": "left",
@@ -9484,9 +9484,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           {
                             "color": "#3D2884",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
+                            "fontFamily": "marianneBold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
                             "marginBottom": 12,
                             "textAlign": "left",
                           }
@@ -10083,7 +10083,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "textAlign": "left",
@@ -10103,7 +10103,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBook",
+                                      "fontFamily": "marianneReg",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "marginTop": 4,
@@ -10389,7 +10389,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "textAlign": "left",
@@ -10409,7 +10409,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBook",
+                                      "fontFamily": "marianneReg",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "marginTop": 4,
@@ -11016,7 +11016,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "textAlign": "left",
@@ -11036,7 +11036,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBook",
+                                      "fontFamily": "marianneReg",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "marginTop": 4,
@@ -11093,9 +11093,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           {
                             "color": "#3D2884",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
+                            "fontFamily": "marianneBold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
                             "marginBottom": 12,
                             "textAlign": "left",
                           }
@@ -11263,7 +11263,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   style={
                                     {
                                       "color": "#212121",
-                                      "fontFamily": "circularBook",
+                                      "fontFamily": "marianneReg",
                                       "fontSize": 16,
                                       "lineHeight": 24,
                                       "marginTop": 4,
@@ -11319,9 +11319,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           {
                             "color": "#3D2884",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
+                            "fontFamily": "marianneBold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
                             "marginBottom": 12,
                             "textAlign": "left",
                           }
@@ -11409,7 +11409,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 style={
                                   {
                                     "color": "#212121",
-                                    "fontFamily": "circularBook",
+                                    "fontFamily": "marianneReg",
                                     "fontSize": 16,
                                     "lineHeight": 24,
                                     "marginTop": 4,
@@ -11457,8 +11457,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   style={
                     {
                       "color": "#3D2884",
-                      "fontFamily": "circularBold",
-                      "fontSize": 25,
+                      "fontFamily": "marianneBold",
+                      "fontSize": 24,
                       "lineHeight": 32,
                       "marginBottom": 24,
                       "textAlign": "left",
@@ -11601,7 +11601,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     {
                                       "color": "#3D2884",
                                       "flexShrink": 1,
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
@@ -11796,8 +11796,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -11821,7 +11821,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -11841,8 +11841,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -11866,7 +11866,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -12014,7 +12014,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     {
                                       "color": "#3D2884",
                                       "flexShrink": 1,
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
@@ -12209,8 +12209,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -12234,7 +12234,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -12254,8 +12254,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -12279,7 +12279,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -12427,7 +12427,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     {
                                       "color": "#3D2884",
                                       "flexShrink": 1,
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
@@ -12622,8 +12622,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -12647,7 +12647,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -12679,8 +12679,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -12704,7 +12704,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -12751,8 +12751,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   style={
                     {
                       "color": "#3D2884",
-                      "fontFamily": "circularBold",
-                      "fontSize": 25,
+                      "fontFamily": "marianneBold",
+                      "fontSize": 24,
                       "lineHeight": 32,
                       "marginBottom": 24,
                       "textAlign": "left",
@@ -12895,7 +12895,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     {
                                       "color": "#3D2884",
                                       "flexShrink": 1,
-                                      "fontFamily": "circularBold",
+                                      "fontFamily": "marianneBold",
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
@@ -13090,8 +13090,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -13115,7 +13115,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -13135,8 +13135,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                     [
                                       {
                                         "color": "#212121",
-                                        "fontFamily": "circularBook",
-                                        "fontSize": 19,
+                                        "fontFamily": "marianneReg",
+                                        "fontSize": 16,
                                         "lineHeight": 24,
                                         "textAlign": "left",
                                       },
@@ -13160,7 +13160,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       selectable={true}
                                       style={
                                         {
-                                          "fontFamily": "circularBook",
+                                          "fontFamily": "marianneReg",
                                           "fontSize": 16,
                                           "lineHeight": 20,
                                           "marginBottom": 16,
@@ -13209,8 +13209,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   {
                     "color": "#3D2884",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 16,
                     "marginTop": 16,
@@ -13430,7 +13430,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           {
                             "color": "#212121",
-                            "fontFamily": "circularBold",
+                            "fontFamily": "marianneBold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginLeft": 8,
@@ -15401,9 +15401,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           {
                             "color": "#212121",
-                            "fontFamily": "circularBold",
-                            "fontSize": 19,
-                            "lineHeight": 24,
+                            "fontFamily": "marianneBold",
+                            "fontSize": 18,
+                            "lineHeight": 28,
                             "marginBottom": 16,
                             "marginTop": 16,
                             "textAlign": "center",
@@ -15428,8 +15428,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           {
                             "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 19,
+                            "fontFamily": "marianneReg",
+                            "fontSize": 16,
                             "lineHeight": 24,
                             "marginHorizontal": 16,
                             "textAlign": "center",
@@ -15663,8 +15663,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       style={
                                         {
                                           "color": "#000091",
-                                          "fontFamily": "circularBook",
-                                          "fontSize": 19,
+                                          "fontFamily": "marianneReg",
+                                          "fontSize": 18,
                                           "fontWeight": "normal",
                                         }
                                       }
@@ -15722,7 +15722,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -15837,9 +15837,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         {
                           "color": "#FFFFFF",
                           "flexShrink": 1,
-                          "fontFamily": "circularBold",
-                          "fontSize": 19,
-                          "lineHeight": 24,
+                          "fontFamily": "marianneBold",
+                          "fontSize": 18,
+                          "lineHeight": 28,
                           "marginLeft": 0,
                           "marginRight": 8,
                           "textAlign": "left",
@@ -15914,9 +15914,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 18,
+                    "lineHeight": 28,
                     "marginBottom": 16,
                     "textAlign": "left",
                   }
@@ -16012,7 +16012,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           {
                             "color": "#212121",
-                            "fontFamily": "circularBook",
+                            "fontFamily": "marianneReg",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "textAlign": "left",
@@ -16441,7 +16441,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "circularBook",
+                "fontFamily": "marianneReg",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginLeft": 8,
@@ -16449,7 +16449,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "textAlign": "left",
               },
               {
-                "fontSize": 13,
+                "fontSize": 12,
               },
             ]
           }
@@ -16747,7 +16747,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -17427,7 +17427,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "circularBook",
+                "fontFamily": "marianneReg",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginLeft": 8,
@@ -17435,7 +17435,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "textAlign": "left",
               },
               {
-                "fontSize": 13,
+                "fontSize": 12,
               },
             ]
           }

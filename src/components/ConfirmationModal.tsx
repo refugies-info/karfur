@@ -3,7 +3,7 @@ import { Image, ScrollView, TouchableWithoutFeedback } from "react-native";
 import Modal from "react-native-modal";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
-import { StyledTextNormal } from "./StyledText";
+import { TextDSFR_L } from "./StyledText";
 import { Rows, Spacer } from "./layout";
 import { ButtonDSFR } from "./buttons";
 import IlluMascotte from "../theme/images/profile/illu-mascotte.png";
@@ -23,7 +23,7 @@ const ModalView = styled.View`
   padding-top: ${({ theme }) => theme.margin * 3}px;
 `;
 
-const TitleText = styled(StyledTextNormal)`
+const TitleText = styled(TextDSFR_L)`
   margin-top: ${({ theme }) => theme.margin * 3}px;
   margin-bottom: ${({ theme }) => theme.margin * 5}px;
   align-self: center;

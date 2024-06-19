@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { View } from "react-native";
 import { MarkerGoogle } from "../../types/interface";
-import { TextSmallNormal } from "../StyledText";
+import { TextDSFR_MD } from "../StyledText";
 import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
 import { CustomButton } from "../CustomButton";
 import { styles } from "../../theme";
@@ -63,7 +63,7 @@ const ContentTouchableOpacity = styled(RTLTouchableOpacity)<{
   align-items: flex-start;
 `;
 
-const TextValue = styled(TextSmallNormal)<{ color: string }>`
+const TextValue = styled(TextDSFR_MD)<{ color: string }>`
   margin-bottom: ${styles.margin}px;
   color: ${({ color }) => color};
 `;

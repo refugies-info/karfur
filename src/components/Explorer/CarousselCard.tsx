@@ -3,7 +3,7 @@ import { TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 import { RTLView } from "../BasicComponents";
 import { styles } from "../../theme";
-import { StyledTextSmallBold } from "../StyledText";
+import { TextDSFR_MD_Bold } from "../StyledText";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { LinearGradient } from "expo-linear-gradient";
@@ -35,7 +35,7 @@ const StyledContainer = styled(RTLView)<{ backgroundColor: string }>`
   ${styles.shadows.lg}
 `;
 
-const StyledText = styled(StyledTextSmallBold)`
+const StyledText = styled(TextDSFR_MD_Bold)`
   color: ${({ theme }) => theme.colors.white};
   margin-left: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
   margin-right: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;

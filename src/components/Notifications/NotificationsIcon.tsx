@@ -42,7 +42,7 @@ const stylesheet = StyleSheet.create({
   },
   unseenText: {
     color: styles.colors.white,
-    fontSize: styles.fonts.sizes.verySmall,
+    fontSize: styles.fonts.sizes.xs,
     textAlign: "center",
     fontWeight: "500",
     lineHeight: theme.margin * 2,
@@ -63,7 +63,7 @@ const NotificationsIcon = () => {
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_NOTIFICATION_ICON, {});
         //@ts-ignore
-        navigate("NotificationsScreen")
+        navigate("NotificationsScreen");
       }}
     >
       <Icon

@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity, RTLView } from "../../BasicComponents";
-import { StyledTextSmall, StyledTextSmallBold } from "../../StyledText";
+import { TextDSFR_MD, TextDSFR_MD_Bold } from "../../StyledText";
 import CityIcon from "../../../theme/images/onboarding/city-icon.svg";
 import { ReadableText } from "../../ReadableText";
 
-const CityText = styled(StyledTextSmallBold)`
+const CityText = styled(TextDSFR_MD_Bold)`
   color: ${({ theme }) => theme.colors.dsfr_dark};
 `;
-const DepartmentText = styled(StyledTextSmall)`
+const DepartmentText = styled(TextDSFR_MD)`
   color: ${({ theme }) => theme.colors.dsfr_mentionGrey};
   margin-horizontal: ${({ theme }) => theme.margin}px;
 `;

@@ -157,11 +157,12 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
           >
             <Text
               isRTL={false}
+              isSelected={false}
               selectable={true}
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "fontFamily": "marianneMed",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -169,6 +170,21 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
               }
             >
               Français
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                {
+                  "color": "#5E5E5E",
+                  "fontFamily": "marianneReg",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                }
+              }
+            >
+               - Français
             </Text>
           </View>
         </View>
@@ -432,11 +448,12 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
           >
             <Text
               isRTL={false}
+              isSelected={true}
               selectable={true}
               style={
                 {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "color": "#000091",
+                  "fontFamily": "marianneBold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -451,7 +468,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
               style={
                 {
                   "color": "#5E5E5E",
-                  "fontFamily": "circularBook",
+                  "fontFamily": "marianneReg",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -731,11 +748,12 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
           >
             <Text
               isRTL={false}
+              isSelected={true}
               selectable={true}
               style={
                 {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "color": "#000091",
+                  "fontFamily": "marianneBold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -750,7 +768,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
               style={
                 {
                   "color": "#5E5E5E",
-                  "fontFamily": "circularBook",
+                  "fontFamily": "marianneReg",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -916,11 +934,12 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
           >
             <Text
               isRTL={false}
+              isSelected={true}
               selectable={true}
               style={
                 {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "color": "#000091",
+                  "fontFamily": "marianneBold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -928,6 +947,21 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
               }
             >
               Français
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                {
+                  "color": "#5E5E5E",
+                  "fontFamily": "marianneReg",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                }
+              }
+            >
+               - Français
             </Text>
           </View>
         </View>

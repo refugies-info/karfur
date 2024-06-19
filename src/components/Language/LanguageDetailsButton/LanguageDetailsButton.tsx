@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { StyledTextSmallBold, StyledTextSmall } from "../../StyledText";
+import { TextDSFR_MD_Med, TextDSFR_MD } from "../../StyledText";
 import { Flag } from "../Flag";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 import { ChoiceButton, ChoiceButtonProps } from "../../formulaire";
@@ -9,11 +9,14 @@ import { RTLView } from "../../BasicComponents";
 import NoVoiceover from "../../../theme/images/profile/no-voiceover.svg";
 import { noVoiceover } from "../../../libs/noVoiceover";
 
-const StyledTextBold = styled(StyledTextSmallBold)`
+const StyledTextMed = styled(TextDSFR_MD_Med)<{ isSelected: boolean }>`
   text-align: left;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme, isSelected }) =>
+    isSelected ? theme.colors.dsfr_action : theme.colors.black};
+  ${({ theme, isSelected }) =>
+    isSelected ? `font-family: ${theme.fonts.families.marianneBold}` : ""};
 `;
-const StyledText = styled(StyledTextSmall)`
+const StyledText = styled(TextDSFR_MD)`
   text-align: left;
   color: ${({ theme }) => theme.colors.darkGrey};
 `;
@@ -68,12 +71,10 @@ const LanguageDetailsButton = ({
           <Flag langueFr={langueFr} />
         </FlagBackground>
         <RTLView>
-          <StyledTextBold>{langueLoc}</StyledTextBold>
-          {langueFr !== "Français" && (
-            <StyledText>
-              {!isRTL ? " - " + langueFr : langueFr + " - "}
-            </StyledText>
-          )}
+          <StyledTextMed isSelected={!!isSelected}>{langueLoc}</StyledTextMed>
+          <StyledText>
+            {!isRTL ? " - " + langueFr : langueFr + " - "}
+          </StyledText>
         </RTLView>
         {noVoiceoverIcon && (
           <NoVoiceover

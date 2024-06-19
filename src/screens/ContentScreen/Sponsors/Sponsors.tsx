@@ -9,7 +9,7 @@ import {
   SectionTitle,
   Separator,
   Spacer,
-  TextSmallNormal,
+  TextDSFR_MD,
 } from "../../../components";
 import { useTranslationWithRTL } from "../../../hooks";
 import { styles } from "../../../theme";
@@ -52,12 +52,12 @@ const SponsorsComponent = ({ sponsors }: Props) => {
                   }}
                 />
               )}
-              <TextSmallNormal>
+              <TextDSFR_MD>
                 <ReadableText>
                   {(sponsor as Sponsor).name ||
                     (sponsor as ContentStructure).nom}
                 </ReadableText>
-              </TextSmallNormal>
+              </TextDSFR_MD>
             </Columns>
           );
         })}

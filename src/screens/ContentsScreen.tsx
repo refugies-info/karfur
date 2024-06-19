@@ -12,7 +12,7 @@ import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus
 import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
 import { ContentSummary } from "../components/Contents/ContentSummary";
 import { ObjectId } from "../types/interface";
-import { TextBigBold } from "../components/StyledText";
+import { TextDSFR_XL } from "../components/StyledText";
 import styled from "styled-components/native";
 import { registerBackButton } from "../libs/backButton";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -24,7 +24,7 @@ import { HeaderContentProps } from "../components/layout/Header/HeaderContentPro
 import { HeaderContentContentsScreen } from "../components/layout/Header/HeaderContentContentsScreen";
 import { ContentForApp, Languages } from "@refugies-info/api-types";
 
-const SectionHeaderText = styled(TextBigBold)<{ color: string }>`
+const SectionHeaderText = styled(TextDSFR_XL)<{ color: string }>`
   color: ${({ color }) => color};
   margin-top: ${styles.margin * 6}px;
   margin-bottom: ${styles.margin * 3}px;

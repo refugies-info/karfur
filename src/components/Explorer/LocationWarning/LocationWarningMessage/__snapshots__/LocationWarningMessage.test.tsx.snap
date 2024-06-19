@@ -238,7 +238,7 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                 {
                   "color": "#0421B1",
                   "flexShrink": 1,
-                  "fontFamily": "circularBook",
+                  "fontFamily": "marianneReg",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginHorizontal": 8,
@@ -257,7 +257,7 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                 style={
                   {
                     "color": "#0421B1",
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",

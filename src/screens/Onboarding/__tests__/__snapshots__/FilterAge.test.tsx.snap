@@ -217,10 +217,10 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 "borderWidth": 1,
                 "maxHeight": 50,
                 "opacity": 1,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
+                "paddingBottom": 10,
+                "paddingLeft": 10,
+                "paddingRight": 10,
+                "paddingTop": 10,
               }
             }
           >
@@ -272,8 +272,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 16,
                     "textAlign": "left",
@@ -293,7 +293,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 style={
                   {
                     "color": "#3A3A3A",
-                    "fontFamily": "circularBook",
+                    "fontFamily": "marianneReg",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "marginBottom": 48,
@@ -407,7 +407,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                             style={
                               {
                                 "color": "#000091",
-                                "fontFamily": "circularBold",
+                                "fontFamily": "marianneMed",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -642,7 +642,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "circularBold",
+                                "fontFamily": "marianneMed",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -868,7 +868,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "circularBold",
+                                "fontFamily": "marianneMed",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -1055,10 +1055,10 @@ exports[`Filter age should render correctly when age selected 1`] = `
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 1,
-          "paddingBottom": 12,
-          "paddingLeft": 12,
-          "paddingRight": 12,
-          "paddingTop": 12,
+          "paddingBottom": 10,
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "paddingTop": 10,
         }
       }
       testID="test-next-button"
@@ -1491,7 +1491,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "fontFamily": "marianneBold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -2028,10 +2028,10 @@ exports[`Filter age should render correctly when age selected 1`] = `
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 1,
-          "paddingBottom": 12,
-          "paddingLeft": 12,
-          "paddingRight": 12,
-          "paddingTop": 12,
+          "paddingBottom": 10,
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "paddingTop": 10,
         }
       }
       testID="test-prev-button"
@@ -2399,10 +2399,10 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 "borderWidth": 1,
                 "maxHeight": 50,
                 "opacity": 1,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
+                "paddingBottom": 10,
+                "paddingLeft": 10,
+                "paddingRight": 10,
+                "paddingTop": 10,
               }
             }
           >
@@ -2454,8 +2454,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 16,
                     "textAlign": "left",
@@ -2475,7 +2475,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 style={
                   {
                     "color": "#3A3A3A",
-                    "fontFamily": "circularBook",
+                    "fontFamily": "marianneReg",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "marginBottom": 48,
@@ -2597,7 +2597,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "circularBold",
+                                "fontFamily": "marianneMed",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -2823,7 +2823,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "circularBold",
+                                "fontFamily": "marianneMed",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -3049,7 +3049,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "circularBold",
+                                "fontFamily": "marianneMed",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -3236,10 +3236,10 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 1,
-          "paddingBottom": 12,
-          "paddingLeft": 12,
-          "paddingRight": 12,
-          "paddingTop": 12,
+          "paddingBottom": 10,
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "paddingTop": 10,
         }
       }
       testID="test-next-button"
@@ -3672,7 +3672,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "fontFamily": "marianneBold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -4209,10 +4209,10 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 1,
-          "paddingBottom": 12,
-          "paddingLeft": 12,
-          "paddingRight": 12,
-          "paddingTop": 12,
+          "paddingBottom": 10,
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "paddingTop": 10,
         }
       }
       testID="test-prev-button"
@@ -4580,10 +4580,10 @@ exports[`Filter age should select age when click on it 1`] = `
                 "borderWidth": 1,
                 "maxHeight": 50,
                 "opacity": 1,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
+                "paddingBottom": 10,
+                "paddingLeft": 10,
+                "paddingRight": 10,
+                "paddingTop": 10,
               }
             }
           >
@@ -4635,8 +4635,8 @@ exports[`Filter age should select age when click on it 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
+                    "fontFamily": "marianneBold",
+                    "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 16,
                     "textAlign": "left",
@@ -4656,7 +4656,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 style={
                   {
                     "color": "#3A3A3A",
-                    "fontFamily": "circularBook",
+                    "fontFamily": "marianneReg",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "marginBottom": 48,
@@ -4778,7 +4778,7 @@ exports[`Filter age should select age when click on it 1`] = `
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "circularBold",
+                                "fontFamily": "marianneMed",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -5004,7 +5004,7 @@ exports[`Filter age should select age when click on it 1`] = `
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "circularBold",
+                                "fontFamily": "marianneMed",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -5222,7 +5222,7 @@ exports[`Filter age should select age when click on it 1`] = `
                             style={
                               {
                                 "color": "#000091",
-                                "fontFamily": "circularBold",
+                                "fontFamily": "marianneMed",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -5418,10 +5418,10 @@ exports[`Filter age should select age when click on it 1`] = `
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 1,
-          "paddingBottom": 12,
-          "paddingLeft": 12,
-          "paddingRight": 12,
-          "paddingTop": 12,
+          "paddingBottom": 10,
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "paddingTop": 10,
         }
       }
       testID="test-next-button"
@@ -5854,7 +5854,7 @@ exports[`Filter age should select age when click on it 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "fontFamily": "marianneBold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -6391,10 +6391,10 @@ exports[`Filter age should select age when click on it 1`] = `
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 1,
-          "paddingBottom": 12,
-          "paddingLeft": 12,
-          "paddingRight": 12,
-          "paddingTop": 12,
+          "paddingBottom": 10,
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "paddingTop": 10,
         }
       }
       testID="test-prev-button"

@@ -3,7 +3,7 @@ import { Text } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { RTLView } from "../BasicComponents";
 import { styles } from "../../theme";
-import { TextSmallNormal } from "../StyledText";
+import { TextDSFR_MD } from "../StyledText";
 
 interface Props {
   text: string;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const UpdatedDate = (props: Props) => (
-  <RTLView style={{marginVertical: styles.margin * 7 }}>
+  <RTLView style={{ marginVertical: styles.margin * 7 }}>
     <Icon
       name="refresh-outline"
       height={24}
@@ -19,11 +19,12 @@ export const UpdatedDate = (props: Props) => (
       fill={styles.colors.darkGrey}
       style={{
         marginRight: !props.isRTL ? styles.margin : 0,
-        marginLeft: props.isRTL ? styles.margin : 0
+        marginLeft: props.isRTL ? styles.margin : 0,
       }}
     />
-    <TextSmallNormal style={{color: styles.colors.darkGrey}}>
-      Mise à jour : <Text style={{color: styles.colors.green}}>{props.text}</Text>
-    </TextSmallNormal>
+    <TextDSFR_MD style={{ color: styles.colors.darkGrey }}>
+      Mise à jour :{" "}
+      <Text style={{ color: styles.colors.green }}>{props.text}</Text>
+    </TextDSFR_MD>
   </RTLView>
 );

@@ -13,9 +13,11 @@ export default function useCachedResources() {
 
         // Load fonts
         await Font.loadAsync({
-          circularBook: require("../theme/fonts/CircularStd-Book.otf"),
-          circularBold: require("../theme/fonts/CircularStd-Bold.otf"),
-          circularItalic: require("../theme/fonts/CircularStd-BookItalic.otf"),
+          marianneReg: require("../theme/fonts/Marianne-Regular.otf"),
+          marianneRegItalic: require("../theme/fonts/Marianne-RegularItalic.otf"),
+          marianneMed: require("../theme/fonts/Marianne-Medium.otf"),
+          // marianneMedItalic: require("../theme/fonts/Marianne-MediumItalic.otf"),
+          marianneBold: require("../theme/fonts/Marianne-Bold.otf"),
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

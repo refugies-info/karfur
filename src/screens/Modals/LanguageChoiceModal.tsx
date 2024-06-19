@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { styles } from "../../theme";
-import { StyledTextNormalBold } from "../../components/StyledText";
+import { TextDSFR_L_Bold } from "../../components/StyledText";
 import { activatedLanguages } from "../../data/languagesData";
 import { RTLView } from "../../components/BasicComponents";
 import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
@@ -116,9 +116,9 @@ export const LanguageChoiceModal = (props: Props) => {
             fill={styles.colors.black}
             style={iconStyle}
           />
-          <StyledTextNormalBold>
+          <TextDSFR_L_Bold>
             {t("global.language", "Langue de l'application")}
-          </StyledTextNormalBold>
+          </TextDSFR_L_Bold>
         </TitleContainer>
 
         <LanguagesContainer>

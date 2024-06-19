@@ -11,8 +11,8 @@ import {
   MiniMap,
   RTLView,
   ReadableText,
-  TextBigBold,
-  TextSmallBold,
+  TextDSFR_XL,
+  TextDSFR_MD_Bold,
 } from "../../../components";
 import { useTranslationWithRTL } from "../../../hooks";
 import { styles } from "../../../theme";
@@ -21,7 +21,7 @@ import { logEventInFirebase } from "../../../utils/logEvent";
 import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
 import { withProps } from "../../../utils";
 
-const HeaderText = styled(TextBigBold)`
+const HeaderText = styled(TextDSFR_XL)`
   margin-top: ${({ theme }) => theme.margin * 2}px;
   margin-bottom: ${({ theme }) => theme.margin * 2}px;
 `;
@@ -35,7 +35,7 @@ const FakeMapButton = styled(RTLView)`
   height: 56px;
   padding-horizontal: ${({ theme }) => theme.radius * 3}px;
 `;
-const FakeMapButtonText = styled(TextSmallBold)`
+const FakeMapButtonText = styled(TextDSFR_MD_Bold)`
   margin-left: ${({ theme }) => (!theme.i18n.isRTL ? theme.margin : 0)}px;
   margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
 `;

@@ -6,7 +6,7 @@ import styled from "styled-components/native";
 
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
-import { TextSmallBold, TextVerySmallNormal } from "../StyledText";
+import { TextDSFR_MD_Med, TextDSFR_S } from "../StyledText";
 
 const ICON_SIZE = 24;
 
@@ -103,7 +103,7 @@ export const ToggleButton = ({
             },
           ]}
         >
-          <TextSmallBold
+          <TextDSFR_MD_Med
             style={
               disabled && {
                 color: styles.colors.greyDisabled,
@@ -111,9 +111,9 @@ export const ToggleButton = ({
             }
           >
             {title}
-          </TextSmallBold>
+          </TextDSFR_MD_Med>
           {subtitle && (
-            <TextVerySmallNormal
+            <TextDSFR_S
               style={[
                 {
                   color: styles.colors.darkGrey,
@@ -125,7 +125,7 @@ export const ToggleButton = ({
               ]}
             >
               {subtitle}
-            </TextVerySmallNormal>
+            </TextDSFR_S>
           )}
         </View>
       </View>

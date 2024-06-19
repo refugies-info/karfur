@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
-import { TextNormalBold } from "../StyledText";
+import { TextDSFR_L_Bold } from "../StyledText";
 import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
-const StyledTextBold = styled(TextNormalBold)`
+const StyledTextBold = styled(TextDSFR_L_Bold)`
   margin-top: ${styles.margin * 5}px;
   margin-bottom: ${styles.margin * 3}px;
   padding-horizontal: ${styles.margin * 3}px;

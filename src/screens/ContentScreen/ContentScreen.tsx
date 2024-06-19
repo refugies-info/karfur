@@ -37,7 +37,7 @@ import {
   RTLView,
   Separator,
   Spacer,
-  StyledTextNormal,
+  TextDSFR_L,
   Title,
   UpButton,
 } from "../../components";
@@ -210,13 +210,13 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           </Title>
 
           {!isEmpty(selectedContent.titreMarque) && (
-            <StyledTextNormal style={{ marginBottom: styles.margin * 3 }}>
+            <TextDSFR_L style={{ marginBottom: styles.margin * 3 }}>
               <ReadableText>
                 {`${t("content_screen.with", "Avec")} ${
                   selectedContent.titreMarque
                 }`}
               </ReadableText>
-            </StyledTextNormal>
+            </TextDSFR_L>
           )}
 
           {selectedContent.typeContenu === ContentType.DEMARCHE && (

@@ -24,7 +24,7 @@ import { LanguageChoiceModal } from "../../../screens/Modals/LanguageChoiceModal
 import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "../../../utils/logEvent";
 import { LanguageSwitch } from "../../Language/LanguageSwitch";
-import { StyledTextSmallBold } from "../../StyledText";
+import { TextDSFR_MD_Bold } from "../../StyledText";
 import Logo from "../../../theme/images/logo.svg";
 import NotificationsIcon from "../../Notifications/NotificationsIcon";
 import Columns from "../Columns";
@@ -44,7 +44,7 @@ const Container = styled.SafeAreaView`
   padding-bottom: ${({ theme }) => theme.layout.header.paddingBottom}px;
 `;
 
-const HeaderTitle = styled(StyledTextSmallBold)<{
+const HeaderTitle = styled(TextDSFR_MD_Bold)<{
   invertedColor: boolean;
 }>`
   color: ${({ invertedColor, theme }) =>

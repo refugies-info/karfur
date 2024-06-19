@@ -13,7 +13,7 @@ import styled, { useTheme } from "styled-components/native";
 import { styles } from "../theme";
 import { RTLView } from "./BasicComponents";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
-import { StyledTextVerySmallBold } from "./StyledText";
+import { TextDSFR_XS_Bold } from "./StyledText";
 import { Columns, Rows } from "./layout";
 
 interface Props {
@@ -44,7 +44,7 @@ const TextIcon = styled(Icon)`
   marginright: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin * 2)}px;
   marginleft: ${({ theme }) => (theme.i18n.isRTL ? theme.margin * 2 : 0)}px;
 `;
-const StyledText = styled(StyledTextVerySmallBold)`
+const StyledText = styled(TextDSFR_XS_Bold)`
   color: ${({ theme }) => theme.colors.white};
 `;
 

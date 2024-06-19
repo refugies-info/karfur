@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { styles } from "../../theme";
-import { StyledTextSmallBold } from "../StyledText";
+import { TextDSFR_MD_Med } from "../StyledText";
 
 const ButtonContainer = styled(RTLTouchableOpacity)<{
   inList: boolean;
@@ -32,11 +32,14 @@ const LabelContainer = styled(RTLView)`
   gap: ${styles.margin * 2}px;
 `;
 
-const StyledLabel = styled(StyledTextSmallBold)<{
+const StyledLabel = styled(TextDSFR_MD_Med)<{
   isEmpty: boolean;
   purpleVariant: boolean;
+  isBold: boolean;
 }>`
   flex: 1;
+  ${({ theme, isBold }) =>
+    isBold ? `font-family: ${theme.fonts.families.marianneBold};` : ""}
   ${({ isEmpty, theme }) =>
     isEmpty ? `color: ${theme.colors.dsfr_disabledGrey};` : ""}
   ${({ purpleVariant, theme }) =>
@@ -52,6 +55,7 @@ interface Props {
   onPress?: () => void;
   inList?: boolean;
   isEmpty?: boolean;
+  isBold?: boolean;
   iconRight: IconRight;
   purpleVariant?: boolean;
   id?: string;
@@ -91,6 +95,7 @@ export const ProfilDetailButton = (props: Props) => (
       <StyledLabel
         numberOfLines={1}
         isEmpty={!!props.isEmpty}
+        isBold={!!props.isBold}
         purpleVariant={!!props.purpleVariant}
       >
         {props.label}

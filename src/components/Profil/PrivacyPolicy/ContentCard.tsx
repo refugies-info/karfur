@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { styles } from "../../../theme";
-import { TextNormalBold } from "../../StyledText";
+import { TextDSFR_L_Bold } from "../../StyledText";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 
 const ContentCardContainer = styled.View`
@@ -27,7 +27,7 @@ const ContentCardTitleNumber = styled.View<{ isRTL: boolean }>`
   margin-right: ${({ isRTL }) => (!isRTL ? styles.margin * 2 : 0)}px;
   margin-left: ${({ isRTL }) => (isRTL ? styles.margin * 2 : 0)}px;
 `;
-const ContentCardTitleNumberText = styled(TextNormalBold)`
+const ContentCardTitleNumberText = styled(TextDSFR_L_Bold)`
   color: ${styles.colors.white};
 `;
 
@@ -46,9 +46,9 @@ export const ContentCard = (props: Props) => {
         <ContentCardTitleNumber isRTL={isRTL}>
           <ContentCardTitleNumberText>{props.step}</ContentCardTitleNumberText>
         </ContentCardTitleNumber>
-        <TextNormalBold style={{ flex: 1, flexWrap: "wrap" }}>
+        <TextDSFR_L_Bold style={{ flex: 1, flexWrap: "wrap" }}>
           {props.title}
-        </TextNormalBold>
+        </TextDSFR_L_Bold>
       </ContentCardTitle>
       {props.children}
     </ContentCardContainer>

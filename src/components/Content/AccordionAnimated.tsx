@@ -10,7 +10,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { styles } from "../../theme";
 import { RTLTouchableOpacity } from "../BasicComponents";
-import { TextSmallBold } from "../StyledText";
+import { TextDSFR_MD_Bold } from "../StyledText";
 import { AccordionHeaderFromHtml } from "./AccordionHeaderFromHtml";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -58,7 +58,7 @@ const StepContainer = styled.View<{ darkColor: string }>`
   margin-left: ${({ theme }) => (theme.i18n.isRTL ? styles.margin * 2 : 0)}px;
 `;
 
-const StepText = styled(TextSmallBold)`
+const StepText = styled(TextDSFR_MD_Bold)`
   color: ${styles.colors.white};
 `;
 
@@ -70,7 +70,10 @@ const IconContainer = styled.View<{ isRTL: boolean }>`
   margin-left: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
 `;
 
-const TitleText = styled(TextSmallBold)<{ width: number; darkColor: string }>`
+const TitleText = styled(TextDSFR_MD_Bold)<{
+  width: number;
+  darkColor: string;
+}>`
   width: ${({ width }) => width}px;
   color: ${({ darkColor }) => darkColor};
 `;

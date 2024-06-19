@@ -13,7 +13,14 @@ interface Props {
   colorNotHighlighted?: string;
 }
 
-const Highlight = ({ attribute, hit, highlight, capitalize, color, colorNotHighlighted }: Props) => {
+const Highlight = ({
+  attribute,
+  hit,
+  highlight,
+  capitalize,
+  color,
+  colorNotHighlighted,
+}: Props) => {
   const highlights = highlight({
     highlightProperty: "_highlightResult",
     attribute,
@@ -23,16 +30,20 @@ const Highlight = ({ attribute, hit, highlight, capitalize, color, colorNotHighl
   return (
     <Text>
       {highlights.map(({ value, isHighlighted }: any, index: number) => {
-        const style: any = isHighlighted ? {
-          backgroundColor: styles.colors.lightBlue,
-          fontFamily:styles.fonts.families.circularBold,
-        } : {
-          backgroundColor: "transparent",
-          fontFamily: styles.fonts.families.circularStandard,
-        };
+        const style: any = isHighlighted
+          ? {
+              backgroundColor: styles.colors.lightBlue,
+              fontFamily: styles.fonts.families.marianneBold,
+            }
+          : {
+              backgroundColor: "transparent",
+              fontFamily: styles.fonts.families.marianneReg,
+            };
 
         if (color) {
-          style.color = isHighlighted ? color : `${colorNotHighlighted || color}B3`;
+          style.color = isHighlighted
+            ? color
+            : `${colorNotHighlighted || color}B3`;
         }
 
         return (
@@ -44,6 +55,5 @@ const Highlight = ({ attribute, hit, highlight, capitalize, color, colorNotHighl
     </Text>
   );
 };
-
 
 export default connectHighlight(Highlight);

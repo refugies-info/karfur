@@ -56,7 +56,7 @@ exports[`Tag snapshot test suite should render without bug 1`] = `
       [
         {
           "color": "#212121",
-          "fontFamily": "circularBold",
+          "fontFamily": "marianneBold",
           "fontSize": 16,
           "lineHeight": 24,
           "textAlign": "left",

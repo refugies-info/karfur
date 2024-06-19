@@ -11,8 +11,8 @@ import {
   CustomButton,
   RTLView,
   ReadButton,
-  TextSmallBold,
-  TextSmallNormal,
+  TextDSFR_MD_Bold,
+  TextDSFR_MD,
   Toast,
 } from "../../../components";
 import { useTranslationWithRTL } from "../../../hooks";
@@ -46,10 +46,10 @@ const TabBarContainer = styled.View`
   ${({ theme }) => theme.shadows.xs}
   z-index: 14;
 `;
-const ToastText = styled(TextSmallNormal)`
+const ToastText = styled(TextDSFR_MD)`
   color: ${({ theme }) => theme.colors.white};
 `;
-const ToastTextBold = styled(TextSmallBold)`
+const ToastTextBold = styled(TextDSFR_MD_Bold)`
   color: ${({ theme }) => theme.colors.white};
 `;
 
@@ -170,7 +170,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
             readableOverridePosY={100000}
             style={{ marginHorizontal: styles.margin, width: 120 }}
             textColor={styles.colors.black}
-            textStyle={{ fontSize: styles.fonts.sizes.verySmall }}
+            textStyle={{ fontSize: styles.fonts.sizes.xs }}
           />
           {!noReadButton && (
             <View
@@ -198,7 +198,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
             readableOverridePosY={100001}
             style={{ marginHorizontal: styles.margin, width: 120 }}
             textColor={styles.colors.black}
-            textStyle={{ fontSize: styles.fonts.sizes.verySmall }}
+            textStyle={{ fontSize: styles.fonts.sizes.xs }}
           />
         </RTLView>
       </TabBarContainer>

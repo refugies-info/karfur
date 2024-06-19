@@ -21,10 +21,7 @@ import {
   removeUserAllFavoritesActionCreator,
   removeUserHasNewFavoritesActionCreator,
 } from "../../services/redux/User/user.actions";
-import {
-  StyledTextBigBold,
-  StyledTextSmall,
-} from "../../components/StyledText";
+import { TextDSFR_XL, TextDSFR_MD } from "../../components/StyledText";
 import { CustomButton } from "../../components/CustomButton";
 import { ContentSummary } from "../../components/Contents/ContentSummary";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
@@ -43,12 +40,12 @@ const EmptyContainer = styled.View`
   padding-bottom: ${({ theme }) =>
     theme.margin * 5 + (theme.insets.bottom || 0)}px;
 `;
-const EmptyTitle = styled(StyledTextBigBold)`
+const EmptyTitle = styled(TextDSFR_XL)`
   text-align: center;
   margin-top: ${({ theme }) => theme.margin * 4}px;
   margin-bottom: ${({ theme }) => theme.margin * 2}px;
 `;
-const EmptyText = styled(StyledTextSmall)`
+const EmptyText = styled(TextDSFR_MD)`
   text-align: center;
   margin-bottom: ${({ theme }) => theme.margin * 4}px;
 `;

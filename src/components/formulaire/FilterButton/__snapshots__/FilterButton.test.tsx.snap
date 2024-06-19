@@ -113,7 +113,7 @@ exports[`FilterButton snapshot test suite should render not selected 1`] = `
             style={
               {
                 "color": "#161616",
-                "fontFamily": "circularBold",
+                "fontFamily": "marianneMed",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "paddingVertical": 4,
@@ -341,7 +341,7 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
             style={
               {
                 "color": "#000091",
-                "fontFamily": "circularBold",
+                "fontFamily": "marianneMed",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "paddingVertical": 4,
@@ -378,7 +378,7 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
                 style={
                   {
                     "color": "#0063cb",
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 12,
                     "lineHeight": 20,
                     "textAlign": "left",
@@ -406,7 +406,7 @@ exports[`FilterButton snapshot test suite should render with detail 1`] = `
                 style={
                   {
                     "color": "#0063cb",
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 12,
                     "lineHeight": 20,
                     "textAlign": "left",
@@ -643,7 +643,7 @@ exports[`FilterButton snapshot test suite should render without bug 1`] = `
             style={
               {
                 "color": "#000091",
-                "fontFamily": "circularBold",
+                "fontFamily": "marianneMed",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "paddingVertical": 4,

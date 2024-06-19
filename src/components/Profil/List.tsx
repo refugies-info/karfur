@@ -2,14 +2,14 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { RTLView } from "../BasicComponents";
 import { styles } from "../../theme";
-import { TextSmallNormal } from "../StyledText";
+import { TextDSFR_MD } from "../StyledText";
 import { View } from "react-native";
 
-const BulletPoint = styled(TextSmallNormal)<{ isRTL: boolean }>`
+const BulletPoint = styled(TextDSFR_MD)<{ isRTL: boolean }>`
   margin-right: ${({ isRTL }) => (isRTL ? styles.margin / 2 : 0)}px;
   margin-left: ${({ isRTL }) => (!isRTL ? styles.margin / 2 : 0)}px;
 `;
-const ListItem = styled(TextSmallNormal)<{ isRTL: boolean }>`
+const ListItem = styled(TextDSFR_MD)<{ isRTL: boolean }>`
   margin-right: ${({ isRTL }) => (isRTL ? styles.margin : 0)}px;
   margin-left: ${({ isRTL }) => (!isRTL ? styles.margin : 0)}px;
   flex-shrink: 1;

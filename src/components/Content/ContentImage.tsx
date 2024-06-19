@@ -2,7 +2,7 @@ import React from "react";
 import { Image } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { styles } from "../../theme";
-import { TextSmallNormal } from "../StyledText";
+import { TextDSFR_MD } from "../StyledText";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { getImageNameFromContentId } from "../Contents/contentsIdDemarcheImageCorrespondency";
@@ -44,7 +44,7 @@ const StructureNameContainer = styled(StructureImageContainer)`
   padding: 4px;
 `;
 
-const StructureNameText = styled(TextSmallNormal)`
+const StructureNameText = styled(TextDSFR_MD)`
   text-align: center;
 `;
 
@@ -131,11 +131,11 @@ export const ContentImage = (props: Props) => {
             stroke={theme.colors.black}
           />
         )}
-        <TextSmallNormal>
+        <TextDSFR_MD>
           <ReadableText>
             {t("content_screen.procedure", "Démarche")}
           </ReadableText>
-        </TextSmallNormal>
+        </TextDSFR_MD>
       </Columns>
     </SponsorImageContainer>
   );

@@ -7,7 +7,7 @@ import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "../hooks";
 import Logo from "../theme/images/logo.svg";
 import AppInPhone from "../theme/images/app-in-phone.png";
-import { TextNormalBold } from "./StyledText";
+import { TextDSFR_L_Bold } from "./StyledText";
 import { storeUrl } from "../data/storeLinks";
 
 const MainContainer = styled.View`
@@ -44,12 +44,12 @@ const OfflinePage = () => {
           accessible={true}
           accessibilityLabel="Réfugiés point info"
         />
-        <TextNormalBold style={{ textAlign: "center" }}>
+        <TextDSFR_L_Bold style={{ textAlign: "center" }}>
           {t(
             "global.new_app_version",
             "Une nouvelle version de l'application Réfugiés.info est disponible."
           )}
-        </TextNormalBold>
+        </TextDSFR_L_Bold>
         <Button
           accessibilityLabel="Mettre à jour sur le Store"
           backgroundColor={theme.colors.darkBlue}

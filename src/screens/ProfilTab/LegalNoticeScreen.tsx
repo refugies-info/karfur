@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TextSmallNormal } from "../../components/StyledText";
+import { TextDSFR_MD } from "../../components/StyledText";
 import { Icon } from "react-native-eva-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -46,7 +46,7 @@ export const LegalNoticeScreen = ({
             marginLeft: isRTL ? styles.margin : 0,
           }}
         />
-        <TextSmallNormal>Place Beauvau, 75800 Paris Cedex 08</TextSmallNormal>
+        <TextDSFR_MD>Place Beauvau, 75800 Paris Cedex 08</TextDSFR_MD>
       </RTLView>
 
       <P style={{ marginTop: styles.margin * 3, marginBottom: styles.margin }}>
@@ -64,7 +64,7 @@ export const LegalNoticeScreen = ({
             marginLeft: isRTL ? styles.margin : 0,
           }}
         />
-        <TextSmallNormal>135 Boulevard Chanzy, 93100 Montreuil</TextSmallNormal>
+        <TextDSFR_MD>135 Boulevard Chanzy, 93100 Montreuil</TextDSFR_MD>
       </RTLView>
 
       <P style={{ marginTop: styles.margin * 3 }}>
@@ -87,7 +87,7 @@ export const LegalNoticeScreen = ({
             marginLeft: isRTL ? styles.margin : 0,
           }}
         />
-        <TextSmallNormal>8 rue de Londres, 75009 PARIS</TextSmallNormal>
+        <TextDSFR_MD>8 rue de Londres, 75009 PARIS</TextDSFR_MD>
       </RTLView>
 
       <P style={{ marginTop: styles.margin * 3 }}>
@@ -121,9 +121,9 @@ export const LegalNoticeScreen = ({
               marginLeft: isRTL ? styles.margin : 0,
             }}
           />
-          <TextSmallNormal style={{ flexShrink: 1 }}>
+          <TextDSFR_MD style={{ flexShrink: 1 }}>
             (Art. L. 122-5 du Code de la propriété intellectuelle)
-          </TextSmallNormal>
+          </TextDSFR_MD>
         </RTLView>
 
         <ContentHighlight>
@@ -157,9 +157,9 @@ export const LegalNoticeScreen = ({
               marginLeft: isRTL ? styles.margin : 0,
             }}
           />
-          <TextSmallNormal style={{ flexShrink: 1 }}>
+          <TextDSFR_MD style={{ flexShrink: 1 }}>
             (Art L.122-4 du Code de la propriété Intellectuelle)
-          </TextSmallNormal>
+          </TextDSFR_MD>
         </RTLView>
         <P>
           Pour toute question sur la reproduction de contenus, tu peux

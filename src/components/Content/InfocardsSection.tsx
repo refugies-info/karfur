@@ -7,7 +7,7 @@ import {
   GetDispositifResponse,
   Metadatas,
 } from "@refugies-info/api-types";
-import { TextNormalBold, TextSmallBold, TextSmallNormal } from "../StyledText";
+import { TextDSFR_L_Bold, TextDSFR_MD_Bold, TextDSFR_MD } from "../StyledText";
 import { getConditionImage, getDescriptionNew } from "../../libs/content";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ReadableText } from "../ReadableText";
@@ -29,16 +29,16 @@ const MainContainer = styled.View`
   margin-bottom: ${({ theme }) => theme.margin * 5}px;
 `;
 
-const TitleText = styled(TextNormalBold)<{ color: string }>`
+const TitleText = styled(TextDSFR_L_Bold)<{ color: string }>`
   color: ${({ color }) => color};
   margin-bottom: ${({ theme }) => theme.radius * 2}px;
 `;
 
-const SubtitleText = styled(TextSmallBold)`
+const SubtitleText = styled(TextDSFR_MD_Bold)`
   color: ${({ theme }) => theme.colors.black};
 `;
 
-const DescriptionText = styled(TextSmallNormal)`
+const DescriptionText = styled(TextDSFR_MD)`
   margin-top: 4px;
 `;
 

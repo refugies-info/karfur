@@ -8,7 +8,7 @@ import {
   Rows,
   RowsSpacing,
   SectionTitle,
-  TextNormal,
+  TextDSFR_MD,
 } from "../../../../components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -33,7 +33,7 @@ const MySectionTitle = styled(SectionTitle)`
   margin-top: ${({ theme }) => theme.margin * 2}px;
 `;
 
-const MyTextNormal = styled(TextNormal)`
+const MyTextNormal = styled(TextDSFR_MD)`
   text-align: center;
   margin-horizontal: ${({ theme }) => theme.margin * 2}px;
 `;

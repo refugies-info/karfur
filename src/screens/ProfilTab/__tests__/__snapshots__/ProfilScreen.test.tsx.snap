@@ -440,7 +440,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneBold",
                       "fontSize": 24,
                       "lineHeight": 32,
                       "marginBottom": 40,
@@ -628,6 +628,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 </RNSVGSvgView>
               </View>
               <Text
+                isBold={true}
                 isEmpty={false}
                 isRTL={false}
                 numberOfLines={1}
@@ -639,7 +640,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -947,6 +948,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 </RNSVGSvgView>
               </View>
               <Text
+                isBold={true}
                 isEmpty={false}
                 isRTL={false}
                 numberOfLines={1}
@@ -958,7 +960,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -1279,6 +1281,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 </RNSVGSvgView>
               </View>
               <Text
+                isBold={true}
                 isEmpty={false}
                 isRTL={false}
                 numberOfLines={1}
@@ -1290,7 +1293,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -1459,7 +1462,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   style={
                     {
                       "color": "#000091",
-                      "fontFamily": "circularBook",
+                      "fontFamily": "marianneReg",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "paddingBottom": 12,
@@ -1600,7 +1603,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "fontFamily": "marianneBold",
                   "fontSize": 18,
                   "lineHeight": 28,
                   "paddingVertical": 16,
@@ -1668,6 +1671,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   width={20}
                 />
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -1679,7 +1683,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -1961,6 +1965,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -1972,7 +1977,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -2264,6 +2269,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 </RNSVGSvgView>
               </View>
               <Text
+                isBold={false}
                 isEmpty={false}
                 isRTL={false}
                 numberOfLines={1}
@@ -2275,7 +2281,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneMed",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -2429,7 +2435,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "fontFamily": "marianneBold",
                   "fontSize": 18,
                   "lineHeight": 28,
                   "paddingVertical": 16,
@@ -2618,6 +2624,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -2629,7 +2636,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -2921,6 +2928,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -2932,7 +2940,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -3233,6 +3241,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -3244,7 +3253,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -3545,6 +3554,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -3556,7 +3566,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -3848,6 +3858,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -3859,7 +3870,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -4151,6 +4162,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -4162,7 +4174,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -4443,7 +4455,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 [
                   {
                     "color": "#CE0500",
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "marginLeft": 8,
@@ -4478,9 +4490,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 13,
-                  "lineHeight": 16,
+                  "fontFamily": "marianneReg",
+                  "fontSize": 12,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
                 {
@@ -4974,7 +4986,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   [
                     {
                       "color": "#212121",
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneBold",
                       "fontSize": 24,
                       "lineHeight": 32,
                       "marginBottom": 40,
@@ -5162,6 +5174,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 </RNSVGSvgView>
               </View>
               <Text
+                isBold={false}
                 isEmpty={true}
                 isRTL={false}
                 numberOfLines={1}
@@ -5173,7 +5186,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneMed",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -5472,6 +5485,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 </RNSVGSvgView>
               </View>
               <Text
+                isBold={false}
                 isEmpty={true}
                 isRTL={false}
                 numberOfLines={1}
@@ -5483,7 +5497,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneMed",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -5795,6 +5809,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 </RNSVGSvgView>
               </View>
               <Text
+                isBold={false}
                 isEmpty={true}
                 isRTL={false}
                 numberOfLines={1}
@@ -5806,7 +5821,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneMed",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -5966,7 +5981,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   style={
                     {
                       "color": "#000091",
-                      "fontFamily": "circularBook",
+                      "fontFamily": "marianneReg",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "paddingBottom": 12,
@@ -6107,7 +6122,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "fontFamily": "marianneBold",
                   "fontSize": 18,
                   "lineHeight": 28,
                   "paddingVertical": 16,
@@ -6175,6 +6190,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   width={20}
                 />
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -6186,7 +6202,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -6468,6 +6484,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -6479,7 +6496,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -6771,6 +6788,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 </RNSVGSvgView>
               </View>
               <Text
+                isBold={false}
                 isEmpty={false}
                 isRTL={false}
                 numberOfLines={1}
@@ -6782,7 +6800,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneMed",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -6936,7 +6954,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
+                  "fontFamily": "marianneBold",
                   "fontSize": 18,
                   "lineHeight": 28,
                   "paddingVertical": 16,
@@ -7125,6 +7143,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -7136,7 +7155,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -7428,6 +7447,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -7439,7 +7459,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -7740,6 +7760,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -7751,7 +7772,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -8052,6 +8073,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -8063,7 +8085,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -8355,6 +8377,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -8366,7 +8389,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -8658,6 +8681,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   </RNSVGSvgView>
                 </View>
                 <Text
+                  isBold={false}
                   isEmpty={false}
                   isRTL={false}
                   numberOfLines={1}
@@ -8669,7 +8693,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                       "flexBasis": 0,
                       "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "marianneMed",
                       "fontSize": 16,
                       "lineHeight": 24,
                       "textAlign": "left",
@@ -8950,7 +8974,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 [
                   {
                     "color": "#CE0500",
-                    "fontFamily": "circularBold",
+                    "fontFamily": "marianneBold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "marginLeft": 8,
@@ -8985,9 +9009,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 13,
-                  "lineHeight": 16,
+                  "fontFamily": "marianneReg",
+                  "fontSize": 12,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
                 {

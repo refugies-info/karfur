@@ -18,8 +18,8 @@ import {
   Select,
   Separator,
   Spacer,
-  StyledTextSmall,
-  StyledTextSmallBold,
+  TextDSFR_MD,
+  TextDSFR_MD_Med,
   Title,
 } from "../../components";
 import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
@@ -91,16 +91,12 @@ export const ShareScreen = ({
                 <Flag langueFr={selectedLanguage.langueFr} />
               </FlagBackground>
               <RTLView>
-                <StyledTextSmallBold>
-                  {selectedLanguage.langueLoc}
-                </StyledTextSmallBold>
-                <StyledTextSmall
-                  style={{ color: theme.colors.dsfr_mentionGrey }}
-                >
+                <TextDSFR_MD_Med>{selectedLanguage.langueLoc}</TextDSFR_MD_Med>
+                <TextDSFR_MD style={{ color: theme.colors.dsfr_mentionGrey }}>
                   {!isRTL
                     ? " - " + selectedLanguage.langueFr
                     : selectedLanguage.langueFr + " - "}
-                </StyledTextSmall>
+                </TextDSFR_MD>
               </RTLView>
             </Columns>
           </Select>

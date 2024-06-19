@@ -2,10 +2,10 @@ import * as React from "react";
 import { View, ScrollView, StyleSheet, Image } from "react-native";
 import * as Linking from "expo-linking";
 import {
-  TextNormal,
-  TextSmallNormal,
-  TextNormalBold,
-  TextSmallBold,
+  TextDSFR_L,
+  TextDSFR_L_Bold,
+  TextDSFR_MD,
+  TextDSFR_MD_Bold,
 } from "../../components/StyledText";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ProfileParamList } from "../../../types";
@@ -44,7 +44,7 @@ const CardImage = styled.Image`
   align-self: center;
   margin-bottom: ${styles.margin * 2}px;
 `;
-const CardTitle = styled(TextNormalBold)`
+const CardTitle = styled(TextDSFR_L_Bold)`
   margin-bottom: ${styles.margin}px;
   margin-top: ${styles.margin * 2}px;
 `;
@@ -77,13 +77,13 @@ const TeamDetails = styled.View<{ isRTL: boolean }>`
   flex-shrink: 1;
   flex-grow: 0;
 `;
-const TeamName = styled(TextSmallBold)`
+const TeamName = styled(TextDSFR_MD_Bold)`
   background-color: ${styles.colors.white};
   margin-bottom: ${styles.margin}px;
   padding: ${styles.margin / 2}px;
   width: auto;
 `;
-const TeamRole = styled(TextSmallNormal)`
+const TeamRole = styled(TextDSFR_MD)`
   flex-wrap: wrap;
 `;
 
@@ -135,9 +135,9 @@ export const AboutScreen = ({}: StackScreenProps<
   return (
     <Page title={t("about_screen.about_us")}>
       <Rows>
-        <TextNormal>
+        <TextDSFR_L>
           {t("about_screen.subheader1")} {t("about_screen.subheader2")}
-        </TextNormal>
+        </TextDSFR_L>
 
         {/* MISSIONS */}
         <Title>{t("about_screen.missions")}</Title>
@@ -158,9 +158,7 @@ export const AboutScreen = ({}: StackScreenProps<
           >
             <CardImage source={Mission1} />
             <CardTitle>{t("about_screen.mission_3_header")}</CardTitle>
-            <TextSmallNormal>
-              {t("about_screen.mission_3_subheader")}
-            </TextSmallNormal>
+            <TextDSFR_MD>{t("about_screen.mission_3_subheader")}</TextDSFR_MD>
           </Card>
           <Card
             style={{
@@ -171,16 +169,12 @@ export const AboutScreen = ({}: StackScreenProps<
           >
             <CardImage source={Mission2} />
             <CardTitle>{t("about_screen.mission_2_header")}</CardTitle>
-            <TextSmallNormal>
-              {t("about_screen.mission_2_subheader")}
-            </TextSmallNormal>
+            <TextDSFR_MD>{t("about_screen.mission_2_subheader")}</TextDSFR_MD>
           </Card>
           <Card>
             <CardImage source={Mission3} />
             <CardTitle>{t("about_screen.mission_1_header")}</CardTitle>
-            <TextSmallNormal>
-              {t("about_screen.mission_1_subheader")}
-            </TextSmallNormal>
+            <TextDSFR_MD>{t("about_screen.mission_1_subheader")}</TextDSFR_MD>
           </Card>
         </ScrollView>
 
@@ -202,9 +196,7 @@ export const AboutScreen = ({}: StackScreenProps<
           >
             <CardImage source={Problematique1} />
             <CardTitle>{t("about_screen.problem_1_header")}</CardTitle>
-            <TextSmallNormal>
-              {t("about_screen.problem_1_subheader")}
-            </TextSmallNormal>
+            <TextDSFR_MD>{t("about_screen.problem_1_subheader")}</TextDSFR_MD>
           </Card>
           <Card
             style={{
@@ -214,16 +206,12 @@ export const AboutScreen = ({}: StackScreenProps<
           >
             <CardImage source={Problematique2} />
             <CardTitle>{t("about_screen.problem_2_header")}</CardTitle>
-            <TextSmallNormal>
-              {t("about_screen.problem_2_subheader")}
-            </TextSmallNormal>
+            <TextDSFR_MD>{t("about_screen.problem_2_subheader")}</TextDSFR_MD>
           </Card>
           <Card>
             <CardImage source={Problematique3} />
             <CardTitle>{t("about_screen.problem_3_header2")}</CardTitle>
-            <TextSmallNormal>
-              {t("about_screen.problem_3_subheader2")}
-            </TextSmallNormal>
+            <TextDSFR_MD>{t("about_screen.problem_3_subheader2")}</TextDSFR_MD>
           </Card>
         </ScrollView>
 
@@ -248,9 +236,9 @@ export const AboutScreen = ({}: StackScreenProps<
             <View>
               <CardImage source={Contributif1} />
               <CardTitle>{t("about_screen.contributive_1_header2")}</CardTitle>
-              <TextSmallNormal>
+              <TextDSFR_MD>
                 {t("about_screen.contributive_1_subheader")}
-              </TextSmallNormal>
+              </TextDSFR_MD>
             </View>
           </Card>
           <Card
@@ -263,25 +251,25 @@ export const AboutScreen = ({}: StackScreenProps<
             <View>
               <CardImage source={Contributif2} />
               <CardTitle>{t("about_screen.contributive_2_header")}</CardTitle>
-              <TextSmallNormal>
+              <TextDSFR_MD>
                 {t("about_screen.contributive_2_subheader")}
-              </TextSmallNormal>
+              </TextDSFR_MD>
             </View>
           </Card>
           <Card style={{ justifyContent: "space-between" }}>
             <View>
               <CardImage source={Contributif3} />
               <CardTitle>{t("about_screen.contributive_3_header")}</CardTitle>
-              <TextSmallNormal>
+              <TextDSFR_MD>
                 {t("about_screen.contributive_3_subheader")}
-              </TextSmallNormal>
+              </TextDSFR_MD>
             </View>
           </Card>
         </ScrollView>
 
         {/* PARTENAIRES */}
         <Title>{t("about_screen.partners")}</Title>
-        <TextSmallBold>{t("about_screen.call_1")}</TextSmallBold>
+        <TextDSFR_MD_Bold>{t("about_screen.call_1")}</TextDSFR_MD_Bold>
 
         <ScrollView
           ref={scrollviewPartners}
@@ -298,7 +286,7 @@ export const AboutScreen = ({}: StackScreenProps<
           ))}
         </ScrollView>
 
-        <TextSmallNormal>{t("about_screen.call_2")}</TextSmallNormal>
+        <TextDSFR_MD>{t("about_screen.call_2")}</TextDSFR_MD>
         <RTLView>
           <CustomButton
             i18nKey="about_screen.download_call_button"

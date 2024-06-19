@@ -8,10 +8,9 @@ import { RTLView } from "../../../BasicComponents";
 import { styles } from "../../../../theme";
 import { SmallButton } from "../../../SmallButton";
 import {
-  TextBigBold,
-  TextNormal,
-  TextNormalBold,
-  TextSmallBold,
+  TextDSFR_XL,
+  TextDSFR_MD,
+  TextDSFR_MD_Bold,
 } from "../../../StyledText";
 import { FixSafeAreaView } from "../../../FixSafeAreaView";
 import { useTranslationWithRTL } from "../../../../hooks/useTranslationWithRTL";
@@ -91,14 +90,14 @@ export const LocationWarningModal = (props: Props) => {
               height={104}
               style={{ marginBottom: styles.margin }}
             />
-            <TextNormalBold style={stylesheet.subtitle}>
+            <TextDSFR_MD_Bold style={stylesheet.subtitle}>
               {t("explorer_screen.nb_content", {
                 nbContent: props.nbGlobalContent,
               })}
-            </TextNormalBold>
-            <TextSmallBold style={stylesheet.subtitle}>
+            </TextDSFR_MD_Bold>
+            <TextDSFR_MD_Bold style={stylesheet.subtitle}>
               {t("explorer_screen.country_content")}
-            </TextSmallBold>
+            </TextDSFR_MD_Bold>
           </View>
           <Icon
             name="plus-outline"
@@ -117,7 +116,7 @@ export const LocationWarningModal = (props: Props) => {
               height={104}
               style={{ marginBottom: styles.margin }}
             />
-            <TextNormalBold
+            <TextDSFR_MD_Bold
               style={{
                 ...stylesheet.subtitle,
                 textDecorationLine:
@@ -127,41 +126,39 @@ export const LocationWarningModal = (props: Props) => {
               {t("explorer_screen.nb_content", {
                 nbContent: props.nbLocalizedContent,
               })}
-            </TextNormalBold>
-            <TextSmallBold style={stylesheet.subtitle}>
+            </TextDSFR_MD_Bold>
+            <TextDSFR_MD_Bold style={stylesheet.subtitle}>
               {t("explorer_screen.city_content", {
                 city: props.city,
               })}
-            </TextSmallBold>
+            </TextDSFR_MD_Bold>
           </Pressable>
         </RTLView>
 
         <View style={{ marginTop: styles.margin * 5 }}>
-          <TextBigBold style={stylesheet.centerText}>
+          <TextDSFR_XL style={stylesheet.centerText}>
             {t("explorer_screen.development_in_progress")}
-          </TextBigBold>
-          <TextNormal
+          </TextDSFR_XL>
+          <TextDSFR_MD
             style={{
-              ...stylesheet.centerText,
               marginVertical: styles.margin * 2,
             }}
           >
             {t("explorer_screen.adding_new_content")}
-          </TextNormal>
+          </TextDSFR_MD>
           <Columns
-            spacing={ColumnsSpacing.Default}
             RTLBehaviour
             layout="auto"
             horizontalAlign="center"
             verticalAlign="center"
           >
             <MonitorIcon size={24} />
-            <TextNormalBold
+            <TextDSFR_MD_Bold
               onPress={() => Linking.openURL("https://www.refugies.info")}
               accessibilityRole="link"
             >
               www.refugies.info
-            </TextNormalBold>
+            </TextDSFR_MD_Bold>
           </Columns>
         </View>
       </FixSafeAreaView>

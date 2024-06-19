@@ -37,11 +37,7 @@ import {
 import { styles } from "../../theme";
 import { PauseIcon, PlayIcon } from "../../theme/images/voiceover";
 import { ReadingItem } from "../../types/interface";
-import {
-  StyledTextSmallBold,
-  StyledTextVerySmall,
-  StyledTextVerySmallBold,
-} from "../StyledText";
+import { TextDSFR_MD_Bold, TextDSFR_XS, TextDSFR_XS_Med } from "../StyledText";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -422,13 +418,13 @@ export const ReadButton = (props: Props) => {
         </PlayButtonWrapper>
         {fontScale < 1.3 &&
           (props.bold ? (
-            <StyledTextVerySmallBold style={{ color: colors.text }}>
+            <TextDSFR_XS_Med style={{ color: colors.text }}>
               {t("tab_bar.listen", "Écouter")}
-            </StyledTextVerySmallBold>
+            </TextDSFR_XS_Med>
           ) : (
-            <StyledTextVerySmall style={{ color: colors.text }}>
+            <TextDSFR_XS style={{ color: colors.text }}>
               {t("tab_bar.listen", "Écouter")}
-            </StyledTextVerySmall>
+            </TextDSFR_XS>
           ))}
       </PlayContainer>
       <Buttons style={[animatedStyle]}>
@@ -439,7 +435,7 @@ export const ReadButton = (props: Props) => {
           />
         </BackgroundContainer>
         <Button onPress={changeRate}>
-          <StyledTextSmallBold>{rate === 1 ? "x1" : "x2"}</StyledTextSmallBold>
+          <TextDSFR_MD_Bold>{rate === 1 ? "x1" : "x2"}</TextDSFR_MD_Bold>
         </Button>
         <Button onPress={debouncedPrev} ml>
           <Icon

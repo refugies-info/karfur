@@ -5,7 +5,7 @@ import { Icon } from "react-native-eva-icons";
 import { RTLView } from "../../../BasicComponents";
 import { useTranslationWithRTL } from "../../../../hooks/useTranslationWithRTL";
 import { Columns } from "../../../layout";
-import { TextSmallBold, TextSmallNormal } from "../../../StyledText";
+import { TextDSFR_MD_Bold, TextDSFR_MD } from "../../../StyledText";
 
 const InfoMessage = styled(RTLView)`
   background-color: ${({ theme }) => theme.colors.lightBlue};
@@ -15,12 +15,12 @@ const InfoMessage = styled(RTLView)`
   padding: ${({ theme }) => theme.margin}px;
 `;
 
-const InfoMessageText = styled(TextSmallNormal)`
+const InfoMessageText = styled(TextDSFR_MD)`
   color: ${({ theme }) => theme.colors.darkBlue};
   margin-horizontal: ${({ theme }) => theme.margin}px;
   flex-shrink: 1;
 `;
-const InfoMessageLink = styled(TextSmallBold)`
+const InfoMessageLink = styled(TextDSFR_MD_Bold)`
   color: ${({ theme }) => theme.colors.darkBlue};
   text-decoration-line: underline;
 `;

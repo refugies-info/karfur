@@ -213,8 +213,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 25,
+                  "fontFamily": "marianneBold",
+                  "fontSize": 24,
                   "lineHeight": 32,
                   "marginTop": 64,
                   "textAlign": "left",
@@ -234,7 +234,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "circularBook",
+                  "fontFamily": "marianneReg",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginTop": 16,
@@ -288,10 +288,10 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                 "borderWidth": 1,
                 "maxHeight": 100,
                 "opacity": 1,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
+                "paddingBottom": 10,
+                "paddingLeft": 10,
+                "paddingRight": 10,
+                "paddingTop": 10,
                 "width": "100%",
               }
             }
@@ -328,12 +328,15 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                 <Text
                   color="#FFFFFF"
                   disabled={false}
+                  isRTL={false}
+                  selectable={true}
                   style={
                     {
                       "color": "#FFFFFF",
-                      "fontFamily": "circularBook",
-                      "fontSize": 19,
-                      "fontWeight": "normal",
+                      "fontFamily": "marianneMed",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
                     }
                   }
                 >
@@ -502,10 +505,10 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                 "borderWidth": 1,
                 "maxHeight": 100,
                 "opacity": 1,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
+                "paddingBottom": 10,
+                "paddingLeft": 10,
+                "paddingRight": 10,
+                "paddingTop": 10,
                 "width": "100%",
               }
             }
@@ -542,12 +545,15 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                 <Text
                   color="#000091"
                   disabled={false}
+                  isRTL={false}
+                  selectable={true}
                   style={
                     {
                       "color": "#000091",
-                      "fontFamily": "circularBook",
-                      "fontSize": 19,
-                      "fontWeight": "normal",
+                      "fontFamily": "marianneMed",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
                     }
                   }
                 >

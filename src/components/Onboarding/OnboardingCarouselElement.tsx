@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { View } from "react-native";
 import { onboardingCarouselData } from "./OnboardingCarouselData";
-import { TextBigBold } from "../StyledText";
+import { TextDSFR_XL } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ReadableText } from "../ReadableText";
 
@@ -35,7 +35,7 @@ const TextContainer = styled.View`
   justify-content: center;
   z-index: 3;
 `;
-const StyledText = styled(TextBigBold)`
+const StyledText = styled(TextDSFR_XL)`
   width: 100%;
   text-align: center;
 `;

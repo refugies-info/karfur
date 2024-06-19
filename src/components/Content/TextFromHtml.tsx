@@ -1,7 +1,7 @@
 import HTML from "react-native-render-html";
 import * as React from "react";
 import { styles } from "../../theme";
-import { TextSmallNormal } from "../StyledText";
+import { TextDSFR_MD } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ReadableText } from "../ReadableText";
 
@@ -18,15 +18,15 @@ export const TextFromHtml = (props: Props) => {
           source={{ html: props.htmlContent }}
           defaultTextProps={{ selectable: true }}
           baseFontStyle={{
-            fontSize: styles.fonts.sizes.small,
-            fontFamily: styles.fonts.families.circularStandard,
+            fontSize: styles.fonts.sizes.md,
+            fontFamily: styles.fonts.families.marianneReg,
             textAlign: isRTL ? "right" : "left",
             margin: 0,
           }}
           renderers={{
             // eslint-disable-next-line react/display-name
             p: (_, children, _cssStyles, passProps) => (
-              <TextSmallNormal
+              <TextDSFR_MD
                 key={passProps.key}
                 style={{
                   flexShrink: 1,
@@ -35,7 +35,7 @@ export const TextFromHtml = (props: Props) => {
                 }}
               >
                 {children}
-              </TextSmallNormal>
+              </TextDSFR_MD>
             ),
           }}
         />

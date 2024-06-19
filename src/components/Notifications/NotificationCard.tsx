@@ -11,7 +11,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 import { CustomButton } from "../CustomButton";
 import { ExplorerParamList } from "../../../types";
-import { StyledTextSmall, TextVerySmallNormal } from "../StyledText";
+import { TextDSFR_MD, TextDSFR_XS } from "../StyledText";
 import { Columns, Rows, RowsSpacing } from "../layout";
 import { useDateDiffReadable } from "../../hooks";
 
@@ -25,12 +25,12 @@ const Container = styled.TouchableOpacity<{ seen: boolean }>`
   flex-direction: ${({ theme }) => (theme.i18n.isRTL ? "row-reverse" : "row")};
 `;
 
-const CardTitle = styled(StyledTextSmall)<{ seen: boolean }>`
+const CardTitle = styled(TextDSFR_MD)<{ seen: boolean }>`
   font-weight: ${({ seen }) => (seen ? "bold" : "500")};
   font-family: ${({ seen, theme }) =>
     seen
-      ? theme.fonts.families.circularStandard
-      : theme.fonts.families.circularBold};
+      ? theme.fonts.families.marianneReg
+      : theme.fonts.families.marianneBold};
 `;
 
 const Dot = styled.View`
@@ -79,7 +79,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
       {!seen && <Dot />}
       <Rows spacing={RowsSpacing.Text}>
         <CardTitle seen={seen}>{title}</CardTitle>
-        <TextVerySmallNormal>{dateNotif}</TextVerySmallNormal>
+        <TextDSFR_XS>{dateNotif}</TextDSFR_XS>
         <Columns horizontalAlign="space-between" RTLBehaviour>
           <CustomButton
             i18nKey="notifications.viewFiche"
@@ -99,7 +99,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
               flexGrow: !seen ? 1 : 0,
             }}
             textStyle={{
-              fontSize: theme.fonts.sizes.verySmall,
+              fontSize: theme.fonts.sizes.xs,
             }}
             iconSize={16}
           />
@@ -122,7 +122,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
                 borderWidth: 1,
               }}
               textStyle={{
-                fontSize: theme.fonts.sizes.verySmall,
+                fontSize: theme.fonts.sizes.xs,
               }}
             />
           )}

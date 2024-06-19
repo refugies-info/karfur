@@ -1,20 +1,17 @@
 import React from "react";
 import styled from "styled-components/native";
-import {
-  StyledTextVerySmall,
-  StyledTextVerySmallBold,
-} from "../../components/StyledText";
+import { TextDSFR_XS, TextDSFR_XS_Bold } from "../../components/StyledText";
 
 interface TabBarLabelProps {
   focused: boolean;
   label: string;
 }
 
-const TabBarLabelText = styled(StyledTextVerySmall)`
+const TabBarLabelText = styled(TextDSFR_XS)`
   color: ${({ theme }) => theme.colors.darkGrey};
 `;
 
-const TabBarLabelTextBold = styled(StyledTextVerySmallBold)`
+const TabBarLabelTextBold = styled(TextDSFR_XS_Bold)`
   color: ${({ theme }) => theme.colors.darkBlue};
 `;
 

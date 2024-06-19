@@ -3,10 +3,7 @@ import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { GetThemeResponse, Picture } from "@refugies-info/api-types";
-import {
-  TextVerySmallNormal,
-  TextSmallBold,
-} from "../../components/StyledText";
+import { TextDSFR_XS, TextDSFR_MD_Bold } from "../../components/StyledText";
 import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
@@ -96,7 +93,7 @@ const NeedsSummaryComponent = ({
         spacing={ColumnsSpacing.Large}
       >
         <Rows spacing={RowsSpacing.Text} verticalAlign="center">
-          <TextSmallBold color={theme.colors.color100}>
+          <TextDSFR_MD_Bold color={theme.colors.color100}>
             {searchItem ? (
               <Highlight
                 hit={searchItem}
@@ -107,12 +104,12 @@ const NeedsSummaryComponent = ({
             ) : (
               <ReadableText>{needText || ""}</ReadableText>
             )}
-          </TextSmallBold>
+          </TextDSFR_MD_Bold>
 
           {!isEmpty(needSubtitle) ? (
-            <TextVerySmallNormal color={theme.colors.color100}>
+            <TextDSFR_XS color={theme.colors.color100}>
               <ReadableText>{needSubtitle}</ReadableText>
-            </TextVerySmallNormal>
+            </TextDSFR_XS>
           ) : null}
         </Rows>
 

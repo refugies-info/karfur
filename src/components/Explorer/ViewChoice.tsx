@@ -2,7 +2,7 @@ import { RTLTouchableOpacity } from "../BasicComponents";
 import { styles } from "../../theme";
 import React from "react";
 import styled from "styled-components/native";
-import { TextVerySmallBold, TextVerySmallNormal } from "../StyledText";
+import { TextDSFR_XS_Bold, TextDSFR_XS } from "../StyledText";
 import GalerieFill from "../../theme/images/streamlineIcons/galerie-fill.svg";
 import GalerieOutline from "../../theme/images/streamlineIcons/galerie-outline.svg";
 import ListFill from "../../theme/images/streamlineIcons/list-fill.svg";
@@ -11,12 +11,12 @@ import { useTranslationWithRTL } from "../../hooks";
 
 const ICON_SIZE = 16;
 
-const ChoiceTextBold = styled(TextVerySmallBold)`
+const ChoiceTextBold = styled(TextDSFR_XS_Bold)`
   margin-left: ${styles.margin}px;
   margin-right: ${styles.margin}px;
 `;
 
-const ChoiceText = styled(TextVerySmallNormal)`
+const ChoiceText = styled(TextDSFR_XS)`
   margin-left: ${styles.margin}px;
   margin-right: ${styles.margin}px;
 `;
@@ -29,6 +29,7 @@ const StyledButton = styled(RTLTouchableOpacity)<{ isSelected: boolean }>`
   border-radius: ${styles.radius * 2}px;
   flex-basis: 50%;
   justify-content: center;
+  align-items: center;
 `;
 interface Props {
   text: string;

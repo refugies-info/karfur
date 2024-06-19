@@ -7,9 +7,9 @@ exports[`SectionTitle snapshot test suite should render without bug 1`] = `
   style={
     {
       "color": "#212121",
-      "fontFamily": "circularBold",
-      "fontSize": 19,
-      "lineHeight": 24,
+      "fontFamily": "marianneBold",
+      "fontSize": 18,
+      "lineHeight": 28,
       "marginBottom": 16,
       "textAlign": "left",
     }

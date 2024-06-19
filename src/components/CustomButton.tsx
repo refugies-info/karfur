@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { StyleProp, TextStyle } from "react-native";
 import { RTLTouchableOpacity } from "./BasicComponents";
 import { styles } from "../theme";
-import { StyledTextSmallBold, StyledTextSmall } from "./StyledText";
+import { TextDSFR_MD_Bold, TextDSFR_MD } from "./StyledText";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
 import { ReadableText } from "./ReadableText";
@@ -29,7 +29,7 @@ const ButtonContainer = styled(RTLTouchableOpacity)<{
   opacity: ${({ isDisabled }) => (isDisabled ? 0.4 : 1)};
 `;
 
-const ColoredTextBold = styled(StyledTextSmallBold)<{
+const ColoredTextBold = styled(TextDSFR_MD_Bold)<{
   textColor: string;
   isRTL: boolean;
   iconFirst: boolean;
@@ -44,7 +44,7 @@ const ColoredTextBold = styled(StyledTextSmallBold)<{
     hasIcon && isRTL === iconFirst ? styles.margin : 0}px;
 `;
 
-const ColoredTextNormal = styled(StyledTextSmall)<{
+const ColoredTextNormal = styled(TextDSFR_MD)<{
   textColor: string;
   isRTL: boolean;
   iconFirst: boolean;

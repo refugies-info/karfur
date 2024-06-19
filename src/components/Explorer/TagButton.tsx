@@ -2,7 +2,7 @@ import * as React from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity } from "../BasicComponents";
-import { StyledTextNormalBold } from "../StyledText";
+import { TextDSFR_L_Bold } from "../StyledText";
 import { styles } from "../../theme";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
@@ -36,7 +36,7 @@ const StyledContainer = styled(LinearGradient)<{ inline?: boolean }>`
   ${({ theme }) => theme.shadows.sm}
 `;
 
-const StyledText = styled(StyledTextNormalBold)<{ color?: string }>`
+const StyledText = styled(TextDSFR_L_Bold)<{ color?: string }>`
   color: ${({ color, theme }) => (color ? color : theme.colors.white)};
   margin-left: ${({ theme }) => (theme.isRTL ? theme.margin : 0)}px;
   margin-right: ${({ theme }) => (theme.isRTL ? 0 : theme.margin)}px;

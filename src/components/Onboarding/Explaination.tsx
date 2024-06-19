@@ -2,10 +2,10 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { StyledTextSmall } from "../StyledText";
+import { TextDSFR_MD } from "../StyledText";
 import { ReadableText } from "../ReadableText";
 
-const StyledText = styled(StyledTextSmall)`
+const StyledText = styled(TextDSFR_MD)`
   color: ${styles.colors.dsfr_grey};
   margin-bottom: ${styles.margin * 6}px;
 `;

@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
 import { styles } from "../../../theme";
-import { TextNormalBold } from "../../StyledText";
+import { TextDSFR_L_Bold } from "../../StyledText";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 
 const ContentHighlightContainer = styled.View`
@@ -36,7 +36,7 @@ export const ContentHighlight = (props: Props) => {
             marginLeft: isRTL ? styles.margin : 0,
           }}
         />
-        <TextNormalBold>Bon à savoir</TextNormalBold>
+        <TextDSFR_L_Bold>Bon à savoir</TextDSFR_L_Bold>
       </ContentHighlightTitle>
       {props.children}
     </ContentHighlightContainer>

@@ -1,7 +1,7 @@
 import HTML from "react-native-render-html";
 import * as React from "react";
 import { styles } from "../../theme";
-import { TextSmallBold } from "../StyledText";
+import { TextDSFR_MD_Bold } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ReadableText } from "../ReadableText";
 
@@ -20,8 +20,8 @@ export const AccordionHeaderFromHtml = (props: Props) => {
         contentWidth={props.windowWidth}
         source={{ html: props.htmlContent }}
         baseFontStyle={{
-          fontSize: styles.fonts.sizes.small,
-          fontFamily: styles.fonts.families.circularBold,
+          fontSize: styles.fonts.sizes.md,
+          fontFamily: styles.fonts.families.marianneBold,
           textAlign: isRTL ? "right" : "left",
           lineHeight: 20,
           flexShrink: 1,
@@ -31,7 +31,7 @@ export const AccordionHeaderFromHtml = (props: Props) => {
         renderers={{
           // eslint-disable-next-line react/display-name
           p: (_, children, _cssStyles, passProps) => (
-            <TextSmallBold
+            <TextDSFR_MD_Bold
               key={passProps.key}
               style={{
                 flexShrink: 1,
@@ -40,7 +40,7 @@ export const AccordionHeaderFromHtml = (props: Props) => {
               }}
             >
               {children}
-            </TextSmallBold>
+            </TextDSFR_MD_Bold>
           ),
         }}
       />
