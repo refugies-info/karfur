@@ -494,7 +494,7 @@ exports[`Search results screen should render correctly 1`] = `
         style={
           {
             "color": "#212121",
-            "fontFamily": "marianneBold",
+            "fontFamily": "Marianne-Bold",
             "fontSize": 18,
             "lineHeight": 28,
             "marginBottom": 16,
@@ -515,7 +515,7 @@ exports[`Search results screen should render correctly 1`] = `
         style={
           {
             "color": "#212121",
-            "fontFamily": "marianneBold",
+            "fontFamily": "Marianne-Bold",
             "fontSize": 18,
             "lineHeight": 28,
             "marginBottom": 16,
@@ -643,7 +643,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -784,7 +784,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -925,7 +925,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -1066,7 +1066,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -1207,7 +1207,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -1348,7 +1348,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -1489,7 +1489,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -1630,7 +1630,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -1771,7 +1771,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -1912,7 +1912,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -2053,7 +2053,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -2194,7 +2194,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,
@@ -2335,7 +2335,7 @@ exports[`Search results screen should render correctly 1`] = `
                     {
                       "color": "#FFFFFF",
                       "flexShrink": 1,
-                      "fontFamily": "marianneBold",
+                      "fontFamily": "Marianne-Bold",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "marginLeft": 0,

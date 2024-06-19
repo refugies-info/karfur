@@ -162,7 +162,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneMed",
+                  "fontFamily": "Marianne-Medium",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -177,7 +177,7 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
               style={
                 {
                   "color": "#5E5E5E",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -453,7 +453,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
               style={
                 {
                   "color": "#000091",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -468,7 +468,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
               style={
                 {
                   "color": "#5E5E5E",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -753,7 +753,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
               style={
                 {
                   "color": "#000091",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -768,7 +768,7 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
               style={
                 {
                   "color": "#5E5E5E",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -939,7 +939,7 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
               style={
                 {
                   "color": "#000091",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -954,7 +954,7 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
               style={
                 {
                   "color": "#5E5E5E",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",

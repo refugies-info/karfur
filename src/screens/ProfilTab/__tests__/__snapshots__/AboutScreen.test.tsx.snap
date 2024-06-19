@@ -374,7 +374,7 @@ exports[`About screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 18,
                   "lineHeight": 28,
                   "textAlign": "left",
@@ -399,7 +399,7 @@ exports[`About screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 24,
                   "lineHeight": 32,
                   "marginBottom": 24,
@@ -478,7 +478,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneBold",
+                        "fontFamily": "Marianne-Bold",
                         "fontSize": 18,
                         "lineHeight": 28,
                         "marginBottom": 8,
@@ -493,7 +493,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneReg",
+                        "fontFamily": "Marianne-Regular",
                         "fontSize": 16,
                         "lineHeight": 24,
                         "textAlign": "left",
@@ -549,7 +549,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneBold",
+                        "fontFamily": "Marianne-Bold",
                         "fontSize": 18,
                         "lineHeight": 28,
                         "marginBottom": 8,
@@ -564,7 +564,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneReg",
+                        "fontFamily": "Marianne-Regular",
                         "fontSize": 16,
                         "lineHeight": 24,
                         "textAlign": "left",
@@ -613,7 +613,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneBold",
+                        "fontFamily": "Marianne-Bold",
                         "fontSize": 18,
                         "lineHeight": 28,
                         "marginBottom": 8,
@@ -628,7 +628,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneReg",
+                        "fontFamily": "Marianne-Regular",
                         "fontSize": 16,
                         "lineHeight": 24,
                         "textAlign": "left",
@@ -654,7 +654,7 @@ exports[`About screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 24,
                   "lineHeight": 32,
                   "marginBottom": 24,
@@ -732,7 +732,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneBold",
+                        "fontFamily": "Marianne-Bold",
                         "fontSize": 18,
                         "lineHeight": 28,
                         "marginBottom": 8,
@@ -747,7 +747,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneReg",
+                        "fontFamily": "Marianne-Regular",
                         "fontSize": 16,
                         "lineHeight": 24,
                         "textAlign": "left",
@@ -802,7 +802,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneBold",
+                        "fontFamily": "Marianne-Bold",
                         "fontSize": 18,
                         "lineHeight": 28,
                         "marginBottom": 8,
@@ -817,7 +817,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneReg",
+                        "fontFamily": "Marianne-Regular",
                         "fontSize": 16,
                         "lineHeight": 24,
                         "textAlign": "left",
@@ -866,7 +866,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneBold",
+                        "fontFamily": "Marianne-Bold",
                         "fontSize": 18,
                         "lineHeight": 28,
                         "marginBottom": 8,
@@ -881,7 +881,7 @@ exports[`About screen should render correctly 1`] = `
                     style={
                       {
                         "color": "#212121",
-                        "fontFamily": "marianneReg",
+                        "fontFamily": "Marianne-Regular",
                         "fontSize": 16,
                         "lineHeight": 24,
                         "textAlign": "left",
@@ -907,7 +907,7 @@ exports[`About screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 24,
                   "lineHeight": 32,
                   "marginBottom": 24,
@@ -987,7 +987,7 @@ exports[`About screen should render correctly 1`] = `
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "marianneBold",
+                          "fontFamily": "Marianne-Bold",
                           "fontSize": 18,
                           "lineHeight": 28,
                           "marginBottom": 8,
@@ -1002,7 +1002,7 @@ exports[`About screen should render correctly 1`] = `
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -1060,7 +1060,7 @@ exports[`About screen should render correctly 1`] = `
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "marianneBold",
+                          "fontFamily": "Marianne-Bold",
                           "fontSize": 18,
                           "lineHeight": 28,
                           "marginBottom": 8,
@@ -1075,7 +1075,7 @@ exports[`About screen should render correctly 1`] = `
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -1131,7 +1131,7 @@ exports[`About screen should render correctly 1`] = `
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "marianneBold",
+                          "fontFamily": "Marianne-Bold",
                           "fontSize": 18,
                           "lineHeight": 28,
                           "marginBottom": 8,
@@ -1146,7 +1146,7 @@ exports[`About screen should render correctly 1`] = `
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -1173,7 +1173,7 @@ exports[`About screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 24,
                   "lineHeight": 32,
                   "marginBottom": 24,
@@ -1197,7 +1197,7 @@ exports[`About screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -2102,7 +2102,7 @@ exports[`About screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -2364,7 +2364,7 @@ exports[`About screen should render correctly 1`] = `
                     [
                       {
                         "color": "#FFFFFF",
-                        "fontFamily": "marianneBold",
+                        "fontFamily": "Marianne-Bold",
                         "fontSize": 16,
                         "lineHeight": 24,
                         "marginLeft": 8,
@@ -2402,7 +2402,7 @@ exports[`About screen should render correctly 1`] = `
                 [
                   {
                     "color": "#212121",
-                    "fontFamily": "marianneBold",
+                    "fontFamily": "Marianne-Bold",
                     "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 24,
@@ -2488,7 +2488,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -2511,7 +2511,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -2578,7 +2578,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -2601,7 +2601,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -2668,7 +2668,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -2691,7 +2691,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -2758,7 +2758,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -2781,7 +2781,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -2848,7 +2848,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -2871,7 +2871,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -2938,7 +2938,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -2961,7 +2961,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -3028,7 +3028,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -3051,7 +3051,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -3118,7 +3118,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -3141,7 +3141,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -3208,7 +3208,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -3231,7 +3231,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -3298,7 +3298,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -3321,7 +3321,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",
@@ -3388,7 +3388,7 @@ exports[`About screen should render correctly 1`] = `
                           {
                             "backgroundColor": "#FFFFFF",
                             "color": "#212121",
-                            "fontFamily": "marianneBold",
+                            "fontFamily": "Marianne-Bold",
                             "fontSize": 16,
                             "lineHeight": 24,
                             "marginBottom": 8,
@@ -3411,7 +3411,7 @@ exports[`About screen should render correctly 1`] = `
                         {
                           "color": "#212121",
                           "flexWrap": "wrap",
-                          "fontFamily": "marianneReg",
+                          "fontFamily": "Marianne-Regular",
                           "fontSize": 16,
                           "lineHeight": 24,
                           "textAlign": "left",

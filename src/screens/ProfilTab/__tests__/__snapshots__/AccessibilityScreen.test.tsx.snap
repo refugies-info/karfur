@@ -409,7 +409,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                       style={
                         {
                           "color": "#212121",
-                          "fontFamily": "marianneBold",
+                          "fontFamily": "Marianne-Bold",
                           "fontSize": 25,
                           "lineHeight": 40,
                           "textAlign": "left",
@@ -451,7 +451,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
@@ -474,7 +474,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -618,7 +618,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -648,7 +648,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneBold",
+              "fontFamily": "Marianne-Bold",
               "fontSize": 24,
               "lineHeight": 32,
               "marginBottom": 40,
@@ -664,7 +664,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -680,7 +680,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -697,7 +697,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
@@ -720,7 +720,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneBold",
+              "fontFamily": "Marianne-Bold",
               "fontSize": 24,
               "lineHeight": 32,
               "marginBottom": 40,
@@ -737,7 +737,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
@@ -760,7 +760,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             style={
               {
                 "color": "#212121",
-                "fontFamily": "marianneBold",
+                "fontFamily": "Marianne-Bold",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "textAlign": "left",
@@ -778,7 +778,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneBold",
+              "fontFamily": "Marianne-Bold",
               "fontSize": 24,
               "lineHeight": 32,
               "marginBottom": 40,
@@ -794,7 +794,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -812,7 +812,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             style={
               {
                 "color": "#212121",
-                "fontFamily": "marianneBold",
+                "fontFamily": "Marianne-Bold",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "textAlign": "left",
@@ -851,7 +851,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -870,7 +870,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             style={
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "textAlign": "left",
@@ -903,7 +903,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -922,7 +922,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             style={
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "textAlign": "left",
@@ -955,7 +955,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -974,7 +974,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             style={
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "textAlign": "left",
@@ -1020,7 +1020,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginBottom": 24,
@@ -1086,7 +1086,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 [
                   {
                     "color": "#212121",
-                    "fontFamily": "marianneReg",
+                    "fontFamily": "Marianne-Regular",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -1139,7 +1139,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 [
                   {
                     "color": "#212121",
-                    "fontFamily": "marianneReg",
+                    "fontFamily": "Marianne-Regular",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -1160,7 +1160,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneBold",
+              "fontFamily": "Marianne-Bold",
               "fontSize": 24,
               "lineHeight": 32,
               "marginBottom": 40,
@@ -1176,7 +1176,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -1192,7 +1192,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneBold",
+              "fontFamily": "Marianne-Bold",
               "fontSize": 18,
               "lineHeight": 28,
               "marginBottom": 24,
@@ -1208,7 +1208,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -1245,7 +1245,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1263,7 +1263,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1295,7 +1295,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1313,7 +1313,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1345,7 +1345,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1363,7 +1363,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1395,7 +1395,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1413,7 +1413,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1445,7 +1445,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1463,7 +1463,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1495,7 +1495,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1513,7 +1513,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1545,7 +1545,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1563,7 +1563,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1595,7 +1595,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1613,7 +1613,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1645,7 +1645,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1663,7 +1663,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1695,7 +1695,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1713,7 +1713,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1745,7 +1745,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1763,7 +1763,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1795,7 +1795,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1813,7 +1813,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1845,7 +1845,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1863,7 +1863,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1895,7 +1895,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1913,7 +1913,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1945,7 +1945,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -1963,7 +1963,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -1982,7 +1982,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneBold",
+              "fontFamily": "Marianne-Bold",
               "fontSize": 18,
               "lineHeight": 28,
               "marginBottom": 24,
@@ -1998,7 +1998,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -2014,7 +2014,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneBold",
+              "fontFamily": "Marianne-Bold",
               "fontSize": 18,
               "lineHeight": 28,
               "marginBottom": 24,
@@ -2031,7 +2031,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
@@ -2051,7 +2051,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneBold",
+              "fontFamily": "Marianne-Bold",
               "fontSize": 24,
               "lineHeight": 32,
               "marginBottom": 40,
@@ -2067,7 +2067,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -2084,7 +2084,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
@@ -2125,7 +2125,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2143,7 +2143,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2163,7 +2163,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
@@ -2204,7 +2204,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2222,7 +2222,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2242,7 +2242,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
@@ -2283,7 +2283,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2301,7 +2301,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2333,7 +2333,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2351,7 +2351,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2371,7 +2371,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginBottom": 24,
@@ -2408,7 +2408,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2426,7 +2426,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2458,7 +2458,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2476,7 +2476,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2508,7 +2508,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2526,7 +2526,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2558,7 +2558,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2576,7 +2576,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2608,7 +2608,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2626,7 +2626,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2658,7 +2658,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2676,7 +2676,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2708,7 +2708,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2726,7 +2726,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2758,7 +2758,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2776,7 +2776,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2808,7 +2808,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2826,7 +2826,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2858,7 +2858,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2876,7 +2876,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2908,7 +2908,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -2926,7 +2926,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -2945,7 +2945,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneBold",
+              "fontFamily": "Marianne-Bold",
               "fontSize": 24,
               "lineHeight": 32,
               "marginBottom": 40,
@@ -2961,7 +2961,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -3141,7 +3141,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 [
                   {
                     "color": "#FFFFFF",
-                    "fontFamily": "marianneBold",
+                    "fontFamily": "Marianne-Bold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "marginLeft": 8,
@@ -3168,7 +3168,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneBold",
+              "fontFamily": "Marianne-Bold",
               "fontSize": 24,
               "lineHeight": 32,
               "marginBottom": 40,
@@ -3184,7 +3184,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -3200,7 +3200,7 @@ exports[`Accessibility screen should render correctly 1`] = `
           style={
             {
               "color": "#212121",
-              "fontFamily": "marianneReg",
+              "fontFamily": "Marianne-Regular",
               "fontSize": 16,
               "lineHeight": 24,
               "marginBottom": 24,
@@ -3233,7 +3233,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -3251,7 +3251,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -3270,7 +3270,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "marianneBold",
+                    "fontFamily": "Marianne-Bold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -3304,7 +3304,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -3322,7 +3322,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -3341,7 +3341,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "marianneBold",
+                    "fontFamily": "Marianne-Bold",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "textAlign": "left",
@@ -3375,7 +3375,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 4,
@@ -3393,7 +3393,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                 {
                   "color": "#212121",
                   "flexShrink": 1,
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginLeft": 8,
@@ -3534,7 +3534,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             style={
               {
                 "color": "#212121",
-                "fontFamily": "marianneReg",
+                "fontFamily": "Marianne-Regular",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "textAlign": "left",
@@ -3670,7 +3670,7 @@ exports[`Accessibility screen should render correctly 1`] = `
               [
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",

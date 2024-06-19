@@ -5,7 +5,7 @@ exports[`HeaderTitle snapshot test suite should render without bug 1`] = `
   style={
     {
       "color": "#212121",
-      "fontFamily": "marianneBold",
+      "fontFamily": "Marianne-Bold",
       "fontSize": 25,
       "lineHeight": 40,
       "textAlign": "left",

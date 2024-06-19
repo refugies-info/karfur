@@ -272,7 +272,7 @@ exports[`Filter french level should render correctly when french level selected 
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "marianneBold",
+                    "fontFamily": "Marianne-Bold",
                     "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 16,
@@ -293,7 +293,7 @@ exports[`Filter french level should render correctly when french level selected 
                 style={
                   {
                     "color": "#3A3A3A",
-                    "fontFamily": "marianneReg",
+                    "fontFamily": "Marianne-Regular",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "marginBottom": 48,
@@ -415,7 +415,7 @@ exports[`Filter french level should render correctly when french level selected 
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -641,7 +641,7 @@ exports[`Filter french level should render correctly when french level selected 
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -678,7 +678,7 @@ exports[`Filter french level should render correctly when french level selected 
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -706,7 +706,7 @@ exports[`Filter french level should render correctly when french level selected 
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -924,7 +924,7 @@ exports[`Filter french level should render correctly when french level selected 
                             style={
                               {
                                 "color": "#000091",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -961,7 +961,7 @@ exports[`Filter french level should render correctly when french level selected 
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -989,7 +989,7 @@ exports[`Filter french level should render correctly when french level selected 
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -1224,7 +1224,7 @@ exports[`Filter french level should render correctly when french level selected 
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -1261,7 +1261,7 @@ exports[`Filter french level should render correctly when french level selected 
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -1289,7 +1289,7 @@ exports[`Filter french level should render correctly when french level selected 
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -1912,7 +1912,7 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -2875,7 +2875,7 @@ exports[`Filter french level should render correctly when no french level select
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "marianneBold",
+                    "fontFamily": "Marianne-Bold",
                     "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 16,
@@ -2896,7 +2896,7 @@ exports[`Filter french level should render correctly when no french level select
                 style={
                   {
                     "color": "#3A3A3A",
-                    "fontFamily": "marianneReg",
+                    "fontFamily": "Marianne-Regular",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "marginBottom": 48,
@@ -3018,7 +3018,7 @@ exports[`Filter french level should render correctly when no french level select
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -3244,7 +3244,7 @@ exports[`Filter french level should render correctly when no french level select
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -3281,7 +3281,7 @@ exports[`Filter french level should render correctly when no french level select
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -3309,7 +3309,7 @@ exports[`Filter french level should render correctly when no french level select
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -3535,7 +3535,7 @@ exports[`Filter french level should render correctly when no french level select
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -3572,7 +3572,7 @@ exports[`Filter french level should render correctly when no french level select
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -3600,7 +3600,7 @@ exports[`Filter french level should render correctly when no french level select
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -3826,7 +3826,7 @@ exports[`Filter french level should render correctly when no french level select
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -3863,7 +3863,7 @@ exports[`Filter french level should render correctly when no french level select
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -3891,7 +3891,7 @@ exports[`Filter french level should render correctly when no french level select
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -4514,7 +4514,7 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -5477,7 +5477,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 style={
                   {
                     "color": "#212121",
-                    "fontFamily": "marianneBold",
+                    "fontFamily": "Marianne-Bold",
                     "fontSize": 24,
                     "lineHeight": 32,
                     "marginBottom": 16,
@@ -5498,7 +5498,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 style={
                   {
                     "color": "#3A3A3A",
-                    "fontFamily": "marianneReg",
+                    "fontFamily": "Marianne-Regular",
                     "fontSize": 16,
                     "lineHeight": 24,
                     "marginBottom": 48,
@@ -5620,7 +5620,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -5846,7 +5846,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -5883,7 +5883,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -5911,7 +5911,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -6129,7 +6129,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                             style={
                               {
                                 "color": "#000091",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -6166,7 +6166,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -6194,7 +6194,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -6429,7 +6429,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                             style={
                               {
                                 "color": "#161616",
-                                "fontFamily": "marianneMed",
+                                "fontFamily": "Marianne-Medium",
                                 "fontSize": 16,
                                 "lineHeight": 24,
                                 "paddingVertical": 4,
@@ -6466,7 +6466,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -6494,7 +6494,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                                 style={
                                   {
                                     "color": "#0063cb",
-                                    "fontFamily": "marianneBold",
+                                    "fontFamily": "Marianne-Bold",
                                     "fontSize": 12,
                                     "lineHeight": 20,
                                     "textAlign": "left",
@@ -7117,7 +7117,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "textAlign": "left",

@@ -165,7 +165,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneBold",
+                  "fontFamily": "Marianne-Bold",
                   "fontSize": 24,
                   "lineHeight": 32,
                   "marginTop": 64,
@@ -186,7 +186,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               style={
                 {
                   "color": "#212121",
-                  "fontFamily": "marianneReg",
+                  "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
                   "marginTop": 16,
@@ -285,7 +285,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                   style={
                     {
                       "color": "#FFFFFF",
-                      "fontFamily": "marianneMed",
+                      "fontFamily": "Marianne-Medium",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "textAlign": "left",
@@ -502,7 +502,7 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                   style={
                     {
                       "color": "#000091",
-                      "fontFamily": "marianneMed",
+                      "fontFamily": "Marianne-Medium",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "textAlign": "left",
