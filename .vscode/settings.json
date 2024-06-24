@@ -1,12 +1,23 @@
 {
   "scss.lint.unknownAtRules": "ignore",
-  "eslint.workingDirectories": ["./client", "./server"],
+  "eslint.workingDirectories": [
+    "./client",
+    "./server"
+  ],
   "typescript.tsdk": "client/node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "conventionalCommits.scopes": ["api-types", "client", "server"],
+  "conventionalCommits.scopes": [
+    "api-types",
+    "client",
+    "server"
+  ],
   // i18n-ally
-  "i18n-ally.localesPaths": ["client/src/locales"],
-  "i18n-ally.ignoreFiles": ["**/unused.json"],
+  "i18n-ally.localesPaths": [
+    "client/src/locales"
+  ],
+  "i18n-ally.ignoreFiles": [
+    "**/unused.json"
+  ],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.keysInUse": [
     "StructureType.*",
@@ -29,7 +40,10 @@
     "Translate.weak"
   ],
   "i18n-ally.dirStructure": "auto",
-  "i18n-ally.enabledFrameworks": ["i18next", "react-i18next"],
+  "i18n-ally.enabledFrameworks": [
+    "i18next",
+    "react-i18next"
+  ],
   "i18n-ally.extract.keygenStyle": "snake_case",
   "i18n-ally.displayLanguage": "fr",
   "i18n-ally.extract.ignoredByFiles": {},
@@ -37,5 +51,7 @@
   "prettier.configPath": ".prettierrc",
   // Github
   "githubPullRequests.fileListLayout": "flat",
-  "githubPullRequests.pullBranch": "never"
+  "githubPullRequests.pullBranch": "never",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative"
 }

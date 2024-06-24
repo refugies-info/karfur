@@ -34,7 +34,11 @@ export const updateDispositifTagsOrNeeds = async (
     themesSelectedByAuthor: (body.theme || body.secondaryThemes) && user.isAdmin(),
   };
 
-  await updateDispositifInDB(id, newDispositif, !!draftOriginalDispositif);
+  // update draft and original
+  if (draftOriginalDispositif) {
+    await updateDispositifInDB(id, newDispositif, true);
+  }
+  await updateDispositifInDB(id, newDispositif, false);
   await log(id, allThemes.length > 0, user._id);
 
   return { text: "success" };
