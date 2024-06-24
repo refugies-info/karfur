@@ -4,7 +4,6 @@
     "./client",
     "./server"
   ],
-  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "conventionalCommits.scopes": [
     "api-types",
