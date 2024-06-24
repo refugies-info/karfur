@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Image } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { styles } from "../../theme";
-import { TextDSFR_MD_Bold, TextDSFR_MD, TextDSFR_XS } from "../StyledText";
+import { TextDSFR_MD_Bold, TextDSFR_MD, TextDSFR_S } from "../StyledText";
 import NoLogo from "../../theme/images/contents/structure_no_logo.png";
 import { DemarcheImage } from "./DemarcheImage";
 import { logEventInFirebase } from "../../utils/logEvent";
@@ -57,7 +57,7 @@ const DescInfoText = styled(TextDSFR_MD)<{ color: string }>`
   margin: ${styles.margin * 2}px;
 `;
 
-const TitreMarqueText = styled(TextDSFR_XS)<{ color: string }>`
+const TitreMarqueText = styled(TextDSFR_S)<{ color: string }>`
   color: ${({ color }) => color};
 `;
 

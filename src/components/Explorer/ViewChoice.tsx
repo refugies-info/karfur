@@ -2,7 +2,7 @@ import { RTLTouchableOpacity } from "../BasicComponents";
 import { styles } from "../../theme";
 import React from "react";
 import styled from "styled-components/native";
-import { TextDSFR_XS_Bold, TextDSFR_XS } from "../StyledText";
+import { TextDSFR_S_Bold, TextDSFR_S_Med } from "../StyledText";
 import GalerieFill from "../../theme/images/streamlineIcons/galerie-fill.svg";
 import GalerieOutline from "../../theme/images/streamlineIcons/galerie-outline.svg";
 import ListFill from "../../theme/images/streamlineIcons/list-fill.svg";
@@ -11,12 +11,12 @@ import { useTranslationWithRTL } from "../../hooks";
 
 const ICON_SIZE = 16;
 
-const ChoiceTextBold = styled(TextDSFR_XS_Bold)`
+const ChoiceTextBold = styled(TextDSFR_S_Bold)`
   margin-left: ${styles.margin}px;
   margin-right: ${styles.margin}px;
 `;
 
-const ChoiceText = styled(TextDSFR_XS)`
+const ChoiceText = styled(TextDSFR_S_Med)`
   margin-left: ${styles.margin}px;
   margin-right: ${styles.margin}px;
 `;

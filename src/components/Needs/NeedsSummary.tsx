@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { GetThemeResponse, Picture } from "@refugies-info/api-types";
-import { TextDSFR_XS, TextDSFR_MD_Bold } from "../../components/StyledText";
+import { TextDSFR_MD_Bold, TextDSFR_S } from "../../components/StyledText";
 import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
@@ -107,9 +107,9 @@ const NeedsSummaryComponent = ({
           </TextDSFR_MD_Bold>
 
           {!isEmpty(needSubtitle) ? (
-            <TextDSFR_XS color={theme.colors.color100}>
+            <TextDSFR_S color={theme.colors.color100}>
               <ReadableText>{needSubtitle}</ReadableText>
-            </TextDSFR_XS>
+            </TextDSFR_S>
           ) : null}
         </Rows>
 

@@ -119,7 +119,7 @@ const fonts = {
     family: "marianneReg",
     size: "18px",
     sizeSmall: "14px",
-    weight: "normal",
+    weight: "500",
   },
 };
 

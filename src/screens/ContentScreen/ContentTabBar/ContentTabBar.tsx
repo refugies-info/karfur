@@ -170,7 +170,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
             readableOverridePosY={100000}
             style={{ marginHorizontal: styles.margin, width: 120 }}
             textColor={styles.colors.black}
-            textStyle={{ fontSize: styles.fonts.sizes.xs }}
+            textStyle={{ fontSize: styles.fonts.sizes.s }}
           />
           {!noReadButton && (
             <View
@@ -198,7 +198,7 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
             readableOverridePosY={100001}
             style={{ marginHorizontal: styles.margin, width: 120 }}
             textColor={styles.colors.black}
-            textStyle={{ fontSize: styles.fonts.sizes.xs }}
+            textStyle={{ fontSize: styles.fonts.sizes.s }}
           />
         </RTLView>
       </TabBarContainer>

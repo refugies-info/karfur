@@ -5,14 +5,15 @@ import { Icon } from "../iconography";
 import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks";
 import { Spacer } from "../layout";
+import { TextDSFR_S } from "../StyledText";
 
 const UpButtonContainer = styled(RTLTouchableOpacity)`
   border-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.colors.action};
-  align-items: flex-start;
+  align-items: center;
 `;
-const UpButtonText = styled.Text`
+const UpButtonText = styled(TextDSFR_S)`
   color: ${({ theme }) => theme.colors.action};
 `;
 
