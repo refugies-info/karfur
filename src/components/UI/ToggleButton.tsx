@@ -33,6 +33,7 @@ const stylesheet = StyleSheet.create({
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "center",
+    flexShrink: 1,
   },
 });
 
@@ -118,6 +119,7 @@ export const ToggleButton = ({
                 {
                   color: styles.colors.darkGrey,
                   marginTop: styles.margin,
+                  flexShrink: 1,
                 },
                 disabled && {
                   color: styles.colors.greyDisabled,

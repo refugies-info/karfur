@@ -26,7 +26,6 @@ import { selectedI18nCodeSelector } from "../../services/redux/User/user.selecto
 import { getSelectedLanguageFromI18nCode } from "../../libs/language";
 import { activatedLanguages } from "../../data/languagesData";
 import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
-import { storeUrl } from "../../data/storeLinks";
 
 const FlagBackground = styled.View`
   background-color: ${({ theme }) => theme.colors.dsfr_borderGrey};
@@ -62,7 +61,11 @@ export const ShareScreen = ({
   }, []);
 
   const share = useCallback(
-    () => Share.share({ title: selectedShareLanguage, message: storeUrl }),
+    () =>
+      Share.share({
+        title: selectedShareLanguage,
+        message: `https://refugies.info/${selectedShareLanguage}/download-app`,
+      }),
     [selectedShareLanguage]
   );
 

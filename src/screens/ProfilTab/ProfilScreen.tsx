@@ -156,7 +156,7 @@ export const ProfilScreen = ({
           label={
             selectedFrenchLevel
               ? t("filters." + formattedLevel?.name, selectedFrenchLevel)
-              : t("profile_screens.french", "Français")
+              : t("profile_screens.french_level", "Français")
           }
           onPress={() => navigation.navigate("FrenchLevelProfilScreen")}
           isEmpty={selectedFrenchLevel === null}

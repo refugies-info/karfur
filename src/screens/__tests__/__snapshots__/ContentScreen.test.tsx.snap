@@ -6660,7 +6660,7 @@ exports[`ContentScreen should render correctly 1`] = `
                                           "color": "#000091",
                                           "fontFamily": "marianneReg",
                                           "fontSize": 18,
-                                          "fontWeight": "normal",
+                                          "fontWeight": "500",
                                         }
                                       }
                                     >
@@ -7074,7 +7074,7 @@ exports[`ContentScreen should render correctly 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "borderBottomColor": "#0421B1",
                   "borderBottomWidth": 1,
                   "borderStyle": "solid",
@@ -7203,9 +7203,15 @@ exports[`ContentScreen should render correctly 1`] = `
                 width={8}
               />
               <Text
+                isRTL={false}
+                selectable={true}
                 style={
                   {
                     "color": "#0421B1",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 14,
+                    "lineHeight": 24,
+                    "textAlign": "left",
                   }
                 }
               >
@@ -7436,7 +7442,7 @@ exports[`ContentScreen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "Marianne-Regular",
+                "fontFamily": "Marianne-Medium",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginLeft": 8,
@@ -7444,7 +7450,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 "textAlign": "left",
               },
               {
-                "fontSize": 12,
+                "fontSize": 14,
               },
             ]
           }
@@ -8422,7 +8428,7 @@ exports[`ContentScreen should render correctly 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "Marianne-Regular",
+                "fontFamily": "Marianne-Medium",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginLeft": 8,
@@ -8430,7 +8436,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 "textAlign": "left",
               },
               {
-                "fontSize": 12,
+                "fontSize": 14,
               },
             ]
           }
@@ -15606,7 +15612,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                           "color": "#000091",
                                           "fontFamily": "marianneReg",
                                           "fontSize": 18,
-                                          "fontWeight": "normal",
+                                          "fontWeight": "500",
                                         }
                                       }
                                     >
@@ -16020,7 +16026,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "borderBottomColor": "#0421B1",
                   "borderBottomWidth": 1,
                   "borderStyle": "solid",
@@ -16149,9 +16155,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 width={8}
               />
               <Text
+                isRTL={false}
+                selectable={true}
                 style={
                   {
                     "color": "#0421B1",
+                    "fontFamily": "Marianne-Regular",
+                    "fontSize": 14,
+                    "lineHeight": 24,
+                    "textAlign": "left",
                   }
                 }
               >
@@ -16382,7 +16394,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "Marianne-Regular",
+                "fontFamily": "Marianne-Medium",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginLeft": 8,
@@ -16390,7 +16402,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "textAlign": "left",
               },
               {
-                "fontSize": 12,
+                "fontSize": 14,
               },
             ]
           }
@@ -17368,7 +17380,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             [
               {
                 "color": "#212121",
-                "fontFamily": "Marianne-Regular",
+                "fontFamily": "Marianne-Medium",
                 "fontSize": 16,
                 "lineHeight": 24,
                 "marginLeft": 8,
@@ -17376,7 +17388,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "textAlign": "left",
               },
               {
-                "fontSize": 12,
+                "fontSize": 14,
               },
             ]
           }
