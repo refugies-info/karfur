@@ -9,8 +9,8 @@
   "main": "server.js",
   "scripts": {
     "prebuild": "tsoa spec-and-routes",
-    "build": "tsc",
-    "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
+    "build": "yarn prebuild && tsc",
+    "dev": "yarn prebuild && concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "start": "node dist/src/server.js",
     "test": "npm run test:lint && npm run test:types && npm run test:unit",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
