@@ -509,6 +509,7 @@ exports[`homepage renders homepage 1`] = `
             <div
               aria-hidden={true}
               className="menu dropdown-menu"
+              data-bs-popper="static"
               role="menu"
               tabIndex="-1"
             >
@@ -614,6 +615,7 @@ exports[`homepage renders homepage 1`] = `
             <div
               aria-hidden={true}
               className="menu dropdown-menu"
+              data-bs-popper="static"
               role="menu"
               tabIndex="-1"
             >
@@ -2266,6 +2268,7 @@ exports[`homepage renders homepage 1`] = `
                   <div
                     aria-hidden={true}
                     className="menu dropdown-menu"
+                    data-bs-popper="static"
                     role="menu"
                     tabIndex="-1"
                   >
