@@ -1,20 +1,21 @@
 # Client documentation
 
-This project is a React based project, which uses the NextJS framework.  
+This project is a React based project, which uses the NextJS framework.
 The source code is located at `/client`.
 
-- [Tech stack](#tech-stack)
-- [Setup](#setup)
-- [Development](#development)
-- [Testing](#testing)
-- [Deploy](#deploy)
-- [Architecture](#architecture)
-- [Development Guide](#development-guide)
-- [Commands reference](#reference)
+- [Client documentation](#client-documentation)
+  - [Tech stack](#tech-stack)
+  - [Setup](#setup)
+  - [Development](#development)
+  - [Testing](#testing)
+  - [Deploy](#deploy)
+  - [Architecture](#architecture)
+  - [Development Guide](#development-guide)
+  - [Reference](#reference)
 
 ## Tech stack
 
-This project is based on [React](https://reactjs.org/), and uses the [NextJS framework](https://nextjs.org/).  
+This project is based on [React](https://reactjs.org/), and uses the [NextJS framework](https://nextjs.org/).
 It includes the following libraries:
 
 - [Typescript](https://www.typescriptlang.org/)
@@ -32,7 +33,7 @@ _It is recommended to [setup the server](../server/) first as you will need it t
 2. Install the dependencies
 
 ```bash
-> npm install
+> yarn install --frozen-lockfile
 ```
 
 3. Copy the `/example-env-file.env` to `.env.local` and replace `demo` with the right values.
@@ -44,7 +45,7 @@ _Before starting or building the app, make sure your server is running._
 To start the development server, run:
 
 ```bash
-> npm run dev
+> yarn dev
 ```
 
 Your app is now accessible at http://localhost:3000/ .
@@ -52,8 +53,8 @@ Your app is now accessible at http://localhost:3000/ .
 If you want to test it like in production, build the app first and start the Next server:
 
 ```bash
-> npm run build   # build a production ready app
-> npm run start   # start the app with the previously created build
+> yarn build   # build a production ready app
+> yarn start   # start the app with the previously created build
 ```
 
 Your app is now accessible at http://localhost:3000/ .
@@ -65,7 +66,7 @@ NB: `reactStrictMode` is enabled by default in `next.config.js`. This helps to p
 To launch the tests, run:
 
 ```bash
-> npm run test
+> yarn test
 ```
 
 It will execute:
@@ -107,26 +108,26 @@ Here are some more specific guides:
 
 ```bash
 # start the dev server with hot reloading enabled
-> npm run dev
+> yarn dev
 
 # build the app for production with minification
-> npm run build
+> yarn build
 
 # start the previously built app
-> npm run start
+> yarn start
 
 # launch all the tests
-> npm run test
+> yarn test
 
 # launch only the unit tests. use the -- -u parameter to update snapshots
-> npm run test:unit
+> yarn test:unit
 
 # launch only the types tests
-> npm run test:types
+> yarn test:types
 
 # launch only the lint tests
-> npm run test:lint
+> yarn test:lint
 
 # generates test coverage report (jest) (pending bug fix)
-> npm run test-with-coverage
+> yarn test-with-coverage
 ```
