@@ -189,7 +189,7 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem, initialOpen
       const node = $getSelection();
       const childTextNode = node?.getNodes()?.[0];
       if (childTextNode) childTextNode.setTextContent(linkText);
-      editor.dispatchCommand(TOGGLE_LINK_COMMAND, sanitizeUrl(linkUrl));
+      editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url: sanitizeUrl(linkUrl), rel: "noreferrer", target: "_blank" });
       setIsModalOpen(false);
       setIsFloatingVisible(false);
       setFloatingBlocked(true);

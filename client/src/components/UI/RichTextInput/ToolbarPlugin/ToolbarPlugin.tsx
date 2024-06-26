@@ -202,7 +202,7 @@ export default function ToolbarPlugin() {
           if (parent?.getType() === "root") {
             selection.insertText(" ");
           }
-          editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url: "", rel: "noreferrer" });
+          editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url: "", rel: "noreferrer", target: "_blank" });
         }
         return true;
       });
