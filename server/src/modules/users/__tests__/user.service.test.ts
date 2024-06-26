@@ -48,7 +48,7 @@ describe("updateLastConnected", () => {
     jest.clearAllMocks();
 
     const mockDate = new Date(1466424490000);
-    jest.useFakeTimers("modern");
+    jest.useFakeTimers();
     jest.setSystemTime(mockDate);
   });
 
@@ -110,7 +110,7 @@ describe("registerUser", () => {
     jest.clearAllMocks();
 
     const mockDate = new Date(1466424490000);
-    jest.useFakeTimers("modern");
+    jest.useFakeTimers();
     jest.setSystemTime(mockDate);
 
     jest.spyOn(roleRep, "getRoleByName").mockImplementation(async (roleName: RoleName): Promise<DocumentType<Role>> => {
