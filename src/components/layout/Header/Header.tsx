@@ -41,7 +41,7 @@ const Container = styled.SafeAreaView`
     theme.insets.top === 0 && Platform.OS === "android"
       ? Math.max(theme.insets.top, 40)
       : theme.insets.top}px;
-  padding-bottom: ${({ theme }) => theme.layout.header.paddingBottom}px;
+  padding-bottom: 0;
 `;
 
 const HeaderTitle = styled(TextDSFR_MD_Bold)<{
