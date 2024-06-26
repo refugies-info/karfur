@@ -14,7 +14,7 @@
     "server"
   ],
   "scripts": {
-    "clean:branches": "git branch | grep -v 'dev' -v 'master' -v 'staging' | xargs git branch -D",
+    "clean:branches": "npx git-removed-branches --prune --force",
     "build": "yarn workspaces run build",
     "build:client": "yarn workspace @refugies-info/client build",
     "build:server": "yarn workspace @refugies-info/server build",
