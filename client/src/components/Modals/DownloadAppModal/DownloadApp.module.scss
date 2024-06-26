@@ -8,6 +8,7 @@
     border-radius: 0;
     padding: u(6);
     height: 100vh;
+    overflow-y: scroll;
   }
 }
 
@@ -20,7 +21,7 @@
   @include dsfr-text("chapo");
   margin-top: u(4);
   margin-bottom: u(5);
-  text-align:center;
+  text-align: center;
 }
 
 .rating {
@@ -33,4 +34,11 @@
 .buttons > a {
   width: 100%;
   justify-content: center;
+}
+
+.close {
+  position: absolute;
+  top: u(4);
+  right: u(4);
+  color: var(--text-disabled-grey) !important;
 }

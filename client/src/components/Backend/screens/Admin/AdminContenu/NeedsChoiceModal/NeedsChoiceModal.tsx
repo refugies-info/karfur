@@ -78,6 +78,10 @@ export const NeedsChoiceModal = (props: Props) => {
     });
     if (needTheme && !stillHasTheme) {
       setSelectedThemes((themes) => themes.filter((t) => t !== needTheme));
+      // also remove from author theme if needed
+      if (selectedThemesByAuthor?.includes(needTheme)) {
+        setSelectedThemesByAuthor((t) => (t ? t.filter((theme) => theme !== needTheme) : null));
+      }
     }
   };
 
@@ -159,9 +163,13 @@ export const NeedsChoiceModal = (props: Props) => {
     if (primaryTheme) body.theme = primaryTheme.toString();
     if (selectedThemes) {
       body.secondaryThemes = [
-        ...selectedThemes.filter((t) => t !== primaryTheme),
-        ...(selectedThemesByAuthor?.filter((t) => t !== primaryTheme) || []),
-      ].map((t) => t.toString());
+        ...new Set(
+          [
+            ...selectedThemes.filter((t) => t !== primaryTheme),
+            ...(selectedThemesByAuthor?.filter((t) => t !== primaryTheme) || []),
+          ].map((t) => t.toString()),
+        ),
+      ];
     }
 
     if (props.dispositifId) {
