@@ -1,12 +1,12 @@
-import { getUserById } from "../users/users.repository";
-import logger from "../../logger";
-import {
-  sendPublishedFicheMailToStructureMembersService,
-  sendPublishedFicheMailToCreatorService,
-} from "./mail.service";
-import { User } from "../../typegoose/User";
-import { Dispositif } from "../../typegoose";
 import { UserStatus } from "@refugies-info/api-types";
+import logger from "../../logger";
+import { Dispositif } from "../../typegoose";
+import { User } from "../../typegoose/User";
+import { getUserById } from "../users/users.repository";
+import {
+  sendPublishedFicheMailToCreatorService,
+  sendPublishedFicheMailToStructureMembersService,
+} from "./mail.service";
 
 export const sendPublishedMailToCreator = async (
   newDispo: Dispositif,
@@ -44,18 +44,20 @@ export const sendPublishedMailToStructureMembers = async (
   lien: string,
   dispositifId: Dispositif["_id"],
 ) =>
-  membres.map((membre) => {
-    logger.info("[sendPublishedMailToStructureMembers] send mail to membre", {
-      membreId: membre._id,
-    });
-    return sendPublishedFicheMailToStructureMembersService({
-      pseudo: membre.username,
-      titreInformatif: titreInformatif,
-      titreMarque: titreMarque,
-      lien,
+  Promise.all(
+    membres.map((membre) => {
+      logger.info("[sendPublishedMailToStructureMembers] send mail to membre", {
+        membreId: membre._id,
+      });
+      return sendPublishedFicheMailToStructureMembersService({
+        pseudo: membre.username,
+        titreInformatif: titreInformatif,
+        titreMarque: titreMarque,
+        lien,
 
-      email: membre.email,
-      dispositifId,
-      userId: membre._id,
-    });
-  });
+        email: membre.email,
+        dispositifId,
+        userId: membre._id,
+      });
+    }),
+  );

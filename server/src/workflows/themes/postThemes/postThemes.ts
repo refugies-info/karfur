@@ -28,7 +28,7 @@ export const postThemes = async (theme: ThemeRequest): ResponseWithData<PostThem
   const dbTheme = await createTheme(theme);
   const activeLanguages = await getActiveLanguagesFromDB();
 
-  await updateUsersNotificationsSettings(dbTheme);
+  void updateUsersNotificationsSettings(dbTheme);
 
   return {
     text: "success",

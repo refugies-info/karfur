@@ -1,5 +1,0 @@
-**/dist/**
-**/private/**
-**/config/**
-src/**/*.test.ts
-jest.config.js

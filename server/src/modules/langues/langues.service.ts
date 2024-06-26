@@ -1,8 +1,8 @@
-import logger from "../../logger";
-import { getActiveLanguagesFromDB, updateLanguageAvancementInDB } from "./langues.repository";
-import { getActiveContents, getCountDispositifs } from "../dispositif/dispositif.repository";
-import { Langue } from "../../typegoose";
 import { DispositifStatus } from "@refugies-info/api-types";
+import logger from "../../logger";
+import { Langue } from "../../typegoose";
+import { getActiveContents, getCountDispositifs } from "../dispositif/dispositif.repository";
+import { getActiveLanguagesFromDB, updateLanguageAvancementInDB } from "./langues.repository";
 
 export const updateLanguagesAvancement = async () => {
   logger.info("[updateLanguagesAvancement] received a call");
@@ -12,22 +12,24 @@ export const updateLanguagesAvancement = async () => {
   const nbActivesContents = activesContents.length;
 
   try {
-    await activeLanguages.map(async (langue: Langue) => {
-      const nbPublishedTrad = await getCountDispositifs({
-        status: DispositifStatus.ACTIVE,
-        [`translations.${langue.i18nCode}`]: { $exists: true },
-      });
+    await Promise.all(
+      activeLanguages.map(async (langue: Langue) => {
+        const nbPublishedTrad = await getCountDispositifs({
+          status: DispositifStatus.ACTIVE,
+          [`translations.${langue.i18nCode}`]: { $exists: true },
+        });
 
-      logger.info("[updateLanguagesAvancement] before update avancement", {
-        language: langue.i18nCode,
-        nbActivesContents,
-        nbPublishedTrad,
-      });
+        logger.info("[updateLanguagesAvancement] before update avancement", {
+          language: langue.i18nCode,
+          nbActivesContents,
+          nbPublishedTrad,
+        });
 
-      const tradRatio = nbPublishedTrad / nbActivesContents;
+        const tradRatio = nbPublishedTrad / nbActivesContents;
 
-      await updateLanguageAvancementInDB(langue._id, tradRatio);
-    });
+        await updateLanguageAvancementInDB(langue._id, tradRatio);
+      }),
+    );
     logger.info("[updateLanguagesAvancement] successfully updated avancement");
   } catch (e) {
     logger.error("[updateLanguagesAvancement] error", e);
