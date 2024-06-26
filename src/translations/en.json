@@ -65,7 +65,8 @@
     "french": "French",
     "reinit_app2": "Your information to filter the cards will be deleted. The application will then start again from the start.",
     "language_choice": "Which language do you prefer?",
-    "accessibility": "Accessibility statement"
+    "accessibility": "Accessibility statement",
+    "share_message": "Hello. Here's the link to download the Réfugiés.info application:"
   },
   "content_screen": {
     "with": "With",

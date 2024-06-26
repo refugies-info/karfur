@@ -64,7 +64,7 @@ export const ShareScreen = ({
     () =>
       Share.share({
         title: selectedShareLanguage,
-        message: `https://refugies.info/${selectedShareLanguage}/download-app`,
+        message: `${t("profile_screens.share_message")} https://refugies.info/${selectedShareLanguage}/download-app`,
       }),
     [selectedShareLanguage]
   );
