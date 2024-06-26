@@ -41,7 +41,7 @@ exports[`ContentScreen should render correctly 1`] = `
         style={
           {
             "minHeight": 65,
-            "paddingBottom": 20,
+            "paddingBottom": 0,
             "paddingTop": 0,
           }
         }
@@ -8496,7 +8496,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         style={
           {
             "minHeight": 65,
-            "paddingBottom": 20,
+            "paddingBottom": 0,
             "paddingTop": 0,
           }
         }

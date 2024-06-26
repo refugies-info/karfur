@@ -38,7 +38,7 @@ exports[`About screen should render correctly 1`] = `
       style={
         {
           "minHeight": 65,
-          "paddingBottom": 20,
+          "paddingBottom": 0,
           "paddingTop": 0,
         }
       }

@@ -38,7 +38,7 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
       style={
         {
           "minHeight": 65,
-          "paddingBottom": 20,
+          "paddingBottom": 0,
           "paddingTop": 0,
         }
       }
@@ -556,7 +556,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
       style={
         {
           "minHeight": 65,
-          "paddingBottom": 20,
+          "paddingBottom": 0,
           "paddingTop": 0,
         }
       }
