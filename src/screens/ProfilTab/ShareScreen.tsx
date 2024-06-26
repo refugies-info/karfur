@@ -47,7 +47,7 @@ export const ShareScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "ShareScreen">) => {
   const theme = useTheme();
-  const { t, isRTL } = useTranslationWithRTL();
+  const { t, i18n, isRTL } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
   const [open, setOpen] = useState(false);
@@ -60,14 +60,15 @@ export const ShareScreen = ({
     setOpen(false);
   }, []);
 
-  const share = useCallback(
-    () =>
-      Share.share({
-        title: selectedShareLanguage,
-        message: `${t("profile_screens.share_message")} https://refugies.info/${selectedShareLanguage}/download-app`,
-      }),
-    [selectedShareLanguage]
-  );
+  const share = useCallback(() => {
+    i18n.loadLanguages(selectedShareLanguage);
+    Share.share({
+      title: selectedShareLanguage,
+      message: `${t("profile_screens.share_message", {
+        lng: selectedShareLanguage,
+      })} https://refugies.info/${selectedShareLanguage}/download-app`,
+    });
+  }, [selectedShareLanguage]);
 
   const selectedLanguage = useMemo(
     () => getSelectedLanguageFromI18nCode(selectedShareLanguage),
