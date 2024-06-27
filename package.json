@@ -16,6 +16,7 @@
   "scripts": {
     "clean:branches": "npx git-removed-branches --prune --force",
     "build": "yarn workspaces run build",
+    "build:api-types": "yarn workspace @refugies-info/api-types build",
     "build:client": "yarn workspace @refugies-info/client build",
     "build:server": "yarn workspace @refugies-info/server build",
     "dev:client": "yarn workspace @refugies-info/client dev",
