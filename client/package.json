@@ -65,7 +65,7 @@
     "sharp": "^0.33.4",
     "sortablejs": "^1.15.0",
     "styled-components": "^5.3.6",
-    "sweetalert2": "^11.6.16",
+    "sweetalert2": "^11.12.1",
     "typesafe-actions": "^5.1.0",
     "uuid": "^10.0.0"
   },
@@ -95,7 +95,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@next/eslint-plugin-next": "^13.0.5",
+    "@next/eslint-plugin-next": "^14.2.4",
     "@redux-devtools/extension": "^3.2.1",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^13.4.0",
@@ -116,8 +116,8 @@
     "@types/sortablejs": "^1.13.0",
     "@types/styled-components": "^5.1.1",
     "@types/uuid": "^10.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.10.1",
-    "@typescript-eslint/parser": "^5.10.1",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
     "csvtojson": "^2.0.10",
     "eslint": "^8.28.0",
     "eslint-config-next": "^14.2.4",
@@ -134,7 +134,7 @@
     "sass": "^1.57.1",
     "ts-jest": "29.1.5",
     "typescript": "^5.5.2",
-    "typescript-plugin-css-modules": "^3.4.0"
+    "typescript-plugin-css-modules": "^5.1.0"
   },
   "volta": {
     "node": "20.13.1",

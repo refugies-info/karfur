@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "echo 'No tests to run'",
+    "test:lint": "echo 'No tests to run'",
     "test:types": "tsc --noEmit",
     "prepublishOnly": "tsc"
   },
