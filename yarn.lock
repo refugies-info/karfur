@@ -1518,7 +1518,7 @@
 
 "@mongodb-js/saslprep@^1.1.5":
   version "1.1.7"
-  resolved "https://registry.npmjs.org/@mongodb-js/saslprep/-/saslprep-1.1.7.tgz"
+  resolved "https://registry.yarnpkg.com/@mongodb-js/saslprep/-/saslprep-1.1.7.tgz#d1700facfd6916c50c2c88fd6d48d363a56c702f"
   integrity sha512-dCHW/oEX0KJ4NjDULBo3JiOaK5+6axtpBbS+ao2ZInoAL9/YRQLhXzSNAFz7hP4nzLkIqsfYAK/PDE3+XHny0Q==
   dependencies:
     sparse-bitfield "^3.0.3"
@@ -2203,10 +2203,10 @@
     "@types/koa-compose" "*"
     "@types/node" "*"
 
-"@types/lodash@^4.14.151", "@types/lodash@^4.14.165":
-  version "4.17.5"
-  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.17.5.tgz"
-  integrity sha512-MBIOHVZqVqgfro1euRDWX7OO0fBVUUMrN6Pwm8LQsz8cWhEpihlvR70ENj3f40j58TNxZaWv2ndSkInykNBBJw==
+"@types/lodash@^4.17.6":
+  version "4.17.6"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.6.tgz#193ced6a40c8006cfc1ca3f4553444fb38f0e543"
+  integrity sha512-OpXEVoCKSS3lQqjx9GGGOapBeuW5eUboYHRlHP9urXPX25IKZ6AnP5ZRxtVf63iieUbsHxLn8NQ5Nlftc6yzAA==
 
 "@types/long@^4.0.0":
   version "4.0.2"
@@ -3306,12 +3306,7 @@ bser@2.1.1:
   dependencies:
     node-int64 "^0.4.0"
 
-bson@^6.7.0:
-  version "6.7.0"
-  resolved "https://registry.npmjs.org/bson/-/bson-6.7.0.tgz"
-  integrity sha512-w2IquM5mYzYZv6rs3uN2DZTOBe2a0zXLj53TGDqwF4l6Sz/XsISrisXOJihArF9+BZ6Cq/GjVht7Sjfmri7ytQ==
-
-bson@^6.8.0:
+bson@^6.7.0, bson@^6.8.0:
   version "6.8.0"
   resolved "https://registry.yarnpkg.com/bson/-/bson-6.8.0.tgz#5063c41ba2437c2b8ff851b50d9e36cb7aaa7525"
   integrity sha512-iOJg8pr7wq2tg/zSlCCHMi3hMm5JTOxLTagf3zxhcenHsFp+c6uOs6K7W5UE7A4QIJGtqh/ZovFNMP4mOPJynQ==
@@ -6721,7 +6716,7 @@ json5@^1.0.2:
   dependencies:
     minimist "^1.2.0"
 
-json5@^2.2.1, json5@^2.2.2, json5@^2.2.3:
+json5@^2.2.2, json5@^2.2.3:
   version "2.2.3"
   resolved "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
@@ -7246,15 +7241,6 @@ mongodb@6.6.2:
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-6.6.2.tgz#7ecdd788e9162f6c5726cef40bdd2813cc01e56c"
   integrity sha512-ZF9Ugo2JCG/GfR7DEb4ypfyJJyiKbg5qBYKRintebj8+DNS33CyGMkWbrS9lara+u+h+yEOGSRiLhFO/g1s1aw==
-  dependencies:
-    "@mongodb-js/saslprep" "^1.1.5"
-    bson "^6.7.0"
-    mongodb-connection-string-url "^3.0.0"
-
-mongodb@^6.5.0:
-  version "6.7.0"
-  resolved "https://registry.npmjs.org/mongodb/-/mongodb-6.7.0.tgz"
-  integrity sha512-TMKyHdtMcO0fYBNORiYdmM25ijsHs+Njs963r4Tro4OQZzqYigAzYQouwWRg4OIaiLRUEGUh/1UAcH5lxdSLIA==
   dependencies:
     "@mongodb-js/saslprep" "^1.1.5"
     bson "^6.7.0"
@@ -8869,15 +8855,15 @@ section-iterator@^2.0.0:
   resolved "https://registry.npmjs.org/semver/-/semver-5.7.2.tgz"
   integrity sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==
 
-semver@7.x, semver@^7.3.7, semver@^7.5.3, semver@^7.5.4, semver@^7.6.0, semver@^7.6.2:
-  version "7.6.2"
-  resolved "https://registry.npmjs.org/semver/-/semver-7.6.2.tgz"
-  integrity sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==
-
 semver@^6.3.0, semver@^6.3.1:
   version "6.3.1"
   resolved "https://registry.npmjs.org/semver/-/semver-6.3.1.tgz"
   integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
+
+semver@^7.3.7, semver@^7.5.3, semver@^7.5.4, semver@^7.6.0, semver@^7.6.2:
+  version "7.6.2"
+  resolved "https://registry.npmjs.org/semver/-/semver-7.6.2.tgz"
+  integrity sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==
 
 send@0.18.0:
   version "0.18.0"
@@ -9692,21 +9678,7 @@ ts-easing@^0.2.0:
   resolved "https://registry.npmjs.org/ts-easing/-/ts-easing-0.2.0.tgz"
   integrity sha512-Z86EW+fFFh/IFB1fqQ3/+7Zpf9t2ebOAxNI/V6Wo7r5gqiqtxmgTlQ1qbqQcjLKYeSHPTsEmvlJUDg/EuL0uHQ==
 
-ts-jest@29.0.3:
-  version "29.0.3"
-  resolved "https://registry.npmjs.org/ts-jest/-/ts-jest-29.0.3.tgz"
-  integrity sha512-Ibygvmuyq1qp/z3yTh9QTwVVAbFdDy/+4BtIQR2sp6baF2SJU/8CKK/hhnGIDY2L90Az2jIqTwZPnN2p+BweiQ==
-  dependencies:
-    bs-logger "0.x"
-    fast-json-stable-stringify "2.x"
-    jest-util "^29.0.0"
-    json5 "^2.2.1"
-    lodash.memoize "4.x"
-    make-error "1.x"
-    semver "7.x"
-    yargs-parser "^21.0.1"
-
-ts-jest@^29.1.1:
+ts-jest@29.1.5, ts-jest@^29.1.1:
   version "29.1.5"
   resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-29.1.5.tgz#d6c0471cc78bffa2cb4664a0a6741ef36cfe8f69"
   integrity sha512-UuClSYxM7byvvYfyWdFI+/2UxMmwNyJb0NPkZPQE2hew3RurV7l7zURgOHAd/1I1ZdPpe3GUsXNXAcN8TFKSIg==
@@ -9800,10 +9772,10 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   resolved "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.14.5.tgz"
   integrity sha512-KXXFFdAbFXY4geFIwoyNK+f5Z1b7swfXABfL7HXCmoIWMKU3dmS26672A4EeQtDzLKy7SXmfBu51JolvEKwtGA==
 
-twilio@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/twilio/-/twilio-5.2.0.tgz#756f3699101e4b04aa0c3008feb98e7821aac469"
-  integrity sha512-v58OiasUj9ckZpdkLAJWZ6KJIjM7GM57onM93xxqq7YVJRgLG0jS0nZY3X+Lm6dF2f653BUkTn6R6kmky7pLYw==
+twilio@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/twilio/-/twilio-5.2.1.tgz#adf6fc966c52bd977049e8dff63b7fcc7b75ae12"
+  integrity sha512-jwKZMwcLHiC3xBmDCSvJb9/v2oS7bXJDbusIfRVrNvMc9H1smejBrDgWOi4NIaZNiv+dvI6HxKFADHU89TmLEw==
   dependencies:
     axios "^1.6.8"
     dayjs "^1.11.9"
