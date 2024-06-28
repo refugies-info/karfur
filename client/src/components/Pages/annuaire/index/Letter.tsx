@@ -4,7 +4,7 @@ import styled from "styled-components";
 interface MainContainerProps {
   isClickable: boolean
 }
-const MainContainer = styled.a`
+const MainContainer = styled.a<MainContainerProps>`
   border-radius: 8px;
   width: 36px;
   height: 36px;

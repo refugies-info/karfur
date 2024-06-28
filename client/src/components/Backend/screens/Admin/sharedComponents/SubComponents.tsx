@@ -9,7 +9,7 @@ import styles from "../Admin.module.scss";
 import { GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
 import { useUser } from "hooks";
 
-const Container = styled.div`
+const Container = styled.div<{ isDarkBackground: boolean }>`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
@@ -101,7 +101,7 @@ interface StyledStatusContainer {
   textColor?: string;
   color: string;
 }
-export const StyledStatusContainer = styled.div`
+export const StyledStatusContainer = styled.div<StyledStatusContainer>`
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -175,7 +175,7 @@ interface ButtonContainerProps {
   disabled?: boolean;
   hoverColor?: string;
 }
-const ButtonContainer = styled.div`
+const ButtonContainer = styled.div<ButtonContainerProps>`
   width: 40px;
   height: 40px;
   background-color: ${colors.gray70};
@@ -234,7 +234,7 @@ export const DeleteButton = (props: { onClick: (event: any) => void; disabled: b
   </ButtonContainer>
 );
 
-const FilterButtonContainer = styled.div`
+const FilterButtonContainer = styled.div<{ isSelected: boolean }>`
   background: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.gray90 : colors.white)};
   color: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.white : colors.gray90)};
   border-radius: 12px;
@@ -253,7 +253,7 @@ export const FilterButton = (props: { onClick: () => void; text: string; isSelec
   </FilterButtonContainer>
 );
 
-const StyledTabHeader = styled.div`
+const StyledTabHeader = styled.div<{ order: number }>`
   display: flex;
   flex-direction: row;
   font-weight: bold;

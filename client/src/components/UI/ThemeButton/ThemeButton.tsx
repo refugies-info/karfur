@@ -6,7 +6,7 @@ import { getThemeName } from "lib/getThemeName";
 import ThemeIcon from "../ThemeIcon";
 import { GetThemeResponse } from "@refugies-info/api-types";
 
-const ThemeButtonContainer = styled.div`
+const ThemeButtonContainer = styled.div<{ color: string }>`
   background-color: ${(props: { color: string }) => props.color};
   display: flex;
   flex-direction: row;
@@ -18,7 +18,7 @@ const ThemeButtonContainer = styled.div`
   width: fit-content;
 `;
 
-const ThemeText = styled.p`
+const ThemeText = styled.p<{ mr?: number }>`
   color: white;
   font-size: 12px;
   margin-left: 8px;

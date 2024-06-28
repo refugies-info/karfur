@@ -12,7 +12,7 @@ interface Props {
   onSelectItem: (data: GetActiveUsersResponse) => void;
 }
 
-const UserDetailContainer = styled.div`
+const UserDetailContainer = styled.div<{ isSelected: boolean }>`
   width: 100%;
   height: 66px;
   margin-bottom: 10px;
@@ -34,7 +34,7 @@ const UserDetailContainer = styled.div`
   }
 `;
 
-const Text = styled.div`
+const Text = styled.div<{ isSelected: boolean }>`
   font-size: 16px;
   line-height: 20px;
   color: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.white : colors.gray90)};

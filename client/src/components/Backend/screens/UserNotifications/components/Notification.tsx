@@ -7,7 +7,7 @@ import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import { getPath } from "routes";
 
-const Container = styled.div`
+const Container = styled.div<{ read: boolean }>`
   background: ${(props: { read: boolean }) => (props.read ? colors.white : colors.focus)};
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
@@ -31,7 +31,7 @@ const RowContainer = styled.div`
   align-items: center;
 `;
 
-const TextContainer = styled.div`
+const TextContainer = styled.div<{ read: boolean }>`
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -49,7 +49,7 @@ const DispositifTitle = styled.div`
   margin-left: 8px;
 `;
 
-const DateContainer = styled.div`
+const DateContainer = styled.div<{ read: boolean }>`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;

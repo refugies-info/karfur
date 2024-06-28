@@ -64,7 +64,8 @@
     "remixicon": "^4.3.0",
     "sharp": "^0.33.4",
     "sortablejs": "^1.15.0",
-    "styled-components": "^5.3.6",
+    "styled-components": "^6.1.11",
+    "stylis": "^4.3.2",
     "sweetalert2": "^11.12.1",
     "typesafe-actions": "^5.1.0",
     "uuid": "^10.0.0"
@@ -115,7 +116,6 @@
     "@types/recompose": "^0.30.7",
     "@types/redux-mock-store": "^1.0.3",
     "@types/sortablejs": "^1.13.0",
-    "@types/styled-components": "^5.1.1",
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.14.1",

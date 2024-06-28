@@ -17,14 +17,14 @@ const RowContainer = styled.div`
   align-items: center;
 `;
 
-const UserName = styled.div`
+const UserName = styled.div<{ isUser: boolean }>`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: ${(props: { isUser: boolean }) => (props.isUser ? colors.bleuCharte : colors.gray90)};
 `;
 
-const RoleContainer = styled.div`
+const RoleContainer = styled.div<{ isUser: boolean }>`
   background: ${colors.white};
   border-radius: 8px;
   padding: 8px;
@@ -35,7 +35,7 @@ const RoleContainer = styled.div`
   width: fit-content;
 `;
 
-const DateContainer = styled.div`
+const DateContainer = styled.div<{ isUser: boolean }>`
   color: ${(props: { isUser: boolean }) => (props.isUser ? colors.bleuCharte : colors.gray90)};
   max-width: 190px;
 `;

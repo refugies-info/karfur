@@ -13,7 +13,7 @@ interface StickLineProps {
   colorFilled: string
   colorToDo: string
 }
-const StickLine = styled.div`
+const StickLine = styled.div<StickLineProps>`
   display: flex;
   flex: 1;
   background: ${(props: StickLineProps) =>
@@ -28,7 +28,7 @@ interface StepContainerProps {
   value: number
   filled: boolean
 }
-const StepContainer = styled.div`
+const StepContainer = styled.div<StepContainerProps>`
   background: #ffffff;
   border-width: ${(props: StepContainerProps) => (props.selected ? "3px" : "0px")};
   border-style: solid;
@@ -52,7 +52,7 @@ interface StepTextProps {
   selected: boolean
   colorFilled: string
 }
-const StepText = styled.div`
+const StepText = styled.div<StepTextProps>`
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
