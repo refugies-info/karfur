@@ -26,6 +26,8 @@
     "test:server": "yarn workspace @refugies-info/server test",
     "test:lint:client": "yarn workspace @refugies-info/client test:lint",
     "test:lint:server": "yarn workspace @refugies-info/server test:lint",
+    "test:types": "yarn workspaces run test:types",
+    "test:types:api-types": "yarn workspace @refugies-info/api-types test:types ",
     "test:types:client": "yarn workspace @refugies-info/client test:types ",
     "test:types:server": "yarn workspace @refugies-info/server test:types",
     "test:unit:client": "yarn workspace @refugies-info/client test:unit",

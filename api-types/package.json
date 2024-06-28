@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "echo 'No tests to run'",
+    "test:types": "tsc --noEmit",
     "prepublishOnly": "tsc"
   },
   "author": "Réfugiés.info",
@@ -17,7 +18,7 @@
   "dependencies": {
     "base64-js": "^1.5.1",
     "bowser": "^2.11.0",
-    "bson": "^6.7.0",
+    "bson": "^6.8.0",
     "buffer": "^6.0.3",
     "debug": "^4.3.4",
     "fast-xml-parser": "^4.1.2",
@@ -25,7 +26,7 @@
     "ip": "^2.0.0",
     "kareem": "^2.5.1",
     "memory-pager": "^1.5.0",
-    "mongodb": "^6.7.0",
+    "mongodb": "^6.8.0",
     "mongodb-connection-string-url": "^3.0.1",
     "mongoose": "8.4.4",
     "mpath": "^0.9.0",
