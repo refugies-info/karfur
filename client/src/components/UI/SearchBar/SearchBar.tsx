@@ -60,7 +60,7 @@ interface Props {
  */
 const SearchBar = (props: Props) => {
   const [value, setValue] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState<GetActiveUsersResponse[]>([]);
   const [isLoadingResults, setIsLoadingResults] = useState(false);
 
   const onChange = (_: any, { newValue }: { newValue: string }) => {
@@ -87,7 +87,7 @@ const SearchBar = (props: Props) => {
   };
 
   const onSuggestionsFetchRequested = debounce(({ value }) => {
-    setSuggestions(getSuggestions(value));
+    setSuggestions(getSuggestions(value) as GetActiveUsersResponse[]);
     setIsLoadingResults(false);
   }, 200);
 
@@ -178,6 +178,7 @@ const SearchBar = (props: Props) => {
         inputProps={inputProps}
         onSuggestionSelected={onSuggestionSelected}
         onSuggestionsClearRequested={() => setSuggestions([])}
+        multiSection={false}
         focusInputOnSuggestionClick
       />
       {isNoResult && props.structures && !isLoadingResults && (
