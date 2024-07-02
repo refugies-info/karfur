@@ -14,12 +14,15 @@
     "server"
   ],
   "scripts": {
+    "clean:branches": "npx git-removed-branches --prune --force",
     "build": "yarn workspaces run build",
     "build:client": "yarn workspace @refugies-info/client build",
     "build:server": "yarn workspace @refugies-info/server build",
     "dev:client": "yarn workspace @refugies-info/client dev",
     "dev:server": "yarn workspace @refugies-info/server dev",
     "test": "yarn workspaces run test",
+    "test:client": "yarn workspace @refugies-info/client test",
+    "test:server": "yarn workspace @refugies-info/server test",
     "test:lint:client": "yarn workspace @refugies-info/client test:lint",
     "test:lint:server": "yarn workspace @refugies-info/server test:lint",
     "test:types:client": "yarn workspace @refugies-info/client test:types ",
