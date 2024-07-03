@@ -48,7 +48,7 @@
     "tsoa": "^6.3.1",
     "twilio": "^5.2.0",
     "uniqid": "^5.0.3",
-    "uuid": "^9.0.0",
+    "uuid": "^10.0.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
