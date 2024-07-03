@@ -44,11 +44,11 @@ export const sendPublishedMailToStructureMembers = async (
   lien: string,
   dispositifId: Dispositif["_id"],
 ) =>
-  membres.map((membre) => {
+ Promise.all(membres.map(async (membre) => {
     logger.info("[sendPublishedMailToStructureMembers] send mail to membre", {
       membreId: membre._id,
     });
-    return sendPublishedFicheMailToStructureMembersService({
+    await sendPublishedFicheMailToStructureMembersService({
       pseudo: membre.username,
       titreInformatif: titreInformatif,
       titreMarque: titreMarque,
@@ -58,4 +58,4 @@ export const sendPublishedMailToStructureMembers = async (
       dispositifId,
       userId: membre._id,
     });
-  });
+  }));

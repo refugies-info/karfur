@@ -3,7 +3,6 @@ import { ResponseWithData } from "../../../types/interface";
 import { createTheme } from "../../../modules/themes/themes.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { getAllAppUsers, updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
-import map from "lodash/fp/map";
 import { AppUser, Theme } from "../../../typegoose";
 import { PostThemeResponse, ThemeRequest } from "@refugies-info/api-types";
 
@@ -19,8 +18,10 @@ export const addThemeInNotificationSettingsForUser = (theme: Theme) => (user: Ap
     themes: { ...user.notificationsSettings.themes, [`${theme._id}`]: hasOneNotificationEnabled(user) },
   });
 
-const updateUsersNotificationsSettings = async (theme: Theme) =>
-  getAllAppUsers().then(map(addThemeInNotificationSettingsForUser(theme)));
+const updateUsersNotificationsSettings = async (theme: Theme) => {
+  const appUsers = await getAllAppUsers()
+  return Promise.all(appUsers.map(addThemeInNotificationSettingsForUser(theme)));
+}
 
 export const postThemes = async (theme: ThemeRequest): ResponseWithData<PostThemeResponse> => {
   logger.info("[postThemes] received", theme);
