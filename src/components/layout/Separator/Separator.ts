@@ -8,11 +8,11 @@ export enum SeparatorSpacing {
   NoSpace = "nospace",
 }
 
-const Separator = styled.View<{ fullWidth?: boolean, spacing?: SeparatorSpacing }>`
+const Separator = styled.View<{ fullWidth?: boolean, spacing?: SeparatorSpacing, color?: string }>`
   height: 1px;
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "90%")};
   align-self: center;
-  background-color: ${({ theme }) => theme.colors.grey};
+  background-color: ${({ theme, color }) => color || theme.colors.grey};
   margin-vertical: ${({ theme, spacing }) => theme.layout.separator[spacing || SeparatorSpacing.Default]};
 `;
 

@@ -6,9 +6,8 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { styles } from "../../theme";
 import { ProfileParamList } from "../../../types";
 import { RTLView } from "../../components/BasicComponents";
-import { ContentCard } from "../../components/Profil/PrivacyPolicy/ContentCard";
 import { ContentHighlight } from "../../components/Profil/PrivacyPolicy/ContentHighlight";
-import { P, H1, Link } from "../../components/Profil/Typography";
+import { P, H1, Link, H2 } from "../../components/Profil/Typography";
 import { List } from "../../components/Profil/List";
 import { ReadingTime } from "../../components/Profil/ReadingTime";
 import { UpdatedDate } from "../../components/Profil/UpdatedDate";
@@ -96,77 +95,75 @@ export const LegalNoticeScreen = ({
 
       <H1>Quels sont les droits sur les contenus ?</H1>
 
-      <ContentCard step={"1"} title={"Les contenus"}>
+      <H2>Les contenus</H2>
+      <P style={{ marginBottom: 0 }}>
+        Les informations que l’on trouve sur l’application Réfugiés.info sont
+        publiques et peuvent être reproduites ou réutilisées librement, à
+        condition de :
+      </P>
+      <List
+        isRTL={isRTL}
+        items={[
+          "respecter l’intégrité de l’information reproduite",
+          "citer la source « Réfugiés.info »",
+        ]}
+      ></List>
+
+      <RTLView style={{ marginVertical: styles.margin * 4 }}>
+        <Icon
+          name="book-open-outline"
+          height={24}
+          width={24}
+          fill={styles.colors.black}
+          style={{
+            marginRight: !isRTL ? styles.margin : 0,
+            marginLeft: isRTL ? styles.margin : 0,
+          }}
+        />
+        <TextDSFR_MD style={{ flexShrink: 1 }}>
+          (Art. L. 122-5 du Code de la propriété intellectuelle)
+        </TextDSFR_MD>
+      </RTLView>
+
+      <ContentHighlight>
+        <P>
+          Tu ne peux pas utiliser ces informations dans un but publicitaire ou
+          commercial.
+        </P>
         <P style={{ marginBottom: 0 }}>
-          Les informations que l’on trouve sur l’application Réfugiés.info sont
-          publiques et peuvent être reproduites ou réutilisées librement, à
-          condition de :
+          Tu ne peux pas non plus utiliser le contenu de l’application en le
+          détournant de son contexte d’actualité, ou de manière contraire aux
+          lois et aux règlements, ou d’une façon qui porte atteinte à l’ordre
+          public.
         </P>
-        <List
-          isRTL={isRTL}
-          items={[
-            "respecter l’intégrité de l’information reproduite",
-            "citer la source « Réfugiés.info »",
-          ]}
-        ></List>
+      </ContentHighlight>
 
-        <RTLView style={{ marginVertical: styles.margin * 4 }}>
-          <Icon
-            name="book-open-outline"
-            height={24}
-            width={24}
-            fill={styles.colors.black}
-            style={{
-              marginRight: !isRTL ? styles.margin : 0,
-              marginLeft: isRTL ? styles.margin : 0,
-            }}
-          />
-          <TextDSFR_MD style={{ flexShrink: 1 }}>
-            (Art. L. 122-5 du Code de la propriété intellectuelle)
-          </TextDSFR_MD>
-        </RTLView>
-
-        <ContentHighlight>
-          <P>
-            Tu ne peux pas utiliser ces informations dans un but publicitaire ou
-            commercial.
-          </P>
-          <P style={{ marginBottom: 0 }}>
-            Tu ne peux pas non plus utiliser le contenu de l’application en le
-            détournant de son contexte d’actualité, ou de manière contraire aux
-            lois et aux règlements, ou d’une façon qui porte atteinte à l’ordre
-            public.
-          </P>
-        </ContentHighlight>
-      </ContentCard>
-
-      <ContentCard step={"2"} title={"Les créations graphiques"}>
-        <P>
-          Toute reproduction ou adaptation (retouchage, montage, recadrage...)
-          des éléments graphiques et iconographiques du site est interdite sans
-          l’accord de Réfugiés.info.
-        </P>
-        <RTLView style={{ marginBottom: styles.margin * 3 }}>
-          <Icon
-            name="book-open-outline"
-            height={24}
-            width={24}
-            fill={styles.colors.black}
-            style={{
-              marginRight: !isRTL ? styles.margin : 0,
-              marginLeft: isRTL ? styles.margin : 0,
-            }}
-          />
-          <TextDSFR_MD style={{ flexShrink: 1 }}>
-            (Art L.122-4 du Code de la propriété Intellectuelle)
-          </TextDSFR_MD>
-        </RTLView>
-        <P>
-          Pour toute question sur la reproduction de contenus, tu peux
-          t’adresser à :
-        </P>
-        <ContactButton isRTL={isRTL} />
-      </ContentCard>
+      <H2>Les créations graphiques</H2>
+      <P>
+        Toute reproduction ou adaptation (retouchage, montage, recadrage...) des
+        éléments graphiques et iconographiques du site est interdite sans
+        l’accord de Réfugiés.info.
+      </P>
+      <RTLView style={{ marginBottom: styles.margin * 3 }}>
+        <Icon
+          name="book-open-outline"
+          height={24}
+          width={24}
+          fill={styles.colors.black}
+          style={{
+            marginRight: !isRTL ? styles.margin : 0,
+            marginLeft: isRTL ? styles.margin : 0,
+          }}
+        />
+        <TextDSFR_MD style={{ flexShrink: 1 }}>
+          (Art L.122-4 du Code de la propriété Intellectuelle)
+        </TextDSFR_MD>
+      </RTLView>
+      <P>
+        Pour toute question sur la reproduction de contenus, tu peux t’adresser
+        à :
+      </P>
+      <ContactButton isRTL={isRTL} />
 
       <H1>Création de liens vers Réfugiés.info</H1>
       <P>

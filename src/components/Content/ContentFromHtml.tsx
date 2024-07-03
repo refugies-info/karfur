@@ -13,6 +13,7 @@ import { Card, Columns, Rows, RowsSpacing, Spacer } from "../layout";
 import { useTheme } from "styled-components/native";
 import { Icon } from "../iconography";
 import { Link } from "../Profil/Typography";
+import { Callout } from "../typography";
 
 interface Props {
   htmlContent: string;
@@ -202,49 +203,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
               }
 
               if (_["data-callout"] === "info") {
-                return (
-                  <View key={passProps.key}>
-                    <Spacer
-                      key={passProps.key + "_spacer"}
-                      height={theme.margin * 3}
-                    />
-                    <Card
-                      key={passProps.key}
-                      backgroundColor={theme.colors.white}
-                    >
-                      <Columns layout="auto 1">
-                        <View
-                          style={{
-                            marginHorizontal: theme.margin,
-                            borderRadius: 2,
-                            backgroundColor: "#6A6AF4",
-                            flexGrow: 1,
-                          }}
-                        >
-                          <View
-                            style={{
-                              width: theme.margin / 2,
-                              alignSelf: "center",
-                              backgroundColor: "#6A6AF4",
-                            }}
-                          />
-                        </View>
-                        <View style={{ padding: 10 }}>
-                          <Rows spacing={RowsSpacing.Text}>
-                            <TextDSFR_MD_Bold style={{ color: "#6A6AF4" }}>
-                              {t("content_screen.callout_info", "Bon à savoir")}
-                            </TextDSFR_MD_Bold>
-                            {children}
-                          </Rows>
-                        </View>
-                      </Columns>
-                    </Card>
-                    <Spacer
-                      key={passProps.key + "_spacer_"}
-                      height={theme.margin * 3}
-                    />
-                  </View>
-                );
+                return <Callout key={passProps.key}>{children}</Callout>;
               }
 
               return <View key={passProps.key}>{children}</View>;

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { View, Linking } from "react-native";
-import { styles } from "../../theme";
-import { CustomButton } from "../../components/CustomButton";
+import { ButtonDSFR } from "../buttons";
 
 interface Props {
   isRTL: boolean;
@@ -10,18 +9,18 @@ interface Props {
 export const ContactButton = (props: Props) => (
   <View
     style={{
-      alignItems: !props.isRTL ? "flex-start" : "flex-end"
+      alignItems: !props.isRTL ? "flex-start" : "flex-end",
     }}
   >
-    <CustomButton
-      i18nKey={"contact@refugies.info"}
-      defaultText="contact@refugies.info"
+    <ButtonDSFR
+      accessibilityLabel={"Envoyer un email à contact@refugies.info"}
+      title="contact@refugies.info"
+      onPress={() => {
+        Linking.openURL("mailto://contact@refugies.info");
+      }}
       iconName="email-outline"
-      backgroundColor={styles.colors.black}
-      textColor={styles.colors.white}
-      onPress={() => {Linking.openURL("mailto://contact@refugies.info")}}
-      iconFirst={true}
-      notFullWidth={true}
-    />
+      priority="primary"
+      style={{ width: "100%" }}
+    ></ButtonDSFR>
   </View>
 );

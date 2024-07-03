@@ -17,6 +17,12 @@ export const TextDSFR_XL = styled(StyledText)`
   line-height: 32px;
 `;
 
+export const TextDSFR_Chapo_Bold = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.chapo}px;
+  font-family: ${({ theme }) => theme.fonts.families.marianneBold};
+  line-height: 32px;
+`;
+
 export const TextDSFR_L = styled(StyledText)`
   font-size: ${({ theme }) => theme.fonts.sizes.l}px;
   font-family: ${({ theme }) => theme.fonts.families.marianneReg};

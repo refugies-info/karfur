@@ -106,6 +106,7 @@ const fonts = {
     s: 14,
     md: 16,
     l: 18,
+    chapo: 20,
     xl: 24
   },
   families: {
