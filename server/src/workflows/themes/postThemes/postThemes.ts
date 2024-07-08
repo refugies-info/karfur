@@ -20,6 +20,7 @@ export const addThemeInNotificationSettingsForUser = (theme: Theme) => (user: Ap
 
 const updateUsersNotificationsSettings = async (theme: Theme) => {
   const appUsers = await getAllAppUsers()
+  // TODO: use a batch update (see https://github.com/refugies-info/karfur/issues/2166)
   return Promise.all(appUsers.map(addThemeInNotificationSettingsForUser(theme)));
 }
 
