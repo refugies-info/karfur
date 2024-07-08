@@ -1,23 +1,48 @@
 import * as React from "react";
-import { Platform, Image } from "react-native";
+import { Platform, Image, View } from "react-native";
 import * as Linking from "expo-linking";
-import { TextDSFR_MD, TextDSFR_MD_Bold } from "../../components/StyledText";
-import { Icon } from "react-native-eva-icons";
 import { StackScreenProps } from "@react-navigation/stack";
+import styled, { useTheme } from "styled-components/native";
+import { TextDSFR_MD, TextDSFR_MD_Bold } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import styled from "styled-components/native";
 import { styles } from "../../theme";
 import { ProfileParamList } from "../../../types";
 import { RTLView } from "../../components/BasicComponents";
 import { List } from "../../components/Profil/List";
-import { Card } from "../../components/Profil/Card";
 import { P, H1, H2, Link } from "../../components/Profil/Typography";
 import IosIllu from "../../theme/images/accessibility/accessibility-ios.png";
 import AndroidIllu from "../../theme/images/accessibility/accessibility-android.png";
-import { ReadingTime } from "../../components/Profil/ReadingTime";
-import { UpdatedDate } from "../../components/Profil/UpdatedDate";
+import NotApplicable from "../../theme/images/accessibility/not-applicable.svg";
 import { ContactButton } from "../../components/Profil/ContactButton";
-import { Page } from "../../components";
+import { Badge, Page, Separator, Spacer } from "../../components";
+import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
+import { Info } from "../../components/Profil/Info";
+
+const Dots = () => (
+  <View
+    style={{
+      flex: 1,
+      flexDirection: "row",
+      alignItems: "center",
+      overflow: "hidden",
+      alignSelf: "flex-end",
+      marginBottom: 4,
+    }}
+  >
+    {Array.from({ length: 100 }, (_, index) => (
+      <View
+        key={index}
+        style={{
+          width: 1,
+          height: 1,
+          backgroundColor: "black",
+          borderRadius: 100,
+          marginLeft: 2,
+        }}
+      ></View>
+    ))}
+  </View>
+);
 
 const Legend = styled.View<{ color: string }>`
   width: ${({ theme }) => theme.margin * 3}px;
@@ -25,7 +50,14 @@ const Legend = styled.View<{ color: string }>`
   margin-right: ${({ theme }) => (!theme.i18n.isRTL ? theme.margin * 2 : 0)}px;
   margin-left: ${({ theme }) => (theme.i18n.isRTL ? theme.margin * 2 : 0)}px;
   background-color: ${(props: { color: string }) => props.color};
-  border-radius: ${({ theme }) => theme.radius}px;
+  border: 1px solid ${({ theme }) => theme.colors.dsfr_dark};
+`;
+
+const Card = styled.View`
+  border: 1px solid ${({ theme }) => theme.colors.dsfr_borderGrey};
+  background-color: white;
+  padding: ${({ theme }) => theme.margin * 3}px;
+  margin-bottom: 0;
 `;
 
 export const AccessibilityScreen = ({}: StackScreenProps<
@@ -33,12 +65,18 @@ export const AccessibilityScreen = ({}: StackScreenProps<
   "AccessibilityScreen"
 >) => {
   const { isRTL } = useTranslationWithRTL();
-
+  const theme = useTheme();
   const isIOS = Platform.OS === "ios";
 
   return (
-    <Page title="L’accessibilité, c’est quoi ?">
-      <P style={{ marginTop: styles.margin * 2 }}>
+    <Page
+      headerTitle="Accessibilité"
+      backgroundColor={theme.colors.dsfr_backgroundBlue}
+      headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
+      headerIconName="file-text-outline"
+    >
+      <H1>L'accessibilité, c'est quoi ?</H1>
+      <P>
         Sur cette page, tu trouveras les informations obligatoires concernant
         l’accessibilité de l’application {isIOS ? "iOS" : "Android"}{" "}
         Réfugiés.info.
@@ -50,9 +88,14 @@ export const AccessibilityScreen = ({}: StackScreenProps<
         par des ergonomes pour chaque type de handicap.
       </P>
 
-      <ReadingTime text="5 à 10 minutes" />
+      <Badge text="Temps de lecture : 5 à 10 minutes" type="new" icon="clock" />
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
 
-      <H1>Déclaration d’accessibilité</H1>
+      <H1 blue>Déclaration d’accessibilité</H1>
       <P>
         La Délégation interministérielle à l'accueil et à l'intégration des
         réfugiés s'engage à rendre son application mobile accessible
@@ -69,7 +112,13 @@ export const AccessibilityScreen = ({}: StackScreenProps<
         {isIOS ? "iOS" : "Android"} Réfugiés.info.
       </P>
 
-      <H1>État de conformité</H1>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>État de conformité</H1>
       <P style={{ marginBottom: 0 }}>
         L’application {isIOS ? "iOS" : "Android"} Réfugiés.info est{" "}
         {isIOS ? (
@@ -83,7 +132,13 @@ export const AccessibilityScreen = ({}: StackScreenProps<
         énumérées ci-dessous.
       </P>
 
-      <H1>Résultats des tests</H1>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>Résultats des tests</H1>
       <P>
         L’audit de conformité réalisé par la société{" "}
         <Link
@@ -97,28 +152,8 @@ export const AccessibilityScreen = ({}: StackScreenProps<
         révèle que {isIOS ? "50,00" : "45,83"}% des critères de la Directive EN
         301 549 V3.2.1 sont respectés.
       </P>
-      <RTLView
-        style={{ alignItems: "flex-start", marginBottom: styles.margin }}
-      >
-        <TextDSFR_MD style={{ lineHeight: 22 }}> ✅ </TextDSFR_MD>
-        <TextDSFR_MD>{isIOS ? "12" : "11"} critères sont respectés</TextDSFR_MD>
-      </RTLView>
-      <RTLView
-        style={{ alignItems: "flex-start", marginBottom: styles.margin }}
-      >
-        <TextDSFR_MD style={{ lineHeight: 22 }}> ❌ </TextDSFR_MD>
-        <TextDSFR_MD>
-          {isIOS ? "12" : "13"} critères ne sont pas respectés
-        </TextDSFR_MD>
-      </RTLView>
-      <RTLView
-        style={{ alignItems: "flex-start", marginBottom: styles.margin * 3 }}
-      >
-        <TextDSFR_MD style={{ lineHeight: 22 }}> 🚫 </TextDSFR_MD>
-        <TextDSFR_MD>19 critères ne sont pas applicables</TextDSFR_MD>
-      </RTLView>
 
-      <Card style={{ marginBottom: 0 }}>
+      <Card>
         <P style={{ fontStyle: "italic", textAlign: "center" }}>
           Résultat de conformité des critères au EN-301-549-V3.2.1
         </P>
@@ -126,37 +161,60 @@ export const AccessibilityScreen = ({}: StackScreenProps<
           source={isIOS ? IosIllu : AndroidIllu}
           resizeMode="contain"
           style={{
-            width: 276,
-            height: 228,
+            width: 228,
+            height: 232,
             alignSelf: "center",
             marginBottom: styles.margin * 3,
           }}
+          alt="24 critères"
         />
         <RTLView
           style={{
             alignItems: "center",
-            justifyContent: "center",
             marginBottom: styles.margin,
           }}
         >
-          <Legend color={styles.colors.travail80} />
-          <TextDSFR_MD style={{ width: 180 }}>critères conformes</TextDSFR_MD>
+          <Legend color={styles.colors.dsfr_success} />
+          <TextDSFR_MD>Critères conformes</TextDSFR_MD>
+          <Dots />
+          <TextDSFR_MD_Bold>{isIOS ? "12" : "11"}</TextDSFR_MD_Bold>
+        </RTLView>
+
+        <RTLView
+          style={{
+            alignItems: "center",
+            marginBottom: styles.margin,
+          }}
+        >
+          <Legend color={styles.colors.dsfr_error} />
+          <TextDSFR_MD>Critères non conformes</TextDSFR_MD>
+          <Dots />
+          <TextDSFR_MD_Bold>{isIOS ? "12" : "13"}</TextDSFR_MD_Bold>
         </RTLView>
         <RTLView
           style={{
             alignItems: "center",
-            justifyContent: "center",
             marginBottom: styles.margin,
           }}
         >
-          <Legend color={styles.colors.sante80} />
-          <TextDSFR_MD style={{ width: 180 }}>
-            critères non conformes
-          </TextDSFR_MD>
+          <NotApplicable
+            width={24}
+            height={24}
+            style={{ marginRight: theme.margin * 2 }}
+          />
+          <TextDSFR_MD>Critères non applicables</TextDSFR_MD>
+          <Dots />
+          <TextDSFR_MD_Bold>19</TextDSFR_MD_Bold>
         </RTLView>
       </Card>
 
-      <H1>Contenus non accessibles</H1>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>Contenus non accessibles</H1>
       <P>
         Les contenus listés ci-dessous ne sont pas accessibles pour les raisons
         suivantes.
@@ -211,18 +269,22 @@ export const AccessibilityScreen = ({}: StackScreenProps<
         Pas de contenus non soumis à l'obligation d'accessibilité
       </P>
 
-      <H1>Établissement de cette déclaration d’accessibilité</H1>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>Établissement de cette déclaration d’accessibilité</H1>
       <P>Cette déclaration a été établie le 30 novembre 2021.</P>
-      <P style={{ marginBottom: 0 }}>
-        Technologies utilisées pour la réalisation de l’application :
-      </P>
+      <P>Technologies utilisées pour la réalisation de l’application :</P>
       <List
         isRTL={isRTL}
         items={["React Native"]}
         style={{ marginBottom: styles.margin * 3 }}
       ></List>
 
-      <P style={{ marginBottom: 0 }}>
+      <P>
         Les tests des pages web ont été effectués avec les combinaisons d'agents
         utilisateurs et de lecteurs d’écran suivants :
       </P>
@@ -232,9 +294,7 @@ export const AccessibilityScreen = ({}: StackScreenProps<
         style={{ marginBottom: styles.margin * 3 }}
       ></List>
 
-      <P style={{ marginBottom: 0 }}>
-        Les outils suivants ont été utilisés lors de l’évaluation :
-      </P>
+      <P>Les outils suivants ont été utilisés lors de l’évaluation :</P>
       <List
         isRTL={isRTL}
         items={[
@@ -264,7 +324,13 @@ export const AccessibilityScreen = ({}: StackScreenProps<
         ]}
       ></List>
 
-      <H1>Retour d’information et contact</H1>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>Retour d’information et contact</H1>
       <P>
         Si vous n’arrivez pas à accéder à un contenu ou à un service, vous
         pouvez contacter le responsable de l’application mobile pour être
@@ -273,7 +339,13 @@ export const AccessibilityScreen = ({}: StackScreenProps<
       </P>
       <ContactButton isRTL={isRTL} />
 
-      <H1>Voies de recours</H1>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>Voies de recours</H1>
       <P>Cette procédure est à utiliser dans le cas suivant :</P>
       <P>
         Vous avez signalé au responsable du site internet un défaut
@@ -310,25 +382,16 @@ export const AccessibilityScreen = ({}: StackScreenProps<
           "Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre) à l’adresse suivante :",
         ]}
       ></List>
-      <RTLView style={{ marginTop: styles.margin * 3 }}>
-        <Icon
-          name="pin-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.black}
-          style={{
-            marginRight: !isRTL ? styles.margin : styles.margin * 2,
-            marginLeft: isRTL ? styles.margin : styles.margin * 2,
-          }}
-        />
-        <TextDSFR_MD>
-          Défenseur des droits{"\n"}
-          Libre réponse 71120{"\n"}
-          75342 Paris CEDEX 07
-        </TextDSFR_MD>
-      </RTLView>
+      <Spacer height={theme.margin * 2} />
+      <Info
+        icon="pin-outline"
+        text={"Défenseur des droits\nLibre réponse 71120\n75342 Paris CEDEX 07"}
+      />
 
-      <UpdatedDate isRTL={isRTL} text="6 janvier 2022" />
+      <Spacer height={theme.margin * 5} />
+
+      <Badge text="Mise à jour le 6 janvier 2022" type="info" />
+      <Spacer height={theme.margin * 5} />
     </Page>
   );
 };
