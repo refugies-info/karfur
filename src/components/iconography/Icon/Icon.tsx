@@ -1,4 +1,5 @@
 import React from "react";
+import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { Icon as EvaIcon } from "react-native-eva-icons";
 
@@ -30,6 +31,7 @@ export interface IconProps {
   name: string;
   size: number;
   skeleton?: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 
 const Icon = ({
@@ -39,6 +41,7 @@ const Icon = ({
   skeleton = false,
   loading = false,
   disabled = false,
+  style = {},
 }: IconProps) => {
   const IconComponent = supportedIcons[name];
 
@@ -46,7 +49,8 @@ const Icon = ({
   if (loading) return <IconLoader size={size} />;
 
   return (
-    <WrapperView disabled={disabled}>
+    //@ts-ignore
+    <WrapperView disabled={disabled} style={style}>
       {!IconComponent ? (
         <EvaIcon name={name} fill={color} height={size} width={size} />
       ) : (

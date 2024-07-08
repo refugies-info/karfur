@@ -128,7 +128,12 @@ exports[`About screen should render correctly 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}

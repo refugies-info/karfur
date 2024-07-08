@@ -240,10 +240,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                 "borderWidth": 1,
                 "maxHeight": 100,
                 "opacity": 1,
-                "paddingBottom": 10,
-                "paddingLeft": 10,
-                "paddingRight": 10,
-                "paddingTop": 10,
+                "paddingHorizontal": 10,
+                "paddingVertical": 10,
                 "width": "100%",
               }
             }
@@ -259,14 +257,14 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               horizontalAlign="flex-start"
               style={
                 {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -305,12 +303,18 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                   {
                     "flexBasis": "auto",
                     "flexGrow": 0,
+                    "marginRight": 8,
                   }
                 }
               >
                 <View
                   disabled={false}
-                  style={{}}
+                  style={
+                    [
+                      {},
+                      {},
+                    ]
+                  }
                 >
                   <View
                     collapsable={false}
@@ -457,10 +461,8 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
                 "borderWidth": 1,
                 "maxHeight": 100,
                 "opacity": 1,
-                "paddingBottom": 10,
-                "paddingLeft": 10,
-                "paddingRight": 10,
-                "paddingTop": 10,
+                "paddingHorizontal": 10,
+                "paddingVertical": 10,
                 "width": "100%",
               }
             }
@@ -476,14 +478,14 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               horizontalAlign="flex-start"
               style={
                 {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={

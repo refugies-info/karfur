@@ -128,7 +128,12 @@ exports[`Accessibility screen should render correctly 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}
@@ -1191,11 +1196,11 @@ exports[`Accessibility screen should render correctly 1`] = `
           selectable={true}
           style={
             {
-              "color": "#212121",
+              "color": "#2323FF",
               "fontFamily": "Marianne-Bold",
-              "fontSize": 18,
-              "lineHeight": 28,
-              "marginBottom": 24,
+              "fontSize": 20,
+              "lineHeight": 32,
+              "marginBottom": 16,
               "textAlign": "left",
             }
           }
@@ -1981,11 +1986,11 @@ exports[`Accessibility screen should render correctly 1`] = `
           selectable={true}
           style={
             {
-              "color": "#212121",
+              "color": "#2323FF",
               "fontFamily": "Marianne-Bold",
-              "fontSize": 18,
-              "lineHeight": 28,
-              "marginBottom": 24,
+              "fontSize": 20,
+              "lineHeight": 32,
+              "marginBottom": 16,
               "textAlign": "left",
             }
           }
@@ -2013,11 +2018,11 @@ exports[`Accessibility screen should render correctly 1`] = `
           selectable={true}
           style={
             {
-              "color": "#212121",
+              "color": "#2323FF",
               "fontFamily": "Marianne-Bold",
-              "fontSize": 18,
-              "lineHeight": 28,
-              "marginBottom": 24,
+              "fontSize": 20,
+              "lineHeight": 32,
+              "marginBottom": 16,
               "textAlign": "left",
             }
           }
@@ -2979,12 +2984,13 @@ exports[`Accessibility screen should render correctly 1`] = `
           }
         >
           <View
+            accessibilityLabel="Envoyer un email à contact@refugies.info"
             accessibilityRole="button"
             accessibilityState={
               {
                 "busy": undefined,
                 "checked": undefined,
-                "disabled": undefined,
+                "disabled": false,
                 "expanded": undefined,
                 "selected": undefined,
               }
@@ -3010,156 +3016,185 @@ exports[`Accessibility screen should render correctly 1`] = `
             style={
               {
                 "alignItems": "center",
-                "backgroundColor": "#212121",
-                "borderBottomLeftRadius": 12,
-                "borderBottomRightRadius": 12,
-                "borderTopLeftRadius": 12,
-                "borderTopRightRadius": 12,
-                "display": "flex",
-                "elevation": 2,
-                "flexDirection": "row",
-                "justifyContent": "center",
+                "backgroundColor": "#000091",
+                "borderColor": "#000091",
+                "borderWidth": 1,
+                "maxHeight": 50,
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 18,
-                "paddingRight": 18,
-                "paddingTop": 18,
-                "shadowColor": "#212121",
-                "shadowOffset": {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.4,
-                "shadowRadius": 2,
-                "width": "auto",
+                "paddingHorizontal": 10,
+                "paddingVertical": 10,
+                "width": "100%",
               }
             }
-            testID="test-custom-button-contact@refugies.info"
           >
             <View
-              collapsable={false}
-              style={
+              RTLBehaviour={true}
+              animatedStyle={
                 {
-                  "transform": [
-                    {
-                      "scale": 1,
-                    },
-                  ],
+                  "value": {},
                 }
               }
-            >
-              <RNSVGSvgView
-                align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
-                fill="#FFFFFF"
-                focusable={false}
-                height={24}
-                meetOrSlice={0}
-                minX={0}
-                minY={0}
-                style={
-                  [
-                    {
-                      "backgroundColor": "transparent",
-                      "borderWidth": 0,
-                    },
-                    {},
-                    {
-                      "flex": 0,
-                      "height": 24,
-                      "width": 24,
-                    },
-                  ]
+              collapsable={false}
+              horizontalAlign="flex-start"
+              style={
+                {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
                 }
-                vbHeight={24}
-                vbWidth={24}
-                width={24}
-              >
-                <RNSVGGroup
-                  fill={
-                    {
-                      "payload": 4294967295,
-                      "type": 0,
-                    }
+              }
+              verticalAlign="center"
+            >
+              <View
+                style={
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 8,
                   }
-                  propList={
+                }
+              >
+                <View
+                  disabled={false}
+                  style={
                     [
-                      "fill",
+                      {},
+                      {},
                     ]
                   }
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    collapsable={false}
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "transform": [
+                          {
+                            "scale": 1,
+                          },
+                        ],
                       }
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
+                    <RNSVGSvgView
+                      align="xMidYMid"
+                      bbHeight="24"
+                      bbWidth="24"
+                      fill="#FFFFFF"
+                      focusable={false}
+                      height={24}
+                      meetOrSlice={0}
+                      minX={0}
+                      minY={0}
+                      style={
+                        [
+                          {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          {
+                            "flex": 0,
+                            "height": 24,
+                            "width": 24,
+                          },
+                        ]
                       }
+                      vbHeight={24}
+                      vbWidth={24}
+                      width={24}
                     >
-                      <RNSVGRect
+                      <RNSVGGroup
                         fill={
                           {
-                            "payload": 4278190080,
+                            "payload": 4294967295,
                             "type": 0,
                           }
                         }
-                        height="24"
-                        opacity={0}
-                        width="24"
-                        x="0"
-                        y="0"
-                      />
-                      <RNSVGPath
-                        d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
+                        propList={
+                          [
+                            "fill",
+                          ]
                         }
-                      />
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGGroup>
-              </RNSVGSvgView>
-            </View>
-            <Text
-              hasIcon={true}
-              iconFirst={true}
-              isRTL={false}
-              selectable={true}
-              style={
-                [
+                      >
+                        <RNSVGGroup
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        >
+                          <RNSVGGroup
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
+                          >
+                            <RNSVGRect
+                              fill={
+                                {
+                                  "payload": 4278190080,
+                                  "type": 0,
+                                }
+                              }
+                              height="24"
+                              opacity={0}
+                              width="24"
+                              x="0"
+                              y="0"
+                            />
+                            <RNSVGPath
+                              d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
+                              fill={
+                                {
+                                  "payload": 4278190080,
+                                  "type": 0,
+                                }
+                              }
+                            />
+                          </RNSVGGroup>
+                        </RNSVGGroup>
+                      </RNSVGGroup>
+                    </RNSVGSvgView>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
                   {
-                    "color": "#FFFFFF",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                  {},
-                ]
-              }
-              textColor="#FFFFFF"
-            >
-              <Text
-                style={{}}
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 8,
+                  }
+                }
               >
-                contact@refugies.info
-              </Text>
-              <View />
-            </Text>
+                <Text
+                  color="#FFFFFF"
+                  disabled={false}
+                  isRTL={false}
+                  selectable={true}
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                  <Text
+                    style={{}}
+                  >
+                    contact@refugies.info
+                  </Text>
+                  <View />
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
         <Text

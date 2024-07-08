@@ -129,7 +129,12 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}
@@ -647,7 +652,12 @@ exports[`Page snapshot test suite should render without bug 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}

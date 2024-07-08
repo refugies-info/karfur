@@ -217,10 +217,8 @@ exports[`Filter french level should render correctly when french level selected 
                 "borderWidth": 1,
                 "maxHeight": 50,
                 "opacity": 1,
-                "paddingBottom": 10,
-                "paddingLeft": 10,
-                "paddingRight": 10,
-                "paddingTop": 10,
+                "paddingHorizontal": 10,
+                "paddingVertical": 8,
               }
             }
           >
@@ -235,14 +233,14 @@ exports[`Filter french level should render correctly when french level selected 
               horizontalAlign="flex-start"
               style={
                 {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             />
           </View>
         </View>
@@ -1476,10 +1474,8 @@ exports[`Filter french level should render correctly when french level selected 
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 1,
-          "paddingBottom": 10,
-          "paddingLeft": 10,
-          "paddingRight": 10,
-          "paddingTop": 10,
+          "paddingHorizontal": 10,
+          "paddingVertical": 10,
         }
       }
       testID="test-next-button"
@@ -1495,14 +1491,14 @@ exports[`Filter french level should render correctly when french level selected 
         horizontalAlign="flex-start"
         style={
           {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
             "flexGrow": 1,
             "justifyContent": "flex-start",
           }
         }
-        verticalAlign="flex-start"
+        verticalAlign="center"
       >
         <View
           style={
@@ -1515,7 +1511,12 @@ exports[`Filter french level should render correctly when french level selected 
         >
           <View
             disabled={false}
-            style={{}}
+            style={
+              [
+                {},
+                {},
+              ]
+            }
           >
             <View
               collapsable={false}
@@ -2449,10 +2450,8 @@ exports[`Filter french level should render correctly when french level selected 
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 0.4,
-          "paddingBottom": 10,
-          "paddingLeft": 10,
-          "paddingRight": 10,
-          "paddingTop": 10,
+          "paddingHorizontal": 10,
+          "paddingVertical": 10,
         }
       }
       testID="test-prev-button"
@@ -2468,14 +2467,14 @@ exports[`Filter french level should render correctly when french level selected 
         horizontalAlign="flex-start"
         style={
           {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
             "flexGrow": 1,
             "justifyContent": "flex-start",
           }
         }
-        verticalAlign="flex-start"
+        verticalAlign="center"
       >
         <View
           style={
@@ -2488,7 +2487,12 @@ exports[`Filter french level should render correctly when french level selected 
         >
           <View
             disabled={false}
-            style={{}}
+            style={
+              [
+                {},
+                {},
+              ]
+            }
           >
             <View
               collapsable={false}
@@ -2820,10 +2824,8 @@ exports[`Filter french level should render correctly when no french level select
                 "borderWidth": 1,
                 "maxHeight": 50,
                 "opacity": 1,
-                "paddingBottom": 10,
-                "paddingLeft": 10,
-                "paddingRight": 10,
-                "paddingTop": 10,
+                "paddingHorizontal": 10,
+                "paddingVertical": 8,
               }
             }
           >
@@ -2838,14 +2840,14 @@ exports[`Filter french level should render correctly when no french level select
               horizontalAlign="flex-start"
               style={
                 {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             />
           </View>
         </View>
@@ -4078,10 +4080,8 @@ exports[`Filter french level should render correctly when no french level select
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 1,
-          "paddingBottom": 10,
-          "paddingLeft": 10,
-          "paddingRight": 10,
-          "paddingTop": 10,
+          "paddingHorizontal": 10,
+          "paddingVertical": 10,
         }
       }
       testID="test-next-button"
@@ -4097,14 +4097,14 @@ exports[`Filter french level should render correctly when no french level select
         horizontalAlign="flex-start"
         style={
           {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
             "flexGrow": 1,
             "justifyContent": "flex-start",
           }
         }
-        verticalAlign="flex-start"
+        verticalAlign="center"
       >
         <View
           style={
@@ -4117,7 +4117,12 @@ exports[`Filter french level should render correctly when no french level select
         >
           <View
             disabled={false}
-            style={{}}
+            style={
+              [
+                {},
+                {},
+              ]
+            }
           >
             <View
               collapsable={false}
@@ -5051,10 +5056,8 @@ exports[`Filter french level should render correctly when no french level select
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 0.4,
-          "paddingBottom": 10,
-          "paddingLeft": 10,
-          "paddingRight": 10,
-          "paddingTop": 10,
+          "paddingHorizontal": 10,
+          "paddingVertical": 10,
         }
       }
       testID="test-prev-button"
@@ -5070,14 +5073,14 @@ exports[`Filter french level should render correctly when no french level select
         horizontalAlign="flex-start"
         style={
           {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
             "flexGrow": 1,
             "justifyContent": "flex-start",
           }
         }
-        verticalAlign="flex-start"
+        verticalAlign="center"
       >
         <View
           style={
@@ -5090,7 +5093,12 @@ exports[`Filter french level should render correctly when no french level select
         >
           <View
             disabled={false}
-            style={{}}
+            style={
+              [
+                {},
+                {},
+              ]
+            }
           >
             <View
               collapsable={false}
@@ -5422,10 +5430,8 @@ exports[`Filter french level should select level when click on it 1`] = `
                 "borderWidth": 1,
                 "maxHeight": 50,
                 "opacity": 1,
-                "paddingBottom": 10,
-                "paddingLeft": 10,
-                "paddingRight": 10,
-                "paddingTop": 10,
+                "paddingHorizontal": 10,
+                "paddingVertical": 8,
               }
             }
           >
@@ -5440,14 +5446,14 @@ exports[`Filter french level should select level when click on it 1`] = `
               horizontalAlign="flex-start"
               style={
                 {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             />
           </View>
         </View>
@@ -6681,10 +6687,8 @@ exports[`Filter french level should select level when click on it 1`] = `
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 1,
-          "paddingBottom": 10,
-          "paddingLeft": 10,
-          "paddingRight": 10,
-          "paddingTop": 10,
+          "paddingHorizontal": 10,
+          "paddingVertical": 10,
         }
       }
       testID="test-next-button"
@@ -6700,14 +6704,14 @@ exports[`Filter french level should select level when click on it 1`] = `
         horizontalAlign="flex-start"
         style={
           {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
             "flexGrow": 1,
             "justifyContent": "flex-start",
           }
         }
-        verticalAlign="flex-start"
+        verticalAlign="center"
       >
         <View
           style={
@@ -6720,7 +6724,12 @@ exports[`Filter french level should select level when click on it 1`] = `
         >
           <View
             disabled={false}
-            style={{}}
+            style={
+              [
+                {},
+                {},
+              ]
+            }
           >
             <View
               collapsable={false}
@@ -7654,10 +7663,8 @@ exports[`Filter french level should select level when click on it 1`] = `
           "borderWidth": 1,
           "maxHeight": 50,
           "opacity": 0.4,
-          "paddingBottom": 10,
-          "paddingLeft": 10,
-          "paddingRight": 10,
-          "paddingTop": 10,
+          "paddingHorizontal": 10,
+          "paddingVertical": 10,
         }
       }
       testID="test-prev-button"
@@ -7673,14 +7680,14 @@ exports[`Filter french level should select level when click on it 1`] = `
         horizontalAlign="flex-start"
         style={
           {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
             "flexGrow": 1,
             "justifyContent": "flex-start",
           }
         }
-        verticalAlign="flex-start"
+        verticalAlign="center"
       >
         <View
           style={
@@ -7693,7 +7700,12 @@ exports[`Filter french level should select level when click on it 1`] = `
         >
           <View
             disabled={false}
-            style={{}}
+            style={
+              [
+                {},
+                {},
+              ]
+            }
           >
             <View
               collapsable={false}

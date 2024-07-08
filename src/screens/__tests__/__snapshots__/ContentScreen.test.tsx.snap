@@ -132,7 +132,12 @@ exports[`ContentScreen should render correctly 1`] = `
               >
                 <View
                   disabled={false}
-                  style={{}}
+                  style={
+                    [
+                      {},
+                      {},
+                    ]
+                  }
                 >
                   <View
                     collapsable={false}
@@ -555,7 +560,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         disabled={false}
-                        style={{}}
+                        style={
+                          [
+                            {},
+                            {},
+                          ]
+                        }
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
@@ -4809,7 +4819,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <View
                         disabled={false}
-                        style={{}}
+                        style={
+                          [
+                            {},
+                            {},
+                          ]
+                        }
                       >
                         <View
                           collapsable={false}
@@ -6568,7 +6583,12 @@ exports[`ContentScreen should render correctly 1`] = `
                                   >
                                     <View
                                       disabled={false}
-                                      style={{}}
+                                      style={
+                                        [
+                                          {},
+                                          {},
+                                        ]
+                                      }
                                     >
                                       <RNSVGSvgView
                                         align="xMidYMid"
@@ -7086,7 +7106,12 @@ exports[`ContentScreen should render correctly 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}
@@ -8587,7 +8612,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
               >
                 <View
                   disabled={false}
-                  style={{}}
+                  style={
+                    [
+                      {},
+                      {},
+                    ]
+                  }
                 >
                   <View
                     collapsable={false}
@@ -9010,7 +9040,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         disabled={false}
-                        style={{}}
+                        style={
+                          [
+                            {},
+                            {},
+                          ]
+                        }
                       >
                         <RNSVGSvgView
                           align="xMidYMid"
@@ -13264,7 +13299,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         disabled={false}
-                        style={{}}
+                        style={
+                          [
+                            {},
+                            {},
+                          ]
+                        }
                       >
                         <View
                           collapsable={false}
@@ -13608,7 +13648,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         disabled={false}
-                        style={{}}
+                        style={
+                          [
+                            {},
+                            {},
+                          ]
+                        }
                       >
                         <View
                           collapsable={false}
@@ -13773,7 +13818,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <View
                         disabled={false}
-                        style={{}}
+                        style={
+                          [
+                            {},
+                            {},
+                          ]
+                        }
                       >
                         <View
                           collapsable={false}
@@ -15520,7 +15570,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                   >
                                     <View
                                       disabled={false}
-                                      style={{}}
+                                      style={
+                                        [
+                                          {},
+                                          {},
+                                        ]
+                                      }
                                     >
                                       <RNSVGSvgView
                                         align="xMidYMid"
@@ -16038,7 +16093,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}

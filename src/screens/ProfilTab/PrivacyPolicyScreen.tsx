@@ -3,21 +3,25 @@ import { Image } from "react-native";
 import * as Linking from "expo-linking";
 import { useTheme } from "styled-components/native";
 import { StackScreenProps } from "@react-navigation/stack";
-import { Icon } from "react-native-eva-icons";
 import { TextDSFR_MD, TextDSFR_MD_Bold } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { styles } from "../../theme";
 import { ProfileParamList } from "../../../types";
-import { RTLView } from "../../components/BasicComponents";
-import AnalyticsLogo from "../../theme/images/privacyPolicy/analytics_logo.svg";
-import FirebaseLogo from "../../theme/images/privacyPolicy/firebase_logo.svg";
-import YourInformations from "../../theme/images/privacyPolicy/your-informations.png";
-import YourData from "../../theme/images/privacyPolicy/your-data.png";
-import { P, H1, Link, H2 } from "../../components/Profil/Typography";
+import YourInformations from "../../theme/images/privacyPolicy/screenshots.png";
+import YourData from "../../theme/images/privacyPolicy/statistics.png";
+import { P, H1, H2 } from "../../components/Profil/Typography";
 import { List } from "../../components/Profil/List";
 import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
 import { ContactButton } from "../../components/Profil/ContactButton";
-import { Badge, Callout, Page, Separator, Spacer } from "../../components";
+import {
+  Badge,
+  ButtonDSFR,
+  Callout,
+  Page,
+  Separator,
+  Spacer,
+} from "../../components";
+import { IconList } from "../../components/Profil/IconList";
 
 export const PrivacyPolicyScreen = ({
   navigation,
@@ -61,10 +65,9 @@ export const PrivacyPolicyScreen = ({
       <Image
         source={YourInformations}
         style={{
-          width: 200,
-          height: 92,
+          width: 280,
+          height: 209,
           alignSelf: "center",
-          marginBottom: styles.margin * 3,
         }}
       />
       <Callout>
@@ -85,45 +88,13 @@ export const PrivacyPolicyScreen = ({
         Quand tu ouvres l’application et à tout moment dans l’onglet “Moi”, tu
         peux décider de nous partager :
       </P>
-      <RTLView style={{ marginBottom: styles.margin }}>
-        <Icon
-          name="pin-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.black}
-          style={{
-            marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0,
-          }}
-        />
-        <TextDSFR_MD>la ville dans laquelle tu habites</TextDSFR_MD>
-      </RTLView>
-      <RTLView style={{ marginBottom: styles.margin }}>
-        <Icon
-          name="calendar-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.black}
-          style={{
-            marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0,
-          }}
-        />
-        <TextDSFR_MD>ta tranche d’âge</TextDSFR_MD>
-      </RTLView>
-      <RTLView style={{ marginBottom: styles.margin * 3 }}>
-        <Icon
-          name="message-circle-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.black}
-          style={{
-            marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0,
-          }}
-        />
-        <TextDSFR_MD>ton niveau en français</TextDSFR_MD>
-      </RTLView>
+      <IconList
+        items={[
+          { icon: "pin-outline", text: "Ta ville" },
+          { icon: "calendar-outline", text: "Ton âge" },
+          { icon: "message-circle-outline", text: "Ton niveau en français" },
+        ]}
+      />
       <P style={{ marginBottom: theme.margin }}>
         Pour nous indiquer ta ville, tu peux utiliser les fonctionnalités de
         géolocalisation de ton téléphone ou taper le nom de la ville
@@ -173,7 +144,7 @@ export const PrivacyPolicyScreen = ({
       <H1 blue>Les données sur ta navigation</H1>
 
       <H2>C’est quoi et à quoi ça sert ?</H2>
-      <P>
+      <P style={{ marginBottom: theme.margin * 2 }}>
         Quand tu navigues dans l’application réfugiés.info, nous récoltons
         automatiquement des informations sur ta navigation, par exemple combien
         de temps tu passes sur une de nos fiches.
@@ -181,10 +152,9 @@ export const PrivacyPolicyScreen = ({
       <Image
         source={YourData}
         style={{
-          width: 210,
-          height: 130,
+          width: 327,
+          height: 253,
           alignSelf: "center",
-          marginBottom: styles.margin * 3,
         }}
       />
       <P style={{ marginBottom: theme.margin * 5 }}>
@@ -223,17 +193,9 @@ export const PrivacyPolicyScreen = ({
         Voici comment ces sociétés partenaires traitent tes données.
       </TextDSFR_MD>
 
-      <RTLView style={{ marginVertical: styles.margin * 2 }}>
-        <FirebaseLogo
-          width={34}
-          height={34}
-          style={{
-            marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0,
-          }}
-        />
-        <TextDSFR_MD_Bold>Firebase</TextDSFR_MD_Bold>
-      </RTLView>
+      <TextDSFR_MD_Bold style={{ marginVertical: theme.margin * 2 }}>
+        Firebase
+      </TextDSFR_MD_Bold>
 
       <List
         isRTL={isRTL}
@@ -242,33 +204,23 @@ export const PrivacyPolicyScreen = ({
           "Trace des événements dans l’application",
           "Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info",
           "Garde tes données 26 mois",
-          <>
-            Politique de données personnelles :{" "}
-            <Link
-              accessibilityRole="link"
-              onPress={() => {
-                Linking.openURL("https://firebase.google.com/support/privacy");
-              }}
-            >
-              ici
-            </Link>
-          </>,
         ]}
       ></List>
+      <ButtonDSFR
+        onPress={() => {
+          Linking.openURL("https://firebase.google.com/support/privacy");
+        }}
+        title="Politique de données personnelles"
+        accessibilityLabel="Politique de données personnelles"
+        priority="tertiary"
+        size="medium"
+        externalLink
+        style={{ marginTop: theme.margin * 2 }}
+      />
 
-      <RTLView style={{ marginVertical: styles.margin * 2 }}>
-        <AnalyticsLogo
-          width={32}
-          height={32}
-          style={{
-            marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0,
-            width: 32,
-            height: 32,
-          }}
-        />
-        <TextDSFR_MD_Bold>Google Analytics</TextDSFR_MD_Bold>
-      </RTLView>
+      <TextDSFR_MD_Bold style={{ marginVertical: theme.margin * 2 }}>
+        Google Analytics
+      </TextDSFR_MD_Bold>
 
       <List
         isRTL={isRTL}
@@ -276,21 +228,22 @@ export const PrivacyPolicyScreen = ({
           "Trace des événements dans l’application",
           "Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info",
           "Garde tes données 26 mois",
-          <>
-            Politique de données personnelles :{" "}
-            <Link
-              accessibilityRole="link"
-              onPress={() => {
-                Linking.openURL(
-                  "https://support.google.com/analytics/answer/6004245"
-                );
-              }}
-            >
-              ici
-            </Link>
-          </>,
         ]}
       ></List>
+
+      <ButtonDSFR
+        onPress={() => {
+          Linking.openURL(
+            "https://support.google.com/analytics/answer/6004245"
+          );
+        }}
+        title="Politique de données personnelles"
+        accessibilityLabel="Politique de données personnelles"
+        priority="tertiary"
+        size="medium"
+        externalLink
+        style={{ marginTop: theme.margin * 2 }}
+      />
 
       <Spacer height={theme.margin * 5} />
 

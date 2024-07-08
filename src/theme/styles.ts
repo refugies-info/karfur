@@ -119,7 +119,9 @@ const fonts = {
   button: {
     family: "marianneReg",
     size: "18px",
-    sizeSmall: "14px",
+    default: "18px",
+    medium: "16px",
+    small: "14px",
     weight: "500",
   },
 };

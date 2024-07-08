@@ -128,7 +128,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
             >
               <View
                 disabled={false}
-                style={{}}
+                style={
+                  [
+                    {},
+                    {},
+                  ]
+                }
               >
                 <View
                   collapsable={false}
@@ -1082,27 +1087,303 @@ exports[`LegalNotice screen should render correctly 1`] = `
         >
           Quels sont les droits sur les contenus ?
         </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            {
+              "color": "#2323FF",
+              "fontFamily": "Marianne-Bold",
+              "fontSize": 20,
+              "lineHeight": 32,
+              "marginBottom": 16,
+              "textAlign": "left",
+            }
+          }
+        >
+          Les contenus
+        </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            [
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+                "textAlign": "left",
+              },
+              {
+                "marginBottom": 0,
+              },
+            ]
+          }
+        >
+          Les informations que l’on trouve sur l’application Réfugiés.info sont publiques et peuvent être reproduites ou réutilisées librement, à condition de :
+        </Text>
+        <View
+          style={{}}
+        >
+          <View
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                },
+                {
+                  "alignItems": "flex-start",
+                },
+              ]
+            }
+          >
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
+              }
+            >
+              •
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
+              }
+            >
+              respecter l’intégrité de l’information reproduite
+            </Text>
+          </View>
+          <View
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                },
+                {
+                  "alignItems": "flex-start",
+                },
+              ]
+            }
+          >
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
+              }
+            >
+              •
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                }
+              }
+            >
+              citer la source « Réfugiés.info »
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              {
+                "marginVertical": 32,
+              },
+            ]
+          }
+        >
+          <View
+            collapsable={false}
+            style={
+              {
+                "transform": [
+                  {
+                    "scale": 1,
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight="24"
+              bbWidth="24"
+              fill="#212121"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  {
+                    "marginLeft": 0,
+                    "marginRight": 8,
+                  },
+                  {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
+            >
+              <RNSVGGroup
+                fill={
+                  {
+                    "payload": 4280361249,
+                    "type": 0,
+                  }
+                }
+                propList={
+                  [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4278190080,
+                      "type": 0,
+                    }
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
+                    <RNSVGRect
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                      height="24"
+                      matrix={
+                        [
+                          -1,
+                          1.2246467991473532e-16,
+                          -1.2246467991473532e-16,
+                          -1,
+                          24,
+                          24,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x="0"
+                      y="0"
+                    />
+                    <RNSVGPath
+                      d="M20.62 4.22a1 1 0 0 0-.84-.2L12 5.77 4.22 4A1 1 0 0 0 3 5v12.2a1 1 0 0 0 .78 1l8 1.8h.44l8-1.8a1 1 0 0 0 .78-1V5a1 1 0 0 0-.38-.78zM5 6.25l6 1.35v10.15L5 16.4zM19 16.4l-6 1.35V7.6l6-1.35z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              [
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                {
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            (Art. L. 122-5 du Code de la propriété intellectuelle)
+          </Text>
+        </View>
         <View
           style={
             {
-              "backgroundColor": "#FFFFFF",
+              "backgroundColor": "#ffcecb",
               "borderBottomLeftRadius": 12,
               "borderBottomRightRadius": 12,
               "borderTopLeftRadius": 12,
               "borderTopRightRadius": 12,
-              "elevation": 6,
-              "marginBottom": 24,
               "paddingBottom": 24,
               "paddingLeft": 24,
               "paddingRight": 24,
               "paddingTop": 24,
-              "shadowColor": "#212121",
-              "shadowOffset": {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
             }
           }
         >
@@ -1112,67 +1393,171 @@ exports[`LegalNotice screen should render correctly 1`] = `
               {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "marginBottom": 24,
-                "maxWidth": "100%",
+                "marginBottom": 16,
               }
             }
           >
             <View
-              isRTL={false}
+              collapsable={false}
               style={
                 {
-                  "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 16,
-                  "borderBottomRightRadius": 16,
-                  "borderTopLeftRadius": 16,
-                  "borderTopRightRadius": 16,
-                  "height": 32,
-                  "justifyContent": "center",
-                  "marginLeft": 0,
-                  "marginRight": 16,
-                  "width": 32,
+                  "transform": [
+                    {
+                      "scale": 1,
+                    },
+                  ],
                 }
               }
             >
-              <Text
-                isRTL={false}
-                selectable={true}
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight="24"
+                bbWidth="24"
+                fill="#212121"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
                 style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  }
+                  [
+                    {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    {
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                    },
+                    {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
+                  ]
                 }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
               >
-                1
-              </Text>
+                <RNSVGGroup
+                  fill={
+                    {
+                      "payload": 4280361249,
+                      "type": 0,
+                    }
+                  }
+                  propList={
+                    [
+                      "fill",
+                    ]
+                  }
+                >
+                  <RNSVGGroup
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                  >
+                    <RNSVGGroup
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
+                        }
+                      }
+                    >
+                      <RNSVGRect
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                        height="24"
+                        matrix={
+                          [
+                            -1,
+                            1.2246467991473532e-16,
+                            -1.2246467991473532e-16,
+                            -1,
+                            24,
+                            24,
+                          ]
+                        }
+                        opacity={0}
+                        width="24"
+                        x="0"
+                        y="0"
+                      />
+                      <RNSVGPath
+                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      />
+                      <RNSVGCircle
+                        cx="12"
+                        cy="8"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                        r="1"
+                      />
+                      <RNSVGPath
+                        d="M12 10a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0-1-1z"
+                        fill={
+                          {
+                            "payload": 4278190080,
+                            "type": 0,
+                          }
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGSvgView>
             </View>
             <Text
               isRTL={false}
               selectable={true}
               style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  },
-                  {
-                    "flex": 1,
-                    "flexWrap": "wrap",
-                  },
-                ]
+                {
+                  "color": "#212121",
+                  "fontFamily": "Marianne-Bold",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                }
               }
             >
-              Les contenus
+              Bon à savoir
             </Text>
           </View>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              {
+                "color": "#212121",
+                "fontFamily": "Marianne-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "marginBottom": 24,
+                "textAlign": "left",
+              }
+            }
+          >
+            Tu ne peux pas utiliser ces informations dans un but publicitaire ou commercial.
+          </Text>
           <Text
             isRTL={false}
             selectable={true}
@@ -1192,180 +1577,117 @@ exports[`LegalNotice screen should render correctly 1`] = `
               ]
             }
           >
-            Les informations que l’on trouve sur l’application Réfugiés.info sont publiques et peuvent être reproduites ou réutilisées librement, à condition de :
+            Tu ne peux pas non plus utiliser le contenu de l’application en le détournant de son contexte d’actualité, ou de manière contraire aux lois et aux règlements, ou d’une façon qui porte atteinte à l’ordre public.
           </Text>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            {
+              "color": "#2323FF",
+              "fontFamily": "Marianne-Bold",
+              "fontSize": 20,
+              "lineHeight": 32,
+              "marginBottom": 16,
+              "textAlign": "left",
+            }
+          }
+        >
+          Les créations graphiques
+        </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            {
+              "color": "#212121",
+              "fontFamily": "Marianne-Regular",
+              "fontSize": 16,
+              "lineHeight": 24,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
+          }
+        >
+          Toute reproduction ou adaptation (retouchage, montage, recadrage...) des éléments graphiques et iconographiques du site est interdite sans l’accord de Réfugiés.info.
+        </Text>
+        <View
+          style={
+            [
+              {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              {
+                "marginBottom": 24,
+              },
+            ]
+          }
+        >
           <View
-            style={{}}
-          >
-            <View
-              style={
-                [
-                  {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                  {
-                    "alignItems": "flex-start",
-                  },
-                ]
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  }
-                }
-              >
-                •
-              </Text>
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  }
-                }
-              >
-                respecter l’intégrité de l’information reproduite
-              </Text>
-            </View>
-            <View
-              style={
-                [
-                  {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                  {
-                    "alignItems": "flex-start",
-                  },
-                ]
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginLeft": 4,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  }
-                }
-              >
-                •
-              </Text>
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  }
-                }
-              >
-                citer la source « Réfugiés.info »
-              </Text>
-            </View>
-          </View>
-          <View
+            collapsable={false}
             style={
-              [
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                {
-                  "marginVertical": 32,
-                },
-              ]
+              {
+                "transform": [
+                  {
+                    "scale": 1,
+                  },
+                ],
+              }
             }
           >
-            <View
-              collapsable={false}
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight="24"
+              bbWidth="24"
+              fill="#212121"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
               style={
-                {
-                  "transform": [
-                    {
-                      "scale": 1,
-                    },
-                  ],
-                }
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  {
+                    "marginLeft": 0,
+                    "marginRight": 8,
+                  },
+                  {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
               }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
             >
-              <RNSVGSvgView
-                align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
-                fill="#212121"
-                focusable={false}
-                height={24}
-                meetOrSlice={0}
-                minX={0}
-                minY={0}
-                style={
+              <RNSVGGroup
+                fill={
+                  {
+                    "payload": 4280361249,
+                    "type": 0,
+                  }
+                }
+                propList={
                   [
-                    {
-                      "backgroundColor": "transparent",
-                      "borderWidth": 0,
-                    },
-                    {
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                    },
-                    {
-                      "flex": 0,
-                      "height": 24,
-                      "width": 24,
-                    },
+                    "fill",
                   ]
                 }
-                vbHeight={24}
-                vbWidth={24}
-                width={24}
               >
                 <RNSVGGroup
                   fill={
                     {
-                      "payload": 4280361249,
+                      "payload": 4278190080,
                       "type": 0,
                     }
-                  }
-                  propList={
-                    [
-                      "fill",
-                    ]
                   }
                 >
                   <RNSVGGroup
@@ -1376,737 +1698,298 @@ exports[`LegalNotice screen should render correctly 1`] = `
                       }
                     }
                   >
-                    <RNSVGGroup
+                    <RNSVGRect
                       fill={
                         {
                           "payload": 4278190080,
                           "type": 0,
                         }
                       }
-                    >
-                      <RNSVGRect
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
+                      height="24"
+                      matrix={
+                        [
+                          -1,
+                          1.2246467991473532e-16,
+                          -1.2246467991473532e-16,
+                          -1,
+                          24,
+                          24,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x="0"
+                      y="0"
+                    />
+                    <RNSVGPath
+                      d="M20.62 4.22a1 1 0 0 0-.84-.2L12 5.77 4.22 4A1 1 0 0 0 3 5v12.2a1 1 0 0 0 .78 1l8 1.8h.44l8-1.8a1 1 0 0 0 .78-1V5a1 1 0 0 0-.38-.78zM5 6.25l6 1.35v10.15L5 16.4zM19 16.4l-6 1.35V7.6l6-1.35z"
+                      fill={
+                        {
+                          "payload": 4278190080,
+                          "type": 0,
                         }
-                        height="24"
-                        matrix={
-                          [
-                            -1,
-                            1.2246467991473532e-16,
-                            -1.2246467991473532e-16,
-                            -1,
-                            24,
-                            24,
-                          ]
-                        }
-                        opacity={0}
-                        width="24"
-                        x="0"
-                        y="0"
-                      />
-                      <RNSVGPath
-                        d="M20.62 4.22a1 1 0 0 0-.84-.2L12 5.77 4.22 4A1 1 0 0 0 3 5v12.2a1 1 0 0 0 .78 1l8 1.8h.44l8-1.8a1 1 0 0 0 .78-1V5a1 1 0 0 0-.38-.78zM5 6.25l6 1.35v10.15L5 16.4zM19 16.4l-6 1.35V7.6l6-1.35z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      />
-                    </RNSVGGroup>
+                      }
+                    />
                   </RNSVGGroup>
                 </RNSVGGroup>
-              </RNSVGSvgView>
-            </View>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  {
-                    "flexShrink": 1,
-                  },
-                ]
-              }
-            >
-              (Art. L. 122-5 du Code de la propriété intellectuelle)
-            </Text>
+              </RNSVGGroup>
+            </RNSVGSvgView>
           </View>
-          <View
+          <Text
+            isRTL={false}
+            selectable={true}
             style={
-              {
-                "backgroundColor": "#ffcecb",
-                "borderBottomLeftRadius": 12,
-                "borderBottomRightRadius": 12,
-                "borderTopLeftRadius": 12,
-                "borderTopRightRadius": 12,
-                "paddingBottom": 24,
-                "paddingLeft": 24,
-                "paddingRight": 24,
-                "paddingTop": 24,
-              }
-            }
-          >
-            <View
-              isRTL={false}
-              style={
-                {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "marginBottom": 16,
-                }
-              }
-            >
-              <View
-                collapsable={false}
-                style={
-                  {
-                    "transform": [
-                      {
-                        "scale": 1,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
-                  fill="#212121"
-                  focusable={false}
-                  height={24}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      {
-                        "marginLeft": 0,
-                        "marginRight": 8,
-                      },
-                      {
-                        "flex": 0,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={24}
-                >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4280361249,
-                        "type": 0,
-                      }
-                    }
-                    propList={
-                      [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGGroup
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      >
-                        <RNSVGRect
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                          height="24"
-                          matrix={
-                            [
-                              -1,
-                              1.2246467991473532e-16,
-                              -1.2246467991473532e-16,
-                              -1,
-                              24,
-                              24,
-                            ]
-                          }
-                          opacity={0}
-                          width="24"
-                          x="0"
-                          y="0"
-                        />
-                        <RNSVGPath
-                          d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        />
-                        <RNSVGCircle
-                          cx="12"
-                          cy="8"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                          r="1"
-                        />
-                        <RNSVGPath
-                          d="M12 10a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0-1-1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
-                            }
-                          }
-                        />
-                      </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-              </View>
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  }
-                }
-              >
-                Bon à savoir
-              </Text>
-            </View>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
+              [
                 {
                   "color": "#212121",
                   "fontFamily": "Marianne-Regular",
                   "fontSize": 16,
                   "lineHeight": 24,
-                  "marginBottom": 24,
                   "textAlign": "left",
-                }
-              }
-            >
-              Tu ne peux pas utiliser ces informations dans un but publicitaire ou commercial.
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginBottom": 24,
-                    "textAlign": "left",
-                  },
-                  {
-                    "marginBottom": 0,
-                  },
-                ]
-              }
-            >
-              Tu ne peux pas non plus utiliser le contenu de l’application en le détournant de son contexte d’actualité, ou de manière contraire aux lois et aux règlements, ou d’une façon qui porte atteinte à l’ordre public.
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            {
-              "backgroundColor": "#FFFFFF",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderTopLeftRadius": 12,
-              "borderTopRightRadius": 12,
-              "elevation": 6,
-              "marginBottom": 24,
-              "paddingBottom": 24,
-              "paddingLeft": 24,
-              "paddingRight": 24,
-              "paddingTop": 24,
-              "shadowColor": "#212121",
-              "shadowOffset": {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
-          }
-        >
-          <View
-            isRTL={false}
-            style={
-              {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "maxWidth": "100%",
-              }
-            }
-          >
-            <View
-              isRTL={false}
-              style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 16,
-                  "borderBottomRightRadius": 16,
-                  "borderTopLeftRadius": 16,
-                  "borderTopRightRadius": 16,
-                  "height": 32,
-                  "justifyContent": "center",
-                  "marginLeft": 0,
-                  "marginRight": 16,
-                  "width": 32,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  {
-                    "color": "#FFFFFF",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  }
-                }
-              >
-                2
-              </Text>
-            </View>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  },
-                  {
-                    "flex": 1,
-                    "flexWrap": "wrap",
-                  },
-                ]
-              }
-            >
-              Les créations graphiques
-            </Text>
-          </View>
-          <Text
-            isRTL={false}
-            selectable={true}
-            style={
-              {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
-            }
-          >
-            Toute reproduction ou adaptation (retouchage, montage, recadrage...) des éléments graphiques et iconographiques du site est interdite sans l’accord de Réfugiés.info.
-          </Text>
-          <View
-            style={
-              [
-                {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
                 },
                 {
-                  "marginBottom": 24,
+                  "flexShrink": 1,
                 },
               ]
             }
           >
-            <View
-              collapsable={false}
-              style={
-                {
-                  "transform": [
-                    {
-                      "scale": 1,
-                    },
-                  ],
-                }
-              }
-            >
-              <RNSVGSvgView
-                align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
-                fill="#212121"
-                focusable={false}
-                height={24}
-                meetOrSlice={0}
-                minX={0}
-                minY={0}
-                style={
-                  [
-                    {
-                      "backgroundColor": "transparent",
-                      "borderWidth": 0,
-                    },
-                    {
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                    },
-                    {
-                      "flex": 0,
-                      "height": 24,
-                      "width": 24,
-                    },
-                  ]
-                }
-                vbHeight={24}
-                vbWidth={24}
-                width={24}
-              >
-                <RNSVGGroup
-                  fill={
-                    {
-                      "payload": 4280361249,
-                      "type": 0,
-                    }
-                  }
-                  propList={
-                    [
-                      "fill",
-                    ]
-                  }
-                >
-                  <RNSVGGroup
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
-                  >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
-                      }
-                    >
-                      <RNSVGRect
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                        height="24"
-                        matrix={
-                          [
-                            -1,
-                            1.2246467991473532e-16,
-                            -1.2246467991473532e-16,
-                            -1,
-                            24,
-                            24,
-                          ]
-                        }
-                        opacity={0}
-                        width="24"
-                        x="0"
-                        y="0"
-                      />
-                      <RNSVGPath
-                        d="M20.62 4.22a1 1 0 0 0-.84-.2L12 5.77 4.22 4A1 1 0 0 0 3 5v12.2a1 1 0 0 0 .78 1l8 1.8h.44l8-1.8a1 1 0 0 0 .78-1V5a1 1 0 0 0-.38-.78zM5 6.25l6 1.35v10.15L5 16.4zM19 16.4l-6 1.35V7.6l6-1.35z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
-                        }
-                      />
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGGroup>
-              </RNSVGSvgView>
-            </View>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                [
-                  {
-                    "color": "#212121",
-                    "fontFamily": "Marianne-Regular",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  {
-                    "flexShrink": 1,
-                  },
-                ]
-              }
-            >
-              (Art L.122-4 du Code de la propriété Intellectuelle)
-            </Text>
-          </View>
-          <Text
-            isRTL={false}
-            selectable={true}
-            style={
-              {
-                "color": "#212121",
-                "fontFamily": "Marianne-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "marginBottom": 24,
-                "textAlign": "left",
-              }
-            }
-          >
-            Pour toute question sur la reproduction de contenus, tu peux t’adresser à :
+            (Art L.122-4 du Code de la propriété Intellectuelle)
           </Text>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            {
+              "color": "#212121",
+              "fontFamily": "Marianne-Regular",
+              "fontSize": 16,
+              "lineHeight": 24,
+              "marginBottom": 24,
+              "textAlign": "left",
+            }
+          }
+        >
+          Pour toute question sur la reproduction de contenus, tu peux t’adresser à :
+        </Text>
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+            }
+          }
+        >
           <View
+            accessibilityLabel="Envoyer un email à contact@refugies.info"
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": false,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
               {
-                "alignItems": "flex-start",
+                "alignItems": "center",
+                "backgroundColor": "#000091",
+                "borderColor": "#000091",
+                "borderWidth": 1,
+                "maxHeight": 50,
+                "opacity": 1,
+                "paddingHorizontal": 10,
+                "paddingVertical": 10,
+                "width": "100%",
               }
             }
           >
             <View
-              accessibilityRole="button"
-              accessibilityState={
+              RTLBehaviour={true}
+              animatedStyle={
                 {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
+                  "value": {},
                 }
               }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
               collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
+              horizontalAlign="flex-start"
               style={
                 {
                   "alignItems": "center",
-                  "backgroundColor": "#212121",
-                  "borderBottomLeftRadius": 12,
-                  "borderBottomRightRadius": 12,
-                  "borderTopLeftRadius": 12,
-                  "borderTopRightRadius": 12,
-                  "display": "flex",
-                  "elevation": 2,
+                  "flexBasis": "auto",
                   "flexDirection": "row",
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingBottom": 18,
-                  "paddingLeft": 18,
-                  "paddingRight": 18,
-                  "paddingTop": 18,
-                  "shadowColor": "#212121",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                  "width": "auto",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
                 }
               }
-              testID="test-custom-button-contact@refugies.info"
+              verticalAlign="center"
             >
               <View
-                collapsable={false}
                 style={
                   {
-                    "transform": [
-                      {
-                        "scale": 1,
-                      },
-                    ],
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 8,
                   }
                 }
               >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight="24"
-                  bbWidth="24"
-                  fill="#FFFFFF"
-                  focusable={false}
-                  height={24}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
+                <View
+                  disabled={false}
                   style={
                     [
-                      {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
                       {},
-                      {
-                        "flex": 0,
-                        "height": 24,
-                        "width": 24,
-                      },
+                      {},
                     ]
                   }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={24}
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    collapsable={false}
+                    style={
                       {
-                        "payload": 4294967295,
-                        "type": 0,
+                        "transform": [
+                          {
+                            "scale": 1,
+                          },
+                        ],
                       }
-                    }
-                    propList={
-                      [
-                        "fill",
-                      ]
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
+                    <RNSVGSvgView
+                      align="xMidYMid"
+                      bbHeight="24"
+                      bbWidth="24"
+                      fill="#FFFFFF"
+                      focusable={false}
+                      height={24}
+                      meetOrSlice={0}
+                      minX={0}
+                      minY={0}
+                      style={
+                        [
+                          {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          {
+                            "flex": 0,
+                            "height": 24,
+                            "width": 24,
+                          },
+                        ]
                       }
+                      vbHeight={24}
+                      vbWidth={24}
+                      width={24}
                     >
                       <RNSVGGroup
                         fill={
                           {
-                            "payload": 4278190080,
+                            "payload": 4294967295,
                             "type": 0,
                           }
                         }
+                        propList={
+                          [
+                            "fill",
+                          ]
+                        }
                       >
-                        <RNSVGRect
+                        <RNSVGGroup
                           fill={
                             {
                               "payload": 4278190080,
                               "type": 0,
                             }
                           }
-                          height="24"
-                          opacity={0}
-                          width="24"
-                          x="0"
-                          y="0"
-                        />
-                        <RNSVGPath
-                          d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
-                          fill={
-                            {
-                              "payload": 4278190080,
-                              "type": 0,
+                        >
+                          <RNSVGGroup
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
                             }
-                          }
-                        />
+                          >
+                            <RNSVGRect
+                              fill={
+                                {
+                                  "payload": 4278190080,
+                                  "type": 0,
+                                }
+                              }
+                              height="24"
+                              opacity={0}
+                              width="24"
+                              x="0"
+                              y="0"
+                            />
+                            <RNSVGPath
+                              d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
+                              fill={
+                                {
+                                  "payload": 4278190080,
+                                  "type": 0,
+                                }
+                              }
+                            />
+                          </RNSVGGroup>
+                        </RNSVGGroup>
                       </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
+                    </RNSVGSvgView>
+                  </View>
+                </View>
               </View>
-              <Text
-                hasIcon={true}
-                iconFirst={true}
-                isRTL={false}
-                selectable={true}
+              <View
                 style={
-                  [
-                    {
-                      "color": "#FFFFFF",
-                      "fontFamily": "Marianne-Bold",
-                      "fontSize": 16,
-                      "lineHeight": 24,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    },
-                    {},
-                  ]
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 8,
+                  }
                 }
-                textColor="#FFFFFF"
               >
                 <Text
-                  style={{}}
+                  color="#FFFFFF"
+                  disabled={false}
+                  isRTL={false}
+                  selectable={true}
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    }
+                  }
                 >
-                  contact@refugies.info
+                  <Text
+                    style={{}}
+                  >
+                    contact@refugies.info
+                  </Text>
+                  <View />
                 </Text>
-                <View />
-              </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -2468,12 +2351,13 @@ exports[`LegalNotice screen should render correctly 1`] = `
           }
         >
           <View
+            accessibilityLabel="Envoyer un email à contact@refugies.info"
             accessibilityRole="button"
             accessibilityState={
               {
                 "busy": undefined,
                 "checked": undefined,
-                "disabled": undefined,
+                "disabled": false,
                 "expanded": undefined,
                 "selected": undefined,
               }
@@ -2499,156 +2383,185 @@ exports[`LegalNotice screen should render correctly 1`] = `
             style={
               {
                 "alignItems": "center",
-                "backgroundColor": "#212121",
-                "borderBottomLeftRadius": 12,
-                "borderBottomRightRadius": 12,
-                "borderTopLeftRadius": 12,
-                "borderTopRightRadius": 12,
-                "display": "flex",
-                "elevation": 2,
-                "flexDirection": "row",
-                "justifyContent": "center",
+                "backgroundColor": "#000091",
+                "borderColor": "#000091",
+                "borderWidth": 1,
+                "maxHeight": 50,
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 18,
-                "paddingRight": 18,
-                "paddingTop": 18,
-                "shadowColor": "#212121",
-                "shadowOffset": {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.4,
-                "shadowRadius": 2,
-                "width": "auto",
+                "paddingHorizontal": 10,
+                "paddingVertical": 10,
+                "width": "100%",
               }
             }
-            testID="test-custom-button-contact@refugies.info"
           >
             <View
-              collapsable={false}
-              style={
+              RTLBehaviour={true}
+              animatedStyle={
                 {
-                  "transform": [
-                    {
-                      "scale": 1,
-                    },
-                  ],
+                  "value": {},
                 }
               }
-            >
-              <RNSVGSvgView
-                align="xMidYMid"
-                bbHeight="24"
-                bbWidth="24"
-                fill="#FFFFFF"
-                focusable={false}
-                height={24}
-                meetOrSlice={0}
-                minX={0}
-                minY={0}
-                style={
-                  [
-                    {
-                      "backgroundColor": "transparent",
-                      "borderWidth": 0,
-                    },
-                    {},
-                    {
-                      "flex": 0,
-                      "height": 24,
-                      "width": 24,
-                    },
-                  ]
+              collapsable={false}
+              horizontalAlign="flex-start"
+              style={
+                {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
                 }
-                vbHeight={24}
-                vbWidth={24}
-                width={24}
-              >
-                <RNSVGGroup
-                  fill={
-                    {
-                      "payload": 4294967295,
-                      "type": 0,
-                    }
+              }
+              verticalAlign="center"
+            >
+              <View
+                style={
+                  {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 8,
                   }
-                  propList={
+                }
+              >
+                <View
+                  disabled={false}
+                  style={
                     [
-                      "fill",
+                      {},
+                      {},
                     ]
                   }
                 >
-                  <RNSVGGroup
-                    fill={
+                  <View
+                    collapsable={false}
+                    style={
                       {
-                        "payload": 4278190080,
-                        "type": 0,
+                        "transform": [
+                          {
+                            "scale": 1,
+                          },
+                        ],
                       }
                     }
                   >
-                    <RNSVGGroup
-                      fill={
-                        {
-                          "payload": 4278190080,
-                          "type": 0,
-                        }
+                    <RNSVGSvgView
+                      align="xMidYMid"
+                      bbHeight="24"
+                      bbWidth="24"
+                      fill="#FFFFFF"
+                      focusable={false}
+                      height={24}
+                      meetOrSlice={0}
+                      minX={0}
+                      minY={0}
+                      style={
+                        [
+                          {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          {
+                            "flex": 0,
+                            "height": 24,
+                            "width": 24,
+                          },
+                        ]
                       }
+                      vbHeight={24}
+                      vbWidth={24}
+                      width={24}
                     >
-                      <RNSVGRect
+                      <RNSVGGroup
                         fill={
                           {
-                            "payload": 4278190080,
+                            "payload": 4294967295,
                             "type": 0,
                           }
                         }
-                        height="24"
-                        opacity={0}
-                        width="24"
-                        x="0"
-                        y="0"
-                      />
-                      <RNSVGPath
-                        d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
-                        fill={
-                          {
-                            "payload": 4278190080,
-                            "type": 0,
-                          }
+                        propList={
+                          [
+                            "fill",
+                          ]
                         }
-                      />
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGGroup>
-              </RNSVGSvgView>
-            </View>
-            <Text
-              hasIcon={true}
-              iconFirst={true}
-              isRTL={false}
-              selectable={true}
-              style={
-                [
+                      >
+                        <RNSVGGroup
+                          fill={
+                            {
+                              "payload": 4278190080,
+                              "type": 0,
+                            }
+                          }
+                        >
+                          <RNSVGGroup
+                            fill={
+                              {
+                                "payload": 4278190080,
+                                "type": 0,
+                              }
+                            }
+                          >
+                            <RNSVGRect
+                              fill={
+                                {
+                                  "payload": 4278190080,
+                                  "type": 0,
+                                }
+                              }
+                              height="24"
+                              opacity={0}
+                              width="24"
+                              x="0"
+                              y="0"
+                            />
+                            <RNSVGPath
+                              d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
+                              fill={
+                                {
+                                  "payload": 4278190080,
+                                  "type": 0,
+                                }
+                              }
+                            />
+                          </RNSVGGroup>
+                        </RNSVGGroup>
+                      </RNSVGGroup>
+                    </RNSVGSvgView>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
                   {
-                    "color": "#FFFFFF",
-                    "fontFamily": "Marianne-Bold",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                    "textAlign": "left",
-                  },
-                  {},
-                ]
-              }
-              textColor="#FFFFFF"
-            >
-              <Text
-                style={{}}
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 8,
+                  }
+                }
               >
-                contact@refugies.info
-              </Text>
-              <View />
-            </Text>
+                <Text
+                  color="#FFFFFF"
+                  disabled={false}
+                  isRTL={false}
+                  selectable={true}
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "Marianne-Medium",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                  <Text
+                    style={{}}
+                  >
+                    contact@refugies.info
+                  </Text>
+                  <View />
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
         <View
