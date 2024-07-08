@@ -1,102 +1,89 @@
 import * as React from "react";
-import { TextDSFR_MD } from "../../components/StyledText";
-import { Icon } from "react-native-eva-icons";
 import { StackScreenProps } from "@react-navigation/stack";
+import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { styles } from "../../theme";
 import { ProfileParamList } from "../../../types";
-import { RTLView } from "../../components/BasicComponents";
-import { ContentHighlight } from "../../components/Profil/PrivacyPolicy/ContentHighlight";
-import { P, H1, Link, H2 } from "../../components/Profil/Typography";
+import { P, H1, H2 } from "../../components/Profil/Typography";
 import { List } from "../../components/Profil/List";
-import { ReadingTime } from "../../components/Profil/ReadingTime";
-import { UpdatedDate } from "../../components/Profil/UpdatedDate";
 import { ContactButton } from "../../components/Profil/ContactButton";
-import { Page } from "../../components";
+import { Badge, Callout, Page, Separator, Spacer } from "../../components";
+import { SeparatorSpacing } from "../../components/layout/Separator/Separator";
+import { IconList } from "../../components/Profil/IconList";
+import { Info } from "../../components/Profil/Info";
 
 export const LegalNoticeScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "LegalNoticeScreen">) => {
   const { t, isRTL } = useTranslationWithRTL();
+  const theme = useTheme();
+
   return (
-    <Page title={t("profile_screens.legal_notice")}>
-      <P style={{ marginTop: styles.margin * 2 }}>
+    <Page
+      headerTitle={t("profile_screens.legal_notice")}
+      backgroundColor={theme.colors.dsfr_backgroundBlue}
+      headerBackgroundColor={theme.colors.dsfr_backgroundBlue}
+      headerIconName="file-text-outline"
+    >
+      <H1>{t("profile_screens.legal_notice")}</H1>
+
+      <P>
         Sur cette page, tu trouveras toutes les informations obligatoires sur
         l’application Réfugiés.info. Par exemple : Qui est notre hébergeur ? Qui
         détient les droits d’auteur sur les contenus que nous publions ?
       </P>
 
-      <ReadingTime text="5 à 10 minutes" />
+      <Badge text="Temps de lecture : 5 à 10 minutes" type="new" icon="clock" />
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
 
-      <H1>Qui est l’éditeur de Réfugiés.info ?</H1>
-      <P style={{ marginBottom: styles.margin }}>
+      <H1 blue>Qui est l’éditeur de Réfugiés.info ?</H1>
+      <P>
         L’application Réfugiés.info a été créée par la Délégation
         interministérielle à l'accueil et à l'intégration des réfugiés du
         Ministère de l’Intérieur.
       </P>
-      <RTLView>
-        <Icon
-          name="pin-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.black}
-          style={{
-            marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0,
-          }}
-        />
-        <TextDSFR_MD>Place Beauvau, 75800 Paris Cedex 08</TextDSFR_MD>
-      </RTLView>
+      <Info icon="pin-outline" text="Place Beauvau, 75800 Paris Cedex 08" />
 
-      <P style={{ marginTop: styles.margin * 3, marginBottom: styles.margin }}>
+      <P>
         Elle est développée par la MedNum, société coopérative d’intérêt
         collectif spécialisée sur la médiation et l’inclusion numérique.
       </P>
-      <RTLView>
-        <Icon
-          name="pin-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.black}
-          style={{
-            marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0,
-          }}
-        />
-        <TextDSFR_MD>135 Boulevard Chanzy, 93100 Montreuil</TextDSFR_MD>
-      </RTLView>
+      <Info icon="pin-outline" text="135 Boulevard Chanzy, 93100 Montreuil" />
 
-      <P style={{ marginTop: styles.margin * 3 }}>
+      <P style={{ marginBottom: 0 }}>
         Monsieur Nour ALLAZKANI, est le responsable de publication de
         l’application.
       </P>
 
-      <H1>Qui héberge Réfugiés.info ?</H1>
-      <P style={{ marginBottom: styles.margin }}>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>Qui héberge Réfugiés.info ?</H1>
+      <P>
         L’application Réfugiés.info est hébergée par la société Google Cloud.
       </P>
-      <RTLView>
-        <Icon
-          name="pin-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.black}
-          style={{
-            marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0,
-          }}
-        />
-        <TextDSFR_MD>8 rue de Londres, 75009 PARIS</TextDSFR_MD>
-      </RTLView>
+      <Info icon="pin-outline" text="8 rue de Londres, 75009 PARIS" />
 
-      <P style={{ marginTop: styles.margin * 3 }}>
+      <P style={{ marginBottom: 0 }}>
         Les serveurs qui hébergent l’application sont situés en Europe.
       </P>
 
-      <H1>Quels sont les droits sur les contenus ?</H1>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>Quels sont les droits sur les contenus ?</H1>
 
       <H2>Les contenus</H2>
-      <P style={{ marginBottom: 0 }}>
+      <P>
         Les informations que l’on trouve sur l’application Réfugiés.info sont
         publiques et peuvent être reproduites ou réutilisées librement, à
         condition de :
@@ -109,23 +96,12 @@ export const LegalNoticeScreen = ({
         ]}
       ></List>
 
-      <RTLView style={{ marginVertical: styles.margin * 4 }}>
-        <Icon
-          name="book-open-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.black}
-          style={{
-            marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0,
-          }}
-        />
-        <TextDSFR_MD style={{ flexShrink: 1 }}>
-          (Art. L. 122-5 du Code de la propriété intellectuelle)
-        </TextDSFR_MD>
-      </RTLView>
+      <Info
+        icon="book-open-outline"
+        text="(Art. L. 122-5 du Code de la propriété intellectuelle)"
+      />
 
-      <ContentHighlight>
+      <Callout>
         <P>
           Tu ne peux pas utiliser ces informations dans un but publicitaire ou
           commercial.
@@ -136,7 +112,9 @@ export const LegalNoticeScreen = ({
           lois et aux règlements, ou d’une façon qui porte atteinte à l’ordre
           public.
         </P>
-      </ContentHighlight>
+      </Callout>
+
+      <Spacer height={theme.margin * 3} />
 
       <H2>Les créations graphiques</H2>
       <P>
@@ -144,28 +122,23 @@ export const LegalNoticeScreen = ({
         éléments graphiques et iconographiques du site est interdite sans
         l’accord de Réfugiés.info.
       </P>
-      <RTLView style={{ marginBottom: styles.margin * 3 }}>
-        <Icon
-          name="book-open-outline"
-          height={24}
-          width={24}
-          fill={styles.colors.black}
-          style={{
-            marginRight: !isRTL ? styles.margin : 0,
-            marginLeft: isRTL ? styles.margin : 0,
-          }}
-        />
-        <TextDSFR_MD style={{ flexShrink: 1 }}>
-          (Art L.122-4 du Code de la propriété Intellectuelle)
-        </TextDSFR_MD>
-      </RTLView>
+      <Info
+        icon="book-open-outline"
+        text="(Art L.122-4 du Code de la propriété Intellectuelle)"
+      />
       <P>
         Pour toute question sur la reproduction de contenus, tu peux t’adresser
         à :
       </P>
       <ContactButton isRTL={isRTL} />
 
-      <H1>Création de liens vers Réfugiés.info</H1>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>Création de liens vers Réfugiés.info</H1>
       <P>
         Tu peux librement créer des liens vers Réfugiés.info sans accord
         préalable. En revanche, la mention explicite de l’intitulé de
@@ -175,7 +148,7 @@ export const LegalNoticeScreen = ({
         Il est fortement recommandé que l’ouverture de cette page se fasse dans
         une fenêtre indépendante du navigateur.
       </P>
-      <P>
+      <P style={{ marginBottom: 0 }}>
         Toutefois, Réfugiés.info se réserve le droit de demander la suppression
         de liens vers des sites dont l’objet s’avérerait non conforme à l’objet
         de l’application, diffuseraient des informations à caractère raciste,
@@ -183,14 +156,20 @@ export const LegalNoticeScreen = ({
         public.
       </P>
 
-      <H1>Liens vers d’autres sites</H1>
-      <P>
+      <H1 blue>Liens vers d’autres sites</H1>
+      <P style={{ marginBottom: 0 }}>
         Des liens vers d’autres sites, publics ou privés sont proposés sur
         l’application pour te faciliter l’accès à l’information. Réfugiés.info
         n’est pas responsable du contenu de ces sites.
       </P>
 
-      <H1>Accès au site</H1>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>Accès au site</H1>
       <P>
         Réfugiés.info et son hébergeur font le maximum pour te permettre d’avoir
         accès en continu à l’application Réfugiés.info.
@@ -202,52 +181,40 @@ export const LegalNoticeScreen = ({
         engagée.
       </P>
 
-      <H1>Il te reste des questions ?</H1>
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
+      <H1 blue>Il te reste des questions ?</H1>
       <P>
         Si tu ne trouves pas l’information que tu cherches, n’hésite pas à
         consulter les autres pages de l’application :
       </P>
 
-      <List
-        isRTL={isRTL}
+      <IconList
+        title="Autres pages utiles"
         items={[
-          <>
-            <Link
-              accessibilityRole="link"
-              onPress={() => {
-                navigation.navigate("PrivacyPolicyScreen");
-              }}
-            >
-              Tes données, pour quoi faire
-            </Link>{" "}
-            qui répond à toutes tes questions sur tes données dans
-            l’application.
-          </>,
+          {
+            icon: "question-mark-circle-outline",
+            text: "Qui sommes-nous ?",
+            path: "AboutScreen",
+          },
+          {
+            icon: "lock-outline",
+            text: "Tes données",
+            path: "PrivacyPolicyScreen",
+          },
         ]}
-        style={{ marginBottom: styles.margin * 3 }}
-      ></List>
-      <List
-        isRTL={isRTL}
-        items={[
-          <>
-            <Link
-              accessibilityRole="link"
-              onPress={() => {
-                navigation.navigate("AboutScreen");
-              }}
-            >
-              Qui sommes-nous ?
-            </Link>{" "}
-            qui t’en dit plus sur notre plateforme numérique Réfugiés.info.
-          </>,
-        ]}
-        style={{ marginBottom: styles.margin * 3 }}
-      ></List>
+      />
 
       <P>Sinon, n’hésite pas à nous contacter directement :</P>
       <ContactButton isRTL={isRTL} />
+      <Spacer height={theme.margin * 5} />
 
-      <UpdatedDate isRTL={isRTL} text="30 novembre 2021" />
+      <Badge text="Mise à jour le 30 novembre 2021" type="info" />
+      <Spacer height={theme.margin * 5} />
     </Page>
   );
 };
