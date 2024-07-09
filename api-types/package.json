@@ -10,9 +10,8 @@
   },
   "author": "Réfugiés.info",
   "license": "ISC",
-  "devDependencies": {},
-  "peerDependencies": {
-    "typescript": "*"
+  "devDependencies": {
+    "typescript": "^4.9.5"
   },
   "dependencies": {
     "base64-js": "^1.5.1",
@@ -40,7 +39,6 @@
     "strnum": "^1.0.5",
     "tr46": "^5.0.0",
     "tslib": "^2.5.0",
-    "typescript": "^4.9.5",
     "uuid": "^10.0.0",
     "webidl-conversions": "^7.0.0",
     "whatwg-url": "^14.0.0"
