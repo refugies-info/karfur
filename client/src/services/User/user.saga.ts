@@ -6,9 +6,11 @@ import { addToQueryActionCreator } from "services/SearchResults/searchResults.ac
 import { logger } from "../../logger";
 import API from "../../utils/API";
 import { finishLoading, LoadingStatusKey, setError, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import { searchQuerySelector } from "../SearchResults/searchResults.selector"
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
 import { fetchUserActionCreator, saveUserActionCreator, setUserActionCreator } from "./user.actions";
 import { FETCH_USER, SAVE_USER } from "./user.actionTypes";
+import { userSelector } from "./user.selectors"
 
 export function* fetchUser(action: ReturnType<typeof fetchUserActionCreator>): SagaIterator {
   try {
@@ -17,13 +19,13 @@ export function* fetchUser(action: ReturnType<typeof fetchUserActionCreator>): S
     const isAuth = yield call(API.isAuth);
     const authenticated = isAuth || action.payload?.token;
     if (authenticated) {
-      const currentUser = yield select((state) => state.user);
+      const currentUser = yield select(userSelector);
       // Only fetch user if it is not already set
       if (!currentUser || !currentUser.id) {
         const data: GetUserInfoResponse = yield call(API.getUser, { token: action.payload?.token });
         yield put(setUserActionCreator(data));
         // Only add departments from user profile to query if they are not already set
-        const currentQuery = yield select((state) => state.searchResults.query);
+        const currentQuery = yield select(searchQuerySelector);
         if (
           (data.departments?.length || 0) > 0 &&
           (!currentQuery.departments || currentQuery.departments.length === 0)
