@@ -1,5 +1,5 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
+import { takeLatest, put, call, select } from "redux-saga/effects";
 import { FETCH_USER, SAVE_USER } from "./user.actionTypes";
 import API from "../../utils/API";
 import {
@@ -30,7 +30,9 @@ export function* fetchUser(
     if (authenticated) {
       const data: GetUserInfoResponse = yield call(API.getUser, { token: action.payload?.token });
       yield put(setUserActionCreator(data));
-      if ((data.departments?.length || 0) > 0) {
+      // Only add departments from user profile to query if they are not already set
+      const currentQuery = yield select((state) => state.searchResults.query);
+      if ((data.departments?.length || 0) > 0 && (!currentQuery.departments || currentQuery.departments.length === 0)) {
         yield put(addToQueryActionCreator({ departments: (data.departments || [])?.map(dep => dep.split(" - ")[1]), sort: "location" }))
       }
       if (data.structures && data.structures.length > 0) {
