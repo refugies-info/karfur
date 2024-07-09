@@ -1,47 +1,48 @@
-import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call, select } from "redux-saga/effects";
-import { FETCH_USER, SAVE_USER } from "./user.actionTypes";
-import API from "../../utils/API";
-import {
-  setUserActionCreator,
-  fetchUserActionCreator,
-  saveUserActionCreator,
-} from "./user.actions";
-import { logger } from "../../logger";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-  setError
-} from "../LoadingStatus/loadingStatus.actions";
-import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
-import { AxiosError } from "axios";
 import { GetUserInfoResponse } from "@refugies-info/api-types";
+import { AxiosError } from "axios";
+import { SagaIterator } from "redux-saga";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import { logger } from "../../logger";
+import API from "../../utils/API";
+import { finishLoading, LoadingStatusKey, setError, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
+import { fetchUserActionCreator, saveUserActionCreator, setUserActionCreator } from "./user.actions";
+import { FETCH_USER, SAVE_USER } from "./user.actionTypes";
 
-export function* fetchUser(
-  action: ReturnType<typeof fetchUserActionCreator>
-): SagaIterator {
+export function* fetchUser(action: ReturnType<typeof fetchUserActionCreator>): SagaIterator {
   try {
     logger.info("[fetchUser] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER));
     const isAuth = yield call(API.isAuth);
     const authenticated = isAuth || action.payload?.token;
     if (authenticated) {
-      const data: GetUserInfoResponse = yield call(API.getUser, { token: action.payload?.token });
-      yield put(setUserActionCreator(data));
-      // Only add departments from user profile to query if they are not already set
-      const currentQuery = yield select((state) => state.searchResults.query);
-      if ((data.departments?.length || 0) > 0 && (!currentQuery.departments || currentQuery.departments.length === 0)) {
-        yield put(addToQueryActionCreator({ departments: (data.departments || [])?.map(dep => dep.split(" - ")[1]), sort: "location" }))
-      }
-      if (data.structures && data.structures.length > 0) {
-        yield put(
-          fetchUserStructureActionCreator({
-            structureId: data.structures[0],
-            shouldRedirect: false,
-          })
-        );
+      const currentUser = yield select((state) => state.user);
+      // Only fetch user if it is not already set
+      if (!currentUser || !currentUser.id) {
+        const data: GetUserInfoResponse = yield call(API.getUser, { token: action.payload?.token });
+        yield put(setUserActionCreator(data));
+        // Only add departments from user profile to query if they are not already set
+        const currentQuery = yield select((state) => state.searchResults.query);
+        if (
+          (data.departments?.length || 0) > 0 &&
+          (!currentQuery.departments || currentQuery.departments.length === 0)
+        ) {
+          yield put(
+            addToQueryActionCreator({
+              departments: (data.departments || [])?.map((dep) => dep.split(" - ")[1]),
+              sort: "location",
+            }),
+          );
+        }
+        if (data.structures && data.structures.length > 0) {
+          yield put(
+            fetchUserStructureActionCreator({
+              structureId: data.structures[0],
+              shouldRedirect: false,
+            }),
+          );
+        }
       }
     } else {
       yield put(setUserActionCreator(null));
@@ -54,9 +55,7 @@ export function* fetchUser(
   }
 }
 
-export function* saveUser(
-  action: ReturnType<typeof saveUserActionCreator>
-): SagaIterator {
+export function* saveUser(action: ReturnType<typeof saveUserActionCreator>): SagaIterator {
   try {
     logger.info("[saveUser] saga", { payload: action.payload });
     yield put(startLoading(LoadingStatusKey.SAVE_USER));
