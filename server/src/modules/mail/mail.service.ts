@@ -230,7 +230,6 @@ export const sendPublishedFicheMailToStructureMembersService = async (
       userId: data.userId,
       dispositifId: data.dispositifId
     });
-    return;
   } catch (error) {
     logger.error("[sendPublishedFicheMail] error", {
       error: error.message

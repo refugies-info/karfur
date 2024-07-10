@@ -5,7 +5,20 @@ module.exports = {
   reactStrictMode: true, // see https://github.com/kirill-konshin/next-redux-wrapper/issues/422
   i18n,
   images: {
-    domains: ["storage.googleapis.com", "res.cloudinary.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+        port: "",
+        pathname: "/refugies-info-assets/**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/dlmqnnhp6/image/upload/**",
+      },
+    ],
   },
   webpack: (config) => {
     config.resolve.fallback = {

@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Libraries, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import Image from "next/image";
 import { CreateDispositifRequest, Poi } from "@refugies-info/api-types";
 import PageContext from "utils/pageContext";
@@ -14,7 +14,7 @@ import styles from "./MapEdit.module.scss";
 
 export type Marker = Poi & { id: number };
 
-const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
+const libraries: Libraries = ["places"];
 
 const MapEdit = () => {
   const { setValue } = useFormContext<CreateDispositifRequest>();

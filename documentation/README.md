@@ -4,17 +4,17 @@ This repository contains 3 projects. Here are the associated documentations:
 
 ## [Server](server/)
 
-Located in `/server`  
+Located in `/server`
 Backend app built with Node
 
 ## [Client](client/)
 
-Located in `/client`  
+Located in `/client`
 Frontend app built with NextJS
 
 ## [API Types](api-types/)
 
-Located in `/api-types`  
+Located in `/api-types`
 Typescript types shared between front, back and app
 
 ## Technical standards
@@ -40,12 +40,12 @@ For all the new features, you must follow this process:
 
 - create a `feature` branch with your changes
 - open a pull request to `dev`. Add the `bug` or `enhancement` tag. Add the ticket link to the PR, and the PR link in the ticket.
-- once it's merged, open a pull request to `staging-\[frontend|backend\]` to test the feature.  
-  Name it `[STG-FRONT|BACK]` and add the `release` tag.  
-  You can also use the command `npm run pr:stg` from the right folder to create it automatically (needs `gh` installed locally)
-- once it's validated, open a pull request to `master-\[frontend|backend\]` to deploy the feature.  
-  Name it `[PROD-FRONT|BACK]` and add the `release` tag.  
-  You can also use the command `npm run pr:prod` from the right folder to create it automatically (needs `gh` installed locally)
+- once it's merged, open a pull request to `staging-\[frontend|backend\]` to test the feature.
+  Name it `[STG-FRONT|BACK]` and add the `release` tag.
+  You can also use the command `yarn pr:stg` from the right folder to create it automatically (needs `gh` installed locally)
+- once it's validated, open a pull request to `master-\[frontend|backend\]` to deploy the feature.
+  Name it `[PROD-FRONT|BACK]` and add the `release` tag.
+  You can also use the command `yarn pr:prod` from the right folder to create it automatically (needs `gh` installed locally)
 
 _Note: before opening a pull request, make sure to run the tests in client and server folders: `npm run test`_
 

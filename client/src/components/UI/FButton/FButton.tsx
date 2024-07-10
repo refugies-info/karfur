@@ -1,8 +1,8 @@
-import React from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import React from "react";
 
-import styles from "./FButton.module.scss";
 import { cls } from "lib/classname";
+import styles from "./FButton.module.scss";
 
 interface Props {
   type?:
@@ -40,8 +40,8 @@ interface Props {
 /**
  * @deprecated use Button instead
  */
-const FButton = React.forwardRef((props: Props, ref) => {
-  let { type, className, fill, name, size, filter, tag: Tag, children, wrap, loading = false, ...bProps } = props;
+const FButton = React.forwardRef(({ type = "default", tag: Tag = "button", ...props }: Props, _ref) => {
+  let { className, fill, name, size, filter, children, wrap, loading = false, ...bProps } = props;
 
   if (props.href && Tag === "button") Tag = "a";
   const themeType = type === "theme" ? " bg-darkColor" : "";
@@ -71,10 +71,5 @@ const FButton = React.forwardRef((props: Props, ref) => {
 });
 
 FButton.displayName = "FButton";
-
-FButton.defaultProps = {
-  type: "default",
-  tag: "button",
-};
 
 export default FButton;
