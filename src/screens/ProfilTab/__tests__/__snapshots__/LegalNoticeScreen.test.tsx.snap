@@ -2312,6 +2312,20 @@ exports[`LegalNotice screen should render correctly 1`] = `
         >
           Toutefois, Réfugiés.info se réserve le droit de demander la suppression de liens vers des sites dont l’objet s’avérerait non conforme à l’objet de l’application, diffuseraient des informations à caractère raciste, pornographique, xénophobe ou étant de nature à heurter la sensibilité du public.
         </Text>
+        <View
+          color="#6A6AF4"
+          fullWidth={true}
+          spacing="xlarge"
+          style={
+            {
+              "alignSelf": "center",
+              "backgroundColor": "#6A6AF4",
+              "height": 1,
+              "marginVertical": 40,
+              "width": "100%",
+            }
+          }
+        />
         <Text
           blue={true}
           isRTL={false}
