@@ -156,6 +156,12 @@ export const LegalNoticeScreen = ({
         public.
       </P>
 
+      <Separator
+        spacing={SeparatorSpacing.XLarge}
+        fullWidth
+        color={theme.colors.dsfr_purple}
+      />
+
       <H1 blue>Liens vers d’autres sites</H1>
       <P style={{ marginBottom: 0 }}>
         Des liens vers d’autres sites, publics ou privés sont proposés sur
