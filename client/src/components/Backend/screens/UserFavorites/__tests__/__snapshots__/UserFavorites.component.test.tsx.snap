@@ -2,17 +2,9 @@
 
 exports[`UserFavorites should render correctly when 0 favorites 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
   align-items: flex-end;
 }
 
@@ -44,16 +36,8 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
   font-size: 22px;
   line-height: 28px;
   color: #2d9cdb;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -62,16 +46,8 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
   border-radius: 12px;
   width: 248px;
   height: 248px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -338,17 +314,9 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
 
 exports[`UserFavorites should render correctly when 3 favorites 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
   align-items: flex-end;
 }
 
@@ -370,25 +338,25 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
   margin-bottom: 8px;
 }
 
-.c5:hover,
-.favorite:hover + .c5 {
-  background-color: #DDF2F9 !important;
-  border-color: #06508C !important;
-  color: #06508C !important;
+.c5 :hover,
+.favorite:hover+.c5 {
+  background-color: #DDF2F9!important;
+  border-color: #06508C!important;
+  color: #06508C!important;
 }
 
-.c3:hover,
-.favorite:hover + .c3 {
-  background-color: #EFE8F4 !important;
-  border-color: #3D2884 !important;
-  color: #3D2884 !important;
+.c3 :hover,
+.favorite:hover+.c3 {
+  background-color: #EFE8F4!important;
+  border-color: #3D2884!important;
+  color: #3D2884!important;
 }
 
-.c4:hover,
-.favorite:hover + .c4 {
-  background-color: #EEE7E5 !important;
-  border-color: #443023 !important;
-  color: #443023 !important;
+.c4 :hover,
+.favorite:hover+.c4 {
+  background-color: #EEE7E5!important;
+  border-color: #443023!important;
+  color: #443023!important;
 }
 
 <div
@@ -986,17 +954,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
 
 exports[`UserFavorites should render correctly when loading 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
   align-items: flex-end;
 }
 
@@ -1023,16 +983,8 @@ exports[`UserFavorites should render correctly when loading 1`] = `
   border-radius: 12px;
   width: 248px;
   height: 248px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 

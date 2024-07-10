@@ -6,7 +6,7 @@ exports[`recherche renders search results 1`] = `
   color: #3D2884;
 }
 
-.c13:hover {
+.c13 :hover {
   background-color: #EFE8F4;
 }
 
@@ -14,8 +14,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c0:not(:disabled):hover {
-  background-color: #EEE7E5 !important;
+.c0 :not(:disabled):hover {
+  background-color: #EEE7E5!important;
   border-color: #443023;
   color: #443023;
 }
@@ -24,8 +24,8 @@ exports[`recherche renders search results 1`] = `
   background-color: #3D2884;
 }
 
-.c1:not(:disabled):hover {
-  background-color: #3D2884 !important;
+.c1 :not(:disabled):hover {
+  background-color: #3D2884!important;
   border-color: #3D2884;
   color: #3D2884;
 }
@@ -34,8 +34,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c2:not(:disabled):hover {
-  background-color: #E8F4E8 !important;
+.c2 :not(:disabled):hover {
+  background-color: #E8F4E8!important;
   border-color: #095411;
   color: #095411;
 }
@@ -44,8 +44,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c3:not(:disabled):hover {
-  background-color: #EDFDF9 !important;
+.c3 :not(:disabled):hover {
+  background-color: #EDFDF9!important;
   border-color: #055E5A;
   color: #055E5A;
 }
@@ -54,8 +54,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c4:not(:disabled):hover {
-  background-color: #DDF2F9 !important;
+.c4 :not(:disabled):hover {
+  background-color: #DDF2F9!important;
   border-color: #06508C;
   color: #06508C;
 }
@@ -64,8 +64,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c5:not(:disabled):hover {
-  background-color: #FFEDED !important;
+.c5 :not(:disabled):hover {
+  background-color: #FFEDED!important;
   border-color: #910940;
   color: #910940;
 }
@@ -74,8 +74,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c6:not(:disabled):hover {
-  background-color: #FEEBDE !important;
+.c6 :not(:disabled):hover {
+  background-color: #FEEBDE!important;
   border-color: #CD5605;
   color: #CD5605;
 }
@@ -84,8 +84,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c7:not(:disabled):hover {
-  background-color: #FFEAF4 !important;
+.c7 :not(:disabled):hover {
+  background-color: #FFEAF4!important;
   border-color: #770649;
   color: #770649;
 }
@@ -94,8 +94,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c8:not(:disabled):hover {
-  background-color: #F2F9E5 !important;
+.c8 :not(:disabled):hover {
+  background-color: #F2F9E5!important;
   border-color: #204F01;
   color: #204F01;
 }
@@ -104,8 +104,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c9:not(:disabled):hover {
-  background-color: #EEF8FF !important;
+.c9 :not(:disabled):hover {
+  background-color: #EEF8FF!important;
   border-color: #073099;
   color: #073099;
 }
@@ -114,8 +114,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c10:not(:disabled):hover {
-  background-color: #F9F1FD !important;
+.c10 :not(:disabled):hover {
+  background-color: #F9F1FD!important;
   border-color: #600566;
   color: #600566;
 }
@@ -124,8 +124,8 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c11:not(:disabled):hover {
-  background-color: #F9E8E8 !important;
+.c11 :not(:disabled):hover {
+  background-color: #F9E8E8!important;
   border-color: #9E180A;
   color: #9E180A;
 }
@@ -134,152 +134,152 @@ exports[`recherche renders search results 1`] = `
   background-color: transparent;
 }
 
-.c12:not(:disabled):hover {
-  background-color: #FDC4FC !important;
+.c12 :not(:disabled):hover {
+  background-color: #FDC4FC!important;
   border-color: #77057A;
   color: #77057A;
 }
 
 @media screen and (max-width:767px) {
   .c0 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c0:hover {
+  .c0 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c1 {
-    background-color: #3D2884 !important;
-    color: white !important;
-    border-color: white !important;
+    background-color: #3D2884!important;
+    color: white!important;
+    border-color: white!important;
   }
 
-  .c1:hover {
+  .c1 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c2 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c2:hover {
+  .c2 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c3 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c3:hover {
+  .c3 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c4 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c4:hover {
+  .c4 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c5 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c5:hover {
+  .c5 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c6 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c6:hover {
+  .c6 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c7 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c7:hover {
+  .c7 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c8 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c8:hover {
+  .c8 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c9 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c9:hover {
+  .c9 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c10 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c10:hover {
+  .c10 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c11 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c11:hover {
+  .c11 :hover {
     background-color: transparent;
   }
 }
 
 @media screen and (max-width:767px) {
   .c12 {
-    background-color: transparent !important;
-    color: white !important;
+    background-color: transparent!important;
+    color: white!important;
   }
 
-  .c12:hover {
+  .c12 :hover {
     background-color: transparent;
   }
 }
@@ -511,6 +511,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c0 btn"
+                      color100="#443023"
+                      color30="#EEE7E5"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -562,6 +564,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c1 btn"
+                      color100="#3D2884"
+                      color30="#EFE8F4"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -629,6 +633,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c2 btn"
+                      color100="#095411"
+                      color30="#E8F4E8"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -680,6 +686,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c3 btn"
+                      color100="#055E5A"
+                      color30="#EDFDF9"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -731,6 +739,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c4 btn"
+                      color100="#06508C"
+                      color30="#DDF2F9"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -782,6 +792,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c5 btn"
+                      color100="#910940"
+                      color30="#FFEDED"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -833,6 +845,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c6 btn"
+                      color100="#CD5605"
+                      color30="#FEEBDE"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -884,6 +898,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c7 btn"
+                      color100="#770649"
+                      color30="#FFEAF4"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -935,6 +951,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c8 btn"
+                      color100="#204F01"
+                      color30="#F2F9E5"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -986,6 +1004,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c9 btn"
+                      color100="#073099"
+                      color30="#EEF8FF"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -1037,6 +1057,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c10 btn"
+                      color100="#600566"
+                      color30="#F9F1FD"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -1088,6 +1110,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c11 btn"
+                      color100="#9E180A"
+                      color30="#F9E8E8"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -1139,6 +1163,8 @@ exports[`recherche renders search results 1`] = `
                   <div>
                     <button
                       className="c12 btn"
+                      color100="#77057A"
+                      color30="#FDC4FC"
                       disabled={true}
                       onClick={[Function]}
                       onKeyDown={[Function]}
@@ -1193,6 +1219,8 @@ exports[`recherche renders search results 1`] = `
                 >
                   <button
                     className="c13 btn need"
+                    color100="#3D2884"
+                    color30="#EFE8F4"
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     selected={true}

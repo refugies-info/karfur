@@ -6,17 +6,8 @@ exports[`should render DeleteButton disabled 1`] = `
   height: 40px;
   background-color: #828282;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
@@ -31,6 +22,7 @@ exports[`should render DeleteButton disabled 1`] = `
   className="c0"
   data-test-id="delete-button"
   disabled={true}
+  hoverColor="#f44336"
 >
   <div
     style={
@@ -66,17 +58,8 @@ exports[`should render DeleteButton not disabled 1`] = `
   height: 40px;
   background-color: #828282;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
@@ -91,6 +74,7 @@ exports[`should render DeleteButton not disabled 1`] = `
   className="c0"
   data-test-id="delete-button"
   disabled={false}
+  hoverColor="#f44336"
   onClick={[Function]}
 >
   <div
@@ -130,18 +114,15 @@ exports[`should render FilterButton isSelected false 1`] = `
   font-size: 16px;
   line-height: 20px;
   padding: 15px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   margin-right: 8px;
   cursor: pointer;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
 <div
   className="c0"
+  isSelected={false}
   onClick={[Function]}
 >
   test
@@ -157,18 +138,15 @@ exports[`should render FilterButton isSelected true 1`] = `
   font-size: 16px;
   line-height: 20px;
   padding: 15px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   margin-right: 8px;
   cursor: pointer;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
 <div
   className="c0"
+  isSelected={true}
   onClick={[Function]}
 >
   test
@@ -181,17 +159,8 @@ exports[`should render SeeButton 1`] = `
   height: 40px;
   background-color: #828282;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
@@ -204,6 +173,7 @@ exports[`should render SeeButton 1`] = `
 
 <div
   className="c0"
+  hoverColor="#212121"
 >
   <a
     href="test-burl"
@@ -241,16 +211,8 @@ exports[`should render SeeButton 1`] = `
 
 exports[`should render Structure with null sponsor 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 300px;
 }
@@ -285,16 +247,8 @@ exports[`should render Structure with null sponsor 1`] = `
 
 exports[`should render Structure with sponsor actif 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 300px;
 }
@@ -329,16 +283,8 @@ exports[`should render Structure with sponsor actif 1`] = `
 
 exports[`should render Structure with sponsor en attente 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 300px;
 }
@@ -373,16 +319,8 @@ exports[`should render Structure with sponsor en attente 1`] = `
 
 exports[`should render Structure with sponsor supprime 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 300px;
 }
@@ -417,16 +355,8 @@ exports[`should render Structure with sponsor supprime 1`] = `
 
 exports[`should render Structure with sponsor without nom 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   width: 300px;
 }
@@ -465,8 +395,6 @@ exports[`should render StyledStatus Accepté structure  1`] = `
   border-radius: 6px;
   padding: 8px;
   background-color: #FF9800;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
@@ -480,6 +408,7 @@ exports[`should render StyledStatus Accepté structure  1`] = `
   className="c0"
   color="#FF9800"
   disabled={false}
+  textColor="#ffffff"
 >
   Accepté
 </div>
@@ -491,8 +420,6 @@ exports[`should render StyledStatus Brouillon  1`] = `
   border-radius: 6px;
   padding: 8px;
   background-color: #FFEB3B;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
@@ -506,6 +433,7 @@ exports[`should render StyledStatus Brouillon  1`] = `
   className="c0"
   color="#FFEB3B"
   disabled={false}
+  textColor="#212121"
 >
   Brouillon
 </div>
@@ -517,8 +445,6 @@ exports[`should render StyledStatus En attente admin  1`] = `
   border-radius: 6px;
   padding: 8px;
   background-color: #8BC34A;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
@@ -532,6 +458,7 @@ exports[`should render StyledStatus En attente admin  1`] = `
   className="c0"
   color="#8BC34A"
   disabled={false}
+  textColor="#ffffff"
 >
   Relecture en cours
 </div>
@@ -543,8 +470,6 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
   border-radius: 6px;
   padding: 8px;
   background-color: #F44336;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
@@ -558,6 +483,7 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
   className="c0"
   color="#F44336"
   disabled={false}
+  textColor="#ffffff"
 >
   Rejeté
 </div>
@@ -569,8 +495,6 @@ exports[`should render StyledStatus Supprimé  1`] = `
   border-radius: 6px;
   padding: 8px;
   background-color: #F44336;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
@@ -584,6 +508,7 @@ exports[`should render StyledStatus Supprimé  1`] = `
   className="c0"
   color="#F44336"
   disabled={false}
+  textColor="#ffffff"
 >
   Supprimé
 </div>
@@ -595,8 +520,6 @@ exports[`should render StyledStatus actif  1`] = `
   border-radius: 6px;
   padding: 8px;
   background-color: #4CAF50;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
@@ -621,8 +544,6 @@ exports[`should render StyledStatus en attente  1`] = `
   border-radius: 6px;
   padding: 8px;
   background-color: #FF9800;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
@@ -636,6 +557,7 @@ exports[`should render StyledStatus en attente  1`] = `
   className="c0"
   color="#FF9800"
   disabled={false}
+  textColor="#ffffff"
 >
   En attente
 </div>
@@ -647,8 +569,6 @@ exports[`should render StyledStatus no corresponding status  1`] = `
   border-radius: 6px;
   padding: 8px;
   background-color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
@@ -662,6 +582,7 @@ exports[`should render StyledStatus no corresponding status  1`] = `
   className="c0"
   color="#0421b1"
   disabled={false}
+  textColor="#ffffff"
 >
   Nouveau !
 </div>
@@ -673,8 +594,6 @@ exports[`should render StyledStatus no corresponding with color  1`] = `
   border-radius: 6px;
   padding: 8px;
   background-color: color;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
@@ -688,6 +607,7 @@ exports[`should render StyledStatus no corresponding with color  1`] = `
   className="c0"
   color="color"
   disabled={false}
+  textColor="textColor"
 >
   test
 </div>
@@ -699,8 +619,6 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
   border-radius: 6px;
   padding: 8px;
   background-color: #828282;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
@@ -714,6 +632,7 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
   className="c0"
   color="#828282"
   disabled={false}
+  textColor="#ffffff"
 >
   test
 </div>
@@ -721,12 +640,7 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
 
 exports[`should render TabHeader down 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   font-weight: bold;
   cursor: pointer;
@@ -759,12 +673,7 @@ exports[`should render TabHeader down 1`] = `
 
 exports[`should render TabHeader no order 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   font-weight: bold;
   cursor: inherit;
@@ -780,12 +689,7 @@ exports[`should render TabHeader no order 1`] = `
 
 exports[`should render TabHeader up 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   font-weight: bold;
   cursor: pointer;
@@ -818,24 +722,14 @@ exports[`should render TabHeader up 1`] = `
 
 exports[`should render Title with titre marque 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
   text-align: left;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
   max-width: 370px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   cursor: pointer;
 }
@@ -854,24 +748,14 @@ exports[`should render Title with titre marque 1`] = `
 
 exports[`should render Title without titre marque 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
   text-align: left;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
   max-width: 370px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   cursor: pointer;
 }
@@ -894,14 +778,13 @@ exports[`should render TypeContenu with demarche, detailed vue 1`] = `
   background-color: #212121;
   padding: 8px;
   border-radius: 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   cursor: pointer;
 }
 
 <div
   className="c0"
+  isDarkBackground={true}
 >
   Démarche
 </div>
@@ -916,14 +799,13 @@ exports[`should render TypeContenu with demarche, not detailed vue 1`] = `
   background-color: #ffffff;
   padding: 8px;
   border-radius: 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   cursor: pointer;
 }
 
 <div
   className="c0"
+  isDarkBackground={false}
 >
   Démarche
 </div>
@@ -938,14 +820,13 @@ exports[`should render TypeContenu with dispositif, detailed vue 1`] = `
   background-color: #212121;
   padding: 8px;
   border-radius: 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   cursor: pointer;
 }
 
 <div
   className="c0"
+  isDarkBackground={true}
 >
   Dispositif
 </div>
@@ -960,14 +841,13 @@ exports[`should render TypeContenu with dispositif, not detailed vue 1`] = `
   background-color: #212121;
   padding: 8px;
   border-radius: 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   cursor: pointer;
 }
 
 <div
   className="c0"
+  isDarkBackground={true}
 >
   Dispositif
 </div>
@@ -979,17 +859,8 @@ exports[`should render ValidateButton disabled 1`] = `
   height: 40px;
   background-color: #828282;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
@@ -1004,6 +875,7 @@ exports[`should render ValidateButton disabled 1`] = `
   className="c0"
   data-test-id="validate-button"
   disabled={true}
+  hoverColor="#4caf50"
   onClick={[Function]}
 >
   <div
@@ -1040,17 +912,8 @@ exports[`should render ValidateButton not disabled 1`] = `
   height: 40px;
   background-color: #828282;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
@@ -1065,6 +928,7 @@ exports[`should render ValidateButton not disabled 1`] = `
   className="c0"
   data-test-id="validate-button"
   disabled={false}
+  hoverColor="#4caf50"
   onClick={[Function]}
 >
   <div

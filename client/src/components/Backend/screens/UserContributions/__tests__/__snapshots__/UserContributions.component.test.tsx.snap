@@ -8,15 +8,8 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
   margin-left: 100px;
   margin-right: 100px;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
@@ -24,8 +17,6 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
   align-self: center;
   color: #212121;
   margin-bottom: 40px;
@@ -36,16 +27,8 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
   border-radius: 12px;
   width: 100%;
   height: 300px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -66,34 +49,17 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
 }
 
 .c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   margin-top: 40px;
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   margin-top: 26px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   margin-bottom: 42px;
 }
@@ -194,24 +160,14 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
 
 exports[`userContributions should render correctly when click on delete 1`] = `
 .c9 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
   text-align: left;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
   max-width: 370px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   cursor: pointer;
 }
@@ -221,17 +177,8 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   height: 40px;
   background-color: #828282;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
@@ -247,17 +194,8 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   height: 40px;
   background-color: #828282;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
@@ -275,15 +213,8 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   margin-left: 100px;
   margin-right: 100px;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
@@ -295,24 +226,14 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   background-color: #212121;
   padding: 8px;
   border-radius: 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   cursor: default;
   border: 1px solid #212121;
 }
 
 .c7 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-weight: bold;
   font-size: 16px;
@@ -321,20 +242,12 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 }
 
 .c10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
   background-color: #FFEB3B;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: bold;
   font-size: 16px;
@@ -344,17 +257,9 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 }
 
 .c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
   align-items: flex-end;
 }
 
@@ -377,38 +282,18 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   margin-top: 26px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   margin-bottom: 42px;
 }
 
 .c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -568,6 +453,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                 >
                   <div
                     className="c8"
+                    isDarkBackground={true}
                   >
                     Dispositif
                   </div>
@@ -644,6 +530,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                       color="#FFEB3B"
                       onMouseEnter={[Function]}
                       onMouseLeave={[Function]}
+                      textColor="#212121"
                     >
                       Brouillon
                     </div>
@@ -682,6 +569,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                   >
                     <div
                       className="c11"
+                      hoverColor="#212121"
                     >
                       <a
                         href="/dispositif/id1"
@@ -719,6 +607,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                       className="c12"
                       data-test-id="delete-button"
                       disabled={false}
+                      hoverColor="#f44336"
                       onClick={[Function]}
                     >
                       <div
@@ -761,24 +650,14 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 
 exports[`userContributions should render correctly when contributions 1`] = `
 .c9 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
   align-items: flex-start;
   text-align: left;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
   max-width: 370px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   cursor: pointer;
 }
@@ -788,17 +667,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
   height: 40px;
   background-color: #828282;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
@@ -814,17 +684,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
   height: 40px;
   background-color: #828282;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
@@ -840,17 +701,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
   height: 40px;
   background-color: #828282;
   border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin-right: 4px;
   margin-left: 4px;
@@ -868,15 +720,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
   margin-left: 100px;
   margin-right: 100px;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
@@ -888,8 +733,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
   background-color: #212121;
   padding: 8px;
   border-radius: 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   cursor: default;
   border: 1px solid #212121;
@@ -903,24 +746,14 @@ exports[`userContributions should render correctly when contributions 1`] = `
   background-color: #ffffff;
   padding: 8px;
   border-radius: 6px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   cursor: default;
   border: 1px solid #212121;
 }
 
 .c7 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-weight: bold;
   font-size: 16px;
@@ -929,20 +762,12 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
   background-color: #FFEB3B;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: bold;
   font-size: 16px;
@@ -952,20 +777,12 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c14 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
   background-color: #FF9800;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: bold;
   font-size: 16px;
@@ -975,20 +792,12 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c15 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
   background-color: #8BC34A;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: bold;
   font-size: 16px;
@@ -998,20 +807,12 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c16 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
   background-color: #F44336;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: bold;
   font-size: 16px;
@@ -1021,20 +822,12 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c17 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
   background-color: #4CAF50;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   font-weight: bold;
   font-size: 16px;
@@ -1044,17 +837,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
   align-items: flex-end;
 }
 
@@ -1077,38 +862,18 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   margin-top: 26px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   margin-bottom: 42px;
 }
 
 .c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -1268,6 +1033,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     className="c8"
+                    isDarkBackground={true}
                   >
                     Dispositif
                   </div>
@@ -1344,6 +1110,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       color="#FFEB3B"
                       onMouseEnter={[Function]}
                       onMouseLeave={[Function]}
+                      textColor="#212121"
                     >
                       Brouillon
                     </div>
@@ -1382,6 +1149,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       className="c11"
+                      hoverColor="#212121"
                     >
                       <a
                         href="/dispositif/id1"
@@ -1419,6 +1187,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       className="c12"
                       data-test-id="delete-button"
                       disabled={false}
+                      hoverColor="#f44336"
                       onClick={[Function]}
                     >
                       <div
@@ -1459,6 +1228,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     className="c13"
+                    isDarkBackground={false}
                   >
                     Démarche
                   </div>
@@ -1532,6 +1302,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       color="#FF9800"
                       onMouseEnter={[Function]}
                       onMouseLeave={[Function]}
+                      textColor="#ffffff"
                     >
                       En attente
                     </div>
@@ -1570,6 +1341,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       className="c11"
+                      hoverColor="#212121"
                     >
                       <a
                         href="/demarche/id2"
@@ -1607,6 +1379,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       className="c12"
                       data-test-id="delete-button"
                       disabled={false}
+                      hoverColor="#f44336"
                       onClick={[Function]}
                     >
                       <div
@@ -1647,6 +1420,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     className="c13"
+                    isDarkBackground={false}
                   >
                     Démarche
                   </div>
@@ -1690,6 +1464,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       color="#8BC34A"
                       onMouseEnter={[Function]}
                       onMouseLeave={[Function]}
+                      textColor="#ffffff"
                     >
                       Relecture en cours
                     </div>
@@ -1728,6 +1503,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       className="c11"
+                      hoverColor="#212121"
                     >
                       <a
                         href="/demarche/id3"
@@ -1765,6 +1541,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       className="c12"
                       data-test-id="delete-button"
                       disabled={false}
+                      hoverColor="#f44336"
                       onClick={[Function]}
                     >
                       <div
@@ -1805,6 +1582,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     className="c13"
+                    isDarkBackground={false}
                   >
                     Démarche
                   </div>
@@ -1848,6 +1626,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       color="#FF9800"
                       onMouseEnter={[Function]}
                       onMouseLeave={[Function]}
+                      textColor="#ffffff"
                     >
                       Accepté
                     </div>
@@ -1886,6 +1665,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       className="c11"
+                      hoverColor="#212121"
                     >
                       <a
                         href="/demarche/id4"
@@ -1923,6 +1703,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       className="c12"
                       data-test-id="delete-button"
                       disabled={false}
+                      hoverColor="#f44336"
                       onClick={[Function]}
                     >
                       <div
@@ -1963,6 +1744,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     className="c13"
+                    isDarkBackground={false}
                   >
                     Démarche
                   </div>
@@ -2036,6 +1818,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       color="#F44336"
                       onMouseEnter={[Function]}
                       onMouseLeave={[Function]}
+                      textColor="#ffffff"
                     >
                       Rejeté
                     </div>
@@ -2074,6 +1857,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       className="c11"
+                      hoverColor="#212121"
                     >
                       <a
                         href="/demarche/id5"
@@ -2111,6 +1895,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       className="c12"
                       data-test-id="delete-button"
                       disabled={false}
+                      hoverColor="#f44336"
                       onClick={[Function]}
                     >
                       <div
@@ -2151,6 +1936,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     className="c13"
+                    isDarkBackground={false}
                   >
                     Démarche
                   </div>
@@ -2238,6 +2024,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       className="c11"
+                      hoverColor="#212121"
                     >
                       <a
                         href="/demarche/id6"
@@ -2275,6 +2062,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       className="c12"
                       data-test-id="delete-button"
                       disabled={false}
+                      hoverColor="#f44336"
                       onClick={[Function]}
                     >
                       <div
@@ -2315,6 +2103,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     className="c13"
+                    isDarkBackground={false}
                   >
                     Démarche
                   </div>
@@ -2432,6 +2221,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       className="c11"
+                      hoverColor="#212121"
                     >
                       <a
                         href="/demarche/id7"
@@ -2469,6 +2259,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       className="c18"
                       data-test-id="delete-button"
                       disabled={true}
+                      hoverColor="#f44336"
                     >
                       <div
                         style={
@@ -2516,30 +2307,15 @@ exports[`userContributions should render correctly when loading 1`] = `
   margin-left: 100px;
   margin-right: 100px;
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
 .c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
   align-items: flex-end;
 }
 
@@ -2562,23 +2338,11 @@ exports[`userContributions should render correctly when loading 1`] = `
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
   margin-top: 26px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   margin-bottom: 42px;
 }

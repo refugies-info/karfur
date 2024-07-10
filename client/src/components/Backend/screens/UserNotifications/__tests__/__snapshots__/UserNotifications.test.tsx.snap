@@ -8,8 +8,6 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
   margin-top: 26px;
   margin-right: 120px;
   margin-left: 120px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
@@ -23,16 +21,8 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
 .c1 {
   color: #5e5e5e;
   margin-top: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -88,17 +78,9 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
 
 exports[`UserNotifications should render correctly when loading 1`] = `
 .c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
   align-items: flex-end;
 }
 
@@ -127,8 +109,6 @@ exports[`UserNotifications should render correctly when loading 1`] = `
   margin-top: 26px;
   margin-right: 120px;
   margin-left: 120px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
@@ -211,20 +191,9 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
   margin: 8px 0px 0px 0px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
   cursor: pointer;
   border-width: 2px;
@@ -241,20 +210,9 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
   margin: 8px 0px 0px 0px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
   cursor: pointer;
   border-width: 2px;
@@ -267,16 +225,8 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
 }
 
 .c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -316,17 +266,9 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
 }
 
 .c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
   flex-direction: row;
   margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
   align-items: flex-end;
 }
 
@@ -355,8 +297,6 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-top: 26px;
   margin-right: 120px;
   margin-left: 120px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
@@ -395,6 +335,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       className="c4"
       data-test-id="test-notif-annuaire"
       onClick={[Function]}
+      read={false}
     >
       <div
         className="c5"
@@ -418,6 +359,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
         </span>
         <div
           className="c6"
+          read={false}
         >
           Recensez votre structure dans l'annuaire de l'intégration
         </div>
@@ -476,6 +418,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       className="c4"
       data-test-id="test-notif-new content"
       onClick={[Function]}
+      read={false}
     >
       <div
         className="c5"
@@ -499,6 +442,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
         </span>
         <div
           className="c6"
+          read={false}
         >
           Une nouvelle fiche a été attribuée à votre structure
         </div>
@@ -508,6 +452,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       >
         <div
           className="c7"
+          read={false}
         >
           Depuis 5 jours
         </div>
@@ -625,6 +570,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       className="c9"
       data-test-id="test-notif-reaction"
       onClick={[Function]}
+      read={true}
     >
       <div
         className="c5"
@@ -648,6 +594,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
         </span>
         <div
           className="c10"
+          read={true}
         >
           Nouvelle réaction sur la fiche :
         </div>
