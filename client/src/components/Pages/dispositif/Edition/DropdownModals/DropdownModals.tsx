@@ -35,13 +35,13 @@ function DropdownModals<T extends Options>(props: Props<T>) {
   return (
     <Dropdown isOpen={dropdownOpen} toggle={() => setDropdownOpen((o) => !o)} className={styles.dropdown}>
       <DropdownToggle className={styles.toggle}>
-        {jsUcfirst(t(`Infocards.${props.selected}`, { count }) || "")}
+        {jsUcfirst(t(`Infocards.${props.selected}`, "", { count }))}
         <EVAIcon name="chevron-down-outline" size={16} fill="dark" className={cls(styles.icon, "ms-4")} />
       </DropdownToggle>
       <DropdownMenu className={styles.menu}>
         {props.options.map((key, i) => (
           <ChoiceButton
-            text={jsUcfirst(t(`Infocards.${key}`, { count }))}
+            text={jsUcfirst(t(`Infocards.${key}`, "", { count }))}
             selected={props.selected === key}
             type="radio"
             key={i}
