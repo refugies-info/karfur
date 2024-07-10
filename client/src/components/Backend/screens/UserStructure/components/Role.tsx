@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon";
 
-const MainContainer = styled.div`
+const MainContainer = styled.div<{ state: string }>`
   background: ${(props: { state: string }) =>
     props.state === "selected" ? colors.focus : props.state === "current" ? colors.grey2 : colors.white};
   border-width: 1px;

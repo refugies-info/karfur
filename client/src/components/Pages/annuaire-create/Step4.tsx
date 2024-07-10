@@ -64,7 +64,7 @@ const DepartmentContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const CheckboxContainer = styled.div`
+const CheckboxContainer = styled.div<{ checked: boolean }>`
   background: ${(props: { checked: boolean }) => (props.checked ? "#DEF7C2" : "#f2f2f2")};
   border-radius: 12px;
   width: fit-content;

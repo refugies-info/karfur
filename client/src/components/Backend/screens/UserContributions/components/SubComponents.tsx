@@ -17,7 +17,7 @@ export const ContribContainer = styled.div`
   height: fit-content;
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ isDarkBackground: boolean }>`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
@@ -67,7 +67,7 @@ interface ContribStyledStatusContainerProps {
   textColor?: string;
   color: string;
 }
-const ContribStyledStatusContainer = styled.div`
+const ContribStyledStatusContainer = styled.div<ContribStyledStatusContainerProps>`
   display: flex;
   align-items: center;
   font-weight: bold;

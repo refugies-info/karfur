@@ -12,7 +12,7 @@ interface Props {
   onChange: (arg1: any, arg2: string, arg3: string) => void;
 }
 
-const MainContainer = styled.div`
+const MainContainer = styled.div<{ isDayChecked: boolean }>`
   background: ${(props: { isDayChecked: boolean }) => (props.isDayChecked ? "#DEF7C2" : "#f2f2f2")};
   border-radius: 12px;
   padding: 12px;

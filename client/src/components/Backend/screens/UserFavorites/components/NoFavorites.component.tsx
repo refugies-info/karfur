@@ -30,7 +30,7 @@ const EmptyCardContainer = styled.div`
   justify-content: space-between;
 `;
 
-const GrayLine = styled.div`
+const GrayLine = styled.div<{ width: string }>`
   background: ${colors.gray60};
   border-radius: 8px;
   width: ${(props: { width: string }) => props.width};
@@ -38,7 +38,7 @@ const GrayLine = styled.div`
   margin-bottom: 8px;
 `;
 
-const SmallGrayLine = styled.div`
+const SmallGrayLine = styled.div<{ width: string }>`
   background: ${colors.gray60};
   border-radius: 3px;
   width: ${(props: { width: string }) => props.width};

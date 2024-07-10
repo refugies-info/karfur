@@ -24,7 +24,7 @@ interface CardContainerProps {
   lightColor: string;
   darkColor: string;
 }
-const CardContainer = styled.div`
+const CardContainer = styled.div<CardContainerProps>`
   width: 200px;
   height: ${(props: CardContainerProps) => (props.isLectureMode ? "260px" : "220px")};
   background: ${(props: CardContainerProps) => (props.isSelected ? props.lightColor : "#ffffff")};

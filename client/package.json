@@ -64,7 +64,7 @@
     "remixicon": "^4.3.0",
     "sharp": "^0.33.4",
     "sortablejs": "^1.15.0",
-    "styled-components": "^5.3.6",
+    "styled-components": "^6.1.11",
     "sweetalert2": "^11.6.16",
     "typesafe-actions": "^5.1.0",
     "uuid": "^10.0.0"

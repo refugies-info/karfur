@@ -42,7 +42,7 @@ interface TagActivityProps {
   backgroundColor: string;
   color: string;
 }
-const TagActivity = styled.div`
+const TagActivity = styled.div<TagActivityProps>`
   width: 740px;
   background: ${(props: TagActivityProps) => props.backgroundColor};
   border-radius: 12px;
