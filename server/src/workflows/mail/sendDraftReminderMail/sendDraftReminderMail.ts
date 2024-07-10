@@ -42,7 +42,7 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
 
     await sendMultipleDraftsReminderMailService(recipient.email, recipient.username, recipient.creatorId, reminder);
 
-    recipient.dispositifs.map(async (dispositif) => {
+    await Promise.all(recipient.dispositifs.map(async (dispositif) => {
       const updatedDispositif =
         reminder === "first"
           ? {
@@ -53,8 +53,7 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
           };
       await updateDispositifInDB(dispositif._id, updatedDispositif);
       await log(dispositif._id, reminder);
-    });
-    return;
+    }));
   } catch (error) {
     logger.error("[sendDraftReminderMail] error with the recipient", {
       creatorId: recipient.creatorId

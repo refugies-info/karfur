@@ -13,7 +13,7 @@ export const sendMailWhenDispositifPublished = async (dispo: Dispositif) => {
   const titreMarque = dispo.translations.fr.content.titreMarque;
   const lien = "https://refugies.info/" + dispo.typeContenu + "/" + dispo._id;
 
-  await sendPublishedMailToStructureMembers(membresToSendMail, titreInformatif, titreMarque, lien, dispo._id);
+  void sendPublishedMailToStructureMembers(membresToSendMail, titreInformatif, titreMarque, lien, dispo._id);
   const isCreatorInStructure =
     structureMembres.filter((membre) => membre.userId.toString() === dispo.creatorId.toString()).length > 0;
 
