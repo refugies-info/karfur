@@ -30,7 +30,7 @@ const MainContainer = styled(SafeAreaViewTopInset)<{
   min-height: ${({ theme }) =>
     theme.layout.header.minHeight + theme.insets.top}px;
   width: 100%;
-  padding-top: ${({ theme }) => theme.layout.header.minHeight}px;
+  padding-top: ${({ theme }) => theme.layout.header.minHeight + theme.margin}px;
   border-bottom-right-radius: ${({ rounded }) => (rounded ? 12 : 0)}px;
   border-bottom-left-radius: ${({ rounded }) => (rounded ? 12 : 0)}px;
 `;

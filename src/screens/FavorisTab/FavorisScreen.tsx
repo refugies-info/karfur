@@ -173,6 +173,7 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
               iconName="trash-2-outline"
               iconFirst
               isTextNotBold
+              style={{ marginBottom: theme.margin * 5 }}
             />
           </Rows>
         ) : (
