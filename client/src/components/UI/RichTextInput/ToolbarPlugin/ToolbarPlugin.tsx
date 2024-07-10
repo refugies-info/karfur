@@ -27,12 +27,12 @@ import {
   CAN_REDO_COMMAND,
   CAN_UNDO_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
-  DEPRECATED_$isGridSelection,
   FORMAT_TEXT_COMMAND,
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "lexical";
+import { $isTableSelection } from "@lexical/table"
 import { cls } from "lib/classname";
 import { $isCalloutNode, INSERT_CALLOUT_COMMAND, REMOVE_CALLOUT_COMMAND } from "../plugins/CalloutPlugin";
 import { CalloutLevel, CalloutNode } from "../plugins/CalloutPlugin/CalloutNode";
@@ -140,7 +140,7 @@ export default function ToolbarPlugin() {
     if (blockType !== "paragraph") {
       editor.update(() => {
         const selection = $getSelection();
-        if ($isRangeSelection(selection) || DEPRECATED_$isGridSelection(selection))
+        if ($isRangeSelection(selection) || $isTableSelection(selection))
           $setBlocksType(selection, () => $createParagraphNode());
       });
     }
@@ -149,7 +149,7 @@ export default function ToolbarPlugin() {
   const formatHeading = () => {
     editor.update(() => {
       const selection = $getSelection();
-      if ($isRangeSelection(selection) || DEPRECATED_$isGridSelection(selection)) {
+      if ($isRangeSelection(selection) || $isTableSelection(selection)) {
         if (blockType !== "h3") {
           $setBlocksType(selection, () => $createHeadingNode("h3"));
         } else {
