@@ -1,7 +1,7 @@
-import React from "react";
 import i18n from "i18next";
+import React from "react";
 import { initReactI18next } from "react-i18next";
-import { TextEncoder, TextDecoder } from "util";
+import { TextDecoder, TextEncoder } from "util";
 
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
@@ -75,7 +75,8 @@ jest.mock("next-i18next", () => ({
     };
   },
   withTranslation: () => (Component) => {
-    Component.defaultProps = { ...Component.defaultProps, t };
-    return Component;
+    const WrappedComponent = (props) => <Component {...props} t={t} />;
+    WrappedComponent.displayName = `withTranslation(${Component.displayName || Component.name})`;
+    return WrappedComponent;
   },
 }));

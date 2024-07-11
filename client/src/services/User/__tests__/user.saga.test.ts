@@ -1,12 +1,13 @@
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, { fetchUser, saveUser } from "../user.saga";
-import { FETCH_USER, SAVE_USER } from "../user.actionTypes";
 import API from "../../../utils/API";
-import { setUserActionCreator, fetchUserActionCreator } from "../user.actions";
 import { testUser } from "../../../__fixtures__/user";
-import { startLoading, LoadingStatusKey, finishLoading } from "../../LoadingStatus/loadingStatus.actions";
+import { finishLoading, LoadingStatusKey, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import { searchQuerySelector } from "../../SearchResults/searchResults.selector"
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
-import mockRouter from "next-router-mock";
+import { fetchUserActionCreator, setUserActionCreator } from "../user.actions";
+import { FETCH_USER, SAVE_USER } from "../user.actionTypes";
+import latestActionsSaga, { fetchUser, saveUser } from "../user.saga";
+import { userSelector } from "../user.selectors"
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -45,15 +46,19 @@ describe("[Saga] User", () => {
         .next()
         .call(API.isAuth)
         .next(true)
+        .select(userSelector)
+        .next()
         .call(API.getUser, { token: undefined })
         .next({ ...testUser, structures: ["testObjectId"] })
         .put(setUserActionCreator({ ...testUser, structures: ["testObjectId"] }))
         .next()
+        .select(searchQuerySelector)
+        .next({ departments: ["fake department"] })
         .put(
           fetchUserStructureActionCreator({
             structureId: "testObjectId",
-            shouldRedirect: false
-          })
+            shouldRedirect: false,
+          }),
         )
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER))
@@ -80,6 +85,8 @@ describe("[Saga] User", () => {
         .next()
         .call(API.isAuth)
         .next(true)
+        .select(userSelector)
+        .next()
         .call(API.getUser, { token: undefined })
         .throw(new Error("test"))
         .put(setUserActionCreator(null))
@@ -92,7 +99,7 @@ describe("[Saga] User", () => {
     it("should call update user and fetch user", () => {
       testSaga(saveUser, {
         type: SAVE_USER,
-        payload: { id: "id", value: { user: { email: "new" }, action: "modify-my-details" } }
+        payload: { id: "id", value: { user: { email: "new" }, action: "modify-my-details" } },
       })
         .next()
         .put(startLoading(LoadingStatusKey.SAVE_USER))
@@ -109,7 +116,7 @@ describe("[Saga] User", () => {
     it("should call update user and set user null if update user throws", () => {
       testSaga(saveUser, {
         type: SAVE_USER,
-        payload: { id: "id", value: { user: { email: "new" }, action: "modify-my-details" } }
+        payload: { id: "id", value: { user: { email: "new" }, action: "modify-my-details" } },
       })
         .next()
         .put(startLoading(LoadingStatusKey.SAVE_USER))

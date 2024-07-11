@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "karfur",
   "version": "0.1.0",
   "description": "Plateforme dédiée aux réfugiés",
@@ -7,22 +8,33 @@
   "copyright": "Copyright 2019 DiAiR",
   "license": "MIT",
   "main": "server.js",
+  "workspaces": [
+    "api-types",
+    "client",
+    "server"
+  ],
   "scripts": {
-    "postinstall": "cd server && npm install && npm run tsc && cd .. && cd client && npm install --only=dev && npm install && npm run build",
-    "test": "cd client && npm run test && cd ../server && npm run test",
-    "test:lint:client": "cd client && npm run test:lint",
-    "test:lint:server": "cd server && npm run test:lint",
-    "test:types:client": "cd client && npm run test:types ",
-    "test:types:server": "cd server && npm run test:types ",
-    "test:unit:client": "cd client && npm run test:unit",
-    "test:unit:server": "cd server && npm run test:unit",
-    "install:client": "cd client && npm install",
-    "install:server": "cd server && npm install"
+    "clean:branches": "npx git-removed-branches --prune --force",
+    "build": "yarn workspaces run build",
+    "build:api-types": "yarn workspace @refugies-info/api-types build",
+    "build:client": "yarn workspace @refugies-info/client build",
+    "build:server": "yarn workspace @refugies-info/server build",
+    "dev:client": "yarn workspace @refugies-info/client dev",
+    "dev:server": "yarn workspace @refugies-info/server dev",
+    "test": "yarn workspaces run test",
+    "test:client": "yarn workspace @refugies-info/client test",
+    "test:server": "yarn workspace @refugies-info/server test",
+    "test:lint:client": "yarn workspace @refugies-info/client test:lint",
+    "test:lint:server": "yarn workspace @refugies-info/server test:lint",
+    "test:types:client": "yarn workspace @refugies-info/client test:types ",
+    "test:types:server": "yarn workspace @refugies-info/server test:types",
+    "test:unit:client": "yarn workspace @refugies-info/client test:unit",
+    "test:unit:server": "yarn workspace @refugies-info/server test:unit"
   },
   "dependencies": {},
   "engines": {
     "node": "20.13.1",
-    "npm": "10.7.0"
+    "yarn": "1.22.22"
   },
   "devDependencies": {},
   "jest": {
@@ -32,6 +44,6 @@
   },
   "volta": {
     "node": "20.13.1",
-    "npm": "10.7.0"
+    "yarn": "1.22.22"
   }
 }

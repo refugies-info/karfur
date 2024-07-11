@@ -12,7 +12,7 @@ export const updateLanguagesAvancement = async () => {
   const nbActivesContents = activesContents.length;
 
   try {
-    await activeLanguages.map(async (langue: Langue) => {
+    await Promise.all(activeLanguages.map(async (langue: Langue) => {
       const nbPublishedTrad = await getCountDispositifs({
         status: DispositifStatus.ACTIVE,
         [`translations.${langue.i18nCode}`]: { $exists: true },
@@ -27,7 +27,7 @@ export const updateLanguagesAvancement = async () => {
       const tradRatio = nbPublishedTrad / nbActivesContents;
 
       await updateLanguageAvancementInDB(langue._id, tradRatio);
-    });
+    }));
     logger.info("[updateLanguagesAvancement] successfully updated avancement");
   } catch (e) {
     logger.error("[updateLanguagesAvancement] error", e);
