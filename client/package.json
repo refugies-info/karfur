@@ -34,7 +34,7 @@
     "next": "^14.2.5",
     "next-i18next": "^15.3.0",
     "next-redux-wrapper": "^8.0.0",
-    "next-sitemap": "^3.1.32",
+    "next-sitemap": "^4.2.3",
     "process": "^0.11.10",
     "query-string": "^9.0.0",
     "rc-time-picker": "^3.7.3",
