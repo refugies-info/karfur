@@ -7590,10 +7590,10 @@ qs@~6.5.2:
   resolved "https://registry.npmjs.org/qs/-/qs-6.5.3.tgz"
   integrity sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==
 
-query-string@^8.1.0:
-  version "8.2.0"
-  resolved "https://registry.npmjs.org/query-string/-/query-string-8.2.0.tgz"
-  integrity sha512-tUZIw8J0CawM5wyGBiDOAp7ObdRQh4uBor/fUR9ZjmbZVvw95OD9If4w3MQxr99rg0DJZ/9CIORcpEqU5hQG7g==
+query-string@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-9.0.0.tgz#1fe177cd95545600f0deab93f5fb02fd4e3e7273"
+  integrity sha512-4EWwcRGsO2H+yzq6ddHcVqkCQ2EFUSfDMEjF8ryp8ReymyZhIuaFRGLomeOQLkrzacMHoyky2HW0Qe30UbzkKw==
   dependencies:
     decode-uri-component "^0.4.1"
     filter-obj "^5.1.0"
@@ -7780,10 +7780,10 @@ react-i18next@^14.1.2:
     "@babel/runtime" "^7.23.9"
     html-parse-stringify "^3.0.1"
 
-react-intersection-observer@^9.11.0:
-  version "9.11.0"
-  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.11.0.tgz#f9e271ceb09391dcb612eeeb9dd564889f8e005c"
-  integrity sha512-fIaYm1nN7FGa4Lpa+sIf8YZWPGbYvctAHQWFjWMv+z+MSMiq9gfPkHLtCglyiPMpaH49ZgGxXuH+THCGcHX75Q==
+react-intersection-observer@^9.12.0:
+  version "9.12.0"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.12.0.tgz#40498b13f6fc6fd311077369ee402f8219d5f006"
+  integrity sha512-KmczTRfcIg5hcmqFbb1fKPprT7AkOjj0ohUCs1iOwWe9BJPnC5nQ7dRX44z2W1jHiRt1uQST0AxGqWL6X8pN2A==
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0:
   version "16.13.1"
