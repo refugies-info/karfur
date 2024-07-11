@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { GoogleMap, useJsApiLoader, MarkerF, InfoBox } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, MarkerF, InfoBox, Libraries } from "@react-google-maps/api";
 import { Poi } from "@refugies-info/api-types";
 import { Event } from "lib/tracking";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
@@ -10,7 +10,7 @@ import styles from "./Map.module.scss";
 
 export type Marker = Poi & { id: number };
 
-const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
+const libraries: Libraries = ["places"];
 
 const Map = () => {
   const dispositif = useSelector(selectedDispositifSelector);
