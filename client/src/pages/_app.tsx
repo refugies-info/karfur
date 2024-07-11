@@ -20,13 +20,6 @@ import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatu
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { ConsentBannerAndConsentManagement, useConsent } from "hooks/useConsentContext";
 
-// Only in TypeScript projects
-declare module "@codegouvfr/react-dsfr/next-pagesdir" {
-  interface RegisterLink {
-    Link: typeof Link;
-  }
-}
-
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
   defaultColorScheme: "light",
   Link,
