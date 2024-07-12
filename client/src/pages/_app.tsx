@@ -19,6 +19,7 @@ import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesd
 import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatus.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { ConsentBannerAndConsentManagement, useConsent } from "hooks/useConsentContext";
+import Cookies from "js-cookie"
 
 // Only in TypeScript projects
 declare module "@codegouvfr/react-dsfr/next-pagesdir" {
@@ -53,6 +54,17 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     supportModule: true,
   };
   const router = useRouter();
+
+  // Remove utm cookie explicitly if window is unloaded
+  useEffect(() => {
+    const handleUnload = () => {
+      Cookies.get("__utmz") && Cookies.remove("__utmz");
+    };
+    window.addEventListener("beforeunload", handleUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleUnload);
+    };
+  })
 
   const handleRouteChange = useCallback((url: string, { shallow }: { shallow: boolean }) => {
     setHistory((prevHistory) => {
