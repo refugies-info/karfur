@@ -52,6 +52,6 @@
   "githubPullRequests.fileListLayout": "flat",
   "githubPullRequests.pullBranch": "never",
   "githubIssues.issueBranchTitle": "feat/#${issueNumber}-${sanitizedIssueTitle}",
-  "javascript.preferences.importModuleSpecifier": "relative",
-  "typescript.preferences.importModuleSpecifier": "relative"
+  "javascript.preferences.importModuleSpecifier": "shortest",
+  "typescript.preferences.importModuleSpecifier": "shortest"
 }
