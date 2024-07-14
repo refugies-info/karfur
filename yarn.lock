@@ -9263,6 +9263,11 @@ synchronous-promise@^2.0.17:
   resolved "https://registry.npmjs.org/synchronous-promise/-/synchronous-promise-2.0.17.tgz"
   integrity sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==
 
+sysend@^1.17.4:
+  version "1.17.4"
+  resolved "https://registry.yarnpkg.com/sysend/-/sysend-1.17.4.tgz#5867b65808a41abda0c6e022420b167a65a81c71"
+  integrity sha512-Z1uwOpQJ8/RtvJTWQNk/ir8fHfwnNKVKIu1im6t/60I6WW5/K75zg9NKVYdep4KGWwBdn0kc1fuRocCptHms4w==
+
 tapable@^2.2.0:
   version "2.2.1"
   resolved "https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz"

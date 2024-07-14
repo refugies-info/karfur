@@ -66,6 +66,7 @@
     "sortablejs": "^1.15.0",
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.6.16",
+    "sysend": "^1.17.4",
     "typesafe-actions": "^5.1.0",
     "uuid": "^9.0.0"
   },
