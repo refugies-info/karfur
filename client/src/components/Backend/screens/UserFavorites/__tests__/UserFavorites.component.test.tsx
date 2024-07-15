@@ -1,7 +1,6 @@
 //@ts-nocheck
 import mockAxios from "jest-mock-axios";
 import routerMock from "next/router";
-import { act } from "react-test-renderer";
 import {
   fetchUserFavoritesActionCreator,
   updateUserFavoritesActionCreator,
@@ -30,35 +29,29 @@ describe("UserFavorites", () => {
   });
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserFavorites,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_FAVORITES: { isLoading: true } },
-        },
-        compProps: { t: (_: string, element2: string) => element2 },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserFavorites,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_FAVORITES: { isLoading: true } },
+      },
+      compProps: { t: (_: string, element2: string) => element2 },
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should render correctly when 0 favorites", () => {
     window.scrollTo = jest.fn();
 
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserFavorites,
-        compProps: { t: (_: string, element2: string) => element2 },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserFavorites,
+      compProps: { t: (_: string, element2: string) => element2 },
     });
 
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
 
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   const fav1 = {
@@ -128,27 +121,21 @@ describe("UserFavorites", () => {
   };
   it("should render correctly when 3 favorites", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserFavorites,
-        compProps: { t: (_: string, element2: string) => element2 },
-        reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserFavorites,
+      compProps: { t: (_: string, element2: string) => element2 },
+      reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserFavorites,
-        compProps: { t: (_: string, element2: string) => element2 },
-        reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserFavorites,
+      compProps: { t: (_: string, element2: string) => element2 },
+      reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
     component.root.findByProps({ "data-testid": "test-delete-button" }).props.onClick();
@@ -163,13 +150,10 @@ describe("UserFavorites", () => {
     routerMock.locale = "en";
     window.scrollTo = jest.fn();
 
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserFavorites,
-        compProps: { t: (_: string, element2: string) => element2 },
-        reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserFavorites,
+      compProps: { t: (_: string, element2: string) => element2 },
+      reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
     });
 
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("en");

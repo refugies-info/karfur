@@ -1,6 +1,5 @@
 import "jest-styled-components";
 import mockRouter from "next-router-mock";
-import { act, ReactTestRenderer } from "react-test-renderer";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../../jest/lib/wrapWithProvidersAndRender";
 import connexion from "../../pages/auth/connexion";
@@ -14,31 +13,23 @@ describe("auth/connexion", () => {
     setupGoogleMock();
   });
 
-  let component: ReactTestRenderer;
-
   it("renders null if no email", () => {
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: connexion,
-        reduxState: {
-          ...initialMockStore,
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: connexion,
+      reduxState: {
+        ...initialMockStore,
+      },
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
-  it("renders connexion if email", () => {
-    act(() => {
-      mockRouter.push("/auth/connexion?email=test@example.com");
+  it("renders connexion if email", async () => {
+    await mockRouter.push("/auth/connexion?email=test@example.com");
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: connexion,
+      reduxState: {
+        ...initialMockStore,
+      },
     });
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: connexion,
-        reduxState: {
-          ...initialMockStore,
-        },
-      });
-    });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

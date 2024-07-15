@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { colors } from "colors";
 import "jest-styled-components";
-import { act } from "react-test-renderer";
 import { fetchUserContributionsActionCreator } from "services/UserContributions/userContributions.actions";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
@@ -31,31 +30,25 @@ describe("userContributions", () => {
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
 
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserContributions,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } },
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserContributions,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } },
+      },
     });
 
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should render correctly when 0 contributions", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserContributions,
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserContributions,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   const userContributions = [
@@ -133,39 +126,33 @@ describe("userContributions", () => {
   };
   it("should render correctly when contributions", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserContributions,
-        reduxState: {
-          ...initialMockStore,
-          userContributions,
-          userStructure,
-          user: userState,
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserContributions,
+      reduxState: {
+        ...initialMockStore,
+        userContributions,
+        userStructure,
+        user: userState,
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "userStructureId",
       shouldRedirect: false,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should render correctly when clicks", async () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserContributions,
-        reduxState: {
-          ...initialMockStore,
-          userContributions,
-          userStructure,
-          user: userState,
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserContributions,
+      reduxState: {
+        ...initialMockStore,
+        userContributions,
+        userStructure,
+        user: userState,
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "userStructureId",
@@ -176,26 +163,21 @@ describe("userContributions", () => {
 
   it("should render correctly when click on delete", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserContributions,
-        reduxState: {
-          ...initialMockStore,
-          userContributions: [userContributions[0]],
-          user: userState,
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserContributions,
+      reduxState: {
+        ...initialMockStore,
+        userContributions: [userContributions[0]],
+        user: userState,
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "userStructureId",
       shouldRedirect: false,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    act(() =>
-      component.root.findByProps({ "data-testid": "test_delete_id1" }).props.onClick({ stopPropagation: () => {} }),
-    );
-    expect(component.toJSON()).toMatchSnapshot();
+    component.getByTestId("test_delete_id1").click();
+    expect(component).toMatchSnapshot();
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Êtes-vous sûr ?",
       text: "La suppression d'un dispositif est irréversible",

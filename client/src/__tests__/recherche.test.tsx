@@ -1,5 +1,4 @@
 import "jest-styled-components";
-import { act, ReactTestRenderer } from "react-test-renderer";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../jest/lib/wrapWithProvidersAndRender";
 import recherche from "../pages/recherche";
@@ -13,42 +12,38 @@ describe("recherche", () => {
     setupGoogleMock();
   });
 
-  let component: ReactTestRenderer;
-
   it("renders search results", () => {
     window.scrollTo = jest.fn();
 
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: recherche,
-        reduxState: {
-          ...initialMockStore,
-          searchResults: {
-            results: {
-              dispositifs: [],
-              demarches: [],
-              dispositifsSecondaryTheme: [],
-            },
-            query: {
-              search: "",
-              departments: [],
-              themes: ["6319f6b363ab2bbb162d7df5"],
-              needs: [],
-              age: [],
-              frenchLevel: [],
-              language: [],
-              sort: "date",
-              type: "all",
-            },
-            inputFocused: {
-              search: false,
-              location: false,
-              theme: false,
-            },
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: recherche,
+      reduxState: {
+        ...initialMockStore,
+        searchResults: {
+          results: {
+            dispositifs: [],
+            demarches: [],
+            dispositifsSecondaryTheme: [],
+          },
+          query: {
+            search: "",
+            departments: [],
+            themes: ["6319f6b363ab2bbb162d7df5"],
+            needs: [],
+            age: [],
+            frenchLevel: [],
+            language: [],
+            sort: "date",
+            type: "all",
+          },
+          inputFocused: {
+            search: false,
+            location: false,
+            theme: false,
           },
         },
-      });
+      },
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

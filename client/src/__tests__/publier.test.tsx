@@ -1,5 +1,4 @@
 import "jest-styled-components";
-import { act, ReactTestRenderer } from "react-test-renderer";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../jest/lib/wrapWithProvidersAndRender";
 import publier from "../pages/publier";
@@ -12,17 +11,14 @@ describe("publier", () => {
     jest.clearAllMocks();
   });
 
-  let component: ReactTestRenderer;
   it("renders publier", () => {
     window.scrollTo = jest.fn();
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: publier,
-        reduxState: {
-          ...initialMockStore,
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: publier,
+      reduxState: {
+        ...initialMockStore,
+      },
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

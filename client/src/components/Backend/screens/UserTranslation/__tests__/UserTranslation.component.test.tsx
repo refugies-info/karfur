@@ -1,7 +1,6 @@
 //@ts-nocheck
 import "jest-styled-components";
 import { useParams } from "react-router-dom";
-import { act } from "react-test-renderer";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import API from "utils/API";
 import { dispositifsWithTranslations } from "__fixtures__/dispositifsWithTrad";
@@ -38,57 +37,48 @@ describe("user translation", () => {
   it("should return loader langue in url = first selected langue", () => {
     useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserTranslation,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: {
-            FETCH_DISPOSITIFS_TRANSLATIONS_STATUS: { isLoading: false },
-          },
-          user: {
-            user: { selectedLanguages: ["en"], _id: "userId" },
-          },
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserTranslation,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: {
+          FETCH_DISPOSITIFS_TRANSLATIONS_STATUS: { isLoading: false },
         },
-      });
+        user: {
+          user: { selectedLanguages: ["en"], _id: "userId" },
+        },
+      },
     });
     expect(fetchDispositifsWithTranslationsStatusActionCreator).toHaveBeenCalledWith("en");
     expect(API.get_progression).toHaveBeenCalledWith({ onlyTotal: true });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should redirect if user has language but not langue in url + snap view without content", () => {
     useParams.mockReturnValueOnce({});
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserTranslation,
-        reduxState: {
-          ...initialMockStore,
-          user: { user: { selectedLanguages: ["en"] } },
-          dispositifsWithTranslations: [],
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserTranslation,
+      reduxState: {
+        ...initialMockStore,
+        user: { user: { selectedLanguages: ["en"] } },
+        dispositifsWithTranslations: [],
+      },
     });
     expect(replace).toHaveBeenCalledWith("/fr/backend/user-translation/en");
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should redirect if user has no language but langue in url", () => {
     useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserTranslation,
-        reduxState: {
-          ...initialMockStore,
-          user: { user: { selectedLanguages: [] } },
-          dispositifsWithTranslations: [],
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserTranslation,
+      reduxState: {
+        ...initialMockStore,
+        user: { user: { selectedLanguages: [] } },
+        dispositifsWithTranslations: [],
+      },
     });
     expect(fetchDispositifsWithTranslationsStatusActionCreator).not.toHaveBeenCalled();
     expect(API.get_progression).not.toHaveBeenCalled();
@@ -98,83 +88,71 @@ describe("user translation", () => {
   it("should redirect if user has no language but langue in url + snap no langue", () => {
     useParams.mockReturnValueOnce({ id: "test" });
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserTranslation,
-        reduxState: {
-          ...initialMockStore,
-          user: { user: { selectedLanguages: [] } },
-          dispositifsWithTranslations: [{ _id: "id" }],
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserTranslation,
+      reduxState: {
+        ...initialMockStore,
+        user: { user: { selectedLanguages: [] } },
+        dispositifsWithTranslations: [{ _id: "id" }],
+      },
     });
     expect(fetchDispositifsWithTranslationsStatusActionCreator).not.toHaveBeenCalled();
     expect(API.get_progression).not.toHaveBeenCalled();
     expect(replace).toHaveBeenCalledWith("/fr/backend/user-translation");
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should render correctly with non expert, non admin", () => {
     useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserTranslation,
-        reduxState: {
-          ...initialMockStore,
-          user: {
-            user: { selectedLanguages: [{ i18nCode: "en", _id: "idEn" }] },
-            expertTrad: false,
-          },
-          dispositifsWithTranslations,
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserTranslation,
+      reduxState: {
+        ...initialMockStore,
+        user: {
+          user: { selectedLanguages: [{ i18nCode: "en", _id: "idEn" }] },
+          expertTrad: false,
         },
-      });
+        dispositifsWithTranslations,
+      },
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should render correctly with expert, non admin", () => {
     useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserTranslation,
-        reduxState: {
-          ...initialMockStore,
-          user: {
-            user: { selectedLanguages: [{ i18nCode: "en", _id: "idEn" }] },
-            expertTrad: true,
-          },
-          dispositifsWithTranslations,
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserTranslation,
+      reduxState: {
+        ...initialMockStore,
+        user: {
+          user: { selectedLanguages: [{ i18nCode: "en", _id: "idEn" }] },
+          expertTrad: true,
         },
-      });
+        dispositifsWithTranslations,
+      },
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should render correctly with expert, admin", () => {
     useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserTranslation,
-        reduxState: {
-          ...initialMockStore,
-          user: {
-            user: { selectedLanguages: [{ i18nCode: "en" }] },
-            expertTrad: true,
-            admin: true,
-          },
-          dispositifsWithTranslations,
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserTranslation,
+      reduxState: {
+        ...initialMockStore,
+        user: {
+          user: { selectedLanguages: [{ i18nCode: "en" }] },
+          expertTrad: true,
+          admin: true,
         },
-        compProps: {},
-      });
+        dispositifsWithTranslations,
+      },
+      compProps: {},
     });
 
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

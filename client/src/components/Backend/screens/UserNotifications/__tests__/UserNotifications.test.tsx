@@ -1,7 +1,6 @@
 // @ts-nocheck
 import "jest-styled-components";
 import Router from "next/router";
-import { act } from "react-test-renderer";
 import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
@@ -38,42 +37,36 @@ describe("UserNotifications", () => {
   });
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
-          user: { user: { structures: ["structureId"] } },
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
+        user: { user: { structures: ["structureId"] } },
+      },
     });
 
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
       shouldRedirect: false,
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should render correctly when 0 notif", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          user: { user: { structures: ["structureId"] } },
-          userStructure: {
-            _id: 1,
-            hasResponsibleSeenNotification: true,
-            dispositifsAssocies: [],
-          },
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        user: { user: { structures: ["structureId"] } },
+        userStructure: {
+          _id: 1,
+          hasResponsibleSeenNotification: true,
+          dispositifsAssocies: [],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
@@ -83,7 +76,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   const notifNewContent = {
@@ -124,21 +117,18 @@ describe("UserNotifications", () => {
 
   it("should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction ", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          user: { user: { structures: ["structureId"] } },
-          userStructure: {
-            _id: 1,
-            hasResponsibleSeenNotification: false,
-            dispositifsAssocies: [notifNewContent, notifReactionRead, notifReactionNotRead],
-          },
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        user: { user: { structures: ["structureId"] } },
+        userStructure: {
+          _id: 1,
+          hasResponsibleSeenNotification: false,
+          dispositifsAssocies: [notifNewContent, notifReactionRead, notifReactionNotRead],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
@@ -148,26 +138,23 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it("should link to dispositif when click on new content notif", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          user: { user: { structures: ["structureId"] } },
-          userStructure: {
-            _id: 1,
-            hasResponsibleSeenNotification: false,
-            dispositifsAssocies: [notifNewContent],
-          },
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        user: { user: { structures: ["structureId"] } },
+        userStructure: {
+          _id: 1,
+          hasResponsibleSeenNotification: false,
+          dispositifsAssocies: [notifNewContent],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
@@ -185,21 +172,18 @@ describe("UserNotifications", () => {
 
   it("should link to dispositif when click on annuaire notif", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          user: { user: { structures: ["structureId"] } },
-          userStructure: {
-            _id: 1,
-            hasResponsibleSeenNotification: false,
-            dispositifsAssocies: [],
-          },
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        user: { user: { structures: ["structureId"] } },
+        userStructure: {
+          _id: 1,
+          hasResponsibleSeenNotification: false,
+          dispositifsAssocies: [],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
@@ -215,21 +199,18 @@ describe("UserNotifications", () => {
 
   it("should delete notif reaction", () => {
     window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: UserNotifications,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          user: { user: { structures: ["structureId"] } },
-          userStructure: {
-            _id: 1,
-            hasResponsibleSeenNotification: true,
-            dispositifsAssocies: [notifReactionRead],
-          },
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: UserNotifications,
+      reduxState: {
+        ...initialMockStore,
+        loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
+        user: { user: { structures: ["structureId"] } },
+        userStructure: {
+          _id: 1,
+          hasResponsibleSeenNotification: true,
+          dispositifsAssocies: [notifReactionRead],
         },
-      });
+      },
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",

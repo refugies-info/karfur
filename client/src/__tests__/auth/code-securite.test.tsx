@@ -1,6 +1,5 @@
 import "jest-styled-components";
 import mockRouter from "next-router-mock";
-import { act, ReactTestRenderer } from "react-test-renderer";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../../jest/lib/wrapWithProvidersAndRender";
 import codeSecurite from "../../pages/auth/code-securite";
@@ -14,35 +13,27 @@ describe("auth/connexion", () => {
     setupGoogleMock();
   });
 
-  let component: ReactTestRenderer;
-
   it("renders null if no email", () => {
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: codeSecurite,
-        reduxState: {
-          ...initialMockStore,
-        },
-      });
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: codeSecurite,
+      reduxState: {
+        ...initialMockStore,
+      },
     });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
-  it("renders code-securite if email", () => {
+  it("renders code-securite if email", async () => {
     const url = "http://refugies.info/auth/code-securite?email=test@example.com";
     Object.defineProperty(window, "location", {
       value: new URL(url),
     });
-    act(() => {
-      mockRouter.push("/auth/code-securite?email=test@example.com");
+    await mockRouter.push("/auth/code-securite?email=test@example.com");
+    const component = wrapWithProvidersAndRenderForTesting({
+      Component: codeSecurite,
+      reduxState: {
+        ...initialMockStore,
+      },
     });
-    act(() => {
-      component = wrapWithProvidersAndRenderForTesting({
-        Component: codeSecurite,
-        reduxState: {
-          ...initialMockStore,
-        },
-      });
-    });
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
