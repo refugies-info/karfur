@@ -187,7 +187,7 @@ const Agir = () => {
                 <h3 className="mb-4">L’accompagnement social</h3>
 
                 <p>
-                  Droit au séjour, obtention de documents de voyage, reconstitution de l’état-civil auprès de l’OFPRA,
+                  Droit au séjour, obtention de documents de voyage, reconstitution de l’état civil auprès de l’OFPRA,
                   accès à la réunification familiale
                 </p>
                 <p>
@@ -323,7 +323,7 @@ const Agir = () => {
                   background
                   border
                   title="Je découvre +100 fiches pratiques"
-                  desc="Sur la CAF, le RSA, France Travail, l’ANEF, la carte vitale, le permis de conduire..."
+                  desc="Sur la CAF, le RSA, France Travail, l’ANEF, la carte Vitale, le permis de conduire..."
                   enlargeLink
                   imageAlt=""
                   imageUrl={ActeursIlluDemarche.src}
@@ -374,7 +374,7 @@ const Agir = () => {
                   background
                   border
                   title="Je participe à un webinaire gratuit"
-                  desc="Comment utiliser Réfugiés.info avec vos bénéficiaires au quotidien."
+                  desc="Découvrez comment utiliser Réfugiés.info avec vos bénéficiaires au quotidien."
                   enlargeLink
                   imageAlt=""
                   imageUrl={ActeursIlluWebinaire.src}
