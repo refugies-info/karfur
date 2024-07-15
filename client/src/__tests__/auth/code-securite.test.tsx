@@ -1,10 +1,10 @@
-import { wrapWithProvidersAndRender } from "../../../jest/lib/wrapWithProvidersAndRender";
-import codeSecurite from "../../pages/auth/code-securite";
-import mockRouter from "next-router-mock";
-import { initialMockStore } from "__fixtures__/reduxStore";
-import { act, ReactTestRenderer } from "react-test-renderer";
-import { setupGoogleMock } from "../../__mocks__/react-google-autocomplete";
 import "jest-styled-components";
+import mockRouter from "next-router-mock";
+import { act, ReactTestRenderer } from "react-test-renderer";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { wrapWithProvidersAndRenderForTesting } from "../../../jest/lib/wrapWithProvidersAndRender";
+import codeSecurite from "../../pages/auth/code-securite";
+import { setupGoogleMock } from "../../__mocks__/react-google-autocomplete";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -18,7 +18,7 @@ describe("auth/connexion", () => {
 
   it("renders null if no email", () => {
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: codeSecurite,
         reduxState: {
           ...initialMockStore,
@@ -36,7 +36,7 @@ describe("auth/connexion", () => {
       mockRouter.push("/auth/code-securite?email=test@example.com");
     });
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: codeSecurite,
         reduxState: {
           ...initialMockStore,

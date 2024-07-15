@@ -1,15 +1,12 @@
-import { UserProfile } from "../UserProfile";
-import { act, ReactTestRenderer } from "react-test-renderer";
-import {
-  wrapWithProvidersAndRender,
-  wrapWithProvidersAndRenderForTesting,
-} from "../../../../../../jest/lib/wrapWithProvidersAndRender";
-import { initialMockStore } from "__fixtures__/reduxStore";
-import { testUser } from "__fixtures__/user";
+import "@testing-library/jest-dom";
 import { fireEvent, RenderResult, waitFor } from "@testing-library/react";
 import "jest-styled-components";
+import { act, ReactTestRenderer } from "react-test-renderer";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { testUser } from "__fixtures__/user";
 import { setupGoogleMock } from "__mocks__/react-google-autocomplete";
-import "@testing-library/jest-dom";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import { UserProfile } from "../UserProfile";
 
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("components/UI/Tooltip", () => jest.fn().mockReturnValue(<></>));
@@ -41,7 +38,7 @@ describe("UserProfile", () => {
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
     let component: ReactTestRenderer;
-    component = wrapWithProvidersAndRender({
+    component = wrapWithProvidersAndRenderForTesting({
       Component: UserProfile,
       reduxState: {
         ...initialMockStore,
@@ -54,7 +51,7 @@ describe("UserProfile", () => {
   it("should render correctly", () => {
     window.scrollTo = jest.fn();
     let component: ReactTestRenderer;
-    component = wrapWithProvidersAndRender({
+    component = wrapWithProvidersAndRenderForTesting({
       Component: UserProfile,
       reduxState: {
         ...initialMockStore,

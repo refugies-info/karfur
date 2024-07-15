@@ -1,20 +1,19 @@
 //@ts-nocheck
-import React from "react";
-import TestRenderer from "react-test-renderer";
 import "jest-styled-components";
+import TestRenderer from "react-test-renderer";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../../jest/lib/wrapWithProvidersAndRender";
 import {
-  TypeContenu,
-  Title,
+  DeleteButton,
+  FilterButton,
+  SeeButton,
   Structure,
   StyledStatus,
-  ValidateButton,
-  SeeButton,
-  DeleteButton,
   TabHeader,
-  FilterButton,
+  Title,
+  TypeContenu,
+  ValidateButton,
 } from "../SubComponents";
-import { wrapWithProvidersAndRender } from "../../../../../../../jest/lib/wrapWithProvidersAndRender";
-import { initialMockStore } from "__fixtures__/reduxStore";
 
 let component;
 
@@ -78,7 +77,7 @@ test("should render Structure with sponsor supprime", () => {
 });
 
 test("should render StyledStatus actif ", () => {
-  component = wrapWithProvidersAndRender({
+  component = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
     compProps: { text: "Actif" },
     reduxState: {
@@ -89,7 +88,7 @@ test("should render StyledStatus actif ", () => {
 });
 
 test("should render StyledStatus en attente ", () => {
-  component = wrapWithProvidersAndRender({
+  component = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
     compProps: { text: "En attente" },
     reduxState: {
@@ -99,7 +98,7 @@ test("should render StyledStatus en attente ", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 test("should render StyledStatus Brouillon ", () => {
-  component = wrapWithProvidersAndRender({
+  component = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
     compProps: { text: "Brouillon" },
     reduxState: {
@@ -109,7 +108,7 @@ test("should render StyledStatus Brouillon ", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 test("should render StyledStatus Rejeté structure ", () => {
-  component = wrapWithProvidersAndRender({
+  component = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
     compProps: { text: "Rejeté structure" },
     reduxState: {
@@ -119,7 +118,7 @@ test("should render StyledStatus Rejeté structure ", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 test("should render StyledStatus En attente admin ", () => {
-  component = wrapWithProvidersAndRender({
+  component = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
     compProps: { text: "En attente admin" },
     reduxState: {
@@ -129,7 +128,7 @@ test("should render StyledStatus En attente admin ", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 test("should render StyledStatus Accepté structure ", () => {
-  component = wrapWithProvidersAndRender({
+  component = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
     compProps: { text: "Accepté structure" },
     reduxState: {
@@ -139,7 +138,7 @@ test("should render StyledStatus Accepté structure ", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 test("should render StyledStatus Supprimé ", () => {
-  component = wrapWithProvidersAndRender({
+  component = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
     compProps: { text: "Supprimé" },
     reduxState: {
@@ -150,7 +149,7 @@ test("should render StyledStatus Supprimé ", () => {
 });
 
 test("should render StyledStatus no corresponding status ", () => {
-  component = wrapWithProvidersAndRender({
+  component = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
     compProps: { text: "test" },
     reduxState: {
@@ -161,7 +160,7 @@ test("should render StyledStatus no corresponding status ", () => {
 });
 
 test("should render StyledStatus no corresponding with override ", () => {
-  component = wrapWithProvidersAndRender({
+  component = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
     compProps: { text: "Actif", overrideColor: true, textToDisplay: "test" },
     reduxState: {
@@ -172,7 +171,7 @@ test("should render StyledStatus no corresponding with override ", () => {
 });
 
 test("should render StyledStatus no corresponding with color ", () => {
-  component = wrapWithProvidersAndRender({
+  component = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
     compProps: { text: "Actif", overrideColor: false, textToDisplay: "test", textColor: "textColor", color: "color" },
     reduxState: {

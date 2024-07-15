@@ -1,14 +1,14 @@
 //@ts-nocheck
-import UserFavorites from "../UserFavorites";
-import { initialMockStore } from "__fixtures__/reduxStore";
-import { wrapWithProvidersAndRender } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
-import {
-  updateUserFavoritesActionCreator,
-  fetchUserFavoritesActionCreator,
-} from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
-import { act } from "react-test-renderer";
-import routerMock from "next/router";
 import mockAxios from "jest-mock-axios";
+import routerMock from "next/router";
+import { act } from "react-test-renderer";
+import {
+  fetchUserFavoritesActionCreator,
+  updateUserFavoritesActionCreator,
+} from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import UserFavorites from "../UserFavorites";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -32,7 +32,7 @@ describe("UserFavorites", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserFavorites,
         reduxState: {
           ...initialMockStore,
@@ -50,7 +50,7 @@ describe("UserFavorites", () => {
 
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
       });
@@ -130,7 +130,7 @@ describe("UserFavorites", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
@@ -144,7 +144,7 @@ describe("UserFavorites", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
@@ -165,7 +165,7 @@ describe("UserFavorites", () => {
 
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },

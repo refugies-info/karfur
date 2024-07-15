@@ -1,15 +1,15 @@
-import { wrapWithProvidersAndRender } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
-import { UserStructureComponent } from "../UserStructure.component";
+import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus } from "@refugies-info/api-types";
+import { colors } from "colors";
 import "jest-styled-components";
 import { act, ReactTestRenderer } from "react-test-renderer";
-import { initialMockStore } from "__fixtures__/reduxStore";
 import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
-import { colors } from "colors";
-import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus } from "@refugies-info/api-types";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import { UserStructureComponent } from "../UserStructure.component";
 jest.mock("next/router", () => require("next-router-mock"));
 
 // need to mock react strap because issue with modal
@@ -37,7 +37,7 @@ describe("UserStructure", () => {
     window.scrollTo = jest.fn();
     let component: ReactTestRenderer;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserStructureComponent,
         reduxState: {
           ...initialMockStore,
@@ -66,7 +66,7 @@ describe("UserStructure", () => {
     window.scrollTo = jest.fn();
     let component: ReactTestRenderer;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserStructureComponent,
         reduxState: {
           ...initialMockStore,
@@ -113,7 +113,7 @@ describe("UserStructure", () => {
     let component: ReactTestRenderer;
 
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserStructureComponent,
         reduxState: {
           ...initialMockStore,
@@ -153,7 +153,7 @@ describe("UserStructure", () => {
     let component: ReactTestRenderer;
 
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserStructureComponent,
         reduxState: {
           ...initialMockStore,
@@ -193,7 +193,7 @@ describe("UserStructure", () => {
     let component: ReactTestRenderer;
 
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserStructureComponent,
         reduxState: {
           ...initialMockStore,
@@ -236,7 +236,7 @@ describe("UserStructure", () => {
     let component: ReactTestRenderer;
 
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserStructureComponent,
         reduxState: {
           ...initialMockStore,
@@ -301,7 +301,7 @@ describe("UserStructure", () => {
     let component: ReactTestRenderer;
 
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserStructureComponent,
         reduxState: {
           ...initialMockStore,

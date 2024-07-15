@@ -1,4 +1,4 @@
-import { wrapWithProvidersAndRender } from "../../jest/lib/wrapWithProvidersAndRender";
+import { wrapWithProvidersAndRenderForTesting } from "../../jest/lib/wrapWithProvidersAndRender";
 import index, { Props } from "../pages/index";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { lastDemarches, lastDispositifs } from "__fixtures__/getDispositifs";
@@ -18,7 +18,7 @@ describe("homepage", () => {
   it("renders homepage", () => {
     window.scrollTo = jest.fn();
     act(() => {
-      component = wrapWithProvidersAndRender<Props>({
+      component = wrapWithProvidersAndRenderForTesting<Props>({
         Component: index,
         reduxState: {
           ...initialMockStore,

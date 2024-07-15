@@ -1,9 +1,9 @@
-import { wrapWithProvidersAndRender } from "../../jest/lib/wrapWithProvidersAndRender";
-import recherche from "../pages/recherche";
-import { initialMockStore } from "__fixtures__/reduxStore";
-import { act, ReactTestRenderer } from "react-test-renderer";
-import { setupGoogleMock } from "../__mocks__/react-google-autocomplete";
 import "jest-styled-components";
+import { act, ReactTestRenderer } from "react-test-renderer";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { wrapWithProvidersAndRenderForTesting } from "../../jest/lib/wrapWithProvidersAndRender";
+import recherche from "../pages/recherche";
+import { setupGoogleMock } from "../__mocks__/react-google-autocomplete";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -19,7 +19,7 @@ describe("recherche", () => {
     window.scrollTo = jest.fn();
 
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: recherche,
         reduxState: {
           ...initialMockStore,

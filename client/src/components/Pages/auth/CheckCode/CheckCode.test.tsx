@@ -1,13 +1,10 @@
-import CheckCode from "./CheckCode";
+import { fireEvent, RenderResult, waitFor } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 import { act, ReactTestRenderer } from "react-test-renderer";
-import {
-  wrapWithProvidersAndRender,
-  wrapWithProvidersAndRenderForTesting,
-} from "../../../../../jest/lib/wrapWithProvidersAndRender";
-import { initialMockStore } from "__fixtures__/reduxStore";
-import { fireEvent, RenderResult, waitFor } from "@testing-library/react";
 import API from "utils/API";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../jest/lib/wrapWithProvidersAndRender";
+import CheckCode from "./CheckCode";
 
 jest.mock("next/router", () => require("next-router-mock"));
 const logUserMock = jest.fn();
@@ -28,7 +25,7 @@ describe("CheckCode", () => {
     let component: ReactTestRenderer;
 
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: CheckCode,
         reduxState: {
           ...initialMockStore,
@@ -50,7 +47,7 @@ describe("CheckCode", () => {
     let component: ReactTestRenderer;
 
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: CheckCode,
         reduxState: {
           ...initialMockStore,

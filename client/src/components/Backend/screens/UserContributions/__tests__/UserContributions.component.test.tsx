@@ -1,14 +1,13 @@
 // @ts-nocheck
-import UserContributions from "../UserContributions";
-import { initialMockStore } from "__fixtures__/reduxStore";
-import { wrapWithProvidersAndRender } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
-import Swal from "sweetalert2";
 import { colors } from "colors";
+import "jest-styled-components";
 import { act } from "react-test-renderer";
 import { fetchUserContributionsActionCreator } from "services/UserContributions/userContributions.actions";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
-import "jest-styled-components";
-import Router from "next/router";
+import Swal from "sweetalert2";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import UserContributions from "../UserContributions";
 jest.mock("components/Modals/WriteContentModal/WriteContentModal", () => jest.fn().mockReturnValue(<></>));
 
 jest.mock("next/router", () => require("next-router-mock"));
@@ -34,7 +33,7 @@ describe("userContributions", () => {
 
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserContributions,
         reduxState: {
           ...initialMockStore,
@@ -51,7 +50,7 @@ describe("userContributions", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserContributions,
       });
     });
@@ -136,7 +135,7 @@ describe("userContributions", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserContributions,
         reduxState: {
           ...initialMockStore,
@@ -158,7 +157,7 @@ describe("userContributions", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserContributions,
         reduxState: {
           ...initialMockStore,
@@ -179,7 +178,7 @@ describe("userContributions", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserContributions,
         reduxState: {
           ...initialMockStore,

@@ -1,16 +1,13 @@
 // @ts-nocheck
-import { initialMockStore } from "__fixtures__/reduxStore";
-import { wrapWithProvidersAndRender } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
-import { act } from "react-test-renderer";
 import "jest-styled-components";
-import UserNotifications from "../UserNotifications";
-import {
-  fetchUserStructureActionCreator,
-  updateUserStructureActionCreator,
-} from "services/UserStructure/userStructure.actions";
-import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
-import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import Router from "next/router";
+import { act } from "react-test-renderer";
+import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
+import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
+import UserNotifications from "../UserNotifications";
 jest.mock("next/router", () => require("next-router-mock"));
 
 jest.mock("services/UserStructure/userStructure.actions", () => {
@@ -43,7 +40,7 @@ describe("UserNotifications", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
@@ -64,7 +61,7 @@ describe("UserNotifications", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
@@ -129,7 +126,7 @@ describe("UserNotifications", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
@@ -158,7 +155,7 @@ describe("UserNotifications", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
@@ -190,7 +187,7 @@ describe("UserNotifications", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
@@ -220,7 +217,7 @@ describe("UserNotifications", () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
-      component = wrapWithProvidersAndRender({
+      component = wrapWithProvidersAndRenderForTesting({
         Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
