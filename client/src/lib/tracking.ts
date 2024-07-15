@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import { isEmpty } from "lodash";
 import { logger } from "logger";
 import ReactGA from "react-ga4";
@@ -38,8 +37,12 @@ const storeCampaignInfosInCookie = () => {
       .map((key) => key + "=" + utmData[key])
       .join("&");
 
+    // expire utmz cookie after 1 day
+    let expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+
     // Créer un cookie __utmz de remplacement
-    Cookies.set("__utmz", utmQueryString, { path: "/", expires: 1 });
+    document.cookie = `__utmz=${utmQueryString}; path=/; expires=${expires.toUTCString()}`;
   }
 };
 
