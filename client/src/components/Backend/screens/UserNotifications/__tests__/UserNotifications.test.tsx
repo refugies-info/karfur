@@ -178,7 +178,7 @@ describe("UserNotifications", () => {
       locale: "fr",
     });
     component.root
-      .findByProps({ "data-test-id": "test-notif-new content" })
+      .findByProps({ "data-testid": "test-notif-new content" })
       .props.onClick({ stopPropagation: jest.fn() });
     expect(Router).toMatchObject({ asPath: "/dispositif/id" });
   });
@@ -209,7 +209,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    component.root.findByProps({ "data-test-id": "test-notif-annuaire" }).props.onClick({ stopPropagation: jest.fn() });
+    component.root.findByProps({ "data-testid": "test-notif-annuaire" }).props.onClick({ stopPropagation: jest.fn() });
     expect(Router).toMatchObject({ asPath: "/directory-create" });
   });
 
@@ -239,9 +239,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    component.root
-      .findByProps({ "data-test-id": "test-delete-reaction" })
-      .props.onClick({ stopPropagation: jest.fn() });
+    component.root.findByProps({ "data-testid": "test-delete-reaction" }).props.onClick({ stopPropagation: jest.fn() });
     expect(updateDispositifReactionActionCreator).toHaveBeenLastCalledWith({
       suggestion: {
         dispositifId: "id2",

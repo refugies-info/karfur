@@ -193,7 +193,7 @@ describe("userContributions", () => {
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
     act(() =>
-      component.root.findByProps({ "data-test-id": "test_delete_id1" }).props.onClick({ stopPropagation: () => {} }),
+      component.root.findByProps({ "data-testid": "test_delete_id1" }).props.onClick({ stopPropagation: () => {} }),
     );
     expect(component.toJSON()).toMatchSnapshot();
     expect(Swal.fire).toHaveBeenCalledWith({

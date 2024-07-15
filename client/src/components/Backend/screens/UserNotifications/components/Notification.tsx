@@ -1,11 +1,10 @@
-import React from "react";
-import { useRouter } from "next/router";
-import styled from "styled-components";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import moment, { Moment } from "moment";
-import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/UI/FButton/FButton";
+import moment from "moment";
+import { useRouter } from "next/router";
 import { getPath } from "routes";
+import styled from "styled-components";
 
 const Container = styled.div<{ read: boolean }>`
   background: ${(props: { read: boolean }) => (props.read ? colors.white : colors.focus)};
@@ -114,11 +113,7 @@ export const Notification = (props: Props) => {
   };
 
   return (
-    <Container
-      read={props.read}
-      onClick={(event: any) => onNotifClick(event)}
-      data-test-id={"test-notif-" + props.type}
-    >
+    <Container read={props.read} onClick={(event: any) => onNotifClick(event)} data-testid={"test-notif-" + props.type}>
       <RowContainer>
         <EVAIcon name={props.read ? "bell-outline" : "bell"} fill={props.read ? colors.gray90 : colors.white} />
         <TextContainer read={props.read}>{getText(props.type)}</TextContainer>
@@ -138,7 +133,7 @@ export const Notification = (props: Props) => {
               name="trash-2"
               onClick={onAnnuaireNotifDeleteClick}
               className="ms-2"
-              data-test-id="test-delete-annuaire"
+              data-testid="test-delete-annuaire"
             />
           </>
         )}
@@ -157,7 +152,7 @@ export const Notification = (props: Props) => {
               name="trash-2"
               onClick={onReactionDeleteClick}
               className="ms-2"
-              data-test-id="test-delete-reaction"
+              data-testid="test-delete-reaction"
             />
           </>
         )}

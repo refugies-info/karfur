@@ -194,7 +194,7 @@ test("should render ValidateButton not disabled", () => {
 test("should call onClick ValidateButton", () => {
   const onClick = jest.fn();
   component = TestRenderer.create(<ValidateButton onClick={onClick} disabled={false} />);
-  component.root.findByProps({ "data-test-id": "validate-button" }).props.onClick();
+  component.root.findByProps({ "data-testid": "validate-button" }).props.onClick();
   expect(onClick).toHaveBeenCalled();
 });
 
@@ -216,7 +216,7 @@ test("should render DeleteButton not disabled", () => {
 test("should call onClick DeleteButton", () => {
   const onClick = jest.fn();
   component = TestRenderer.create(<DeleteButton onClick={onClick} disabled={false} />);
-  component.root.findByProps({ "data-test-id": "delete-button" }).props.onClick();
+  component.root.findByProps({ "data-testid": "delete-button" }).props.onClick();
   expect(onClick).toHaveBeenCalled();
 });
 

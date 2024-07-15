@@ -1,14 +1,13 @@
-import { Table } from "reactstrap";
-import React from "react";
-import Image from "next/image";
-import { EditButtonWithoutNavigation, DeleteButton } from "../../Admin/sharedComponents/SubComponents";
 import marioProfile from "assets/mario-profile.jpg";
-import styled from "styled-components";
 import { colors } from "colors";
+import Image from "next/image";
+import { Table } from "reactstrap";
+import styled from "styled-components";
+import { DeleteButton, EditButtonWithoutNavigation } from "../../Admin/sharedComponents/SubComponents";
 // import "./MembresTable.scss";
+import { GetStructureResponse, Id, StructureMember } from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
-import { GetStructureResponse, Id, StructureMember } from "@refugies-info/api-types";
 
 moment.locale("fr");
 const RowContainer = styled.div`
@@ -101,14 +100,14 @@ export const MembresTable = (props: Props) => (
               <td className="align-middle">
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <EditButtonWithoutNavigation
-                    data-test-id={"test_see_" + element.userId}
+                    data-testid={"test_see_" + element.userId}
                     onClick={() => {
                       props.setSelectedUser(element);
                       props.toggleEditMemberModal();
                     }}
                   />
                   <DeleteButton
-                    data-test-id={"test_delete_" + element.userId}
+                    data-testid={"test_delete_" + element.userId}
                     disabled={false}
                     onClick={() => props.deleteUserFromStructure(element.userId)}
                   />

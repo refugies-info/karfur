@@ -1,13 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { limitNbCaracters } from "lib";
-import { correspondingStatus, progressionData, publicationData } from "../AdminContenu/data";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { colors } from "colors";
-import moment from "moment";
-import styles from "../Admin.module.scss";
 import { GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { useUser } from "hooks";
+import { limitNbCaracters } from "lib";
+import moment from "moment";
+import styled from "styled-components";
+import styles from "../Admin.module.scss";
+import { correspondingStatus, progressionData, publicationData } from "../AdminContenu/data";
 
 const Container = styled.div<{ isDarkBackground: boolean }>`
   font-weight: normal;
@@ -195,7 +194,7 @@ export const ValidateButton = (props: { onClick: () => void; disabled: boolean }
     onClick={props.onClick}
     disabled={props.disabled}
     hoverColor={colors.validationHover}
-    data-test-id="validate-button"
+    data-testid="validate-button"
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="checkmark-outline" fill={colors.white} size={20} />
@@ -226,7 +225,7 @@ export const DeleteButton = (props: { onClick: (event: any) => void; disabled: b
     onClick={props.disabled ? undefined : props.onClick}
     hoverColor={colors.error}
     disabled={props.disabled}
-    data-test-id="delete-button"
+    data-testid="delete-button"
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="trash" fill={colors.white} size={20} />

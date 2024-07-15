@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Modal } from "reactstrap";
+import { Id, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
+import marioProfile from "assets/mario-profile.jpg";
 import FButton from "components/UI/FButton/FButton";
 import Image from "next/image";
+import { useState } from "react";
+import { Modal } from "reactstrap";
 import styled from "styled-components";
-import marioProfile from "assets/mario-profile.jpg";
-import { Role } from "./Role";
 import styles from "./MemberModal.module.scss";
-import { Id, StructureMember, StructureMemberRole } from "@refugies-info/api-types";
+import { Role } from "./Role";
 
 const Title = styled.div`
   font-weight: normal;
@@ -101,7 +101,7 @@ const EditMemberModal = (props: Props) => {
           name="checkmark-outline"
           onClick={modifyRole}
           disabled={!selectedRole || selectedRole === props.selectedUser.mainRole}
-          data-test-id="test-validate-edit"
+          data-testid="test-validate-edit"
         >
           Valider
         </FButton>

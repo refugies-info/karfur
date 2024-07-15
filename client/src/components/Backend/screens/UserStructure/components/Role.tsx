@@ -1,7 +1,6 @@
-import React from "react";
-import styled from "styled-components";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon";
+import styled from "styled-components";
 
 const MainContainer = styled.div<{ state: string }>`
   background: ${(props: { state: string }) =>
@@ -45,7 +44,7 @@ export const Role = (props: Props) => (
   <MainContainer
     onClick={() => props.onRoleSelect(props.role)}
     state={props.state}
-    data-test-id={"test-role-" + props.role}
+    data-testid={"test-role-" + props.role}
   >
     <Row>
       <Title>{getTitle(props.role)}</Title>

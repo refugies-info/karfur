@@ -1,22 +1,22 @@
-import React, { useEffect, useMemo, useState } from "react";
+import TitleWithNumber from "components/Backend/TitleWithNumber";
+import { FrameModal } from "components/Modals";
+import DemarcheCard from "components/UI/DemarcheCard";
+import DispositifCard from "components/UI/DispositifCard";
+import FButton from "components/UI/FButton/FButton";
+import Toast from "components/UI/Toast";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import {
   fetchUserFavoritesActionCreator,
   updateUserFavoritesActionCreator,
 } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { userFavoritesSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
-import { NoFavorites } from "./components/NoFavorites.component";
-import { FrameModal } from "components/Modals";
-import TitleWithNumber from "components/Backend/TitleWithNumber";
-import FButton from "components/UI/FButton/FButton";
-import DemarcheCard from "components/UI/DemarcheCard";
-import DispositifCard from "components/UI/DispositifCard";
-import Toast from "components/UI/Toast";
 import { FavoritesLoading } from "./components/FavoritesLoading";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
+import { NoFavorites } from "./components/NoFavorites.component";
 import styles from "./UserFavorites.module.scss";
 
 interface Props {
@@ -82,7 +82,7 @@ const UserFavorites = (props: Props) => {
                   type="outline-black"
                   name="trash-outline"
                   onClick={removeAllFavorites}
-                  data-test-id="test-delete-button"
+                  data-testid="test-delete-button"
                 >
                   {t("UserFavorites.Tout supprimer", "Tout supprimer")}
                 </FButton>

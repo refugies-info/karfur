@@ -151,7 +151,7 @@ describe("UserFavorites", () => {
       });
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
-    component.root.findByProps({ "data-test-id": "test-delete-button" }).props.onClick();
+    component.root.findByProps({ "data-testid": "test-delete-button" }).props.onClick();
 
     expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
       type: "remove-all",
@@ -173,7 +173,7 @@ describe("UserFavorites", () => {
     });
 
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("en");
-    component.root.findByProps({ "data-test-id": "test-delete-button" }).props.onClick();
+    component.root.findByProps({ "data-testid": "test-delete-button" }).props.onClick();
 
     expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
       type: "remove-all",
