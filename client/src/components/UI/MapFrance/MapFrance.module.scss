@@ -1,9 +1,9 @@
 .dep {
+  &:hover {
+    fill: #2323ff;
+  }
   &.selectable {
     cursor: pointer;
-    &:hover {
-      fill: #2323ff;
-    }
   }
 
   &.selected {

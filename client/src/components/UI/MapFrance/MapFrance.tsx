@@ -1,5 +1,6 @@
 import { cls } from "lib/classname";
 import { useEffect, useState } from "react";
+import Tooltip from "../Tooltip";
 import styles from "./MapFrance.module.scss";
 
 interface Props {
@@ -20,6 +21,7 @@ const normalizeColors = (colors: Record<string, string[]>) => {
 
 const MapFrance = ({ onSelectDep, colors, selectable }: Props) => {
   const [activeDep, setActiveDep] = useState("");
+  const [tooltipId, setTooltipId] = useState("");
   const [colorsPerDep, setColorsPerDep] = useState<Record<string, string>>(normalizeColors(colors));
 
   useEffect(() => {
@@ -35,6 +37,8 @@ const MapFrance = ({ onSelectDep, colors, selectable }: Props) => {
     return {
       id: `dpt-${dep}`,
       onClick: () => (isSelectable ? setActiveDep((d) => (d === dep ? "" : dep)) : {}),
+      onMouseEnter: () => setTooltipId(!isSelectable ? `dpt-${dep}` : ""),
+      onMouseLeave: () => setTooltipId(""),
       fill: colorsPerDep[dep] || undefined,
       className: cls(styles.dep, isSelectable && styles.selectable, dep === activeDep && styles.selected),
     };
@@ -42,6 +46,12 @@ const MapFrance = ({ onSelectDep, colors, selectable }: Props) => {
 
   return (
     <div>
+      {tooltipId && (
+        <Tooltip target={tooltipId} placement="top" isOpen={true}>
+          Ce territoire n'a pas encore d'opérateur AGIR notifié
+        </Tooltip>
+      )}
+
       <svg width="578px" height="544px" viewBox="0 0 578 544" style={{ maxWidth: "100%" }}>
         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
           <g id="par-commune">

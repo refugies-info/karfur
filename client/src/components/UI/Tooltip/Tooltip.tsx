@@ -9,6 +9,7 @@ interface Props {
   placement?: TooltipProps["placement"];
   className?: string;
   hide?: boolean;
+  isOpen?: boolean;
 }
 
 const Tooltip = (props: Props) => {
@@ -18,7 +19,7 @@ const Tooltip = (props: Props) => {
   return (
     <TooltipTS
       target={props.target}
-      isOpen={!props.hide && tooltipOpen}
+      isOpen={props.isOpen || (!props.hide && tooltipOpen)}
       toggle={toggle}
       placement={props.placement}
       className={cls(styles.container, props.className)}
