@@ -2,11 +2,11 @@
   &.selectable {
     cursor: pointer;
     &:hover {
-      opacity: 0.75;
+      fill: #2323ff;
     }
   }
 
   &.selected {
-    fill: #8586f6;
+    fill: #1212ff;
   }
 }
