@@ -290,18 +290,40 @@ const Agir = () => {
                   selectable={Object.keys(operatorsPerDepartment)}
                 />
               </Col>
-              <Col lg="4">
+              <Col lg="4" className="d-flex align-items-center">
                 {activeDep && (
-                  <>
-                    <div className="fw-bold mb-1">{getDepartmentFromNumber(activeDep)}</div>
+                  <div className={styles.operator}>
+                    <div className={styles.head}>
+                      <span>{activeDep}</span>
+                      {getDepartmentFromNumber(activeDep).split(" - ")[1]}
+                    </div>
                     {operatorData && (
-                      <div>
-                        {operatorData.operator}
-                        <br />
-                        {operatorData.email}
+                      <div className={styles.content}>
+                        <div>
+                          <i className="ri-building-line me-2"></i> {operatorData.operator}
+                        </div>
+                        {operatorData.email && (
+                          <div className="mt-4">
+                            <i className="ri-mail-line me-2"></i> {operatorData.email}
+                          </div>
+                        )}
+                        {operatorData.phone && (
+                          <div className="mt-4">
+                            <i className="ri-phone-line me-2"></i> {operatorData.phone}
+                          </div>
+                        )}
+                        <Button
+                          size="small"
+                          priority="tertiary"
+                          iconId="fr-icon-arrow-right-line"
+                          iconPosition="right"
+                          className="mt-6"
+                        >
+                          Découvrir la fiche
+                        </Button>
                       </div>
                     )}
-                  </>
+                  </div>
                 )}
               </Col>
             </Row>

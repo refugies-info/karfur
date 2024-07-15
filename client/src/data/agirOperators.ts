@@ -1,4 +1,4 @@
-type Operators = Record<string, { operator: string, email: string }>;
+type Operators = Record<string, { operator: string, email: string, phone?: string }>;
 
 export const operatorsPerDepartment: Operators = {
   "1": {
