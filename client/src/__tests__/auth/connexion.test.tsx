@@ -14,22 +14,22 @@ describe("auth/connexion", () => {
   });
 
   it("renders null if no email", () => {
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: connexion,
       reduxState: {
         ...initialMockStore,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
   it("renders connexion if email", async () => {
     await mockRouter.push("/auth/connexion?email=test@example.com");
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: connexion,
       reduxState: {
         ...initialMockStore,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

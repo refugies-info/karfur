@@ -36,26 +36,26 @@ describe("UserProfile", () => {
 
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserProfile,
       reduxState: {
         ...initialMockStore,
         loadingStatus: { FETCH_USER: { isLoading: true } },
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserProfile,
       reduxState: {
         ...initialMockStore,
         user: { ...initialMockStore.user, user: { ...testUser } },
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when editing profile", async () => {

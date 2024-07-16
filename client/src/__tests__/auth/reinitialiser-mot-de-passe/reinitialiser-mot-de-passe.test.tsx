@@ -14,22 +14,22 @@ describe("auth/reinitialiser-mot-de-passe", () => {
   });
 
   it("renders page if no email", () => {
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: pageComponent,
       reduxState: {
         ...initialMockStore,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
   it("renders page if email", async () => {
     await mockRouter.push("/auth/reinitialiser-mot-de-passe?email=test@example.com");
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: pageComponent,
       reduxState: {
         ...initialMockStore,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -37,7 +37,7 @@ describe("UserNotifications", () => {
   });
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserNotifications,
       reduxState: {
         ...initialMockStore,
@@ -50,12 +50,12 @@ describe("UserNotifications", () => {
       structureId: "structureId",
       shouldRedirect: false,
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when 0 notif", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserNotifications,
       reduxState: {
         ...initialMockStore,
@@ -76,7 +76,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   const notifNewContent = {
@@ -117,7 +117,7 @@ describe("UserNotifications", () => {
 
   it("should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction ", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserNotifications,
       reduxState: {
         ...initialMockStore,
@@ -138,7 +138,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should link to dispositif when click on new content notif", () => {

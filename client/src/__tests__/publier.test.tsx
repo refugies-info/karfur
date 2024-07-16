@@ -13,12 +13,12 @@ describe("publier", () => {
 
   it("renders publier", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: publier,
       reduxState: {
         ...initialMockStore,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

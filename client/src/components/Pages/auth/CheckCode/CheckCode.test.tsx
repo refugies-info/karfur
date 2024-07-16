@@ -20,7 +20,7 @@ describe("CheckCode", () => {
   it("should render the component with the correct title and subtitle", async () => {
     await mockRouter.push("/check-code?email=test@example.com");
 
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: CheckCode,
       reduxState: {
         ...initialMockStore,
@@ -30,13 +30,13 @@ describe("CheckCode", () => {
       },
     });
 
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   // Does not render the component if the email is not provided
   it("should not render the component if the email is not provided", async () => {
     await mockRouter.push("/check-code");
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: CheckCode,
       reduxState: {
         ...initialMockStore,
@@ -46,7 +46,7 @@ describe("CheckCode", () => {
       },
     });
 
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should display an error message if code is wrong", async () => {

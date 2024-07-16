@@ -37,7 +37,7 @@ describe("user translation", () => {
   it("should return loader langue in url = first selected langue", () => {
     useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserTranslation,
       reduxState: {
         ...initialMockStore,
@@ -51,13 +51,13 @@ describe("user translation", () => {
     });
     expect(fetchDispositifsWithTranslationsStatusActionCreator).toHaveBeenCalledWith("en");
     expect(API.get_progression).toHaveBeenCalledWith({ onlyTotal: true });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should redirect if user has language but not langue in url + snap view without content", () => {
     useParams.mockReturnValueOnce({});
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserTranslation,
       reduxState: {
         ...initialMockStore,
@@ -66,7 +66,7 @@ describe("user translation", () => {
       },
     });
     expect(replace).toHaveBeenCalledWith("/fr/backend/user-translation/en");
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should redirect if user has no language but langue in url", () => {
@@ -88,7 +88,7 @@ describe("user translation", () => {
   it("should redirect if user has no language but langue in url + snap no langue", () => {
     useParams.mockReturnValueOnce({ id: "test" });
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserTranslation,
       reduxState: {
         ...initialMockStore,
@@ -99,13 +99,13 @@ describe("user translation", () => {
     expect(fetchDispositifsWithTranslationsStatusActionCreator).not.toHaveBeenCalled();
     expect(API.get_progression).not.toHaveBeenCalled();
     expect(replace).toHaveBeenCalledWith("/fr/backend/user-translation");
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly with non expert, non admin", () => {
     useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserTranslation,
       reduxState: {
         ...initialMockStore,
@@ -116,13 +116,13 @@ describe("user translation", () => {
         dispositifsWithTranslations,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly with expert, non admin", () => {
     useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserTranslation,
       reduxState: {
         ...initialMockStore,
@@ -133,13 +133,13 @@ describe("user translation", () => {
         dispositifsWithTranslations,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly with expert, admin", () => {
     useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserTranslation,
       reduxState: {
         ...initialMockStore,
@@ -153,6 +153,6 @@ describe("user translation", () => {
       compProps: {},
     });
 
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

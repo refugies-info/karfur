@@ -1,4 +1,5 @@
 import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus } from "@refugies-info/api-types";
+import { screen } from "@testing-library/react";
 import { colors } from "colors";
 import "jest-styled-components";
 import {
@@ -9,6 +10,7 @@ import Swal from "sweetalert2";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import { UserStructureComponent } from "../UserStructure.component";
+
 jest.mock("next/router", () => require("next-router-mock"));
 
 // need to mock react strap because issue with modal
@@ -34,7 +36,7 @@ describe("UserStructure", () => {
 
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserStructureComponent,
       reduxState: {
         ...initialMockStore,
@@ -53,12 +55,12 @@ describe("UserStructure", () => {
       structureId: "structureId",
       shouldRedirect: false,
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when no structure", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserStructureComponent,
       reduxState: {
         ...initialMockStore,
@@ -66,7 +68,7 @@ describe("UserStructure", () => {
       },
     });
     expect(fetchUserStructureActionCreator).not.toHaveBeenCalled();
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   const structure: GetStructureResponse = {
@@ -100,7 +102,7 @@ describe("UserStructure", () => {
   };
   it("should render correctly when structure with membres when user is respo", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserStructureComponent,
       reduxState: {
         ...initialMockStore,
@@ -130,12 +132,12 @@ describe("UserStructure", () => {
         },
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when structure with membres when user is redacteur", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserStructureComponent,
       reduxState: {
         ...initialMockStore,
@@ -165,12 +167,12 @@ describe("UserStructure", () => {
         },
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when add member modal is open", async () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserStructureComponent,
       reduxState: {
         ...initialMockStore,
@@ -200,14 +202,14 @@ describe("UserStructure", () => {
         },
       },
     });
-    const element = await component.findByTestId("test-add-member");
+    const element = await screen.findByTestId("test-add-member");
     element.click();
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when edit member modal is open, select respo and validate", async () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserStructureComponent,
       reduxState: {
         ...initialMockStore,
@@ -237,15 +239,15 @@ describe("UserStructure", () => {
         },
       },
     });
-    const element1 = await component.findByTestId("test-edit-id1");
+    const element1 = await screen.findByTestId("test-edit-id1");
     element1.click();
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
 
-    const element2 = await component.findByTestId("test-role-Responsable");
+    const element2 = await screen.findByTestId("test-role-Responsable");
     element2.click();
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
 
-    const element3 = await component.findByTestId("test-validate-edit");
+    const element3 = await screen.findByTestId("test-validate-edit");
     element3.click();
 
     expect(updateUserStructureActionCreator).toHaveBeenCalledWith({

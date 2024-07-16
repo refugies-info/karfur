@@ -15,12 +15,12 @@ describe("auth/reinitialiser-mot-de-passe/nouveau", () => {
 
   it("renders page", async () => {
     await mockRouter.push("/auth/reinitialiser-mot-de-passe/nouveau?token=aaa");
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: pageComponent,
       reduxState: {
         ...initialMockStore,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

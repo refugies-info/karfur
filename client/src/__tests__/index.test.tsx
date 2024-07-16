@@ -15,7 +15,7 @@ describe("homepage", () => {
 
   it("renders homepage", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting<Props>({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting<Props>({
       Component: index,
       reduxState: {
         ...initialMockStore,
@@ -46,6 +46,6 @@ describe("homepage", () => {
         dispositifs: lastDispositifs,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

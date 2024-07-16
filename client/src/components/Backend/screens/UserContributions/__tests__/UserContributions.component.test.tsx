@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { screen } from "@testing-library/react";
 import { colors } from "colors";
 import "jest-styled-components";
 import { fetchUserContributionsActionCreator } from "services/UserContributions/userContributions.actions";
@@ -7,6 +8,7 @@ import Swal from "sweetalert2";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import UserContributions from "../UserContributions";
+
 jest.mock("components/Modals/WriteContentModal/WriteContentModal", () => jest.fn().mockReturnValue(<></>));
 
 jest.mock("next/router", () => require("next-router-mock"));
@@ -30,7 +32,7 @@ describe("userContributions", () => {
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
 
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserContributions,
       reduxState: {
         ...initialMockStore,
@@ -39,16 +41,16 @@ describe("userContributions", () => {
     });
 
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when 0 contributions", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserContributions,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   const userContributions = [
@@ -126,7 +128,7 @@ describe("userContributions", () => {
   };
   it("should render correctly when contributions", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserContributions,
       reduxState: {
         ...initialMockStore,
@@ -140,7 +142,7 @@ describe("userContributions", () => {
       shouldRedirect: false,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when clicks", async () => {
@@ -163,7 +165,7 @@ describe("userContributions", () => {
 
   it("should render correctly when click on delete", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserContributions,
       reduxState: {
         ...initialMockStore,
@@ -176,8 +178,8 @@ describe("userContributions", () => {
       shouldRedirect: false,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    component.getByTestId("test_delete_id1").click();
-    expect(component).toMatchSnapshot();
+    screen.getByTestId("test_delete_id1").click();
+    expect(asFragment()).toMatchSnapshot();
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Êtes-vous sûr ?",
       text: "La suppression d'un dispositif est irréversible",

@@ -12,7 +12,7 @@ describe("traduire", () => {
 
   it("renders traduire", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: traduire,
       reduxState: {
         ...initialMockStore,
@@ -29,6 +29,6 @@ describe("traduire", () => {
       },
     });
 
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -14,13 +14,13 @@ describe("auth/connexion", () => {
   });
 
   it("renders null if no email", () => {
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: codeConnexion,
       reduxState: {
         ...initialMockStore,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
   it("renders code-connexion if email", async () => {
     const url = "http://refugies.info/auth/code-connexion?email=test@example.com";
@@ -28,12 +28,12 @@ describe("auth/connexion", () => {
       value: new URL(url),
     });
     await mockRouter.push("/auth/code-connexion?email=test@example.com");
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: codeConnexion,
       reduxState: {
         ...initialMockStore,
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -12,13 +12,13 @@ describe("agir", () => {
 
   it("renders traduire", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: agir,
       reduxState: {
         ...initialMockStore,
       },
       compProps: {},
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -29,7 +29,7 @@ describe("UserFavorites", () => {
   });
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserFavorites,
       reduxState: {
         ...initialMockStore,
@@ -38,20 +38,20 @@ describe("UserFavorites", () => {
       compProps: { t: (_: string, element2: string) => element2 },
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when 0 favorites", () => {
     window.scrollTo = jest.fn();
 
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserFavorites,
       compProps: { t: (_: string, element2: string) => element2 },
     });
 
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
 
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   const fav1 = {
@@ -121,13 +121,13 @@ describe("UserFavorites", () => {
   };
   it("should render correctly when 3 favorites", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserFavorites,
       compProps: { t: (_: string, element2: string) => element2 },
       reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } },
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer", () => {

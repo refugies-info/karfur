@@ -15,7 +15,7 @@ describe("recherche", () => {
   it("renders search results", () => {
     window.scrollTo = jest.fn();
 
-    const component = wrapWithProvidersAndRenderForTesting({
+    const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: recherche,
       reduxState: {
         ...initialMockStore,
@@ -44,6 +44,6 @@ describe("recherche", () => {
         },
       },
     });
-    expect(component).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
