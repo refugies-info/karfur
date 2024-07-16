@@ -72,10 +72,7 @@ export interface SaveTranslationRequest {
   toFinish: string[];
   toReview: string[];
   translated: Partial<{
-    content: {
-      titreInformatif?: string;
-      titreMarque?: string;
-      abstract?: string;
+    content: Partial<Content> & {
       what?: RichText;
       why?: { [key: string]: Partial<InfoSection> };
       how?: { [key: string]: Partial<InfoSection> };
