@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`userContributions should render correctly when 0 contributions 1`] = `
-.c1 {
+<DocumentFragment>
+  .c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -65,97 +66,125 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
 }
 
 <div
-  style={
-    {
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-    }
-  }
->
-  <div
-    className="c0"
+    style="display: flex; flex-direction: column; flex: 1;"
   >
     <div
-      className="c1"
+      class="c0"
     >
       <div
-        className="c2"
-      >
-        Vous n'avez pas encore rédigé de fiche.
-      </div>
-      <div
-        className="c3"
+        class="c1"
       >
         <div
-          className="c4"
+          class="c2"
         >
-          C'est parti ?
+          Vous n'avez pas encore rédigé de fiche.
         </div>
         <div
-          className="c5"
+          class="c3"
         >
-          Chacun peut apporter sa contribution pour enrichir le site.
-        </div>
-        <div
-          className="c5"
-        >
-          Lancez-vous !
-        </div>
-        <div
-          className="c6"
-        >
-          <button
-            className="btn dark me-2"
-            onClick={[Function]}
+          <div
+            class="c4"
           >
-            <span
-              className="me-2 icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-file-add-outline" fill="#fff"><g data-name="Layer 2"><g data-name="file-add"><rect width="24" height="24" opacity="0"/><path d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"/><path d="M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Créer une nouvelle fiche
-          </button>
-          <button
-            className="btn tuto ms-2"
-            onClick={[Function]}
+            C'est parti ?
+          </div>
+          <div
+            class="c5"
           >
-            <span
-              className="me-2 icon"
+            Chacun peut apporter sa contribution pour enrichir le site.
+          </div>
+          <div
+            class="c5"
+          >
+            Lancez-vous !
+          </div>
+          <div
+            class="c6"
+          >
+            <button
+              class="btn dark me-2"
             >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Explications
-          </button>
+              <span
+                class="me-2 icon"
+              >
+                <i
+                  style="height: 20px; line-height: 20px;"
+                >
+                  <svg
+                    class="eva eva-file-add-outline"
+                    fill="#fff"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="file-add"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          width="24"
+                        />
+                        <path
+                          d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"
+                        />
+                        <path
+                          d="M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+              Créer une nouvelle fiche
+            </button>
+            <button
+              class="btn tuto ms-2"
+            >
+              <span
+                class="me-2 icon"
+              >
+                <i
+                  style="height: 20px; line-height: 20px;"
+                >
+                  <svg
+                    class="eva eva-video-outline"
+                    fill="#fff"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="video"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          width="24"
+                        />
+                        <path
+                          d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+              Explications
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`userContributions should render correctly when click on delete 1`] = `
@@ -649,7 +678,8 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 `;
 
 exports[`userContributions should render correctly when contributions 1`] = `
-.c9 {
+<DocumentFragment>
+  .c9 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -885,1422 +915,1607 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 <div
-  style={
-    {
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-    }
-  }
->
-  <div
-    className="c0"
+    style="display: flex; flex-direction: column; flex: 1;"
   >
     <div
-      className="c1"
+      class="c0"
     >
       <div
-        className="c2"
+        class="c1"
       >
         <div
-          className="c3"
+          class="c2"
         >
           <div
-            className="c4"
+            class="c3"
           >
-            Vous avez rédigé
+            <div
+              class="c4"
+            >
+              Vous avez rédigé
+            </div>
+            <div
+              class="c5"
+            >
+              7
+            </div>
+            <div
+              class="c4"
+            >
+              fiches.
+            </div>
           </div>
-          <div
-            className="c5"
-          >
-            7
-          </div>
-          <div
-            className="c4"
-          >
-            fiches.
+          <div>
+            <button
+              class="btn tuto me-2"
+            >
+              <span
+                class="me-2 icon"
+              >
+                <i
+                  style="height: 20px; line-height: 20px;"
+                >
+                  <svg
+                    class="eva eva-video-outline"
+                    fill="#fff"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="video"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          width="24"
+                        />
+                        <path
+                          d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+              Explications
+            </button>
+            <button
+              class="btn dark"
+            >
+              <span
+                class="me-2 icon"
+              >
+                <i
+                  style="height: 20px; line-height: 20px;"
+                >
+                  <svg
+                    class="eva eva-file-add-outline"
+                    fill="#fff"
+                    height="20px"
+                    viewBox="0 0 24 24"
+                    width="20px"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      data-name="Layer 2"
+                    >
+                      <g
+                        data-name="file-add"
+                      >
+                        <rect
+                          height="24"
+                          opacity="0"
+                          width="24"
+                        />
+                        <path
+                          d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"
+                        />
+                        <path
+                          d="M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </i>
+              </span>
+              Créer une nouvelle fiche
+            </button>
           </div>
         </div>
-        <div>
-          <button
-            className="btn tuto me-2"
-            onClick={[Function]}
-          >
-            <span
-              className="me-2 icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Explications
-          </button>
-          <button
-            className="btn dark"
-            onClick={[Function]}
-          >
-            <span
-              className="me-2 icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-file-add-outline" fill="#fff"><g data-name="Layer 2"><g data-name="file-add"><rect width="24" height="24" opacity="0"/><path d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"/><path d="M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Créer une nouvelle fiche
-          </button>
-        </div>
-      </div>
-      <div
-        className="c6"
-      >
         <div
-          className="table-responsive"
+          class="c6"
         >
-          <table
-            className="table table-borderless"
+          <div
+            class="table-responsive"
           >
-            <thead>
-              <tr>
-                <th>
-                  Type
-                </th>
-                <th>
-                  Titre
-                </th>
-                <th>
-                  Responsabilité
-                </th>
-                <th>
-                  <div
-                    className="c7"
-                    onClick={[Function]}
-                  >
-                    Statut
-                    <span
-                      className="ms-2 icon"
-                    >
-                      <i
-                        dangerouslySetInnerHTML={
-                          {
-                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-question-mark-circle-outline" fill="#212121"><g data-name="Layer 2"><g data-name="menu-arrow-circle"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"/><circle cx="12" cy="17" r="1"/></g></g></svg>",
-                          }
-                        }
-                        style={
-                          {
-                            "height": "20px",
-                            "lineHeight": "20px",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                </th>
-                <th>
-                  Merci
-                </th>
-                <th>
-                  Vues
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                className="line"
-                data-test-id="test_id1"
-              >
-                <td
-                  className="first align-middle"
-                >
-                  <div
-                    className="c8"
-                    isDarkBackground={true}
-                  >
-                    Dispositif
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <a
-                    href="/dispositif/id1"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    onTouchStart={[Function]}
-                  >
+            <table
+              class="table table-borderless"
+            >
+              <thead>
+                <tr>
+                  <th>
+                    Type
+                  </th>
+                  <th>
+                    Titre
+                  </th>
+                  <th>
+                    Responsabilité
+                  </th>
+                  <th>
                     <div
-                      className="c9"
+                      class="c7"
                     >
-                      <b>
-                        titre info1
-                      </b>
-                      <span>
-                        avec titreMarque1
-                      </span>
-                    </div>
-                  </a>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    className="c7"
-                  >
-                    <div
-                      style={
-                        {
-                          "marginBottom": "4px",
-                          "marginRight": "8px",
-                        }
-                      }
-                    >
+                      Statut
                       <span
-                        className="icon"
+                        class="ms-2 icon"
                       >
                         <i
-                          dangerouslySetInnerHTML={
-                            {
-                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="#212121"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
-                            }
-                          }
-                          style={
-                            {
-                              "height": "20px",
-                              "lineHeight": "20px",
-                            }
-                          }
-                        />
+                          style="height: 20px; line-height: 20px;"
+                        >
+                          <svg
+                            class="eva eva-question-mark-circle-outline"
+                            fill="#212121"
+                            height="20px"
+                            viewBox="0 0 24 24"
+                            width="20px"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              data-name="Layer 2"
+                            >
+                              <g
+                                data-name="menu-arrow-circle"
+                              >
+                                <rect
+                                  height="24"
+                                  opacity="0"
+                                  transform="rotate(180 12 12)"
+                                  width="24"
+                                />
+                                <path
+                                  d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                                />
+                                <path
+                                  d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"
+                                />
+                                <circle
+                                  cx="12"
+                                  cy="17"
+                                  r="1"
+                                />
+                              </g>
+                            </g>
+                          </svg>
+                        </i>
                       </span>
                     </div>
-                    Moi
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                  onClick={[Function]}
+                  </th>
+                  <th>
+                    Merci
+                  </th>
+                  <th>
+                    Vues
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="line"
+                  data-testid="test_id1"
                 >
-                  <div
-                    style={
-                      {
-                        "width": "120px",
-                      }
-                    }
+                  <td
+                    class="first align-middle"
                   >
                     <div
-                      className="c10"
-                      color="#FFEB3B"
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                      textColor="#212121"
+                      class="c8"
                     >
-                      Brouillon
+                      Dispositif
                     </div>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <span
-                    aria-label="locked"
-                    role="img"
+                  </td>
+                  <td
+                    class="align-middle"
                   >
-                    🔒
-                  </span>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <span
-                    aria-label="locked"
-                    role="img"
-                  >
-                    🔒
-                  </span>
-                </td>
-                <td
-                  className="last align-middle"
-                >
-                  <div
-                    style={
-                      {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
-                    <div
-                      className="c11"
-                      hoverColor="#212121"
-                    >
-                      <a
-                        href="/dispositif/id1"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <div
-                          style={
-                            {
-                              "marginBottom": "4px",
-                            }
-                          }
-                        >
-                          <span
-                            className="icon"
-                          >
-                            <i
-                              dangerouslySetInnerHTML={
-                                {
-                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
-                                }
-                              }
-                              style={
-                                {
-                                  "height": "20px",
-                                  "lineHeight": "20px",
-                                }
-                              }
-                            />
-                          </span>
-                        </div>
-                      </a>
-                    </div>
-                    <div
-                      className="c12"
-                      data-test-id="delete-button"
-                      disabled={false}
-                      hoverColor="#f44336"
-                      onClick={[Function]}
+                    <a
+                      href="/dispositif/id1"
                     >
                       <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                        class="c9"
                       >
-                        <span
-                          className="icon"
-                        >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
-                              }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
-                              }
-                            }
-                          />
+                        <b>
+                          titre info1
+                        </b>
+                        <span>
+                          avec titreMarque1
                         </span>
                       </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="line"
-                data-test-id="test_id2"
-              >
-                <td
-                  className="first align-middle"
-                >
-                  <div
-                    className="c13"
-                    isDarkBackground={false}
-                  >
-                    Démarche
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <a
-                    href="/demarche/id2"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    onTouchStart={[Function]}
+                    </a>
+                  </td>
+                  <td
+                    class="align-middle"
                   >
                     <div
-                      className="c9"
+                      class="c7"
                     >
-                      <b>
-                        titre info2
-                      </b>
+                      <div
+                        style="margin-bottom: 4px; margin-right: 8px;"
+                      >
+                        <span
+                          class="icon"
+                        >
+                          <i
+                            style="height: 20px; line-height: 20px;"
+                          >
+                            <svg
+                              class="eva eva-person-outline"
+                              fill="#212121"
+                              height="20px"
+                              viewBox="0 0 24 24"
+                              width="20px"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <g
+                                data-name="Layer 2"
+                              >
+                                <g
+                                  data-name="person"
+                                >
+                                  <rect
+                                    height="24"
+                                    opacity="0"
+                                    width="24"
+                                  />
+                                  <path
+                                    d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
+                                  />
+                                  <path
+                                    d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
+                                  />
+                                </g>
+                              </g>
+                            </svg>
+                          </i>
+                        </span>
+                      </div>
+                      Moi
                     </div>
-                  </a>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    className="c7"
+                  </td>
+                  <td
+                    class="align-middle"
                   >
                     <div
-                      style={
-                        {
-                          "marginBottom": "4px",
-                          "marginRight": "8px",
-                        }
-                      }
+                      style="width: 120px;"
                     >
+                      <div
+                        class="c10"
+                        color="#FFEB3B"
+                        textcolor="#212121"
+                      >
+                        Brouillon
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <span
+                      aria-label="locked"
+                      role="img"
+                    >
+                      🔒
+                    </span>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <span
+                      aria-label="locked"
+                      role="img"
+                    >
+                      🔒
+                    </span>
+                  </td>
+                  <td
+                    class="last align-middle"
+                  >
+                    <div
+                      style="display: flex; flex-direction: row;"
+                    >
+                      <div
+                        class="c11"
+                        hovercolor="#212121"
+                      >
+                        <a
+                          href="/dispositif/id1"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <div
+                            style="margin-bottom: 4px;"
+                          >
+                            <span
+                              class="icon"
+                            >
+                              <i
+                                style="height: 20px; line-height: 20px;"
+                              >
+                                <svg
+                                  class="eva eva-eye"
+                                  fill="#ffffff"
+                                  height="20px"
+                                  viewBox="0 0 24 24"
+                                  width="20px"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g
+                                    data-name="Layer 2"
+                                  >
+                                    <g
+                                      data-name="eye"
+                                    >
+                                      <rect
+                                        height="24"
+                                        opacity="0"
+                                        width="24"
+                                      />
+                                      <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="1.5"
+                                      />
+                                      <path
+                                        d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                                      />
+                                    </g>
+                                  </g>
+                                </svg>
+                              </i>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                      <div
+                        class="c12"
+                        data-testid="delete-button"
+                        hovercolor="#f44336"
+                      >
+                        <div
+                          style="margin-bottom: 4px;"
+                        >
+                          <span
+                            class="icon"
+                          >
+                            <i
+                              style="height: 20px; line-height: 20px;"
+                            >
+                              <svg
+                                class="eva eva-trash"
+                                fill="#ffffff"
+                                height="20px"
+                                viewBox="0 0 24 24"
+                                width="20px"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g
+                                  data-name="Layer 2"
+                                >
+                                  <g
+                                    data-name="trash"
+                                  >
+                                    <rect
+                                      height="24"
+                                      opacity="0"
+                                      width="24"
+                                    />
+                                    <path
+                                      d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="line"
+                  data-testid="test_id2"
+                >
+                  <td
+                    class="first align-middle"
+                  >
+                    <div
+                      class="c13"
+                    >
+                      Démarche
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <a
+                      href="/demarche/id2"
+                    >
+                      <div
+                        class="c9"
+                      >
+                        <b>
+                          titre info2
+                        </b>
+                      </div>
+                    </a>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div
+                      class="c7"
+                    >
+                      <div
+                        style="margin-bottom: 4px; margin-right: 8px;"
+                      >
+                        <span
+                          class="icon"
+                        >
+                          <i
+                            style="height: 20px; line-height: 20px;"
+                          >
+                            <svg
+                              class="eva eva-person-outline"
+                              fill="#212121"
+                              height="20px"
+                              viewBox="0 0 24 24"
+                              width="20px"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <g
+                                data-name="Layer 2"
+                              >
+                                <g
+                                  data-name="person"
+                                >
+                                  <rect
+                                    height="24"
+                                    opacity="0"
+                                    width="24"
+                                  />
+                                  <path
+                                    d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
+                                  />
+                                  <path
+                                    d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
+                                  />
+                                </g>
+                              </g>
+                            </svg>
+                          </i>
+                        </span>
+                      </div>
+                      Moi
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div
+                      style="width: 120px;"
+                    >
+                      <div
+                        class="c14"
+                        color="#FF9800"
+                        textcolor="#ffffff"
+                      >
+                        En attente
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <span
+                      aria-label="locked"
+                      role="img"
+                    >
+                      🔒
+                    </span>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <span
+                      aria-label="locked"
+                      role="img"
+                    >
+                      🔒
+                    </span>
+                  </td>
+                  <td
+                    class="last align-middle"
+                  >
+                    <div
+                      style="display: flex; flex-direction: row;"
+                    >
+                      <div
+                        class="c11"
+                        hovercolor="#212121"
+                      >
+                        <a
+                          href="/demarche/id2"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <div
+                            style="margin-bottom: 4px;"
+                          >
+                            <span
+                              class="icon"
+                            >
+                              <i
+                                style="height: 20px; line-height: 20px;"
+                              >
+                                <svg
+                                  class="eva eva-eye"
+                                  fill="#ffffff"
+                                  height="20px"
+                                  viewBox="0 0 24 24"
+                                  width="20px"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g
+                                    data-name="Layer 2"
+                                  >
+                                    <g
+                                      data-name="eye"
+                                    >
+                                      <rect
+                                        height="24"
+                                        opacity="0"
+                                        width="24"
+                                      />
+                                      <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="1.5"
+                                      />
+                                      <path
+                                        d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                                      />
+                                    </g>
+                                  </g>
+                                </svg>
+                              </i>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                      <div
+                        class="c12"
+                        data-testid="delete-button"
+                        hovercolor="#f44336"
+                      >
+                        <div
+                          style="margin-bottom: 4px;"
+                        >
+                          <span
+                            class="icon"
+                          >
+                            <i
+                              style="height: 20px; line-height: 20px;"
+                            >
+                              <svg
+                                class="eva eva-trash"
+                                fill="#ffffff"
+                                height="20px"
+                                viewBox="0 0 24 24"
+                                width="20px"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g
+                                  data-name="Layer 2"
+                                >
+                                  <g
+                                    data-name="trash"
+                                  >
+                                    <rect
+                                      height="24"
+                                      opacity="0"
+                                      width="24"
+                                    />
+                                    <path
+                                      d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="line"
+                  data-testid="test_id3"
+                >
+                  <td
+                    class="first align-middle"
+                  >
+                    <div
+                      class="c13"
+                    >
+                      Démarche
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <a
+                      href="/demarche/id3"
+                    >
+                      <div
+                        class="c9"
+                      >
+                        <b>
+                          titre info3
+                        </b>
+                      </div>
+                    </a>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div />
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div
+                      style="width: 120px;"
+                    >
+                      <div
+                        class="c15"
+                        color="#8BC34A"
+                        textcolor="#ffffff"
+                      >
+                        Relecture en cours
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <span
+                      aria-label="locked"
+                      role="img"
+                    >
+                      🔒
+                    </span>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <span
+                      aria-label="locked"
+                      role="img"
+                    >
+                      🔒
+                    </span>
+                  </td>
+                  <td
+                    class="last align-middle"
+                  >
+                    <div
+                      style="display: flex; flex-direction: row;"
+                    >
+                      <div
+                        class="c11"
+                        hovercolor="#212121"
+                      >
+                        <a
+                          href="/demarche/id3"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <div
+                            style="margin-bottom: 4px;"
+                          >
+                            <span
+                              class="icon"
+                            >
+                              <i
+                                style="height: 20px; line-height: 20px;"
+                              >
+                                <svg
+                                  class="eva eva-eye"
+                                  fill="#ffffff"
+                                  height="20px"
+                                  viewBox="0 0 24 24"
+                                  width="20px"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g
+                                    data-name="Layer 2"
+                                  >
+                                    <g
+                                      data-name="eye"
+                                    >
+                                      <rect
+                                        height="24"
+                                        opacity="0"
+                                        width="24"
+                                      />
+                                      <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="1.5"
+                                      />
+                                      <path
+                                        d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                                      />
+                                    </g>
+                                  </g>
+                                </svg>
+                              </i>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                      <div
+                        class="c12"
+                        data-testid="delete-button"
+                        hovercolor="#f44336"
+                      >
+                        <div
+                          style="margin-bottom: 4px;"
+                        >
+                          <span
+                            class="icon"
+                          >
+                            <i
+                              style="height: 20px; line-height: 20px;"
+                            >
+                              <svg
+                                class="eva eva-trash"
+                                fill="#ffffff"
+                                height="20px"
+                                viewBox="0 0 24 24"
+                                width="20px"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g
+                                  data-name="Layer 2"
+                                >
+                                  <g
+                                    data-name="trash"
+                                  >
+                                    <rect
+                                      height="24"
+                                      opacity="0"
+                                      width="24"
+                                    />
+                                    <path
+                                      d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="line"
+                  data-testid="test_id4"
+                >
+                  <td
+                    class="first align-middle"
+                  >
+                    <div
+                      class="c13"
+                    >
+                      Démarche
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <a
+                      href="/demarche/id4"
+                    >
+                      <div
+                        class="c9"
+                      >
+                        <b>
+                          titre info4
+                        </b>
+                      </div>
+                    </a>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div />
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div
+                      style="width: 120px;"
+                    >
+                      <div
+                        class="c14"
+                        color="#FF9800"
+                        textcolor="#ffffff"
+                      >
+                        Accepté
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <span
+                      aria-label="locked"
+                      role="img"
+                    >
+                      🔒
+                    </span>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <span
+                      aria-label="locked"
+                      role="img"
+                    >
+                      🔒
+                    </span>
+                  </td>
+                  <td
+                    class="last align-middle"
+                  >
+                    <div
+                      style="display: flex; flex-direction: row;"
+                    >
+                      <div
+                        class="c11"
+                        hovercolor="#212121"
+                      >
+                        <a
+                          href="/demarche/id4"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <div
+                            style="margin-bottom: 4px;"
+                          >
+                            <span
+                              class="icon"
+                            >
+                              <i
+                                style="height: 20px; line-height: 20px;"
+                              >
+                                <svg
+                                  class="eva eva-eye"
+                                  fill="#ffffff"
+                                  height="20px"
+                                  viewBox="0 0 24 24"
+                                  width="20px"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g
+                                    data-name="Layer 2"
+                                  >
+                                    <g
+                                      data-name="eye"
+                                    >
+                                      <rect
+                                        height="24"
+                                        opacity="0"
+                                        width="24"
+                                      />
+                                      <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="1.5"
+                                      />
+                                      <path
+                                        d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                                      />
+                                    </g>
+                                  </g>
+                                </svg>
+                              </i>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                      <div
+                        class="c12"
+                        data-testid="delete-button"
+                        hovercolor="#f44336"
+                      >
+                        <div
+                          style="margin-bottom: 4px;"
+                        >
+                          <span
+                            class="icon"
+                          >
+                            <i
+                              style="height: 20px; line-height: 20px;"
+                            >
+                              <svg
+                                class="eva eva-trash"
+                                fill="#ffffff"
+                                height="20px"
+                                viewBox="0 0 24 24"
+                                width="20px"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g
+                                  data-name="Layer 2"
+                                >
+                                  <g
+                                    data-name="trash"
+                                  >
+                                    <rect
+                                      height="24"
+                                      opacity="0"
+                                      width="24"
+                                    />
+                                    <path
+                                      d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="line"
+                  data-testid="test_id5"
+                >
+                  <td
+                    class="first align-middle"
+                  >
+                    <div
+                      class="c13"
+                    >
+                      Démarche
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <a
+                      href="/demarche/id5"
+                    >
+                      <div
+                        class="c9"
+                      >
+                        <b>
+                          titre info5
+                        </b>
+                      </div>
+                    </a>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div
+                      class="c7"
+                    >
+                      <div
+                        style="margin-bottom: 4px; margin-right: 8px;"
+                      >
+                        <span
+                          class="icon"
+                        >
+                          <i
+                            style="height: 20px; line-height: 20px;"
+                          >
+                            <svg
+                              class="eva eva-person-outline"
+                              fill="#212121"
+                              height="20px"
+                              viewBox="0 0 24 24"
+                              width="20px"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <g
+                                data-name="Layer 2"
+                              >
+                                <g
+                                  data-name="person"
+                                >
+                                  <rect
+                                    height="24"
+                                    opacity="0"
+                                    width="24"
+                                  />
+                                  <path
+                                    d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
+                                  />
+                                  <path
+                                    d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
+                                  />
+                                </g>
+                              </g>
+                            </svg>
+                          </i>
+                        </span>
+                      </div>
+                      Moi
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div
+                      style="width: 120px;"
+                    >
+                      <div
+                        class="c16"
+                        color="#F44336"
+                        textcolor="#ffffff"
+                      >
+                        Rejeté
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <span
+                      aria-label="locked"
+                      role="img"
+                    >
+                      🔒
+                    </span>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <span
+                      aria-label="locked"
+                      role="img"
+                    >
+                      🔒
+                    </span>
+                  </td>
+                  <td
+                    class="last align-middle"
+                  >
+                    <div
+                      style="display: flex; flex-direction: row;"
+                    >
+                      <div
+                        class="c11"
+                        hovercolor="#212121"
+                      >
+                        <a
+                          href="/demarche/id5"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <div
+                            style="margin-bottom: 4px;"
+                          >
+                            <span
+                              class="icon"
+                            >
+                              <i
+                                style="height: 20px; line-height: 20px;"
+                              >
+                                <svg
+                                  class="eva eva-eye"
+                                  fill="#ffffff"
+                                  height="20px"
+                                  viewBox="0 0 24 24"
+                                  width="20px"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g
+                                    data-name="Layer 2"
+                                  >
+                                    <g
+                                      data-name="eye"
+                                    >
+                                      <rect
+                                        height="24"
+                                        opacity="0"
+                                        width="24"
+                                      />
+                                      <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="1.5"
+                                      />
+                                      <path
+                                        d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                                      />
+                                    </g>
+                                  </g>
+                                </svg>
+                              </i>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                      <div
+                        class="c12"
+                        data-testid="delete-button"
+                        hovercolor="#f44336"
+                      >
+                        <div
+                          style="margin-bottom: 4px;"
+                        >
+                          <span
+                            class="icon"
+                          >
+                            <i
+                              style="height: 20px; line-height: 20px;"
+                            >
+                              <svg
+                                class="eva eva-trash"
+                                fill="#ffffff"
+                                height="20px"
+                                viewBox="0 0 24 24"
+                                width="20px"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g
+                                  data-name="Layer 2"
+                                >
+                                  <g
+                                    data-name="trash"
+                                  >
+                                    <rect
+                                      height="24"
+                                      opacity="0"
+                                      width="24"
+                                    />
+                                    <path
+                                      d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="line"
+                  data-testid="test_id6"
+                >
+                  <td
+                    class="first align-middle"
+                  >
+                    <div
+                      class="c13"
+                    >
+                      Démarche
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <a
+                      href="/demarche/id6"
+                    >
+                      <div
+                        class="c9"
+                      >
+                        <b>
+                          titre info6
+                        </b>
+                      </div>
+                    </a>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div />
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div
+                      style="width: 120px;"
+                    >
+                      <div
+                        class="c17"
+                        color="#4CAF50"
+                      >
+                        Publié
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div>
+                      0 
                       <span
-                        className="icon"
+                        aria-label="thanks"
+                        role="img"
                       >
-                        <i
-                          dangerouslySetInnerHTML={
-                            {
-                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="#212121"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
-                            }
-                          }
-                          style={
-                            {
-                              "height": "20px",
-                              "lineHeight": "20px",
-                            }
-                          }
-                        />
+                        🙏
                       </span>
                     </div>
-                    Moi
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                  onClick={[Function]}
-                >
-                  <div
-                    style={
-                      {
-                        "width": "120px",
-                      }
-                    }
+                  </td>
+                  <td
+                    class="align-middle"
                   >
-                    <div
-                      className="c14"
-                      color="#FF9800"
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                      textColor="#ffffff"
-                    >
-                      En attente
-                    </div>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <span
-                    aria-label="locked"
-                    role="img"
-                  >
-                    🔒
-                  </span>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <span
-                    aria-label="locked"
-                    role="img"
-                  >
-                    🔒
-                  </span>
-                </td>
-                <td
-                  className="last align-middle"
-                >
-                  <div
-                    style={
-                      {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
-                    <div
-                      className="c11"
-                      hoverColor="#212121"
-                    >
-                      <a
-                        href="/demarche/id2"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <div
-                          style={
-                            {
-                              "marginBottom": "4px",
-                            }
-                          }
-                        >
-                          <span
-                            className="icon"
-                          >
-                            <i
-                              dangerouslySetInnerHTML={
-                                {
-                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
-                                }
-                              }
-                              style={
-                                {
-                                  "height": "20px",
-                                  "lineHeight": "20px",
-                                }
-                              }
-                            />
-                          </span>
-                        </div>
-                      </a>
-                    </div>
-                    <div
-                      className="c12"
-                      data-test-id="delete-button"
-                      disabled={false}
-                      hoverColor="#f44336"
-                      onClick={[Function]}
-                    >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
-                      >
-                        <span
-                          className="icon"
-                        >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
-                              }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
-                              }
-                            }
-                          />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="line"
-                data-test-id="test_id3"
-              >
-                <td
-                  className="first align-middle"
-                >
-                  <div
-                    className="c13"
-                    isDarkBackground={false}
-                  >
-                    Démarche
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <a
-                    href="/demarche/id3"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    onTouchStart={[Function]}
-                  >
-                    <div
-                      className="c9"
-                    >
-                      <b>
-                        titre info3
-                      </b>
-                    </div>
-                  </a>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div />
-                </td>
-                <td
-                  className="align-middle"
-                  onClick={[Function]}
-                >
-                  <div
-                    style={
-                      {
-                        "width": "120px",
-                      }
-                    }
-                  >
-                    <div
-                      className="c15"
-                      color="#8BC34A"
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                      textColor="#ffffff"
-                    >
-                      Relecture en cours
-                    </div>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <span
-                    aria-label="locked"
-                    role="img"
-                  >
-                    🔒
-                  </span>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <span
-                    aria-label="locked"
-                    role="img"
-                  >
-                    🔒
-                  </span>
-                </td>
-                <td
-                  className="last align-middle"
-                >
-                  <div
-                    style={
-                      {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
-                    <div
-                      className="c11"
-                      hoverColor="#212121"
-                    >
-                      <a
-                        href="/demarche/id3"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <div
-                          style={
-                            {
-                              "marginBottom": "4px",
-                            }
-                          }
-                        >
-                          <span
-                            className="icon"
-                          >
-                            <i
-                              dangerouslySetInnerHTML={
-                                {
-                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
-                                }
-                              }
-                              style={
-                                {
-                                  "height": "20px",
-                                  "lineHeight": "20px",
-                                }
-                              }
-                            />
-                          </span>
-                        </div>
-                      </a>
-                    </div>
-                    <div
-                      className="c12"
-                      data-test-id="delete-button"
-                      disabled={false}
-                      hoverColor="#f44336"
-                      onClick={[Function]}
-                    >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
-                      >
-                        <span
-                          className="icon"
-                        >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
-                              }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
-                              }
-                            }
-                          />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="line"
-                data-test-id="test_id4"
-              >
-                <td
-                  className="first align-middle"
-                >
-                  <div
-                    className="c13"
-                    isDarkBackground={false}
-                  >
-                    Démarche
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <a
-                    href="/demarche/id4"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    onTouchStart={[Function]}
-                  >
-                    <div
-                      className="c9"
-                    >
-                      <b>
-                        titre info4
-                      </b>
-                    </div>
-                  </a>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div />
-                </td>
-                <td
-                  className="align-middle"
-                  onClick={[Function]}
-                >
-                  <div
-                    style={
-                      {
-                        "width": "120px",
-                      }
-                    }
-                  >
-                    <div
-                      className="c14"
-                      color="#FF9800"
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                      textColor="#ffffff"
-                    >
-                      Accepté
-                    </div>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <span
-                    aria-label="locked"
-                    role="img"
-                  >
-                    🔒
-                  </span>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <span
-                    aria-label="locked"
-                    role="img"
-                  >
-                    🔒
-                  </span>
-                </td>
-                <td
-                  className="last align-middle"
-                >
-                  <div
-                    style={
-                      {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
-                    <div
-                      className="c11"
-                      hoverColor="#212121"
-                    >
-                      <a
-                        href="/demarche/id4"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <div
-                          style={
-                            {
-                              "marginBottom": "4px",
-                            }
-                          }
-                        >
-                          <span
-                            className="icon"
-                          >
-                            <i
-                              dangerouslySetInnerHTML={
-                                {
-                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
-                                }
-                              }
-                              style={
-                                {
-                                  "height": "20px",
-                                  "lineHeight": "20px",
-                                }
-                              }
-                            />
-                          </span>
-                        </div>
-                      </a>
-                    </div>
-                    <div
-                      className="c12"
-                      data-test-id="delete-button"
-                      disabled={false}
-                      hoverColor="#f44336"
-                      onClick={[Function]}
-                    >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
-                      >
-                        <span
-                          className="icon"
-                        >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
-                              }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
-                              }
-                            }
-                          />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="line"
-                data-test-id="test_id5"
-              >
-                <td
-                  className="first align-middle"
-                >
-                  <div
-                    className="c13"
-                    isDarkBackground={false}
-                  >
-                    Démarche
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <a
-                    href="/demarche/id5"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    onTouchStart={[Function]}
-                  >
-                    <div
-                      className="c9"
-                    >
-                      <b>
-                        titre info5
-                      </b>
-                    </div>
-                  </a>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    className="c7"
-                  >
-                    <div
-                      style={
-                        {
-                          "marginBottom": "4px",
-                          "marginRight": "8px",
-                        }
-                      }
-                    >
+                    <div>
+                      10
                       <span
-                        className="icon"
+                        aria-label="nbVues"
+                        role="img"
                       >
-                        <i
-                          dangerouslySetInnerHTML={
-                            {
-                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="#212121"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
-                            }
-                          }
-                          style={
-                            {
-                              "height": "20px",
-                              "lineHeight": "20px",
-                            }
-                          }
-                        />
+                        📈
                       </span>
                     </div>
-                    Moi
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                  onClick={[Function]}
-                >
-                  <div
-                    style={
-                      {
-                        "width": "120px",
-                      }
-                    }
+                  </td>
+                  <td
+                    class="last align-middle"
                   >
                     <div
-                      className="c16"
-                      color="#F44336"
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                      textColor="#ffffff"
-                    >
-                      Rejeté
-                    </div>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <span
-                    aria-label="locked"
-                    role="img"
-                  >
-                    🔒
-                  </span>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <span
-                    aria-label="locked"
-                    role="img"
-                  >
-                    🔒
-                  </span>
-                </td>
-                <td
-                  className="last align-middle"
-                >
-                  <div
-                    style={
-                      {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
-                    <div
-                      className="c11"
-                      hoverColor="#212121"
-                    >
-                      <a
-                        href="/demarche/id5"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <div
-                          style={
-                            {
-                              "marginBottom": "4px",
-                            }
-                          }
-                        >
-                          <span
-                            className="icon"
-                          >
-                            <i
-                              dangerouslySetInnerHTML={
-                                {
-                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
-                                }
-                              }
-                              style={
-                                {
-                                  "height": "20px",
-                                  "lineHeight": "20px",
-                                }
-                              }
-                            />
-                          </span>
-                        </div>
-                      </a>
-                    </div>
-                    <div
-                      className="c12"
-                      data-test-id="delete-button"
-                      disabled={false}
-                      hoverColor="#f44336"
-                      onClick={[Function]}
+                      style="display: flex; flex-direction: row;"
                     >
                       <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                        class="c11"
+                        hovercolor="#212121"
                       >
-                        <span
-                          className="icon"
+                        <a
+                          href="/demarche/id6"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
-                              }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
-                              }
-                            }
-                          />
-                        </span>
+                          <div
+                            style="margin-bottom: 4px;"
+                          >
+                            <span
+                              class="icon"
+                            >
+                              <i
+                                style="height: 20px; line-height: 20px;"
+                              >
+                                <svg
+                                  class="eva eva-eye"
+                                  fill="#ffffff"
+                                  height="20px"
+                                  viewBox="0 0 24 24"
+                                  width="20px"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g
+                                    data-name="Layer 2"
+                                  >
+                                    <g
+                                      data-name="eye"
+                                    >
+                                      <rect
+                                        height="24"
+                                        opacity="0"
+                                        width="24"
+                                      />
+                                      <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="1.5"
+                                      />
+                                      <path
+                                        d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                                      />
+                                    </g>
+                                  </g>
+                                </svg>
+                              </i>
+                            </span>
+                          </div>
+                        </a>
                       </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="line"
-                data-test-id="test_id6"
-              >
-                <td
-                  className="first align-middle"
-                >
-                  <div
-                    className="c13"
-                    isDarkBackground={false}
-                  >
-                    Démarche
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <a
-                    href="/demarche/id6"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    onTouchStart={[Function]}
-                  >
-                    <div
-                      className="c9"
-                    >
-                      <b>
-                        titre info6
-                      </b>
-                    </div>
-                  </a>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div />
-                </td>
-                <td
-                  className="align-middle"
-                  onClick={[Function]}
-                >
-                  <div
-                    style={
-                      {
-                        "width": "120px",
-                      }
-                    }
-                  >
-                    <div
-                      className="c17"
-                      color="#4CAF50"
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                    >
-                      Publié
-                    </div>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div>
-                    0 
-                    <span
-                      aria-label="thanks"
-                      role="img"
-                    >
-                      🙏
-                    </span>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div>
-                    10
-                    <span
-                      aria-label="nbVues"
-                      role="img"
-                    >
-                      📈
-                    </span>
-                  </div>
-                </td>
-                <td
-                  className="last align-middle"
-                >
-                  <div
-                    style={
-                      {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
-                    <div
-                      className="c11"
-                      hoverColor="#212121"
-                    >
-                      <a
-                        href="/demarche/id6"
-                        rel="noopener noreferrer"
-                        target="_blank"
+                      <div
+                        class="c12"
+                        data-testid="delete-button"
+                        hovercolor="#f44336"
                       >
                         <div
-                          style={
-                            {
-                              "marginBottom": "4px",
-                            }
-                          }
+                          style="margin-bottom: 4px;"
                         >
                           <span
-                            className="icon"
+                            class="icon"
                           >
                             <i
-                              dangerouslySetInnerHTML={
-                                {
-                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
-                                }
-                              }
-                              style={
-                                {
-                                  "height": "20px",
-                                  "lineHeight": "20px",
-                                }
-                              }
-                            />
+                              style="height: 20px; line-height: 20px;"
+                            >
+                              <svg
+                                class="eva eva-trash"
+                                fill="#ffffff"
+                                height="20px"
+                                viewBox="0 0 24 24"
+                                width="20px"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g
+                                  data-name="Layer 2"
+                                >
+                                  <g
+                                    data-name="trash"
+                                  >
+                                    <rect
+                                      height="24"
+                                      opacity="0"
+                                      width="24"
+                                    />
+                                    <path
+                                      d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </i>
                           </span>
                         </div>
-                      </a>
-                    </div>
-                    <div
-                      className="c12"
-                      data-test-id="delete-button"
-                      disabled={false}
-                      hoverColor="#f44336"
-                      onClick={[Function]}
-                    >
-                      <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
-                      >
-                        <span
-                          className="icon"
-                        >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
-                              }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
-                              }
-                            }
-                          />
-                        </span>
                       </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="line"
-                data-test-id="test_id7"
-              >
-                <td
-                  className="first align-middle"
+                  </td>
+                </tr>
+                <tr
+                  class="line"
+                  data-testid="test_id7"
                 >
-                  <div
-                    className="c13"
-                    isDarkBackground={false}
-                  >
-                    Démarche
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <a
-                    href="/demarche/id7"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    onTouchStart={[Function]}
+                  <td
+                    class="first align-middle"
                   >
                     <div
-                      className="c9"
+                      class="c13"
                     >
-                      <b>
-                        titre info7
-                      </b>
+                      Démarche
                     </div>
-                  </a>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div
-                    className="c7"
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <a
+                      href="/demarche/id7"
+                    >
+                      <div
+                        class="c9"
+                      >
+                        <b>
+                          titre info7
+                        </b>
+                      </div>
+                    </a>
+                  </td>
+                  <td
+                    class="align-middle"
                   >
                     <div
-                      style={
-                        {
-                          "marginBottom": "4px",
-                          "marginRight": "8px",
-                        }
-                      }
+                      class="c7"
                     >
+                      <div
+                        style="margin-bottom: 4px; margin-right: 8px;"
+                      >
+                        <span
+                          class="icon"
+                        >
+                          <i
+                            style="height: 20px; line-height: 20px;"
+                          >
+                            <svg
+                              class="eva eva-briefcase-outline"
+                              fill="#212121"
+                              height="20px"
+                              viewBox="0 0 24 24"
+                              width="20px"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <g
+                                data-name="Layer 2"
+                              >
+                                <g
+                                  data-name="briefcase"
+                                >
+                                  <rect
+                                    height="24"
+                                    opacity="0"
+                                    width="24"
+                                  />
+                                  <path
+                                    d="M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z"
+                                  />
+                                </g>
+                              </g>
+                            </svg>
+                          </i>
+                        </span>
+                      </div>
+                      main
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div
+                      style="width: 120px;"
+                    >
+                      <div
+                        class="c17"
+                        color="#4CAF50"
+                      >
+                        Publié
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="align-middle"
+                  >
+                    <div>
+                      0 
                       <span
-                        className="icon"
+                        aria-label="thanks"
+                        role="img"
                       >
-                        <i
-                          dangerouslySetInnerHTML={
-                            {
-                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-briefcase-outline" fill="#212121"><g data-name="Layer 2"><g data-name="briefcase"><rect width="24" height="24" opacity="0"/><path d="M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z"/></g></g></svg>",
-                            }
-                          }
-                          style={
-                            {
-                              "height": "20px",
-                              "lineHeight": "20px",
-                            }
-                          }
-                        />
+                        🙏
                       </span>
                     </div>
-                    main
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                  onClick={[Function]}
-                >
-                  <div
-                    style={
-                      {
-                        "width": "120px",
-                      }
-                    }
+                  </td>
+                  <td
+                    class="align-middle"
                   >
-                    <div
-                      className="c17"
-                      color="#4CAF50"
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                    >
-                      Publié
-                    </div>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div>
-                    0 
-                    <span
-                      aria-label="thanks"
-                      role="img"
-                    >
-                      🙏
-                    </span>
-                  </div>
-                </td>
-                <td
-                  className="align-middle"
-                >
-                  <div>
-                    10
-                    <span
-                      aria-label="nbVues"
-                      role="img"
-                    >
-                      📈
-                    </span>
-                  </div>
-                </td>
-                <td
-                  className="last align-middle"
-                >
-                  <div
-                    style={
-                      {
-                        "display": "flex",
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
-                    <div
-                      className="c11"
-                      hoverColor="#212121"
-                    >
-                      <a
-                        href="/demarche/id7"
-                        rel="noopener noreferrer"
-                        target="_blank"
+                    <div>
+                      10
+                      <span
+                        aria-label="nbVues"
+                        role="img"
                       >
-                        <div
-                          style={
-                            {
-                              "marginBottom": "4px",
-                            }
-                          }
-                        >
-                          <span
-                            className="icon"
-                          >
-                            <i
-                              dangerouslySetInnerHTML={
-                                {
-                                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
-                                }
-                              }
-                              style={
-                                {
-                                  "height": "20px",
-                                  "lineHeight": "20px",
-                                }
-                              }
-                            />
-                          </span>
-                        </div>
-                      </a>
+                        📈
+                      </span>
                     </div>
+                  </td>
+                  <td
+                    class="last align-middle"
+                  >
                     <div
-                      className="c18"
-                      data-test-id="delete-button"
-                      disabled={true}
-                      hoverColor="#f44336"
+                      style="display: flex; flex-direction: row;"
                     >
                       <div
-                        style={
-                          {
-                            "marginBottom": "4px",
-                          }
-                        }
+                        class="c11"
+                        hovercolor="#212121"
                       >
-                        <span
-                          className="icon"
+                        <a
+                          href="/demarche/id7"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          <i
-                            dangerouslySetInnerHTML={
-                              {
-                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
-                              }
-                            }
-                            style={
-                              {
-                                "height": "20px",
-                                "lineHeight": "20px",
-                              }
-                            }
-                          />
-                        </span>
+                          <div
+                            style="margin-bottom: 4px;"
+                          >
+                            <span
+                              class="icon"
+                            >
+                              <i
+                                style="height: 20px; line-height: 20px;"
+                              >
+                                <svg
+                                  class="eva eva-eye"
+                                  fill="#ffffff"
+                                  height="20px"
+                                  viewBox="0 0 24 24"
+                                  width="20px"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <g
+                                    data-name="Layer 2"
+                                  >
+                                    <g
+                                      data-name="eye"
+                                    >
+                                      <rect
+                                        height="24"
+                                        opacity="0"
+                                        width="24"
+                                      />
+                                      <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="1.5"
+                                      />
+                                      <path
+                                        d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                                      />
+                                    </g>
+                                  </g>
+                                </svg>
+                              </i>
+                            </span>
+                          </div>
+                        </a>
+                      </div>
+                      <div
+                        class="c18"
+                        data-testid="delete-button"
+                        disabled=""
+                        hovercolor="#f44336"
+                      >
+                        <div
+                          style="margin-bottom: 4px;"
+                        >
+                          <span
+                            class="icon"
+                          >
+                            <i
+                              style="height: 20px; line-height: 20px;"
+                            >
+                              <svg
+                                class="eva eva-trash"
+                                fill="#ffffff"
+                                height="20px"
+                                viewBox="0 0 24 24"
+                                width="20px"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <g
+                                  data-name="Layer 2"
+                                >
+                                  <g
+                                    data-name="trash"
+                                  >
+                                    <rect
+                                      height="24"
+                                      opacity="0"
+                                      width="24"
+                                    />
+                                    <path
+                                      d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </i>
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`userContributions should render correctly when loading 1`] = `
-.c1 {
+<DocumentFragment>
+  .c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -2348,78 +2563,61 @@ exports[`userContributions should render correctly when loading 1`] = `
 }
 
 <div
-  style={
-    {
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-    }
-  }
->
-  <div
-    className="c0"
+    style="display: flex; flex-direction: column; flex: 1;"
   >
     <div
-      className="c1"
+      class="c0"
     >
       <div
-        className="c2"
+        class="c1"
       >
         <div
-          className="c3"
+          class="c2"
         >
-          Vous avez rédigé
+          <div
+            class="c3"
+          >
+            Vous avez rédigé
+          </div>
+          <div
+            class="c4"
+          >
+            ...
+          </div>
+          <div
+            class="c3"
+          >
+            fiche.
+          </div>
         </div>
-        <div
-          className="c4"
+        <span
+          aria-busy="true"
+          aria-live="polite"
         >
-          ...
-        </div>
-        <div
-          className="c3"
-        >
-          fiche.
-        </div>
+          <span
+            class="react-loading-skeleton"
+            style="height: 50px;"
+          >
+            ‌
+          </span>
+          <br />
+          <span
+            class="react-loading-skeleton"
+            style="height: 50px;"
+          >
+            ‌
+          </span>
+          <br />
+          <span
+            class="react-loading-skeleton"
+            style="height: 50px;"
+          >
+            ‌
+          </span>
+          <br />
+        </span>
       </div>
-      <span
-        aria-busy={true}
-        aria-live="polite"
-      >
-        <span
-          className="react-loading-skeleton"
-          style={
-            {
-              "height": 50,
-            }
-          }
-        >
-          ‌
-        </span>
-        <br />
-        <span
-          className="react-loading-skeleton"
-          style={
-            {
-              "height": 50,
-            }
-          }
-        >
-          ‌
-        </span>
-        <br />
-        <span
-          className="react-loading-skeleton"
-          style={
-            {
-              "height": 50,
-            }
-          }
-        >
-          ‌
-        </span>
-        <br />
-      </span>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

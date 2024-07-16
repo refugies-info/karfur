@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserFavorites should render correctly when 0 favorites 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   margin-bottom: 32px;
@@ -112,208 +113,217 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
 }
 
 <div
-  className="container"
->
-  <div
-    style={
-      {
-        "marginLeft": "40px",
-        "marginRight": "40px",
-      }
-    }
+    class="container"
   >
     <div
-      className="c0"
+      style="margin-right: 40px; margin-left: 40px;"
     >
       <div
-        className="c1"
+        class="c0"
       >
-        Vous avez
+        <div
+          class="c1"
+        >
+          Vous avez
+        </div>
+        <div
+          class="c2"
+        >
+          0
+        </div>
+        <div
+          class="c1"
+        >
+          UserFavorites.content_saved
+        </div>
+      </div>
+    </div>
+    <div
+      class="cards"
+    >
+      <div
+        class="c3"
+      >
+        UserFavorites.Comment ajouter
+        <button
+          class="btn tuto me-2"
+        >
+          <span
+            class="me-2 icon"
+          >
+            <i
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-question-mark-circle-outline"
+                fill="#fff"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="menu-arrow-circle"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      transform="rotate(180 12 12)"
+                      width="24"
+                    />
+                    <path
+                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                    />
+                    <path
+                      d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"
+                    />
+                    <circle
+                      cx="12"
+                      cy="17"
+                      r="1"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
+          </span>
+          UserFavorites.tutoriel
+        </button>
       </div>
       <div
-        className="c2"
+        class="c4"
       >
-        0
+        <div
+          style="padding: 13px;"
+        >
+          <div
+            class="c5"
+            width="221px"
+          />
+          <div
+            class="c6"
+            width="130px"
+          />
+        </div>
+        <div>
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c8"
+            width="200px"
+          />
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c9"
+            width="180px"
+          />
+          <div
+            class="c10"
+          >
+            <div
+              class="c11"
+            />
+          </div>
+        </div>
       </div>
       <div
-        className="c1"
+        class="c4"
       >
-        UserFavorites.content_saved
+        <div
+          style="padding: 13px;"
+        >
+          <div
+            class="c5"
+            width="221px"
+          />
+          <div
+            class="c6"
+            width="130px"
+          />
+        </div>
+        <div>
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c8"
+            width="200px"
+          />
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c9"
+            width="180px"
+          />
+          <div
+            class="c10"
+          >
+            <div
+              class="c11"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="c4"
+      >
+        <div
+          style="padding: 13px;"
+        >
+          <div
+            class="c5"
+            width="221px"
+          />
+          <div
+            class="c6"
+            width="130px"
+          />
+        </div>
+        <div>
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c8"
+            width="200px"
+          />
+          <div
+            class="c7"
+            width="221px"
+          />
+          <div
+            class="c9"
+            width="180px"
+          />
+          <div
+            class="c10"
+          >
+            <div
+              class="c11"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div
-    className="cards"
-  >
-    <div
-      className="c3"
-    >
-      UserFavorites.Comment ajouter
-      <button
-        className="btn tuto me-2"
-        onClick={[Function]}
-      >
-        <span
-          className="me-2 icon"
-        >
-          <i
-            dangerouslySetInnerHTML={
-              {
-                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-question-mark-circle-outline" fill="#fff"><g data-name="Layer 2"><g data-name="menu-arrow-circle"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"/><circle cx="12" cy="17" r="1"/></g></g></svg>",
-              }
-            }
-            style={
-              {
-                "height": "20px",
-                "lineHeight": "20px",
-              }
-            }
-          />
-        </span>
-        UserFavorites.tutoriel
-      </button>
-    </div>
-    <div
-      className="c4"
-    >
-      <div
-        style={
-          {
-            "padding": "13px",
-          }
-        }
-      >
-        <div
-          className="c5"
-          width="221px"
-        />
-        <div
-          className="c6"
-          width="130px"
-        />
-      </div>
-      <div>
-        <div
-          className="c7"
-          width="221px"
-        />
-        <div
-          className="c8"
-          width="200px"
-        />
-        <div
-          className="c7"
-          width="221px"
-        />
-        <div
-          className="c9"
-          width="180px"
-        />
-        <div
-          className="c10"
-        >
-          <div
-            className="c11"
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      className="c4"
-    >
-      <div
-        style={
-          {
-            "padding": "13px",
-          }
-        }
-      >
-        <div
-          className="c5"
-          width="221px"
-        />
-        <div
-          className="c6"
-          width="130px"
-        />
-      </div>
-      <div>
-        <div
-          className="c7"
-          width="221px"
-        />
-        <div
-          className="c8"
-          width="200px"
-        />
-        <div
-          className="c7"
-          width="221px"
-        />
-        <div
-          className="c9"
-          width="180px"
-        />
-        <div
-          className="c10"
-        >
-          <div
-            className="c11"
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      className="c4"
-    >
-      <div
-        style={
-          {
-            "padding": "13px",
-          }
-        }
-      >
-        <div
-          className="c5"
-          width="221px"
-        />
-        <div
-          className="c6"
-          width="130px"
-        />
-      </div>
-      <div>
-        <div
-          className="c7"
-          width="221px"
-        />
-        <div
-          className="c8"
-          width="200px"
-        />
-        <div
-          className="c7"
-          width="221px"
-        />
-        <div
-          className="c9"
-          width="180px"
-        />
-        <div
-          className="c10"
-        >
-          <div
-            className="c11"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`UserFavorites should render correctly when 3 favorites 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   margin-bottom: 32px;
@@ -360,600 +370,563 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
 }
 
 <div
-  className="container"
->
-  <div
-    className="title"
+    class="container"
   >
     <div
-      className="c0"
+      class="title"
     >
       <div
-        className="c1"
+        class="c0"
       >
-        Vous avez
-      </div>
-      <div
-        className="c2"
-      >
-        3
-      </div>
-      <div
-        className="c1"
-      >
-        UserFavorites.contents_saved
-      </div>
-    </div>
-    <div>
-      <button
-        className="btn outline-black"
-        data-test-id="test-delete-button"
-        onClick={[Function]}
-      >
-        <span
-          className="me-2 icon"
+        <div
+          class="c1"
         >
-          <i
-            dangerouslySetInnerHTML={
-              {
-                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash-outline" fill="#fff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8h12z"/></g></g></svg>",
-              }
-            }
-            style={
-              {
-                "height": "20px",
-                "lineHeight": "20px",
-              }
-            }
-          />
-        </span>
-        UserFavorites.Tout supprimer
-      </button>
-    </div>
-  </div>
-  <div
-    className="cards"
-  >
-    <div>
-      <div
-        className="wrapper wrapper"
-      >
+          Vous avez
+        </div>
+        <div
+          class="c2"
+        >
+          3
+        </div>
+        <div
+          class="c1"
+        >
+          UserFavorites.contents_saved
+        </div>
+      </div>
+      <div>
         <button
-          className="btn favorite btn btn-secondary"
-          onClick={[Function]}
-          title="Dispositif.addToFavorites"
-          type="button"
+          class="btn outline-black"
+          data-testid="test-delete-button"
         >
           <span
-            className="icon_outline icon"
+            class="me-2 icon"
           >
             <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star-outline" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "20px",
-                  "lineHeight": "20px",
-                }
-              }
-            />
+              style="height: 20px; line-height: 20px;"
+            >
+              <svg
+                class="eva eva-trash-outline"
+                fill="#fff"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  data-name="Layer 2"
+                >
+                  <g
+                    data-name="trash"
+                  >
+                    <rect
+                      height="24"
+                      opacity="0"
+                      width="24"
+                    />
+                    <path
+                      d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8h12z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </i>
           </span>
-          <span
-            className="icon_fill icon"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "20px",
-                  "lineHeight": "20px",
-                }
-              }
-            />
-          </span>
+          UserFavorites.Tout supprimer
         </button>
-        <a
-          className="c3 card dispositif content card"
-          href="/program/id1"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
-          title="tinfo1"
+      </div>
+    </div>
+    <div
+      class="cards"
+    >
+      <div>
+        <div
+          class="wrapper wrapper"
         >
-          <div
-            className="location"
+          <button
+            class="btn favorite btn btn-secondary"
+            title="Dispositif.addToFavorites"
+            type="button"
           >
-            <img
-              alt="Infocards.location"
-              data-nimg="1"
-              decoding="async"
-              height={16}
-              loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                }
-              }
-              width={16}
-            />
             <span
-              className="ms-1"
-              style={
-                {
-                  "color": "#3D2884",
-                }
-              }
-            />
-          </div>
-          <h3
-            className="title"
-            dangerouslySetInnerHTML={
-              {
-                "__html": "tinfo1",
-              }
-            }
-            style={
-              {
-                "color": "#3D2884",
-              }
-            }
-          />
-          <div
-            className="text max_lines abstract"
-            dangerouslySetInnerHTML={
-              {
-                "__html": "abstract1",
-              }
-            }
-            style={
-              {
-                "color": "#3D2884",
-              }
-            }
-          />
-          <div
-            className="infos text my-3"
-            style={
-              {
-                "color": "#3D2884",
-              }
-            }
-          />
-          <div
-            className="themes"
+              class="icon_outline icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-star-outline"
+                  fill="dark"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="star"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        transform="rotate(90 12 12)"
+                        width="24"
+                      />
+                      <path
+                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+            <span
+              class="icon_fill icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-star"
+                  fill="dark"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="star"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        transform="rotate(90 12 12)"
+                        width="24"
+                      />
+                      <path
+                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+          </button>
+          <a
+            class="c3 card dispositif content card"
+            href="/program/id1"
+            title="tinfo1"
           >
             <div
-              className="container badges theme-badge"
-              style={
-                {
-                  "backgroundColor": "#EFE8F4",
-                }
-              }
+              class="location"
             >
+              <img
+                alt="Infocards.location"
+                data-nimg="1"
+                decoding="async"
+                height="16"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
+                style="color: transparent;"
+                width="16"
+              />
               <span
-                className="icon"
+                class="ms-1"
+                style="color: rgb(61, 40, 132);"
+              />
+            </div>
+            <h3
+              class="title"
+              style="color: rgb(61, 40, 132);"
+            >
+              tinfo1
+            </h3>
+            <div
+              class="text max_lines abstract"
+              style="color: rgb(61, 40, 132);"
+            >
+              abstract1
+            </div>
+            <div
+              class="infos text my-3"
+              style="color: rgb(61, 40, 132);"
+            />
+            <div
+              class="themes"
+            >
+              <div
+                class="container badges theme-badge"
+                style="background-color: rgb(239, 232, 244);"
               >
                 <span
-                  className="icon theme-icon"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg width="12" height="12"></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": 12,
-                      "width": 12,
-                    }
-                  }
+                  class="icon"
+                >
+                  <span
+                    class="icon theme-icon"
+                    style="width: 12px; height: 12px;"
+                  >
+                    <svg
+                      height="12"
+                      width="12"
+                    />
+                  </span>
+                </span>
+                <span
+                  style="color: rgb(61, 40, 132);"
+                >
+                  Français
+                </span>
+              </div>
+            </div>
+            <div
+              class="sponsor"
+              style="border-color: #3d2884;"
+            >
+              <span
+                class="picture"
+              >
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="40"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="40"
                 />
               </span>
               <span
-                style={
-                  {
-                    "color": "#3D2884",
-                  }
-                }
+                class="text max_lines ms-2"
+                style="color: rgb(61, 40, 132);"
               >
-                Français
+                titreMarque1
               </span>
             </div>
-          </div>
-          <div
-            className="sponsor"
-            style={
-              {
-                "borderColor": "#3D2884",
-              }
-            }
+          </a>
+        </div>
+      </div>
+      <div>
+        <div
+          class="wrapper wrapper"
+        >
+          <button
+            class="btn favorite btn btn-secondary"
+            title="Dispositif.addToFavorites"
+            type="button"
           >
             <span
-              className="picture"
+              class="icon_outline icon"
             >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-star-outline"
+                  fill="dark"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="star"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        transform="rotate(90 12 12)"
+                        width="24"
+                      />
+                      <path
+                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+            <span
+              class="icon_fill icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-star"
+                  fill="dark"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="star"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        transform="rotate(90 12 12)"
+                        width="24"
+                      />
+                      <path
+                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+          </button>
+          <a
+            class="c4 card dispositif content card"
+            href="/program/id2"
+            title="tinfo2"
+          >
+            <div
+              class="location"
+            >
+              <img
+                alt="Infocards.location"
+                data-nimg="1"
+                decoding="async"
+                height="16"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
+                style="color: transparent;"
+                width="16"
+              />
+              <span
+                class="ms-1"
+                style="color: rgb(68, 48, 35);"
+              />
+            </div>
+            <h3
+              class="title"
+              style="color: rgb(68, 48, 35);"
+            >
+              tinfo2
+            </h3>
+            <div
+              class="text max_lines abstract"
+              style="color: rgb(68, 48, 35);"
+            >
+              abstract2
+            </div>
+            <div
+              class="infos text my-3"
+              style="color: rgb(68, 48, 35);"
+            />
+            <div
+              class="themes"
+            >
+              <div
+                class="container badges theme-badge"
+                style="background-color: rgb(238, 231, 229);"
+              >
+                <span
+                  class="icon"
+                >
+                  <span
+                    class="icon theme-icon"
+                    style="width: 12px; height: 12px;"
+                  >
+                    <svg
+                      height="12"
+                      width="12"
+                    />
+                  </span>
+                </span>
+                <span
+                  style="color: rgb(68, 48, 35);"
+                >
+                  Administratif
+                </span>
+              </div>
+            </div>
+            <div
+              class="sponsor"
+              style="border-color: #443023;"
+            >
+              <span
+                class="picture"
+              >
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height="40"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                  srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                  style="color: transparent; object-fit: contain;"
+                  width="40"
+                />
+              </span>
+              <span
+                class="text max_lines ms-2"
+                style="color: rgb(68, 48, 35);"
+              >
+                titreMarque2
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div
+          class="wrapper"
+        >
+          <button
+            class="btn favorite btn btn-secondary"
+            title="Dispositif.addToFavorites"
+            type="button"
+          >
+            <span
+              class="icon_outline icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-star-outline"
+                  fill="dark"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="star"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        transform="rotate(90 12 12)"
+                        width="24"
+                      />
+                      <path
+                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+            <span
+              class="icon_fill icon"
+            >
+              <i
+                style="height: 20px; line-height: 20px;"
+              >
+                <svg
+                  class="eva eva-star"
+                  fill="dark"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  width="20px"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g
+                    data-name="Layer 2"
+                  >
+                    <g
+                      data-name="star"
+                    >
+                      <rect
+                        height="24"
+                        opacity="0"
+                        transform="rotate(90 12 12)"
+                        width="24"
+                      />
+                      <path
+                        d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </i>
+            </span>
+          </button>
+          <a
+            class="c5 card demarche content"
+            href="/procedure/id3"
+            title="tinfo3"
+          >
+            <div>
               <img
                 alt=""
                 data-nimg="1"
                 decoding="async"
-                height={40}
+                height="48"
                 loading="lazy"
-                onError={[Function]}
-                onLoad={[Function]}
                 src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                style={
-                  {
-                    "color": "transparent",
-                    "objectFit": "contain",
-                  }
-                }
-                width={40}
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="48"
               />
-            </span>
-            <span
-              className="text max_lines ms-2"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "titreMarque1",
-                }
-              }
-              style={
-                {
-                  "color": "#3D2884",
-                }
-              }
-            />
-          </div>
-        </a>
-      </div>
-    </div>
-    <div>
-      <div
-        className="wrapper wrapper"
-      >
-        <button
-          className="btn favorite btn btn-secondary"
-          onClick={[Function]}
-          title="Dispositif.addToFavorites"
-          type="button"
-        >
-          <span
-            className="icon_outline icon"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star-outline" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "20px",
-                  "lineHeight": "20px",
-                }
-              }
-            />
-          </span>
-          <span
-            className="icon_fill icon"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "20px",
-                  "lineHeight": "20px",
-                }
-              }
-            />
-          </span>
-        </button>
-        <a
-          className="c4 card dispositif content card"
-          href="/program/id2"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
-          title="tinfo2"
-        >
-          <div
-            className="location"
-          >
-            <img
-              alt="Infocards.location"
-              data-nimg="1"
-              decoding="async"
-              height={16}
-              loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=32&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=16&q=75 1x, /_next/image?url=%2Fimg.jpg&w=32&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                }
-              }
-              width={16}
-            />
-            <span
-              className="ms-1"
-              style={
-                {
-                  "color": "#443023",
-                }
-              }
-            />
-          </div>
-          <h3
-            className="title"
-            dangerouslySetInnerHTML={
-              {
-                "__html": "tinfo2",
-              }
-            }
-            style={
-              {
-                "color": "#443023",
-              }
-            }
-          />
-          <div
-            className="text max_lines abstract"
-            dangerouslySetInnerHTML={
-              {
-                "__html": "abstract2",
-              }
-            }
-            style={
-              {
-                "color": "#443023",
-              }
-            }
-          />
-          <div
-            className="infos text my-3"
-            style={
-              {
-                "color": "#443023",
-              }
-            }
-          />
-          <div
-            className="themes"
-          >
-            <div
-              className="container badges theme-badge"
-              style={
-                {
-                  "backgroundColor": "#EEE7E5",
-                }
-              }
+            </div>
+            <h3
+              class="title"
+              style="color: rgb(6, 80, 140);"
             >
-              <span
-                className="icon"
+              tinfo3
+            </h3>
+            <div
+              class="themes"
+            >
+              <div
+                class="container badges theme-badge"
+                style="background-color: rgb(221, 242, 249);"
               >
                 <span
-                  className="icon theme-icon"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg width="12" height="12"></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": 12,
-                      "width": 12,
-                    }
-                  }
-                />
-              </span>
-              <span
-                style={
-                  {
-                    "color": "#443023",
-                  }
-                }
-              >
-                Administratif
-              </span>
-            </div>
-          </div>
-          <div
-            className="sponsor"
-            style={
-              {
-                "borderColor": "#443023",
-              }
-            }
-          >
-            <span
-              className="picture"
-            >
-              <img
-                alt=""
-                data-nimg="1"
-                decoding="async"
-                height={40}
-                loading="lazy"
-                onError={[Function]}
-                onLoad={[Function]}
-                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                style={
-                  {
-                    "color": "transparent",
-                    "objectFit": "contain",
-                  }
-                }
-                width={40}
-              />
-            </span>
-            <span
-              className="text max_lines ms-2"
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "titreMarque2",
-                }
-              }
-              style={
-                {
-                  "color": "#443023",
-                }
-              }
-            />
-          </div>
-        </a>
-      </div>
-    </div>
-    <div>
-      <div
-        className="wrapper"
-      >
-        <button
-          className="btn favorite btn btn-secondary"
-          onClick={[Function]}
-          title="Dispositif.addToFavorites"
-          type="button"
-        >
-          <span
-            className="icon_outline icon"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star-outline" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "20px",
-                  "lineHeight": "20px",
-                }
-              }
-            />
-          </span>
-          <span
-            className="icon_fill icon"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-star" fill="dark"><g data-name="Layer 2"><g data-name="star"><rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/><path d="M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z"/></g></g></svg>",
-                }
-              }
-              style={
-                {
-                  "height": "20px",
-                  "lineHeight": "20px",
-                }
-              }
-            />
-          </span>
-        </button>
-        <a
-          className="c5 card demarche content"
-          href="/procedure/id3"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
-          title="tinfo3"
-        >
-          <div>
-            <img
-              alt=""
-              data-nimg="1"
-              decoding="async"
-              height={48}
-              loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                }
-              }
-              width={48}
-            />
-          </div>
-          <h3
-            className="title"
-            dangerouslySetInnerHTML={
-              {
-                "__html": "tinfo3",
-              }
-            }
-            style={
-              {
-                "color": "#06508C",
-              }
-            }
-          />
-          <div
-            className="themes"
-          >
-            <div
-              className="container badges theme-badge"
-              style={
-                {
-                  "backgroundColor": "#DDF2F9",
-                }
-              }
-            >
-              <span
-                className="icon"
-              >
+                  class="icon"
+                >
+                  <span
+                    class="icon theme-icon"
+                    style="width: 12px; height: 12px;"
+                  >
+                    <svg
+                      height="12"
+                      width="12"
+                    />
+                  </span>
+                </span>
                 <span
-                  className="icon theme-icon"
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg width="12" height="12"></svg>",
-                    }
-                  }
-                  style={
-                    {
-                      "height": 12,
-                      "width": 12,
-                    }
-                  }
-                />
-              </span>
-              <span
-                style={
-                  {
-                    "color": "#06508C",
-                  }
-                }
-              >
-                Logement
-              </span>
+                  style="color: rgb(6, 80, 140);"
+                >
+                  Logement
+                </span>
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`UserFavorites should render correctly when loading 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   margin-bottom: 32px;
@@ -998,307 +971,221 @@ exports[`UserFavorites should render correctly when loading 1`] = `
 }
 
 <div
-  className="container"
->
-  <div
-    className="title"
+    class="container"
   >
     <div
-      className="c0"
+      class="title"
     >
       <div
-        className="c1"
+        class="c0"
       >
-        Vous avez
+        <div
+          class="c1"
+        >
+          Vous avez
+        </div>
+        <div
+          class="c2"
+        >
+          ...
+        </div>
+        <div
+          class="c1"
+        >
+          UserFavorites.content_saved
+        </div>
+      </div>
+    </div>
+    <div
+      class="cards"
+    >
+      <div
+        class="c3"
+      >
+        <div
+          style="padding: 13px;"
+        >
+          <span
+            aria-busy="true"
+            aria-live="polite"
+          >
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+          </span>
+        </div>
+        <div>
+          <div
+            style="margin-left: 13px; margin-right: 13px;"
+          >
+            <span
+              aria-busy="true"
+              aria-live="polite"
+            >
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+          <div
+            class="c4"
+          />
+        </div>
       </div>
       <div
-        className="c2"
+        class="c3"
       >
-        ...
+        <div
+          style="padding: 13px;"
+        >
+          <span
+            aria-busy="true"
+            aria-live="polite"
+          >
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+          </span>
+        </div>
+        <div>
+          <div
+            style="margin-left: 13px; margin-right: 13px;"
+          >
+            <span
+              aria-busy="true"
+              aria-live="polite"
+            >
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+          <div
+            class="c4"
+          />
+        </div>
       </div>
       <div
-        className="c1"
+        class="c3"
       >
-        UserFavorites.content_saved
+        <div
+          style="padding: 13px;"
+        >
+          <span
+            aria-busy="true"
+            aria-live="polite"
+          >
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+            <span
+              class="react-loading-skeleton"
+              style="height: 28px;"
+            >
+              ‌
+            </span>
+            <br />
+          </span>
+        </div>
+        <div>
+          <div
+            style="margin-left: 13px; margin-right: 13px;"
+          >
+            <span
+              aria-busy="true"
+              aria-live="polite"
+            >
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+              <span
+                class="react-loading-skeleton"
+                style="height: 14px;"
+              >
+                ‌
+              </span>
+              <br />
+            </span>
+          </div>
+          <div
+            class="c4"
+          />
+        </div>
       </div>
     </div>
   </div>
-  <div
-    className="cards"
-  >
-    <div
-      className="c3"
-    >
-      <div
-        style={
-          {
-            "padding": "13px",
-          }
-        }
-      >
-        <span
-          aria-busy={true}
-          aria-live="polite"
-        >
-          <span
-            className="react-loading-skeleton"
-            style={
-              {
-                "height": "28px",
-              }
-            }
-          >
-            ‌
-          </span>
-          <br />
-          <span
-            className="react-loading-skeleton"
-            style={
-              {
-                "height": "28px",
-              }
-            }
-          >
-            ‌
-          </span>
-          <br />
-        </span>
-      </div>
-      <div>
-        <div
-          style={
-            {
-              "marginLeft": "13px",
-              "marginRight": "13px",
-            }
-          }
-        >
-          <span
-            aria-busy={true}
-            aria-live="polite"
-          >
-            <span
-              className="react-loading-skeleton"
-              style={
-                {
-                  "height": "14px",
-                }
-              }
-            >
-              ‌
-            </span>
-            <br />
-            <span
-              className="react-loading-skeleton"
-              style={
-                {
-                  "height": "14px",
-                }
-              }
-            >
-              ‌
-            </span>
-            <br />
-            <span
-              className="react-loading-skeleton"
-              style={
-                {
-                  "height": "14px",
-                }
-              }
-            >
-              ‌
-            </span>
-            <br />
-          </span>
-        </div>
-        <div
-          className="c4"
-        />
-      </div>
-    </div>
-    <div
-      className="c3"
-    >
-      <div
-        style={
-          {
-            "padding": "13px",
-          }
-        }
-      >
-        <span
-          aria-busy={true}
-          aria-live="polite"
-        >
-          <span
-            className="react-loading-skeleton"
-            style={
-              {
-                "height": "28px",
-              }
-            }
-          >
-            ‌
-          </span>
-          <br />
-          <span
-            className="react-loading-skeleton"
-            style={
-              {
-                "height": "28px",
-              }
-            }
-          >
-            ‌
-          </span>
-          <br />
-        </span>
-      </div>
-      <div>
-        <div
-          style={
-            {
-              "marginLeft": "13px",
-              "marginRight": "13px",
-            }
-          }
-        >
-          <span
-            aria-busy={true}
-            aria-live="polite"
-          >
-            <span
-              className="react-loading-skeleton"
-              style={
-                {
-                  "height": "14px",
-                }
-              }
-            >
-              ‌
-            </span>
-            <br />
-            <span
-              className="react-loading-skeleton"
-              style={
-                {
-                  "height": "14px",
-                }
-              }
-            >
-              ‌
-            </span>
-            <br />
-            <span
-              className="react-loading-skeleton"
-              style={
-                {
-                  "height": "14px",
-                }
-              }
-            >
-              ‌
-            </span>
-            <br />
-          </span>
-        </div>
-        <div
-          className="c4"
-        />
-      </div>
-    </div>
-    <div
-      className="c3"
-    >
-      <div
-        style={
-          {
-            "padding": "13px",
-          }
-        }
-      >
-        <span
-          aria-busy={true}
-          aria-live="polite"
-        >
-          <span
-            className="react-loading-skeleton"
-            style={
-              {
-                "height": "28px",
-              }
-            }
-          >
-            ‌
-          </span>
-          <br />
-          <span
-            className="react-loading-skeleton"
-            style={
-              {
-                "height": "28px",
-              }
-            }
-          >
-            ‌
-          </span>
-          <br />
-        </span>
-      </div>
-      <div>
-        <div
-          style={
-            {
-              "marginLeft": "13px",
-              "marginRight": "13px",
-            }
-          }
-        >
-          <span
-            aria-busy={true}
-            aria-live="polite"
-          >
-            <span
-              className="react-loading-skeleton"
-              style={
-                {
-                  "height": "14px",
-                }
-              }
-            >
-              ‌
-            </span>
-            <br />
-            <span
-              className="react-loading-skeleton"
-              style={
-                {
-                  "height": "14px",
-                }
-              }
-            >
-              ‌
-            </span>
-            <br />
-            <span
-              className="react-loading-skeleton"
-              style={
-                {
-                  "height": "14px",
-                }
-              }
-            >
-              ‌
-            </span>
-            <br />
-          </span>
-        </div>
-        <div
-          className="c4"
-        />
-      </div>
-    </div>
-  </div>
-</div>
+</DocumentFragment>
 `;

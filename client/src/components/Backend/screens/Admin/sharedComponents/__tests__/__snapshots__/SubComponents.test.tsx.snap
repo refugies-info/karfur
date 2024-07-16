@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render DeleteButton disabled 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -19,41 +20,55 @@ exports[`should render DeleteButton disabled 1`] = `
 }
 
 <div
-  className="c0"
-  data-test-id="delete-button"
-  disabled={true}
-  hoverColor="#f44336"
->
-  <div
-    style={
-      {
-        "marginBottom": "4px",
-      }
-    }
+    class="c0"
+    data-testid="delete-button"
+    disabled=""
+    hovercolor="#f44336"
   >
-    <span
-      className="icon"
+    <div
+      style="margin-bottom: 4px;"
     >
-      <i
-        dangerouslySetInnerHTML={
-          {
-            "__html": "",
-          }
-        }
-        style={
-          {
-            "height": "20px",
-            "lineHeight": "20px",
-          }
-        }
-      />
-    </span>
+      <span
+        class="icon"
+      >
+        <i
+          style="height: 20px; line-height: 20px;"
+        >
+          <svg
+            class="eva eva-trash"
+            fill="#ffffff"
+            height="20px"
+            viewBox="0 0 24 24"
+            width="20px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              data-name="Layer 2"
+            >
+              <g
+                data-name="trash"
+              >
+                <rect
+                  height="24"
+                  opacity="0"
+                  width="24"
+                />
+                <path
+                  d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                />
+              </g>
+            </g>
+          </svg>
+        </i>
+      </span>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`should render DeleteButton not disabled 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -71,42 +86,54 @@ exports[`should render DeleteButton not disabled 1`] = `
 }
 
 <div
-  className="c0"
-  data-test-id="delete-button"
-  disabled={false}
-  hoverColor="#f44336"
-  onClick={[Function]}
->
-  <div
-    style={
-      {
-        "marginBottom": "4px",
-      }
-    }
+    class="c0"
+    data-testid="delete-button"
+    hovercolor="#f44336"
   >
-    <span
-      className="icon"
+    <div
+      style="margin-bottom: 4px;"
     >
-      <i
-        dangerouslySetInnerHTML={
-          {
-            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
-          }
-        }
-        style={
-          {
-            "height": "20px",
-            "lineHeight": "20px",
-          }
-        }
-      />
-    </span>
+      <span
+        class="icon"
+      >
+        <i
+          style="height: 20px; line-height: 20px;"
+        >
+          <svg
+            class="eva eva-trash"
+            fill="#ffffff"
+            height="20px"
+            viewBox="0 0 24 24"
+            width="20px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              data-name="Layer 2"
+            >
+              <g
+                data-name="trash"
+              >
+                <rect
+                  height="24"
+                  opacity="0"
+                  width="24"
+                />
+                <path
+                  d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"
+                />
+              </g>
+            </g>
+          </svg>
+        </i>
+      </span>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`should render FilterButton isSelected false 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   background: #ffffff;
   color: #212121;
   border-radius: 12px;
@@ -121,16 +148,16 @@ exports[`should render FilterButton isSelected false 1`] = `
 }
 
 <div
-  className="c0"
-  isSelected={false}
-  onClick={[Function]}
->
-  test
-</div>
+    class="c0"
+  >
+    test
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render FilterButton isSelected true 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   background: #212121;
   color: #ffffff;
   border-radius: 12px;
@@ -145,16 +172,16 @@ exports[`should render FilterButton isSelected true 1`] = `
 }
 
 <div
-  className="c0"
-  isSelected={true}
-  onClick={[Function]}
->
-  test
-</div>
+    class="c0"
+  >
+    test
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render SeeButton 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -172,45 +199,64 @@ exports[`should render SeeButton 1`] = `
 }
 
 <div
-  className="c0"
-  hoverColor="#212121"
->
-  <a
-    href="test-burl"
-    rel="noopener noreferrer"
-    target="_blank"
+    class="c0"
+    hovercolor="#212121"
   >
-    <div
-      style={
-        {
-          "marginBottom": "4px",
-        }
-      }
+    <a
+      href="test-burl"
+      rel="noopener noreferrer"
+      target="_blank"
     >
-      <span
-        className="icon"
+      <div
+        style="margin-bottom: 4px;"
       >
-        <i
-          dangerouslySetInnerHTML={
-            {
-              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
-            }
-          }
-          style={
-            {
-              "height": "20px",
-              "lineHeight": "20px",
-            }
-          }
-        />
-      </span>
-    </div>
-  </a>
-</div>
+        <span
+          class="icon"
+        >
+          <i
+            style="height: 20px; line-height: 20px;"
+          >
+            <svg
+              class="eva eva-eye"
+              fill="#ffffff"
+              height="20px"
+              viewBox="0 0 24 24"
+              width="20px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                data-name="Layer 2"
+              >
+                <g
+                  data-name="eye"
+                >
+                  <rect
+                    height="24"
+                    opacity="0"
+                    width="24"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="1.5"
+                  />
+                  <path
+                    d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </i>
+        </span>
+      </div>
+    </a>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render Structure with null sponsor 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -231,22 +277,24 @@ exports[`should render Structure with null sponsor 1`] = `
 }
 
 <div
-  className="c0"
->
-  <div
-    className="c1"
-    color="#f44336"
-  />
-  <div
-    className="c2"
+    class="c0"
   >
-    Sans structure
+    <div
+      class="c1"
+      color="#f44336"
+    />
+    <div
+      class="c2"
+    >
+      Sans structure
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`should render Structure with sponsor actif 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -267,22 +315,24 @@ exports[`should render Structure with sponsor actif 1`] = `
 }
 
 <div
-  className="c0"
->
-  <div
-    className="c1"
-    color="#4caf50"
-  />
-  <div
-    className="c2"
+    class="c0"
   >
-    test
+    <div
+      class="c1"
+      color="#4caf50"
+    />
+    <div
+      class="c2"
+    >
+      test
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`should render Structure with sponsor en attente 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -303,22 +353,24 @@ exports[`should render Structure with sponsor en attente 1`] = `
 }
 
 <div
-  className="c0"
->
-  <div
-    className="c1"
-    color="#FF9800"
-  />
-  <div
-    className="c2"
+    class="c0"
   >
-    test
+    <div
+      class="c1"
+      color="#FF9800"
+    />
+    <div
+      class="c2"
+    >
+      test
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`should render Structure with sponsor supprime 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -339,22 +391,24 @@ exports[`should render Structure with sponsor supprime 1`] = `
 }
 
 <div
-  className="c0"
->
-  <div
-    className="c1"
-    color="#f44336"
-  />
-  <div
-    className="c2"
+    class="c0"
   >
-    test
+    <div
+      class="c1"
+      color="#f44336"
+    />
+    <div
+      class="c2"
+    >
+      test
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`should render Structure with sponsor without nom 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -375,22 +429,24 @@ exports[`should render Structure with sponsor without nom 1`] = `
 }
 
 <div
-  className="c0"
->
-  <div
-    className="c1"
-    color="#f44336"
-  />
-  <div
-    className="c2"
+    class="c0"
   >
-    Sans structure
+    <div
+      class="c1"
+      color="#f44336"
+    />
+    <div
+      class="c2"
+    >
+      Sans structure
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`should render StyledStatus Accepté structure  1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -405,17 +461,18 @@ exports[`should render StyledStatus Accepté structure  1`] = `
 }
 
 <div
-  className="c0"
-  color="#FF9800"
-  disabled={false}
-  textColor="#ffffff"
->
-  Accepté
-</div>
+    class="c0"
+    color="#FF9800"
+    textcolor="#ffffff"
+  >
+    Accepté
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render StyledStatus Brouillon  1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -430,17 +487,18 @@ exports[`should render StyledStatus Brouillon  1`] = `
 }
 
 <div
-  className="c0"
-  color="#FFEB3B"
-  disabled={false}
-  textColor="#212121"
->
-  Brouillon
-</div>
+    class="c0"
+    color="#FFEB3B"
+    textcolor="#212121"
+  >
+    Brouillon
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render StyledStatus En attente admin  1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -455,17 +513,18 @@ exports[`should render StyledStatus En attente admin  1`] = `
 }
 
 <div
-  className="c0"
-  color="#8BC34A"
-  disabled={false}
-  textColor="#ffffff"
->
-  Relecture en cours
-</div>
+    class="c0"
+    color="#8BC34A"
+    textcolor="#ffffff"
+  >
+    Relecture en cours
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render StyledStatus Rejeté structure  1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -480,17 +539,18 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
 }
 
 <div
-  className="c0"
-  color="#F44336"
-  disabled={false}
-  textColor="#ffffff"
->
-  Rejeté
-</div>
+    class="c0"
+    color="#F44336"
+    textcolor="#ffffff"
+  >
+    Rejeté
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render StyledStatus Supprimé  1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -505,17 +565,18 @@ exports[`should render StyledStatus Supprimé  1`] = `
 }
 
 <div
-  className="c0"
-  color="#F44336"
-  disabled={false}
-  textColor="#ffffff"
->
-  Supprimé
-</div>
+    class="c0"
+    color="#F44336"
+    textcolor="#ffffff"
+  >
+    Supprimé
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render StyledStatus actif  1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -530,16 +591,17 @@ exports[`should render StyledStatus actif  1`] = `
 }
 
 <div
-  className="c0"
-  color="#4CAF50"
-  disabled={false}
->
-  Publié
-</div>
+    class="c0"
+    color="#4CAF50"
+  >
+    Publié
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render StyledStatus en attente  1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -554,17 +616,18 @@ exports[`should render StyledStatus en attente  1`] = `
 }
 
 <div
-  className="c0"
-  color="#FF9800"
-  disabled={false}
-  textColor="#ffffff"
->
-  En attente
-</div>
+    class="c0"
+    color="#FF9800"
+    textcolor="#ffffff"
+  >
+    En attente
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render StyledStatus no corresponding status  1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -579,17 +642,18 @@ exports[`should render StyledStatus no corresponding status  1`] = `
 }
 
 <div
-  className="c0"
-  color="#0421b1"
-  disabled={false}
-  textColor="#ffffff"
->
-  Nouveau !
-</div>
+    class="c0"
+    color="#0421b1"
+    textcolor="#ffffff"
+  >
+    Nouveau !
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render StyledStatus no corresponding with color  1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -604,17 +668,18 @@ exports[`should render StyledStatus no corresponding with color  1`] = `
 }
 
 <div
-  className="c0"
-  color="color"
-  disabled={false}
-  textColor="textColor"
->
-  test
-</div>
+    class="c0"
+    color="color"
+    textcolor="textColor"
+  >
+    test
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render StyledStatus no corresponding with override  1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -629,17 +694,18 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
 }
 
 <div
-  className="c0"
-  color="#828282"
-  disabled={false}
-  textColor="#ffffff"
->
-  test
-</div>
+    class="c0"
+    color="#828282"
+    textcolor="#ffffff"
+  >
+    test
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render TabHeader down 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   font-weight: bold;
@@ -647,32 +713,50 @@ exports[`should render TabHeader down 1`] = `
 }
 
 <div
-  className="c0"
-  order={1}
->
-  test
-  <span
-    className="icon"
+    class="c0"
+    order="1"
   >
-    <i
-      dangerouslySetInnerHTML={
-        {
-          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
-        }
-      }
-      style={
-        {
-          "height": "20px",
-          "lineHeight": "20px",
-        }
-      }
-    />
-  </span>
-</div>
+    test
+    <span
+      class="icon"
+    >
+      <i
+        style="height: 20px; line-height: 20px;"
+      >
+        <svg
+          class="eva eva-chevron-down"
+          fill="#212121"
+          height="20px"
+          viewBox="0 0 24 24"
+          width="20px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            data-name="Layer 2"
+          >
+            <g
+              data-name="chevron-down"
+            >
+              <rect
+                height="24"
+                opacity="0"
+                width="24"
+              />
+              <path
+                d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
+              />
+            </g>
+          </g>
+        </svg>
+      </i>
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render TabHeader no order 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   font-weight: bold;
@@ -680,15 +764,17 @@ exports[`should render TabHeader no order 1`] = `
 }
 
 <div
-  className="c0"
-  order={0}
->
-  test
-</div>
+    class="c0"
+    order="0"
+  >
+    test
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render TabHeader up 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: row;
   font-weight: bold;
@@ -696,32 +782,51 @@ exports[`should render TabHeader up 1`] = `
 }
 
 <div
-  className="c0"
-  order={1}
->
-  test
-  <span
-    className="icon"
+    class="c0"
+    order="1"
   >
-    <i
-      dangerouslySetInnerHTML={
-        {
-          "__html": "",
-        }
-      }
-      style={
-        {
-          "height": "20px",
-          "lineHeight": "20px",
-        }
-      }
-    />
-  </span>
-</div>
+    test
+    <span
+      class="icon"
+    >
+      <i
+        style="height: 20px; line-height: 20px;"
+      >
+        <svg
+          class="eva eva-chevron-up"
+          fill="#212121"
+          height="20px"
+          viewBox="0 0 24 24"
+          width="20px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            data-name="Layer 2"
+          >
+            <g
+              data-name="chevron-up"
+            >
+              <rect
+                height="24"
+                opacity="0"
+                transform="rotate(180 12 12)"
+                width="24"
+              />
+              <path
+                d="M16 14.5a1 1 0 0 1-.71-.29L12 10.9l-3.3 3.18a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.42l4-3.86a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1 0 1.42 1 1 0 0 1-.69.28z"
+              />
+            </g>
+          </g>
+        </svg>
+      </i>
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render Title with titre marque 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -735,19 +840,21 @@ exports[`should render Title with titre marque 1`] = `
 }
 
 <div
-  className="c0"
->
-  <b>
-    titre informatif
-  </b>
-  <span>
-    avec titre marque
-  </span>
-</div>
+    class="c0"
+  >
+    <b>
+      titre informatif
+    </b>
+    <span>
+      avec titre marque
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render Title without titre marque 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -761,16 +868,18 @@ exports[`should render Title without titre marque 1`] = `
 }
 
 <div
-  className="c0"
->
-  <b>
-    titre informatif
-  </b>
-</div>
+    class="c0"
+  >
+    <b>
+      titre informatif
+    </b>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render TypeContenu with demarche, detailed vue 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
@@ -783,15 +892,16 @@ exports[`should render TypeContenu with demarche, detailed vue 1`] = `
 }
 
 <div
-  className="c0"
-  isDarkBackground={true}
->
-  Démarche
-</div>
+    class="c0"
+  >
+    Démarche
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render TypeContenu with demarche, not detailed vue 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
@@ -804,15 +914,16 @@ exports[`should render TypeContenu with demarche, not detailed vue 1`] = `
 }
 
 <div
-  className="c0"
-  isDarkBackground={false}
->
-  Démarche
-</div>
+    class="c0"
+  >
+    Démarche
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render TypeContenu with dispositif, detailed vue 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
@@ -825,15 +936,16 @@ exports[`should render TypeContenu with dispositif, detailed vue 1`] = `
 }
 
 <div
-  className="c0"
-  isDarkBackground={true}
->
-  Dispositif
-</div>
+    class="c0"
+  >
+    Dispositif
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render TypeContenu with dispositif, not detailed vue 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
@@ -846,15 +958,16 @@ exports[`should render TypeContenu with dispositif, not detailed vue 1`] = `
 }
 
 <div
-  className="c0"
-  isDarkBackground={true}
->
-  Dispositif
-</div>
+    class="c0"
+  >
+    Dispositif
+  </div>
+</DocumentFragment>
 `;
 
 exports[`should render ValidateButton disabled 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -872,42 +985,55 @@ exports[`should render ValidateButton disabled 1`] = `
 }
 
 <div
-  className="c0"
-  data-test-id="validate-button"
-  disabled={true}
-  hoverColor="#4caf50"
-  onClick={[Function]}
->
-  <div
-    style={
-      {
-        "marginBottom": "4px",
-      }
-    }
+    class="c0"
+    data-testid="validate-button"
+    disabled=""
+    hovercolor="#4caf50"
   >
-    <span
-      className="icon"
+    <div
+      style="margin-bottom: 4px;"
     >
-      <i
-        dangerouslySetInnerHTML={
-          {
-            "__html": "",
-          }
-        }
-        style={
-          {
-            "height": "20px",
-            "lineHeight": "20px",
-          }
-        }
-      />
-    </span>
+      <span
+        class="icon"
+      >
+        <i
+          style="height: 20px; line-height: 20px;"
+        >
+          <svg
+            class="eva eva-checkmark-outline"
+            fill="#ffffff"
+            height="20px"
+            viewBox="0 0 24 24"
+            width="20px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              data-name="Layer 2"
+            >
+              <g
+                data-name="checkmark"
+              >
+                <rect
+                  height="24"
+                  opacity="0"
+                  width="24"
+                />
+                <path
+                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                />
+              </g>
+            </g>
+          </svg>
+        </i>
+      </span>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`should render ValidateButton not disabled 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -925,36 +1051,47 @@ exports[`should render ValidateButton not disabled 1`] = `
 }
 
 <div
-  className="c0"
-  data-test-id="validate-button"
-  disabled={false}
-  hoverColor="#4caf50"
-  onClick={[Function]}
->
-  <div
-    style={
-      {
-        "marginBottom": "4px",
-      }
-    }
+    class="c0"
+    data-testid="validate-button"
+    hovercolor="#4caf50"
   >
-    <span
-      className="icon"
+    <div
+      style="margin-bottom: 4px;"
     >
-      <i
-        dangerouslySetInnerHTML={
-          {
-            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="#ffffff"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
-          }
-        }
-        style={
-          {
-            "height": "20px",
-            "lineHeight": "20px",
-          }
-        }
-      />
-    </span>
+      <span
+        class="icon"
+      >
+        <i
+          style="height: 20px; line-height: 20px;"
+        >
+          <svg
+            class="eva eva-checkmark-outline"
+            fill="#ffffff"
+            height="20px"
+            viewBox="0 0 24 24"
+            width="20px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              data-name="Layer 2"
+            >
+              <g
+                data-name="checkmark"
+              >
+                <rect
+                  height="24"
+                  opacity="0"
+                  width="24"
+                />
+                <path
+                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                />
+              </g>
+            </g>
+          </svg>
+        </i>
+      </span>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
