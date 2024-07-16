@@ -39,7 +39,7 @@ const storeCampaignInfosInCookie = () => {
 
     // expire utmz cookie after 1 day
     let expires = new Date();
-    expires.setFullYear(expires.getFullYear() + 1);
+    expires.setTime(expires.getTime() + 24 * 60 * 60 * 1000);
 
     // Créer un cookie __utmz de remplacement
     document.cookie = `__utmz=${utmQueryString}; path=/; expires=${expires.toUTCString()}`;
