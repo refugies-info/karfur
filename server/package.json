@@ -45,7 +45,7 @@
     "node-cache": "^5.1.2",
     "password-hash": "^1.2.2",
     "ts-node": "^10.9.2",
-    "tsoa": "^6.3.1",
+    "tsoa": "^5.1.1",
     "twilio": "^5.2.0",
     "uniqid": "^5.0.3",
     "uuid": "^10.0.0",
