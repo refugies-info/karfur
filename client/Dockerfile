@@ -2,26 +2,33 @@
 FROM node:20.13.1-alpine AS deps
 RUN apk add --no-cache libc6-compat
 
-WORKDIR /usr/src/app
-COPY ./client/package*.json ./
+# Install yarn
 RUN npm install --force --global yarn@1.22.22
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Copy workspace
+COPY ./ ./
+
+# Install dependencies
 RUN yarn install --frozen-lockfile
 
-FROM node:20.13.1-alpine AS builder
+# Delete the cache folder after `yarn install` is done.
+RUN rm -rf .yarn/cache
+
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 ARG APP_ENV=production
 ARG APP_SERVER_URL=http://localhost:8000
 ARG APP_SITE_URL=http://localhost:3000
-WORKDIR /usr/src/app
-COPY --from=deps /usr/src/app/node_modules ./node_modules
-COPY ./client .
-RUN npm install --force --global yarn@1.22.22
+
 RUN echo "NEXT_PUBLIC_REACT_APP_ENV = ${APP_ENV}" >> .env
 RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL = ${APP_SERVER_URL}" >> .env
 RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL = ${APP_SITE_URL}" >> .env
-RUN yarn build
+
+RUN yarn build:client
 
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+CMD ["yarn", "start:client"]
