@@ -5,7 +5,7 @@
 @import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
-$scrollLimit: 565px;
+$scrollLimit: 100px;
 
 :export {
   scrollLimit: $scrollLimit;
@@ -19,14 +19,6 @@ $scrollLimit: 565px;
     width: 100%;
     animation: 0.3s ease-in-out 1 both slidein;
     box-shadow: 0 4px 18px 0 #0000001a;
-  }
-}
-
-.placeholder {
-  @include media-min("desktop-up") {
-    /* prevent scroll jump when making header disappear */
-    width: 1px;
-    visibility: hidden;
   }
 }
 

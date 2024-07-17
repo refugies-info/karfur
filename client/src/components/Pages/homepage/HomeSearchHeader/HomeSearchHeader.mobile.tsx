@@ -142,7 +142,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
               setActive={() => {}}
               onChange={onChangeThemeInput}
               inputValue={themeSearch}
-              value={themeDisplayedValue}
+              value={themeDisplayedValue.join(", ")}
               placeholder={t("Recherche.themes", "Thèmes")}
               smallIcon={true}
               noInput={true}

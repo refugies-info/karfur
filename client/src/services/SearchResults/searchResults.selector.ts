@@ -27,5 +27,5 @@ export const themesDisplayedValueSelector = (state: RootState) => {
     state.searchResults.query.themes,
     state.searchResults.query.needs
   )
-  return themesDisplayed.map((t) => t.short[state.langue.languei18nCode] || t.short.fr).join(", ")
+  return themesDisplayed.map((t) => t.short[state.langue.languei18nCode] || t.short.fr)
 }

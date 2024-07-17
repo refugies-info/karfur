@@ -9,9 +9,7 @@ import { Event } from "lib/tracking";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
-import SearchHeaderMobile from "./SearchHeader.mobile";
-import SearchHeaderDesktop from "./SearchHeader.desktop";
-import ResultsFilter from "../ResultsFilter";
+import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
 
 const SCROLL_LIMIT = parseInt(styles.scrollLimit.replace("px", ""));
@@ -117,17 +115,13 @@ const SearchHeader = (props: Props) => {
 
   // SCROLL
   const [scrolled, setScrolled] = useState(true);
-  const [placeholderHeight, setPlaceholderHeight] = useState(0);
-  const [scrollDirection, overScrollLimit] = useScrollDirection(SCROLL_LIMIT);
+  const [_scrollDirection, overScrollLimit] = useScrollDirection(SCROLL_LIMIT);
   useEffect(() => {
     if (!isMobile) {
-      const newScrolled = !!(scrollDirection === "up" && overScrollLimit);
+      const newScrolled = !!overScrollLimit;
       setScrolled(newScrolled);
-      if (newScrolled) {
-        setPlaceholderHeight(headerRef.current?.offsetHeight || 0);
-      }
     }
-  }, [scrollDirection, overScrollLimit, isMobile]);
+  }, [overScrollLimit, isMobile]);
 
   const filterProps = {
     locationSearch,
@@ -150,16 +144,16 @@ const SearchHeader = (props: Props) => {
 
   return (
     <>
-      {scrolled && <div className={styles.placeholder} style={{ height: placeholderHeight }}></div>}
-      <div ref={headerRef} className={cls(scrolled && `${styles.scrolled} scrolled`)}>
-        {!isMobile ? (
-          <SearchHeaderDesktop nbResults={props.nbResults} {...filterProps} />
-        ) : (
-          <SearchHeaderMobile nbResults={props.nbResults} {...filterProps} />
-        )}
-
-        <ResultsFilter />
-      </div>
+      {scrolled ? (
+        <div className={styles.scrolled}>
+          <Filters {...filterProps} />
+        </div>
+      ) : (
+        <div ref={headerRef}>
+          {/* TODO: design big search */}
+          <Filters {...filterProps} />
+        </div>
+      )}
     </>
   );
 };
