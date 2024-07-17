@@ -23,9 +23,9 @@ ARG APP_ENV=production
 ARG APP_SERVER_URL=http://localhost:8000
 ARG APP_SITE_URL=http://localhost:3000
 
-RUN echo "NEXT_PUBLIC_REACT_APP_ENV = ${APP_ENV}" >> .env
-RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL = ${APP_SERVER_URL}" >> .env
-RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL = ${APP_SITE_URL}" >> .env
+RUN echo "NEXT_PUBLIC_REACT_APP_ENV = ${APP_ENV}" >> ./client/.env
+RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL = ${APP_SERVER_URL}" >> ./client/.env
+RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL = ${APP_SITE_URL}" >> ./client/.env
 
 RUN yarn build:client
 
