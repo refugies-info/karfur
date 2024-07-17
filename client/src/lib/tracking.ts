@@ -1,6 +1,6 @@
-import ReactGA from "react-ga4";
-import { logger } from "logger";
 import { isEmpty } from "lodash";
+import { logger } from "logger";
+import ReactGA from "react-ga4";
 
 /**
  * Le code suivant permet de stocker dans un cookie
@@ -37,10 +37,14 @@ const storeCampaignInfosInCookie = () => {
       .map((key) => key + "=" + utmData[key])
       .join("&");
 
+    // expire utmz cookie after 1 day
+    let expires = new Date();
+    expires.setTime(expires.getTime() + 24 * 60 * 60 * 1000);
+
     // Créer un cookie __utmz de remplacement
-    document.cookie = "__utmz=" + utmQueryString + "; path=/; expires=0";
+    document.cookie = `__utmz=${utmQueryString}; path=/; expires=${expires.toUTCString()}`;
   }
-}
+};
 
 /**
  * Event - Add custom tracking event.
@@ -60,16 +64,20 @@ export const Event = (category: string, action: string, label: string) => {
   });
   //@ts-ignore
   // eslint-disable-next-line no-undef
-  if (!!window.plausible) plausible(category, { props: { action, label } })
+  if (!!window.plausible) plausible(category, { props: { action, label } });
   window._paq?.push(["trackEvent", category, action, label]);
 };
 
 const initMatomo = () => {
-  var _mtm = window._mtm = window._mtm || [];
-  _mtm.push({ "mtm.startTime": (new Date().getTime()), "event": "mtm.Start" });
-  var d = document, g = d.createElement("script"), s = d.getElementsByTagName("script")[0];
-  g.async = true; g.src = "https://cdn.matomo.cloud/refugies.matomo.cloud/container_ZxAXaEFC.js"; s.parentNode?.insertBefore(g, s);
-}
+  var _mtm = (window._mtm = window._mtm || []);
+  _mtm.push({ "mtm.startTime": new Date().getTime(), "event": "mtm.Start" });
+  var d = document,
+    g = d.createElement("script"),
+    s = d.getElementsByTagName("script")[0];
+  g.async = true;
+  g.src = "https://cdn.matomo.cloud/refugies.matomo.cloud/container_ZxAXaEFC.js";
+  s.parentNode?.insertBefore(g, s);
+};
 
 /**
  * Inits GA with consent option, or update if already initialized
