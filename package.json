@@ -21,6 +21,8 @@
     "build:server": "yarn workspace @refugies-info/server build",
     "dev:client": "yarn workspace @refugies-info/client dev",
     "dev:server": "yarn workspace @refugies-info/server dev",
+    "start:client": "yarn workspace @refugies-info/client start",
+    "start:server": "yarn workspace @refugies-info/server start",
     "test": "yarn workspaces run test",
     "test:client": "yarn workspace @refugies-info/client test",
     "test:server": "yarn workspace @refugies-info/server test",
