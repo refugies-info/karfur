@@ -22,4 +22,4 @@ RUN yarn build:server
 # Install berglas
 COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:latest /bin/berglas /bin/berglas
 
-ENTRYPOINT exec /bin/berglas exec -- node dist/src/server.js
+ENTRYPOINT exec /bin/berglas exec -- yarn start:server
