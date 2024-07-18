@@ -14,7 +14,6 @@ describe("homepage", () => {
   });
 
   it("renders homepage", () => {
-    window.scrollTo = jest.fn();
     const { asFragment } = wrapWithProvidersAndRenderForTesting<Props>({
       Component: index,
       reduxState: {

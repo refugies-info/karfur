@@ -50,7 +50,8 @@ const ContentSlider = (props: Props) => {
   useEffect(() => {
     if (!slider.current) return;
     const pageWidth = slider.current.clientWidth - margins + gap;
-    slider.current.scroll({
+    // Be permissive with the scroll behavior during testing
+    slider.current.scroll && slider.current.scroll({
       left: page * pageWidth * (isRTL ? -1 : 1),
       top: 0,
       behavior: "smooth",
