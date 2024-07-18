@@ -1,10 +1,11 @@
 // @ts-nocheck
+import { screen } from "@testing-library/dom";
+import { initialMockStore } from "__fixtures__/reduxStore";
 import "jest-styled-components";
 import Router from "next/router";
 import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
-import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import UserNotifications from "../UserNotifications";
 jest.mock("next/router", () => require("next-router-mock"));
@@ -164,9 +165,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    component.root
-      .findByProps({ "data-testid": "test-notif-new content" })
-      .props.onClick({ stopPropagation: jest.fn() });
+    component.getByTestId("test-notif-new content").click();
     expect(Router).toMatchObject({ asPath: "/dispositif/id" });
   });
 
@@ -193,7 +192,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    component.root.findByProps({ "data-testid": "test-notif-annuaire" }).props.onClick({ stopPropagation: jest.fn() });
+    component.getByTestId("test-notif-annuaire").click();
     expect(Router).toMatchObject({ asPath: "/directory-create" });
   });
 
@@ -220,7 +219,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    component.root.findByProps({ "data-testid": "test-delete-reaction" }).props.onClick({ stopPropagation: jest.fn() });
+    screen.getByTestId("test-delete-reaction").click({ stopPropagation: jest.fn() });
     expect(updateDispositifReactionActionCreator).toHaveBeenLastCalledWith({
       suggestion: {
         dispositifId: "id2",

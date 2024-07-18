@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { render, screen } from "@testing-library/react";
-import "jest-styled-components";
 import { initialMockStore } from "__fixtures__/reduxStore";
+import "jest-styled-components";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../../jest/lib/wrapWithProvidersAndRender";
 import {
   DeleteButton,
@@ -192,7 +192,7 @@ test("should render ValidateButton not disabled", () => {
 test("should call onClick ValidateButton", () => {
   const onClick = jest.fn();
   render(<ValidateButton onClick={onClick} disabled={false} />);
-  screen.findByProps({ "data-testid": "validate-button" }).click();
+  screen.getByTestId("validate-button").click();
   expect(onClick).toHaveBeenCalled();
 });
 
@@ -214,7 +214,7 @@ test("should render DeleteButton not disabled", () => {
 test("should call onClick DeleteButton", () => {
   const onClick = jest.fn();
   render(<DeleteButton onClick={onClick} disabled={false} />);
-  screen.findByProps({ "data-testid": "delete-button" }).click();
+  screen.getByTestId("delete-button").click();
   expect(onClick).toHaveBeenCalled();
 });
 
