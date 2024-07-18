@@ -12,7 +12,6 @@ describe("publier", () => {
   });
 
   it("renders publier", () => {
-    window.scrollTo = jest.fn();
     const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: publier,
       reduxState: {
