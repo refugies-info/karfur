@@ -15,7 +15,7 @@
       "name": "Next.js: debug client-side",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:3000"
+      "url": "http://localhost:3000",
     },
     {
       "name": "Next.js: debug full stack",
@@ -24,7 +24,7 @@
       "cwd": "${workspaceFolder}/client",
       "command": "yarn workspace @refugies-info/client dev",
       "serverReadyAction": {
-        "pattern": "started server on .+, url: (https?://.+)",
+        "pattern": "- Local:.+(https?://.+)",
         "uriFormat": "%s",
         "action": "debugWithChrome"
       }
