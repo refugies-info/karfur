@@ -82,7 +82,7 @@ const UserFavorites = (props: Props) => {
                   type="outline-black"
                   name="trash-outline"
                   onClick={removeAllFavorites}
-                  data-testid="test-delete-button"
+                  data-testid="remove-all-favorites-button"
                 >
                   {t("UserFavorites.Tout supprimer", "Tout supprimer")}
                 </FButton>

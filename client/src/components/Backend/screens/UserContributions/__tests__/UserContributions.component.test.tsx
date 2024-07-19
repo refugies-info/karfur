@@ -1,11 +1,12 @@
 // @ts-nocheck
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { initialMockStore } from "__fixtures__/reduxStore";
 import { colors } from "colors";
 import "jest-styled-components";
 import { fetchUserContributionsActionCreator } from "services/UserContributions/userContributions.actions";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
-import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import UserContributions from "../UserContributions";
 
@@ -163,7 +164,8 @@ describe("userContributions", () => {
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
   });
 
-  it("should render correctly when click on delete", () => {
+  it("should render correctly when click on delete", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
     const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserContributions,
@@ -178,7 +180,7 @@ describe("userContributions", () => {
       shouldRedirect: false,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    screen.getByTestId("test_delete_id1").click();
+    await user.click(screen.getByTestId("delete-button-id1"));
     expect(asFragment()).toMatchSnapshot();
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Êtes-vous sûr ?",

@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import "jest-styled-components";
 import Router from "next/router";
@@ -8,6 +9,7 @@ import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import UserNotifications from "../UserNotifications";
+
 jest.mock("next/router", () => require("next-router-mock"));
 
 jest.mock("services/UserStructure/userStructure.actions", () => {
@@ -142,7 +144,8 @@ describe("UserNotifications", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it("should link to dispositif when click on new content notif", () => {
+  it("should link to dispositif when click on new content notif", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
     const component = wrapWithProvidersAndRenderForTesting({
       Component: UserNotifications,
@@ -165,11 +168,12 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    component.getByTestId("test-notif-new content").click();
+    await user.click(component.getByTestId("test-notif-new content"));
     expect(Router).toMatchObject({ asPath: "/dispositif/id" });
   });
 
-  it("should link to dispositif when click on annuaire notif", () => {
+  it("should link to dispositif when click on annuaire notif", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
     const component = wrapWithProvidersAndRenderForTesting({
       Component: UserNotifications,
@@ -192,7 +196,7 @@ describe("UserNotifications", () => {
       id: "1",
       locale: "fr",
     });
-    component.getByTestId("test-notif-annuaire").click();
+    await user.click(component.getByTestId("test-notif-annuaire"));
     expect(Router).toMatchObject({ asPath: "/directory-create" });
   });
 

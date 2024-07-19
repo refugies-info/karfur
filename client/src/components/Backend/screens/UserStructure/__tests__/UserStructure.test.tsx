@@ -1,5 +1,7 @@
 import { GetStructureResponse, StructureMemberRole, StructureStatus, UserStatus } from "@refugies-info/api-types";
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { initialMockStore } from "__fixtures__/reduxStore";
 import { colors } from "colors";
 import "jest-styled-components";
 import {
@@ -7,7 +9,6 @@ import {
   updateUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
-import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import { UserStructureComponent } from "../UserStructure.component";
 
@@ -171,6 +172,7 @@ describe("UserStructure", () => {
   });
 
   it("should render correctly when add member modal is open", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
     const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserStructureComponent,
@@ -202,12 +204,12 @@ describe("UserStructure", () => {
         },
       },
     });
-    const element = await screen.findByTestId("test-add-member");
-    element.click();
+    await user.click(screen.getByTestId("test-add-member"));
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("should render correctly when edit member modal is open, select respo and validate", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
     const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: UserStructureComponent,
@@ -239,16 +241,13 @@ describe("UserStructure", () => {
         },
       },
     });
-    const element1 = await screen.findByTestId("test-edit-id1");
-    element1.click();
+    await user.click(screen.getByTestId("edit-member-id1"));
     expect(asFragment()).toMatchSnapshot();
 
-    const element2 = await screen.findByTestId("test-role-Responsable");
-    element2.click();
+    await user.click(screen.getByTestId("test-role-Responsable"));
     expect(asFragment()).toMatchSnapshot();
 
-    const element3 = await screen.findByTestId("test-validate-edit");
-    element3.click();
+    await user.click(screen.getByTestId("test-validate-edit"));
 
     expect(updateUserStructureActionCreator).toHaveBeenCalledWith({
       membres: {
@@ -261,6 +260,7 @@ describe("UserStructure", () => {
   });
 
   it("should delete user ", async () => {
+    const user = userEvent.setup();
     Swal.fire = jest.fn().mockResolvedValueOnce({ value: true });
 
     window.scrollTo = jest.fn();
@@ -295,8 +295,7 @@ describe("UserStructure", () => {
       },
     });
 
-    const element = await component.findByTestId("test_delete_id1");
-    element.click();
+    await user.click(screen.getByTestId("delete-button-id1"));
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Êtes-vous sûr ?",
       text: "Vous êtes sur le point d'enlever un membre de votre structure.",

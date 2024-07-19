@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom";
 import { waitFor } from "@testing-library/react";
-import "jest-styled-components";
+import userEvent from "@testing-library/user-event";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { testUser } from "__fixtures__/user";
 import { setupGoogleMock } from "__mocks__/react-google-autocomplete";
+import "jest-styled-components";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import { UserProfile } from "../UserProfile";
 
@@ -59,6 +60,7 @@ describe("UserProfile", () => {
   });
 
   it("should render correctly when editing profile", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
     const component = wrapWithProvidersAndRenderForTesting({
       Component: UserProfile,
@@ -67,7 +69,7 @@ describe("UserProfile", () => {
         user: { ...initialMockStore.user, user: { ...testUser } },
       },
     });
-    component.getByText("Modifier mes informations personnelles").click();
+    await user.click(component.getByText("Modifier mes informations personnelles"));
     await waitFor(() => expect(component.getByTitle("pseudo-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("firstname-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("email-input")).not.toBeDisabled());
@@ -77,6 +79,7 @@ describe("UserProfile", () => {
   });
 
   it("should render correctly when editing profile without password", async () => {
+    const user = userEvent.setup();
     window.scrollTo = jest.fn();
     const component = wrapWithProvidersAndRenderForTesting({
       Component: UserProfile,
@@ -85,7 +88,7 @@ describe("UserProfile", () => {
         user: { ...initialMockStore.user, user: { ...testUser, sso: true } },
       },
     });
-    component.getByText("Modifier mes informations personnelles").click();
+    await user.click(component.getByText("Modifier mes informations personnelles"));
     await waitFor(() => expect(component.getByTitle("pseudo-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("firstname-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("email-input")).not.toBeDisabled());

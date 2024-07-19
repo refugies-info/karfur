@@ -212,20 +212,20 @@ export const SeeButton = (props: { burl: string }) => (
   </ButtonContainer>
 );
 
-export const EditButtonWithoutNavigation = (props: { onClick: () => void }) => (
-  <ButtonContainer hoverColor={colors.gray90} onClick={props.onClick}>
+export const EditButtonWithoutNavigation = (props: { onClick: () => void; testId?: string }) => (
+  <ButtonContainer hoverColor={colors.gray90} onClick={props.onClick} data-testid={props.testId}>
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="edit" fill={colors.white} size={20} />
     </div>
   </ButtonContainer>
 );
 
-export const DeleteButton = (props: { onClick: (event: any) => void; disabled: boolean }) => (
+export const DeleteButton = (props: { onClick: (event: any) => void; disabled: boolean; testId?: string }) => (
   <ButtonContainer
     onClick={props.disabled ? undefined : props.onClick}
     hoverColor={colors.error}
     disabled={props.disabled}
-    data-testid="delete-button"
+    data-testid={props.testId}
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="trash" fill={colors.white} size={20} />

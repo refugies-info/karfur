@@ -104,7 +104,7 @@ export const UserContribTable = (props: Props) => (
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <SeeButton burl={burl} />
                 <DeleteButton
-                  data-testid={"test_delete_" + element._id}
+                  testId={`delete-button-${element._id}`}
                   onClick={(event: any) => props.deleteDispositif(event, element._id, element.isAuthorizedToDelete)}
                   disabled={!element.isAuthorizedToDelete}
                 />

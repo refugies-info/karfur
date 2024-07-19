@@ -1,5 +1,6 @@
 //@ts-nocheck
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import "jest-styled-components";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../../jest/lib/wrapWithProvidersAndRender";
@@ -189,10 +190,11 @@ test("should render ValidateButton not disabled", () => {
   expect(asFragment()).toMatchSnapshot();
 });
 
-test("should call onClick ValidateButton", () => {
+test("should call onClick ValidateButton", async () => {
+  const user = userEvent.setup();
   const onClick = jest.fn();
   render(<ValidateButton onClick={onClick} disabled={false} />);
-  screen.getByTestId("validate-button").click();
+  await user.click(screen.getByTestId("validate-button"));
   expect(onClick).toHaveBeenCalled();
 });
 
@@ -211,10 +213,11 @@ test("should render DeleteButton not disabled", () => {
   expect(asFragment()).toMatchSnapshot();
 });
 
-test("should call onClick DeleteButton", () => {
+test("should call onClick DeleteButton", async () => {
+  const user = userEvent.setup();
   const onClick = jest.fn();
-  render(<DeleteButton onClick={onClick} disabled={false} />);
-  screen.getByTestId("delete-button").click();
+  render(<DeleteButton onClick={onClick} disabled={false} testId="delete_button" />);
+  await user.click(screen.getByTestId("delete_button"));
   expect(onClick).toHaveBeenCalled();
 });
 

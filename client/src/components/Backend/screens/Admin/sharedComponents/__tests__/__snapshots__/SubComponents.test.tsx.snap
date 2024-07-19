@@ -21,7 +21,6 @@ exports[`should render DeleteButton disabled 1`] = `
 
 <div
     class="c0"
-    data-testid="delete-button"
     disabled=""
     hovercolor="#f44336"
   >
@@ -87,7 +86,6 @@ exports[`should render DeleteButton not disabled 1`] = `
 
 <div
     class="c0"
-    data-testid="delete-button"
     hovercolor="#f44336"
   >
     <div

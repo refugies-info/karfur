@@ -397,7 +397,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
       <div>
         <button
           class="btn outline-black"
-          data-testid="test-delete-button"
+          data-testid="remove-all-favorites-button"
         >
           <span
             class="me-2 icon"
