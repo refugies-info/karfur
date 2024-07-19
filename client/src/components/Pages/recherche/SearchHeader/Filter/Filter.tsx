@@ -98,6 +98,7 @@ const Filter = (props: Props) => {
             })
           : menuDropdown?.menu}
       </DropdownMenu>
+      {open && <div className={styles.backdrop} onClick={toggleDropdown} />}
     </Dropdown>
   );
 };
