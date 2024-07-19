@@ -24,7 +24,7 @@ const ButtonTheme = styled.button<ButtonThemeProps>`
     color: white !important;
     ${(props) => (props.$selected ? "border-color: white !important;" : "")}
 
-    :hover {
+    &:hover {
       background-color: transparent;
     }
   }

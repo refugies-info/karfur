@@ -25,7 +25,7 @@ type ButtonNeedProps = {
 const ButtonNeed = styled.button<ButtonNeedProps>`
   background-color: ${(props: ButtonNeedProps) => (props.selected ? props.color30 : "transparent")};
   color: ${(props: ButtonNeedProps) => props.color100};
-  :hover {
+  &:hover {
     background-color: ${(props: ButtonNeedProps) => props.color30};
   }
 `;
