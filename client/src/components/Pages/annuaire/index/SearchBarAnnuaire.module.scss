@@ -1,5 +1,5 @@
-@import 'src/scss/colors.scss';
-@import "src/scss/variables";
+@import "src/scss/colors.scss";
+@import "~scss/variables";
 
 .container {
   display: flex;
@@ -81,6 +81,3 @@
     display: none;
   }
 }
-
-
-

@@ -1,6 +1,6 @@
-@import "src/scss/colors";
-@import "src/scss/mixins/responsive";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/mixins/responsive";
+@import "~scss/variables";
 
 .container {
   background: $white;
@@ -26,7 +26,7 @@
     outline: none !important;
   }
   @include media-min("widescreen-up") {
-    width: 240px
+    width: 240px;
   }
   &.no_margin {
     margin-right: 0;

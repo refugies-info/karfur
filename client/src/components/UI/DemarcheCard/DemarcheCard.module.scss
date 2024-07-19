@@ -1,9 +1,9 @@
-@import "src/scss/colors";
-@import "src/scss/mixins/responsive";
-@import "src/scss/mixins/text";
-@import "src/scss/mixins/unit";
-@import "src/scss/mixins/rtl";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/mixins/responsive";
+@import "~scss/mixins/text";
+@import "~scss/mixins/unit";
+@import "~scss/mixins/rtl";
+@import "~scss/variables";
 
 .title {
   @include text("large");
@@ -14,6 +14,7 @@
 
   overflow: hidden;
   text-overflow: ellipsis;
+  line-clamp: 3;
   -webkit-line-clamp: 3;
   display: -webkit-inline-box;
   -webkit-box-orient: vertical;

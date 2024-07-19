@@ -21,6 +21,10 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "src",
     "incremental": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "paths": {
+      "~scss/*": ["scss/*"],
+    },
   },
   "exclude": ["node_modules"],
   "include": ["src"]

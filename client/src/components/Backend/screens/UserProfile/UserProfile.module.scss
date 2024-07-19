@@ -1,5 +1,5 @@
-@import "src/scss/mixins/unit";
-@import "src/scss/mixins/text";
+@import "~scss/mixins/unit";
+@import "~scss/mixins/text";
 
 .container {
   background: var(--background-default-grey-hover);

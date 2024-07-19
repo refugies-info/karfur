@@ -1,9 +1,9 @@
-@import "src/scss/colors";
-@import "src/scss/variables";
-@import "src/scss/mixins/text";
-@import "src/scss/mixins/unit";
-@import "src/scss/mixins/icons";
-@import "src/scss/mixins/responsive";
+@import "~scss/colors";
+@import "~scss/variables";
+@import "~scss/mixins/text";
+@import "~scss/mixins/unit";
+@import "~scss/mixins/icons";
+@import "~scss/mixins/responsive";
 
 .badge {
   @include dsfr-text("small");

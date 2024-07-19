@@ -1,4 +1,4 @@
-@import "src/scss/colors";
+@import "~scss/colors";
 
 .langue {
   padding: 8px;
@@ -44,7 +44,7 @@
   display: inline-block;
 
   &.selected {
-    background:#4CAF50;
+    background: #4caf50;
   }
 }
 .role_name {
