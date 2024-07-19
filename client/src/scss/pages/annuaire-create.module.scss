@@ -1,5 +1,5 @@
-@import "src/scss/colors";
-@import "src/scss/variables";
+@import "~scss/colors";
+@import "~scss/variables";
 
 .container {
   background: #fbfbfb;
@@ -67,5 +67,4 @@
     flex-direction: row;
     justify-content: space-between;
   }
-
 }
