@@ -7,7 +7,7 @@ exports[`recherche renders search results 1`] = `
   color: #3D2884;
 }
 
-.c13 :hover {
+.c13:hover {
   background-color: #EFE8F4;
 }
 
@@ -147,7 +147,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c0 :hover {
+  .c0:hover {
     background-color: transparent;
   }
 }
@@ -159,7 +159,7 @@ exports[`recherche renders search results 1`] = `
     border-color: white!important;
   }
 
-  .c1 :hover {
+  .c1:hover {
     background-color: transparent;
   }
 }
@@ -170,7 +170,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c2 :hover {
+  .c2:hover {
     background-color: transparent;
   }
 }
@@ -181,7 +181,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c3 :hover {
+  .c3:hover {
     background-color: transparent;
   }
 }
@@ -192,7 +192,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c4 :hover {
+  .c4:hover {
     background-color: transparent;
   }
 }
@@ -203,7 +203,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c5 :hover {
+  .c5:hover {
     background-color: transparent;
   }
 }
@@ -214,7 +214,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c6 :hover {
+  .c6:hover {
     background-color: transparent;
   }
 }
@@ -225,7 +225,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c7 :hover {
+  .c7:hover {
     background-color: transparent;
   }
 }
@@ -236,7 +236,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c8 :hover {
+  .c8:hover {
     background-color: transparent;
   }
 }
@@ -247,7 +247,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c9 :hover {
+  .c9:hover {
     background-color: transparent;
   }
 }
@@ -258,7 +258,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c10 :hover {
+  .c10:hover {
     background-color: transparent;
   }
 }
@@ -269,7 +269,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c11 :hover {
+  .c11:hover {
     background-color: transparent;
   }
 }
@@ -280,7 +280,7 @@ exports[`recherche renders search results 1`] = `
     color: white!important;
   }
 
-  .c12 :hover {
+  .c12:hover {
     background-color: transparent;
   }
 }

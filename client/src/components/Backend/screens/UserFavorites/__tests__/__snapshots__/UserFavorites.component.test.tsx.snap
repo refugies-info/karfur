@@ -348,7 +348,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
   margin-bottom: 8px;
 }
 
-.c5 :hover,
+.c5:hover,
 .favorite:hover+.c5 {
   background-color: #DDF2F9!important;
   border-color: #06508C!important;
